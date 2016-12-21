@@ -9,8 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMimeData>
-#include <QFileDialog>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 

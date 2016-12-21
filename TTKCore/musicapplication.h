@@ -9,9 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMenu>
-#include <QTimer>
-#include <QCloseEvent>
 #include "musicabstractmoveresizewidget.h"
 
 class MusicPlayer;

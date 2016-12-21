@@ -12,6 +12,9 @@
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
 
+#include <QMenu>
+#include <QTimer>
+
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_renameLine(nullptr)
 {
