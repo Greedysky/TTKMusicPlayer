@@ -61,24 +61,64 @@ QString MusicSongsSummariziedWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
+bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
 {
-    if(names.count() < 3)
+    MusicObject::MIntSet inDeed;
+    inDeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
+    foreach(const MusicSongItem &item, names)
     {
-        //if less than three count, add default items
-        addNewRowItem( tr("myDefaultPlayItem") );
-        addNewRowItem( tr("myLoveSongItem") );
-        addNewRowItem( tr("myNetSongItem") );
-        addNewRowItem( tr("myRecentSongItem") );
+        inDeed.remove(item.m_itemIndex);
+    }
+    //////////////////////////////////////////////////////////////////////
+    if(!inDeed.isEmpty())
+    {
+        //if less than four count(0, 1, 2, 3), find and add default items
+        m_songItems << names;
+        foreach(const int item, inDeed)
+        {
+            MusicSongItem songItem;
+            switch(item)
+            {
+                case MUSIC_NORMAL_LIST:
+                    {
+                        songItem.m_itemIndex = item;
+                        songItem.m_itemName = tr("myDefaultPlayItem");
+                        break;
+                    }
+                case MUSIC_LOVEST_LIST:
+                    {
+                        songItem.m_itemIndex = item;
+                        songItem.m_itemName = tr("myLoveSongItem");
+                        break;
+                    }
+                case MUSIC_NETWORK_LIST:
+                    {
+                        songItem.m_itemIndex = item;
+                        songItem.m_itemName = tr("myNetSongItem");
+                        break;
+                    }
+                case MUSIC_RECENT_LIST:
+                    {
+                        songItem.m_itemIndex = item;
+                        songItem.m_itemName = tr("myRecentSongItem");
+                        break;
+                    }
+            }
+            m_songItems << songItem;
+        }
+        qSort(m_songItems);
     }
     else
     {
         m_songItems = names;
-        for(int i=0; i<names.count(); ++i)
-        {
-            createWidgetItem(&m_songItems[i]);
-        }
     }
+
+    for(int i=0; i<m_songItems.count(); ++i)
+    {
+        createWidgetItem(&m_songItems[i]);
+    }
+
+    return inDeed.isEmpty();
 }
 
 void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)

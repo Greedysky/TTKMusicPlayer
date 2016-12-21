@@ -996,7 +996,7 @@ void MusicApplication::readXMLConfigFromText()
     {
         xml.readMusicSongsConfig(songs);
     }
-    m_musicSongTree->addMusicLists(songs);
+    bool success = m_musicSongTree->addMusicLists(songs);
     //////////////////////////////////////////////////////////////
     if(!xml.readXMLConfig())//open file
     {
@@ -1072,7 +1072,7 @@ void MusicApplication::readXMLConfigFromText()
     value = keyList[1].toInt();
     m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(value));
     m_ui->musicPlayedList->append(value, songs[value].m_songs);
-    if(keyList[0] == "1")
+    if(success && keyList[0] == "1")
     {
         QTimer::singleShot(MT_MS, m_musicSongTree, SLOT(setCurrentIndex()));
         m_currentMusicSongTreeIndex = value;

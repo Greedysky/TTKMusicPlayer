@@ -159,6 +159,11 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
         m_itemIndex = -1;
         m_itemObject = nullptr;
     }
+
+    inline bool operator<(const MusicSongItem &other) const
+    {
+        return m_itemIndex < other.m_itemIndex;
+    }
 }MusicSongItem;
 TTK_DECLARE_LISTS(MusicSongItem)
 

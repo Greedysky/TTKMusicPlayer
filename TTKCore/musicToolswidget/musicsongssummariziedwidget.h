@@ -35,7 +35,7 @@ public:
     /*!
      * Get class object name.
      */
-    void addMusicLists(const MusicSongItems &names);
+    bool addMusicLists(const MusicSongItems &names);
     /*!
      * Add music datas into container.
      */
