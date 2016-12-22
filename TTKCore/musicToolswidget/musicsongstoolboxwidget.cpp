@@ -15,12 +15,20 @@
 #include <QScrollArea>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QDrag>
+#include <QMimeData>
+
+#define DRAG_FORMAT     "Swap Item"
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
 {
     m_renameLine = nullptr;
     m_index = index;
+    m_isDrawTopState = false;
+    m_isDrawMoveState = false;
+
+    setAcceptDrops(true);
     setFixedHeight(35);
 
     QHBoxLayout *topLayout = new QHBoxLayout(this);
@@ -74,6 +82,11 @@ QString MusicSongsToolBoxTopWidget::getClassName()
 void MusicSongsToolBoxTopWidget::setItemExpand(bool expand)
 {
     m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
+}
+
+bool MusicSongsToolBoxTopWidget::isItemExpand() const
+{
+    return m_labelIcon->pixmap()->cacheKey() == QPixmap(":/tiny/lb_arrow_down_normal").cacheKey();
 }
 
 void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
@@ -157,8 +170,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     menu.addAction(tr("exportList"), this, SLOT(exportSongsItemList()));
     menu.addSeparator();
 
-    disable = !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST ||
-                m_index == MUSIC_RECENT_LIST);
+    disable = isItemEnable();
     menu.addAction(tr("deleteAll"), this, SLOT(deleteRowItemAll()));
     menu.addAction(QIcon(":/contextMenu/btn_delete"), tr("deleteItem"), this, SLOT(deleteRowItem()))->setEnabled(disable);
     menu.addAction(tr("changItemName"), this, SLOT(changRowItemName()))->setEnabled(disable);
@@ -171,12 +183,95 @@ void MusicSongsToolBoxTopWidget::showShareListDialog()
     MusicSongListSharingWidget(this).exec();
 }
 
+bool MusicSongsToolBoxTopWidget::isItemEnable() const
+{
+    return !(m_index == MUSIC_NORMAL_LIST || m_index == MUSIC_LOVEST_LIST || m_index == MUSIC_NETWORK_LIST ||
+             m_index == MUSIC_RECENT_LIST);
+}
+
+void MusicSongsToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)
+{
+    Q_UNUSED(event);
+    m_isDrawTopState = false;
+    m_isDrawMoveState = false;
+    update();
+}
+
+void MusicSongsToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
+{
+    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
+    {
+        m_isDrawMoveState = true;
+        m_isDrawTopState = event->pos().y() < height()/2;
+        update();
+    }
+}
+
+void MusicSongsToolBoxTopWidget::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasFormat(DRAG_FORMAT))
+    {
+        event->setDropAction(Qt::MoveAction);
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+void MusicSongsToolBoxTopWidget::dropEvent(QDropEvent *event)
+{
+    m_isDrawMoveState = false;
+    update();
+
+    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
+    {
+        if(m_isDrawTopState)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+}
+
 void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         emit mousePressAt(m_index);
+        m_pressPosAt = event->pos();
+    }
+}
+
+void MusicSongsToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    QWidget::mouseMoveEvent(event);
+    QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
+    if(!itemRect.contains(event->pos()) && isItemEnable())
+    {
+        if(isItemExpand())
+        {
+            emit mousePressAt(m_index);
+        }
+
+        QMimeData *mimeData = new QMimeData;
+        mimeData->setData(DRAG_FORMAT, DRAG_FORMAT);
+        mimeData->setText( getTitle(true) );
+
+        QDrag *drag = new QDrag(this);
+        drag->setMimeData(mimeData);
+        drag->setHotSpot(QPoint(0, height()/2));
+#ifdef MUSIC_GREATER_NEW
+        drag->setPixmap( grab(rect()) );
+#else
+        drag->setPixmap( QPixmap::grabWidget(this, rect()) );
+#endif
+        drag->exec(Qt::MoveAction);
     }
 }
 
@@ -188,6 +283,19 @@ void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
     painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
     painter.drawLine(0, 0, width(), 0);
     painter.drawLine(0, height(), width(), height());
+
+    if(m_isDrawMoveState)
+    {
+        painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 1, Qt::SolidLine));
+        if(m_isDrawTopState)
+        {
+            painter.drawLine(0, 0, width(), 0);
+        }
+        else
+        {
+            painter.drawLine(0, height() - 1, width(), height() - 1);
+        }
+    }
 }
 
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)

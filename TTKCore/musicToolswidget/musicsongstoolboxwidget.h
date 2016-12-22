@@ -45,6 +45,10 @@ public:
     /*!
      * Set Item expand.
      */
+    bool isItemExpand() const;
+    /*!
+     * Get Item expand.
+     */
 
     void setTitle(const QString &text);
     /*!
@@ -124,7 +128,16 @@ public Q_SLOTS:
      */
 
 protected:
+    bool isItemEnable() const;
+    /*!
+     * Check the item is enable or not.
+     */
+    virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
+    virtual void dragMoveEvent(QDragMoveEvent *event) override;
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
@@ -136,6 +149,9 @@ protected:
     QLabel *m_labelIcon, *m_labelText;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
+    bool m_isDrawTopState;
+    bool m_isDrawMoveState;
+    QPoint m_pressPosAt;
 };
 
 
