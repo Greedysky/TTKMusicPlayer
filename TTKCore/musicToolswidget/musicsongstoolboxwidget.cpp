@@ -227,14 +227,7 @@ void MusicSongsToolBoxTopWidget::dropEvent(QDropEvent *event)
 
     if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
     {
-        if(m_isDrawTopState)
-        {
-
-        }
-        else
-        {
-
-        }
+        emit swapDragItemIndex(event->mimeData()->data(DRAG_FORMAT).toInt(), m_index);
     }
 }
 
@@ -260,7 +253,7 @@ void MusicSongsToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
         }
 
         QMimeData *mimeData = new QMimeData;
-        mimeData->setData(DRAG_FORMAT, DRAG_FORMAT);
+        mimeData->setData(DRAG_FORMAT, QByteArray::number(m_index));
         mimeData->setText( getTitle(true) );
 
         QDrag *drag = new QDrag(this);
@@ -353,6 +346,7 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(renameFinished(int,QString)), SIGNAL(changRowItemName(int,QString)));
     connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
     connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
+    connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
 
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
@@ -530,6 +524,21 @@ void MusicSongsToolBoxWidget::removeItem(QWidget *item)
             }
         }
     }
+}
+
+void MusicSongsToolBoxWidget::swapItem(int before, int after)
+{
+    MusicToolBoxWidgetItem widgetItem = m_itemList.takeAt(before);
+    m_itemList.insert(after, widgetItem);
+
+    m_layout->removeWidget( widgetItem.m_widgetItem );
+    int count = m_layout->count();
+    if(count > 1)
+    {
+        m_layout->removeItem(m_layout->itemAt(count - 1));
+    }
+    m_layout->insertWidget(after, widgetItem.m_widgetItem );
+    m_layout->addStretch(5);
 }
 
 void MusicSongsToolBoxWidget::setTitle(QWidget *item, const QString &text)

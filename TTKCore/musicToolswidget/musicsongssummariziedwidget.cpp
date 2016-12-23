@@ -38,6 +38,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_listMaskWidget, SIGNAL(renameFinished(int,QString)), SLOT(changRowItemName(int,QString)));
     connect(m_listMaskWidget, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
     connect(m_listMaskWidget, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(m_listMaskWidget, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
+
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
     m_songCheckToolsWidget = nullptr;
@@ -417,6 +419,20 @@ void MusicSongsSummariziedWidget::addNewDir(int index)
     m_currentImportIndex = id;
     MusicApplication::instance()->musicImportSongsOnlyDir();
     m_currentImportIndex = MUSIC_NORMAL_LIST;
+}
+
+void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
+{
+    before = foundMappingIndex(before);
+    after = foundMappingIndex(after);
+    if(before == after)
+    {
+        return;
+    }
+
+    swapItem(before, after);
+    MusicSongItem item = m_songItems.takeAt(before);
+    m_songItems.insert(after, item);
 }
 
 void MusicSongsSummariziedWidget::musicImportSongsOnlyFile()
@@ -812,6 +828,8 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(m_itemList.last().m_widgetItem, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
+    connect(m_itemList.last().m_widgetItem, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
 
     w->setSongsFileName(&item->m_songs);
     setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));

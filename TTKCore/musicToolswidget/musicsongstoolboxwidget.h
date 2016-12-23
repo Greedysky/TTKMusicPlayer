@@ -88,6 +88,10 @@ Q_SIGNALS:
     /*!
      * Add new music dir to list.
      */
+    void swapDragItemIndex(int before, int after);
+    /*!
+     * Swap the item index by drag adn drop.
+     */
 
 public Q_SLOTS:
     void deleteRowItem();
@@ -260,6 +264,10 @@ Q_SIGNALS:
     /*!
      * Add new music dir to list.
      */
+    void swapDragItemIndex(int before, int after);
+    /*!
+     * Swap the item index by drag adn drop.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -314,6 +322,10 @@ public:
     void removeItem(QWidget *item);
     /*!
      * Remove widget item.
+     */
+    void swapItem(int before, int after);
+    /*!
+     * Swap widget item.
      */
 
     void setTitle(QWidget *item, const QString &text);

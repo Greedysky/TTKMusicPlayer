@@ -149,6 +149,10 @@ public Q_SLOTS:
     /*!
      * Add new music dir to list.
      */
+    void swapDragItemIndex(int before, int after);
+    /*!
+     * Swap the item index by drag adn drop.
+     */
     void musicImportSongsOnlyFile();
     /*!
      * Import music songs by file.
