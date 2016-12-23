@@ -430,6 +430,30 @@ void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
         return;
     }
 
+    //adjust the m_currentPlayToolIndex while the item has dragged and dropped
+    if(before < after)
+    {
+        if((before < m_currentPlayToolIndex && m_currentPlayToolIndex < after) || m_currentPlayToolIndex == after)
+        {
+            m_currentIndex = --m_currentPlayToolIndex;
+        }
+        else if(m_currentPlayToolIndex == before)
+        {
+            m_currentIndex = m_currentPlayToolIndex = after;
+        }
+    }
+    else
+    {
+        if((after < m_currentPlayToolIndex && m_currentPlayToolIndex < before) || m_currentPlayToolIndex == after)
+        {
+            m_currentIndex = ++m_currentPlayToolIndex;
+        }
+        else if(m_currentPlayToolIndex == before)
+        {
+            m_currentIndex = m_currentPlayToolIndex = after;
+        }
+    }
+
     swapItem(before, after);
     MusicSongItem item = m_songItems.takeAt(before);
     m_songItems.insert(after, item);

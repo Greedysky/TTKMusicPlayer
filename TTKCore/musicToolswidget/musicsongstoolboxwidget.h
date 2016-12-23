@@ -153,8 +153,8 @@ protected:
     QLabel *m_labelIcon, *m_labelText;
     MusicSongsToolItemRenamedWidget *m_renameLine;
 
-    bool m_isDrawTopState;
-    bool m_isDrawMoveState;
+    bool m_isDrawTopState, m_isDrawMoveState;
+    bool m_isBlockMoveExpand;
     QPoint m_pressPosAt;
 };
 

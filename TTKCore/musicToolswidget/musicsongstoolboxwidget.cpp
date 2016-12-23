@@ -27,6 +27,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_index = index;
     m_isDrawTopState = false;
     m_isDrawMoveState = false;
+    m_isBlockMoveExpand = false;
 
     setAcceptDrops(true);
     setFixedHeight(35);
@@ -247,7 +248,7 @@ void MusicSongsToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
     QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
     if(!itemRect.contains(event->pos()) && isItemEnable())
     {
-        if(isItemExpand())
+        if(!m_isBlockMoveExpand && isItemExpand())
         {
             emit mousePressAt(m_index);
         }
@@ -304,6 +305,7 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
 {
     move(0, 0);
     setFixedWidth(320);
+    m_isBlockMoveExpand = true;
 
     hide();
 }
