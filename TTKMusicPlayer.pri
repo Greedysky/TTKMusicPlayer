@@ -38,6 +38,7 @@ win32{
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
             LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lMusicUi -lMusicExtras -lzlib
+            CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
                  QMAKE_LFLAGS_WINDOWS = /SUBSYSTEM:WINDOWS,5.01

@@ -17,7 +17,11 @@ unix:TARGET = ../lib/TTKMusicPlayer
 
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11
+win32:msvc{
+    CONFIG +=c++11
+}else{
+    QMAKE_CXXFLAGS += -std=c++11
+}
 
 INCLUDEPATH += ../ \
     ../TTKCore/musicCore
