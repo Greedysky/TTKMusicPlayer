@@ -828,7 +828,6 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(m_itemList.last().m_widgetItem, SIGNAL(changRowItemName(int,QString)), SLOT(changRowItemName(int,QString)));
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewFiles(int)), SLOT(addNewFiles(int)));
     connect(m_itemList.last().m_widgetItem, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
-    connect(m_itemList.last().m_widgetItem, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
     connect(m_itemList.last().m_widgetItem, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
 
     w->setSongsFileName(&item->m_songs);

@@ -531,13 +531,13 @@ void MusicSongsToolBoxWidget::swapItem(int before, int after)
     MusicToolBoxWidgetItem widgetItem = m_itemList.takeAt(before);
     m_itemList.insert(after, widgetItem);
 
-    m_layout->removeWidget( widgetItem.m_widgetItem );
+    m_layout->removeWidget(widgetItem.m_widgetItem);
     int count = m_layout->count();
     if(count > 1)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
     }
-    m_layout->insertWidget(after, widgetItem.m_widgetItem );
+    m_layout->insertWidget(after, widgetItem.m_widgetItem);
     m_layout->addStretch(5);
 }
 
