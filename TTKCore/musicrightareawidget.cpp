@@ -442,6 +442,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 {
     bool type = m_musicLrcForDesktop ? m_musicLrcForDesktop->getWindowType() :
                 MStatic_cast(bool, M_SETTING_PTR->value(MusicSettingManager::DLrcWindowTypeChoiced).toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, QPoint());
 
     MusicLrcContainerForDesktop *deskLrc = m_musicLrcForDesktop;
     if(type)
