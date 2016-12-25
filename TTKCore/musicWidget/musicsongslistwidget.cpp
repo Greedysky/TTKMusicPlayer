@@ -899,9 +899,13 @@ void MusicSongsListWidget::startToDrag()
         }
 
         emit getMusicIndexSwaped(start, end, index, songs);
-
         for(int i=qMin(start, end); i<=qMax(start, end); ++i)
         {
+            if(i == index)
+            {
+                continue; //skip the current play item index, because the play widget just has one item
+            }
+
             item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
             item(i, 5)->setText(songs[i].getMusicTime());
         }
