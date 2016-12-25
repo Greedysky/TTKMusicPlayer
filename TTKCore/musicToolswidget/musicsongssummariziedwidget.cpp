@@ -644,7 +644,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &i
     item->m_itemObject->createUploadFileWidget();
 }
 
-void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int play, QStringList &list)
+void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int play, MusicSongs &songs)
 {
     MusicSongs *names = &m_songItems[m_currentIndex].m_songs;
     if(before > after)
@@ -661,8 +661,8 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int
             names->swap(i, i + 1);
         }
     }
+    songs = *names;
 
-    list = getMusicSongsFileName(m_currentIndex);
     if(m_currentIndex == m_currentPlayToolIndex)
     {
         emit updateMediaLists(getMusicSongsFilePath(m_currentPlayToolIndex), play);
@@ -841,7 +841,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
     connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
-    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,QStringList&)), SLOT(setMusicIndexSwaped(int,int,int,QStringList&)));
+    connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));
     connect(w, SIGNAL(musicListSongToLovestListAt(bool,int)), SLOT(musicListSongToLovestListAt(bool,int)));
     connect(w, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));
 

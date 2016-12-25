@@ -136,7 +136,7 @@ Q_SIGNALS:
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void getMusicIndexSwaped(int before, int after, int play, QStringList &list);
+    void getMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
     /*!
      * Swap the current play index when user drag and drop.
      */

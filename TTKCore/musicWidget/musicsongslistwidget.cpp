@@ -873,7 +873,7 @@ void MusicSongsListWidget::startToDrag()
     emit isSearchFileListEmpty(empty);
     if(empty && m_dragStartIndex > -1 && m_leftButtonPressed && m_mouseMoved)
     {
-        QStringList list;
+        MusicSongs songs;
         int start = m_dragStartIndex;
         int end = currentRow();
         int index = m_playRowIndex;
@@ -898,11 +898,12 @@ void MusicSongsListWidget::startToDrag()
             }
         }
 
-        emit getMusicIndexSwaped(start, end, index, list);
+        emit getMusicIndexSwaped(start, end, index, songs);
 
         for(int i=qMin(start, end); i<=qMax(start, end); ++i)
         {
-            item(i, 1)->setText(list[i]);
+            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
+            item(i, 5)->setText(songs[i].getMusicTime());
         }
 
         bool isCurrent;
