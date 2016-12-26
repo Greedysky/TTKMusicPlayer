@@ -1,43 +1,8 @@
 #include "musiccloudfilemanagerdialog.h"
 #include "ui_musiccloudfilemanagerdialog.h"
+#include "musiccloudtablewidget.h"
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
-
-#include <QScrollBar>
-
-MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
-{
-    setColumnCount(4);
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 300);
-    headerview->resizeSection(2, 111);
-    headerview->resizeSection(3, 50);
-
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
-
-    m_progressBarDelegate = new MusicProgressBarDelegate(this);
-    setItemDelegateForColumn(2, m_progressBarDelegate);
-
-}
-
-MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
-{
-    delete m_progressBarDelegate;
-}
-
-QString MusicCloudUploadTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
-void MusicCloudUploadTableWidget::listCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
 
 MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -53,8 +18,10 @@ MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
 
     m_ui->reuploadButton->setEnabled(false);
     m_ui->reuploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    connect(m_ui->reuploadButton, SIGNAL(clicked()), parent, SLOT(reuploadFileToServer()));
+    m_ui->downloadedButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
+    connect(m_ui->reuploadButton, SIGNAL(clicked()), parent, SLOT(reuploadFileToServer()));
+    connect(m_ui->downloadedButton, SIGNAL(clicked()), SLOT(downloadStateChanged()));
 }
 
 MusicCloudFileManagerDialog::~MusicCloudFileManagerDialog()
@@ -74,30 +41,30 @@ void MusicCloudFileManagerDialog::setReuploadState(bool state)
 
 void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)
 {
-    int index = m_ui->uploadTableWidget->rowCount();
-    m_ui->uploadTableWidget->setRowCount(index + 1);
+    int index = m_ui->uploadedTableWidget->rowCount();
+    m_ui->uploadedTableWidget->setRowCount(index + 1);
     QTableWidgetItem *item = new QTableWidgetItem;
-    m_ui->uploadTableWidget->setItem(index, 0, item);
+    m_ui->uploadedTableWidget->setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), data.m_name, Qt::ElideRight, 260));
     item->setToolTip(data.m_name);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    m_ui->uploadTableWidget->setItem(index, 1, item);
+    m_ui->uploadedTableWidget->setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
     item->setData(MUSIC_PROCS_ROLE, (data.m_state == UploadData::Successed) ? 100 : 0);
-    m_ui->uploadTableWidget->setItem(index, 2, item);
+    m_ui->uploadedTableWidget->setItem(index, 2, item);
 
                       item = new QTableWidgetItem;
     item->setIcon( getIconByDataState(data.m_state) );
     item->setTextAlignment(Qt::AlignCenter);
-    m_ui->uploadTableWidget->setItem(index, 3, item);
+    m_ui->uploadedTableWidget->setItem(index, 3, item);
 }
 
 void MusicCloudFileManagerDialog::creatFilesManager(const UploadDatas &datas)
 {
-    m_ui->uploadTableWidget->clear();
+    m_ui->uploadedTableWidget->clear();
     foreach(const UploadData &data, datas)
     {
         creatFileManager(data);
@@ -106,14 +73,28 @@ void MusicCloudFileManagerDialog::creatFilesManager(const UploadDatas &datas)
 
 void MusicCloudFileManagerDialog::updateItemProgress(int percent, const UploadData &data)
 {
-    for(int i=0; i<m_ui->uploadTableWidget->rowCount(); ++i)
+    for(int i=0; i<m_ui->uploadedTableWidget->rowCount(); ++i)
     {
-        QTableWidgetItem *it = m_ui->uploadTableWidget->item(i, 1);
+        QTableWidgetItem *it = m_ui->uploadedTableWidget->item(i, 1);
         if(it && it->toolTip() == data.m_name)
         {
-            m_ui->uploadTableWidget->item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
-            m_ui->uploadTableWidget->item(i, 3)->setIcon( getIconByDataState(data.m_state) );
+            m_ui->uploadedTableWidget->item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
+            m_ui->uploadedTableWidget->item(i, 3)->setIcon( getIconByDataState(data.m_state) );
         }
+    }
+}
+
+void MusicCloudFileManagerDialog::downloadStateChanged()
+{
+    if(m_ui->downloadedButton->text() == tr("Downloaded"))
+    {
+        m_ui->downloadedButton->setText(tr("Uploaded"));
+        m_ui->stackedWidget->setCurrentIndex(0);
+    }
+    else
+    {
+        m_ui->downloadedButton->setText(tr("Downloaded"));
+        m_ui->stackedWidget->setCurrentIndex(1);
     }
 }
 

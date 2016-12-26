@@ -29,7 +29,8 @@ HEADERS  += \
     $$PWD/musicwebmusicradiolistview.h  \
     $$PWD/musicwebmusicradiowidget.h \
     $$PWD/musiccloudsharedsongwidget.h \
-    $$PWD/musiccloudfilemanagerdialog.h
+    $$PWD/musiccloudfilemanagerdialog.h \
+    $$PWD/musiccloudtablewidget.h
 
 }
 
@@ -53,6 +54,7 @@ SOURCES += \
     $$PWD/musicwebmusicradiolistview.cpp \
     $$PWD/musicwebmusicradiowidget.cpp \
     $$PWD/musiccloudsharedsongwidget.cpp \
-    $$PWD/musiccloudfilemanagerdialog.cpp
+    $$PWD/musiccloudfilemanagerdialog.cpp \
+    $$PWD/musiccloudtablewidget.cpp
 
 }

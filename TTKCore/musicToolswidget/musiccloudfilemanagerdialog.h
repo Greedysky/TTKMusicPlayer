@@ -40,37 +40,6 @@ namespace Ui {
 class MusicCloudFileManagerDialog;
 }
 
-class MusicProgressBarDelegate;
-
-/*! @brief The class of the cloud shared song table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicAbstractTableWidget
-{
-    Q_OBJECT
-public:
-    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
-    /*!
-     * Object contsructor.
-     */
-    virtual ~MusicCloudUploadTableWidget();
-
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
-
-public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
-    /*!
-     * Table widget list cell click.
-     */
-
-protected:
-    MusicProgressBarDelegate *m_progressBarDelegate;
-
-};
-
 
 /*! @brief The class of the cloud file manager dialog.
  * @author Greedysky <greedysky@163.com>
@@ -108,6 +77,10 @@ public:
      */
 
 public Q_SLOTS:
+    void downloadStateChanged();
+    /*!
+     * Download button state changed.
+     */
     virtual int exec();
     /*!
      * Override exec function.
