@@ -1,5 +1,5 @@
-#ifndef MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
-#define MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
+#ifndef MUSICCLOUDDOWNLOADRECORDCONFIGMANAGER_H
+#define MUSICCLOUDDOWNLOADRECORDCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,22 +11,22 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
+typedef struct MUSIC_TOOL_EXPORT MusicCloudDownloadRecord
 {
     QString m_name;
     QString m_path;
     QString m_size;
-}MusicDownloadRecord;
-TTK_DECLARE_LISTS(MusicDownloadRecord)
+}MusicCloudDownloadRecord;
+TTK_DECLARE_LISTS(MusicCloudDownloadRecord)
 
-/*! @brief The class of the normal download record manager.
+/*! @brief The class of the cloud download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicMyDownloadRecordConfigManager : public MusicAbstractXml
+class MUSIC_TOOL_EXPORT MusicCloudDownloadRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicMyDownloadRecordConfigManager(QObject *parent = 0);
+    explicit MusicCloudDownloadRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -35,19 +35,19 @@ public:
     /*!
      * Get class object name.
      */
-    inline bool readDownloadXMLConfig() { return readConfig(NORMALDOWNPATH_FULL); }
+    inline bool readDownloadXMLConfig() { return readConfig(CLOUDDOWNPATH_FULL); }
     /*!
      * Read history download datas from xml file by given name.
      */
-    void writeDownloadConfig(const MusicDownloadRecords &records);
+    void writeDownloadConfig(const MusicCloudDownloadRecords &records);
     /*!
      * Write history download datas into xml file.
      */
-    void readDownloadConfig(MusicDownloadRecords &records);
+    void readDownloadConfig(MusicCloudDownloadRecords &records);
     /*!
      * Read history download datas into xml file.
      */
 
 };
 
-#endif // MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
+#endif // MUSICCLOUDDOWNLOADRECORDCONFIGMANAGER_H

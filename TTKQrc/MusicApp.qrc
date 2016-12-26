@@ -4,6 +4,7 @@
         <file alias="musicbarrage.ttk">../TTKResource/A_extras/musicbarrage.ttk</file>
         <file alias="musicconfig.xml">../TTKResource/A_extras/musicconfig.xml</file>
         <file alias="musicdown.ttk">../TTKResource/A_extras/musicdown.ttk</file>
+        <file alias="musiccloud.ttk">../TTKResource/A_extras/musiccloud.ttk</file>
         <file alias="musichistory.ttk">../TTKResource/A_extras/musichistory.ttk</file>
         <file alias="musicradio.dll">../TTKResource/A_extras/musicradio.dll</file>
         <file alias="musicuser.dll">../TTKResource/A_extras/musicuser.dll</file>

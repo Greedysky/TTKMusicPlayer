@@ -15,9 +15,10 @@
 #define S_BACKGROUND_DIR_FULL     S_DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 
 #define S_COFIGPATH_FULL          S_APPDATA_DIR_FULL + COFIGPATH
-#define S_NETDADIOPATH_FULL       S_APPDATA_DIR_FULL + NETDADIOPATH
+#define S_NETRADIOPATH_FULL       S_APPDATA_DIR_FULL + NETRADIOPATH
 #define S_MUSICPATH_FULL          S_APPDATA_DIR_FULL + MUSICPATH
-#define S_DOWNLOADINFO_FULL       S_APPDATA_DIR_FULL + DOWNLOADINFO
+#define S_NORMALDOWNPATH_FULL     S_APPDATA_DIR_FULL + NORMALDOWNPATH
+#define S_CLOUDDOWNPATH_FULL      S_APPDATA_DIR_FULL + CLOUDDOWNPATH
 #define S_MUSICSEARCH_FULL        S_APPDATA_DIR_FULL + MUSICSEARCH
 #define S_DARABASEPATH_FULL       S_APPDATA_DIR_FULL + DARABASEPATH
 #define S_USERPATH_FULL           S_APPDATA_DIR_FULL + USERPATH
@@ -131,17 +132,21 @@ void MusicRunObject::checkTheFileNeededExist()
     {
         QFile::copy(":/data/musicconfig.xml", S_COFIGPATH_FULL);
     }
-    if(!QFile::exists(S_NETDADIOPATH_FULL))
+    if(!QFile::exists(S_NETRADIOPATH_FULL))
     {
-        QFile::copy(":/data/musicradio.dll", S_NETDADIOPATH_FULL);
+        QFile::copy(":/data/musicradio.dll", S_NETRADIOPATH_FULL);
     }
     if(!QFile::exists(S_MUSICPATH_FULL))
     {
         QFile::copy(":/data/music.lis", S_MUSICPATH_FULL);
     }
-    if(!QFile::exists(S_DOWNLOADINFO_FULL))
+    if(!QFile::exists(S_NORMALDOWNPATH_FULL))
     {
-        QFile::copy(":/data/musicdown.ttk", S_DOWNLOADINFO_FULL);
+        QFile::copy(":/data/musicdown.ttk", S_NORMALDOWNPATH_FULL);
+    }
+    if(!QFile::exists(S_CLOUDDOWNPATH_FULL))
+    {
+        QFile::copy(":/data/musicdown.ttk", S_CLOUDDOWNPATH_FULL);
     }
     if(!QFile::exists(S_MUSICSEARCH_FULL))
     {

@@ -100,8 +100,7 @@ MusicObject::MStriantMap MusicAbstractXml::readXmlAttributesByTagName(const QStr
 
 void MusicAbstractXml::createProcessingInstruction()
 {
-    QDomNode node = m_ddom->createProcessingInstruction("xml",
-                            "version='1.0' encoding='UTF-8'");
+    QDomNode node = m_ddom->createProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
     m_ddom->appendChild( node );
 }
 
