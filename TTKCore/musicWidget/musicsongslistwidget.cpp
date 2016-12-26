@@ -503,7 +503,7 @@ void MusicSongsListWidget::setChangSongName()
     }
     //others
     m_renameActived = true;
-    m_renameItem = currentItem();
+    m_renameItem = item(currentRow(), 1);
     openPersistentEditor(m_renameItem);
     editItem(m_renameItem);
 }
