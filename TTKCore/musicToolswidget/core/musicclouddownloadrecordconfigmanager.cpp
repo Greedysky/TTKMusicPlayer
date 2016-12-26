@@ -1,28 +1,28 @@
-#include "musicmydownloadrecordconfigmanager.h"
+#include "musicclouddownloadrecordconfigmanager.h"
 
-MusicMyDownloadRecordConfigManager::MusicMyDownloadRecordConfigManager(QObject *parent)
+MusicCloudDownloadRecordConfigManager::MusicCloudDownloadRecordConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-QString MusicMyDownloadRecordConfigManager::getClassName()
+QString MusicCloudDownloadRecordConfigManager::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
+void MusicCloudDownloadRecordConfigManager::writeDownloadConfig(const MusicCloudDownloadRecords &records)
 {
-    if( !writeConfig( NORMALDOWNPATH_FULL ) )
+    if( !writeConfig( CLOUDDOWNPATH_FULL ) )
     {
         return;
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
-    QDomElement download = writeDom(musicPlayer, "download");
+    QDomElement download = writeDom(musicPlayer, "cloud");
 
-    foreach(const MusicDownloadRecord &record, records)
+    foreach(const MusicCloudDownloadRecord &record, records)
     {
         writeDomElementMutilText(download, "value", QStringList() << "name" << "size",
                                  QVariantList() << record.m_name << record.m_size, record.m_path);
@@ -33,12 +33,12 @@ void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownload
     m_ddom->save(out, 4);
 }
 
-void MusicMyDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecords &records)
+void MusicCloudDownloadRecordConfigManager::readDownloadConfig(MusicCloudDownloadRecords &records)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
     for(int i=0; i<nodelist.count(); ++i)
     {
-        MusicDownloadRecord record;
+        MusicCloudDownloadRecord record;
         record.m_name = nodelist.at(i).toElement().attribute("name");
         record.m_path = nodelist.at(i).toElement().text();
         record.m_size = nodelist.at(i).toElement().attribute("size");

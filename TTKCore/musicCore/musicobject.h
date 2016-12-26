@@ -54,9 +54,10 @@
 #endif
 
 #define COFIGPATH               "musicconfig.xml"
-#define NETDADIOPATH            "musicradio.dll"
+#define NETRADIOPATH            "musicradio.dll"
 #define MUSICPATH               "music.lis"
-#define DOWNLOADINFO            "musicdown.ttk"
+#define NORMALDOWNPATH          "musicdown.ttk"
+#define CLOUDDOWNPATH           "musiccloud.ttk"
 #define MUSICSEARCH             "musichistory.ttk"
 #define DARABASEPATH            "musicuser.dll"
 #define USERPATH                "musicuser.ttk"
@@ -81,9 +82,10 @@
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
-#define NETDADIOPATH_FULL       APPDATA_DIR_FULL + NETDADIOPATH
+#define NETRADIOPATH_FULL       APPDATA_DIR_FULL + NETRADIOPATH
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
-#define DOWNLOADINFO_FULL       APPDATA_DIR_FULL + DOWNLOADINFO
+#define NORMALDOWNPATH_FULL     APPDATA_DIR_FULL + NORMALDOWNPATH
+#define CLOUDDOWNPATH_FULL      APPDATA_DIR_FULL + CLOUDDOWNPATH
 #define MUSICSEARCH_FULL        APPDATA_DIR_FULL + MUSICSEARCH
 #define DARABASEPATH_FULL       APPDATA_DIR_FULL + DARABASEPATH
 #define USERPATH_FULL           APPDATA_DIR_FULL + USERPATH
