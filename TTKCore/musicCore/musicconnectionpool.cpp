@@ -5,6 +5,7 @@
 #include "musicnetworkthread.h"
 #ifndef MUSIC_MOBILE
 #include "musicmydownloadrecordwidget.h"
+#include "musiccloudtablewidget.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
 #include "musicsongssummariziedwidget.h"
@@ -49,6 +50,15 @@ void MusicConnectionPool::connectMusicDownload(QObject *object)
 {
 #ifndef MUSIC_MOBILE
     QObject *to = m_para.value( MusicMyDownloadRecordWidget::getClassName() );
+    if(to != nullptr && object)
+    {
+        QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,
+                                 SLOT(downloadProgressChanged(float, QString, qint64)));
+        QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to,
+                                 SLOT(createDownloadItem(QString, qint64)));
+    }
+
+    to = m_para.value( MusicCloudDownloadTableWidget::getClassName() );
     if(to != nullptr && object)
     {
         QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,

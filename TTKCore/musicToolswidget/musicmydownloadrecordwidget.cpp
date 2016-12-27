@@ -182,6 +182,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
         {
             item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
             item(i, 3)->setText( total );
+
             if(percent == 100)
             {
                 m_musicRecords[i].m_size = total;

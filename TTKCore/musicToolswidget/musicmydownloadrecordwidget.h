@@ -12,8 +12,6 @@
 #include "musicabstracttablewidget.h"
 #include "musicmydownloadrecordconfigmanager.h"
 
-#define MUSIC_TIMES_ROLE Qt::UserRole + 1
-
 class MusicProgressBarDelegate;
 
 /*! @brief The class of the download record widget.

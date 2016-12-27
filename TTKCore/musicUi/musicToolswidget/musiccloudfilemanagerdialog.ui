@@ -128,7 +128,7 @@ QLabel{background:transparent;}</string>
   <customwidget>
    <class>MusicCloudUploadTableWidget</class>
    <extends>QTableWidget</extends>
-   <header location="global">musiccloudfilemanagerdialog.h</header>
+   <header location="global">musiccloudtablewidget.h</header>
   </customwidget>
   <customwidget>
    <class>MusicCloudDownloadTableWidget</class>

@@ -17,6 +17,7 @@
 #define MUSIC_PROCS_ROLE Qt::UserRole + 3
 #define MUSIC_AUDIT_ROLE Qt::UserRole + 4
 #define MUSIC_TEXTS_ROLE Qt::UserRole + 5
+#define MUSIC_TIMES_ROLE Qt::UserRole + 6
 
 class QLabel;
 class QCheckBox;
