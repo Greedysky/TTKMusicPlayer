@@ -42,6 +42,8 @@ Oschina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
 Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
 
+Qmmp Source You Can See Here: **<u>https://github.com/Greedysky/qmmp</u>**
+
 Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
 Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
