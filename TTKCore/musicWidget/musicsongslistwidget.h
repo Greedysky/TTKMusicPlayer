@@ -266,6 +266,10 @@ protected:
     /*!
      * Override the widget event.
      */
+    void closeRenameItem();
+    /*!
+     * Close rename item.
+     */
     void startToDrag();
     /*!
      * Start to drag to play list.

@@ -503,7 +503,8 @@ void MusicSongsListWidget::setChangSongName()
     }
     //others
     m_renameActived = true;
-    m_renameItem = currentItem();
+    m_renameItem = item(currentRow(), 1);
+    m_renameItem->setText((*m_musicSongs)[m_renameItem->row()].getMusicName());
     openPersistentEditor(m_renameItem);
     editItem(m_renameItem);
 }
@@ -717,20 +718,7 @@ void MusicSongsListWidget::setItemRenameFinished(const QString &name)
 void MusicSongsListWidget::mousePressEvent(QMouseEvent *event)
 {
     MusicSlowMovingTableWidget::mousePressEvent(event);
-    //just close the rename edittext;
-    if(m_renameActived)
-    {
-        closePersistentEditor(m_renameItem);
-    }
-    //it may be a bug in closePersistentEditor,so we select
-    //the two if function to deal with
-    if(m_renameActived)
-    {
-        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 180));
-        m_renameActived = false;
-        m_renameItem = nullptr;
-    }
+    closeRenameItem();
 
     if( event->button() == Qt::LeftButton )//Press the left key
     {
@@ -766,15 +754,10 @@ void MusicSongsListWidget::leaveEvent(QEvent *event)
 {
     MusicSlowMovingTableWidget::leaveEvent(event);
     listCellEntered(-1, -1);
+
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;
-
-    if(m_renameActived && m_renameItem)
-    {
-        closePersistentEditor(m_renameItem);
-        m_renameActived = false;
-        m_renameItem = nullptr;
-    }
+    closeRenameItem();
 }
 
 void MusicSongsListWidget::paintEvent(QPaintEvent *event)
@@ -790,13 +773,7 @@ void MusicSongsListWidget::paintEvent(QPaintEvent *event)
 void MusicSongsListWidget::wheelEvent(QWheelEvent *event)
 {
     MusicSlowMovingTableWidget::wheelEvent(event);
-    if(m_renameActived && m_renameItem)
-    {
-        closePersistentEditor(m_renameItem);
-        m_renameActived = false;
-        m_renameItem = nullptr;
-    }
-
+    closeRenameItem();
     emit showFloatWidget();
 }
 
@@ -865,6 +842,29 @@ void MusicSongsListWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
     //Menu location for the current mouse position
     event->accept();
+}
+
+void MusicSongsListWidget::closeRenameItem()
+{
+    if(!m_renameItem)
+    {
+        return;
+    }
+
+    //just close the rename edittext;
+    if(m_renameActived)
+    {
+        closePersistentEditor(m_renameItem);
+    }
+    //it may be a bug in closePersistentEditor,so we select
+    //the two if function to deal with
+    if(m_renameActived)
+    {
+        (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
+        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 180));
+        m_renameActived = false;
+        m_renameItem = nullptr;
+    }
 }
 
 void MusicSongsListWidget::startToDrag()
