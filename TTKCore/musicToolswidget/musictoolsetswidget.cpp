@@ -128,22 +128,22 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     switch( row(item) )
     {
         case 0:
-           {
+            {
                 MusicLocalSongsManagerWidget(this).exec();
                 break;
-           }
+            }
         case 1:
             {
                 MusicAudioRecorderWidget(this).exec();
                 break;
             }
         case 2:
-           {
+            {
                 MusicSongRingtoneMaker(this).exec();
                 break;
-           }
+            }
         case 3:
-           {
+            {
                 MusicTimerWidget timer(this);
                 QStringList songlist;
                 MusicApplication::instance()->getCurrentPlayList(songlist);
