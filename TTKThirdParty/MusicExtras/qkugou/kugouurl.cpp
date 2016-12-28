@@ -86,11 +86,6 @@ QString KugouUrl::getMVFanxingUrl()
     return "http://fanxing.kugou.com/index.php?action=embedPageMv";
 }
 
-QString KugouUrl::getMVStarMusicUrl()
-{
-    return "http://www2.kugou.kugou.com/mv/v9/mtv/starmusic/getData.js?cdn=cdn";
-}
-
 
 
 QString KugouUrl::getWebPlayerUrl()

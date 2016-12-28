@@ -154,7 +154,6 @@ void KugouWindow::kugouMVIndexChanged(int index)
         case 0: url = KugouUrl::getMVRadioUrl(); break;
         case 1: url = KugouUrl::getMVRecommendUrl(); break;
         case 2: url = KugouUrl::getMVFanxingUrl(); break;
-        case 3: url = KugouUrl::getMVStarMusicUrl(); break;
     }
 #ifdef MUSIC_WEBKIT
     MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
@@ -325,9 +324,6 @@ void KugouWindow::createKugouMVWidget()
     bt = new QPushButton(tr(" MVFanxing "), d->m_topWidget);
     bt->setCursor(QCursor(Qt::PointingHandCursor));
     d->m_buttonGroup->addButton(bt, 2);
-    bt = new QPushButton(tr(" MVStarMusic "), d->m_topWidget);
-    bt->setCursor(QCursor(Qt::PointingHandCursor));
-    d->m_buttonGroup->addButton(bt, 3);
     connect(d->m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(kugouMVIndexChanged(int)));
 
     topLayout->addStretch(1);

@@ -90,10 +90,6 @@ public:
     /*!
      * Get MV Fanxing Url.
      */
-    static QString getMVStarMusicUrl();
-    /*!
-     * Get MV Star Music Url.
-     */
 
     //kugou web
     static QString getWebPlayerUrl();
