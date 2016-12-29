@@ -33,6 +33,7 @@ HEADERS  += \
     $$PWD/musicsingleton.h \
     $$PWD/musiccoremplayer.h \
     $$PWD/musicsong.h \
+    $$PWD/musicsongtag.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
     $$PWD/musicsystemenvironment.h
@@ -56,6 +57,7 @@ SOURCES += \
     $$PWD/musicregeditmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
     $$PWD/musicsong.cpp \
+    $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
     $$PWD/musicsystemenvironment.cpp

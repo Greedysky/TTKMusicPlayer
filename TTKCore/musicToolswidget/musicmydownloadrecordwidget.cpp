@@ -166,11 +166,13 @@ void MusicMyDownloadRecordWidget::musicOpenFileDir()
 
 void MusicMyDownloadRecordWidget::musicPlay()
 {
-    if(rowCount() == 0 || currentRow() <0)
+    if(rowCount() == 0 || currentRow() < 0)
     {
         return;
     }
-    emit addSongToPlay(QStringList(m_musicRecords[currentRow()].m_path));
+
+    QString path = m_musicRecords[currentRow()].m_path;
+    emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
 }
 
 void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
