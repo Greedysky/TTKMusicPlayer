@@ -23,6 +23,8 @@
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_windowPopup(popup)
 {
+    setAttribute(Qt::WA_TranslucentBackground, false);
+
     if(popup)
     {
         resize(WINDOW_WIDTH, WINDOW_HEIGHT);
