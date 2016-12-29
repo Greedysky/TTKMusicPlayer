@@ -9,10 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QWidget>
 #include "musicabstracttablewidget.h"
-
-#define ROW_HEIGHT 30
 
 class QPushButton;
 

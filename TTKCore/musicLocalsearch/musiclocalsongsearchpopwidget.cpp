@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QDateTime>
 
+#define ROW_HEIGHT 30
+
 MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -37,7 +39,8 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
 {
     setRowHeight(index, ROW_HEIGHT);
 
-    QTableWidgetItem *item0 = new QTableWidgetItem("  " + name);
+    QTableWidgetItem *item0 = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), "  " + name, Qt::ElideRight, 200));
+    item0->setToolTip(name);
     item0->setTextColor(QColor(50, 50, 50));
     item0->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 0, item0);
@@ -50,7 +53,7 @@ void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &n
 
 void MusicLocalSongSearchPopTableWidget::listCellClicked(int row, int)
 {
-    emit setText( item(row, 0)->text().trimmed() );
+    emit setText( item(row, 0)->toolTip().trimmed() );
     QWidget *widget = MStatic_cast(QWidget*, parent());
     widget->lower();
     widget->hide();
