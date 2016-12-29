@@ -417,9 +417,9 @@ void MusicSongsListWidget::setDeleteItemAt()
     progress.setRange(0, selectedItems().count()/3*2);
 
     MusicObject::MIntSet deletedRow; //if selected multi rows
-    for(int i=0; i<selectedItems().count(); ++i)
+    for(int i=0; i<selectedIndexes().count(); ++i)
     {
-        deletedRow.insert(selectedItems()[i]->row());
+        deletedRow.insert(selectedIndexes()[i].row());
         if(i%3 == 0)
         {
             progress.setValue(i/3);
