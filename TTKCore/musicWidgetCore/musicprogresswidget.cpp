@@ -7,6 +7,9 @@
 #include <QToolButton>
 #include <QProgressBar>
 
+#define WIDTH  4
+#define HEIGHT 4
+
 MusicProgressWidget::MusicProgressWidget(QWidget *parent)
     : QProgressDialog(parent)
 {
@@ -17,7 +20,7 @@ MusicProgressWidget::MusicProgressWidget(QWidget *parent)
 
     setCancelButton(nullptr);
     setLabel(nullptr);
-    setFixedSize(400, 155);
+    setFixedSize(368, 123);
 
     initWidget();
 }
@@ -37,18 +40,18 @@ QString MusicProgressWidget::getClassName()
 void MusicProgressWidget::initWidget()
 {
     m_background = new QLabel(this);
-    m_background->setGeometry(20, 20, 360, 115);
+    m_background->setGeometry(4, 4, 360, 115);
     QWidget *backgroundMask = new QWidget(this);
-    backgroundMask->setGeometry(20, 45, 360, 90);
+    backgroundMask->setGeometry(4, 29, 360, 90);
     backgroundMask->setStyleSheet(MusicUIObject::MBackgroundStyle13);
 
     QLabel *topTitleName = new QLabel(this);
     topTitleName->setText(tr("Progress Bar"));
-    topTitleName->setGeometry(30, 20, 221, 25);
+    topTitleName->setGeometry(14, 4, 221, 25);
     topTitleName->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MFontStyle01);
 
     QToolButton *topTitleCloseButton = new QToolButton(this);
-    topTitleCloseButton->setGeometry(360, 22, 20, 20);
+    topTitleCloseButton->setGeometry(344, 6, 20, 20);
     topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     topTitleCloseButton->setEnabled(false);
@@ -59,7 +62,7 @@ void MusicProgressWidget::initWidget()
 
     m_textLabel = new QLabel(this);
     m_textLabel->setAlignment(Qt::AlignCenter);
-    m_textLabel->setGeometry(40, 50, 320, 25);
+    m_textLabel->setGeometry(24, 34, 320, 25);
 }
 
 void MusicProgressWidget::setTitle(const QString &name)
@@ -70,7 +73,7 @@ void MusicProgressWidget::setTitle(const QString &name)
 void MusicProgressWidget::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
-    m_progressBar->setGeometry(40, 85, 320, 25);
+    m_progressBar->setGeometry(24, 69, 320, 25);
 }
 
 void MusicProgressWidget::paintEvent(QPaintEvent *event)
