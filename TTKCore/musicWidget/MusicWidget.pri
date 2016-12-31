@@ -16,13 +16,13 @@ HEADERS  += \
     $$PWD/musicsystemtraymenu.h \
     $$PWD/musicequalizerdialog.h \
     $$PWD/musicwindowextras.h \
-    $$PWD/musicsongslistwidget.h \
     $$PWD/musicsongslistiteminfowidget.h \
     $$PWD/musicsongsearchonlinewidget.h \
     $$PWD/musicsongstoolitemrenamedwidget.h \
     $$PWD/musicsongslistplaywidget.h \
     $$PWD/musicsongslistfunctionwidget.h \
-    $$PWD/musicsongsplayedlistwidget.h \
+    $$PWD/musicsongslisttablewidget.h \
+    $$PWD/musicsongslistplayedtablewidget.h \
     $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
@@ -53,13 +53,13 @@ SOURCES += \
     $$PWD/musicsystemtraymenu.cpp \
     $$PWD/musicequalizerdialog.cpp \
     $$PWD/musicwindowextras.cpp \
-    $$PWD/musicsongslistwidget.cpp \
     $$PWD/musicsongslistiteminfowidget.cpp \
     $$PWD/musicsongsearchonlinewidget.cpp \
     $$PWD/musicsongstoolitemrenamedwidget.cpp \
     $$PWD/musicsongslistplaywidget.cpp \
     $$PWD/musicsongslistfunctionwidget.cpp \
-    $$PWD/musicsongsplayedlistwidget.cpp \
+    $$PWD/musicsongslisttablewidget.cpp \
+    $$PWD/musicsongslistplayedtablewidget.cpp \
     $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \

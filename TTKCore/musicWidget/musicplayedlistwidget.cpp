@@ -1,6 +1,6 @@
 #include "musicplayedlistwidget.h"
 #include "musicfunctionuiobject.h"
-#include "musicsongsplayedlistwidget.h"
+#include "musicsongslistplayedtablewidget.h"
 #include "musicsettingmanager.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
@@ -300,7 +300,7 @@ QWidget *MusicPlayedListWidget::createContainerWidget()
     topWidgetLayout->addWidget(closeButton);
     topWidget->setLayout(topWidgetLayout);
 
-    m_playedListWidget = new MusicSongsPlayedListWidget(this);
+    m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsFileName(&m_songLists);
     connect(m_playedListWidget, SIGNAL(updateCountLabel()), SLOT(setDeleteItemAt()));
 

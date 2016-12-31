@@ -1,6 +1,6 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicsongslistfunctionwidget.h"
-#include "musicsongslistwidget.h"
+#include "musicsongslisttablewidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
@@ -368,7 +368,7 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
 
     m_currentDeleteIndex = id;
     m_toolDeleteChanged = true;
-    MusicSongsListWidget *w = m_songItems[id].m_itemObject;
+    MusicSongsListTableWidget *w = m_songItems[id].m_itemObject;
     if(w->rowCount() > 0)
     {
         w->setCurrentCell(0, 1);
@@ -823,7 +823,7 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
 {
-    MusicSongsListWidget *w = new MusicSongsListWidget(-1, this);
+    MusicSongsListTableWidget *w = new MusicSongsListTableWidget(-1, this);
     w->setMovedScrollBar(m_scrollArea->verticalScrollBar());
     item->m_itemObject = w;
     item->m_itemIndex = m_itemIndexRaise;
@@ -862,7 +862,7 @@ void MusicSongsSummariziedWidget::clearAllLists()
 {
     while(!m_songItems.isEmpty())
     {
-        MusicSongsListWidget *w = m_songItems.takeLast().m_itemObject;
+        MusicSongsListTableWidget *w = m_songItems.takeLast().m_itemObject;
         delete w;
         w = nullptr;
     }

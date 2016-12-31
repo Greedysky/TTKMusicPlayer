@@ -14,6 +14,7 @@ HEADERS  += \
     $$PWD/musicabstractmovedialog.h \
     $$PWD/musicabstractmovewidget.h \
     $$PWD/musicabstractmoveresizewidget.h \
+    $$PWD/musicsongslistabstracttablewidget.h \
     $$PWD/musicfillitemtablewidget.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicqueryfoundtablewidget.h \
@@ -50,6 +51,7 @@ SOURCES += \
     $$PWD/musicabstractmovedialog.cpp \
     $$PWD/musicabstractmovewidget.cpp \
     $$PWD/musicabstractmoveresizewidget.cpp \
+    $$PWD/musicsongslistabstracttablewidget.cpp \
     $$PWD/musicfillitemtablewidget.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicqueryfoundtablewidget.cpp \

@@ -145,14 +145,14 @@ protected:
 TTK_DECLARE_LISTS(MusicSong)
 
 ////////////////////////////////////////////////////////
-class MusicSongsListWidget;
+class MusicSongsListTableWidget;
 
 typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;
     MusicSongs m_songs;
-    MusicSongsListWidget* m_itemObject;
+    MusicSongsListTableWidget* m_itemObject;
 
     MusicSongItem()
     {

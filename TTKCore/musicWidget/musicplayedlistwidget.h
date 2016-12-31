@@ -13,7 +13,7 @@
 #include "musictoolmenuwidget.h"
 
 class QLabel;
-class MusicSongsPlayedListWidget;
+class MusicSongsListPlayedTableWidget;
 
 /*! @brief The class of the played list widget.
  * @author Greedysky <greedysky@163.com>
@@ -119,7 +119,7 @@ protected:
 
     QList<QLabel*> m_labels;
     MusicSongs m_songLists;
-    MusicSongsPlayedListWidget *m_playedListWidget;
+    MusicSongsListPlayedTableWidget *m_playedListWidget;
 
     static MusicPlayedListWidget *m_instance;
 };
