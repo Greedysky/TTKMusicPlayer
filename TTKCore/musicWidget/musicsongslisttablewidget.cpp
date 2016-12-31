@@ -23,7 +23,7 @@
 #define ROW_HIGHT   30
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
-    : MusicSongsListAbstractTableWidget(parent), m_parentToolIndex(index), m_openFileWidget(nullptr),
+    : MusicSongsListAbstractTableWidget(parent), m_openFileWidget(nullptr),
       m_musicSongsInfoWidget(nullptr), m_musicSongsPlayWidget(nullptr)
 {
     m_deleteItemWithFile = false;
@@ -33,6 +33,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_leftButtonPressed = false;
     m_mouseMoved = false;
     m_transparent = 0;
+    m_parentToolIndex = index;
 
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -115,11 +116,6 @@ void MusicSongsListTableWidget::clearAllItems()
     //Remove all the original item
     MusicSongsListAbstractTableWidget::clear();
     setColumnCount(6);
-}
-
-void MusicSongsListTableWidget::setParentToolIndex(int index)
-{
-    m_parentToolIndex = index;
 }
 
 int MusicSongsListTableWidget::allRowsHeight() const

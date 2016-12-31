@@ -44,6 +44,10 @@ public:
      * Select the current play row by given index.
      */
 
+    void setParentToolIndex(int index);
+    /*!
+     * Set parent tool index.
+     */
     inline void setPlayRowIndex(int index) { m_playRowIndex = index; }
     /*!
      * Get the current play row.
@@ -117,8 +121,9 @@ protected:
      * Get song name.
      */
 
-    int m_playRowIndex;
+    int m_playRowIndex, m_parentToolIndex;
     MusicSongs *m_musicSongs;
+    bool m_hasParentToolIndex;
 
 };
 

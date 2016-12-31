@@ -44,10 +44,6 @@ public:
      * Clear All Items.
      */
 
-    void setParentToolIndex(int index);
-    /*!
-     * Set parent tool index.
-     */
     int allRowsHeight() const;
     /*!
      * Get all rows height.
@@ -238,8 +234,7 @@ protected:
      * Create context menu.
      */
 
-    int m_transparent, m_parentToolIndex;
-    int m_dragStartIndex;
+    int m_transparent, m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
 

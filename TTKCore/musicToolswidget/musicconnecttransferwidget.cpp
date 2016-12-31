@@ -86,6 +86,11 @@ void MusicConnectTransferWidget::openTransferFiles(int mode)
 
 void MusicConnectTransferWidget::redirectToCurrentSong(int toolIndex, int songIndex)
 {
+    if(toolIndex < 0 || songIndex < 0)
+    {
+        return;
+    }
+
     currentPlayListSelected(toolIndex);
     m_ui->playListTableWidget->listCellClicked(songIndex, 0);
 }
@@ -191,7 +196,7 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 {
     MusicSongItems songs;
     emit getMusicLists(songs);
-    if(index >= songs.count())
+    if(index >= songs.count() || index < 0)
     {
         return;
     }

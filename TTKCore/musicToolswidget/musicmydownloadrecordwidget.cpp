@@ -10,7 +10,7 @@
 #include <QContextMenuEvent>
 
 MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicSongsListAbstractTableWidget(parent)
 {
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
@@ -35,6 +35,7 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
 MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName() );
+    delete m_musicSongs;
     delete m_delegate;
     clearAllItems();
 
@@ -56,10 +57,13 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     }
     xml.readDownloadConfig(m_musicRecords);
 
+    m_musicSongs = new MusicSongs;
     setRowCount(m_loadRecordCount = m_musicRecords.count()); //reset row count
+
     for(int i=0; i<m_musicRecords.count(); i++)
     {
         createItem(i, m_musicRecords[i].m_name, m_musicRecords[i].m_size, 999);
+        m_musicSongs->append(MusicSong(m_musicRecords[i].m_path));
     }
 }
 
@@ -95,14 +99,25 @@ void MusicMyDownloadRecordWidget::clearAllItems()
 
 void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicAbstractTableWidget::contextMenuEvent(event);
+    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
+
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlay()));
-    rightClickMenu.addAction(tr("openFileDir"), this, SLOT(musicOpenFileDir()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()));
-    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()));
+
+    createMoreMenu(&rightClickMenu);
+
+    bool empty = true;
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    rightClickMenu.addSeparator();
+
     rightClickMenu.exec(QCursor::pos());
     event->accept();
 }
@@ -147,21 +162,6 @@ void MusicMyDownloadRecordWidget::listCellClicked(int, int)
 void MusicMyDownloadRecordWidget::listCellDoubleClicked(int, int)
 {
     musicPlay();
-}
-
-void MusicMyDownloadRecordWidget::musicOpenFileDir()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-
-    if(!MusicUtils::Core::openUrl(QFileInfo(m_musicRecords[currentRow()].m_path).absoluteFilePath(), true))
-    {
-        MusicMessageBox message;
-        message.setText(tr("The origin one does not exist!"));
-        message.exec();
-    }
 }
 
 void MusicMyDownloadRecordWidget::musicPlay()

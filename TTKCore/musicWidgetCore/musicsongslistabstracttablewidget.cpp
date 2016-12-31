@@ -11,6 +11,9 @@ MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *pa
     : MusicSlowMovingTableWidget(parent)
 {
     m_playRowIndex = 0;
+    m_parentToolIndex = -1;
+    m_hasParentToolIndex = true;
+
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
@@ -40,6 +43,11 @@ void MusicSongsListAbstractTableWidget::selectRow(int index)
     MusicSlowMovingTableWidget::selectRow(index);
 }
 
+void MusicSongsListAbstractTableWidget::setParentToolIndex(int index)
+{
+    m_parentToolIndex = index;
+}
+
 void MusicSongsListAbstractTableWidget::musicPlayClicked()
 {
     if(rowCount() == 0 || currentRow() < 0 )
@@ -52,15 +60,7 @@ void MusicSongsListAbstractTableWidget::musicPlayClicked()
 
 void MusicSongsListAbstractTableWidget::setDeleteItemAt()
 {
-//    int index = currentRow();
-//    if(rowCount() == 0 || currentRow() < 0)
-//    {
-//        return;
-//    }
 
-//    removeRow( index );
-//    m_musicSongs->removeAt( index );
-//    emit updateCountLabel();
 }
 
 void MusicSongsListAbstractTableWidget::musicOpenFileDir()
@@ -140,8 +140,9 @@ void MusicSongsListAbstractTableWidget::musicSongTransferWidget()
         return;
     }
 
+    int index = m_hasParentToolIndex ? m_parentToolIndex : m_musicSongs->first().getMusicToolIndex();
     MusicConnectTransferWidget transferWidget;
-    transferWidget.redirectToCurrentSong(m_musicSongs->first().getMusicToolIndex(), currentRow());
+    transferWidget.redirectToCurrentSong(index, currentRow());
     transferWidget.exec();
 }
 

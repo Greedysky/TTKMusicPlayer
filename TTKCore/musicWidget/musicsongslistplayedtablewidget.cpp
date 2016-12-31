@@ -29,6 +29,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     setMovedScrollBar( verticalScrollBar() );
 
     m_playRowIndex = -1;
+    m_hasParentToolIndex = false;
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()

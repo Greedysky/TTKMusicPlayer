@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstracttablewidget.h"
+#include "musicsongslistabstracttablewidget.h"
 #include "musicmydownloadrecordconfigmanager.h"
 
 class MusicProgressBarDelegate;
@@ -17,7 +17,7 @@ class MusicProgressBarDelegate;
 /*! @brief The class of the download record widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicMyDownloadRecordWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicMyDownloadRecordWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -51,7 +51,7 @@ public Q_SLOTS:
     /*!
      * Add selected music song path to list.
      */
-    void setDeleteItemAt();
+    virtual void setDeleteItemAt() override;
     /*!
      * Delete item from list at current row.
      */
@@ -66,10 +66,6 @@ public Q_SLOTS:
     void listCellDoubleClicked(int row, int column);
     /*!
      * Table widget list cell double click.
-     */
-    void musicOpenFileDir();
-    /*!
-     * Open the music at local path.
      */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
