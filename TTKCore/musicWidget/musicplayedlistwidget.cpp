@@ -61,10 +61,10 @@ void MusicPlayedListWidget::resetToolIndex(const QList< std::pair<int, int> > &i
         std::pair<int, int> index = indexs[i];
         for(int s=0; s<m_songLists.count(); ++s)
         {
-            MusicPlayedSong *song = &m_songLists[s];
-            if(song->m_toolIndex == index.first)
+            MusicSong *song = &m_songLists[s];
+            if(song->getMusicToolIndex() == index.first)
             {
-                song->m_toolIndex = index.second;
+                song->setMusicToolIndex(index.second);
             }
         }
     }
@@ -73,9 +73,9 @@ void MusicPlayedListWidget::resetToolIndex(const QList< std::pair<int, int> > &i
 QStringList MusicPlayedListWidget::getPlayedList() const
 {
     QStringList lists;
-    foreach(const MusicPlayedSong &song, m_songLists)
+    foreach(const MusicSong &song, m_songLists)
     {
-        lists << song.m_song.getMusicPath();
+        lists << song.getMusicPath();
     }
     return lists;
 }
@@ -85,8 +85,8 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
     MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
     {
-        MusicPlayedSong playedSong = m_songLists[i];
-        if(playedSong.m_toolIndex == toolIndex && playedSong.m_song == song)
+        MusicSong playedSong = m_songLists[i];
+        if(playedSong.getMusicToolIndex() == toolIndex && playedSong == song)
         {
             deletedRow << i;
         }
@@ -108,12 +108,12 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
     MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
     {
-        MusicPlayedSong playedSong = m_songLists[i];
-        if(playedSong.m_toolIndex == toolIndex)
+        MusicSong playedSong = m_songLists[i];
+        if(playedSong.getMusicToolIndex() == toolIndex)
         {
             foreach(const MusicSong &song, songs)
             {
-                if(playedSong.m_song == song)
+                if(playedSong == song)
                 {
                     deletedRow << i;
                 }
@@ -134,7 +134,9 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
 
 void MusicPlayedListWidget::append(int toolIndex, const MusicSong &song)
 {
-    m_songLists << MusicPlayedSong{toolIndex, song};
+    MusicSong s(song);
+    s.setMusicToolIndex(toolIndex);
+    m_songLists << s;
     updateSongsFileName();
 }
 
@@ -142,7 +144,9 @@ void MusicPlayedListWidget::append(int toolIndex, const MusicSongs &songs)
 {
     foreach(const MusicSong &song, songs)
     {
-        m_songLists << MusicPlayedSong{toolIndex, song};
+        MusicSong s(song);
+        s.setMusicToolIndex(toolIndex);
+        m_songLists << s;
     }
     updateSongsFileName();
 }
@@ -159,7 +163,10 @@ void MusicPlayedListWidget::insert(int toolIndex, int index, const MusicSong &so
         return;
     }
 
-    m_songLists.insert(index, MusicPlayedSong{toolIndex, song});
+    MusicSong s(song);
+    s.setMusicToolIndex(toolIndex);
+
+    m_songLists.insert(index, s);
     m_playedListWidget->clear();
     updateSongsFileName();
 }
@@ -169,7 +176,7 @@ void MusicPlayedListWidget::setCurrentIndex(const QString &path)
     int index = -1;
     for(int i=0; i<m_songLists.count(); ++i)
     {
-        if(m_songLists[i].m_song.getMusicPath() == path)
+        if(m_songLists[i].getMusicPath() == path)
         {
             index = i;
             break;

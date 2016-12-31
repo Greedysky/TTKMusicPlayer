@@ -30,11 +30,11 @@ public:
      * Get class object name.
      */
 
-    void setSongsFileName(MusicPlayedSongs *songs);
+    void setSongsFileName(MusicSongs *songs);
     /*!
      * Set songs file names.
      */
-    void updateSongsFileName(const MusicPlayedSongs &songs);
+    void updateSongsFileName(const MusicSongs &songs);
     /*!
      * Update songs file names in table.
      */
@@ -139,7 +139,7 @@ protected:
      */
 
     int m_playRowIndex;
-    MusicPlayedSongs *m_musicSongs;
+    MusicSongs *m_musicSongs;
 
 };
 

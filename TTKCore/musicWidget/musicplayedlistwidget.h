@@ -118,7 +118,7 @@ protected:
      */
 
     QList<QLabel*> m_labels;
-    MusicPlayedSongs m_songLists;
+    MusicSongs m_songLists;
     MusicSongsPlayedListWidget *m_playedListWidget;
 
     static MusicPlayedListWidget *m_instance;

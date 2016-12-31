@@ -117,11 +117,19 @@ public:
      */
     inline void setMusicPlayCount(const int c) { m_musicPlayCount = c;}
     /*!
-     * Set music playcount.
+     * Set music play count.
      */
     inline int getMusicPlayCount() const { return m_musicPlayCount;}
     /*!
-     * Get music playcount.
+     * Get music play count.
+     */
+    inline void setMusicToolIndex(const int c) { m_toolIndex = c;}
+    /*!
+     * Set music tool count.
+     */
+    inline int getMusicToolIndex() const { return m_toolIndex;}
+    /*!
+     * Get music tool count.
      */
     bool operator== (const MusicSong &other) const;
     /*!
@@ -129,20 +137,12 @@ public:
      */
 
 protected:
-    QString m_musicName, m_musicPath, m_musicType, m_musicTime;
     qint64  m_musicSize;
-    int m_musicPlayCount;
+    int m_musicPlayCount, m_toolIndex;
+    QString m_musicName, m_musicPath, m_musicType, m_musicTime;
 
 };
 TTK_DECLARE_LISTS(MusicSong)
-
-////////////////////////////////////////////////////////
-typedef struct MUSIC_CORE_EXPORT MusicPlayedSong
-{
-    int m_toolIndex;
-    MusicSong m_song;
-}MusicPlayedSong;
-TTK_DECLARE_LISTS(MusicPlayedSong)
 
 ////////////////////////////////////////////////////////
 class MusicSongsListWidget;

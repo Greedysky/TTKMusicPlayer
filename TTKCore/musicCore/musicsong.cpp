@@ -9,6 +9,7 @@ MusicSong::MusicSong()
 {
     m_musicSize = 0;
     m_musicPlayCount = 0;
+    m_toolIndex = -1;
 }
 
 MusicSong::MusicSong(const QString &musicPath, const QString &musicName)

@@ -43,13 +43,13 @@ QString MusicSongsPlayedListWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongsPlayedListWidget::setSongsFileName(MusicPlayedSongs *songs)
+void MusicSongsPlayedListWidget::setSongsFileName(MusicSongs *songs)
 {
     m_musicSongs = songs;
     updateSongsFileName(*m_musicSongs);
 }
 
-void MusicSongsPlayedListWidget::updateSongsFileName(const MusicPlayedSongs &songs)
+void MusicSongsPlayedListWidget::updateSongsFileName(const MusicSongs &songs)
 {
     int count = rowCount();
     setRowCount(songs.count());    //reset row count
@@ -58,7 +58,7 @@ void MusicSongsPlayedListWidget::updateSongsFileName(const MusicPlayedSongs &son
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
-        item->setToolTip(songs[i].m_song.getMusicName());
+        item->setToolTip(songs[i].getMusicName());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 182));
         item->setTextColor(QColor(50, 50, 50));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -67,7 +67,7 @@ void MusicSongsPlayedListWidget::updateSongsFileName(const MusicPlayedSongs &son
         setItem(i, 2, item);
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
-                          item = new QTableWidgetItem(songs[i].m_song.getMusicTime());
+                          item = new QTableWidgetItem(songs[i].getMusicTime());
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
@@ -114,7 +114,7 @@ void MusicSongsPlayedListWidget::listCellEntered(int row, int column)
     if(it != nullptr)
     {
         it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].m_song.getMusicTime());
+        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
     }
 
     ///draw new table item state
@@ -187,7 +187,7 @@ void MusicSongsPlayedListWidget::musicOpenFileDir()
         return;
     }
 
-    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).m_song.getMusicPath() : QString();
+    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
     if(!MusicUtils::Core::openUrl(QFileInfo(path).absoluteFilePath(), true))
     {
         MusicMessageBox message;
@@ -258,7 +258,7 @@ void MusicSongsPlayedListWidget::musicSongTransferWidget()
     }
 
     MusicConnectTransferWidget transferWidget;
-    transferWidget.redirectToCurrentSong(m_musicSongs->first().m_toolIndex, currentRow());
+    transferWidget.redirectToCurrentSong(m_musicSongs->first().getMusicToolIndex(), currentRow());
     transferWidget.exec();
 }
 
@@ -335,7 +335,7 @@ QString MusicSongsPlayedListWidget::getCurrentSongPath() const
 
 QString MusicSongsPlayedListWidget::getSongPath(int index) const
 {
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).m_song.getMusicPath().trimmed() : QString();
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath().trimmed() : QString();
 }
 
 QString MusicSongsPlayedListWidget::getCurrentSongName() const
@@ -350,5 +350,5 @@ QString MusicSongsPlayedListWidget::getCurrentSongName() const
 
 QString MusicSongsPlayedListWidget::getSongName(int index) const
 {
-    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).m_song.getMusicName().trimmed() : QString();
+    return !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName().trimmed() : QString();
 }
