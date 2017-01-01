@@ -1,5 +1,5 @@
-#ifndef MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
-#define MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
+#ifndef MUSICDOWNLOADRECORDCONFIGMANAGER_H
+#define MUSICDOWNLOADRECORDCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,11 +22,11 @@ TTK_DECLARE_LISTS(MusicDownloadRecord)
 /*! @brief The class of the normal download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicMyDownloadRecordConfigManager : public MusicAbstractXml
+class MUSIC_TOOL_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicMyDownloadRecordConfigManager(QObject *parent = 0);
+    explicit MusicDownloadRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -50,4 +50,4 @@ public:
 
 };
 
-#endif // MUSICMYDOWNLOADRECORDCONFIGMANAGER_H
+#endif // MUSICDOWNLOADRECORDCONFIGMANAGER_H

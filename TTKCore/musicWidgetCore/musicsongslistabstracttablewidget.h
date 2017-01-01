@@ -66,6 +66,10 @@ public Q_SLOTS:
     /*!
      * Delete item from list at current row.
      */
+    void setDeleteItemAll();
+    /*!
+     * Delete all items from list.
+     */
     void musicOpenFileDir();
     /*!
      * Open the music at local path.

@@ -1,4 +1,4 @@
-#include "musicmydownloadrecordwidget.h"
+#include "musicdownloadrecordwidget.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
@@ -9,7 +9,7 @@
 #include <QScrollBar>
 #include <QContextMenuEvent>
 
-MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
+MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
 {
     setColumnCount(4);
@@ -32,25 +32,25 @@ MusicMyDownloadRecordWidget::MusicMyDownloadRecordWidget(QWidget *parent)
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
-MusicMyDownloadRecordWidget::~MusicMyDownloadRecordWidget()
+MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName() );
     delete m_musicSongs;
     delete m_delegate;
     clearAllItems();
 
-    MusicMyDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml;
     xml.writeDownloadConfig(m_musicRecords);
 }
 
-QString MusicMyDownloadRecordWidget::getClassName()
+QString MusicDownloadRecordWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicMyDownloadRecordWidget::musicSongsFileName()
+void MusicDownloadRecordWidget::musicSongsFileName()
 {
-    MusicMyDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml;
     if(!xml.readDownloadXMLConfig())
     {
         return;
@@ -67,8 +67,8 @@ void MusicMyDownloadRecordWidget::musicSongsFileName()
     }
 }
 
-void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
-                                             const QString &size, qint64 time)
+void MusicDownloadRecordWidget::createItem(int index, const QString &name,
+                                           const QString &size, qint64 time)
 {
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
@@ -90,14 +90,14 @@ void MusicMyDownloadRecordWidget::createItem(int index, const QString &name,
     setItem(index, 3, item);
 }
 
-void MusicMyDownloadRecordWidget::clearAllItems()
+void MusicDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
     MusicAbstractTableWidget::clear();
     setColumnCount(4);
 }
 
-void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicSongsListAbstractTableWidget::contextMenuEvent(event);
     QMenu rightClickMenu(this);
@@ -122,13 +122,7 @@ void MusicMyDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     event->accept();
 }
 
-void MusicMyDownloadRecordWidget::setDeleteItemAll()
-{
-    selectAll();
-    setDeleteItemAt();
-}
-
-void MusicMyDownloadRecordWidget::setDeleteItemAt()
+void MusicDownloadRecordWidget::setDeleteItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
@@ -154,17 +148,21 @@ void MusicMyDownloadRecordWidget::setDeleteItemAt()
     }
 }
 
-void MusicMyDownloadRecordWidget::listCellClicked(int, int)
+void MusicDownloadRecordWidget::listCellClicked(int row, int column)
 {
-
+    Q_UNUSED(row);
+    Q_UNUSED(column);
 }
 
-void MusicMyDownloadRecordWidget::listCellDoubleClicked(int, int)
+void MusicDownloadRecordWidget::listCellDoubleClicked(int row, int column)
 {
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+
     musicPlay();
 }
 
-void MusicMyDownloadRecordWidget::musicPlay()
+void MusicDownloadRecordWidget::musicPlay()
 {
     if(rowCount() == 0 || currentRow() < 0)
     {
@@ -175,7 +173,7 @@ void MusicMyDownloadRecordWidget::musicPlay()
     emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
 }
 
-void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
+void MusicDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
     {
@@ -194,7 +192,7 @@ void MusicMyDownloadRecordWidget::downloadProgressChanged(float percent, const Q
     }
 }
 
-void MusicMyDownloadRecordWidget::createDownloadItem(const QString &name, qint64 time)
+void MusicDownloadRecordWidget::createDownloadItem(const QString &name, qint64 time)
 {
     setRowCount( rowCount() + 1);
     QString musicName = name;

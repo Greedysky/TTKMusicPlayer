@@ -1,17 +1,17 @@
-#include "musicmydownloadrecordconfigmanager.h"
+#include "musicdownloadrecordconfigmanager.h"
 
-MusicMyDownloadRecordConfigManager::MusicMyDownloadRecordConfigManager(QObject *parent)
+MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-QString MusicMyDownloadRecordConfigManager::getClassName()
+QString MusicDownloadRecordConfigManager::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
+void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
 {
     if( !writeConfig( NORMALDOWNPATH_FULL ) )
     {
@@ -33,7 +33,7 @@ void MusicMyDownloadRecordConfigManager::writeDownloadConfig(const MusicDownload
     m_ddom->save(out, 4);
 }
 
-void MusicMyDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecords &records)
+void MusicDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecords &records)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("value");
     for(int i=0; i<nodelist.count(); ++i)

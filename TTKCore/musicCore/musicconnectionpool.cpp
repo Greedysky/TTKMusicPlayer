@@ -4,7 +4,7 @@
 #include "musicdownloadstatuslabel.h"
 #include "musicnetworkthread.h"
 #ifndef MUSIC_MOBILE
-#include "musicmydownloadrecordwidget.h"
+#include "musicdownloadrecordwidget.h"
 #include "musiccloudtablewidget.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
@@ -49,7 +49,7 @@ void MusicConnectionPool::setNetworkMultiValue(QObject *object)
 void MusicConnectionPool::connectMusicDownload(QObject *object)
 {
 #ifndef MUSIC_MOBILE
-    QObject *to = m_para.value( MusicMyDownloadRecordWidget::getClassName() );
+    QObject *to = m_para.value( MusicDownloadRecordWidget::getClassName() );
     if(to != nullptr && object)
     {
         QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to,
@@ -103,7 +103,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(durationChanged(qint64)));
     }
     else if( (from == MusicLocalSongsManagerWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() ) ||
-             (from == MusicMyDownloadRecordWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
+             (from == MusicDownloadRecordWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second,
                                 SLOT(addSongToPlayList(QStringList)));

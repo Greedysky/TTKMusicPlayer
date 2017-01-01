@@ -429,12 +429,6 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     emit deleteItemAt(deleteList, m_deleteItemWithFile);
 }
 
-void MusicSongsListTableWidget::setDeleteItemAll()
-{
-    selectAll();
-    setDeleteItemAt();
-}
-
 void MusicSongsListTableWidget::setDeleteItemWithFile()
 {
     m_deleteItemWithFile = true;

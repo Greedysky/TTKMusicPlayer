@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
-#include "musicmydownloadrecordconfigmanager.h"
+#include "musicdownloadrecordconfigmanager.h"
 #include "musicdatadownloadthread.h"
 #include "musicttdatadownloadthread.h"
 #include "musicmessagebox.h"
@@ -456,7 +456,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
             MusicDownloadRecords records;
-            MusicMyDownloadRecordConfigManager down(this);
+            MusicDownloadRecordConfigManager down(this);
             if(!down.readDownloadXMLConfig())
             {
                 return;

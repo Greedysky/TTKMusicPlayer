@@ -63,6 +63,12 @@ void MusicSongsListAbstractTableWidget::setDeleteItemAt()
 
 }
 
+void MusicSongsListAbstractTableWidget::setDeleteItemAll()
+{
+    selectAll();
+    setDeleteItemAt();
+}
+
 void MusicSongsListAbstractTableWidget::musicOpenFileDir()
 {
     if(rowCount() == 0 || currentRow() < 0)

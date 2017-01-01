@@ -153,10 +153,6 @@ public Q_SLOTS:
     /*!
      * Delete item from list at current row.
      */
-    void setDeleteItemAll();
-    /*!
-     * Delete all items from list.
-     */
     void setDeleteItemWithFile();
     /*!
      * Delete item or items from list with file.
