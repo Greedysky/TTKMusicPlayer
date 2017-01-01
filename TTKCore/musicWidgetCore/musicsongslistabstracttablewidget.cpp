@@ -77,6 +77,12 @@ void MusicSongsListAbstractTableWidget::musicOpenFileDir()
     }
 
     QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    if(QFileInfo(path).baseName() == MusicCryptographicHash::encryptData(getCurrentSongName(), DOWNLOAD_KEY))
+    {
+        //cache song should not allow open url
+        return;
+    }
+
     if(!MusicUtils::Core::openUrl(QFileInfo(path).absoluteFilePath(), true))
     {
         MusicMessageBox message;

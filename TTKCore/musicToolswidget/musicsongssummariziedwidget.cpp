@@ -563,7 +563,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
 }
 
 void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, const QString &time,
-                                                  const QString &format, bool play)
+                                                        const QString &format, bool play)
 {
     QString musicSong = MusicCryptographicHash::decryptData(name, DOWNLOAD_KEY);
     const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);

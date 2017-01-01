@@ -223,7 +223,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
             MusicSongs currentSongs = items[m_musicSongTree->getCurrentPlayToolIndex()].m_songs;
             MusicSong currentSong = currentSongs[index];
             path = QString("%1%2.%3").arg(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString())
-                                      .arg(currentSong.getMusicName()).arg(currentSong.getMusicType());
+                                     .arg(currentSong.getMusicName()).arg(currentSong.getMusicType());
             contains = QFile::exists(path);
         }
     }
