@@ -109,14 +109,14 @@ void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
 
     createMoreMenu(&rightClickMenu);
 
-    bool empty = true;
+    bool empty = !m_musicSongs->isEmpty();
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
     rightClickMenu.addSeparator();
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    rightClickMenu.addSeparator();
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
 
     rightClickMenu.exec(QCursor::pos());
     event->accept();

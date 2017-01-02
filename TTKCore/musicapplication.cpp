@@ -573,6 +573,7 @@ void MusicApplication::musicPlayIndex(int row)
 {
     m_musicPlayer->stop();
     setMusicPlayIndex();
+    m_currentMusicSongTreeIndex = row;
     m_musicList->setCurrentIndex(row);
 }
 
@@ -580,7 +581,7 @@ void MusicApplication::musicPlayIndex(int row, int)
 {
     m_musicPlayer->stop();
 
-    if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex())
+    if(m_currentMusicSongTreeIndex != m_musicSongTree->currentIndex() || m_musicList->mediaCount() == 0)
     {
         setMusicPlayIndex();
         m_ui->musicPlayedList->clear();
@@ -591,6 +592,7 @@ void MusicApplication::musicPlayIndex(int row, int)
             m_ui->musicPlayedList->append(index, items[index].m_songs);
         }
     }
+
     if(!m_musicSongTree->searchFileListEmpty())
     {
         row = m_musicSongTree->getSearchFileListIndexAndClear(row);

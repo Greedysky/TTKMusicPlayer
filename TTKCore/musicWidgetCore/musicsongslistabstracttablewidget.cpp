@@ -6,6 +6,7 @@
 #include "musicsongsharingwidget.h"
 #include "musicdownloadwidget.h"
 #include "musicconnecttransferwidget.h"
+#include "musicapplication.h"
 
 MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *parent)
     : MusicSlowMovingTableWidget(parent)
@@ -67,6 +68,11 @@ void MusicSongsListAbstractTableWidget::setDeleteItemAll()
 {
     selectAll();
     setDeleteItemAt();
+
+    if(rowCount() == 0)
+    {
+        MusicApplication::instance()->musicPlayIndex(-1);
+    }
 }
 
 void MusicSongsListAbstractTableWidget::musicOpenFileDir()
