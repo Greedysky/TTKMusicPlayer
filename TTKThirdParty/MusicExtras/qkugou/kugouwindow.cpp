@@ -330,7 +330,6 @@ void KugouWindow::createKugouMVWidget()
     topLayout->addWidget(d->m_buttonGroup->button(0));
     topLayout->addWidget(d->m_buttonGroup->button(1));
     topLayout->addWidget(d->m_buttonGroup->button(2));
-    topLayout->addWidget(d->m_buttonGroup->button(3));
     topLayout->addStretch(1);
 
     QWebView *view = new QWebView(this);
