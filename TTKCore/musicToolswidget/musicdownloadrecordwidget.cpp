@@ -61,8 +61,7 @@ void MusicDownloadRecordWidget::musicSongsFileName()
 
     for(int i=0; i<m_musicRecords.count(); i++)
     {
-        createItem(i, m_musicRecords[i].m_name, m_musicRecords[i].m_size, 999);
-        m_musicSongs->append(MusicSong(m_musicRecords[i].m_path));
+        createItem(i, m_musicRecords[i], DEFAULT_INDEX_LEVEL1);
     }
 }
 
@@ -155,7 +154,7 @@ void MusicDownloadRecordWidget::createDownloadItem(const QString &name, qint64 t
     record.m_size = "0.0M";
     m_musicRecords << record;
 
-    createItem(rowCount() - 1, musicName, "0.0M", time);
+    createItem(rowCount() - 1, record, time);
 }
 
 void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -183,25 +182,26 @@ void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
     event->accept();
 }
 
-void MusicDownloadRecordWidget::createItem(int index, const QString &name,
-                                           const QString &size, qint64 time)
+void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord &record, qint64 time)
 {
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 160));
+    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 160));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( name );
+    item->setToolTip( record.m_name );
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
     item->setData(MUSIC_PROCS_ROLE, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem( size );
+                      item = new QTableWidgetItem( record.m_size );
     item->setTextAlignment(Qt::AlignCenter);
     item->setData(MUSIC_TIMES_ROLE, time);
     setItem(index, 3, item);
+
+    m_musicSongs->append(MusicSong(record.m_path));
 }

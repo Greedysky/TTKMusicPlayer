@@ -119,10 +119,6 @@ Q_SIGNALS:
     /*!
      * Check current list is searched or not.
      */
-    void isCurrentIndexs(bool &state);
-    /*!
-     * Check is current play stack widget.
-     */
     void deleteItemAt(const MusicObject::MIntList &index, bool fileRemove);
     /*!
      * Delete items from indexs and check remove file or not.

@@ -57,6 +57,12 @@ public:
      * Get the current play row.
      */
 
+Q_SIGNALS:
+    void isCurrentIndexs(bool &state);
+    /*!
+     * Check is current play stack widget.
+     */
+
 public Q_SLOTS:
     void musicPlayClicked();
     /*!

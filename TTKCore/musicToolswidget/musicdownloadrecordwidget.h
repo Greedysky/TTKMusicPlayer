@@ -77,7 +77,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    void createItem(int index, const QString &name, const QString &size, qint64 time);
+    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
     /*!
      * Create item by index and name and size and time.
      */
