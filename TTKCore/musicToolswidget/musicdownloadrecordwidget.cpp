@@ -5,7 +5,6 @@
 #include "musicsongssummariziedwidget.h"
 #include "musiccoreutils.h"
 
-#include <QMenu>
 #include <QScrollBar>
 #include <QContextMenuEvent>
 
@@ -34,7 +33,7 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
 
 MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName() );
+    M_CONNECTION_PTR->removeValue(getClassName());
     delete m_musicSongs;
     delete m_delegate;
     clearAllItems();
@@ -67,29 +66,6 @@ void MusicDownloadRecordWidget::musicSongsFileName()
     }
 }
 
-void MusicDownloadRecordWidget::createItem(int index, const QString &name,
-                                           const QString &size, qint64 time)
-{
-    QTableWidgetItem *item = new QTableWidgetItem;
-    setItem(index, 0, item);
-
-                      item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 160));
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( name );
-    setItem(index, 1, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, 100);
-    setItem(index, 2, item);
-
-                      item = new QTableWidgetItem( size );
-    item->setTextAlignment(Qt::AlignCenter);
-    item->setData(MUSIC_TIMES_ROLE, time);
-    setItem(index, 3, item);
-}
-
 void MusicDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
@@ -97,29 +73,15 @@ void MusicDownloadRecordWidget::clearAllItems()
     setColumnCount(4);
 }
 
-void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicDownloadRecordWidget::musicPlay()
 {
-    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
-    QMenu rightClickMenu(this);
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
 
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
-    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
-    rightClickMenu.addSeparator();
-
-    createMoreMenu(&rightClickMenu);
-
-    bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
-    rightClickMenu.addSeparator();
-
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
-
-    rightClickMenu.exec(QCursor::pos());
-    event->accept();
+    QString path = m_musicRecords[currentRow()].m_path;
+    emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
 }
 
 void MusicDownloadRecordWidget::setDeleteItemAt()
@@ -162,17 +124,6 @@ void MusicDownloadRecordWidget::listCellDoubleClicked(int row, int column)
     musicPlay();
 }
 
-void MusicDownloadRecordWidget::musicPlay()
-{
-    if(rowCount() == 0 || currentRow() < 0)
-    {
-        return;
-    }
-
-    QString path = m_musicRecords[currentRow()].m_path;
-    emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
-}
-
 void MusicDownloadRecordWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
     for(int i=m_loadRecordCount; i<rowCount(); ++i)
@@ -205,4 +156,52 @@ void MusicDownloadRecordWidget::createDownloadItem(const QString &name, qint64 t
     m_musicRecords << record;
 
     createItem(rowCount() - 1, musicName, "0.0M", time);
+}
+
+void MusicDownloadRecordWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
+    rightClickMenu.addSeparator();
+
+    createMoreMenu(&rightClickMenu);
+
+    bool empty = !m_musicSongs->isEmpty();
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+
+    rightClickMenu.exec(QCursor::pos());
+    event->accept();
+}
+
+void MusicDownloadRecordWidget::createItem(int index, const QString &name,
+                                           const QString &size, qint64 time)
+{
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(index, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 160));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setToolTip( name );
+    setItem(index, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(MUSIC_PROCS_ROLE, 100);
+    setItem(index, 2, item);
+
+                      item = new QTableWidgetItem( size );
+    item->setTextAlignment(Qt::AlignCenter);
+    item->setData(MUSIC_TIMES_ROLE, time);
+    setItem(index, 3, item);
 }

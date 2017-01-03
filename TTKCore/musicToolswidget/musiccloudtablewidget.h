@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstracttablewidget.h"
+#include "musicsongslistabstracttablewidget.h"
 #include "musicclouddownloadrecordconfigmanager.h"
 
 class MusicProgressBarDelegate;
@@ -47,7 +47,7 @@ protected:
 /*! @brief The class of the cloud shared song download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -67,6 +67,10 @@ public Q_SLOTS:
     /*!
      * Table widget list cell click.
      */
+    virtual void setDeleteItemAt() override;
+    /*!
+     * Delete item from list at current row.
+     */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
      * Update download percent\ total time and current time progress.
@@ -80,6 +84,10 @@ protected:
     void musicSongsFileName();
     /*!
      * Read all config from file and insert items.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
      */
     void createItem(int index, const QString &name, const QString &size, qint64 time);
     /*!
