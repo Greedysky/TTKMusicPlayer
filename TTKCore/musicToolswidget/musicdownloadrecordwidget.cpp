@@ -38,7 +38,7 @@ MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
     delete m_delegate;
     clearAllItems();
 
-    MusicDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Normal, this);
     xml.writeDownloadConfig(m_musicRecords);
 }
 
@@ -49,7 +49,7 @@ QString MusicDownloadRecordWidget::getClassName()
 
 void MusicDownloadRecordWidget::musicSongsFileName()
 {
-    MusicDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Normal, this);
     if(!xml.readDownloadXMLConfig())
     {
         return;

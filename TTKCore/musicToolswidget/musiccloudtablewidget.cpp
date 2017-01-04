@@ -71,7 +71,7 @@ MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
     delete m_progressBarDelegate;
     clear();
 
-    MusicCloudDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
     xml.writeDownloadConfig(m_musicRecords);
 }
 
@@ -136,7 +136,7 @@ void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint
     QString musicName = name;
     musicName.remove(MusicUtils::Core::musicPrefix()).chop(4);
 
-    MusicCloudDownloadRecord record;
+    MusicDownloadRecord record;
     record.m_name = musicName;
     record.m_path = QFileInfo(name).absoluteFilePath();
     record.m_size = "0.0M";
@@ -147,7 +147,7 @@ void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint
 
 void MusicCloudDownloadTableWidget::musicSongsFileName()
 {
-    MusicCloudDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
     if(!xml.readDownloadXMLConfig())
     {
         return;
@@ -187,7 +187,7 @@ void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
     event->accept();
 }
 
-void MusicCloudDownloadTableWidget::createItem(int index, const MusicCloudDownloadRecord &record, qint64 time)
+void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record, qint64 time)
 {
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
