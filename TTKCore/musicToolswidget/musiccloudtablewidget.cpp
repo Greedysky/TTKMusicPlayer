@@ -162,34 +162,6 @@ void MusicCloudDownloadTableWidget::musicSongsFileName()
     }
 }
 
-void MusicCloudDownloadTableWidget::createItem(int index, const MusicCloudDownloadRecord &record, qint64 time)
-{
-    QTableWidgetItem *item = new QTableWidgetItem;
-    setItem(index, 0, item);
-
-                      item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/tiny/lb_right"));
-    setItem(index, 1, item);
-
-                      item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 160));
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( record.m_name );
-    setItem(index, 2, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, 100);
-    setItem(index, 3, item);
-
-                      item = new QTableWidgetItem( record.m_size );
-    item->setTextAlignment(Qt::AlignCenter);
-    item->setData(MUSIC_TIMES_ROLE, time);
-    setItem(index, 4, item);
-
-    m_musicSongs->append(MusicSong(record.m_path));
-}
-
 void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicSongsListAbstractTableWidget::contextMenuEvent(event);
@@ -213,4 +185,32 @@ void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.exec(QCursor::pos());
     event->accept();
+}
+
+void MusicCloudDownloadTableWidget::createItem(int index, const MusicCloudDownloadRecord &record, qint64 time)
+{
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(index, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/tiny/lb_right"));
+    setItem(index, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 260));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setToolTip( record.m_name );
+    setItem(index, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(MUSIC_PROCS_ROLE, 100);
+    setItem(index, 3, item);
+
+                      item = new QTableWidgetItem( record.m_size );
+    item->setTextAlignment(Qt::AlignCenter);
+    item->setData(MUSIC_TIMES_ROLE, time);
+    setItem(index, 4, item);
+
+    m_musicSongs->append(MusicSong(record.m_path));
 }

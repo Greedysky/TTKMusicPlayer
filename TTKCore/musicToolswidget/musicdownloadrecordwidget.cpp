@@ -68,7 +68,7 @@ void MusicDownloadRecordWidget::musicSongsFileName()
 void MusicDownloadRecordWidget::clearAllItems()
 {
     //Remove all the original item
-    MusicAbstractTableWidget::clear();
+    MusicSongsListAbstractTableWidget::clear();
     setColumnCount(4);
 }
 
