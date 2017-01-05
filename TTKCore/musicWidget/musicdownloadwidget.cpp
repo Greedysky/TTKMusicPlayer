@@ -456,7 +456,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
             MusicDownloadRecords records;
-            MusicDownloadRecordConfigManager down(this);
+            MusicDownloadRecordConfigManager down(MusicDownloadRecordConfigManager::Normal, this);
             if(!down.readDownloadXMLConfig())
             {
                 return;

@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicsongslistabstracttablewidget.h"
-#include "musicclouddownloadrecordconfigmanager.h"
+#include "musicdownloadrecordconfigmanager.h"
 
 class MusicProgressBarDelegate;
 
@@ -89,13 +89,13 @@ protected:
     /*!
      * Override the widget event.
      */
-    void createItem(int index, const MusicCloudDownloadRecord &record, qint64 time);
+    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
     /*!
      * Create item by index and name and size and time.
      */
 
     MusicProgressBarDelegate *m_progressBarDelegate;
-    MusicCloudDownloadRecords m_musicRecords;
+    MusicDownloadRecords m_musicRecords;
 
 };
 

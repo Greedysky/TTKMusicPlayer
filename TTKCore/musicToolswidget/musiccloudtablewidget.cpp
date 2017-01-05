@@ -71,7 +71,7 @@ MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
     delete m_progressBarDelegate;
     clear();
 
-    MusicCloudDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
     xml.writeDownloadConfig(m_musicRecords);
 }
 
@@ -136,7 +136,7 @@ void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint
     QString musicName = name;
     musicName.remove(MusicUtils::Core::musicPrefix()).chop(4);
 
-    MusicCloudDownloadRecord record;
+    MusicDownloadRecord record;
     record.m_name = musicName;
     record.m_path = QFileInfo(name).absoluteFilePath();
     record.m_size = "0.0M";
@@ -147,7 +147,7 @@ void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint
 
 void MusicCloudDownloadTableWidget::musicSongsFileName()
 {
-    MusicCloudDownloadRecordConfigManager xml;
+    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
     if(!xml.readDownloadXMLConfig())
     {
         return;
@@ -160,34 +160,6 @@ void MusicCloudDownloadTableWidget::musicSongsFileName()
     {
         createItem(i, m_musicRecords[i], DEFAULT_INDEX_LEVEL1);
     }
-}
-
-void MusicCloudDownloadTableWidget::createItem(int index, const MusicCloudDownloadRecord &record, qint64 time)
-{
-    QTableWidgetItem *item = new QTableWidgetItem;
-    setItem(index, 0, item);
-
-                      item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/tiny/lb_right"));
-    setItem(index, 1, item);
-
-                      item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 160));
-    item->setTextColor(QColor(50, 50, 50));
-    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( record.m_name );
-    setItem(index, 2, item);
-
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, 100);
-    setItem(index, 3, item);
-
-                      item = new QTableWidgetItem( record.m_size );
-    item->setTextAlignment(Qt::AlignCenter);
-    item->setData(MUSIC_TIMES_ROLE, time);
-    setItem(index, 4, item);
-
-    m_musicSongs->append(MusicSong(record.m_path));
 }
 
 void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -213,4 +185,32 @@ void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.exec(QCursor::pos());
     event->accept();
+}
+
+void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record, qint64 time)
+{
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(index, 0, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/tiny/lb_right"));
+    setItem(index, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 260));
+    item->setTextColor(QColor(50, 50, 50));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setToolTip( record.m_name );
+    setItem(index, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setData(MUSIC_PROCS_ROLE, 100);
+    setItem(index, 3, item);
+
+                      item = new QTableWidgetItem( record.m_size );
+    item->setTextAlignment(Qt::AlignCenter);
+    item->setData(MUSIC_TIMES_ROLE, time);
+    setItem(index, 4, item);
+
+    m_musicSongs->append(MusicSong(record.m_path));
 }

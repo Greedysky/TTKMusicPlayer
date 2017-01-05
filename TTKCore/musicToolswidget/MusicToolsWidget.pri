@@ -11,7 +11,6 @@ INCLUDEPATH += $$PWD \
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/core/musicclouddownloadrecordconfigmanager.h \
     $$PWD/core/musicdownloadrecordconfigmanager.h \
     $$PWD/core/musicwebentainradiodatebase.h \
     $$PWD/core/musicfilesenderserver.h \
@@ -36,7 +35,6 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
-    $$PWD/core/musicclouddownloadrecordconfigmanager.cpp \
     $$PWD/core/musicdownloadrecordconfigmanager.cpp \
     $$PWD/core/musicwebentainradiodatebase.cpp \
     $$PWD/core/musicfilesenderserver.cpp \
