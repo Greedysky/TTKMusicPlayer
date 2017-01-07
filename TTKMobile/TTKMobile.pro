@@ -70,7 +70,6 @@ INCLUDEPATH += \
     ../TTKCore/musicCore/utils \
     ../TTKCore/musicLrcmanager \
     ../TTKCore/musicNetwork \
-    ../TTKCore/musicToolsetswidget/core \
     ../TTKCore/musicWidget \
     ../TTKThirdParty/MusicExtras
 
@@ -89,8 +88,8 @@ HEADERS += \
     ../TTKCore/musicCore/musiccryptographichash.h \
     ../TTKCore/musicCore/musicconnectionpool.h \
     ../TTKCore/musicCore/musicbackgroundmanager.h \
+    ../TTKCore/musicCore/musicsongtag.h \
     ../TTKCore/musicLrcmanager/musiclrcanalysis.h \
-    ../TTKCore/musicToolsetswidget/core/musicsongtag.h \
     ../TTKCore/musicWidget/musicdownloadstatuslabel.h \
     MobileCore/ttkfilesearchcore.h \
     MobileCore/ttkmusicplaylist.h \
@@ -117,8 +116,8 @@ SOURCES += \
     ../TTKCore/musicCore/musiccryptographichash.cpp \
     ../TTKCore/musicCore/musicconnectionpool.cpp \
     ../TTKCore/musicCore/musicbackgroundmanager.cpp \
+    ../TTKCore/musicCore/musicsongtag.cpp \
     ../TTKCore/musicLrcmanager/musiclrcanalysis.cpp \
-    ../TTKCore/musicToolsetswidget/core/musicsongtag.cpp \
     ../TTKCore/musicWidget/musicdownloadstatuslabel.cpp \
     MobileCore/ttkfilesearchcore.cpp \
     MobileCore/ttkmusicplaylist.cpp \
