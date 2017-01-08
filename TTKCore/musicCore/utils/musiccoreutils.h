@@ -28,6 +28,7 @@ namespace MusicUtils
         /*!
          * Get music dir prefix path.
          */
+
         MUSIC_CORE_EXPORT QStringList splitString(const QString &value);
         /*!
          * Get split string value.
@@ -40,6 +41,7 @@ namespace MusicUtils
         /*!
          * Get song name.
          */
+
         MUSIC_CORE_EXPORT quint64 dirSize(const QString &dirName);
         /*!
          * Get given dir size.
