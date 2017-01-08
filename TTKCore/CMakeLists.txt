@@ -67,6 +67,7 @@ set(MUSIC_HEADERS
     ${MUSIC_CORE_DIR}/musicsingleton.h
     ${MUSIC_CORE_DIR}/musiccoremplayer.h
     ${MUSIC_CORE_DIR}/musicsong.h
+    ${MUSIC_CORE_DIR}/musicsongtag.h
     ${MUSIC_CORE_DIR}/musiccryptographichash.h
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchdialog.h
@@ -105,7 +106,6 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.h
-    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
@@ -124,14 +124,15 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicdownloadrecordconfigmanager.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
@@ -142,6 +143,7 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.h
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
+    ${MUSIC_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
     ${MUSIC_USERMANAGER_DIR}/core/musicusermodel.h
     ${MUSIC_USERMANAGER_DIR}/core/musicuserconfigmanager.h
     ${MUSIC_USERMANAGER_DIR}/musicusermanagerdialog.h
@@ -189,19 +191,20 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.h
     ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicsongslistabstracttablewidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.h
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.h
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.h
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.h
     ${MUSIC_WIDGET_DIR}/musicwindowextras.h
-    ${MUSIC_WIDGET_DIR}/musicsongslistwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.h
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
-    ${MUSIC_WIDGET_DIR}/musicsongsplayedlistwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
@@ -220,6 +223,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.h
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.h
     ${MUSIC_LIB_DIR}/musicapplication.h
     ${MUSIC_LIB_DIR}/musicleftareawidget.h
     ${MUSIC_LIB_DIR}/musictopareawidget.h
@@ -294,6 +298,7 @@ set(MUSIC_SOURCES
     ${MUSIC_CORE_DIR}/musicregeditmanager.cpp
     ${MUSIC_CORE_DIR}/musiccoremplayer.cpp
     ${MUSIC_CORE_DIR}/musicsong.cpp
+    ${MUSIC_CORE_DIR}/musicsongtag.cpp
     ${MUSIC_CORE_DIR}/musiccryptographichash.cpp
     ${MUSIC_LOCALSEARCH_DIR}/core/musiclocalsongsearchrecordconfigmanager.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchdialog.cpp
@@ -332,7 +337,6 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
-    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongtag.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicmobiledevicesthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
@@ -351,7 +355,8 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicidentifysongswidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicmydownloadrecordconfigmanager.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolswidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/core/musicdownloadrecordconfigmanager.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.cpp
@@ -366,9 +371,10 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicmydownloadrecordwidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp
+    ${MUSIC_TOOLSWIDGET_DIR}/musiccloudtablewidget.cpp
     ${MUSIC_USERMANAGER_DIR}/core/musicusermodel.cpp
     ${MUSIC_USERMANAGER_DIR}/core/musicuserconfigmanager.cpp
     ${MUSIC_USERMANAGER_DIR}/musicuserrecordwidget.cpp
@@ -416,14 +422,15 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musicsplititemclickedlabel.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicemojilabelwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicsongslistabstracttablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadstatuslabel.cpp
     ${MUSIC_WIDGET_DIR}/musicsettingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundskindialog.cpp
     ${MUSIC_WIDGET_DIR}/musicsystemtraymenu.cpp
     ${MUSIC_WIDGET_DIR}/musicequalizerdialog.cpp
     ${MUSIC_WIDGET_DIR}/musicwindowextras.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongslistwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicsongsplayedlistwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslisttablewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistiteminfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsearchonlinewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
@@ -447,6 +454,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
@@ -474,6 +482,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicvolumegainwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicsoundtouchwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetswidget/musicsongringtonemakerwidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetswidget/musicsongchecktoolswidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musiccloudfilemanagerdialog.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicconnecttransferwidget.ui
     ${MUSIC_UI_DIR}/musicToolswidget/musicwebentainradiowidget.ui
@@ -493,6 +502,7 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicWidget/musicsongslistiteminfowidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicsourceupdatewidget.ui
     ${MUSIC_UI_DIR}/musicWidget/musicsoundeffectswidget.ui
+    ${MUSIC_UI_DIR}/musicWidget/musicsonglistsharingwidget.ui
 )
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
