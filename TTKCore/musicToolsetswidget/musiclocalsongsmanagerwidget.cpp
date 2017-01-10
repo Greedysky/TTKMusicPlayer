@@ -123,7 +123,7 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
         {
             var = fileName[i].fileName();
             QTableWidgetItem *item = new QTableWidgetItem;
-            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 310));
+            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 260));
             item->setToolTip(var);
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             m_ui->songlistsTable->setItem(i, 0, item);
@@ -151,7 +151,7 @@ void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
         {
             var = fileName[i].absoluteFilePath();
             QTableWidgetItem *item = new QTableWidgetItem;
-            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 525));
+            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 445));
             item->setToolTip(var);
             item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             m_ui->songlistsTable->setItem(i, 0, item);
