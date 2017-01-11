@@ -600,9 +600,20 @@ void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
             emit updatePlayLists(var);
         }
     }
+
+    MusicSongItem *songItem = &m_songItems[MUSIC_NORMAL_LIST];
+    MusicSongs *musicSongs = &songItem->m_songs;
+    MusicSong song = MusicSong(items.last());
+
+    int index = musicSongs->count() - 1;
+    if(musicSongs->contains(song))
+    {
+        index = musicSongs->indexOf(song);
+    }
+
     /// just play it at once
     MusicSongsToolBoxWidget::setCurrentIndex(0);
-    MusicApplication::instance()->musicPlayIndex(m_songItems[MUSIC_NORMAL_LIST].m_songs.count() - 1, 0);
+    MusicApplication::instance()->musicPlayIndex(index, 0);
 }
 
 void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
