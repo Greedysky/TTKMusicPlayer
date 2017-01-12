@@ -12,6 +12,7 @@ MusicSlowMovingTableWidget::MusicSlowMovingTableWidget(QWidget *parent)
     m_priviousValue = 0;
     m_isFirstInit = true;
     m_slowAnimation = nullptr;
+    m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
     m_animationTimer->setInterval(100*MT_MS);
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
@@ -60,17 +61,19 @@ void MusicSlowMovingTableWidget::wheelEvent(QWheelEvent *event)
 {
     MusicAbstractTableWidget::wheelEvent(event);
 
-    if(m_slowAnimation)
+    if(!m_slowAnimation)
     {
-        m_animationTimer->stop();
-        m_slowAnimation->stop();
-        if(m_isFirstInit)
-        {
-            m_deltaValue = 0;
-            m_priviousValue = m_scrollBar->value();
-            m_isFirstInit = false;
-        }
-        m_deltaValue += event->delta();
-        m_animationTimer->start();
+        return;
     }
+
+    m_animationTimer->stop();
+    m_slowAnimation->stop();
+    if(m_isFirstInit)
+    {
+        m_deltaValue = 0;
+        m_priviousValue = m_scrollBar->value();
+        m_isFirstInit = false;
+    }
+    m_deltaValue += event->delta();
+    m_animationTimer->start();
 }
