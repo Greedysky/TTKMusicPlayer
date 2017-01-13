@@ -28,6 +28,7 @@ void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())
     {
+        clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
