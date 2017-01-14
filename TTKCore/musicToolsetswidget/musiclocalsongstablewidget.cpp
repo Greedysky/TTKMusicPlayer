@@ -1,10 +1,17 @@
 #include "musiclocalsongstablewidget.h"
 
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
-    : MusicAbstractTableWidget(parent)
+    : MusicSongsListAbstractTableWidget(parent)
 {
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     MusicUtils::Widget::setTransparent(this, 150);
+
+    m_musicSongs = new MusicSongs;
+}
+
+MusicLocalSongsTableWidget::~MusicLocalSongsTableWidget()
+{
+    delete m_musicSongs;
 }
 
 QString MusicLocalSongsTableWidget::getClassName()
@@ -46,4 +53,25 @@ void MusicLocalSongsTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicLocalSongsTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
+    rightClickMenu.addSeparator();
+
+    createMoreMenu(&rightClickMenu);
+
+    bool empty = !m_musicSongs->isEmpty();
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.exec(QCursor::pos());
 }
