@@ -1,4 +1,5 @@
 #include "musiclocalsongstablewidget.h"
+#include "musicnumberutils.h"
 
 MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
@@ -22,12 +23,14 @@ QString MusicLocalSongsTableWidget::getClassName()
 void MusicLocalSongsTableWidget::clearShowlist()
 {
     MusicAbstractTableWidget::clear();
+    m_musicSongs->clear();
     setColumnCount(5);
 }
 
 void MusicLocalSongsTableWidget::clearShowPath()
 {
     MusicAbstractTableWidget::clear();
+    m_musicSongs->clear();
     setColumnCount(1);
 }
 
@@ -47,6 +50,54 @@ void MusicLocalSongsTableWidget::createShowPath()
     clearShowPath();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 528);
+}
+
+void MusicLocalSongsTableWidget::addShowlistItems(const QFileInfoList &path)
+{
+    for(int i=0; i<path.count(); i++)
+    {
+
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setToolTip(path[i].fileName());
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 260));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 0, item);
+
+                         item = new QTableWidgetItem;
+        item->setToolTip(MusicUtils::Number::size2Label(path[i].size()));
+        item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Number(path[i].size()),
+                                                     Qt::ElideRight, 50));
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(i, 1, item);
+
+                         item = new QTableWidgetItem(path[i].lastModified().date().toString(Qt::ISODate));
+        item->setTextAlignment(Qt::AlignCenter);
+        setItem(i, 2, item);
+
+                         item = new QTableWidgetItem;
+        item->setIcon(QIcon(":/contextMenu/btn_audition"));
+        setItem(i, 3, item);
+
+                         item = new QTableWidgetItem;
+        item->setIcon(QIcon(":/contextMenu/btn_add"));
+        setItem(i, 4, item);
+
+        m_musicSongs->append(MusicSong(path[i].absoluteFilePath()));
+    }
+}
+
+void MusicLocalSongsTableWidget::addShowPathItems(const QFileInfoList &path)
+{
+    for(int i=0; i<path.count(); i++)
+    {
+        QTableWidgetItem *item = new QTableWidgetItem;
+        item->setToolTip(path[i].absoluteFilePath());
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 445));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(i, 0, item);
+
+        m_musicSongs->append(MusicSong(path[i].absoluteFilePath()));
+    }
 }
 
 void MusicLocalSongsTableWidget::listCellClicked(int row, int column)

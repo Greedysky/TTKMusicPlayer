@@ -28,6 +28,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void clearShowlist();
     /*!
      * Clear show list.
@@ -43,6 +44,14 @@ public:
     void createShowPath();
     /*!
      * Create show path.
+     */
+    void addShowlistItems(const QFileInfoList &path);
+    /*!
+     * Add show list items.
+     */
+    void addShowPathItems(const QFileInfoList &path);
+    /*!
+     * Add show path items.
      */
 
 public Q_SLOTS:

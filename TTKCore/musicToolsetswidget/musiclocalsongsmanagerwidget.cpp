@@ -2,11 +2,9 @@
 #include "ui_musiclocalsongsmanagerwidget.h"
 #include "musiclocalsongsmanagerthread.h"
 #include "musiclocalsongstablewidget.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
-#include "musicwidgetutils.h"
-#include "musicnumberutils.h"
-#include "musicsongssummariziedwidget.h"
 
 #include <QDateTime>
 #include <QFileDialog>
@@ -101,145 +99,6 @@ QString MusicLocalSongsManagerWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLocalSongsManagerWidget::clearAllItems()
-{
-    ///Remove all the original item
-    if(m_ui->allSelectedcheckBox->isChecked())
-    {
-        m_ui->allSelectedcheckBox->click();
-    }
-    m_currentIndex == 0 ? m_ui->songlistsTable->clearShowlist() : m_ui->songlistsTable->clearShowPath();
-}
-
-void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
-{
-    m_ui->songlistsTable->setRowCount(fileName.count());//reset row count
-    m_ui->songCountLabel->setText(tr("showSongCount%1").arg(fileName.count()));
-
-    QString var;
-    for(int i=0; i<fileName.count(); i++)
-    {
-        if(m_currentIndex == 0)
-        {
-            var = fileName[i].fileName();
-            QTableWidgetItem *item = new QTableWidgetItem;
-            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 260));
-            item->setToolTip(var);
-            item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-            m_ui->songlistsTable->setItem(i, 0, item);
-
-                             item = new QTableWidgetItem;
-            item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Number(fileName[i].size()),
-                                                         Qt::ElideRight, 50));
-            item->setToolTip(MusicUtils::Number::size2Label(fileName[i].size()));
-            item->setTextAlignment(Qt::AlignCenter);
-            m_ui->songlistsTable->setItem(i, 1, item);
-
-                             item = new QTableWidgetItem(fileName[i].lastModified().date().toString(Qt::ISODate));
-            item->setTextAlignment(Qt::AlignCenter);
-            m_ui->songlistsTable->setItem(i, 2, item);
-
-                             item = new QTableWidgetItem;
-            item->setIcon(QIcon(":/contextMenu/btn_audition"));
-            m_ui->songlistsTable->setItem(i, 3, item);
-
-                             item = new QTableWidgetItem;
-            item->setIcon(QIcon(":/contextMenu/btn_add"));
-            m_ui->songlistsTable->setItem(i, 4, item);
-        }
-        else
-        {
-            var = fileName[i].absoluteFilePath();
-            QTableWidgetItem *item = new QTableWidgetItem;
-            item->setText(MusicUtils::Widget::elidedText(font(), var, Qt::ElideRight, 445));
-            item->setToolTip(var);
-            item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-            m_ui->songlistsTable->setItem(i, 0, item);
-        }
-    }
-}
-
-void MusicLocalSongsManagerWidget::addDrivesList()
-{
-    QStringList names;
-    names << tr("Overall");
-    QFileInfoList drives = QDir::drives();
-    foreach(const QFileInfo &driver, drives)
-    {
-       names << driver.absoluteDir().absolutePath();
-    }
-    m_ui->filterComboBox->addItems(names);
-}
-
-void MusicLocalSongsManagerWidget::filterScanChanged(int index)
-{
-    M_LOGGER_INFO("start fetch!");
-    m_thread->stopAndQuitThread();
-
-    if(index == 0)
-    {
-        if(!filterIndexChanged())
-        {
-            return;
-        }
-    }
-    else if(index == 1)
-    {
-        if(!filterIndexCustChanged())
-        {
-            return;
-        }
-    }
-
-    m_ui->loadingLabel->show();
-    m_ui->loadingLabel->start();
-    m_thread->start();
-}
-
-bool MusicLocalSongsManagerWidget::filterIndexCustChanged()
-{
-    QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
-    {
-        m_thread->setFindFilePath(dialog.directory().absolutePath());
-    }
-    else
-    {
-        return false;
-    }
-    return true;
-}
-
-bool MusicLocalSongsManagerWidget::filterIndexChanged()
-{
-    if(m_ui->filterComboBox->currentIndex() < 0)
-    {
-        MusicMessageBox message;
-        message.setText(tr("please select one dirver"));
-        message.exec();
-        return false;
-    }
-
-    if(m_ui->filterComboBox->currentIndex() == 0)
-    {
-        QStringList names;
-        QFileInfoList drives = QDir::drives();
-        foreach(const QFileInfo &driver, drives)
-        {
-           names << driver.absoluteDir().absolutePath();
-        }
-        m_thread->setFindFilePath(names);
-    }
-    else
-    {
-        m_thread->setFindFilePath(m_ui->filterComboBox->currentText());
-    }
-
-    return true;
-}
-
 void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
 {
     if(!check)
@@ -253,46 +112,6 @@ void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
         m_ui->allSelectedcheckBox->setText(tr("allcanceled"));
         m_ui->songlistsTable->selectAll();
     }
-}
-
-void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
-{
-    M_LOGGER_INFO("stop fetch!");
-    m_ui->loadingLabel->hide();
-    m_ui->loadingLabel->stop();
-
-    clearAllItems();
-    addAllItems( m_filenames = name );
-}
-
-void MusicLocalSongsManagerWidget::itemsSelected()
-{
-    MusicObject::MIntSet auditionRow; //if selected multi rows
-    foreach(QTableWidgetItem *item, m_ui->songlistsTable->selectedItems())
-    {
-        if(!m_searchfileListCache.isEmpty())
-        {
-            int count = m_ui->searchLineEdit->text().trimmed().count();
-            auditionRow.insert(m_searchfileListCache.value(count)[item->row()]);
-        }
-        else
-        {
-            auditionRow.insert(item->row());
-        }
-    }
-    m_ui->searchLineEdit->clear();
-    m_searchfileListCache.clear();
-
-    MusicObject::MIntList auditionList = auditionRow.toList();
-    qSort(auditionList);
-
-    QStringList names;
-    foreach(int index, auditionList)
-    {
-        names << m_filenames[index].absoluteFilePath();
-    }
-
-    emit addSongToPlay(names);
 }
 
 void MusicLocalSongsManagerWidget::auditionButtonClick()
@@ -364,6 +183,41 @@ void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
     emit addSongToPlay(QStringList(m_filenames[row].absoluteFilePath()));
 }
 
+void MusicLocalSongsManagerWidget::setSongNamePath(const QFileInfoList &name)
+{
+    M_LOGGER_INFO("stop fetch!");
+    m_ui->loadingLabel->hide();
+    m_ui->loadingLabel->stop();
+
+    clearAllItems();
+    addAllItems( m_filenames = name );
+}
+
+void MusicLocalSongsManagerWidget::filterScanChanged(int index)
+{
+    M_LOGGER_INFO("start fetch!");
+    m_thread->stopAndQuitThread();
+
+    if(index == 0)
+    {
+        if(!filterIndexChanged())
+        {
+            return;
+        }
+    }
+    else if(index == 1)
+    {
+        if(!filterIndexCustChanged())
+        {
+            return;
+        }
+    }
+
+    m_ui->loadingLabel->show();
+    m_ui->loadingLabel->start();
+    m_thread->start();
+}
+
 void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
 {
     MusicObject::MIntList searchResult;
@@ -409,4 +263,115 @@ int MusicLocalSongsManagerWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicLocalSongsManagerWidget::clearAllItems()
+{
+    ///Remove all the original item
+    if(m_ui->allSelectedcheckBox->isChecked())
+    {
+        m_ui->allSelectedcheckBox->click();
+    }
+    m_currentIndex == 0 ? m_ui->songlistsTable->clearShowlist() : m_ui->songlistsTable->clearShowPath();
+}
+
+void MusicLocalSongsManagerWidget::addAllItems(const QFileInfoList &fileName)
+{
+    m_ui->songlistsTable->setRowCount(fileName.count());//reset row count
+    m_ui->songCountLabel->setText(tr("showSongCount%1").arg(fileName.count()));
+
+    if(m_currentIndex == 0)
+    {
+        m_ui->songlistsTable->addShowlistItems(fileName);
+    }
+    else
+    {
+        m_ui->songlistsTable->addShowPathItems(fileName);
+    }
+}
+
+void MusicLocalSongsManagerWidget::addDrivesList()
+{
+    QStringList names;
+    names << tr("Overall");
+    QFileInfoList drives = QDir::drives();
+    foreach(const QFileInfo &driver, drives)
+    {
+       names << driver.absoluteDir().absolutePath();
+    }
+    m_ui->filterComboBox->addItems(names);
+}
+
+void MusicLocalSongsManagerWidget::itemsSelected()
+{
+    MusicObject::MIntSet auditionRow; //if selected multi rows
+    foreach(QTableWidgetItem *item, m_ui->songlistsTable->selectedItems())
+    {
+        if(!m_searchfileListCache.isEmpty())
+        {
+            int count = m_ui->searchLineEdit->text().trimmed().count();
+            auditionRow.insert(m_searchfileListCache.value(count)[item->row()]);
+        }
+        else
+        {
+            auditionRow.insert(item->row());
+        }
+    }
+    m_ui->searchLineEdit->clear();
+    m_searchfileListCache.clear();
+
+    MusicObject::MIntList auditionList = auditionRow.toList();
+    qSort(auditionList);
+
+    QStringList names;
+    foreach(int index, auditionList)
+    {
+        names << m_filenames[index].absoluteFilePath();
+    }
+
+    emit addSongToPlay(names);
+}
+
+bool MusicLocalSongsManagerWidget::filterIndexChanged()
+{
+    if(m_ui->filterComboBox->currentIndex() < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("please select one dirver"));
+        message.exec();
+        return false;
+    }
+
+    if(m_ui->filterComboBox->currentIndex() == 0)
+    {
+        QStringList names;
+        QFileInfoList drives = QDir::drives();
+        foreach(const QFileInfo &driver, drives)
+        {
+           names << driver.absoluteDir().absolutePath();
+        }
+        m_thread->setFindFilePath(names);
+    }
+    else
+    {
+        m_thread->setFindFilePath(m_ui->filterComboBox->currentText());
+    }
+
+    return true;
+}
+
+bool MusicLocalSongsManagerWidget::filterIndexCustChanged()
+{
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setViewMode(QFileDialog::Detail);
+    if(dialog.exec())
+    {
+        m_thread->setFindFilePath(dialog.directory().absolutePath());
+    }
+    else
+    {
+        return false;
+    }
+    return true;
 }
