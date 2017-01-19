@@ -13,6 +13,7 @@ The TTKMusicplayer plugin for run
   * |musicuser.dll
   * |musicuser.ttk
   * |musicdown.ttk
+  * |musiccloud.ttk
 * |__Downloads
   * |__MArt
   * |__MCached
