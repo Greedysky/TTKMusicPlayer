@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DMUSIC_LIBRARY)
 
-set(TTK_VERSION "2.4.5.0")
+set(TTK_VERSION "2.4.6.0")
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<manifest package="org.greedysky.ttkmusicplayer" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="2.4" android:versionCode="5" android:installLocation="auto">
+<manifest package="org.greedysky.ttkmusicplayer" xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="2.4" android:versionCode="6" android:installLocation="auto">
     <application android:hardwareAccelerated="true" android:icon="@drawable/icon" android:name="org.qtproject.qt5.android.bindings.QtApplication" android:label="天天酷音">
              <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|locale|fontScale|keyboard|keyboardHidden|navigation" android:name="org.greedysky.ttkmobile.SplashScreen" android:label="天天酷音" android:screenOrientation="portrait" android:launchMode="singleTop" android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
