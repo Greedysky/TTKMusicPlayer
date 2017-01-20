@@ -32,7 +32,8 @@
 #ifdef Q_OS_WIN
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
 #else
-#define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService"
+#define S_TTKDD_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKLDD.sh"
+#define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.sh"
 #endif
 
 class MusicRunObjectPrivate : public TTKPrivate<MusicRunObject>
@@ -83,6 +84,7 @@ void MusicRunObject::run(int argc, char **argv)
     {
         list << argv[1] << argv[2];
     }
+
     d->m_process->start(S_TTKSERVICE_FULL, list);
 }
 
@@ -168,4 +170,18 @@ void MusicRunObject::checkTheFileNeededExist()
     {
         QFile::copy(":/data/sound.wav", S_SOUNDPATH_FULL);
     }
+
+#ifdef Q_OS_UNIX
+    if(!QFile::exists(S_TTKDD_FULL))
+    {
+        QFile::copy(":/data/TTKLDD.sh", S_TTKDD_FULL);
+        QProcess::execute("chmod", QStringList() << "+x" << S_TTKDD_FULL);
+    }
+    if(!QFile::exists(S_TTKSERVICE_FULL))
+    {
+        QFile::copy(":/data/TTKService.sh", S_TTKSERVICE_FULL);
+        QProcess::execute("chmod", QStringList() << "+x" << S_TTKSERVICE_FULL);
+    }
+ #endif
+
 }
