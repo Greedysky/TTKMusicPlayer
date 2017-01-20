@@ -32,7 +32,7 @@
 #ifdef Q_OS_WIN
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
 #else
-#define S_TTKDD_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKLDD.sh"
+#define S_TTKDD_FULL              MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKLDD.sh"
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.sh"
 #endif
 
