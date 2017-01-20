@@ -33,7 +33,7 @@ ApplicationWindow {
         width: parent.width
         height: parent.height
         focus: true
-        initialItem: ColumnLayout {
+        initialItem: Column {
             spacing: 0
 
             StackView {

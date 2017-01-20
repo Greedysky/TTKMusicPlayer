@@ -45,7 +45,7 @@ Item {
         Rectangle {
             id: ttkMainMenubar
             Layout.fillWidth: true
-            height: ttkGlobal.dpHeight(ttkTheme.topbar_height)
+            Layout.preferredHeight: ttkGlobal.dpHeight(ttkTheme.topbar_height)
             color: ttkTheme.topbar_background
 
             RowLayout {
@@ -335,7 +335,7 @@ Item {
 
                             Rectangle {
                                 Layout.fillWidth: true
-                                height: ttkGlobal.dpHeight(50)
+                                Layout.preferredHeight: ttkGlobal.dpHeight(50)
                                 Layout.alignment: Qt.AlignCenter
 
                                 Text {
