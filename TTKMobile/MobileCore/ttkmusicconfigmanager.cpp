@@ -39,22 +39,22 @@ void TTKMusicConfigManager::writeXMLConfig()
     QDomElement equalizer = writeDom(musicPlayer, "equalizer");
     QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
     //Class B
-    writeDomElement(music, "playMode", "value", playModeChoiced);
-    writeDomElement(music, "playVolume", "value", volumeChoiced);
-    writeDomElementText(music, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+    writeDomElement(music, "playMode", XmlAttribute("value", playModeChoiced));
+    writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
+    writeDomElementText(music, "lastPlayIndex", XmlAttribute("value", lastPlayIndexChoiced[0]),
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(equalizer, "enhancedMusic", "value", enhancedMusicChoiced);
-    writeDomElement(equalizer, "equalizerEnable", "value", equalizerEnableChoiced);
-    writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
-    writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
+    writeDomElement(equalizer, "enhancedMusic", XmlAttribute("value", enhancedMusicChoiced));
+    writeDomElement(equalizer, "equalizerEnable", XmlAttribute("value", equalizerEnableChoiced));
+    writeDomElement(equalizer, "equalizerIndex", XmlAttribute("value", equalizerIndexChoiced));
+    writeDomElement(equalizer, "equalizerValue", XmlAttribute("value", equalizerValueChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(showLrc, "lrcColor", "value", lrcColorChoiced);
-    writeDomElement(showLrc, "lrcSize", "value", lrcSizeChoiced);
-    writeDomElement(showLrc, "lrcType", "value", lrcTypeChoiced);
-    writeDomElement(showLrc, "lrcFgColor", "value", lrcFgColorChoiced);
+    writeDomElement(showLrc, "lrcColor", XmlAttribute("value", lrcColorChoiced));
+    writeDomElement(showLrc, "lrcSize", XmlAttribute("value", lrcSizeChoiced));
+    writeDomElement(showLrc, "lrcType", XmlAttribute("value", lrcTypeChoiced));
+    writeDomElement(showLrc, "lrcFgColor", XmlAttribute("value", lrcFgColorChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     //Write to file
@@ -78,13 +78,15 @@ void TTKMusicConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     for(int i=0; i<musics.count(); ++i)
     {
-        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
-                                  QVariantList() << musics[i].m_itemName << i << musics[i].m_songs.count());
+
+        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList",
+                                                   XmlAttributes() << XmlAttribute("name", musics[i].m_itemName) << XmlAttribute("index", i)
+                                                   << XmlAttribute("count", musics[i].m_songs.count()));
         foreach(const MusicSong &song, musics[i].m_songs)
         {
-            writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
-                                     QVariantList() << song.getMusicName() << song.getMusicPlayCount()
-                                                       << song.getMusicTime(), song.getMusicPath());
+            writeDomElementMutilText(pathDom, "value", XmlAttributes() << XmlAttribute("name", song.getMusicName())
+                                     << XmlAttribute("playCount", song.getMusicPlayCount())
+                                     << XmlAttribute("time", song.getMusicTime()), song.getMusicPath());
         }
     }
 
