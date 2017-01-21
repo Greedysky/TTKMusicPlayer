@@ -30,13 +30,14 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     for(int i=0; i<musics.count(); ++i)
     {
-        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", QStringList() << "name" << "index" << "count",
-                                  QVariantList() << musics[i].m_itemName << i << musics[i].m_songs.count());
+        QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList",
+                              XmlAttributes() << XmlAttribute("name", musics[i].m_itemName) << XmlAttribute("index", i)
+                                              << XmlAttribute("count", musics[i].m_songs.count()));
         foreach(const MusicSong &song, musics[i].m_songs)
         {
-            writeDomElementMutilText(pathDom, "value", QStringList() << "name" << "playCount" << "time",
-                                     QVariantList() << song.getMusicName() << song.getMusicPlayCount()
-                                                       << song.getMusicTime(), song.getMusicPath());
+            writeDomElementMutilText(pathDom, "value", XmlAttributes() << XmlAttribute("name", song.getMusicName())
+                                     << XmlAttribute("playCount", song.getMusicPlayCount()) << XmlAttribute("time", song.getMusicTime()),
+                                     song.getMusicPath());
         }
     }
 
@@ -166,91 +167,91 @@ void MusicXMLConfigManager::writeXMLConfig()
     QDomElement timeSettings = writeDom(musicPlayer, "timeSettings");
     QDomElement downloads = writeDom(musicPlayer, "downloads");
     //Class B
-    writeDomElement(music, "playMode", "value", playModeChoiced);
-    writeDomElement(music, "playVolume", "value", volumeChoiced);
-    writeDomElementText(music, "lastPlayIndex", "value", lastPlayIndexChoiced[0],
+    writeDomElement(music, "playMode", XmlAttribute("value", playModeChoiced));
+    writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
+    writeDomElementText(music, "lastPlayIndex", XmlAttribute("value", lastPlayIndexChoiced[0]),
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(settings, "geometry", "value", QString("%1,%2,%3,%4").arg(widgetPositionChoiced.x())
-                    .arg(widgetPositionChoiced.y()).arg(widgetSizeChoiced.width()).arg(widgetSizeChoiced.height()));
-    writeDomElement(settings, "language", "value", languageIndexChoiced);
-    writeDomElement(settings, "autoPlay", "value", autoPlayChoiced);
-    writeDomElement(settings, "closeEvent", "value", closeEventChoiced);
-    writeDomElement(settings, "closeNetwork", "value", closeNetWorkChoiced);
-    writeDomElement(settings, "fileAssociation", "value", fileAssociationChoiced);
+    writeDomElement(settings, "geometry", XmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPositionChoiced.x())
+                    .arg(widgetPositionChoiced.y()).arg(widgetSizeChoiced.width()).arg(widgetSizeChoiced.height())));
+    writeDomElement(settings, "language", XmlAttribute("value", languageIndexChoiced));
+    writeDomElement(settings, "autoPlay", XmlAttribute("value", autoPlayChoiced));
+    writeDomElement(settings, "closeEvent", XmlAttribute("value", closeEventChoiced));
+    writeDomElement(settings, "closeNetwork", XmlAttribute("value", closeNetWorkChoiced));
+    writeDomElement(settings, "fileAssociation", XmlAttribute("value", fileAssociationChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(timeSettings, "timeAutoIndex", "value", timeAutoIndexChoiced);
-    writeDomElement(timeSettings, "timeAutoPlay", "value", timeAutoPlayChoiced);
-    writeDomElement(timeSettings, "timeAutoPlayHour", "value", timeAutoPlayHourChoiced);
-    writeDomElement(timeSettings, "timeAutoPlaySecond", "value", timeAutoPlaySecondChoiced);
-    writeDomElement(timeSettings, "timeAutoPlayRepeat", "value", timeAutoPlayRepeatChoiced);
-    writeDomElement(timeSettings, "timeAutoPlayItemIndex", "value", timeAutoPlayItemIndexChoiced);
-    writeDomElement(timeSettings, "timeAutoPlaySongIndex", "value", timeAutoPlaySongIndexChoiced);
-    writeDomElement(timeSettings, "timeAutoStop", "value", timeAutoStopChoiced);
-    writeDomElement(timeSettings, "timeAutoStopHour", "value", timeAutoStopHourChoiced);
-    writeDomElement(timeSettings, "timeAutoStopSecond", "value", timeAutoStopSecondChoiced);
-    writeDomElement(timeSettings, "timeAutoStopRepeat", "value", timeAutoStopRepeatChoiced);
-    writeDomElement(timeSettings, "timeAutoShutdown", "value", timeAutoShutdownChoiced);
-    writeDomElement(timeSettings, "timeAutoShutdownHour", "value", timeAutoShutdownHourChoiced);
-    writeDomElement(timeSettings, "timeAutoShutdownSecond", "value", timeAutoShutdownSecondChoiced);
-    writeDomElement(timeSettings, "timeAutoShutdownRepeat", "value", timeAutoShutdownRepeatChoiced);
+    writeDomElement(timeSettings, "timeAutoIndex", XmlAttribute("value", timeAutoIndexChoiced));
+    writeDomElement(timeSettings, "timeAutoPlay", XmlAttribute("value", timeAutoPlayChoiced));
+    writeDomElement(timeSettings, "timeAutoPlayHour", XmlAttribute("value", timeAutoPlayHourChoiced));
+    writeDomElement(timeSettings, "timeAutoPlaySecond", XmlAttribute("value", timeAutoPlaySecondChoiced));
+    writeDomElement(timeSettings, "timeAutoPlayRepeat", XmlAttribute("value", timeAutoPlayRepeatChoiced));
+    writeDomElement(timeSettings, "timeAutoPlayItemIndex", XmlAttribute("value", timeAutoPlayItemIndexChoiced));
+    writeDomElement(timeSettings, "timeAutoPlaySongIndex", XmlAttribute("value", timeAutoPlaySongIndexChoiced));
+    writeDomElement(timeSettings, "timeAutoStop", XmlAttribute("value", timeAutoStopChoiced));
+    writeDomElement(timeSettings, "timeAutoStopHour", XmlAttribute("value", timeAutoStopHourChoiced));
+    writeDomElement(timeSettings, "timeAutoStopSecond", XmlAttribute("value", timeAutoStopSecondChoiced));
+    writeDomElement(timeSettings, "timeAutoStopRepeat", XmlAttribute("value", timeAutoStopRepeatChoiced));
+    writeDomElement(timeSettings, "timeAutoShutdown", XmlAttribute("value", timeAutoShutdownChoiced));
+    writeDomElement(timeSettings, "timeAutoShutdownHour", XmlAttribute("value", timeAutoShutdownHourChoiced));
+    writeDomElement(timeSettings, "timeAutoShutdownSecond", XmlAttribute("value", timeAutoShutdownSecondChoiced));
+    writeDomElement(timeSettings, "timeAutoShutdownRepeat", XmlAttribute("value", timeAutoShutdownRepeatChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(backgroundSkin, "bgTheme", "value", bgThemeChoiced);
-    writeDomElement(backgroundSkin, "bgTransparent", "value", bgTransparentChoiced);
-    writeDomElement(backgroundSkin, "bgListTransparent", "value", bgListTransparentChoiced);
+    writeDomElement(backgroundSkin, "bgTheme", XmlAttribute("value", bgThemeChoiced));
+    writeDomElement(backgroundSkin, "bgTransparent", XmlAttribute("value", bgTransparentChoiced));
+    writeDomElement(backgroundSkin, "bgListTransparent", XmlAttribute("value", bgListTransparentChoiced));
 
     ///////////////////////////////////////////////
-    writeDomElement(showLrc, "showInlineLrc", "value", showInlineLrcChoiced);
-    writeDomElement(showLrc, "lrcColor", "value", lrcColorChoiced);
-    writeDomElement(showLrc, "lrcSize", "value", lrcSizeChoiced);
-    writeDomElement(showLrc, "lrcFamily", "value", lrcFamilyChoiced);
-    writeDomElement(showLrc, "lrcType", "value", lrcTypeChoiced);
-    writeDomElement(showLrc, "lrcTransparent", "value", lrcTransparentChoiced);
-    writeDomElement(showLrc, "lrcFgColor", "value", lrcFgColorChoiced);
-    writeDomElement(showLrc, "lrcBgColor", "value", lrcBgColorChoiced);
+    writeDomElement(showLrc, "showInlineLrc", XmlAttribute("value", showInlineLrcChoiced));
+    writeDomElement(showLrc, "lrcColor", XmlAttribute("value", lrcColorChoiced));
+    writeDomElement(showLrc, "lrcSize", XmlAttribute("value", lrcSizeChoiced));
+    writeDomElement(showLrc, "lrcFamily", XmlAttribute("value", lrcFamilyChoiced));
+    writeDomElement(showLrc, "lrcType", XmlAttribute("value", lrcTypeChoiced));
+    writeDomElement(showLrc, "lrcTransparent", XmlAttribute("value", lrcTransparentChoiced));
+    writeDomElement(showLrc, "lrcFgColor", XmlAttribute("value", lrcFgColorChoiced));
+    writeDomElement(showLrc, "lrcBgColor", XmlAttribute("value", lrcBgColorChoiced));
 
     ///////////////////////////////////////////////
-    writeDomElement(showDLrc, "showDesktopLrc", "value", showDesktopLrcChoiced);
-    writeDomElement(showDLrc, "lrcDColor", "value", DLrcColorChoiced);
-    writeDomElement(showDLrc, "lrcDSize", "value", DLrcSizeChoiced);
-    writeDomElement(showDLrc, "lrcDFamily", "value", DLrcFamilyChoiced);
-    writeDomElement(showDLrc, "lrcDType", "value", DLrcTypeChoiced);
-    writeDomElement(showDLrc, "lrcDTransparent", "value", DLrcTransparentChoiced);
-    writeDomElement(showDLrc, "lrcDFgColor", "value", DLrcFgColorChoiced);
-    writeDomElement(showDLrc, "lrcDBgColor", "value", DLrcBgColorChoiced);
+    writeDomElement(showDLrc, "showDesktopLrc", XmlAttribute("value", showDesktopLrcChoiced));
+    writeDomElement(showDLrc, "lrcDColor", XmlAttribute("value", DLrcColorChoiced));
+    writeDomElement(showDLrc, "lrcDSize", XmlAttribute("value", DLrcSizeChoiced));
+    writeDomElement(showDLrc, "lrcDFamily", XmlAttribute("value", DLrcFamilyChoiced));
+    writeDomElement(showDLrc, "lrcDType", XmlAttribute("value", DLrcTypeChoiced));
+    writeDomElement(showDLrc, "lrcDTransparent", XmlAttribute("value", DLrcTransparentChoiced));
+    writeDomElement(showDLrc, "lrcDFgColor", XmlAttribute("value", DLrcFgColorChoiced));
+    writeDomElement(showDLrc, "lrcDBgColor", XmlAttribute("value", DLrcBgColorChoiced));
 
-    writeDomElement(showDLrc, "lrcDWindowType", "value", DLrcWindowTypeChoiced);
-    writeDomElement(showDLrc, "lrcDLocked", "value", DLrcLockedChoiced);
-    writeDomElement(showDLrc, "lrcDGeometry", "value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y()));
-
-    ///////////////////////////////////////////////
-    writeDomElement(equalizer, "enhancedMusic", "value", enhancedMusicChoiced);
-    writeDomElement(equalizer, "equalizerEnable", "value", equalizerEnableChoiced);
-    writeDomElement(equalizer, "equalizerIndex", "value", equalizerIndexChoiced);
-    writeDomElement(equalizer, "equalizerValue", "value", equalizerValueChoiced);
-    writeDomElement(equalizer, "enhancedBalance", "value", enhancedBalanceChoiced);
-    writeDomElement(equalizer, "enhancedFadeEnable", "value", enhancedFadeEnableChoiced);
-    writeDomElement(equalizer, "enhancedFadeInValue", "value", enhancedFadeInValueChoiced);
-    writeDomElement(equalizer, "enhancedFadeOutValue", "value", enhancedFadeOutValueChoiced);
-    writeDomElement(equalizer, "enhancedBS2B", "value", enhancedBS2BChoiced);
-    writeDomElement(equalizer, "enhancedCrossfade", "value", enhancedCrossfadeChoiced);
-    writeDomElement(equalizer, "enhancedStereo", "value", enhancedStereoChoiced);
-    writeDomElement(equalizer, "enhancedLADSPA", "value", enhancedLADSPAChoiced);
-    writeDomElement(equalizer, "enhancedSOX", "value", enhancedSOXChoiced);
+    writeDomElement(showDLrc, "lrcDWindowType", XmlAttribute("value", DLrcWindowTypeChoiced));
+    writeDomElement(showDLrc, "lrcDLocked", XmlAttribute("value", DLrcLockedChoiced));
+    writeDomElement(showDLrc, "lrcDGeometry", XmlAttribute("value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())));
 
     ///////////////////////////////////////////////
-    writeDomElement(downloads, "downloadMusicPath", "value", downloadMusicPath);
-    writeDomElement(downloads, "downloadLrcPath", "value", downloadLrcPath);
-    writeDomElement(downloads, "downloadCacheLimit", "value", downloadCacheLimit);
-    writeDomElement(downloads, "downloadCacheSize", "value", downloadCacheSize);
-    writeDomElement(downloads, "downloadLimit", "value", downloadLimit);
-    writeDomElement(downloads, "downloadServer", "value", downloadServer);
-    writeDomElement(downloads, "downloadServerMultiple", "value", downloadServerMultiple);
-    writeDomElement(downloads, "downloadDLoadLimit", "value", downloadDLoadLimit);
-    writeDomElement(downloads, "downloadULoadLimit", "value", downloadULoadLimit);
+    writeDomElement(equalizer, "enhancedMusic", XmlAttribute("value", enhancedMusicChoiced));
+    writeDomElement(equalizer, "equalizerEnable", XmlAttribute("value", equalizerEnableChoiced));
+    writeDomElement(equalizer, "equalizerIndex", XmlAttribute("value", equalizerIndexChoiced));
+    writeDomElement(equalizer, "equalizerValue", XmlAttribute("value", equalizerValueChoiced));
+    writeDomElement(equalizer, "enhancedBalance", XmlAttribute("value", enhancedBalanceChoiced));
+    writeDomElement(equalizer, "enhancedFadeEnable", XmlAttribute("value", enhancedFadeEnableChoiced));
+    writeDomElement(equalizer, "enhancedFadeInValue", XmlAttribute("value", enhancedFadeInValueChoiced));
+    writeDomElement(equalizer, "enhancedFadeOutValue", XmlAttribute("value", enhancedFadeOutValueChoiced));
+    writeDomElement(equalizer, "enhancedBS2B", XmlAttribute("value", enhancedBS2BChoiced));
+    writeDomElement(equalizer, "enhancedCrossfade", XmlAttribute("value", enhancedCrossfadeChoiced));
+    writeDomElement(equalizer, "enhancedStereo", XmlAttribute("value", enhancedStereoChoiced));
+    writeDomElement(equalizer, "enhancedLADSPA", XmlAttribute("value", enhancedLADSPAChoiced));
+    writeDomElement(equalizer, "enhancedSOX", XmlAttribute("value", enhancedSOXChoiced));
+
+    ///////////////////////////////////////////////
+    writeDomElement(downloads, "downloadMusicPath", XmlAttribute("value", downloadMusicPath));
+    writeDomElement(downloads, "downloadLrcPath", XmlAttribute("value", downloadLrcPath));
+    writeDomElement(downloads, "downloadCacheLimit", XmlAttribute("value", downloadCacheLimit));
+    writeDomElement(downloads, "downloadCacheSize", XmlAttribute("value", downloadCacheSize));
+    writeDomElement(downloads, "downloadLimit", XmlAttribute("value", downloadLimit));
+    writeDomElement(downloads, "downloadServer", XmlAttribute("value", downloadServer));
+    writeDomElement(downloads, "downloadServerMultiple", XmlAttribute("value", downloadServerMultiple));
+    writeDomElement(downloads, "downloadDLoadLimit", XmlAttribute("value", downloadDLoadLimit));
+    writeDomElement(downloads, "downloadULoadLimit", XmlAttribute("value", downloadULoadLimit));
     //Write to file
     QTextStream out(m_file);
     m_ddom->save(out, 4);

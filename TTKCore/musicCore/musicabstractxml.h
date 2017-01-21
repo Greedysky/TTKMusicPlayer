@@ -17,6 +17,19 @@
 #include "musicsong.h"
 #include "musicobject.h"
 
+typedef struct MUSIC_CORE_EXPORT XmlAttribute
+{
+    QString m_key;
+    QVariant m_value;
+
+    XmlAttribute(const QString &key, const QVariant &value)
+    {
+        m_key = key;
+        m_value = value;
+    }
+}XmlAttribute;
+TTK_DECLARE_LISTS(XmlAttribute)
+
 /*! @brief The class of the base class of xml interface.
  * @author Greedysky <greedysky@163.com>
  */
@@ -73,24 +86,22 @@ public:
      * Append xml element nodes by node name.
      */
     QDomElement writeDomElement(QDomElement &element, const QString &node,
-                                const QString &key, const QVariant &value);
+                                const XmlAttribute &attr);
     /*!
      * Append xml element nodes by node name\ key name and value.
      */
     QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
-                                     const QStringList &keys, const QVariantList &values);
+                                     const XmlAttributes &attrs);
     /*!
      * Append xml elements nodes by node name\ keys name and values.
      */
     QDomElement writeDomElementText(QDomElement &element, const QString &node,
-                                    const QString &key, const QVariant &value,
-                                    const QString &text);
+                                    const XmlAttribute &attr, const QString &text);
     /*!
      * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
     QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
-                                         const QStringList &keys, const QVariantList &values,
-                                         const QString &text);
+                                         const XmlAttributes &attrs, const QString &text);
     /*!
      * Append xml elements nodes by node name\ keys name \ values and attribute's text.
      */
@@ -98,7 +109,7 @@ public:
     /*!
      * Append xml element nodes by node name and attribute's text.
      */
-    void writeAttribute(QDomElement &element, const QString &key, const QVariant &value);
+    void writeAttribute(QDomElement &element, const XmlAttribute &attr);
     /*!
      * Append xml element nodes key name and value.
      */

@@ -23,9 +23,9 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
 
     foreach(const MusicUserRecord &record, records)
     {
-        writeDomElementMutilText(musicPlayer, "username", QStringList() << "name" << "userRp" << "userAl",
-                                 QVariantList() << record.m_name << record.m_rp << record.m_al,
-                                 record.m_pwd);
+        writeDomElementMutilText(musicPlayer, "username", XmlAttributes() << XmlAttribute("name", record.m_name)
+                                   << XmlAttribute("userRp", record.m_rp) << XmlAttribute("userAl", record.m_al),
+                                   record.m_pwd);
     }
 
     //Write to file

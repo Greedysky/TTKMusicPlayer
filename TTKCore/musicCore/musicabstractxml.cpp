@@ -119,70 +119,66 @@ QDomElement MusicAbstractXml::writeDom(QDomElement &element, const QString &node
 }
 
 QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QString &node,
-                                              const QString &key, const QVariant &value)
+                                              const XmlAttribute &attr)
 {
     QDomElement domElement = writeDom(element, node);
-    writeAttribute(domElement, key, value);
+    writeAttribute(domElement, attr);
     return domElement;
 }
 
 QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node,
-                                                   const QStringList &keys,
-                                                   const QVariantList &values)
+                                                   const XmlAttributes &attrs)
 {
-    if(keys.isEmpty() || values.isEmpty())
+    if(attrs.isEmpty())
     {
         QDomElement();
     }
 
-    QDomElement domElement = writeDomElement(element, node, keys.front(), values.front());
-    for(int i=1; i<keys.count(); ++i)
+    QDomElement domElement = writeDomElement(element, node, attrs.front());
+    for(int i=1; i<attrs.count(); ++i)
     {
-        writeAttribute(domElement, keys[i], values[i]);
+        writeAttribute(domElement, attrs[i]);
     }
     return domElement;
 }
 
-void MusicAbstractXml::writeAttribute(QDomElement &element, const QString &key,
-                                      const QVariant &value)
+void MusicAbstractXml::writeAttribute(QDomElement &element, const XmlAttribute &attr)
 {
-    switch(value.type())
+    switch(attr.m_value.type())
     {
         case QVariant::Int :
-            element.setAttribute(key, value.toInt()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toInt()); break;
         case QVariant::String :
-            element.setAttribute(key, value.toString()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toString()); break;
         case QVariant::LongLong :
-            element.setAttribute(key, value.toLongLong()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toLongLong()); break;
         case QVariant::ULongLong :
-            element.setAttribute(key, value.toULongLong()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toULongLong()); break;
         case QVariant::Double :
-            element.setAttribute(key, value.toDouble()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
         case QVariant::UInt :
-            element.setAttribute(key, value.toUInt()); break;
+            element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
     }
 }
 
 QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node,
-                                                  const QString &key, const QVariant &value,
-                                                  const QString &text)
+                                                  const XmlAttribute &attr, const QString &text)
 {
-    QDomElement domElement = writeDomElement(element, node, key, value);
+    QDomElement domElement = writeDomElement(element, node, attr);
     QDomText domText = m_ddom->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;
 }
 
 QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node,
-                                                       const QStringList &keys, const QVariantList &values,
-                                                       const QString &text)
+                                                       const XmlAttributes &attrs, const QString &text)
 {
-    if(keys.isEmpty() || values.isEmpty())
+    if(attrs.isEmpty())
     {
         QDomElement();
     }
 
-    QDomElement domElement = writeDomElementMutil(element, node, keys, values);
+    QDomElement domElement = writeDomElementMutil(element, node, attrs);
     QDomText domText = m_ddom->createTextNode( text );
     domElement.appendChild( domText );
     return domElement;
