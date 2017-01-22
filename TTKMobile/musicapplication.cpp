@@ -2,6 +2,7 @@
 #include "musicsettingmanager.h"
 #include "musicdownloadstatuslabel.h"
 #include "musiccoreutils.h"
+#include "musicstringutils.h"
 #include "musicnetworkthread.h"
 #include "musicbackgroundmanager.h"
 
@@ -262,7 +263,7 @@ int MusicApplication::mediaPlayCount(int index) const
 
 QString MusicApplication::artistImagePath() const
 {
-    QString name = MusicUtils::Core::artistName( getCurrentFileName() );
+    QString name = MusicUtils::String::artistName( getCurrentFileName() );
     name = ART_DIR_FULL + name + SKN_FILE;
     return QFile::exists(name) ? "file:///" + name : QString();
 }
