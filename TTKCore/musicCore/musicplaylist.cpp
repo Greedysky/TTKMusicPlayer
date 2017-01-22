@@ -14,12 +14,12 @@ QString MusicPlaylist::getClassName()
     return staticMetaObject.className();
 }
 
-MusicObject::SongPlayType MusicPlaylist::playbackMode() const
+MusicObject::SongPlayMode MusicPlaylist::playbackMode() const
 {
     return m_playbackMode;
 }
 
-void MusicPlaylist::setPlaybackMode(MusicObject::SongPlayType mode)
+void MusicPlaylist::setPlaybackMode(MusicObject::SongPlayMode mode)
 {
     m_playbackMode = mode;
 }

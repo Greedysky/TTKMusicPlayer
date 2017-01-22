@@ -29,12 +29,12 @@ public:
      * Get class object name.
      */
 
-    void initWidget(QWidget *parent);
+    void initWidget();
     /*!
      * Create all widget in layout.
      */
 
-    void setPlaybackMode(MusicObject::SongPlayType mode);
+    void setPlaybackMode(MusicObject::SongPlayMode mode);
     /*!
      * Set current play mode.
      */

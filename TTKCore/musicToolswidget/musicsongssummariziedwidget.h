@@ -101,10 +101,6 @@ public:
     /*!
      * Update item time label time.
      */
-    void setPlaybackMode(MusicObject::SongPlayType mode) const;
-    /*!
-     * Set current play mode.
-     */
 
 Q_SIGNALS:
     void updatePlayLists(const QString &list);

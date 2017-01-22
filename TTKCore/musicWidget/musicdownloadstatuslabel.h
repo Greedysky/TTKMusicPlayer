@@ -46,7 +46,7 @@ public Q_SLOTS:
     /*!
      * Download current music lrc from net.
      */
-    void showDownLoadInfoFor(MusicObject::DownLoadType type);
+    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
     /*!
      * Show download state type.
      * This is a slot by MusicSongSearchOnlineWidget's emit

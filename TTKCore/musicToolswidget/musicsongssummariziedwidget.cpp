@@ -271,14 +271,6 @@ void MusicSongsSummariziedWidget::setTimerLabel(const QString &time) const
     m_songItems[m_currentPlayToolIndex].m_itemObject->setTimerLabel(time);
 }
 
-void MusicSongsSummariziedWidget::setPlaybackMode(MusicObject::SongPlayType mode) const
-{
-    foreach(const MusicSongItem &item, m_songItems)
-    {
-        item.m_itemObject->setPlaybackMode(mode);
-    }
-}
-
 void MusicSongsSummariziedWidget::addNewRowItem()
 {
     if(m_songItems.count() <= ITEM_MAX_COUNT)
@@ -842,11 +834,6 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
     connect(w, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
-    connect(w, SIGNAL(musicPlayOrder()), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    connect(w, SIGNAL(musicPlayRandom()), MusicApplication::instance(), SLOT(musicPlayRandom()));
-    connect(w, SIGNAL(musicPlayListLoop()), MusicApplication::instance(), SLOT(musicPlayListLoop()));
-    connect(w, SIGNAL(musicPlayOneLoop()), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
-    connect(w, SIGNAL(musicPlayItemOnce()), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
     connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
     connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));

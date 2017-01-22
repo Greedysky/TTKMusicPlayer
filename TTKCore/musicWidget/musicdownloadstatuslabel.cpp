@@ -37,7 +37,7 @@ QString MusicDownloadStatusLabel::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadType type)
+void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadMode type)
 {
     QString stringType;
     switch(type)

@@ -11,7 +11,7 @@ void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
     widget->setFont(font);
 }
 
-void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type)
+void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type)
 {
     QFont font = widget->font();
     switch(type)

@@ -129,8 +129,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     }
     else if(from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicDownloadStatusLabel::getClassName() )
     {
-        QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadType)), second,
-                                SLOT(showDownLoadInfoFor(MusicObject::DownLoadType)));
+        QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadMode)), second,
+                                SLOT(showDownLoadInfoFor(MusicObject::DownLoadMode)));
     }
     else if((from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicSimilarFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||

@@ -56,10 +56,6 @@ public:
     /*!
      * Get the current play row.
      */
-    inline void setPlaybackMode(MusicObject::SongPlayType type) { m_songplaymode = type;}
-    /*!
-     * Set current play mode.
-     */
     inline int getTransparent() const { return m_transparent;}
     /*!
      * Get item transparent.
@@ -86,26 +82,6 @@ public:
      */
 
 Q_SIGNALS:
-    void musicPlayOrder();
-    /*!
-     * Set current play mdoe to order.
-     */
-    void musicPlayRandom();
-    /*!
-     * Set current play mdoe to random.
-     */
-    void musicPlayListLoop();
-    /*!
-     * Set current play mdoe to list loop.
-     */
-    void musicPlayOneLoop();
-    /*!
-     * Set current play mdoe to single loop.
-     */
-    void musicPlayItemOnce();
-    /*!
-     * Set current play mdoe to just once.
-     */
     void musicAddNewFiles();
     /*!
      * Add new music file or files to list.
@@ -238,7 +214,6 @@ protected:
     bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
     QTableWidgetItem *m_renameItem;
-    MusicObject::SongPlayType m_songplaymode;
 
 };
 

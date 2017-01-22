@@ -26,7 +26,7 @@ namespace MusicUtils
         /*!
          * Set widget label font.
          */
-        MUSIC_CORE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleType type);
+        MUSIC_CORE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
         /*!
          * Set widget label font.
          */

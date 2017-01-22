@@ -56,7 +56,7 @@ Q_SIGNALS:
     /*!
      * Add current network music to download to local.
      */
-    void showDownLoadInfoFor(MusicObject::DownLoadType type);
+    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
     /*!
      * Show download state type.
      */

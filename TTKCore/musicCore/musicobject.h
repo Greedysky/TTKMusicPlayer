@@ -148,7 +148,7 @@ namespace MusicObject
     TTK_DECLARE_LISTS(MusicSongInfomation)
     ///////////////////////////////////////
 
-    enum DownLoadType
+    enum DownLoadMode
     {
         DW_Null,           ///*network null*/
         DW_DisConnection,  ///*network disable*/
@@ -157,7 +157,7 @@ namespace MusicObject
         DW_Waiting         ///*network waiting*/
     };
 
-    enum SongPlayType
+    enum SongPlayMode
     {
         MC_PlayOrder = 1,   ///*play order*/
         MC_PlayRandom,      ///*play random*/
@@ -166,7 +166,7 @@ namespace MusicObject
         MC_PlayOnce         ///*play just once*/
     };
 
-    enum FontStyleType
+    enum FontStyleMode
     {
         FT_Bold =       0x00001,   ///*font bold*/
         FT_Italic =     0x00002,   ///*font italic*/
