@@ -19,6 +19,23 @@ namespace MusicUtils
 {
     namespace String
     {
+        MUSIC_CORE_EXPORT QString removeStringBy(const QString &value, const QString &key = " ");
+        /*!
+         * Remove given key in string, default is space.
+         */
+        MUSIC_CORE_EXPORT QStringList splitString(const QString &value);
+        /*!
+         * Get split string value.
+         */
+        MUSIC_CORE_EXPORT QString artistName(const QString &value);
+        /*!
+         * Get song artist name.
+         */
+        MUSIC_CORE_EXPORT QString songName(const QString &value);
+        /*!
+         * Get song name.
+         */
+
         MUSIC_CORE_EXPORT QList<QColor> readColorConfig(const QString &value);
         /*!
          * Transform colors string to color list.

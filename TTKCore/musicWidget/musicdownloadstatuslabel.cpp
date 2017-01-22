@@ -11,6 +11,7 @@
 #include "musicnetworkthread.h"
 #include "musicdownloadqueryfactory.h"
 #include "musiccoreutils.h"
+#include "musicstringutils.h"
 
 MusicDownloadStatusLabel::MusicDownloadStatusLabel(QObject *w)
     : QObject(w)
@@ -146,9 +147,9 @@ void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
-        int count = MusicUtils::Core::splitString(filename).count();
-        QString artistName = MusicUtils::Core::artistName(filename);
-        QString songName = MusicUtils::Core::songName(filename);
+        int count = MusicUtils::String::splitString(filename).count();
+        QString artistName = MusicUtils::String::artistName(filename);
+        QString songName = MusicUtils::String::songName(filename);
 
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)

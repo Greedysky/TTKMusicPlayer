@@ -8,7 +8,7 @@
 #include "musicttdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"
-#include "musiccoreutils.h"
+#include "musicstringutils.h"
 
 #include <QFileDialog>
 #include <QLabel>
@@ -241,8 +241,8 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_downloadThread->getSearchedText();
-        QString artistName = MusicUtils::Core::artistName(filename);
-        QString songName = MusicUtils::Core::songName(filename);
+        QString artistName = MusicUtils::String::artistName(filename);
+        QString songName = MusicUtils::String::songName(filename);
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {
@@ -306,8 +306,8 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_downloadThread->getSearchedText();
-        QString artistName = MusicUtils::Core::artistName(filename);
-        QString songName = MusicUtils::Core::songName(filename);
+        QString artistName = MusicUtils::String::artistName(filename);
+        QString songName = MusicUtils::String::songName(filename);
         MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
         {

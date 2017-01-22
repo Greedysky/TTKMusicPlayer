@@ -2,6 +2,51 @@
 
 #include <QColor>
 
+QString MusicUtils::String::removeStringBy(const QString &value, const QString &key)
+{
+    QString s = value;
+    s.remove(key);
+    if(s.contains(key))
+    {
+        s = removeStringBy(key);
+    }
+    return s;
+}
+
+QStringList MusicUtils::String::splitString(const QString &value)
+{
+    QStringList strings = value.split(" - ");
+    if(strings.isEmpty() || strings.count() == 1)
+    {
+        strings = value.split("-");
+    }
+    return strings;
+}
+
+QString MusicUtils::String::artistName(const QString &value)
+{
+    QStringList s = splitString(value);
+    if(s.count() >= 2)
+    {
+        int index = value.indexOf("-");
+        return value.left(index).trimmed();
+    }
+
+    return value;
+}
+
+QString MusicUtils::String::songName(const QString &value)
+{
+    QStringList s = splitString(value);
+    if(s.count() >= 2)
+    {
+        int index = value.indexOf("-") + 1;
+        return value.right(value.length() - index).trimmed();
+    }
+
+    return value;
+}
+
 QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 {
     QList<QColor> colors;

@@ -5,7 +5,7 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
-#include "musiccoreutils.h"
+#include "musicstringutils.h"
 #include "musictime.h"
 
 #include "qrcodewidget.h"
@@ -118,7 +118,7 @@ void MusicAlbumFoundWidget::setSongName(const QString &name)
     m_songNameFull = name;
     m_downloadThread->setQueryAllRecords(false);
     m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery,
-                                      MusicUtils::Core::artistName(name));
+                                      MusicUtils::String::artistName(name));
 }
 
 void MusicAlbumFoundWidget::resizeWindow()

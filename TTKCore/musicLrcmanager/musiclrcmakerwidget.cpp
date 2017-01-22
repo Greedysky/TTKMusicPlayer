@@ -200,8 +200,8 @@ void MusicLrcMakerWidget::setCurrentSongName(const QString &name)
 {
     m_plainText.clear();
     m_analysis->setCurrentFileName(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(name).arg(LRC_FILE));
-    m_ui->songNameEdit->setText(MusicUtils::Core::songName(name));
-    m_ui->artNameEdit->setText(MusicUtils::Core::artistName(name));
+    m_ui->songNameEdit->setText(MusicUtils::String::songName(name));
+    m_ui->artNameEdit->setText(MusicUtils::String::artistName(name));
 }
 
 void MusicLrcMakerWidget::positionChanged(qint64 position)
