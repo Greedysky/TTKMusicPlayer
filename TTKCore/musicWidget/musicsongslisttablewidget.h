@@ -64,6 +64,10 @@ public:
     /*!
      * Set item transparent.
      */
+    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
+    /*!
+     * Set music sort.
+     */
     void setTimerLabel(const QString &t) const;
     /*!
      * Update item time label time.
@@ -110,6 +114,10 @@ Q_SIGNALS:
     void showFloatWidget();
     /*!
      * Show the float function widget.
+     */
+    void musicListSongSortBy(int index);
+    /*!
+     * Music list songs sort by type.
      */
 
 public Q_SLOTS:
@@ -177,6 +185,10 @@ public Q_SLOTS:
     /*!
      * Rename item artist label is finised.
      */
+    void musicListSongSortBy(QAction *action);
+    /*!
+     * Music list songs sort by type.
+     */
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -214,6 +226,7 @@ protected:
     bool m_leftButtonPressed;
     bool m_renameActived, m_deleteItemWithFile;
     QTableWidgetItem *m_renameItem;
+    MusicSort *m_musicSort;
 
 };
 

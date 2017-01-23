@@ -563,6 +563,13 @@ void MusicApplication::musicExportSongsItemList(int index)
     }
 }
 
+void MusicApplication::musicPlaySort(int row)
+{
+    m_musicList->clear();
+    m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(m_currentMusicSongTreeIndex));
+    m_musicList->setCurrentIndex(row);
+}
+
 void MusicApplication::musicPlayIndex(int row)
 {
     m_musicPlayer->stop();

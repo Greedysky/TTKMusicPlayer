@@ -32,6 +32,16 @@
 class MUSIC_CORE_EXPORT MusicSong
 {
 public:
+    enum Sort
+    {
+        SortByFileName = 0,
+        SortBySinger,
+        SortByFileSize,
+        SortByAddTime,
+        SortByPlayTime,
+        SortByPlayCount
+    };
+
     MusicSong();
     /*!
      * Object contsructor.
@@ -131,13 +141,26 @@ public:
     /*!
      * Get music tool count.
      */
+    inline void setMusicSort(const Sort s) { m_sortType = s;}
+    /*!
+     * Set music sort type.
+     */
+    inline Sort getMusicSort() const { return m_sortType;}
+    /*!
+     * Get music sort type.
+     */
     bool operator== (const MusicSong &other) const;
     /*!
      * Operator == function.
      */
+    bool operator< (const MusicSong &other) const;
+    /*!
+     * Operator < function.
+     */
 
 protected:
-    qint64  m_musicSize;
+    Sort m_sortType;
+    qint64  m_musicSize, m_musicAddTime;
     int m_musicPlayCount, m_toolIndex;
     QString m_musicName, m_musicPath, m_musicType, m_musicTime;
 
@@ -147,10 +170,23 @@ TTK_DECLARE_LISTS(MusicSong)
 ////////////////////////////////////////////////////////
 class MusicSongsListTableWidget;
 
+typedef struct MUSIC_CORE_EXPORT MusicSort
+{
+    int m_index;
+    Qt::SortOrder m_sortType;
+
+    MusicSort()
+    {
+        m_index = -1;
+        m_sortType = Qt::AscendingOrder;
+    }
+}MusicSort;
+
 typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;
     QString m_itemName;
+    MusicSort m_sort;
     MusicSongs m_songs;
     MusicSongsListTableWidget* m_itemObject;
 

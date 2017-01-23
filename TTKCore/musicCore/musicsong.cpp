@@ -2,12 +2,15 @@
 #include "musicstringutils.h"
 
 #include <QFileInfo>
+#include <QDateTime>
 #include <QStringList>
 
 MusicSong::MusicSong()
     : m_musicName(QString()), m_musicPath(QString())
 {
+    m_sortType = SortByFileName;
     m_musicSize = 0;
+    m_musicAddTime = -1;
     m_musicPlayCount = 0;
     m_toolIndex = -1;
 }
@@ -23,7 +26,9 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     {
         m_musicName = info.completeBaseName();
     }
+    m_musicSize = info.size();
     m_musicType = info.suffix();
+    m_musicAddTime = info.lastModified().currentMSecsSinceEpoch();
 }
 
 MusicSong::MusicSong(const QString &musicPath,
@@ -72,5 +77,19 @@ QString MusicSong::getMusicArtistBack() const
 
 bool MusicSong::operator== (const MusicSong &other) const
 {
-    return m_musicPath == other.getMusicPath();
+    return m_musicPath == other.m_musicPath;
+}
+
+bool MusicSong::operator< (const MusicSong &other) const
+{
+    switch(m_sortType)
+    {
+        case SortByFileName : return m_musicName < other.m_musicName;
+        case SortBySinger : return getMusicArtistFront() < other.getMusicArtistFront();
+        case SortByFileSize : return m_musicSize < other.m_musicSize;
+        case SortByAddTime : return m_musicAddTime < other.m_musicAddTime;
+        case SortByPlayTime : return m_musicTime < other.m_musicTime;
+        case SortByPlayCount : return m_musicPlayCount < other.m_musicPlayCount;
+    }
+    return false;
 }

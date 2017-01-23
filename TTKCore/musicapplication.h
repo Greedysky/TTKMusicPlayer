@@ -175,6 +175,10 @@ public Q_SLOTS:
     /*!
      * Export music songs by item list.
      */
+    void musicPlaySort(int row);
+    /*!
+     * Set current music play list sort.
+     */
     void musicPlayIndex(int row);
     /*!
      * Set current row index music to play.

@@ -34,6 +34,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_mouseMoved = false;
     m_transparent = 0;
     m_parentToolIndex = index;
+    m_musicSort = nullptr;
 
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -442,7 +443,6 @@ void MusicSongsListTableWidget::showTimeOut()
     if(m_musicSongsInfoWidget)
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
-        song.setMusicSize( QFileInfo(song.getMusicPath()).size() );
         m_musicSongsInfoWidget->setMusicSongInformation( song );
         m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
                                             QCursor::pos().y(), 264, 108);
@@ -541,7 +541,7 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
 
     QString songName = getCurrentSongName();
     QStringList names(MusicUtils::String::splitString(songName));
-    switch(action->data().toInt())
+    switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
     {
         case 0:
             if(names.count() >= 1)
@@ -590,6 +590,26 @@ void MusicSongsListTableWidget::musicAddToPlayedList()
 void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
 {
     (*m_musicSongs)[m_playRowIndex].setMusicName(name);
+}
+
+void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
+{
+    if(m_musicSort)
+    {
+        int bIndex = m_musicSort->m_index;
+        int newIndex = action->data().toInt();
+        m_musicSort->m_index = newIndex;
+        if(bIndex == newIndex)
+        {
+            bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
+            m_musicSort->m_sortType = asc ? Qt::DescendingOrder : Qt::AscendingOrder;
+        }
+        else
+        {
+            m_musicSort->m_sortType = Qt::AscendingOrder;
+        }
+        emit musicListSongSortBy(m_parentToolIndex);
+    }
 }
 
 void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
@@ -685,6 +705,26 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     musicAddNewFiles.setEnabled(m_parentToolIndex != MUSIC_LOVEST_LIST && m_parentToolIndex != MUSIC_NETWORK_LIST);
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SIGNAL(musicAddNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SIGNAL(musicAddNewDir()));
+
+    QMenu musicSortFiles(tr("sort"), &rightClickMenu);
+    musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
+    musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
+    musicSortFiles.addAction(tr("sortByFileSize"))->setData(2);
+    musicSortFiles.addAction(tr("sortByAddTime"))->setData(3);
+    musicSortFiles.addAction(tr("sortByPlayTime"))->setData(4);
+    musicSortFiles.addAction(tr("sortByPlayCount"))->setData(5);
+    connect(&musicSortFiles, SIGNAL(triggered(QAction*)), SLOT(musicListSongSortBy(QAction*)));
+    if(m_musicSort)
+    {
+        QList<QAction*> actions(musicSortFiles.actions());
+        if(-1 < m_musicSort->m_index && m_musicSort->m_index < actions.count())
+        {
+            bool asc = m_musicSort->m_sortType == Qt::AscendingOrder;
+            actions[m_musicSort->m_index]->setIcon(QIcon(asc ? ":/tiny/lb_sort_asc" : ":/tiny/lb_sort_desc"));
+        }
+    }
+    rightClickMenu.addMenu(&musicSortFiles);
+
     rightClickMenu.addAction(tr("foundMV"), this, SLOT(musicSongMovieFound()));
     rightClickMenu.addSeparator();
 
@@ -711,8 +751,6 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     createContextMenu(rightClickMenu);
 
     rightClickMenu.exec(QCursor::pos());
-    //Menu location for the current mouse position
-    event->accept();
 }
 
 void MusicSongsListTableWidget::closeRenameItem()
@@ -796,7 +834,7 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
     QStringList names(MusicUtils::String::splitString(songName));
     for(int i=0; i<names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i);
+        menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i + DEFAULT_INDEX_LEVEL1);
     }
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }

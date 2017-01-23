@@ -219,6 +219,10 @@ public Q_SLOTS:
     /*!
      * Show the float function widget.
      */
+    void musicListSongSortBy(int index);
+    /*!
+     * Music list songs sort by type.
+     */
 
 private Q_SLOTS:
     void sliderValueChanaged(int value);
@@ -250,6 +254,10 @@ protected:
     void setItemTitle(MusicSongItem *item);
     /*!
      * Set item title.
+     */
+    void connectMusicToolBoxWidgetItem(QObject *object);
+    /*!
+     * Connect music toolBox widget item.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;

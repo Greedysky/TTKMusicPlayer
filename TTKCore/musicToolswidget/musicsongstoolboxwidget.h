@@ -13,7 +13,9 @@
 #include <QBoxLayout>
 #include "musicglobaldefine.h"
 
+class MusicSort;
 class MusicSongsToolItemRenamedWidget;
+
 /*! @brief The class of the tool box top widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -59,6 +61,11 @@ public:
      * Get top label title.
      */
 
+    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
+    /*!
+     * Set music sort.
+     */
+
 Q_SIGNALS:
     void addNewRowItem();
     /*!
@@ -76,7 +83,7 @@ Q_SIGNALS:
     /*!
      * Delete all items in play list item.
      */
-    void renameFinished(int index, const QString &name);
+    void changRowItemName(int index, const QString &name);
     /*!
      * Open rename selected play list item widget.
      */
@@ -87,6 +94,10 @@ Q_SIGNALS:
     void addNewDir(int index);
     /*!
      * Add new music dir to list.
+     */
+    void musicListSongSortBy(int index);
+    /*!
+     * Music list songs sort by type.
      */
     void swapDragItemIndex(int before, int after);
     /*!
@@ -126,6 +137,10 @@ public Q_SLOTS:
     /*!
      * Show menu items.
      */
+    void musicListSongSortBy(QAction *action);
+    /*!
+     * Music list songs sort by type.
+     */
     void showShareListDialog();
     /*!
      * Show share list dialog.
@@ -156,6 +171,8 @@ protected:
     bool m_isDrawTopState, m_isDrawMoveState;
     bool m_isBlockMoveExpand;
     QPoint m_pressPosAt;
+
+    MusicSort *m_musicSort;
 };
 
 
@@ -225,6 +242,11 @@ public:
      * Get title text.
      */
 
+    void setMusicSort(MusicSort *sort);
+    /*!
+     * Set music sort.
+     */
+
     void setItemExpand(bool expand);
     /*!
      * Set item widget to hide or not.
@@ -263,6 +285,10 @@ Q_SIGNALS:
     void addNewDir(int index);
     /*!
      * Add new music dir to list.
+     */
+    void musicListSongSortBy(int index);
+    /*!
+     * Music list songs sort by type.
      */
     void swapDragItemIndex(int before, int after);
     /*!
@@ -335,6 +361,11 @@ public:
     QString getTitle(QWidget *item) const;
     /*!
      * Get title text.
+     */
+
+    void setMusicSort(QWidget *item, MusicSort *sort);
+    /*!
+     * Set music sort.
      */
 
     void resizeScrollIndex(int index) const;
