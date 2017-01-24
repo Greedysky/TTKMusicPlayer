@@ -796,7 +796,10 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     w->setSongsFileName(songs);
 
     index = songs->indexOf(oMusicSong);
-    MusicApplication::instance()->musicPlaySort(index);
+    if(m_currentIndex == m_currentPlayToolIndex)
+    {
+        MusicApplication::instance()->musicPlaySort(index);
+    }
 }
 
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
