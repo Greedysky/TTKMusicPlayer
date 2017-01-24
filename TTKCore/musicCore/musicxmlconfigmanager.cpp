@@ -30,14 +30,16 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     QDomElement musicPlayer = createRoot("TTKMusicPlayer");
     for(int i=0; i<musics.count(); ++i)
     {
+        const MusicSongItem item = musics[i];
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList",
-                              XmlAttributes() << XmlAttribute("name", musics[i].m_itemName) << XmlAttribute("index", i)
-                                              << XmlAttribute("count", musics[i].m_songs.count()));
+                              XmlAttributes() << XmlAttribute("name", item.m_itemName) << XmlAttribute("index", i)
+                                              << XmlAttribute("count", item.m_songs.count()) << XmlAttribute("sortIndex", item.m_sort.m_index)
+                                              << XmlAttribute("sortType", item.m_sort.m_sortType));
         foreach(const MusicSong &song, musics[i].m_songs)
         {
             writeDomElementMutilText(pathDom, "value", XmlAttributes() << XmlAttribute("name", song.getMusicName())
-                                     << XmlAttribute("playCount", song.getMusicPlayCount()) << XmlAttribute("time", song.getMusicTime()),
-                                     song.getMusicPath());
+                                     << XmlAttribute("playCount", song.getMusicPlayCount())
+                                     << XmlAttribute("time", song.getMusicTime()), song.getMusicPath());
         }
     }
 
@@ -58,6 +60,9 @@ void MusicXMLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
         QDomElement element = node.toElement();
         item.m_itemIndex = element.attribute("index").toInt();
         item.m_itemName = element.attribute("name");
+        QString string = element.attribute("sortIndex");
+        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
+        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         musics << item;
     }
 }
