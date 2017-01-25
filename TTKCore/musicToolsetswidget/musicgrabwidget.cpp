@@ -1,9 +1,11 @@
 #include "musicgrabwidget.h"
 #include "musicobject.h"
 
+#include <QMenu>
 #include <QScreen>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QFileDialog>
 #include <QApplication>
 #include <QDesktopWidget>
 
@@ -28,6 +30,32 @@ void MusicGrabWidget::mouseMoveEvent(QMouseEvent *event)
     m_ptCursor.setX(event->x());
     m_ptCursor.setY(event->y());
     update();
+}
+
+void MusicGrabWidget::musicCreateRightMenu()
+{
+    QString filename = QFileDialog::getSaveFileName(this,
+        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    if(!filename.isEmpty())
+    {
+        musicCreateRightMenu(filename);
+    }
+}
+
+void MusicGrabWidget::musicCreateRightMenu(const QString &path)
+{
+    int width = m_ptEnd.x() - m_ptStart.x();
+    int height = m_ptEnd.y() - m_ptStart.y();
+#ifndef MUSIC_GREATER_NEW
+    QPixmap pixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
+                                         m_ptStart.x(), m_ptStart.y(), width, height);
+#else
+    QPixmap pixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
+                                         m_ptStart.x(), m_ptStart.y(), width, height);
+#endif
+
+    pixmap.save(path, 0, 100);
+    deleteLater();
 }
 
 void MusicGrabWidget::paintEvent(QPaintEvent *event)
@@ -60,6 +88,7 @@ void MusicGrabWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_ptStart = event->pos();
+        m_ptCursor = m_ptStart;
         m_isDrawing = true;
     }
     update();
@@ -80,21 +109,19 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
     QWidget::keyPressEvent(event);
     if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
     {
-        int width = m_ptEnd.x() - m_ptStart.x();
-        int height = m_ptEnd.y() - m_ptStart.y();
-#ifndef MUSIC_GREATER_NEW
-        QPixmap pixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
-                                             m_ptStart.x(), m_ptStart.y(), width, height);
-#else
-        QPixmap pixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
-                                             m_ptStart.x(), m_ptStart.y(), width, height);
-#endif
-        QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
-        pixmap.save(filename, 0, 100);
-        deleteLater();
+        QString filename = MusicObject::getAppDir() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
+        musicCreateRightMenu(filename);
     }
     else if(event->key() == Qt::Key_Escape)
     {
         deleteLater();
     }
+}
+
+void MusicGrabWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    QWidget::contextMenuEvent(event);
+    QMenu menu(this);
+    menu.addAction(tr("Save"), this, SLOT(musicCreateRightMenu()));
+    menu.exec(QCursor::pos());
 }

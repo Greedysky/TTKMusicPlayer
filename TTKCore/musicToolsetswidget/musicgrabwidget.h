@@ -29,12 +29,23 @@ public:
      * Get class object name.
      */
 
+private Q_SLOTS:
+    void musicCreateRightMenu();
+    /*!
+     * Create right menu.
+     */
+    void musicCreateRightMenu(const QString &path);
+    /*!
+     * Create right menu.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
