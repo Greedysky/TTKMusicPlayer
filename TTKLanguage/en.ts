@@ -871,8 +871,8 @@
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicToolswidget/musicconnecttransferwidget.ui" line="282"/>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="309"/>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="310"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="277"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="278"/>
         <source>wifi</source>
         <translation>WIFI Mode</translation>
     </message>
@@ -883,32 +883,32 @@
     </message>
     <message>
         <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="37"/>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="219"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="194"/>
         <source>allselected</source>
         <translation>All</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="225"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="194"/>
         <source>allcanceled</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="275"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="243"/>
         <source>the ip address is incorrect!</source>
         <translation>The IP Address Is Incorrect!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="310"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="278"/>
         <source>mobile</source>
         <translation>Mobile Mode</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="156"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="138"/>
         <source>please select one item</source>
         <translation>Please Select One Item</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="246"/>
+        <location filename="../TTKCore/musicToolswidget/musicconnecttransferwidget.cpp" line="214"/>
         <source>Copy File Mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1644,6 +1644,19 @@
         <location filename="../TTKCore/musicToolsetswidget/musicfileinformationwidget.cpp" line="79"/>
         <source>The origin one does not exist!</source>
         <translation>The File Has Been Moved Or Does Not Exist!</translation>
+    </message>
+</context>
+<context>
+    <name>MusicGrabWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicgrabwidget.cpp" line="38"/>
+        <source>choose a filename to save under</source>
+        <translation>Choose A File To Save</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicgrabwidget.cpp" line="125"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4274,61 +4287,106 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="135"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="185"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="267"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="138"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="323"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="552"/>
         <source>开始检查</source>
-        <translation>Start</translation>
+        <translation>StartCheck</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="151"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="154"/>
         <source>智能批量重命名歌曲</source>
         <translation>Intelligent Batch Rename Song</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="167"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="170"/>
         <source>多种命名方式，歌名命名更准确更规范。</source>
         <translation>A variety of naming methods, song naming more accurate and more standardized.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="201"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="206"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="464"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="668"/>
+        <source>本地文件名</source>
+        <translation>Local Filename</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="222"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="416"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="616"/>
+        <source>推荐文件名</source>
+        <translation>Recommended Filename</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="238"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="387"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="684"/>
+        <source>操作</source>
+        <translation>Operation</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="302"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="371"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="568"/>
+        <source>重新检测</source>
+        <translation>ReCheck</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="339"/>
         <source>扫描重复的歌曲并彻底删除</source>
         <translation>Scan Duplicate Songs And Delete</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="217"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="355"/>
         <source>清除重复歌曲，减少硬盘空间占用。</source>
         <translation>Clear duplicate songs to reduce hard disk space occupation.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="235"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="520"/>
         <source>为您精心挑选优质音乐文件。</source>
         <translation>Select high quality music files for you.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="251"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="536"/>
         <source>自动检测歌曲音质优劣</source>
         <translation>Automatic Detection Of Song Quality</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="333"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="765"/>
         <source>扫描范围:</source>
         <translation>Range:</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="349"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="781"/>
         <source>全部列表</source>
         <translation>All Lists</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="365"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="797"/>
         <source>更改</source>
         <translation>Mod</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="15"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="18"/>
         <source>Close</source>
         <translation>Close</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="50"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="58"/>
+        <source>StartCheck</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="54"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="74"/>
+        <source>StopCheck</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="61"/>
+        <source>ApplayCheck</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5327,17 +5385,17 @@ p, li { white-space: pre-wrap; }
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="83"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="84"/>
         <source>Lack of plugin file!</source>
         <translation>Lack Of Plugin File!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="139"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="140"/>
         <source>choose a filename to open under</source>
         <translation>Choose A Filename To Open Wav File</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="170"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsoundtouchwidget.cpp" line="171"/>
         <source>Transform wav file error!</source>
         <translation>Transform WAV File Error!</translation>
     </message>
