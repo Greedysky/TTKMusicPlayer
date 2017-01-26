@@ -124,26 +124,8 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
     {
         m_ui->allSelectedcheckBox->click();
     }
-    m_ui->playListTableWidget->setRowCount(songs.count());
-    for(int i=0; i<songs.count(); ++i)
-    {
-        MusicSong song = songs[i];
-        QTableWidgetItem *item = new QTableWidgetItem;
-        item->setData(MUSIC_CHECK_ROLE, false);
-        m_ui->playListTableWidget->setItem(i, 0, item);
 
-                          item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 245));
-        item->setToolTip(song.getMusicPath());
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        m_ui->playListTableWidget->setItem(i, 1, item);
-
-                item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicTime(), Qt::ElideRight, 40));
-        item->setToolTip(song.getMusicTime());
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-        m_ui->playListTableWidget->setItem(i, 2, item);
-    }
+    m_ui->playListTableWidget->createAllItems(songs);
 }
 
 QStringList MusicConnectTransferWidget::getSelectedFiles()
@@ -209,22 +191,8 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 
 void MusicConnectTransferWidget::selectedAllItems(bool check)
 {
-    for(int i=0; i<m_ui->playListTableWidget->rowCount(); ++i)
-    {
-        m_ui->playListTableWidget->item(i, 0)->setData(MUSIC_CHECK_ROLE, check);
-    }
-
-    if(!check)
-    {
-        m_ui->allSelectedcheckBox->setText(tr("allselected"));
-        m_ui->playListTableWidget->clearSelection();
-        m_ui->playListTableWidget->setCurrentIndex(QModelIndex());
-    }
-    else
-    {
-        m_ui->allSelectedcheckBox->setText(tr("allcanceled"));
-        m_ui->playListTableWidget->selectAll();
-    }
+    m_ui->allSelectedcheckBox->setText(check ? tr("allcanceled") : tr("allselected"));
+    m_ui->playListTableWidget->selectedAllItems(check);
 }
 
 void MusicConnectTransferWidget::startToTransferUSBFiles()

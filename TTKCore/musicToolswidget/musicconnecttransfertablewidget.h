@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsong.h"
 #include "musicitemdelegate.h"
 #include "musicfillitemtablewidget.h"
 
@@ -27,6 +28,15 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void createAllItems(const MusicSongs &songs);
+    /*!
+     * Create all items.
+     */
+    void selectedAllItems(bool check);
+    /*!
+     * Select all items.
      */
 
 };

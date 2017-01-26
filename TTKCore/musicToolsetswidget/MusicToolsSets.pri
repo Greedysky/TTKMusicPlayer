@@ -34,6 +34,7 @@ HEADERS  += \
     $$PWD/musicnetworkspeedsuspensionwidget.h \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
+    $$PWD/musicsongchecktoolstablewidget.h \
     $$PWD/musicgrabwidget.h
 
 }
@@ -63,6 +64,7 @@ SOURCES += \
     $$PWD/musicnetworkspeedtestwidget.cpp \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
+    $$PWD/musicsongchecktoolstablewidget.cpp \
     $$PWD/musicgrabwidget.cpp
 
 }

@@ -83,9 +83,9 @@ QLabel{background:transparent;}</string>
     <widget class="QLineEdit" name="searchLineEdit">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>105</x>
        <y>5</y>
-       <width>165</width>
+       <width>195</width>
        <height>25</height>
       </rect>
      </property>
@@ -93,7 +93,7 @@ QLabel{background:transparent;}</string>
     <widget class="QCheckBox" name="allSelectedcheckBox">
      <property name="geometry">
       <rect>
-       <x>24</x>
+       <x>7</x>
        <y>10</y>
        <width>95</width>
        <height>16</height>
