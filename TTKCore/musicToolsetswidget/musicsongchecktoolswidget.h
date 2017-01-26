@@ -38,13 +38,25 @@ public Q_SLOTS:
     /*!
      * Rename button clicked.
      */
+    void renameButtonCheckClicked();
+    /*!
+     * Rename button check clicked.
+     */
     void qualityButtonClicked();
     /*!
      * Quality button clicked.
      */
+    void qualityButtonCheckClicked();
+    /*!
+     * Quality button check clicked.
+     */
     void duplicateButtonClicked();
     /*!
      * Duplicate button clicked.
+     */
+    void duplicateButtonCheckClicked();
+    /*!
+     * Duplicate button check clicked.
      */
     void show();
     /*!
@@ -52,6 +64,18 @@ public Q_SLOTS:
      */
 
 protected:
+    void renameWidgetInit();
+    /*!
+     * Rename widget init.
+     */
+    void qualityWidgetInit();
+    /*!
+     * Quality widget init.
+     */
+    void duplicateWidgetInit();
+    /*!
+     * Duplicate widget init.
+     */
     void switchToSelectedItemStyle(int index);
     /*!
      * Switch to selected item style.

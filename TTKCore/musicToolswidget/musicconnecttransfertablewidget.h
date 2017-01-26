@@ -10,7 +10,6 @@
    =================================================*/
 
 #include "musicsong.h"
-#include "musicitemdelegate.h"
 #include "musicfillitemtablewidget.h"
 
 /*! @brief The class of the transfer file list table widget.

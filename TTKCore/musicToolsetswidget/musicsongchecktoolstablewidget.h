@@ -1,6 +1,7 @@
 #ifndef MUSICSONGCHECKTOOLSTABLEWIDGET_H
 #define MUSICSONGCHECKTOOLSTABLEWIDGET_H
 
+#include "musicsong.h"
 #include "musicfillitemtablewidget.h"
 
 class MusicSongCheckToolsRenameTableWidget : public MusicFillItemTableWidget
@@ -12,6 +13,15 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    void createAllItems(const MusicSongs &songs);
+    /*!
+     * Create all items.
+     */
+    void selectedAllItems(bool check);
+    /*!
+     * Select all items.
      */
 
 };
