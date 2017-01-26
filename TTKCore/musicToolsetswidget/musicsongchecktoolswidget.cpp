@@ -6,6 +6,8 @@
 #include "musicconnectionpool.h"
 #include "musicsongssummariziedwidget.h"
 
+#include <QDebug>
+
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongCheckToolsWidget)
@@ -76,9 +78,8 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_ui->renameCheckButton->setText(tr("StopCheck"));
 
     m_renameCore->stopAndQuitThread();
-    MusicSongItems songs;
-    emit getMusicLists(songs);
-    m_renameCore->setRenameSongs(&songs);
+    emit getMusicLists(m_localSongs);
+    m_renameCore->setRenameSongs(&m_localSongs);
     m_renameCore->start();
 }
 
@@ -89,12 +90,36 @@ void MusicSongCheckToolsWidget::qualityButtonClicked()
 
 void MusicSongCheckToolsWidget::qualityButtonCheckClicked()
 {
-
+    if(m_ui->qualityCheckButton->text() == tr("StartCheck"))
+    {
+        qualityReCheckButtonClicked();
+    }
+    else if(m_ui->qualityCheckButton->text() == tr("StopCheck"))
+    {
+        m_ui->qualityLoadingLabel->stop();
+        m_ui->qualityLoadingLabel->hide();
+        m_ui->qualityCheckButton->setText(tr("StartCheck"));
+        m_qualityCore->stopAndQuitThread();
+    }
+    else if(m_ui->qualityCheckButton->text() == tr("ApplayCheck"))
+    {
+        m_ui->qualityLoadingLabel->stop();
+        m_ui->qualityLoadingLabel->hide();
+        m_ui->qualityReCheckButton->show();
+    }
 }
 
 void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
 {
+    m_ui->qualityReCheckButton->hide();
+    m_ui->qualityLoadingLabel->start();
+    m_ui->qualityLoadingLabel->show();
+    m_ui->qualityCheckButton->setText(tr("StopCheck"));
 
+    m_qualityCore->stopAndQuitThread();
+    emit getMusicLists(m_localSongs);
+    m_qualityCore->setRenameSongs(&m_localSongs);
+    m_qualityCore->start();
 }
 
 void MusicSongCheckToolsWidget::duplicateButtonClicked()
@@ -104,12 +129,36 @@ void MusicSongCheckToolsWidget::duplicateButtonClicked()
 
 void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
 {
-
+    if(m_ui->duplicateCheckButton->text() == tr("StartCheck"))
+    {
+        duplicateReCheckButtonClicked();
+    }
+    else if(m_ui->duplicateCheckButton->text() == tr("StopCheck"))
+    {
+        m_ui->duplicateLoadingLabel->stop();
+        m_ui->duplicateLoadingLabel->hide();
+        m_ui->duplicateCheckButton->setText(tr("StartCheck"));
+        m_duplicateCore->stopAndQuitThread();
+    }
+    else if(m_ui->duplicateCheckButton->text() == tr("ApplayCheck"))
+    {
+        m_ui->duplicateLoadingLabel->stop();
+        m_ui->duplicateLoadingLabel->hide();
+        m_ui->duplicateReCheckButton->show();
+    }
 }
 
 void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
 {
+    m_ui->duplicateReCheckButton->hide();
+    m_ui->duplicateLoadingLabel->start();
+    m_ui->duplicateLoadingLabel->show();
+    m_ui->duplicateCheckButton->setText(tr("StopCheck"));
 
+    m_qualityCore->stopAndQuitThread();
+    emit getMusicLists(m_localSongs);
+    m_duplicateCore->setRenameSongs(&m_localSongs);
+    m_duplicateCore->start();
 }
 
 void MusicSongCheckToolsWidget::show()

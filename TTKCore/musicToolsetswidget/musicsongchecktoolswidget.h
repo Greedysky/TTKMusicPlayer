@@ -105,6 +105,8 @@ protected:
      */
 
     Ui::MusicSongCheckToolsWidget *m_ui;
+
+    MusicSongItems m_localSongs;
     MusicSongCheckToolsRenameCore *m_renameCore;
     MusicSongCheckToolsDuplicateCore *m_duplicateCore;
     MusicSongCheckToolsQualityCore *m_qualityCore;

@@ -91,7 +91,7 @@ void MusicSongCheckToolsDuplicateCore::run()
 {
     if(m_songItems)
     {
-        qDebug() << "MusicSongCheckToolsRenameCore" << m_songItems->count();
+        qDebug() << "MusicSongCheckToolsDuplicateCore" << m_songItems->count();
     }
 }
 
@@ -139,6 +139,6 @@ void MusicSongCheckToolsQualityCore::run()
 {
     if(m_songItems)
     {
-        qDebug() << "MusicSongCheckToolsRenameCore" << m_songItems->count();
+        qDebug() << "MusicSongCheckToolsQualityCore" << m_songItems->count();
     }
 }
