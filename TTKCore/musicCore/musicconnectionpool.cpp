@@ -22,6 +22,7 @@
 #include "musicalbumfoundwidget.h"
 #include "musicartistfoundwidget.h"
 #include "musicsoundeffectswidget.h"
+#include "musicsongchecktoolswidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -150,7 +151,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(getMusicMvInfo(MusicObject::MusicSongAttributes&)), second,
                                 SLOT(getMusicMvInfo(MusicObject::MusicSongAttributes&)));
     }
-    else if(from == MusicConnectTransferWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() )
+    else if(from == MusicConnectTransferWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() ||
+            from == MusicSongCheckToolsWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() )
     {
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second,
                                 SLOT(getMusicLists(MusicSongItems&)));

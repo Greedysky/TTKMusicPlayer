@@ -2,6 +2,9 @@
 #include "ui_musicsongchecktoolswidget.h"
 #include "musictoolsetsuiobject.h"
 #include "musicuiobject.h"
+#include "musicsongchecktoolscore.h"
+#include "musicconnectionpool.h"
+#include "musicsongssummariziedwidget.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -20,10 +23,17 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     duplicateWidgetInit();
 
     switchToSelectedItemStyle(0);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
 {
+    M_CONNECTION_PTR->removeValue(getClassName());
+    delete m_renameCore;
+    delete m_duplicateCore;
+    delete m_qualityCore;
     delete m_ui;
 }
 
@@ -39,19 +49,16 @@ void MusicSongCheckToolsWidget::renameButtonClicked()
 
 void MusicSongCheckToolsWidget::renameButtonCheckClicked()
 {
-    if(m_ui->renameCheckButton->text() == tr("StarCheck") ||
-       m_ui->renameCheckButton->text() == tr("ReCheck"))
+    if(m_ui->renameCheckButton->text() == tr("StartCheck"))
     {
-        m_ui->renameReCheckButton->hide();
-        m_ui->renameLoadingLabel->start();
-        m_ui->renameLoadingLabel->show();
-        m_ui->renameCheckButton->setText(tr("StopCheck"));
+        renameReCheckButtonClicked();
     }
     else if(m_ui->renameCheckButton->text() == tr("StopCheck"))
     {
         m_ui->renameLoadingLabel->stop();
         m_ui->renameLoadingLabel->hide();
-        m_ui->renameCheckButton->setText(tr("StarCheck"));
+        m_ui->renameCheckButton->setText(tr("StartCheck"));
+        m_renameCore->stopAndQuitThread();
     }
     else if(m_ui->renameCheckButton->text() == tr("ApplayCheck"))
     {
@@ -59,6 +66,20 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
     }
+}
+
+void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
+{
+    m_ui->renameReCheckButton->hide();
+    m_ui->renameLoadingLabel->start();
+    m_ui->renameLoadingLabel->show();
+    m_ui->renameCheckButton->setText(tr("StopCheck"));
+
+    m_renameCore->stopAndQuitThread();
+    MusicSongItems songs;
+    emit getMusicLists(songs);
+    m_renameCore->setRenameSongs(&songs);
+    m_renameCore->start();
 }
 
 void MusicSongCheckToolsWidget::qualityButtonClicked()
@@ -71,12 +92,22 @@ void MusicSongCheckToolsWidget::qualityButtonCheckClicked()
 
 }
 
+void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
+{
+
+}
+
 void MusicSongCheckToolsWidget::duplicateButtonClicked()
 {
     switchToSelectedItemStyle(2);
 }
 
 void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
+{
+
+}
+
+void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
 {
 
 }
@@ -94,25 +125,48 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
 
     connect(m_ui->renameButton, SIGNAL(clicked()), SLOT(renameButtonClicked()));
     connect(m_ui->renameCheckButton, SIGNAL(clicked()), SLOT(renameButtonCheckClicked()));
+    connect(m_ui->renameReCheckButton, SIGNAL(clicked()), SLOT(renameReCheckButtonClicked()));
 
     m_ui->renameSelectAllButton->setEnabled(false);
     m_ui->renameLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_ui->renameLoadingLabel->hide();
     m_ui->renameReCheckButton->hide();
+
+    m_renameCore = new MusicSongCheckToolsRenameCore(this);
 }
 
 void MusicSongCheckToolsWidget::qualityWidgetInit()
 {
+    m_ui->qualitySelectAllButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     connect(m_ui->qualityButton, SIGNAL(clicked()), SLOT(qualityButtonClicked()));
+    connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityButtonCheckClicked()));
+    connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityReCheckButtonClicked()));
+
+    m_ui->qualitySelectAllButton->setEnabled(false);
+    m_ui->qualityLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->qualityLoadingLabel->hide();
+    m_ui->qualityReCheckButton->hide();
+
+    m_qualityCore = new MusicSongCheckToolsQualityCore(this);
 }
 
 void MusicSongCheckToolsWidget::duplicateWidgetInit()
 {
+    m_ui->duplicateSelectAllButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->duplicateCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     connect(m_ui->duplicateButton, SIGNAL(clicked()), SLOT(duplicateButtonClicked()));
+    connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
+    connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateReCheckButtonClicked()));
+
+    m_ui->duplicateSelectAllButton->setEnabled(false);
+    m_ui->duplicateLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->duplicateLoadingLabel->hide();
+    m_ui->duplicateReCheckButton->hide();
+
+    m_duplicateCore = new MusicSongCheckToolsDuplicateCore(this);
 }
 
 void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)

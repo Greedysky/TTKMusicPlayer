@@ -17,6 +17,7 @@ HEADERS  += \
     $$PWD/core/musicmobiledevicesthread.h \
     $$PWD/core/musicaudiorecordercore.h \
     $$PWD/core/musicnetworkspeedtestthread.h \
+    $$PWD/core/musicsongchecktoolscore.h \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musicaudiorecorderwidget.h \
     $$PWD/musictimerwidget.h \
@@ -47,6 +48,7 @@ SOURCES += \
     $$PWD/core/musicmobiledevicesthread.cpp \
     $$PWD/core/musicaudiorecordercore.cpp \
     $$PWD/core/musicnetworkspeedtestthread.cpp \
+    $$PWD/core/musicsongchecktoolscore.cpp \
     $$PWD/musicmobiledeviceswidget.cpp \
     $$PWD/musicaudiorecorderwidget.cpp \
     $$PWD/musictimerwidget.cpp \

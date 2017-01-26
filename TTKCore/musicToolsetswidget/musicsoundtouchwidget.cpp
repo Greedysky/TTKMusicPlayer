@@ -52,6 +52,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_ui->tempoLabelValue->setText("2500");
     m_ui->pitchLabelValue->setText("0");
     m_ui->rateLabelValue->setText("2500");
+
     setText(MusicObject::getAppDir() + RECORD_FILE);
     m_ui->playWavButton->setEnabled(false);
     m_ui->transformButton->setEnabled(false);

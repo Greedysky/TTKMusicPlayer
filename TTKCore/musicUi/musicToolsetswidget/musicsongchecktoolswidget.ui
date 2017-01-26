@@ -286,7 +286,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="renameReCheckButton">
+     <widget class="MusicClickedLabel" name="renameReCheckButton">
       <property name="geometry">
        <rect>
         <x>560</x>
@@ -355,6 +355,153 @@
        <string>清除重复歌曲，减少硬盘空间占用。</string>
       </property>
      </widget>
+     <widget class="MusicClickedLabel" name="duplicateReCheckButton">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>50</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:#2F93E1</string>
+      </property>
+      <property name="text">
+       <string>重新检测</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>80</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>操作</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="MusicGifLabelWidget" name="duplicateLoadingLabel">
+      <property name="geometry">
+       <rect>
+        <x>307</x>
+        <y>226</y>
+        <width>58</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>80</y>
+        <width>290</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>推荐文件名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>75</y>
+        <width>672</width>
+        <height>1</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>672</width>
+        <height>1</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>290</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>本地文件名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="duplicateSelectAllButton">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>80</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="MusicSongCheckToolsDuplicateTableWidget" name="duplicateTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>672</width>
+        <height>311</height>
+       </rect>
+      </property>
+     </widget>
+     <zorder>duplicateCheckButton</zorder>
+     <zorder>duplicateLabel_1</zorder>
+     <zorder>duplicateLabel_2</zorder>
+     <zorder>duplicateReCheckButton</zorder>
+     <zorder>duplicateLabel_3</zorder>
+     <zorder>duplicateLabel_4</zorder>
+     <zorder>frame_6</zorder>
+     <zorder>duplicateLabel_5</zorder>
+     <zorder>duplicateSelectAllButton</zorder>
+     <zorder>duplicateTableWidget</zorder>
+     <zorder>duplicateLoadingLabel</zorder>
+     <zorder>frame_7</zorder>
     </widget>
     <widget class="QWidget" name="qualityPage">
      <widget class="QLabel" name="qualityLabel_2">
@@ -405,6 +552,153 @@
        <string>开始检查</string>
       </property>
      </widget>
+     <widget class="MusicClickedLabel" name="qualityReCheckButton">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>50</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:#2F93E1</string>
+      </property>
+      <property name="text">
+       <string>重新检测</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>672</width>
+        <height>1</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_9">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>75</y>
+        <width>672</width>
+        <height>1</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>80</y>
+        <width>290</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>推荐文件名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="qualitySelectAllButton">
+      <property name="geometry">
+       <rect>
+        <x>7</x>
+        <y>80</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="MusicSongCheckToolsDuplicateTableWidget" name="qualityTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>672</width>
+        <height>311</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="MusicGifLabelWidget" name="qualityLoadingLabel">
+      <property name="geometry">
+       <rect>
+        <x>307</x>
+        <y>226</y>
+        <width>58</width>
+        <height>58</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>290</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>本地文件名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>80</y>
+        <width>54</width>
+        <height>12</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>操作</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <zorder>qualityLabel_2</zorder>
+     <zorder>qualityLabel_1</zorder>
+     <zorder>qualityCheckButton</zorder>
+     <zorder>qualityReCheckButton</zorder>
+     <zorder>qualityLabel_3</zorder>
+     <zorder>qualitySelectAllButton</zorder>
+     <zorder>qualityTableWidget</zorder>
+     <zorder>qualityLabel_4</zorder>
+     <zorder>qualityLabel_5</zorder>
+     <zorder>frame_9</zorder>
+     <zorder>frame_8</zorder>
+     <zorder>qualityLoadingLabel</zorder>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
@@ -487,7 +781,7 @@
      <string>全部列表</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="MusicClickedLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>630</x>
@@ -522,6 +816,16 @@
    <class>MusicGifLabelWidget</class>
    <extends>QLabel</extends>
    <header>musicgiflabelwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSongCheckToolsDuplicateTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicsongchecktoolstablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

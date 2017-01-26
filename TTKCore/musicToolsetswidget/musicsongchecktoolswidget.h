@@ -9,11 +9,16 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicsong.h"
 #include "musicabstractmovewidget.h"
 
 namespace Ui {
 class MusicSongCheckToolsWidget;
 }
+
+class MusicSongCheckToolsRenameCore;
+class MusicSongCheckToolsDuplicateCore;
+class MusicSongCheckToolsQualityCore;
 
 /*! @brief The class of the song check tools widget.
  * @author Greedysky <greedysky@163.com>
@@ -33,6 +38,12 @@ public:
      * Get class object name.
      */
 
+Q_SIGNALS:
+    void getMusicLists(MusicSongItems &songs);
+    /*!
+     * Get music datas from container.
+     */
+
 public Q_SLOTS:
     void renameButtonClicked();
     /*!
@@ -42,6 +53,10 @@ public Q_SLOTS:
     /*!
      * Rename button check clicked.
      */
+    void renameReCheckButtonClicked();
+    /*!
+     * Rename reCheck button clicked.
+     */
     void qualityButtonClicked();
     /*!
      * Quality button clicked.
@@ -50,6 +65,10 @@ public Q_SLOTS:
     /*!
      * Quality button check clicked.
      */
+    void qualityReCheckButtonClicked();
+    /*!
+     * Quality reCheck button clicked.
+     */
     void duplicateButtonClicked();
     /*!
      * Duplicate button clicked.
@@ -57,6 +76,10 @@ public Q_SLOTS:
     void duplicateButtonCheckClicked();
     /*!
      * Duplicate button check clicked.
+     */
+    void duplicateReCheckButtonClicked();
+    /*!
+     * Duplicate reCheck button clicked.
      */
     void show();
     /*!
@@ -82,6 +105,9 @@ protected:
      */
 
     Ui::MusicSongCheckToolsWidget *m_ui;
+    MusicSongCheckToolsRenameCore *m_renameCore;
+    MusicSongCheckToolsDuplicateCore *m_duplicateCore;
+    MusicSongCheckToolsQualityCore *m_qualityCore;
 
 };
 
