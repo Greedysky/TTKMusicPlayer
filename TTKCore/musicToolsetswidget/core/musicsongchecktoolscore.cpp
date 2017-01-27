@@ -1,8 +1,6 @@
 #include "musicsongchecktoolscore.h"
 #include "musicsongtag.h"
 
-#include <QDebug>
-
 MusicSongCheckToolsRenameCore::MusicSongCheckToolsRenameCore(QObject *parent)
     : QThread(parent)
 {
@@ -90,7 +88,7 @@ QString MusicSongCheckToolsDuplicateCore::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsDuplicateCore::setRenameSongs(MusicSongItems *songs)
+void MusicSongCheckToolsDuplicateCore::setDuplicateSongs(MusicSongItems *songs)
 {
     m_songItems = songs;
 }
@@ -113,9 +111,27 @@ void MusicSongCheckToolsDuplicateCore::start()
 
 void MusicSongCheckToolsDuplicateCore::run()
 {
-    if(m_songItems)
+    if(m_songItems && m_songItems->count() >= 4)
     {
-        qDebug() << "MusicSongCheckToolsDuplicateCore" << m_songItems->count();
+        MusicSongs *musicSongs = &m_songItems->first().m_songs;
+        SongCheckToolsDuplicates items;
+        MusicSongTag tag;
+        foreach(const MusicSong &song, *musicSongs)
+        {
+            if(!m_run)
+            {
+                emit finished(SongCheckToolsDuplicates());
+                return;
+            }
+
+            if(!tag.readFile(song.getMusicPath()))
+            {
+                continue;
+            }
+
+            items << SongCheckToolsDuplicate(song, tag.getBitrate());
+        }
+        emit finished(items);
     }
 }
 
@@ -138,7 +154,7 @@ QString MusicSongCheckToolsQualityCore::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsQualityCore::setRenameSongs(MusicSongItems *songs)
+void MusicSongCheckToolsQualityCore::setQualitySongs(MusicSongItems *songs)
 {
     m_songItems = songs;
 }
@@ -161,8 +177,61 @@ void MusicSongCheckToolsQualityCore::start()
 
 void MusicSongCheckToolsQualityCore::run()
 {
-    if(m_songItems)
+    if(m_songItems && m_songItems->count() >= 4)
     {
-        qDebug() << "MusicSongCheckToolsQualityCore" << m_songItems->count();
+        MusicSongs *musicSongs = &m_songItems->first().m_songs;
+        SongCheckToolsQualitys items;
+        MusicSongTag tag;
+        foreach(const MusicSong &song, *musicSongs)
+        {
+            if(!m_run)
+            {
+                emit finished(SongCheckToolsQualitys());
+                return;
+            }
+
+            if(!tag.readFile(song.getMusicPath()))
+            {
+                continue;
+            }
+
+            items << SongCheckToolsQuality(song, tag.getBitrate(), transfromBitrateToQuality(tag.getBitrate()));
+        }
+        emit finished(items);
     }
+}
+
+int MusicSongCheckToolsQualityCore::transfromBitrateToQuality(const QString &bitrate) const
+{
+    if(bitrate.isEmpty())
+    {
+        return -1;
+    }
+
+    QStringList data(bitrate.split(" "));
+    if(data.count() >= 2)
+    {
+        int bit = data.front().trimmed().toInt();
+        if(bit <= 0)
+        {
+            return -1;
+        }
+        else if(bit > 0 && bit <= 96)
+        {
+            return 0;
+        }
+        else if(bit > 96 && bit <= 196)
+        {
+            return 1;
+        }
+        else if(bit > 196 && bit <= 320)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+    return -1;
 }

@@ -22,6 +22,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void setRenameSongs(MusicSongItems *songs);
     /*!
      * Set find file path by given path.
@@ -71,13 +72,20 @@ public:
     /*!
      * Get class object name.
      */
-    void setRenameSongs(MusicSongItems *songs);
+
+    void setDuplicateSongs(MusicSongItems *songs);
     /*!
      * Set find file path by given path.
      */
     void stopAndQuitThread();
     /*!
      * Stop and quit current thread.
+     */
+
+Q_SIGNALS:
+    void finished(const SongCheckToolsDuplicates &items);
+    /*!
+     * Duplicate check finished.
      */
 
 public Q_SLOTS:
@@ -114,13 +122,20 @@ public:
     /*!
      * Get class object name.
      */
-    void setRenameSongs(MusicSongItems *songs);
+
+    void setQualitySongs(MusicSongItems *songs);
     /*!
      * Set find file path by given path.
      */
     void stopAndQuitThread();
     /*!
      * Stop and quit current thread.
+     */
+
+Q_SIGNALS:
+    void finished(const SongCheckToolsQualitys &items);
+    /*!
+     * Quality check finished.
      */
 
 public Q_SLOTS:
@@ -134,6 +149,11 @@ public Q_SLOTS:
      */
 
 protected:
+    int transfromBitrateToQuality(const QString &bitrate) const;
+    /*!
+     * Transfrom bitrate to quality.
+     */
+
     bool m_run;
     MusicSongItems *m_songItems;
 

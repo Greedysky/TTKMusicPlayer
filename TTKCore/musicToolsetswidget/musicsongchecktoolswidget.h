@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicsong.h"
 #include "musicsongchecktoolsunit.h"
 #include "musicabstractmovewidget.h"
 
@@ -74,6 +73,10 @@ public Q_SLOTS:
     /*!
      * Quality reCheck button clicked.
      */
+    void qualityCheckFinished(const SongCheckToolsQualitys &items);
+    /*!
+     * Quality check finished.
+     */
     void duplicateButtonClicked();
     /*!
      * Duplicate button clicked.
@@ -85,6 +88,10 @@ public Q_SLOTS:
     void duplicateReCheckButtonClicked();
     /*!
      * Duplicate reCheck button clicked.
+     */
+    void duplicateCheckFinished(const SongCheckToolsDuplicates &items);
+    /*!
+     * Duplicate check finished.
      */
     void show();
     /*!

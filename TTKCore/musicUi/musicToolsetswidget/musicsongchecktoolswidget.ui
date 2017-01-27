@@ -230,8 +230,8 @@
        <rect>
         <x>610</x>
         <y>80</y>
-        <width>54</width>
-        <height>12</height>
+        <width>60</width>
+        <height>15</height>
        </rect>
       </property>
       <property name="text">
@@ -377,14 +377,14 @@
      <widget class="QLabel" name="duplicateLabel_3">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>320</x>
         <y>80</y>
-        <width>54</width>
-        <height>12</height>
+        <width>65</width>
+        <height>15</height>
        </rect>
       </property>
       <property name="text">
-       <string>操作</string>
+       <string>时长</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -401,22 +401,6 @@
       </property>
       <property name="text">
        <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="duplicateLabel_4">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>80</y>
-        <width>290</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>推荐文件名</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QFrame" name="frame_6">
@@ -461,7 +445,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>本地文件名</string>
+       <string>歌曲名称</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -486,8 +470,72 @@
         <x>0</x>
         <y>100</y>
         <width>672</width>
-        <height>311</height>
+        <height>300</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>385</x>
+        <y>80</y>
+        <width>65</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>大小</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>80</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>码率</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>80</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>播放</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="duplicateLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>80</y>
+        <width>60</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>操作</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <zorder>duplicateCheckButton</zorder>
@@ -495,13 +543,16 @@
      <zorder>duplicateLabel_2</zorder>
      <zorder>duplicateReCheckButton</zorder>
      <zorder>duplicateLabel_3</zorder>
-     <zorder>duplicateLabel_4</zorder>
      <zorder>frame_6</zorder>
      <zorder>duplicateLabel_5</zorder>
      <zorder>duplicateSelectAllButton</zorder>
      <zorder>duplicateTableWidget</zorder>
      <zorder>duplicateLoadingLabel</zorder>
      <zorder>frame_7</zorder>
+     <zorder>duplicateLabel_4</zorder>
+     <zorder>duplicateLabel_6</zorder>
+     <zorder>duplicateLabel_7</zorder>
+     <zorder>duplicateLabel_8</zorder>
     </widget>
     <widget class="QWidget" name="qualityPage">
      <widget class="QLabel" name="qualityLabel_2">
@@ -603,42 +654,13 @@
        <enum>QFrame::Plain</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="qualityLabel_3">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>80</y>
-        <width>290</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>推荐文件名</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="qualitySelectAllButton">
-      <property name="geometry">
-       <rect>
-        <x>7</x>
-        <y>80</y>
-        <width>16</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="MusicSongCheckToolsDuplicateTableWidget" name="qualityTableWidget">
+     <widget class="MusicSongCheckToolsQualityTableWidget" name="qualityTableWidget">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>100</y>
         <width>672</width>
-        <height>311</height>
+        <height>300</height>
        </rect>
       </property>
      </widget>
@@ -655,29 +677,61 @@
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="qualityLabel_4">
+     <widget class="QLabel" name="qualityLabel_3">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>0</x>
         <y>80</y>
-        <width>290</width>
+        <width>250</width>
         <height>15</height>
        </rect>
       </property>
       <property name="text">
-       <string>本地文件名</string>
+       <string>歌曲名称</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="qualityLabel_5">
+     <widget class="QLabel" name="qualityLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>80</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>播放</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>80</y>
+        <width>80</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>码率</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_9">
       <property name="geometry">
        <rect>
         <x>610</x>
         <y>80</y>
-        <width>54</width>
-        <height>12</height>
+        <width>60</width>
+        <height>15</height>
        </rect>
       </property>
       <property name="text">
@@ -687,18 +741,69 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="qualityLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>80</y>
+        <width>65</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>时长</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>315</x>
+        <y>80</y>
+        <width>65</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>大小</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qualityLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>80</y>
+        <width>70</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>音质评价</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
      <zorder>qualityLabel_2</zorder>
      <zorder>qualityLabel_1</zorder>
      <zorder>qualityCheckButton</zorder>
      <zorder>qualityReCheckButton</zorder>
-     <zorder>qualityLabel_3</zorder>
-     <zorder>qualitySelectAllButton</zorder>
      <zorder>qualityTableWidget</zorder>
-     <zorder>qualityLabel_4</zorder>
-     <zorder>qualityLabel_5</zorder>
+     <zorder>qualityLabel_3</zorder>
      <zorder>frame_9</zorder>
      <zorder>frame_8</zorder>
      <zorder>qualityLoadingLabel</zorder>
+     <zorder>qualityLabel_8</zorder>
+     <zorder>qualityLabel_6</zorder>
+     <zorder>qualityLabel_9</zorder>
+     <zorder>qualityLabel_4</zorder>
+     <zorder>qualityLabel_5</zorder>
+     <zorder>qualityLabel_7</zorder>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
@@ -824,6 +929,11 @@
   </customwidget>
   <customwidget>
    <class>MusicSongCheckToolsDuplicateTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicsongchecktoolstablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSongCheckToolsQualityTableWidget</class>
    <extends>QTableWidget</extends>
    <header>musicsongchecktoolstablewidget.h</header>
   </customwidget>

@@ -6,13 +6,13 @@
 #include "musicconnectionpool.h"
 #include "musicsongssummariziedwidget.h"
 
-#include <QDebug>
-
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongCheckToolsWidget)
 {
     Q_UNUSED(qRegisterMetaType<SongCheckToolsRenames>("SongCheckToolsRenames"));
+    Q_UNUSED(qRegisterMetaType<SongCheckToolsDuplicates>("SongCheckToolsDuplicates"));
+    Q_UNUSED(qRegisterMetaType<SongCheckToolsQualitys>("SongCheckToolsQualitys"));
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -103,7 +103,7 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const SongCheckToolsRenames 
 
 void MusicSongCheckToolsWidget::qualityButtonClicked()
 {
-    switchToSelectedItemStyle(1);
+    switchToSelectedItemStyle(2);
 }
 
 void MusicSongCheckToolsWidget::qualityButtonCheckClicked()
@@ -136,13 +136,24 @@ void MusicSongCheckToolsWidget::qualityReCheckButtonClicked()
 
     m_qualityCore->stopAndQuitThread();
     emit getMusicLists(*m_localSongs);
-    m_qualityCore->setRenameSongs(m_localSongs);
+    m_qualityCore->setQualitySongs(m_localSongs);
     m_qualityCore->start();
+}
+
+void MusicSongCheckToolsWidget::qualityCheckFinished(const SongCheckToolsQualitys &items)
+{
+    m_ui->qualityLoadingLabel->stop();
+    m_ui->qualityLoadingLabel->hide();
+    m_ui->qualityCheckButton->setText(tr("ApplayCheck"));
+    m_ui->qualityReCheckButton->show();
+
+    m_ui->qualityTableWidget->clear();
+    m_ui->qualityTableWidget->createAllItems(items);
 }
 
 void MusicSongCheckToolsWidget::duplicateButtonClicked()
 {
-    switchToSelectedItemStyle(2);
+    switchToSelectedItemStyle(1);
 }
 
 void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
@@ -172,11 +183,24 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
     m_ui->duplicateLoadingLabel->start();
     m_ui->duplicateLoadingLabel->show();
     m_ui->duplicateCheckButton->setText(tr("StopCheck"));
+    m_ui->duplicateSelectAllButton->setChecked(false);
 
     m_qualityCore->stopAndQuitThread();
     emit getMusicLists(*m_localSongs);
-    m_duplicateCore->setRenameSongs(m_localSongs);
+    m_duplicateCore->setDuplicateSongs(m_localSongs);
     m_duplicateCore->start();
+}
+
+void MusicSongCheckToolsWidget::duplicateCheckFinished(const SongCheckToolsDuplicates &items)
+{
+    m_ui->duplicateLoadingLabel->stop();
+    m_ui->duplicateLoadingLabel->hide();
+    m_ui->duplicateCheckButton->setText(tr("ApplayCheck"));
+    m_ui->duplicateReCheckButton->show();
+    m_ui->duplicateSelectAllButton->setEnabled(!items.isEmpty());
+
+    m_ui->duplicateTableWidget->clear();
+    m_ui->duplicateTableWidget->createAllItems(items);
 }
 
 void MusicSongCheckToolsWidget::show()
@@ -206,19 +230,18 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
 
 void MusicSongCheckToolsWidget::qualityWidgetInit()
 {
-    m_ui->qualitySelectAllButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->qualityCheckButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     connect(m_ui->qualityButton, SIGNAL(clicked()), SLOT(qualityButtonClicked()));
     connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityButtonCheckClicked()));
-    connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityReCheckButtonClicked()));
+    connect(m_ui->qualityReCheckButton, SIGNAL(clicked()), SLOT(qualityReCheckButtonClicked()));
 
-    m_ui->qualitySelectAllButton->setEnabled(false);
     m_ui->qualityLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_ui->qualityLoadingLabel->hide();
     m_ui->qualityReCheckButton->hide();
 
     m_qualityCore = new MusicSongCheckToolsQualityCore(this);
+    connect(m_qualityCore, SIGNAL(finished(SongCheckToolsQualitys)), SLOT(qualityCheckFinished(SongCheckToolsQualitys)));
 }
 
 void MusicSongCheckToolsWidget::duplicateWidgetInit()
@@ -228,7 +251,8 @@ void MusicSongCheckToolsWidget::duplicateWidgetInit()
 
     connect(m_ui->duplicateButton, SIGNAL(clicked()), SLOT(duplicateButtonClicked()));
     connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
-    connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateReCheckButtonClicked()));
+    connect(m_ui->duplicateReCheckButton, SIGNAL(clicked()), SLOT(duplicateReCheckButtonClicked()));
+    connect(m_ui->duplicateSelectAllButton, SIGNAL(clicked(bool)), m_ui->duplicateTableWidget, SLOT(selectedAllItems(bool)));
 
     m_ui->duplicateSelectAllButton->setEnabled(false);
     m_ui->duplicateLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
@@ -236,6 +260,7 @@ void MusicSongCheckToolsWidget::duplicateWidgetInit()
     m_ui->duplicateReCheckButton->hide();
 
     m_duplicateCore = new MusicSongCheckToolsDuplicateCore(this);
+    connect(m_duplicateCore, SIGNAL(finished(SongCheckToolsDuplicates)), SLOT(duplicateCheckFinished(SongCheckToolsDuplicates)));
 }
 
 void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)
@@ -248,8 +273,8 @@ void MusicSongCheckToolsWidget::switchToSelectedItemStyle(int index)
     switch(index)
     {
         case 0: m_ui->renameButton->setStyleSheet(MusicUIObject::MKGCheckTestRenameClicked); break;
-        case 1: m_ui->qualityButton->setStyleSheet(MusicUIObject::MKGCheckTestQualityClicked);break;
-        case 2: m_ui->duplicateButton->setStyleSheet(MusicUIObject::MKGCheckTestDuplicateClicked);break;
+        case 1: m_ui->duplicateButton->setStyleSheet(MusicUIObject::MKGCheckTestDuplicateClicked); break;
+        case 2: m_ui->qualityButton->setStyleSheet(MusicUIObject::MKGCheckTestQualityClicked); break;
         default: break;
     }
 }

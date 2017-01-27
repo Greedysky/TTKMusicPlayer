@@ -1,7 +1,6 @@
 #ifndef MUSICSONGCHECKTOOLSTABLEWIDGET_H
 #define MUSICSONGCHECKTOOLSTABLEWIDGET_H
 
-#include "musicsong.h"
 #include "musicsongchecktoolsunit.h"
 #include "musicfillitemtablewidget.h"
 
@@ -54,7 +53,7 @@ public:
      * Get class object name.
      */
 
-    void createAllItems(const MusicSongs &songs);
+    void createAllItems(const SongCheckToolsDuplicates &songs);
     /*!
      * Create all items.
      */
@@ -86,9 +85,13 @@ public:
      * Get class object name.
      */
 
-    void createAllItems(const MusicSongs &songs);
+    void createAllItems(const SongCheckToolsQualitys &songs);
     /*!
      * Create all items.
+     */
+    void transfromBitrateToQuality(int bitrate, QString &bitString, QColor &color) const;
+    /*!
+     * Transfrom bitrate to quality.
      */
 
 public Q_SLOTS:
