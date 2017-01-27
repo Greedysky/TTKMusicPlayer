@@ -13,6 +13,8 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 290);
     headerview->resizeSection(3, 54);
+
+    setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
 }
 
 QString MusicSongCheckToolsRenameTableWidget::getClassName()

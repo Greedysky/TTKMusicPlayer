@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QPainter>
 #include <QCheckBox>
+#include <QPushButton>
 #include <QRadioButton>
 #include <QProgressBar>
 
@@ -214,5 +215,45 @@ void MusicLabelDelegate::paint(QPainter *painter,
     m_label->resize(option.rect.size());
     painter->translate(0, 0);
     m_label->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
+    painter->restore();
+}
+
+
+
+MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
+    : QItemDelegate(parent)
+{
+    m_pushButton  = new QPushButton;
+}
+
+MusicPushButtonDelegate::~MusicPushButtonDelegate()
+{
+    delete m_pushButton;
+}
+
+QString MusicPushButtonDelegate::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
+                                   const QModelIndex &) const
+{
+    QSize size = option.rect.size();
+    size.setHeight(25);
+    return size;
+}
+
+void MusicPushButtonDelegate::paint(QPainter *painter,
+                                    const QStyleOptionViewItem &option,
+                                    const QModelIndex &index) const
+{
+    QItemDelegate::paint(painter, option, index);
+
+    painter->save();
+    m_pushButton->setText(index.data(MUSIC_TEXTS_ROLE).toString());
+    m_pushButton->resize(option.rect.size() - QSize(10, 10));
+    painter->translate(5, 5);
+    m_pushButton->render(painter, option.rect.topLeft(), QRegion(), QWidget::DrawChildren);
     painter->restore();
 }

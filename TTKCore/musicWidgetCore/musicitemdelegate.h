@@ -23,6 +23,7 @@ class QLabel;
 class QCheckBox;
 class QRadioButton;
 class QProgressBar;
+class QPushButton;
 
 /*! @brief The class of the radio button item delegate.
  * @author Greedysky <greedysky@163.com>
@@ -208,6 +209,42 @@ public:
 
 protected:
     QLabel *m_label;
+
+};
+
+
+/*! @brief The class of the push button item delegate.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicPushButtonDelegate : public QItemDelegate
+{
+    Q_OBJECT
+public:
+    explicit MusicPushButtonDelegate(QObject* parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicPushButtonDelegate();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    QSize sizeHint(const QStyleOptionViewItem &option,
+                   const QModelIndex &) const;
+    /*!
+     * Override size hint.
+     */
+    void paint(QPainter *painter,
+               const QStyleOptionViewItem &option,
+               const QModelIndex &index) const;
+    /*!
+     * Override paint.
+     */
+
+protected:
+    QPushButton *m_pushButton;
 
 };
 
