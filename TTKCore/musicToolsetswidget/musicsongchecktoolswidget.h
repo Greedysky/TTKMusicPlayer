@@ -45,6 +45,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void modifiedItemButtonClicked();
+    /*!
+     * Modified item button clicked.
+     */
     void renameButtonClicked();
     /*!
      * Rename button clicked.
@@ -99,6 +103,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void getSelectedSongItems();
+    /*!
+     * Get selected song items.
+     */
     void renameWidgetInit();
     /*!
      * Rename widget init.
@@ -118,7 +126,7 @@ protected:
 
     Ui::MusicSongCheckToolsWidget *m_ui;
 
-    MusicSongItems *m_localSongs;
+    MusicSongs m_localSongs;
     MusicSongCheckToolsRenameCore *m_renameCore;
     MusicSongCheckToolsDuplicateCore *m_duplicateCore;
     MusicSongCheckToolsQualityCore *m_qualityCore;

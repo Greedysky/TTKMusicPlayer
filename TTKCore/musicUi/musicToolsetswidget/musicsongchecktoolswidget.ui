@@ -886,7 +886,7 @@
      <string>全部列表</string>
     </property>
    </widget>
-   <widget class="MusicClickedLabel" name="label_3">
+   <widget class="MusicClickedLabel" name="modifiedItemButton">
     <property name="geometry">
      <rect>
       <x>630</x>

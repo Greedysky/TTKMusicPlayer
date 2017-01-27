@@ -18,7 +18,7 @@ QString MusicSongCheckToolsRenameCore::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsRenameCore::setRenameSongs(MusicSongItems *songs)
+void MusicSongCheckToolsRenameCore::setRenameSongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
@@ -41,12 +41,11 @@ void MusicSongCheckToolsRenameCore::start()
 
 void MusicSongCheckToolsRenameCore::run()
 {
-    if(m_songItems && m_songItems->count() >= 4)
+    if(m_songItems && !m_songItems->isEmpty())
     {
-        MusicSongs *musicSongs = &m_songItems->first().m_songs;
         SongCheckToolsRenames items;
         MusicSongTag tag;
-        foreach(const MusicSong &song, *musicSongs)
+        foreach(const MusicSong &song, *m_songItems)
         {
             if(!m_run)
             {
@@ -88,7 +87,7 @@ QString MusicSongCheckToolsDuplicateCore::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsDuplicateCore::setDuplicateSongs(MusicSongItems *songs)
+void MusicSongCheckToolsDuplicateCore::setDuplicateSongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
@@ -113,10 +112,9 @@ void MusicSongCheckToolsDuplicateCore::run()
 {
     if(m_songItems && m_songItems->count() >= 4)
     {
-        MusicSongs *musicSongs = &m_songItems->first().m_songs;
         SongCheckToolsDuplicates items;
         MusicSongTag tag;
-        foreach(const MusicSong &song, *musicSongs)
+        foreach(const MusicSong &song, *m_songItems)
         {
             if(!m_run)
             {
@@ -154,7 +152,7 @@ QString MusicSongCheckToolsQualityCore::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsQualityCore::setQualitySongs(MusicSongItems *songs)
+void MusicSongCheckToolsQualityCore::setQualitySongs(MusicSongs *songs)
 {
     m_songItems = songs;
 }
@@ -179,10 +177,9 @@ void MusicSongCheckToolsQualityCore::run()
 {
     if(m_songItems && m_songItems->count() >= 4)
     {
-        MusicSongs *musicSongs = &m_songItems->first().m_songs;
         SongCheckToolsQualitys items;
         MusicSongTag tag;
-        foreach(const MusicSong &song, *musicSongs)
+        foreach(const MusicSong &song, *m_songItems)
         {
             if(!m_run)
             {

@@ -23,7 +23,7 @@ public:
      * Get class object name.
      */
 
-    void setRenameSongs(MusicSongItems *songs);
+    void setRenameSongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
@@ -50,7 +50,7 @@ public Q_SLOTS:
 
 protected:
     bool m_run;
-    MusicSongItems *m_songItems;
+    MusicSongs *m_songItems;
 
 };
 
@@ -73,7 +73,7 @@ public:
      * Get class object name.
      */
 
-    void setDuplicateSongs(MusicSongItems *songs);
+    void setDuplicateSongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
@@ -100,7 +100,7 @@ public Q_SLOTS:
 
 protected:
     bool m_run;
-    MusicSongItems *m_songItems;
+    MusicSongs *m_songItems;
 
 };
 
@@ -123,7 +123,7 @@ public:
      * Get class object name.
      */
 
-    void setQualitySongs(MusicSongItems *songs);
+    void setQualitySongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
@@ -155,7 +155,7 @@ protected:
      */
 
     bool m_run;
-    MusicSongItems *m_songItems;
+    MusicSongs *m_songItems;
 
 };
 
