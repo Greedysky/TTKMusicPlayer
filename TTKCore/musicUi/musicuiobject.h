@@ -124,7 +124,10 @@ namespace MusicUIObject
             border:1px solid #0095CD;";
 
     const QString MBorderStyle06 = " \
-            border-top: 1px dashed gray;";
+            border-top:1px dashed gray;";
+
+    const QString MBorderStyle07 = " \
+            border-radius:3px;";
 
 
 ///Font

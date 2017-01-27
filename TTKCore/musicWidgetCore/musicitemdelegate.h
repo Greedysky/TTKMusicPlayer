@@ -231,6 +231,10 @@ public:
      * Get class object name.
      */
 
+    void setStyleSheet(const QString &style);
+    /*!
+     * Set delegate item style.
+     */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!

@@ -224,6 +224,10 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
     m_pushButton  = new QPushButton;
+    m_pushButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_pushButton->setStyleSheet(MusicUIObject::MBorderStyle04 + \
+                                MusicUIObject::MBorderStyle07 + \
+                                MusicUIObject::MBackgroundStyle17);
 }
 
 MusicPushButtonDelegate::~MusicPushButtonDelegate()
@@ -236,8 +240,13 @@ QString MusicPushButtonDelegate::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicPushButtonDelegate::setStyleSheet(const QString &style)
+{
+    m_pushButton->setStyleSheet(style);
+}
+
 QSize MusicPushButtonDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                   const QModelIndex &) const
+                                        const QModelIndex &) const
 {
     QSize size = option.rect.size();
     size.setHeight(25);

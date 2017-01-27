@@ -45,6 +45,7 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const SongCheckToolsRe
         setItem(i, 2, item);
 
                 item = new QTableWidgetItem;
+        item->setData(MUSIC_TEXTS_ROLE, "Test");
         setItem(i, 3, item);
     }
 }
