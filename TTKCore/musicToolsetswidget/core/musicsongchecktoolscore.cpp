@@ -1,4 +1,6 @@
 #include "musicsongchecktoolscore.h"
+#include "musicsongtag.h"
+
 #include <QDebug>
 
 MusicSongCheckToolsRenameCore::MusicSongCheckToolsRenameCore(QObject *parent)
@@ -41,9 +43,31 @@ void MusicSongCheckToolsRenameCore::start()
 
 void MusicSongCheckToolsRenameCore::run()
 {
-    if(m_songItems)
+    if(m_songItems && m_songItems->count() >= 4)
     {
-        qDebug() << "MusicSongCheckToolsRenameCore" << m_songItems->count();
+        MusicSongs *musicSongs = &m_songItems->first().m_songs;
+        SongCheckToolsRenames items;
+        MusicSongTag tag;
+        foreach(const MusicSong &song, *musicSongs)
+        {
+            if(!m_run)
+            {
+                emit finished(SongCheckToolsRenames());
+                return;
+            }
+
+            if(!tag.readFile(song.getMusicPath()))
+            {
+                continue;
+            }
+
+            if(tag.getArtist() != song.getMusicArtistFront() ||
+               tag.getTitle() != song.getMusicArtistBack())
+            {
+                items << SongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle());
+            }
+        }
+        emit finished(items);
     }
 }
 

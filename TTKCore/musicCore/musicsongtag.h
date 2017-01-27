@@ -22,6 +22,10 @@ public:
     /*!
      * Object contsructor.
      */
+    explicit MusicSongTag(const QString &file);
+    /*!
+     * Object contsructor.
+     */
     ~MusicSongTag();
 
     static QString getClassName();

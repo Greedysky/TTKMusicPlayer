@@ -18,6 +18,7 @@ HEADERS  += \
     $$PWD/core/musicaudiorecordercore.h \
     $$PWD/core/musicnetworkspeedtestthread.h \
     $$PWD/core/musicsongchecktoolscore.h \
+    $$PWD/core/musicsongchecktoolsunit.h \
     $$PWD/musicmobiledeviceswidget.h \
     $$PWD/musicaudiorecorderwidget.h \
     $$PWD/musictimerwidget.h \

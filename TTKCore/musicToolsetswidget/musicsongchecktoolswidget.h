@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicsong.h"
+#include "musicsongchecktoolsunit.h"
 #include "musicabstractmovewidget.h"
 
 namespace Ui {
@@ -56,6 +57,10 @@ public Q_SLOTS:
     void renameReCheckButtonClicked();
     /*!
      * Rename reCheck button clicked.
+     */
+    void renameCheckFinished(const SongCheckToolsRenames &items);
+    /*!
+     * Rename check finished.
      */
     void qualityButtonClicked();
     /*!
@@ -106,7 +111,7 @@ protected:
 
     Ui::MusicSongCheckToolsWidget *m_ui;
 
-    MusicSongItems m_localSongs;
+    MusicSongItems *m_localSongs;
     MusicSongCheckToolsRenameCore *m_renameCore;
     MusicSongCheckToolsDuplicateCore *m_duplicateCore;
     MusicSongCheckToolsQualityCore *m_qualityCore;

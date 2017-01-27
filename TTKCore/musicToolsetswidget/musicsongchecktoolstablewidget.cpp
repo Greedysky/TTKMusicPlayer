@@ -7,16 +7,12 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-    setColumnCount(3);
+    setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 290);
-}
-
-MusicSongCheckToolsRenameTableWidget::~MusicSongCheckToolsRenameTableWidget()
-{
-
+    headerview->resizeSection(3, 54);
 }
 
 QString MusicSongCheckToolsRenameTableWidget::getClassName()
@@ -24,27 +20,30 @@ QString MusicSongCheckToolsRenameTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongs &songs)
+void MusicSongCheckToolsRenameTableWidget::createAllItems(const SongCheckToolsRenames &items)
 {
-    setRowCount(songs.count());
-    for(int i=0; i<songs.count(); ++i)
+    setRowCount(items.count());
+    for(int i=0; i<items.count(); ++i)
     {
-        const MusicSong song = songs[i];
+        const SongCheckToolsRename song = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicName(), Qt::ElideRight, 245));
-        item->setToolTip(song.getMusicPath());
+        item->setToolTip(song.m_locaName);
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 280));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), song.getMusicTime(), Qt::ElideRight, 40));
-        item->setToolTip(song.getMusicTime());
+        item->setToolTip(song.m_RecommendName);
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 280));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
+
+                item = new QTableWidgetItem;
+        setItem(i, 3, item);
     }
 }
 
@@ -79,11 +78,6 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 290);
-}
-
-MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
-{
-
 }
 
 QString MusicSongCheckToolsDuplicateTableWidget::getClassName()
@@ -146,11 +140,6 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 290);
-}
-
-MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
-{
-
 }
 
 QString MusicSongCheckToolsQualityTableWidget::getClassName()

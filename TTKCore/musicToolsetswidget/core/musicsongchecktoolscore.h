@@ -3,6 +3,7 @@
 
 #include <QThread>
 #include "musicsong.h"
+#include "musicsongchecktoolsunit.h"
 
 /*! @brief The class of the song check tools rename thread.
  * @author Greedysky <greedysky@163.com>
@@ -28,6 +29,12 @@ public:
     void stopAndQuitThread();
     /*!
      * Stop and quit current thread.
+     */
+
+Q_SIGNALS:
+    void finished(const SongCheckToolsRenames &items);
+    /*!
+     * Rename check finished.
      */
 
 public Q_SLOTS:

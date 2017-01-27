@@ -2,6 +2,7 @@
 #define MUSICSONGCHECKTOOLSTABLEWIDGET_H
 
 #include "musicsong.h"
+#include "musicsongchecktoolsunit.h"
 #include "musicfillitemtablewidget.h"
 
 /*! @brief The class of the song check tools rename table widget.
@@ -9,22 +10,24 @@
  */
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameTableWidget : public MusicFillItemTableWidget
 {
+    Q_OBJECT
 public:
     explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongCheckToolsRenameTableWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
 
-    void createAllItems(const MusicSongs &songs);
+    void createAllItems(const SongCheckToolsRenames &items);
     /*!
      * Create all items.
      */
+
+public Q_SLOTS:
     void selectedAllItems(bool check);
     /*!
      * Select all items.
@@ -39,12 +42,12 @@ public:
  */
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateTableWidget : public MusicFillItemTableWidget
 {
+    Q_OBJECT
 public:
     explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongCheckToolsDuplicateTableWidget();
 
     static QString getClassName();
     /*!
@@ -55,6 +58,8 @@ public:
     /*!
      * Create all items.
      */
+
+public Q_SLOTS:
     void selectedAllItems(bool check);
     /*!
      * Select all items.
@@ -69,12 +74,12 @@ public:
  */
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityTableWidget : public MusicFillItemTableWidget
 {
+    Q_OBJECT
 public:
     explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongCheckToolsQualityTableWidget();
 
     static QString getClassName();
     /*!
@@ -85,6 +90,8 @@ public:
     /*!
      * Create all items.
      */
+
+public Q_SLOTS:
     void selectedAllItems(bool check);
     /*!
      * Select all items.

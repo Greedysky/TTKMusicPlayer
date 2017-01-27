@@ -15,6 +15,12 @@ MusicSongTag::MusicSongTag()
     m_tag = nullptr;
 }
 
+MusicSongTag::MusicSongTag(const QString &file)
+    : MusicSongTag()
+{
+    readFile(file);
+}
+
 MusicSongTag::~MusicSongTag()
 {
     delete m_tag;
@@ -27,6 +33,11 @@ QString MusicSongTag::getClassName()
 
 bool MusicSongTag::readFile(const QString &file)
 {
+    if(!QFile::exists(file))
+    {
+        return false;
+    }
+
     delete m_tag;
     m_tag = new TagReadAndWrite(file);
     m_filePath = file;
