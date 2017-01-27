@@ -4270,6 +4270,66 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>MusicSongCheckToolsDuplicateTableWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="132"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="136"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicSongCheckToolsQualityTableWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="229"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="233"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="241"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="246"/>
+        <source>UnKnow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="250"/>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="254"/>
+        <source>Normal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="258"/>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="262"/>
+        <source>LLess</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MusicSongCheckToolsRenameTableWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolstablewidget.cpp" line="49"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicSongCheckToolsWidget</name>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="14"/>
@@ -4289,7 +4349,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="138"/>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="323"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="552"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="603"/>
         <source>开始检查</source>
         <translation>StartCheck</translation>
     </message>
@@ -4305,29 +4365,25 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="206"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="464"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="668"/>
         <source>本地文件名</source>
         <translation>Local Filename</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="222"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="416"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="616"/>
         <source>推荐文件名</source>
         <translation>Recommended Filename</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="238"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="387"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="684"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="535"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="738"/>
         <source>操作</source>
         <translation>Operation</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="302"/>
         <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="371"/>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="568"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="619"/>
         <source>重新检测</source>
         <translation>ReCheck</translation>
     </message>
@@ -4342,49 +4398,97 @@ p, li { white-space: pre-wrap; }
         <translation>Clear duplicate songs to reduce hard disk space occupation.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="520"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="387"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="754"/>
+        <source>时长</source>
+        <translation>Length</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="448"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="690"/>
+        <source>歌曲名称</source>
+        <translation>Song Name</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="487"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="770"/>
+        <source>大小</source>
+        <translation>Size</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="503"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="722"/>
+        <source>码率</source>
+        <translation>Bitrate</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="519"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="706"/>
+        <source>播放</source>
+        <translation>Play</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="571"/>
         <source>为您精心挑选优质音乐文件。</source>
         <translation>Select high quality music files for you.</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="536"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="587"/>
         <source>自动检测歌曲音质优劣</source>
         <translation>Automatic Detection Of Song Quality</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="765"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="786"/>
+        <source>音质评价</source>
+        <translation>Quality</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="870"/>
         <source>扫描范围:</source>
         <translation>Range:</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="781"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="886"/>
         <source>全部列表</source>
         <translation>All Lists</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="797"/>
+        <location filename="../TTKCore/musicUi/musicToolsetswidget/musicsongchecktoolswidget.ui" line="902"/>
         <source>更改</source>
         <translation>Mod</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="18"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="21"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="50"/>
         <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="58"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="66"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="111"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="119"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="161"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="169"/>
         <source>StartCheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="54"/>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="74"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="62"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="82"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="115"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="135"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="165"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="185"/>
         <source>StopCheck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="61"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="69"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="96"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="122"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="147"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicToolsetswidget/musicsongchecktoolswidget.cpp" line="198"/>
         <source>ApplayCheck</source>
         <translation type="unfinished"></translation>
     </message>
