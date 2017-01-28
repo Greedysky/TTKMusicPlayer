@@ -49,6 +49,10 @@ public Q_SLOTS:
     /*!
      * Modified item button clicked.
      */
+    void itemListsChanged(const MusicObject::MIntList &items);
+    /*!
+     * Item lists changed.
+     */
     void renameButtonClicked();
     /*!
      * Rename button clicked.
@@ -127,6 +131,8 @@ protected:
     Ui::MusicSongCheckToolsWidget *m_ui;
 
     MusicSongs m_localSongs;
+    bool m_selectedItemIdFlag;
+    MusicObject::MIntList m_selectedItemIds;
     MusicSongCheckToolsRenameCore *m_renameCore;
     MusicSongCheckToolsDuplicateCore *m_duplicateCore;
     MusicSongCheckToolsQualityCore *m_qualityCore;

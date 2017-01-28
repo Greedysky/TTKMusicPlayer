@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>歌词颜色</string>
+   <string>选择扫描范围</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:rgba(255,255,255)</string>
    </property>
    <widget class="QPushButton" name="confirmButton">
     <property name="geometry">
@@ -86,9 +86,9 @@
    <widget class="QCheckBox" name="selectAllCheckButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>27</x>
       <y>245</y>
-      <width>71</width>
+      <width>80</width>
       <height>16</height>
      </rect>
     </property>
@@ -100,9 +100,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>30</y>
+      <y>20</y>
       <width>260</width>
-      <height>200</height>
+      <height>210</height>
      </rect>
     </property>
    </widget>

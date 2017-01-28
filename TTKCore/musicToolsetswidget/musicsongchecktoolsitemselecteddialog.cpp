@@ -3,16 +3,21 @@
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
 
+#include <QScrollBar>
+
 MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 290);
+    headerview->resizeSection(1, 222);
 }
 
 QString MusicSongCheckToolsItemSelectedTableWidget::getClassName()
@@ -73,8 +78,8 @@ MusicSongCheckToolsItemSelectedDialog::MusicSongCheckToolsItemSelectedDialog(QWi
     m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->selectAllCheckButton->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(accept()));
-    connect(m_ui->selectAllCheckButton, SIGNAL(clicked()), SLOT(accept()));
+    connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+    connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(selectedAllItems(bool)));
 }
 
 MusicSongCheckToolsItemSelectedDialog::~MusicSongCheckToolsItemSelectedDialog()
@@ -90,6 +95,12 @@ QString MusicSongCheckToolsItemSelectedDialog::getClassName()
 void MusicSongCheckToolsItemSelectedDialog::createAllItems(MusicSongItems *items)
 {
     m_ui->itemTableWidget->createAllItems(items);
+}
+
+void MusicSongCheckToolsItemSelectedDialog::confirmButtonClicked()
+{
+    emit itemListsChanged( m_ui->itemTableWidget->getSelectedItems() );
+    accept();
 }
 
 int MusicSongCheckToolsItemSelectedDialog::exec()

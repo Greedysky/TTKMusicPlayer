@@ -7,6 +7,8 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicsongchecktoolsitemselecteddialog.h"
 
+#include <QDebug>
+
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongCheckToolsWidget)
@@ -22,6 +24,8 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->modifiedItemButton, SIGNAL(clicked()), SLOT(modifiedItemButtonClicked()));
+
+    m_selectedItemIdFlag = false;
 
     renameWidgetInit();
     qualityWidgetInit();
@@ -52,9 +56,17 @@ void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
     MusicSongItems songs;
     emit getMusicLists(songs);
 
+    m_selectedItemIdFlag = true;
     MusicSongCheckToolsItemSelectedDialog dialog;
+    connect(&dialog, SIGNAL(itemListsChanged(MusicObject::MIntList)), SLOT(itemListsChanged(MusicObject::MIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();
+}
+
+void MusicSongCheckToolsWidget::itemListsChanged(const MusicObject::MIntList &items)
+{
+    m_selectedItemIds = items;
+    m_ui->itemLabel->setText(tr("Custom Lists"));
 }
 
 void MusicSongCheckToolsWidget::renameButtonClicked()
@@ -227,10 +239,21 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
 
     foreach(const MusicSongItem &item, songs)
     {
-        if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST &&
-           item.m_itemIndex != MUSIC_RECENT_LIST )
+        if(m_selectedItemIdFlag)
         {
-            m_localSongs << item.m_songs;
+            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST &&
+               item.m_itemIndex != MUSIC_RECENT_LIST && m_selectedItemIds.contains(item.m_itemIndex))
+            {
+                m_localSongs << item.m_songs;
+            }
+        }
+        else
+        {
+            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST &&
+               item.m_itemIndex != MUSIC_RECENT_LIST)
+            {
+                m_localSongs << item.m_songs;
+            }
         }
     }
 }

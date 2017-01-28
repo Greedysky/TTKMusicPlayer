@@ -41,9 +41,9 @@ void MusicSongCheckToolsRenameCore::start()
 
 void MusicSongCheckToolsRenameCore::run()
 {
+    SongCheckToolsRenames items;
     if(m_songItems && !m_songItems->isEmpty())
     {
-        SongCheckToolsRenames items;
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
         {
@@ -64,8 +64,8 @@ void MusicSongCheckToolsRenameCore::run()
                 items << SongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle());
             }
         }
-        emit finished(items);
     }
+    emit finished(items);
 }
 
 
@@ -110,9 +110,9 @@ void MusicSongCheckToolsDuplicateCore::start()
 
 void MusicSongCheckToolsDuplicateCore::run()
 {
+    SongCheckToolsDuplicates items;
     if(m_songItems && m_songItems->count() >= 4)
     {
-        SongCheckToolsDuplicates items;
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
         {
@@ -129,8 +129,8 @@ void MusicSongCheckToolsDuplicateCore::run()
 
             items << SongCheckToolsDuplicate(song, tag.getBitrate());
         }
-        emit finished(items);
     }
+    emit finished(items);
 }
 
 
@@ -175,9 +175,9 @@ void MusicSongCheckToolsQualityCore::start()
 
 void MusicSongCheckToolsQualityCore::run()
 {
+    SongCheckToolsQualitys items;
     if(m_songItems && m_songItems->count() >= 4)
     {
-        SongCheckToolsQualitys items;
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
         {
@@ -194,8 +194,8 @@ void MusicSongCheckToolsQualityCore::run()
 
             items << SongCheckToolsQuality(song, tag.getBitrate(), transfromBitrateToQuality(tag.getBitrate()));
         }
-        emit finished(items);
     }
+    emit finished(items);
 }
 
 int MusicSongCheckToolsQualityCore::transfromBitrateToQuality(const QString &bitrate) const

@@ -63,7 +63,17 @@ public:
      * Create all items.
      */
 
+Q_SIGNALS:
+    void itemListsChanged(const MusicObject::MIntList &items);
+    /*!
+     * Item lists changed.
+     */
+
 public Q_SLOTS:
+    void confirmButtonClicked();
+    /*!
+     * Confirm button clicked.
+     */
     virtual int exec();
     /*!
      * Override exec function.
