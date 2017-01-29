@@ -7,8 +7,6 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicsongchecktoolsitemselecteddialog.h"
 
-#include <QDebug>
-
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSongCheckToolsWidget)

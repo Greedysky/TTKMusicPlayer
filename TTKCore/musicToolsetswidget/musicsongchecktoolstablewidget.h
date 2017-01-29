@@ -27,9 +27,19 @@ public:
      */
 
 public Q_SLOTS:
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
     void selectedAllItems(bool check);
     /*!
      * Select all items.
+     */
+
+protected:
+    void deleteCurrentRow();
+    /*!
+     * Delete current selected row.
      */
 
 };
@@ -47,6 +57,7 @@ public:
     /*!
      * Object contsructor.
      */
+    virtual ~MusicSongCheckToolsDuplicateTableWidget();
 
     static QString getClassName();
     /*!
@@ -58,10 +69,30 @@ public:
      * Create all items.
      */
 
+Q_SIGNALS:
+    void addSongToPlay(const QStringList &list);
+    /*!
+     * Add current selected song to play lists.
+     */
+
 public Q_SLOTS:
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
     void selectedAllItems(bool check);
     /*!
      * Select all items.
+     */
+
+protected:
+    void musicPlay();
+    /*!
+     * Add selected music song path to list.
+     */
+    void deleteCurrentRow();
+    /*!
+     * Delete current selected row.
      */
 
 };
@@ -79,6 +110,7 @@ public:
     /*!
      * Object contsructor.
      */
+    virtual ~MusicSongCheckToolsQualityTableWidget();
 
     static QString getClassName();
     /*!
@@ -94,10 +126,30 @@ public:
      * Transfrom bitrate to quality.
      */
 
+Q_SIGNALS:
+    void addSongToPlay(const QStringList &list);
+    /*!
+     * Add current selected song to play lists.
+     */
+
 public Q_SLOTS:
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Table widget list cell click.
+     */
     void selectedAllItems(bool check);
     /*!
      * Select all items.
+     */
+
+protected:
+    void musicPlay();
+    /*!
+     * Add selected music song path to list.
+     */
+    void deleteCurrentRow();
+    /*!
+     * Delete current selected row.
      */
 
 };
