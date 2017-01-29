@@ -27,12 +27,20 @@ QString MusicSongCheckToolsItemSelectedTableWidget::getClassName()
 
 void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *items)
 {
+    if(items->count() >= 4)
+    {
+        items->takeAt(1);   //MUSIC_LOVEST_LIST
+        items->takeAt(1);   //MUSIC_NETWORK_LIST
+        items->takeAt(1);   //MUSIC_RECENT_LIST
+    }
+
     setRowCount(items->count());
     for(int i=0; i<items->count(); ++i)
     {
         const MusicSongItem song = (*items)[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
+        item->setData(MUSIC_DATAS_ROLE, song.m_itemIndex);
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -41,6 +49,20 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
+}
+
+MusicObject::MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
+{
+    MusicObject::MIntList list;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 0);
+        if(it && it->data(MUSIC_CHECK_ROLE) == true)
+        {
+            list << it->data(MUSIC_DATAS_ROLE).toInt();
+        }
+    }
+    return list;
 }
 
 void MusicSongCheckToolsItemSelectedTableWidget::selectedAllItems(bool check)

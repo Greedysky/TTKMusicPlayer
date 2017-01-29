@@ -239,8 +239,7 @@ void MusicSongCheckToolsWidget::getSelectedSongItems()
     {
         if(m_selectedItemIdFlag)
         {
-            if(item.m_itemIndex != MUSIC_LOVEST_LIST && item.m_itemIndex != MUSIC_NETWORK_LIST &&
-               item.m_itemIndex != MUSIC_RECENT_LIST && m_selectedItemIds.contains(item.m_itemIndex))
+            if(m_selectedItemIds.contains(item.m_itemIndex))
             {
                 m_localSongs << item.m_songs;
             }

@@ -111,7 +111,7 @@ void MusicSongCheckToolsDuplicateCore::start()
 void MusicSongCheckToolsDuplicateCore::run()
 {
     SongCheckToolsDuplicates items;
-    if(m_songItems && m_songItems->count() >= 4)
+    if(m_songItems && !m_songItems->isEmpty())
     {
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
@@ -176,7 +176,7 @@ void MusicSongCheckToolsQualityCore::start()
 void MusicSongCheckToolsQualityCore::run()
 {
     SongCheckToolsQualitys items;
-    if(m_songItems && m_songItems->count() >= 4)
+    if(m_songItems && !m_songItems->isEmpty())
     {
         MusicSongTag tag;
         foreach(const MusicSong &song, *m_songItems)
