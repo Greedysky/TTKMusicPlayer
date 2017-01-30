@@ -6,6 +6,7 @@ MusicSongCheckToolsRenameCore::MusicSongCheckToolsRenameCore(QObject *parent)
 {
     m_run = false;
     m_songItems = nullptr;
+    m_operateMode = MusicObject::Check;
 }
 
 MusicSongCheckToolsRenameCore::~MusicSongCheckToolsRenameCore()
@@ -41,31 +42,52 @@ void MusicSongCheckToolsRenameCore::start()
 
 void MusicSongCheckToolsRenameCore::run()
 {
-    SongCheckToolsRenames items;
     if(m_songItems && !m_songItems->isEmpty())
     {
-        MusicSongTag tag;
-        foreach(const MusicSong &song, *m_songItems)
+        if(m_operateMode == MusicObject::Check)
         {
-            if(!m_run)
+            m_datas.clear();
+            MusicSongTag tag;
+            foreach(const MusicSong &song, *m_songItems)
             {
-                emit finished(SongCheckToolsRenames());
-                return;
-            }
+                if(!m_run)
+                {
+                    emit finished(SongCheckToolsRenames());
+                    return;
+                }
 
-            if(!tag.readFile(song.getMusicPath()))
-            {
-                continue;
-            }
+                if(!tag.readFile(song.getMusicPath()))
+                {
+                    continue;
+                }
 
-            if(tag.getArtist() != song.getMusicArtistFront() ||
-               tag.getTitle() != song.getMusicArtistBack())
+                if((!tag.getArtist().isEmpty() && !tag.getTitle().isEmpty()) &&
+                     (tag.getArtist() != song.getMusicArtistFront() ||
+                      tag.getTitle() != song.getMusicArtistBack()) )
+                {
+                    m_datas << SongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle(),
+                                                    song.getMusicPath());
+                }
+            }
+        }
+        else
+        {
+            foreach(const SongCheckToolsRename &song, m_datas)
             {
-                items << SongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle());
+                if(!m_run)
+                {
+                    emit finished(SongCheckToolsRenames());
+                    return;
+                }
+
+                QFileInfo info(song.m_filePath);
+                QFile::rename(song.m_filePath, QString("%1%2%3.%4").arg(info.absolutePath())
+                                               .arg(QDir::separator()).arg(song.m_RecommendName)
+                                               .arg(info.suffix()));
             }
         }
     }
-    emit finished(items);
+    emit finished(m_datas);
 }
 
 
@@ -110,27 +132,43 @@ void MusicSongCheckToolsDuplicateCore::start()
 
 void MusicSongCheckToolsDuplicateCore::run()
 {
-    SongCheckToolsDuplicates items;
     if(m_songItems && !m_songItems->isEmpty())
     {
-        MusicSongTag tag;
-        foreach(const MusicSong &song, *m_songItems)
+        if(m_operateMode == MusicObject::Check)
         {
-            if(!m_run)
+            m_datas.clear();
+            MusicSongTag tag;
+            foreach(const MusicSong &song, *m_songItems)
             {
-                emit finished(SongCheckToolsDuplicates());
-                return;
-            }
+                if(!m_run)
+                {
+                    emit finished(SongCheckToolsDuplicates());
+                    return;
+                }
 
-            if(!tag.readFile(song.getMusicPath()))
+                if(!tag.readFile(song.getMusicPath()))
+                {
+                    continue;
+                }
+
+                m_datas << SongCheckToolsDuplicate(song, tag.getBitrate());
+            }
+        }
+        else
+        {
+            foreach(const SongCheckToolsDuplicate &song, m_datas)
             {
-                continue;
-            }
+                if(!m_run)
+                {
+                    emit finished(SongCheckToolsDuplicates());
+                    return;
+                }
 
-            items << SongCheckToolsDuplicate(song, tag.getBitrate());
+                QFile::remove(song.m_song.getMusicPath());
+            }
         }
     }
-    emit finished(items);
+    emit finished(m_datas);
 }
 
 

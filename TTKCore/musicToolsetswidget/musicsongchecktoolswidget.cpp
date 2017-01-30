@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicsongchecktoolscore.h"
 #include "musicconnectionpool.h"
+#include "musicmessagebox.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicsongchecktoolsitemselecteddialog.h"
 
@@ -83,6 +84,8 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->stop();
         m_ui->renameLoadingLabel->hide();
         m_ui->renameCheckButton->setText(tr("StartCheck"));
+
+        m_renameCore->setMode(MusicObject::Check);
         m_renameCore->stopAndQuitThread();
     }
     else if(m_ui->renameCheckButton->text() == tr("ApplayCheck"))
@@ -90,6 +93,10 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->stop();
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
+
+        m_renameCore->setMode(MusicObject::Apply);
+        m_renameCore->stopAndQuitThread();
+        m_renameCore->start();
     }
 }
 
@@ -104,20 +111,30 @@ void MusicSongCheckToolsWidget::renameReCheckButtonClicked()
     m_ui->renameTableWidget->clear();
     m_renameCore->stopAndQuitThread();
     getSelectedSongItems();
+    m_renameCore->setMode(MusicObject::Check);
     m_renameCore->setRenameSongs(&m_localSongs);
     m_renameCore->start();
 }
 
 void MusicSongCheckToolsWidget::renameCheckFinished(const SongCheckToolsRenames &items)
 {
-    m_ui->renameLoadingLabel->stop();
-    m_ui->renameLoadingLabel->hide();
-    m_ui->renameCheckButton->setText(tr("ApplayCheck"));
-    m_ui->renameReCheckButton->show();
-    m_ui->renameSelectAllButton->setEnabled(!items.isEmpty());
+    if(m_renameCore->getMode() == MusicObject::Check || items.isEmpty())
+    {
+        m_ui->renameLoadingLabel->stop();
+        m_ui->renameLoadingLabel->hide();
+        m_ui->renameCheckButton->setText(tr("ApplayCheck"));
+        m_ui->renameReCheckButton->show();
+        m_ui->renameSelectAllButton->setEnabled(!items.isEmpty());
 
-    m_ui->renameTableWidget->clear();
-    m_ui->renameTableWidget->createAllItems(items);
+        m_ui->renameTableWidget->clear();
+        m_ui->renameTableWidget->createAllItems(items);
+    }
+    else
+    {
+        MusicMessageBox message;
+        message.setText(tr("rename apply finished"));
+        message.exec();
+    }
 }
 
 void MusicSongCheckToolsWidget::qualityButtonClicked()
@@ -186,6 +203,8 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->stop();
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateCheckButton->setText(tr("StartCheck"));
+
+        m_duplicateCore->setMode(MusicObject::Check);
         m_duplicateCore->stopAndQuitThread();
     }
     else if(m_ui->duplicateCheckButton->text() == tr("ApplayCheck"))
@@ -193,6 +212,10 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->stop();
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateReCheckButton->show();
+
+        m_duplicateCore->setMode(MusicObject::Apply);
+        m_duplicateCore->stopAndQuitThread();
+        m_duplicateCore->start();
     }
 }
 
@@ -206,20 +229,30 @@ void MusicSongCheckToolsWidget::duplicateReCheckButtonClicked()
 
     m_qualityCore->stopAndQuitThread();
     getSelectedSongItems();
+    m_duplicateCore->setMode(MusicObject::Check);
     m_duplicateCore->setDuplicateSongs(&m_localSongs);
     m_duplicateCore->start();
 }
 
 void MusicSongCheckToolsWidget::duplicateCheckFinished(const SongCheckToolsDuplicates &items)
 {
-    m_ui->duplicateLoadingLabel->stop();
-    m_ui->duplicateLoadingLabel->hide();
-    m_ui->duplicateCheckButton->setText(tr("ApplayCheck"));
-    m_ui->duplicateReCheckButton->show();
-    m_ui->duplicateSelectAllButton->setEnabled(!items.isEmpty());
+    if(m_duplicateCore->getMode() == MusicObject::Check || items.isEmpty())
+    {
+        m_ui->duplicateLoadingLabel->stop();
+        m_ui->duplicateLoadingLabel->hide();
+        m_ui->duplicateCheckButton->setText(tr("ApplayCheck"));
+        m_ui->duplicateReCheckButton->show();
+        m_ui->duplicateSelectAllButton->setEnabled(!items.isEmpty());
 
-    m_ui->duplicateTableWidget->clear();
-    m_ui->duplicateTableWidget->createAllItems(items);
+        m_ui->duplicateTableWidget->clear();
+        m_ui->duplicateTableWidget->createAllItems(items);
+    }
+    else
+    {
+        MusicMessageBox message;
+        message.setText(tr("duplicate apply finished"));
+        message.exec();
+    }
 }
 
 void MusicSongCheckToolsWidget::show()

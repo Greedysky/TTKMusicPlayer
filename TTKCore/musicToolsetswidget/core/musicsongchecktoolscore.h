@@ -23,6 +23,15 @@ public:
      * Get class object name.
      */
 
+    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
+    /*!
+     * Set music song check tool mode.
+     */
+    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    /*!
+     * Get music song check tool mode.
+     */
+
     void setRenameSongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
@@ -51,6 +60,8 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
+    SongCheckToolsRenames m_datas;
+    MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
 
@@ -71,6 +82,15 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
+    /*!
+     * Set music song check tool mode.
+     */
+    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    /*!
+     * Get music song check tool mode.
      */
 
     void setDuplicateSongs(MusicSongs *songs);
@@ -101,6 +121,8 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
+    SongCheckToolsDuplicates m_datas;
+    MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
 
