@@ -94,6 +94,7 @@ void MusicSongCheckToolsWidget::renameButtonCheckClicked()
         m_ui->renameLoadingLabel->hide();
         m_ui->renameReCheckButton->show();
 
+        m_renameCore->setItemLists(m_ui->renameTableWidget->getSelectedItems());
         m_renameCore->setMode(MusicObject::Apply);
         m_renameCore->stopAndQuitThread();
         m_renameCore->start();
@@ -129,7 +130,8 @@ void MusicSongCheckToolsWidget::renameCheckFinished(const SongCheckToolsRenames 
         m_ui->renameTableWidget->clear();
         m_ui->renameTableWidget->createAllItems(items);
     }
-    else
+    else if(m_renameCore->getMode() == MusicObject::Apply &&
+           !m_ui->renameTableWidget->getSelectedItems().isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("rename apply finished"));
@@ -213,6 +215,7 @@ void MusicSongCheckToolsWidget::duplicateButtonCheckClicked()
         m_ui->duplicateLoadingLabel->hide();
         m_ui->duplicateReCheckButton->show();
 
+        m_duplicateCore->setItemLists(m_ui->duplicateTableWidget->getSelectedItems());
         m_duplicateCore->setMode(MusicObject::Apply);
         m_duplicateCore->stopAndQuitThread();
         m_duplicateCore->start();
@@ -247,7 +250,8 @@ void MusicSongCheckToolsWidget::duplicateCheckFinished(const SongCheckToolsDupli
         m_ui->duplicateTableWidget->clear();
         m_ui->duplicateTableWidget->createAllItems(items);
     }
-    else
+    else if(m_duplicateCore->getMode() == MusicObject::Apply &&
+           !m_ui->duplicateTableWidget->getSelectedItems().isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("duplicate apply finished"));

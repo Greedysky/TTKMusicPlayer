@@ -31,6 +31,10 @@ public:
     /*!
      * Get music song check tool mode.
      */
+    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
+    /*!
+     * Set item lists.
+     */
 
     void setRenameSongs(MusicSongs *songs);
     /*!
@@ -60,6 +64,7 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
+    MusicObject::MIntList m_itemIDs;
     SongCheckToolsRenames m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
@@ -92,6 +97,10 @@ public:
     /*!
      * Get music song check tool mode.
      */
+    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
+    /*!
+     * Set item lists.
+     */
 
     void setDuplicateSongs(MusicSongs *songs);
     /*!
@@ -121,6 +130,7 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
+    MusicObject::MIntList m_itemIDs;
     SongCheckToolsDuplicates m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 

@@ -72,7 +72,7 @@ void MusicSongCheckToolsRenameCore::run()
         }
         else
         {
-            foreach(const SongCheckToolsRename &song, m_datas)
+            foreach(const int index, m_itemIDs)
             {
                 if(!m_run)
                 {
@@ -80,6 +80,7 @@ void MusicSongCheckToolsRenameCore::run()
                     return;
                 }
 
+                const SongCheckToolsRename song = m_datas[index];
                 QFileInfo info(song.m_filePath);
                 QFile::rename(song.m_filePath, QString("%1%2%3.%4").arg(info.absolutePath())
                                                .arg(QDir::separator()).arg(song.m_RecommendName)
@@ -156,7 +157,7 @@ void MusicSongCheckToolsDuplicateCore::run()
         }
         else
         {
-            foreach(const SongCheckToolsDuplicate &song, m_datas)
+            foreach(const int index, m_itemIDs)
             {
                 if(!m_run)
                 {
@@ -164,6 +165,7 @@ void MusicSongCheckToolsDuplicateCore::run()
                     return;
                 }
 
+                const SongCheckToolsDuplicate song = m_datas[index];
                 QFile::remove(song.m_song.getMusicPath());
             }
         }
