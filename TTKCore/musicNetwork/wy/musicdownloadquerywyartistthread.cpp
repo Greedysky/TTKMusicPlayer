@@ -6,7 +6,7 @@
 MusicDownLoadQueryWYArtistThread::MusicDownLoadQueryWYArtistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-
+    m_queryServer = "WangYi";
 }
 
 QString MusicDownLoadQueryWYArtistThread::getClassName()

@@ -8,7 +8,7 @@
 MusicDownLoadQueryTTArtistThread::MusicDownLoadQueryTTArtistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-
+    m_queryServer = "TTpod";
 }
 
 QString MusicDownLoadQueryTTArtistThread::getClassName()

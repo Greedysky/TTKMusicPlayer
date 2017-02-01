@@ -11,7 +11,7 @@
 MusicDownLoadQueryTTThread::MusicDownLoadQueryTTThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-
+    m_queryServer = "TTpod";
 }
 
 QString MusicDownLoadQueryTTThread::getClassName()
@@ -23,7 +23,6 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
 {
     m_searchText = text.trimmed();
     m_currentType = type;
-
     QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SEARCH_URL, URL_KEY).arg(text);
 
     if(m_reply)

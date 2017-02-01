@@ -7,6 +7,7 @@ MusicDownLoadQueryXMArtistThread::MusicDownLoadQueryXMArtistThread(QObject *pare
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_index = 0;
+    m_queryServer = "XiaMi";
 }
 
 QString MusicDownLoadQueryXMArtistThread::getClassName()
