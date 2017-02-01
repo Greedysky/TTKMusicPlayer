@@ -19,6 +19,7 @@
 #include "musictextdownloadthread.h"
 #include "musictttextdownloadthread.h"
 #include "musicwytextdownloadthread.h"
+#include "musicxmtextdownloadthread.h"
 
 QString MusicDownLoadQueryFactory::getClassName()
 {
@@ -83,7 +84,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrc(const QSt
     switch( index )
     {
         case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
-        case 2: return (new MusicTextDownLoadThread(url, save, type, parent));
+        case 2: return (new MusicXMTextDownLoadThread(url, save, type, parent));
         case 3: return (new MusicTTTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));

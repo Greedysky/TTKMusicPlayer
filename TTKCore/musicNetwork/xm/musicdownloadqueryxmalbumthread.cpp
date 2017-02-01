@@ -96,12 +96,16 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         musicInfo.m_albumId = value["name"].toString() + "<>" +
                                             value["language"].toString() + "<>" +
                                             value["company"].toString() + "<>" +
-                                QDateTime::fromMSecsSinceEpoch(value["demoCreateTime"].toULongLong()/1000)
+                                QDateTime::fromMSecsSinceEpoch(value["demoCreateTime"].toULongLong())
                                              .toString("yyyy-MM-dd");
 
                         musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
                                                   value["album_logo"].toString().replace("_1.", "_4.");
-                        musicInfo.m_lrcUrl = value["lyric_url"].toString();
+                        QString lrcUrl = value["lyric_url"].toString();
+                        if(!lrcUrl.endsWith("txt"))
+                        {
+                            musicInfo.m_lrcUrl = lrcUrl;
+                        }
 
                         ///music normal songs urls
                         QVariantList auditions = value["allAudios"].toList();

@@ -1,5 +1,5 @@
-#ifndef MUSICWYTEXTDOWNLOADTHREAD_H
-#define MUSICWYTEXTDOWNLOADTHREAD_H
+#ifndef MUSICXMTEXTDOWNLOADTHREAD_H
+#define MUSICXMTEXTDOWNLOADTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,14 +11,14 @@
 
 #include "musicdownloadthreadabstract.h"
 
-/*! @brief The class of downloading the type of wangyi txt.
+/*! @brief The class of downloading the type of xiami txt.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYTextDownLoadThread : public MusicDownLoadThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicXMTextDownLoadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
 public:
-    MusicWYTextDownLoadThread(const QString &url, const QString &save,
+    MusicXMTextDownLoadThread(const QString &url, const QString &save,
                               Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
@@ -39,6 +39,9 @@ public Q_SLOTS:
      * Download data from net finished.
      */
 
+protected:
+    QString m_lrcType;
+
 };
 
-#endif // MUSICWYTEXTDOWNLOADTHREAD_H
+#endif // MUSICXMTEXTDOWNLOADTHREAD_H

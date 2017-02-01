@@ -1,20 +1,22 @@
-#include "musicwytextdownloadthread.h"
+#include "musicxmtextdownloadthread.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicWYTextDownLoadThread::MusicWYTextDownLoadThread(const QString &url, const QString &save,
+#include <QRegularExpression>
+
+MusicXMTextDownLoadThread::MusicXMTextDownLoadThread(const QString &url, const QString &save,
                                                      Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
 }
 
-QString MusicWYTextDownLoadThread::getClassName()
+QString MusicXMTextDownLoadThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicWYTextDownLoadThread::startToDownload()
+void MusicXMTextDownLoadThread::startToDownload()
 {
     if( !m_file->exists() || m_file->size() < 4 )
     {
@@ -22,6 +24,8 @@ void MusicWYTextDownLoadThread::startToDownload()
         {
             m_timer.start(MT_S2MS);
             m_manager = new QNetworkAccessManager(this);
+
+            m_lrcType = m_url.right(3);
 
             QNetworkRequest request;
             request.setUrl(m_url);
@@ -43,14 +47,14 @@ void MusicWYTextDownLoadThread::startToDownload()
         }
         else
         {
-            emit downLoadDataChanged("The wangyi text file create failed");
-            M_LOGGER_ERROR("The wangyi text file create failed!");
+            emit downLoadDataChanged("The xiami text file create failed");
+            M_LOGGER_ERROR("The xiami text file create failed!");
             deleteAll();
         }
     }
 }
 
-void MusicWYTextDownLoadThread::downLoadFinished()
+void MusicXMTextDownLoadThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -62,31 +66,34 @@ void MusicWYTextDownLoadThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-        QJson::Parser parser;
-        bool ok;
-        QVariant data = parser.parse(bytes, &ok);
-        if(ok)
+        if(!bytes.isEmpty())
         {
-            QVariantMap value = data.toMap();
-            if(value.contains("code") && value["code"].toInt() == 200)
+            if(m_lrcType == "lrc")
             {
-                value = value["lrc"].toMap();
-                if(!value.isEmpty())
-                {
-                    QString data = value["lyric"].toString();
-                    QTextStream outstream(m_file);
-                    outstream.setCodec("utf-8");
-                    outstream << data.toUtf8() << endl;
-                    m_file->close();
-                    M_LOGGER_INFO("wangyi text download  has finished!");
-                }
+                QTextStream outstream(m_file);
+                outstream.setCodec("utf-8");
+                outstream << QString(bytes).remove("\r").toUtf8() << endl;
             }
-            else
+            else if(m_lrcType == "trc")
             {
-                M_LOGGER_ERROR("wangyi text download file error!");
+                QTextStream outstream(m_file);
+                outstream.setCodec("utf-8");
+                QString data = QString(bytes).remove("\r");
+                data.remove(QRegularExpression("<[^>]*>"));
+                outstream << data.toUtf8() << endl;
+            }
+            else if(m_lrcType == "txt")
+            {
                 m_file->remove();
-                m_file->close();
             }
+            m_file->close();
+            M_LOGGER_INFO("xiami text download has finished!");
+        }
+        else
+        {
+            M_LOGGER_ERROR("xiami text download file error!");
+            m_file->remove();
+            m_file->close();
         }
     }
 

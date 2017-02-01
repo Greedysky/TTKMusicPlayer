@@ -94,3 +94,9 @@ SOURCES += \
     $$PWD/musicidentifysongsthread.cpp
 
 }
+
+HEADERS += \
+    $$PWD/xm/musicxmtextdownloadthread.h
+
+SOURCES += \
+    $$PWD/xm/musicxmtextdownloadthread.cpp

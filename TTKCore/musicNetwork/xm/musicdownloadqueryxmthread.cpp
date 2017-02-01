@@ -95,15 +95,9 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         QString lrcUrl = lrcValue["lyricFile"].toString();
                         if(!lrcUrl.endsWith("txt"))
                         {
-                            if(lrcUrl.endsWith("trc"))
-                            {
-                                musicInfo.m_lrcUrl = lrcUrl;
-                            }
-                            else
-                            {
-                                musicInfo.m_lrcUrl = lrcUrl;
-                            }
+                            musicInfo.m_lrcUrl = lrcUrl;
                         }
+
                         ///music normal songs urls
                         QVariantList auditions = value["allAudios"].toList();
                         foreach(const QVariant &audition, auditions)
