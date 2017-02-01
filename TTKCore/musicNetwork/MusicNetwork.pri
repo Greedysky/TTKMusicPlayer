@@ -11,6 +11,7 @@ INCLUDEPATH += $$PWD \
                $$PWD/nr \
                $$PWD/tt \
                $$PWD/wy \
+               $$PWD/xm \
                $$PWD/vip
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
@@ -31,6 +32,9 @@ HEADERS  += \
     $$PWD/wy/musicdownloadqueryalbumwythread.h \
     $$PWD/wy/musicdownloadqueryartistwythread.h \
     $$PWD/wy/musicwycommentsthread.h \
+    $$PWD/xm/musicdownloadqueryxmthread.h \
+    $$PWD/xm/musicdownloadqueryxmalbumthread.h \
+    $$PWD/xm/musicdownloadqueryxmartistthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -66,6 +70,9 @@ SOURCES += \
     $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
     $$PWD/wy/musicdownloadqueryartistwythread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
+    $$PWD/xm/musicdownloadqueryxmthread.cpp \
+    $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
+    $$PWD/xm/musicdownloadqueryxmartistthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \

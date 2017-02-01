@@ -3,12 +3,15 @@
 
 #include "musicdownloadqueryttthread.h"
 #include "musicdownloadquerywythread.h"
+#include "musicdownloadqueryxmthread.h"
 
 #include "musicdownloadqueryalbumttthread.h"
 #include "musicdownloadqueryalbumwythread.h"
+#include "musicdownloadqueryxmalbumthread.h"
 
 #include "musicdownloadqueryartistttthread.h"
 #include "musicdownloadqueryartistwythread.h"
+#include "musicdownloadqueryxmartistthread.h"
 
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
@@ -28,7 +31,8 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
     switch( index )
     {
         case 0: return (new MusicDownLoadQueryWYThread(parent));
-        case 4: return (new MusicDownLoadQueryTTThread(parent));
+        case 2: return (new MusicDownLoadQueryXMThread(parent));
+        case 3: return (new MusicDownLoadQueryTTThread(parent));
     }
     return (new MusicDownLoadQueryWYThread(parent));
 }
@@ -39,7 +43,8 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
     switch( index )
     {
         case 0: return (new MusicDownLoadQueryAlbumWYThread(parent));
-        case 4: return (new MusicDownLoadQueryAlbumTTThread(parent));
+        case 2: return (new MusicDownLoadQueryXMAlbumThread(parent));
+        case 3: return (new MusicDownLoadQueryAlbumTTThread(parent));
     }
     return (new MusicDownLoadQueryAlbumWYThread(parent));
 }
@@ -50,7 +55,8 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
     switch( index )
     {
         case 0: return (new MusicDownLoadQueryArtistWYThread(parent));
-        case 4: return (new MusicDownLoadQueryArtistTTThread(parent));
+        case 2: return (new MusicDownLoadQueryXMArtistThread(parent));
+        case 3: return (new MusicDownLoadQueryArtistTTThread(parent));
     }
     return (new MusicDownLoadQueryArtistWYThread(parent));
 }
@@ -63,7 +69,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(cons
     switch( index )
     {
         case 0: return (new MusicDataDownloadThread(url, save, type, parent));
-        case 4: return (new MusicDataDownloadThread(url, save, type, parent));
+        case 3: return (new MusicDataDownloadThread(url, save, type, parent));
     }
     return (new MusicDataDownloadThread(url, save, type, parent));
 }
@@ -76,7 +82,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrc(const QSt
     switch( index )
     {
         case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
-        case 4: return (new MusicTTTextDownLoadThread(url, save, type, parent));
+        case 3: return (new MusicTTTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));
 }

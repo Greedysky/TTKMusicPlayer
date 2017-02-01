@@ -84,46 +84,41 @@ void MusicDownLoadQueryArtistWYThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation info;
-                    info.m_songName = value["name"].toString();
-                    info.m_singerName = singerName;
-                    info.m_smallPicUrl = smallPicUrl;
-                    info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    info.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
+                    MusicObject::MusicSongInfomation musicInfo;
+                    musicInfo.m_songName = value["name"].toString();
+                    musicInfo.m_singerName = singerName;
+                    musicInfo.m_smallPicUrl = smallPicUrl;
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                    musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
 
                     if(m_queryAllRecords)
                     {
-                        readFromMusicSongAttribute(&info, value["lMusic"].toMap(), MB_32);
-                        readFromMusicSongAttribute(&info, value["bMusic"].toMap(), MB_128);
-                        readFromMusicSongAttribute(&info, value["mMusic"].toMap(), MB_192);
-                        readFromMusicSongAttribute(&info, value["hMusic"].toMap(), MB_320);
+                        readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
+                        readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
+                        readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
+                        readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
                     }
                     else
                     {
                         if(m_searchQuality == tr("ST"))
-                            readFromMusicSongAttribute(&info, value["lMusic"].toMap(), MB_32);
-                        if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(&info, value["bMusic"].toMap(), MB_128);
+                            readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
+                        else if(m_searchQuality == tr("SD"))
+                            readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
                         else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(&info, value["mMusic"].toMap(), MB_192);
+                            readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
                         else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(&info, value["hMusic"].toMap(), MB_320);
+                            readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
                     }
 
-                    if(info.m_songAttrs.isEmpty())
+                    if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
 
-                    emit createSearchedItems(info.m_songName, info.m_singerName, info.m_timeLength);
-                    m_musicSongInfos << info;
+                    emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                    m_musicSongInfos << musicInfo;
                 }
             }
-        }
-        else
-        {
-            emit downLoadDataChanged(QString());
-            deleteAll();
         }
     }
 
