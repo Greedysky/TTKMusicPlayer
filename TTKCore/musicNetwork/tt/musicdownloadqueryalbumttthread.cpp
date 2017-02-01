@@ -16,10 +16,10 @@ QString MusicDownLoadQueryAlbumTTThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryAlbumTTThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryAlbumTTThread::startSearchSong(QueryType type, const QString &album)
 {
     Q_UNUSED(type);
-    startSearchSong(text);
+    startSearchSong(album);
 }
 
 void MusicDownLoadQueryAlbumTTThread::startSearchSong(const QString &album)

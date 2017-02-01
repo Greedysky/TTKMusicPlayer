@@ -21,20 +21,16 @@ HEADERS  += \
     $$PWD/radio/musicradiothreadabstract.h \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
-    $$PWD/nr/musicdownloadqueryalbumthread.h \
-    $$PWD/nr/musicdownloadqueryartistthread.h \
-    $$PWD/nr/musicdownloadquerymultiplethread.h \
     $$PWD/tt/musicttdatadownloadthread.h \
     $$PWD/tt/musictttextdownloadthread.h \
     $$PWD/tt/musicdownloadqueryttthread.h \
     $$PWD/tt/musicdownloadqueryalbumttthread.h \
+    $$PWD/tt/musicdownloadqueryartistttthread.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
     $$PWD/wy/musicdownloadqueryalbumwythread.h \
+    $$PWD/wy/musicdownloadqueryartistwythread.h \
     $$PWD/wy/musicwycommentsthread.h \
-    $$PWD/vip/musicdownloadquerymultiplevipthread.h \
-    $$PWD/vip/musicdownloadqueryalbumvipthread.h \
-    $$PWD/vip/musicdownloadqueryartistvipthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -60,20 +56,16 @@ SOURCES += \
     $$PWD/radio/musicradiothreadabstract.cpp \
     $$PWD/nr/musicdatadownloadthread.cpp \
     $$PWD/nr/musictextdownloadthread.cpp \
-    $$PWD/nr/musicdownloadqueryalbumthread.cpp \
-    $$PWD/nr/musicdownloadqueryartistthread.cpp \
-    $$PWD/nr/musicdownloadquerymultiplethread.cpp \
     $$PWD/tt/musicttdatadownloadthread.cpp \
     $$PWD/tt/musictttextdownloadthread.cpp \
     $$PWD/tt/musicdownloadqueryttthread.cpp \
     $$PWD/tt/musicdownloadqueryalbumttthread.cpp \
+    $$PWD/tt/musicdownloadqueryartistttthread.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \
     $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
+    $$PWD/wy/musicdownloadqueryartistwythread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
-    $$PWD/vip/musicdownloadquerymultiplevipthread.cpp \
-    $$PWD/vip/musicdownloadqueryalbumvipthread.cpp \
-    $$PWD/vip/musicdownloadqueryartistvipthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \

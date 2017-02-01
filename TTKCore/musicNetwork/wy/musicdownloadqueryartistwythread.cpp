@@ -1,32 +1,30 @@
-#include "musicdownloadqueryalbumwythread.h"
+#include "musicdownloadqueryartistwythread.h"
 #include "musicdownloadquerywythread.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QDateTime>
-
-MusicDownLoadQueryAlbumWYThread::MusicDownLoadQueryAlbumWYThread(QObject *parent)
+MusicDownLoadQueryArtistWYThread::MusicDownLoadQueryArtistWYThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
 
 }
 
-QString MusicDownLoadQueryAlbumWYThread::getClassName()
+QString MusicDownLoadQueryArtistWYThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryAlbumWYThread::startSearchSong(QueryType type, const QString &album)
+void MusicDownLoadQueryArtistWYThread::startSearchSong(QueryType type, const QString &artist)
 {
     Q_UNUSED(type);
-    startSearchSong(album);
+    startSearchSong(artist);
 }
 
-void MusicDownLoadQueryAlbumWYThread::startSearchSong(const QString &album)
+void MusicDownLoadQueryArtistWYThread::startSearchSong(const QString &artist)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_ALBUM_URL, URL_KEY).arg(album);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_ARTIST_URL, URL_KEY).arg(artist);
 
     if(m_reply)
     {
@@ -50,7 +48,7 @@ void MusicDownLoadQueryAlbumWYThread::startSearchSong(const QString &album)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
+void MusicDownLoadQueryArtistWYThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -71,15 +69,13 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["code"].toInt() == 200 && value.contains("album"))
+            if(value["code"].toInt() == 200 && value.contains("hotSongs"))
             {
-                value = value["album"].toMap();
-                QString albumInfo = value["name"].toString() + "<>" +
-                                    value["language"].toString() + "<>" +
-                                    value["company"].toString() + "<>" +
-                        QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong())
-                                     .toString("yyyy-MM-dd");
-                QVariantList datas = value["songs"].toList();
+                QVariantMap artistObject = value["artist"].toMap();
+                QString smallPicUrl = artistObject["picUrl"].toString();
+                QString singerName = artistObject["name"].toString();
+
+                QVariantList datas = value["hotSongs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -90,23 +86,10 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
                     value = var.toMap();
                     MusicObject::MusicSongInfomation info;
                     info.m_songName = value["name"].toString();
+                    info.m_singerName = singerName;
+                    info.m_smallPicUrl = smallPicUrl;
                     info.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     info.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
-
-                    QVariantMap albumObject = value["album"].toMap();
-                    info.m_smallPicUrl = albumObject["picUrl"].toString();
-                    info.m_albumId = albumInfo;
-
-                    QVariantList artistsArray = value["artists"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
-                    {
-                        if(artistValue.isNull())
-                        {
-                            continue;
-                        }
-                        QVariantMap artistMap = artistValue.toMap();
-                        info.m_singerName = artistMap["name"].toString();
-                    }
 
                     if(m_queryAllRecords)
                     {
@@ -148,7 +131,7 @@ void MusicDownLoadQueryAlbumWYThread::downLoadFinished()
     deleteAll();
 }
 
-void MusicDownLoadQueryAlbumWYThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryArtistWYThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                                  const QVariantMap &key, int bitrate)
 {
     MusicObject::MusicSongAttribute attr;
@@ -160,12 +143,12 @@ void MusicDownLoadQueryAlbumWYThread::readFromMusicSongAttribute(MusicObject::Mu
     info->m_songAttrs.append(attr);
 }
 
-QString MusicDownLoadQueryAlbumWYThread::encryptedId(qlonglong id)
+QString MusicDownLoadQueryArtistWYThread::encryptedId(qlonglong id)
 {
     return encryptedId(QString::number(id));
 }
 
-QString MusicDownLoadQueryAlbumWYThread::encryptedId(const QString &string)
+QString MusicDownLoadQueryArtistWYThread::encryptedId(const QString &string)
 {
     QByteArray array1(WY_ENCRYPT_STRING);
     QByteArray array2 = string.toUtf8();

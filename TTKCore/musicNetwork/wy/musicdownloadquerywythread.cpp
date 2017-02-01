@@ -139,6 +139,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                             continue;
                         }
                         QVariantMap artistMap = artistValue.toMap();
+                        info.m_artistId = QString::number(artistMap["id"].toULongLong());
                         info.m_singerName = artistMap["name"].toString();
                     }
 

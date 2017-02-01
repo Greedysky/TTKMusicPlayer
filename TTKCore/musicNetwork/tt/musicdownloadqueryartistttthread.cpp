@@ -1,30 +1,30 @@
+#include "musicdownloadqueryartistttthread.h"
 #include "musicdownloadqueryttthread.h"
-#include "musicdownloadthreadabstract.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QNetworkRequest>
-#include <QNetworkAccessManager>
-
-MusicDownLoadQueryTTThread::MusicDownLoadQueryTTThread(QObject *parent)
+MusicDownLoadQueryArtistTTThread::MusicDownLoadQueryArtistTTThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
 
 }
 
-QString MusicDownLoadQueryTTThread::getClassName()
+QString MusicDownLoadQueryArtistTTThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryArtistTTThread::startSearchSong(QueryType type, const QString &artist)
 {
-    m_searchText = text.trimmed();
-    m_currentType = type;
+    Q_UNUSED(type);
+    startSearchSong(artist);
+}
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SEARCH_URL, URL_KEY).arg(text);
+void MusicDownLoadQueryArtistTTThread::startSearchSong(const QString &artist)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_SINGER_URL, URL_KEY).arg(artist);
 
     if(m_reply)
     {
@@ -45,7 +45,7 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryTTThread::downLoadFinished()
+void MusicDownLoadQueryArtistTTThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -58,16 +58,15 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
-
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("data"))
+            if(value["code"].toInt() == 1 || value["code"].toInt() == 200)
             {
                 QVariantList datas = value["data"].toList();
                 foreach(const QVariant &var, datas)
@@ -148,9 +147,6 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         }
                         emit createSearchedItems(songName, singerName, duration);
 
-                        musicInfo.m_songId = songId;
-                        musicInfo.m_artistId = QString::number(value["singerId"].toULongLong());
-                        musicInfo.m_albumId = QString::number(value["albumId"].toULongLong());
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
                         musicInfo.m_singerName = singerName;
@@ -158,63 +154,8 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         musicInfo.m_timeLength = duration;
                         m_musicSongInfos << musicInfo;
                     }
-                    else
-                    {
-                        QVariantList mvs = value["mvList"].toList();
-                        if(!mvs.isEmpty())
-                        {
-                            QString duration;
-                            foreach(const QVariant &mv, mvs)
-                            {
-                                QVariantMap mvUrlValue = mv.toMap();
-                                if(mvUrlValue.isEmpty())
-                                {
-                                    continue;
-                                }
-
-                                int bitRate = mvUrlValue["bitRate"].toInt();
-                                if(bitRate == 0)
-                                {
-                                    continue;
-                                }
-
-                                duration = MusicTime::msecTime2LabelJustified(mvUrlValue["duration"].toInt());
-                                MusicObject::MusicSongAttribute songAttr;
-
-                                if(bitRate > 375 && bitRate <= 625)
-                                    songAttr.m_bitrate = MB_500;
-                                else if(bitRate > 625 && bitRate <= 875)
-                                    songAttr.m_bitrate = MB_750;
-                                else if(bitRate > 875)
-                                    songAttr.m_bitrate = MB_1000;
-                                else
-                                    songAttr.m_bitrate = bitRate;
-
-                                songAttr.m_format = mvUrlValue["suffix"].toString();
-                                songAttr.m_url = mvUrlValue["url"].toString();
-                                songAttr.m_size = MusicUtils::Number::size2Label(mvUrlValue["size"].toInt());
-                                musicInfo.m_songAttrs << songAttr;
-                            }
-                            emit createSearchedItems(songName, singerName, duration);
-
-                            musicInfo.m_singerName = singerName;
-                            musicInfo.m_songName = songName;
-                            m_musicSongInfos << musicInfo;
-                        }
-                    }
                 }
             }
-        }
-        ///If there is no search to song_id, is repeated several times in the search
-        ///If more than 5 times or no results give up
-        static int counter = 5;
-        if(m_musicSongInfos.isEmpty() && counter-- > 0)
-        {
-            startSearchSong(m_currentType, m_searchText);
-        }
-        else
-        {
-            M_LOGGER_ERROR("not find the song_Id");
         }
     }
 
