@@ -55,7 +55,7 @@ public Q_SLOTS:
     /*!
      * Strat thread now.
      */
-    void run();
+    virtual void run() override;
     /*!
      * Thread run now.
      */

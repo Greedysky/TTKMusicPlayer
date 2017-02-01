@@ -67,6 +67,10 @@ Item {
                     font.pixelSize: mainMenubar.height*2/5
                     text: qsTr("更多")
                 }
+
+                Rectangle {
+                    Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                }
             }
         }
 
