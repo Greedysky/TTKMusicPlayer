@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="first">
     <widget class="QLabel" name="baseSetShowInfoWidget">
@@ -929,32 +929,6 @@ font-weight:bold;</string>
        <width>150</width>
        <height>22</height>
       </rect>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="downloadServerMultiple">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>213</y>
-       <width>100</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>混合查询</string>
-     </property>
-    </widget>
-    <widget class="QCheckBox" name="downloadServerMultipleVip">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>243</y>
-       <width>100</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>VIP查询</string>
      </property>
     </widget>
    </widget>

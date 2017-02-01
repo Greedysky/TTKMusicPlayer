@@ -166,10 +166,6 @@ public Q_SLOTS:
      * Reset desktop parameter.
      */
 
-    void downloadGroupServer(int index);
-    /*!
-     * Select the server in multi or vip multi.
-     */
     void downloadGroupCached(int index);
     /*!
      * Set enable or disable download cache.

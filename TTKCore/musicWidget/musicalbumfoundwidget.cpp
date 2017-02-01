@@ -215,8 +215,8 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         topLineLayout->setContentsMargins(10, 5, 5, 0);
         QLabel *albumLabel = new QLabel(topLineWidget);
         albumLabel->setStyleSheet(MusicUIObject::MFontStyle01 + MusicUIObject::MFontStyle05);
-        albumLabel->setText(MusicUtils::Widget::elidedText(albumLabel->font(), lists[0], Qt::ElideRight, 220));
         albumLabel->setToolTip(lists[0]);
+        albumLabel->setText(MusicUtils::Widget::elidedText(albumLabel->font(), albumLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *singerLabel = new QLabel(topLineWidget);
         singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         singerLabel->setToolTip(tr("Singer: %1").arg(currentInfo.m_singerName));
