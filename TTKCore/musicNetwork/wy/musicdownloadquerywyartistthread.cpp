@@ -1,28 +1,26 @@
-#include "musicdownloadqueryartistwythread.h"
-#include "musicdownloadquerywythread.h"
-#include "musicnumberutils.h"
+#include "musicdownloadquerywyartistthread.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryArtistWYThread::MusicDownLoadQueryArtistWYThread(QObject *parent)
+MusicDownLoadQueryWYArtistThread::MusicDownLoadQueryWYArtistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
 
 }
 
-QString MusicDownLoadQueryArtistWYThread::getClassName()
+QString MusicDownLoadQueryWYArtistThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryArtistWYThread::startSearchSong(QueryType type, const QString &artist)
+void MusicDownLoadQueryWYArtistThread::startSearchSong(QueryType type, const QString &artist)
 {
     Q_UNUSED(type);
     startSearchSong(artist);
 }
 
-void MusicDownLoadQueryArtistWYThread::startSearchSong(const QString &artist)
+void MusicDownLoadQueryWYArtistThread::startSearchSong(const QString &artist)
 {
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_ARTIST_URL, URL_KEY).arg(artist);
 
@@ -48,7 +46,7 @@ void MusicDownLoadQueryArtistWYThread::startSearchSong(const QString &artist)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryArtistWYThread::downLoadFinished()
+void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -124,42 +122,4 @@ void MusicDownLoadQueryArtistWYThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
-}
-
-void MusicDownLoadQueryArtistWYThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                                                 const QVariantMap &key, int bitrate)
-{
-    MusicObject::MusicSongAttribute attr;
-    qlonglong dfsId = key.value("dfsId").toLongLong();
-    attr.m_bitrate = bitrate;
-    attr.m_format = key.value("extension").toString();
-    attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-    attr.m_url = MusicCryptographicHash::decryptData(WY_SONG_PATH_URL, URL_KEY).arg(encryptedId(dfsId)).arg(dfsId);
-    info->m_songAttrs.append(attr);
-}
-
-QString MusicDownLoadQueryArtistWYThread::encryptedId(qlonglong id)
-{
-    return encryptedId(QString::number(id));
-}
-
-QString MusicDownLoadQueryArtistWYThread::encryptedId(const QString &string)
-{
-    QByteArray array1(WY_ENCRYPT_STRING);
-    QByteArray array2 = string.toUtf8();
-    int length = array1.length();
-    for(int i=0; i<array2.length(); ++i)
-    {
-        array2[i] = array2[i]^array1[i%length];
-    }
-
-    QByteArray encodedData = QCryptographicHash::hash(array2, QCryptographicHash::Md5);
-#if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
-    encodedData = encodedData.toBase64(QByteArray::Base64UrlEncoding);
-#else
-    encodedData = encodedData.toBase64();
-    encodedData.replace('+', '-');
-    encodedData.replace('/', '_');
-#endif
-    return encodedData;
 }

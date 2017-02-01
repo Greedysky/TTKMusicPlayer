@@ -22,16 +22,19 @@ HEADERS  += \
     $$PWD/radio/musicradiothreadabstract.h \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
+    $$PWD/tt/musicdownloadttinterface.h \
     $$PWD/tt/musicttdatadownloadthread.h \
     $$PWD/tt/musictttextdownloadthread.h \
     $$PWD/tt/musicdownloadqueryttthread.h \
-    $$PWD/tt/musicdownloadqueryalbumttthread.h \
-    $$PWD/tt/musicdownloadqueryartistttthread.h \
+    $$PWD/tt/musicdownloadqueryttalbumthread.h \
+    $$PWD/tt/musicdownloadqueryttartistthread.h \
+    $$PWD/wy/musicdownloadwyinterface.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
-    $$PWD/wy/musicdownloadqueryalbumwythread.h \
-    $$PWD/wy/musicdownloadqueryartistwythread.h \
     $$PWD/wy/musicwycommentsthread.h \
+    $$PWD/wy/musicdownloadquerywyalbumthread.h \
+    $$PWD/wy/musicdownloadquerywyartistthread.h \
+    $$PWD/xm/musicdownloadxminterface.h \
     $$PWD/xm/musicdownloadqueryxmthread.h \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
     $$PWD/xm/musicdownloadqueryxmartistthread.h \
@@ -63,13 +66,15 @@ SOURCES += \
     $$PWD/tt/musicttdatadownloadthread.cpp \
     $$PWD/tt/musictttextdownloadthread.cpp \
     $$PWD/tt/musicdownloadqueryttthread.cpp \
-    $$PWD/tt/musicdownloadqueryalbumttthread.cpp \
-    $$PWD/tt/musicdownloadqueryartistttthread.cpp \
+    $$PWD/tt/musicdownloadqueryttalbumthread.cpp \
+    $$PWD/tt/musicdownloadqueryttartistthread.cpp \
+    $$PWD/wy/musicdownloadwyinterface.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \
-    $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
-    $$PWD/wy/musicdownloadqueryartistwythread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
+    $$PWD/wy/musicdownloadquerywyalbumthread.cpp \
+    $$PWD/wy/musicdownloadquerywyartistthread.cpp \
+    $$PWD/xm/musicdownloadxminterface.cpp \
     $$PWD/xm/musicdownloadqueryxmthread.cpp \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
     $$PWD/xm/musicdownloadqueryxmartistthread.cpp \

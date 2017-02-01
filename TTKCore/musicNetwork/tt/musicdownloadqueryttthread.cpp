@@ -1,5 +1,5 @@
 #include "musicdownloadqueryttthread.h"
-#include "musicdownloadthreadabstract.h"
+#include "musicdownloadttinterface.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import

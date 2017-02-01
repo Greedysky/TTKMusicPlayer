@@ -12,7 +12,6 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */

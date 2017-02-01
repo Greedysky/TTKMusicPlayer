@@ -5,12 +5,12 @@
 #include "musicdownloadquerywythread.h"
 #include "musicdownloadqueryxmthread.h"
 
-#include "musicdownloadqueryalbumttthread.h"
-#include "musicdownloadqueryalbumwythread.h"
+#include "musicdownloadqueryttalbumthread.h"
+#include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
 
-#include "musicdownloadqueryartistttthread.h"
-#include "musicdownloadqueryartistwythread.h"
+#include "musicdownloadqueryttartistthread.h"
+#include "musicdownloadquerywyartistthread.h"
 #include "musicdownloadqueryxmartistthread.h"
 
 #include "musicttdatadownloadthread.h"
@@ -42,11 +42,11 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0: return (new MusicDownLoadQueryAlbumWYThread(parent));
+        case 0: return (new MusicDownLoadQueryWYAlbumThread(parent));
         case 2: return (new MusicDownLoadQueryXMAlbumThread(parent));
-        case 3: return (new MusicDownLoadQueryAlbumTTThread(parent));
+        case 3: return (new MusicDownLoadQueryTTAlbumThread(parent));
     }
-    return (new MusicDownLoadQueryAlbumWYThread(parent));
+    return (new MusicDownLoadQueryWYAlbumThread(parent));
 }
 
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QObject *parent)
@@ -54,11 +54,11 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0: return (new MusicDownLoadQueryArtistWYThread(parent));
+        case 0: return (new MusicDownLoadQueryWYArtistThread(parent));
         case 2: return (new MusicDownLoadQueryXMArtistThread(parent));
-        case 3: return (new MusicDownLoadQueryArtistTTThread(parent));
+        case 3: return (new MusicDownLoadQueryTTArtistThread(parent));
     }
-    return (new MusicDownLoadQueryArtistWYThread(parent));
+    return (new MusicDownLoadQueryWYArtistThread(parent));
 }
 
 MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(const QString &url, const QString &save,
@@ -69,6 +69,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPic(cons
     switch( index )
     {
         case 0: return (new MusicDataDownloadThread(url, save, type, parent));
+        case 2: return (new MusicDataDownloadThread(url, save, type, parent));
         case 3: return (new MusicDataDownloadThread(url, save, type, parent));
     }
     return (new MusicDataDownloadThread(url, save, type, parent));
@@ -82,6 +83,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrc(const QSt
     switch( index )
     {
         case 0: return (new MusicWYTextDownLoadThread(url, save, type, parent));
+        case 2: return (new MusicTextDownLoadThread(url, save, type, parent));
         case 3: return (new MusicTTTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));

@@ -9,14 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadxminterface.h"
 #include "musicdownloadquerythreadabstract.h"
-
-const QString XM_SONG_ALBUM_URL    = "SlEzVGhEWWhhMDJBaVJFUWJoejFJZHFQMUhDTktmWExESzh4dHY5ZlhhSStmU2dFV3FabzdHcG1tZk9Sa013aUtVb2dTQ1FuQWtGL1ZndGo=";
 
 /*! @brief The class to xiami query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMAlbumThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMAlbumThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadXMInterface
 {
     Q_OBJECT
 public:
@@ -43,17 +43,6 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
-     */
-
-protected:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QVariantMap &key, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    int map2NormalBitrate(int bitrate);
-    /*!
-     * Map json bitrate to normal bitrate.
      */
 
 };

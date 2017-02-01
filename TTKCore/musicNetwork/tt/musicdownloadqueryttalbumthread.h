@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYALBUMWYTHREAD_H
-#define MUSICDOWNLOADQUERYALBUMWYTHREAD_H
+#ifndef MUSICDOWNLOADQUERYTTALBUMTHREAD_H
+#define MUSICDOWNLOADQUERYTTALBUMTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,16 +11,14 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
-
-/*! @brief The class to wangyi query album download data from net.
+/*! @brief The class to ttpod query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryAlbumWYThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryTTAlbumThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryAlbumWYThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryTTAlbumThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -45,21 +43,7 @@ public Q_SLOTS:
      * Download data from net finished.
      */
 
-protected:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QVariantMap &key, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    QString encryptedId(qlonglong id);
-    /*!
-     * Encrypted music info id.
-     */
-    QString encryptedId(const QString &string);
-    /*!
-     * Encrypted music info id.
-     */
 
 };
 
-#endif // MUSICDOWNLOADQUERYALBUMWYTHREAD_H
+#endif // MUSICDOWNLOADQUERYTTALBUMTHREAD_H

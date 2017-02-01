@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYARTISTTTTHREAD_H
-#define MUSICDOWNLOADQUERYARTISTTTTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#define MUSICDOWNLOADQUERYWYALBUMTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadwyinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-const QString TT_SONG_SINGER_URL   = "aFozbkdtREt1Z3VLaU9MS2hEVDlxMUpCU1cxOExpZUpOelo4QmpMakdwWWxaTGIyWVlpMGpubU11QmgxNE5IaEUrbVJjazZ2TzVJVHRYeGNXaGx0cXc9PQ==";
-
-/*! @brief The class to ttpod query artist download data from net.
+/*! @brief The class to wangyi query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryArtistTTThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYAlbumThread  : public MusicDownLoadQueryThreadAbstract,
+                                                              private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryArtistTTThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYAlbumThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -30,11 +30,11 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &artist) override;
+    virtual void startSearchSong(QueryType type, const QString &album) override;
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSong(const QString &artist);
+    void startSearchSong(const QString &album);
     /*!
      * Start to Search data from name and type.
      */
@@ -47,4 +47,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYARTISTTTTHREAD_H
+#endif // MUSICDOWNLOADQUERYWYALBUMTHREAD_H

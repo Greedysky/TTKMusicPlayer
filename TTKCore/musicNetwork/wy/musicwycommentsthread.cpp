@@ -1,10 +1,8 @@
 #include "musicwycommentsthread.h"
 #include "musicdownloadquerywythread.h"
-#include "musicdownloadquerywythread.h"
 
 #///QJson import
 #include "qjson/parser.h"
-
 
 MusicWYCommentsThread::MusicWYCommentsThread(QObject *parent)
     : MusicNetworkAbstract(parent)

@@ -9,16 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadxminterface.h"
 #include "musicdownloadquerythreadabstract.h"
-
-const QString XM_SONG_ARTIST_URL    = "alRtVWZ5elpjY3cwUzd1Z25NR04rb2krVDIrUkdsUjU1Y3IwM0UxYUFGT21GVVY3K2EwQkQ1cEhucWRFM00wRQ==";
-const QString WY_SONG_QUERY_URL     = "RFJKcUxXdWt5dUhEQ056Rm9RaDhqZW5GSVFBZXZWcXU0bU5QdUZoNlBZY3V3RlFxN25QK1BRPT0=";
-const QString WY_SONG_PLAYLIST_URL  = "YWc0dUhjNGdsTFY2VSsyMVBWWnYxMllDYlZrNFNmMEFBb1B5NlRDcGlwNU9tSDdYR010ODB6OHhocGhFQkx1KzJ4Z1R0eHRwVklzTCtkR0M=";
 
 /*! @brief The class to xiami query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMArtistThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMArtistThread : public MusicDownLoadQueryThreadAbstract,
+                                                              private MusicDownLoadXMInterface
 {
     Q_OBJECT
 public:
@@ -55,15 +53,6 @@ protected:
     void startSongListQuery();
     /*!
      * Start to search song list by id.
-     */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QVariantMap &key, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    int map2NormalBitrate(int bitrate);
-    /*!
-     * Map json bitrate to normal bitrate.
      */
 
     QSet<QString> m_songIds;

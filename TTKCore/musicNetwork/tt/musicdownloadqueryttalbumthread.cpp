@@ -1,30 +1,30 @@
-#include "musicdownloadqueryartistttthread.h"
-#include "musicdownloadqueryttthread.h"
+#include "musicdownloadqueryttalbumthread.h"
+#include "musicdownloadttinterface.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryArtistTTThread::MusicDownLoadQueryArtistTTThread(QObject *parent)
+MusicDownLoadQueryTTAlbumThread::MusicDownLoadQueryTTAlbumThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
 
 }
 
-QString MusicDownLoadQueryArtistTTThread::getClassName()
+QString MusicDownLoadQueryTTAlbumThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryArtistTTThread::startSearchSong(QueryType type, const QString &artist)
+void MusicDownLoadQueryTTAlbumThread::startSearchSong(QueryType type, const QString &album)
 {
     Q_UNUSED(type);
-    startSearchSong(artist);
+    startSearchSong(album);
 }
 
-void MusicDownLoadQueryArtistTTThread::startSearchSong(const QString &artist)
+void MusicDownLoadQueryTTAlbumThread::startSearchSong(const QString &album)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_SINGER_URL, URL_KEY).arg(artist);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_ALBUM_URL, URL_KEY).arg(album);
 
     if(m_reply)
     {
@@ -45,7 +45,7 @@ void MusicDownLoadQueryArtistTTThread::startSearchSong(const QString &artist)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryArtistTTThread::downLoadFinished()
+void MusicDownLoadQueryTTAlbumThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -147,6 +147,10 @@ void MusicDownLoadQueryArtistTTThread::downLoadFinished()
                         }
                         emit createSearchedItems(songName, singerName, duration);
 
+                        musicInfo.m_albumId = value["albumName"].toString() + "<>" +
+                                              QString::number(value["lang"].toInt()) + "<>" +
+                                              value["company"].toString() + "<>" +
+                                              QString::number(value["releaseYear"].toInt());
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
                         musicInfo.m_singerName = singerName;
