@@ -1062,47 +1062,65 @@
     </message>
 </context>
 <context>
-    <name>MusicDownLoadQueryAlbumWYThread</name>
+    <name>MusicDownLoadQueryKGThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryalbumwythread.cpp" line="120"/>
-        <source>ST</source>
-        <translation>压缩品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryalbumwythread.cpp" line="122"/>
+        <location filename="../TTKCore/musicNetwork/kg/musicdownloadquerykgthread.cpp" line="121"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryalbumwythread.cpp" line="124"/>
+        <location filename="../TTKCore/musicNetwork/kg/musicdownloadquerykgthread.cpp" line="123"/>
+        <source>SQ</source>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/kg/musicdownloadquerykgthread.cpp" line="125"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
+    </message>
+</context>
+<context>
+    <name>MusicDownLoadQueryWYAlbumThread</name>
+    <message>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyalbumthread.cpp" line="118"/>
+        <source>ST</source>
+        <translation>压缩品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyalbumthread.cpp" line="120"/>
+        <source>SD</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyalbumthread.cpp" line="122"/>
         <source>HD</source>
         <translation>高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryalbumwythread.cpp" line="126"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyalbumthread.cpp" line="124"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
 </context>
 <context>
-    <name>MusicDownLoadQueryArtistWYThread</name>
+    <name>MusicDownLoadQueryWYArtistThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryartistwythread.cpp" line="103"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyartistthread.cpp" line="101"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryartistwythread.cpp" line="105"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyartistthread.cpp" line="103"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryartistwythread.cpp" line="107"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyartistthread.cpp" line="105"/>
         <source>HD</source>
-        <translation>高品质</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadqueryartistwythread.cpp" line="109"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywyartistthread.cpp" line="107"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
@@ -1110,50 +1128,106 @@
 <context>
     <name>MusicDownLoadQueryWYThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="156"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="152"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="158"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="154"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="160"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="156"/>
         <source>HD</source>
         <translation>高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="162"/>
+        <location filename="../TTKCore/musicNetwork/wy/musicdownloadquerywythread.cpp" line="158"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
 </context>
 <context>
-    <name>MusicDownLoadQueryXMThread</name>
+    <name>MusicDownLoadQueryXMAlbumThread</name>
     <message>
-        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="113"/>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmalbumthread.cpp" line="147"/>
         <source>ST</source>
         <translation>压缩品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="115"/>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmalbumthread.cpp" line="149"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="117"/>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmalbumthread.cpp" line="151"/>
         <source>HD</source>
         <translation>高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="119"/>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmalbumthread.cpp" line="153"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="121"/>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmalbumthread.cpp" line="155"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
+    </message>
+</context>
+<context>
+    <name>MusicDownLoadQueryXMArtistThread</name>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmartistthread.cpp" line="180"/>
+        <source>ST</source>
+        <translation>压缩品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmartistthread.cpp" line="182"/>
+        <source>SD</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmartistthread.cpp" line="184"/>
+        <source>HD</source>
+        <translation>高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmartistthread.cpp" line="186"/>
+        <source>SQ</source>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmartistthread.cpp" line="188"/>
+        <source>CD</source>
+        <translation>无损品质</translation>
+    </message>
+</context>
+<context>
+    <name>MusicDownLoadQueryXMThread</name>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="118"/>
+        <source>ST</source>
+        <translation>压缩品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="120"/>
+        <source>SD</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="122"/>
+        <source>HD</source>
+        <translation>高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="124"/>
+        <source>SQ</source>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetwork/xm/musicdownloadqueryxmthread.cpp" line="126"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -3371,7 +3445,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicQueryFoundTableWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetCore/musicqueryfoundtablewidget.cpp" line="149"/>
+        <location filename="../TTKCore/musicWidgetCore/musicqueryfoundtablewidget.cpp" line="150"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4776,33 +4850,33 @@ p, li { white-space: pre-wrap; }
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="23"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="22"/>
         <source>Close</source>
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="59"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="58"/>
         <source>I used to listen music #%1# by TTKMusicPlayer,</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="60"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="59"/>
         <source>and recommend it to you! (From #TTKMusicPlayer#)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="102"/>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="109"/>
         <source>TTKMusicPlayer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="92"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="91"/>
         <source>Song does not support sharing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="158"/>
+        <location filename="../TTKCore/musicWidget/musicsongsharingwidget.cpp" line="157"/>
         <source>You can enter %1 characters</source>
         <translation type="unfinished"></translation>
     </message>

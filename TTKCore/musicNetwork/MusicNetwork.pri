@@ -40,6 +40,10 @@ HEADERS  += \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
     $$PWD/xm/musicdownloadqueryxmartistthread.h \
     $$PWD/xm/musicxmtextdownloadthread.h \
+    $$PWD/kg/musicdownloadquerykgthread.h \
+    $$PWD/kg/musicdownloadquerykgalbumthread.h \
+    $$PWD/kg/musicdownloadquerykgartistthread.h \
+    $$PWD/kg/musicdownloadkginterface.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -81,6 +85,10 @@ SOURCES += \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
     $$PWD/xm/musicdownloadqueryxmartistthread.cpp \
     $$PWD/xm/musicxmtextdownloadthread.cpp \
+    $$PWD/kg/musicdownloadquerykgthread.cpp \
+    $$PWD/kg/musicdownloadquerykgalbumthread.cpp \
+    $$PWD/kg/musicdownloadquerykgartistthread.cpp \
+    $$PWD/kg/musicdownloadkginterface.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \
@@ -97,15 +105,3 @@ SOURCES += \
     $$PWD/musicidentifysongsthread.cpp
 
 }
-
-HEADERS += \
-    $$PWD/kg/musicdownloadquerykgthread.h \
-    $$PWD/kg/musicdownloadquerykgalbumthread.h \
-    $$PWD/kg/musicdownloadquerykgartistthread.h \
-    $$PWD/kg/musicdownloadkginterface.h
-
-SOURCES += \
-    $$PWD/kg/musicdownloadquerykgthread.cpp \
-    $$PWD/kg/musicdownloadquerykgalbumthread.cpp \
-    $$PWD/kg/musicdownloadquerykgartistthread.cpp \
-    $$PWD/kg/musicdownloadkginterface.cpp
