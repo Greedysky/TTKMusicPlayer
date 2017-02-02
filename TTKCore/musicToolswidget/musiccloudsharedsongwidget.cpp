@@ -10,13 +10,13 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 #include "musictoastlabel.h"
+#include "musicsemaphoreloop.h"
 
 #include "qnconf.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QMenu>
-#include <QTimer>
 #include <QPainter>
 #include <QScrollBar>
 #include <QBoxLayout>
@@ -69,7 +69,7 @@ QString MusicCloudSharedSongTableWidget::getClassName()
 
 bool MusicCloudSharedSongTableWidget::getKey()
 {
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);

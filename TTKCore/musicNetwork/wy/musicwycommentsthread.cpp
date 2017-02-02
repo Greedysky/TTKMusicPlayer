@@ -1,5 +1,6 @@
 #include "musicwycommentsthread.h"
 #include "musicdownloadquerywythread.h"
+#include "musicsemaphoreloop.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -39,7 +40,7 @@ void MusicWYCommentsThread::deleteAll()
 
 void MusicWYCommentsThread::startSearchSong(const QString &name)
 {
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     MusicDownLoadQueryWYThread *query = new MusicDownLoadQueryWYThread(this);
     query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));

@@ -4,6 +4,7 @@
 #include "musiccryptographichash.h"
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
+#include "musicsemaphoreloop.h"
 
 MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -182,7 +183,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
             QString musicEnSong = MusicCryptographicHash::encryptData(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
             QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
-            QEventLoop loop(this);
+            MusicSemaphoreLoop loop(this);
             MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
                                                                              MusicDownLoadThreadAbstract::Download_Music, this);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));

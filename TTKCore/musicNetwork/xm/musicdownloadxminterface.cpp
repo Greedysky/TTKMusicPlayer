@@ -1,6 +1,8 @@
 #include "musicdownloadxminterface.h"
 #include "musiccryptographichash.h"
 #include "musicnumberutils.h"
+#include "musicsemaphoreloop.h"
+
 #///QJson import
 #include "qjson/parser.h"
 
@@ -22,7 +24,7 @@ MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetwor
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager->get( request );
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),

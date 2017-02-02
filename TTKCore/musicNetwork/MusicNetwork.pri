@@ -38,6 +38,7 @@ HEADERS  += \
     $$PWD/xm/musicdownloadqueryxmthread.h \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
     $$PWD/xm/musicdownloadqueryxmartistthread.h \
+    $$PWD/xm/musicxmtextdownloadthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -78,6 +79,7 @@ SOURCES += \
     $$PWD/xm/musicdownloadqueryxmthread.cpp \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
     $$PWD/xm/musicdownloadqueryxmartistthread.cpp \
+    $$PWD/xm/musicxmtextdownloadthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \
@@ -94,9 +96,3 @@ SOURCES += \
     $$PWD/musicidentifysongsthread.cpp
 
 }
-
-HEADERS += \
-    $$PWD/xm/musicxmtextdownloadthread.h
-
-SOURCES += \
-    $$PWD/xm/musicxmtextdownloadthread.cpp
