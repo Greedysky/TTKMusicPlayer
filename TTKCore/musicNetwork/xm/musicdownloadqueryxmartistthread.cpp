@@ -23,7 +23,7 @@ void MusicDownLoadQueryXMArtistThread::startSearchSong(QueryType type, const QSt
 
 void MusicDownLoadQueryXMArtistThread::startSearchSong(const QString &artist)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_ARTIST_URL, URL_KEY);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_ARTIST_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -41,10 +41,29 @@ void MusicDownLoadQueryXMArtistThread::startSearchSong(const QString &artist)
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(WY_SONG_QUERY_URL, URL_KEY).arg(artist).toUtf8());
+    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(XM_ARTIST_QUERY_URL, URL_KEY).arg(artist).toUtf8());
     connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
                    SLOT(replyError(QNetworkReply::NetworkError)) );
+}
+
+void MusicDownLoadQueryXMArtistThread::startLostArtist()
+{
+    if(m_musicSongInfos.isEmpty())
+    {
+        MusicObject::MusicSongInfomation musicInfo = startLostSong(m_manager, m_songIds.toList()[m_index]);
+        ++m_index;
+
+        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+        m_musicSongInfos << musicInfo;
+
+        if(m_index >= m_songIds.count())
+        {
+            emit downLoadDataChanged(QString());
+            deleteAll();
+            return;
+        }
+    }
 }
 
 void MusicDownLoadQueryXMArtistThread::downLoadFinished()
@@ -179,7 +198,7 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
                         emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                         m_musicSongInfos << musicInfo;
 
-                        if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
+                        if( m_index >= m_songIds.count())
                         {
                             emit downLoadDataChanged(QString());
                             deleteAll();
@@ -189,9 +208,12 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
                 }
             }
         }
+        startLostArtist();
     }
     else
     {
+        startLostArtist();
+
         emit downLoadDataChanged(QString());
         deleteAll();
     }
@@ -202,7 +224,7 @@ void MusicDownLoadQueryXMArtistThread::startSongListQuery()
     foreach(const QString &id, m_songIds)
     {
         QNetworkRequest request;
-        request.setUrl(MusicCryptographicHash::decryptData(WY_SONG_PLAYLIST_URL, URL_KEY).arg(id));
+        request.setUrl(MusicCryptographicHash::decryptData(XM_ARTIST_PLAYLIST_URL, URL_KEY).arg(id));
         request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
         request.setRawHeader("Origin", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
         request.setRawHeader("Referer", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());

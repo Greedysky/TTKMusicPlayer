@@ -19,7 +19,7 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
 {
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SEARCH_URL, URL_KEY);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_SEARCH_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -37,7 +37,7 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(WY_SEARCH_QUERY_URL, URL_KEY).arg(text).arg(0).toUtf8());
+    QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(WY_SONG_QUERY_URL, URL_KEY).arg(text).arg(0).toUtf8());
     connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }

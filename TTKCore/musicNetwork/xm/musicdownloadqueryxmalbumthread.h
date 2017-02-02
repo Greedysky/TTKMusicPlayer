@@ -38,11 +38,19 @@ public:
     /*!
      * Start to Search data from name and type.
      */
+    void startLostAlbum(const QString &album);
+    /*!
+     * Start to Search lost album.
+     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
+     */
+    void getLostAlbumFinished();
+    /*!
+     * Get lost album net finished.
      */
 
 };

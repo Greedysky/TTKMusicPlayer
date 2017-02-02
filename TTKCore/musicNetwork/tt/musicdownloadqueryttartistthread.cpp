@@ -24,7 +24,7 @@ void MusicDownLoadQueryTTArtistThread::startSearchSong(QueryType type, const QSt
 
 void MusicDownLoadQueryTTArtistThread::startSearchSong(const QString &artist)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_ARTIST_URL, URL_KEY).arg(artist);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_ARTIST_URL, URL_KEY).arg(artist);
 
     if(m_reply)
     {

@@ -22,7 +22,8 @@ void MusicDownLoadQueryXMAlbumThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryXMAlbumThread::startSearchSong(const QString &album)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_ALBUM_URL, URL_KEY).arg(album);
+    m_searchText = album;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_ALBUM_URL, URL_KEY).arg(album);
 
     if(m_reply)
     {
@@ -44,6 +45,26 @@ void MusicDownLoadQueryXMAlbumThread::startSearchSong(const QString &album)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );
+}
+
+void MusicDownLoadQueryXMAlbumThread::startLostAlbum(const QString &album)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_ALBUM_LOST_URL, URL_KEY).arg(album);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkReply *reply = m_manager->get( request );
+    connect(reply, SIGNAL(finished()), SLOT(getLostAlbumFinished()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+                   SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
@@ -94,10 +115,9 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         musicInfo.m_songId = QString::number(value["songId"].toULongLong());
                         musicInfo.m_artistId = QString::number(value["artistId"].toULongLong());
                         musicInfo.m_albumId = value["name"].toString() + "<>" +
-                                            value["language"].toString() + "<>" +
-                                            value["company"].toString() + "<>" +
-                                QDateTime::fromMSecsSinceEpoch(value["demoCreateTime"].toULongLong())
-                                             .toString("yyyy-MM-dd");
+                                              value["language"].toString() + "<>" +
+                                              value["company"].toString() + "<>" +
+                        QDateTime::fromMSecsSinceEpoch(value["demoCreateTime"].toULongLong()).toString("yyyy-MM-dd");
 
                         musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
                                                   value["album_logo"].toString().replace("_1.", "_4.");
@@ -141,6 +161,64 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         {
                             continue;
                         }
+
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        m_musicSongInfos << musicInfo;
+                    }
+                }
+            }
+        }
+    }
+
+    if(m_musicSongInfos.isEmpty())
+    {
+        startLostAlbum(m_searchText);
+        return;
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+}
+
+void MusicDownLoadQueryXMAlbumThread::getLostAlbumFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    if(reply && reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
+            {
+                value = value["data"].toMap();
+                qint64 publicTime = value["gmt_publish"].toULongLong()*1000;
+                QVariantList datas = value["songs"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    if(value["album_status"].toInt() != 0)
+                    {
+                        continue;
+                    }
+
+                    if(m_currentType != MovieQuery)
+                    {
+                        MusicObject::MusicSongInfomation musicInfo = startLostSong(m_manager, QString::number(value["song_id"].toULongLong()));
+
+                        musicInfo.m_albumId = value["album_name"].toString() + "<>" +
+                                              value["language"].toString() + "<>" +
+                                              value["company"].toString() + "<>" +
+                        QDateTime::fromMSecsSinceEpoch(publicTime).toString("yyyy-MM-dd");
 
                         emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                         m_musicSongInfos << musicInfo;

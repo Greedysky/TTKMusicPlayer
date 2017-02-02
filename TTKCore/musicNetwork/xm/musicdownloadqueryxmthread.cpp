@@ -18,7 +18,7 @@ void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &
 {
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SEARCH_URL, URL_KEY).arg(text);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_SEARCH_URL, URL_KEY).arg(text);
 
     if(m_reply)
     {
@@ -138,7 +138,15 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     }
                     else
                     {
-                        //Mv just not allow
+//                        value["mvUrl"].toString();
+
+//                        if(musicInfo.m_songAttrs.isEmpty())
+//                        {
+//                            continue;
+//                        }
+
+//                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+//                        m_musicSongInfos << musicInfo;
                     }
                 }
             }

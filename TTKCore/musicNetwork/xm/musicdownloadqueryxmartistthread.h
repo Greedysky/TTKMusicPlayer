@@ -38,6 +38,10 @@ public:
     /*!
      * Start to Search data from name and type.
      */
+    void startLostArtist();
+    /*!
+     * Start to Search lost artist.
+     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() override;
