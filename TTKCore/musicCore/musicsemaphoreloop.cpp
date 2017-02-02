@@ -1,9 +1,10 @@
 #include "musicsemaphoreloop.h"
+#include "musicnumberdefine.h"
 
 MusicSemaphoreLoop::MusicSemaphoreLoop(QObject *parent)
     : QEventLoop(parent)
 {
-    m_timer.setInterval(10*1000);
+    m_timer.setInterval(10*MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(quit()));
 }
 

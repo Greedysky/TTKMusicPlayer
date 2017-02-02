@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYWYALBUMTHREAD_H
-#define MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#ifndef MUSICDOWNLOADQUERYKGARTISTTHREAD_H
+#define MUSICDOWNLOADQUERYKGARTISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadwyinterface.h"
+#include "musicdownloadkginterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to wangyi query album download data from net.
+/*! @brief The class to kugou query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYAlbumThread : public MusicDownLoadQueryThreadAbstract,
-                                                             private MusicDownLoadWYInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGArtistThread : public MusicDownLoadQueryThreadAbstract,
+                                                              private MusicDownLoadKGInterface
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryWYAlbumThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKGArtistThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -30,11 +30,11 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &album) override;
+    virtual void startSearchSong(QueryType type, const QString &artist) override;
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSong(const QString &album);
+    void startSearchSong(const QString &artist);
     /*!
      * Start to Search data from name and type.
      */
@@ -47,4 +47,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#endif // MUSICDOWNLOADQUERYKGARTISTTHREAD_H

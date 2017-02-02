@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYWYALBUMTHREAD_H
-#define MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#ifndef MUSICDOWNLOADQUERYKGALBUMTHREAD_H
+#define MUSICDOWNLOADQUERYKGALBUMTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadwyinterface.h"
+#include "musicdownloadkginterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to wangyi query album download data from net.
+/*! @brief The class to kugou query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYAlbumThread : public MusicDownLoadQueryThreadAbstract,
-                                                             private MusicDownLoadWYInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGAlbumThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadKGInterface
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryWYAlbumThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKGAlbumThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -45,6 +45,12 @@ public Q_SLOTS:
      * Download data from net finished.
      */
 
+protected:
+    void readFromMusicSongAlbumInfo(MusicObject::MusicSongInfomation *info);
+    /*!
+     * Read tags(album info) from query results.
+     */
+
 };
 
-#endif // MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#endif // MUSICDOWNLOADQUERYKGALBUMTHREAD_H

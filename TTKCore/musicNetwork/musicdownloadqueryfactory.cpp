@@ -4,14 +4,17 @@
 #include "musicdownloadqueryttthread.h"
 #include "musicdownloadquerywythread.h"
 #include "musicdownloadqueryxmthread.h"
+#include "musicdownloadquerykgthread.h"
 
 #include "musicdownloadqueryttalbumthread.h"
 #include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
+#include "musicdownloadquerykgalbumthread.h"
 
 #include "musicdownloadqueryttartistthread.h"
 #include "musicdownloadquerywyartistthread.h"
 #include "musicdownloadqueryxmartistthread.h"
+#include "musicdownloadquerykgartistthread.h"
 
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
@@ -34,6 +37,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
         case 0: return (new MusicDownLoadQueryWYThread(parent));
         case 2: return (new MusicDownLoadQueryXMThread(parent));
         case 3: return (new MusicDownLoadQueryTTThread(parent));
+        case 6: return (new MusicDownLoadQueryKGThread(parent));
     }
     return (new MusicDownLoadQueryWYThread(parent));
 }
@@ -46,6 +50,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
         case 0: return (new MusicDownLoadQueryWYAlbumThread(parent));
         case 2: return (new MusicDownLoadQueryXMAlbumThread(parent));
         case 3: return (new MusicDownLoadQueryTTAlbumThread(parent));
+        case 6: return (new MusicDownLoadQueryKGAlbumThread(parent));
     }
     return (new MusicDownLoadQueryWYAlbumThread(parent));
 }
@@ -58,6 +63,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
         case 0: return (new MusicDownLoadQueryWYArtistThread(parent));
         case 2: return (new MusicDownLoadQueryXMArtistThread(parent));
         case 3: return (new MusicDownLoadQueryTTArtistThread(parent));
+        case 6: return (new MusicDownLoadQueryKGArtistThread(parent));
     }
     return (new MusicDownLoadQueryWYArtistThread(parent));
 }

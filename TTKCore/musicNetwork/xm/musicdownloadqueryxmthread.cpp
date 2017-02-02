@@ -37,7 +37,7 @@ void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 

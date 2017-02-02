@@ -38,7 +38,7 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
     request.setSslConfiguration(sslConfig);
 #endif
     QNetworkReply *reply = m_manager->post(request, MusicCryptographicHash::decryptData(WY_SONG_QUERY_URL, URL_KEY).arg(text).arg(0).toUtf8());
-    connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
+    connect(reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
