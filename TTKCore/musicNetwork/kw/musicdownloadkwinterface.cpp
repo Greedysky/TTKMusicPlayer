@@ -90,8 +90,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfoma
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                            &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
     QJson::Parser parser;

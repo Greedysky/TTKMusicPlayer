@@ -27,8 +27,7 @@ MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetwor
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager->get( request );
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                            &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
     MusicObject::MusicSongInfomation musicInfo;
@@ -69,7 +68,7 @@ MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetwor
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                const QVariantMap &key, int bitrate)
+                                                          const QVariantMap &key, int bitrate)
 {
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["filePath"].toString();

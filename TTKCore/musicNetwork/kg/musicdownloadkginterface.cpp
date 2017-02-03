@@ -33,8 +33,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                            &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
     QJson::Parser parser;
@@ -76,8 +75,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                            &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
     QJson::Parser parser;
@@ -90,8 +88,9 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
         {
             info->m_artistId = QString::number(value["singerId"].toULongLong());
             info->m_smallPicUrl = value["imgUrl"].toString().replace("{size}", "480");
-            info->m_lrcUrl = "http://m.kugou.com/app/i/krc.php?cmd=100&keyword=" + value["songName"].toString() +
-            "&hash=" + hash + "&timelength=" + QString::number(value["timeLength"].toInt()) + "000&d=0.38664927426725626";
+            info->m_lrcUrl = MusicCryptographicHash::decryptData(KG_SONG_LRC_URL, URL_KEY)
+                                                    .arg(value["songName"].toString()).arg(hash)
+                                                    .arg(value["timeLength"].toInt()*1000);
         }
     }
 }

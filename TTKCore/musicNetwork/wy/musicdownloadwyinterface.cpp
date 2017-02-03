@@ -5,7 +5,7 @@
 #include <QCryptographicHash>
 
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                                            const QVariantMap &key, int bitrate)
+                                                          const QVariantMap &key, int bitrate)
 {
     if(key.isEmpty())
     {

@@ -18,6 +18,9 @@ const QString BD_ALBUM_URL         = "OUQ3VXh4N0dMckNHZGp5UGROTFo2OG1MaXlTSm1QcH
 const QString BD_SONG_SEARCH_URL   = "R01SUmphWmlqU1JBVWhydHJjM2gvZ1Y4WSs5MXVVMU45dlFtS1FDTlBQQ0Mzckc2UTNkRW8ySWtQSjZ0OVhyWE9jR2pzSWJ1a0ZzMVVHdUQ0eVV6RW1wZXBXWTIvc0dXcVp5dkFZUklQbW45TWk2b2RtMUV3eU1UTFRhMlcwOXM1RDZSZzQwKzczTDhZZE5ENXJySXBLUUtnZC9kczZTSFB0cXV5RHg2MjZLZjN2akJ6M3FYdXlhYVNTQzNvdmhMRUxzVnFqWUFQY044azFwQUVyRHRBN0FHT2xsOS9hU0gyYzdtankxSFIvdlVCMTlFRG4vL3NQN0JoSU1MTy9PWEpVY2VYbUVUWUwwSnhtWjg=";
 const QString BD_SONG_ATTR_URL     = "RXpPNndrVDFzc0VmZHYrc0d5SDJ1UHFHdzI4eUZvM3RXK050VmprQi9lRW5NSVZlZTVqTEQydys2aXhZalNNZE1JNlR3Mm9obDFyeFlqamJKYlFQRm5rOUtGU1NLYlJJR2JFSWR5Z1NGNjU5NW5tcHJtR2tqQzVTRGxYUEhPMnVYakdFUWNHaUQrYm9Rem1UeC92ZWJqUW04SS9MelpCRGdEQ3NxSlM0MXdVZE92blZIR290YkR6TzI2WEs3dHN3ZjZ0cmY4VnZBcHFmUWpJOEMzQTdROVZJdk1VSnYwd1VoNmN0L1UvdmJUU3lUZ0VNb1VtM1BPZHJ3bXk5N1c4aGNQY28xMTEyUy9MSDRVOHhLNzB6Y0JqeWxnZkhyWC9kWmdXeXlCa3c2Tkk9";
 const QString BD_SONG_INFO_URL     = "bjFyb25RejVHSXg4cWN1NzNPRVJ0WlJTLzFEeTV5R0pJYWJhUHF1TWtDKzhBdzQ3VmNvcE9mSW5DOFdrUTlVZkcyTFI2ajVhMUhadk1tUUNLanB4eC9kMjYyU1podUZnMzJYNHV3SnRuOUtNa1B4bm5IL3QzMDYzbG13YWFzOTd3cW5kb1EwdHF4R2FnYVRYZWxWSUJab3hMdVBiejNTMjEwRkFmNFpwSm14VXAzOXkxL25nVU0vRVcwOVNHbU9IVnVoeWE5UjhIOHdjK1kxakdPTUQzMmhoQUlvPQ==";
+const QString BD_SONG_FMINFO_URL   = "WFBDcWZMT1djUmlIMVF1bmVRNlhNUlJvaldaOWJSWWJDZzhiNnZ1Y3dua1hjVjlnblVTMU50TktyeGtLc2pTNjFWYzlGY0Q2TW5wM0dweGFqU1ZRNUc3VUdLT3ZRRVgrUnJWa1ZMWC81eTJDMVU5ZittSzhhdz09";
+const QString BD_SONG_YYDOWN_URL   = "YTc1c0N1SVZCTXJlbEVIdUQ5U1lHR3Bta0ZSSm9xWk8wMTZqbTZ0dTB4QTUyRjFZ";
+const QString BD_SONG_SSDOWN_URL   = "UkU5VWt3SjY4SURoUFpoSm5EeHdFOGI5RG9RVHBPcm1yc1ZSVDJmdmFKbCtEQlo0RERNRjVBV2NBMWxUcE1BL2RGN1ZWeWxUSFRZeEVaaFc=";
 /////////////////////////////////////////////////////////////////////////////
 const QString BD_ARTIST_URL        = "RHpvNUpacEpGNjFVV0dhN3JZWmEyWVpjS0hBMVZTeUVFT3FLd0ZyYi9PME5lZjdzL3l5V2Y1TjEvVldEL0dVNTRPdlhNejJIb1E2VVduWkhaRG51YnMwcXpYeW5pdXRzS1QzTm5QOUxyeDNWb2pjOWZ4WElHMU13VlpYWlZmS3lsNlBZQjJnVElkS0RIdVJLTU4ybklzVzVDZ1JnZ3dsbjFmVHBrVzlQODJaSDJtUGtHMHBJVTRvNDcwRzNzLzNIaGIrQ0xYNVlCTlZUYTNUakJZT2hKM2taMVk4MXpXRSs0R3NXSnc9PQ==";
 /////////////////////////////////////////////////////////////////////////////
@@ -37,6 +40,11 @@ public:
      */
     void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                   const QString &id);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                   const QString &id);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
