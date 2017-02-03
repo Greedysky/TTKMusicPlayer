@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYKWARTISTTHREAD_H
-#define MUSICDOWNLOADQUERYKWARTISTTHREAD_H
+#ifndef MUSICDOWNLOADQUERYQQARTISTTHREAD_H
+#define MUSICDOWNLOADQUERYQQARTISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadkwinterface.h"
+#include "musicdownloadqqinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to kuwo query artist download data from net.
+/*! @brief The class to qq query artist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKWArtistThread : public MusicDownLoadQueryThreadAbstract,
-                                                              private MusicDownLoadKWInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQArtistThread : public MusicDownLoadQueryThreadAbstract,
+                                                              private MusicDownLoadQQInterface
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryKWArtistThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryQQArtistThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -47,4 +47,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYKWARTISTTHREAD_H
+#endif // MUSICDOWNLOADQUERYQQARTISTTHREAD_H

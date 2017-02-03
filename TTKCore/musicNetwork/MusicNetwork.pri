@@ -15,6 +15,7 @@ INCLUDEPATH += $$PWD \
                $$PWD/kg \
                $$PWD/kw \
                $$PWD/bd \
+               $$PWD/qq \
                $$PWD/vip
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
@@ -51,6 +52,15 @@ HEADERS  += \
     $$PWD/kw/musicdownloadquerykwartistthread.h \
     $$PWD/kw/musicdownloadkwinterface.h \
     $$PWD/kw/musickwtextdownloadthread.h \
+    $$PWD/bd/musicdownloadquerybdthread.h \
+    $$PWD/bd/musicdownloadquerybdalbumthread.h \
+    $$PWD/bd/musicdownloadquerybdartistthread.h \
+    $$PWD/bd/musicdownloadbdinterface.h \
+    $$PWD/qq/musicdownloadqueryqqthread.h \
+    $$PWD/qq/musicdownloadqueryqqalbumthread.h \
+    $$PWD/qq/musicdownloadqueryqqartistthread.h \
+    $$PWD/qq/musicdownloadqqinterface.h \
+    $$PWD/qq/musicqqtextdownloadthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -101,6 +111,15 @@ SOURCES += \
     $$PWD/kw/musicdownloadquerykwartistthread.cpp \
     $$PWD/kw/musicdownloadkwinterface.cpp \
     $$PWD/kw/musickwtextdownloadthread.cpp \
+    $$PWD/bd/musicdownloadquerybdthread.cpp \
+    $$PWD/bd/musicdownloadquerybdalbumthread.cpp \
+    $$PWD/bd/musicdownloadquerybdartistthread.cpp \
+    $$PWD/bd/musicdownloadbdinterface.cpp \
+    $$PWD/qq/musicdownloadqueryqqthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqalbumthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqartistthread.cpp \
+    $$PWD/qq/musicdownloadqqinterface.cpp \
+    $$PWD/qq/musicqqtextdownloadthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \
@@ -117,15 +136,3 @@ SOURCES += \
     $$PWD/musicidentifysongsthread.cpp
 
 }
-
-HEADERS += \
-    $$PWD/bd/musicdownloadquerybdthread.h \
-    $$PWD/bd/musicdownloadquerybdalbumthread.h \
-    $$PWD/bd/musicdownloadquerybdartistthread.h \
-    $$PWD/bd/musicdownloadbdinterface.h
-
-SOURCES += \
-    $$PWD/bd/musicdownloadquerybdthread.cpp \
-    $$PWD/bd/musicdownloadquerybdalbumthread.cpp \
-    $$PWD/bd/musicdownloadquerybdartistthread.cpp \
-    $$PWD/bd/musicdownloadbdinterface.cpp
