@@ -1,6 +1,4 @@
 #include "musicdownloadquerykwalbumthread.h"
-#include "musicsemaphoreloop.h"
-#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -24,7 +22,6 @@ void MusicDownLoadQueryKWAlbumThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryKWAlbumThread::startSearchSong(const QString &album)
 {
-    m_searchText = album;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KW_ALBUM_URL, URL_KEY).arg(album);
 
     if(m_reply)
@@ -100,7 +97,6 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
 
                         ///music normal songs urls
                         QString auditions = value["formats"].toString();
-                        qDebug() << auditions;
                         if(m_queryAllRecords)
                         {
                             readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_128);
