@@ -7,6 +7,11 @@
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                             const QVariantMap &key, int bitrate)
 {
+    if(key.isEmpty())
+    {
+        return;
+    }
+
     MusicObject::MusicSongAttribute attr;
     qlonglong dfsId = key.value("dfsId").toLongLong();
     attr.m_bitrate = bitrate;

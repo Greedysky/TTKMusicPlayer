@@ -144,6 +144,7 @@ void MusicAlbumFoundWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
+                m_albumTableWidget->hide();
                 m_albumTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getAlbumThread(this));
                 m_albumTableWidget->startSearchQuery(info.m_albumId);
                 break;
@@ -166,6 +167,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
     }
     else
     {
+        m_albumTableWidget->show();
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
         QStringList lists = currentInfo.m_albumId.split("<>");
         if(lists.count() < 4)

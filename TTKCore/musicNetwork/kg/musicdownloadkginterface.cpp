@@ -13,6 +13,11 @@
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash, QNetworkAccessManager *manager)
 {
+    if(hash.isEmpty())
+    {
+        return;
+    }
+
     QByteArray encodedData = QCryptographicHash::hash(QString("%1kgcloud").arg(hash).toUtf8(),
                                                       QCryptographicHash::Md5).toHex().toLower();
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_ATTR_URL, URL_KEY).arg(QString(encodedData)).arg(hash);
@@ -53,6 +58,11 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash, QNetworkAccessManager *manager)
 {
+    if(hash.isEmpty())
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_INFO_URL, URL_KEY).arg(hash);
 
     QNetworkRequest request;

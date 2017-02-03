@@ -143,6 +143,7 @@ void MusicArtistFoundWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
+                m_artistTableWidget->hide();
                 m_artistTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getArtistThread(this));
                 m_artistTableWidget->startSearchQuery(info.m_artistId);
                 break;
@@ -165,6 +166,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
     }
     else
     {
+        m_artistTableWidget->show();
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
 
         layout()->removeWidget(m_mainWindow);
