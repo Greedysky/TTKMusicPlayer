@@ -40,6 +40,18 @@ public Q_SLOTS:
      * Download data from net finished.
      */
 
+protected:
+    void readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+                                  const QString &hash);
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+                                      const QVariantMap &key);
+    /*!
+     * Read mv info attribute from query results.
+     */
+
 };
 
 #endif // MUSICDOWNLOADQUERYKGTHREAD_H

@@ -26,6 +26,8 @@ const QString XM_ARTIST_URL          = "alRtVWZ5elpjY3cwUzd1Z25NR04rb2krVDIrUkds
 const QString XM_ARTIST_QUERY_URL    = "RFJKcUxXdWt5dUhEQ056Rm9RaDhqZW5GSVFBZXZWcXU0bU5QdUZoNlBZY3V3RlFxN25QK1BRPT0=";
 const QString XM_ARTIST_PLAYLIST_URL = "YWc0dUhjNGdsTFY2VSsyMVBWWnYxMllDYlZrNFNmMEFBb1B5NlRDcGlwNU9tSDdYR010ODB6OHhocGhFQkx1KzJ4Z1R0eHRwVklzTCtkR0M=";
 ///////////////////////////////////////////////////////////////////////////
+const QString XM_MV_ATTR_URL         = "NDY3SUJhdXhRUHA4bUVMUmdXSGYyeXpTcmkzcngwYXpRMFZ2UlE9PQ==";
+///////////////////////////////////////////////////////////////////////////
 
 class QNetworkAccessManager;
 

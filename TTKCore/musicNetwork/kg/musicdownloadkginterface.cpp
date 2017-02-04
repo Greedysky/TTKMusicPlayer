@@ -8,6 +8,8 @@
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QSslConfiguration>
+#include <QCryptographicHash>
 #include <QNetworkAccessManager>
 
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,

@@ -119,6 +119,17 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     else
                     {
                         //mv
+                        musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
+                        readFromMusicMVInfoAttribute(&musicInfo, musicInfo.m_songId, "mkv");
+                        readFromMusicMVInfoAttribute(&musicInfo, musicInfo.m_songId, "mp4");
+
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                          continue;
+                        }
+
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        m_musicSongInfos << musicInfo;
                     }
                 }
             }
@@ -127,4 +138,20 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+                                                              const QString &id, const QString &format)
+{
+    if(id.isEmpty())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongAttribute attr;
+    attr.m_bitrate = 1000;
+    attr.m_format = format;
+    attr.m_size = "-";
+    attr.m_url = MusicCryptographicHash::decryptData(KW_MV_ATTR_URL, URL_KEY).arg(id).arg(format);
+    info->m_songAttrs.append(attr);
 }

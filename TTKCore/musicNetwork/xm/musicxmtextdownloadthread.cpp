@@ -2,8 +2,6 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QRegularExpression>
-
 MusicXMTextDownLoadThread::MusicXMTextDownLoadThread(const QString &url, const QString &save,
                                                      Download_Type type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
@@ -79,7 +77,7 @@ void MusicXMTextDownLoadThread::downLoadFinished()
                 QTextStream outstream(m_file);
                 outstream.setCodec("utf-8");
                 QString data = QString(bytes).remove("\r");
-                data.remove(QRegularExpression("<[^>]*>"));
+                data.remove(QRegExp("<[^>]*>"));
                 outstream << data.toUtf8() << endl;
             }
             else if(m_lrcType == "txt")

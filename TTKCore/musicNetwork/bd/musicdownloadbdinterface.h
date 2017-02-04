@@ -24,6 +24,9 @@ const QString BD_SONG_SSDOWN_URL   = "UkU5VWt3SjY4SURoUFpoSm5EeHdFOGI5RG9RVHBPcm
 /////////////////////////////////////////////////////////////////////////////
 const QString BD_ARTIST_URL        = "RHpvNUpacEpGNjFVV0dhN3JZWmEyWVpjS0hBMVZTeUVFT3FLd0ZyYi9PME5lZjdzL3l5V2Y1TjEvVldEL0dVNTRPdlhNejJIb1E2VVduWkhaRG51YnMwcXpYeW5pdXRzS1QzTm5QOUxyeDNWb2pjOWZ4WElHMU13VlpYWlZmS3lsNlBZQjJnVElkS0RIdVJLTU4ybklzVzVDZ1JnZ3dsbjFmVHBrVzlQODJaSDJtUGtHMHBJVTRvNDcwRzNzLzNIaGIrQ0xYNVlCTlZUYTNUakJZT2hKM2taMVk4MXpXRSs0R3NXSnc9PQ==";
 /////////////////////////////////////////////////////////////////////////////
+const QString BD_MV_INFO_URL       = "VU9kR3dUKzFhVUNPcnRHdEpMdXhWeHI3RS9KYUJLV3NGTk5qQ0MxRUdGaVBkMGQ5a055d0VLL2kvZXB6WXV4SUJXNXJjdDZMMGRUeWRkT3lOUTY5c3ZsMFpzZjBjL1R2a1NMOSswemxNdzFFQjBRN3VMcXUvZnhqN2o1WDhoTXR3M1RRc0o3QVFWTGxrVU8rQXBMRFhxdmdzaTZvSk1hV2lzRUxRM0QzRmRod2FSYWVJMERITi95bVVseTFuQ3JQZnBtVWtiS1hNUXp1TkZBZDJvYWNqMWkybTJ3PQ==";
+const QString BD_MV_INFO_ATTR_URL  = "c0h2R2dkNk9JQ2wxZFU3cit1cHllaVNyQ1NpWWZ0U1RESVY0aGprQ2RqWnprbWVkbk1VQlJkZTVIU3VTRERpcEFIOEk4cHBZVE9FZGpjV3pDOGR6d3c9PQ==";
+/////////////////////////////////////////////////////////////////////////////
 
 class QNetworkAccessManager;
 

@@ -194,6 +194,10 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                                 songAttr.m_size = MusicUtils::Number::size2Label(mvUrlValue["size"].toInt());
                                 musicInfo.m_songAttrs << songAttr;
                             }
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
+                            }
                             emit createSearchedItems(songName, singerName, duration);
 
                             musicInfo.m_singerName = singerName;

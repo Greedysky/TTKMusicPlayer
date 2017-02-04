@@ -1,4 +1,5 @@
 #include "musicdownloadqueryxmthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -138,15 +139,17 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     }
                     else
                     {
-//                        value["mvUrl"].toString();
+                        //mv
+                        musicInfo.m_songId = value["mvUrl"].toString();
+                        readFromMusicMVInfoAttribute(&musicInfo, musicInfo.m_songId, "mp4");
 
-//                        if(musicInfo.m_songAttrs.isEmpty())
-//                        {
-//                            continue;
-//                        }
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                            continue;
+                        }
 
-//                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
-//                        m_musicSongInfos << musicInfo;
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        m_musicSongInfos << musicInfo;
                     }
                 }
             }
@@ -155,4 +158,49 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+                                                              const QString &id, const QString &format)
+{
+    if(id.isEmpty())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongAttribute attr;
+    attr.m_bitrate = 1000;
+    attr.m_format = format;
+    attr.m_size = "-";
+    attr.m_url = MusicCryptographicHash::decryptData(XM_MV_ATTR_URL, URL_KEY).arg(id);
+    QUrl musicUrl = attr.m_url;
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get( request );
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    while(reply->canReadLine())
+    {
+        QString data = QString(reply->readLine());
+        if(data.contains("<video src="))
+        {
+            data = data.replace("\t", "");
+            data = data.split("poster=").first();
+            attr.m_url = data.replace("<video src=", "").trimmed();
+            break;
+        }
+    }
+    info->m_songAttrs.append(attr);
 }

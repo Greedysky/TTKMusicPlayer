@@ -23,6 +23,8 @@ const QString KW_SONG_ATTRS_URL    = "MjlwQmQxUlFrazRrVXlrR29BSEtCaDNaNnpRSGJPdl
 /////////////////////////////////////////////////////////////////////////////
 const QString KW_ARTIST_URL        = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
 /////////////////////////////////////////////////////////////////////////////
+const QString KW_MV_ATTR_URL       = "MjlwQmQxUlFrazRrVXlrR29BSEtCaDNaNnpRSGJPdlA4RDE4K3Q4clJqZFpkT2d3d2VLQ3ViSmdnUHRzWThLeVFDekZBME5NK1V1amRsYW5ueWNyQmdUUE5LcFpYWnlYcjlJMUw1dkJvM3BweDRabC9yR0tDbFQ4a2c0PQ==";
+///////////////////////////////////////////////////////////////////////////
 
 class QNetworkAccessManager;
 

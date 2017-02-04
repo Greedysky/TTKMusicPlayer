@@ -113,6 +113,16 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     else
                     {
                         //MV
+                        musicInfo.m_songId = value["mvhash"].toString();
+                        readFromMusicMVAttribute(&musicInfo, musicInfo.m_songId);
+
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                            continue;
+                        }
+
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        m_musicSongInfos << musicInfo;
                     }
                 }
             }
@@ -121,4 +131,85 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QString &hash)
+{
+    if(hash.isEmpty())
+    {
+        return;
+    }
+
+    QByteArray encodedData = QCryptographicHash::hash(QString("%1kugoumvcloud").arg(hash).toUtf8(),
+                                                      QCryptographicHash::Md5).toHex().toLower();
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_MV_ATTR_URL, URL_KEY).arg(QString(encodedData)).arg(hash);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(!value.isEmpty() && value.contains("mvdata"))
+        {
+            value = value["mvdata"].toMap();
+            QVariantMap mv = value["sd"].toMap();
+            if(!mv.isEmpty())
+            {
+                readFromMusicMVInfoAttribute(info, mv);
+            }
+            mv = value["hd"].toMap();
+            if(!mv.isEmpty())
+            {
+                readFromMusicMVInfoAttribute(info, mv);
+            }
+            mv = value["sq"].toMap();
+            if(!mv.isEmpty())
+            {
+                readFromMusicMVInfoAttribute(info, mv);
+            }
+            mv = value["rq"].toMap();
+            if(!mv.isEmpty())
+            {
+                readFromMusicMVInfoAttribute(info, mv);
+            }
+        }
+    }
+}
+
+void MusicDownLoadQueryKGThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+                                                              const QVariantMap &key)
+{
+    MusicObject::MusicSongAttribute attr;
+    attr.m_url = key["downurl"].toString();
+    attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
+    attr.m_format = attr.m_url.right(attr.m_url.length() - attr.m_url.lastIndexOf(".") - 1);
+
+    int bitRate = key["bitrate"].toInt()/1000;
+    if(bitRate > 375 && bitRate <= 625)
+        attr.m_bitrate = MB_500;
+    else if(bitRate > 625 && bitRate <= 875)
+        attr.m_bitrate = MB_750;
+    else if(bitRate > 875)
+        attr.m_bitrate = MB_1000;
+    else
+        attr.m_bitrate = bitRate;
+
+    attr.m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
+    info->m_songAttrs.append(attr);
 }

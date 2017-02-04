@@ -23,6 +23,8 @@ const QString KG_SONG_INFO_URL     = "M1pINTArNUl1RFdvNmtNU3U3bUo4MkxDUnp0UkxrZ3
 ///////////////////////////////////////////////////////////////////////////
 const QString KG_ARTIST_URL        = "b0pLNUhiUmVtZktML3REeTRLQUFRY0tBZXFtU2IyaU9tWGtNbmg0WUlzYTZWUUdQTU00VkVJdWRWYkJxL013QjBMY1YvUzhGU3RWWEFmR2ZQVW1pVkl4enhDZ1p5ZG14bllHZnpkWm5qemR5NlprUGxDaEs1bnhrQzJQYkhCOUY2NWV3UmxuVEs2dVU0U3UwbjJCZ053PT0=";
 ///////////////////////////////////////////////////////////////////////////
+const QString KG_MV_ATTR_URL       = "ajJaR0tsRUUzcUE0ZnZGYmhhR205TkwvUGFMcSt3RU5RaGhqQVFEelRjemRVR3RKNjBEVXJzaWFCU2NFNExoaTFFcDI5bkpMQlRnZlRmWHcvQS9DNzVNNGw4ek1pM2NoTjN4QVBYME4zWkxBME94Mg==";
+///////////////////////////////////////////////////////////////////////////
 
 class QNetworkAccessManager;
 

@@ -8,6 +8,7 @@
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
 MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetworkAccessManager *manager, const QString &song)

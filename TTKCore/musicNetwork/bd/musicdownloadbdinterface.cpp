@@ -2,17 +2,23 @@
 #include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
-
+#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QString &quality, const QString &id)
 {
+    if(id.isEmpty())
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_ATTR_URL, URL_KEY).arg(id).arg(quality)
                     .arg("Xw3BvQ9t46Sb%2BTP4RHZaFsqFx7vHFuQEx6t59t5%2FYrwJuXpxxH6A%2BoWQveBUfYG9");
 
@@ -50,6 +56,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             {
                 attr.m_url.replace(MusicCryptographicHash::decryptData(BD_SONG_YYDOWN_URL, URL_KEY),
                                    MusicCryptographicHash::decryptData(BD_SONG_SSDOWN_URL, URL_KEY));
+                attr.m_duration = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
                 attr.m_size = MusicUtils::Number::size2Label(value["file_size"].toInt());
                 attr.m_format = value["file_extension"].toString();
                 attr.m_bitrate = map2NormalBitrate(value["file_bitrate"].toInt());
@@ -62,6 +69,11 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                         const QString &id)
 {
+    if(id.isEmpty())
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_INFO_URL, URL_KEY).arg(id);
 
     QNetworkRequest request;
@@ -115,6 +127,11 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
 void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                          const QString &id)
 {
+    if(id.isEmpty())
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(id);
 
     QNetworkRequest request;

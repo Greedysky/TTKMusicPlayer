@@ -1,4 +1,5 @@
 #include "musicdownloadqueryqqthread.h"
+#include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
@@ -133,6 +134,16 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     else
                     {
                         //MV
+                        QString mvId = value["vid"].toString();
+                        readFromMusicMVAttribute(&musicInfo, mvId);
+
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                            continue;
+                        }
+
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        m_musicSongInfos << musicInfo;
                     }
                 }
             }
@@ -141,4 +152,132 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QString &id)
+{
+    if(id.isEmpty())
+    {
+        return;
+    }
+
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_MV_INFO_URL, URL_KEY).arg(id);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QByteArray bytes = reply->readAll();
+    bytes.replace("QZOutputJson=", "");
+    bytes.chop(1);
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("fl"))
+        {
+            QString urlPrefix;
+            QVariantMap vlValue = value["vl"].toMap();
+            QVariantList viLists = vlValue["vi"].toList();
+            if(!viLists.isEmpty())
+            {
+                vlValue = viLists.first().toMap();
+                vlValue = vlValue["ul"].toMap();
+                viLists = vlValue["ui"].toList();
+                vlValue = viLists.first().toMap();
+                urlPrefix = vlValue["url"].toString();
+            }
+
+            QVariantMap flValue = value["fl"].toMap();
+            QVariantList mvLists = flValue["fi"].toList();
+            foreach(const QVariant &var, mvLists)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                flValue = var.toMap();
+                MusicObject::MusicSongAttribute attr;
+                attr.m_size = MusicUtils::Number::size2Label(flValue["fs"].toInt());
+                attr.m_format = "mp4";
+
+                int bitRate = flValue["br"].toInt();
+                if(bitRate > 375 && bitRate <= 625)
+                    attr.m_bitrate = MB_500;
+                else if(bitRate > 625 && bitRate <= 875)
+                    attr.m_bitrate = MB_750;
+                else if(bitRate > 875)
+                    attr.m_bitrate = MB_1000;
+                else
+                    attr.m_bitrate = bitRate;
+
+                bitRate = flValue["id"].toULongLong();
+                QString key = getMovieKey(bitRate, id);
+                if(!key.isEmpty())
+                {
+                    QString fn = QString("%1.p%2.1.mp4").arg(id).arg(bitRate - 10000);
+                    attr.m_url = QString("%1%2?vkey=%3").arg(urlPrefix).arg(fn).arg(key);
+                    info->m_songAttrs.append(attr);
+                }
+            }
+        }
+    }
+}
+
+QString MusicDownLoadQueryQQThread::getMovieKey(int id, const QString &videoId)
+{
+    if(videoId.isEmpty())
+    {
+        return QString();
+    }
+
+    QString fn = QString("%1.p%2.1.mp4").arg(videoId).arg(id - 10000);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_MV_KEY_URL, URL_KEY).arg(id).arg(videoId).arg(fn);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QByteArray bytes = reply->readAll();
+    bytes.replace("QZOutputJson=", "");
+    bytes.chop(1);
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("key"))
+        {
+            return value["key"].toString();
+        }
+    }
+
+    return QString();
 }
