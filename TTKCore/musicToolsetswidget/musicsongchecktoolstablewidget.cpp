@@ -13,7 +13,11 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 290);
+#ifdef Q_OS_UNIX
+    headerview->resizeSection(3, 51);
+#else
     headerview->resizeSection(3, 54);
+#endif
 
     setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
 }
@@ -85,7 +89,11 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     headerview->resizeSection(3, 65);
     headerview->resizeSection(4, 80);
     headerview->resizeSection(5, 80);
+#ifdef Q_OS_UNIX
+    headerview->resizeSection(6, 51);
+#else
     headerview->resizeSection(6, 54);
+#endif
 
     MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
     setItemDelegateForColumn(5, delegate);
@@ -173,7 +181,11 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     headerview->resizeSection(4, 80);
     headerview->resizeSection(5, 70);
     headerview->resizeSection(6, 80);
+#ifdef Q_OS_UNIX
+    headerview->resizeSection(7, 51);
+#else
     headerview->resizeSection(7, 54);
+#endif
 
     MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
     setItemDelegateForColumn(6, delegate);

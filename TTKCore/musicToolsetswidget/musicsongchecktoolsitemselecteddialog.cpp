@@ -17,7 +17,11 @@ MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTable
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
+#ifdef Q_OS_UNIX
+    headerview->resizeSection(1, 219);
+#else
     headerview->resizeSection(1, 222);
+#endif
 }
 
 QString MusicSongCheckToolsItemSelectedTableWidget::getClassName()

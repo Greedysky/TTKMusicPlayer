@@ -29,7 +29,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->scrollArea->setWidgetResizable(true);
     m_ui->scrollArea->setFrameShape(QFrame::NoFrame);
     m_ui->scrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->scrollArea->setAlignment(Qt::AlignLeft);
+    m_ui->scrollArea->setAlignment(Qt::AlignVCenter);
     m_ui->scrollArea->setWidget(m_backgroundList);
     m_ui->scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
 
