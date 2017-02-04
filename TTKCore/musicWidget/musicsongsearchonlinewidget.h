@@ -15,7 +15,7 @@
 #define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
 #define AUDITION_STOP MStatic_cast(int, Qt::transparent)
 
-typedef struct MUSIC_NETWORK_EXPORT DownloadData
+typedef struct MUSIC_WIDGET_EXPORT DownloadData
 {
     QString m_songName;
     QString m_time;

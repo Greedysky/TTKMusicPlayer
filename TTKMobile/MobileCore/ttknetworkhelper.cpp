@@ -1,5 +1,5 @@
 #include "ttknetworkhelper.h"
-#include "musicdownloadquerymultiplethread.h"
+#include "musicdownloadquerywythread.h"
 #include "musiccryptographichash.h"
 #include "musicdatadownloadthread.h"
 #include "musictextdownloadthread.h"
@@ -14,7 +14,7 @@ TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     m_currentIndex = -1;
     m_queryType = T_Null;
 
-    m_queryThread = new MusicDownLoadQueryMultipleThread(this);
+    m_queryThread = new MusicDownLoadQueryWYThread(this);
     connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
     connect(m_queryThread, SIGNAL(createSearchedItems(QString,QString,QString)),
                            SIGNAL(createSearchedItems(QString,QString)));

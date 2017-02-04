@@ -429,7 +429,6 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, xml.readShowLrcSize());
 
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, 0);
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerMultipleChoiced, 1);
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, 1);
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, 1);
 

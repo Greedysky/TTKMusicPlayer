@@ -13,7 +13,7 @@
 #include "musicobject.h"
 #include "musicmobileglobaldefine.h"
 
-class MusicDownLoadQueryMultipleThread;
+class MusicDownLoadQueryThreadAbstract;
 
 /*! @brief The class of the music network helper.
  * @author Greedysky <greedysky@163.com>
@@ -148,7 +148,7 @@ protected:
 
     int m_currentIndex;
     Type m_queryType;
-    MusicDownLoadQueryMultipleThread *m_queryThread;
+    MusicDownLoadQueryThreadAbstract *m_queryThread;
 
 };
 

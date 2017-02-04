@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_TOOL_EXPORT MusicBarrageRecord
+typedef struct MUSIC_VIDEO_EXPORT MusicBarrageRecord
 {
     int m_size;
     QString m_color;
