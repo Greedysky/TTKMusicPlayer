@@ -11,7 +11,7 @@
 
 #include "musicdownloadthreadabstract.h"
 
-/*! @brief The class of downloading the type of wnagyi txt.
+/*! @brief The class of downloading the type of wangyi txt.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicWYTextDownLoadThread : public MusicDownLoadThreadAbstract
@@ -40,4 +40,5 @@ public Q_SLOTS:
      */
 
 };
+
 #endif // MUSICWYTEXTDOWNLOADTHREAD_H

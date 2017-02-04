@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYALBUMWYTHREAD_H
-#define MUSICDOWNLOADQUERYALBUMWYTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWYALBUMTHREAD_H
+#define MUSICDOWNLOADQUERYWYALBUMTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadwyinterface.h"
 #include "musicdownloadquerythreadabstract.h"
-
-const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
 
 /*! @brief The class to wangyi query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryAlbumWYThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYAlbumThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryAlbumWYThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYAlbumThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -30,7 +30,7 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &text) override;
+    virtual void startSearchSong(QueryType type, const QString &album) override;
     /*!
      * Start to Search data from name and type.
      */
@@ -45,21 +45,6 @@ public Q_SLOTS:
      * Download data from net finished.
      */
 
-protected:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QVariantMap &key, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    QString encryptedId(qlonglong id);
-    /*!
-     * Encrypted music info id.
-     */
-    QString encryptedId(const QString &string);
-    /*!
-     * Encrypted music info id.
-     */
-
 };
 
-#endif // MUSICDOWNLOADQUERYALBUMWYTHREAD_H
+#endif // MUSICDOWNLOADQUERYWYALBUMTHREAD_H

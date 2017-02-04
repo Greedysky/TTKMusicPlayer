@@ -12,9 +12,9 @@
 #include "musictoastlabel.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
+#include "musicsemaphoreloop.h"
 
 #include <QMovie>
-#include <QTimer>
 #include <QShortcut>
 #include <QBoxLayout>
 #include <QStackedWidget>
@@ -121,7 +121,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
 {
     m_recordCore->addWavHeader(RECORD_IN_FILE);
 
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     m_detectedThread->query(RECORD_IN_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
@@ -283,7 +283,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName).arg(songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
     /////////////////////////////////////////////////////////////////////
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());

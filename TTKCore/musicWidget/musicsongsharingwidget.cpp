@@ -7,10 +7,9 @@
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
+#include "musicsemaphoreloop.h"
 
 #include "qrcodewidget.h"
-
-#include <QTimer>
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -71,7 +70,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
     down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
 
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 

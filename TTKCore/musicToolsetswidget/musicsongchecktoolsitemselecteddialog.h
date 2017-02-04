@@ -26,6 +26,10 @@ public:
     /*!
      * Create all items.
      */
+    MusicObject::MIntList getSelectedItems() const;
+    /*!
+     * Get selected items.
+     */
 
 public Q_SLOTS:
     void selectedAllItems(bool check);

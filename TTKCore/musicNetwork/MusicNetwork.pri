@@ -11,6 +11,11 @@ INCLUDEPATH += $$PWD \
                $$PWD/nr \
                $$PWD/tt \
                $$PWD/wy \
+               $$PWD/xm \
+               $$PWD/kg \
+               $$PWD/kw \
+               $$PWD/bd \
+               $$PWD/qq \
                $$PWD/vip
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
@@ -21,20 +26,41 @@ HEADERS  += \
     $$PWD/radio/musicradiothreadabstract.h \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
-    $$PWD/nr/musicdownloadqueryalbumthread.h \
-    $$PWD/nr/musicdownloadqueryartistthread.h \
-    $$PWD/nr/musicdownloadquerymultiplethread.h \
+    $$PWD/tt/musicdownloadttinterface.h \
     $$PWD/tt/musicttdatadownloadthread.h \
     $$PWD/tt/musictttextdownloadthread.h \
     $$PWD/tt/musicdownloadqueryttthread.h \
-    $$PWD/tt/musicdownloadqueryalbumttthread.h \
+    $$PWD/tt/musicdownloadqueryttalbumthread.h \
+    $$PWD/tt/musicdownloadqueryttartistthread.h \
+    $$PWD/wy/musicdownloadwyinterface.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
-    $$PWD/wy/musicdownloadqueryalbumwythread.h \
     $$PWD/wy/musicwycommentsthread.h \
-    $$PWD/vip/musicdownloadquerymultiplevipthread.h \
-    $$PWD/vip/musicdownloadqueryalbumvipthread.h \
-    $$PWD/vip/musicdownloadqueryartistvipthread.h \
+    $$PWD/wy/musicdownloadquerywyalbumthread.h \
+    $$PWD/wy/musicdownloadquerywyartistthread.h \
+    $$PWD/xm/musicdownloadxminterface.h \
+    $$PWD/xm/musicdownloadqueryxmthread.h \
+    $$PWD/xm/musicdownloadqueryxmalbumthread.h \
+    $$PWD/xm/musicdownloadqueryxmartistthread.h \
+    $$PWD/xm/musicxmtextdownloadthread.h \
+    $$PWD/kg/musicdownloadquerykgthread.h \
+    $$PWD/kg/musicdownloadquerykgalbumthread.h \
+    $$PWD/kg/musicdownloadquerykgartistthread.h \
+    $$PWD/kg/musicdownloadkginterface.h \
+    $$PWD/kw/musicdownloadquerykwthread.h \
+    $$PWD/kw/musicdownloadquerykwalbumthread.h \
+    $$PWD/kw/musicdownloadquerykwartistthread.h \
+    $$PWD/kw/musicdownloadkwinterface.h \
+    $$PWD/kw/musickwtextdownloadthread.h \
+    $$PWD/bd/musicdownloadquerybdthread.h \
+    $$PWD/bd/musicdownloadquerybdalbumthread.h \
+    $$PWD/bd/musicdownloadquerybdartistthread.h \
+    $$PWD/bd/musicdownloadbdinterface.h \
+    $$PWD/qq/musicdownloadqueryqqthread.h \
+    $$PWD/qq/musicdownloadqueryqqalbumthread.h \
+    $$PWD/qq/musicdownloadqueryqqartistthread.h \
+    $$PWD/qq/musicdownloadqqinterface.h \
+    $$PWD/qq/musicqqtextdownloadthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -60,20 +86,40 @@ SOURCES += \
     $$PWD/radio/musicradiothreadabstract.cpp \
     $$PWD/nr/musicdatadownloadthread.cpp \
     $$PWD/nr/musictextdownloadthread.cpp \
-    $$PWD/nr/musicdownloadqueryalbumthread.cpp \
-    $$PWD/nr/musicdownloadqueryartistthread.cpp \
-    $$PWD/nr/musicdownloadquerymultiplethread.cpp \
     $$PWD/tt/musicttdatadownloadthread.cpp \
     $$PWD/tt/musictttextdownloadthread.cpp \
     $$PWD/tt/musicdownloadqueryttthread.cpp \
-    $$PWD/tt/musicdownloadqueryalbumttthread.cpp \
+    $$PWD/tt/musicdownloadqueryttalbumthread.cpp \
+    $$PWD/tt/musicdownloadqueryttartistthread.cpp \
+    $$PWD/wy/musicdownloadwyinterface.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \
-    $$PWD/wy/musicdownloadqueryalbumwythread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
-    $$PWD/vip/musicdownloadquerymultiplevipthread.cpp \
-    $$PWD/vip/musicdownloadqueryalbumvipthread.cpp \
-    $$PWD/vip/musicdownloadqueryartistvipthread.cpp \
+    $$PWD/wy/musicdownloadquerywyalbumthread.cpp \
+    $$PWD/wy/musicdownloadquerywyartistthread.cpp \
+    $$PWD/xm/musicdownloadxminterface.cpp \
+    $$PWD/xm/musicdownloadqueryxmthread.cpp \
+    $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
+    $$PWD/xm/musicdownloadqueryxmartistthread.cpp \
+    $$PWD/xm/musicxmtextdownloadthread.cpp \
+    $$PWD/kg/musicdownloadquerykgthread.cpp \
+    $$PWD/kg/musicdownloadquerykgalbumthread.cpp \
+    $$PWD/kg/musicdownloadquerykgartistthread.cpp \
+    $$PWD/kg/musicdownloadkginterface.cpp \
+    $$PWD/kw/musicdownloadquerykwthread.cpp \
+    $$PWD/kw/musicdownloadquerykwalbumthread.cpp \
+    $$PWD/kw/musicdownloadquerykwartistthread.cpp \
+    $$PWD/kw/musicdownloadkwinterface.cpp \
+    $$PWD/kw/musickwtextdownloadthread.cpp \
+    $$PWD/bd/musicdownloadquerybdthread.cpp \
+    $$PWD/bd/musicdownloadquerybdalbumthread.cpp \
+    $$PWD/bd/musicdownloadquerybdartistthread.cpp \
+    $$PWD/bd/musicdownloadbdinterface.cpp \
+    $$PWD/qq/musicdownloadqueryqqthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqalbumthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqartistthread.cpp \
+    $$PWD/qq/musicdownloadqqinterface.cpp \
+    $$PWD/qq/musicqqtextdownloadthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \

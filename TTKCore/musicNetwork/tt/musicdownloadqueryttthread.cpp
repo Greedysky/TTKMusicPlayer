@@ -1,5 +1,5 @@
 #include "musicdownloadqueryttthread.h"
-#include "musicdownloadthreadabstract.h"
+#include "musicdownloadttinterface.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
@@ -11,7 +11,7 @@
 MusicDownLoadQueryTTThread::MusicDownLoadQueryTTThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
-
+    m_queryServer = "TTpod";
 }
 
 QString MusicDownLoadQueryTTThread::getClassName()
@@ -23,8 +23,7 @@ void MusicDownLoadQueryTTThread::startSearchSong(QueryType type, const QString &
 {
     m_searchText = text.trimmed();
     m_currentType = type;
-
-    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SEARCH_URL, URL_KEY).arg(text);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(TT_SONG_SEARCH_URL, URL_KEY).arg(text);
 
     if(m_reply)
     {
@@ -149,6 +148,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                         emit createSearchedItems(songName, singerName, duration);
 
                         musicInfo.m_songId = songId;
+                        musicInfo.m_artistId = QString::number(value["singerId"].toULongLong());
                         musicInfo.m_albumId = QString::number(value["albumId"].toULongLong());
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();
@@ -193,6 +193,10 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                                 songAttr.m_url = mvUrlValue["url"].toString();
                                 songAttr.m_size = MusicUtils::Number::size2Label(mvUrlValue["size"].toInt());
                                 musicInfo.m_songAttrs << songAttr;
+                            }
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
                             }
                             emit createSearchedItems(songName, singerName, duration);
 

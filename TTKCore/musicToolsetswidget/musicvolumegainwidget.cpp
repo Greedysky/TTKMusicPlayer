@@ -2,9 +2,9 @@
 #include "ui_musicvolumegainwidget.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
+#include "musicsemaphoreloop.h"
 
 #include <QProcess>
-#include <QEventLoop>
 #include <QFileDialog>
 
 #define GAIN_DEFAULT 89
@@ -183,7 +183,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
         for(int i=orcount; i<m_paths.count(); ++i)
         {
             m_currentIndex = i;
-            QEventLoop loop(this);
+            MusicSemaphoreLoop loop(this);
             connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
             m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths[i]);
             loop.exec();
@@ -209,7 +209,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
                 m_currentIndex = m_paths.count();
                 m_paths << info.absoluteFilePath();
 
-                QEventLoop loop(this);
+                MusicSemaphoreLoop loop(this);
                 connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
                 m_process->start(MAKE_GAIN_FULL, QStringList() << m_paths.last());
                 loop.exec();
@@ -261,7 +261,7 @@ void MusicVolumeGainWidget::applyButtonClicked()
     m_ui->progressBarAll->setRange(0, m_ui->tableWidget->rowCount());
     for(int i=0; i<m_ui->tableWidget->rowCount(); ++i)
     {
-        QEventLoop loop(this);
+        MusicSemaphoreLoop loop(this);
         connect(m_process, SIGNAL(finished(int)), &loop, SLOT(quit()));
         m_process->start(MAKE_GAIN_FULL, QStringList() << "-g" <<
                          m_ui->tableWidget->item(i, 2)->text() << m_paths[i]);

@@ -81,6 +81,12 @@ void MusicWYTextDownLoadThread::downLoadFinished()
                     M_LOGGER_INFO("wangyi text download  has finished!");
                 }
             }
+            else
+            {
+                M_LOGGER_ERROR("wangyi text download file error!");
+                m_file->remove();
+                m_file->close();
+            }
         }
     }
 

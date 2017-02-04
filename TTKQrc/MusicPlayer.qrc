@@ -315,19 +315,13 @@
         <file alias="lrc_back_clicked">../TTKResource/funcTools/lrc_back_clicked.png</file>
     </qresource>
     <qresource prefix="/server">
-        <file alias="lb_aiyinyue">../TTKResource/server/lb_server_aiyinyue.png</file>
         <file alias="lb_baidu">../TTKResource/server/lb_server_baidu.png</file>
-        <file alias="lb_duomi">../TTKResource/server/lb_server_duomi.png</file>
         <file alias="lb_kugou">../TTKResource/server/lb_server_kugou.png</file>
         <file alias="lb_kuwo">../TTKResource/server/lb_server_kuwo.png</file>
         <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
         <file alias="lb_ttdongting">../TTKResource/server/lb_server_ttdongting.png</file>
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
         <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
-        <file alias="lb_dingdong">../TTKResource/server/lb_server_dingdong.png</file>
-        <file alias="lb_echo">../TTKResource/server/lb_server_echo.png</file>
-        <file alias="lb_migu">../TTKResource/server/lb_server_migu.png</file>
-        <file alias="lb_yinyuetai">../TTKResource/server/lb_server_yinyuetai.png</file>
     </qresource>
     <qresource prefix="/toolSets">
         <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>

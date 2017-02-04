@@ -5,6 +5,7 @@ MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *pare
 {
     m_queryAllRecords = false;
     m_searchQuality = "标准品质";
+    m_queryServer = "Invalid";
 
     m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL

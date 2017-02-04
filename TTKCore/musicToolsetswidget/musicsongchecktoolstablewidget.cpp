@@ -1,6 +1,8 @@
 #include "musicsongchecktoolstablewidget.h"
 #include "musicitemdelegate.h"
 #include "musicnumberutils.h"
+#include "musicconnectionpool.h"
+#include "musicsongssummariziedwidget.h"
 
 MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
@@ -55,6 +57,15 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const SongCheckToolsRe
     }
 }
 
+void MusicSongCheckToolsRenameTableWidget::listCellClicked(int row, int column)
+{
+    MusicFillItemTableWidget::listCellClicked(row, column);
+    if(column == 3)
+    {
+        deleteCurrentRow();
+    }
+}
+
 void MusicSongCheckToolsRenameTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
@@ -71,6 +82,15 @@ void MusicSongCheckToolsRenameTableWidget::selectedAllItems(bool check)
     {
         selectAll();
     }
+}
+
+void MusicSongCheckToolsRenameTableWidget::deleteCurrentRow()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+    removeRow(currentRow());
 }
 
 
@@ -98,6 +118,14 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
     MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
     setItemDelegateForColumn(5, delegate);
     setItemDelegateForColumn(6, delegate);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+}
+
+MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
+{
+    M_CONNECTION_PTR->removeValue(getClassName());
 }
 
 QString MusicSongCheckToolsDuplicateTableWidget::getClassName()
@@ -138,11 +166,22 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const SongCheckTool
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXTS_ROLE, tr("Play"));
+        item->setData(MUSIC_DATAS_ROLE, song.m_song.getMusicPath());
         setItem(i, 5, item);
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXTS_ROLE, tr("Delete"));
         setItem(i, 6, item);
+    }
+}
+
+void MusicSongCheckToolsDuplicateTableWidget::listCellClicked(int row, int column)
+{
+    MusicFillItemTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 5: musicPlay(); break;
+        case 6: deleteCurrentRow(); break;
     }
 }
 
@@ -162,6 +201,30 @@ void MusicSongCheckToolsDuplicateTableWidget::selectedAllItems(bool check)
     {
         selectAll();
     }
+}
+
+void MusicSongCheckToolsDuplicateTableWidget::musicPlay()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(currentRow(), 5);
+    if(it)
+    {
+        QString path = it->data(MUSIC_DATAS_ROLE).toString();
+        emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+    }
+}
+
+void MusicSongCheckToolsDuplicateTableWidget::deleteCurrentRow()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+    removeRow(currentRow());
 }
 
 
@@ -190,6 +253,14 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
     MusicPushButtonDelegate *delegate = new MusicPushButtonDelegate(this);
     setItemDelegateForColumn(6, delegate);
     setItemDelegateForColumn(7, delegate);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+}
+
+MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
+{
+    M_CONNECTION_PTR->removeValue(getClassName());
 }
 
 QString MusicSongCheckToolsQualityTableWidget::getClassName()
@@ -239,6 +310,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const SongCheckToolsQ
 
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXTS_ROLE, tr("Play"));
+        item->setData(MUSIC_DATAS_ROLE, song.m_song.getMusicPath());
         setItem(i, 6, item);
 
                 item = new QTableWidgetItem;
@@ -277,6 +349,16 @@ void MusicSongCheckToolsQualityTableWidget::transfromBitrateToQuality(int bitrat
     }
 }
 
+void MusicSongCheckToolsQualityTableWidget::listCellClicked(int row, int column)
+{
+    MusicFillItemTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 6: musicPlay(); break;
+        case 7: deleteCurrentRow(); break;
+    }
+}
+
 void MusicSongCheckToolsQualityTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
@@ -293,4 +375,28 @@ void MusicSongCheckToolsQualityTableWidget::selectedAllItems(bool check)
     {
         selectAll();
     }
+}
+
+void MusicSongCheckToolsQualityTableWidget::musicPlay()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(currentRow(), 6);
+    if(it)
+    {
+        QString path = it->data(MUSIC_DATAS_ROLE).toString();
+        emit addSongToPlay(QStringList( QFile::exists(path) ? path : QString() ));
+    }
+}
+
+void MusicSongCheckToolsQualityTableWidget::deleteCurrentRow()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+    removeRow(currentRow());
 }

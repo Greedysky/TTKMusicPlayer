@@ -144,6 +144,7 @@ void MusicAlbumFoundWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
+                m_albumTableWidget->hide();
                 m_albumTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getAlbumThread(this));
                 m_albumTableWidget->startSearchQuery(info.m_albumId);
                 break;
@@ -166,6 +167,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
     }
     else
     {
+        m_albumTableWidget->show();
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
         QStringList lists = currentInfo.m_albumId.split("<>");
         if(lists.count() < 4)
@@ -214,9 +216,12 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
         QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
         topLineLayout->setContentsMargins(10, 5, 5, 0);
         QLabel *albumLabel = new QLabel(topLineWidget);
-        albumLabel->setStyleSheet(MusicUIObject::MFontStyle01 + MusicUIObject::MFontStyle05);
-        albumLabel->setText(MusicUtils::Widget::elidedText(albumLabel->font(), lists[0], Qt::ElideRight, 220));
+        QFont albumFont = albumLabel->font();
+        albumFont.setPixelSize(20);
+        albumLabel->setFont(albumFont);
+        albumLabel->setStyleSheet(MusicUIObject::MFontStyle01);
         albumLabel->setToolTip(lists[0]);
+        albumLabel->setText(MusicUtils::Widget::elidedText(albumFont, albumLabel->toolTip(), Qt::ElideRight, 220));
         QLabel *singerLabel = new QLabel(topLineWidget);
         singerLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
         singerLabel->setToolTip(tr("Singer: %1").arg(currentInfo.m_singerName));

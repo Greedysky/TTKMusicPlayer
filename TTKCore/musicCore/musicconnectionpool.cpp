@@ -23,6 +23,7 @@
 #include "musicartistfoundwidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicsongchecktoolswidget.h"
+#include "musicsongchecktoolstablewidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -104,7 +105,9 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
                                 SLOT(durationChanged(qint64)));
     }
     else if( (from == MusicLocalSongsManagerWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() ) ||
-             (from == MusicDownloadRecordWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
+             (from == MusicDownloadRecordWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+             (from == MusicSongCheckToolsDuplicateTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+             (from == MusicSongCheckToolsQualityTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second,
                                 SLOT(addSongToPlayList(QStringList)));

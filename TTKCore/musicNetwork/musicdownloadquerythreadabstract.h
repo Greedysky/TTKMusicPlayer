@@ -12,7 +12,6 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -66,6 +65,10 @@ public:
     /*!
      * Return the current song query type.
      */
+    inline QString getQueryServer() const { return m_queryServer;}
+    /*!
+     * Return the current song query server.
+     */
     inline QString getSearchedText() const { return m_searchText;}
     /*!
      * Return the current song name.
@@ -89,6 +92,7 @@ Q_SIGNALS:
 protected:
     MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
+    QString m_queryServer;
     QueryType m_currentType;
     bool m_queryAllRecords;
 
