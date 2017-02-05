@@ -101,18 +101,13 @@ void MusicQueryItemTableWidget::createFinishedItem()
     m_loadingLabel->hide();
     m_loadingLabel->stop();
 
-    if(rowCount() <= 0)
-    {
-        setRowCount(1);
-    }
-
+    setRowCount(rowCount() + 1);
     int count = rowCount() - 1;
-    setSpan(count, 0, 1, columnCount());
-
     for(int i=0; i<columnCount(); ++i)
     {
         setItem(count, i, new QTableWidgetItem);
     }
+    setSpan(count, 0, 1, columnCount());
 
     QTableWidgetItem *it = item(count, 0);
     if(it)
