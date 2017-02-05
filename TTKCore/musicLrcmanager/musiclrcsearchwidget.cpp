@@ -50,6 +50,11 @@ QString MusicLrcSearchWidget::getClassName()
 
 void MusicLrcSearchWidget::setCurrentSongName(const QString &name) const
 {
+    if(name.isEmpty())
+    {
+        lrcSearchFinished();
+        return;
+    }
     m_ui->songSearchEdit->setText(name);
     lrcSearchButtonClicked();
 }
