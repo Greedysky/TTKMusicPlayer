@@ -34,21 +34,25 @@ Rectangle {
         var bitrateString;
 
         if(queryType !== ttkTheme.search_type_download_mv_index) {
-            switch(bitrate) {
-                case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
-                case 128: bitrateString = qsTr("标准品质"); break;
-                case 192: bitrateString = qsTr("高品质"); break;
-                case 320: bitrateString = qsTr("超高品质"); break;
-                case 1000:bitrateString = qsTr("无损品质"); break;
-                default: break;
-            }
+            if(bitrate < 0)
+                bitrateString = qsTr("没有搜到任何结果");
+            else if(0 < bitrate && bitrate <= 128)
+                bitrateString = qsTr("标准品质");
+            else if(128 < bitrate && bitrate <= 192)
+                bitrateString = qsTr("高品质");
+            else if(192 < bitrate && bitrate <= 320)
+                bitrateString = qsTr("超高品质");
+            else if(bitrate > 320)
+                bitrateString = qsTr("无损品质");
         }else {
-            switch(bitrate) {
-                case -1:  bitrateString = qsTr("没有搜到任何结果"); break;
-                case 500: bitrateString = qsTr("高清品质"); break;
-                case 750: bitrateString = qsTr("超清品质"); break;
-                default: break;
-            }
+            if(bitrate < 0)
+                bitrateString = qsTr("没有搜到任何结果");
+            else if(0 < bitrate && bitrate < 500)
+                bitrateString = qsTr("普清品质");
+            else if(500 <= bitrate && bitrate <= 750)
+                bitrateString = qsTr("高清品质");
+            else if(750 < bitrate && bitrate <= 1000)
+                bitrateString = qsTr("超清品质");
         }
 
         if(bitrateString.length !== 0) {
@@ -203,7 +207,10 @@ Rectangle {
                 var json = JSON.parse(jsonAtrrString);
                 if(json.length !== 0) {
                     clearData();
+                }else{
+                    createData(-1);
                 }
+
                 for(var i=0; i<json.length; ++i) {
                     createData( json[i].bitrate );
                 }
