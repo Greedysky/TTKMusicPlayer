@@ -41,6 +41,7 @@ HEADERS  += \
     ../../musicglobal.h \
     ../../musicprivate.h
 
+include(qaes/QAes.pri)
 include(qhz2py/QHz2Py.pri)
 include(qiniu/QiNiu.pri)
 include(qjson/QJson.pri)
