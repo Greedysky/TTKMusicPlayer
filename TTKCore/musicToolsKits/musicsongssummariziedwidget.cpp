@@ -201,9 +201,11 @@ void MusicSongsSummariziedWidget::searchFileListCache(int index, const QString &
     MusicObject::MIntList searchResult;
     QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
     for(int j=0; j<searchedSongs.count(); ++j)
-    if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
     {
-        searchResult << j;
+        if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
+        {
+            searchResult << j;
+        }
     }
     m_searchFileListIndex = text.count();
     m_searchfileListCache.insert(index, searchResult);
@@ -249,8 +251,11 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
 
 void MusicSongsSummariziedWidget::playLocation(int index)
 {
-    selectRow(index);
-    resizeScrollIndex(index*30);
+    if(searchFileListEmpty())
+    {
+        selectRow(index);
+        resizeScrollIndex(index*30);
+    }
 }
 
 void MusicSongsSummariziedWidget::selectRow(int index)
