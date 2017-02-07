@@ -129,6 +129,11 @@ namespace MusicObject
         QString m_url;
         QString m_size;
         QString m_duration;
+
+        bool operator< (const MusicSongAttribute &other) const
+        {
+            return m_bitrate < other.m_bitrate;
+        }
     }MusicSongAttribute;
     TTK_DECLARE_LISTS(MusicSongAttribute)
 
