@@ -176,6 +176,10 @@ protected:
      * Set widget moved into given pos.
      */
 
+    MusicObject::MusicSongInfomation getMatchMusicSongInfomation();
+    /*!
+     * Get match music song infomation.
+     */
     void queryAllFinishedMusic();
     /*!
      * Query all quality that musics is finished.

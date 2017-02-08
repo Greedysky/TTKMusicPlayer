@@ -66,32 +66,32 @@ DEFINES += \
 INCLUDEPATH += \
     MobileCore \
     ../ \
-    ../TTKCore/musicCore \
-    ../TTKCore/musicCore/utils \
-    ../TTKCore/musicLrcmanager \
-    ../TTKCore/musicNetwork \
-    ../TTKCore/musicWidget \
+    ../TTKCore/musicCoreKits \
+    ../TTKCore/musicCoreKits/utils \
+    ../TTKCore/musicLrcKits \
+    ../TTKCore/musicNetworkKits \
+    ../TTKCore/musicWidgetKits \
     ../TTKThirdParty/MusicExtras
 
 
 HEADERS += \
     musicapplication.h \
     musicmobileglobaldefine.h \
-    ../TTKCore/musicCore/utils/musiccoreutils.h \
-    ../TTKCore/musicCore/utils/musicnumberutils.h \
-    ../TTKCore/musicCore/utils/musicstringutils.h \
-    ../TTKCore/musicCore/musicsong.h \
-    ../TTKCore/musicCore/musictime.h \
-    ../TTKCore/musicCore/musicformats.h \
-    ../TTKCore/musicCore/musicsettingmanager.h \
-    ../TTKCore/musicCore/musicabstractxml.h \
-    ../TTKCore/musicCore/musiccryptographichash.h \
-    ../TTKCore/musicCore/musicconnectionpool.h \
-    ../TTKCore/musicCore/musicbackgroundmanager.h \
-    ../TTKCore/musicCore/musicsongtag.h \
-    ../TTKCore/musicCore/musicsemaphoreloop.h \
-    ../TTKCore/musicLrcmanager/musiclrcanalysis.h \
-    ../TTKCore/musicWidget/musicdownloadstatuslabel.h \
+    ../TTKCore/musicCoreKits/utils/musiccoreutils.h \
+    ../TTKCore/musicCoreKits/utils/musicnumberutils.h \
+    ../TTKCore/musicCoreKits/utils/musicstringutils.h \
+    ../TTKCore/musicCoreKits/musicsong.h \
+    ../TTKCore/musicCoreKits/musictime.h \
+    ../TTKCore/musicCoreKits/musicformats.h \
+    ../TTKCore/musicCoreKits/musicsettingmanager.h \
+    ../TTKCore/musicCoreKits/musicabstractxml.h \
+    ../TTKCore/musicCoreKits/musiccryptographichash.h \
+    ../TTKCore/musicCoreKits/musicconnectionpool.h \
+    ../TTKCore/musicCoreKits/musicbackgroundmanager.h \
+    ../TTKCore/musicCoreKits/musicsongtag.h \
+    ../TTKCore/musicCoreKits/musicsemaphoreloop.h \
+    ../TTKCore/musicLrcKits/musiclrcanalysis.h \
+    ../TTKCore/musicWidgetKits/musicdownloadstatuslabel.h \
     MobileCore/ttkfilesearchcore.h \
     MobileCore/ttkmusicplaylist.h \
     MobileCore/ttkmusicplayer.h \
@@ -107,20 +107,20 @@ HEADERS += \
 SOURCES += \
     musicmobilemain.cpp \
     musicapplication.cpp \
-    ../TTKCore/musicCore/utils/musiccoreutils.cpp \
-    ../TTKCore/musicCore/utils/musicnumberutils.cpp \
-    ../TTKCore/musicCore/utils/musicstringutils.cpp \
-    ../TTKCore/musicCore/musicsong.cpp \
-    ../TTKCore/musicCore/musictime.cpp \
-    ../TTKCore/musicCore/musicformats.cpp \
-    ../TTKCore/musicCore/musicabstractxml.cpp \
-    ../TTKCore/musicCore/musiccryptographichash.cpp \
-    ../TTKCore/musicCore/musicconnectionpool.cpp \
-    ../TTKCore/musicCore/musicbackgroundmanager.cpp \
-    ../TTKCore/musicCore/musicsongtag.cpp \
-    ../TTKCore/musicCore/musicsemaphoreloop.cpp \
-    ../TTKCore/musicLrcmanager/musiclrcanalysis.cpp \
-    ../TTKCore/musicWidget/musicdownloadstatuslabel.cpp \
+    ../TTKCore/musicCoreKits/utils/musiccoreutils.cpp \
+    ../TTKCore/musicCoreKits/utils/musicnumberutils.cpp \
+    ../TTKCore/musicCoreKits/utils/musicstringutils.cpp \
+    ../TTKCore/musicCoreKits/musicsong.cpp \
+    ../TTKCore/musicCoreKits/musictime.cpp \
+    ../TTKCore/musicCoreKits/musicformats.cpp \
+    ../TTKCore/musicCoreKits/musicabstractxml.cpp \
+    ../TTKCore/musicCoreKits/musiccryptographichash.cpp \
+    ../TTKCore/musicCoreKits/musicconnectionpool.cpp \
+    ../TTKCore/musicCoreKits/musicbackgroundmanager.cpp \
+    ../TTKCore/musicCoreKits/musicsongtag.cpp \
+    ../TTKCore/musicCoreKits/musicsemaphoreloop.cpp \
+    ../TTKCore/musicLrcKits/musiclrcanalysis.cpp \
+    ../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp \
     MobileCore/ttkfilesearchcore.cpp \
     MobileCore/ttkmusicplaylist.cpp \
     MobileCore/ttkmusicplayer.cpp \
@@ -135,7 +135,7 @@ SOURCES += \
 
 CONFIG += TTK_BUILD_LIB
 
-include(../TTKCore/musicNetwork/MusicNetwork.pri)
+include(../TTKCore/musicNetworkKits/MusicNetworkKits.pri)
 include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
 
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {

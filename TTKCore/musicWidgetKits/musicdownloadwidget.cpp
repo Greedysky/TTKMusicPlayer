@@ -235,7 +235,7 @@ void MusicDownloadWidget::queryAllFinished()
     }
 }
 
-void MusicDownloadWidget::queryAllFinishedMusic()
+MusicObject::MusicSongInfomation MusicDownloadWidget::getMatchMusicSongInfomation()
 {
     MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
@@ -253,7 +253,17 @@ void MusicDownloadWidget::queryAllFinishedMusic()
                 break;
             }
         }
+        qSort(musicSongInfo.m_songAttrs);
+        return musicSongInfo;
+    }
+    return MusicObject::MusicSongInfomation();
+}
 
+void MusicDownloadWidget::queryAllFinishedMusic()
+{
+    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
+    {
         queryAllFinishedMusic(musicSongInfo.m_songAttrs);
     }
 }
@@ -302,23 +312,9 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
 
 void MusicDownloadWidget::queryAllFinishedMovie()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
-    if(!musicSongInfos.isEmpty())
+    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
-        QString filename = m_downloadThread->getSearchedText();
-        QString artistName = MusicUtils::String::artistName(filename);
-        QString songName = MusicUtils::String::songName(filename);
-        MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
-        {
-            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
-                var.m_songName.contains(songName, Qt::CaseInsensitive) )
-            {
-                musicSongInfo = var;
-                break;
-            }
-        }
-
         queryAllFinishedMovie(musicSongInfo.m_songAttrs);
     }
 }
@@ -431,10 +427,10 @@ void MusicDownloadWidget::dataDownloadFinished()
 
 void MusicDownloadWidget::startToDownloadMusic()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
-    if(!musicSongInfos.isEmpty())
+    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
-        startToDownloadMusic(musicSongInfos.first());
+        startToDownloadMusic(musicSongInfo);
     }
 }
 
@@ -499,10 +495,10 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
 
 void MusicDownloadWidget::startToDownloadMovie()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
-    if(!musicSongInfos.isEmpty())
+    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
-        startToDownloadMovie(musicSongInfos.first());
+        startToDownloadMovie(musicSongInfo);
     }
 }
 

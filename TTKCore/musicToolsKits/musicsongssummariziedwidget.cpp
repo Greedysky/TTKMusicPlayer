@@ -185,29 +185,22 @@ QStringList MusicSongsSummariziedWidget::getMusicSongsFilePath(int index) const
     return list;
 }
 
-void MusicSongsSummariziedWidget::setMusicSongsSearchedFileName(const MusicObject::MIntList &fileIndexs)
-{
-    MusicSongs songs;
-    foreach(int index, fileIndexs)
-    {
-        songs << m_songItems[m_currentIndex].m_songs[index];
-    }
-    m_songItems[m_currentIndex].m_itemObject->clearAllItems();
-    m_songItems[m_currentIndex].m_itemObject->updateSongsFileName(songs);
-}
-
 void MusicSongsSummariziedWidget::searchFileListCache(int index, const QString &text)
 {
     MusicObject::MIntList searchResult;
     QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
     for(int j=0; j<searchedSongs.count(); ++j)
-    if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
     {
-        searchResult << j;
+        if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
+        {
+            searchResult << j;
+        }
     }
     m_searchFileListIndex = text.count();
     m_searchfileListCache.insert(index, searchResult);
-    setMusicSongsSearchedFileName(searchResult);
+
+    MusicSongItem *songItem = &m_songItems[m_currentIndex];
+    songItem->m_itemObject->setMusicSongsSearchedFileName(&songItem->m_songs, searchResult);
 
     if(index == 0)
     {
@@ -223,11 +216,11 @@ bool MusicSongsSummariziedWidget::searchFileListEmpty() const
 int MusicSongsSummariziedWidget::getSearchFileListIndex(int row)
 {
     MusicObject::MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
-    if(row >= list.count())
+    if(row >= list.count() || row < 0)
     {
         return -1;
     }
-    return row >= 0 ? list[row] : -1;
+    return list[row];
 }
 
 int MusicSongsSummariziedWidget::getSearchFileListIndexAndClear(int row)
@@ -249,8 +242,11 @@ void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
 
 void MusicSongsSummariziedWidget::playLocation(int index)
 {
-    selectRow(index);
-    resizeScrollIndex(index*30);
+    if(searchFileListEmpty())
+    {
+        selectRow(index);
+        resizeScrollIndex(index*30);
+    }
 }
 
 void MusicSongsSummariziedWidget::selectRow(int index)
@@ -481,7 +477,7 @@ void MusicSongsSummariziedWidget::setCurrentIndex()
 
 void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row)
 {
-    if(m_currentIndex < 0 || m_currentIndex >= m_songItems.count())
+    if(m_currentIndex < 0 || m_currentIndex >= m_songItems.count() || !searchFileListEmpty())
     {
         return;
     }
@@ -603,7 +599,7 @@ void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
 
 void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
 {
-    if(index.count() == 0)
+    if(index.count() == 0 || !searchFileListEmpty())
     {
         return;
     }

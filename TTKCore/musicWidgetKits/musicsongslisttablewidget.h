@@ -43,6 +43,10 @@ public:
     /*!
      * Clear All Items.
      */
+    void setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs);
+    /*!
+     * Set current searched file indexs.
+     */
 
     int allRowsHeight() const;
     /*!
@@ -223,7 +227,7 @@ protected:
     MusicSongsListItemInfoWidget *m_musicSongsInfoWidget;
     MusicSongsListPlayWidget *m_musicSongsPlayWidget;
 
-    bool m_leftButtonPressed;
+    bool m_leftButtonPressed, m_listHasSearched;
     bool m_renameActived, m_deleteItemWithFile;
     QTableWidgetItem *m_renameItem;
     MusicSort *m_musicSort;
