@@ -473,23 +473,28 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     labelLayout->setSpacing(10);
     labelWidget->setStyleSheet(MusicUIObject::MBackgroundStyle03);
 
-    QCheckBox *label_checkBox = new QCheckBox(this);
-    label_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    connect(label_checkBox, SIGNAL(clicked(bool)), m_searchTableWidget,
-                            SLOT(setSelectedAllItems(bool)));
-    labelLayout->addWidget(label_checkBox, 3);
+    QCheckBox *labelCheckBox = new QCheckBox(this);
+    labelCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(setSelectedAllItems(bool)));
+    labelLayout->addWidget(labelCheckBox, 3);
 
-    QLabel *Label1 = new QLabel(tr("Song"), this);
-    Label1->setStyleSheet(MusicUIObject::MFontStyle01);
-    labelLayout->addWidget(Label1, 5);
+    QLabel *label1 = new QLabel(tr("Song"), this);
+    label1->setAlignment(Qt::AlignCenter);
+    label1->setStyleSheet(MusicUIObject::MFontStyle01);
+    labelLayout->addWidget(label1, 5);
+    m_resizeLabels << label1;
 
-    QLabel *Label2 = new QLabel(tr("Artist"), this);
-    Label2->setStyleSheet(MusicUIObject::MFontStyle01);
-    labelLayout->addWidget(Label2, 3);
+    QLabel *label2 = new QLabel(tr("Artist"), this);
+    label2->setAlignment(Qt::AlignCenter);
+    label2->setStyleSheet(MusicUIObject::MFontStyle01);
+    labelLayout->addWidget(label2, 3);
+    m_resizeLabels << label2;
 
-    QLabel *Label3 = new QLabel(tr("Operator"), this);
-    Label3->setStyleSheet(MusicUIObject::MFontStyle01);
-    labelLayout->addWidget(Label3, 1);
+    QLabel *label3 = new QLabel(tr("Operator"), this);
+    label3->setAlignment(Qt::AlignCenter);
+    label3->setStyleSheet(MusicUIObject::MFontStyle01);
+    labelLayout->addWidget(label3, 1);
+    m_resizeLabels << label3;
 
     labelWidget->setLayout(labelLayout);
     wLayout->addWidget(labelWidget);
@@ -498,6 +503,13 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    if(m_resizeLabels.count() == 3)
+    {
+        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 315);
+        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 305);
+        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.2 + 110);
+    }
+
     width = width - WINDOW_WIDTH_MIN + 240;
     m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
                          .arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
