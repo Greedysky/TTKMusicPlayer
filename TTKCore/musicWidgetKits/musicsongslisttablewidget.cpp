@@ -31,6 +31,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_renameItem = nullptr;
     m_dragStartIndex = -1;
     m_leftButtonPressed = false;
+    m_listHasSearched = false;
     m_mouseMoved = false;
     m_transparent = 0;
     m_parentToolIndex = index;
@@ -60,6 +61,10 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
 
 MusicSongsListTableWidget::~MusicSongsListTableWidget()
 {
+    if(m_listHasSearched)
+    {
+        delete m_musicSongs;
+    }
     clearAllItems();
     delete m_openFileWidget;
     delete m_musicSongsInfoWidget;
@@ -117,6 +122,42 @@ void MusicSongsListTableWidget::clearAllItems()
     //Remove all the original item
     MusicSongsListAbstractTableWidget::clear();
     setColumnCount(6);
+}
+
+void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs)
+{
+    if(songs->count() == fileIndexs.count())
+    {
+        if(m_listHasSearched)
+        {
+            delete m_musicSongs;
+        }
+        m_listHasSearched = false;
+        m_musicSongs = songs;
+    }
+    else
+    {
+        if(m_listHasSearched)
+        {
+            delete m_musicSongs;
+        }
+        m_listHasSearched = true;
+        m_musicSongs = new MusicSongs;
+        foreach(int index, fileIndexs)
+        {
+            m_musicSongs->append((*songs)[index]);
+        }
+    }
+
+    clearAllItems();
+    if(!m_musicSongs->isEmpty())
+    {
+        updateSongsFileName(*m_musicSongs);
+    }
+    else
+    {
+        setFixedHeight( allRowsHeight() );
+    }
 }
 
 int MusicSongsListTableWidget::allRowsHeight() const
@@ -353,6 +394,13 @@ void MusicSongsListTableWidget::listCellClicked(int row, int column)
             }
         case 3:
             {
+                bool empty;
+                emit isSearchFileListEmpty(empty);
+                if(!empty)
+                {
+                    return;
+                }
+
                 bool contains = !MusicApplication::instance()->musicListLovestContains(row);
                 QTableWidgetItem *it = item(row, 3);
                 if(it != nullptr)
@@ -364,6 +412,13 @@ void MusicSongsListTableWidget::listCellClicked(int row, int column)
             }
         case 4:
             {
+                bool empty;
+                emit isSearchFileListEmpty(empty);
+                if(!empty)
+                {
+                    return;
+                }
+
                 setDeleteItemAt();
                 break;
             }
@@ -735,13 +790,13 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     musicToolMenu.addAction(tr("transform"), this, SLOT(musicTransformWidget()));
     rightClickMenu.addMenu(&musicToolMenu);
 
-    bool empty;
-    emit isSearchFileListEmpty(empty);
-    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()));
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()));
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
     rightClickMenu.addSeparator();
 
+    bool empty;
+    emit isSearchFileListEmpty(empty);
     rightClickMenu.addAction(tr("changSongName"), this, SLOT(setChangSongName()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
     rightClickMenu.addAction(tr("deleteWithFile"), this, SLOT(setDeleteItemWithFile()))->setEnabled(empty);

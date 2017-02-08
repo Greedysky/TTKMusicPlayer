@@ -60,10 +60,6 @@ public:
      * Get music songs file path by index.
      */
 
-    void setMusicSongsSearchedFileName(const MusicObject::MIntList &fileIndexs);
-    /*!
-     * Set current searched file indexs.
-     */
     void searchFileListCache(int index, const QString &text);
     /*!
      * Set current name to searched file names to list.
