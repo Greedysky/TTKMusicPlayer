@@ -92,22 +92,7 @@ void MusicDownLoadQueryKGArtistThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["hash"].toString();
                         readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString(), m_manager);
-
-                        if(m_queryAllRecords)
-                        {
-                            readFromMusicSongAttribute(&musicInfo, value["hash"].toString(), m_manager);
-                            readFromMusicSongAttribute(&musicInfo, value["320hash"].toString(), m_manager);
-                            readFromMusicSongAttribute(&musicInfo, value["sqhash"].toString(), m_manager);
-                        }
-                        else
-                        {
-                            if(m_searchQuality == tr("SD"))
-                                readFromMusicSongAttribute(&musicInfo, value["hash"].toString(), m_manager);
-                            else if(m_searchQuality == tr("SQ"))
-                                readFromMusicSongAttribute(&musicInfo, value["320hash"].toString(), m_manager);
-                            else if(m_searchQuality == tr("CD"))
-                                readFromMusicSongAttribute(&musicInfo, value["sqhash"].toString(), m_manager);
-                        }
+                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

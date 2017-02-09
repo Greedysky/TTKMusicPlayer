@@ -79,6 +79,39 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     info->m_songAttrs.append(attr);
 }
 
+void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QVariantMap &key, const QString &quality, bool all)
+{
+    int bitrate = map2NormalBitrate(key["rate"].toInt());
+    if(all)
+    {
+        readFromMusicSongAttribute(info, key, bitrate);
+    }
+    else
+    {
+        if(quality == QObject::tr("ST") && bitrate == MB_32)
+        {
+            readFromMusicSongAttribute(info, key, MB_32);
+        }
+        else if(quality == QObject::tr("SD") && bitrate == MB_128)
+        {
+            readFromMusicSongAttribute(info, key, MB_128);
+        }
+        else if(quality == QObject::tr("HD") && bitrate == MB_192)
+        {
+            readFromMusicSongAttribute(info, key, MB_192);
+        }
+        else if(quality == QObject::tr("SQ") && bitrate == MB_320)
+        {
+            readFromMusicSongAttribute(info, key, MB_320);
+        }
+        else if(quality == QObject::tr("CD") && bitrate == MB_500)
+        {
+            readFromMusicSongAttribute(info, key, MB_500);
+        }
+    }
+}
+
 int MusicDownLoadXMInterface::map2NormalBitrate(int bitrate)
 {
     if(bitrate > 0 && bitrate < 128)

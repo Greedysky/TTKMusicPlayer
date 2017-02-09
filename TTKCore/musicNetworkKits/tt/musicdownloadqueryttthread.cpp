@@ -85,66 +85,14 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
 
                     if(m_currentType != MovieQuery)
                     {
-                        QString duration;
-                        ///music normal songs urls
-                        QVariantList auditions = value["auditionList"].toList();
-                        foreach(const QVariant &audition, auditions)
-                        {
-                            QVariantMap audUrlsValue = audition.toMap();
-                            if(audUrlsValue.isEmpty())
-                            {
-                                continue;
-                            }
-
-                            if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                               audUrlsValue["typeDescription"].toString() == m_searchQuality))
-                            {
-                                MusicObject::MusicSongAttribute songAttr;
-                                songAttr.m_url = audUrlsValue["url"].toString();
-                                songAttr.m_size = MusicUtils::Number::size2Label(audUrlsValue["size"].toInt());
-                                songAttr.m_format = audUrlsValue["suffix"].toString();
-                                songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
-                                musicInfo.m_songAttrs << songAttr;
-                                ////set duration
-                                duration = MusicTime::msecTime2LabelJustified(audUrlsValue["duration"].toInt());
-                                if(!m_queryAllRecords)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                        ///music cd songs urls
-                        QVariantList llUrls = value["llList"].toList();
-                        foreach(const QVariant &llUrl, llUrls)
-                        {
-                            QVariantMap llUrlValue = llUrl.toMap();
-                            if(llUrlValue.isEmpty())
-                            {
-                                continue;
-                            }
-
-                            if(m_queryAllRecords == true || (m_queryAllRecords == false &&
-                               llUrlValue["typeDescription"].toString() == m_searchQuality))
-                            {
-                                MusicObject::MusicSongAttribute songAttr;
-                                songAttr.m_url = llUrlValue["url"].toString();
-                                songAttr.m_size = MusicUtils::Number::size2Label(llUrlValue["size"].toInt());
-                                songAttr.m_format = llUrlValue["suffix"].toString();
-                                songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
-                                musicInfo.m_songAttrs << songAttr;
-                                ////set duration
-                                duration = MusicTime::msecTime2LabelJustified(llUrlValue["duration"].toInt());
-                                if(!m_queryAllRecords)
-                                {
-                                    break;
-                                }
-                            }
-                        }
+                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;
                         }
+
+                        QString duration = musicInfo.m_songAttrs.first().m_duration;
                         emit createSearchedItems(songName, singerName, duration);
 
                         musicInfo.m_songId = songId;

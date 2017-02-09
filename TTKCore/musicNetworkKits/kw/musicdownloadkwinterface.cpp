@@ -70,6 +70,37 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QString &format, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_128);
+        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_192);
+        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_320);
+        readFromMusicSongAttribute(info, "ape", format, info->m_songId, MB_1000);
+    }
+    else
+    {
+        if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_128);
+        }
+        else if(quality == QObject::tr("HD"))
+        {
+            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_192);
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_320);
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, "ape", format, info->m_songId, MB_1000);
+        }
+    }
+}
+
 void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
                                                     const QString &id, QNetworkAccessManager *manager)
 {

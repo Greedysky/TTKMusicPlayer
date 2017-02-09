@@ -37,7 +37,12 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadBDInterface
 {
 public:
     void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
-                                    const QString &quality, const QString &id);
+                                    const QString &bit, const QString &id);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                    const QString &format, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

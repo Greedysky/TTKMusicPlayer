@@ -46,6 +46,11 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                    const QVariantMap &key, const QString &quality, bool all);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
     int map2NormalBitrate(int bitrate);
     /*!
      * Map json bitrate to normal bitrate.

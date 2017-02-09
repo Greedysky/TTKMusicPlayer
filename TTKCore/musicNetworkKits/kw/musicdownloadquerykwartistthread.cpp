@@ -89,28 +89,8 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
 
                         readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(musicInfo.m_songId);
-
                         ///music normal songs urls
-                        QString auditions = value["FORMATS"].toString();
-                        if(m_queryAllRecords)
-                        {
-                            readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_128);
-                            readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_192);
-                            readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_320);
-                            readFromMusicSongAttribute(&musicInfo, "ape", auditions, musicInfo.m_songId, MB_1000);
-                        }
-                        else
-                        {
-                            if(m_searchQuality == tr("SD"))
-                                readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_128);
-                            else if(m_searchQuality == tr("HD"))
-                                readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_192);
-                            else if(m_searchQuality == tr("SQ"))
-                                readFromMusicSongAttribute(&musicInfo, "mp3", auditions, musicInfo.m_songId, MB_320);
-                            else if(m_searchQuality == tr("CD"))
-                                readFromMusicSongAttribute(&musicInfo, "ape", auditions, musicInfo.m_songId, MB_1000);
-                        }
-
+                        readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

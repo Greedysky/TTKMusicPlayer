@@ -141,24 +141,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         musicInfo.m_singerName = artistMap["name"].toString();
                     }
 
-                    if(m_queryAllRecords)
-                    {
-                        readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                        readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                        readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                        readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                    }
-                    else
-                    {
-                        if(m_searchQuality == tr("ST"))
-                            readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                        else if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                        else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                        else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                    }
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -167,18 +150,20 @@ void MusicDownLoadQueryWYThread::songListFinished()
 
                     emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                     m_musicSongInfos << musicInfo;
+                }
 
-                    if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
-                    {
-                        emit downLoadDataChanged(QString());
-                        deleteAll();
-                        return;
-                    }
+                if( m_index >= m_songIds.count())
+                {
+                    emit downLoadDataChanged(QString());
+                    deleteAll();
+                    return;
                 }
             }
             else
             {
                 qint64 albumId = foundAblumIdBySongId(m_songIds.toList()[m_index]);
+                ++m_index;
+
                 if(albumId != -1)
                 {
                     foundLostSongs(QString::number(albumId));
@@ -404,24 +389,7 @@ void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
                     musicInfo.m_singerName = artistMap["name"].toString();
                 }
 
-                if(m_queryAllRecords)
-                {
-                    readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                    readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                    readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                    readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                }
-                else
-                {
-                    if(m_searchQuality == tr("ST"))
-                        readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                    else if(m_searchQuality == tr("SD"))
-                        readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                    else if(m_searchQuality == tr("HD"))
-                        readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                    else if(m_searchQuality == tr("SQ"))
-                        readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                }
+                readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
                 if(musicInfo.m_songAttrs.isEmpty())
                 {

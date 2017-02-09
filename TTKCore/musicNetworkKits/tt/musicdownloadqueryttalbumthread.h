@@ -9,12 +9,14 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadttinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
 /*! @brief The class to ttpod query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryTTAlbumThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryTTAlbumThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadTTInterface
 {
     Q_OBJECT
 public:

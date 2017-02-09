@@ -87,41 +87,8 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                        QString format = value["all_rate"].toString();
-                        foreach(const QString &f, format.split(","))
-                        {
-                            if(m_queryAllRecords)
-                            {
-                                if(f != "flac")
-                                {
-                                    readFromMusicSongAttribute(&musicInfo, m_manager, f, musicInfo.m_songId);
-                                }
-                                else
-                                {
-                                    readFromMusicLLAttribute(&musicInfo, m_manager, musicInfo.m_songId);
-                                }
-                            }
-                            else
-                            {
-                                if(f != "flac")
-                                {
-                                    int bit = map2NormalBitrate(f.toInt());
-                                    if(m_searchQuality == tr("ST") && bit < MB_128)
-                                        readFromMusicSongAttribute(&musicInfo, m_manager, f, musicInfo.m_songId);
-                                    else if(m_searchQuality == tr("SD") && bit >= MB_128 && bit < MB_192)
-                                        readFromMusicSongAttribute(&musicInfo, m_manager, f, musicInfo.m_songId);
-                                    else if(m_searchQuality == tr("HQ") && bit >= MB_192 && bit < MB_320)
-                                        readFromMusicSongAttribute(&musicInfo, m_manager, f, musicInfo.m_songId);
-                                    else if(m_searchQuality == tr("SQ") && bit >= MB_320)
-                                        readFromMusicSongAttribute(&musicInfo, m_manager, f, musicInfo.m_songId);
-                                }
-                                else if(m_searchQuality == tr("CD"))
-                                {
-                                    readFromMusicLLAttribute(&musicInfo, m_manager, musicInfo.m_songId);
-                                }
-                            }
-                        }
-
+                        readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
+                                                   m_searchQuality, m_queryAllRecords);
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;

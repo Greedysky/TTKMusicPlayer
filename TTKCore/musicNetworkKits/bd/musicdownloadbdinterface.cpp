@@ -12,14 +12,14 @@
 #include <QNetworkAccessManager>
 
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
-                                                          const QString &quality, const QString &id)
+                                                          const QString &bit, const QString &id)
 {
     if(id.isEmpty())
     {
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_ATTR_URL, URL_KEY).arg(id).arg(quality)
+    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_ATTR_URL, URL_KEY).arg(id).arg(bit)
                     .arg("Xw3BvQ9t46Sb%2BTP4RHZaFsqFx7vHFuQEx6t59t5%2FYrwJuXpxxH6A%2BoWQveBUfYG9");
 
     QNetworkRequest request;
@@ -61,6 +61,53 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 attr.m_format = value["file_extension"].toString();
                 attr.m_bitrate = map2NormalBitrate(value["file_bitrate"].toInt());
                 info->m_songAttrs.append(attr);
+            }
+        }
+    }
+}
+
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                                          const QString &format, const QString &quality, bool all)
+{
+    QString formatString = format;
+    foreach(const QString &f, formatString.split(","))
+    {
+        if(all)
+        {
+            if(f != "flac")
+            {
+                readFromMusicSongAttribute(info, manager, f, info->m_songId);
+            }
+            else
+            {
+                readFromMusicLLAttribute(info, manager, info->m_songId);
+            }
+        }
+        else
+        {
+            if(f != "flac")
+            {
+                int bit = map2NormalBitrate(f.toInt());
+                if(quality == QObject::tr("ST") && bit < MB_128)
+                {
+                    readFromMusicSongAttribute(info, manager, f, info->m_songId);
+                }
+                else if(quality == QObject::tr("SD") && bit >= MB_128 && bit < MB_192)
+                {
+                    readFromMusicSongAttribute(info, manager, f, info->m_songId);
+                }
+                else if(quality == QObject::tr("HQ") && bit >= MB_192 && bit < MB_320)
+                {
+                    readFromMusicSongAttribute(info, manager, f, info->m_songId);
+                }
+                else if(quality == QObject::tr("SQ") && bit >= MB_320)
+                {
+                    readFromMusicSongAttribute(info, manager, f, info->m_songId);
+                }
+            }
+            else if(quality == QObject::tr("CD"))
+            {
+                readFromMusicLLAttribute(info, manager, info->m_songId);
             }
         }
     }

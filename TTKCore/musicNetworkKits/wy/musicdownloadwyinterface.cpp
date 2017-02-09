@@ -21,6 +21,37 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     info->m_songAttrs.append(attr);
 }
 
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QVariantMap &key, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, key["lMusic"].toMap(), MB_32);
+        readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
+        readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
+        readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320);
+    }
+    else
+    {
+        if(quality == QObject::tr("ST"))
+        {
+            readFromMusicSongAttribute(info, key["lMusic"].toMap(), MB_32);
+        }
+        else if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
+        }
+        else if(quality == QObject::tr("HD"))
+        {
+            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320);
+        }
+    }
+}
+
 QString MusicDownLoadWYInterface::encryptedId(qlonglong id)
 {
     return encryptedId(QString::number(id));

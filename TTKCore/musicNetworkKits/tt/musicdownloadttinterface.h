@@ -9,7 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QObject>
+#include "musicobject.h"
+#include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
 const QString TT_ALBUM_URL       = "bEc2U0x6dUkxSUE3MkJMdzBUN1l2aFowMDFGUFV1Y2F3MVA3SDdDdzlIY2JxMCtsZ3BXZkpGSWhSY1JsanVGM2F4NldrQlQrRytkMXphT2JmNnIxWEE9PQ==";
@@ -21,5 +22,19 @@ const QString TT_SONG_PIC_URL    = "cUVYKzBOekUxTDdDcjZ1VWVhc2E1azcyUTJNQnpHUXlO
 ///////////////////////////////////////////////////////////////////////////
 const QString TT_ARTIST_URL      = "aFozbkdtREt1Z3VLaU9MS2hEVDlxMUpCU1cxOExpZUpOelo4QmpMakdwWWxaTGIyWVlpMGpubU11QmgxNE5IaEUrbVJjazZ2TzVJVHRYeGNXaGx0cXc9PQ==";
 ///////////////////////////////////////////////////////////////////////////
+
+/*! @brief The class to ttpod query download interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicDownLoadTTInterface
+{
+public:
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                    const QVariantMap &key, const QString &quality, bool all);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+
+};
 
 #endif // MUSICDOWNLOADTTINTERFACE_H

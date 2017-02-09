@@ -39,6 +39,11 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                    const QString &format, const QString &quality, bool all);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
     void readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
                               const QString &id, QNetworkAccessManager *manager);
     /*!

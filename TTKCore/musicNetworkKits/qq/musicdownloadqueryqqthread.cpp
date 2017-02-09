@@ -99,29 +99,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(QQ_SONG_PIC_URL, URL_KEY)
                                     .arg(musicInfo.m_albumId.right(2).left(1))
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
-
-                        if(m_queryAllRecords)
-                        {
-                            readFromMusicSongAttribute(&musicInfo, value, MB_128);
-                            readFromMusicSongAttribute(&musicInfo, value, MB_192);
-                            readFromMusicSongAttribute(&musicInfo, value, MB_320);
-                            readFromMusicSongAttribute(&musicInfo, value, MB_500);
-                            readFromMusicSongAttribute(&musicInfo, value, MB_1000);
-                        }
-                        else
-                        {
-                            if(m_searchQuality == tr("SD"))
-                                readFromMusicSongAttribute(&musicInfo, value, MB_128);
-                            else if(m_searchQuality == tr("HQ"))
-                                readFromMusicSongAttribute(&musicInfo, value, MB_192);
-                            else if(m_searchQuality == tr("SQ"))
-                                readFromMusicSongAttribute(&musicInfo, value, MB_320);
-                            else if(m_searchQuality == tr("CD"))
-                            {
-                                readFromMusicSongAttribute(&musicInfo, value, MB_500);
-                                readFromMusicSongAttribute(&musicInfo, value, MB_1000);
-                            }
-                        }
+                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

@@ -58,3 +58,36 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         info->m_songAttrs.append(attr);
     }
 }
+
+void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QVariantMap &key, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, key, MB_128);
+        readFromMusicSongAttribute(info, key, MB_192);
+        readFromMusicSongAttribute(info, key, MB_320);
+        readFromMusicSongAttribute(info, key, MB_500);
+        readFromMusicSongAttribute(info, key, MB_1000);
+    }
+    else
+    {
+        if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, key, MB_128);
+        }
+        else if(quality == QObject::tr("HQ"))
+        {
+            readFromMusicSongAttribute(info, key, MB_192);
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, key, MB_320);
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, key, MB_500);
+            readFromMusicSongAttribute(info, key, MB_1000);
+        }
+    }
+}

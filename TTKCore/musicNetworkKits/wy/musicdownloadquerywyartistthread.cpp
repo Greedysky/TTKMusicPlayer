@@ -89,24 +89,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
 
-                    if(m_queryAllRecords)
-                    {
-                        readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                        readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                        readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                        readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                    }
-                    else
-                    {
-                        if(m_searchQuality == tr("ST"))
-                            readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
-                        else if(m_searchQuality == tr("SD"))
-                            readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
-                        else if(m_searchQuality == tr("HD"))
-                            readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
-                        else if(m_searchQuality == tr("SQ"))
-                            readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
-                    }
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

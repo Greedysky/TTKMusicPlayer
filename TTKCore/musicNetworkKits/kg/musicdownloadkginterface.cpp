@@ -56,6 +56,32 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                                          const QVariantMap &key, const QString &quality, bool all)
+{
+    if(all)
+    {
+        readFromMusicSongAttribute(info, key["hash"].toString(), manager);
+        readFromMusicSongAttribute(info, key["320hash"].toString(), manager);
+        readFromMusicSongAttribute(info, key["sqhash"].toString(), manager);
+    }
+    else
+    {
+        if(quality == QObject::tr("SD"))
+        {
+            readFromMusicSongAttribute(info, key["hash"].toString(), manager);
+        }
+        else if(quality == QObject::tr("SQ"))
+        {
+            readFromMusicSongAttribute(info, key["320hash"].toString(), manager);
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, key["sqhash"].toString(), manager);
+        }
+    }
+}
+
 void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash, QNetworkAccessManager *manager)
 {
