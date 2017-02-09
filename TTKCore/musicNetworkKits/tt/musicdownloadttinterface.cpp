@@ -3,6 +3,18 @@
 #include "musictime.h"
 
 void MusicDownLoadTTInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+                                                          const QVariantMap &key, int bitrate)
+{
+    MusicObject::MusicSongAttribute songAttr;
+    songAttr.m_url = key["url"].toString();
+    songAttr.m_size = MusicUtils::Number::size2Label(key["size"].toInt());
+    songAttr.m_format = key["suffix"].toString();
+    songAttr.m_bitrate = bitrate == -1 ? key["bitRate"].toInt() : bitrate;
+    songAttr.m_duration = MusicTime::msecTime2LabelJustified(key["duration"].toInt());
+    info->m_songAttrs << songAttr;
+}
+
+void MusicDownLoadTTInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
     ///music normal songs urls
@@ -15,19 +27,28 @@ void MusicDownLoadTTInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             continue;
         }
 
-        if(all == true || (all == false &&
-           audUrlsValue["typeDescription"].toString() == quality))
+        if(all)
         {
-            MusicObject::MusicSongAttribute songAttr;
-            songAttr.m_url = audUrlsValue["url"].toString();
-            songAttr.m_size = MusicUtils::Number::size2Label(audUrlsValue["size"].toInt());
-            songAttr.m_format = audUrlsValue["suffix"].toString();
-            songAttr.m_bitrate = audUrlsValue["bitRate"].toInt();
-            songAttr.m_duration = MusicTime::msecTime2LabelJustified(audUrlsValue["duration"].toInt());
-            info->m_songAttrs << songAttr;
-            if(!all)
+            readFromMusicSongAttribute(info, audUrlsValue, -1);
+        }
+        else
+        {
+            int bit = map2NormalBitrate(audUrlsValue["bitRate"].toInt());
+            if(quality == QObject::tr("ST") && bit == MB_32)
             {
-                break;
+                readFromMusicSongAttribute(info, audUrlsValue, bit);
+            }
+            else if(quality == QObject::tr("SD") && bit == MB_128)
+            {
+                readFromMusicSongAttribute(info, audUrlsValue, bit);
+            }
+            else if(quality == QObject::tr("HQ") && bit == MB_192)
+            {
+                readFromMusicSongAttribute(info, audUrlsValue, bit);
+            }
+            else if(quality == QObject::tr("SQ") && bit == MB_320)
+            {
+                readFromMusicSongAttribute(info, audUrlsValue, bit);
             }
         }
     }
@@ -41,20 +62,31 @@ void MusicDownLoadTTInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             continue;
         }
 
-        if(all == true || (all == false &&
-           llUrlValue["typeDescription"].toString() == quality))
+        if(all)
         {
-            MusicObject::MusicSongAttribute songAttr;
-            songAttr.m_url = llUrlValue["url"].toString();
-            songAttr.m_size = MusicUtils::Number::size2Label(llUrlValue["size"].toInt());
-            songAttr.m_format = llUrlValue["suffix"].toString();
-            songAttr.m_bitrate = llUrlValue["bitRate"].toInt();
-            songAttr.m_duration = MusicTime::msecTime2LabelJustified(key["duration"].toInt());
-            info->m_songAttrs << songAttr;
-            if(!all)
+            readFromMusicSongAttribute(info, llUrlValue, -1);
+        }
+        else
+        {
+            int bit = map2NormalBitrate(llUrlValue["bitRate"].toInt());
+            if(quality == QObject::tr("CD") && bit == MB_500)
             {
-                break;
+                readFromMusicSongAttribute(info, llUrlValue, bit);
             }
         }
     }
+}
+
+int MusicDownLoadTTInterface::map2NormalBitrate(int bitrate)
+{
+    if(bitrate > 0 && bitrate < 128)
+        return MB_32;
+    else if(bitrate > 128 && bitrate < 192)
+        return MB_128;
+    else if(bitrate > 192 && bitrate < 320)
+        return MB_320;
+    else if(bitrate > 320)
+        return MB_500;
+    else
+        return bitrate;
 }

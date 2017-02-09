@@ -86,7 +86,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_128);
         }
-        else if(quality == QObject::tr("HD"))
+        else if(quality == QObject::tr("HQ"))
         {
             readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_192);
         }

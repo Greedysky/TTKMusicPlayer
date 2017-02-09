@@ -286,7 +286,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
         }
         else if(attr.m_bitrate == MB_192)   ///hd
         {
-            m_ui->viewArea->createItem(MB_192, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+            m_ui->viewArea->createItem(MB_192, tr("HQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                      .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                      QString(":/quality/lb_hd_quality"));
         }

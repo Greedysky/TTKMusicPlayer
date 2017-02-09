@@ -97,7 +97,7 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             readFromMusicSongAttribute(info, key, MB_128);
         }
-        else if(quality == QObject::tr("HD") && bitrate == MB_192)
+        else if(quality == QObject::tr("HQ") && bitrate == MB_192)
         {
             readFromMusicSongAttribute(info, key, MB_192);
         }

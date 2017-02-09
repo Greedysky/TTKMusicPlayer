@@ -41,7 +41,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
         }
-        else if(quality == QObject::tr("HD"))
+        else if(quality == QObject::tr("HQ"))
         {
             readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
         }

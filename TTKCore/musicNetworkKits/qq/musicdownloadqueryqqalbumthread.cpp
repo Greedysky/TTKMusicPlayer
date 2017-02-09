@@ -104,7 +104,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                                     .arg(musicInfo.m_albumId.right(2).left(1))
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                         musicInfo.m_albumId = value["albumname"].toString() + albumId;
-                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

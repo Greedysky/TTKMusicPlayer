@@ -54,7 +54,7 @@ void MusicQualityChoiceTableWidget::createItems()
     item->setTextAlignment(Qt::AlignCenter);
     setItem(1, 0, item);
 
-                      item = new QTableWidgetItem(tr("HD"));
+                      item = new QTableWidgetItem(tr("HQ"));
     item->setTextColor(PREVIOUS_COLOR);
     item->setTextAlignment(Qt::AlignCenter);
     setItem(2, 0, item);
@@ -196,7 +196,7 @@ void MusicQualityChoiceWidget::listCellClicked(int row)
         case 2:
             {
                 style = "QToolButton{ margin-left:-90px; }";
-                m_currentQuality = tr("HD");
+                m_currentQuality = tr("HQ");
                 break;
             }
         case 3:
