@@ -57,6 +57,14 @@ protected:
     /*!
      * Start to search mv list by id.
      */
+    qint64 foundAblumIdBySongId(const QString &song);
+    /*!
+     * Found ablum id by song id.
+     */
+    void foundLostSongs(const QString &ablum);
+    /*!
+     * Found lost song by ablum id.
+     */
 
     QSet<QString> m_songIds;
     int m_index;

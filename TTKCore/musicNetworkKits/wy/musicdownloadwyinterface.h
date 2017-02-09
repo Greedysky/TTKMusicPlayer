@@ -22,9 +22,11 @@ const QString WY_SONG_SEARCH_URL   = "SFIwVWhHbEpXckhQT0VZUG5tUnBaYUNva2lUZXhSQn
 const QString WY_SONG_QUERY_URL    = "UUs1NUMwUk9yeExmUFVCakUrS29NNm5OQ05lYUV3ZzJPS3NLVW9lZXhNaGwrd2Za";
 const QString WY_SONG_URL          = "SkRzeTdTcHMvUVpaa01hcWdveklVK2FHbXRlRmRiTXYvYzRHdS9Hc01ZMllBaFlKNlp4RFBodHV0eERPd2haMEM3MjAzQT09";
 const QString WY_SONG_MV_URL       = "cmVKem5MSmhzNk1KeUFRcXJFU2xrcHU3cnhwWHo2TVBNOFIwOC8rSldoSThUbmhQRVd0NEhTSnZGMytkVlFENUZTZ1lDekFLUkJvPQ==";
-const QString WY_SONG_PATH_URL     = "bHp1OWliOUVIRS9sOWIvTDROc2ltMXJyaElUS1FUNS9kamhPUDB1Y2JPS3BqU1lJL3BiVlRBPT0=";
+const QString WY_SONG_PATH_URL     = "SE5nYjBERmZZRzFyMHNhcVh6YVFaQmJWRDVIVWlkYTZoSGZIY2NpdkJ0dmJpTkY3WjZBblV3PT0=";
 const QString WY_SONG_PIC_URL      = "eEZpOHNEanlmUmxITG9PRHI4aElxcDRqY1F5VjE1SmtMYm9lV3Z0eVpuakpBWFV4aFNZbDF3PT0=";
 const QString WY_SONG_LRC_URL      = "TjNjL2ttNVR4cGluaEpwU1B2VzNucFhEWUdkRERkempFcThjWEIvMzMzMzVjaWVoR3ZNYXN5MHZsOE9sMTQ1TG1yeDNVQT09";
+const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
+const QString WY_SONG_DETAIL_URL   = "L3pCVjhOLzB5TUxpNS84czdTRTFndnZvMFkyTjhyKzFTK3lTNVlvQXBjT0xEb1FQZVpqdzZRaW5nNmM9";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_ARTIST_URL        = "VURUWGM0c0NHamdldHFWcGwvZWlxS24rZ3Fpc1o0TEZmUDRDUDl3aWQvdklQN0VCeVpicmxRPT0=";
 ///////////////////////////////////////////////////////////////////////////

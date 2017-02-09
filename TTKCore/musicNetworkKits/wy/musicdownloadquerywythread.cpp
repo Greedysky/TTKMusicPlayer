@@ -1,4 +1,5 @@
 #include "musicdownloadquerywythread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -175,6 +176,14 @@ void MusicDownLoadQueryWYThread::songListFinished()
                     }
                 }
             }
+            else
+            {
+                qint64 albumId = foundAblumIdBySongId(m_songIds.toList()[m_index]);
+                if(albumId != -1)
+                {
+                    foundLostSongs(QString::number(albumId));
+                }
+            }
         }
     }
     else
@@ -287,5 +296,148 @@ void MusicDownLoadQueryWYThread::startMVListQuery()
         QNetworkReply *reply = m_manager->get(request);
         connect(reply, SIGNAL(finished()), SLOT(mvListFinished()) );
         connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+    }
+}
+
+qint64 MusicDownLoadQueryWYThread::foundAblumIdBySongId(const QString &song)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_DETAIL_URL, URL_KEY);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->post( request, QString("c=[{\"id\":\"%1\"}]").arg(song).toUtf8());
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("songs") && value.contains("code") && value["code"].toInt() == 200)
+        {
+            QVariantList datas = value["songs"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                value = value["al"].toMap();
+                return value.contains("id") ? value["id"].toULongLong() : -1;
+            }
+        }
+    }
+
+    return -1;
+}
+
+void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_ALBUM_URL, URL_KEY).arg(ablum);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get( request );
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("songs"))
+        {
+            QVariantList datas = value["songs"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                MusicObject::MusicSongInfomation musicInfo;
+                musicInfo.m_songName = value["name"].toString();
+                musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                musicInfo.m_songId = QString::number(value["id"].toInt());
+                musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
+
+                QVariantMap albumObject = value["album"].toMap();
+                musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
+                musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
+
+                QVariantList artistsArray = albumObject["artists"].toList();
+                foreach(const QVariant &artistValue, artistsArray)
+                {
+                    if(artistValue.isNull())
+                    {
+                        continue;
+                    }
+                    QVariantMap artistMap = artistValue.toMap();
+                    musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
+                    musicInfo.m_singerName = artistMap["name"].toString();
+                }
+
+                if(m_queryAllRecords)
+                {
+                    readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
+                    readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
+                    readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
+                    readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
+                }
+                else
+                {
+                    if(m_searchQuality == tr("ST"))
+                        readFromMusicSongAttribute(&musicInfo, value["lMusic"].toMap(), MB_32);
+                    else if(m_searchQuality == tr("SD"))
+                        readFromMusicSongAttribute(&musicInfo, value["bMusic"].toMap(), MB_128);
+                    else if(m_searchQuality == tr("HD"))
+                        readFromMusicSongAttribute(&musicInfo, value["mMusic"].toMap(), MB_192);
+                    else if(m_searchQuality == tr("SQ"))
+                        readFromMusicSongAttribute(&musicInfo, value["hMusic"].toMap(), MB_320);
+                }
+
+                if(musicInfo.m_songAttrs.isEmpty())
+                {
+                    continue;
+                }
+
+                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                m_musicSongInfos << musicInfo;
+
+                if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
+                {
+                    emit downLoadDataChanged(QString());
+                    deleteAll();
+                    return;
+                }
+            }
+        }
     }
 }
