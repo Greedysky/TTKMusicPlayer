@@ -49,6 +49,10 @@ public:
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
+    int map2NormalBitrate(int bitrate);
+    /*!
+     * Map json bitrate to normal bitrate.
+     */
 
 };
 

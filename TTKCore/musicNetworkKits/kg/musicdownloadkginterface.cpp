@@ -50,7 +50,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             attr.m_url = value["url"].toString();
             attr.m_size = MusicUtils::Number::size2Label(value["fileSize"].toInt());
             attr.m_format = value["extName"].toString();
-            attr.m_bitrate = value["bitRate"].toInt()/1000;
+            attr.m_bitrate = map2NormalBitrate(value["bitRate"].toInt()/1000);
             info->m_songAttrs.append(attr);
         }
     }
@@ -121,4 +121,18 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
                                                     .arg(value["timeLength"].toInt()*1000);
         }
     }
+}
+
+int MusicDownLoadKGInterface::map2NormalBitrate(int bitrate)
+{
+    if(bitrate > 0 && bitrate < 128)
+        return MB_32;
+    else if(bitrate > 128 && bitrate < 192)
+        return MB_128;
+    else if(bitrate > 192 && bitrate < 320)
+        return MB_320;
+    else if(bitrate > 320)
+        return MB_500;
+    else
+        return bitrate;
 }
