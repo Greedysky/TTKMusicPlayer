@@ -84,17 +84,19 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                         musicInfo.m_songId = value["song_id"].toString();
                         musicInfo.m_artistId = value["ting_uid"].toString();
                         musicInfo.m_albumId = value["album_id"].toString();
-                        musicInfo.m_lrcUrl = value["lrclink"].toString();
-                        musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
-
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
-                                                   m_searchQuality, m_queryAllRecords);
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(!m_querySimplify)
                         {
-                            continue;
-                        }
+                            musicInfo.m_lrcUrl = value["lrclink"].toString();
+                            musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration);
+                            readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
+                                                       m_searchQuality, m_queryAllRecords);
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
+                            }
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration);
+                        }
                         m_musicSongInfos << musicInfo;
                     }
                     else

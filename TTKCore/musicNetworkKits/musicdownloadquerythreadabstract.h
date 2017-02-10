@@ -61,6 +61,14 @@ public:
     /*!
      * Get query all records flag.
      */
+    inline void setQuerySimplify(bool state) { m_querySimplify = state;}
+    /*!
+     * Set query simplify mode.
+     */
+    inline bool getQuerySimplify() const { return m_querySimplify;}
+    /*!
+     * Get query simplify flag.
+     */
     inline QueryType getQueryType() const { return m_currentType;}
     /*!
      * Return the current song query type.
@@ -94,7 +102,7 @@ protected:
     QString m_searchText, m_searchQuality;
     QString m_queryServer;
     QueryType m_currentType;
-    bool m_queryAllRecords;
+    bool m_queryAllRecords, m_querySimplify;
 
 };
 

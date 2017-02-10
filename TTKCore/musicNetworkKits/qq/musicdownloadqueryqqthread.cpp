@@ -95,18 +95,20 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["songid"].toString();
                         musicInfo.m_albumId = value["albummid"].toString();
-                        musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(QQ_SONG_LRC_URL, URL_KEY).arg(musicInfo.m_songId);
-                        musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(QQ_SONG_PIC_URL, URL_KEY)
-                                    .arg(musicInfo.m_albumId.right(2).left(1))
-                                    .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
-
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(!m_querySimplify)
                         {
-                            continue;
-                        }
+                            musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(QQ_SONG_LRC_URL, URL_KEY).arg(musicInfo.m_songId);
+                            musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(QQ_SONG_PIC_URL, URL_KEY)
+                                        .arg(musicInfo.m_albumId.right(2).left(1))
+                                        .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                            readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
+                            }
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        }
                         m_musicSongInfos << musicInfo;
                     }
                     else

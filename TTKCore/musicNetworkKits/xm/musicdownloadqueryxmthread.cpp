@@ -89,35 +89,37 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         musicInfo.m_songId = QString::number(value["song_id"].toULongLong());
                         musicInfo.m_artistId = QString::number(value["artist_id"].toULongLong());
                         musicInfo.m_albumId = QString::number(value["album_id"].toULongLong());
-                        musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
-                                                  value["album_logo"].toString().replace("_1.", "_4.");
-
-                        QVariantMap lrcValue = value["lyric"].toMap();
-                        QString lrcUrl = lrcValue["lyricFile"].toString();
-                        if(!lrcUrl.endsWith("txt"))
+                        if(!m_querySimplify)
                         {
-                            musicInfo.m_lrcUrl = lrcUrl;
-                        }
+                            musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
+                                                      value["album_logo"].toString().replace("_1.", "_4.");
 
-                        ///music normal songs urls
-                        QVariantList auditions = value["allAudios"].toList();
-                        foreach(const QVariant &audition, auditions)
-                        {
-                            QVariantMap audUrlsValue = audition.toMap();
-                            if(audUrlsValue.isEmpty())
+                            QVariantMap lrcValue = value["lyric"].toMap();
+                            QString lrcUrl = lrcValue["lyricFile"].toString();
+                            if(!lrcUrl.endsWith("txt"))
+                            {
+                                musicInfo.m_lrcUrl = lrcUrl;
+                            }
+
+                            ///music normal songs urls
+                            QVariantList auditions = value["allAudios"].toList();
+                            foreach(const QVariant &audition, auditions)
+                            {
+                                QVariantMap audUrlsValue = audition.toMap();
+                                if(audUrlsValue.isEmpty())
+                                {
+                                    continue;
+                                }
+
+                                readFromMusicSongAttribute(&musicInfo, audUrlsValue, m_searchQuality, m_queryAllRecords);
+                            }
+
+                            if(musicInfo.m_songAttrs.isEmpty())
                             {
                                 continue;
                             }
-
-                            readFromMusicSongAttribute(&musicInfo, audUrlsValue, m_searchQuality, m_queryAllRecords);
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                         }
-
-                        if(musicInfo.m_songAttrs.isEmpty())
-                        {
-                            continue;
-                        }
-
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                         m_musicSongInfos << musicInfo;
                     }
                     else

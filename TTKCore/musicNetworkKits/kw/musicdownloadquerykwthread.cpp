@@ -82,18 +82,19 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                         musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
                         musicInfo.m_artistId = value["ARTISTID"].toString();
                         musicInfo.m_albumId = value["ALBUMID"].toString();
-
-                        readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
-                        musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(musicInfo.m_songId);
-                        ///music normal songs urls
-                        readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
-
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(!m_querySimplify)
                         {
-                            continue;
-                        }
+                            readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
+                            musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(musicInfo.m_songId);
+                            ///music normal songs urls
+                            readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
+                            }
+                                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        }
                         m_musicSongInfos << musicInfo;
                     }
                     else

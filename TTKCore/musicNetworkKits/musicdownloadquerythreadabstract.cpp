@@ -4,6 +4,7 @@ MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *pare
     : MusicNetworkAbstract(parent)
 {
     m_queryAllRecords = false;
+    m_querySimplify = false;
     m_searchQuality = "标准品质";
     m_queryServer = "Invalid";
 

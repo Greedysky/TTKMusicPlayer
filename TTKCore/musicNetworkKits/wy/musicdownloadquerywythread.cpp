@@ -141,14 +141,16 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         musicInfo.m_singerName = artistMap["name"].toString();
                     }
 
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-
-                    if(musicInfo.m_songAttrs.isEmpty())
+                    if(!m_querySimplify)
                     {
-                        continue;
-                    }
+                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
 
-                    emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                            continue;
+                        }
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                    }
                     m_musicSongInfos << musicInfo;
                 }
 

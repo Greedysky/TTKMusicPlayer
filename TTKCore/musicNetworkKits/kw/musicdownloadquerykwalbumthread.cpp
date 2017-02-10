@@ -95,7 +95,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                         readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(musicInfo.m_songId);
                         ///music normal songs urls
-                        readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
+                        readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

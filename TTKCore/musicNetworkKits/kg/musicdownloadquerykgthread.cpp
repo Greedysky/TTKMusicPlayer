@@ -83,16 +83,17 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["hash"].toString();
                         musicInfo.m_albumId = value["album_id"].toString();
-
                         readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString(), m_manager);
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
-
-                        if(musicInfo.m_songAttrs.isEmpty())
+                        if(!m_querySimplify)
                         {
-                            continue;
-                        }
+                            readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                            if(musicInfo.m_songAttrs.isEmpty())
+                            {
+                                continue;
+                            }
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        }
                         m_musicSongInfos << musicInfo;
                     }
                     else
