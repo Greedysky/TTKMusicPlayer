@@ -1213,7 +1213,7 @@
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="277"/>
         <source>ST</source>
-        <translation>压缩品质</translation>
+        <translation>流畅品质</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="289"/>
@@ -3219,7 +3219,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="47"/>
         <source>ST</source>
-        <translation>压缩品质</translation>
+        <translation>流畅品质</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="57"/>
@@ -3252,7 +3252,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="187"/>
         <source>ST</source>
-        <translation>压缩品质</translation>
+        <translation>流畅品质</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="199"/>
@@ -6900,18 +6900,18 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="91"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="36"/>
+        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="37"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="36"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="92"/>
         <source>ST</source>
-        <translation>压缩品质</translation>
+        <translation>流畅品质</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="95"/>
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="70"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="85"/>
-        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="75"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="40"/>
+        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="94"/>
+        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="41"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="40"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="96"/>
         <source>SD</source>
@@ -6920,7 +6920,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="99"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="89"/>
-        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="79"/>
+        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="98"/>
+        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="45"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="44"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="100"/>
         <source>HQ</source>
@@ -6930,8 +6931,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="103"/>
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="74"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="93"/>
-        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="83"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="48"/>
+        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="102"/>
+        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="49"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="48"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="104"/>
         <source>SQ</source>
@@ -6941,16 +6942,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="108"/>
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="78"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="97"/>
-        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="87"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="70"/>
+        <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="106"/>
+        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="72"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="108"/>
         <source>CD</source>
         <translation>无损品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="44"/>
-        <source>HD</source>
-        <translation>普高品质</translation>
     </message>
 </context>
 </TS>
