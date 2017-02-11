@@ -137,6 +137,7 @@ CONFIG += TTK_BUILD_LIB
 
 include(../TTKCore/musicNetworkKits/MusicNetworkKits.pri)
 include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
+include(../TTKThirdParty/MusicExtras/qaes/QAes.pri)
 
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.
