@@ -16,7 +16,8 @@ INCLUDEPATH += $$PWD \
                $$PWD/kw \
                $$PWD/bd \
                $$PWD/qq \
-               $$PWD/vip
+               $$PWD/vip \
+               $$PWD/yyt
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
@@ -62,6 +63,7 @@ HEADERS  += \
     $$PWD/qq/musicdownloadqueryqqartistthread.h \
     $$PWD/qq/musicdownloadqqinterface.h \
     $$PWD/qq/musicqqtextdownloadthread.h \
+    $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicsourcedownloadthread.h \
@@ -122,6 +124,7 @@ SOURCES += \
     $$PWD/qq/musicdownloadqueryqqartistthread.cpp \
     $$PWD/qq/musicdownloadqqinterface.cpp \
     $$PWD/qq/musicqqtextdownloadthread.cpp \
+    $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicsourcedownloadthread.cpp \
