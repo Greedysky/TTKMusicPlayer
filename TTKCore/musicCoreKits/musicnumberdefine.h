@@ -60,6 +60,7 @@
 #define MH_TB2BS        qint64(MH_TB2B*MH_B2BS)
 ////////////////////////////////////////////////////
 
+#define MA_0            0
 #define MA_30           30
 #define MA_45           45
 #define MA_60           60
@@ -70,6 +71,7 @@
 #define MA_360          360
 ////////////////////////////////////////////////////
 
+#define MB_0            0
 #define MB_32           32
 #define MB_64           64
 #define MB_128          128

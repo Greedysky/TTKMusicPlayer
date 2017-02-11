@@ -113,7 +113,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 QString MusicDownLoadQQInterface::getMusicKey(QNetworkAccessManager *manager, const QString &time)
 {
-    QUrl musicUrl = "http://base.music.qq.com/fcgi-bin/fcg_musicexpress.fcg?json=3&guid=" + time;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_KEY_URL, URL_KEY).arg(time);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

@@ -79,13 +79,15 @@ void MusicDownLoadTTInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 int MusicDownLoadTTInterface::map2NormalBitrate(int bitrate)
 {
-    if(bitrate > 0 && bitrate < 128)
+    if(bitrate > MB_0 && bitrate <= MB_64)
         return MB_32;
-    else if(bitrate > 128 && bitrate < 192)
+    else if(bitrate > MB_64 && bitrate < MB_128)
         return MB_128;
-    else if(bitrate > 192 && bitrate < 320)
+    else if(bitrate > MB_128 && bitrate < MB_192)
+        return MB_192;
+    else if(bitrate > MB_192 && bitrate < MB_320)
         return MB_320;
-    else if(bitrate > 320)
+    else if(bitrate > MB_320)
         return MB_500;
     else
         return bitrate;
