@@ -9,6 +9,7 @@
 INCLUDEPATH += \
         $$PWD/zlib \
         $$PWD/MusicExtras \
+        $$PWD/MusicExtras/qaes \
         $$PWD/MusicExtras/qhz2py \
         $$PWD/MusicExtras/qkugou \
         $$PWD/MusicExtras/qiniu \
