@@ -1,5 +1,7 @@
 #include "musicdownloadqueryttthread.h"
+#include "musicdownloadqueryyytthread.h"
 #include "musicdownloadttinterface.h"
+#include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
@@ -153,17 +155,18 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                 }
             }
         }
-        ///If there is no search to song_id, is repeated several times in the search
-        ///If more than 5 times or no results give up
-        static int counter = 5;
-        if(m_musicSongInfos.isEmpty() && counter-- > 0)
-        {
-            startSearchSong(m_currentType, m_searchText);
-        }
-        else
-        {
-            M_LOGGER_ERROR("not find the song_Id");
-        }
+    }
+
+    ///extra yyt movie
+    if(m_currentType == MovieQuery)
+    {
+        MusicSemaphoreLoop loop;
+        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
+        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString)), SIGNAL(createSearchedItems(QString,QString,QString)));
+        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        loop.exec();
+        m_musicSongInfos << yyt->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

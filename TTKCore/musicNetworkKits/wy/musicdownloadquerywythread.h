@@ -65,6 +65,10 @@ protected:
     /*!
      * Found lost song by ablum id.
      */
+    void foundOtherMovie();
+    /*!
+     * Found other movie.
+     */
 
     QSet<QString> m_songIds;
     int m_index;

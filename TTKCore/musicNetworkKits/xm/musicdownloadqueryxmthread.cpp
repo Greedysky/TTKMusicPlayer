@@ -1,4 +1,5 @@
 #include "musicdownloadqueryxmthread.h"
+#include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
@@ -139,6 +140,18 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                 }
             }
         }
+    }
+
+    ///extra yyt movie
+    if(m_currentType == MovieQuery)
+    {
+        MusicSemaphoreLoop loop;
+        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
+        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString)), SIGNAL(createSearchedItems(QString,QString,QString)));
+        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        loop.exec();
+        m_musicSongInfos << yyt->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

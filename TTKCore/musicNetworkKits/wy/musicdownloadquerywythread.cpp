@@ -1,4 +1,5 @@
 #include "musicdownloadquerywythread.h"
+#include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
@@ -172,6 +173,11 @@ void MusicDownLoadQueryWYThread::songListFinished()
                 }
             }
         }
+        else
+        {
+            emit downLoadDataChanged(QString());
+            deleteAll();
+        }
     }
     else
     {
@@ -230,19 +236,24 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                 emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                 m_musicSongInfos << musicInfo;
 
-                if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
+                if( m_index >= m_songIds.count() )
                 {
-                    emit downLoadDataChanged(QString());
-                    deleteAll();
-                    return;
+                    foundOtherMovie();
                 }
             }
+            else
+            {
+                foundOtherMovie();
+            }
+        }
+        else
+        {
+            foundOtherMovie();
         }
     }
     else
     {
-        emit downLoadDataChanged(QString());
-        deleteAll();
+        foundOtherMovie();
     }
 }
 
@@ -401,7 +412,7 @@ void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
                 emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
                 m_musicSongInfos << musicInfo;
 
-                if( m_index >= m_songIds.count() || m_musicSongInfos.count() == 0)
+                if( m_index >= m_songIds.count())
                 {
                     emit downLoadDataChanged(QString());
                     deleteAll();
@@ -410,4 +421,22 @@ void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
             }
         }
     }
+}
+
+void MusicDownLoadQueryWYThread::foundOtherMovie()
+{
+    ///extra yyt movie
+    if(m_currentType == MovieQuery)
+    {
+        MusicSemaphoreLoop loop;
+        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
+        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString)), SIGNAL(createSearchedItems(QString,QString,QString)));
+        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        loop.exec();
+        m_musicSongInfos << yyt->getMusicSongInfos();
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
 }
