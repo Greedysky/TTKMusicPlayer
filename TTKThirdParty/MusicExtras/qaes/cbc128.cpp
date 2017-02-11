@@ -1,11 +1,5 @@
-//
-// Created by qtfreet on 2016/11/29.
-//
-
 #include "cbc128.h"
-
 #include <string.h>
-
 
 #if !defined(STRICT_ALIGNMENT) && !defined(PEDANTIC)
 # define STRICT_ALIGNMENT 0

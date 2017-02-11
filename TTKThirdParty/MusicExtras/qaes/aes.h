@@ -10,8 +10,6 @@
 #ifndef HEADER_AES_H
 # define HEADER_AES_H
 
-
-
 # include <stddef.h>
 
 # ifdef  __cplusplus
