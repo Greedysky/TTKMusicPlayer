@@ -108,7 +108,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                             {
                                 continue;
                             }
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
                         }
                         m_musicSongInfos << musicInfo;
                     }
@@ -123,7 +123,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
                         m_musicSongInfos << musicInfo;
                     }
                 }
@@ -136,7 +136,8 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
     {
         MusicSemaphoreLoop loop;
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString)), SIGNAL(createSearchedItems(QString,QString,QString)));
+        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString,QString)),
+                     SIGNAL(createSearchedItems(QString,QString,QString,QString)));
         connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();

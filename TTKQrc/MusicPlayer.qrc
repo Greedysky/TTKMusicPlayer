@@ -462,6 +462,7 @@
         <file alias="lb_selected">../TTKResource/tiny/lb_selected.png</file>
         <file alias="lb_sort_asc">../TTKResource/tiny/lb_sort_asc.png</file>
         <file alias="lb_sort_desc">../TTKResource/tiny/lb_sort_desc.png</file>
+        <file alias="lb_server_type">../TTKResource/tiny/lb_server_type.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>

@@ -9,7 +9,7 @@
 MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)
 {
-    setColumnCount(8);
+    setColumnCount(9);
     resizeWindow(0);
 
     MusicTime::timeSRand();
@@ -57,13 +57,14 @@ void MusicVideoTableWidget::resizeWindow(int delta)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 305 + delta*0.4);
-    headerview->resizeSection(2, 160 + delta*0.4);
+    headerview->resizeSection(1, 292 + delta*0.4);
+    headerview->resizeSection(2, 148 + delta*0.4);
     headerview->resizeSection(3, 31 + delta*0.1);
     headerview->resizeSection(4, 55 + delta*0.1);
     headerview->resizeSection(5, 24);
     headerview->resizeSection(6, 24);
     headerview->resizeSection(7, 24);
+    headerview->resizeSection(8, 24);
 
     //resize row
     for(int i=0; i<rowCount(); ++i)
@@ -80,7 +81,7 @@ void MusicVideoTableWidget::resizeWindow(int delta)
 void MusicVideoTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryItemTableWidget::listCellEntered(row, column);
-    if(column == 5 || column == 6 || column == 7)
+    if(column == 6 || column == 7 || column == 8)
     {
        setCursor(QCursor(Qt::PointingHandCursor));
     }
@@ -95,11 +96,11 @@ void MusicVideoTableWidget::listCellClicked(int row, int column)
     MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 5:
         case 6:
+        case 7:
             itemDoubleClicked(row, 999);
             break;
-        case 7:
+        case 8:
             musicDownloadLocal(row);
             break;
         default:break;
@@ -109,12 +110,11 @@ void MusicVideoTableWidget::listCellClicked(int row, int column)
 void MusicVideoTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(8);
+    setColumnCount(9);
 }
 
-void MusicVideoTableWidget::createSearchedItems(const QString &songname,
-                                                const QString &artistname,
-                                                const QString &time)
+void MusicVideoTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
+                                                const QString &time, const QString &type)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -151,16 +151,21 @@ void MusicVideoTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_mv")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(type);
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_mv")));
     setItem(count, 6, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
     setItem(count, 7, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    setItem(count, 8, item);
 }
 
 void MusicVideoTableWidget::itemDoubleClicked(int row, int column)

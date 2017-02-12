@@ -33,7 +33,8 @@ QString MusicSongTag::getClassName()
 
 bool MusicSongTag::readFile(const QString &file)
 {
-    if(!QFile::exists(file))
+    QFile f(file);
+    if(!f.exists() || f.size() <= 0)
     {
         return false;
     }

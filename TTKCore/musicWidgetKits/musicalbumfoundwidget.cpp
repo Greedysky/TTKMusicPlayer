@@ -21,10 +21,11 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 449);
-    headerview->resizeSection(2, 60);
+    headerview->resizeSection(1, 436);
+    headerview->resizeSection(2, 47);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
+    headerview->resizeSection(5, 26);
     headerview->resizeSection(5, 26);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -55,8 +56,8 @@ void MusicAlbumFoundTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 449);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 436);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
 
     for(int i=0; i<rowCount(); ++i)
     {

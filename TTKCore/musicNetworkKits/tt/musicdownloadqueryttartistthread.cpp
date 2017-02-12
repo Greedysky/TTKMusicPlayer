@@ -93,7 +93,7 @@ void MusicDownLoadQueryTTArtistThread::downLoadFinished()
                         }
 
                         QString duration = musicInfo.m_songAttrs.first().m_duration;
-                        emit createSearchedItems(songName, singerName, duration);
+                        emit createSearchedItems(songName, singerName, duration, m_queryServer);
 
                         musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(TT_SONG_LRC_URL, URL_KEY).arg(singerName).arg(songName).arg(songId);
                         musicInfo.m_smallPicUrl = value["picUrl"].toString();

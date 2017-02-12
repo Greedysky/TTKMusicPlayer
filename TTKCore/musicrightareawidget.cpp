@@ -485,7 +485,13 @@ void MusicRightAreaWidget::songResearchButtonSearched(const QString &name)
 
 void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
 {
-    m_ui->songSearchWidget->researchQueryByQuality(m_ui->showCurrentSong->text().trimmed(), quality);
+    QString text = m_ui->showCurrentSong->text().trimmed();
+    if(text.isEmpty())
+    {
+        return;
+    }
+
+    m_ui->songSearchWidget->researchQueryByQuality(text, quality);
     m_ui->surfaceStackedWidget->setCurrentIndex(0);
     emit updateBackgroundTheme();
 }

@@ -54,7 +54,7 @@ void MusicDownLoadQueryXMArtistThread::startLostArtist()
         MusicObject::MusicSongInfomation musicInfo = startLostSong(m_manager, m_songIds.toList()[m_index]);
         ++m_index;
 
-        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
         m_musicSongInfos << musicInfo;
 
         if(m_index >= m_songIds.count())
@@ -178,7 +178,7 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
                         m_musicSongInfos << musicInfo;
 
                     }
