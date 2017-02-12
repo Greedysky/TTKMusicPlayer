@@ -96,7 +96,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                             {
                                 continue;
                             }
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, m_queryServer);
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, mapQueryServerString());
                         }
                         m_musicSongInfos << musicInfo;
                     }
@@ -114,7 +114,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, m_queryServer);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                 }

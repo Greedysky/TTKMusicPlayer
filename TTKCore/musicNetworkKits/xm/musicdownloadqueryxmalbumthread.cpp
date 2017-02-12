@@ -145,7 +145,7 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                 }
@@ -203,7 +203,7 @@ void MusicDownLoadQueryXMAlbumThread::getLostAlbumFinished()
                                               value["company"].toString() + "<>" +
                         QDateTime::fromMSecsSinceEpoch(publicTime).toString("yyyy-MM-dd");
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                 }

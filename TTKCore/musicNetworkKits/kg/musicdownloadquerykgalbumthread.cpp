@@ -104,7 +104,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                 }

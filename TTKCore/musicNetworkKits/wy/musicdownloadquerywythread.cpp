@@ -150,7 +150,7 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         {
                             continue;
                         }
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                     }
                     m_musicSongInfos << musicInfo;
                 }
@@ -233,7 +233,7 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                     return;
                 }
 
-                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                 m_musicSongInfos << musicInfo;
 
                 if( m_index >= m_songIds.count() )
@@ -409,7 +409,7 @@ void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
                     continue;
                 }
 
-                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                 m_musicSongInfos << musicInfo;
 
                 if( m_index >= m_songIds.count())

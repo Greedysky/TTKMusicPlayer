@@ -98,6 +98,11 @@ Q_SIGNALS:
      */
 
 protected:
+    QString mapQueryServerString() const;
+    /*!
+     * Map query server string.
+     */
+
     MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QString m_queryServer;

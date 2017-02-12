@@ -103,7 +103,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                             }
 
                             musicInfo.m_timeLength = musicInfo.m_songAttrs.first().m_duration;
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         }
                         m_musicSongInfos << musicInfo;
                     }
@@ -148,7 +148,7 @@ void MusicDownLoadQueryTTThread::downLoadFinished()
                                 continue;
                             }
 
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, m_queryServer);
+                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                             m_musicSongInfos << musicInfo;
                         }
                     }
