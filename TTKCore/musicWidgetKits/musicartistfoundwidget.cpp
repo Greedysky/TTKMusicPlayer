@@ -197,7 +197,14 @@ void MusicArtistFoundWidget::queryArtistFinished()
 
         MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(currentInfo.m_smallPicUrl);
+        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
+        {
+            if(!info.m_smallPicUrl.isEmpty() && info.m_smallPicUrl != "null")
+            {
+                download->startToDownload(info.m_smallPicUrl);
+                break;
+            }
+        }
         ////////////////////////////////////////////////////////////////////////////
 
         QWidget *topRightWidget = new QWidget(topFuncWidget);
