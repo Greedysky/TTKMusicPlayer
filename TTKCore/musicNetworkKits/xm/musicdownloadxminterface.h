@@ -18,7 +18,7 @@ const QByteArray XM_BASE_URL         = "bUhKRWJpc0lkTi9sK2lpWU82YUhqdTZnYzZ6cmpJ
 const QString XM_ALBUM_URL           = "SlEzVGhEWWhhMDJBaVJFUWJoejFJZHFQMUhDTktmWExESzh4dHY5ZlhhSStmU2dFV3FabzdHcG1tZk9Sa013aUtVb2dTQ1FuQWtGL1ZndGo=";
 const QString XM_ALBUM_LOST_URL      = "YXBmU1lkZGg5cUJFSHFwNWttcmxQZnhjdjlOUEdoc1VkZHdDOTQ5a1kzSkJ6NDFpL1R6cVFJMTlyOFZSZk9YOHI1Z3NKQkdEYisrL09oWVNWdUtzVW56RHZ3V1VqcjZwWnFWbGVOdDhaVGxuWlNjek13UFJhWjlOSFlVPQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString XM_SONG_SEARCH_URL     = "N0JRblEwUURDaml2cjBlV3VtSTBhTUFvT1dIZVhoMmdsRm9BZGFHck1jOEpaWmVXNlZ1NjdxR2JoUG93OVZISjdZaVdPZURZMGVyeWJNV0lDVm9VS2l4bmg3TC9iOXFDVGJvdjI5TGZrelZoVVFOTA==";
+const QString XM_SONG_SEARCH_URL     = "ZU1naWg2S1AyZWRCNnJJeUdJVGI1M2tSS3cyVzRWR3UzcGEwNUEycWxuanhqTXNrUVBUeUJIRVowbDRLSGRQbG52eGJjWHZpU2RIcnArS25xZ2lWV0xWUEI5SGRRa2swSXhQbVVma1paRVZMSWVESQ==";
 const QString XM_SONG_PIC_URL        = "T1JqV3kvRksxSW5QUTdWeW9NOGY3L0ppazlDckM1RXYvRElGRlE9PQ==";
 const QString XM_SONG_LOST_URL       = "TFo4N2ZkMTFhRm1YMm1wWU1VYnZXYXA2NlEvaDJZOUpqMVB5MVVscmNycWJ5b2NTczY3YVF0SFdzanJHNy9QbksyblJBVGdJbkFpWDg5OEkvaFJJYUE9PQ==";
 ///////////////////////////////////////////////////////////////////////////

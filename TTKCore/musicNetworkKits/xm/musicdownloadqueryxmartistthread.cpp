@@ -77,6 +77,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll(); ///Get all the data obtained by request
+
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -94,11 +95,6 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    if(value["song_status"].toInt() != 0)
-                    {
-                        continue;
-                    }
-
                     m_songIds << value["song_id"].toString();
                 }
             }
@@ -127,6 +123,7 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
+                ++m_index;
                 value = value["data"].toMap();
                 QVariantList datas = value["trackList"].toList();
                 foreach(const QVariant &var, datas)
@@ -136,13 +133,7 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
                         continue;
                     }
 
-                    ++m_index;
                     value = var.toMap();
-                    if(value["song_status"].toInt() != 0)
-                    {
-                        continue;
-                    }
-
                     MusicObject::MusicSongInfomation musicInfo;
                     musicInfo.m_singerName = value["singers"].toString();
                     musicInfo.m_songName = value["songName"].toString();
@@ -180,17 +171,17 @@ void MusicDownLoadQueryXMArtistThread::songListFinished()
 
                         emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
-
-                    }
-
-                    if( m_index >= m_songIds.count())
-                    {
-                        emit downLoadDataChanged(QString());
-                        deleteAll();
-                        return;
                     }
                 }
+
+                if(m_index >= m_songIds.count())
+                {
+                    emit downLoadDataChanged(QString());
+                    deleteAll();
+                    return;
+                }
             }
+            startLostArtist();
         }
         startLostArtist();
     }

@@ -100,11 +100,6 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    if(value["song_status"].toInt() != 0)
-                    {
-                        continue;
-                    }
-
                     MusicObject::MusicSongInfomation musicInfo;
                     musicInfo.m_singerName = value["singers"].toString();
                     musicInfo.m_songName = value["songName"].toString();
