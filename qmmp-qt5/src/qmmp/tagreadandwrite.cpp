@@ -3,6 +3,17 @@
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
 #include <taglib/tpropertymap.h>
+#include <taglib/id3v2tag.h>
+#include <taglib/mpegfile.h>
+#include <taglib/attachedpictureframe.h>
+
+#define DECODE_STRING(value) TagLib::String(value.toUtf8().data(), TagLib::String::UTF8)
+#define ENCODE_STRING(value) QString::fromUtf8(value.toCString(true))
+
+TagReadAndWrite::TagReadAndWrite()
+{
+
+}
 
 TagReadAndWrite::TagReadAndWrite(const QString &file)
 {
@@ -16,7 +27,17 @@ TagReadAndWrite::~TagReadAndWrite()
 
 bool TagReadAndWrite::readFile()
 {
-    TagLib::FileRef tagFile(m_path.toLocal8Bit().constData());
+    return readFile(m_path);
+}
+
+bool TagReadAndWrite::readFile(const QString &path)
+{
+    if(path.isEmpty())
+    {
+        return false;
+    }
+
+    TagLib::FileRef tagFile(path.toLocal8Bit().constData());
     if(tagFile.isNull())
     {
         return false;
@@ -25,24 +46,24 @@ bool TagReadAndWrite::readFile()
     if(tagFile.tag())
     {
         TagLib::Tag *tag = tagFile.tag();
-        m_parameters[TAG_TITLE] = QString::fromLocal8Bit(tag->title().toCString());
-        m_parameters[TAG_ARTIST] = QString::fromLocal8Bit(tag->artist().toCString());
-        m_parameters[TAG_ALBUM] = QString::fromLocal8Bit(tag->album().toCString());
+        m_parameters[TAG_TITLE] = ENCODE_STRING(tag->title());
+        m_parameters[TAG_ARTIST] = ENCODE_STRING(tag->artist());
+        m_parameters[TAG_ALBUM] = ENCODE_STRING(tag->album());
         m_parameters[TAG_YEAR] = QString::number(tag->year());
-        m_parameters[TAG_COMMENT] = QString::fromLocal8Bit(tag->comment().toCString());
+        m_parameters[TAG_COMMENT] =ENCODE_STRING(tag->comment());
         m_parameters[TAG_TRACK] = QString::number(tag->track());
-        m_parameters[TAG_GENRE] = QString::fromLocal8Bit(tag->genre().toCString());
+        m_parameters[TAG_GENRE] = ENCODE_STRING(tag->genre());
 
         TagLib::PropertyMap properties = tagFile.file()->properties();
         for(TagLib::PropertyMap::ConstIterator i = properties.begin(); i != properties.end(); ++i)
         {
             if(i->first == "ENCODER")
             {
-                m_parameters[TAG_MODE] = QString::fromLocal8Bit((*i->second.begin()).toCString());
+                m_parameters[TAG_MODE] = ENCODE_STRING((*i->second.begin()));
             }
             if(i->first == "COMPATIBLE_BRANDS")
             {
-                m_parameters[TAG_FORMAT] = QString::fromLocal8Bit((*i->second.begin()).toCString());
+                m_parameters[TAG_FORMAT] = ENCODE_STRING((*i->second.begin()));
             }
         }
     }
@@ -61,6 +82,11 @@ bool TagReadAndWrite::readFile()
 
 bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
 {
+    if(m_path.isEmpty())
+    {
+        return false;
+    }
+
     TagLib::FileRef tagFile(m_path.toLocal8Bit().constData());
     if(tagFile.isNull())
     {
@@ -76,25 +102,25 @@ bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
     switch(tag)
     {
         case TAG_TITLE:
-            tags->setTitle(value.toLocal8Bit().constData());
+            tags->setTitle(DECODE_STRING(value));
             break;
         case TAG_ARTIST:
-            tags->setArtist(value.toLocal8Bit().constData());
+            tags->setArtist(DECODE_STRING(value));
             break;
         case TAG_ALBUM:
-            tags->setAlbum(value.toLocal8Bit().constData());
+            tags->setAlbum(DECODE_STRING(value));
             break;
         case TAG_YEAR:
             tags->setYear(value.toInt());
             break;
         case TAG_COMMENT:
-            tags->setComment(value.toLocal8Bit().constData());
+            tags->setComment(DECODE_STRING(value));
             break;
         case TAG_TRACK:
             tags->setTrack(value.toInt());
             break;
         case TAG_GENRE:
-            tags->setGenre(value.toLocal8Bit().constData());
+            tags->setGenre(DECODE_STRING(value));
             break;
         default: break;
     }
@@ -105,4 +131,34 @@ bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
         return true;
     }
     return false;
+}
+
+bool TagReadAndWrite::writeCover(const QByteArray &data)
+{
+    if(m_path.isEmpty())
+    {
+        return false;
+    }
+
+    TagLib::MPEG::File file(m_path.toLocal8Bit().constData());
+    TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
+    TagLib::ID3v2::FrameList frames = tag->frameList("APIC");
+    TagLib::ID3v2::AttachedPictureFrame *frame = 0;
+
+    if(frames.isEmpty())
+    {
+        frame = new TagLib::ID3v2::AttachedPictureFrame;
+        tag->addFrame(frame);
+    }
+    else
+    {
+        frame = static_cast<TagLib::ID3v2::AttachedPictureFrame*>(frames.front());
+    }
+
+    frame->setMimeType("image/jpeg");
+    frame->setDescription("Cover");
+    frame->setType(TagLib::ID3v2::AttachedPictureFrame::FrontCover);
+    frame->setPicture(TagLib::ByteVector(data.data(), data.size()));
+
+    return file.save();
 }

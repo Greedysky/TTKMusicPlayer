@@ -29,13 +29,17 @@ public:
         TAG_CHANNEL,     /*!< Channel */
     };
 
+    TagReadAndWrite();
     TagReadAndWrite(const QString &file);
     ~TagReadAndWrite();
 
     bool readFile();
-    bool writeMusicTag(MusicTag tag, const QString &value);
+    bool readFile(const QString &path);
 
-    QMap<MusicTag, QString> getMusicTags() {return m_parameters;}
+    bool writeMusicTag(MusicTag tag, const QString &value);
+    bool writeCover(const QByteArray &data);
+
+    QMap<MusicTag, QString> getMusicTags() { return m_parameters; }
 
 protected:
     QString m_path;
