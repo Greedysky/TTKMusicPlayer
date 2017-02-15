@@ -86,33 +86,37 @@ public:
      * Get song file path.
      */
     /////////////////////////////////////////////
-    void setArtist(const QString &artist);
+    bool setArtist(const QString &artist);
     /*!
      * Set artist name.
      */
-    void setTitle(const QString &title);
+    bool setTitle(const QString &title);
     /*!
      * Set song title.
      */
-    void setAlbum(const QString &album);
+    bool setAlbum(const QString &album);
     /*!
      * Set song album.
      */
-    void setComment(const QString &comment);
+    bool setComment(const QString &comment);
     /*!
      * Set song comment.
      */
-    void setYear(const QString &year);
+    bool setYear(const QString &year);
     /*!
      * Set song year.
      */
-    void setTrackNum(const QString &track);
+    bool setTrackNum(const QString &track);
     /*!
      * Set song track number.
      */
-    void setGenre(const QString &genre);
+    bool setGenre(const QString &genre);
     /*!
      * Set song genre.
+     */
+    bool setCover(const QByteArray &data);
+    /*!
+     * Set song image cover art.
      */
     /////////////////////////////////////////////
     QString getSamplingRate() const;

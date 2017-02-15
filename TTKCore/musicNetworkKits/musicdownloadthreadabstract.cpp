@@ -10,8 +10,8 @@
 #endif
 #include <QSslError>
 
-MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url,
-                const QString &save, Download_Type type, QObject *parent)
+MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save,
+                                                         Download_Type type, QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_url = url;

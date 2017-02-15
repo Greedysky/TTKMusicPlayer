@@ -1,6 +1,7 @@
 #include "musicsongtag.h"
 #include "musictime.h"
 #include "musicformats.h"
+#include "musicversion.h"
 
 #include <QStringList>
 #include <QPluginLoader>
@@ -174,39 +175,49 @@ QString MusicSongTag::getURL() const
 }
 
 /////////////////////////////////////////////
-void MusicSongTag::setArtist(const QString &artist)
+bool MusicSongTag::setArtist(const QString &artist)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_ARTIST, artist);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_ARTIST, artist);
 }
 
-void MusicSongTag::setTitle(const QString &title)
+bool MusicSongTag::setTitle(const QString &title)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_TITLE, title);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_TITLE, title);
 }
 
-void MusicSongTag::setAlbum(const QString &album)
+bool MusicSongTag::setAlbum(const QString &album)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_ALBUM, album);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_ALBUM, album);
 }
 
-void MusicSongTag::setComment(const QString &comment)
+bool MusicSongTag::setComment(const QString &comment)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_COMMENT, comment);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_COMMENT, comment);
 }
 
-void MusicSongTag::setYear(const QString &year)
+bool MusicSongTag::setYear(const QString &year)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_YEAR, year);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_YEAR, year);
 }
 
-void MusicSongTag::setTrackNum(const QString &track)
+bool MusicSongTag::setTrackNum(const QString &track)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_TRACK, track);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_TRACK, track);
 }
 
-void MusicSongTag::setGenre(const QString &genre)
+bool MusicSongTag::setGenre(const QString &genre)
 {
-    m_tag->writeMusicTag(TagReadAndWrite::TAG_GENRE, genre);
+    return m_tag->writeMusicTag(TagReadAndWrite::TAG_GENRE, genre);
+}
+
+bool MusicSongTag::setCover(const QByteArray &data)
+{
+#if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,4,7,0)
+    return m_tag->writeCover(data);
+#else
+    Q_UNUSED(data);
+    return false;
+#endif
 }
 
 /////////////////////////////////////////////

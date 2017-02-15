@@ -4,7 +4,7 @@
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musicdownloadrecordconfigmanager.h"
-#include "musicdatadownloadthread.h"
+#include "musicdatatagdownloadthread.h"
 #include "musicttdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"
@@ -484,9 +484,10 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
                 }
             }
             ////////////////////////////////////////////////
-            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, downloadName,
-                                                                             MusicDownLoadThreadAbstract::Download_Music, this);
+            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
+                                                                                   MusicDownLoadThreadAbstract::Download_Music, this);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+            downSong->setTags(musicSongInfo.m_smallPicUrl, musicSongInfo.m_songName, musicSongInfo.m_singerName);
             downSong->startToDownload();
             break;
         }
