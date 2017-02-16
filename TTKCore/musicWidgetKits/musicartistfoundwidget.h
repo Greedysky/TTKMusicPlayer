@@ -107,10 +107,6 @@ protected:
     /*!
      * Override the widget event.
      */
-    void createNoArtistLabel();
-    /*!
-     * Create no artist label widget.
-     */
 
     QString m_songNameFull;
     QWidget *m_mainWindow;

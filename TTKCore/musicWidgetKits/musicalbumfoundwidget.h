@@ -116,10 +116,6 @@ protected:
     /*!
      * Override the widget event.
      */
-    void createNoAlbumLabel();
-    /*!
-     * Create no album label widget.
-     */
 
     QString m_songNameFull;
     QWidget *m_mainWindow;

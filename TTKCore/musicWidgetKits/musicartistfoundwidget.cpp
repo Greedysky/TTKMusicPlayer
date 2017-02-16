@@ -135,9 +135,6 @@ void MusicArtistFoundWidget::queryAllFinished()
     }
     else
     {
-        delete m_statusLabel;
-        m_statusLabel = nullptr;
-
         bool hasItem = false;
         foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
         {
@@ -153,7 +150,7 @@ void MusicArtistFoundWidget::queryAllFinished()
 
         if(!hasItem)
         {
-            createNoArtistLabel();
+            m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
         }
     }
 }
@@ -163,10 +160,13 @@ void MusicArtistFoundWidget::queryArtistFinished()
     MusicObject::MusicSongInfomations musicSongInfos(m_artistTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
-        createNoArtistLabel();
+        m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
     }
     else
     {
+        delete m_statusLabel;
+        m_statusLabel = nullptr;
+
         m_artistTableWidget->show();
         MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
 
@@ -315,12 +315,4 @@ void MusicArtistFoundWidget::addButtonClicked()
 void MusicArtistFoundWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
-}
-
-void MusicArtistFoundWidget::createNoArtistLabel()
-{
-    m_statusLabel = new QLabel(this);
-    m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
-    MStatic_cast(QHBoxLayout*, m_mainWindow->layout())->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_artistTableWidget->hide();
 }
