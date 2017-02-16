@@ -134,7 +134,11 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfoma
         if(value.contains("songinfo"))
         {
             value = value["songinfo"].toMap();
-            info->m_smallPicUrl = MusicCryptographicHash::decryptData(KW_ALBUM_COVER_URL, URL_KEY) + value["artpic"].toString();
+            info->m_smallPicUrl = value["artpic"].toString();
+            if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains("null"))
+            {
+                info->m_smallPicUrl = MusicCryptographicHash::decryptData(KW_ALBUM_COVER_URL, URL_KEY) + info->m_smallPicUrl;
+            }
         }
     }
 }

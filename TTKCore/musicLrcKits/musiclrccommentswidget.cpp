@@ -6,9 +6,9 @@
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicglobal.h"
+#include "musicsemaphoreloop.h"
 
 #include <qmath.h>
-#include <QEventLoop>
 #include <QBoxLayout>
 #include <QSignalMapper>
 #include <QPushButton>
@@ -279,7 +279,8 @@ QString MusicLrcCommentsWidget::getClassName()
 void MusicLrcCommentsWidget::setCurrentSongName(const QString &name)
 {
     deleteCommentsItems();
-    QEventLoop loop;
+
+    MusicSemaphoreLoop loop;
     m_commentsThread->startSearchSong(name);
     m_commentsThread->startSearchSong(0);
     connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));

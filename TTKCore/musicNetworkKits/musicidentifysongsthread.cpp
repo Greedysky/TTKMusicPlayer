@@ -1,10 +1,10 @@
 #include "musicidentifysongsthread.h"
 #include "musicsourcedownloadthread.h"
+#include "musicsemaphoreloop.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QFile>
-#include <QEventLoop>
 #include <QCryptographicHash>
 
 #define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
@@ -28,7 +28,7 @@ QString MusicIdentifySongsThread::getClassName()
 
 bool MusicIdentifySongsThread::getKey()
 {
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
