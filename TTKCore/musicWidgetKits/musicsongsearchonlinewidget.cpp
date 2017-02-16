@@ -22,14 +22,15 @@
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent), m_audition(nullptr)
 {
-    setColumnCount(6);
+    setColumnCount(7);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 315);
-    headerview->resizeSection(2, 195);
+    headerview->resizeSection(1, 302);
+    headerview->resizeSection(2, 182);
     headerview->resizeSection(3, 60);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
+    headerview->resizeSection(6, 26);
 
     m_previousAuditionRow = -1;
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -142,8 +143,8 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 315);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 195);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 302);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 182);
     headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 60);
 
     for(int i=0; i<rowCount(); ++i)
@@ -159,7 +160,7 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
 void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryItemTableWidget::listCellEntered(row, column);
-    if(column == 4 || column == 5)
+    if(column == 5 || column == 6)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
     }
@@ -174,10 +175,10 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
     MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 4:
+        case 5:
             addSearchMusicToPlayList(row);
             break;
-        case 5:
+        case 6:
             musicDownloadLocal(row);
             break;
         default:
@@ -190,11 +191,11 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(6);
+    setColumnCount(7);
 }
 
-void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songname,
-                                const QString &artistname, const QString &time)
+void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
+                                                           const QString &time, const QString &type)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -205,14 +206,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight, 300));
+    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight, 285));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight, 180));
+    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight, 165));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(artistname);
@@ -224,12 +225,17 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const QString &songna
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(type);
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
     setItem(count, 5, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    setItem(count, 6, item);
 }
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
@@ -399,10 +405,10 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
                                                    : m_searchTableWidget->auditionToMusicStop(row);
                 break;
             case 1:
-                m_searchTableWidget->listCellClicked(row, 4);
+                m_searchTableWidget->listCellClicked(row, 5);
                 break;
             case 2:
-                m_searchTableWidget->listCellClicked(row, 5);
+                m_searchTableWidget->listCellClicked(row, 6);
                 break;
             default:
                 break;

@@ -91,13 +91,18 @@ Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
      */
-    void createSearchedItems(const QString &songname,
-                             const QString &artistname, const QString &time);
+    void createSearchedItems(const QString &songname, const QString &artistname,
+                             const QString &time, const QString &type);
     /*!
      * Create the current items by song name\ artist name and time.
      */
 
 protected:
+    QString mapQueryServerString() const;
+    /*!
+     * Map query server string.
+     */
+
     MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QString m_queryServer;

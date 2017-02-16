@@ -102,7 +102,7 @@ public Q_SLOTS:
      * Clear All Items.
      */
     virtual void createSearchedItems(const QString &songname, const QString &artistname,
-                                     const QString &time) override;
+                                     const QString &time, const QString &type) override;
     /*!
      * Create searched items.
      */

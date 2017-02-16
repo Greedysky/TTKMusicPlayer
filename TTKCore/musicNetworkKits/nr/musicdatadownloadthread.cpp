@@ -7,6 +7,7 @@ MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QStri
 {
     m_createItemTime = -1;
     m_redirection = false;
+    m_needUpdate = true;
 }
 
 QString MusicDataDownloadThread::getClassName()
@@ -89,8 +90,11 @@ void MusicDataDownloadThread::downLoadFinished()
     }
     else
     {
-        emit downLoadDataChanged( transferData() );
-        M_LOGGER_INFO("data download has finished!");
+        if(m_needUpdate)
+        {
+            emit downLoadDataChanged( transferData() );
+            M_LOGGER_INFO("data download has finished!");
+        }
     }
     deleteAll();
 }

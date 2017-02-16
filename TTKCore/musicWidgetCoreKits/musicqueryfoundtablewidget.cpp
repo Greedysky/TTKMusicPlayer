@@ -11,7 +11,7 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
 {
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setColumnCount(6);
+    setColumnCount(7);
 }
 
 MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
@@ -72,7 +72,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryTableWidget::listCellEntered(row, column);
-    if(column == 3 || column == 4 || column == 5)
+    if(column == 4 || column == 5 || column == 6)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
     }
@@ -87,13 +87,13 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
     MusicQueryTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 3:
+        case 4:
             addSearchMusicToPlayList(row, true);
             break;
-        case 4:
+        case 5:
             addSearchMusicToPlayList(row, false);
             break;
-        case 5:
+        case 6:
             musicDownloadLocal(row);
             break;
         default:
@@ -104,11 +104,11 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
 void MusicQueryFoundTableWidget::clearAllItems()
 {
     MusicQueryTableWidget::clear();
-    setColumnCount(6);
+    setColumnCount(7);
 }
 
 void MusicQueryFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
-                                                     const QString &time)
+                                                     const QString &time, const QString &type)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -128,16 +128,21 @@ void MusicQueryFoundTableWidget::createSearchedItems(const QString &songname, co
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_play")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(type);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_play")));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
     setItem(count, 5, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    setItem(count, 6, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
 }

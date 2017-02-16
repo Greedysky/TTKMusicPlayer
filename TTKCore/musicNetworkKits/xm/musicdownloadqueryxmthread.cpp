@@ -8,6 +8,7 @@
 MusicDownLoadQueryXMThread::MusicDownLoadQueryXMThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
+    m_index = 0;
     m_queryServer = "XiaMi";
 }
 
@@ -20,7 +21,7 @@ void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &
 {
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_SEARCH_URL, URL_KEY).arg(text);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
 
     if(m_reply)
     {
@@ -53,6 +54,8 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_songIds.clear();
+    m_index = 0;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -64,9 +67,10 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("data"))
+            if(value.contains("state") && value["state"].toInt() == 0 && value.contains("data"))
             {
-                QVariantList datas = value["data"].toList();
+                value = value["data"].toMap();
+                QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -75,52 +79,102 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    if(value["song_status"].toInt() != 0)
+                    MusicObject::MusicSongInfomation musicInfo;
+                    musicInfo.m_songId = QString::number(value["song_id"].toULongLong());
+                    musicInfo.m_artistId = QString::number(value["artist_id"].toULongLong());
+                    musicInfo.m_albumId = QString::number(value["album_id"].toULongLong());
+                    if(!m_querySimplify)
+                    {
+                        m_songIds << musicInfo.m_songId;
+                    }
+                    else
+                    {
+                        m_musicSongInfos << musicInfo;
+                    }
+                }
+            }
+        }
+
+        if(!m_querySimplify)
+        {
+            m_musicSongInfos.clear();
+            startSongListQuery();
+        }
+        else
+        {
+            emit downLoadDataChanged(QString());
+            deleteAll();
+        }
+    }
+    else
+    {
+        emit downLoadDataChanged(QString());
+        deleteAll();
+    }
+}
+
+void MusicDownLoadQueryXMThread::songListFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    if(reply && reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
+            {
+                ++m_index;
+                value = value["data"].toMap();
+                QVariantList datas = value["trackList"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
                     {
                         continue;
                     }
 
+                    value = var.toMap();
                     MusicObject::MusicSongInfomation musicInfo;
-                    musicInfo.m_singerName = value["singer"].toString();
-                    musicInfo.m_songName = value["song_name"].toString();
+                    musicInfo.m_singerName = value["singers"].toString();
+                    musicInfo.m_songName = value["songName"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt()*1000);
 
                     if(m_currentType != MovieQuery)
                     {
-                        musicInfo.m_songId = QString::number(value["song_id"].toULongLong());
-                        musicInfo.m_artistId = QString::number(value["artist_id"].toULongLong());
-                        musicInfo.m_albumId = QString::number(value["album_id"].toULongLong());
-                        if(!m_querySimplify)
+                        musicInfo.m_songId = QString::number(value["songId"].toULongLong());
+                        musicInfo.m_artistId = QString::number(value["artistId"].toULongLong());
+                        musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
+                                                  value["album_logo"].toString().replace("_1.", "_4.");
+                        QString lrcUrl = value["lyric_url"].toString();
+                        if(!lrcUrl.endsWith("txt"))
                         {
-                            musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(XM_SONG_PIC_URL, URL_KEY) +
-                                                      value["album_logo"].toString().replace("_1.", "_4.");
+                            musicInfo.m_lrcUrl = lrcUrl;
+                        }
 
-                            QVariantMap lrcValue = value["lyric"].toMap();
-                            QString lrcUrl = lrcValue["lyricFile"].toString();
-                            if(!lrcUrl.endsWith("txt"))
-                            {
-                                musicInfo.m_lrcUrl = lrcUrl;
-                            }
-
-                            ///music normal songs urls
-                            QVariantList auditions = value["allAudios"].toList();
-                            foreach(const QVariant &audition, auditions)
-                            {
-                                QVariantMap audUrlsValue = audition.toMap();
-                                if(audUrlsValue.isEmpty())
-                                {
-                                    continue;
-                                }
-
-                                readFromMusicSongAttribute(&musicInfo, audUrlsValue, m_searchQuality, m_queryAllRecords);
-                            }
-
-                            if(musicInfo.m_songAttrs.isEmpty())
+                        ///music normal songs urls
+                        QVariantList auditions = value["allAudios"].toList();
+                        foreach(const QVariant &audition, auditions)
+                        {
+                            QVariantMap audUrlsValue = audition.toMap();
+                            if(audUrlsValue.isEmpty())
                             {
                                 continue;
                             }
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+
+                            readFromMusicSongAttribute(&musicInfo, audUrlsValue, m_searchQuality, m_queryAllRecords);
                         }
+
+                        if(musicInfo.m_songAttrs.isEmpty())
+                        {
+                            continue;
+                        }
+
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                     else
@@ -134,28 +188,51 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
                         m_musicSongInfos << musicInfo;
                     }
                 }
+
+                if(m_index >= m_songIds.count())
+                {
+                    foundOtherMovie();
+                    return;
+                }
+            }
+            else
+            {
+                foundOtherMovie();
             }
         }
+        else
+        {
+            foundOtherMovie();
+        }
     }
-
-    ///extra yyt movie
-    if(m_currentType == MovieQuery)
+    else
     {
-        MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString)), SIGNAL(createSearchedItems(QString,QString,QString)));
-        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
-        loop.exec();
-        m_musicSongInfos << yyt->getMusicSongInfos();
+        foundOtherMovie();
     }
+}
 
-    emit downLoadDataChanged(QString());
-    deleteAll();
+void MusicDownLoadQueryXMThread::startSongListQuery()
+{
+    foreach(const QString &id, m_songIds)
+    {
+        QNetworkRequest request;
+        request.setUrl(QUrl(MusicCryptographicHash::decryptData(XM_ARTIST_PLAYLIST_URL, URL_KEY).arg(id)));
+        request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.setRawHeader("Origin", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+        request.setRawHeader("Referer", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
+    #ifndef QT_NO_SSL
+        QSslConfiguration sslConfig = request.sslConfiguration();
+        sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+        request.setSslConfiguration(sslConfig);
+    #endif
+        QNetworkReply *reply = m_manager->get(request);
+        connect(reply, SIGNAL(finished()), SLOT(songListFinished()) );
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+    }
 }
 
 void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
@@ -201,4 +278,23 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
         }
     }
     info->m_songAttrs.append(attr);
+}
+
+void MusicDownLoadQueryXMThread::foundOtherMovie()
+{
+    ///extra yyt movie
+    if(m_currentType == MovieQuery)
+    {
+        MusicSemaphoreLoop loop;
+        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
+        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString,QString)),
+                     SIGNAL(createSearchedItems(QString,QString,QString,QString)));
+        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        loop.exec();
+        m_musicSongInfos << yyt->getMusicSongInfos();
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
 }

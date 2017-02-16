@@ -102,7 +102,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                         continue;
                     }
                     musicInfo.m_timeLength = musicInfo.m_songAttrs.first().m_duration;
-                    emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength);
+                    emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
 
                     m_musicSongInfos << musicInfo;
                 }

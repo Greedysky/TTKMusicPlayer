@@ -18,11 +18,12 @@ MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 460);
-    headerview->resizeSection(2, 60);
+    headerview->resizeSection(1, 447);
+    headerview->resizeSection(2, 47);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
+    headerview->resizeSection(6, 26);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
@@ -52,8 +53,8 @@ void MusicSimilarFoundTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 460);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 60);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 447);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
 
     for(int i=0; i<rowCount(); ++i)
     {
@@ -63,13 +64,13 @@ void MusicSimilarFoundTableWidget::resizeWindow()
 }
 
 void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
-                                                       const QString &time)
+                                                       const QString &time, const QString &type)
 {
     if(rowCount() >= 15)
     {
         return;
     }
-    MusicQueryFoundTableWidget::createSearchedItems(songname, artistname, time);
+    MusicQueryFoundTableWidget::createSearchedItems(songname, artistname, time, type);
 }
 
 void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)

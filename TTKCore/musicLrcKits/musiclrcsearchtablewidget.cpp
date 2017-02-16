@@ -8,13 +8,14 @@
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)
 {
-    setColumnCount(5);
+    setColumnCount(6);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 225);
-    headerview->resizeSection(2, 193);
+    headerview->resizeSection(1, 213);
+    headerview->resizeSection(2, 181);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
+    headerview->resizeSection(5, 24);
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
@@ -65,11 +66,11 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
 void MusicLrcSearchTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(5);
+    setColumnCount(6);
 }
 
-void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
-                         const QString &artistname, const QString &time)
+void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
+                                                    const QString &time, const QString &type)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -98,8 +99,13 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname,
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_star")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(type);
     setItem(count, 4, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_star")));
+    setItem(count, 5, item);
 }
 
 void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)

@@ -27,6 +27,7 @@ HEADERS  += \
     $$PWD/radio/musicradiothreadabstract.h \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
+    $$PWD/nr/musicdatatagdownloadthread.h \
     $$PWD/tt/musicdownloadttinterface.h \
     $$PWD/tt/musicttdatadownloadthread.h \
     $$PWD/tt/musictttextdownloadthread.h \
@@ -89,6 +90,7 @@ SOURCES += \
     $$PWD/radio/musicradiothreadabstract.cpp \
     $$PWD/nr/musicdatadownloadthread.cpp \
     $$PWD/nr/musictextdownloadthread.cpp \
+    $$PWD/nr/musicdatatagdownloadthread.cpp \
     $$PWD/tt/musicttdatadownloadthread.cpp \
     $$PWD/tt/musictttextdownloadthread.cpp \
     $$PWD/tt/musicdownloadqueryttthread.cpp \

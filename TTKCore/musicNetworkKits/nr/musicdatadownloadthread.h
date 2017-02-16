@@ -62,13 +62,13 @@ public Q_SLOTS:
      */
 
 protected:
-    virtual void startRequest(const QUrl &url);
+    void startRequest(const QUrl &url);
     /*!
      * Start to download data from url.
      */
 
     qint64 m_createItemTime;
-    bool m_redirection;
+    bool m_redirection, m_needUpdate;
 
 };
 
