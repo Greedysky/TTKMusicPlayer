@@ -43,8 +43,6 @@ protected:
      * Override the widget event.
      */
 
-    QString m_filterText;
-
 };
 
 #endif // MUSICLOCALSONGSEARCHEDIT_H

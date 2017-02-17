@@ -54,7 +54,6 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicSongSearchLine->initWidget(MusicApplication::instance());
     ui->musicSongSearchLine->setStyleSheet(MusicUIObject::MLineEditStyle03);
-    ui->musicSongSearchLine->setText(tr("please input search text"));
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchButton->setStyleSheet(MusicUIObject::MKGTinyBtnMainSearch);
