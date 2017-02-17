@@ -163,7 +163,7 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
 
     m_lineEditBarrage = new MusicLocalSongSearchEdit(pairWidget);
     m_lineEditBarrage->setFixedHeight(24);
-    m_lineEditBarrage->addFilterText(tr("just one barrage!"));
+    m_lineEditBarrage->setPlaceholderText(tr("just one barrage!"));
 
     m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));

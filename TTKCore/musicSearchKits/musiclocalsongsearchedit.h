@@ -28,10 +28,6 @@ public:
     /*!
      * Get class object name.
      */
-    void addFilterText(const QString &text);
-    /*!
-     * Add new text input.
-     */
 
 Q_SIGNALS:
     void enterFinished(const QString &text);
@@ -40,8 +36,6 @@ Q_SIGNALS:
      */
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event) override;
-    virtual void focusOutEvent(QFocusEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;

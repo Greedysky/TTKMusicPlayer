@@ -8,40 +8,12 @@ MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     : QLineEdit(parent)
 {
     setStyleSheet(MusicUIObject::MLineEditStyle03);
-    addFilterText(tr("please input search text"));
+    setPlaceholderText(tr("please input search text"));
 }
 
 QString MusicLocalSongSearchEdit::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicLocalSongSearchEdit::addFilterText(const QString &text)
-{
-    m_filterText = text;
-    setText(text);
-}
-
-void MusicLocalSongSearchEdit::focusInEvent(QFocusEvent *event)
-{
-    QLineEdit::focusInEvent(event);
-    blockSignals(true);
-    if(text() == m_filterText)
-    {
-        setText(QString());
-    }
-    blockSignals(false);
-}
-
-void MusicLocalSongSearchEdit::focusOutEvent(QFocusEvent *event)
-{
-    QLineEdit::focusOutEvent(event);
-    blockSignals(true);
-    if(text().isEmpty())
-    {
-        setText(m_filterText);
-    }
-    blockSignals(false);
 }
 
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
