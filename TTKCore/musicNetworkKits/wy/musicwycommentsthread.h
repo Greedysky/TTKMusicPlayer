@@ -21,7 +21,6 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
 }MusicSongInfomation;
 
 #define COMMIT_PAGE_SIZE    10
-const QString WY_SONG_COMMIT_URL = "TFFwV2I3RndydWRyYUFScm9RZjFCVlg0OW5OQy9LSlVFQTJWRUxraDhHNFNrVDFsWk5vaEtDeHNyTXNQOTRYNnVtQmVBTVVLUytBalJTZ3Y0ZTI3T2ZkSjJFdXVNbzZCWnNRZnRBbXBjSitGQUVpTkticGVLYWU1RWZ3aTAxbTFDdnZFYm9Kb0NSY2JiYmpU";
 
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>

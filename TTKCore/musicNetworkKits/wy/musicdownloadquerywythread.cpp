@@ -273,7 +273,7 @@ void MusicDownLoadQueryWYThread::startSongListQuery()
     #endif
         QNetworkReply *reply = m_manager->get(request);
         connect(reply, SIGNAL(finished()), SLOT(songListFinished()) );
-        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
     }
 }
 

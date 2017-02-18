@@ -13,6 +13,7 @@
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
+#include "musicwydiscoverlistthread.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -21,9 +22,13 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_musicUserWindow = new MusicUserWindow(this);
+    m_getDiscoverThread = new MusicWYDiscoverListThread(this);
+
     m_pictureCarouselTimer.setInterval(10*MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+    connect(m_getDiscoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished()));
+    m_getDiscoverThread->startSearchSong();
 
     m_currentPlayStatus = true;
     m_listAlpha = 40;
@@ -34,6 +39,7 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicUserWindow;
     delete m_musicbgskin;
     delete m_musicRemoteWidget;
+    delete m_getDiscoverThread;
 }
 
 QString MusicTopAreaWidget::getClassName()
@@ -143,6 +149,11 @@ void MusicTopAreaWidget::setVolumeValue(int value) const
     {
         m_musicRemoteWidget->setVolumeValue(value);
     }
+}
+
+void MusicTopAreaWidget::musicSearchTopListInfoFinished()
+{
+    m_ui->musicSongSearchLine->setPlaceholderText( m_getDiscoverThread->getTopListInfo() );
 }
 
 void MusicTopAreaWidget::musicShowSkinChangedWindow()

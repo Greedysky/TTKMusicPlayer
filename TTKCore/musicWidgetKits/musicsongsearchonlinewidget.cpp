@@ -69,10 +69,8 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     records.insert(0, record);
     search.writeSearchConfig( records );
     ////////////////////////////////////////////////
-    if(!m_downLoadManager)
-    {
-        MusicQueryItemTableWidget::startSearchQuery(text);
-    }
+    MusicQueryItemTableWidget::startSearchQuery(text);
+    ////////////////////////////////////////////////
     m_loadingLabel->show();
     m_loadingLabel->start();
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);

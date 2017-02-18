@@ -321,9 +321,11 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case SearchWidget: //insert search display widget
             {
                 QString searchedQString = m_ui->musicSongSearchLine->text().trimmed();
+                searchedQString = searchedQString.isEmpty() ? m_ui->musicSongSearchLine->placeholderText() : searchedQString;
                 //The string searched wouldn't allow to be none
-                if( !searchedQString.isEmpty() )
+                if(!searchedQString.isEmpty() && searchedQString != tr("please input search text"))
                 {
+                    m_ui->musicSongSearchLine->setText(searchedQString);
                     m_ui->songSearchWidget->startSearchQuery(searchedQString);
                 }
                 else
