@@ -71,8 +71,7 @@ public Q_SLOTS:
      * Clear All Items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItems(const QString &songname, const QString &artistname,
-                                     const QString &time, const QString &type) = 0;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) = 0;
     /*!
      * Create searched items.
      * Subclass should implement this function.

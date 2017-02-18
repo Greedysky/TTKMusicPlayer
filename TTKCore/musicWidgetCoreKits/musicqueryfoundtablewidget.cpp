@@ -107,8 +107,7 @@ void MusicQueryFoundTableWidget::clearAllItems()
     setColumnCount(7);
 }
 
-void MusicQueryFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
-                                                     const QString &time, const QString &type)
+void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -119,17 +118,17 @@ void MusicQueryFoundTableWidget::createSearchedItems(const QString &songname, co
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip(artistname + " - " + songname);
+    item->setToolTip(songItem.m_artistname + " - " + songItem.m_songname);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 440));
     setItem(count, 1, item);
 
-                      item = new QTableWidgetItem(time);
+                      item = new QTableWidgetItem(songItem.m_time);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
-    item->setToolTip(type);
+    item->setToolTip(songItem.m_type);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;

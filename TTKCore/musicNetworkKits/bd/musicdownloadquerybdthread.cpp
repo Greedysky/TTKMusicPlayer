@@ -96,7 +96,13 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                             {
                                 continue;
                             }
-                            emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, mapQueryServerString());
+
+                            MusicSearchedItem item;
+                            item.m_songname = musicInfo.m_songName;
+                            item.m_artistname = musicInfo.m_singerName;
+                            item.m_time = musicInfo.m_songAttrs.first().m_duration;
+                            item.m_type = mapQueryServerString();
+                            emit createSearchedItems(item);
                         }
                         m_musicSongInfos << musicInfo;
                     }
@@ -114,7 +120,12 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                             continue;
                         }
 
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_songAttrs.first().m_duration, mapQueryServerString());
+                        MusicSearchedItem item;
+                        item.m_songname = musicInfo.m_songName;
+                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_time = musicInfo.m_songAttrs.first().m_duration;
+                        item.m_type = mapQueryServerString();
+                        emit createSearchedItems(item);
                         m_musicSongInfos << musicInfo;
                     }
                 }
@@ -127,8 +138,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
     {
         MusicSemaphoreLoop loop;
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString,QString)),
-                     SIGNAL(createSearchedItems(QString,QString,QString,QString)));
+        connect(yyt, SIGNAL(createSearchedItems(MusicSearchedItem)), SIGNAL(createSearchedItems(MusicSearchedItem)));
         connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();

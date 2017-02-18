@@ -93,7 +93,12 @@ void MusicDownLoadQueryTTAlbumThread::downLoadFinished()
                         }
 
                         QString duration = musicInfo.m_songAttrs.first().m_duration;
-                        emit createSearchedItems(songName, singerName, duration, mapQueryServerString());
+                        MusicSearchedItem item;
+                        item.m_songname = songName;
+                        item.m_artistname = singerName;
+                        item.m_time = duration;
+                        item.m_type = mapQueryServerString();
+                        emit createSearchedItems(item);
 
                         musicInfo.m_albumId = value["albumName"].toString() + "<>" +
                                               QString::number(value["lang"].toInt()) + "<>" +

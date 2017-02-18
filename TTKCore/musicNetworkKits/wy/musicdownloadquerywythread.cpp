@@ -150,7 +150,13 @@ void MusicDownLoadQueryWYThread::songListFinished()
                         {
                             continue;
                         }
-                        emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
+
+                        MusicSearchedItem item;
+                        item.m_songname = musicInfo.m_songName;
+                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_time = musicInfo.m_timeLength;
+                        item.m_type = mapQueryServerString();
+                        emit createSearchedItems(item);
                     }
                     m_musicSongInfos << musicInfo;
                 }
@@ -233,7 +239,12 @@ void MusicDownLoadQueryWYThread::mvListFinished()
                     return;
                 }
 
-                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
+                MusicSearchedItem item;
+                item.m_songname = musicInfo.m_songName;
+                item.m_artistname = musicInfo.m_singerName;
+                item.m_time = musicInfo.m_timeLength;
+                item.m_type = mapQueryServerString();
+                emit createSearchedItems(item);
                 m_musicSongInfos << musicInfo;
 
                 if( m_index >= m_songIds.count() )
@@ -409,7 +420,12 @@ void MusicDownLoadQueryWYThread::foundLostSongs(const QString &ablum)
                     continue;
                 }
 
-                emit createSearchedItems(musicInfo.m_songName, musicInfo.m_singerName, musicInfo.m_timeLength, mapQueryServerString());
+                MusicSearchedItem item;
+                item.m_songname = musicInfo.m_songName;
+                item.m_artistname = musicInfo.m_singerName;
+                item.m_time = musicInfo.m_timeLength;
+                item.m_type = mapQueryServerString();
+                emit createSearchedItems(item);
                 m_musicSongInfos << musicInfo;
 
                 if( m_index >= m_songIds.count())
@@ -430,8 +446,7 @@ void MusicDownLoadQueryWYThread::foundOtherMovie()
     {
         MusicSemaphoreLoop loop;
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(QString,QString,QString,QString)),
-                     SIGNAL(createSearchedItems(QString,QString,QString,QString)));
+        connect(yyt, SIGNAL(createSearchedItems(MusicSearchedItem)), SIGNAL(createSearchedItems(MusicSearchedItem)));
         connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();

@@ -69,8 +69,7 @@ void MusicLrcSearchTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
-                                                    const QString &time, const QString &type)
+void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -80,27 +79,27 @@ void MusicLrcSearchTableWidget::createSearchedItems(const QString &songname, con
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songname, Qt::ElideRight, 170));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 170));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songname);
+    item->setToolTip(songItem.m_songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), artistname, Qt::ElideRight, 144));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 144));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(artistname);
+    item->setToolTip(songItem.m_artistname);
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem(time);
+                      item = new QTableWidgetItem(songItem.m_time);
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
-    item->setToolTip(type);
+    item->setToolTip(songItem.m_type);
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;

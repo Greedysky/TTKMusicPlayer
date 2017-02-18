@@ -40,8 +40,7 @@ public:
      */
 
 public Q_SLOTS:
-    virtual void createSearchedItems(const QString &songname, const QString &artistname,
-                                     const QString &time, const QString &type) override;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Create searched items.
      */

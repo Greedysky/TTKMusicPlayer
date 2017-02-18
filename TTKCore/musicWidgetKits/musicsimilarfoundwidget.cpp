@@ -63,14 +63,13 @@ void MusicSimilarFoundTableWidget::resizeWindow()
     }
 }
 
-void MusicSimilarFoundTableWidget::createSearchedItems(const QString &songname, const QString &artistname,
-                                                       const QString &time, const QString &type)
+void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
 {
     if(rowCount() >= 15)
     {
         return;
     }
-    MusicQueryFoundTableWidget::createSearchedItems(songname, artistname, time, type);
+    MusicQueryFoundTableWidget::createSearchedItems(songItem);
 }
 
 void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)

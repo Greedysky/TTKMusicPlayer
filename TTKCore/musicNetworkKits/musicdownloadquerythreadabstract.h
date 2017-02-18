@@ -12,6 +12,15 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
+typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
+{
+    QString m_songname;
+    QString m_artistname;
+    QString m_time;
+    QString m_type;
+}MusicSearchedItem;
+TTK_DECLARE_LISTS(MusicSearchedItem)
+
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -91,8 +100,7 @@ Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
      */
-    void createSearchedItems(const QString &songname, const QString &artistname,
-                             const QString &time, const QString &type);
+    void createSearchedItems(const MusicSearchedItem &songItem);
     /*!
      * Create the current items by song name\ artist name and time.
      */
