@@ -6,7 +6,7 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD/
+INCLUDEPATH += $$PWD
 
 SOURCES += \
     $$PWD/aes_cbc.cpp \

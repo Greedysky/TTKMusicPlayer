@@ -66,6 +66,10 @@ endif()
 
 set(MUSIC_HEADERS
     musicextrasglobaldefine.h
+    qaes/aes.h
+    qaes/aes_locl.h
+    qaes/cbc128.h
+    qaes/qaeswrap.h
     qhz2py/pinyinresource.h
     qhz2py/chinesehelper.h
     qhz2py/pinyinhelper.h
@@ -106,6 +110,10 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
+    qaes/aes_cbc.cpp
+    qaes/aes_core.cpp
+    qaes/cbc128.cpp
+    qaes/qaeswrap.cpp
     qshortcut/qxtglobalshortcut.cpp
     qhz2py/pinyinresource.cpp
     qhz2py/chinesehelper.cpp
