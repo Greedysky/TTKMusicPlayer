@@ -1,0 +1,170 @@
+<RCC>
+    <qresource prefix="/image">
+        <file alias="default_background">MobileImages/default_background.jpg</file>
+        <file alias="main_background">MobileImages/main_background.jpg</file>
+        <file alias="top_tab_more_selected">MobileImages/top_tab_more_selected.png</file>
+        <file alias="top_tab_search_selected">MobileImages/top_tab_search_selected.png</file>
+        <file alias="title_bar_back">MobileImages/title_bar_back.png</file>
+        <file alias="mymusic_icon_allsongs_highlight">MobileImages/mymusic_icon_allsongs_highlight.png</file>
+        <file alias="mymusic_icon_download_normal">MobileImages/mymusic_icon_download_normal.png</file>
+        <file alias="mymusic_icon_history_highlight">MobileImages/mymusic_icon_history_highlight.png</file>
+        <file alias="mymusic_icon_favorite_normal">MobileImages/mymusic_icon_favorite_normal.png</file>
+        <file alias="mymusic_icon_mv_highlight">MobileImages/mymusic_icon_mv_highlight.png</file>
+        <file alias="mymusic_icon_recognizer_normal">MobileImages/mymusic_icon_recognizer_normal.png</file>
+        <file alias="landscape_check_album_normal">MobileImages/landscape_check_album_normal.png</file>
+        <file alias="landscape_player_btn_pause_normal">MobileImages/landscape_player_btn_pause_normal.png</file>
+        <file alias="landscape_player_btn_play_normal">MobileImages/landscape_player_btn_play_normal.png</file>
+        <file alias="minibar_btn_playlist_normal">MobileImages/minibar_btn_playlist_normal.png</file>
+        <file alias="player_btn_next_normal">MobileImages/player_btn_next_normal.png</file>
+        <file alias="player_btn_pre_normal">MobileImages/player_btn_pre_normal.png</file>
+        <file alias="player_btn_pause_normal">MobileImages/player_btn_pause_normal.png</file>
+        <file alias="player_btn_play_normal">MobileImages/player_btn_play_normal.png</file>
+        <file alias="player_btn_close_normal">MobileImages/player_btn_close_normal.png</file>
+        <file alias="player_btn_more_normal">MobileImages/player_btn_more_normal.png</file>
+        <file alias="widget_default_album_middle">MobileImages/widget_default_album_middle.png</file>
+        <file alias="player_btn_favorite_normal">MobileImages/player_btn_favorite_normal.png</file>
+        <file alias="player_btn_favorited_normal">MobileImages/player_btn_favorited_normal.png</file>
+        <file alias="play_downloaded_btn">MobileImages/play_downloaded_btn.png</file>
+        <file alias="player_btn_download_normal">MobileImages/player_btn_download_normal.png</file>
+        <file alias="player_btn_playlist_normal">MobileImages/player_btn_playlist_normal.png</file>
+        <file alias="player_btn_share_normal">MobileImages/player_btn_share_normal.png</file>
+        <file alias="player_btn_random_normal">MobileImages/player_btn_random_normal.png</file>
+        <file alias="player_btn_repeat_normal">MobileImages/player_btn_repeat_normal.png</file>
+        <file alias="player_btn_repeatone_normal">MobileImages/player_btn_repeatone_normal.png</file>
+        <file alias="ic_toolbar_advance">MobileImages/ic_toolbar_advance.png</file>
+        <file alias="ic_add_folder">MobileImages/ic_add_folder.png</file>
+        <file alias="radius_big_mask">MobileImages/radius_big_mask.png</file>
+        <file alias="radius_mask">MobileImages/radius_mask.png</file>
+        <file alias="icon_local_song">MobileImages/icon_local_song.png</file>
+        <file alias="ic_playlist_normal">MobileImages/ic_playlist_normal.png</file>
+        <file alias="ic_playlist_more_normal">MobileImages/ic_playlist_more_normal.png</file>
+        <file alias="icon_download_lyric">MobileImages/icon_download_lyric.png</file>
+        <file alias="local_cloud_music_icon">MobileImages/local_cloud_music_icon.png</file>
+        <file alias="local_music_sorted_by_time_icon">MobileImages/local_music_sorted_by_time_icon.png</file>
+        <file alias="local_music_scan_icon">MobileImages/local_music_scan_icon.png</file>
+        <file alias="local_music_sorted_by_name_icon">MobileImages/local_music_sorted_by_name_icon.png</file>
+        <file alias="local_music_upgrade_song_quality_icon">MobileImages/local_music_upgrade_song_quality_icon.png</file>
+        <file alias="ic_lyric_poster_lyric_select">MobileImages/ic_lyric_poster_lyric_select.png</file>
+        <file alias="ic_lyric_poster_lyric_unselect">MobileImages/ic_lyric_poster_lyric_unselect.png</file>
+        <file alias="scanning_animation">MobileImages/scanning_animation.png</file>
+        <file alias="scanning_forlder_icon">MobileImages/scanning_forlder_icon.png</file>
+        <file alias="custom_file_type_dir">MobileImages/custom_file_type_dir.png</file>
+        <file alias="scanning_icon_up">MobileImages/scanning_icon_up.png</file>
+        <file alias="scanning_icon_up_disable">MobileImages/scanning_icon_up_disable.png</file>
+        <file alias="bannertips_succes_icon">MobileImages/bannertips_succes_icon.png</file>
+        <file alias="ic_playlist_add_normal">MobileImages/ic_playlist_add_normal.png</file>
+        <file alias="action_add_to_list_normal">MobileImages/action_add_to_list_normal.png</file>
+        <file alias="action_share_normal">MobileImages/action_share_normal.png</file>
+        <file alias="action_download_normal">MobileImages/action_download_normal.png</file>
+        <file alias="action_delete_normal">MobileImages/action_delete_normal.png</file>
+        <file alias="action_comment_normal">MobileImages/action_comment_normal.png</file>
+        <file alias="action_sing_this_song_normal">MobileImages/action_sing_this_song_normal.png</file>
+        <file alias="action_check_album_normal">MobileImages/action_check_album_normal.png</file>
+        <file alias="action_create_radio_normal">MobileImages/action_create_radio_normal.png</file>
+        <file alias="action_icon_qzone">MobileImages/action_icon_qzone.png</file>
+        <file alias="action_lyric_poster_normal">MobileImages/action_lyric_poster_normal.png</file>
+        <file alias="action_ring_normal">MobileImages/action_ring_normal.png</file>
+        <file alias="action_check_singer_normal">MobileImages/action_check_singer_normal.png</file>
+        <file alias="actionsheet_pplayer_normal">MobileImages/actionsheet_pplayer_normal.png</file>
+        <file alias="playing_volumn_slide_icon">MobileImages/playing_volumn_slide_icon.png</file>
+        <file alias="playing_volumn_slide_nosound_icon">MobileImages/playing_volumn_slide_nosound_icon.png</file>
+        <file alias="player_btn_dts_off">MobileImages/player_btn_dts_off.png</file>
+        <file alias="player_btn_dts_on">MobileImages/player_btn_dts_on.png</file>
+        <file alias="dts_big_logo">MobileImages/dts_big_logo.png</file>
+        <file alias="dts_switch_off">MobileImages/dts_switch_off.png</file>
+        <file alias="dts_switch_on">MobileImages/dts_switch_on.png</file>
+        <file alias="dts_preset_mode_front_chosen">MobileImages/dts_preset_mode_front_chosen.png</file>
+        <file alias="dts_preset_mode_near_chosen">MobileImages/dts_preset_mode_near_chosen.png</file>
+        <file alias="dts_preset_mode_wide_chosen">MobileImages/dts_preset_mode_wide_chosen.png</file>
+        <file alias="dts_tag_item_normal">MobileImages/dts_tag_item_normal.png</file>
+        <file alias="dts_tag_item_selected">MobileImages/dts_tag_item_selected.png</file>
+        <file alias="more_icon_notificationcenter">MobileImages/more_icon_notificationcenter.png</file>
+        <file alias="more_icon_myvip_normal">MobileImages/more_icon_myvip_normal.png</file>
+        <file alias="more_icon_personal_center">MobileImages/more_icon_personal_center.png</file>
+        <file alias="simple_mode_icon">MobileImages/simple_mode_icon.png</file>
+        <file alias="more_icon_settings">MobileImages/more_icon_settings.png</file>
+        <file alias="more_icon_timer">MobileImages/more_icon_timer.png</file>
+        <file alias="more_icon_wifionly">MobileImages/more_icon_wifionly.png</file>
+        <file alias="player_btn_qplayon_normal">MobileImages/player_btn_qplayon_normal.png</file>
+        <file alias="more_icon_chinaunicom">MobileImages/more_icon_chinaunicom.png</file>
+        <file alias="more_icon_cleancache">MobileImages/more_icon_cleancache.png</file>
+        <file alias="pc2device_icon">MobileImages/pc2device_icon.png</file>
+        <file alias="more_icon_about">MobileImages/more_icon_about.png</file>
+        <file alias="switch_on_normal">MobileImages/switch_on_normal.png</file>
+        <file alias="switching_off">MobileImages/switching_off.png</file>
+        <file alias="icon_folder_action_sheet">MobileImages/icon_folder_action_sheet.png</file>
+        <file alias="more_icon_settings_white">MobileImages/more_icon_settings_white.png</file>
+        <file alias="local_music_cloud_nonum_icon_normal">MobileImages/local_music_cloud_nonum_icon_normal.png</file>
+        <file alias="share_item_qq">MobileImages/share_item_qq.png</file>
+        <file alias="share_item_qzone">MobileImages/share_item_qzone.png</file>
+        <file alias="share_item_sina_weibo">MobileImages/share_item_sina_weibo.png</file>
+        <file alias="share_item_tencent_weibo">MobileImages/share_item_tencent_weibo.png</file>
+        <file alias="share_item_wx_friend">MobileImages/share_item_wx_friend.png</file>
+        <file alias="share_item_wx_timeline">MobileImages/share_item_wx_timeline.png</file>
+        <file alias="action_icon_info">MobileImages/action_icon_info.png</file>
+        <file alias="cached_scan_normal">MobileImages/cached_scan_normal.png</file>
+        <file alias="cached_scan_down_normal">MobileImages/cached_scan_down_normal.png</file>
+        <file alias="player_btn_lrc">MobileImages/player_btn_lrc.png</file>
+        <file alias="player_btn_tan">MobileImages/player_btn_tan.png</file>
+        <file alias="radio_play_pause">MobileImages/radio_play_pause.png</file>
+        <file alias="radio_play_play">MobileImages/radio_play_play.png</file>
+        <file alias="anchor_in_cell_point">MobileImages/anchor_in_cell_point.png</file>
+        <file alias="ic_start_recognize_bottom">MobileImages/ic_start_recognize_bottom.png</file>
+        <file alias="icon_headphone_small_light">MobileImages/icon_headphone_small_light.png</file>
+        <file alias="action_lyric_adjust_normal">MobileImages/action_lyric_adjust_normal.png</file>
+        <file alias="action_lyric_search_normal">MobileImages/action_lyric_search_normal.png</file>
+        <file alias="action_lyric_report_normal">MobileImages/action_lyric_report_normal.png</file>
+        <file alias="action_lyric_desktop_normal">MobileImages/action_lyric_desktop_normal.png</file>
+        <file alias="action_lyric_fontsize_normal">MobileImages/action_lyric_fontsize_normal.png</file>
+        <file alias="action_icon_submit">MobileImages/action_icon_submit.png</file>
+        <file alias="data_searching">MobileImages/data_searching.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>MobileWidgets/main.qml</file>
+        <file>MobileWidgets/Core/TTKGlobal.qml</file>
+        <file>MobileWidgets/Core/TTKTheme.qml</file>
+        <file>MobileWidgets/Core/TTKMessageBox.qml</file>
+        <file>MobileWidgets/Core/TTKImageButton.qml</file>
+        <file>MobileWidgets/Core/TTKTextButton.qml</file>
+        <file>MobileWidgets/Core/TTKLineInput.qml</file>
+        <file>MobileWidgets/Core/TTKPageView.qml</file>
+        <file>MobileWidgets/Core/TTKListViewIndicator.qml</file>
+        <file>MobileWidgets/Core/TTKRadiusImage.qml</file>
+        <file>MobileWidgets/Core/TTKBlurImage.qml</file>
+        <file>MobileWidgets/Core/TTKFlyInOutBox.qml</file>
+        <file>MobileWidgets/Core/TTKMainFunctionItem.qml</file>
+        <file>MobileWidgets/Core/TTKImageFunctionItem.qml</file>
+        <file>MobileWidgets/Core/TTKTextMarquee.qml</file>
+        <file>MobileWidgets/Core/TTKTextPair.qml</file>
+        <file>MobileWidgets/Core/TTKMarquee.qml</file>
+        <file>MobileWidgets/TTKTimeSettingPage.qml</file>
+        <file>MobileWidgets/TTKMainPage.qml</file>
+        <file>MobileWidgets/TTKMainSettingPage.qml</file>
+        <file>MobileWidgets/TTKOnlineSearchPage.qml</file>
+        <file>MobileWidgets/TTKMusicBar.qml</file>
+        <file>MobileWidgets/TTKMusicPlayerCenterPage.qml</file>
+        <file>MobileWidgets/TTKMusicPlayerCenterLrcPage.qml</file>
+        <file>MobileWidgets/TTKMusicPlayerCenterSettingPage.qml</file>
+        <file>MobileWidgets/TTKMusicListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicListsMorePage.qml</file>
+        <file>MobileWidgets/TTKMusicListsScanPage.qml</file>
+        <file>MobileWidgets/TTKMusicDownloadListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicDownloadYunListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicRecentListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicLovestListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicIdentifyListsPage.qml</file>
+        <file>MobileWidgets/TTKMVDownloadListsPage.qml</file>
+        <file>MobileWidgets/TTKScanFolderPage.qml</file>
+        <file>MobileWidgets/TTKMusicLyricPage.qml</file>
+        <file>MobileWidgets/TTKMusicLyricStylePage.qml</file>
+        <file>MobileWidgets/TTKMusicDTSEffectPage.qml</file>
+        <file>MobileWidgets/TTKMusicEqualizerPage.qml</file>
+        <file>MobileWidgets/TTKMusicSongDownloadPage.qml</file>
+        <file>MobileWidgets/TTKMusicSongSharedPage.qml</file>
+        <file>MobileWidgets/TTKMusicSongSettingPage.qml</file>
+        <file>MobileWidgets/TTKMusicSongInfoPage.qml</file>
+        <file>MobileWidgets/TTKMusicVideoPage.qml</file>
+        <file>MobileWidgets/TTKMusicAboutPage.qml</file>
+        <file>MobileWidgets/TTKMusicCleanCachedPage.qml</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,2172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicSettingWidget</class>
+ <widget class="QWidget" name="MusicSettingWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>578</width>
+    <height>408</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>选项设置</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>570</width>
+     <height>400</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>61</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>选项设置</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>552</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>29</y>
+     <width>421</width>
+     <height>320</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="first">
+    <widget class="QLabel" name="baseSetShowInfoWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;;</string>
+     </property>
+     <property name="text">
+      <string>启动时</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="autoPlayCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>50</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动播放歌曲</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="backPlayCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>50</y>
+       <width>191</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>恢复上次关闭时的界面</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="minimumRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>80</y>
+       <width>191</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>最小化到托盘，不退出</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="quitRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>80</y>
+       <width>70</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>退出程序</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_F1">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>30</y>
+       <width>340</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="multiLanguageChoiceWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>210</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;;</string>
+     </property>
+     <property name="text">
+      <string>多语言选择</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_F3">
+     <property name="geometry">
+      <rect>
+       <x>99</x>
+       <y>220</y>
+       <width>311</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="languageComboBox">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>245</y>
+       <width>251</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="currentLanguageLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>245</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>当前语言</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="currentLanguageWarningLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>280</y>
+       <width>241</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>注: 改变语言时重启应用方能生效</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="closeNetWorkCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>321</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>关闭网络功能，作为本地播放器使用</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="setDefaultPlayerCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>301</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>将天天酷音作为默认播放器</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherShowInfoWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;;</string>
+     </property>
+     <property name="text">
+      <string>其他设置</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_F2">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>120</y>
+       <width>325</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="second">
+    <widget class="Line" name="line_S1">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>30</y>
+       <width>325</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="baseSetShotKeyWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>基本设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S1">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>50</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>播放/暂停</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S2">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>50</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+B</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S3">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>80</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>上一曲</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S4">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>80</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+Left</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S5">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>下一曲</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S7">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>140</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>音量+</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S9">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>170</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>音量-</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S11">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>200</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>设置</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S6">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>110</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+Right</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S8">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>140</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+Up</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S10">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>170</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+Down</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S12">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>200</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+S</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="MusicGlobalHotKeyEdit" name="item_S14">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>230</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:white;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>Ctrl+I</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="item_S13">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>230</y>
+       <width>61</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:#3BA1E6;border-radius:2px</string>
+     </property>
+     <property name="text">
+      <string>导入歌曲</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="globalHotkeyBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>280</y>
+       <width>250</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>启用全局快捷键</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="third">
+    <widget class="Line" name="line_FS1">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>30</y>
+       <width>325</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="baseSetDownloadWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>基本设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadDirLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载目录</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="downloadDirEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>48</y>
+       <width>250</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadDirButton">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>47</y>
+       <width>60</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更改目录</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadLrcDirLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>歌词目录</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downloadLrcDirButton">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>77</y>
+       <width>60</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更改目录</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="downloadLrcDirEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>78</y>
+       <width>250</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadCacheLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>152</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>缓存大小设置</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadCacheAutoRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>120</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自动</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadCacheManRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>120</y>
+       <width>121</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>手动</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_FS1_2">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>190</y>
+       <width>325</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadSpeedWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>180</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>其他设置</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadFullRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>245</y>
+       <width>110</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>全速下载</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="downloadLimitRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>245</y>
+       <width>110</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>限速</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="downloadSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>150</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="downloadLimitSpeedComboBox">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>277</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="uploadLimitSpeedComboBox">
+     <property name="geometry">
+      <rect>
+       <x>265</x>
+       <y>277</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadCacheSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>225</x>
+       <y>153</y>
+       <width>21</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>(M)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadLimitSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>280</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="uploadLimitSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>280</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>上传</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>185</x>
+       <y>280</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>KB/s</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="uploadSpeedLabel">
+     <property name="geometry">
+      <rect>
+       <x>385</x>
+       <y>280</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>KB/s</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadCacheModelLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>120</y>
+       <width>81</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>缓存模式设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downloadServerLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>215</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>数据服务器的选择</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="downloadServerComboBox">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>212</y>
+       <width>150</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="four">
+    <widget class="Line" name="line_FO1">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DbaseSetSongWordWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>样式设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DSetColorSongWordWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>预览</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_FO2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>200</y>
+       <width>350</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="MusicPreviewLabel" name="DshowLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>215</y>
+       <width>370</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:black
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="DfontComboBox">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>45</y>
+       <width>160</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>字体</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>235</x>
+       <y>50</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>大小</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="DfontSizeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>45</y>
+       <width>130</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>85</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>字型</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="DfontTypeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>81</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>125</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>颜色</string>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="DnoPlayedPushButton">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="DplayedPushButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontDefaultColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>235</x>
+       <y>85</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>预设</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="DfontDefaultColorComboBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>81</y>
+       <width>130</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="DresetPushButton">
+     <property name="geometry">
+      <rect>
+       <x>319</x>
+       <y>280</y>
+       <width>81</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>恢复默认方案</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontTransLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>透明度</string>
+     </property>
+    </widget>
+    <widget class="MusicClickedSlider" name="DtransparentSlider">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>158</y>
+       <width>321</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="showDesktopCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>280</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>显示桌面歌词</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="five">
+    <widget class="Line" name="line_T1">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="baseSetSongWordWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>样式设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setColorSongWordWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>预览</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_T2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>200</y>
+       <width>350</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="MusicPreviewLabel" name="showLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>215</y>
+       <width>370</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:black
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontComboBox">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>45</y>
+       <width>160</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>字体</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>235</x>
+       <y>50</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>大小</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontSizeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>45</y>
+       <width>130</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>85</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>字型</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontTypeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>81</y>
+       <width>110</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>125</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>颜色</string>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="noPlayedPushButton">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="playedPushButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontDefaultColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>235</x>
+       <y>85</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>预设</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontDefaultColorComboBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>81</y>
+       <width>130</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="resetPushButton">
+     <property name="geometry">
+      <rect>
+       <x>319</x>
+       <y>280</y>
+       <width>81</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>恢复默认方案</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontTransLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>透明度</string>
+     </property>
+    </widget>
+    <widget class="MusicClickedSlider" name="transparentSlider">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>158</y>
+       <width>321</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="showInlineCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>280</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>显示内嵌歌词</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="six">
+    <widget class="Line" name="line_SO1">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setSoundOutWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>输出设置</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="outputTypeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>60</y>
+       <width>321</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="outputTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>音频输出</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="outputTypeTipLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>381</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>提示：新设置的参数会在重新播放的时候生效. Windows上输出设备建议选择DirectSound输出类型,Linux为Alsa.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="Line" name="line_SO2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>170</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setEffectWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>音效设置</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="equalizerButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>260</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>设置均衡器</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="equalizerPluginsButton">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>260</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>设置音效插件</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="fadeInAndOutCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>230</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>激活声音淡入淡出功能</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="sizeTipLabel">
+     <property name="geometry">
+      <rect>
+       <x>177</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>毫秒</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="fadeInSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>72</x>
+       <y>218</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fadeInLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>淡入</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="fadeOutSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>257</x>
+       <y>218</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fadeOutLabel">
+     <property name="geometry">
+      <rect>
+       <x>215</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>淡出</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="sizeTipLabel2">
+     <property name="geometry">
+      <rect>
+       <x>362</x>
+       <y>220</y>
+       <width>40</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>毫秒</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="seven">
+    <widget class="QLabel" name="setProxyWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>代理设置</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_SO11">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>30</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="proxyTypeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="proxyTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>代理类型</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="proxyTypeTestButton">
+     <property name="geometry">
+      <rect>
+       <x>229</x>
+       <y>47</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>测试</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="proxyIpLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>代理地址</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="proxyIpEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>90</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="proxyPortLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>90</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>端口</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="proxyPortEdit">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>90</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="proxyUsernameLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>120</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>用户名</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="proxyUsernameEdit">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>120</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="proxyPwdLabel">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>120</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>密码</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="proxyPwdEdit">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>120</y>
+       <width>121</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="netConnectionWidget">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>185</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:14px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>网络连接</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_SO11_2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>195</y>
+       <width>320</width>
+       <height>5</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="netConnectionTypeLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>212</y>
+       <width>131</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>您当前的网络运营商是</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="netConnectionWayLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>245</y>
+       <width>141</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>您当前的网络连接方式是</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="netConnectionWayValue">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>245</y>
+       <width>70</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="netConnectionTypeValue">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>212</y>
+       <width>70</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="netConnectionTypeButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>210</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>测试</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="netCheckTypeButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>240</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>连接测试</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="functionArea" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>125</width>
+     <height>375</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,200)</string>
+   </property>
+   <widget class="QLabel" name="baseSetWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;
+font-size:14px;
+color:rgb(80,80,80);</string>
+    </property>
+    <property name="text">
+     <string>基本设置</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="wordSetWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;
+font-size:14px;
+color:rgb(80,80,80);</string>
+    </property>
+    <property name="text">
+     <string>歌词设置</string>
+    </property>
+   </widget>
+   <widget class="MusicFunctionTableWidget" name="normalFunTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>45</y>
+      <width>125</width>
+      <height>101</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="MusicFunctionTableWidget" name="lrcFunTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>180</y>
+      <width>125</width>
+      <height>60</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="supperSetWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>60</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;
+font-size:14px;
+color:rgb(80,80,80);</string>
+    </property>
+    <property name="text">
+     <string>高级设置</string>
+    </property>
+   </widget>
+   <widget class="MusicFunctionTableWidget" name="supperFunTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>280</y>
+      <width>125</width>
+      <height>60</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="confirmButton">
+   <property name="geometry">
+    <rect>
+     <x>239</x>
+     <y>354</y>
+     <width>80</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确认</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>399</x>
+     <y>354</y>
+     <width>80</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_M">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>389</y>
+     <width>420</width>
+     <height>5</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QWidget" name="functionAreaDisplay" native="true">
+   <property name="geometry">
+    <rect>
+     <x>128</x>
+     <y>29</y>
+     <width>446</width>
+     <height>375</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>functionAreaDisplay</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>stackedWidget</zorder>
+  <zorder>functionArea</zorder>
+  <zorder>confirmButton</zorder>
+  <zorder>cancelButton</zorder>
+  <zorder>line_M</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicclickedslider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicPreviewLabel</class>
+   <extends>QLabel</extends>
+   <header>musicpreviewlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicFunctionTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header location="global">musicsettingwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicGlobalHotKeyEdit</class>
+   <extends>QLineEdit</extends>
+   <header>musicglobalhotkeyedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicColorPreviewLabel</class>
+   <extends>QLabel</extends>
+   <header>musicpreviewlabel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

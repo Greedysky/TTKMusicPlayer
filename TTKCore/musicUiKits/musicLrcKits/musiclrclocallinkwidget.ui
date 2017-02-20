@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicLrcLocalLinkWidget</class>
+ <widget class="QWidget" name="MusicLrcLocalLinkWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>468</width>
+    <height>273</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>本地关联</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>460</width>
+     <height>265</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>110</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>本地关联</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>460</width>
+     <height>240</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>42</y>
+     <width>60</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌词标题</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="titleEdit">
+   <property name="geometry">
+    <rect>
+     <x>84</x>
+     <y>39</y>
+     <width>270</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="MusicLrcLocalLinkTableWidget" name="searchedTable">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>94</y>
+     <width>340</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:#FFFFFF</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="localSearchButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>94</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>本地搜索</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="previewButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>124</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>浏览</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="commitButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>219</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="fuzzyButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>40</y>
+     <width>75</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>模糊匹配</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>72</y>
+     <width>221</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>从以下文件中选择一个进行管理</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="functionBottomLabel">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>94</y>
+     <width>340</width>
+     <height>150</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(255,255,255)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>154</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>label</zorder>
+  <zorder>titleEdit</zorder>
+  <zorder>localSearchButton</zorder>
+  <zorder>previewButton</zorder>
+  <zorder>commitButton</zorder>
+  <zorder>fuzzyButton</zorder>
+  <zorder>label_2</zorder>
+  <zorder>functionBottomLabel</zorder>
+  <zorder>searchedTable</zorder>
+  <zorder>deleteButton</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicLrcLocalLinkTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclrclocallinkwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

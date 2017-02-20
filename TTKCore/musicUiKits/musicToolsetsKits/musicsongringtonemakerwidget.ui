@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicSongRingtoneMaker</class>
+ <widget class="QWidget" name="MusicSongRingtoneMaker">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>488</width>
+    <height>338</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>铃声制作</string>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>480</width>
+     <height>330</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>铃声制作</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>462</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>480</width>
+     <height>305</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150);</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>74</y>
+     <width>480</width>
+     <height>5</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="addSongButton">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>39</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>添加歌曲</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playSongButton">
+   <property name="geometry">
+    <rect>
+     <x>94</x>
+     <y>39</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>播放歌曲</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playRingButton">
+   <property name="geometry">
+    <rect>
+     <x>204</x>
+     <y>39</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>试听铃声</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="songLabel">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>84</y>
+     <width>200</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>歌曲信息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="songLabelValue">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>109</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>你还未添加歌曲</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ringLabel">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>139</y>
+     <width>200</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>截取铃声</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ringLabelValue">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>164</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>铃声信息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="startTimeLabel">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>254</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>起点: 00:00:000</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="stopTimeLabel">
+   <property name="geometry">
+    <rect>
+     <x>19</x>
+     <y>294</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>终点: 00:00:000</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>139</x>
+     <y>294</y>
+     <width>75</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>比特率(kbps)</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="msCombo">
+   <property name="geometry">
+    <rect>
+     <x>384</x>
+     <y>294</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="kbpsCombo">
+   <property name="geometry">
+    <rect>
+     <x>214</x>
+     <y>294</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>299</x>
+     <y>294</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>声道设置(M/S)</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="formatCombo">
+   <property name="geometry">
+    <rect>
+     <x>214</x>
+     <y>254</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>159</x>
+     <y>254</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>转换格式</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="hzCombo">
+   <property name="geometry">
+    <rect>
+     <x>384</x>
+     <y>254</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>329</x>
+     <y>254</y>
+     <width>51</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>频率(Hz)</string>
+   </property>
+  </widget>
+  <widget class="MusicCutSliderWidget" name="cutSliderWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>189</y>
+     <width>440</width>
+     <height>55</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveSongButton">
+   <property name="geometry">
+    <rect>
+     <x>284</x>
+     <y>39</y>
+     <width>75</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>保存铃声</string>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>line</zorder>
+  <zorder>addSongButton</zorder>
+  <zorder>playSongButton</zorder>
+  <zorder>playRingButton</zorder>
+  <zorder>songLabel</zorder>
+  <zorder>songLabelValue</zorder>
+  <zorder>ringLabel</zorder>
+  <zorder>ringLabelValue</zorder>
+  <zorder>startTimeLabel</zorder>
+  <zorder>stopTimeLabel</zorder>
+  <zorder>label_7</zorder>
+  <zorder>msCombo</zorder>
+  <zorder>kbpsCombo</zorder>
+  <zorder>label_8</zorder>
+  <zorder>formatCombo</zorder>
+  <zorder>label_9</zorder>
+  <zorder>hzCombo</zorder>
+  <zorder>label_10</zorder>
+  <zorder>cutSliderWidget</zorder>
+  <zorder>saveSongButton</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicCutSliderWidget</class>
+   <extends>QWidget</extends>
+   <header>musiccutsliderwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

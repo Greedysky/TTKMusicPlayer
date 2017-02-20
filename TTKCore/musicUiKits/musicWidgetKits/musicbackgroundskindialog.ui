@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicBackgroundSkinDialog</class>
+ <widget class="QWidget" name="MusicBackgroundSkinDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>628</width>
+    <height>413</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>皮肤与窗口调整</string>
+  </property>
+  <widget class="MusicTransitionAnimationLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>620</width>
+     <height>405</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>6</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>皮肤与窗口调整</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>599</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="MusicClickedLabel" name="mySkin">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>40</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>皮肤</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="customSkin">
+   <property name="geometry">
+    <rect>
+     <x>534</x>
+     <y>369</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>自定义皮肤</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="paletteButton">
+   <property name="geometry">
+    <rect>
+     <x>449</x>
+     <y>369</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>调色板</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>620</width>
+     <height>380</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,150)</string>
+   </property>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>585</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>249</x>
+     <y>369</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+  </widget>
+  <widget class="QLabel" name="listTransparentLabel">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>369</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>列表透明</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="skinTransparentLabel">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>369</y>
+     <width>60</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>皮肤透明</string>
+   </property>
+  </widget>
+  <widget class="MusicBackgroundPopWidget" name="skinTransparentButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>89</x>
+     <y>369</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="resetWindowButton">
+   <property name="geometry">
+    <rect>
+     <x>484</x>
+     <y>47</y>
+     <width>118</width>
+     <height>13</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>background</zorder>
+  <zorder>backgroundMask</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>mySkin</zorder>
+  <zorder>customSkin</zorder>
+  <zorder>paletteButton</zorder>
+  <zorder>listTransparentLabel</zorder>
+  <zorder>skinTransparentLabel</zorder>
+  <zorder>listTransparentButton</zorder>
+  <zorder>skinTransparentButton</zorder>
+  <zorder>resetWindowButton</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicBackgroundPopWidget</class>
+   <extends>QWidget</extends>
+   <header>musicbackgroundpopwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

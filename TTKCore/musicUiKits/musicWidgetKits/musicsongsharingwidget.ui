@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicSongSharingWidget</class>
+ <widget class="QDialog" name="MusicSongSharingWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>468</width>
+    <height>278</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>音乐分享</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>460</width>
+     <height>270</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>221</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>音乐分享</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>442</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>460</width>
+     <height>245</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
+QLabel{background:transparent;color:#666666;}
+QRadioButton{background:transparent;}
+QRadioButton::indicator::unchecked{ image: url(:/control/btn_radioButton_unchecked); }
+QRadioButton::indicator:checked { image: url(:/control/btn_radiobutton_checked); }</string>
+   </property>
+   <widget class="QLabel" name="sharedName">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>2</y>
+      <width>401</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{font-size:22px;font-weight:bold;}</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>40</y>
+      <width>311</width>
+      <height>101</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="sharedNameIcon">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:black</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textEditArea">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>142</y>
+      <width>311</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>你还可以输入150个字</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>358</x>
+      <y>125</y>
+      <width>90</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>扫描分享到微信</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>分享到</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="qqButton">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_qq</normaloff>:/usermanager/lb_qq</iconset>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="renrenButton">
+    <property name="geometry">
+     <rect>
+      <x>185</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_renren</normaloff>:/usermanager/lb_renren</iconset>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="qqspaceButton">
+    <property name="geometry">
+     <rect>
+      <x>235</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_qq_space</normaloff>:/usermanager/lb_qq_space</iconset>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="qqblogButton">
+    <property name="geometry">
+     <rect>
+      <x>285</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_qqblog</normaloff>:/usermanager/lb_qqblog</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shareButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>210</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:3px;background-color:#80B7F1;color:white;font-size:14px;font-weight:bold;}</string>
+    </property>
+    <property name="text">
+     <string>分享</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cancelButton">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>210</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:3px;color:white;font-size:14px;border: 1px solid gray;color:#666666;}</string>
+    </property>
+    <property name="text">
+     <string>取消</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="sinaButton">
+    <property name="geometry">
+     <rect>
+      <x>335</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_xinlang</normaloff>:/usermanager/lb_xinlang</iconset>
+    </property>
+   </widget>
+   <widget class="QWidget" name="QRCodeIconWidget">
+    <property name="geometry">
+     <rect>
+      <x>355</x>
+      <y>35</y>
+      <width>90</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="QRCodeIconWidgetLayout"/>
+   </widget>
+   <widget class="QRadioButton" name="weixingButton">
+    <property name="geometry">
+     <rect>
+      <x>385</x>
+      <y>173</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+      <normaloff>:/usermanager/lb_weixing</normaloff>:/usermanager/lb_weixing</iconset>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
+ </resources>
+ <connections/>
+</ui>
