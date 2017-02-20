@@ -14,6 +14,7 @@
 #include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
+#include "musicmessageaboutdialog.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
@@ -157,12 +158,7 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
 
 void MusicApplicationObject::musicAboutUs()
 {
-    MusicMessageBox message;
-    message.setText(tr("TTK Music Player") + QString("\n\n") +
-                    tr("Directed By Greedysky") +
-                    QString("\nCopyright© 2015-2017") +
-                    QString("\nMail:Greedysky@163.com"));
-    message.exec();
+    MusicMessageAboutDialog().exec();
 }
 
 void MusicApplicationObject::musicVersionUpdate()

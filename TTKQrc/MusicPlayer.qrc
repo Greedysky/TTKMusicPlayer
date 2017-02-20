@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/image">
+        <file alias="lb_logo">../TTKResource/logo_pic.png</file>
         <file alias="lb_warning">../TTKResource/lb_warning.png</file>
         <file alias="lb_defaultArt">../TTKResource/lb_default_art.jpg</file>
         <file alias="lb_noAlbum">../TTKResource/lb_no_album_found.png</file>
