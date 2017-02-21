@@ -16,8 +16,7 @@ TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
 
     m_queryThread = new MusicDownLoadQueryWYThread(this);
     connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
-    connect(m_queryThread, SIGNAL(createSearchedItems(QString,QString,QString)),
-                           SIGNAL(createSearchedItems(QString,QString)));
+    connect(m_queryThread, SIGNAL(createSearchedItems(MusicSearchedItem)), SLOT(createSearchedItems(MusicSearchedItem)));
     connect(m_queryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
 }
 
@@ -153,6 +152,11 @@ void TTKNetworkHelper::searchDataDwonloadFinished()
     QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
     emit downForSearchSongFinished( musicEnSong, downloadName );
+}
+
+void TTKNetworkHelper::createSearchedItems(const MusicSearchedItem &songItem)
+{
+    emit createSearchedItems(songItem.m_songname, songItem.m_artistname);
 }
 
 void TTKNetworkHelper::dataForDownloadSong()

@@ -12,8 +12,7 @@
 #include <QObject>
 #include "musicobject.h"
 #include "musicmobileglobaldefine.h"
-
-class MusicDownLoadQueryThreadAbstract;
+#include "musicdownloadquerythreadabstract.h"
 
 /*! @brief The class of the music network helper.
  * @author Greedysky <greedysky@163.com>
@@ -113,6 +112,10 @@ private Q_SLOTS:
     void searchDataDwonloadFinished();
     /*!
      * Search data dwonload finished.
+     */
+    void createSearchedItems(const MusicSearchedItem &songItem);
+    /*!
+     * Create the current items by song name\ artist name and time.
      */
 
 protected:
