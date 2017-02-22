@@ -12,6 +12,7 @@
 #include "musicfoundabstractwidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
+class QStackedWidget;
 class MusicPlaylistFoundTableWidget;
 
 /*! @brief The class of the playlist music found info widget.
@@ -47,13 +48,33 @@ public:
      */
 
 public Q_SLOTS:
+    void queryAllFinished();
+    /*!
+     * Query all quality musics is finished.
+     */
     void downLoadFinished(const QByteArray &data);
     /*!
      * Send recieved data from net.
      */
-    void queryAllFinished();
+    void playAllButtonClicked();
     /*!
-     * Query all quality musics is finished.
+     * Play all button clicked now.
+     */
+    void shareButtonClicked();
+    /*!
+     * Share button clicked now.
+     */
+    void playButtonClicked();
+    /*!
+     * Play button clicked now.
+     */
+    void downloadButtonClicked();
+    /*!
+     * Download button clicked now.
+     */
+    void addButtonClicked();
+    /*!
+     * Add button clicked now.
      */
 
 protected:
@@ -61,8 +82,17 @@ protected:
     /*!
      * Override the widget event.
      */
+    void initFirstWidget();
+    /*!
+     * Init the first widget.
+     */
+    void initSecondWidget();
+    /*!
+     * Init the second widget.
+     */
 
-    QLabel *m_iconLabel;
+    QLabel *m_iconLabel, *m_infoLabel;
+    QStackedWidget *m_container;
     MusicPlaylistFoundTableWidget *m_playlistTableWidget;
 
 };

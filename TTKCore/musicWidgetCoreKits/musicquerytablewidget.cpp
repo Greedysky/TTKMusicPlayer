@@ -23,10 +23,6 @@ QString MusicQueryTableWidget::getClassName()
 
 void MusicQueryTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
-    if(m_downLoadManager == query)
-    {
-        return;
-    }
     delete m_downLoadManager;
     m_downLoadManager = query;
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));

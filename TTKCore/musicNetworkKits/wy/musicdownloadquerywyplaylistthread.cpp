@@ -19,7 +19,6 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const Q
     m_currentType = type;
     QUrl musicUrl = QString("http://music.163.com/api/playlist/detail?id=") + playlist;
 
-    qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

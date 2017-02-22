@@ -192,6 +192,11 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &i
     m_container->setCurrentIndex(1);
 }
 
+void MusicPlaylistFoundWidget::backToPlayListMenu()
+{
+    m_container->setCurrentIndex(0);
+}
+
 void MusicPlaylistFoundWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);

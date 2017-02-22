@@ -106,6 +106,10 @@ public Q_SLOTS:
     /*!
      * Current play list clicked.
      */
+    void backToPlayListMenu();
+    /*!
+     * Set current index to playlist menu page.
+     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
