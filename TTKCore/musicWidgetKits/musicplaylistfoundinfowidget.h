@@ -12,6 +12,7 @@
 #include "musicfoundabstractwidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
+class QPushButton;
 class QStackedWidget;
 class MusicPlaylistFoundTableWidget;
 
@@ -38,7 +39,7 @@ public:
      * Resize window bound by widgte resize called.
      */
 
-    void setMusicPlaylistItem(const MusicPlaylistItem &item);
+    void setMusicPlaylistItem(const MusicPlaylistItem &item, QObject *obj);
     /*!
      * Set music playlist item.
      */
@@ -93,6 +94,7 @@ protected:
 
     QLabel *m_iconLabel, *m_infoLabel;
     QStackedWidget *m_container;
+    QPushButton *m_songButton;
     MusicPlaylistFoundTableWidget *m_playlistTableWidget;
 
 };

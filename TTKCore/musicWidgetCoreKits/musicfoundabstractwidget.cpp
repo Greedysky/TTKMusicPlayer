@@ -2,7 +2,7 @@
 #include "musicuiobject.h"
 
 #include <QBoxLayout>
-
+#include <QDebug>
 MusicFoundAbstractWidget::MusicFoundAbstractWidget(QWidget *parent)
     : QWidget(parent)
 {

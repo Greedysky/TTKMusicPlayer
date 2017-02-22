@@ -33,9 +33,13 @@ QString MusicPlaylistFoundTableWidget::getClassName()
 void MusicPlaylistFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
-    if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
+}
+
+void MusicPlaylistFoundTableWidget::setConnectObject(QObject *obj)
+{
+    if(obj->metaObject()->indexOfSlot("queryAllFinished()") != -1)
     {
-        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
+        connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), obj, SLOT(queryAllFinished()));
     }
 }
 

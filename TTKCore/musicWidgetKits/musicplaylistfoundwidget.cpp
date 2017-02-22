@@ -1,8 +1,8 @@
 #include "musicplaylistfoundwidget.h"
-#include "musicsemaphoreloop.h"
 #include "musicsourcedownloadthread.h"
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicplaylistfoundinfowidget.h"
+#include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
 
 #include <QPushButton>
@@ -63,12 +63,9 @@ void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     m_creatorLabel->setText("by " + item.m_nickname);
     m_topListenButton->setText(item.m_playCount);
 
-    MusicSemaphoreLoop loop;
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    connect(this, SIGNAL(labelFinished()), &loop, SLOT(quit()));
     download->startToDownload(item.m_coverUrl);
-    loop.exec();
 }
 
 void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
@@ -78,7 +75,6 @@ void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
     m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
     m_topListenButton->raise();
     m_playButton->raise();
-    emit labelFinished();
 }
 
 void MusicPlaylistFoundItemWidget::currentPlayListClicked()
@@ -98,7 +94,7 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
 
     m_firstInit = false;
     m_infoWidget = nullptr;
-    m_downloadThread = new MusicDownLoadQueryWYPlaylistThread(this);
+    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
     connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)),
                               SLOT(queryAllFinished(MusicPlaylistItem)));
 }
@@ -106,8 +102,6 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
 {
     delete m_infoWidget;
-//    delete m_mainWindow;
-//    m_mainWindow = nullptr;
 //    delete m_container;
     delete m_downloadThread;
 }
@@ -120,7 +114,7 @@ QString MusicPlaylistFoundWidget::getClassName()
 void MusicPlaylistFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_downloadThread->startSearchSong();
+    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, QString());
 }
 
 void MusicPlaylistFoundWidget::resizeWindow()
@@ -182,13 +176,11 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
 
 void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &item)
 {
-    if(!m_infoWidget)
-    {
-        m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
-        m_container->addWidget(m_infoWidget);
-        m_infoWidget->setQueryInput(m_downloadThread);
-    }
-    m_infoWidget->setMusicPlaylistItem(item);
+    delete m_infoWidget;
+    m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
+    m_infoWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
+    m_infoWidget->setMusicPlaylistItem(item, this);
+    m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(1);
 }
 

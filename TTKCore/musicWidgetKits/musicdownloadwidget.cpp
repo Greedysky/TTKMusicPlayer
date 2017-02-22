@@ -199,7 +199,8 @@ void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInfomation &in
     m_querySingleInfo = true;
 
     initWidget();
-    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), info.m_songName, Qt::ElideRight, 200));
+    m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(),
+                                QString("%1 - %2").arg(info.m_singerName).arg(info.m_songName), Qt::ElideRight, 200));
 
     if(type == MusicDownLoadQueryThreadAbstract::MusicQuery)
     {

@@ -33,6 +33,10 @@ public:
     /*!
      * Set network query input.
      */
+    void setConnectObject(QObject *obj);
+    /*!
+     * Set connect object.
+     */
 
     void resizeWindow();
     /*!

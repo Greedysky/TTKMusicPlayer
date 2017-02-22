@@ -39,6 +39,10 @@ public:
     /*!
      * Get artist thread object by type.
      */
+    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent);
+    /*!
+     * Get playlist thread object by type.
+     */
     MusicDownLoadThreadAbstract *getDownloadSmallPic(const QString &url, const QString &save,
                                                      MusicDownLoadThreadAbstract::Download_Type type,
                                                      QObject *parent = 0);

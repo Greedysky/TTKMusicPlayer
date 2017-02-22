@@ -25,6 +25,8 @@
 #include "musicdownloadquerybdartistthread.h"
 #include "musicdownloadqueryqqartistthread.h"
 
+#include "musicdownloadquerywyplaylistthread.h"
+
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
 
@@ -94,6 +96,14 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
         default: thread = new MusicDownLoadQueryWYArtistThread(parent);
     }
     M_LOGGER_INFO(QString("getArtistThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    thread = new MusicDownLoadQueryWYPlaylistThread(parent);
+    M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

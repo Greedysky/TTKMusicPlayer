@@ -16,27 +16,19 @@ QString MusicDownLoadQueryWYPlaylistThread::getClassName()
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
 {
-    m_currentType = type;
-    QUrl musicUrl = QString("http://music.163.com/api/playlist/detail?id=") + playlist;
-
-    QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
-    QNetworkReply *reply = m_manager->get(request);
-    connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+    if(type == MusicQuery)
+    {
+        startSearchSong(playlist);
+    }
+    else
+    {
+        startSearchSongAll();
+    }
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSong()
+void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll()
 {
-    QUrl musicUrl = QString("http://music.163.com/api/playlist/list?cat=all&order=hot&offset=0&total=false&limit=50");
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -58,6 +50,25 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong()
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryWYPlaylistThread::startSearchSong(const QString &playlist)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkReply *reply = m_manager->get(request);
+    connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()

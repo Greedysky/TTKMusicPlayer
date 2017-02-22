@@ -34,9 +34,13 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSong();
+    void startSearchSongAll();
     /*!
-     * Start to Search data from name and type.
+     * Start to search all data.
+     */
+    void startSearchSong(const QString &playlist);
+    /*!
+     * Start to Search data.
      */
 
 Q_SIGNALS:

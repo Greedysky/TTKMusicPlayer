@@ -15,7 +15,6 @@
 class QPushButton;
 class QStackedWidget;
 class MusicPlaylistFoundInfoWidget;
-class MusicDownLoadQueryWYPlaylistThread;
 
 /*! @brief The class of the playlist music item widget.
  * @author Greedysky <greedysky@163.com>
@@ -44,10 +43,6 @@ Q_SIGNALS:
     void currentPlayListClicked(const MusicPlaylistItem &item);
     /*!
      * Current play list clicked.
-     */
-    void labelFinished();
-    /*!
-     * Label set pixmap finished.
      */
 
 public Q_SLOTS:
@@ -120,7 +115,7 @@ protected:
     bool m_firstInit;
     QStackedWidget *m_container;
     MusicPlaylistFoundInfoWidget *m_infoWidget;
-    MusicDownLoadQueryWYPlaylistThread *m_downloadThread;
+    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 

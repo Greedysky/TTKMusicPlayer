@@ -210,6 +210,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
+    else if(MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
     else if(MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget))
     {
         MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget)->resizeWindow();
