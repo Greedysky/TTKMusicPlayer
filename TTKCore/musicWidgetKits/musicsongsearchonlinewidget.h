@@ -36,6 +36,8 @@ typedef struct MUSIC_WIDGET_EXPORT DownloadData
 }DownloadData;
 TTK_DECLARE_LISTS(DownloadData)
 
+class QLabel;
+class QPushButton;
 class MusicCoreMPlayer;
 
 /*! @brief The class of the song search online table widget.
@@ -140,8 +142,6 @@ protected:
 };
 
 
-class QLabel;
-class QPushButton;
 
 /*! @brief The class of the song search online widget.
  * @author Greedysky <greedysky@163.com>

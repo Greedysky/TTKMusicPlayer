@@ -14,7 +14,7 @@
 #include "musicgiflabelwidget.h"
 
 #include <QDateTime>
-#include <QVBoxLayout>
+#include <QBoxLayout>
 #include <QPushButton>
 #include <QCheckBox>
 #include <QButtonGroup>
