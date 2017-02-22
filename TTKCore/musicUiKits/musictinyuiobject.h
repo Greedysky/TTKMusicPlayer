@@ -144,6 +144,11 @@ namespace MusicUIObject
             background-image: url(:/tiny/btn_list_menu_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_list_menu_hover);}";
             
+    const QString MKGTinyBtnPlaylist = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_playlist_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_playlist_hover);}";
+            
 }
 
 #endif // MUSICTINYUIOBJECT_H

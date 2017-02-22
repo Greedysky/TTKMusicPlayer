@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QLabel>
+#include "musicfoundabstractwidget.h"
 #include "musicqueryfoundtablewidget.h"
 
 /*! @brief The class of the artist music found table widget.
@@ -52,7 +52,7 @@ protected:
 /*! @brief The class of artist music found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicArtistFoundWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicArtistFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
@@ -60,18 +60,19 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicArtistFoundWidget();
+    virtual ~MusicArtistFoundWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongName(const QString &name);
+
+    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
 
-    void resizeWindow();
+    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -103,14 +104,7 @@ public Q_SLOTS:
      */
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
-
-    QString m_songNameFull;
-    QWidget *m_mainWindow;
-    QLabel *m_statusLabel, *m_iconLabel;
+    QLabel *m_iconLabel;
     MusicArtistFoundTableWidget *m_artistTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 

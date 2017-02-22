@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QLabel>
+#include "musicfoundabstractwidget.h"
 #include "musicqueryfoundtablewidget.h"
 
 /*! @brief The class of the similar music found table widget.
@@ -58,7 +58,7 @@ protected:
 /*! @brief The class of similar music found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSimilarFoundWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicSimilarFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
@@ -66,18 +66,19 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicSimilarFoundWidget();
+    virtual ~MusicSimilarFoundWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongName(const QString &name);
+
+    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
 
-    void resizeWindow();
+    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -109,19 +110,11 @@ public Q_SLOTS:
      */
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
     void createLabels();
     /*!
      * Create init interface lables.
      */
 
-    QString m_songNameFull;
-    QWidget *m_mainWindow;
-    QLabel *m_statusLabel;
-    QList<QLabel*> m_iconLabels;
     MusicSimilarFoundTableWidget *m_similarTableWidget;
 
 };

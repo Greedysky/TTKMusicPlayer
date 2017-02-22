@@ -42,7 +42,10 @@ HEADERS  += \
     $$PWD/musicalbumfoundwidget.h \
     $$PWD/musicartistfoundwidget.h \
     $$PWD/musicsoundeffectswidget.h \
-    $$PWD/musicmessageaboutdialog.h
+    $$PWD/musicmessageaboutdialog.h \
+    $$PWD/musicplaylistfoundwidget.h \
+    $$PWD/musicplaylistfoundinfowidget.h \
+    $$PWD/musicplaylistfoundtablewidget.h
 
 }
 
@@ -80,6 +83,9 @@ SOURCES += \
     $$PWD/musicalbumfoundwidget.cpp \
     $$PWD/musicartistfoundwidget.cpp \
     $$PWD/musicsoundeffectswidget.cpp \
-    $$PWD/musicmessageaboutdialog.cpp
+    $$PWD/musicmessageaboutdialog.cpp \
+    $$PWD/musicplaylistfoundwidget.cpp \
+    $$PWD/musicplaylistfoundinfowidget.cpp \
+    $$PWD/musicplaylistfoundtablewidget.cpp
 
 }

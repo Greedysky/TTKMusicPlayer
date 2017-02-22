@@ -75,38 +75,20 @@ void MusicAlbumFoundTableWidget::resizeEvent(QResizeEvent *event)
 
 
 MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
-    : QWidget(parent)
+    : MusicFoundAbstractWidget(parent)
 {
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-    m_mainWindow = new QWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
-    layout->addWidget(m_mainWindow);
-    setLayout(layout);
-
-    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
     m_iconLabel = nullptr;
-
-    QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
-    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_mainWindow->setLayout(mLayout);
 
     m_albumTableWidget = new MusicAlbumFoundTableWidget(this);
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-
 }
 
 MusicAlbumFoundWidget::~MusicAlbumFoundWidget()
 {
     delete m_albumTableWidget;
     delete m_downloadThread;
-    delete m_statusLabel;
     delete m_iconLabel;
-    delete m_mainWindow;
 }
 
 QString MusicAlbumFoundWidget::getClassName()
@@ -116,7 +98,7 @@ QString MusicAlbumFoundWidget::getClassName()
 
 void MusicAlbumFoundWidget::setSongName(const QString &name)
 {
-    m_songNameFull = name;
+    MusicFoundAbstractWidget::setSongName(name);
     m_downloadThread->setQueryAllRecords(false);
     m_downloadThread->setQuerySimplify(true);
     m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery,
@@ -402,11 +384,6 @@ void MusicAlbumFoundWidget::downloadButtonClicked()
 void MusicAlbumFoundWidget::addButtonClicked()
 {
     m_albumTableWidget->downloadDataFrom(false);
-}
-
-void MusicAlbumFoundWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
 }
 
 void MusicAlbumFoundWidget::resizeEvent(QResizeEvent *event)

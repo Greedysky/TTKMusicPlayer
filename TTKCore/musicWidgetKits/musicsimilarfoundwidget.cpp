@@ -81,36 +81,14 @@ void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
 
 
 MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
-    : QWidget(parent)
+    : MusicFoundAbstractWidget(parent)
 {
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setSpacing(0);
-    layout->setContentsMargins(0, 0, 0, 0);
-    m_mainWindow = new QWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
-    layout->addWidget(m_mainWindow);
-    setLayout(layout);
-
-    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
-    QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
-    mLayout->setContentsMargins(2, 2, 2, 2);
-    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_mainWindow->setLayout(mLayout);
-
     m_similarTableWidget = new MusicSimilarFoundTableWidget(this);
 }
 
 MusicSimilarFoundWidget::~MusicSimilarFoundWidget()
 {
-    while(!m_iconLabels.isEmpty())
-    {
-        delete m_iconLabels.takeLast();
-    }
     delete m_similarTableWidget;
-    delete m_statusLabel;
-    delete m_mainWindow;
 }
 
 QString MusicSimilarFoundWidget::getClassName()
@@ -120,7 +98,8 @@ QString MusicSimilarFoundWidget::getClassName()
 
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
-    m_songNameFull = name;
+    MusicFoundAbstractWidget::setSongName(name);
+    m_similarTableWidget->hide();
     m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
     m_similarTableWidget->startSearchQuery(MusicUtils::String::songName(name));
 }
@@ -146,14 +125,11 @@ void MusicSimilarFoundWidget::queryAllFinished()
     }
 }
 
-void MusicSimilarFoundWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-   Q_UNUSED(event);
-}
-
 void MusicSimilarFoundWidget::createLabels()
 {
     layout()->removeWidget(m_mainWindow);
+    m_similarTableWidget->show();
+
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     scrollArea->setWidgetResizable(true);
@@ -218,7 +194,7 @@ void MusicSimilarFoundWidget::createLabels()
     QLabel *picLabel3 = new QLabel(function);
     picLabel3->setPixmap(QPixmap(":/image/lb_warning"));
     picLabel3->setFixedSize(100, 100);
-    m_iconLabels << picLabel1 << picLabel2 << picLabel3;
+    m_resizeWidget << picLabel1 << picLabel2 << picLabel3;
     ////////////////////////////////////////////////////////////////////////////
     grid->addWidget(picLabel1, 4, 0, 1, 2, Qt::AlignCenter);
     grid->addWidget(picLabel2, 4, 3, 1, 2, Qt::AlignCenter);
@@ -243,13 +219,14 @@ void MusicSimilarFoundWidget::createLabels()
 
 void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
 {
-    for(int i=0; i<m_iconLabels.count(); ++i)
+    for(int i=0; i<m_resizeWidget.count(); ++i)
     {
-        if(m_iconLabels[i]->pixmap()->cacheKey() == QPixmap(":/image/lb_warning").cacheKey())
+        QLabel *l = m_resizeWidget[i];
+        if(l->pixmap()->cacheKey() == QPixmap(":/image/lb_warning").cacheKey())
         {
             QPixmap pix;
             pix.loadFromData(data);
-            m_iconLabels[i]->setPixmap(pix.scaled(m_iconLabels[i]->size()));
+            l->setPixmap(pix.scaled(l->size()));
             return;
         }
     }

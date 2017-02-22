@@ -34,6 +34,7 @@ HEADERS  += \
     $$PWD/musictransitionanimationlabel.h \
     $$PWD/musiccodearea.h \
     $$PWD/musicfloatabstractwidget.h \
+    $$PWD/musicfoundabstractwidget.h \
     $$PWD/musictimersliderwidget.h \
     $$PWD/musiccutsliderwidget.h \
     $$PWD/musictoolmenuwidget.h \
@@ -70,6 +71,7 @@ SOURCES += \
     $$PWD/musictransitionanimationlabel.cpp \
     $$PWD/musiccodearea.cpp \
     $$PWD/musicfloatabstractwidget.cpp \
+    $$PWD/musicfoundabstractwidget.cpp \
     $$PWD/musictimersliderwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \

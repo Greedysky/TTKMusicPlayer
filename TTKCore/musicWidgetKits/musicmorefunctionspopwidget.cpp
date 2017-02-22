@@ -45,6 +45,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 4:
             {
+                MusicRightAreaWidget::instance()->musicPlaylistFound();
                 break;
             }
         case 5:
