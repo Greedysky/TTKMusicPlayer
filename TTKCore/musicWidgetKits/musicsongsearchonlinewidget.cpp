@@ -261,6 +261,7 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
     {
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
+        case 6: musicSongDownload(row); break;
     }
 }
 
@@ -274,6 +275,19 @@ void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
     m_downloadData.clear();
 }
 
+void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
+{
+    if(row < 0)
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget;
+    download->setSongName(QString("%1 - %2").arg(item(row, 2)->toolTip()).arg(item(row, 1)->toolTip()),
+                          MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+}
+
 void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryItemTableWidget::resizeEvent(event);
@@ -283,15 +297,13 @@ void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
 void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicQueryItemTableWidget::contextMenuEvent(event);
+
     QMenu rightClickMenu(this);
+    m_actionGroup->addAction( rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")) )->setData(4);
+    m_actionGroup->addAction( rightClickMenu.addAction(tr("musicAdd")) )->setData(5);
+    m_actionGroup->addAction( rightClickMenu.addAction(tr("downloadMore...")) )->setData(6);
     createContextMenu(rightClickMenu);
 
-    QAction *playAction = rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"));
-    QAction *addAction = rightClickMenu.addAction(tr("musicAdd"));
-    rightClickMenu.insertAction(rightClickMenu.actions().first(), addAction);
-    rightClickMenu.insertAction(addAction, playAction);
-    m_actionGroup->addAction( playAction )->setData(4);
-    m_actionGroup->addAction( addAction )->setData(5);
     rightClickMenu.exec(QCursor::pos());
 }
 

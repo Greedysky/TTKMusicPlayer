@@ -117,6 +117,10 @@ public Q_SLOTS:
     /*!
      * Search data dwonload finished.
      */
+    void musicSongDownload(int row);
+    /*!
+     * Open music song download widget.
+     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
