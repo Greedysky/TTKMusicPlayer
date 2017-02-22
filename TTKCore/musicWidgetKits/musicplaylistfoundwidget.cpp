@@ -2,11 +2,13 @@
 #include "musicsemaphoreloop.h"
 #include "musicsourcedownloadthread.h"
 #include "musicdownloadquerywyplaylistthread.h"
+#include "musicplaylistfoundinfowidget.h"
 #include "musictinyuiobject.h"
 
 #include <QPushButton>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QStackedWidget>
 
 #define MIN_LABEL_SIZE  150
 #define MAX_LABEL_SIZE  200
@@ -26,6 +28,7 @@ MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
+    connect(m_playButton, SIGNAL(clicked()), SLOT(currentPlayListClicked()));
 
     m_iconLabel = new QLabel(this);
     m_iconLabel->setGeometry(0, 0, MIN_LABEL_SIZE, MIN_LABEL_SIZE);
@@ -78,12 +81,23 @@ void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
     emit labelFinished();
 }
 
+void MusicPlaylistFoundItemWidget::currentPlayListClicked()
+{
+    emit currentPlayListClicked(m_itemData);
+}
+
 
 
 MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
+    m_container = new QStackedWidget(this);
+    layout()->removeWidget(m_mainWindow);
+    layout()->addWidget(m_container);
+    m_container->addWidget(m_mainWindow);
+
     m_firstInit = false;
+    m_infoWidget = nullptr;
     m_downloadThread = new MusicDownLoadQueryWYPlaylistThread(this);
     connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)),
                               SLOT(queryAllFinished(MusicPlaylistItem)));
@@ -91,6 +105,10 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
 
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
 {
+    delete m_infoWidget;
+//    delete m_mainWindow;
+//    m_mainWindow = nullptr;
+//    delete m_container;
     delete m_downloadThread;
 }
 
@@ -131,17 +149,17 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
-    layout()->removeWidget(m_mainWindow);
 
     if(!m_firstInit)
     {
+        m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
         scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
         scrollArea->setWidgetResizable(true);
         scrollArea->setFrameShape(QFrame::NoFrame);
         scrollArea->setAlignment(Qt::AlignLeft);
         scrollArea->setWidget(m_mainWindow);
-        layout()->addWidget(scrollArea);
+        m_container->addWidget(scrollArea);
 
         m_firstInit = true;
         delete m_mainWindow->layout();
@@ -153,11 +171,25 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
     QGridLayout *grid = MStatic_cast(QGridLayout*, m_mainWindow->layout());
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
+    connect(label, SIGNAL(currentPlayListClicked(MusicPlaylistItem)), SLOT(currentPlayListClicked(MusicPlaylistItem)));
     label->setMusicPlaylistItem(item);
+
     int lineNumber = width()/MAX_LABEL_SIZE;
     grid->addWidget(label, m_resizeWidget.count()/lineNumber,
                            m_resizeWidget.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidget << label;
+}
+
+void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &item)
+{
+    if(!m_infoWidget)
+    {
+        m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
+        m_container->addWidget(m_infoWidget);
+        m_infoWidget->setQueryInput(m_downloadThread);
+    }
+    m_infoWidget->setMusicPlaylistItem(item);
+    m_container->setCurrentIndex(1);
 }
 
 void MusicPlaylistFoundWidget::resizeEvent(QResizeEvent *event)

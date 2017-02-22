@@ -1,17 +1,50 @@
 #ifndef MUSICPLAYLISTFOUNDTABLEWIDGET_H
 #define MUSICPLAYLISTFOUNDTABLEWIDGET_H
 
-#include <QWidget>
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2015 - 2017 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 
-class MusicPlaylistFoundTableWidget : public QWidget
+#include "musicqueryfoundtablewidget.h"
+
+/*! @brief The class of the playlist music found table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicPlaylistFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
 public:
     explicit MusicPlaylistFoundTableWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicPlaylistFoundTableWidget();
 
-signals:
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
 
-public slots:
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    /*!
+     * Set network query input.
+     */
+
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
 };
 
 #endif // MUSICPLAYLISTFOUNDTABLEWIDGET_H

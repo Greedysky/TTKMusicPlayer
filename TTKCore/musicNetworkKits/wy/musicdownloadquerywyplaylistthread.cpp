@@ -16,7 +16,23 @@ QString MusicDownLoadQueryWYPlaylistThread::getClassName()
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
 {
+    m_currentType = type;
+    QUrl musicUrl = QString("http://music.163.com/api/playlist/detail?id=") + playlist;
 
+    qDebug() << musicUrl;
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkReply *reply = m_manager->get(request);
+    connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong()
@@ -83,6 +99,17 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     item.m_name = value["name"].toString();
                     item.m_playCount = QString::number(value["playCount"].toULongLong());
                     item.m_description = value["description"].toString();
+                    item.m_updateTime = QString::number(value["updateTime"].toULongLong());
+
+                    QVariantList tags = value["tags"].toList();
+                    foreach(const QVariant &var, tags)
+                    {
+                        if(var.isNull())
+                        {
+                            continue;
+                        }
+                        item.m_tags.append(var.toString() + "|");
+                    }
 
                     value = value["creator"].toMap();
                     item.m_nickname = value["nickname"].toString();
@@ -93,6 +120,76 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+//    emit downLoadDataChanged(QString());
     deleteAll();
+}
+
+void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+
+    emit clearAllItems();      ///Clear origin items
+    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+
+    if(reply && reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 200 && value.contains("result"))
+            {
+                value = value["result"].toMap();
+                QVariantList datas = value["tracks"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+                    MusicObject::MusicSongInfomation musicInfo;
+                    musicInfo.m_songName = value["name"].toString();
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
+                    musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
+
+                    QVariantMap albumObject = value["album"].toMap();
+                    musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
+
+                    QVariantList artistsArray = value["artists"].toList();
+                    foreach(const QVariant &artistValue, artistsArray)
+                    {
+                        if(artistValue.isNull())
+                        {
+                            continue;
+                        }
+                        QVariantMap artistMap = artistValue.toMap();
+                        musicInfo.m_singerName = artistMap["name"].toString();
+                    }
+
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+
+                    if(musicInfo.m_songAttrs.isEmpty())
+                    {
+                        continue;
+                    }
+
+                    MusicSearchedItem item;
+                    item.m_songname = musicInfo.m_songName;
+                    item.m_artistname = musicInfo.m_singerName;
+                    item.m_time = musicInfo.m_timeLength;
+                    item.m_type = mapQueryServerString();
+                    emit createSearchedItems(item);
+                    m_musicSongInfos << musicInfo;
+                }
+            }
+        }
+    }
+
+    emit downLoadDataChanged(QString());
 }

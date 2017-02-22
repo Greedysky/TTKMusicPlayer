@@ -26,7 +26,7 @@ MusicAlbumFoundTableWidget::MusicAlbumFoundTableWidget(QWidget *parent)
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
-    headerview->resizeSection(5, 26);
+    headerview->resizeSection(6, 26);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());

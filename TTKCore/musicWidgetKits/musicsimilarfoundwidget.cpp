@@ -18,7 +18,7 @@ MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 447);
+    headerview->resizeSection(1, 436);
     headerview->resizeSection(2, 47);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -53,13 +53,13 @@ void MusicSimilarFoundTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 447);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 436);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
 
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     }
 }
 

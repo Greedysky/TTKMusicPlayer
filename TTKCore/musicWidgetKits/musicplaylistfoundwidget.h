@@ -13,6 +13,8 @@
 #include "musicqueryfoundtablewidget.h"
 
 class QPushButton;
+class QStackedWidget;
+class MusicPlaylistFoundInfoWidget;
 class MusicDownLoadQueryWYPlaylistThread;
 
 /*! @brief The class of the playlist music item widget.
@@ -39,6 +41,10 @@ public:
      */
 
 Q_SIGNALS:
+    void currentPlayListClicked(const MusicPlaylistItem &item);
+    /*!
+     * Current play list clicked.
+     */
     void labelFinished();
     /*!
      * Label set pixmap finished.
@@ -48,6 +54,10 @@ public Q_SLOTS:
     void downLoadFinished(const QByteArray &data);
     /*!
      * Send recieved data from net.
+     */
+    void currentPlayListClicked();
+    /*!
+     * Current play list clicked.
      */
 
 protected:
@@ -92,6 +102,10 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
+    void currentPlayListClicked(const MusicPlaylistItem &item);
+    /*!
+     * Current play list clicked.
+     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -100,6 +114,8 @@ protected:
      */
 
     bool m_firstInit;
+    QStackedWidget *m_container;
+    MusicPlaylistFoundInfoWidget *m_infoWidget;
     MusicDownLoadQueryWYPlaylistThread *m_downloadThread;
 
 };

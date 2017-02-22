@@ -29,6 +29,8 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
     QString m_coverUrl;
     QString m_playCount;
     QString m_description;
+    QString m_updateTime;
+    QString m_tags;
 }MusicPlaylistItem;
 TTK_DECLARE_LISTS(MusicPlaylistItem)
 

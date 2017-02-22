@@ -50,6 +50,10 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
+    void getDetailsFinished();
+    /*!
+     * Download details data from net finished.
+     */
 
 };
 
