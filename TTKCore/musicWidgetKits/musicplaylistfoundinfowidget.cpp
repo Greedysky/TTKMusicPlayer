@@ -47,7 +47,6 @@ void MusicPlaylistFoundInfoWidget::resizeWindow()
     if(!m_resizeWidget.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        m_container->setFixedWidth(width - 95 - 320);
         width = width - WINDOW_WIDTH_MIN;
 
         QLabel *label = m_resizeWidget[0];

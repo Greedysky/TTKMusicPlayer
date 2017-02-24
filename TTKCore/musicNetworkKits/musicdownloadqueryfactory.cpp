@@ -27,6 +27,7 @@
 
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicdownloadqueryqqplaylistthread.h"
+#include "musicdownloadquerybdplaylistthread.h"
 
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
@@ -110,7 +111,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
         case 1:  thread = new MusicDownLoadQueryQQPlaylistThread(parent); break;
         case 2:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
         case 3:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 4:  thread = new MusicDownLoadQueryBDPlaylistThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
         case 6:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);

@@ -28,7 +28,7 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryQQPlaylistThread::startSearchSongAll()
 {
-    QUrl musicUrl =  MusicCryptographicHash::decryptData(QQ_PLAYLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -53,7 +53,7 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSongAll()
 
 void MusicDownLoadQueryQQPlaylistThread::startSearchSong(const QString &playlist)
 {
-    QUrl musicUrl =  MusicCryptographicHash::decryptData(QQ_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
