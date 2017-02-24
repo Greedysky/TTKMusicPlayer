@@ -95,7 +95,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
             }
         }
 
-        if(!m_querySimplify)
+        if(!m_querySimplify && !m_songIds.isEmpty())
         {
             m_musicSongInfos.clear();
             startSongListQuery();

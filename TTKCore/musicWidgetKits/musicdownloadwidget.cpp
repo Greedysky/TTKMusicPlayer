@@ -271,7 +271,11 @@ void MusicDownloadWidget::queryAllFinishedMusic()
 
 void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs)
 {
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    MusicObject::MusicSongAttributes attributes = attrs;
+    qSort(attributes);
+    //to find out the min bitrate
+
+    foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
         if(attr.m_bitrate == MB_32)         ///st
         {
@@ -322,7 +326,11 @@ void MusicDownloadWidget::queryAllFinishedMovie()
 
 void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs)
 {
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    MusicObject::MusicSongAttributes attributes = attrs;
+    qSort(attributes);
+    //to find out the min bitrate
+
+    foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
         if(attr.m_bitrate == MB_500)       ///hd
         {
