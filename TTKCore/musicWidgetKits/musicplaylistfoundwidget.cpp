@@ -22,7 +22,7 @@ MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
     m_topListenButton->setGeometry(0, 0, MIN_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
-    m_topListenButton->setStyleSheet(MusicUIObject::MBackgroundStyle08 + MusicUIObject::MColorStyle01);
+    m_topListenButton->setStyleSheet(MusicUIObject::MBackgroundStyle04 + MusicUIObject::MColorStyle01);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
@@ -59,9 +59,29 @@ QString MusicPlaylistFoundItemWidget::getClassName()
 void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem &item)
 {
     m_itemData = item;
-    m_nameLabel->setText(item.m_name);
-    m_creatorLabel->setText("by " + item.m_nickname);
-    m_topListenButton->setText(item.m_playCount);
+    m_nameLabel->setToolTip(item.m_name);
+    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
+                                                        Qt::ElideRight, MIN_LABEL_SIZE));
+    m_creatorLabel->setToolTip("by " + item.m_nickname);
+    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(),
+                                                           Qt::ElideRight, MIN_LABEL_SIZE));
+    bool ok = false;
+    int count = item.m_playCount.toInt(&ok);
+    if(ok)
+    {
+        if(count >= 10000)
+        {
+            m_topListenButton->setText(tr("%1Thous").arg(count/10000));
+        }
+        else
+        {
+            m_topListenButton->setText(QString::number(count));
+        }
+    }
+    else
+    {
+        m_topListenButton->setText(item.m_playCount);
+    }
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

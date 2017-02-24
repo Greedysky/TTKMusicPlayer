@@ -29,7 +29,7 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll()
 {
-    QUrl musicUrl = QString("http://www.xiami.com/search/collect?searchtag=1");
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -55,7 +55,7 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll(const QSet<QString> 
 {
     foreach(const QString &id, ids)
     {
-        QUrl musicUrl = QString("http://www.xiami.com/collect/" + id);
+        QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_ATTR_URL, URL_KEY).arg(id);
 
         QNetworkRequest request;
         request.setUrl(musicUrl);
@@ -73,7 +73,7 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll(const QSet<QString> 
 
 void MusicDownLoadQueryXMPlaylistThread::startSearchSong(const QString &playlist)
 {
-    QUrl musicUrl = QString("http://api.xiami.com/web?v=2.0&app_key=1&id=%1&r=collect/detail").arg(playlist);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_IATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -217,7 +217,15 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
                     value = var.toMap();
                     m_songIds << QString::number(value["song_id"].toULongLong());
                 }
-                startSongListQuery();
+
+                if(!m_songIds.isEmpty())
+                {
+                    startSongListQuery();
+                }
+                else
+                {
+                    emit downLoadDataChanged(QString());
+                }
             }
             else
             {

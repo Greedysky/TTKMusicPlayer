@@ -28,7 +28,7 @@ void MusicDownLoadQueryKGPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryKGPlaylistThread::startSearchSongAll()
 {
-    QUrl musicUrl = QString("http://www2.kugou.kugou.com/yueku/v9/categoryv2/special/24814-12-6-1.html");
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_PLAYLIST_URL, URL_KEY);
 
     if(m_reply)
     {
@@ -52,7 +52,7 @@ void MusicDownLoadQueryKGPlaylistThread::startSearchSongAll()
 
 void MusicDownLoadQueryKGPlaylistThread::startSearchSong(const QString &playlist)
 {
-    QUrl musicUrl = "http://mobilecdn.kugou.com/api/v3/special/song?specialid=" + playlist + "&page=1&plat=2&pagesize=-1&version=8400";
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -181,4 +181,3 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
 
     emit downLoadDataChanged(QString());
 }
-
