@@ -12,7 +12,6 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QBoxLayout>
-#include <QDateTime>
 #include <QScrollArea>
 #include <QButtonGroup>
 #include <QStackedWidget>
@@ -130,7 +129,7 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     tagsLabel->setText(MusicUtils::Widget::elidedText(tagsLabel->font(), tagsLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *updateLabel = new QLabel(topLineWidget);
     updateLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    updateLabel->setToolTip(tr("Update: %1").arg(QDateTime::fromMSecsSinceEpoch(item.m_updateTime.toULongLong()).toString("yyyy-MM-dd")));
+    updateLabel->setToolTip(tr("Update: %1").arg(item.m_updateTime));
     updateLabel->setText(MusicUtils::Widget::elidedText(updateLabel->font(), updateLabel->toolTip(), Qt::ElideRight, 220));
 
     topLineLayout->addWidget(playlistLabel);

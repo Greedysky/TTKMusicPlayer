@@ -109,9 +109,10 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     item.m_name = value["name"].toString();
                     item.m_playCount = QString::number(value["playCount"].toULongLong());
                     item.m_description = value["description"].toString();
-                    item.m_updateTime = QString::number(value["updateTime"].toULongLong());
+                    item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString("yyyy-MM-dd");
 
                     QVariantList tags = value["tags"].toList();
+                    item.m_tags.clear();
                     foreach(const QVariant &var, tags)
                     {
                         if(var.isNull())

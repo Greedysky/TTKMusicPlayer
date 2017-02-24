@@ -26,6 +26,7 @@
 #include "musicdownloadqueryqqartistthread.h"
 
 #include "musicdownloadquerywyplaylistthread.h"
+#include "musicdownloadqueryqqplaylistthread.h"
 
 #include "musicttdatadownloadthread.h"
 #include "musicdatadownloadthread.h"
@@ -102,7 +103,18 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(QObject *parent)
 {
     MusicDownLoadQueryThreadAbstract *thread = nullptr;
-    thread = new MusicDownLoadQueryWYPlaylistThread(parent);
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQPlaylistThread(parent); break;
+        case 2:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 4:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 5:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        case 6:  thread = new MusicDownLoadQueryWYPlaylistThread(parent); break;
+        default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);
+    }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }

@@ -66,6 +66,7 @@ HEADERS  += \
     $$PWD/qq/musicdownloadqueryqqartistthread.h \
     $$PWD/qq/musicdownloadqqinterface.h \
     $$PWD/qq/musicqqtextdownloadthread.h \
+    $$PWD/qq/musicdownloadqueryqqplaylistthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
@@ -130,6 +131,7 @@ SOURCES += \
     $$PWD/qq/musicdownloadqueryqqartistthread.cpp \
     $$PWD/qq/musicdownloadqqinterface.cpp \
     $$PWD/qq/musicqqtextdownloadthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqplaylistthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
@@ -145,5 +147,4 @@ SOURCES += \
     $$PWD/musictranslationthread.cpp \
     $$PWD/musicvoicettsthread.cpp \
     $$PWD/musicidentifysongsthread.cpp
-
 }

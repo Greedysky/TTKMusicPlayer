@@ -31,6 +31,18 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
     QString m_description;
     QString m_updateTime;
     QString m_tags;
+
+    MusicPlaylistItem()
+    {
+        m_id = "-";
+        m_name = "-";
+        m_nickname = "-";
+        m_coverUrl = "-";
+        m_playCount = "-";
+        m_description = "-";
+        m_updateTime = "-";
+        m_tags = "-";
+    }
 }MusicPlaylistItem;
 TTK_DECLARE_LISTS(MusicPlaylistItem)
 
@@ -103,9 +115,13 @@ public:
     /*!
      * Return the current song name.
      */
-    inline const MusicObject::MusicSongInfomations& getMusicSongInfos() const { return m_musicSongInfos;}
+    inline const MusicObject::MusicSongInfomations& getMusicSongInfos() const { return m_musicSongInfos; }
     /*!
      * Return the current song container.
+     */
+    inline QVariantMap getRawData() const { return m_rawData; }
+    /*!
+     * Return the current raw data.
      */
 
 Q_SIGNALS:
@@ -129,6 +145,7 @@ protected:
     QString m_queryServer;
     QueryType m_currentType;
     bool m_queryAllRecords, m_querySimplify;
+    QVariantMap m_rawData;
 
 };
 
