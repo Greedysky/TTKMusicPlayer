@@ -48,3 +48,18 @@ void MusicFoundAbstractWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
 }
+
+void MusicFoundAbstractWidget::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicFoundAbstractWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}
+
+void MusicFoundAbstractWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+}

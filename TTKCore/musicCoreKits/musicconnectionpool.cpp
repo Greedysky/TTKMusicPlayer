@@ -24,6 +24,7 @@
 #include "musicsoundeffectswidget.h"
 #include "musicsongchecktoolswidget.h"
 #include "musicsongchecktoolstablewidget.h"
+#include "musicplaylistfoundtablewidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -139,7 +140,8 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     else if((from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicSimilarFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicAlbumFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-            (from == MusicArtistFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
+            (from == MusicArtistFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+            (from == MusicPlaylistFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
     {
         QObject::connect(first, SIGNAL(muiscSongToPlayListChanged(QString,QString,QString,bool)), second,
                                 SLOT(addNetMusicSongToList(QString,QString,QString,bool)));

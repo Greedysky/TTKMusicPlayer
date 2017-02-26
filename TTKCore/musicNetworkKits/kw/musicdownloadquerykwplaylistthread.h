@@ -58,6 +58,18 @@ public Q_SLOTS:
     /*!
      * Download details data from net finished.
      */
+    void getMorePlaylistDetailsFinished();
+    /*!
+     * Get more playlisy details finished.
+     */
+
+protected:
+    void getMorePlaylistDetails(const QString &pid);
+    /*!
+     * Get more playlisy details.
+     */
+
+    QString m_tags;
 
 };
 
