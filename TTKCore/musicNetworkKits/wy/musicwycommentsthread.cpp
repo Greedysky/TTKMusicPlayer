@@ -55,11 +55,7 @@ void MusicWYCommentsThread::startSearchSong(const QString &name)
 
 void MusicWYCommentsThread::startSearchSong(int index)
 {
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 
     m_count = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY).arg(m_songID).arg(COMMIT_PAGE_SIZE*index);

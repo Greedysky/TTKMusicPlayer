@@ -26,6 +26,15 @@ QString MusicIdentifySongsThread::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicIdentifySongsThread::deleteAll()
+{
+    if(m_reply)
+    {
+        m_reply->deleteLater();
+        m_reply = nullptr;
+    }
+}
+
 bool MusicIdentifySongsThread::getKey()
 {
     MusicSemaphoreLoop loop;
@@ -129,11 +138,7 @@ void MusicIdentifySongsThread::downLoadFinished()
     }
 
     emit downLoadDataChanged( QString() );
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 }
 
 void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)

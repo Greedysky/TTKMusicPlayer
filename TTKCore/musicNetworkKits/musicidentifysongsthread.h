@@ -33,6 +33,10 @@ public:
      * Get class object name.
      */
 
+    virtual void deleteAll() override;
+    /*!
+     * Release the network object.
+     */
     bool getKey();
     /*!
      * Get query song id keys.

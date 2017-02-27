@@ -26,15 +26,19 @@ QString MusicWYDiscoverListThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWYDiscoverListThread::startSearchSong()
+void MusicWYDiscoverListThread::deleteAll()
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_TOPLIST_URL, URL_KEY);
-
     if(m_reply)
     {
         m_reply->deleteLater();
         m_reply = nullptr;
     }
+}
+
+void MusicWYDiscoverListThread::startSearchSong()
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_TOPLIST_URL, URL_KEY);
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

@@ -29,7 +29,10 @@ public:
     /*!
      * Get class object name.
      */
-
+    virtual void deleteAll() override;
+    /*!
+     * Release the network object.
+     */
     void startSearchSong();
     /*!
      * Start to Search data from page.

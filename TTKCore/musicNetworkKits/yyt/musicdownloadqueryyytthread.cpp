@@ -24,12 +24,7 @@ void MusicDownLoadQueryYYTThread::startSearchSong(QueryType type, const QString 
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_URL, URL_KEY).arg(text);
-
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

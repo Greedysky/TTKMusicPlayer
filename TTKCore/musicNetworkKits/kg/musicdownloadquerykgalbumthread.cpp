@@ -26,12 +26,7 @@ void MusicDownLoadQueryKGAlbumThread::startSearchSong(const QString &album)
 {
     m_searchText = album;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ALBUM_URL, URL_KEY).arg(album);
-
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

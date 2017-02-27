@@ -22,12 +22,7 @@ void MusicDownLoadQueryKGThread::startSearchSong(QueryType type, const QString &
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
-
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

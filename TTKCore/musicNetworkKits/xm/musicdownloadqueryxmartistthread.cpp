@@ -24,12 +24,7 @@ void MusicDownLoadQueryXMArtistThread::startSearchSong(QueryType type, const QSt
 void MusicDownLoadQueryXMArtistThread::startSearchSong(const QString &artist)
 {
     QUrl musicUrl = MusicCryptographicHash::decryptData(XM_ARTIST_URL, URL_KEY);
-
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
+    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
