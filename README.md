@@ -88,7 +88,8 @@ Screenshots.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
-
+ * Music song, artist, album and playlist supported.
+ 
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*
