@@ -57,6 +57,10 @@ public:
     /*!
      * Get class object name.
      */
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    /*!
+     * Set wheather query all quality of records.
+     */
     virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.
@@ -135,6 +139,7 @@ protected:
      * Add search music to play list by index.
      */
 
+    bool m_queryAllRecords;
     int m_previousAuditionRow;
     MusicCoreMPlayer *m_audition;
     DownloadData m_downloadData;
@@ -161,6 +166,10 @@ public:
     * Get class object name.
     */
     void startSearchQuery(const QString &name);
+    /*!
+     * Start search query by text.
+     */
+    void startSearchQuery(const QString &name, bool all);
     /*!
      * Start search query by text.
      */

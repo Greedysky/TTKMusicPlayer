@@ -173,7 +173,7 @@ void MusicSongsListAbstractTableWidget::musicSongDownload()
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget;
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(getCurrentSongName(), MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }

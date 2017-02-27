@@ -33,6 +33,8 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     headerview->resizeSection(6, 26);
 
     m_previousAuditionRow = -1;
+    m_queryAllRecords = true;
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
@@ -82,6 +84,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     ////////////////////////////////////////////////
     m_loadingLabel->show();
     m_loadingLabel->start();
+    m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
@@ -282,9 +285,9 @@ void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
         return;
     }
 
-    MusicDownloadWidget *download = new MusicDownloadWidget;
-    download->setSongName(QString("%1 - %2").arg(item(row, 2)->toolTip()).arg(item(row, 1)->toolTip()),
-                          MusicDownLoadQueryThreadAbstract::MusicQuery);
+    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }
 
@@ -386,14 +389,20 @@ QString MusicSongSearchOnlineWidget::getClassName()
 
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
 {
+    startSearchQuery(name, true);
+}
+
+void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all)
+{
     setResizeLabelText(name);
+    m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
 }
 
 void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)
 {
     m_searchTableWidget->setSearchQuality(quality);
-    startSearchQuery(name);
+    startSearchQuery(name, false);
 }
 
 void MusicSongSearchOnlineWidget::resizeWindow()
