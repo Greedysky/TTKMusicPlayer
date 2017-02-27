@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicglobaldefine.h"
 #include "musictoolmenuwidget.h"
 
 class QLabel;

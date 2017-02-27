@@ -4,6 +4,7 @@
 #include "musicplaylistfoundinfowidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
+#include "musicplaylistfoundcategorywidget.h"
 
 #include <QPushButton>
 #include <QGridLayout>
@@ -177,6 +178,7 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
 
         m_firstInit = true;
         delete m_mainWindow->layout();
+
         QGridLayout *gridLayout = new QGridLayout(m_mainWindow);
         gridLayout->setVerticalSpacing(35);
         m_mainWindow->setLayout(gridLayout);

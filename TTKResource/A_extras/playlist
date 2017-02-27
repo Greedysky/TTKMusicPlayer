@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TTKMusicPlayer>
+    <QQ>
+        <tag value="语种">
+            <value value="国语" key="165"/>
+            <value value="英语" key="167"/>
+            <value value="韩语" key="168"/>
+            <value value="粤语" key="166"/>
+            <value value="日语" key="169"/>
+            <value value="小语种" key="170"/>
+            <value value="闽南语" key="203"/>
+            <value value="法语" key="204"/>
+            <value value="拉丁语" key="205"/>
+        </tag>
+        <tag value="流派">
+            <value value="流行" key="6"/>
+            <value value="轻音乐" key="15"/>
+            <value value="摇滚" key="11"/>
+            <value value="民谣" key="28"/>
+            <value value="R&B" key="8"/>
+            <value value="嘻哈" key="153"/>
+            <value value="电子" key="24"/>
+            <value value="古典" key="27"/>
+            <value value="乡村" key="18"/>
+            <value value="蓝调" key="22"/>
+            <value value="爵士" key="21"/>
+            <value value="新世纪" key="164"/>
+            <value value="拉丁" key="25"/>
+            <value value="后摇" key="218"/>
+            <value value="中国传统" key="219"/>
+            <value value="世界音乐" key="220"/>
+        </tag>
+        <tag value="主题">
+            <value value="ACG" key="39"/>
+            <value value="经典" key="136"/>
+            <value value="网络歌曲" key="146"/>
+            <value value="影视" key="133"/>
+            <value value="KTV热歌" key="141"/>
+            <value value="儿歌" key="131"/>
+            <value value="中国风" key="145"/>
+            <value value="古风" key="194"/>
+            <value value="情歌" key="148"/>
+            <value value="城市" key="196"/>
+            <value value="现场音乐" key="197"/>
+            <value value="背景音乐" key="199"/>
+            <value value="佛教音乐" key="200"/>
+            <value value="UP主" key="201"/>
+            <value value="乐器" key="202"/>
+            <value value="DJ" key="14"/>
+        </tag>
+        <tag value="心情">
+            <value value="伤感" key="52"/>
+            <value value="安静" key="122"/>
+            <value value="快乐" key="117"/>
+            <value value="治愈" key="116"/>
+            <value value="励志" key="125"/>
+            <value value="甜蜜" key="59"/>
+            <value value="寂寞" key="55"/>
+            <value value="宣泄" key="126"/>
+            <value value="思念" key="68"/>
+        </tag>
+        <tag value="场景">
+            <value value="睡前" key="78"/>
+            <value value="夜店" key="102"/>
+            <value value="学习" key="101"/>
+            <value value="运动" key="99"/>
+            <value value="开车" key="85"/>
+            <value value="约会" key="76"/>
+            <value value="工作" key="94"/>
+            <value value="旅行" key="81"/>
+            <value value="派对" key="103"/>
+            <value value="婚礼" key="222"/>
+            <value value="咖啡馆" key="223"/>
+            <value value="跳舞" key="224"/>
+            <value value="校园" key="16"/>
+        </tag>
+    </QQ>
+<TTKMusicPlayer>
