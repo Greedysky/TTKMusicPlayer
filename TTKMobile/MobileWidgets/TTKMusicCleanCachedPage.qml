@@ -124,7 +124,7 @@ Rectangle {
                                         bottom: cachedSizeArea.top
                                     }
                                     color: ttkTheme.color_white
-                                    text: qsTr("QQ音乐缓存")
+                                    text: qsTr("天天酷音缓存")
                                 }
 
                                 Text {
