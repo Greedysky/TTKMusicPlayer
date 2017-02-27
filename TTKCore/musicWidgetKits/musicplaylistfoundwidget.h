@@ -11,10 +11,13 @@
 
 #include "musicfoundabstractwidget.h"
 #include "musicqueryfoundtablewidget.h"
+#include "musiccategoryconfigmanager.h"
 
+class QGridLayout;
 class QPushButton;
 class QStackedWidget;
 class MusicPlaylistFoundInfoWidget;
+class MusicPlaylistFoundCategoryWidget;
 
 /*! @brief The class of the playlist music item widget.
  * @author Greedysky <greedysky@163.com>
@@ -105,6 +108,10 @@ public Q_SLOTS:
     /*!
      * Set current index to playlist menu page.
      */
+    void categoryChanged(const PlaylistCategoryItem &category);
+    /*!
+     * Current category changed.
+     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -114,7 +121,9 @@ protected:
 
     bool m_firstInit;
     QStackedWidget *m_container;
+    QGridLayout *m_gridLayout;
     MusicPlaylistFoundInfoWidget *m_infoWidget;
+    MusicPlaylistFoundCategoryWidget *m_categoryButton;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };

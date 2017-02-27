@@ -19,7 +19,7 @@ MusicFoundAbstractWidget::MusicFoundAbstractWidget(QWidget *parent)
     m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
     m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
 
-    QHBoxLayout *mLayout = new QHBoxLayout(m_mainWindow);
+    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
     mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
     m_mainWindow->setLayout(mLayout);
 }

@@ -115,6 +115,8 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
 
     m_firstInit = false;
     m_infoWidget = nullptr;
+    m_gridLayout = nullptr;
+    m_categoryButton = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
     connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)),
                               SLOT(queryAllFinished(MusicPlaylistItem)));
@@ -123,7 +125,9 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
 {
     delete m_infoWidget;
+    delete m_gridLayout;
 //    delete m_container;
+    delete m_categoryButton;
     delete m_downloadThread;
 }
 
@@ -142,19 +146,17 @@ void MusicPlaylistFoundWidget::resizeWindow()
 {
     if(!m_resizeWidget.isEmpty())
     {
-        QGridLayout *grid = MStatic_cast(QGridLayout*, m_mainWindow->layout());
-        if(grid)
+        if(m_gridLayout)
         {
             for(int i=0; i<m_resizeWidget.count(); ++i)
             {
-                grid->removeWidget(m_resizeWidget[i]);
+                m_gridLayout->removeWidget(m_resizeWidget[i]);
             }
 
             int lineNumber = width()/MAX_LABEL_SIZE;
             for(int i=0; i<m_resizeWidget.count(); ++i)
             {
-                grid->addWidget(m_resizeWidget[i], i/lineNumber,
-                                                   i%lineNumber, Qt::AlignCenter);
+                m_gridLayout->addWidget(m_resizeWidget[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
             }
         }
     }
@@ -177,22 +179,25 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
         m_container->addWidget(scrollArea);
 
         m_firstInit = true;
-        delete m_mainWindow->layout();
 
-        QGridLayout *gridLayout = new QGridLayout(m_mainWindow);
-        gridLayout->setVerticalSpacing(35);
-        m_mainWindow->setLayout(gridLayout);
+        m_categoryButton = new MusicPlaylistFoundCategoryWidget(m_mainWindow);
+        m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
+        m_mainWindow->layout()->addWidget(m_categoryButton);
+
+        QWidget *containWidget = new QWidget(m_mainWindow);
+        m_gridLayout = new QGridLayout(containWidget);
+        m_gridLayout->setVerticalSpacing(35);
+        containWidget->setLayout(m_gridLayout);
+        m_mainWindow->layout()->addWidget(containWidget);
     }
-
-    QGridLayout *grid = MStatic_cast(QGridLayout*, m_mainWindow->layout());
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
     connect(label, SIGNAL(currentPlayListClicked(MusicPlaylistItem)), SLOT(currentPlayListClicked(MusicPlaylistItem)));
     label->setMusicPlaylistItem(item);
 
     int lineNumber = width()/MAX_LABEL_SIZE;
-    grid->addWidget(label, m_resizeWidget.count()/lineNumber,
-                           m_resizeWidget.count()%lineNumber, Qt::AlignCenter);
+    m_gridLayout->addWidget(label, m_resizeWidget.count()/lineNumber,
+                                   m_resizeWidget.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidget << label;
 }
 
@@ -209,6 +214,15 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &i
 void MusicPlaylistFoundWidget::backToPlayListMenu()
 {
     m_container->setCurrentIndex(0);
+}
+
+void MusicPlaylistFoundWidget::categoryChanged(const PlaylistCategoryItem &category)
+{
+    if(m_categoryButton)
+    {
+        m_categoryButton->setText(category.m_name);
+        m_categoryButton->closeMenu();
+    }
 }
 
 void MusicPlaylistFoundWidget::resizeEvent(QResizeEvent *event)

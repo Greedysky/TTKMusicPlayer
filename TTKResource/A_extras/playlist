@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
     <QQ>
+        <tag value="默认">
+            <value value="全部" key="1000000"/>
+        </tag>
         <tag value="语种">
             <value value="国语" key="165"/>
             <value value="英语" key="167"/>
@@ -17,7 +20,7 @@
             <value value="轻音乐" key="15"/>
             <value value="摇滚" key="11"/>
             <value value="民谣" key="28"/>
-            <value value="R&B" key="8"/>
+            <value value="RnB" key="8"/>
             <value value="嘻哈" key="153"/>
             <value value="电子" key="24"/>
             <value value="古典" key="27"/>
