@@ -22,13 +22,13 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll();
+        startSearchSongAll(playlist);
     }
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll()
+void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QString &type)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_URL, URL_KEY).arg(type);
     deleteAll();
 
     QNetworkRequest request;
@@ -43,6 +43,26 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll()
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QSet<QString> &ids)
+{
+    foreach(const QString &id, ids)
+    {
+        QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_ATTR_URL, URL_KEY).arg(id);
+
+        QNetworkRequest request;
+        request.setUrl(musicUrl);
+        request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    #ifndef QT_NO_SSL
+        QSslConfiguration sslConfig = request.sslConfiguration();
+        sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+        request.setSslConfiguration(sslConfig);
+    #endif
+        QNetworkReply *reply = m_manager->get(request);
+        connect(reply, SIGNAL(finished()), SLOT(getSongAllFinished()));
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+    }
 }
 
 void MusicDownLoadQueryBDPlaylistThread::startSearchSong(const QString &playlist)
@@ -75,7 +95,36 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QSet<QString> songIds;
+        while(m_reply->canReadLine())
+        {
+            QString text = m_reply->readLine();
+            QRegExp regx(QString("/songlist/(\\d+)"));
+            int pos = QString(text).indexOf(regx);
+            while(pos != -1)
+            {
+                songIds << regx.cap(1);
+                pos += regx.matchedLength();
+                pos = regx.indexIn(text, pos);
+            }
+        }
+        startSearchSongAll(songIds);
+    }
+
+//    emit downLoadDataChanged(QString());
+    deleteAll();
+}
+
+void MusicDownLoadQueryBDPlaylistThread::getSongAllFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+
+    emit clearAllItems();      ///Clear origin items
+    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+
+    if(reply && reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -83,35 +132,24 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["error_code"].toInt() == 22000 && value.contains("content"))
+            if(value["error_code"].toInt() == 22000)
             {
-                QVariantList datas = value["content"].toList();
-                foreach(const QVariant &var, datas)
-                {
-                    if(var.isNull())
-                    {
-                        continue;
-                    }
+                MusicPlaylistItem item;
+                item.m_coverUrl = value["pic_300"].toString();
+                item.m_id = value["listid"].toString();
+                item.m_name = value["title"].toString();
+                item.m_playCount = value["listenum"].toString();
+                item.m_description = value["desc"].toString();
+                item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+                item.m_nickname = "Greedysky";
+                item.m_tags = value["tag"].toString().replace(",", "|");
 
-                    value = var.toMap();
-                    MusicPlaylistItem item;
-                    item.m_coverUrl = value["pic_w300"].toString();
-                    item.m_id = value["listid"].toString();
-                    item.m_name = value["title"].toString();
-                    item.m_playCount = value["listenum"].toString();
-                    item.m_description = value["desc"].toString();
-                    item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                    item.m_nickname = "Greedysky";
-                    item.m_tags = value["tag"].toString().replace(",", "|");
-
-                    emit createPlaylistItems(item);
-                }
+                emit createPlaylistItems(item);
             }
         }
     }
 
 //    emit downLoadDataChanged(QString());
-    deleteAll();
 }
 
 void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()

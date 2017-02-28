@@ -8,6 +8,9 @@
 #include <QSignalMapper>
 #include <QScrollArea>
 
+#define ITEM_MAX_COLUMN     6
+#define ITEM_LABEL_WIDTH    20
+
 MusicPlaylistFoundCategoryItem::MusicPlaylistFoundCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
@@ -26,7 +29,7 @@ void MusicPlaylistFoundCategoryItem::setCategory(const PlaylistCategory &categor
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
     label->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle03);
-    label->setFixedSize(80, 20);
+    label->setFixedSize(50, ITEM_LABEL_WIDTH);
     layout->addWidget(label, 0, Qt::AlignTop);
 
     QWidget *item = new QWidget(this);
@@ -40,10 +43,10 @@ void MusicPlaylistFoundCategoryItem::setCategory(const PlaylistCategory &categor
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_name, item);
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
-        l->setFixedSize(75, 20);
+        l->setFixedSize(75, ITEM_LABEL_WIDTH);
         connect(l, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(l, i);
-        itemlayout->addWidget(l, i/6, i%6, Qt::AlignLeft);
+        itemlayout->addWidget(l, i/ITEM_MAX_COLUMN, i%ITEM_MAX_COLUMN, Qt::AlignLeft);
     }
     item->setLayout(itemlayout);
 
@@ -130,7 +133,7 @@ void MusicPlaylistFoundCategoryWidget::initWidget()
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
-    m_containWidget->setFixedSize(630, 370);
+    m_containWidget->setFixedSize(600, 370);
     m_containWidget->setObjectName("containWidget");
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 

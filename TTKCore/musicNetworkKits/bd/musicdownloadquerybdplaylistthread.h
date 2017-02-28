@@ -34,7 +34,11 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSongAll();
+    void startSearchSongAll(const QString &type);
+    /*!
+     * Start to search all data.
+     */
+    void startSearchSongAll(const QSet<QString> &ids);
     /*!
      * Start to search all data.
      */
@@ -53,6 +57,10 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
+     */
+    void getSongAllFinished();
+    /*!
+     * Download song all finished.
      */
     void getDetailsFinished();
     /*!
