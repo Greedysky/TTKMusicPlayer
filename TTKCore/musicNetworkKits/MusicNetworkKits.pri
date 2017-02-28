@@ -9,7 +9,6 @@
 INCLUDEPATH += $$PWD \
                $$PWD/radio \
                $$PWD/nr \
-               $$PWD/tt \
                $$PWD/wy \
                $$PWD/xm \
                $$PWD/kg \
@@ -28,14 +27,6 @@ HEADERS  += \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
     $$PWD/nr/musicdatatagdownloadthread.h \
-    $$PWD/tt/musicdownloadttinterface.h \
-    $$PWD/tt/musicttdatadownloadthread.h \
-    $$PWD/tt/musictttextdownloadthread.h \
-    $$PWD/tt/musicdownloadqueryttthread.h \
-    $$PWD/tt/musicdownloadqueryttalbumthread.h \
-    $$PWD/tt/musicdownloadqueryttartistthread.h \
-    $$PWD/tt/musicdownloadttinterface.h \
-    $$PWD/tt/musicdownloadqueryttplaylistthread.h \
     $$PWD/wy/musicdownloadwyinterface.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
@@ -99,13 +90,6 @@ SOURCES += \
     $$PWD/nr/musicdatadownloadthread.cpp \
     $$PWD/nr/musictextdownloadthread.cpp \
     $$PWD/nr/musicdatatagdownloadthread.cpp \
-    $$PWD/tt/musicttdatadownloadthread.cpp \
-    $$PWD/tt/musictttextdownloadthread.cpp \
-    $$PWD/tt/musicdownloadqueryttthread.cpp \
-    $$PWD/tt/musicdownloadqueryttalbumthread.cpp \
-    $$PWD/tt/musicdownloadqueryttartistthread.cpp \
-    $$PWD/tt/musicdownloadttinterface.cpp \
-    $$PWD/tt/musicdownloadqueryttplaylistthread.cpp \
     $$PWD/wy/musicdownloadwyinterface.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \

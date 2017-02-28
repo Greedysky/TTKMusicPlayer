@@ -323,7 +323,6 @@
         <file alias="lb_kugou">../TTKResource/server/lb_server_kugou.png</file>
         <file alias="lb_kuwo">../TTKResource/server/lb_server_kuwo.png</file>
         <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
-        <file alias="lb_ttdongting">../TTKResource/server/lb_server_ttdongting.png</file>
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
         <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
     </qresource>
