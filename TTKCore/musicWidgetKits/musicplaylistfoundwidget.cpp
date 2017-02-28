@@ -179,21 +179,38 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
         m_container->addWidget(scrollArea);
 
         m_firstInit = true;
-
+        QHBoxLayout *mainlayout = MStatic_cast(QHBoxLayout*, m_mainWindow->layout());
+        QWidget *containTopWidget = new QWidget(m_mainWindow);
+        QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
+        containTopLayout->setContentsMargins(30, 0, 30, 0);
         m_categoryButton = new MusicPlaylistFoundCategoryWidget(m_mainWindow);
         m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
-        m_mainWindow->layout()->addWidget(m_categoryButton);
+        containTopLayout->addWidget(m_categoryButton);
+        containTopLayout->addStretch(1);
+        foreach(const QString &data, QStringList() << tr("Recommend") << tr("Top") << tr("Hot") << tr("New"))
+        {
+            QLabel *l = new QLabel(data, containTopWidget);
+            l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
+            QFrame *hline = new QFrame(containTopWidget);
+            hline->setFrameShape(QFrame::VLine);
+            hline->setStyleSheet(MusicUIObject::MColorStyle06);
+            containTopLayout->addWidget(l);
+            containTopLayout->addWidget(hline);
+        }
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);
         line->setStyleSheet(MusicUIObject::MColorStyle06);
-        m_mainWindow->layout()->addWidget(line);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);
         m_gridLayout->setVerticalSpacing(35);
         containWidget->setLayout(m_gridLayout);
-        m_mainWindow->layout()->addWidget(containWidget);
+
+        mainlayout->addWidget(containTopWidget);
+        mainlayout->addWidget(line);
+        mainlayout->addWidget(containWidget);
+        mainlayout->addStretch(1);
     }
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
