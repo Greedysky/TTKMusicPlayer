@@ -25,6 +25,7 @@ void MusicPlaylistFoundCategoryItem::setCategory(const PlaylistCategory &categor
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
+    label->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle03);
     label->setFixedSize(80, 20);
     layout->addWidget(label, 0, Qt::AlignTop);
 
@@ -38,7 +39,8 @@ void MusicPlaylistFoundCategoryItem::setCategory(const PlaylistCategory &categor
     for(int i=0; i<m_category.m_items.count(); ++i)
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_name, item);
-        l->setFixedSize(70, 20);
+        l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
+        l->setFixedSize(75, 20);
         connect(l, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(l, i);
         itemlayout->addWidget(l, i/6, i%6, Qt::AlignLeft);
@@ -86,6 +88,7 @@ void MusicPlaylistFoundCategoryWidget::setCategory(const QString &server, QObjec
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
     QWidget *containWidget = new QWidget(m_containWidget);
+    containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle17);
     QVBoxLayout *containLayout = new QVBoxLayout(containWidget);
     containWidget->setLayout(containLayout);
 
@@ -127,7 +130,7 @@ void MusicPlaylistFoundCategoryWidget::initWidget()
     setObjectName("mianWidget");
     setStyleSheet(QString("#mianWidget{%1}").arg(style));
 
-    m_containWidget->setFixedSize(600, 370);
+    m_containWidget->setFixedSize(630, 370);
     m_containWidget->setObjectName("containWidget");
     m_containWidget->setStyleSheet(QString("#containWidget{%1}").arg(style));
 

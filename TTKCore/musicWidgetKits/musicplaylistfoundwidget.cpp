@@ -164,11 +164,11 @@ void MusicPlaylistFoundWidget::resizeWindow()
 
 void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
 {
-    delete m_statusLabel;
-    m_statusLabel = nullptr;
-
     if(!m_firstInit)
     {
+        delete m_statusLabel;
+        m_statusLabel = nullptr;
+
         m_container->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
         scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -183,6 +183,11 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
         m_categoryButton = new MusicPlaylistFoundCategoryWidget(m_mainWindow);
         m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
         m_mainWindow->layout()->addWidget(m_categoryButton);
+
+        QFrame *line = new QFrame(m_mainWindow);
+        line->setFrameShape(QFrame::HLine);
+        line->setStyleSheet(MusicUIObject::MColorStyle06);
+        m_mainWindow->layout()->addWidget(line);
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);
@@ -222,6 +227,14 @@ void MusicPlaylistFoundWidget::categoryChanged(const PlaylistCategoryItem &categ
     {
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();
+
+        while(!m_resizeWidget.isEmpty())
+        {
+            QWidget *w = m_resizeWidget.takeLast();
+            m_gridLayout->removeWidget(w);
+            delete w;
+        }
+        m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, category.m_id);
     }
 }
 

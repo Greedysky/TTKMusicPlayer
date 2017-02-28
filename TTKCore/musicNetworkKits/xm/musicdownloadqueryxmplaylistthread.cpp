@@ -23,13 +23,14 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll();
+        startSearchSongAll(playlist);
     }
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll()
+void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll(const QString &type)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY);
+    QString key = type.isEmpty() ? "108051" : type;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY).arg(key);
     deleteAll();
 
     QNetworkRequest request;
@@ -102,7 +103,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
         while(m_reply->canReadLine())
         {
             QString text = m_reply->readLine();
-            QRegExp regx(QString(".com/collect/(\\d+)"));
+            QRegExp regx(QString("/collect/(\\d+)"));
             int pos = QString(text).indexOf(regx);
             while(pos != -1)
             {

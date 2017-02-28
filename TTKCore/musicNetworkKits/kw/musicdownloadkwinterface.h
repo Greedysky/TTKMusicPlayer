@@ -25,7 +25,7 @@ const QString KW_ARTIST_URL        = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNV
 /////////////////////////////////////////////////////////////////////////////
 const QString KW_MV_ATTR_URL       = "MjlwQmQxUlFrazRrVXlrR29BSEtCaDNaNnpRSGJPdlA4RDE4K3Q4clJqZFpkT2d3d2VLQ3ViSmdnUHRzWThLeVFDekZBME5NK1V1amRsYW5ueWNyQmdUUE5LcFpYWnlYcjlJMUw1dkJvM3BweDRabC9yR0tDbFQ4a2c0PQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString KW_PLAYLIST_URL      = "Z0JiYVVmNFA3WkYzckhyTHlyWldOdEI4UUZzRS9jd2ExN1BORzZIY1MrUTNTdHlxTjRiNHlHdzgyRm95Y0FtcnhUeGQ5VzJmZFpvbW9aSzM3RnoyaEJoeVNxeFNFTVBpZElPVkpzTDNBMVcxL082cEhuV20vcENTSENwUThBVVRtV2RrUlBkRWd6N0d2dURYU0d0Tlg3Q1JEbUE9";
+const QString KW_PLAYLIST_URL      = "UXZWYUZZd1RTZ05jUWFPWGtTZklFY3M4RmYrNDRhRGpkYWpML1M1L0ludUltalQ0TjZZenNwbjRMWUx4Z2tTdFpsVnBrRzN2bW5IZ1VVU2VtL0kwQnVGK1pkcWw3ZjlDSE5xYThGZ1hxYXFrVDhGQk9RQmxmeTIwT0ZaU3RNQU1lVDdpUkRGVjJsTkRnZVlmdFU3RXFDK3RvSTQ9";
 const QString KW_PLAYLIST_ATTR_URL = "UzZ0NDRTM2s1Mm5OUTZvZDdTRUlCZ0hsVjhZbGh3aWZYNWpLcnQ5WC95VWVTSmFZZXNkU242N3Fsc0haT1l4cUxXRUdjOWwrd2c4M2FDUk9hWXJGVldWVThzcG16UC9DT1lvTnlYT2VqZVlyaFhUY1FsTlJFVE9OQ2NOdTQ5RCt4cFY0SS8rV2NRUTdMUlE5SU85NElXNVlhamF4ajdPeGNteWZPQ1loaXVVPQ==";
 ///////////////////////////////////////////////////////////////////////////
 

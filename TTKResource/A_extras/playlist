@@ -2,7 +2,7 @@
 <TTKMusicPlayer>
     <QQ>
         <tag value="默认">
-            <value value="全部" key="1000000"/>
+            <value value="全部" key="10000000"/>
         </tag>
         <tag value="语种">
             <value value="国语" key="165"/>
@@ -78,4 +78,465 @@
             <value value="校园" key="16"/>
         </tag>
     </QQ>
+    <Kugou>
+        <tag value="默认">
+            <value value="全部" key=""/>
+        </tag>
+        <tag value="主题">
+            <value key="35" value="网络"/>
+            <value key="10" value="舞曲"/>
+            <value key="68" value="情歌对唱"/>
+            <value key="955" value="歌手2017"/>
+            <value key="72" value="KTV"/>
+            <value key="817" value="春节"/>
+            <value key="74" value="游戏"/>
+            <value key="17" value="DJ热碟"/>
+            <value key="77" value="动漫"/>
+            <value key="79" value="影视"/>
+            <value key="80" value="综艺"/>
+            <value key="81" value="励志"/>
+            <value key="605" value="草原风"/>
+            <value key="628" value="广场舞"/>
+            <value key="34" value="轻音乐"/>
+            <value key="629" value="铃声"/>
+            <value key="630" value="胎教"/>
+            <value key="638" value="翻唱"/>
+            <value key="641" value="佛教"/>
+            <value key="36" value="儿歌"/>
+            <value key="642" value="小清新"/>
+            <value key="643" value="减压"/>
+            <value key="680" value="现场"/>
+            <value key="682" value="器乐演奏"/>
+            <value key="684" value="失恋"/>
+            <value key="700" value="儿童故事"/>
+            <value key="778" value="纯音乐"/>
+            <value key="806" value="粤剧"/>
+        </tag>
+        <tag value="语种">
+            <value key="84" value="国语"/>
+            <value key="19" value="粤语"/>
+            <value key="20" value="英语"/>
+            <value key="23" value="韩语"/>
+            <value key="21" value="日语"/>
+            <value key="24" value="小语种"/>
+            <value key="22" value="闽南语"/>
+            <value key="570" value="法语"/>
+        </tag>
+        <tag value="风格">
+            <value key="9" value="流行"/>
+            <value key="574" value="古风"/>
+            <value key="385" value="民歌"/>
+            <value key="27" value="摇滚"/>
+            <value key="33" value="电子"/>
+            <value key="30" value="RnB"/>
+            <value key="31" value="嘻哈"/>
+            <value key="83" value="民谣"/>
+            <value key="32" value="爵士"/>
+            <value key="11" value="中国风"/>
+            <value key="28" value="古典"/>
+            <value key="650" value="新世纪"/>
+        </tag>
+        <tag value="年代">
+            <value key="651" value="60前"/>
+            <value key="652" value="60后"/>
+            <value key="13" value="70后"/>
+            <value key="14" value="80后"/>
+            <value key="76" value="90后"/>
+            <value key="571" value="00后"/>
+        </tag>
+        <tag value="心情">
+            <value key="578" value="伤感"/>
+            <value key="42" value="寂寞"/>
+            <value key="44" value="安静"/>
+            <value key="47" value="甜蜜"/>
+            <value key="577" value="轻松"/>
+            <value key="50" value="兴奋"/>
+            <value key="48" value="感动"/>
+            <value key="49" value="快乐"/>
+            <value key="780" value="治愈"/>
+        </tag>
+        <tag value="场景">
+            <value key="67" value="校园"/>
+            <value key="64" value="夜店"/>
+            <value key="69" value="运动"/>
+            <value key="581" value="店铺"/>
+            <value key="583" value="睡前"/>
+            <value key="61" value="咖啡厅"/>
+            <value key="585" value="旅途"/>
+            <value key="587" value="学习"/>
+            <value key="660" value="工作"/>
+            <value key="846" value="编程"/>
+            <value key="63" value="车载"/>
+        </tag>
+    </Kugou>
+    <WangYi>
+        <tag value="默认">
+            <value key="%E5%85%A8%E9%83%A8" value="全部"/>
+        </tag>
+        <tag value="语种">
+            <value key="%E5%8D%8E%E8%AF%AD" value="华语"/>
+            <value key="%E6%AC%A7%E7%BE%8E" value="欧美"/>
+            <value key="%E6%97%A5%E8%AF%AD" value="日语"/>
+            <value key="%E9%9F%A9%E8%AF%AD" value="韩语"/>
+            <value key="%E7%B2%A4%E8%AF%AD" value="粤语"/>
+            <value key="%E5%B0%8F%E8%AF%AD%E7%A7%8D" value="小语种"/>
+        </tag>
+        <tag value="风格">
+            <value key="%E6%B5%81%E8%A1%8C" value="流行"/>
+            <value key="%E6%91%87%E6%BB%9A" value="摇滚"/>
+            <value key="%E6%B0%91%E8%B0%A3" value="民谣"/>
+            <value key="%E7%94%B5%E5%AD%90" value="电子"/>
+            <value key="%E8%88%9E%E6%9B%B2" value="舞曲"/>
+            <value key="%E8%AF%B4%E5%94%B1" value="说唱"/>
+            <value key="%E8%BD%BB%E9%9F%B3%E4%B9%90" value="轻音乐"/>
+            <value key="%E7%88%B5%E5%A3%AB" value="爵士"/>
+            <value key="%E4%B9%A1%E6%9D%91" value="乡村"/>
+            <value key="R%26B%2FSoul" value="RnB/Soul"/>
+            <value key="%E5%8F%A4%E5%85%B8" value="古典"/>
+            <value key="%E6%B0%91%E6%97%8F" value="民族"/>
+            <value key="%E8%8B%B1%E4%BC%A6" value="英伦"/>
+            <value key="%E9%87%91%E5%B1%9E" value="金属"/>
+            <value key="%E6%9C%8B%E5%85%8B" value="朋克"/>
+            <value key="%E8%93%9D%E8%B0%83" value="蓝调"/>
+            <value key="%E9%9B%B7%E9%AC%BC" value="雷鬼"/>
+            <value key="%E4%B8%96%E7%95%8C%E9%9F%B3%E4%B9%90" value="世界音乐"/>
+            <value key="%E6%8B%89%E4%B8%81" value="拉丁"/>
+            <value key="%E5%8F%A6%E7%B1%BB%2F%E7%8B%AC%E7%AB%8B" value="另类/独立"/>
+            <value key="New%20Age" value="New Age"/>
+            <value key="%E5%8F%A4%E9%A3%8E" value="古风"/>
+            <value key="%E5%90%8E%E6%91%87" value="后摇"/>
+            <value key="Bossa%20Nova" value="Bossa Nova"/>
+        </tag>
+        <tag value="场景">
+            <value key="%E6%B8%85%E6%99%A8" value="清晨"/>
+            <value key="%E5%A4%9C%E6%99%9A" value="夜晚"/>
+            <value key="%E5%AD%A6%E4%B9%A0" value="学习"/>
+            <value key="%E5%B7%A5%E4%BD%9C" value="工作"/>
+            <value key="%E5%8D%88%E4%BC%91" value="午休"/>
+            <value key="%E4%B8%8B%E5%8D%88%E8%8C%B6" value="下午茶"/>
+            <value key="%E5%9C%B0%E9%93%81" value="地铁"/>
+            <value key="%E9%A9%BE%E8%BD%A6" value="驾车"/>
+            <value key="%E8%BF%90%E5%8A%A8" value="运动"/>
+            <value key="%E6%97%85%E8%A1%8C" value="旅行"/>
+            <value key="%E6%95%A3%E6%AD%A5" value="散步"/>
+            <value key="%E9%85%92%E5%90%A7" value="酒吧"/>
+        </tag>
+        <tag value="情感">
+            <value key="%E6%80%80%E6%97%A7" value="怀旧"/>
+            <value key="%E6%B8%85%E6%96%B0" value="清新"/>
+            <value key="%E6%B5%AA%E6%BC%AB" value="浪漫"/>
+            <value key="%E6%80%A7%E6%84%9F" value="性感"/>
+            <value key="%E4%BC%A4%E6%84%9F" value="伤感"/>
+            <value key="%E6%B2%BB%E6%84%88" value="治愈"/>
+            <value key="%E6%94%BE%E6%9D%BE" value="放松"/>
+            <value key="%E5%AD%A4%E7%8B%AC" value="孤独"/>
+            <value key="%E6%84%9F%E5%8A%A8" value="感动"/>
+            <value key="%E5%85%B4%E5%A5%8B" value="兴奋"/>
+            <value key="%E5%BF%AB%E4%B9%90" value="快乐"/>
+            <value key="%E5%AE%89%E9%9D%99" value="安静"/>
+            <value key="%E6%80%9D%E5%BF%B5" value="思念"/>
+        </tag>
+        <tag value="主题">
+            <value key="%E5%BD%B1%E8%A7%86%E5%8E%9F%E5%A3%B0" value="影视原声"/>
+            <value key="ACG" value="ACG"/>
+            <value key="%E6%A0%A1%E5%9B%AD" value="校园"/>
+            <value key="%E6%B8%B8%E6%88%8F" value="游戏"/>
+            <value key="70%E5%90%8E" value="70后"/>
+            <value key="80%E5%90%8E" value="80后"/>
+            <value key="90%E5%90%8E" value="90后"/>
+            <value key="%E7%BD%91%E7%BB%9C%E6%AD%8C%E6%9B%B2" value="网络歌曲"/>
+            <value key="KTV" value="KTV"/>
+            <value key="%E7%BB%8F%E5%85%B8" value="经典"/>
+            <value key="%E7%BF%BB%E5%94%B1" value="翻唱"/>
+            <value key="%E5%90%89%E4%BB%96" value="吉他"/>
+            <value key="%E9%92%A2%E7%90%B4" value="钢琴"/>
+            <value key="%E5%99%A8%E4%B9%90" value="器乐"/>
+            <value key="%E5%84%BF%E7%AB%A5" value="儿童"/>
+            <value key="%E6%A6%9C%E5%8D%95" value="榜单"/>
+            <value key="00%E5%90%8E" value="00后"/>
+        </tag>
+    </WangYi>
+    <XiaMi>
+        <tag value="默认">
+            <value key="108051" value="全部"/>
+        </tag>
+        <tag value="特色音乐">
+            <value key="245850" value="伤感歌曲"/>
+            <value key="563" value="广告歌曲"/>
+            <value key="434" value="儿童歌曲"/>
+            <value key="727977" value="情人节歌曲"/>
+            <value key="236341" value="红歌"/>
+            <value key="524" value="胎教音乐"/>
+            <value key="110653" value="粤语歌曲"/>
+            <value key="411" value="经典老歌"/>
+            <value key="1162222" value="慢歌"/>
+            <value key="381692" value="圣诞节歌曲"/>
+            <value key="565" value="情歌对唱"/>
+            <value key="628" value="佛教音乐"/>
+            <value key="233758" value="校园歌曲"/>
+            <value key="247439" value="DJ舞曲"/>
+            <value key="1197689" value="LOL"/>
+            <value key="250953" value="民歌精选"/>
+            <value key="724006" value="基督教歌曲"/>
+            <value key="255189" value="草原歌曲"/>
+            <value key="244933" value="励志歌曲"/>
+            <value key="5711" value="背景音乐"/>
+            <value key="586322" value="游戏动漫"/>
+        </tag>
+        <tag value="音乐风格">
+            <value key="108051" value="流行"/>
+            <value key="496623" value="实验"/>
+            <value key="417" value="嘻哈"/>
+            <value key="466" value="舞曲"/>
+            <value key="442" value="朋克"/>
+            <value key="4706" value="中国风"/>
+            <value key="1324201" value="新世纪"/>
+            <value key="112068" value="桑巴"/>
+            <value key="437" value="ROCK"/>
+            <value key="891" value="古典"/>
+            <value key="486" value="爵士"/>
+            <value key="1061" value="纯音乐"/>
+            <value key="458" value="民谣"/>
+            <value key="2481" value="indie"/>
+            <value key="590" value="金属"/>
+            <value key="4878" value="慢摇"/>
+            <value key="412" value="RnB"/>
+            <value key="3212" value="另类"/>
+            <value key="418" value="Hip-Hop"/>
+            <value key="435" value="民歌"/>
+            <value key="1310004" value="古风"/>
+            <value key="419" value="说唱"/>
+            <value key="470" value="DJ"/>
+            <value key="2299" value="蓝调"/>
+            <value key="420" value="RAP"/>
+        </tag>
+        <tag value="经典老歌">
+            <value key="226410" value="经典之作"/>
+            <value key="221101" value="流行经典"/>
+            <value key="108073" value="回家"/>
+            <value key="109891" value="想你"/>
+            <value key="4615" value="大海"/>
+            <value key="4678" value="朋友"/>
+            <value key="4815" value="罗大佑"/>
+            <value key="163611" value="英文经典"/>
+            <value key="5001" value="回忆"/>
+            <value key="549446" value="华语怀旧"/>
+            <value key="1153614" value="回忆"/>
+            <value key="3252" value="蔡琴"/>
+            <value key="3787" value="陈百强"/>
+            <value key="109343" value="祝福"/>
+            <value key="2290" value="欧美经典"/>
+            <value key="203141" value="留恋"/>
+            <value key="4940" value="童年"/>
+            <value key="108230" value="思念"/>
+            <value key="504146" value="80年代"/>
+            <value key="4901" value="梅艳芳"/>
+            <value key="108766" value="橄榄树"/>
+            <value key="1871" value="邓丽君"/>
+            <value key="108613" value="情人"/>
+            <value key="106882" value="往事"/>
+            <value key="108266" value="执着"/>
+            <value key="1721" value="老歌"/>
+            <value key="511226" value="90年代"/>
+            <value key="110923" value="精典"/>
+            <value key="3571" value="张国荣"/>
+            <value key="6179" value="味道"/>
+            <value key="108991" value="生日快乐"/>
+            <value key="5855" value="金曲"/>
+            <value key="498378" value="70年代"/>
+            <value key="5683" value="情书"/>
+        </tag>
+        <tag value="音乐情绪">
+            <value key="3024" value="清新"/>
+            <value key="4854" value="感伤"/>
+            <value key="508789" value="激励"/>
+            <value key="5145" value="欢快"/>
+            <value key="1241" value="浪漫"/>
+            <value key="4556" value="悲伤"/>
+            <value key="5005" value="孤单"/>
+            <value key="5602" value="优美"/>
+            <value key="108071" value="美好"/>
+            <value key="1347355" value="欢快"/>
+            <value key="2760" value="快乐"/>
+            <value key="701" value="伤感"/>
+            <value key="721" value="轻快"/>
+            <value key="5360" value="怀念"/>
+            <value key="5146" value="忧伤"/>
+            <value key="108078" value="温暖"/>
+            <value key="76893" value="幸福"/>
+            <value key="649" value="抒情"/>
+            <value key="6216" value="深情"/>
+            <value key="2545" value="可爱"/>
+            <value key="108316" value="寂寞"/>
+            <value key="1651" value="甜蜜"/>
+            <value key="1981" value="动感"/>
+            <value key="831" value="喜欢"/>
+            <value key="3843" value="唯美"/>
+            <value key="5236" value="等待"/>
+            <value key="108265" value="忧郁"/>
+            <value key="3447" value="感动"/>
+            <value key="94587" value="好听"/>
+            <value key="107975" value="时尚"/>
+            <value key="108306" value="伤心"/>
+            <value key="3859" value="安静"/>
+            <value key="5756" value="孤独"/>
+            <value key="117351" value="开心"/>
+        </tag>
+        <tag value="影视动漫">
+            <value key="5262" value="宫崎骏"/>
+            <value key="1235378" value="韩剧"/>
+            <value key="6105" value="主题曲"/>
+            <value key="249935" value="动漫音乐"/>
+            <value key="2128" value="韩剧"/>
+            <value key="203486" value="网球王子"/>
+            <value key="1155892" value="坂本龙一"/>
+            <value key="491" value="原声"/>
+            <value key="3227" value="游戏"/>
+            <value key="4091" value="日剧"/>
+            <value key="1147666" value="ACG"/>
+            <value key="110001" value="柯南"/>
+            <value key="221038" value="动漫歌曲"/>
+            <value key="1021" value="动漫"/>
+            <value key="203483" value="犬夜叉"/>
+            <value key="6032" value="偶像剧"/>
+            <value key="203492" value="原声大碟"/>
+            <value key="1107929" value="美剧"/>
+            <value key="108641" value="插曲"/>
+            <value key="8256" value="游戏音乐"/>
+            <value key="1711" value="影视"/>
+            <value key="3462" value="原声带"/>
+            <value key="1081" value="电影"/>
+            <value key="5517" value="死神"/>
+            <value key="1118359" value="日剧"/>
+            <value key="493" value="电影原声"/>
+            <value key="318087" value="劲舞团"/>
+            <value key="3152" value="电视剧"/>
+            <value key="492" value="OST"/>
+            <value key="2934" value="动画"/>
+        </tag>
+        <tag value="音乐场景">
+            <value key="395546" value="驾驶"/>
+            <value key="302259" value="散步"/>
+            <value key="337854" value="公交车"/>
+            <value key="490269" value="阅读"/>
+            <value key="487749" value="咖啡厅"/>
+            <value key="1270362" value="一人食"/>
+            <value key="297409" value="洗澡"/>
+            <value key="1292815" value="雨天"/>
+            <value key="110763" value="地铁"/>
+            <value key="363101" value="吃饭"/>
+            <value key="1171805" value="下午茶"/>
+            <value key="108521" value="早晨"/>
+            <value key="335359" value="午休"/>
+            <value key="1212583" value="睡眠"/>
+            <value key="108884" value="分手"/>
+            <value key="7463986" value="坐飞机"/>
+            <value key="297262" value="调情"/>
+            <value key="7463987" value="打扫房间"/>
+            <value key="481611" value="傍晚"/>
+            <value key="507707" value="工作"/>
+            <value key="1393523" value="跑步"/>
+            <value key="298601" value="约会"/>
+            <value key="1219310" value="午夜"/>
+            <value key="72494" value="起床"/>
+            <value key="518590" value="晴天"/>
+            <value key="272893" value="凌晨"/>
+            <value key="497755" value="学习"/>
+            <value key="1073003" value="运动"/>
+            <value key="1076037" value="夜店"/>
+            <value key="514203" value="失眠"/>
+        </tag>
+    </XiaMi>
+    <Kuwo>
+        <tag value="默认">
+            <value key="350000" value="全部"/>
+        </tag>
+        <tag value="热门">
+            <value key="350000" value="热门"/>
+            <value key="350000" value="最新"/>
+            <value key="280021" value="运动"/>
+            <value key="88078" value="网络"/>
+            <value key="88080" value="铃声"/>
+            <value key="88081" value="经典"/>
+            <value key="88089" value="中国风"/>
+            <value key="88088" value="小清新"/>
+            <value key="88084" value="90后"/>
+            <value key="88083" value="80后"/>
+            <value key="88082" value="70后"/>
+            <value key="88086" value="胎教"/>
+        </tag>
+        <tag value="心情">
+            <value key="353115" value="激情"/>
+            <value key="140" value="伤感"/>
+            <value key="141" value="温暖"/>
+            <value key="142" value="郁闷"/>
+            <value key="240414" value="思念"/>
+            <value key="143" value="开心"/>
+            <value key="240413" value="治愈"/>
+            <value key="144" value="疲惫"/>
+            <value key="145" value="寂寞"/>
+            <value key="146" value="安静"/>
+            <value key="88116" value="怀旧"/>
+            <value key="88114" value="甜蜜"/>
+            <value key="88115" value="兴奋"/>
+            <value key="88113" value="励志"/>
+        </tag>
+        <tag value="场景">
+            <value key="278606" value="散步"/>
+            <value key="88137" value="夜店"/>
+            <value key="88136" value="咖啡厅"/>
+            <value key="88135" value="聚会"/>
+            <value key="88134" value="开车"/>
+            <value key="88133" value="工作"/>
+            <value key="88132" value="旅行"/>
+            <value key="88129" value="亲热"/>
+            <value key="88128" value="跳舞"/>
+            <value key="88127" value="清晨"/>
+            <value key="88126" value="睡前"/>
+            <value key="88125" value="做家务"/>
+            <value key="88122" value="婚礼"/>
+            <value key="88123" value="毕业"/>
+            <value key="88124" value="生日"/>
+        </tag>
+        <tag value="主题">
+            <value key="415015" value="歌手2017"/>
+            <value key="414802" value="厉害了我的歌"/>
+            <value key="356194" value="围炉音乐会"/>
+            <value key="353031" value="影视"/>
+            <value key="353012" value="DJ舞曲"/>
+            <value key="353025" value="情歌"/>
+            <value key="353030" value="劲爆"/>
+            <value key="351949" value="梦想的声音"/>
+            <value key="344380" value="中国新歌声"/>
+            <value key="244662" value="燃烧吧少年"/>
+            <value key="88108" value="校园"/>
+            <value key="88107" value="对唱"/>
+            <value key="88103" value="卡拉OK"/>
+            <value key="88104" value="军旅"/>
+            <value key="88130" value="广场舞"/>
+            <value key="88105" value="佛教"/>
+            <value key="240401" value="蒙面歌王"/>
+            <value key="88110" value="广告歌曲"/>
+        </tag>
+        <tag value="语种">
+            <value key="200" value="华语"/>
+            <value key="201" value="欧美"/>
+            <value key="202" value="韩国"/>
+            <value key="203" value="日本"/>
+            <value key="204" value="粤语"/>
+            <value key="206" value="小语种"/>
+        </tag>
+        <tag value="风格">
+            <value key="166" value="RnB"/>
+            <value key="167" value="流行"/>
+            <value key="168" value="摇滚"/>
+            <value key="169" value="嘻哈"/>
+            <value key="170" value="爵士"/>
+            <value key="171" value="电子"/>
+            <value key="172" value="乡村"/>
+            <value key="173" value="民谣"/>
+            <value key="174" value="古典"/>
+            <value key="175" value="世界"/>
+        </tag>
+    </Kuwo>
 <TTKMusicPlayer>

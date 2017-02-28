@@ -22,13 +22,14 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll();
+        startSearchSongAll(playlist);
     }
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll()
+void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll(const QString &type)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY);
+    QString key = type.isEmpty() ? "all" : type;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY).arg(key);
     deleteAll();
 
     QNetworkRequest request;

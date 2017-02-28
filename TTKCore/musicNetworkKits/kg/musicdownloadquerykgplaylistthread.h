@@ -34,7 +34,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSongAll();
+    void startSearchSongAll(const QString &type);
     /*!
      * Start to search all data.
      */

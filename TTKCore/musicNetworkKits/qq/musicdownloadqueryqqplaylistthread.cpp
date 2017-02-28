@@ -22,13 +22,14 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll();
+        startSearchSongAll(playlist);
     }
 }
 
-void MusicDownLoadQueryQQPlaylistThread::startSearchSongAll()
+void MusicDownLoadQueryQQPlaylistThread::startSearchSongAll(const QString &type)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_URL, URL_KEY);
+    QString key = type.isEmpty() ? "10000000" : type;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_URL, URL_KEY).arg(key);
     deleteAll();
 
     QNetworkRequest request;
