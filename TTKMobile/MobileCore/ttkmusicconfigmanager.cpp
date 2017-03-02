@@ -26,6 +26,8 @@ void TTKMusicConfigManager::writeXMLConfig()
     QString lrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
 
     ///////////////////////////////////////////////////////////////////////////
+    int downloadServer = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    ///////////////////////////////////////////////////////////////////////////
     //Open wirte file
     if( !writeConfig(COFIGPATH_FULL) )
     {
@@ -38,6 +40,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     QDomElement music = writeDom(musicPlayer, "music");
     QDomElement equalizer = writeDom(musicPlayer, "equalizer");
     QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
+    QDomElement downloads = writeDom(musicPlayer, "downloads");
     //Class B
     writeDomElement(music, "playMode", XmlAttribute("value", playModeChoiced));
     writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
@@ -56,6 +59,8 @@ void TTKMusicConfigManager::writeXMLConfig()
     writeDomElement(showLrc, "lrcType", XmlAttribute("value", lrcTypeChoiced));
     writeDomElement(showLrc, "lrcFgColor", XmlAttribute("value", lrcFgColorChoiced));
 
+    ///////////////////////////////////////////////////////////////////////////
+    writeDomElement(downloads, "downloadServer", XmlAttribute("value", downloadServer));
     ///////////////////////////////////////////////////////////////////////////
     //Write to file
     QTextStream out(m_file);
@@ -127,6 +132,12 @@ void TTKMusicConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
         key.clear();
         key << "0" << "0" << "-1";
     }
+}
+
+void TTKMusicConfigManager::readOtherLoadConfig() const
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
+                     readXmlAttributeByTagNameValue("downloadServer").toInt());
 }
 
 MusicSongs TTKMusicConfigManager::readMusicFilePath(const QDomNode &node) const

@@ -17,4 +17,7 @@
         <lrcType value="4"/>
         <lrcFgColor value="255,255,0"/>
     </inlineLrc>
+    <downloads>
+        <downloadServer value="0"/>
+    </downloads>
 </TTKMusicPlayer>

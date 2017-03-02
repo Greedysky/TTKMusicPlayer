@@ -165,7 +165,10 @@ Item {
                                 textColor: ttkTheme.color_black
                                 onImageButtonPressed: {
                                     switch(index) {
-                                        case 1: break
+                                        case 0:
+                                            ttkOutStackView.push("qrc:/MobileWidgets/TTKMainMoreSettingPage.qml");
+                                            break;
+                                        case 2: break;
                                         case 2: break;
                                         case 3:
                                             if(TTK_APP.timeToQuitAppIsSet()) {

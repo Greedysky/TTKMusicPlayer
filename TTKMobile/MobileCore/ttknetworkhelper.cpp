@@ -1,10 +1,10 @@
 #include "ttknetworkhelper.h"
-#include "musicdownloadquerywythread.h"
-#include "musiccryptographichash.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicdatadownloadthread.h"
-#include "musictextdownloadthread.h"
+#include "musiccryptographichash.h"
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/serializer.h"
 
@@ -14,10 +14,7 @@ TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     m_currentIndex = -1;
     m_queryType = T_Null;
 
-    m_queryThread = new MusicDownLoadQueryWYThread(this);
-    connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
-    connect(m_queryThread, SIGNAL(createSearchedItems(MusicSearchedItem)), SLOT(createSearchedItems(MusicSearchedItem)));
-    connect(m_queryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
+    m_queryThread = nullptr;
 }
 
 TTKNetworkHelper::~TTKNetworkHelper()
@@ -119,6 +116,27 @@ QString TTKNetworkHelper::getSearchedAttributes(int index)
     bool ok;
     QByteArray data(serializer.serialize(jsonList, &ok));
     return ok ? QString(data) : QString();
+}
+
+void TTKNetworkHelper::setCurrentServer()
+{
+    int index= getCurrentServer();
+    setCurrentServer(index);
+}
+
+void TTKNetworkHelper::setCurrentServer(int index)
+{
+    delete m_queryThread;
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, index);
+    m_queryThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
+    connect(m_queryThread, SIGNAL(createSearchedItems(MusicSearchedItem)), SLOT(createSearchedItems(MusicSearchedItem)));
+    connect(m_queryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
+}
+
+int TTKNetworkHelper::getCurrentServer() const
+{
+    return M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
 }
 
 void TTKNetworkHelper::downLoadDataChanged()
@@ -237,11 +255,11 @@ void TTKNetworkHelper::downForSearchLrc(int index)
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     musicSong = QString("%1%2.%3").arg(MusicUtils::Core::lrcPrefix()).arg(musicSong).arg(LRC_FILE);
 
-    MusicTextDownLoadThread *downSong = new MusicTextDownLoadThread(musicSongInfo.m_lrcUrl, musicSong,
-                                            MusicDownLoadThreadAbstract::Download_Lrc, this);
+    MusicDownLoadThreadAbstract *downlrc = M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, musicSong,
+                                           MusicDownLoadThreadAbstract::Download_Lrc, this);
     QEventLoop loop(this);
-    connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    downSong->startToDownload();
+    connect(downlrc, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    downlrc->startToDownload();
     loop.exec();
 
     emit downForSearchLrcFinished(musicSong);

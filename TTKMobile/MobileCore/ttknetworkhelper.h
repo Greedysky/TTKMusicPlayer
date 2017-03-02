@@ -65,6 +65,18 @@ public:
     /*!
      * Get searched information attributes.
      */
+    Q_INVOKABLE void setCurrentServer();
+    /*!
+     * Set current server index.
+     */
+    Q_INVOKABLE void setCurrentServer(int index);
+    /*!
+     * Set current server index.
+     */
+    Q_INVOKABLE int getCurrentServer() const;
+    /*!
+     * Get current server index.
+     */
 
 Q_SIGNALS:
     void clearAllItems();

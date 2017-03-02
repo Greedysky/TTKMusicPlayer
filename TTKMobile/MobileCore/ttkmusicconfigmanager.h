@@ -101,6 +101,10 @@ public:
    /*!
     * Read System Last Play Index Config.
     */
+    void readOtherLoadConfig() const;
+    /*!
+     * Read Other Load Config.
+     */
 
 protected:
     MusicSongs readMusicFilePath(const QDomNode &node) const;

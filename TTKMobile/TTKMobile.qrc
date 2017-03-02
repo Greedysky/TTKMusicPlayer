@@ -119,6 +119,14 @@
         <file alias="action_icon_submit">MobileImages/action_icon_submit.png</file>
         <file alias="data_searching">MobileImages/data_searching.png</file>
     </qresource>
+    <qresource prefix="/server">
+        <file alias="lb_baidu">../TTKResource/server/lb_server_baidu.png</file>
+        <file alias="lb_kugou">../TTKResource/server/lb_server_kugou.png</file>
+        <file alias="lb_kuwo">../TTKResource/server/lb_server_kuwo.png</file>
+        <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
+        <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
+        <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
+    </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>
         <file>MobileWidgets/Core/TTKGlobal.qml</file>
@@ -140,6 +148,7 @@
         <file>MobileWidgets/TTKTimeSettingPage.qml</file>
         <file>MobileWidgets/TTKMainPage.qml</file>
         <file>MobileWidgets/TTKMainSettingPage.qml</file>
+        <file>MobileWidgets/TTKMainMoreSettingPage.qml</file>
         <file>MobileWidgets/TTKOnlineSearchPage.qml</file>
         <file>MobileWidgets/TTKMusicBar.qml</file>
         <file>MobileWidgets/TTKMusicPlayerCenterPage.qml</file>
