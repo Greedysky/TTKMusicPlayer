@@ -2,6 +2,59 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>MusicDownLoadQueryThreadAbstract</name>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="8"/>
+        <source>SD</source>
+        <translation>标准品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="40"/>
+        <source>Current Used Server Is %1</source>
+        <translation>当前资源来源于%1服务器</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="42"/>
+        <source>BD</source>
+        <translation>百度音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="44"/>
+        <source>KG</source>
+        <translation>酷狗音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="46"/>
+        <source>KW</source>
+        <translation>酷我音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="48"/>
+        <source>QQ</source>
+        <translation>腾讯音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="50"/>
+        <source>TT</source>
+        <translation>天天动听</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="52"/>
+        <source>WY</source>
+        <translation>网易音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="54"/>
+        <source>XM</source>
+        <translation>虾米音乐</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="56"/>
+        <source>YYT</source>
+        <translation>音乐台</translation>
+    </message>
+</context>
+<context>
     <name>MusicDownloadStatusLabel</name>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp" line="85"/>
@@ -56,7 +109,6 @@
     </message>
     <message>
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="105"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="37"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="36"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="92"/>
         <source>ST</source>
@@ -67,7 +119,6 @@
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="70"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="85"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="94"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="41"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="40"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="96"/>
         <source>SD</source>
@@ -77,7 +128,6 @@
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="113"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="89"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="98"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="45"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="44"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="100"/>
         <source>HQ</source>
@@ -88,7 +138,6 @@
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="74"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="93"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="102"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="49"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="48"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="104"/>
         <source>SQ</source>
@@ -99,7 +148,6 @@
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="78"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="97"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="106"/>
-        <location filename="../TTKCore/musicNetworkKits/tt/musicdownloadttinterface.cpp" line="72"/>
         <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="108"/>
         <source>CD</source>
         <translation>无损品质</translation>
