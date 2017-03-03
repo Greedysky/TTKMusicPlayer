@@ -64,7 +64,7 @@ Rectangle {
                 color: ttkTheme.topbar_background
                 text: qsTr("确定")
                 radius: 10
-                onPressed: {
+                onClicked: {
                     timeToQuitApp(parseInt(timeInputArea.text));
                     ttkTimeSettingPage.visible = false;
                 }
@@ -112,7 +112,7 @@ Rectangle {
 
                 MouseArea {
                     anchors.fill: parent
-                    onPressed: {
+                    onClicked: {
                         switch(index) {
                             case 0:
                                 timeToQuitApp(15);

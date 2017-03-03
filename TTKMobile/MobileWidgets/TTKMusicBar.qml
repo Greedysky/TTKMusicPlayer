@@ -156,7 +156,7 @@ Rectangle {
         }
         width: height*1.2
         height: ttkGlobal.dpHeight(50)
-        onPressed: {
+        onClicked: {
             if(TTK_APP.empty()) {
                 return;
             }

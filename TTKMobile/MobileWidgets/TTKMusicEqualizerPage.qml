@@ -98,7 +98,7 @@ Rectangle {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -146,7 +146,7 @@ Rectangle {
 
                         MouseArea {
                             anchors.fill: parent
-                            onPressed: {
+                            onClicked: {
                                 TTK_PLAYER.setEqEffectIndex(index);
                                 eqTypeListView.currentIndex = index;
                                 currentEQTypeChanged(index);

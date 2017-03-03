@@ -108,7 +108,7 @@ Rectangle{
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             switch(index) {
                                 case 0: break;
                                 case 1:
@@ -209,7 +209,7 @@ Rectangle{
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             switch(index) {
                                 case 0: break;
                                 case 1: break;
@@ -282,7 +282,7 @@ Rectangle{
                         Layout.preferredHeight: ttkGlobal.dpHeight(30)
                         source: "qrc:/image/playing_volumn_slide_icon"
 
-                        onPressed: {
+                        onClicked: {
                             if(TTK_PLAYER.volume() !== 0) {
                                 source = "qrc:/image/playing_volumn_slide_nosound_icon";
                                 muteVolume = TTK_PLAYER.volume();

@@ -41,7 +41,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -143,7 +143,8 @@ Item {
 
                         MouseArea {
                             anchors.fill: parent
-                            onPressed: {
+                            onClicked: {
+                                ttkFlyInOutBox.start();
                                 itemListView.currentIndex = index;
                                 TTK_NETWORK.setCurrentServer(index);
                             }
@@ -194,6 +195,7 @@ Item {
 
         TTKFlyInOutBox {
             id: ttkFlyInOutBox
+            text: qsTr("设置成功");
         }
     }
 }

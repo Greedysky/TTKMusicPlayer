@@ -59,7 +59,7 @@ Rectangle{
                     source: "qrc:/image/landscape_player_btn_pause_normal"
 
                     property int status: 1
-                    onPressed: {
+                    onClicked: {
                         if(status === 1) {
                             videoPlayer.pause();
                             status = 0;
@@ -122,7 +122,7 @@ Rectangle{
                     MouseArea {
                         id: videoTimeSliderArea
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             if(videoPlayer.seekable) {
                                 var pos = videoPlayer.duration * mouse.x / parent.width;
                             }

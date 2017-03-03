@@ -140,7 +140,7 @@ Rectangle {
 
                 MouseArea {
                     anchors.fill: parent
-                    onPressed: {
+                    onClicked: {
                         itemListView.currentIndex = index;
                         songBitrate = bit;
                     }
@@ -174,7 +174,7 @@ Rectangle {
             text: qsTr("下载")
             textSize: ttkMusicSongDownloadPage.height/25
             enabled: false
-            onPressed: {
+            onClicked: {
                 if(songBitrate > 0) {
                     ttkMusicSongDownloadPage.visible = false;
                     TTK_NETWORK.setCurrentIndex(songIndex, songBitrate);

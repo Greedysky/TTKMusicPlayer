@@ -53,7 +53,7 @@ Rectangle{
             }
             textColor: ttkTheme.topbar_background
             text: qsTr("关于")
-            onPressed: {
+            onClicked: {
                 Qt.openUrlExternally("https://github.com/Greedysky/TTKMusicplayer")
             }
         }

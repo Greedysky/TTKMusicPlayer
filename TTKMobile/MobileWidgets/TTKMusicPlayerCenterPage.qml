@@ -172,7 +172,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -194,7 +194,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
-                    onPressed: {
+                    onClicked: {
                         ttkMusicPlayerCenterSettingPage.visible = true;
                     }
                 }
@@ -268,7 +268,7 @@ Item {
                         Layout.preferredHeight: ttkGlobal.dpHeight(30)
                         source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/player_btn_dts_off"
                                                                     : "qrc:/image/player_btn_dts_on"
-                        onPressed: {
+                        onClicked: {
                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicDTSEffectPage.qml");
                         }
                     }
@@ -350,7 +350,7 @@ Item {
                     width: ttkGlobal.dpWidth(40)
                     height: ttkGlobal.dpHeight(40)
                     source: "qrc:/image/player_btn_lrc"
-                    onPressed: {
+                    onClicked: {
                         ttkMusicPlayerCenterLrcPage.visible = true;
                     }
                 }
@@ -427,7 +427,7 @@ Item {
                             MouseArea {
                                 id: musicTimeSliderArea
                                 anchors.fill: parent
-                                onPressed: {
+                                onClicked: {
                                     var value = TTK_PLAYER.duration()/musicTimeSlider.width*mouse.x;
                                     musicTimeSlider.value = value;
                                     TTK_PLAYER.setPosition(value);
@@ -468,7 +468,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(120)
                             Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 TTK_APP.playPrevious();
                                 if(TTK_PLAYER.state() === 1) {
                                     changedPlayState();
@@ -481,7 +481,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(120)
                             Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 if(TTK_PLAYER.state() === 1) {
                                     playerPlayButton.source = "qrc:/image/player_btn_play_normal";
                                     TTK_PLAYER.pause();
@@ -502,7 +502,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(120)
                             Layout.preferredHeight: ttkGlobal.dpHeight(100)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 TTK_APP.playNext();
                                 if(TTK_PLAYER.state() === 1) {
                                     changedPlayState();
@@ -533,7 +533,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(70)
                             Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 TTK_APP.importLovestMusicSongs();
                                 ttkFlyInOutBox.start();
                                 if(TTK_APP.checkLovestMusicSong()) {
@@ -552,7 +552,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(70)
                             Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 ttkFlyInOutBox.start();
                                 ++playMode;
                                 if(playMode >= 5) {
@@ -568,7 +568,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(70)
                             Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 ttkMusicSongDownloadPage.visible = true;
                             }
                         }
@@ -578,7 +578,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(70)
                             Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
                                 ttkMusicSongSharedPage.visible = true;
                             }
                         }
@@ -588,7 +588,7 @@ Item {
                             Layout.preferredWidth: ttkGlobal.dpWidth(70)
                             Layout.preferredHeight: ttkGlobal.dpHeight(70)
                             Layout.alignment: Qt.AlignCenter
-                            onPressed: {
+                            onClicked: {
 
                             }
                         }

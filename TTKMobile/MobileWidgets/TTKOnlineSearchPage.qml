@@ -79,7 +79,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkMainStackView.pop();
                     }
                 }
@@ -98,7 +98,7 @@ Item {
                     anchors.right: parent.right
                     textColor: ttkTheme.color_white
                     text: qsTr("搜索")
-                    onPressed: {
+                    onClicked: {
                         loadingImageAnimation.startLoading();
                         switch( functionList.currentIndex ) {
                             case 0: TTK_NETWORK.searchSong(getSearchedText()); break;
@@ -131,7 +131,7 @@ Item {
                         height: ttkGlobal.dpHeight(50)
                         textColor: ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_gray
                         text: title
-                        onPressed: {
+                        onClicked: {
                             searedSongStackView.pop();
                             switch( functionList.currentIndex = index ) {
                                 case 0:
@@ -276,7 +276,7 @@ Item {
                                     rightMargin: ttkGlobal.dpHeight(20)
                                 }
                                 source: "qrc:/image/ic_playlist_more_normal"
-                                onPressed: {
+                                onClicked: {
                                     ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_song_index;
                                     ttkMusicSongDownloadPage.songIndex = index;
                                     ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);
@@ -383,7 +383,7 @@ Item {
                                     rightMargin: ttkGlobal.dpHeight(20)
                                 }
                                 source: "qrc:/image/ic_playlist_more_normal"
-                                onPressed: {
+                                onClicked: {
                                     ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_mv_index;
                                     ttkMusicSongDownloadPage.songIndex = index;
                                     ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);

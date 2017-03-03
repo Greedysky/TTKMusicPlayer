@@ -122,7 +122,7 @@ Rectangle{
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             switch(index) {
                                 case 0: break;
                                 case 1:
@@ -223,7 +223,7 @@ Rectangle{
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             switch(index) {
                                 case 0: break;
                                 case 1: break;

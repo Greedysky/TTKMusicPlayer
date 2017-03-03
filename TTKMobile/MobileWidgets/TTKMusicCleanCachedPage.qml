@@ -56,7 +56,7 @@ Rectangle {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -169,7 +169,7 @@ Rectangle {
                                 color: ttkTheme.topbar_background
                                 width: 1
                             }
-                            onPressed: {
+                            onClicked: {
                                 if( TTK_UTILS.removeDir(TTK_UTILS.getCachedPath()) ) {
                                     ttkFlyInOutBox.color = ttkTheme.topbar_background
                                     ttkFlyInOutBox.text = qsTr("清理成功！");

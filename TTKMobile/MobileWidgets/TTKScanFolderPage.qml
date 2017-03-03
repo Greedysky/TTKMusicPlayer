@@ -58,7 +58,7 @@ Item {
                     textColor: ttkTheme.color_white
                     text: qsTr("关闭")
 
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -86,7 +86,7 @@ Item {
                     }
                     source: folderModel.parentFolder !== "" ? "qrc:/image/scanning_icon_up"
                                                             : "qrc:/image/scanning_icon_up_disable"
-                    onPressed: {
+                    onClicked: {
                         if(folderModel.parentFolder !== "") {
                             folderModel.folder = folderModel.parentFolder;
                         }
@@ -231,7 +231,7 @@ Item {
                 radius: 10
                 text: qsTr("开始扫描")
 
-                onPressed: {
+                onClicked: {
                     if(scanPaths.length !== 0) {
                         ttkScanFolderPage.pathChanged(scanPaths);
                     }else {

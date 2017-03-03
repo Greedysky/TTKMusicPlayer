@@ -111,7 +111,7 @@ Rectangle {
                 textColor: ttkTheme.color_black
                 text: qsTr("取消")
                 textSize: ttkMusicSongSharedPage.height/25
-                onPressed: {
+                onClicked: {
                     ttkMusicSongSharedPage.visible = false;
                 }
             }

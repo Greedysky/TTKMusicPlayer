@@ -36,7 +36,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -58,7 +58,7 @@ Item {
                     anchors.right: parent.right
                     textColor: ttkTheme.color_white
                     text: qsTr("关闭")
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }

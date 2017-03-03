@@ -52,7 +52,7 @@ Item {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkMainStackView.pop();
                     }
                 }
@@ -151,7 +151,7 @@ Item {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: {
+                                onClicked: {
                                     switch(index) {
                                         case 0: break;
                                     }
@@ -163,12 +163,12 @@ Item {
                                 subSource: imageSubSource
                                 text: title
                                 textColor: ttkTheme.color_black
-                                onImageButtonPressed: {
+                                onImageButtonClicked: {
                                     switch(index) {
                                         case 0:
                                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMainMoreSettingPage.qml");
                                             break;
-                                        case 2: break;
+                                        case 1: break;
                                         case 2: break;
                                         case 3:
                                             if(TTK_APP.timeToQuitAppIsSet()) {
@@ -191,6 +191,7 @@ Item {
                             id: firstListModel
                             ListElement {
                                 imageSource: "qrc:/image/more_icon_settings"
+                                imageSubSource: "qrc:/image/ic_toolbar_advance"
                                 title: qsTr("设置")
                             }
                             ListElement {
@@ -241,7 +242,7 @@ Item {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: {
+                                onClicked: {
                                     switch(index) {
                                         case 0: break;
                                         case 1:
@@ -303,7 +304,7 @@ Item {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: {
+                                onClicked: {
                                     ttkMusicAboutPage.visible = true;
                                 }
                             }
@@ -323,7 +324,7 @@ Item {
                         color: ttkTheme.color_white
                         textColor: ttkTheme.color_red
                         text: qsTr("退出")
-                        onPressed: {
+                        onClicked: {
                             Qt.quit();
                         }
                     }

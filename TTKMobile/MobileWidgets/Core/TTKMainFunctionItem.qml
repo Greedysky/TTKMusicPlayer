@@ -19,12 +19,12 @@ Rectangle {
     property alias subTitle: subTitle.text
     property int mainTitleSize: height/8
 
-    signal pressed
+    signal clicked
 
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            ttkMainFunctionItem.pressed();
+            ttkMainFunctionItem.clicked();
         }
     }
 

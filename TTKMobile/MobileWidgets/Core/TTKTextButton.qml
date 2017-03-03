@@ -16,7 +16,7 @@ Rectangle {
     property alias textColor: textArea.color
     property alias textSize: textArea.font.pixelSize
 
-    signal pressed
+    signal clicked
     
     Text {
         id: textArea
@@ -29,7 +29,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         onClicked: {
-            ttkTextButton.pressed();
+            ttkTextButton.clicked();
         }
     }
 }

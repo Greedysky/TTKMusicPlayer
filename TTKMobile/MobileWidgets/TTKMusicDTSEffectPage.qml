@@ -36,7 +36,7 @@ Rectangle {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
-                    onPressed: {
+                    onClicked: {
                         ttkOutStackView.pop();
                     }
                 }
@@ -86,7 +86,7 @@ Rectangle {
                             Layout.preferredWidth: ttkGlobal.dpWidth(65)
                             source: TTK_PLAYER.getMusicEnhanced() === 0 ? "qrc:/image/dts_switch_off"
                                                                         : "qrc:/image/dts_switch_on"
-                            onPressed: {
+                            onClicked: {
                                 TTK_PLAYER.setMusicEnhanced(0);
                                 source = "qrc:/image/dts_switch_off";
                                 itemListView.currentIndex = -1;
@@ -223,7 +223,7 @@ Rectangle {
 
                     MouseArea {
                         anchors.fill: parent
-                        onPressed: {
+                        onClicked: {
                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicEqualizerPage.qml");
                             TTK_PLAYER.setMusicEnhanced(0);
                             itemListView.currentIndex = -1;
