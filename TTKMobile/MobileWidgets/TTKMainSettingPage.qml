@@ -87,7 +87,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: ttkGlobal.dpHeight(955)
+                height: ttkGlobal.dpHeight(1000)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -286,7 +286,7 @@ Item {
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: ttkGlobal.dpHeight(61)
+                        Layout.preferredHeight: ttkGlobal.dpHeight(121)
                         boundsBehavior: Flickable.StopAtBounds
                         clip: true
                         spacing: 1
@@ -305,12 +305,23 @@ Item {
                             MouseArea {
                                 anchors.fill: parent
                                 onClicked: {
-                                    ttkMusicAboutPage.visible = true;
+                                    switch(index) {
+                                        case 0:
+                                            TTK_UTILS.updateApplicationDialog();
+                                            break;
+                                        case 1:
+                                            ttkMusicAboutPage.visible = true;
+                                            break;
+                                    }
                                 }
                             }
                         }
 
                         model: ListModel{
+                            ListElement {
+                                imageSource: "qrc:/image/more_icon_about"
+                                title: qsTr("软件更新")
+                            }
                             ListElement {
                                 imageSource: "qrc:/image/more_icon_about"
                                 title: qsTr("关于天天酷音")

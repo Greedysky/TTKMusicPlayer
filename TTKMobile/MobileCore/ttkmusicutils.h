@@ -50,6 +50,10 @@ public:
     /*!
      * Show message box.
      */
+    Q_INVOKABLE void updateApplicationDialog();
+    /*!
+     * Update application dialog.
+     */
 
     Q_INVOKABLE QString normalizeTime(qint64 time, const QString &format);
     /*!

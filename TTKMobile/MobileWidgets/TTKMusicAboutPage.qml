@@ -38,7 +38,7 @@ Rectangle{
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: parent.height/11
-            text: qsTr("TTK Music Player") + "\n\n" +
+            text: qsTr("TTKMusicPlayer") + "\n\n" +
                   qsTr("Directed By Greedysky") +
                   ("\nCopyright© 2015-2017") +
                   ("\nMail:Greedysky@163.com");

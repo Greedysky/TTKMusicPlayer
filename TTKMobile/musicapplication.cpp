@@ -3,7 +3,6 @@
 #include "musicdownloadstatuslabel.h"
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
-#include "musicnetworkthread.h"
 #include "musicbackgroundmanager.h"
 
 #include <QTimer>
@@ -26,7 +25,6 @@
 MusicApplication::MusicApplication(QQmlContext *parent)
     : QObject(parent)
 {
-    M_NETWORK_PTR->start();
     ///////////////////////////////////////////////////////////////////////////////////
     qmlRegisterType<TTKRadioHelper>("TTKRadioHelper", 1, 0, "TTKRadioHelper");
     qmlRegisterType<TTKFileSearchCore>("TTKFileSearchCore", 1, 0, "TTKFileSearchCore");

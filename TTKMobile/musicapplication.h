@@ -164,7 +164,7 @@ public:
     /*!
      * Set time to quit app.
      */
-
+    ///////////////////////////////////////////////////////////////////////////////////
 
 Q_SIGNALS:
     void updateCurrentArtist();

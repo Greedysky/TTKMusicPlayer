@@ -37,6 +37,13 @@ Item {
         }
     }
 
+    Connections {
+        target: TTK_NETWORK
+        onNetworkConnectionStateChanged: {
+            networkWidget.visible = !state;
+        }
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -98,6 +105,24 @@ Item {
                 ColumnLayout {
                     spacing: 5
                     anchors.fill: parent
+
+                    ///networkWidget
+                    Rectangle {
+                        id: networkWidget
+                        Layout.preferredWidth: ttkMainWindow.width
+                        Layout.preferredHeight: ttkGlobal.dpHeight(30)
+                        anchors.left: parent.left
+                        color: ttkTheme.color_white
+                        visible: false
+
+                        Text {
+                            anchors.fill: parent
+                            verticalAlignment: Qt.AlignVCenter
+                            horizontalAlignment: Qt.AlignHCenter
+                            text: qsTr("你已经进入了一个无网络的异次元空间")
+                            color: ttkTheme.color_red
+                        }
+                    }
 
                     ///userWidget
                     Rectangle {

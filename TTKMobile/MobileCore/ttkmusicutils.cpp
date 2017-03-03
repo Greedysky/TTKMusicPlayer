@@ -1,6 +1,7 @@
 #include "ttkmusicutils.h"
 #include "musicobject.h"
 #include "musictime.h"
+#include "musicversion.h"
 #include "musicsongtag.h"
 #include "musicnumberutils.h"
 
@@ -58,6 +59,15 @@ bool TTKMusicUtils::currentNetIsWifi()
     return (wifi == 0);
 #endif
     return false;
+}
+
+void TTKMusicUtils::updateApplicationDialog()
+{
+#if defined (Q_OS_ANDROID)
+    const QString version = TTKMUSIC_VERSION_STR;
+    QAndroidJniObject::callStaticMethod<void>(APP_PKG_NAME, "updateApplicationDialog", "(Ljava/lang/String;)V",
+                                              QAndroidJniObject::fromString( version ).object<jstring>());
+#endif
 }
 
 QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)

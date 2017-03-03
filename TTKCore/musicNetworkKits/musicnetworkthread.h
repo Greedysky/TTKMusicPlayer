@@ -27,6 +27,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void start();
     /*!
      * Strat thread now.

@@ -37,6 +37,12 @@ public:
      */
     ~TTKNetworkHelper();
 
+    //////////////////////////////////////////////////////
+    Q_INVOKABLE void setBlockNetWork(int block);
+    /*!
+     * Set flag wheather to block current network.
+     */
+    //////////////////////////////////////////////////////
     Q_INVOKABLE void setQueryType(int type);
     /*!
      * Set network query type.
@@ -79,6 +85,11 @@ public:
      */
 
 Q_SIGNALS:
+    void networkConnectionStateChanged(bool state);
+    /*!
+     * Network connection state changed.
+     * default status is true, means connected network.
+     */
     void clearAllItems();
     /*!
      * Clear all items before the new query start.

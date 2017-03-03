@@ -11,15 +11,24 @@
 TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
     : QObject(parent)
 {
+    M_NETWORK_PTR->start();
+
     m_currentIndex = -1;
     m_queryType = T_Null;
-
     m_queryThread = nullptr;
+
+    connect(M_NETWORK_PTR, SIGNAL(networkConnectionStateChanged(bool)),
+                           SIGNAL(networkConnectionStateChanged(bool)));
 }
 
 TTKNetworkHelper::~TTKNetworkHelper()
 {
     delete m_queryThread;
+}
+
+void TTKNetworkHelper::setBlockNetWork(int block)
+{
+    M_NETWORK_PTR->setBlockNetWork(block);
 }
 
 void TTKNetworkHelper::setQueryType(int type)
