@@ -1,11 +1,10 @@
 #include "musicsourceupdatewidget.h"
 #include "ui_musicsourceupdatewidget.h"
-#include "musicsourcedownloadthread.h"
+#include "musicsourceupdatethread.h"
 #include "musicdatadownloadthread.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
-#include "musicversion.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -53,17 +52,9 @@ void MusicSourceUpdateWidget::upgradeFailedClicked()
     MusicUtils::Core::openUrl(MusicCryptographicHash::decryptData(CSDN_URL, URL_KEY), false);
 }
 
-void MusicSourceUpdateWidget::downLoadFinished(const QByteArray &data)
+void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
 {
-    QJson::Parser parser;
-    bool ok;
-    QVariant parseData = parser.parse(data, &ok);
-    if(!ok)
-    {
-        return;
-    }
-
-    QVariantMap value = parseData.toMap();
+    QVariantMap value = data.toMap();
     m_newVersionStr = value["version"].toString();
 
     QString text;
@@ -106,9 +97,9 @@ int MusicSourceUpdateWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
 
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash::decryptData(VERSION_URL, URL_KEY));
+    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
+    connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
+    download->startToDownload();
 
     return MusicAbstractMoveDialog::exec();
 }

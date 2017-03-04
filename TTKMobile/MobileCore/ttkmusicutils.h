@@ -29,6 +29,15 @@ public:
      */
     ~TTKMusicUtils();
 
+    Q_INVOKABLE QVariant getValue(const QString &key) const;
+    /*!
+     * Get global setting vale.
+     */
+    Q_INVOKABLE void setValue(const QString &key, const QVariant &value) const;
+    /*!
+     * Set global setting vale.
+     */
+
     Q_INVOKABLE QString getRoot() const;
     /*!
      * Get root.

@@ -167,7 +167,7 @@ DISTFILES += \
 ANDROID_EXTRA_LIBS = \
     bin/$$TTKMusicPlayer/libplugin_input_aac.so \
     bin/$$TTKMusicPlayer/libplugin_input_cue.so \
-#        bin/$$TTKMusicPlayer/libplugin_input_ffmpeg.so \
+    bin/$$TTKMusicPlayer/libplugin_input_ffmpeg.so \
     bin/$$TTKMusicPlayer/libplugin_input_flac.so \
     bin/$$TTKMusicPlayer/libplugin_input_gme.so \
     bin/$$TTKMusicPlayer/libplugin_input_mad.so \
@@ -180,9 +180,9 @@ ANDROID_EXTRA_LIBS = \
     bin/$$TTKMusicPlayer/libplugin_output_qtmultimedia.so \
     bin/$$TTKMusicPlayer/libqmmp.so \
     bin/$$TTKMusicPlayer/libtag.so \
-#        bin/$$TTKMusicPlayer/libavcodec.so \
-#        bin/$$TTKMusicPlayer/libavformat.so \
-#        bin/$$TTKMusicPlayer/libavutil.so
+    bin/$$TTKMusicPlayer/libavcodec.so \
+    bin/$$TTKMusicPlayer/libavformat.so \
+    bin/$$TTKMusicPlayer/libavutil.so
 }
 
 RESOURCES += \

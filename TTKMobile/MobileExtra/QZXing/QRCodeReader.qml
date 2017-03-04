@@ -41,7 +41,7 @@ Rectangle {
         interval: 300
         repeat: false
         onTriggered: {
-//            console.log( decoder.decodeImageQML(output) );
+            console.log( decoder.decodeImageQML(output) );
         }
     }
 

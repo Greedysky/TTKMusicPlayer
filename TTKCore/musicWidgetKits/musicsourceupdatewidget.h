@@ -11,8 +11,6 @@
 
 #include "musicabstractmovedialog.h"
 
-#define VERSION_URL     "TzFTSjRiNlN6TXB3WGZtdENONGdaQzhxdkpNc0ZXZk9VSUtXdlhQQ252bWJLZ0pidE5LcW80WUlHQmQzNWp0OGxXSjFkQT09"
-#define DOWNLOAD_URL    "YXhxRk5PeWpscVNYbEZKMmEwbUExdkMxcm9QN1ZybTlZYTcwVmN1aUdTNEJoMFRiM3V5cnE2S3VDbG89"
 #define CSDN_URL        "S1Nqc1N0ZmI3c3pHeWE2Z1BhMTE4WlFVMjNBVG5qRjZkZ0tVRmV2L0VJeVF0bUlTOGE1Zmp3Z0xpZWRpM25lOA=="
 
 #define DD_TYPE_EXE     ".exe"
@@ -48,7 +46,7 @@ public Q_SLOTS:
     /*!
      * Upgrade failed clicked.
      */
-    void downLoadFinished(const QByteArray &data);
+    void downLoadFinished(const QVariant &data);
     /*!
      * Download data from kuwo net finished.
      */

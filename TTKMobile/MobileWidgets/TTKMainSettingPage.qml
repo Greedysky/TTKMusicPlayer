@@ -16,6 +16,8 @@ Item {
     width: parent.width
     height: parent.height
 
+    property bool justUseWifi: false;
+
     function timeToQuitApp(time) {
         firstListModel.set(3, {
             imageSource: "qrc:/image/more_icon_timer",
@@ -168,7 +170,15 @@ Item {
                                         case 0:
                                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMainMoreSettingPage.qml");
                                             break;
-                                        case 1: break;
+                                        case 1:
+                                            firstListModel.set(1, {
+                                                imageSource: "qrc:/image/more_icon_wifionly",
+                                                imageSubSource: justUseWifi ? "qrc:/image/switching_off"
+                                                                            : "qrc:/image/switch_on_normal",
+                                                title: qsTr("仅Wi-Fi联网")
+                                            });
+                                            justUseWifi = !justUseWifi;
+                                            break;
                                         case 2: break;
                                         case 3:
                                             if(TTK_APP.timeToQuitAppIsSet()) {
