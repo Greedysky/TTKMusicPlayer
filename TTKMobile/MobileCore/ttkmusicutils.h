@@ -95,6 +95,10 @@ public:
      * Close tag reader object.
      */
 
+    Q_INVOKABLE bool removeCacheDir(const QString &dir);
+    /*!
+     * Remove cache dir in ecursive.
+     */
     Q_INVOKABLE bool removeDir(const QString &dir);
     /*!
      * Remove dir in ecursive.

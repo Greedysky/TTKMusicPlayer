@@ -170,7 +170,7 @@ Rectangle {
                                 width: 1
                             }
                             onClicked: {
-                                if( TTK_UTILS.removeDir(TTK_UTILS.getCachedPath()) ) {
+                                if( TTK_UTILS.removeCacheDir(TTK_UTILS.getCachedPath()) ) {
                                     ttkFlyInOutBox.color = ttkTheme.topbar_background
                                     ttkFlyInOutBox.text = qsTr("清理成功！");
                                 }else {

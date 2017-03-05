@@ -97,6 +97,10 @@ public:
      * Read Show Lrc Fg Color Config.
      */
 
+    bool readNeedUpdateConfig();
+    /*!
+     * Read need update config.
+     */
     void readSystemLastPlayIndexConfig(QStringList &key) const;
    /*!
     * Read System Last Play Index Config.

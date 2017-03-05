@@ -1,5 +1,6 @@
 #include "ttkmusicconfigmanager.h"
 #include "musicsettingmanager.h"
+#include "musicversion.h"
 
 TTKMusicConfigManager::TTKMusicConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -42,6 +43,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
     QDomElement downloads = writeDom(musicPlayer, "downloads");
     //Class B
+    writeDomElement(music, "ver", XmlAttribute("value", TTKMUSIC_VERSION_STR));
     writeDomElement(music, "playMode", XmlAttribute("value", playModeChoiced));
     writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
     writeDomElementText(music, "lastPlayIndex", XmlAttribute("value", lastPlayIndexChoiced[0]),
@@ -114,6 +116,12 @@ void TTKMusicConfigManager::readMusicSongsConfig(MusicSongItems &musics)
         item.m_itemName = element.attribute("name");
         musics << item;
     }
+}
+
+bool TTKMusicConfigManager::readNeedUpdateConfig()
+{
+    QString v = readXmlAttributeByTagNameValue("ver");
+    return v.isEmpty() || v != TTKMUSIC_VERSION_STR;
 }
 
 void TTKMusicConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const

@@ -5,6 +5,7 @@
 
 #include "musicobject.h"
 #include "musicapplication.h"
+#include "ttkmusicconfigmanager.h"
 #include "ttkmusicutils.h"
 
 int main(int argc, char *argv[])
@@ -15,8 +16,17 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
 
-    TTKMusicUtils().checkTheFileNeededExist();
-
+    //////////////////////////////////////////////////////////////
+    TTKMusicConfigManager *xml = new TTKMusicConfigManager;
+    xml->readXMLConfig(COFIGPATH_FULL);
+    TTKMusicUtils utils;
+    if(xml->readNeedUpdateConfig())
+    {
+        utils.removeDir(APPDATA_DIR_FULL);
+    }
+    utils.checkTheFileNeededExist();
+    delete xml;
+    //////////////////////////////////////////////////////////////
     QTranslator translator;
     translator.load(LANGUAGE_DIR_FULL + "TTKMobile.ln");
     app.installTranslator(&translator);

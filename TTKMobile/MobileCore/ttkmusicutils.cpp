@@ -145,7 +145,7 @@ void TTKMusicUtils::closeTagFromFile()
     m_songTag = nullptr;
 }
 
-bool TTKMusicUtils::removeDir(const QString &dir)
+bool TTKMusicUtils::removeCacheDir(const QString &dir)
 {
     QDir d(dir);
     if(d.exists() && d.removeRecursively())
@@ -154,6 +154,12 @@ bool TTKMusicUtils::removeDir(const QString &dir)
         return true;
     }
     return false;
+}
+
+bool TTKMusicUtils::removeDir(const QString &dir)
+{
+    QDir d(dir);
+    return (d.exists() && d.removeRecursively());
 }
 
 void TTKMusicUtils::checkTheFileNeededExist()
