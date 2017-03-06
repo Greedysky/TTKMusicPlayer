@@ -134,7 +134,7 @@ Rectangle{
                                     ttkMusicSongSharedPage.visible = true;
                                     break;
                                 case 3:
-                                    removeItemFromList();
+                                    ttkMusicDeletePage.visible = true;
                                     ttkMusicSongSettingPage.visible = false;
                                     break;
                                 case 4: break;
@@ -329,5 +329,9 @@ Rectangle{
             docRoot = docRoot.parent;
         }
         ttkMusicSongSettingPage.parent = docRoot;
+    }
+
+    TTKMusicDeletePage {
+        id: ttkMusicDeletePage
     }
 }

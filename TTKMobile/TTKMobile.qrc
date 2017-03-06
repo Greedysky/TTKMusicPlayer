@@ -175,5 +175,6 @@
         <file>MobileWidgets/TTKMusicVideoPage.qml</file>
         <file>MobileWidgets/TTKMusicAboutPage.qml</file>
         <file>MobileWidgets/TTKMusicCleanCachedPage.qml</file>
+        <file>MobileWidgets/TTKMusicDeletePage.qml</file>
     </qresource>
 </RCC>

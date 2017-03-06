@@ -22,6 +22,10 @@ Rectangle{
     property alias text: musicSongTitle.text
     property int muteVolume: TTK_PLAYER.volume()
 
+    function removeItemFromList() {
+        TTK_APP.removeMusicSongs();
+    }
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -120,8 +124,8 @@ Rectangle{
                                     ttkMusicSongSharedPage.visible = true;
                                     break;
                                 case 3:
+                                    ttkMusicDeletePage.visible = true;
                                     ttkMusicPlayerCenterSettingPage.visible = false;
-                                    TTK_APP.removeMusicSongs();
                                     break;
                                 case 4: break;
                                 case 5: break;
@@ -410,5 +414,9 @@ Rectangle{
             docRoot = docRoot.parent;
         }
         ttkMusicPlayerCenterSettingPage.parent = docRoot;
+    }
+
+    TTKMusicDeletePage {
+        id: ttkMusicDeletePage
     }
 }
