@@ -1,5 +1,4 @@
 #include "musicbackgrounddownload.h"
-#include "musicdownloadqueryttthread.h"
 #include "musicsourcedownloadthread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
@@ -69,7 +68,7 @@ void MusicBackgroundDownload::bgDownLoadFinished()
 #else
         QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
         M_BACKGROUND_PTR->setMBackground(path);
-        emit M_BACKGROUND_PTR->userSelectIndexChanged();
+        emit M_BACKGROUND_PTR->setUserSelectArtIndex(0);
 #endif
         deleteLater();
     }
