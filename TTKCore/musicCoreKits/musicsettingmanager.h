@@ -39,7 +39,7 @@ public:
         LastPlayIndexChoiced,           ///*Last Play Index Parameter*/
         CloseNetWorkChoiced,            ///*Close NetWork Parameter*/
         FileAssociationChoiced,         ///*File Association Parameter*/
-        MobileDevicePathChoiced,        ///*Set Mobile Device Path Parameter*/
+        ExtraDevicePathChoiced,         ///*Set Extra Device Path Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
@@ -104,6 +104,10 @@ public:
         DownloadServerChoiced,          ///*Download Server Parameter*/
         DownloadDLoadLimitChoiced,      ///*Download DLoad Limit Parameter*/
         DownloadULoadLimitChoiced       ///*Download ULoad Limit Parameter*/
+
+#ifdef MUSIC_MOBILE
+        ,MobileWifiConnectChoiced       ///*Mobile Wifi Connect Parameter*/
+#endif
 
     };
 

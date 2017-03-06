@@ -57,7 +57,11 @@ public:
      */
     Q_INVOKABLE bool currentNetIsWifi();
     /*!
-     * Show message box.
+     * Check current network is wifi.
+     */
+    Q_INVOKABLE void setNetworkBlockNotWifi();
+    /*!
+     * Set network block if it is not Wifi.
      */
     Q_INVOKABLE void updateApplicationDialog();
     /*!

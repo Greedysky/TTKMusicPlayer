@@ -13,6 +13,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
     QStringList lastPlayIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    int mobileWifiConnectChoiced = M_SETTING_PTR->value(MusicSettingManager::MobileWifiConnectChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int enhancedMusicChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
@@ -48,6 +49,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
     writeDomElementText(music, "lastPlayIndex", XmlAttribute("value", lastPlayIndexChoiced[0]),
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
+    writeDomElement(music, "WifiConnect", XmlAttribute("value", mobileWifiConnectChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(equalizer, "enhancedMusic", XmlAttribute("value", enhancedMusicChoiced));
@@ -146,6 +148,8 @@ void TTKMusicConfigManager::readOtherLoadConfig() const
 {
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
                      readXmlAttributeByTagNameValue("downloadServer").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::MobileWifiConnectChoiced,
+                     readXmlAttributeByTagNameValue("WifiConnect").toInt());
 }
 
 MusicSongs TTKMusicConfigManager::readMusicFilePath(const QDomNode &node) const

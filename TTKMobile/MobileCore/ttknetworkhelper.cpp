@@ -26,11 +26,6 @@ TTKNetworkHelper::~TTKNetworkHelper()
     delete m_queryThread;
 }
 
-void TTKNetworkHelper::setBlockNetWork(int block)
-{
-    M_NETWORK_PTR->setBlockNetWork(block);
-}
-
 void TTKNetworkHelper::setQueryType(int type)
 {
     m_queryType = MStatic_cast(Type, type);
@@ -38,6 +33,11 @@ void TTKNetworkHelper::setQueryType(int type)
 
 void TTKNetworkHelper::searchSong(const QString &text)
 {
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return;
+    }
+
     m_queryType = T_SearcSong;
     m_queryThread->setQueryAllRecords(true);
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
@@ -45,6 +45,11 @@ void TTKNetworkHelper::searchSong(const QString &text)
 
 void TTKNetworkHelper::searchMovie(const QString &text)
 {
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return;
+    }
+
     m_queryType = T_SearcMovie;
     m_queryThread->setQueryAllRecords(true);
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
@@ -52,12 +57,22 @@ void TTKNetworkHelper::searchMovie(const QString &text)
 
 void TTKNetworkHelper::searchLrc(const QString &text)
 {
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return;
+    }
+
     m_queryType = T_SearcLrc;
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
 void TTKNetworkHelper::downloadSong(const QString &text)
 {
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return;
+    }
+
     m_queryType = T_DownloadSong;
     m_queryThread->setQueryAllRecords(true);
     m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
@@ -65,6 +80,11 @@ void TTKNetworkHelper::downloadSong(const QString &text)
 
 void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
 {
+    if(!M_NETWORK_PTR->isOnline())
+    {
+        return;
+    }
+
     switch(m_queryType)
     {
         case T_SearcSong:

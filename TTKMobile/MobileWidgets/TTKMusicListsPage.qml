@@ -173,6 +173,9 @@ Item {
 
                         MouseArea {
                             anchors.fill: parent
+                            onPressAndHold: {
+
+                            }
                             onClicked: {
                                 itemListView.currentIndex = index;
                                 TTK_APP.setCurrentIndex(ttkTheme.music_normal_list, index);

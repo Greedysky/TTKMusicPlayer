@@ -204,7 +204,7 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
     }
 
     m_ui->switchButton->setEnabled(false);
-    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
     if(path.isEmpty())
     {
         path = getRemovableDrive();
@@ -263,7 +263,7 @@ void MusicConnectTransferWidget::startToTransferWIFIFiles()
 
 void MusicConnectTransferWidget::reflashRemovableDir()
 {
-    QString path = M_SETTING_PTR->value(MusicSettingManager::MobileDevicePathChoiced).toString();
+    QString path = M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString();
     if(path.isEmpty())
     {
         path = getRemovableDrive();

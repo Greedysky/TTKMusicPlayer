@@ -7,6 +7,7 @@
 #include "musicsettingmanager.h"
 #include "musicsourceupdatethread.h"
 #include "musicsemaphoreloop.h"
+#include "musicnetworkthread.h"
 
 #include <QDir>
 #include <QMessageBox>
@@ -72,6 +73,14 @@ bool TTKMusicUtils::currentNetIsWifi()
     return (wifi == 0);
 #endif
     return false;
+}
+
+void TTKMusicUtils::setNetworkBlockNotWifi()
+{
+#if defined (Q_OS_ANDROID)
+    bool block = M_SETTING_PTR->value(MusicSettingManager::MobileWifiConnectChoiced).toBool() && currentNetIsWifi();
+    M_NETWORK_PTR->setBlockNetWork(block);
+#endif
 }
 
 void TTKMusicUtils::updateApplicationDialog()

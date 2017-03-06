@@ -16,8 +16,6 @@ Item {
     width: parent.width
     height: parent.height
 
-    property bool justUseWifi: false;
-
     function timeToQuitApp(time) {
         firstListModel.set(3, {
             imageSource: "qrc:/image/more_icon_timer",
@@ -31,6 +29,27 @@ Item {
                               qsTr("后退出");
         ttkFlyInOutBox.start();
         TTK_APP.setTimeToQuitApp(time*1000*60);
+    }
+
+    function updateWifiConnect(state) {
+        var justUseWifi = TTK_UTILS.getValue("MobileWifiConnectChoiced");
+        if(state)
+        {
+            justUseWifi = !justUseWifi;
+            TTK_UTILS.setValue("MobileWifiConnectChoiced", justUseWifi);
+        }
+        TTK_UTILS.setNetworkBlockNotWifi();
+
+        firstListModel.set(1, {
+            imageSource: "qrc:/image/more_icon_wifionly",
+            imageSubSource: justUseWifi ? "qrc:/image/switch_on_normal"
+                                        : "qrc:/image/switching_off",
+            title: qsTr("仅Wi-Fi联网")
+        });
+    }
+
+    Component.onCompleted: {
+        updateWifiConnect(false);
     }
 
     ColumnLayout {
@@ -171,13 +190,7 @@ Item {
                                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMainMoreSettingPage.qml");
                                             break;
                                         case 1:
-                                            firstListModel.set(1, {
-                                                imageSource: "qrc:/image/more_icon_wifionly",
-                                                imageSubSource: justUseWifi ? "qrc:/image/switching_off"
-                                                                            : "qrc:/image/switch_on_normal",
-                                                title: qsTr("仅Wi-Fi联网")
-                                            });
-                                            justUseWifi = !justUseWifi;
+                                            updateWifiConnect(true);
                                             break;
                                         case 2: break;
                                         case 3:

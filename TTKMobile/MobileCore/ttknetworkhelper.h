@@ -38,11 +38,6 @@ public:
     ~TTKNetworkHelper();
 
     //////////////////////////////////////////////////////
-    Q_INVOKABLE void setBlockNetWork(int block);
-    /*!
-     * Set flag wheather to block current network.
-     */
-    //////////////////////////////////////////////////////
     Q_INVOKABLE void setQueryType(int type);
     /*!
      * Set network query type.
