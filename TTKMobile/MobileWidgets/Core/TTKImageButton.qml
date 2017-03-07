@@ -20,6 +20,7 @@ Rectangle {
         smooth: true
         anchors.fill: parent
     }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -27,5 +28,6 @@ Rectangle {
             ttkImageButton.clicked();
         }
     }
+
     color: ttkTheme.color_alpha_lv0
 }

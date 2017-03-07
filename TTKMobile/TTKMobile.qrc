@@ -145,6 +145,8 @@
         <file>MobileWidgets/Core/TTKTextMarquee.qml</file>
         <file>MobileWidgets/Core/TTKTextPair.qml</file>
         <file>MobileWidgets/Core/TTKMarquee.qml</file>
+        <file>MobileWidgets/Core/TTKImageTextButton.qml</file>
+        <file>MobileWidgets/Core/TTKImageRadiusTextButton.qml</file>
         <file>MobileWidgets/TTKTimeSettingPage.qml</file>
         <file>MobileWidgets/TTKMainPage.qml</file>
         <file>MobileWidgets/TTKMainSettingPage.qml</file>
@@ -176,5 +178,6 @@
         <file>MobileWidgets/TTKMusicAboutPage.qml</file>
         <file>MobileWidgets/TTKMusicCleanCachedPage.qml</file>
         <file>MobileWidgets/TTKMusicDeletePage.qml</file>
+        <file>MobileWidgets/TTKMusicListsManagerPage.qml</file>
     </qresource>
 </RCC>

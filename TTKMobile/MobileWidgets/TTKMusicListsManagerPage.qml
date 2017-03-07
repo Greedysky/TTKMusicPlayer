@@ -9,10 +9,11 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import QtQuick.Controls.Styles 1.4
 import "Core"
 
 Item {
-    id: ttkMusicListsPage
+    id: ttkMusicListsManagerPage
     width: parent.width
     height: parent.height
 
@@ -28,65 +29,6 @@ Item {
             playlistModel.append(info);
         }
         itemListView.currentIndex = TTK_APP.getCurrentIndex();
-        updateItemListView();
-    }
-
-    onXChanged: {
-        ttkMusicListsMorePage.visible = false;
-        ttkMusicSongSettingPage.visible = false;
-    }
-
-    property int functionClickedIndex: -1
-
-    function removeItemFromList() {
-        playlistModel.remove(functionClickedIndex);
-        TTK_APP.removeMusicSongs(functionClickedIndex);
-        updateItemListView();
-    }
-
-    function updateItemListView() {
-        if(playlistModel.count === 0) {
-            noCreateItem.visible = true;
-            itemListView.visible = false;
-        }else {
-            noCreateItem.visible = false;
-            itemListView.visible = true;
-        }
-    }
-
-    Connections {
-        target: TTK_APP
-        onImportSongFinished: {
-            if(index === ttkTheme.music_normal_list) {
-                playlistModel.clear();
-                var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-                var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
-                for(var i=0; i<names.length; ++i) {
-                    var info = {
-                        title: names[i],
-                        artist: artists[i]
-                    };
-                    playlistModel.append(info);
-                }
-                itemListView.currentIndex = TTK_APP.getCurrentIndex();
-                updateItemListView();
-            }
-        }
-        onCurrentIndexChanged: {
-            itemListView.currentIndex = TTK_APP.getCurrentIndex();
-        }
-        onRemoveItemFromPlayerCenter: {
-            playlistModel.remove(index);
-            updateItemListView();
-        }
-    }
-
-    TTKMusicSongSettingPage {
-        id: ttkMusicSongSettingPage
-    }
-
-    TTKMusicListsMorePage {
-        id: ttkMusicListsMorePage
     }
 
     ColumnLayout {
@@ -104,13 +46,13 @@ Item {
                 spacing: 2
                 anchors.fill: parent
 
-                TTKImageButton {
-                    source: "qrc:/image/title_bar_back"
+                TTKTextButton {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
-                    anchors.left: parent.left
+                    textColor: ttkTheme.color_white
+                    text: qsTr("全选")
                     onClicked: {
-                        ttkMainStackView.pop();
+                        ttkOutStackView.pop();
                     }
                 }
 
@@ -122,16 +64,17 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     font.pixelSize: mainMenubar.height/2
-                    text: qsTr("本地歌曲")
+                    text: qsTr("批量编辑")
                 }
 
-                TTKImageButton {
-                    source: "qrc:/image/player_btn_more_normal"
+                TTKTextButton {
                     Layout.preferredWidth: ttkGlobal.dpWidth(50)
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
+                    textColor: ttkTheme.color_white
+                    text: qsTr("关闭")
                     onClicked: {
-                        ttkMusicListsMorePage.visible = true;
+                        ttkOutStackView.pop();
                     }
                 }
             }
@@ -139,30 +82,15 @@ Item {
 
         ///main body
         Rectangle {
-            width: ttkMainWindow.width
-            height: ttkMainStackView.height - mainMenubar.height
-            color: ttkTheme.color_white
-
-            TTKMainFunctionItem {
-                id: noCreateItem
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: "qrc:/image/ic_start_recognize_bottom"
-                mainTitle: qsTr("空空如也")
-                subTitle: qsTr("搜索更多的歌曲吧")
-                mainTitleSize: ttkGlobal.dpHeight(150)/8
-            }
+            id: mainBody
+            Layout.fillWidth: true
+            height: ttkMusicListsManagerPage.height - mainMenubar.height - bottomArea.height
+            color: ttkTheme.color_alpha_lv9
 
             ListView {
                 id: itemListView
                 anchors.fill: parent
                 clip: true
-
-                onFlickingVerticallyChanged: {
-                    locationButton.visible = true;
-                    timer.stop();
-                    timer.start();
-                }
 
                 delegate: Component {
                     Rectangle {
@@ -201,7 +129,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
+                            width: ttkMusicListsManagerPage.width - iconArea.width - ttkGlobal.dpHeight(60)
                             anchors {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
@@ -238,7 +166,6 @@ Item {
                             }
                             source: "qrc:/image/ic_playlist_more_normal"
                             onClicked: {
-                                functionClickedIndex = index;
                                 ttkMusicSongSettingPage.songName = title;
                                 ttkMusicSongSettingPage.singerName = artist;
                                 ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_normal_list, index);
@@ -270,45 +197,42 @@ Item {
             }
         }
 
-        Timer {
-            id: timer
-            interval: 3000
-            repeat: false
+        ///bottom area
+        Rectangle {
+            id: bottomArea
+            Layout.fillWidth: true
+            height: ttkGlobal.dpHeight(120)
+            color: ttkTheme.color_white
 
-            onTriggered: {
-                disappearAnimation.start();
-            }
-        }
+            RowLayout {
+                spacing: 0
+                anchors.fill: parent
 
-        PropertyAnimation {
-            id: disappearAnimation
-            target: locationButton
-            property: "opacity"
-            duration: 1000
-            from: 1
-            to: 0
-            onStopped: {
-                locationButton.visible = false;
-                locationButton.opacity = 1;
-            }
-        }
+                TTKImageTextButton {
+                    Layout.alignment: Qt.AlignCenter
+                    source: "qrc:/image/ic_playlist_normal"
+                    text: qsTr("关闭")
+                    onClicked: {
 
-        TTKImageButton {
-            id: locationButton
-            visible: false
-            source: "qrc:/image/anchor_in_cell_point"
-            Layout.preferredWidth: ttkGlobal.dpWidth(50)
-            Layout.preferredHeight: ttkGlobal.dpHeight(50)
-            anchors {
-                right: parent.right
-                rightMargin: ttkGlobal.dpWidth(50)
-                bottom: parent.bottom
-                bottomMargin: ttkGlobal.dpHeight(10)
-            }
-            onClicked: {
-                var delta = ttkGlobal.dpHeight(70)*itemListView.currentIndex;
-                if(delta >= 0) {
-                    itemListView.contentY = delta;
+                    }
+                }
+
+                TTKImageTextButton {
+                    Layout.alignment: Qt.AlignCenter
+                    source: "qrc:/image/ic_playlist_normal"
+                    text: qsTr("关闭")
+                    onClicked: {
+
+                    }
+                }
+
+                TTKImageTextButton {
+                    Layout.alignment: Qt.AlignCenter
+                    source: "qrc:/image/ic_playlist_normal"
+                    text: qsTr("关闭")
+                    onClicked: {
+
+                    }
                 }
             }
         }

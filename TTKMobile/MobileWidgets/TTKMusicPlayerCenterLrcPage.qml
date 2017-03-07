@@ -55,51 +55,21 @@ Rectangle{
                 orientation: ListView.Horizontal
                 spacing: ttkGlobal.dpHeight(30)
 
-                delegate: Rectangle {
-                    id: wrapper1
-                    width: ttkGlobal.dpWidth(60)
-                    height: ttkGlobal.dpHeight(60)
-                    radius: 10
-
-                    Rectangle {
-                        id: imageArea1
-                        width: parent.width
-                        height: parent.height
-                        color: ttkTheme.color_white
-                        radius: parent.radius
-
-                        Image {
-                            anchors.fill: parent
-                            source: imgSource
-                        }
-                    }
-
-                    Text {
-                        anchors {
-                            top: imageArea1.bottom
-                            topMargin: ttkGlobal.dpHeight(20)
-                        }
-                        verticalAlignment: Qt.AlignVCenter
-                        horizontalAlignment: Qt.AlignHCenter
-                        width: parent.width
-                        text: title
-                    }
-
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            switch(index) {
-                                case 0: break;
-                                case 1:
-                                    ttkMusicLyricStylePage.visible = true;
-                                    ttkMusicPlayerCenterLrcPage.visible = false;
-                                    break;
-                                case 2: break;
-                                case 3: break;
-                                case 4: break;
-                                case 5: break;
-                                case 6: break;
-                            }
+                delegate: TTKImageRadiusTextButton {
+                    source: imgSource
+                    text: title
+                    onClicked: {
+                        switch(index) {
+                            case 0: break;
+                            case 1:
+                                ttkMusicLyricStylePage.visible = true;
+                                ttkMusicPlayerCenterLrcPage.visible = false;
+                                break;
+                            case 2: break;
+                            case 3: break;
+                            case 4: break;
+                            case 5: break;
+                            case 6: break;
                         }
                     }
                 }
