@@ -212,7 +212,7 @@ Rectangle {
                             TextArea {
                                 id: filePathArea
                                 enabled: false
-                                Layout.preferredWidth: mainArea.width - ttkGlobal.dpWidth(20)
+                                Layout.preferredWidth: mainArea.width - ttkGlobal.dpWidth(30)
                                 Layout.preferredHeight: mainArea.getFixedHeight()*2
                                 wrapMode: Text.WrapAnywhere
                                 anchors {
