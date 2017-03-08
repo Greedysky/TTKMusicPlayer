@@ -19,18 +19,33 @@ Item {
 
     property bool selectAll: true
 
-    Component.onCompleted: {
+    function getSelectedIndex() {
+        var array = new Array;
+        for(var i=0; i<playlistModel.count; ++i) {
+            if(playlistModel.get(i).checkState === true)
+            {
+                array.push(i);
+            }
+        }
+        return array;
+    }
+
+    function updateModel(state) {
         playlistModel.clear();
         var names = TTK_APP.mediaNames(ttkGlobal.list_module_index);
         var artists = TTK_APP.mediaArtists(ttkGlobal.list_module_index);
         for(var i=0; i<names.length; ++i) {
             var info = {
-                checkState: false,
+                checkState: state,
                 title: names[i],
                 artist: artists[i]
             }
             playlistModel.append(info);
         }
+    }
+
+    Component.onCompleted: {
+        updateModel(false);
     }
 
     ColumnLayout {
@@ -54,11 +69,7 @@ Item {
                     textColor: ttkTheme.color_white
                     text: qsTr("全选")
                     onClicked: {
-                        for(var i=0; i<playlistModel.count; ++i) {
-                            playlistModel.set(i, {
-                                checkState: selectAll
-                            });
-                        }
+                        updateModel(selectAll);
                         selectAll = !selectAll;
                     }
                 }
@@ -105,13 +116,6 @@ Item {
                         width: ttkMainWindow.width
                         height: ttkGlobal.dpHeight(70)
                         color: ttkTheme.color_white
-
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                selectCheckbox.checked = selectCheckbox.checked ? false : true;
-                            }
-                        }
 
                         Rectangle {
                             width: ttkMainWindow.width
@@ -180,6 +184,16 @@ Item {
                             font.pixelSize: parent.height/4
                             color: ttkTheme.color_gray
                         }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                selectCheckbox.checked = playlistModel.get(index).checkState ? false : true;
+                                playlistModel.set(index, {
+                                    checkState: selectCheckbox.checked
+                                });
+                            }
+                        }
                     }
                 }
 
@@ -192,7 +206,7 @@ Item {
         ///bottom area
         Rectangle {
             id: bottomArea
-            Layout.fillWidth: true
+            width: ttkMusicListsManagerPage.width
             height: ttkGlobal.dpHeight(120)
             color: ttkTheme.color_white
 
@@ -209,7 +223,14 @@ Item {
                     source: "qrc:/image/action_delete_normal"
                     text: qsTr("删除")
                     onClicked: {
+                        var array = getSelectedIndex();
+                        if(array.length === 0) {
+                            ttkFlyInOutBox.start();
+                        }
 
+                        for(var i=0; i<array.length; ++i) {
+                            console.log(array[i]);
+                        }
                     }
                 }
 
@@ -222,7 +243,14 @@ Item {
                     source: "qrc:/image/action_download_normal"
                     text: qsTr("下载")
                     onClicked: {
+                        var array = getSelectedIndex();
+                        if(array.length === 0) {
+                            ttkFlyInOutBox.start();
+                        }
 
+                        for(var i=0; i<array.length; ++i) {
+                            console.log(array[i]);
+                        }
                     }
                 }
 
@@ -235,7 +263,14 @@ Item {
                     source: "qrc:/image/action_add_to_list_normal"
                     text: qsTr("添加到")
                     onClicked: {
+                        var array = getSelectedIndex();
+                        if(array.length === 0) {
+                            ttkFlyInOutBox.start();
+                        }
 
+                        for(var i=0; i<array.length; ++i) {
+                            console.log(array[i]);
+                        }
                     }
                 }
 
@@ -248,10 +283,23 @@ Item {
                     source: "qrc:/image/action_icon_qzone"
                     text: qsTr("背景音乐")
                     onClicked: {
+                        var array = getSelectedIndex();
+                        if(array.length === 0) {
+                            ttkFlyInOutBox.start();
+                        }
 
+                        for(var i=0; i<array.length; ++i) {
+                            console.log(array[i]);
+                        }
                     }
                 }
             }
         }
+    }
+
+    TTKFlyInOutBox {
+        id: ttkFlyInOutBox
+        color: ttkTheme.color_red
+        text: qsTr("请选择需要操作的歌曲记录");
     }
 }

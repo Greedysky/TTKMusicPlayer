@@ -178,7 +178,6 @@ Rectangle {
                 if(songBitrate > 0) {
                     ttkMusicSongDownloadPage.visible = false;
                     TTK_NETWORK.setCurrentIndex(songIndex, songBitrate);
-
                     ttkFlyInOutBox.text = qsTr("已加入下载列表");
                     ttkFlyInOutBox.start();
                 }
