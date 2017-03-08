@@ -73,7 +73,7 @@ Rectangle{
                         width: ttkGlobal.dpWidth(20)
                         height: ttkGlobal.dpHeight(20)
                         source: control.checked ? "qrc:/image/ic_lyric_poster_lyric_select" :
-                                                  "qrc:/image/ic_lyric_poster_lyric_unselect"
+                                                  "qrc:/image/ic_lyric_poster_gray_unselect"
                     }
                 }
             }

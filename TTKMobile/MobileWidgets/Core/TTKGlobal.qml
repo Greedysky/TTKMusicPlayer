@@ -29,4 +29,5 @@ QtObject {
     }
     ////////////////////////////////////////////
     property string video_url;
+    property int list_module_index;
 }

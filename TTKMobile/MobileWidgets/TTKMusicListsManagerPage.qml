@@ -17,18 +17,20 @@ Item {
     width: parent.width
     height: parent.height
 
+    property bool selectAll: true
+
     Component.onCompleted: {
         playlistModel.clear();
-        var names = TTK_APP.mediaNames(ttkTheme.music_normal_list);
-        var artists = TTK_APP.mediaArtists(ttkTheme.music_normal_list);
+        var names = TTK_APP.mediaNames(ttkGlobal.list_module_index);
+        var artists = TTK_APP.mediaArtists(ttkGlobal.list_module_index);
         for(var i=0; i<names.length; ++i) {
             var info = {
+                checkState: false,
                 title: names[i],
                 artist: artists[i]
             }
             playlistModel.append(info);
         }
-        itemListView.currentIndex = TTK_APP.getCurrentIndex();
     }
 
     ColumnLayout {
@@ -52,7 +54,12 @@ Item {
                     textColor: ttkTheme.color_white
                     text: qsTr("全选")
                     onClicked: {
-                        ttkOutStackView.pop();
+                        for(var i=0; i<playlistModel.count; ++i) {
+                            playlistModel.set(i, {
+                                checkState: selectAll
+                            });
+                        }
+                        selectAll = !selectAll;
                     }
                 }
 
@@ -85,7 +92,7 @@ Item {
             id: mainBody
             Layout.fillWidth: true
             height: ttkMusicListsManagerPage.height - mainMenubar.height - bottomArea.height
-            color: ttkTheme.color_alpha_lv9
+            color: ttkTheme.color_white
 
             ListView {
                 id: itemListView
@@ -101,12 +108,8 @@ Item {
 
                         MouseArea {
                             anchors.fill: parent
-                            onPressAndHold: {
-                                ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicListsManagerPage.qml");
-                            }
                             onClicked: {
-                                itemListView.currentIndex = index;
-                                TTK_APP.setCurrentIndex(ttkTheme.music_normal_list, index);
+                                selectCheckbox.checked = selectCheckbox.checked ? false : true;
                             }
                         }
 
@@ -116,25 +119,34 @@ Item {
                             color: ttkTheme.color_alpha_lv9
                         }
 
-                        Rectangle {
-                            width: ttkGlobal.dpWidth(5)
-                            height: parent.height*2/3
+                        CheckBox {
+                            id: selectCheckbox
                             anchors {
                                 top: parent.top
-                                topMargin: parent.height/3/2
+                                topMargin: ttkGlobal.dpHeight(15)
+                                left: parent.left
+                                leftMargin: ttkGlobal.dpWidth(10)
                             }
-                            color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
+                            checked: checkState
+                            width: parent.height
+                            style: CheckBoxStyle {
+                                indicator: Image {
+                                    width: ttkGlobal.dpWidth(40)
+                                    height: ttkGlobal.dpHeight(40)
+                                    source: control.checked ? "qrc:/image/ic_lyric_poster_lyric_select" :
+                                                              "qrc:/image/ic_lyric_poster_gray_unselect"
+                                }
+                            }
                         }
 
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicListsManagerPage.width - iconArea.width - ttkGlobal.dpHeight(60)
+                            width: ttkMusicListsManagerPage.width - iconArea.width - ttkGlobal.dpWidth(60)
                             anchors {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
-                                left: parent.left
-                                leftMargin: ttkGlobal.dpHeight(20)
+                                left: selectCheckbox.right
                             }
                             elide: Text.ElideRight
                             verticalAlignment: Qt.AlignVCenter
@@ -148,29 +160,9 @@ Item {
                             anchors {
                                 top: titleArea.bottom
                                 topMargin: ttkGlobal.dpHeight(5)
-                                left: parent.left
-                                leftMargin: ttkGlobal.dpHeight(20)
+                                left: selectCheckbox.right
                             }
                             source: "qrc:/image/ic_playlist_normal"
-                        }
-
-                        TTKImageButton {
-                            id: moreFuncArea
-                            width: parent.height/2
-                            height: parent.height/2
-                            anchors {
-                                top: parent.top
-                                right: parent.right
-                                topMargin: ttkGlobal.dpHeight(20)
-                                rightMargin: ttkGlobal.dpHeight(20)
-                            }
-                            source: "qrc:/image/ic_playlist_more_normal"
-                            onClicked: {
-                                ttkMusicSongSettingPage.songName = title;
-                                ttkMusicSongSettingPage.singerName = artist;
-                                ttkMusicSongSettingPage.filePath = TTK_APP.mediaPath(ttkTheme.music_normal_list, index);
-                                ttkMusicSongSettingPage.visible = true;
-                            }
                         }
 
                         Text {
@@ -209,27 +201,52 @@ Item {
                 anchors.fill: parent
 
                 TTKImageTextButton {
-                    Layout.alignment: Qt.AlignCenter
-                    source: "qrc:/image/ic_playlist_normal"
-                    text: qsTr("关闭")
+                    anchors {
+                        top: parent.top
+                        topMargin: ttkGlobal.dpHeight(10)
+                    }
+                    Layout.alignment: Qt.AlignTop
+                    source: "qrc:/image/action_delete_normal"
+                    text: qsTr("删除")
                     onClicked: {
 
                     }
                 }
 
                 TTKImageTextButton {
-                    Layout.alignment: Qt.AlignCenter
-                    source: "qrc:/image/ic_playlist_normal"
-                    text: qsTr("关闭")
+                    anchors {
+                        top: parent.top
+                        topMargin: ttkGlobal.dpHeight(10)
+                    }
+                    Layout.alignment: Qt.AlignTop
+                    source: "qrc:/image/action_download_normal"
+                    text: qsTr("下载")
                     onClicked: {
 
                     }
                 }
 
                 TTKImageTextButton {
-                    Layout.alignment: Qt.AlignCenter
-                    source: "qrc:/image/ic_playlist_normal"
-                    text: qsTr("关闭")
+                    anchors {
+                        top: parent.top
+                        topMargin: ttkGlobal.dpHeight(10)
+                    }
+                    Layout.alignment: Qt.AlignTop
+                    source: "qrc:/image/action_add_to_list_normal"
+                    text: qsTr("添加到")
+                    onClicked: {
+
+                    }
+                }
+
+                TTKImageTextButton {
+                    anchors {
+                        top: parent.top
+                        topMargin: ttkGlobal.dpHeight(10)
+                    }
+                    Layout.alignment: Qt.AlignTop
+                    source: "qrc:/image/action_icon_qzone"
+                    text: qsTr("背景音乐")
                     onClicked: {
 
                     }

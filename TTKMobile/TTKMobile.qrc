@@ -46,6 +46,7 @@
         <file alias="local_music_upgrade_song_quality_icon">MobileImages/local_music_upgrade_song_quality_icon.png</file>
         <file alias="ic_lyric_poster_lyric_select">MobileImages/ic_lyric_poster_lyric_select.png</file>
         <file alias="ic_lyric_poster_lyric_unselect">MobileImages/ic_lyric_poster_lyric_unselect.png</file>
+        <file alias="ic_lyric_poster_gray_unselect">MobileImages/ic_lyric_poster_gray_unselect.png</file>
         <file alias="scanning_animation">MobileImages/scanning_animation.png</file>
         <file alias="scanning_forlder_icon">MobileImages/scanning_forlder_icon.png</file>
         <file alias="custom_file_type_dir">MobileImages/custom_file_type_dir.png</file>

@@ -161,6 +161,10 @@ Item {
 
                         MouseArea {
                             anchors.fill: parent
+                            onPressAndHold: {
+                                ttkGlobal.list_module_index = ttkTheme.music_lovest_list;
+                                ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicListsManagerPage.qml");
+                            }
                             onClicked: {
                                 itemListView.currentIndex = index;
                                 TTK_APP.setCurrentIndex(ttkTheme.music_lovest_list, index);
@@ -186,7 +190,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMusicLovestListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
+                            width: ttkMusicLovestListsPage.width - iconArea.width - ttkGlobal.dpWidth(60)
                             anchors {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
