@@ -228,8 +228,10 @@ Item {
                             ttkFlyInOutBox.start();
                         }
 
-                        for(var i=0; i<array.length; ++i) {
-                            console.log(array[i]);
+                        for(var i=array.length-1; i>=0; --i) {
+                            var index = array[i];
+                            playlistModel.remove(index);
+                            TTK_APP.removeMusicSongsFromManager(ttkGlobal.list_module_index, index);
                         }
                     }
                 }
@@ -247,10 +249,6 @@ Item {
                         if(array.length === 0) {
                             ttkFlyInOutBox.start();
                         }
-
-                        for(var i=0; i<array.length; ++i) {
-                            console.log(array[i]);
-                        }
                     }
                 }
 
@@ -267,10 +265,6 @@ Item {
                         if(array.length === 0) {
                             ttkFlyInOutBox.start();
                         }
-
-                        for(var i=0; i<array.length; ++i) {
-                            console.log(array[i]);
-                        }
                     }
                 }
 
@@ -286,10 +280,6 @@ Item {
                         var array = getSelectedIndex();
                         if(array.length === 0) {
                             ttkFlyInOutBox.start();
-                        }
-
-                        for(var i=0; i<array.length; ++i) {
-                            console.log(array[i]);
                         }
                     }
                 }

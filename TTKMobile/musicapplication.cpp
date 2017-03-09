@@ -122,11 +122,6 @@ void MusicApplication::importNetworkMusicSongs(const QString &key, const QString
 
 void MusicApplication::removeMusicSongs()
 {
-    if(m_ttkPlaylist->isEmpty())
-    {
-        return;
-    }
-
     int index = m_ttkPlaylist->currentIndex();
     removeMusicSongs(m_songsSummarizied->getCurrentIndex(), m_songsSummarizied->getCurrentIndex(), index);
 
@@ -139,16 +134,17 @@ void MusicApplication::removeMusicSongs()
 
 void MusicApplication::removeMusicSongs(int index)
 {
-    if(m_ttkPlaylist->isEmpty())
-    {
-        return;
-    }
-
     removeMusicSongs(m_songsSummarizied->getToolBoxIndex(), m_songsSummarizied->getCurrentIndex(), index);
     if(m_ttkPlaylist->isEmpty())
     {
         emit emptyPlayerCenter(false);
     }
+}
+
+void MusicApplication::removeMusicSongsFromManager(int type, int index)
+{
+    removeMusicSongs(index);
+    emit importSongFinished(type);
 }
 
 bool MusicApplication::checkLovestMusicSong() const

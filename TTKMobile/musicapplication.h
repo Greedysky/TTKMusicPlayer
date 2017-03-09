@@ -59,6 +59,10 @@ public:
     /*!
      * Remove music data from container by index.
      */
+    Q_INVOKABLE void removeMusicSongsFromManager(int type, int index);
+    /*!
+     * Remove music data from container manager by index.
+     */
 
     Q_INVOKABLE bool checkLovestMusicSong() const;
     /*!
