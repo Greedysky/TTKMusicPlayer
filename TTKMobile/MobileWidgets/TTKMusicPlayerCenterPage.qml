@@ -121,7 +121,7 @@ Item {
 
     TTKMusicPlayerCenterSettingPage {
         id: ttkMusicPlayerCenterSettingPage
-        text: TTK_APP.mediaName( TTK_APP.mediaName() );
+        text: TTK_APP.mediaName();
     }
 
     TTKMusicPlayerCenterLrcPage {
@@ -130,7 +130,7 @@ Item {
 
     TTKMusicSongDownloadPage {
         id: ttkMusicSongDownloadPage
-        text: TTK_APP.mediaName( TTK_APP.mediaName() );
+        text: TTK_APP.mediaName();
     }
 
     TTKMusicSongSharedPage {

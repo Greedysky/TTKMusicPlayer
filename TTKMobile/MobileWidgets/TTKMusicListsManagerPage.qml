@@ -19,6 +19,19 @@ Item {
 
     property bool selectAll: true
 
+    function removeItemFromList() {
+        var array = getSelectedIndex();
+        if(array.length === 0) {
+            ttkFlyInOutBox.start();
+        }
+
+        for(var i=array.length-1; i>=0; --i) {
+            var index = array[i];
+            playlistModel.remove(index);
+            TTK_APP.removeMusicSongsFromManager(ttkGlobal.list_module_index, index);
+        }
+    }
+
     function getSelectedIndex() {
         var array = new Array;
         for(var i=0; i<playlistModel.count; ++i) {
@@ -225,14 +238,12 @@ Item {
                     onClicked: {
                         var array = getSelectedIndex();
                         if(array.length === 0) {
+                            ttkFlyInOutBox.color = ttkTheme.color_red
                             ttkFlyInOutBox.start();
+                            return;
                         }
 
-                        for(var i=array.length-1; i>=0; --i) {
-                            var index = array[i];
-                            playlistModel.remove(index);
-                            TTK_APP.removeMusicSongsFromManager(ttkGlobal.list_module_index, index);
-                        }
+                        ttkMusicDeletePage.visible = true;
                     }
                 }
 
@@ -247,7 +258,17 @@ Item {
                     onClicked: {
                         var array = getSelectedIndex();
                         if(array.length === 0) {
+                            ttkFlyInOutBox.color = ttkTheme.color_red
                             ttkFlyInOutBox.start();
+                            return;
+                        }
+
+                        ttkMusicSongDownloadPage.visible = false;
+                        ttkFlyInOutBox.color = ttkTheme.topbar_background;
+                        for(var i=0; i<array.length; ++i) {
+                            var modelItem = playlistModel.get(array[i]);
+                            ttkMusicSongDownloadPage.text = modelItem.artist + " - " + modelItem.title;
+                            ttkMusicSongDownloadPage.visible = true;
                         }
                     }
                 }
@@ -263,6 +284,7 @@ Item {
                     onClicked: {
                         var array = getSelectedIndex();
                         if(array.length === 0) {
+                            ttkFlyInOutBox.color = ttkTheme.color_red
                             ttkFlyInOutBox.start();
                         }
                     }
@@ -279,6 +301,7 @@ Item {
                     onClicked: {
                         var array = getSelectedIndex();
                         if(array.length === 0) {
+                            ttkFlyInOutBox.color = ttkTheme.color_red
                             ttkFlyInOutBox.start();
                         }
                     }
@@ -287,9 +310,16 @@ Item {
         }
     }
 
+    TTKMusicSongDownloadPage {
+        id: ttkMusicSongDownloadPage
+    }
+
+    TTKMusicDeletePage {
+        id: ttkMusicDeletePage
+    }
+
     TTKFlyInOutBox {
         id: ttkFlyInOutBox
-        color: ttkTheme.color_red
         text: qsTr("请选择需要操作的歌曲记录");
     }
 }

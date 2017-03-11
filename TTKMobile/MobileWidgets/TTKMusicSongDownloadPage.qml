@@ -23,9 +23,33 @@ Rectangle {
     property string text
     property string jsonAtrrString
 
+    function startSearch() {
+        clearData();
+        itemListModel.append({title: qsTr("正在获取数据当中..."), bit: -1});
+        if(visible === true) {
+            verticalYAnimation.start();
+            if(autoDownloadFlag) {
+                TTK_NETWORK.downloadSong(text);
+            }else {
+                TTK_NETWORK.setQueryType(queryType);
+                var json = JSON.parse(jsonAtrrString);
+                if(json.length !== 0) {
+                    clearData();
+                }else{
+                    createData(-1);
+                }
+
+                for(var i=0; i<json.length; ++i) {
+                    createData( json[i].bitrate );
+                }
+            }
+        }
+    }
+
     function clearData() {
         itemListModel.clear();
         itemListView.currentIndex = -1;
+        jsonAtrrString = "";
     }
 
     function createData(bitrate) {
@@ -195,26 +219,7 @@ Rectangle {
     }
 
     onVisibleChanged: {
-        clearData();
-        itemListModel.append({title: qsTr("正在获取数据当中..."), bit: -1});
-        if(visible === true) {
-            verticalYAnimation.start();
-            if(autoDownloadFlag) {
-                TTK_NETWORK.downloadSong(text);
-            }else {
-                TTK_NETWORK.setQueryType(queryType);
-                var json = JSON.parse(jsonAtrrString);
-                if(json.length !== 0) {
-                    clearData();
-                }else{
-                    createData(-1);
-                }
-
-                for(var i=0; i<json.length; ++i) {
-                    createData( json[i].bitrate );
-                }
-            }
-        }
+        startSearch();
     }
 
     Component.onCompleted:
