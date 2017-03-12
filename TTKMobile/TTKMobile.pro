@@ -156,14 +156,6 @@ OTHER_FILES += \
     android/src/org/greedysky/ttkmobile/TTKMobile.java \
     android/src/org/greedysky/ttkmobile/SplashScreen.java
 
-DISTFILES += \
-    android/gradle/wrapper/gradle-wrapper.jar \
-    android/gradlew \
-    android/res/values/libs.xml \
-    android/build.gradle \
-    android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat
-
 ANDROID_EXTRA_LIBS = \
     bin/$$TTKMusicPlayer/libplugin_input_aac.so \
     bin/$$TTKMusicPlayer/libplugin_input_cue.so \
