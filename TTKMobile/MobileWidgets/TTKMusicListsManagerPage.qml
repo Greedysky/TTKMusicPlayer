@@ -61,6 +61,11 @@ Item {
         updateModel(false);
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: ttkTheme.color_white
+    }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -219,6 +224,10 @@ Item {
         ///bottom area
         Rectangle {
             id: bottomArea
+            anchors {
+                left: parent.left
+                leftMargin: ttkGlobal.dpWidth(20)
+            }
             width: ttkMusicListsManagerPage.width
             height: ttkGlobal.dpHeight(120)
             color: ttkTheme.color_white
