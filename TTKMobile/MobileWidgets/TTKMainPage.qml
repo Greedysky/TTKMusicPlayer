@@ -76,7 +76,7 @@ Item {
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.right: parent.right
                     onClicked: {
-                        ttkMainStackView.push("qrc:/MobileWidgets/TTKOnlineSearchPage.qml");
+                        ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicOnlineSearchPage.qml");
                     }
                 }
 
@@ -251,7 +251,7 @@ Item {
                             mainTitle: qsTr("下载MV")
                             onClicked: {
                                 TTK_APP.setToolBoxIndex(ttkTheme.music_downmv_list);
-                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMVDownloadListsPage.qml");
+                                ttkMainStackView.push("qrc:/MobileWidgets/TTKMusicMVDownloadListsPage.qml");
                             }
                         }
 

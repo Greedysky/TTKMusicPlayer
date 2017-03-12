@@ -11,7 +11,7 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Rectangle {
-    id: ttkTimeSettingPage
+    id: ttkMusicTimeSettingPage
     visible: false
     width: parent.width
     height: parent.height
@@ -20,7 +20,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            ttkTimeSettingPage.visible = false;
+            ttkMusicTimeSettingPage.visible = false;
         }
     }
 
@@ -66,7 +66,7 @@ Rectangle {
                 radius: 10
                 onClicked: {
                     timeToQuitApp(parseInt(timeInputArea.text));
-                    ttkTimeSettingPage.visible = false;
+                    ttkMusicTimeSettingPage.visible = false;
                 }
             }
         }
@@ -116,19 +116,19 @@ Rectangle {
                         switch(index) {
                             case 0:
                                 timeToQuitApp(15);
-                                ttkTimeSettingPage.visible = false;
+                                ttkMusicTimeSettingPage.visible = false;
                                 break;
                             case 1:
                                 timeToQuitApp(30);
-                                ttkTimeSettingPage.visible = false;
+                                ttkMusicTimeSettingPage.visible = false;
                                 break;
                             case 2:
                                 timeToQuitApp(60);
-                                ttkTimeSettingPage.visible = false;
+                                ttkMusicTimeSettingPage.visible = false;
                                 break;
                             case 3:
                                 timeToQuitApp(90);
-                                ttkTimeSettingPage.visible = false;
+                                ttkMusicTimeSettingPage.visible = false;
                                 break;
                             case 4:
                                 autoSelectdTimeArea.visible = true;
@@ -163,8 +163,8 @@ Rectangle {
     NumberAnimation {
         id: verticalYAnimation
         property: "y"
-        target: ttkTimeSettingPage
-        from: ttkTimeSettingPage.height
+        target: ttkMusicTimeSettingPage
+        from: ttkMusicTimeSettingPage.height
         to: 0
         duration: 200
     }
@@ -177,11 +177,11 @@ Rectangle {
     Component.onCompleted:
     {
         itemListView.currentIndex = -1;
-        var docRoot = ttkTimeSettingPage.parent;
+        var docRoot = ttkMusicTimeSettingPage.parent;
         while(docRoot.parent)
         {
             docRoot = docRoot.parent;
         }
-        ttkTimeSettingPage.parent = docRoot;
+        ttkMusicTimeSettingPage.parent = docRoot;
     }
 }

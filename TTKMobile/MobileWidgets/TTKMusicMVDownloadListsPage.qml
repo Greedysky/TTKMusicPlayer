@@ -12,7 +12,7 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Item {
-    id: ttkMVDownloadListsPage
+    id: ttkMusicMVDownloadListsPage
     width: parent.width
     height: parent.height
 
@@ -181,7 +181,7 @@ Item {
                         Text {
                             id: titleArea
                             text: title
-                            width: ttkMVDownloadListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
+                            width: ttkMusicMVDownloadListsPage.width - iconArea.width - ttkGlobal.dpHeight(60)
                             anchors {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)

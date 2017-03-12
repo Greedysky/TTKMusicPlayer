@@ -148,11 +148,11 @@
         <file>MobileWidgets/Core/TTKMarquee.qml</file>
         <file>MobileWidgets/Core/TTKImageTextButton.qml</file>
         <file>MobileWidgets/Core/TTKImageRadiusTextButton.qml</file>
-        <file>MobileWidgets/TTKTimeSettingPage.qml</file>
+        <file>MobileWidgets/TTKMusicTimeSettingPage.qml</file>
         <file>MobileWidgets/TTKMainPage.qml</file>
         <file>MobileWidgets/TTKMainSettingPage.qml</file>
         <file>MobileWidgets/TTKMainMoreSettingPage.qml</file>
-        <file>MobileWidgets/TTKOnlineSearchPage.qml</file>
+        <file>MobileWidgets/TTKMusicOnlineSearchPage.qml</file>
         <file>MobileWidgets/TTKMusicBar.qml</file>
         <file>MobileWidgets/TTKMusicPlayerCenterPage.qml</file>
         <file>MobileWidgets/TTKMusicPlayerCenterLrcPage.qml</file>
@@ -165,8 +165,8 @@
         <file>MobileWidgets/TTKMusicRecentListsPage.qml</file>
         <file>MobileWidgets/TTKMusicLovestListsPage.qml</file>
         <file>MobileWidgets/TTKMusicIdentifyListsPage.qml</file>
-        <file>MobileWidgets/TTKMVDownloadListsPage.qml</file>
-        <file>MobileWidgets/TTKScanFolderPage.qml</file>
+        <file>MobileWidgets/TTKMusicMVDownloadListsPage.qml</file>
+        <file>MobileWidgets/TTKMusicScanFolderPage.qml</file>
         <file>MobileWidgets/TTKMusicLyricPage.qml</file>
         <file>MobileWidgets/TTKMusicLyricStylePage.qml</file>
         <file>MobileWidgets/TTKMusicDTSEffectPage.qml</file>

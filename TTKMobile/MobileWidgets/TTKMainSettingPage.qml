@@ -202,7 +202,7 @@ Item {
                                                 });
                                                 TTK_APP.setTimeToQuitApp(-1);
                                             }else {
-                                                ttkTimeSettingPage.visible = true;
+                                                ttkMusicTimeSettingPage.visible = true;
                                             }
                                             break;
                                     }
@@ -373,8 +373,8 @@ Item {
         }
     }
 
-    TTKTimeSettingPage {
-        id: ttkTimeSettingPage
+    TTKMusicTimeSettingPage {
+        id: ttkMusicTimeSettingPage
     }
 
     TTKMusicAboutPage {

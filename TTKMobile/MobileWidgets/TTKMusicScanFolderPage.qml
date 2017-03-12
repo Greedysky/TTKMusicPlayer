@@ -14,7 +14,7 @@ import Qt.labs.folderlistmodel 2.1
 import "Core"
 
 Item {
-    id: ttkScanFolderPage
+    id: ttkMusicScanFolderPage
     width: parent.width
     height: parent.height
 
@@ -96,7 +96,7 @@ Item {
                 Text {
                     id: filePathArea
                     text: folderModel.folder;
-                    Layout.preferredWidth: ttkScanFolderPage.width - ttkGlobal.dpWidth(80)
+                    Layout.preferredWidth: ttkMusicScanFolderPage.width - ttkGlobal.dpWidth(80)
                     Layout.fillHeight: true
                     anchors {
                         left: goBackButton.right
@@ -114,7 +114,7 @@ Item {
         Rectangle {
             id: mainBody
             Layout.fillWidth: true
-            height: ttkScanFolderPage.height - mainMenubar.height - functionArea.height - bottomArea.height
+            height: ttkMusicScanFolderPage.height - mainMenubar.height - functionArea.height - bottomArea.height
             color: ttkTheme.color_alpha_lv9
 
             ListView {
@@ -180,7 +180,7 @@ Item {
                         Text {
                             id: titleArea
                             text: fileName
-                            Layout.preferredWidth: ttkScanFolderPage.width - ttkGlobal.dpHeight(140)
+                            Layout.preferredWidth: ttkMusicScanFolderPage.width - ttkGlobal.dpHeight(140)
                             Layout.fillHeight: true
                             anchors {
                                 left: iconArea.right
@@ -202,7 +202,7 @@ Item {
                     }
 
                     Rectangle {
-                        width: ttkScanFolderPage.width
+                        width: ttkMusicScanFolderPage.width
                         height: 1
                         anchors {
                             left: parent.left
@@ -233,7 +233,7 @@ Item {
 
                 onClicked: {
                     if(scanPaths.length !== 0) {
-                        ttkScanFolderPage.pathChanged(scanPaths);
+                        ttkMusicScanFolderPage.pathChanged(scanPaths);
                     }else {
                         ttkFlyInOutBox.color = ttkTheme.color_red
                         ttkFlyInOutBox.text = qsTr("请选择扫描的文件夹")

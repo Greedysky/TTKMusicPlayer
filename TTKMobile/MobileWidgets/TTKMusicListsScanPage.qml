@@ -328,7 +328,7 @@ Item {
                 }
 
                 onClicked: {
-                    scanFolderObj = ttkOutStackView.push("qrc:/MobileWidgets/TTKScanFolderPage.qml");
+                    scanFolderObj = ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicScanFolderPage.qml");
                 }
             }
 

@@ -12,7 +12,7 @@ import QtQuick.Layouts 1.1
 import "Core"
 
 Item {
-    id: ttkOnlineSearchPage
+    id: ttkMusicOnlineSearchPage
     width: parent.width
     height: parent.height
 
@@ -86,7 +86,7 @@ Item {
 
                 TTKLineInput {
                     id: searchInput
-                    Layout.preferredWidth: ttkOnlineSearchPage.width - ttkGlobal.dpWidth(100)
+                    Layout.preferredWidth: ttkMusicOnlineSearchPage.width - ttkGlobal.dpWidth(100)
                     Layout.preferredHeight: ttkGlobal.dpHeight(33)
                     hint: "Big Bang"
                     fontSize: parent.height/3
@@ -226,7 +226,7 @@ Item {
                             Text {
                                 id: titleAreaSong
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaSong.width - ttkGlobal.dpHeight(120)
+                                width: ttkMusicOnlineSearchPage.width - iconAreaSong.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
                                     topMargin: ttkGlobal.dpHeight(10)
@@ -333,7 +333,7 @@ Item {
                             Text {
                                 id: titleAreaMV
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaMV.width - ttkGlobal.dpHeight(120)
+                                width: ttkMusicOnlineSearchPage.width - iconAreaMV.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
                                     topMargin: ttkGlobal.dpHeight(10)
@@ -442,7 +442,7 @@ Item {
                             Text {
                                 id: titleAreaLrc
                                 text: title
-                                width: ttkOnlineSearchPage.width - iconAreaLrc.width - ttkGlobal.dpHeight(120)
+                                width: ttkMusicOnlineSearchPage.width - iconAreaLrc.width - ttkGlobal.dpHeight(120)
                                 anchors {
                                     top: parent.top
                                     topMargin: ttkGlobal.dpHeight(10)
