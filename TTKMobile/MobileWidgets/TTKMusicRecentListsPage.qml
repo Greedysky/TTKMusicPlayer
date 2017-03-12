@@ -233,7 +233,7 @@ Item {
                                 top: parent.top
                                 topMargin: ttkGlobal.dpHeight(10)
                                 right: moreFuncArea.left
-                                rightMargin: ttkGlobal.dpWidth(playCountTextArea.width)
+                                rightMargin: ttkGlobal.dpWidth(playCountTextArea.width + 5)
                             }
 
                             Image {
@@ -242,7 +242,7 @@ Item {
                                 height: parent.height*2/3
                                 anchors {
                                     top: parent.top
-                                    topMargin: ttkGlobal.dpHeight(5)
+                                    topMargin: ttkGlobal.dpHeight(3)
                                 }
                                 source: "qrc:/image/icon_headphone_small_light"
                             }
@@ -251,6 +251,7 @@ Item {
                                 id: playCountTextArea
                                 anchors {
                                     left: playCountArea.right
+                                    leftMargin: ttkGlobal.dpWidth(-5)
                                     top: parent.top
                                     topMargin: ttkGlobal.dpHeight(20)
                                 }
