@@ -53,6 +53,34 @@ QString TTKMusicUtils::getCachedPath() const
     return CACHE_DIR_FULL;
 }
 
+void TTKMusicUtils::showWindowNotify(int value)
+{
+#if defined (Q_OS_ANDROID)
+    QAndroidJniObject::callStaticMethod<void>(APP_PKG_NAME,
+              "notify", "(Ljava/lang/String;Ljava/lang/String;I)V",
+              QAndroidJniObject::fromString( QString() ).object<jstring>(),
+              QAndroidJniObject::fromString( QString() ).object<jstring>(),
+              static_cast<jint>(value));
+#else
+    Q_UNUSED(value);
+#endif
+}
+
+void TTKMusicUtils::showWindowNotify(const QString &title, const QString &text, int value)
+{
+#if defined (Q_OS_ANDROID)
+    QAndroidJniObject::callStaticMethod<void>(APP_PKG_NAME,
+              "notify", "(Ljava/lang/String;Ljava/lang/String;I)V",
+              QAndroidJniObject::fromString( title ).object<jstring>(),
+              QAndroidJniObject::fromString( text ).object<jstring>(),
+              static_cast<jint>(value));
+#else
+    Q_UNUSED(title);
+    Q_UNUSED(text);
+    Q_UNUSED(value);
+#endif
+}
+
 void TTKMusicUtils::showMessageBox(const QString &text, const QString &title, QWidget *parent)
 {
 #if defined Q_OS_WIN

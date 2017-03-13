@@ -5,6 +5,7 @@
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
 #include "musicsettingmanager.h"
+#include "ttkmusicutils.h"
 #///QJson import
 #include "qjson/serializer.h"
 
@@ -206,6 +207,20 @@ void TTKNetworkHelper::createSearchedItems(const MusicSearchedItem &songItem)
     emit createSearchedItems(songItem.m_songname, songItem.m_artistname);
 }
 
+void TTKNetworkHelper::downloadProgressChanged(float percent, const QString &total, qint64 time)
+{
+    Q_UNUSED(total);
+    Q_UNUSED(time);
+    if(percent < 100)
+    {
+        TTKMusicUtils().showWindowNotify("11", "22", percent);
+    }
+    else
+    {
+        TTKMusicUtils().showWindowNotify(100);
+    }
+}
+
 void TTKNetworkHelper::dataForDownloadSong()
 {
     MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
@@ -321,6 +336,7 @@ void TTKNetworkHelper::downForDownloadSong(int index, int bitrate)
                 MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicAttr.m_url, musicSong,
                                                         MusicDownLoadThreadAbstract::Download_Music, this);
                 QEventLoop loop(this);
+                connect(downSong, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString,qint64)));
                 connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
                 downSong->startToDownload();
                 loop.exec();

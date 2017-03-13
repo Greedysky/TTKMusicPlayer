@@ -51,6 +51,14 @@ public:
      * Get cached path.
      */
 
+    Q_INVOKABLE void showWindowNotify(int value);
+    /*!
+     * Show window notify dialog.
+     */
+    Q_INVOKABLE void showWindowNotify(const QString &title, const QString &text, int value);
+    /*!
+     * Show window notify dialog.
+     */
     Q_INVOKABLE void showMessageBox(const QString &text, const QString &title = 0, QWidget *parent = 0);
     /*!
      * Show message box.
