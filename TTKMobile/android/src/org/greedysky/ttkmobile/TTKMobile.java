@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 
@@ -33,16 +35,52 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class TTKMobile extends org.qtproject.qt5.android.bindings.QtActivity
 {
     private static TTKMobile m_instance;
-
+    ////////////////////////////////////////////////////////////////////
+    private static NotificationManager m_notificationManager = null;
+    private static Notification.Builder m_builder;
+    ////////////////////////////////////////////////////////////////////
     private ProgressDialog progressDialog = null;
+    ////////////////////////////////////////////////////////////////////
     private final String UPDATE_SERVERAPK = "ttkmobile.apk";
     private final String APK_URL = "http://7xpa0g.com1.z0.glb.clouddn.com/v";
     private final String APK = ".apk";
     private static String VERSION;
+    ////////////////////////////////////////////////////////////////////
 
     public TTKMobile()
     {
         m_instance = this;
+    }
+
+    public static void notify(String title, String text, int value)
+    {
+        if (m_notificationManager == null)
+        {
+            m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
+            m_builder = new Notification.Builder(m_instance);
+//            m_builder.setSmallIcon(R.drawable.icon);
+            m_builder.setOngoing(true);
+        }
+
+        m_builder.setContentTitle( title );
+        m_builder.setContentText( text );
+
+        if( value < 0)
+        {
+            m_builder.setProgress(100, 100, false);
+            m_notificationManager.notify(1, m_builder.build());
+            return;
+        }
+
+        if( value < 100)
+        {
+            m_builder.setProgress(100, value, false);
+            m_notificationManager.notify(1, m_builder.build());
+        }
+        else
+        {
+            m_notificationManager.cancelAll();
+        }
     }
 
     public static void showMessageBox(String str)
