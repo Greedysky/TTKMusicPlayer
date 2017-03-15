@@ -1,6 +1,6 @@
 #include "musicapplication.h"
 #include "musicsettingmanager.h"
-#include "musicdownloadstatuslabel.h"
+#include "musicdownloadstatusobject.h"
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 #include "musicbackgroundmanager.h"
@@ -40,7 +40,7 @@ MusicApplication::MusicApplication(QQmlContext *parent)
     m_ttkPlayer->setPlaylist(m_ttkPlaylist);
 
     m_songsSummarizied = new TTKMusicSongsSummarizied(this);
-    m_downloadStatus = new MusicDownloadStatusLabel(this);
+    m_downloadStatus = new MusicDownloadStatusObject(this);
 
     m_timeToQuitTimer = new QTimer(this);
     m_timeToQuitTimer->setInterval(-1);

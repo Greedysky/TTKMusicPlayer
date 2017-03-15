@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADSTATUSLABEL_H
-#define MUSICDOWNLOADSTATUSLABEL_H
+#ifndef MUSICDOWNLOADSTATUSOBJECT_H
+#define MUSICDOWNLOADSTATUSOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,23 +9,22 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicglobaldefine.h"
 #include "musicdownloadquerythreadabstract.h"
 
 class MusicApplication;
 
-/*! @brief The class of the show download state.
+/*! @brief The class of the show download state object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicDownloadStatusLabel : public QObject
+class MUSIC_WIDGET_EXPORT MusicDownloadStatusObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadStatusLabel(QObject *w);
+    explicit MusicDownloadStatusObject(QObject *w);
     /*!
      * Object contsructor.
      */
-    ~MusicDownloadStatusLabel();
+    ~MusicDownloadStatusObject();
 
     static QString getClassName();
     /*!
@@ -68,4 +67,4 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADSTATUSLABEL_H
+#endif // MUSICDOWNLOADSTATUSOBJECT_H

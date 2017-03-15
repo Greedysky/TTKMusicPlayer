@@ -13,7 +13,7 @@
 #include "musicglobaldefine.h"
 
 class MusicSettingWidget;
-class MusicDownloadStatusLabel;
+class MusicDownloadStatusObject;
 class MusicLrcContainerForDesktop;
 
 namespace Ui {
@@ -222,7 +222,7 @@ protected:
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
-    MusicDownloadStatusLabel *m_downloadStatusLabel;
+    MusicDownloadStatusObject *m_downloadStatusLabel;
 
     static MusicRightAreaWidget *m_instance;
 };

@@ -20,7 +20,7 @@ class TTKMusicPlayer;
 class TTKNetworkHelper;
 class TTKMusicLyricModel;
 class TTKMusicSongsSummarizied;
-class MusicDownloadStatusLabel;
+class MusicDownloadStatusObject;
 
 /*! @brief The class of the music application.
  * @author Greedysky <greedysky@163.com>
@@ -228,7 +228,7 @@ protected:
     TTKNetworkHelper *m_networkHelper;
     TTKMusicLyricModel *m_ttkLrcModel;
     TTKMusicSongsSummarizied *m_songsSummarizied;
-    MusicDownloadStatusLabel *m_downloadStatus;
+    MusicDownloadStatusObject *m_downloadStatus;
 
 };
 

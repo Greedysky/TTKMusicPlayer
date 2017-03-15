@@ -1,4 +1,4 @@
-#include "musicdownloadstatuslabel.h"
+#include "musicdownloadstatusobject.h"
 #include "musicapplication.h"
 #ifndef MUSIC_MOBILE
 #include "musicbottomareawidget.h"
@@ -13,7 +13,7 @@
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 
-MusicDownloadStatusLabel::MusicDownloadStatusLabel(QObject *w)
+MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *w)
     : QObject(w)
 {
     m_previousState = true;
@@ -27,17 +27,17 @@ MusicDownloadStatusLabel::MusicDownloadStatusLabel(QObject *w)
     M_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
 
-MusicDownloadStatusLabel::~MusicDownloadStatusLabel()
+MusicDownloadStatusObject::~MusicDownloadStatusObject()
 {
     delete m_downloadLrcThread;
 }
 
-QString MusicDownloadStatusLabel::getClassName()
+QString MusicDownloadStatusObject::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadMode type)
+void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode type)
 {
     QString stringType;
     switch(type)
@@ -62,7 +62,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFor(MusicObject::DownLoadMode typ
     M_LOGGER_INFO(stringType);
 }
 
-void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
+void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display
     if(type == "Download_Lrc")
@@ -75,7 +75,7 @@ void MusicDownloadStatusLabel::showDownLoadInfoFinished(const QString &type)
     }
 }
 
-void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
+void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 {
     M_NETWORK_PTR->setNetWorkState(state);
     if(m_previousState != state)
@@ -92,13 +92,13 @@ void MusicDownloadStatusLabel::networkConnectionStateChanged(bool state)
     showDownLoadInfoFor(state ? MusicObject::DW_Null : MusicObject::DW_DisConnection);
 }
 
-bool MusicDownloadStatusLabel::checkSettingParameterValue() const
+bool MusicDownloadStatusObject::checkSettingParameterValue() const
 {
     return ( M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
              M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
 }
 
-void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
+void MusicDownloadStatusObject::musicCheckHasLrcAlready()
 {
     if(!M_NETWORK_PTR->isOnline())
     {
@@ -135,7 +135,7 @@ void MusicDownloadStatusLabel::musicCheckHasLrcAlready()
     }
 }
 
-void MusicDownloadStatusLabel::musicHaveNoLrcAlready()
+void MusicDownloadStatusObject::musicHaveNoLrcAlready()
 {
     if(!M_NETWORK_PTR->isOnline())
     {   //no network connection

@@ -91,7 +91,7 @@ HEADERS += \
     ../TTKCore/musicCoreKits/musicsongtag.h \
     ../TTKCore/musicCoreKits/musicsemaphoreloop.h \
     ../TTKCore/musicLrcKits/musiclrcanalysis.h \
-    ../TTKCore/musicWidgetKits/musicdownloadstatuslabel.h \
+    ../TTKCore/musicWidgetKits/musicdownloadstatusobject.h \
     MobileCore/ttkfilesearchcore.h \
     MobileCore/ttkmusicplaylist.h \
     MobileCore/ttkmusicplayer.h \
@@ -120,7 +120,7 @@ SOURCES += \
     ../TTKCore/musicCoreKits/musicsongtag.cpp \
     ../TTKCore/musicCoreKits/musicsemaphoreloop.cpp \
     ../TTKCore/musicLrcKits/musiclrcanalysis.cpp \
-    ../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp \
+    ../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp \
     MobileCore/ttkfilesearchcore.cpp \
     MobileCore/ttkmusicplaylist.cpp \
     MobileCore/ttkmusicplayer.cpp \
