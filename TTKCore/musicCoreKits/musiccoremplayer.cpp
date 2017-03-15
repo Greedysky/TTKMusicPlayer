@@ -125,6 +125,11 @@ void MusicCoreMPlayer::setVolume(int value)
     m_process->write(QString("volume %1 1\n").arg(value).toUtf8());
 }
 
+bool MusicCoreMPlayer::isPlaying() const
+{
+    return m_playState == PlayingState;
+}
+
 void MusicCoreMPlayer::play()
 {
     m_timer.stop();

@@ -53,6 +53,11 @@ public:
     /*!
      * Get class object name.
      */
+
+    bool isPlaying() const;
+    /*!
+     * Get current player is playing or not.
+     */
     State state() const;
     /*!
      * Get current player state.

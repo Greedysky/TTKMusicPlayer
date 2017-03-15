@@ -142,8 +142,7 @@ void MusicSongRingtoneMaker::playInputSong()
 
 void MusicSongRingtoneMaker::playRingtone()
 {
-    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
-       m_player->state() == MusicCoreMPlayer::PausedState)
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Stop"));
     }
@@ -178,8 +177,7 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
 {
-    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
-       m_player->state() == MusicCoreMPlayer::PausedState)
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Stop"));
     }
@@ -215,8 +213,7 @@ void MusicSongRingtoneMaker::initControlParameter() const
 
 void MusicSongRingtoneMaker::playButtonStateChanged()
 {
-    if(m_player->state() == MusicCoreMPlayer::StoppedState ||
-       m_player->state() == MusicCoreMPlayer::PausedState)
+    if(!m_player->isPlaying())
     {
         m_ui->playSongButton->setText(tr("Stop"));
     }

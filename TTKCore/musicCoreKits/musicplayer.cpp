@@ -37,6 +37,11 @@ QString MusicPlayer::getClassName()
     return staticMetaObject.className();
 }
 
+bool MusicPlayer::isPlaying() const
+{
+    return m_state == PlayingState;
+}
+
 MusicPlayer::State MusicPlayer::state() const
 {
     return m_state;

@@ -185,7 +185,7 @@ void MusicVideoView::mediaChanged(const QString &data)
 
 void MusicVideoView::mediaIsPlaying(bool &play)
 {
-    play = (m_mediaPlayer->state() == MusicCoreMPlayer::PlayingState);
+    play = m_mediaPlayer->isPlaying();
 }
 
 void MusicVideoView::addBarrageChanged(const MusicBarrageRecord &record)

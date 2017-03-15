@@ -63,11 +63,15 @@ public:
     /*!
      * Set current player volume.
      */
-    inline State state() { return m_playState;}
+    bool isPlaying() const;
+    /*!
+     * Get current player is playing or not.
+     */
+    inline State state() const { return m_playState; }
     /*!
      * Get current player state.
      */
-    inline Category category() { return m_category;}
+    inline Category category() const { return m_category; }
     /*!
      * Get current player category.
      */
