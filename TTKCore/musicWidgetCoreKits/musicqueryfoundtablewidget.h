@@ -45,6 +45,10 @@ public:
     /*!
      * Download data from net and just play or not.
      */
+    void resizeWindow();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
 
 public Q_SLOTS:
     virtual void listCellEntered(int row, int column) override;
@@ -65,6 +69,10 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void addSearchMusicToPlayList(int row, bool play);
     /*!
      * Add search music to play list by index.

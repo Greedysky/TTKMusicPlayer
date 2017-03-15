@@ -1,11 +1,7 @@
 #include "musicsimilarfoundwidget.h"
-#include "musicsongssummariziedwidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicsettingmanager.h"
-#include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
-
 #include "musicsourcedownloadthread.h"
 
 #include <QCheckBox>
@@ -16,22 +12,11 @@
 MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
     : MusicQueryFoundTableWidget(parent)
 {
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 436);
-    headerview->resizeSection(2, 47);
-    headerview->resizeSection(3, 26);
-    headerview->resizeSection(4, 26);
-    headerview->resizeSection(5, 26);
-    headerview->resizeSection(6, 26);
 
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicSimilarFoundTableWidget::~MusicSimilarFoundTableWidget()
 {
-    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 
@@ -49,20 +34,6 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
     }
 }
 
-void MusicSimilarFoundTableWidget::resizeWindow()
-{
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 436);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
-
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
-    }
-}
-
 void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
 {
     if(rowCount() >= 15)
@@ -70,12 +41,6 @@ void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &
         return;
     }
     MusicQueryFoundTableWidget::createSearchedItems(songItem);
-}
-
-void MusicSimilarFoundTableWidget::resizeEvent(QResizeEvent *event)
-{
-    MusicQueryFoundTableWidget::resizeEvent(event);
-    resizeWindow();
 }
 
 

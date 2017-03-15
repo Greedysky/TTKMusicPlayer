@@ -35,17 +35,6 @@ public:
      * Set network query input.
      */
 
-    void resizeWindow();
-    /*!
-     * Resize window bound by widgte resize called.
-     */
-
-protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
-
 };
 
 

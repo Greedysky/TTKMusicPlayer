@@ -5,6 +5,9 @@
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicsemaphoreloop.h"
+#include "musicconnectionpool.h"
+#include "musicsettingmanager.h"
+#include "musicsongssummariziedwidget.h"
 
 MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -12,10 +15,23 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setColumnCount(7);
+
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 30);
+    headerview->resizeSection(1, 436);
+    headerview->resizeSection(2, 47);
+    headerview->resizeSection(3, 26);
+    headerview->resizeSection(4, 26);
+    headerview->resizeSection(5, 26);
+    headerview->resizeSection(6, 26);
+
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
 {
+    M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
 
@@ -23,7 +39,6 @@ QString MusicQueryFoundTableWidget::getClassName()
 {
     return staticMetaObject.className();
 }
-
 
 void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
 {
@@ -67,6 +82,26 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
             continue;
         }
     }
+}
+
+void MusicQueryFoundTableWidget::resizeWindow()
+{
+    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 436);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
+
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 1);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+    }
+}
+
+void MusicQueryFoundTableWidget::resizeEvent(QResizeEvent *event)
+{
+    MusicQueryTableWidget::resizeEvent(event);
+    resizeWindow();
 }
 
 void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
