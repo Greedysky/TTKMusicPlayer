@@ -40,6 +40,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
 
 MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
 {
+    auditionStop();
     delete m_audition;
     clearAllItems();
 }
@@ -101,6 +102,14 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
+void MusicSongSearchOnlineTableWidget::auditionStop()
+{
+    if(m_audition)
+    {
+        m_audition->stop();
+    }
+}
+
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
@@ -132,6 +141,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
     {
         m_audition->stop();
     }
+
     if(row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;
@@ -409,6 +419,11 @@ void MusicSongSearchOnlineWidget::resizeWindow()
 {
     setResizeLabelText( m_textLabel->toolTip() );
     m_searchTableWidget->resizeWindow();
+}
+
+void MusicSongSearchOnlineWidget::auditionStop()
+{
+    m_searchTableWidget->auditionStop();
 }
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)

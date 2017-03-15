@@ -70,6 +70,10 @@ public:
      * Data download to local file.
      */
 
+    void auditionStop();
+    /*!
+     * Stop current audtion.
+     */
     void auditionToMusic(int row);
     /*!
      * Start play audition to music by row.
@@ -180,6 +184,10 @@ public:
     void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
+     */
+    void auditionStop();
+    /*!
+     * Stop current audtion.
      */
 
 public Q_SLOTS:
