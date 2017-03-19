@@ -22,12 +22,12 @@ include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32{
-  TARGET = ../../bin/$$TTKMusicPlayer/TTKService
-  LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
+    TARGET = ../../bin/$$TTKMusicPlayer/TTKService
+    LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
 }
 unix{
-  TARGET = ../lib/$$TTKMusicPlayer/TTKService
-  LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
+    TARGET = ../lib/$$TTKMusicPlayer/TTKService
+    LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
 }
 
 

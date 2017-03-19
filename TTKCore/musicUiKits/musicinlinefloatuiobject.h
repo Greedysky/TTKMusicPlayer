@@ -26,7 +26,7 @@ namespace MusicUIObject
             background-image: url(:/lrc/lb_update_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_update_hover);}";
 
-    const  QString MKGInlineFloatWallpaper = " \
+    const QString MKGInlineFloatWallpaper = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_wallpaper_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover);}";
