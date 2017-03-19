@@ -85,7 +85,7 @@ HEADERS += $$PWD/musicglobal.h
 INCLUDEPATH += $$PWD
 #########################################
 contains(CONFIG, TTK_BUILD_LIB){
-  include(TTKCore/musicUiKits/MusicUiKits.pri)
+    include(TTKCore/musicUiKits/MusicUiKits.pri)
 }
 #########################################
 include(TTKThirdParty/TTKThirdParty.pri)
