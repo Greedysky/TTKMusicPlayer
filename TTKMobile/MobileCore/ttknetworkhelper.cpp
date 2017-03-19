@@ -24,6 +24,7 @@ TTKNetworkHelper::TTKNetworkHelper(QObject *parent)
 
 TTKNetworkHelper::~TTKNetworkHelper()
 {
+    closeWindowNotify();
     delete m_queryThread;
 }
 
@@ -213,12 +214,17 @@ void TTKNetworkHelper::downloadProgressChanged(float percent, const QString &tot
     Q_UNUSED(time);
     if(percent < 100)
     {
-        TTKMusicUtils().showWindowNotify("11", "22", percent);
+        TTKMusicUtils().showWindowNotify(tr("Downloading"), tr("%1 percent").arg(MStatic_cast(int, percent)), percent);
     }
     else
     {
-        TTKMusicUtils().showWindowNotify(100);
+        closeWindowNotify();
     }
+}
+
+void TTKNetworkHelper::closeWindowNotify()
+{
+    TTKMusicUtils().showWindowNotify(100);
 }
 
 void TTKNetworkHelper::dataForDownloadSong()

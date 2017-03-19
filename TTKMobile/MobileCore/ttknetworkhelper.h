@@ -141,6 +141,10 @@ private Q_SLOTS:
      */
 
 protected:
+    void closeWindowNotify();
+    /*!
+     * Close window notify.
+     */
     void dataForDownloadSong();
     /*!
      * Query for download song.
