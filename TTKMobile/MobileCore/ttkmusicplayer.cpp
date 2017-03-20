@@ -5,7 +5,11 @@
 ///qmmp incldue
 #include "soundcore.h"
 
-#define NORMAL_PREAMP   15
+#ifdef MUSIC_MOBILE
+    #define NORMAL_PREAMP   30
+#else
+    #define NORMAL_PREAMP   15
+#endif
 
 TTKMusicPlayer::TTKMusicPlayer(QObject *parent)
     : QObject(parent)
