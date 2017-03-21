@@ -15,6 +15,8 @@ import android.app.NotificationManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 
+import android.media.AudioManager;
+
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -94,6 +96,7 @@ public class TTKMobile extends org.qtproject.qt5.android.bindings.QtActivity
          });
     }
 
+    ////////////////////////////////////////////////////////
     public static int currentNetIsWifi()
     {
         ConnectivityManager con = (ConnectivityManager)m_instance.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -111,6 +114,19 @@ public class TTKMobile extends org.qtproject.qt5.android.bindings.QtActivity
             }
         }
         return -1;
+    }
+
+    ////////////////////////////////////////////////////////
+    public static int getCurrentVolume()
+    {
+        AudioManager manager = (AudioManager)m_instance.getSystemService(Context.AUDIO_SERVICE);
+        return manager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
+    public static void setCurrentVolume(int volume)
+    {
+        AudioManager manager = (AudioManager)m_instance.getSystemService(Context.AUDIO_SERVICE);
+        manager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0);
     }
 
     ////////////////////////////////////////////////////////
