@@ -49,7 +49,6 @@ Rectangle {
     function clearData() {
         itemListModel.clear();
         itemListView.currentIndex = -1;
-        jsonAtrrString = "";
     }
 
     function createData(bitrate) {
