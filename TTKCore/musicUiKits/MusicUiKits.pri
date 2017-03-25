@@ -67,4 +67,5 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsongslistiteminfowidget.ui \
     $$PWD/musicWidgetKits/musicsourceupdatewidget.ui \
     $$PWD/musicWidgetKits/musicsoundeffectswidget.ui \
-    $$PWD/musicWidgetKits/musicmessageaboutdialog.ui
+    $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
+    $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui

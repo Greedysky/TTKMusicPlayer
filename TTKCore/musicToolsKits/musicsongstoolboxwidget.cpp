@@ -1,6 +1,7 @@
 #include "musicsongstoolboxwidget.h"
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsonglistsharingwidget.h"
+#include "musicsonglistenhancelosslesswidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
@@ -47,6 +48,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     enhanceButton->setStyleSheet(MusicUIObject::MKGTinyBtnEnhanceLossless);
     enhanceButton->setCursor(QCursor(Qt::PointingHandCursor));
     enhanceButton->setGeometry(240, 10, 16, 16);
+    connect(enhanceButton, SIGNAL(clicked()), SLOT(showEnhanceLosslessDialog()));
 
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("shareList"));
@@ -223,6 +225,11 @@ void MusicSongsToolBoxTopWidget::musicListSongSortBy(QAction *action)
 void MusicSongsToolBoxTopWidget::showShareListDialog()
 {
     MusicSongListSharingWidget(this).exec();
+}
+
+void MusicSongsToolBoxTopWidget::showEnhanceLosslessDialog()
+{
+    MusicSongListEnhanceLosslessWidget(this).exec();
 }
 
 bool MusicSongsToolBoxTopWidget::isItemEnable() const

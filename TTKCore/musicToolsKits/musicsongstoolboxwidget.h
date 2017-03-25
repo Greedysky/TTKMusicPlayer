@@ -145,6 +145,10 @@ public Q_SLOTS:
     /*!
      * Show share list dialog.
      */
+    void showEnhanceLosslessDialog();
+    /*!
+     * Show enhance lossless dialog.
+     */
 
 protected:
     bool isItemEnable() const;

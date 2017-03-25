@@ -46,7 +46,8 @@ HEADERS  += \
     $$PWD/musicplaylistfoundwidget.h \
     $$PWD/musicplaylistfoundinfowidget.h \
     $$PWD/musicplaylistfoundtablewidget.h \
-    $$PWD/musicplaylistfoundcategorywidget.h
+    $$PWD/musicplaylistfoundcategorywidget.h \
+    $$PWD/musicsonglistenhancelosslesswidget.h
 
 }
 
@@ -88,6 +89,7 @@ SOURCES += \
     $$PWD/musicplaylistfoundwidget.cpp \
     $$PWD/musicplaylistfoundinfowidget.cpp \
     $$PWD/musicplaylistfoundtablewidget.cpp \
-    $$PWD/musicplaylistfoundcategorywidget.cpp
+    $$PWD/musicplaylistfoundcategorywidget.cpp \
+    $$PWD/musicsonglistenhancelosslesswidget.cpp
 
 }

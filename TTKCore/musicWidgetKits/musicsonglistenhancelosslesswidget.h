@@ -1,5 +1,5 @@
-#ifndef MUSICSONGLISTSHARINGWIDGET_H
-#define MUSICSONGLISTSHARINGWIDGET_H
+#ifndef MUSICSONGLISTENHANCELOSSLESSWIDGET_H
+#define MUSICSONGLISTENHANCELOSSLESSWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,21 +12,21 @@
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
-class MusicSongListSharingWidget;
+class MusicSongListEnhanceLosslessWidget;
 }
 
-/*! @brief The class of the song list share widget.
+/*! @brief The class of the song list enhance lossless widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongListSharingWidget : public MusicAbstractMoveDialog
+class MUSIC_WIDGET_EXPORT MusicSongListEnhanceLosslessWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicSongListSharingWidget(QWidget *parent = 0);
+    explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSongListSharingWidget();
+    virtual ~MusicSongListEnhanceLosslessWidget();
 
     static QString getClassName();
     /*!
@@ -40,8 +40,8 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicSongListSharingWidget *m_ui;
+    Ui::MusicSongListEnhanceLosslessWidget *m_ui;
 
 };
 
-#endif // MUSICSONGLISTSHARINGWIDGET_H
+#endif // MUSICSONGLISTENHANCELOSSLESSWIDGET_H
