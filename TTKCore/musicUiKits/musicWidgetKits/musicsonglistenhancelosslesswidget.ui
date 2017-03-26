@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,200)</string>
+    <string notr="true">background:rgb(255,255,255)</string>
    </property>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
@@ -83,7 +83,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background:transparent</string>
+     <string notr="true"/>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">

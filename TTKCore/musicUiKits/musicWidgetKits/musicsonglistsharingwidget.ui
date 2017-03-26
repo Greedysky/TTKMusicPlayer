@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,200)</string>
+    <string notr="true">background:rgb(255,255,255)</string>
    </property>
    <widget class="QPushButton" name="outputButton">
     <property name="geometry">
