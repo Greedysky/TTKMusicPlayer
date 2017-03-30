@@ -102,8 +102,7 @@ QTabBar::tab:selected {
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
-      <string notr="true">
-	color:#666666;</string>
+      <string notr="true">color:#666666;</string>
      </property>
      <attribute name="title">
       <string>个人资料</string>

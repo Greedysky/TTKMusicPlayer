@@ -38,6 +38,7 @@ public Q_SLOTS:
     /*!
      * Override exec function.
      */
+    void switchToDiffWidget(int index);
 
 protected:
     Ui::MusicSongListSharingWidget *m_ui;
