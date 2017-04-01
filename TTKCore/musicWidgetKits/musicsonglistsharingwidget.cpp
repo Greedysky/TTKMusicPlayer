@@ -1,6 +1,10 @@
 #include "musicsonglistsharingwidget.h"
 #include "ui_musicsonglistsharingwidget.h"
 #include "musicuiobject.h"
+#include "musictoastlabel.h"
+
+#include <QClipboard>
+#include <QApplication>
 
 MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -32,6 +36,11 @@ MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
     group->addButton(m_ui->writeBackButton, 0);
     group->addButton(m_ui->readBackButton, 0);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(switchToDiffWidget(int)));
+
+    connect(m_ui->writeMainCopyButton, SIGNAL(clicked()), SLOT(writeMainCopyButtonClicked()));
+    connect(m_ui->readMainButton, SIGNAL(clicked()), SLOT(readMainButtonClicked()));
+
+    createWriteKey();
 }
 
 MusicSongListSharingWidget::~MusicSongListSharingWidget()
@@ -53,4 +62,26 @@ int MusicSongListSharingWidget::exec()
 void MusicSongListSharingWidget::switchToDiffWidget(int index)
 {
     m_ui->stackedWidget->setCurrentIndex(index);
+}
+
+void MusicSongListSharingWidget::writeMainCopyButtonClicked()
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(m_ui->writeMainLabel2->text());
+
+    MusicToastLabel *toast = new MusicToastLabel(this);
+    toast->setFontSize(15);
+    toast->setFontMargin(20, 20);
+    toast->setText(tr("Copy Finished!"));
+    toast->popup(this);
+}
+
+void MusicSongListSharingWidget::readMainButtonClicked()
+{
+    close();
+}
+
+void MusicSongListSharingWidget::createWriteKey()
+{
+    m_ui->writeMainLabel2->setText("sdfss");
 }

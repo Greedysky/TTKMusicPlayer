@@ -429,7 +429,7 @@
          <string notr="true">QLineEdit{border:1px solid rgb(22, 154, 243);}</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>

@@ -42,8 +42,21 @@ public Q_SLOTS:
     /*!
      * Switch to diff widget.
      */
+    void writeMainCopyButtonClicked();
+    /*!
+     * Write copy button clicked.
+     */
+    void readMainButtonClicked();
+    /*!
+     * Read button clicked.
+     */
 
 protected:
+    void createWriteKey();
+    /*!
+     * Create write key.
+     */
+
     Ui::MusicSongListSharingWidget *m_ui;
 
 };
