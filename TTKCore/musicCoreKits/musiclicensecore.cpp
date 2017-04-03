@@ -46,7 +46,7 @@ QString MusicLicenseCore::getCharacteristicStringNormal()
     if(!nets.isEmpty())
     {
         QString adds = nets.first().hardwareAddress();
-        return hmacSha1(adds.toUtf8(), VALUE0).toHex().mid(10, 20);
+        return hmacSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
     }
     return QString();
 }
