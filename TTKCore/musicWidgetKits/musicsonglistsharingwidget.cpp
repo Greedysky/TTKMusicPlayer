@@ -2,6 +2,7 @@
 #include "ui_musicsonglistsharingwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
+#include "musiclicensecore.h"
 
 #include <QClipboard>
 #include <QApplication>
@@ -83,5 +84,7 @@ void MusicSongListSharingWidget::readMainButtonClicked()
 
 void MusicSongListSharingWidget::createWriteKey()
 {
-    m_ui->writeMainLabel2->setText("sdfss");
+    MusicLicenseCore core;
+    QString key = core.getCharacteristicStringNormal();
+    m_ui->writeMainLabel2->setText(key);
 }
