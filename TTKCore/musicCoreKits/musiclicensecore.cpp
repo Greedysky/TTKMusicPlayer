@@ -1,5 +1,6 @@
 #include "musiclicensecore.h"
 
+#include <QStringList>
 #include <QNetworkInterface>
 #include <QCryptographicHash>
 
