@@ -55,20 +55,20 @@
     </message>
 </context>
 <context>
-    <name>MusicDownloadStatusLabel</name>
+    <name>MusicDownloadStatusObject</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp" line="85"/>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp" line="87"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp" line="85"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp" line="87"/>
         <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp" line="86"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp" line="86"/>
         <source>The Internet Seems To Be A Problem, Let&apos;s Listen To The Local Music.</source>
         <translation>网络连接似乎出了点问题，先听听本地音乐吧!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatuslabel.cpp" line="88"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp" line="88"/>
         <source>Network Connection Has Been Restored.</source>
         <translation>网络连接已恢复!</translation>
     </message>
@@ -159,6 +159,27 @@
         <location filename="MobileCore/ttkmusiclyricmodel.cpp" line="127"/>
         <source>No Lrc Found</source>
         <translation>还没有歌词哦！</translation>
+    </message>
+</context>
+<context>
+    <name>TTKMusicUtils</name>
+    <message>
+        <location filename="MobileCore/ttkmusicutils.cpp" line="130"/>
+        <source>Current version is updated!</source>
+        <translation>当前版本已是最新!</translation>
+    </message>
+</context>
+<context>
+    <name>TTKNetworkHelper</name>
+    <message>
+        <location filename="MobileCore/ttknetworkhelper.cpp" line="217"/>
+        <source>Downloading</source>
+        <translation>正在下载...</translation>
+    </message>
+    <message>
+        <location filename="MobileCore/ttknetworkhelper.cpp" line="217"/>
+        <source>%1 percent</source>
+        <translation>已完成%1 %</translation>
     </message>
 </context>
 </TS>
