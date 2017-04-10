@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 add_definitions(-DMUSIC_LIBRARY)
 
-set(TTK_VERSION "2.4.7.0")
+set(TTK_VERSION "2.4.8.0")
 
 # Find includes in the build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -54,7 +54,6 @@ include_directories(${MUSIC_NETWORK_DIR}/kw)
 include_directories(${MUSIC_NETWORK_DIR}/nr)
 include_directories(${MUSIC_NETWORK_DIR}/qq)
 include_directories(${MUSIC_NETWORK_DIR}/radio)
-include_directories(${MUSIC_NETWORK_DIR}/tt)
 include_directories(${MUSIC_NETWORK_DIR}/wy)
 include_directories(${MUSIC_NETWORK_DIR}/xm)
 include_directories(${MUSIC_NETWORK_DIR}/yyt)
