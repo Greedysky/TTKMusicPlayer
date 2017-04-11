@@ -126,7 +126,7 @@ protected:
     /*!
      * Write user info to setting.
      */
-    void windowRectChanged(int index, const QRect &rect);
+    void windowRectChanged(int index, int height);
     /*!
      * Reset window rect by diff index and geometry.
      */

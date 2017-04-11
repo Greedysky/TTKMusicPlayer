@@ -98,8 +98,9 @@ bool MusicUserWindow::connectDatabase()
         {
             QSqlQuery query(data);
             QString musicUserSql = QString("create table MusicUser (USERID vchar(%1) PRIMARY KEY,"
-                    "PASSWD vchar(%2),EMAIL vchar(%3),USERNAME vchar(%4),LOGINTIME vchar(%5))")
-                    .arg(USERID).arg(PASSWD).arg(EMAIL).arg(USERNAME).arg(LOGINTIME);
+                    "PASSWD vchar(%2),EMAIL vchar(%3),USERNAME vchar(%4),LOGINTIME vchar(%5),"
+                    "SEX vchar(%6),ICON TEXT,BIRTHDAY Date,CITY TEXT,COUNTRY TEXT,SIGNATURE TEXT)")
+                    .arg(USERID).arg(PASSWD).arg(EMAIL).arg(USERNAME).arg(LOGINTIME).arg(SEX);
             query.exec(musicUserSql);
         }
     }

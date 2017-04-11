@@ -21,6 +21,7 @@
 #define EMAIL                   20
 #define USERNAME                20
 #define LOGINTIME               20
+#define SEX                     2
 ///////////////////////////////////////
 
 
