@@ -82,14 +82,14 @@ void MusicUserManagerDialog::musicUserLogoff()
     int index = -1;
     for(int i=0; i<records.count(); ++i)
     {
-        if(records[i].m_name == m_currentUserUID)
+        if(records[i].m_userName == m_currentUserUID)
         {
             index = i;
         }
     }
     if(index != -1)
     {
-        records[index].m_al = "0";  //auto login flag
+        records[index].m_autoLogin = "0";  //auto login flag
     }
     xml.writeUserXMLConfig( records );
 

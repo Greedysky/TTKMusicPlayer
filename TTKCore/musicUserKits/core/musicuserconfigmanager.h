@@ -13,10 +13,10 @@
 
 typedef struct MUSIC_USER_EXPORT MusicUserRecord
 {
-    QString m_name;
-    QString m_rp;
-    QString m_al;
-    QString m_pwd;
+    QString m_userName;
+    QString m_password;
+    QString m_rememberPWD;
+    QString m_autoLogin;
 }MusicUserRecord;
 TTK_DECLARE_LISTS(MusicUserRecord)
 

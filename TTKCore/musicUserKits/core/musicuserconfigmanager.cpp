@@ -23,9 +23,9 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
 
     foreach(const MusicUserRecord &record, records)
     {
-        writeDomElementMutilText(musicPlayer, "username", XmlAttributes() << XmlAttribute("name", record.m_name)
-                                   << XmlAttribute("userRp", record.m_rp) << XmlAttribute("userAl", record.m_al),
-                                   record.m_pwd);
+        writeDomElementMutilText(musicPlayer, "username", XmlAttributes() << XmlAttribute("name", record.m_userName)
+                                   << XmlAttribute("userRp", record.m_rememberPWD) << XmlAttribute("userAl", record.m_autoLogin),
+                                   record.m_password);
     }
 
     //Write to file
@@ -39,10 +39,10 @@ void MusicUserConfigManager::readUserConfig(MusicUserRecords &records)
     for(int i=0; i<nodelist.count(); ++i)
     {
         MusicUserRecord record;
-        record.m_name = nodelist.at(i).toElement().attribute("name");
-        record.m_rp = nodelist.at(i).toElement().attribute("userRp");
-        record.m_al = nodelist.at(i).toElement().attribute("userAl");
-        record.m_pwd =  nodelist.at(i).toElement().text();
+        record.m_userName = nodelist.at(i).toElement().attribute("name");
+        record.m_rememberPWD = nodelist.at(i).toElement().attribute("userRp");
+        record.m_autoLogin = nodelist.at(i).toElement().attribute("userAl");
+        record.m_password =  nodelist.at(i).toElement().text();
         records << record;
     }
 }
