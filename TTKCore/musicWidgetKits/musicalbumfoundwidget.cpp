@@ -75,6 +75,26 @@ void MusicAlbumFoundWidget::setSongName(const QString &name)
 void MusicAlbumFoundWidget::resizeWindow()
 {
     m_albumTableWidget->resizeWindow();
+    if(!m_resizeWidget.isEmpty())
+    {
+        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        width = width - WINDOW_WIDTH_MIN;
+
+        QLabel *label = m_resizeWidget[0];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[1];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[2];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[3];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+
+        label = m_resizeWidget[4];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
+    }
 }
 
 void MusicAlbumFoundWidget::queryAllFinished()
@@ -356,24 +376,5 @@ void MusicAlbumFoundWidget::addButtonClicked()
 void MusicAlbumFoundWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    if(!m_resizeWidget.isEmpty())
-    {
-        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        width = width - WINDOW_WIDTH_MIN;
-
-        QLabel *label = m_resizeWidget[0];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
-
-        label = m_resizeWidget[1];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
-
-        label = m_resizeWidget[2];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
-
-        label = m_resizeWidget[3];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
-
-        label = m_resizeWidget[4];
-        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
-    }
+    resizeWindow();
 }

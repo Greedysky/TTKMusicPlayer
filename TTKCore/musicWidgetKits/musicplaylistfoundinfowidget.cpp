@@ -44,6 +44,7 @@ QString MusicPlaylistFoundInfoWidget::getClassName()
 
 void MusicPlaylistFoundInfoWidget::resizeWindow()
 {
+    m_playlistTableWidget->resizeWindow();
     if(!m_resizeWidget.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();

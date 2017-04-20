@@ -144,6 +144,11 @@ void MusicPlaylistFoundWidget::setSongName(const QString &name)
 
 void MusicPlaylistFoundWidget::resizeWindow()
 {
+    if(m_infoWidget)
+    {
+        m_infoWidget->resizeWindow();
+    }
+
     if(!m_resizeWidget.isEmpty())
     {
         if(m_gridLayout)
