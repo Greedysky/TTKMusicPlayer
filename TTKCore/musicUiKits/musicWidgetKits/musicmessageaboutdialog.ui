@@ -121,6 +121,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
      <string>Confirm</string>
     </property>
    </widget>
+   <widget class="QLabel" name="counterLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>200</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size:15px</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

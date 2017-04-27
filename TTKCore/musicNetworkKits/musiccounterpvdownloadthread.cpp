@@ -26,7 +26,7 @@ void MusicCounterPVDownloadThread::startToDownload()
     request.setUrl(QUrl(MusicCryptographicHash::decryptData(QURTY_URL, URL_KEY)));
     request.setRawHeader("Host", MusicCryptographicHash::decryptData(HOST_URL, URL_KEY).toUtf8());
     request.setRawHeader("Referer", MusicCryptographicHash::decryptData(REFER_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Cookie", "_ga=GA1.2.947899a7a50561a179216abaa=1471087055; busuanziId=E291E60095664AA3A7572D66609AE57A");
+    request.setRawHeader("Cookie", MusicCryptographicHash::decryptData(COOKIE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));

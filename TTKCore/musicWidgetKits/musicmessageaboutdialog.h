@@ -11,6 +11,8 @@
 
 #include "musicabstractmovedialog.h"
 
+class MusicCounterPVDownloadThread;
+
 namespace Ui {
     class MusicMessageAboutDialog;
 }
@@ -33,6 +35,10 @@ public:
      */
 
 public Q_SLOTS:
+    void musicGetCounterFinished(const QString &data);
+    /*!
+     * Get counter pv finished.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -40,6 +46,7 @@ public Q_SLOTS:
 
 protected:
     Ui::MusicMessageAboutDialog *m_ui;
+    MusicCounterPVDownloadThread *m_counterPVThread;
 
 };
 
