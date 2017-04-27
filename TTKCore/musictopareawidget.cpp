@@ -14,6 +14,7 @@
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicwydiscoverlistthread.h"
+#include "musiccounterpvdownloadthread.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -22,14 +23,18 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_musicUserWindow = new MusicUserWindow(this);
-    m_getDiscoverThread = new MusicWYDiscoverListThread(this);
 
     m_pictureCarouselTimer.setInterval(10*MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
+    ///////////////////////////////////////////////////////
+    m_getDiscoverThread = new MusicWYDiscoverListThread(this);
     connect(m_getDiscoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished()));
     m_getDiscoverThread->startSearchSong();
 
+    m_counterPVThread = new MusicCounterPVDownloadThread(this);
+    m_counterPVThread->startToDownload();
+    ///////////////////////////////////////////////////////
     m_currentPlayStatus = true;
     m_listAlpha = 40;
 }
@@ -40,6 +45,7 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicbgskin;
     delete m_musicRemoteWidget;
     delete m_getDiscoverThread;
+    delete m_counterPVThread;
 }
 
 QString MusicTopAreaWidget::getClassName()

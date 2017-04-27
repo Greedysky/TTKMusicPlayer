@@ -78,7 +78,8 @@ HEADERS  += \
     $$PWD/musictranslationthread.h \
     $$PWD/musicvoicettsthread.h \
     $$PWD/musicidentifysongsthread.h \
-    $$PWD/musicsourceupdatethread.h
+    $$PWD/musicsourceupdatethread.h \
+    $$PWD/musiccounterpvdownloadthread.h
 
 }
 
@@ -142,6 +143,7 @@ SOURCES += \
     $$PWD/musictranslationthread.cpp \
     $$PWD/musicvoicettsthread.cpp \
     $$PWD/musicidentifysongsthread.cpp \
-    $$PWD/musicsourceupdatethread.cpp
+    $$PWD/musicsourceupdatethread.cpp \
+    $$PWD/musiccounterpvdownloadthread.cpp
 
 }

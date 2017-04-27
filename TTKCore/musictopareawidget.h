@@ -17,6 +17,7 @@ class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
 class MusicWYDiscoverListThread;
+class MusicCounterPVDownloadThread;
 
 namespace Ui {
     class MusicApplication;
@@ -213,6 +214,7 @@ protected:
     MusicBackgroundSkinDialog *m_musicbgskin;
     MusicRemoteWidget *m_musicRemoteWidget;
     MusicWYDiscoverListThread *m_getDiscoverThread;
+    MusicCounterPVDownloadThread *m_counterPVThread;
 
     QString m_currentBgSkin;
     int m_alpha, m_listAlpha;
