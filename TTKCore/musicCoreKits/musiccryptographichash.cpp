@@ -38,7 +38,6 @@ QString MusicCryptographicHash::decrypt(const QString &data, const QString &key,
     return d;
 }
 
-
 QString MusicCryptographicHash::encryptData(const QString &data, const QString &key, Priority p)
 {
     return MusicCryptographicHash().encrypt(data, key, p);

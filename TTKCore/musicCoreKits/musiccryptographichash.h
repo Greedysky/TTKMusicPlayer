@@ -63,6 +63,8 @@ public:
     /*!
      * decrypt by QString data.
      */
+
+    //////////////////////////////////////////////////////////////////////////
     static QString encryptData(const QString &data, const QString &key, Priority p = Lower);
     /*!
      * encrypt by QString data.
@@ -71,8 +73,8 @@ public:
     /*!
      * decrypt by QString data.
      */
-
     //////////////////////////////////////////////////////////////////////////
+
     std::string xxteaEncrypt(std::string data,  std::string key);
     /*!
      * XXTEA encrypt by std::string data.
