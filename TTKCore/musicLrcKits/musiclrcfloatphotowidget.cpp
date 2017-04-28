@@ -19,37 +19,37 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_filmBGWidget->setGeometry(0, 0, 662, 125);
     m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/lb_film_bg');");
 
-    m_plane1 = new MusicClickedLabel(this);
+    m_plane1 = new MusicClickedLabel(m_filmBGWidget);
     m_plane1->setGeometry(100, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane2 = new MusicClickedLabel(this);
+    m_plane2 = new MusicClickedLabel(m_filmBGWidget);
     m_plane2->setGeometry(280, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane3 = new MusicClickedLabel(this);
+    m_plane3 = new MusicClickedLabel(m_filmBGWidget);
     m_plane3->setGeometry(460, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
 
-    m_radio1 = new QCheckBox(this);
+    m_radio1 = new QCheckBox(m_filmBGWidget);
     m_radio1->setGeometry(190, 75, 20, 20);
     m_radio1->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_radio2 = new QCheckBox(this);
+    m_radio2 = new QCheckBox(m_filmBGWidget);
     m_radio2->setGeometry(370, 75, 20, 20);
     m_radio2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_radio3 = new QCheckBox(this);
+    m_radio3 = new QCheckBox(m_filmBGWidget);
     m_radio3->setGeometry(550, 75, 20, 20);
     m_radio3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_checkBox = new QCheckBox(tr("All"), this);
-    m_checkBox->setGeometry(15, 130, 100, 20);
+    m_checkBox->setGeometry(20, 130, 100, 20);
     m_checkBox->setChecked(true);
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(515, 130, 60, 22);
+    m_confirmButton->setGeometry(580, 130, 60, 22);
     m_confirmButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + \
                                    MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
-    m_previous = new QPushButton("<", this);
+    m_previous = new QPushButton("<", m_filmBGWidget);
     m_previous->setGeometry(20, 38, 15, 50);
-    m_next = new QPushButton(">", this);
+    m_next = new QPushButton(">", m_filmBGWidget);
     m_next->setGeometry(625, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
@@ -84,11 +84,11 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_plane1;
     delete m_plane2;
     delete m_plane3;
-    delete m_filmBGWidget;
     delete m_previous;
     delete m_next;
     delete m_confirmButton;
     delete m_checkBox;
+    delete m_filmBGWidget;
 }
 
 QString MusicLrcFloatPhotoWidget::getClassName()
@@ -98,8 +98,13 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(width/2, 530 + height, 115, 105);
-    m_rectOut = QRect(width/2, 330 + height, 662, 180);
+    m_rectIn = QRect(0, 530 + height, 115 + width, 105);
+    m_rectOut = QRect(0, 330 + height, 662 + width, 180);
+
+    m_filmBGWidget->move(width/2, 0);
+    m_checkBox->move(width/2 + 20, 130);
+    m_confirmButton->move(width/2 + 580, 130);
+
     setGeometry(m_rectOut);
 }
 
