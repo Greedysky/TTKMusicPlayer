@@ -1,6 +1,7 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicclickedlabel.h"
+#include "musicinlinefloatuiobject.h"
 
 #include <qmath.h>
 #include <QTimer>
@@ -41,8 +42,9 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(500, 130, 70, 20);
-    m_confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_confirmButton->setGeometry(515, 130, 60, 22);
+    m_confirmButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + \
+                                   MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", this);
