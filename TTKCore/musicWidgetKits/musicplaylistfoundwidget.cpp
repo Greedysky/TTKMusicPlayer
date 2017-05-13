@@ -202,6 +202,7 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
             containTopLayout->addWidget(l);
             containTopLayout->addWidget(hline);
         }
+        containTopWidget->setLayout(containTopLayout);
 
         QFrame *line = new QFrame(m_mainWindow);
         line->setFrameShape(QFrame::HLine);

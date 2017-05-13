@@ -6,6 +6,8 @@
 #include <QSignalMapper>
 #include <QFontMetrics>
 
+#define PAGE_SIZE   10
+
 MusicPagingWidgetObject::MusicPagingWidgetObject(QObject *parent)
     : QObject(parent)
 {
@@ -34,7 +36,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     layout->setContentsMargins(0, 20, 0, 20);
     layout->setSpacing(12);
 
-    for(int i=1; i<=5; ++i)
+    for(int i=1; i<=PAGE_SIZE; ++i)
     {
         m_pagingItems << (new MusicClickedLabel(QString::number(i), m_pagingWidget));
     }
@@ -56,11 +58,11 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
         group->setMapping(w, i++);
     }
 
-    m_pagingItems[5]->hide();
-    if(total <= 5)
+    m_pagingItems[PAGE_SIZE]->hide();
+    if(total <= PAGE_SIZE)
     {
-        m_pagingItems[6]->hide();
-        for(int i=4; i>=total; --i)
+        m_pagingItems[PAGE_SIZE + 1]->hide();
+        for(int i=PAGE_SIZE - 1; i>=total; --i)
         {
             m_pagingItems[i]->hide();
         }
@@ -70,12 +72,12 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     layout->addStretch(1);
     if(total != 0)
     {
-        layout->addWidget(m_pagingItems[5]);
-        for(int i=0; i<5; ++i)
+        layout->addWidget(m_pagingItems[PAGE_SIZE]);
+        for(int i=0; i<PAGE_SIZE; ++i)
         {
             layout->addWidget(m_pagingItems[i]);
         }
-        layout->addWidget(m_pagingItems[6]);
+        layout->addWidget(m_pagingItems[PAGE_SIZE + 1]);
     }
     else
     {
@@ -112,58 +114,63 @@ void MusicPagingWidgetObject::paging(int index, int total)
         case 2:
         case 3:
         case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
             m_currentPage = index;
             break;
-        case 5:
+        case 10:
             {
-                page -= 5;
-                MusicClickedLabel *w = m_pagingItems[5];
+                page -= PAGE_SIZE;
+                MusicClickedLabel *w = m_pagingItems[PAGE_SIZE];
 
-                if(total <= 5)
+                if(total <= PAGE_SIZE)
                 {
                     w->hide();
                 }
                 else
                 {
-                    for(int i=0; i<5; ++i)
+                    for(int i=0; i<PAGE_SIZE; ++i)
                     {
                         m_pagingItems[i]->setText(QString::number(page + i));
                         m_pagingItems[i]->show();
                     }
-                    (m_pagingItems[0]->text().toInt() < 5) ? w->hide() : w->show();
+                    (m_pagingItems[0]->text().toInt() < PAGE_SIZE) ? w->hide() : w->show();
                 }
 
                 m_currentPage = 0;
-                m_pagingItems[6]->show();
+                m_pagingItems[PAGE_SIZE + 1]->show();
                 break;
             }
-        case 6:
+        case 11:
             {
-                page += 5;
-                MusicClickedLabel *w = m_pagingItems[6];
+                page += PAGE_SIZE;
+                MusicClickedLabel *w = m_pagingItems[PAGE_SIZE + 1];
                 int boundary = total - page + 1;
-                boundary = boundary < 5 ? boundary : 5;
+                boundary = boundary < PAGE_SIZE ? boundary : PAGE_SIZE;
 
                 for(int i=0; i<boundary; ++i)
                 {
                     m_pagingItems[i]->setText(QString::number(page + i));
                 }
 
-                if(total - page >= 5)
+                if(total - page >= PAGE_SIZE)
                 {
                     w->show();
                 }
                 else
                 {
                     w->hide();
-                    for(int i=4; i>(total - page); --i)
+                    for(int i=PAGE_SIZE - 1; i>(total - page); --i)
                     {
                         m_pagingItems[i]->hide();
                     }
                 }
 
                 m_currentPage = 0;
-                m_pagingItems[5]->show();
+                m_pagingItems[PAGE_SIZE]->show();
                 break;
             }
         default:
