@@ -20,7 +20,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
     QString m_likedCount;
 }MusicSongInfomation;
 
-#define COMMIT_PAGE_SIZE    10
+#define COMMIT_PAGE_SIZE    20
 
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>

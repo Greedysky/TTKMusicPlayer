@@ -58,8 +58,8 @@ void MusicWYCommentsThread::startSearchSong(int index)
     deleteAll();
 
     m_count = 0;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY).arg(m_songID).arg(COMMIT_PAGE_SIZE*index);
-
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY)
+                    .arg(m_songID).arg(COMMIT_PAGE_SIZE).arg(COMMIT_PAGE_SIZE*index);
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

@@ -30,7 +30,7 @@ const QString WY_SONG_DETAIL_URL   = "L3pCVjhOLzB5TUxpNS84czdTRTFndnZvMFkyTjhyKz
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_ARTIST_URL        = "VURUWGM0c0NHamdldHFWcGwvZWlxS24rZ3Fpc1o0TEZmUDRDUDl3aWQvdklQN0VCeVpicmxRPT0=";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_SONG_COMMIT_URL   = "TFFwV2I3RndydWRyYUFScm9RZjFCVlg0OW5OQy9LSlVFQTJWRUxraDhHNFNrVDFsWk5vaEtDeHNyTXNQOTRYNnVtQmVBTVVLUytBalJTZ3Y0ZTI3T2ZkSjJFdXVNbzZCWnNRZnRBbXBjSitGQUVpTkticGVLYWU1RWZ3aTAxbTFDdnZFYm9Kb0NSY2JiYmpU";
+const QString WY_SONG_COMMIT_URL   = "UjF0OUhmdnIxdXFWNEEwam5ZT0t6Q2EraGdGQzZqT01aYzN1bG1HQUdoOWxDbFhWTVpVWUk2NUdpSEFHcUo4UUlLL3BvWXJZSXJsTlU3M3JiN05sMUFldit5bzRXMFJNYjNjQ3pTOFp3TnBJSERSQjA3VDlycFRXaVpHV3BZOXFSU3NyVUFrZzRWeXRQY0lJ";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_SONG_TOPLIST_URL  = "dlk1cmdmdXJvLzZ4cE5VRENlS2I4MUV6TDVoU1NGM0dJVVRKaHpzOGlweWZpTndiL1I2c3VmMTh4QW89";
 ///////////////////////////////////////////////////////////////////////////

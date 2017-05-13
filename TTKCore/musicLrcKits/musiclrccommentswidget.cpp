@@ -453,7 +453,6 @@ void MusicLrcCommentsWidget::createPagingWidget()
     layout->setContentsMargins(0, 20, 0, 20);
     layout->setSpacing(12);
 
-
     MusicClickedLabel *page1Button = new MusicClickedLabel("1", m_pagingWidget);
     MusicClickedLabel *page2Button = new MusicClickedLabel("2", m_pagingWidget);
     MusicClickedLabel *page3Button = new MusicClickedLabel("3", m_pagingWidget);
