@@ -907,22 +907,6 @@ void MusicApplication::getCurrentPlayList(QStringList &list)
     list = m_musicSongTree->getMusicSongsFileName(m_musicSongTree->currentIndex());
 }
 
-#if defined(Q_OS_WIN)
-#  ifdef MUSIC_GREATER_NEW
-bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
-{
-    m_applicationObject->nativeEvent(eventType, message, result);
-    return MusicAbstractMoveResizeWidget::nativeEvent(eventType, message, result);
-}
-#  else
-bool MusicApplication::winEvent(MSG *message, long *result)
-{
-    m_applicationObject->winEvent(message, result);
-    return MusicAbstractMoveResizeWidget::winEvent(message, result);
-}
-#  endif
-#endif
-
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
@@ -982,6 +966,34 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     MusicAbstractMoveResizeWidget::contextMenuEvent(event);
     musicCreateRightMenu();
 }
+
+void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if(event->pos().y() <= 50)
+    {
+        MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
+    }
+    else
+    {
+        event->ignore();
+    }
+}
+
+#if defined(Q_OS_WIN)
+#  ifdef MUSIC_GREATER_NEW
+bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
+{
+    m_applicationObject->nativeEvent(eventType, message, result);
+    return MusicAbstractMoveResizeWidget::nativeEvent(eventType, message, result);
+}
+#  else
+bool MusicApplication::winEvent(MSG *message, long *result)
+{
+    m_applicationObject->winEvent(message, result);
+    return MusicAbstractMoveResizeWidget::winEvent(message, result);
+}
+#  endif
+#endif
 
 void MusicApplication::setMusicPlayIndex()
 {

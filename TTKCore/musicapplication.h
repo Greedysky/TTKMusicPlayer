@@ -286,6 +286,7 @@ protected:
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_GREATER_NEW
     virtual bool nativeEvent(const QByteArray &, void *, long *) override;
