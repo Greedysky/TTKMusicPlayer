@@ -3,19 +3,18 @@
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinlinelrcuiobject.h"
-#include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musicglobal.h"
+#include "musicclickedlabel.h"
 #include "musicsemaphoreloop.h"
+#include "musicpagingwidgetobject.h"
 
 #include <qmath.h>
 #include <QBoxLayout>
-#include <QSignalMapper>
 #include <QPushButton>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QTextEdit>
-#include <QFontMetrics>
 #include <QDateTime>
 
 MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
@@ -252,8 +251,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
 
     initLabel(QString(), 0);
 
-    m_currentPage = 0;
-    m_pagingWidget = nullptr;
+    m_pagingWidgetObject = nullptr;
 
     m_commentsThread = new MusicWYCommentsThread(this);
     connect(m_commentsThread, SIGNAL(createSearchedItems(MusicSongComment)), SLOT(createSearchedItems(MusicSongComment)));
@@ -261,12 +259,11 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
 
 MusicLrcCommentsWidget::~MusicLrcCommentsWidget()
 {
-    deletePagingItems();
     deleteCommentsItems();
     delete m_topLabel;
     delete m_commentsLabel;
     delete m_messageEdit;
-    delete m_pagingWidget;
+    delete m_pagingWidgetObject;
     delete m_messageComments;
     delete m_commentsThread;
 }
@@ -304,84 +301,8 @@ void MusicLrcCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
     int total = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
-    int page = m_pagingItems[0]->text().toInt();
-    for(int i=0; i<m_pagingItems.count() - 2; ++i)
-    {
-        m_pagingItems[i]->setStyleSheet(MusicUIObject::MColorStyle04);
-    }
-
-    switch(index)
-    {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            m_currentPage = index;
-            break;
-        case 5:
-            {
-                page -= 5;
-                MusicClickedLabel *w = m_pagingItems[5];
-
-                if(total <= 5)
-                {
-                    w->hide();
-                }
-                else
-                {
-                    for(int i=0; i<5; ++i)
-                    {
-                        m_pagingItems[i]->setText(QString::number(page + i));
-                        m_pagingItems[i]->show();
-                    }
-                    (m_pagingItems[0]->text().toInt() < 5) ? w->hide() : w->show();
-                }
-
-                m_currentPage = 0;
-                m_pagingItems[6]->show();
-                break;
-            }
-        case 6:
-            {
-                page += 5;
-                MusicClickedLabel *w = m_pagingItems[6];
-                int boundary = total - page + 1;
-                boundary = boundary < 5 ? boundary : 5;
-
-                for(int i=0; i<boundary; ++i)
-                {
-                    m_pagingItems[i]->setText(QString::number(page + i));
-                }
-
-                if(total - page >= 5)
-                {
-                    w->show();
-                }
-                else
-                {
-                    w->hide();
-                    for(int i=4; i>(total - page); --i)
-                    {
-                        m_pagingItems[i]->hide();
-                    }
-                }
-
-                m_currentPage = 0;
-                m_pagingItems[5]->show();
-                break;
-            }
-        default:
-            break;
-    }
-
-    for(int i=0; i<m_pagingItems.count() - 2; ++i)
-    {
-        MusicClickedLabel *w = m_pagingItems[i];
-        w->setFixedWidth(QFontMetrics(w->font()).width(w->text()));
-    }
-    m_pagingItems[m_currentPage]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
-    m_commentsThread->startSearchSong(m_pagingItems[m_currentPage]->text().toInt() - 1);
+    m_pagingWidgetObject->paging(index, total);
+    m_commentsThread->startSearchSong(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicLrcCommentsWidget::createEMOJILabelWidget()
@@ -438,81 +359,11 @@ void MusicLrcCommentsWidget::deleteCommentsItems()
     }
 }
 
-void MusicLrcCommentsWidget::deletePagingItems()
-{
-    while(!m_pagingItems.isEmpty())
-    {
-        delete m_pagingItems.takeLast();
-    }
-}
-
 void MusicLrcCommentsWidget::createPagingWidget()
 {
-    m_pagingWidget = new QWidget(m_messageComments);
-    QHBoxLayout *layout = new QHBoxLayout(m_pagingWidget);
-    layout->setContentsMargins(0, 20, 0, 20);
-    layout->setSpacing(12);
-
-    for(int i=1; i<=5; ++i)
-    {
-        m_pagingItems << (new MusicClickedLabel(QString::number(i), m_pagingWidget));
-    }
-    m_pagingItems << (new MusicClickedLabel(tr("pre"), m_pagingWidget))
-                  << (new MusicClickedLabel(tr("next"), m_pagingWidget));
-
-    QSignalMapper *group = new QSignalMapper(m_pagingWidget);
-    connect(group, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
-
-    int i=0;
-    foreach(MusicClickedLabel *w, m_pagingItems)
-    {
-        QFont font(w->font());
-        font.setPixelSize(17);
-        w->setFont(font);
-        w->setStyleSheet(MusicUIObject::MColorStyle04);
-        w->setFixedWidth(QFontMetrics(font).width(w->text()));
-        connect(w, SIGNAL(clicked()), group, SLOT(map()));
-        group->setMapping(w, i++);
-    }
-
-    m_pagingItems[5]->hide();
-    int count = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
-    if(count <= 5)
-    {
-        m_pagingItems[6]->hide();
-        for(int i=4; i>=count; --i)
-        {
-            m_pagingItems[i]->hide();
-        }
-    }
-    m_pagingItems[0]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
-
-    layout->addStretch(1);
-    if(count != 0)
-    {
-        layout->addWidget(m_pagingItems[5]);
-        for(int i=0; i<5; ++i)
-        {
-            layout->addWidget(m_pagingItems[i]);
-        }
-        layout->addWidget(m_pagingItems[6]);
-    }
-    else
-    {
-        QWidget *func = new QWidget(m_pagingWidget);
-        QVBoxLayout *funcLayout = new QVBoxLayout(func);
-        QLabel *icon = new QLabel(func);
-        icon->setPixmap(QPixmap(":/lrc/lb_no_results"));
-        QLabel *text = new QLabel(tr("There Is Empty!"), func);
-        text->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle05);
-        text->setAlignment(Qt::AlignCenter);
-        funcLayout->addWidget(icon, 0, Qt::AlignCenter);
-        funcLayout->addWidget(text, 0, Qt::AlignCenter);
-        func->setLayout(funcLayout);
-        layout->addWidget(func);
-    }
-    layout->addStretch(1);
-
-    m_pagingWidget->setLayout(layout);
-    MStatic_cast(QVBoxLayout*, m_messageComments->layout())->insertWidget(0, m_pagingWidget);
+    m_pagingWidgetObject = new MusicPagingWidgetObject(this);
+    connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
+    int total = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
+    QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, total);
+    MStatic_cast(QVBoxLayout*, m_messageComments->layout())->insertWidget(0, w);
 }

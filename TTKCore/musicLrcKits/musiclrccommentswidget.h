@@ -13,7 +13,7 @@
 #include "musicwycommentsthread.h"
 
 class QTextEdit;
-class MusicClickedLabel;
+class MusicPagingWidgetObject;
 
 /*! @brief The class of the song comment item.
  * @author Greedysky <greedysky@163.com>
@@ -110,22 +110,17 @@ protected:
     /*!
      * Delete comments items.
      */
-    void deletePagingItems();
-    /*!
-     * Delete paging items.
-     */
     void createPagingWidget();
     /*!
      * Create paging items.
      */
 
-    int m_currentPage;
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
-    QWidget *m_messageComments, *m_pagingWidget;
+    QWidget *m_messageComments;
     MusicWYCommentsThread *m_commentsThread;
     QList<MusicLrcCommentsItem*> m_commentsItems;
-    QList<MusicClickedLabel*> m_pagingItems;
+    MusicPagingWidgetObject *m_pagingWidgetObject;
 
 };
 
