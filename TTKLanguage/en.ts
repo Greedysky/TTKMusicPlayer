@@ -140,7 +140,7 @@
 <context>
     <name>MusicApplication</name>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="944"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="928"/>
         <source>Prompt</source>
         <translation>Prompt</translation>
     </message>
@@ -155,7 +155,7 @@
         <translation>Logout</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicapplication.cpp" line="945"/>
+        <location filename="../TTKCore/musicapplication.cpp" line="929"/>
         <source>TTKMusicPlayer will run in the background</source>
         <translation>TTKMusicPlayer Will Run In The Background</translation>
     </message>
@@ -1991,12 +1991,12 @@
 <context>
     <name>MusicLrcCommentsItem</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="60"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="59"/>
         <source>Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="77"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="76"/>
         <source>Reply</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2004,33 +2004,18 @@
 <context>
     <name>MusicLrcCommentsWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="207"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="206"/>
         <source>Send</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="427"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="348"/>
         <source>&lt;span style=&apos;font-size:15pt;color:#AAAAAA;font-style:bold;&apos;&gt;&quot;%1&quot; Commit&lt;/span&gt;&lt;span style=&apos;font-size:11pt;color:#666666;font-style:bold;&apos;&gt; (Just %2 Commits)&lt;/span&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="430"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="351"/>
         <source>All Comments(%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="462"/>
-        <source>pre</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="463"/>
-        <source>next</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="511"/>
-        <source>There Is Empty!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2503,12 +2488,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcFloatPhotoWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="38"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="39"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="44"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3229,6 +3214,24 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <location filename="../TTKCore/musicWidgetCoreKits/musicopenfilewidget.cpp" line="23"/>
         <source>OpenFiles</source>
         <translation>Open Files</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPagingWidgetObject</name>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="41"/>
+        <source>pre</source>
+        <translation>Pre</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="42"/>
+        <source>next</source>
+        <translation>Next</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="86"/>
+        <source>There Is Empty!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
