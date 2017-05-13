@@ -453,16 +453,13 @@ void MusicLrcCommentsWidget::createPagingWidget()
     layout->setContentsMargins(0, 20, 0, 20);
     layout->setSpacing(12);
 
-    MusicClickedLabel *page1Button = new MusicClickedLabel("1", m_pagingWidget);
-    MusicClickedLabel *page2Button = new MusicClickedLabel("2", m_pagingWidget);
-    MusicClickedLabel *page3Button = new MusicClickedLabel("3", m_pagingWidget);
-    MusicClickedLabel *page4Button = new MusicClickedLabel("4", m_pagingWidget);
-    MusicClickedLabel *page5Button = new MusicClickedLabel("5", m_pagingWidget);
-    MusicClickedLabel *previousButton = new MusicClickedLabel(tr("pre"), m_pagingWidget);
-    MusicClickedLabel *nextButton = new MusicClickedLabel(tr("next"), m_pagingWidget);
+    for(int i=1; i<=5; ++i)
+    {
+        m_pagingItems << (new MusicClickedLabel(QString::number(i), m_pagingWidget));
+    }
+    m_pagingItems << (new MusicClickedLabel(tr("pre"), m_pagingWidget))
+                  << (new MusicClickedLabel(tr("next"), m_pagingWidget));
 
-    m_pagingItems << page1Button << page2Button << page3Button << page4Button
-                  << page5Button << previousButton << nextButton;
     QSignalMapper *group = new QSignalMapper(m_pagingWidget);
     connect(group, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
 
@@ -488,18 +485,17 @@ void MusicLrcCommentsWidget::createPagingWidget()
             m_pagingItems[i]->hide();
         }
     }
-    page1Button->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
+    m_pagingItems[0]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
 
     layout->addStretch(1);
     if(count != 0)
     {
-        layout->addWidget(previousButton);
-        layout->addWidget(page1Button);
-        layout->addWidget(page2Button);
-        layout->addWidget(page3Button);
-        layout->addWidget(page4Button);
-        layout->addWidget(page5Button);
-        layout->addWidget(nextButton);
+        layout->addWidget(m_pagingItems[5]);
+        for(int i=0; i<5; ++i)
+        {
+            layout->addWidget(m_pagingItems[i]);
+        }
+        layout->addWidget(m_pagingItems[6]);
     }
     else
     {
