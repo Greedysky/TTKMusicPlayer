@@ -69,7 +69,7 @@ QString MusicBackgroundSkinDialog::getClassName()
 void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 {
     QList<QFileInfo> file(QDir(THEME_DIR_FULL)
-                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot));
+                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     foreach(const QFileInfo &info, file)
     {
         QString fileName = info.fileName();
