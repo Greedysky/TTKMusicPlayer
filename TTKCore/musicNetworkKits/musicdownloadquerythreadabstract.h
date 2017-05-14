@@ -79,6 +79,10 @@ public:
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
+    virtual void startSearchSong(int offset);
+    /*!
+     * Start to search data from name and type bt paging.
+     */
     inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     /*!
      * Set search data quality.
@@ -123,6 +127,14 @@ public:
     /*!
      * Return the current raw data.
      */
+    inline int getPageSize() const { return m_pageSize; }
+    /*!
+     * Return the each page max size.
+     */
+    inline int getPageTotal() const { return m_pageTotal; }
+    /*!
+     * Return the page total number.
+     */
 
 Q_SIGNALS:
     void clearAllItems();
@@ -140,6 +152,7 @@ protected:
      * Map query server string.
      */
 
+    int m_pageSize, m_pageTotal;
     MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QString m_queryServer;

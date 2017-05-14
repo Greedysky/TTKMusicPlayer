@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicnetworkabstract.h"
+#include "musicdownloadquerythreadabstract.h"
 
 typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
 {
@@ -20,12 +20,10 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
     QString m_likedCount;
 }MusicSongInfomation;
 
-#define COMMIT_PAGE_SIZE    20
-
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYCommentsThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicWYCommentsThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
@@ -41,21 +39,13 @@ public:
      * Get class object name.
      */
 
-    virtual void deleteAll();
-    /*!
-     * Release the network object.
-     */
-    void startSearchSong(const QString &name);
+    virtual void startSearchSong(QueryType type, const QString &name) override;
     /*!
      * Start to Search data from name.
      */
-    void startSearchSong(int index);
+    virtual void startSearchSong(int index) override;
     /*!
-     * Start to Search data from page index.
-     */
-    inline int total() const { return m_count;}
-    /*!
-     * Get the current comments all count.
+     * Start to search data from name and type bt paging.
      */
 
 Q_SIGNALS:
@@ -69,9 +59,6 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-
-protected:
-    int m_count, m_songID;
 
 };
 

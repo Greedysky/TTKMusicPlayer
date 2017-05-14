@@ -6,17 +6,10 @@
 #include "qjson/parser.h"
 
 MusicWYCommentsThread::MusicWYCommentsThread(QObject *parent)
-    : MusicNetworkAbstract(parent)
+    : MusicDownLoadQueryThreadAbstract(parent)
 {
-    m_count = 0;
-    m_songID = 0;
-
-    m_manager = new QNetworkAccessManager(this);
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-#endif
+    m_pageSize = 20;
+    m_queryServer = "WangYi";
 }
 
 MusicWYCommentsThread::~MusicWYCommentsThread()
@@ -29,27 +22,21 @@ QString MusicWYCommentsThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWYCommentsThread::deleteAll()
+void MusicWYCommentsThread::startSearchSong(QueryType type, const QString &name)
 {
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}
+    Q_UNUSED(type);
 
-void MusicWYCommentsThread::startSearchSong(const QString &name)
-{
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryWYThread *query = new MusicDownLoadQueryWYThread(this);
     query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
-    m_songID = 0;
+    m_rawData["songID"] = 0;
     if(!query->getMusicSongInfos().isEmpty())
     {
-        m_songID = query->getMusicSongInfos().first().m_songId.toInt();
+        m_rawData["songID"] = query->getMusicSongInfos().first().m_songId.toInt();
+        startSearchSong(0);
     }
 }
 
@@ -57,9 +44,9 @@ void MusicWYCommentsThread::startSearchSong(int index)
 {
     deleteAll();
 
-    m_count = 0;
+    m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY)
-                    .arg(m_songID).arg(COMMIT_PAGE_SIZE).arg(COMMIT_PAGE_SIZE*index);
+                    .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*index);
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -95,7 +82,7 @@ void MusicWYCommentsThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toLongLong() == 200)
             {
-                m_count = value["total"].toLongLong();
+                m_pageTotal = value["total"].toLongLong();
 
                 QVariantList hots = value["comments"].toList();
                 foreach(const QVariant &hot, hots)

@@ -278,15 +278,14 @@ void MusicLrcCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    m_commentsThread->startSearchSong(name);
-    m_commentsThread->startSearchSong(0);
+    m_commentsThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
     MStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);
     createPagingWidget();
 
-    initLabel(name, m_commentsThread->total());
+    initLabel(name, m_commentsThread->getPageTotal());
 }
 
 void MusicLrcCommentsWidget::createSearchedItems(const MusicSongComment &comments)
@@ -301,7 +300,7 @@ void MusicLrcCommentsWidget::createSearchedItems(const MusicSongComment &comment
 void MusicLrcCommentsWidget::buttonClicked(int index)
 {
     deleteCommentsItems();
-    int total = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
+    int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
     m_commentsThread->startSearchSong(m_pagingWidgetObject->currentIndex() - 1);
 }
@@ -364,7 +363,7 @@ void MusicLrcCommentsWidget::createPagingWidget()
 {
     m_pagingWidgetObject = new MusicPagingWidgetObject(this);
     connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
-    int total = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
+    int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
     QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, total);
     m_messageComments->layout()->addWidget(w);
 }
