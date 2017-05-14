@@ -101,8 +101,8 @@ MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
     solidLine->setFixedHeight(1);
     solidLine->setStyleSheet(MusicUIObject::MBorderStyle06 + MusicUIObject::MColorStyle03);
     //////////////////////////////////////////////////////////////////////
-    layout->addWidget(solidLine);
     layout->addWidget(centerWidget);
+    layout->addWidget(solidLine);
     setLayout(layout);
 }
 
@@ -294,7 +294,8 @@ void MusicLrcCommentsWidget::createSearchedItems(const MusicSongComment &comment
     MusicLrcCommentsItem *item = new MusicLrcCommentsItem(this);
     item->createSearchedItems(comments);
     m_commentsItems << item;
-    m_messageComments->layout()->addWidget(item);
+    QVBoxLayout *layout = MStatic_cast(QVBoxLayout*, m_messageComments->layout());
+    layout->insertWidget(layout->count() - 1, item);
 }
 
 void MusicLrcCommentsWidget::buttonClicked(int index)
@@ -365,5 +366,5 @@ void MusicLrcCommentsWidget::createPagingWidget()
     connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
     int total = ceil(m_commentsThread->total()*1.0/COMMIT_PAGE_SIZE);
     QWidget *w = m_pagingWidgetObject->createPagingWidget(m_messageComments, total);
-    MStatic_cast(QVBoxLayout*, m_messageComments->layout())->insertWidget(0, w);
+    m_messageComments->layout()->addWidget(w);
 }
