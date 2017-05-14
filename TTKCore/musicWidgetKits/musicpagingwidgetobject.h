@@ -35,6 +35,10 @@ public:
     /*!
      * Create paging items.
      */
+    void reset(int total);
+    /*!
+     * Reset page to origin.
+     */
     void paging(int index, int total);
     /*!
      * Start to page by given index and total.

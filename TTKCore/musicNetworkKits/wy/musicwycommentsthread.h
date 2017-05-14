@@ -43,7 +43,7 @@ public:
     /*!
      * Start to Search data from name.
      */
-    virtual void startSearchSong(int index) override;
+    virtual void startSearchSong(int offset) override;
     /*!
      * Start to search data from name and type bt paging.
      */

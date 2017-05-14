@@ -6,6 +6,7 @@
 MusicDownLoadQueryWYPlaylistThread::MusicDownLoadQueryWYPlaylistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
+    m_pageSize = 30;
     m_queryServer = "WangYi";
 }
 
@@ -26,10 +27,11 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const Q
     }
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll(const QString &type)
+void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
 {
-    QString key = type.isEmpty() ? "all" : type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY).arg(key);
+    m_pageTotal = 0;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY)
+                    .arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset);
     deleteAll();
 
     QNetworkRequest request;
@@ -46,6 +48,12 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll(const QString &type)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll(const QString &type)
+{
+    m_searchText = type.isEmpty() ? "all" : type;
+    startSearchSong(0);
 }
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(const QString &playlist)
@@ -90,6 +98,7 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("playlists"))
             {
+                m_pageTotal = value["total"].toLongLong();
                 QVariantList datas = value["playlists"].toList();
                 foreach(const QVariant &var, datas)
                 {

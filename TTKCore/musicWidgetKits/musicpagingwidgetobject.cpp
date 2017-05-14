@@ -99,6 +99,32 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     return m_pagingWidget;
 }
 
+void MusicPagingWidgetObject::reset(int total)
+{
+    if(m_pagingItems.isEmpty())
+    {
+        return;
+    }
+
+    foreach(MusicClickedLabel *label, m_pagingItems)
+    {
+        label->hide();
+    }
+    m_currentPage = 0;
+
+    if(total > PAGE_SIZE)
+    {
+        total = PAGE_SIZE;
+        m_pagingItems[PAGE_SIZE + 1]->show();
+    }
+
+    for(int i=0; i<total; ++i)
+    {
+        m_pagingItems[i]->setText(QString::number(i + 1));
+        m_pagingItems[i]->show();
+    }
+}
+
 void MusicPagingWidgetObject::paging(int index, int total)
 {
     int page = m_pagingItems[0]->text().toInt();

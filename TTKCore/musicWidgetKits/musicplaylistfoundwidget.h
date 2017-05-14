@@ -16,6 +16,7 @@
 class QGridLayout;
 class QPushButton;
 class QStackedWidget;
+class MusicPagingWidgetObject;
 class MusicPlaylistFoundInfoWidget;
 class MusicPlaylistFoundCategoryWidget;
 
@@ -112,6 +113,10 @@ public Q_SLOTS:
     /*!
      * Current category changed.
      */
+    void buttonClicked(int index);
+    /*!
+     * Paging widget button has changed.
+     */
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -119,9 +124,10 @@ protected:
      * Override the widget event.
      */
 
-    bool m_firstInit;
+    bool m_firstInit, m_categoryChanged;
     QStackedWidget *m_container;
     QGridLayout *m_gridLayout;
+    MusicPagingWidgetObject *m_pagingWidgetObject;
     MusicPlaylistFoundInfoWidget *m_infoWidget;
     MusicPlaylistFoundCategoryWidget *m_categoryButton;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;

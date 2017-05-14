@@ -40,13 +40,13 @@ void MusicWYCommentsThread::startSearchSong(QueryType type, const QString &name)
     }
 }
 
-void MusicWYCommentsThread::startSearchSong(int index)
+void MusicWYCommentsThread::startSearchSong(int offset)
 {
     deleteAll();
 
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY)
-                    .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*index);
+                    .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset);
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -83,7 +83,6 @@ void MusicWYCommentsThread::downLoadFinished()
             if(value["code"].toLongLong() == 200)
             {
                 m_pageTotal = value["total"].toLongLong();
-
                 QVariantList hots = value["comments"].toList();
                 foreach(const QVariant &hot, hots)
                 {
