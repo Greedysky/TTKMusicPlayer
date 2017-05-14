@@ -73,7 +73,7 @@ QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
     if(total != 0)
     {
         layout->addWidget(m_pagingItems[PAGE_SIZE]);
-        for(int i=0; i<PAGE_SIZE; ++i)
+        for(i=0; i<PAGE_SIZE; ++i)
         {
             layout->addWidget(m_pagingItems[i]);
         }
@@ -182,7 +182,10 @@ void MusicPagingWidgetObject::paging(int index, int total)
         MusicClickedLabel *w = m_pagingItems[i];
         w->setFixedWidth(QFontMetrics(w->font()).width(w->text()));
     }
-    m_pagingItems[m_currentPage]->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
+
+    MusicClickedLabel *w = m_pagingItems[m_currentPage];
+    w->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle01);
+    w->setFixedWidth(w->width() + 5);
 }
 
 int MusicPagingWidgetObject::currentIndex() const

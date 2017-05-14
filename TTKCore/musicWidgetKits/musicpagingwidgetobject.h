@@ -45,7 +45,7 @@ public:
      */
 
 signals:
-    void mapped(int);
+    void mapped(int index);
     /*!
      * Mapped the clicked page index.
      */
