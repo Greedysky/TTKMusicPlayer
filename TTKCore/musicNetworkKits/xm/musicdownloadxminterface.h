@@ -70,7 +70,6 @@ public:
      * Map json bitrate to normal bitrate.
      */
 
-
 };
 
 #endif // MUSICDOWNLOADXMINTERFACE_H
