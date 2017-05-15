@@ -6,20 +6,44 @@
 #///QJson import
 #include "qjson/parser.h"
 
+#include <QNetworkCookie>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetworkAccessManager *manager, const QString &song)
+void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager, QNetworkRequest *request,
+                                                 const QString &query, const QString &type)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_SONG_LOST_URL, URL_KEY).arg(song);
+    QNetworkRequest re;
+    re.setUrl(QUrl(MusicCryptographicHash::decryptData(XM_COOKIE_URL, URL_KEY)));
+    QNetworkReply *reply = manager->get(re);
+    QEventLoop loop;
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
 
+    QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
+    QString tk = cookies[0].value();
+    QString tk_enc = cookies[1].value();
+
+    QString time = QString::number(QDateTime::currentMSecsSinceEpoch());
+    QString appkey = "12574478";
+    QString token = tk.split("_").front();
+    QString data = MusicCryptographicHash::decryptData(XM_QUERY_DATA_URL, URL_KEY).arg(query);
+    QString sign = QCryptographicHash::hash((token + "&" + time + "&" + appkey + "&" + data).toUtf8(), QCryptographicHash::Md5).toHex();
+
+    request->setUrl(QUrl(MusicCryptographicHash::decryptData(XM_QUERY_URL, URL_KEY).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
+    request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
+}
+
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                                    const QString &songID)
+{
     QNetworkRequest request;
-    request.setUrl(musicUrl);
+    makeTokenQueryUrl(manager, &request,
+                      MusicCryptographicHash::decryptData(XM_LRC_DATA_URL, URL_KEY).arg(songID),
+                      MusicCryptographicHash::decryptData(XM_LRC_URL, URL_KEY));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(XM_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -31,48 +55,45 @@ MusicObject::MusicSongInfomation MusicDownLoadXMInterface::startLostSong(QNetwor
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
-    MusicObject::MusicSongInfomation musicInfo;
+    QByteArray bytes = reply->readAll();
+    bytes = bytes.replace("xiami(", "");
+    bytes = bytes.replace("callback(", "");
+    bytes.chop(1);
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    QVariant data = parser.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            value = value["song"].toMap();
-
-            musicInfo.m_singerName = value["singers"].toString();
-            musicInfo.m_songName = value["song_name"].toString();
-            musicInfo.m_timeLength = "-";
-
-            musicInfo.m_songId = QString::number(value["song_id"].toULongLong());
-            musicInfo.m_artistId = QString::number(value["artist_id"].toULongLong());
-            musicInfo.m_smallPicUrl = value["logo"].toString().replace("_1.", "_4.");
-            QString lrcUrl = value["lyric"].toString();
-            if(!lrcUrl.endsWith("txt"))
+            value = value["data"].toMap();
+            QVariantList datas = value["lyrics"].toList();
+            foreach(const QVariant &var, datas)
             {
-                musicInfo.m_lrcUrl = lrcUrl;
-            }
+                if(var.isNull())
+                {
+                    continue;
+                }
 
-            QVariantMap data;
-            data["filePath"] = value["listen_file"].toString();
-            data["fileSize"] = "-";
-            data["format"] = "mp3";
-            readFromMusicSongAttribute(&musicInfo, data, MB_128);
+                value = var.toMap();
+                if(value["type"].toInt() == 2)
+                {
+                    info->m_lrcUrl = value["lyricUrl"].toString();
+                    break;
+                }
+            }
         }
     }
-
-    return musicInfo;
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QVariantMap &key, int bitrate)
 {
     MusicObject::MusicSongAttribute attr;
-    attr.m_url = key["filePath"].toString();
+    attr.m_url = key["listenFile"].toString();
     attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toInt());
     attr.m_format = key["format"].toString();
     attr.m_bitrate = bitrate;
@@ -80,50 +101,55 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                                          const QVariantMap &key, const QString &quality, bool all)
+                                                          const QVariant &key, const QString &quality, bool all)
 {
-    int bitrate = map2NormalBitrate(key["rate"].toInt());
-    if(all)
+    foreach(const QVariant &song, key.toList())
     {
-        readFromMusicSongAttribute(info, key, bitrate);
-    }
-    else
-    {
-        if(quality == QObject::tr("ST") && bitrate == MB_32)
+        QVariantMap data = song.toMap();
+        int bitrate = map2NormalBitrate(data["quality"].toString());
+
+        if(all)
         {
-            readFromMusicSongAttribute(info, key, MB_32);
+            readFromMusicSongAttribute(info, data, bitrate);
         }
-        else if(quality == QObject::tr("SD") && bitrate == MB_128)
+        else
         {
-            readFromMusicSongAttribute(info, key, MB_128);
-        }
-        else if(quality == QObject::tr("HQ") && bitrate == MB_192)
-        {
-            readFromMusicSongAttribute(info, key, MB_192);
-        }
-        else if(quality == QObject::tr("SQ") && bitrate == MB_320)
-        {
-            readFromMusicSongAttribute(info, key, MB_320);
-        }
-        else if(quality == QObject::tr("CD") && bitrate == MB_500)
-        {
-            readFromMusicSongAttribute(info, key, MB_500);
+            if(quality == QObject::tr("ST") && bitrate == MB_32)
+            {
+                readFromMusicSongAttribute(info, data, MB_32);
+            }
+            else if(quality == QObject::tr("SD") && bitrate == MB_128)
+            {
+                readFromMusicSongAttribute(info, data, MB_128);
+            }
+            else if(quality == QObject::tr("HQ") && bitrate == MB_192)
+            {
+                readFromMusicSongAttribute(info, data, MB_192);
+            }
+            else if(quality == QObject::tr("SQ") && bitrate == MB_320)
+            {
+                readFromMusicSongAttribute(info, data, MB_320);
+            }
+            else if(quality == QObject::tr("SQ") && bitrate == MB_500)
+            {
+                readFromMusicSongAttribute(info, data, MB_500);
+            }
         }
     }
 }
 
-int MusicDownLoadXMInterface::map2NormalBitrate(int bitrate)
+int MusicDownLoadXMInterface::map2NormalBitrate(const QString &bitrate)
 {
-    if(bitrate > MB_0 && bitrate <= MB_64)
+    if(bitrate == "e")
         return MB_32;
-    else if(bitrate > MB_64 && bitrate < MB_128)
+    else if(bitrate == "f")
         return MB_128;
-    else if(bitrate > MB_128 && bitrate < MB_192)
+    else if(bitrate == "l")
         return MB_192;
-    else if(bitrate > MB_192 && bitrate < MB_320)
+    else if(bitrate == "h")
         return MB_320;
-    else if(bitrate > MB_320)
+    else if(bitrate == "s")
         return MB_500;
     else
-        return bitrate;
+        return MB_128;
 }

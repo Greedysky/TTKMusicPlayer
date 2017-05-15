@@ -38,10 +38,6 @@ public:
     /*!
      * Start to search data from name and type bt paging.
      */
-    void startSearchSongAll(const QSet<QString> &ids);
-    /*!
-     * Start to search all data.
-     */
     void startSearchSong(const QString &playlist);
     /*!
      * Start to Search data.
@@ -58,27 +54,10 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void getSongAllFinished();
-    /*!
-     * Download song all finished.
-     */
     void getDetailsFinished();
     /*!
      * Download details data from net finished.
      */
-    void songListFinished();
-    /*!
-     * Query song list finished.
-     */
-
-protected:
-    void startSongListQuery();
-    /*!
-     * Start to search song list by id.
-     */
-
-    QSet<QString> m_songIds;
-    int m_index;
 
 };
 

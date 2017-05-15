@@ -38,29 +38,12 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startLostArtist();
-    /*!
-     * Start to Search lost artist.
-     */
 
 public Q_SLOTS:
     virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void songListFinished();
-    /*!
-     * Query song list finished.
-     */
-
-protected:
-    void startSongListQuery();
-    /*!
-     * Start to search song list by id.
-     */
-
-    QSet<QString> m_songIds;
-    int m_index;
 
 };
 

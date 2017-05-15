@@ -39,28 +39,6 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void songListFinished();
-    /*!
-     * Query song list finished.
-     */
-
-protected:
-    void startSongListQuery();
-    /*!
-     * Start to search song list by id.
-     */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
-                                      const QString &id, const QString &format);
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void foundOtherMovie();
-    /*!
-     * Found other movie.
-     */
-
-    QSet<QString> m_songIds;
-    int m_index;
 
 };
 
