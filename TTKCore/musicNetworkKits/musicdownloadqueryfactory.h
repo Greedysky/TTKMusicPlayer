@@ -27,31 +27,36 @@ public:
      * Get class object name.
      */
 
-    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent);
+    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
     /*!
      * Get query thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent);
+    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);
     /*!
      * Get album thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent);
+    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = 0);
     /*!
      * Get artist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent);
+    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
     /*!
      * Get playlist thread object by type.
      */
-    MusicDownLoadThreadAbstract *getDownloadSmallPic(const QString &url, const QString &save,
-                                                     MusicDownLoadThreadAbstract::Download_Type type,
-                                                     QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getCommentThread(QObject *parent = 0);
+    /*!
+     * Get comment thread object by type.
+     */
+
+    MusicDownLoadThreadAbstract *getDownloadSmallPicThread(const QString &url, const QString &save,
+                                                           MusicDownLoadThreadAbstract::Download_Type type,
+                                                           QObject *parent = 0);
     /*!
      * Get download small picture object by type.
      */
-    MusicDownLoadThreadAbstract *getDownloadLrc(const QString &url, const QString &save,
-                                                MusicDownLoadThreadAbstract::Download_Type type,
-                                                QObject *parent = 0);
+    MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
+                                                      MusicDownLoadThreadAbstract::Download_Type type,
+                                                      QObject *parent = 0);
     /*!
      * Get download lrc object by type.
      */

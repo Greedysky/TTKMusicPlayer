@@ -359,7 +359,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         QString name = MusicUtils::Core::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownLoadThreadAbstract* lrcDownload = M_DOWNLOAD_QUERY_PTR->getDownloadLrc(m_currentSong.m_lrcUrl, name,
+            MusicDownLoadThreadAbstract* lrcDownload = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name,
                                                                         MusicDownLoadThreadAbstract::Download_Lrc, this);
             connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             lrcDownload->startToDownload();

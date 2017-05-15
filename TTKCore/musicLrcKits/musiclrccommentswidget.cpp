@@ -8,6 +8,7 @@
 #include "musicclickedlabel.h"
 #include "musicsemaphoreloop.h"
 #include "musicpagingwidgetobject.h"
+#include "musicdownloadqueryfactory.h"
 
 #include <qmath.h>
 #include <QBoxLayout>
@@ -120,7 +121,7 @@ QString MusicLrcCommentsItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLrcCommentsItem::createSearchedItems(const MusicSongComment &comments)
+void MusicLrcCommentsItem::createSearchedItems(const MusicSongCommentItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(QFontMetrics(m_userName->font()).width(m_userName->text()));
@@ -253,8 +254,8 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
 
     m_pagingWidgetObject = nullptr;
 
-    m_commentsThread = new MusicDownLoadQueryWYCommentsThread(this);
-    connect(m_commentsThread, SIGNAL(createSearchedItems(MusicSongComment)), SLOT(createSearchedItems(MusicSongComment)));
+    m_commentsThread = M_DOWNLOAD_QUERY_PTR->getCommentThread(this);
+    connect(m_commentsThread, SIGNAL(createSearchedItems(MusicSongCommentItem)), SLOT(createSearchedItems(MusicSongCommentItem)));
 }
 
 MusicLrcCommentsWidget::~MusicLrcCommentsWidget()
@@ -288,7 +289,7 @@ void MusicLrcCommentsWidget::setCurrentSongName(const QString &name)
     initLabel(name, m_commentsThread->getPageTotal());
 }
 
-void MusicLrcCommentsWidget::createSearchedItems(const MusicSongComment &comments)
+void MusicLrcCommentsWidget::createSearchedItems(const MusicSongCommentItem &comments)
 {
     MusicLrcCommentsItem *item = new MusicLrcCommentsItem(this);
     item->createSearchedItems(comments);

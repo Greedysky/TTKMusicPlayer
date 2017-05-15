@@ -163,11 +163,11 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         }
 
         ///download lrc
-        M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE,
-                                             MusicDownLoadThreadAbstract::Download_Lrc, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE,
+                                                   MusicDownLoadThreadAbstract::Download_Lrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPic(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
-                                                  MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
+                                                        MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
         ///download big picture
         (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this))->startToDownload();
     }

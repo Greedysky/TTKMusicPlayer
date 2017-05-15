@@ -347,8 +347,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     downSong->startToDownload();
 
-    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPic(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                              MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
+    M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
+                                                    MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
     ///download big picture
     (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
 

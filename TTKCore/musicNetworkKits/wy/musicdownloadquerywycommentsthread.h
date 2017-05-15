@@ -11,15 +11,6 @@
 
 #include "musicdownloadquerythreadabstract.h"
 
-typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
-{
-    QString m_nickName;
-    QString m_avatarUrl;
-    QString m_time;
-    QString m_content;
-    QString m_likedCount;
-}MusicSongInfomation;
-
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
@@ -49,7 +40,7 @@ public:
      */
 
 Q_SIGNALS:
-    void createSearchedItems(const MusicSongComment &comments);
+    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */

@@ -86,7 +86,7 @@ void MusicDownLoadQueryWYCommentsThread::downLoadFinished()
                 QVariantList hots = value["comments"].toList();
                 foreach(const QVariant &hot, hots)
                 {
-                    MusicSongComment comment;
+                    MusicSongCommentItem comment;
                     value = hot.toMap();
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();

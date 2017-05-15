@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QLabel>
-#include "musicdownloadquerywycommentsthread.h"
+#include "musicdownloadquerythreadabstract.h"
 
 class QTextEdit;
 class MusicPagingWidgetObject;
@@ -34,7 +34,7 @@ public:
      * Get class object name.
      */
 
-    void createSearchedItems(const MusicSongComment &comments);
+    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */
@@ -76,7 +76,7 @@ public:
      */
 
 public Q_SLOTS:
-    void createSearchedItems(const MusicSongComment &comments);
+    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */
@@ -118,7 +118,7 @@ protected:
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments;
-    MusicDownLoadQueryWYCommentsThread *m_commentsThread;
+    MusicDownLoadQueryThreadAbstract *m_commentsThread;
     QList<MusicLrcCommentsItem*> m_commentsItems;
     MusicPagingWidgetObject *m_pagingWidgetObject;
 
