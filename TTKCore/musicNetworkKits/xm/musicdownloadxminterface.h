@@ -28,7 +28,7 @@ const QString XM_ARTIST_PLAYLIST_URL = "YWc0dUhjNGdsTFY2VSsyMVBWWnYxMllDYlZrNFNm
 ///////////////////////////////////////////////////////////////////////////
 const QString XM_MV_ATTR_URL         = "NDY3SUJhdXhRUHA4bUVMUmdXSGYyeXpTcmkzcngwYXpRMFZ2UlE9PQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString XM_PLAYLIST_URL        = "bHNHdE5BODlFRU40blVFS2NVSUgwOXh2ZDhFUW5vOThVbnpGQmw4ZzkvSHVPTmZxNXRldGFDbUJMcGRzVjJsUw==";
+const QString XM_PLAYLIST_URL        = "T2JLVEw1S0pWR3lOYkhYRktLWHhDazBkdTdzRHo1Q3ArV2QyZWxzN2pnZkhRSVhzd0tvd2Y0TzdzaDZ4aFZXTFE1MmtDNDh6dzdVPQ==";
 const QString XM_PLAYLIST_ATTR_URL   = "N1JBdVpuUGJaVXZpK04wYVdEVHJiZkJhOHdPYzdHdkxTTGN6UEtMUUxmbkc1amFu";
 const QString XM_PLAYLIST_IATTR_URL  = "eXlTakR2T3JTMGJ6VzFzSmlJL1cvWHpNZVdFNzMzMnhHaW9CanJWeERPKy9jSkNianZidWxRdXdIWHFYL1dtL2R1UFQ3MUloeUdXcFVCVUQ4ZjFTSzhmWmk5cz0=";
 ///////////////////////////////////////////////////////////////////////////

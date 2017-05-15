@@ -7,6 +7,7 @@ MusicDownLoadQueryXMPlaylistThread::MusicDownLoadQueryXMPlaylistThread(QObject *
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_index = 0;
+    m_pageSize = 24;
     m_queryServer = "XiaMi";
 }
 
@@ -23,14 +24,16 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll(playlist);
+        m_searchText = playlist.isEmpty() ? "108051" : playlist;
+        startSearchSong(0);
     }
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startSearchSongAll(const QString &type)
+void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
 {
-    QString key = type.isEmpty() ? "108051" : type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY).arg(key);
+    m_pageTotal = 0;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY)
+                    .arg(m_searchText).arg(offset + 1);
     deleteAll();
 
     QNetworkRequest request;
@@ -112,6 +115,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                 pos = regx.indexIn(text, pos);
             }
         }
+        m_pageTotal = 24;
         startSearchSongAll(songIds);
     }
 

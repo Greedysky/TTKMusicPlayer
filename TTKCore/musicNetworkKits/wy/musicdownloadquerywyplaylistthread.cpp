@@ -23,7 +23,8 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll(playlist);
+        m_searchText = playlist.isEmpty() ? "all" : playlist;
+        startSearchSong(0);
     }
 }
 
@@ -48,12 +49,6 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
-}
-
-void MusicDownLoadQueryWYPlaylistThread::startSearchSongAll(const QString &type)
-{
-    m_searchText = type.isEmpty() ? "all" : type;
-    startSearchSong(0);
 }
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(const QString &playlist)

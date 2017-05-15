@@ -6,6 +6,7 @@
 MusicDownLoadQueryKGPlaylistThread::MusicDownLoadQueryKGPlaylistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
+    m_pageSize = 30;
     m_queryServer = "Kugou";
 }
 
@@ -22,13 +23,16 @@ void MusicDownLoadQueryKGPlaylistThread::startSearchSong(QueryType type, const Q
     }
     else
     {
-        startSearchSongAll(playlist);
+        m_searchText = playlist;
+        startSearchSong(0);
     }
 }
 
-void MusicDownLoadQueryKGPlaylistThread::startSearchSongAll(const QString &type)
+void MusicDownLoadQueryKGPlaylistThread::startSearchSong(int offset)
 {
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_PLAYLIST_URL, URL_KEY).arg(type);
+    m_pageTotal = 0;
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_PLAYLIST_URL, URL_KEY)
+                    .arg(offset + 1).arg(m_pageSize).arg(m_searchText);
     deleteAll();
 
     QNetworkRequest request;
@@ -76,6 +80,12 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+
+        QString buffer = QString(bytes);
+        buffer = buffer.split("global = ").back().split("total:").back();
+        buffer = buffer.split(",").front().remove("'").trimmed();
+        m_pageTotal = buffer.toInt();
+
         bytes = QString(bytes).split("global.special = ").back().split("];").front().toUtf8() + "]";
 
         QJson::Parser parser;

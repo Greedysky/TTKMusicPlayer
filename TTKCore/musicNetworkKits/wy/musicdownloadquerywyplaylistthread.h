@@ -38,10 +38,6 @@ public:
     /*!
      * Start to search data from name and type bt paging.
      */
-    void startSearchSongAll(const QString &type);
-    /*!
-     * Start to search all data.
-     */
     void startSearchSong(const QString &playlist);
     /*!
      * Start to Search data.

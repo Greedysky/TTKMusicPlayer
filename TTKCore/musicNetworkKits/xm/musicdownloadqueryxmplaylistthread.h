@@ -34,9 +34,9 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSongAll(const QString &type);
+    virtual void startSearchSong(int offset) override;
     /*!
-     * Start to search all data.
+     * Start to search data from name and type bt paging.
      */
     void startSearchSongAll(const QSet<QString> &ids);
     /*!
