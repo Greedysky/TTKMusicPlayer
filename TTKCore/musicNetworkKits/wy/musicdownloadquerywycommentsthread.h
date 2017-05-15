@@ -1,5 +1,5 @@
-#ifndef MUSICWYCOMMENTSTHREAD_H
-#define MUSICWYCOMMENTSTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWYCOMMENTSTHREAD_H
+#define MUSICDOWNLOADQUERYWYCOMMENTSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,16 +23,16 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongComment
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYCommentsThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYCommentsThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicWYCommentsThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
 
-    virtual ~MusicWYCommentsThread();
+    virtual ~MusicDownLoadQueryWYCommentsThread();
 
     static QString getClassName();
     /*!
@@ -62,4 +62,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICWYCOMMENTSTHREAD_H
+#endif // MUSICDOWNLOADQUERYWYCOMMENTSTHREAD_H

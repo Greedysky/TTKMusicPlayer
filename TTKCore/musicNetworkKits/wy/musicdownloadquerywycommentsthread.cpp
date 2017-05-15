@@ -1,28 +1,28 @@
-#include "musicwycommentsthread.h"
+#include "musicdownloadquerywycommentsthread.h"
 #include "musicdownloadquerywythread.h"
 #include "musicsemaphoreloop.h"
 
 #///QJson import
 #include "qjson/parser.h"
 
-MusicWYCommentsThread::MusicWYCommentsThread(QObject *parent)
+MusicDownLoadQueryWYCommentsThread::MusicDownLoadQueryWYCommentsThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_pageSize = 20;
     m_queryServer = "WangYi";
 }
 
-MusicWYCommentsThread::~MusicWYCommentsThread()
+MusicDownLoadQueryWYCommentsThread::~MusicDownLoadQueryWYCommentsThread()
 {
     deleteAll();
 }
 
-QString MusicWYCommentsThread::getClassName()
+QString MusicDownLoadQueryWYCommentsThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicWYCommentsThread::startSearchSong(QueryType type, const QString &name)
+void MusicDownLoadQueryWYCommentsThread::startSearchSong(QueryType type, const QString &name)
 {
     Q_UNUSED(type);
 
@@ -40,7 +40,7 @@ void MusicWYCommentsThread::startSearchSong(QueryType type, const QString &name)
     }
 }
 
-void MusicWYCommentsThread::startSearchSong(int offset)
+void MusicDownLoadQueryWYCommentsThread::startSearchSong(int offset)
 {
     deleteAll();
 
@@ -63,7 +63,7 @@ void MusicWYCommentsThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicWYCommentsThread::downLoadFinished()
+void MusicDownLoadQueryWYCommentsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {

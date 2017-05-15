@@ -30,11 +30,11 @@ HEADERS  += \
     $$PWD/wy/musicdownloadwyinterface.h \
     $$PWD/wy/musicdownloadquerywythread.h \
     $$PWD/wy/musicwytextdownloadthread.h \
-    $$PWD/wy/musicwycommentsthread.h \
     $$PWD/wy/musicwydiscoverlistthread.h \
     $$PWD/wy/musicdownloadquerywyalbumthread.h \
     $$PWD/wy/musicdownloadquerywyartistthread.h \
     $$PWD/wy/musicdownloadquerywyplaylistthread.h \
+    $$PWD/wy/musicdownloadquerywycommentsthread.h \
     $$PWD/xm/musicdownloadxminterface.h \
     $$PWD/xm/musicdownloadqueryxmthread.h \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
@@ -95,11 +95,11 @@ SOURCES += \
     $$PWD/wy/musicdownloadwyinterface.cpp \
     $$PWD/wy/musicdownloadquerywythread.cpp \
     $$PWD/wy/musicwytextdownloadthread.cpp \
-    $$PWD/wy/musicwycommentsthread.cpp \
     $$PWD/wy/musicwydiscoverlistthread.cpp \
     $$PWD/wy/musicdownloadquerywyalbumthread.cpp \
     $$PWD/wy/musicdownloadquerywyartistthread.cpp \
     $$PWD/wy/musicdownloadquerywyplaylistthread.cpp \
+    $$PWD/wy/musicdownloadquerywycommentsthread.cpp \
     $$PWD/xm/musicdownloadxminterface.cpp \
     $$PWD/xm/musicdownloadqueryxmthread.cpp \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \

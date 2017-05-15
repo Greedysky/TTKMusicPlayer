@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QLabel>
-#include "musicwycommentsthread.h"
+#include "musicdownloadquerywycommentsthread.h"
 
 class QTextEdit;
 class MusicPagingWidgetObject;
@@ -118,7 +118,7 @@ protected:
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;
     QWidget *m_messageComments;
-    MusicWYCommentsThread *m_commentsThread;
+    MusicDownLoadQueryWYCommentsThread *m_commentsThread;
     QList<MusicLrcCommentsItem*> m_commentsItems;
     MusicPagingWidgetObject *m_pagingWidgetObject;
 

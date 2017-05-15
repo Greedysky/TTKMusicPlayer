@@ -253,7 +253,7 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
 
     m_pagingWidgetObject = nullptr;
 
-    m_commentsThread = new MusicWYCommentsThread(this);
+    m_commentsThread = new MusicDownLoadQueryWYCommentsThread(this);
     connect(m_commentsThread, SIGNAL(createSearchedItems(MusicSongComment)), SLOT(createSearchedItems(MusicSongComment)));
 }
 
