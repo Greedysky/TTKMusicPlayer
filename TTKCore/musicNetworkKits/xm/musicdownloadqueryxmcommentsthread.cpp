@@ -43,8 +43,8 @@ void MusicDownLoadQueryXMCommentsThread::startSearchSong(QueryType type, const Q
 void MusicDownLoadQueryXMCommentsThread::startSearchSong(int offset)
 {
     deleteAll();
-
     m_pageTotal = 0;
+
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
                       MusicCryptographicHash::decryptData(XM_SG_COMMIT_DATA_URL, URL_KEY).arg(m_rawData["songID"].toInt())

@@ -30,10 +30,10 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryBDPlaylistThread::startSearchSong(int offset)
 {
+    deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_URL, URL_KEY)
                     .arg(m_searchText).arg(m_pageSize*offset);
-    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

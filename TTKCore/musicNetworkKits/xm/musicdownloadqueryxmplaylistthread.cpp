@@ -30,8 +30,8 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
 {
-    m_pageTotal = 0;
     deleteAll();
+    m_pageTotal = 0;
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,

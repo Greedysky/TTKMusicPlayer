@@ -30,10 +30,10 @@ void MusicDownLoadQueryKGPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryKGPlaylistThread::startSearchSong(int offset)
 {
+    deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_PLAYLIST_URL, URL_KEY)
                     .arg(offset + 1).arg(m_pageSize).arg(m_searchText);
-    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
