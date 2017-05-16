@@ -451,12 +451,6 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcContainerForInline::wheelEvent(QWheelEvent *event)
-{
-    MusicLrcContainer::wheelEvent(event);
-    changeLrcPostion(QString::number(event->delta()));
-}
-
 void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
 {
     int index = m_lrcAnalysis->getCurrentIndex();
