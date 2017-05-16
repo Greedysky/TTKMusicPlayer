@@ -143,7 +143,7 @@ QString MusicPlaylistFoundWidget::getClassName()
 void MusicPlaylistFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, QString());
+    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::OtherQuery, QString());
 }
 
 void MusicPlaylistFoundWidget::resizeWindow()
@@ -274,7 +274,7 @@ void MusicPlaylistFoundWidget::categoryChanged(const PlaylistCategoryItem &categ
             m_gridLayout->removeWidget(w);
             delete w;
         }
-        m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, category.m_id);
+        m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::OtherQuery, category.m_id);
     }
 }
 

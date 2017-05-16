@@ -67,7 +67,8 @@ public:
     {
         MusicQuery, ///*query music*/
         MovieQuery, ///*query movie*/
-        LrcQuery    ///*query lrc*/
+        LrcQuery,   ///*query lrc*/
+        OtherQuery, ///*query external*/
     };
 
     explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);

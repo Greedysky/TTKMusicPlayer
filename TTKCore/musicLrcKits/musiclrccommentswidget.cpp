@@ -279,7 +279,7 @@ void MusicLrcCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    m_commentsThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
+    m_commentsThread->startSearchSong(MusicDownLoadQueryThreadAbstract::OtherQuery, name);
     connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
