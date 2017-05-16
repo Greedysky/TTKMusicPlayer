@@ -12,8 +12,8 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 #include "musicgiflabelwidget.h"
+#include "musictime.h"
 
-#include <QDateTime>
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QCheckBox>
@@ -68,7 +68,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     search.readSearchConfig( records );
     MusicSearchRecord record;
     record.m_name = text;
-    record.m_time = QString::number(QDateTime::currentMSecsSinceEpoch());
+    record.m_time = QString::number(MusicTime::timeStamp());
     records.insert(0, record);
     search.writeSearchConfig( records );
     ////////////////////////////////////////////////

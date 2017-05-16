@@ -2,6 +2,7 @@
 #include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
+#include "musictime.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -26,7 +27,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
     QString tk = cookies[0].value();
     QString tk_enc = cookies[1].value();
 
-    QString time = QString::number(QDateTime::currentMSecsSinceEpoch());
+    QString time = QString::number(MusicTime::timeStamp());
     QString appkey = "12574478";
     QString token = tk.split("_").front();
     QString data = MusicCryptographicHash::decryptData(XM_QUERY_DATA_URL, URL_KEY).arg(query);

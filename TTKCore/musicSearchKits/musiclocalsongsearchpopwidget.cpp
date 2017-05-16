@@ -4,7 +4,6 @@
 
 #include <QVBoxLayout>
 #include <QPushButton>
-#include <QDateTime>
 
 #define ROW_HEIGHT 30
 
@@ -125,7 +124,7 @@ void MusicLocalSongSearchPopWidget::createItems()
 
 QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 {
-    qint64 t = (QDateTime::currentMSecsSinceEpoch() - time.toLongLong()) / MT_S2MS;
+    qint64 t = (MusicTime::timeStamp() - time.toLongLong()) / MT_S2MS;
     return MusicTime::normalTime2Label(t);
 }
 

@@ -1,5 +1,6 @@
 #include "musicdatadownloadthread.h"
 #include "musicconnectionpool.h"
+#include "musictime.h"
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
                                                  Download_Type type, QObject *parent)
@@ -58,7 +59,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     if(m_downloadType == Download_Music && !m_redirection)
     {
         M_CONNECTION_PTR->connectMusicDownload(this);
-        m_createItemTime = QDateTime::currentMSecsSinceEpoch();
+        m_createItemTime = MusicTime::timeStamp();
         emit createDownloadItem(m_savePathName, m_createItemTime);
     }
 }

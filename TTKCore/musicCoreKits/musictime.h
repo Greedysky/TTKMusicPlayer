@@ -109,15 +109,6 @@ public:
      * Get current millionSecond.
      */
 
-    static MusicTime fromMSecsSinceEpoch(qint64 msecs);
-    /*!
-     * Transform ms time from utc since epoch.
-     */
-    qint64 toMSecsSinceEpoch() const;
-    /*!
-     * Transform utc since epoch to ms.
-     */
-
     static MusicTime fromString(const QString &s, const QString &format);
     /*!
      * Transform time from string by time format.
@@ -150,6 +141,10 @@ public:
      */
 
     //////////////////////////////////////////////
+    static qint64 timeStamp(bool ms = true);
+    /*!
+     * Transform ms time from utc since epoch.
+     */
     static void timeSRand();
     /*!
      * Init random time seed.

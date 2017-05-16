@@ -65,27 +65,6 @@ bool MusicTime::isValid() const
     return !isNull();
 }
 
-MusicTime MusicTime::fromMSecsSinceEpoch(qint64 msecs)
-{
-    MusicTime time;
-    QDateTime dt(QDateTime::fromMSecsSinceEpoch(msecs));
-    QTime t(dt.time());
-    time.setDay(dt.date().day());
-    time.setHour(t.hour());
-    time.setSecond(t.second());
-    time.setMinute(t.minute());
-    time.setMillionSecond(t.msec());
-    return time;
-}
-
-qint64 MusicTime::toMSecsSinceEpoch() const
-{
-    QDateTime dt;
-    dt = dt.addDays(m_day);
-    dt = dt.addMSecs(m_hour*MT_H2MS + m_min*MT_M2MS + m_sec*MT_S2MS + m_msec);
-    return dt.toMSecsSinceEpoch();
-}
-
 MusicTime MusicTime::fromString(const QString &s, const QString &format)
 {
     MusicTime time;
@@ -111,9 +90,15 @@ qint64 MusicTime::getTimeStamp(Type type) const
     return (type == All_Sec) ? delta : (delta + m_msec);
 }
 
+qint64 MusicTime::timeStamp(bool ms)
+{
+    qint64 t = QDateTime::currentMSecsSinceEpoch();
+    return ms ? t : t/1000;
+}
+
 void MusicTime::timeSRand()
 {
-    qsrand(QDateTime::currentMSecsSinceEpoch());
+    qsrand( timeStamp() );
 }
 
 QString MusicTime::msecTime2LabelJustified()
