@@ -18,7 +18,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
     QNetworkRequest re;
     re.setUrl(QUrl(MusicCryptographicHash::decryptData(XM_COOKIE_URL, URL_KEY)));
     QNetworkReply *reply = manager->get(re);
-    QEventLoop loop;
+    MusicSemaphoreLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
 
