@@ -28,6 +28,8 @@ void MusicDownLoadQueryXMCommentsThread::startSearchSong(QueryType type, const Q
 
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryXMThread *query = new MusicDownLoadQueryXMThread(this);
+    query->setQueryAllRecords(false);
+    query->setQuerySimplify(true);
     query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();

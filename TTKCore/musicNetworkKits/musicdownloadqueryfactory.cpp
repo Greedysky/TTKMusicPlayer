@@ -31,6 +31,7 @@
 
 #include "musicdownloadquerywycommentsthread.h"
 #include "musicdownloadqueryxmcommentsthread.h"
+#include "musicdownloadquerybdcommentsthread.h"
 
 #include "musicdatadownloadthread.h"
 
@@ -125,6 +126,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getCommentThread(QO
     {
         case 0:  thread = new MusicDownLoadQueryWYCommentsThread(parent); break;
         case 2:  thread = new MusicDownLoadQueryXMCommentsThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryBDCommentsThread(parent); break;
         default: thread = new MusicDownLoadQueryWYCommentsThread(parent);
     }
     M_LOGGER_INFO(QString("getCommentThread server: %1").arg(thread->getQueryServer()));
