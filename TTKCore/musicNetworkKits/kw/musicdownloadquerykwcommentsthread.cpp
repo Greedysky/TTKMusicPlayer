@@ -90,7 +90,7 @@ void MusicDownLoadQueryKWCommentsThread::downLoadFinished()
                 {
                     MusicSongCommentItem comment;
                     value = comm.toMap();
-                    comment.m_likedCount = QString::number(value["like_num"].toString().toInt());
+                    comment.m_likedCount = value["like_num"].toString();
                     comment.m_time = QString::number(QDateTime::fromString(value["time"].toString(),
                                                      "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
                     comment.m_content = value["msg"].toString();
