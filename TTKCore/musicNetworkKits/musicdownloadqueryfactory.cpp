@@ -34,6 +34,7 @@
 #include "musicdownloadquerybdcommentsthread.h"
 #include "musicdownloadquerykgcommentsthread.h"
 #include "musicdownloadquerykwcommentsthread.h"
+#include "musicdownloadqueryqqcommentsthread.h"
 
 #include "musicdatadownloadthread.h"
 
@@ -127,6 +128,7 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getCommentThread(QO
     switch( index )
     {
         case 0:  thread = new MusicDownLoadQueryWYCommentsThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQCommentsThread(parent); break;
         case 2:  thread = new MusicDownLoadQueryXMCommentsThread(parent); break;
         case 3:  thread = new MusicDownLoadQueryBDCommentsThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWCommentsThread(parent); break;

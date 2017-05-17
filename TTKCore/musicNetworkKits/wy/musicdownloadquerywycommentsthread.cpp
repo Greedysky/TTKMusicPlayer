@@ -46,7 +46,7 @@ void MusicDownLoadQueryWYCommentsThread::startSearchSong(int offset)
 {
     deleteAll();
     m_pageTotal = 0;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_COMMIT_URL, URL_KEY)
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SG_COMMIT_URL, URL_KEY)
                     .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset);
     QNetworkRequest request;
     request.setUrl(musicUrl);

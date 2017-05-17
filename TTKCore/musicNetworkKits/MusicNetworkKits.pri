@@ -46,12 +46,14 @@ HEADERS  += \
     $$PWD/kg/musicdownloadquerykgalbumthread.h \
     $$PWD/kg/musicdownloadquerykgartistthread.h \
     $$PWD/kg/musicdownloadkginterface.h \
+    $$PWD/kg/musicdownloadquerykgcommentsthread.h \
     $$PWD/kw/musicdownloadquerykwthread.h \
     $$PWD/kw/musicdownloadquerykwalbumthread.h \
     $$PWD/kw/musicdownloadquerykwartistthread.h \
     $$PWD/kw/musicdownloadkwinterface.h \
     $$PWD/kw/musickwtextdownloadthread.h \
     $$PWD/kw/musicdownloadquerykwplaylistthread.h \
+    $$PWD/kw/musicdownloadquerykwcommentsthread.h \
     $$PWD/kg/musicdownloadquerykgplaylistthread.h \
     $$PWD/bd/musicdownloadquerybdthread.h \
     $$PWD/bd/musicdownloadquerybdalbumthread.h \
@@ -65,6 +67,7 @@ HEADERS  += \
     $$PWD/qq/musicdownloadqqinterface.h \
     $$PWD/qq/musicqqtextdownloadthread.h \
     $$PWD/qq/musicdownloadqueryqqplaylistthread.h \
+    $$PWD/qq/musicdownloadqueryqqcommentsthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
@@ -114,12 +117,14 @@ SOURCES += \
     $$PWD/kg/musicdownloadquerykgartistthread.cpp \
     $$PWD/kg/musicdownloadkginterface.cpp \
     $$PWD/kg/musicdownloadquerykgplaylistthread.cpp \
+    $$PWD/kg/musicdownloadquerykgcommentsthread.cpp \
     $$PWD/kw/musicdownloadquerykwthread.cpp \
     $$PWD/kw/musicdownloadquerykwalbumthread.cpp \
     $$PWD/kw/musicdownloadquerykwartistthread.cpp \
     $$PWD/kw/musicdownloadkwinterface.cpp \
     $$PWD/kw/musickwtextdownloadthread.cpp \
     $$PWD/kw/musicdownloadquerykwplaylistthread.cpp \
+    $$PWD/kw/musicdownloadquerykwcommentsthread.cpp \
     $$PWD/bd/musicdownloadquerybdthread.cpp \
     $$PWD/bd/musicdownloadquerybdalbumthread.cpp \
     $$PWD/bd/musicdownloadquerybdartistthread.cpp \
@@ -132,6 +137,7 @@ SOURCES += \
     $$PWD/qq/musicdownloadqqinterface.cpp \
     $$PWD/qq/musicqqtextdownloadthread.cpp \
     $$PWD/qq/musicdownloadqueryqqplaylistthread.cpp \
+    $$PWD/qq/musicdownloadqueryqqcommentsthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
@@ -151,11 +157,3 @@ SOURCES += \
     $$PWD/musiccounterpvdownloadthread.cpp
 
 }
-
-HEADERS += \
-    $$PWD/kg/musicdownloadquerykgcommentsthread.h \
-    $$PWD/kw/musicdownloadquerykwcommentsthread.h
-
-SOURCES += \
-    $$PWD/kg/musicdownloadquerykgcommentsthread.cpp \
-    $$PWD/kw/musicdownloadquerykwcommentsthread.cpp
