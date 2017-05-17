@@ -151,3 +151,9 @@ SOURCES += \
     $$PWD/musiccounterpvdownloadthread.cpp
 
 }
+
+HEADERS += \
+    $$PWD/kg/musicdownloadquerykgcommentsthread.h
+
+SOURCES += \
+    $$PWD/kg/musicdownloadquerykgcommentsthread.cpp
