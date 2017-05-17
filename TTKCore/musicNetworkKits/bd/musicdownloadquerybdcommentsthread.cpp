@@ -1,6 +1,5 @@
 #include "musicdownloadquerybdcommentsthread.h"
 #include "musicdownloadquerybdthread.h"
-#include "musicdownloadbdinterface.h"
 #include "musicsemaphoreloop.h"
 
 #///QJson import

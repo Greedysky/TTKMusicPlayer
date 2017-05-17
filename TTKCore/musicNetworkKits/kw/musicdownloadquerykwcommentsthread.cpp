@@ -1,33 +1,33 @@
-#include "musicdownloadquerykgcommentsthread.h"
-#include "musicdownloadquerykgthread.h"
+#include "musicdownloadquerykwcommentsthread.h"
+#include "musicdownloadquerykwthread.h"
 #include "musicsemaphoreloop.h"
 
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryKGCommentsThread::MusicDownLoadQueryKGCommentsThread(QObject *parent)
+MusicDownLoadQueryKWCommentsThread::MusicDownLoadQueryKWCommentsThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_pageSize = 20;
-    m_queryServer = "Kugou";
+    m_queryServer = "Kuwo";
 }
 
-MusicDownLoadQueryKGCommentsThread::~MusicDownLoadQueryKGCommentsThread()
+MusicDownLoadQueryKWCommentsThread::~MusicDownLoadQueryKWCommentsThread()
 {
     deleteAll();
 }
 
-QString MusicDownLoadQueryKGCommentsThread::getClassName()
+QString MusicDownLoadQueryKWCommentsThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryKGCommentsThread::startSearchSong(QueryType type, const QString &name)
+void MusicDownLoadQueryKWCommentsThread::startSearchSong(QueryType type, const QString &name)
 {
     Q_UNUSED(type);
 
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryKGThread *query = new MusicDownLoadQueryKGThread(this);
+    MusicDownLoadQueryKWThread *query = new MusicDownLoadQueryKWThread(this);
     query->setQueryAllRecords(false);
     query->setQuerySimplify(true);
     query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
@@ -42,12 +42,12 @@ void MusicDownLoadQueryKGCommentsThread::startSearchSong(QueryType type, const Q
     }
 }
 
-void MusicDownLoadQueryKGCommentsThread::startSearchSong(int offset)
+void MusicDownLoadQueryKWCommentsThread::startSearchSong(int offset)
 {
     deleteAll();
     m_pageTotal = 0;
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SG_COMMIT_URL, URL_KEY)
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_SONG_COMMIT_URL, URL_KEY)
                     .arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -63,7 +63,7 @@ void MusicDownLoadQueryKGCommentsThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryKGCommentsThread::downLoadFinished()
+void MusicDownLoadQueryKWCommentsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -81,23 +81,23 @@ void MusicDownLoadQueryKGCommentsThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["err_code"].toInt() == 0)
+            if(value["result"].toString() == "ok")
             {
-                m_pageTotal = value["count"].toLongLong();
+                m_pageTotal = value["total"].toString().toInt();
 
-                QVariantList comments = value["list"].toList();
+                QVariantList comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     MusicSongCommentItem comment;
                     value = comm.toMap();
-
-                    comment.m_likedCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    comment.m_time = QString::number(QDateTime::fromString(value["addtime"].toString(),
+                    comment.m_likedCount = QString::number(value["like_num"].toString().toInt());
+                    comment.m_time = QString::number(QDateTime::fromString(value["time"].toString(),
                                                      "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
-                    comment.m_content = value["content"].toString();
+                    comment.m_content = value["msg"].toString();
 
-                    comment.m_nickName = value["user_name"].toString();
-                    comment.m_avatarUrl = value["user_pic"].toString();
+                    QUrl name;
+                    comment.m_nickName = name.fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
+                    comment.m_avatarUrl = value["u_pic"].toString();
 
                     emit createSearchedItems(comment);
                 }

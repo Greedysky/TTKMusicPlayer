@@ -153,7 +153,9 @@ SOURCES += \
 }
 
 HEADERS += \
-    $$PWD/kg/musicdownloadquerykgcommentsthread.h
+    $$PWD/kg/musicdownloadquerykgcommentsthread.h \
+    $$PWD/kw/musicdownloadquerykwcommentsthread.h
 
 SOURCES += \
-    $$PWD/kg/musicdownloadquerykgcommentsthread.cpp
+    $$PWD/kg/musicdownloadquerykgcommentsthread.cpp \
+    $$PWD/kw/musicdownloadquerykwcommentsthread.cpp
