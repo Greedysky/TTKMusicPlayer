@@ -131,7 +131,7 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             {
                 readFromMusicSongAttribute(info, data, MB_320);
             }
-            else if(quality == QObject::tr("SQ") && bitrate == MB_500)
+            else if(quality == QObject::tr("CD") && bitrate == MB_500)
             {
                 readFromMusicSongAttribute(info, data, MB_500);
             }

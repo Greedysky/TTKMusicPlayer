@@ -15,7 +15,6 @@ INCLUDEPATH += $$PWD \
                $$PWD/kw \
                $$PWD/bd \
                $$PWD/qq \
-               $$PWD/vip \
                $$PWD/yyt
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
