@@ -1044,52 +1044,52 @@
 <context>
     <name>MusicDownLoadQueryThreadAbstract</name>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="8"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="10"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="40"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="47"/>
         <source>Current Used Server Is %1</source>
         <translation>当前资源来源于%1服务器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="42"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="49"/>
         <source>BD</source>
         <translation>百度音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="44"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="51"/>
         <source>KG</source>
         <translation>酷狗音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="46"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="53"/>
         <source>KW</source>
         <translation>酷我音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="48"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="55"/>
         <source>QQ</source>
         <translation>腾讯音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="50"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="57"/>
         <source>TT</source>
         <translation>天天动听</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="52"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="59"/>
         <source>WY</source>
         <translation>网易音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="54"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="61"/>
         <source>XM</source>
         <translation>虾米音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="56"/>
+        <location filename="../TTKCore/musicNetworkKits/musicdownloadquerythreadabstract.cpp" line="63"/>
         <source>YYT</source>
         <translation>音乐台</translation>
     </message>
@@ -1771,7 +1771,7 @@
 <context>
     <name>MusicLocalSongSearchPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicSearchKits/musiclocalsongsearchpopwidget.cpp" line="73"/>
+        <location filename="../TTKCore/musicSearchKits/musiclocalsongsearchpopwidget.cpp" line="72"/>
         <source>clear</source>
         <translation>清空历史记录</translation>
     </message>
@@ -1815,39 +1815,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="24"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="23"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="44"/>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="106"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="105"/>
         <source>allselected</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="296"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="295"/>
         <source>Overall</source>
         <translation>全盘扫描</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="112"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="111"/>
         <source>allcanceled</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="281"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="280"/>
         <source>showSongCount%1</source>
         <translation> 本地音乐文件（%1）</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="340"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="339"/>
         <source>please select one dirver</source>
         <translation>请选择某一个盘符</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="127"/>
-        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="145"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="126"/>
+        <location filename="../TTKCore/musicToolsetsKits/musiclocalsongsmanagerwidget.cpp" line="144"/>
         <source>please select one item</source>
         <translation>请选择一首歌曲</translation>
     </message>
@@ -1991,12 +1991,12 @@
 <context>
     <name>MusicLrcCommentsItem</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="59"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="60"/>
         <source>Report</source>
         <translation>举报</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="76"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="77"/>
         <source>Reply</source>
         <translation>回复</translation>
     </message>
@@ -2004,17 +2004,17 @@
 <context>
     <name>MusicLrcCommentsWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="206"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="207"/>
         <source>Send</source>
         <translation>发送</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="348"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="349"/>
         <source>&lt;span style=&apos;font-size:15pt;color:#AAAAAA;font-style:bold;&apos;&gt;&quot;%1&quot; Commit&lt;/span&gt;&lt;span style=&apos;font-size:11pt;color:#666666;font-style:bold;&apos;&gt; (Just %2 Commits)&lt;/span&gt;</source>
         <translation>&lt;span style=&apos;font-size:15pt;color:#AAAAAA;font-style:bold;&apos;&gt;&quot;%1&quot; 的评论&lt;/span&gt;&lt;span style=&apos;font-size:11pt;color:#666666;font-style:bold;&apos;&gt; (已有 %2 条评论)&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="351"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="352"/>
         <source>All Comments(%1)</source>
         <translation>全部评论(%1)</translation>
     </message>
@@ -2173,13 +2173,13 @@
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="59"/>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="147"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="645"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="639"/>
         <source>noCurrentSongPlay</source>
         <translation>当前没有正在播放的歌曲哦</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="135"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="640"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="634"/>
         <source>unFoundLrc</source>
         <translation>还没有到相应的歌词文件哦</translation>
     </message>
@@ -2231,32 +2231,32 @@
     </message>
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="341"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="521"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="515"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="506"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="500"/>
         <source>Restore</source>
         <translation>已还原</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="574"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="568"/>
         <source>Translation</source>
         <translation>歌词翻译</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="575"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="569"/>
         <source>MV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="576"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="570"/>
         <source>KMicro</source>
         <translation>K歌</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="577"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="571"/>
         <source>Message</source>
         <translation>歌曲评论</translation>
     </message>
@@ -2398,12 +2398,12 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="504"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="498"/>
         <source>before%1s</source>
         <translation>提前%1秒</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="502"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="496"/>
         <source>after%1s</source>
         <translation>延后%1秒</translation>
     </message>
@@ -3215,17 +3215,17 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPagingWidgetObject</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="41"/>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="43"/>
         <source>pre</source>
         <translation>上一页</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="42"/>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="44"/>
         <source>next</source>
         <translation>下一页</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="86"/>
+        <location filename="../TTKCore/musicWidgetKits/musicpagingwidgetobject.cpp" line="88"/>
         <source>There Is Empty!</source>
         <translation>空空如也, 快来抢沙发!</translation>
     </message>
@@ -3372,7 +3372,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPlaylistFoundItemWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="75"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="77"/>
         <source>%1Thous</source>
         <translation>%1万</translation>
     </message>
@@ -3380,22 +3380,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPlaylistFoundWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="195"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="199"/>
         <source>Recommend</source>
         <translation>推荐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="195"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="199"/>
         <source>Top</source>
         <translation>飙升</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="195"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="199"/>
         <source>Hot</source>
         <translation>最热</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="195"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="199"/>
         <source>New</source>
         <translation>最新</translation>
     </message>
@@ -7148,33 +7148,33 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>添加到 天天酷音 播放列表中</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="145"/>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="169"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="130"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="154"/>
         <source>ss</source>
         <translation>秒前</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="149"/>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="173"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="134"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="158"/>
         <source>mm</source>
         <translation>分钟前</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="153"/>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="177"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="138"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="162"/>
         <source>hh</source>
         <translation>小时前</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="157"/>
-        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="181"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="142"/>
+        <location filename="../TTKCore/musicCoreKits/musictime.cpp" line="166"/>
         <source>day</source>
         <translation>天前</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicNetworkKits/bd/musicdownloadbdinterface.cpp" line="105"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="36"/>
-        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="92"/>
+        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="118"/>
         <source>ST</source>
         <translation>流畅品质</translation>
     </message>
@@ -7184,7 +7184,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="85"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="94"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="40"/>
-        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="96"/>
+        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="122"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
@@ -7193,7 +7193,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="89"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="98"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="44"/>
-        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="100"/>
+        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="126"/>
         <source>HQ</source>
         <translation>普高品质</translation>
     </message>
@@ -7203,7 +7203,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="93"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="102"/>
         <location filename="../TTKCore/musicNetworkKits/wy/musicdownloadwyinterface.cpp" line="48"/>
-        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="104"/>
+        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="130"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
@@ -7212,7 +7212,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <location filename="../TTKCore/musicNetworkKits/kg/musicdownloadkginterface.cpp" line="78"/>
         <location filename="../TTKCore/musicNetworkKits/kw/musicdownloadkwinterface.cpp" line="97"/>
         <location filename="../TTKCore/musicNetworkKits/qq/musicdownloadqqinterface.cpp" line="106"/>
-        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="108"/>
+        <location filename="../TTKCore/musicNetworkKits/xm/musicdownloadxminterface.cpp" line="134"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
