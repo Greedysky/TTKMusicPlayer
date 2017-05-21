@@ -13,12 +13,12 @@ include(../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
 win32{
-    TARGET = ../../../bin/$$TTKMusicPlayer/MusicExtras
+    TARGET = ../../../bin/$$TTKMusicPlayer/TTKExtras
     msvc{
         LIBS += -luser32
     }
 }
-unix:TARGET = ../../lib/$$TTKMusicPlayer/MusicExtras
+unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKExtras
 TEMPLATE = lib
 
 win32:msvc{
@@ -30,10 +30,10 @@ win32:msvc{
 INCLUDEPATH += ../../
 
 win32{
-    LIBS += -L../../bin/$$TTKMusicPlayer -lMusicUi
+    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKUi
 }
 unix:!mac{
-    LIBS += -L../../lib/$$TTKMusicPlayer -lMusicUi
+    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
 }
 
 HEADERS  += \

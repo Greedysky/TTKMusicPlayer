@@ -11,8 +11,8 @@ TEMPLATE = lib
 include(../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:TARGET = ../../bin/$$TTKMusicPlayer/MusicUi
-unix:TARGET = ../lib/$$TTKMusicPlayer/MusicUi
+win32:TARGET = ../../bin/$$TTKMusicPlayer/TTKUi
+unix:TARGET = ../lib/$$TTKMusicPlayer/TTKUi
 
 RESOURCES += \
     MusicPlayer.qrc \

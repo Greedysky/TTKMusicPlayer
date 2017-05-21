@@ -23,11 +23,11 @@ unix:VERSION += $$TTKMusicPlayer
 
 win32{
     TARGET = ../../bin/$$TTKMusicPlayer/TTKService
-    LIBS += -L../bin/$$TTKMusicPlayer -lMusicCore
+    LIBS += -L../bin/$$TTKMusicPlayer -lTTKCore
 }
 unix{
     TARGET = ../lib/$$TTKMusicPlayer/TTKService
-    LIBS += -L./lib/$$TTKMusicPlayer -lMusicCore
+    LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore
 }
 
 

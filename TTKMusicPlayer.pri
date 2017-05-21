@@ -37,7 +37,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lMusicUi -lMusicExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lzlib
             CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
@@ -47,7 +47,7 @@ win32{
         }
 
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lMusicUi -lMusicExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lzlib
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -57,7 +57,7 @@ win32{
     equals(QT_MAJOR_VERSION, 4){
         QT  += multimedia
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lMusicUi -lMusicExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKExtras -lzlib
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -75,7 +75,7 @@ unix:!mac{
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
     QMAKE_CXXFLAGS += -Wswitch
-    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lMusicUi -lMusicExtras -lzlib
+    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lzlib
 }
 
 DEFINES += MUSIC_LIBRARY
@@ -97,7 +97,7 @@ include(TTKCore/musicWidgetCoreKits/MusicWidgetCoreKits.pri)
 include(TTKCore/musicSearchKits/MusicSearchKits.pri)
 include(TTKCore/musicLrcKits/MusicLrcKits.pri)
 include(TTKCore/musicRemoteKits/MusicRemoteKits.pri)
-include(TTKCore/musicToolsetsKits/MusicToolsSetsKits.pri)
+include(TTKCore/musicToolsSetsKits/MusicToolsSetsKits.pri)
 include(TTKCore/musicToolsKits/MusicToolsKits.pri)
 include(TTKCore/musicUserKits/MusicUserKits.pri)
 include(TTKCore/musicVideoKits/MusicVideoKits.pri)

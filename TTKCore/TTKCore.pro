@@ -12,8 +12,8 @@ CONFIG += TTK_BUILD_LIB
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:TARGET = ../../bin/$$TTKMusicPlayer/MusicCore
-unix:TARGET = ../lib/$$TTKMusicPlayer/MusicCore
+win32:TARGET = ../../bin/$$TTKMusicPlayer/TTKCore
+unix:TARGET = ../lib/$$TTKMusicPlayer/TTKCore
 
 INCLUDEPATH += $$PWD
 
