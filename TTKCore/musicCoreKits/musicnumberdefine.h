@@ -15,6 +15,7 @@
 
 #define MT_S            1
 #define MT_S2MS         1000
+#define MT_S2US         (MT_S2MS*MT_S2MS)
 
 #define MT_M            60
 #define MT_M2S          MT_M
