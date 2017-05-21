@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME MusicCore)
+set(TARGET_NAME TTKCore)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
@@ -22,7 +22,7 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadwyinterface.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.h
-    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.h
+    ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywycommentsthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwydiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.h
@@ -33,28 +33,33 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmartistthread.h
     ${MUSIC_NETWORK_DIR}/xm/musicxmtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmcommentsthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadkginterface.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgcommentsthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadkwinterface.h
     ${MUSIC_NETWORK_DIR}/kw/musickwtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwcommentsthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqqinterface.h
     ${MUSIC_NETWORK_DIR}/qq/musicqqtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.h
+    ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqcommentsthread.h
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
@@ -71,6 +76,7 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.h
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.h
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.h
+    ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.h
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
     ${MUSIC_CORE_DIR}/utils/musicwidgetutils.h
@@ -263,6 +269,7 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
+    ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.h
     ${MUSIC_LIB_DIR}/musicapplication.h
     ${MUSIC_LIB_DIR}/musicleftareawidget.h
     ${MUSIC_LIB_DIR}/musictopareawidget.h
@@ -296,7 +303,7 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadwyinterface.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.cpp
-    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywycommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwydiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.cpp
@@ -307,28 +314,33 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmartistthread.cpp
     ${MUSIC_NETWORK_DIR}/xm/musicxmtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadkginterface.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadkwinterface.cpp
     ${MUSIC_NETWORK_DIR}/kw/musickwtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqqinterface.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicqqtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.cpp
+    ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
@@ -345,6 +357,7 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.cpp
+    ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.cpp
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
     ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicwidgetutils.cpp
@@ -532,6 +545,7 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
+    ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.cpp
     ${MUSIC_LIB_DIR}/musicapplication.cpp
     ${MUSIC_LIB_DIR}/musicleftareawidget.cpp
     ${MUSIC_LIB_DIR}/musictopareawidget.cpp
@@ -594,7 +608,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} MusicUi MusicExtras zlib -lIphlpapi -luser32)
+  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Sql Qt5::Xml Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets Qt5::WinExtras ${QMMP_LIBRARY} TTKUi TTKExtras zlib -lIphlpapi -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT5_LIBS Qt5::WinExtras -lIphlpapi -luser32)
   endif()
@@ -608,7 +622,7 @@ else()
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_UIS_H} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} MusicUi MusicExtras zlib -lIphlpapi -luser32)
+  list(APPEND QT4_LIBS ${QMMP_LIBRARY} ${QT_QTMULTIMEDIA_LIBRARY} ${QT_QTSQL_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY} TTKUi TTKExtras zlib -lIphlpapi -luser32)
   if(UNIX)
     list(REMOVE_ITEM QT4_LIBS ${QT_QTMULTIMEDIA_LIBRARY} -lIphlpapi -luser32)
     list(APPEND QT4_LIBS -lQtMultimediaKit)
