@@ -33,3 +33,7 @@ HEADERS  += \
     musicrightareawidget.h \
     musicbottomareawidget.h \
     musicapplicationobject.h
+    
+win32{
+    RC_FILE = TTKCore.rc
+}

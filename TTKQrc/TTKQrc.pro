@@ -17,3 +17,7 @@ unix:TARGET = ../lib/$$TTKMusicPlayer/TTKUi
 RESOURCES += \
     MusicPlayer.qrc \
     MusicThirdParty.qrc
+    
+win32{
+    RC_FILE = TTKQrc.rc
+}

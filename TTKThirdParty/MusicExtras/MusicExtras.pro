@@ -48,3 +48,7 @@ include(qjson/QJson.pri)
 include(qkugou/QKuGou.pri)
 include(qrencode/QRencode.pri)
 include(qshortcut/QShortCut.pri)
+
+win32{
+    RC_FILE = MusicExtras.rc
+}
