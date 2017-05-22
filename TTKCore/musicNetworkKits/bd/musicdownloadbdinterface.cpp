@@ -60,14 +60,17 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 {
                     MusicObject::MusicSongAttribute attr;
                     attr.m_url = value["file_link"].toString();
+                    if(attr.m_url.isEmpty())
+                    {
+                        continue;
+                    }
+
                     if(attr.m_url.contains("pan."))
                     {
                         readFromMusicPayAttribute(info, manager);
                     }
                     else
                     {
-//                        attr.m_url.replace(MusicCryptographicHash::decryptData(BD_SONG_YYDOWN_URL, URL_KEY),
-//                                           MusicCryptographicHash::decryptData(BD_SONG_SSDOWN_URL, URL_KEY));
                         attr.m_duration = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
                         attr.m_size = MusicUtils::Number::size2Label(value["file_size"].toInt());
                         attr.m_format = value["file_extension"].toString();
