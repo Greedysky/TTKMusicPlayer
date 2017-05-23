@@ -134,6 +134,10 @@ namespace MusicObject
         {
             return m_bitrate < other.m_bitrate;
         }
+        bool operator== (const MusicSongAttribute &other) const
+        {
+            return m_bitrate == other.m_bitrate;
+        }
     }MusicSongAttribute;
     TTK_DECLARE_LISTS(MusicSongAttribute)
 
