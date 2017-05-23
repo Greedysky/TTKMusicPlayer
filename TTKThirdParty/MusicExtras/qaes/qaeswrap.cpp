@@ -3,7 +3,7 @@ extern "C" {
 #include "aes.h"
 }
 
-QByteArray QAesWrap::encrypt(const QString &in, const QString &key, const QString &iv)
+QByteArray QAesWrap::encrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char encrypt_string[1024] = {0};
@@ -15,32 +15,32 @@ QByteArray QAesWrap::encrypt(const QString &in, const QString &key, const QStrin
     int nNumber = (nLen % 16 > 0) ? nTotal - nLen :16;
 
     memset(enc_s, nNumber, nTotal);
-    memcpy(enc_s, in.toStdString().data(), nLen);
-    if(AES_set_encrypt_key((unsigned char *)key.toStdString().data(), 128, &aes) < 0)
+    memcpy(enc_s, in.data(), nLen);
+    if(AES_set_encrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
     {
         return QByteArray();
     }
 
     AES_cbc_encrypt((unsigned char *)enc_s, (unsigned char *)encrypt_string, nTotal,
                     &aes,
-                    (unsigned char *)iv.toStdString().data(), AES_ENCRYPT);
+                    (unsigned char *)iv.data(), AES_ENCRYPT);
     delete enc_s;
     return QByteArray(encrypt_string).toBase64();
 }
 
-QByteArray QAesWrap::decrypt(const QByteArray &in, const QString &key, const QString &iv)
+QByteArray QAesWrap::decrypt(const QByteArray &in, const QByteArray &key, const QByteArray &iv)
 {
     AES_KEY aes;
     char encrypt_string[1024] = {0};
-    const char *decode = QString(QByteArray::fromBase64(in)).toStdString().data();
+    const char *decode = QByteArray::fromBase64(in).data();
 
-    if(AES_set_decrypt_key((unsigned char *)key.toStdString().data(), 128, &aes) < 0)
+    if(AES_set_decrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
     {
         return QByteArray();
     }
     AES_cbc_encrypt((unsigned char *)decode, (unsigned char *)encrypt_string, strlen(decode),
                     &aes,
-                    (unsigned char *)iv.toStdString().data(), AES_DECRYPT);
+                    (unsigned char *)iv.data(), AES_DECRYPT);
 
     return QByteArray(QString(encrypt_string).remove("\x0F").toUtf8());
 }

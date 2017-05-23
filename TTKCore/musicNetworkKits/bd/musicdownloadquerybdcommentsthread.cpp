@@ -51,7 +51,7 @@ void MusicDownLoadQueryBDCommentsThread::startSearchSong(int offset)
     QString time = "1494911685";
     QString key = QCryptographicHash::hash(QString("baidu_taihe_music_secret_key" + time).toUtf8(), QCryptographicHash::Md5).toHex().mid(8, 16);
     QString data = MusicCryptographicHash::decryptData(BD_SG_COMMIT_DATA_URL, URL_KEY).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
-    QString eKey = QAesWrap::encrypt(data, key, key);
+    QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
     QString sign = QCryptographicHash::hash(QString("baidu_taihe_music" + eKey + time).toUtf8(), QCryptographicHash::Md5).toHex();
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");

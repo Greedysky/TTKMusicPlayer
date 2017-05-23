@@ -17,7 +17,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 {
     QString key = MusicCryptographicHash::decryptData(BD_SONG_ATTR_PA_URL, URL_KEY).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
-    QString eKey = QString(QAesWrap::encrypt(key, "4CC20A0C44FEB6FD", "2012061402992850"));
+    QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");
     eKey.replace('=', "%3D");
