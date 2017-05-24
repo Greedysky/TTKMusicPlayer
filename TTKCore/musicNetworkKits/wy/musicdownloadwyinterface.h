@@ -27,6 +27,7 @@ const QString WY_SONG_PIC_URL      = "eEZpOHNEanlmUmxITG9PRHI4aElxcDRqY1F5VjE1Sm
 const QString WY_SONG_LRC_URL      = "TjNjL2ttNVR4cGluaEpwU1B2VzNucFhEWUdkRERkempFcThjWEIvMzMzMzVjaWVoR3ZNYXN5MHZsOE9sMTQ1TG1yeDNVQT09";
 const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
 const QString WY_SONG_DETAIL_URL   = "L3pCVjhOLzB5TUxpNS84czdTRTFndnZvMFkyTjhyKzFTK3lTNVlvQXBjT0xEb1FQZVpqdzZRaW5nNmM9";
+const QString WY_SONG_INFO_URL     = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_ARTIST_URL        = "VURUWGM0c0NHamdldHFWcGwvZWlxS24rZ3Fpc1o0TEZmUDRDUDl3aWQvdklQN0VCeVpicmxRPT0=";
 ///////////////////////////////////////////////////////////////////////////
@@ -38,18 +39,25 @@ const QString WY_PLAYLIST_URL      = "aDd0V0k1Y1lWcXBqZ3VMQWhaWmp6eFlUYXJmZmRyan
 const QString WY_PLAYLIST_ATTR_URL = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
 ///////////////////////////////////////////////////////////////////////////
 
+class QNetworkAccessManager;
+
 /*! @brief The class to wangyi query download interface.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadWYInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QVariantMap &key, int bitrate);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                    const QString &id, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+                                    const QVariantMap &key, const QString &id, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                     const QVariantMap &key, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.

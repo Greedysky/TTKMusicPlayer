@@ -39,39 +39,12 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void songListFinished();
-    /*!
-     * Query song list finished.
-     */
-    void mvListFinished();
-    /*!
-     * Query mv list finished.
-     */
 
 protected:
-    void startSongListQuery();
-    /*!
-     * Start to search song list by id.
-     */
-    void startMVListQuery();
+    void startMVListQuery(int id);
     /*!
      * Start to search mv list by id.
      */
-    qint64 foundAblumIdBySongId(const QString &song);
-    /*!
-     * Found ablum id by song id.
-     */
-    void foundLostSongs(const QString &ablum);
-    /*!
-     * Found lost song by ablum id.
-     */
-    void foundOtherMovie();
-    /*!
-     * Found other movie.
-     */
-
-    QSet<QString> m_songIds;
-    int m_index;
 
 };
 
