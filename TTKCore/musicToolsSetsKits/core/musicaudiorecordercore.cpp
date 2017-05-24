@@ -1,4 +1,5 @@
 #include "musicaudiorecordercore.h"
+#include "musicmessagebox.h"
 #include "musiccoreutils.h"
 
 #define OPEN_FILE_ERROR     -1
@@ -148,6 +149,13 @@ void MusicAudioRecorderCore::onRecordStart()
     m_mpOutputFile->open(QIODevice::WriteOnly | QIODevice::Truncate);
 
     m_mpAudioInputFile = new QAudioInput(m_mFormatFile, this);
+    if(m_mpAudioInputFile->error() != QAudio::NoError)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Audio Input Open Error"));
+        message.exec();
+        return;
+    }
     m_mpAudioInputFile->start(m_mpOutputFile);
 }
 
@@ -156,6 +164,13 @@ void MusicAudioRecorderCore::onRecordPlay()
     m_mpOutputFile->open(QIODevice::ReadOnly | QIODevice::Truncate);
 
     m_mpAudioOutputFile = new QAudioOutput(m_mFormatFile, this);
+    if(m_mpAudioOutputFile->error() != QAudio::NoError)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Audio Output Open Error"));
+        message.exec();
+        return;
+    }
     connect(m_mpAudioOutputFile, SIGNAL(stateChanged(QAudio::State)), SLOT(onStateChange(QAudio::State)));
     m_mpAudioOutputFile->start(m_mpOutputFile);
 
