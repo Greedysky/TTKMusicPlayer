@@ -7,7 +7,7 @@
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QCryptographicHash>
+#include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
@@ -86,6 +86,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         readFromMusicSongAttribute(info, manager, key["bMusic"].toMap(), id, MB_128);
         readFromMusicSongAttribute(info, manager, key["mMusic"].toMap(), id,  MB_192);
         readFromMusicSongAttribute(info, manager, key["hMusic"].toMap(), id,  MB_320);
+        readFromMusicSongAttribute(info, manager, QVariantMap(), id,  MB_999);
     }
     else
     {
@@ -100,6 +101,10 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         else if(quality == QObject::tr("SQ"))
         {
             readFromMusicSongAttribute(info, manager, key["hMusic"].toMap(), id,  MB_320);
+        }
+        else if(quality == QObject::tr("CD"))
+        {
+            readFromMusicSongAttribute(info, manager, QVariantMap(), id,  MB_999);
         }
     }
 }
