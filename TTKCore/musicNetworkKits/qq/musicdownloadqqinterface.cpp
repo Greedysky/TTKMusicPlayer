@@ -26,6 +26,10 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     {
         QString randKey = QString::number(qrand());
         QString vkey = getMusicKey(manager, randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_128_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
@@ -38,6 +42,10 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     {
         QString randKey = QString::number(qrand());
         QString vkey = getMusicKey(manager, randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_192_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
@@ -50,6 +58,10 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     {
         QString randKey = QString::number(qrand());
         QString vkey = getMusicKey(manager, randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
 
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_320_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
@@ -60,8 +72,15 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_500)
     {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(manager, randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_APE_URL, URL_KEY).arg(mid);
+        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_APE_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeape"].toULongLong());
         attr.m_format = "ape";
         attr.m_bitrate = bitrate;
@@ -69,8 +88,15 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(key["sizeflac"].toULongLong() != 0 && bitrate == MB_1000)
     {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(manager, randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_FLAC_URL, URL_KEY).arg(mid);
+        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_FLAC_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
         attr.m_format = "flac";
         attr.m_bitrate = bitrate;
