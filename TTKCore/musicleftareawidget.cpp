@@ -7,7 +7,7 @@
 #include "musicdownloadmgmtwidget.h"
 #include "musictoolsetswidget.h"
 #include "musicdownloadrecordwidget.h"
-#include "musicwebradiotoolwidget.h"
+#include "musicwebmusicradiolistview.h"
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicewidget.h"
@@ -165,7 +165,10 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
     m_currentIndex = 2;
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicWebRadioToolWidget(this);
+    MusicWebMusicRadioListView *w = new MusicWebMusicRadioListView(this);
+    w->initListItems();
+    m_stackedWidget = w;
+
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

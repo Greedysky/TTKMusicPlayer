@@ -12,7 +12,6 @@ INCLUDEPATH += $$PWD \
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/core/musicdownloadrecordconfigmanager.h \
-    $$PWD/core/musicwebentainradiodatebase.h \
     $$PWD/core/musicfilesenderserver.h \
     $$PWD/core/musicfilereceiveserver.h \
     $$PWD/musicsongstoolboxwidget.h \
@@ -21,9 +20,6 @@ HEADERS  += \
     $$PWD/musicconnectmobilewidget.h \
     $$PWD/musicconnecttransferwidget.h \
     $$PWD/musicconnecttransfertablewidget.h \
-    $$PWD/musicwebradiotoolwidget.h \
-    $$PWD/musicwebentainradiowidget.h \
-    $$PWD/musicwebentainradiolistview.h \
     $$PWD/musicwebmusicradiolistview.h  \
     $$PWD/musicwebmusicradiowidget.h \
     $$PWD/musiccloudsharedsongwidget.h \
@@ -36,7 +32,6 @@ HEADERS  += \
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/core/musicdownloadrecordconfigmanager.cpp \
-    $$PWD/core/musicwebentainradiodatebase.cpp \
     $$PWD/core/musicfilesenderserver.cpp \
     $$PWD/core/musicfilereceiveserver.cpp \
     $$PWD/musicsongstoolboxwidget.cpp \
@@ -45,9 +40,6 @@ SOURCES += \
     $$PWD/musicconnectmobilewidget.cpp \
     $$PWD/musicconnecttransferwidget.cpp \
     $$PWD/musicconnecttransfertablewidget.cpp \
-    $$PWD/musicwebradiotoolwidget.cpp \
-    $$PWD/musicwebentainradiowidget.cpp \
-    $$PWD/musicwebentainradiolistview.cpp \
     $$PWD/musicwebmusicradiolistview.cpp \
     $$PWD/musicwebmusicradiowidget.cpp \
     $$PWD/musiccloudsharedsongwidget.cpp \

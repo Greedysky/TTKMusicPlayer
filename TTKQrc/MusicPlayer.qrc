@@ -147,23 +147,6 @@
         <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
         <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
     </qresource>
-    <qresource prefix="/radio">
-        <file alias="lb_favorite">../TTKResource/netRadio/lb_favorite.png</file>
-        <file alias="lb_guowai">../TTKResource/netRadio/lb_guowai.png</file>
-        <file alias="lb_jiaotong">../TTKResource/netRadio/lb_jiaotong.png</file>
-        <file alias="lb_jingji">../TTKResource/netRadio/lb_jingji.png</file>
-        <file alias="lb_latest">../TTKResource/netRadio/lb_latest.png</file>
-        <file alias="lb_music">../TTKResource/netRadio/lb_music.png</file>
-        <file alias="lb_news">../TTKResource/netRadio/lb_news.png</file>
-        <file alias="lb_quyi">../TTKResource/netRadio/lb_quyi.png</file>
-        <file alias="lb_shenghuo">../TTKResource/netRadio/lb_shenghuo.png</file>
-        <file alias="lb_sports">../TTKResource/netRadio/lb_sports.png</file>
-        <file alias="lb_zhongyang">../TTKResource/netRadio/lb_zhongyang.png</file>
-        <file alias="lb_radiopng1">../TTKResource/netRadio/lb_top_0.png</file>
-        <file alias="lb_radiopng2">../TTKResource/netRadio/lb_top_1.png</file>
-        <file alias="lb_radiopng3">../TTKResource/netRadio/lb_top_2.png</file>
-        <file alias="lb_radiopng4">../TTKResource/netRadio/lb_top_3.png</file>
-    </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>
         <file alias="lb_cicle_blue">../TTKResource/gif/lb_cicle_blue.png</file>

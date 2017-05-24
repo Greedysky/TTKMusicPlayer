@@ -54,7 +54,6 @@
 #endif
 
 #define COFIGPATH               "musicconfig.xml"
-#define NETRADIOPATH            "musicradio.dll"
 #define MUSICPATH               "music.lis"
 #define NORMALDOWNPATH          "musicdown.ttk"
 #define CLOUDDOWNPATH           "musiccloud.ttk"
@@ -82,7 +81,6 @@
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
-#define NETRADIOPATH_FULL       APPDATA_DIR_FULL + NETRADIOPATH
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
 #define NORMALDOWNPATH_FULL     APPDATA_DIR_FULL + NORMALDOWNPATH
 #define CLOUDDOWNPATH_FULL      APPDATA_DIR_FULL + CLOUDDOWNPATH

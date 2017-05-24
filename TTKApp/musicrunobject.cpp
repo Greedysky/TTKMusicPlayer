@@ -15,7 +15,6 @@
 #define S_BACKGROUND_DIR_FULL     S_DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 
 #define S_COFIGPATH_FULL          S_APPDATA_DIR_FULL + COFIGPATH
-#define S_NETRADIOPATH_FULL       S_APPDATA_DIR_FULL + NETRADIOPATH
 #define S_MUSICPATH_FULL          S_APPDATA_DIR_FULL + MUSICPATH
 #define S_NORMALDOWNPATH_FULL     S_APPDATA_DIR_FULL + NORMALDOWNPATH
 #define S_CLOUDDOWNPATH_FULL      S_APPDATA_DIR_FULL + CLOUDDOWNPATH
@@ -133,10 +132,6 @@ void MusicRunObject::checkTheFileNeededExist()
     if(!QFile::exists(S_COFIGPATH_FULL))
     {
         QFile::copy(":/data/musicconfig.xml", S_COFIGPATH_FULL);
-    }
-    if(!QFile::exists(S_NETRADIOPATH_FULL))
-    {
-        QFile::copy(":/data/musicradio.dll", S_NETRADIOPATH_FULL);
     }
     if(!QFile::exists(S_MUSICPATH_FULL))
     {
