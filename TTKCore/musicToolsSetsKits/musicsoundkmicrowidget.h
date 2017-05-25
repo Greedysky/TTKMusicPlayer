@@ -43,9 +43,11 @@ public:
      * Set current state button style.
      */
 
-signals:
-
 public slots:
+    void volumeChanged(int volume);
+    /*!
+     * Current volume changed.
+     */
     void positionChanged(qint64 position);
     /*!
      * Current position changed.
@@ -79,6 +81,9 @@ protected:
      * Override the widget event.
      */
     void multiMediaChanged();
+    /*!
+     * Multi media changed.
+     */
 
     Ui::MusicSoundKMicroWidget *m_ui;
     bool m_stateButtonOn, m_queryMv;

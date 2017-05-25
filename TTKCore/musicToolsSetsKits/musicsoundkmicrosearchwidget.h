@@ -95,8 +95,6 @@ public:
      * Connect to parent.
      */
 
-signals:
-
 public slots:
     void startToSearch();
     /*!

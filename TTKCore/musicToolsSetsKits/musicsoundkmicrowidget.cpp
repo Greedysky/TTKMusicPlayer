@@ -32,6 +32,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_queryMv = true;
     m_stateButtonOn = true;
 
+    m_ui->volumeButton->setValue(100);
+    m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_mediaPlayer = new MusicCoreMPlayer(this);
     m_searchWidget = new MusicSoundKMicroSearchWidget;
     m_searchWidget->connectTo(this);
@@ -41,8 +43,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playButtonChanged()));
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-//    connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
     connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
+    connect(m_ui->volumeButton, SIGNAL(musicVolumeChanged(int)), SLOT(volumeChanged(int)));
 }
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
@@ -67,6 +69,11 @@ void MusicSoundKMicroWidget::setStateButtonStyle(bool style)  const
 {
     m_ui->stateButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnOrigin :
                                              MusicUIObject::MKGVideoBtnOriginOff);
+}
+
+void MusicSoundKMicroWidget::volumeChanged(int volume)
+{
+    m_mediaPlayer->setVolume(volume);
 }
 
 void MusicSoundKMicroWidget::positionChanged(qint64 position)
@@ -161,4 +168,5 @@ void MusicSoundKMicroWidget::multiMediaChanged()
     {
         m_stateButtonOn ? m_mediaPlayer->setRightVolume() : m_mediaPlayer->setLeftVolume();
     }
+    volumeChanged(m_ui->volumeButton->value());
 }

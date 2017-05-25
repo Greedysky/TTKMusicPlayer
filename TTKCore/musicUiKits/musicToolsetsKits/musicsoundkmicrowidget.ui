@@ -119,6 +119,19 @@
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
    </widget>
+   <widget class="MusicVolumePopWidget" name="volumeButton">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>30</y>
+      <width>20</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
@@ -138,6 +151,11 @@
    <class>MusicMovingLabelSlider</class>
    <extends>QSlider</extends>
    <header>musicmovinglabelslider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicVolumePopWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicvolumepopwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
