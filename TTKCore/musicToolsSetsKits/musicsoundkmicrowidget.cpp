@@ -3,6 +3,7 @@
 #include "musicsoundkmicrosearchwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicvideouiobject.h"
+#include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musictime.h"
 #include "musiccoremplayer.h"
@@ -39,6 +40,9 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_searchWidget->connectTo(this);
     m_searchWidget->show();
 
+    m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+
+    connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playButtonChanged()));
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -119,6 +123,20 @@ void MusicSoundKMicroWidget::stateButtonChanged()
     multiMediaChanged();
 }
 
+void MusicSoundKMicroWidget::tipsButtonChanged()
+{
+    if(m_ui->winTipsButton->styleSheet().contains(MusicUIObject::MKGTinyBtnWintopOff))
+    {
+        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOn);
+        m_searchWidget->hide();
+    }
+    else
+    {
+        m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+        m_searchWidget->show();
+    }
+}
+
 void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url)
 {
     setButtonStyle(false);
@@ -168,5 +186,6 @@ void MusicSoundKMicroWidget::multiMediaChanged()
     {
         m_stateButtonOn ? m_mediaPlayer->setRightVolume() : m_mediaPlayer->setLeftVolume();
     }
+
     volumeChanged(m_ui->volumeButton->value());
 }

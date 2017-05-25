@@ -68,6 +68,10 @@ public slots:
     /*!
      * State button changed.
      */
+    void tipsButtonChanged();
+    /*!
+     * Tips button changed.
+     */
     void mvURLChanged(bool mv, const QString &url);
     /*!
      * Set current media url.

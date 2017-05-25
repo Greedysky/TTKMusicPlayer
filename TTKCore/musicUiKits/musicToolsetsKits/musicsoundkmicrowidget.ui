@@ -51,6 +51,19 @@
      <string>...</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="winTipsButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>12</y>
+      <width>14</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="controlWidget" native="true">
    <property name="geometry">
