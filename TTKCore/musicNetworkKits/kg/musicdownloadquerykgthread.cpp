@@ -122,7 +122,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
     }
 
     ///extra yyt movie
-    if(m_currentType == MovieQuery)
+    if(m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);

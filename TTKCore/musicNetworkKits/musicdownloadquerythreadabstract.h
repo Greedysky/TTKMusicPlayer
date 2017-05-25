@@ -118,6 +118,10 @@ public:
     /*!
      * Get query simplify flag.
      */
+    inline void setQueryExtraMovie(bool state) { m_queryExtraMovie = state;}
+    /*!
+     * Set query extra movie flag.
+     */
     inline QueryType getQueryType() const { return m_currentType;}
     /*!
      * Return the current song query type.
@@ -168,7 +172,7 @@ protected:
     QString m_searchText, m_searchQuality;
     QString m_queryServer;
     QueryType m_currentType;
-    bool m_queryAllRecords, m_querySimplify;
+    bool m_queryAllRecords, m_querySimplify, m_queryExtraMovie;
     QVariantMap m_rawData;
 
 };

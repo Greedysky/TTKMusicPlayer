@@ -597,6 +597,10 @@
         <file alias="btn_search_hover">../TTKResource/video/btn_search_hover.png</file>
         <file alias="btn_share_normal">../TTKResource/video/btn_share_normal.png</file>
         <file alias="btn_share_hover">../TTKResource/video/btn_share_hover.png</file>
+        <file alias="btn_accompaniment_hover">../TTKResource/video/btn_accompaniment_hover.png</file>
+        <file alias="btn_accompaniment_normal">../TTKResource/video/btn_accompaniment_normal.png</file>
+        <file alias="btn_origin_hover">../TTKResource/video/btn_origin_hover.png</file>
+        <file alias="btn_origin_normal">../TTKResource/video/btn_origin_normal.png</file>
         <file alias="lb_video_1">../TTKResource/video/lb_video_1.png</file>
         <file alias="lb_video_2">../TTKResource/video/lb_video_2.png</file>
         <file alias="lb_video_3">../TTKResource/video/lb_video_3.png</file>

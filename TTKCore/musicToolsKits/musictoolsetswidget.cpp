@@ -15,6 +15,7 @@
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 #include "musicrightareawidget.h"
+#include "musicsoundkmicrowidget.h"
 
 #include <QTimer>
 
@@ -121,6 +122,10 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("grabwindow"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow")
+                                   ,tr("grabwindow"), this);
+    item->setSizeHint(QSize(80, 90));
+    addItem(item);
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
@@ -210,6 +215,14 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         case 13:
             {
                 (new MusicGrabWidget)->show();
+                break;
+            }
+        case 14:
+            {
+                delete m_containItem;
+                MusicSoundKMicroWidget *w = new MusicSoundKMicroWidget(this);
+                m_containItem = w;
+                w->show();
                 break;
             }
         default:

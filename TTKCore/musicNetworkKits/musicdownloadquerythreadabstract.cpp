@@ -7,6 +7,7 @@ MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *pare
     m_pageTotal = 0;
     m_queryAllRecords = false;
     m_querySimplify = false;
+    m_queryExtraMovie = true;
     m_searchQuality = tr("SD");
     m_queryServer = "Invalid";
 

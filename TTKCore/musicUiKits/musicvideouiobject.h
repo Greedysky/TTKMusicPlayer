@@ -163,6 +163,15 @@ namespace MusicUIObject
             background-image: url(:/video/lb_big_on_normal);} \
             QPushButton:hover{ background-image: url(:/video/lb_big_on_hover);}";
 
+    const QString MKGVideoBtnOrigin = " \
+            QPushButton{ border:none; \
+            background-image: url(:/video/btn_origin_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_origin_hover);}";
+
+    const QString MKGVideoBtnOriginOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/video/btn_accompaniment_normal);} \
+            QPushButton:hover{ background-image: url(:/video/btn_accompaniment_hover);}";
 }
 
 #endif // MUSICVIDEOUIOBJECT_H
