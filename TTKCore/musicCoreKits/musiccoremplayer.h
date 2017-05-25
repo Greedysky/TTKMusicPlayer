@@ -54,6 +54,18 @@ public:
     /*!
      * Set current play pos.
      */
+    void setLeftVolume();
+    /*!
+     * Set left player volume mode.
+     */
+    void setRightVolume();
+    /*!
+     * Set right player volume mode.
+     */
+    void setMultiVoice(int number);
+    /*!
+     * Set single voice from multi voice by id.
+     */
 
     void setMute(bool mute);
     /*!

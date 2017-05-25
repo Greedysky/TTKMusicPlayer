@@ -41,6 +41,12 @@ public:
      * Set query MV flag.
      */
 
+signals:
+    void mvURLChanged(bool mv, const QString &url);
+    /*!
+     * Set current media url.
+     */
+
 public Q_SLOTS:
     virtual void clearAllItems() override;
     /*!
@@ -83,6 +89,10 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+    void connectTo(QObject *obj);
+    /*!
+     * Connect to parent.
      */
 
 signals:

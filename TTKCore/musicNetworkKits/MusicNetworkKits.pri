@@ -60,6 +60,7 @@ HEADERS  += \
     $$PWD/bd/musicdownloadbdinterface.h \
     $$PWD/bd/musicdownloadquerybdplaylistthread.h \
     $$PWD/bd/musicdownloadquerybdcommentsthread.h \
+    $$PWD/bd/musicdownloadquerybdlearnthread.h \
     $$PWD/qq/musicdownloadqueryqqthread.h \
     $$PWD/qq/musicdownloadqueryqqalbumthread.h \
     $$PWD/qq/musicdownloadqueryqqartistthread.h \
@@ -130,6 +131,7 @@ SOURCES += \
     $$PWD/bd/musicdownloadbdinterface.cpp \
     $$PWD/bd/musicdownloadquerybdplaylistthread.cpp \
     $$PWD/bd/musicdownloadquerybdcommentsthread.cpp \
+    $$PWD/bd/musicdownloadquerybdlearnthread.cpp \
     $$PWD/qq/musicdownloadqueryqqthread.cpp \
     $$PWD/qq/musicdownloadqueryqqalbumthread.cpp \
     $$PWD/qq/musicdownloadqueryqqartistthread.cpp \

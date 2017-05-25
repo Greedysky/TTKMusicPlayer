@@ -14,6 +14,7 @@
 namespace Ui {
 class MusicSoundKMicroWidget;
 }
+class MusicCoreMPlayer;
 class MusicSoundKMicroSearchWidget;
 
 /*! @brief The class of the sound kmicro widget.
@@ -33,14 +34,6 @@ public:
     /*!
      * Get class object name.
      */
-    void setValue(qint64 position) const;
-    /*!
-     * Set current video play value.
-     */
-    void durationChanged(qint64 duration) const;
-    /*!
-     * Set current video duration.
-     */
     void setButtonStyle(bool style) const;
     /*!
      * Set current button style.
@@ -53,9 +46,29 @@ public:
 signals:
 
 public slots:
+    void positionChanged(qint64 position);
+    /*!
+     * Current position changed.
+     */
+    void durationChanged(qint64 duration);
+    /*!
+     * Set current video duration.
+     */
+    void setPosition(int position);
+    /*!
+     * Set current play pos.
+     */
+    void playButtonChanged();
+    /*!
+     * Play button changed.
+     */
     void stateButtonChanged();
     /*!
      * State button changed.
+     */
+    void mvURLChanged(bool mv, const QString &url);
+    /*!
+     * Set current media url.
      */
 
 protected:
@@ -65,9 +78,11 @@ protected:
     /*!
      * Override the widget event.
      */
+    void multiMediaChanged();
 
     Ui::MusicSoundKMicroWidget *m_ui;
-    bool m_stateButtonOn;
+    bool m_stateButtonOn, m_queryMv;
+    MusicCoreMPlayer *m_mediaPlayer;
     MusicSoundKMicroSearchWidget *m_searchWidget;
 
 };

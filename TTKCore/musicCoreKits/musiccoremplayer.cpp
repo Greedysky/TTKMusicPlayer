@@ -106,6 +106,33 @@ void MusicCoreMPlayer::setPosition(qint64 pos)
     m_process->write(QString("seek %1 2\n").arg(pos).toUtf8());
 }
 
+void MusicCoreMPlayer::setLeftVolume()
+{
+    if(!m_process)
+    {
+        return;
+    }
+    m_process->write(QString("af channels=1:1:1\n").toUtf8());
+}
+
+void MusicCoreMPlayer::setRightVolume()
+{
+    if(!m_process)
+    {
+        return;
+    }
+    m_process->write(QString("af channels=1:1\n").toUtf8());
+}
+
+void MusicCoreMPlayer::setMultiVoice(int number)
+{
+    if(!m_process)
+    {
+        return;
+    }
+    m_process->write(QString("switch_audio %1\n").arg(number).toUtf8());
+}
+
 void MusicCoreMPlayer::setMute(bool mute)
 {
     if(!m_process)

@@ -1,5 +1,6 @@
 #include "musicsoundkmicrosearchwidget.h"
 #include "musicdownloadquerykwthread.h"
+#include "musicdownloadquerybdlearnthread.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicgiflabelwidget.h"
 #include "musicmessagebox.h"
@@ -55,7 +56,10 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
     }
     else
     {
-
+        MusicDownLoadQueryBDLearnThread *d = new MusicDownLoadQueryBDLearnThread(this);
+        connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+        setQueryInput( d );
+        m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
     }
 }
 
@@ -72,7 +76,17 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
     MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
     {
-        qDebug() << attr.m_url;
+        if(m_queryMv)
+        {
+            if(attr.m_format == "mkv")
+            {
+                emit mvURLChanged(m_queryMv, attr.m_url);
+            }
+        }
+        else
+        {
+            emit mvURLChanged(m_queryMv, attr.m_url);
+        }
     }
 }
 
@@ -97,10 +111,10 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedI
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 275));
+    item->setToolTip(songItem.m_artistname + " - " + songItem.m_songname);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 275));
     item->setTextColor(QColor(50, 50, 50));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songItem.m_songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
@@ -144,7 +158,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
-    QLabel *topWidget = new QLabel(" sFDSDF", this);
+    QLabel *topWidget = new QLabel(tr(" Search"), this);
     topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06 + MusicUIObject::MColorStyle01);
     topWidget->setFixedHeight(35);
 
@@ -163,9 +177,9 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setIconSize(QSize(25, 25));
-    QRadioButton *mvButton = new QRadioButton("MV", searchWidget);
+    QRadioButton *mvButton = new QRadioButton(tr("MV"), searchWidget);
     mvButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    QRadioButton *songButton = new QRadioButton("Song", searchWidget);
+    QRadioButton *songButton = new QRadioButton(tr("Song"), searchWidget);
     songButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(mvButton, 0);
@@ -187,6 +201,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     mvButton->setChecked(true);
 
     connect(searchButton, SIGNAL(clicked()), SLOT(startToSearch()));
+    connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
 }
 
 MusicSoundKMicroSearchWidget::~MusicSoundKMicroSearchWidget()
@@ -198,6 +213,11 @@ MusicSoundKMicroSearchWidget::~MusicSoundKMicroSearchWidget()
 QString MusicSoundKMicroSearchWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
+{
+    connect(m_searchTableWidget, SIGNAL(mvURLChanged(bool,QString)), obj, SLOT(mvURLChanged(bool,QString)));
 }
 
 void MusicSoundKMicroSearchWidget::startToSearch()

@@ -122,8 +122,8 @@ void MusicToolSetsWidget::addListWidgetItem()
                                                 ,tr("grabwindow"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow")
-                                   ,tr("grabwindow"), this);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_ktv")
+                                                ,tr("kmicro"), this);
     item->setSizeHint(QSize(80, 90));
     addItem(item);
 }

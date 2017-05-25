@@ -5,12 +5,14 @@
 #include "musicvideouiobject.h"
 #include "musicuiobject.h"
 #include "musictime.h"
+#include "musiccoremplayer.h"
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
     m_ui(new Ui::MusicSoundKMicroWidget)
 {
     m_ui->setupUi(this);
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint );
     setAttribute(Qt::WA_TranslucentBackground, false);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -25,38 +27,34 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
 
-    m_stateButtonOn = true;
     setButtonStyle(true);
     setStateButtonStyle(true);
+    m_queryMv = true;
+    m_stateButtonOn = true;
 
+    m_mediaPlayer = new MusicCoreMPlayer(this);
     m_searchWidget = new MusicSoundKMicroSearchWidget;
+    m_searchWidget->connectTo(this);
     m_searchWidget->show();
 
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
+    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playButtonChanged()));
+    connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+//    connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
+    connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
 }
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
 {
-    delete m_ui;
+    delete m_mediaPlayer;
     delete m_searchWidget;
+    delete m_ui;
 }
 
 QString MusicSoundKMicroWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicSoundKMicroWidget::setValue(qint64 position) const
-{
-    m_ui->timeSlider->setValue(position*MT_S2MS);
-    m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
-                                             .arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
-}
-
-void MusicSoundKMicroWidget::durationChanged(qint64 duration) const
-{
-    m_ui->timeSlider->setRange(0, duration*MT_S2MS);
-    m_ui->timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 }
 
 void MusicSoundKMicroWidget::setButtonStyle(bool style) const
@@ -71,15 +69,72 @@ void MusicSoundKMicroWidget::setStateButtonStyle(bool style)  const
                                              MusicUIObject::MKGVideoBtnOriginOff);
 }
 
+void MusicSoundKMicroWidget::positionChanged(qint64 position)
+{
+    m_ui->timeSlider->setValue(position*MT_S2MS);
+    m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
+                                             .arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
+}
+
+void MusicSoundKMicroWidget::durationChanged(qint64 duration)
+{
+    m_ui->timeSlider->setRange(0, duration*MT_S2MS);
+    m_ui->timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
+
+    multiMediaChanged();
+}
+
+void MusicSoundKMicroWidget::setPosition(int position)
+{
+    m_mediaPlayer->setPosition(position/MT_S2MS);
+}
+
+void MusicSoundKMicroWidget::playButtonChanged()
+{
+    m_mediaPlayer->play();
+    switch(m_mediaPlayer->state())
+    {
+        case MusicCoreMPlayer::PlayingState:
+            setButtonStyle(false);
+            break;
+        case MusicCoreMPlayer::PausedState:
+            setButtonStyle(true);
+            break;
+        default: break;
+    }
+}
+
 void MusicSoundKMicroWidget::stateButtonChanged()
 {
     m_stateButtonOn = !m_stateButtonOn;
     setStateButtonStyle(m_stateButtonOn);
+
+    multiMediaChanged();
+}
+
+void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url)
+{
+    setButtonStyle(false);
+
+    if(m_queryMv = mv)
+    {
+        m_ui->stackedWidget->setCurrentIndex(0);
+        m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
+        m_mediaPlayer->play();
+    }
+    else
+    {
+        m_ui->stackedWidget->setCurrentIndex(1);
+        m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, url);
+        m_mediaPlayer->play();
+    }
 }
 
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
+    delete m_mediaPlayer;
+    m_mediaPlayer = nullptr;
     delete m_searchWidget;
     m_searchWidget = nullptr;
 }
@@ -94,4 +149,16 @@ void MusicSoundKMicroWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractMoveWidget::mouseMoveEvent(event);
     m_searchWidget->move( geometry().topRight() + QPoint(5, 0) );
+}
+
+void MusicSoundKMicroWidget::multiMediaChanged()
+{
+    if(m_queryMv)
+    {
+        m_mediaPlayer->setMultiVoice(m_stateButtonOn ? 0 : 1);
+    }
+    else
+    {
+        m_stateButtonOn ? m_mediaPlayer->setRightVolume() : m_mediaPlayer->setLeftVolume();
+    }
 }
