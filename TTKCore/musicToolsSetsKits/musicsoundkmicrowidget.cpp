@@ -2,11 +2,16 @@
 #include "ui_musicsoundkmicrowidget.h"
 #include "musicsoundkmicrosearchwidget.h"
 #include "musicfunctionuiobject.h"
+#include "musiccoremplayer.h"
+#include "musicsettingmanager.h"
+#include "musiclrcanalysis.h"
+#include "musiclrcmanagerforinline.h"
+#include "musicstringutils.h"
+#include "musicsourcedownloadthread.h"
 #include "musicvideouiobject.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musictime.h"
-#include "musiccoremplayer.h"
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -32,6 +37,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     setStateButtonStyle(true);
     m_queryMv = true;
     m_stateButtonOn = true;
+    m_intervalTime = 0;
 
     m_ui->volumeButton->setValue(100);
     m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -41,6 +47,17 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_searchWidget->show();
 
     m_ui->winTipsButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
+
+    m_analysis = new MusicLrcAnalysis(this);
+    m_analysis->setLineMax(5);
+    m_ui->musicPage->connectTo(this);
+    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    {
+        MusicLRCManagerForInline *w = new MusicLRCManagerForInline(this);
+        w->setLrcPerWidth(-10);
+        m_ui->musicPage->addWidget(w);
+        m_musicLrcContainer.append(w);
+    }
 
     connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
@@ -53,8 +70,6 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
 {
-    delete m_mediaPlayer;
-    delete m_searchWidget;
     delete m_ui;
 }
 
@@ -85,6 +100,21 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
     m_ui->timeSlider->setValue(position*MT_S2MS);
     m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
                                              .arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
+
+    if(!m_queryMv && !m_analysis->isEmpty())
+    {
+        QString currentLrc, laterLrc;
+        if(m_analysis->findText(m_ui->timeSlider->value(), m_ui->timeSlider->maximum(), currentLrc, laterLrc, m_intervalTime))
+        {
+            if(currentLrc != m_musicLrcContainer[m_analysis->getMiddle()]->text())
+            {
+                if(m_analysis->valid())
+                {
+                    m_ui->musicPage->start();
+                }
+            }
+        }
+    }
 }
 
 void MusicSoundKMicroWidget::durationChanged(qint64 duration)
@@ -98,6 +128,7 @@ void MusicSoundKMicroWidget::durationChanged(qint64 duration)
 void MusicSoundKMicroWidget::setPosition(int position)
 {
     m_mediaPlayer->setPosition(position/MT_S2MS);
+    m_analysis->setSongSpeedAndSlow(position);
 }
 
 void MusicSoundKMicroWidget::playButtonChanged()
@@ -112,6 +143,19 @@ void MusicSoundKMicroWidget::playButtonChanged()
             setButtonStyle(true);
             break;
         default: break;
+    }
+
+    if(!m_queryMv)
+    {
+        if(m_mediaPlayer->state() == MusicCoreMPlayer::PlayingState)
+        {
+            m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
+        }
+        else
+        {
+            m_musicLrcContainer[m_analysis->getMiddle()]->stopLrcMask();
+            m_ui->musicPage->stop();
+        }
     }
 }
 
@@ -137,7 +181,7 @@ void MusicSoundKMicroWidget::tipsButtonChanged()
     }
 }
 
-void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url)
+void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url, const QString &lrcUrl)
 {
     setButtonStyle(false);
 
@@ -152,16 +196,49 @@ void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url)
         m_ui->stackedWidget->setCurrentIndex(1);
         m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, url);
         m_mediaPlayer->play();
+
+        ////////////////////////////////////////////////////////////////
+        MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+        connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+        download->startToDownload(lrcUrl);
     }
+}
+
+void MusicSoundKMicroWidget::downLoadFinished(const QByteArray &data)
+{
+    m_analysis->setLrcData(data);
+
+    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    {
+        m_musicLrcContainer[i]->setText( QString() );
+    }
+    setItemStyleSheet(0, -3, 90);
+    setItemStyleSheet(1, -6, 35);
+    setItemStyleSheet(2, -10, 0);
+    setItemStyleSheet(3, -6, 35);
+    setItemStyleSheet(4, -3, 90);
+}
+
+void MusicSoundKMicroWidget::updateAnimationLrc()
+{
+    for(int i=0; i<m_analysis->getLineMax(); ++i)
+    {
+        m_musicLrcContainer[i]->setText(m_analysis->getText(i));
+    }
+    m_analysis->setCurrentIndex(m_analysis->getCurrentIndex() + 1);
+    m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
 }
 
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
+    while(!m_musicLrcContainer.isEmpty())
+    {
+        delete m_musicLrcContainer.takeLast();
+    }
+    delete m_analysis;
     delete m_mediaPlayer;
-    m_mediaPlayer = nullptr;
     delete m_searchWidget;
-    m_searchWidget = nullptr;
 }
 
 void MusicSoundKMicroWidget::paintEvent(QPaintEvent *event)
@@ -188,4 +265,51 @@ void MusicSoundKMicroWidget::multiMediaChanged()
     }
 
     volumeChanged(m_ui->volumeButton->value());
+}
+
+void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transparent)
+{
+    MusicLRCManagerForInline *w = m_musicLrcContainer[index];
+    w->setCenterOnLrc(false);
+    w->setFontSize(size);
+
+    int value = 100 - transparent;
+    value = (value < 0) ? 0 : value;
+    value = (value > 100) ? 100 : value;
+    w->setFontTransparent(value);
+    w->setTransparent(value);
+
+    if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
+    {
+        switch((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt())
+        {
+            case MusicLRCManager::Origin:
+                w->setLinearGradientColor(QList<QColor>() << CL_Origin << CL_White << CL_Origin);break;
+            case MusicLRCManager::Red:
+                w->setLinearGradientColor(QList<QColor>() << CL_Red << CL_White << CL_Red);break;
+            case MusicLRCManager::Orange:
+                w->setLinearGradientColor(QList<QColor>() << CL_Orange << CL_White << CL_Orange);break;
+            case MusicLRCManager::Yellow:
+                w->setLinearGradientColor(QList<QColor>() << CL_Yellow << CL_White << CL_Yellow);break;
+            case MusicLRCManager::Green:
+                w->setLinearGradientColor(QList<QColor>() << CL_Green << CL_White << CL_Green);break;
+            case MusicLRCManager::Blue:
+                w->setLinearGradientColor(QList<QColor>() << CL_Blue << CL_White << CL_Blue);break;
+            case MusicLRCManager::Indigo:
+                w->setLinearGradientColor(QList<QColor>() << CL_Indigo << CL_White << CL_Indigo);break;
+            case MusicLRCManager::Purple:
+                w->setLinearGradientColor(QList<QColor>() << CL_Purple << CL_White << CL_Purple);break;
+            case MusicLRCManager::White:
+                w->setLinearGradientColor(QList<QColor>() << CL_White << CL_White << CL_White);break;
+            case MusicLRCManager::Black:
+                w->setLinearGradientColor(QList<QColor>() << CL_Black << CL_White << CL_Black);break;
+            default: break;
+        }
+        w->setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
+    }
+    else
+    {
+        w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        w->setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
+    }
 }

@@ -42,7 +42,7 @@ public:
      */
 
 signals:
-    void mvURLChanged(bool mv, const QString &url);
+    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Set current media url.
      */

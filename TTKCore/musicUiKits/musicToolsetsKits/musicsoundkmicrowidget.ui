@@ -156,10 +156,16 @@
     </rect>
    </property>
    <widget class="QWidget" name="videoPage"/>
-   <widget class="QWidget" name="musicPage"/>
+   <widget class="MusicLayoutAnimation" name="musicPage"/>
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>MusicLayoutAnimation</class>
+   <extends>QWidget</extends>
+   <header location="global">musiclayoutanimation.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>MusicMovingLabelSlider</class>
    <extends>QSlider</extends>

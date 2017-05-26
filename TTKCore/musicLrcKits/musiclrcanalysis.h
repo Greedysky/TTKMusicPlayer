@@ -70,6 +70,10 @@ public:
      * Get current line middle number.
      */
 
+    void setLrcData(const QByteArray &data);
+    /*!
+     * Set lrc container data from other raw data.
+     */
     void setLrcData(const MusicObject::MIntStringMap &data);
     /*!
      * Set lrc container data from other raw data.

@@ -15,6 +15,8 @@ namespace Ui {
 class MusicSoundKMicroWidget;
 }
 class MusicCoreMPlayer;
+class MusicLrcAnalysis;
+class MusicLRCManagerForInline;
 class MusicSoundKMicroSearchWidget;
 
 /*! @brief The class of the sound kmicro widget.
@@ -72,9 +74,17 @@ public slots:
     /*!
      * Tips button changed.
      */
-    void mvURLChanged(bool mv, const QString &url);
+    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Set current media url.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Receive download byte data from net.
+     */
+    void updateAnimationLrc();
+    /*!
+     * Animation finished.
      */
 
 protected:
@@ -88,11 +98,18 @@ protected:
     /*!
      * Multi media changed.
      */
+    void setItemStyleSheet(int index, int size, int transparent);
+    /*!
+     * Set per lrc line style sheet.
+     */
 
     Ui::MusicSoundKMicroWidget *m_ui;
+    qint64 m_intervalTime;
     bool m_stateButtonOn, m_queryMv;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicSoundKMicroSearchWidget *m_searchWidget;
+    MusicLrcAnalysis *m_analysis;
+    QList<MusicLRCManagerForInline*> m_musicLrcContainer;
 
 };
 

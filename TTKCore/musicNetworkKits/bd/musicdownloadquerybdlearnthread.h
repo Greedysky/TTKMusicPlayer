@@ -44,6 +44,10 @@ protected:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
+    void readFromMusicLrcAttribute(MusicObject::MusicSongInfomation *info);
+    /*!
+     * Read lrc tag from query results.
+     */
 
 };
 

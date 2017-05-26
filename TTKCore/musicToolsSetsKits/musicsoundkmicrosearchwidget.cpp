@@ -80,12 +80,12 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
         {
             if(attr.m_format == "mkv")
             {
-                emit mvURLChanged(m_queryMv, attr.m_url);
+                emit mvURLChanged(m_queryMv, attr.m_url, QString());
             }
         }
         else
         {
-            emit mvURLChanged(m_queryMv, attr.m_url);
+            emit mvURLChanged(m_queryMv, attr.m_url, musicSongInfos[row].m_lrcUrl);
         }
     }
 }
@@ -217,7 +217,8 @@ QString MusicSoundKMicroSearchWidget::getClassName()
 
 void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
 {
-    connect(m_searchTableWidget, SIGNAL(mvURLChanged(bool,QString)), obj, SLOT(mvURLChanged(bool,QString)));
+    connect(m_searchTableWidget, SIGNAL(mvURLChanged(bool,QString,QString)), obj,
+                                 SLOT(mvURLChanged(bool,QString,QString)));
 }
 
 void MusicSoundKMicroSearchWidget::startToSearch()

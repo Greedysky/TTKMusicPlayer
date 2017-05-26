@@ -76,6 +76,7 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
                     musicInfo.m_songId = value["song_id"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
+                    readFromMusicLrcAttribute(&musicInfo);
                     readFromMusicSongAttribute(&musicInfo);
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -134,6 +135,48 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["merge_link"].toString();
             info->m_songAttrs.append(attr);
+        }
+    }
+}
+
+void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::MusicSongInfomation *info)
+{
+    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(info->m_songId);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["errorCode"].toInt() == 22000 && value.contains("data"))
+        {
+            value = value["data"].toMap();
+            QVariantList datas = value["songList"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                info->m_lrcUrl = value["lrcLink"].toString();
+            }
         }
     }
 }
