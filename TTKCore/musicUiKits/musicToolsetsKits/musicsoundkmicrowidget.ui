@@ -158,6 +158,19 @@
    <widget class="QWidget" name="videoPage"/>
    <widget class="MusicLayoutAnimation" name="musicPage"/>
   </widget>
+  <widget class="MusicGifLabelWidget" name="loadingLabel">
+   <property name="geometry">
+    <rect>
+     <x>301</x>
+     <y>206</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -175,6 +188,11 @@
    <class>MusicVolumePopWidget</class>
    <extends>QToolButton</extends>
    <header>musicvolumepopwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QLabel</extends>
+   <header location="global">musicgiflabelwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

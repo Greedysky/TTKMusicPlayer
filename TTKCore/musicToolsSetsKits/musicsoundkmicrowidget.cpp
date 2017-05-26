@@ -42,6 +42,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_stateButtonOn = true;
     m_intervalTime = 0;
 
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
+    m_ui->loadingLabel->hide();
     m_ui->volumeButton->setValue(100);
     m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_mediaPlayer = new MusicCoreMPlayer(this);
@@ -122,6 +124,8 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
 
 void MusicSoundKMicroWidget::durationChanged(qint64 duration)
 {
+    m_ui->loadingLabel->stop();
+    m_ui->loadingLabel->hide();
     m_ui->timeSlider->setRange(0, duration*MT_S2MS);
     m_ui->timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 
@@ -187,6 +191,9 @@ void MusicSoundKMicroWidget::tipsButtonChanged()
 void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url, const QString &lrcUrl)
 {
     setButtonStyle(false);
+
+    m_ui->loadingLabel->show();
+    m_ui->loadingLabel->start();
 
     if(m_queryMv = mv)
     {
