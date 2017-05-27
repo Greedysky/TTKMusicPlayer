@@ -1,20 +1,20 @@
-#include "musicplaybackmodewidget.h"
+#include "musicplaybackmodepopwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicapplication.h"
 #include "musicuiobject.h"
 
-MusicPlayBackModeWidget::MusicPlayBackModeWidget(QWidget *parent)
+MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     initWidget();
 }
 
-QString MusicPlayBackModeWidget::getClassName()
+QString MusicPlayBackModePopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicPlayBackModeWidget::setPlaybackMode(MusicObject::SongPlayMode mode)
+void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::SongPlayMode mode)
 {
     switch( mode )
     {
@@ -43,7 +43,7 @@ void MusicPlayBackModeWidget::setPlaybackMode(MusicObject::SongPlayMode mode)
     }
 }
 
-void MusicPlayBackModeWidget::initWidget()
+void MusicPlayBackModePopWidget::initWidget()
 {
     setTranslucentBackground();
     m_containWidget->setFixedSize(140, 160);

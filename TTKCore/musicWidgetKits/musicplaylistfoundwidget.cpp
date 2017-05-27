@@ -4,7 +4,7 @@
 #include "musicplaylistfoundinfowidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
-#include "musicplaylistfoundcategorywidget.h"
+#include "musicplaylistfoundcategorypopwidget.h"
 #include "musicpagingwidgetobject.h"
 
 #include <qmath.h>
@@ -192,7 +192,7 @@ void MusicPlaylistFoundWidget::queryAllFinished(const MusicPlaylistItem &item)
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
-        m_categoryButton = new MusicPlaylistFoundCategoryWidget(m_mainWindow);
+        m_categoryButton = new MusicPlaylistFoundCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);

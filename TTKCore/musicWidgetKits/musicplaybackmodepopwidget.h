@@ -1,5 +1,5 @@
-#ifndef MUSICPLAYBACKMODEWIDGET_H
-#define MUSICPLAYBACKMODEWIDGET_H
+#ifndef MUSICPLAYBACKMODEPOPWIDGET_H
+#define MUSICPLAYBACKMODEPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,14 +12,14 @@
 #include "musicobject.h"
 #include "musictoolmenuwidget.h"
 
-/*! @brief The class of the play back mode widget.
+/*! @brief The class of the play back mode pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayBackModeWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPlayBackModeWidget(QWidget *parent = 0);
+    explicit MusicPlayBackModePopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -41,4 +41,4 @@ public:
 
 };
 
-#endif // MUSICPLAYBACKMODEWIDGET_H
+#endif // MUSICPLAYBACKMODEPOPWIDGET_H

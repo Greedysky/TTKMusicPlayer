@@ -10,7 +10,7 @@
 #include "musiccryptographichash.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"
-#include "musicplayedlistwidget.h"
+#include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
 
@@ -301,7 +301,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
     delete item.m_itemObject;
     foreach(const MusicSong &song, item.m_songs)
     {
-        MusicPlayedListWidget::instance()->remove(item.m_itemIndex, song);
+        MusicPlayedListPopWidget::instance()->remove(item.m_itemIndex, song);
     }
 
     QList< std::pair<int, int> > pairs;
@@ -311,7 +311,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
         item.m_itemObject->setParentToolIndex(mappedIndex);
         pairs << std::pair<int, int>(item.m_itemIndex, mappedIndex);
     }
-    MusicPlayedListWidget::instance()->resetToolIndex(pairs);
+    MusicPlayedListPopWidget::instance()->resetToolIndex(pairs);
 }
 
 void MusicSongsSummariziedWidget::deleteRowItems()

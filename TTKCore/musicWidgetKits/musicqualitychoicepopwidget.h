@@ -1,5 +1,5 @@
-#ifndef MUSICQUALITYCHOICEWIDGET_H
-#define MUSICQUALITYCHOICEWIDGET_H
+#ifndef MUSICQUALITYCHOICEPOPWIDGET_H
+#define MUSICQUALITYCHOICEPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -47,14 +47,14 @@ public Q_SLOTS:
 };
 
 
-/*! @brief The class of the quality choice widget.
+/*! @brief The class of the quality choice pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicQualityChoiceWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicQualityChoiceWidget(QWidget *parent = 0);
+    explicit MusicQualityChoicePopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -86,4 +86,4 @@ protected:
 
 };
 
-#endif // MUSICQUALITYCHOICEWIDGET_H
+#endif // MUSICQUALITYCHOICEPOPWIDGET_H

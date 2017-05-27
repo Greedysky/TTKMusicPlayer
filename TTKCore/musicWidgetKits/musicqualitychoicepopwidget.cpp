@@ -1,4 +1,4 @@
-#include "musicqualitychoicewidget.h"
+#include "musicqualitychoicepopwidget.h"
 #include "musicuiobject.h"
 #include "musicqualitywidgetuiobject.h"
 #include "musicitemdelegate.h"
@@ -140,7 +140,7 @@ void MusicQualityChoiceTableWidget::listCellClicked(int row, int)
 
 
 
-MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
+MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     setToolTip(tr("Quality Choice"));
@@ -152,12 +152,12 @@ MusicQualityChoiceWidget::MusicQualityChoiceWidget(QWidget *parent)
                   "QToolButton{ margin-left:-45px;}" );
 }
 
-QString MusicQualityChoiceWidget::getClassName()
+QString MusicQualityChoicePopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicQualityChoiceWidget::initWidget()
+void MusicQualityChoicePopWidget::initWidget()
 {
     setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle04);
@@ -174,7 +174,7 @@ void MusicQualityChoiceWidget::initWidget()
     m_containWidget->setLayout(layout);
 }
 
-void MusicQualityChoiceWidget::listCellClicked(int row)
+void MusicQualityChoicePopWidget::listCellClicked(int row)
 {
     m_menu->close();
 

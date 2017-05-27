@@ -22,11 +22,9 @@ HEADERS  += \
     $$PWD/musicsongslistfunctionwidget.h \
     $$PWD/musicsongslisttablewidget.h \
     $$PWD/musicsongslistplayedtablewidget.h \
-    $$PWD/musicqualitychoicewidget.h \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
     $$PWD/musicbackgroundpopwidget.h \
-    $$PWD/musicenhancedwidget.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicdownloadmgmtwidget.h \
     $$PWD/musicdownloadstatusobject.h \
@@ -35,10 +33,8 @@ HEADERS  += \
     $$PWD/musicsourceupdatewidget.h \
     $$PWD/musicglobalhotkeyedit.h \
     $$PWD/musicsimilarfoundwidget.h \
-    $$PWD/musicplaybackmodewidget.h \
     $$PWD/musicvolumepopwidget.h \
     $$PWD/musicmorefunctionspopwidget.h \
-    $$PWD/musicplayedlistwidget.h \
     $$PWD/musicalbumfoundwidget.h \
     $$PWD/musicartistfoundwidget.h \
     $$PWD/musicsoundeffectswidget.h \
@@ -46,9 +42,13 @@ HEADERS  += \
     $$PWD/musicplaylistfoundwidget.h \
     $$PWD/musicplaylistfoundinfowidget.h \
     $$PWD/musicplaylistfoundtablewidget.h \
-    $$PWD/musicplaylistfoundcategorywidget.h \
     $$PWD/musicsonglistenhancelosslesswidget.h \
-    $$PWD/musicpagingwidgetobject.h
+    $$PWD/musicpagingwidgetobject.h \
+    $$PWD/musicenhancedpopwidget.h \
+    $$PWD/musicplaybackmodepopwidget.h \
+    $$PWD/musicqualitychoicepopwidget.h \
+    $$PWD/musicplayedlistpopwidget.h \
+    $$PWD/musicplaylistfoundcategorypopwidget.h
 
 }
 
@@ -66,11 +66,9 @@ SOURCES += \
     $$PWD/musicsongslistfunctionwidget.cpp \
     $$PWD/musicsongslisttablewidget.cpp \
     $$PWD/musicsongslistplayedtablewidget.cpp \
-    $$PWD/musicqualitychoicewidget.cpp \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \
     $$PWD/musicbackgroundpopwidget.cpp \
-    $$PWD/musicenhancedwidget.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicdownloadmgmtwidget.cpp \
     $$PWD/musicdownloadstatusobject.cpp \
@@ -79,10 +77,8 @@ SOURCES += \
     $$PWD/musicsourceupdatewidget.cpp \
     $$PWD/musicglobalhotkeyedit.cpp \
     $$PWD/musicsimilarfoundwidget.cpp \
-    $$PWD/musicplaybackmodewidget.cpp \
     $$PWD/musicvolumepopwidget.cpp \
     $$PWD/musicmorefunctionspopwidget.cpp \
-    $$PWD/musicplayedlistwidget.cpp \
     $$PWD/musicalbumfoundwidget.cpp \
     $$PWD/musicartistfoundwidget.cpp \
     $$PWD/musicsoundeffectswidget.cpp \
@@ -90,8 +86,12 @@ SOURCES += \
     $$PWD/musicplaylistfoundwidget.cpp \
     $$PWD/musicplaylistfoundinfowidget.cpp \
     $$PWD/musicplaylistfoundtablewidget.cpp \
-    $$PWD/musicplaylistfoundcategorywidget.cpp \
     $$PWD/musicsonglistenhancelosslesswidget.cpp \
-    $$PWD/musicpagingwidgetobject.cpp
+    $$PWD/musicpagingwidgetobject.cpp \
+    $$PWD/musicenhancedpopwidget.cpp \
+    $$PWD/musicplaybackmodepopwidget.cpp \
+    $$PWD/musicqualitychoicepopwidget.cpp \
+    $$PWD/musicplayedlistpopwidget.cpp \
+    $$PWD/musicplaylistfoundcategorypopwidget.cpp
 
 }

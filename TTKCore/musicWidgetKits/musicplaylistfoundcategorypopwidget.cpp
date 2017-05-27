@@ -1,4 +1,4 @@
-#include "musicplaylistfoundcategorywidget.h"
+#include "musicplaylistfoundcategorypopwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 
@@ -63,7 +63,7 @@ void MusicPlaylistFoundCategoryItem::buttonClicked(int index)
 }
 
 
-MusicPlaylistFoundCategoryWidget::MusicPlaylistFoundCategoryWidget(QWidget *parent)
+MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     initWidget();
@@ -72,17 +72,12 @@ MusicPlaylistFoundCategoryWidget::MusicPlaylistFoundCategoryWidget(QWidget *pare
     connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
 }
 
-MusicPlaylistFoundCategoryWidget::~MusicPlaylistFoundCategoryWidget()
-{
-
-}
-
-QString MusicPlaylistFoundCategoryWidget::getClassName()
+QString MusicPlaylistFoundCategoryPopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundCategoryWidget::setCategory(const QString &server, QObject *obj)
+void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     PlaylistCategorys categorys;
     MusicCategoryConfigManager manager;
@@ -113,17 +108,17 @@ void MusicPlaylistFoundCategoryWidget::setCategory(const QString &server, QObjec
     m_containWidget->setLayout(layout);
 }
 
-void MusicPlaylistFoundCategoryWidget::closeMenu()
+void MusicPlaylistFoundCategoryPopWidget::closeMenu()
 {
     m_menu->close();
 }
 
-void MusicPlaylistFoundCategoryWidget::popupMenu()
+void MusicPlaylistFoundCategoryPopWidget::popupMenu()
 {
     m_menu->exec( mapToGlobal(QPoint(0, 0)) );
 }
 
-void MusicPlaylistFoundCategoryWidget::initWidget()
+void MusicPlaylistFoundCategoryPopWidget::initWidget()
 {
     setFixedSize(100, 30);
     setTranslucentBackground();

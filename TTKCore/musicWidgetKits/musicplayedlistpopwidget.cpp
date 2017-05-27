@@ -1,4 +1,4 @@
-#include "musicplayedlistwidget.h"
+#include "musicplayedlistpopwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicsongslistplayedtablewidget.h"
 #include "musicsettingmanager.h"
@@ -13,9 +13,9 @@
 
 #define MAX_SIZE    3
 
-MusicPlayedListWidget *MusicPlayedListWidget::m_instance = nullptr;
+MusicPlayedListPopWidget *MusicPlayedListPopWidget::m_instance = nullptr;
 
-MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
+MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     m_instance = this;
@@ -28,7 +28,7 @@ MusicPlayedListWidget::MusicPlayedListWidget(QWidget *parent)
     initWidget();
 }
 
-MusicPlayedListWidget::~MusicPlayedListWidget()
+MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
 {
     delete m_playedListWidget;
     while(!m_labels.isEmpty())
@@ -37,24 +37,24 @@ MusicPlayedListWidget::~MusicPlayedListWidget()
     }
 }
 
-QString MusicPlayedListWidget::getClassName()
+QString MusicPlayedListPopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-MusicPlayedListWidget *MusicPlayedListWidget::instance()
+MusicPlayedListPopWidget *MusicPlayedListPopWidget::instance()
 {
     return m_instance;
 }
 
-void MusicPlayedListWidget::clear()
+void MusicPlayedListPopWidget::clear()
 {
     m_songLists.clear();
     m_playedListWidget->clear();
     setPlayListCount(0);
 }
 
-void MusicPlayedListWidget::resetToolIndex(const QList< std::pair<int, int> > &indexs)
+void MusicPlayedListPopWidget::resetToolIndex(const QList< std::pair<int, int> > &indexs)
 {
     for(int i=indexs.count()-1; i>=0; --i)
     {
@@ -70,7 +70,7 @@ void MusicPlayedListWidget::resetToolIndex(const QList< std::pair<int, int> > &i
     }
 }
 
-QStringList MusicPlayedListWidget::getPlayedList() const
+QStringList MusicPlayedListPopWidget::getPlayedList() const
 {
     QStringList lists;
     foreach(const MusicSong &song, m_songLists)
@@ -80,7 +80,7 @@ QStringList MusicPlayedListWidget::getPlayedList() const
     return lists;
 }
 
-void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
 {
     MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
@@ -103,7 +103,7 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSong &song)
     updateSongsFileName();
 }
 
-void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
+void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSongs &songs)
 {
     MusicObject::MIntSet deletedRow;
     for(int i=0; i<m_songLists.count(); ++i)
@@ -132,7 +132,7 @@ void MusicPlayedListWidget::remove(int toolIndex, const MusicSongs &songs)
     updateSongsFileName();
 }
 
-void MusicPlayedListWidget::append(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)
 {
     MusicSong s(song);
     s.setMusicToolIndex(toolIndex);
@@ -140,7 +140,7 @@ void MusicPlayedListWidget::append(int toolIndex, const MusicSong &song)
     updateSongsFileName();
 }
 
-void MusicPlayedListWidget::append(int toolIndex, const MusicSongs &songs)
+void MusicPlayedListPopWidget::append(int toolIndex, const MusicSongs &songs)
 {
     foreach(const MusicSong &song, songs)
     {
@@ -151,12 +151,12 @@ void MusicPlayedListWidget::append(int toolIndex, const MusicSongs &songs)
     updateSongsFileName();
 }
 
-void MusicPlayedListWidget::insert(int toolIndex, const MusicSong &song)
+void MusicPlayedListPopWidget::insert(int toolIndex, const MusicSong &song)
 {
     insert(toolIndex, m_playedListWidget->getPlayRowIndex() + 1, song);
 }
 
-void MusicPlayedListWidget::insert(int toolIndex, int index, const MusicSong &song)
+void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong &song)
 {
     if(index < 0 || index >= m_songLists.count())
     {
@@ -171,7 +171,7 @@ void MusicPlayedListWidget::insert(int toolIndex, int index, const MusicSong &so
     updateSongsFileName();
 }
 
-void MusicPlayedListWidget::setCurrentIndex(const QString &path)
+void MusicPlayedListPopWidget::setCurrentIndex(const QString &path)
 {
     int index = -1;
     for(int i=0; i<m_songLists.count(); ++i)
@@ -185,13 +185,13 @@ void MusicPlayedListWidget::setCurrentIndex(const QString &path)
     m_playedListWidget->selectRow(index);
 }
 
-void MusicPlayedListWidget::resizeWindow()
+void MusicPlayedListPopWidget::resizeWindow()
 {
 //    int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
 //    m_containWidget->setFixedSize(300, 500 + h - WINDOW_HEIGHT_MIN);
 }
 
-void MusicPlayedListWidget::popupMenu()
+void MusicPlayedListPopWidget::popupMenu()
 {
     QPoint pos = mapToGlobal(QPoint(0, 0));
     pos.setY(pos.y() - m_containWidget->height() - 10);
@@ -201,12 +201,12 @@ void MusicPlayedListWidget::popupMenu()
     m_menu->exec(pos);
 }
 
-void MusicPlayedListWidget::setDeleteItemAt()
+void MusicPlayedListPopWidget::setDeleteItemAt()
 {
     setPlayListCount(m_songLists.count());
 }
 
-void MusicPlayedListWidget::setDeleteItemAll()
+void MusicPlayedListPopWidget::setDeleteItemAll()
 {
     if(m_songLists.isEmpty())
     {
@@ -226,7 +226,7 @@ void MusicPlayedListWidget::setDeleteItemAll()
     MusicApplication::instance()->musicPlayIndex(-1);
 }
 
-void MusicPlayedListWidget::initWidget()
+void MusicPlayedListPopWidget::initWidget()
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -253,7 +253,7 @@ void MusicPlayedListWidget::initWidget()
     m_containWidget->setLayout(containLayout);
 }
 
-QWidget *MusicPlayedListWidget::createContainerWidget()
+QWidget *MusicPlayedListPopWidget::createContainerWidget()
 {
     QWidget *containWidget = new QWidget(this);
     containWidget->setObjectName("containWidget");
@@ -311,13 +311,13 @@ QWidget *MusicPlayedListWidget::createContainerWidget()
     return containWidget;
 }
 
-void MusicPlayedListWidget::updateSongsFileName()
+void MusicPlayedListPopWidget::updateSongsFileName()
 {
     setPlayListCount(m_songLists.count());
     m_playedListWidget->updateSongsFileName(m_songLists);
 }
 
-void MusicPlayedListWidget::setPlayListCount(int count)
+void MusicPlayedListPopWidget::setPlayListCount(int count)
 {
     for(int i=MAX_SIZE-1; i>=0; --i)
     {

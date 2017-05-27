@@ -1,4 +1,4 @@
-#include "musicenhancedwidget.h"
+#include "musicenhancedpopwidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
@@ -96,7 +96,7 @@ void MusicEnhancedToolButton::enterEvent(QEvent *event)
 }
 
 
-MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
+MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     setToolTip(tr("magic music"));
@@ -108,7 +108,7 @@ MusicEnhancedWidget::MusicEnhancedWidget(QWidget *parent)
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
 }
 
-MusicEnhancedWidget::~MusicEnhancedWidget()
+MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 {
     delete m_caseButton;
     while(!m_buttons.isEmpty())
@@ -117,12 +117,12 @@ MusicEnhancedWidget::~MusicEnhancedWidget()
     }
 }
 
-QString MusicEnhancedWidget::getClassName()
+QString MusicEnhancedPopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
+void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 {
     setObjectName("EnhancedWidget");
     QString style = MusicUIObject::MKGBtnMagic;
@@ -159,13 +159,13 @@ void MusicEnhancedWidget::setEnhancedMusicConfig(int type)
     m_menu->close();
 }
 
-void MusicEnhancedWidget::caseButtonOnAndOff()
+void MusicEnhancedPopWidget::caseButtonOnAndOff()
 {
     setEnhancedMusicConfig( m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ?
                             m_lastSelectedIndex : 0);
 }
 
-void MusicEnhancedWidget::buttonAnimationChanged(bool state)
+void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
 {
     int index = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     if(index < 1 || index > m_buttons.count())
@@ -176,13 +176,13 @@ void MusicEnhancedWidget::buttonAnimationChanged(bool state)
     state ? m_buttons[index - 1]->start() : m_buttons[index - 1]->stop();
 }
 
-void MusicEnhancedWidget::helpButtonClicked()
+void MusicEnhancedPopWidget::helpButtonClicked()
 {
     MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::KuiSheWidget);
     m_menu->close();
 }
 
-void MusicEnhancedWidget::initWidget()
+void MusicEnhancedPopWidget::initWidget()
 {
     setTranslucentBackground();
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle05);

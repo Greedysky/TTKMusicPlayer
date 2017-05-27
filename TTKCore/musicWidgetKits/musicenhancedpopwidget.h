@@ -1,5 +1,5 @@
-#ifndef MUSICENHANCEDWIDGET_H
-#define MUSICENHANCEDWIDGET_H
+#ifndef MUSICENHANCEDPOPWIDGET_H
+#define MUSICENHANCEDPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -63,18 +63,18 @@ protected:
 };
 
 
-/*! @brief The class of the enhanced widget.
+/*! @brief The class of the enhanced pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicEnhancedWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicEnhancedWidget(QWidget *parent = 0);
+    explicit MusicEnhancedPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicEnhancedWidget();
+    virtual ~MusicEnhancedPopWidget();
 
     static QString getClassName();
     /*!
@@ -118,4 +118,4 @@ protected:
 
 };
 
-#endif // MUSICENHANCEDWIDGET_H
+#endif // MUSICENHANCEDPOPWIDGET_H

@@ -1,5 +1,5 @@
-#ifndef MUSICPLAYEDLISTWIDGET_H
-#define MUSICPLAYEDLISTWIDGET_H
+#ifndef MUSICPLAYEDLISTPOPWIDGET_H
+#define MUSICPLAYEDLISTPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,24 +15,24 @@
 class QLabel;
 class MusicSongsListPlayedTableWidget;
 
-/*! @brief The class of the played list widget.
+/*! @brief The class of the played list pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlayedListWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPlayedListWidget(QWidget *parent = 0);
+    explicit MusicPlayedListPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicPlayedListWidget();
+    virtual ~MusicPlayedListPopWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicPlayedListWidget *instance();
+    static MusicPlayedListPopWidget *instance();
     /*!
      * Get class object instance.
      */
@@ -121,7 +121,7 @@ protected:
     MusicSongs m_songLists;
     MusicSongsListPlayedTableWidget *m_playedListWidget;
 
-    static MusicPlayedListWidget *m_instance;
+    static MusicPlayedListPopWidget *m_instance;
 };
 
-#endif // MUSICPLAYEDLISTWIDGET_H
+#endif // MUSICPLAYEDLISTPOPWIDGET_H

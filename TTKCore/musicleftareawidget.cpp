@@ -10,7 +10,7 @@
 #include "musicwebmusicradiolistview.h"
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
-#include "musicqualitychoicewidget.h"
+#include "musicqualitychoicepopwidget.h"
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
@@ -46,7 +46,7 @@ MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    m_qualityChoiceWidget = new MusicQualityChoiceWidget(this);
+    m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
 

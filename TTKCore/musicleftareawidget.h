@@ -12,8 +12,8 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicQualityChoiceWidget;
 class MusicCloudSharedSongWidget;
+class MusicQualityChoicePopWidget;
 
 namespace Ui {
     class MusicApplication;
@@ -115,7 +115,7 @@ protected:
 
     int m_currentIndex;
     QWidget *m_stackedWidget;
-    MusicQualityChoiceWidget *m_qualityChoiceWidget;
+    MusicQualityChoicePopWidget *m_qualityChoiceWidget;
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
 
     static MusicLeftAreaWidget *m_instance;

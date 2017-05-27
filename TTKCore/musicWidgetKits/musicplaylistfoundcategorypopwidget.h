@@ -1,5 +1,5 @@
-#ifndef MUSICPLAYLISTFOUNDCATEGORYWIDGET_H
-#define MUSICPLAYLISTFOUNDCATEGORYWIDGET_H
+#ifndef MUSICPLAYLISTFOUNDCATEGORYPOPWIDGET_H
+#define MUSICPLAYLISTFOUNDCATEGORYPOPWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -53,18 +53,17 @@ protected:
 
 
 
-/*! @brief The class of the playlist music found category widget.
+/*! @brief The class of the playlist music found category pop widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryWidget : public MusicToolMenuWidget
+class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundCategoryWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicPlaylistFoundCategoryWidget();
 
     static QString getClassName();
     /*!
@@ -93,4 +92,4 @@ protected:
 
 };
 
-#endif // MUSICPLAYLISTFOUNDCATEGORYWIDGET_H
+#endif // MUSICPLAYLISTFOUNDCATEGORYPOPWIDGET_H
