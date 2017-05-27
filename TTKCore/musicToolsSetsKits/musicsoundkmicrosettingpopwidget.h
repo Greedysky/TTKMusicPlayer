@@ -3,7 +3,7 @@
 
 #include "musictoolmenuwidget.h"
 
-class MusicSoundKMicroSettingPopWidget : public MusicToolMenuWidget
+class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSettingPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
@@ -12,7 +12,6 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicSoundKMicroSettingPopWidget();
 
     static QString getClassName();
     /*!

@@ -14,7 +14,7 @@
 /*! @brief The class of the sound kmicro search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicSoundKMicroSearchTableWidget : public MusicQueryItemTableWidget
+class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
 public:
@@ -76,7 +76,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the sound kmicro search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicSoundKMicroSearchWidget : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public QWidget
 {
     Q_OBJECT
 public:

@@ -15,11 +15,6 @@ MusicSoundKMicroSettingPopWidget::MusicSoundKMicroSettingPopWidget(QWidget *pare
     initWidget();
 }
 
-MusicSoundKMicroSettingPopWidget::~MusicSoundKMicroSettingPopWidget()
-{
-
-}
-
 QString MusicSoundKMicroSettingPopWidget::getClassName()
 {
     return staticMetaObject.className();
