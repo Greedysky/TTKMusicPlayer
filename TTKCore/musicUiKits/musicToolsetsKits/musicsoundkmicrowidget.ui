@@ -154,6 +154,9 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -165,6 +168,19 @@
       <y>29</y>
       <width>54</width>
       <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="MusicGifLabelWidget" name="gifLabel">
+    <property name="geometry">
+     <rect>
+      <x>455</x>
+      <y>27</y>
+      <width>30</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">

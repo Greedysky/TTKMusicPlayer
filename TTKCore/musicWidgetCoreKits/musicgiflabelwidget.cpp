@@ -10,6 +10,7 @@
 #define GIF_HOURGLASS_WHITE     38
 #define GIF_RADIO_BLUE          14
 #define GIF_CHECK_BLUE          93
+#define GIF_RECORD_RED          30
 
 MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
     : QLabel(parent)
@@ -47,6 +48,7 @@ void MusicGifLabelWidget::setType(Type type)
         case Gif_Hourglass_White: setFixedSize(GIF_HOURGLASS_WHITE, GIF_HOURGLASS_WHITE); break;
         case Gif_Radio_Blue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
         case Gif_Check_Blue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
+        case Gif_Record_red: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
         default: break;
     }
 }
@@ -162,6 +164,16 @@ void MusicGifLabelWidget::timeout()
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_check_blue'); \
                                        margin-left:-%1px;").arg(GIF_CHECK_BLUE*m_index));
+                break;
+            }
+        case Gif_Record_red:
+            {
+                if(m_index == 5)
+                {
+                    m_index = 0;
+                }
+                setStyleSheet(QString("background-image: url(':/gif/lb_record_red'); \
+                                       margin-left:-%1px;").arg(GIF_RECORD_RED*m_index));
                 break;
             }
         default: break;

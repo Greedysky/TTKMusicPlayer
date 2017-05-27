@@ -43,17 +43,14 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
 
     QLabel *microIconLabel = new QLabel(m_containWidget);
     microIconLabel->setGeometry(10, 92, 26, 18);
-    microIconLabel->setStyleSheet("background:url(':/toolSets/lb_record_off')");
 
     QSlider *slider = new QSlider(Qt::Horizontal, m_containWidget);
     slider->setGeometry(36, 90, 150, 25);
-    slider->setStyleSheet(MusicUIObject::MSliderStyle01);
-
-    QLabel *microStateLabel = new QLabel(tr("Input Error"), m_containWidget);
-    microStateLabel->setGeometry(192, 90, 97, 25);
+    slider->setStyleSheet(QString("QSlider{%1}").arg(MusicUIObject::MBackgroundStyle01) + MusicUIObject::MSliderStyle01);
 
     QLabel *inputLabel = new QLabel(tr("Input"), m_containWidget);
     inputLabel->setGeometry(10, 120, 50, 25);
+    inputLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     QComboBox *inputComboBox = new QComboBox(m_containWidget);
     inputComboBox->setGeometry(60, 120, 230, 25);
     inputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);
@@ -63,9 +60,19 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     {
         inputComboBox->addItem(info.deviceName());
     }
+    if(inputComboBox->count() == 0)
+    {
+        inputComboBox->addItem(tr("Input Error"));
+        microIconLabel->setStyleSheet("background:url(':/toolSets/lb_record_off')");
+    }
+    else
+    {
+        microIconLabel->setStyleSheet("background:url(':/toolSets/lb_record_on')");
+    }
 
     QLabel *outputLabel = new QLabel(tr("Output"), m_containWidget);
     outputLabel->setGeometry(10, 150, 50, 25);
+    outputLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     QComboBox *outputComboBox = new QComboBox(m_containWidget);
     outputComboBox->setGeometry(60, 150, 230, 25);
     outputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);

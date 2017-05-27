@@ -159,6 +159,7 @@
         <file alias="lb_rice_font_black_big">../TTKResource/gif/lb_rice_font_black_big.png</file>
         <file alias="lb_rice_font_white">../TTKResource/gif/lb_rice_font_white.png</file>
         <file alias="lb_check_blue">../TTKResource/gif/lb_check_blue.png</file>
+        <file alias="lb_record_red">../TTKResource/gif/lb_record_red.png</file>
     </qresource>
     <qresource prefix="/lrc">
         <file alias="btn_star_clicked">../TTKResource/lrc/btn_star_clicked.png</file>
