@@ -1295,9 +1295,9 @@
     </message>
 </context>
 <context>
-    <name>MusicEnhancedWidget</name>
+    <name>MusicEnhancedPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicenhancedwidget.cpp" line="102"/>
+        <location filename="../TTKCore/musicWidgetKits/musicenhancedpopwidget.cpp" line="102"/>
         <source>magic music</source>
         <translation>Magic Music</translation>
     </message>
@@ -3248,66 +3248,66 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>MusicPlayBackModeWidget</name>
+    <name>MusicPlayBackModePopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="23"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="53"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="23"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="53"/>
         <source>OrderPlay</source>
         <translation>Order Play</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="27"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="55"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="27"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="55"/>
         <source>RandomPlay</source>
         <translation>Random Play</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="31"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="54"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="31"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="54"/>
         <source>ListCycle</source>
         <translation>List Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="35"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="52"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="35"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="52"/>
         <source>SingleCycle</source>
         <translation>Single Cycle</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="39"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodewidget.cpp" line="51"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="39"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaybackmodepopwidget.cpp" line="51"/>
         <source>PlayOnce</source>
         <translation>Play Once</translation>
     </message>
 </context>
 <context>
-    <name>MusicPlayedListWidget</name>
+    <name>MusicPlayedListPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistwidget.cpp" line="22"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistwidget.cpp" line="272"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="22"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="272"/>
         <source>playedList</source>
         <translation>Play List</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistwidget.cpp" line="278"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="278"/>
         <source>shareList</source>
         <translation>Share Play List</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistwidget.cpp" line="284"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="284"/>
         <source>clearList</source>
         <translation>Clear Play List</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistwidget.cpp" line="291"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="291"/>
         <source>closeList</source>
         <translation>Close Play List</translation>
     </message>
 </context>
 <context>
-    <name>MusicPlaylistFoundCategoryWidget</name>
+    <name>MusicPlaylistFoundCategoryPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundcategorywidget.cpp" line="130"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundcategorypopwidget.cpp" line="125"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3426,62 +3426,62 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
-    <name>MusicQualityChoiceTableWidget</name>
+    <name>MusicQualityChoicePopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="47"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="146"/>
+        <source>Quality Choice</source>
+        <translation>品质选择</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="187"/>
         <source>ST</source>
         <translation>流畅品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="57"/>
-        <source>HQ</source>
-        <translation>普高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="62"/>
-        <source>SQ</source>
-        <translation>超高品质</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="52"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="193"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="67"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="199"/>
+        <source>HQ</source>
+        <translation>普高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="205"/>
+        <source>SQ</source>
+        <translation>超高品质</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="211"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
 </context>
 <context>
-    <name>MusicQualityChoiceWidget</name>
+    <name>MusicQualityChoiceTableWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="146"/>
-        <source>Quality Choice</source>
-        <translation>品质选择</translation>
-    </message>
-    <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="187"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="47"/>
         <source>ST</source>
         <translation>流畅品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="199"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="57"/>
         <source>HQ</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="205"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="62"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="193"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="52"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicewidget.cpp" line="211"/>
+        <location filename="../TTKCore/musicWidgetKits/musicqualitychoicepopwidget.cpp" line="67"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -5658,6 +5658,34 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
 </context>
 <context>
+    <name>MusicSoundKMicroSettingPopWidget</name>
+    <message>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="31"/>
+        <source>Hear Yourself Singing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="35"/>
+        <source>Noise Elimination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="46"/>
+        <source>Input</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="60"/>
+        <source>Input Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="68"/>
+        <source>Output</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MusicSoundKMicroWidget</name>
     <message>
         <location filename="../TTKCore/musicUiKits/musicToolsetsKits/musicsoundkmicrowidget.ui" line="14"/>
@@ -5675,12 +5703,12 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUiKits/musicToolsetsKits/musicsoundkmicrowidget.ui" line="103"/>
+        <location filename="../TTKCore/musicUiKits/musicToolsetsKits/musicsoundkmicrowidget.ui" line="116"/>
         <source>00:00/00:00</source>
         <translation type="unfinished">00:00/00:00</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="21"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="31"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
