@@ -122,7 +122,7 @@
    <widget class="QPushButton" name="stateButton">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>170</x>
       <y>30</y>
       <width>56</width>
       <height>20</height>
@@ -139,6 +139,32 @@
       <y>30</y>
       <width>20</width>
       <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="recordButton">
+    <property name="geometry">
+     <rect>
+      <x>495</x>
+      <y>29</y>
+      <width>54</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="MusicSoundKMicroSettingPopWidget" name="transferButton">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>29</y>
+      <width>54</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -193,6 +219,11 @@
    <class>MusicGifLabelWidget</class>
    <extends>QLabel</extends>
    <header location="global">musicgiflabelwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicSoundKMicroSettingPopWidget</class>
+   <extends>QToolButton</extends>
+   <header>musicsoundkmicrosettingpopwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

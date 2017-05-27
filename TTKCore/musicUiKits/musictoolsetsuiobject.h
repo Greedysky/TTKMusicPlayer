@@ -89,6 +89,26 @@ namespace MusicUIObject
             QToolButton{ border:none; \
             background-image: url(:/toolSets/btn_rename_clicked);}";
             
+    const QString MKGRecord = " \
+            QToolButton{ border:none; \
+            background-image: url(:/toolSets/btn_record_normal);} \
+            QToolButton:hover{ background-image: url(:/toolSets/btn_record_hover);}";
+            
+    const QString MKGRecordTransfer = " \
+            QToolButton{ border:none; \
+            background-image: url(:/toolSets/btn_transfer_normal);} \
+            QToolButton:hover{ background-image: url(:/toolSets/btn_transfer_hover);}";
+            
+    const QString MKGRerecord = " \
+            QToolButton{ border:none; \
+            background-image: url(:/toolSets/btn_rerecord_normal);} \
+            QToolButton:hover{ background-image: url(:/toolSets/btn_rerecord_hover);}";
+            
+    const QString MKGRecordFinish = " \
+            QToolButton{ border:none; \
+            background-image: url(:/toolSets/btn_record_finish_normal);} \
+            QToolButton:hover{ background-image: url(:/toolSets/btn_record_finish_hover);}";
+            
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H

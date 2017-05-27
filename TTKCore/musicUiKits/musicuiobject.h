@@ -261,6 +261,12 @@ namespace MusicUIObject
     const QString MCheckBoxStyle03 = MCheckBoxStyle01 + " \
             QCheckBox::checked{ color:rgb(0, 169, 236);}";
 
+    const QString MCheckBoxStyle04 = " \
+            QCheckBox{ background-color:transparent; color:rgb(222, 222, 222);} \
+            QCheckBox::indicator::unchecked{ image:url(:/control/btn_checkBox2_unchecked);} \
+            QCheckBox::checked { color:rgb(255, 255, 255);} \
+            QCheckBox::indicator:checked { image:url(:/control/btn_checkBox2_checked);}";
+
 
 ///ScrollBar
 //////////////////////////////////////////////////////

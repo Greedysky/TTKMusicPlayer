@@ -37,6 +37,8 @@
     <qresource prefix="/control">
         <file alias="btn_checkBox_checked">../TTKResource/controls/btn_checkBox_checked.png</file>
         <file alias="btn_checkBox_unchecked">../TTKResource/controls/btn_checkBox_unchecked.png</file>
+        <file alias="btn_checkBox2_checked">../TTKResource/controls/btn_checkBox2_checked.png</file>
+        <file alias="btn_checkBox2_unchecked">../TTKResource/controls/btn_checkBox2_unchecked.png</file>
         <file alias="btn_radiobutton_checked">../TTKResource/controls/btn_radiobutton_checked.png</file>
         <file alias="btn_radioButton_unchecked">../TTKResource/controls/btn_radioButton_unchecked.png</file>
         <file alias="btn_radiobutton2_checked">../TTKResource/controls/btn_radiobutton2_checked.png</file>
@@ -368,6 +370,16 @@
         <file alias="btn_rename_clicked">../TTKResource/toolSets/btn_rename_clicked.png</file>
         <file alias="btn_rename_hover">../TTKResource/toolSets/btn_rename_hover.png</file>
         <file alias="btn_rename_normal">../TTKResource/toolSets/btn_rename_normal.png</file>
+        <file alias="btn_record_hover">../TTKResource/toolSets/btn_record_hover.png</file>
+        <file alias="btn_record_normal">../TTKResource/toolSets/btn_record_normal.png</file>
+        <file alias="btn_transfer_hover">../TTKResource/toolSets/btn_transfer_hover.png</file>
+        <file alias="btn_transfer_normal">../TTKResource/toolSets/btn_transfer_normal.png</file>
+        <file alias="btn_rerecord_normal">../TTKResource/toolSets/btn_rerecord_normal.png</file>
+        <file alias="btn_rerecord_hover">../TTKResource/toolSets/btn_rerecord_hover.png</file>
+        <file alias="btn_record_finish_normal">../TTKResource/toolSets/btn_record_finish_normal.png</file>
+        <file alias="btn_record_finish_hover">../TTKResource/toolSets/btn_record_finish_hover.png</file>
+        <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
+        <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_arrow_up_normal">../TTKResource/tiny/lb_arrow_up_normal.png</file>

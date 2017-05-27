@@ -40,7 +40,8 @@ HEADERS  += \
     $$PWD/musicsongchecktoolsitemselecteddialog.h \
     $$PWD/musicgrabwidget.h \
     $$PWD/musicsoundkmicrowidget.h \
-    $$PWD/musicsoundkmicrosearchwidget.h
+    $$PWD/musicsoundkmicrosearchwidget.h \
+    $$PWD/musicsoundkmicrosettingpopwidget.h
 
 }
 
@@ -74,6 +75,7 @@ SOURCES += \
     $$PWD/musicsongchecktoolsitemselecteddialog.cpp \
     $$PWD/musicgrabwidget.cpp \
     $$PWD/musicsoundkmicrowidget.cpp \
-    $$PWD/musicsoundkmicrosearchwidget.cpp
+    $$PWD/musicsoundkmicrosearchwidget.cpp \
+    $$PWD/musicsoundkmicrosettingpopwidget.cpp
 
 }

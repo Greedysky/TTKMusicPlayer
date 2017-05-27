@@ -11,6 +11,7 @@
 #include "musicvideouiobject.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
+#include "musictoolsetsuiobject.h"
 #include "musictime.h"
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
@@ -35,6 +36,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->controlWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06);
     m_ui->timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRecord);
+    m_ui->transferButton->setStyleSheet(MusicUIObject::MKGRecordTransfer);
 
     setButtonStyle(true);
     setStateButtonStyle(true);
