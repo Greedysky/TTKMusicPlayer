@@ -10,6 +10,8 @@
 MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     : QObject(parent)
 {
+    m_inputVolume = 0;
+
     m_mpAudioInputFile = nullptr;
     m_mpAudioOutputFile = nullptr;
 
@@ -134,6 +136,20 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     return nFileLen;
 }
 
+void MusicAudioRecorderCore::setVolume(int volume)
+{
+    m_inputVolume = volume;
+    if(m_mpAudioInputFile)
+    {
+        m_mpAudioInputFile->setVolume(volume);
+    }
+}
+
+int MusicAudioRecorderCore::volume() const
+{
+    return m_inputVolume;
+}
+
 void MusicAudioRecorderCore::setFileName(const QString &name)
 {
     m_mpOutputFile->setFileName(name);
@@ -156,6 +172,7 @@ void MusicAudioRecorderCore::onRecordStart()
         message.exec();
         return;
     }
+    m_mpAudioInputFile->setVolume(m_inputVolume);
     m_mpAudioInputFile->start(m_mpOutputFile);
 }
 

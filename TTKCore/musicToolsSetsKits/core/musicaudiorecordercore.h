@@ -58,6 +58,15 @@ public:
      * Add the header of wav.
      */
 
+    void setVolume(int volume);
+    /*!
+     * Set volume by value.
+     */
+    int volume() const;
+    /*!
+     * Get volume by value.
+     */
+
     void setFileName(const QString &name);
     /*!
      * Set output file name.
@@ -86,6 +95,7 @@ public Q_SLOTS:
      */
 
 protected:
+    int m_inputVolume;
     QAudioFormat m_mFormatFile;
     QFile *m_mpOutputFile;
     QAudioInput *m_mpAudioInputFile;
