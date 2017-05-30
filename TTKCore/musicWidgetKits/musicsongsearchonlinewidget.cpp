@@ -226,20 +226,20 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedIt
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 285));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 165));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_artistname);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 

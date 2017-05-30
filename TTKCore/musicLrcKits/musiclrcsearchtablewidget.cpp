@@ -80,20 +80,20 @@ void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &son
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 170));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 144));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_artistname);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);
 
