@@ -12,6 +12,7 @@
 #include "musictoolmenuwidget.h"
 
 class QComboBox;
+class MusicAudioRecorderCore;
 
 /*! @brief The class of the sound kmicro setting pop widget.
  * @author Greedysky <greedysky@163.com>
@@ -31,6 +32,11 @@ public:
     /*!
      * Get class object name.
      */
+
+    void setAudioCore(MusicAudioRecorderCore *core);
+    /*!
+     * Set audio core.
+     */
     int audioInputIndex() const;
     /*!
      * Audio input index.
@@ -40,6 +46,12 @@ public:
      * Audio output index.
      */
 
+public Q_SLOTS:
+    void volumeChanged(int value);
+    /*!
+     * Volume changed.
+     */
+
 protected:
     void initWidget();
     /*!
@@ -47,6 +59,7 @@ protected:
      */
 
     QComboBox *m_inputComboBox, *m_outputComboBox;
+    MusicAudioRecorderCore *m_recordCore;
 
 };
 

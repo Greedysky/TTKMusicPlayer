@@ -1,4 +1,5 @@
 #include "musicsoundkmicrosettingpopwidget.h"
+#include "musicaudiorecordercore.h"
 #include "musicuiobject.h"
 
 #include <QLabel>
@@ -31,6 +32,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     setFixedSize(54, 24);
     setTranslucentBackground();
 
+    m_recordCore = nullptr;
     m_containWidget->setFixedSize(310, 190);
     m_containWidget->setStyleSheet(MusicUIObject::MBackgroundStyle08 + MusicUIObject::MColorStyle03);
 
@@ -48,6 +50,9 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     QSlider *slider = new QSlider(Qt::Horizontal, m_containWidget);
     slider->setGeometry(36, 90, 150, 25);
     slider->setStyleSheet(QString("QSlider{%1}").arg(MusicUIObject::MBackgroundStyle01) + MusicUIObject::MSliderStyle01);
+    slider->setRange(0, 100);
+    slider->setValue(0);
+    connect(slider, SIGNAL(valueChanged(int)), SLOT(volumeChanged(int)));
 
     QLabel *inputLabel = new QLabel(tr("Input"), m_containWidget);
     inputLabel->setGeometry(10, 120, 50, 25);
@@ -86,6 +91,11 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle05);
 }
 
+void MusicSoundKMicroSettingPopWidget::setAudioCore(MusicAudioRecorderCore *core)
+{
+    m_recordCore = core;
+}
+
 int MusicSoundKMicroSettingPopWidget::audioInputIndex() const
 {
     return m_inputComboBox->currentIndex();
@@ -94,4 +104,12 @@ int MusicSoundKMicroSettingPopWidget::audioInputIndex() const
 int MusicSoundKMicroSettingPopWidget::audioOutputIndex() const
 {
     return m_outputComboBox->currentIndex();
+}
+
+void MusicSoundKMicroSettingPopWidget::volumeChanged(int value)
+{
+    if(m_recordCore)
+    {
+        m_recordCore->setVolume(value);
+    }
 }

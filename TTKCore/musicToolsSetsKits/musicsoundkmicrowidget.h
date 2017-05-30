@@ -18,6 +18,7 @@ class MusicCoreMPlayer;
 class MusicLrcAnalysis;
 class MusicLRCManagerForInline;
 class MusicSoundKMicroSearchWidget;
+class MusicAudioRecorderCore;
 
 /*! @brief The class of the sound kmicro widget.
  * @author Greedysky <greedysky@163.com>
@@ -118,6 +119,7 @@ protected:
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;
     QList<MusicLRCManagerForInline*> m_musicLrcContainer;
+    MusicAudioRecorderCore *m_recordCore;
 
 };
 

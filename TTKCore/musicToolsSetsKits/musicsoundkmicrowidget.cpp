@@ -13,6 +13,7 @@
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
+#include "musicaudiorecordercore.h"
 #include "musictime.h"
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
@@ -38,12 +39,14 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_ui->transferButton->setStyleSheet(MusicUIObject::MKGRecordTransfer);
 
-    recordStateChanged(false);
-    setButtonStyle(true);
-    setStateButtonStyle(true);
     m_queryMv = true;
     m_stateButtonOn = true;
     m_intervalTime = 0;
+    m_recordCore = nullptr;
+
+    recordStateChanged(false);
+    setButtonStyle(true);
+    setStateButtonStyle(true);
 
     m_ui->gifLabel->setType(MusicGifLabelWidget::Gif_Record_red);
 //    m_ui->gifLabel->start();
@@ -69,6 +72,9 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
         m_ui->musicPage->addWidget(w);
         m_musicLrcContainer.append(w);
     }
+
+    m_recordCore = new MusicAudioRecorderCore(this);
+    m_ui->transferButton->setAudioCore(m_recordCore);
 
     connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
@@ -283,6 +289,7 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
     delete m_analysis;
     delete m_mediaPlayer;
     delete m_searchWidget;
+    delete m_recordCore;
 }
 
 void MusicSoundKMicroWidget::paintEvent(QPaintEvent *event)
@@ -364,10 +371,18 @@ void MusicSoundKMicroWidget::recordStateChanged(bool state)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRerecord);
+        if(m_recordCore)
+        {
+            m_recordCore->onRecordStart();
+        }
     }
     else
     {
         m_ui->gifLabel->stop();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRecord);
+        if(m_recordCore)
+        {
+            m_recordCore->onRecordStop();
+        }
     }
 }
