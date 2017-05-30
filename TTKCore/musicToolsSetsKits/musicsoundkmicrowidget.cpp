@@ -12,6 +12,7 @@
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musictoolsetsuiobject.h"
+#include "musicmessagebox.h"
 #include "musictime.h"
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
@@ -19,7 +20,6 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui(new Ui::MusicSoundKMicroWidget)
 {
     m_ui->setupUi(this);
-    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint );
 
 #if defined MUSIC_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
@@ -36,9 +36,9 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->controlWidget->setStyleSheet(MusicUIObject::MBackgroundStyle06);
     m_ui->timeLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRecord);
     m_ui->transferButton->setStyleSheet(MusicUIObject::MKGRecordTransfer);
 
+    recordStateChanged(false);
     setButtonStyle(true);
     setStateButtonStyle(true);
     m_queryMv = true;
@@ -46,7 +46,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_intervalTime = 0;
 
     m_ui->gifLabel->setType(MusicGifLabelWidget::Gif_Record_red);
-    m_ui->gifLabel->start();
+//    m_ui->gifLabel->start();
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_ui->loadingLabel->hide();
 
@@ -77,6 +77,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
     connect(m_ui->volumeButton, SIGNAL(musicVolumeChanged(int)), SLOT(volumeChanged(int)));
+    connect(m_ui->recordButton, SIGNAL(clicked()), SLOT(recordButtonClicked()));
 }
 
 MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
@@ -245,6 +246,33 @@ void MusicSoundKMicroWidget::updateAnimationLrc()
     m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
 }
 
+void MusicSoundKMicroWidget::recordButtonClicked()
+{
+    if(m_ui->gifLabel->isRunning())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Recording Now, Stop It?"));
+        if(message.exec() == 0)
+        {
+            recordStateChanged(false);
+        }
+    }
+    else
+    {
+        int index = m_ui->transferButton->audioInputIndex();
+        if(index != -1)
+        {
+            recordStateChanged(true);
+        }
+        else
+        {
+            MusicMessageBox message;
+            message.setText(tr("Input Error"));
+            message.exec();
+        }
+    }
+}
+
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
@@ -327,5 +355,19 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
     {
         w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
         w->setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
+    }
+}
+
+void MusicSoundKMicroWidget::recordStateChanged(bool state)
+{
+    if(state)
+    {
+        m_ui->gifLabel->start();
+        m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRerecord);
+    }
+    else
+    {
+        m_ui->gifLabel->stop();
+        m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRecord);
     }
 }

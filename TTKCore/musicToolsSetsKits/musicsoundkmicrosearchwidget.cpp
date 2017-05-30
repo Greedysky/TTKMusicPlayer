@@ -150,7 +150,8 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     : QWidget(parent)
 {
     ///Remove the title bar
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint );
+    setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    raise();
 
     resize(350, 450);
 

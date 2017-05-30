@@ -15,6 +15,12 @@ MusicSoundKMicroSettingPopWidget::MusicSoundKMicroSettingPopWidget(QWidget *pare
     initWidget();
 }
 
+MusicSoundKMicroSettingPopWidget::~MusicSoundKMicroSettingPopWidget()
+{
+    delete m_inputComboBox;
+    delete m_outputComboBox;
+}
+
 QString MusicSoundKMicroSettingPopWidget::getClassName()
 {
     return staticMetaObject.className();
@@ -46,18 +52,17 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     QLabel *inputLabel = new QLabel(tr("Input"), m_containWidget);
     inputLabel->setGeometry(10, 120, 50, 25);
     inputLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    QComboBox *inputComboBox = new QComboBox(m_containWidget);
-    inputComboBox->setGeometry(60, 120, 230, 25);
-    inputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);
-    inputComboBox->setItemDelegate(new QStyledItemDelegate(inputComboBox));
-    inputComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_inputComboBox = new QComboBox(m_containWidget);
+    m_inputComboBox->setGeometry(60, 120, 230, 25);
+    m_inputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);
+    m_inputComboBox->setItemDelegate(new QStyledItemDelegate(m_inputComboBox));
+    m_inputComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioInput))
     {
-        inputComboBox->addItem(info.deviceName());
+        m_inputComboBox->addItem(info.deviceName());
     }
-    if(inputComboBox->count() == 0)
+    if(m_inputComboBox->count() == 0)
     {
-        inputComboBox->addItem(tr("Input Error"));
         microIconLabel->setStyleSheet("background:url(':/toolSets/lb_record_off')");
     }
     else
@@ -68,15 +73,25 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     QLabel *outputLabel = new QLabel(tr("Output"), m_containWidget);
     outputLabel->setGeometry(10, 150, 50, 25);
     outputLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    QComboBox *outputComboBox = new QComboBox(m_containWidget);
-    outputComboBox->setGeometry(60, 150, 230, 25);
-    outputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);
-    outputComboBox->setItemDelegate(new QStyledItemDelegate(outputComboBox));
-    outputComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_outputComboBox = new QComboBox(m_containWidget);
+    m_outputComboBox->setGeometry(60, 150, 230, 25);
+    m_outputComboBox->setStyleSheet(MusicUIObject::MBorderStyle04);
+    m_outputComboBox->setItemDelegate(new QStyledItemDelegate(m_outputComboBox));
+    m_outputComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
-        outputComboBox->addItem(info.deviceName());
+        m_outputComboBox->addItem(info.deviceName());
     }
 
     m_menu->setStyleSheet(MusicUIObject::MMenuStyle05);
+}
+
+int MusicSoundKMicroSettingPopWidget::audioInputIndex() const
+{
+    return m_inputComboBox->currentIndex();
+}
+
+int MusicSoundKMicroSettingPopWidget::audioOutputIndex() const
+{
+    return m_outputComboBox->currentIndex();
 }

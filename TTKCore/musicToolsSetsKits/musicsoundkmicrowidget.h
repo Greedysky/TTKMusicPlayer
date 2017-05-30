@@ -86,6 +86,10 @@ public slots:
     /*!
      * Animation finished.
      */
+    void recordButtonClicked();
+    /*!
+     * Record button clicked.
+     */
 
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
@@ -101,6 +105,10 @@ protected:
     void setItemStyleSheet(int index, int size, int transparent);
     /*!
      * Set per lrc line style sheet.
+     */
+    void recordStateChanged(bool state);
+    /*!
+     * Record state changed.
      */
 
     Ui::MusicSoundKMicroWidget *m_ui;
