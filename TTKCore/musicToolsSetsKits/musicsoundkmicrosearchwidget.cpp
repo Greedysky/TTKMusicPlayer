@@ -16,11 +16,13 @@
 MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)
 {
-    setColumnCount(3);
+    setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 288);
+    headerview->resizeSection(1, 290);
     headerview->resizeSection(2, 24);
+    headerview->resizeSection(3, 24);
+    headerview->resizeSection(4, 24);
 
     m_queryMv = true;
 }
@@ -98,7 +100,7 @@ void MusicSoundKMicroSearchTableWidget::setQueryMVFlag(bool flag)
 void MusicSoundKMicroSearchTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(3);
+    setColumnCount(5);
 }
 
 void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
@@ -118,8 +120,17 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedI
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
+    item->setIcon(QIcon(randToGetStrength()));
     setItem(count, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(songItem.m_type);
+    setItem(count, 3, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
+    setItem(count, 4, item);
 }
 
 void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
@@ -136,7 +147,7 @@ void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)
     MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 2:
+        case 4:
             musicDownloadLocal(row);
             break;
         default:
@@ -153,7 +164,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     raise();
 
-    resize(350, 450);
+    resize(400, 490);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
