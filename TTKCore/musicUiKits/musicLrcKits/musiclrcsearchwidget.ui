@@ -172,7 +172,7 @@
   <widget class="QLabel" name="label_song">
    <property name="geometry">
     <rect>
-     <x>145</x>
+     <x>140</x>
      <y>114</y>
      <width>41</width>
      <height>20</height>
@@ -188,7 +188,7 @@
   <widget class="QLabel" name="label_art">
    <property name="geometry">
     <rect>
-     <x>354</x>
+     <x>340</x>
      <y>114</y>
      <width>41</width>
      <height>20</height>

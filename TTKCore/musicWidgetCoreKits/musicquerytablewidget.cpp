@@ -137,3 +137,16 @@ void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)
     MusicQueryTableWidget::resizeEvent(event);
     m_loadingLabel->move((width() - m_loadingLabel->width())/2, (height() - m_loadingLabel->height())/2);
 }
+
+QString MusicQueryItemTableWidget::randToGetStrength() const
+{
+    switch(qrand()%5)
+    {
+        case 0: return QString::fromUtf8(":/video/lb_video_1");
+        case 1: return QString::fromUtf8(":/video/lb_video_2");
+        case 2: return QString::fromUtf8(":/video/lb_video_3");
+        case 3: return QString::fromUtf8(":/video/lb_video_4");
+        case 4: return QString::fromUtf8(":/video/lb_video_5");
+        default:return QString::fromUtf8(":/video/lb_video_5");
+    }
+}

@@ -83,10 +83,6 @@ protected:
     /*!
      * Override the widget event.
      */
-    QString randToGetStrength() const;
-    /*!
-     * Get current random video hotter(simulate).
-     */
     void downloadLocalMovie(int row);
     /*!
      * Download movie to local file by index.

@@ -98,12 +98,12 @@ void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &son
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
-    item->setToolTip(songItem.m_type);
+    item->setIcon(QIcon(randToGetStrength()));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_star")));
+    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setToolTip(songItem.m_type);
     setItem(count, 5, item);
 }
 
