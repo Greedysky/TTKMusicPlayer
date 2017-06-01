@@ -51,7 +51,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     slider->setGeometry(36, 90, 150, 25);
     slider->setStyleSheet(QString("QSlider{%1}").arg(MusicUIObject::MBackgroundStyle01) + MusicUIObject::MSliderStyle01);
     slider->setRange(0, 100);
-    slider->setValue(0);
+    slider->setValue(100);
     connect(slider, SIGNAL(valueChanged(int)), SLOT(volumeChanged(int)));
 
     QLabel *inputLabel = new QLabel(tr("Input"), m_containWidget);
@@ -94,6 +94,7 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
 void MusicSoundKMicroSettingPopWidget::setAudioCore(MusicAudioRecorderCore *core)
 {
     m_recordCore = core;
+    volumeChanged(100);
 }
 
 int MusicSoundKMicroSettingPopWidget::audioInputIndex() const

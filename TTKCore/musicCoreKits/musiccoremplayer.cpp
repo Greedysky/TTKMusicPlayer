@@ -255,6 +255,7 @@ void MusicCoreMPlayer::musicStandardRecieve()
 
 void MusicCoreMPlayer::stop()
 {
+    m_playState = StoppedState;
     m_timer.stop();
     if(!m_process)
     {

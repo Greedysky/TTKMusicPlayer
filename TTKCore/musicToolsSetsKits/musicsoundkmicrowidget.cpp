@@ -14,7 +14,10 @@
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
+#include "musiccoreutils.h"
 #include "musictime.h"
+
+#include <QFileDialog>
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -79,6 +82,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(playButtonChanged()));
+    connect(m_mediaPlayer, SIGNAL(finished()), SLOT(playFinished()));
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_ui->timeSlider, SIGNAL(sliderReleasedAt(int)), SLOT(setPosition(int)));
@@ -143,6 +147,26 @@ void MusicSoundKMicroWidget::durationChanged(qint64 duration)
     m_ui->timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 
     multiMediaChanged();
+}
+
+void MusicSoundKMicroWidget::playFinished()
+{
+    m_mediaPlayer->stop();
+    if(m_ui->gifLabel->isRunning())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Record Finished"));
+        message.exec();
+
+        recordStateChanged(false);
+
+        QString filename = QFileDialog::getSaveFileName( this,
+            tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
+        if(!filename.isEmpty())
+        {
+            m_recordCore->addWavHeader(MusicUtils::Core::toLocal8Bit(filename));
+        }
+    }
 }
 
 void MusicSoundKMicroWidget::setPosition(int position)
@@ -367,7 +391,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
 void MusicSoundKMicroWidget::recordStateChanged(bool state)
 {
-    if(state)
+    if(state && m_mediaPlayer->state() != MusicCoreMPlayer::StoppedState)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRerecord);

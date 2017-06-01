@@ -59,6 +59,10 @@ public slots:
     /*!
      * Set current video duration.
      */
+    void playFinished();
+    /*!
+     * Play finished.
+     */
     void setPosition(int position);
     /*!
      * Set current play pos.
