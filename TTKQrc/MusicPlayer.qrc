@@ -466,6 +466,20 @@
         <file alias="btn_listen_hover">../TTKResource/tiny/btn_listen_hover.png</file>
         <file alias="btn_playlist_normal">../TTKResource/tiny/btn_playlist_normal.png</file>
         <file alias="btn_playlist_hover">../TTKResource/tiny/btn_playlist_hover.png</file>
+        <file alias="btn_list_normal">../TTKResource/tiny/btn_list_normal.png</file>
+        <file alias="btn_list_hover">../TTKResource/tiny/btn_list_hover.png</file>
+        <file alias="btn_wallpaper_off_normal">../TTKResource/tiny/btn_wallpaper_off_normal.png</file>
+        <file alias="btn_wallpaper_off_hover">../TTKResource/tiny/btn_wallpaper_off_hover.png</file>
+        <file alias="btn_wallpaper_on_normal">../TTKResource/tiny/btn_wallpaper_on_normal.png</file>
+        <file alias="btn_wallpaper_on_hover">../TTKResource/tiny/btn_wallpaper_on_hover.png</file>
+        <file alias="btn_lrc_off_normal">../TTKResource/tiny/btn_lrc_off_normal.png</file>
+        <file alias="btn_lrc_off_hover">../TTKResource/tiny/btn_lrc_off_hover.png</file>
+        <file alias="btn_lrc_on_normal">../TTKResource/tiny/btn_lrc_on_normal.png</file>
+        <file alias="btn_lrc_on_hover">../TTKResource/tiny/btn_lrc_on_hover.png</file>
+        <file alias="btn_collapse_w_normal">../TTKResource/tiny/btn_collapse_w_normal.png</file>
+        <file alias="btn_collapse_w_hover">../TTKResource/tiny/btn_collapse_w_hover.png</file>
+        <file alias="btn_expand_w_normal">../TTKResource/tiny/btn_expand_w_normal.png</file>
+        <file alias="btn_expand_w_hover">../TTKResource/tiny/btn_expand_w_hover.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>

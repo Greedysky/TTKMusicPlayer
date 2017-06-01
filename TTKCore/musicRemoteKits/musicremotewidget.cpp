@@ -5,6 +5,7 @@
 #include "musicremotewidgetforsquare.h"
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
+#include "musicremotewidgetforstrip.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicsettingmanager.h"
@@ -27,7 +28,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
     m_showMainWindow->setStyleSheet(MusicUIObject::MPushButtonStyle02);
     m_showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
-    m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_normal"));
+    m_SettingButton->setIcon(QIcon(":/tiny/btn_setting_hover"));
 
     m_showMainWindow->setToolTip(tr("showMainWindow"));
     m_PreSongButton->setToolTip(tr("Previous"));
@@ -38,7 +39,7 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_PreSongButton->setFixedSize(28, 28);
     m_NextSongButton->setFixedSize(28, 28);
     m_PlayButton->setFixedSize(28, 28);
-    m_SettingButton->setFixedSize(28, 28);
+    m_SettingButton->setFixedSize(20, 20);
     m_showMainWindow->setFixedSize(30, 30);
 
     m_PreSongButton->setStyleSheet(MusicUIObject::MKGTinyBtnPrevious);
@@ -109,6 +110,11 @@ void MusicRemoteWidget::setVolumeValue(int index)
     blockSignals(false);
 }
 
+void MusicRemoteWidget::setLabelText(const QString &text)
+{
+    Q_UNUSED(text);
+}
+
 void MusicRemoteWidget::musicVolumeChanged(int value)
 {
     emit musicVolumeSignal(value);
@@ -156,6 +162,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
                 !MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
     menu.addAction(tr("DiamondRemote"))->setEnabled(
                 !MObject_cast(MusicRemoteWidgetForDiamond*, this));
+    menu.addAction(tr("StripRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForStrip*, this));
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 
