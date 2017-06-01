@@ -45,7 +45,7 @@ public:
     /*!
      * Set current volume value by index.
      */
-    virtual void setLabelText(const QString &) {}
+    virtual void setLabelText(const QString &text);
     /*!
      * Set current song text.
      */

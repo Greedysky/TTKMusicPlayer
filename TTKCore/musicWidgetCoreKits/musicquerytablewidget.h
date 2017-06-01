@@ -139,6 +139,10 @@ protected:
     /*!
      * Override the widget event.
      */
+    QString randToGetStrength() const;
+    /*!
+     * Get current random video hotter(simulate).
+     */
 
     MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;

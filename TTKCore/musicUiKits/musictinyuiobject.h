@@ -36,11 +36,46 @@ namespace MusicUIObject
             background-image: url(:/tiny/btn_previous_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover);}";
 
+    const QString MKGTinyBtnList = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_list_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_list_hover);}";
+            
     const QString MKGTinyBtnSetting = " \
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_setting_normal);} \
             QPushButton:hover{ background-image: url(:/tiny/btn_setting_hover);}";
-
+            
+    const QString MKGTinyBtnWallpaperOn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_wallpaper_on_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_wallpaper_on_hover);}";
+            
+    const QString MKGTinyBtnWallpaperOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_wallpaper_off_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_wallpaper_off_hover);}";
+            
+    const QString MKGTinyBtnLrcOn = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_lrc_on_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_lrc_on_hover);}";
+            
+    const QString MKGTinyBtnLrcOff = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_lrc_off_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_lrc_off_hover);}";
+            
+    const QString MKGTinyBtnCollapse = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_collapse_w_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_collapse_w_hover);}";
+            
+    const QString MKGTinyBtnExpand = " \
+            QPushButton{ border:none; \
+            background-image: url(:/tiny/btn_expand_w_normal);} \
+            QPushButton:hover{ background-image: url(:/tiny/btn_expand_w_hover);}";
+            
     const QString MKGTinyBtnUnDownload = " \
             QPushButton{ border:none; \
             background-image: url(:/tiny/btn_download_normal);} \

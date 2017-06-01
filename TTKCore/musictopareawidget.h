@@ -178,6 +178,10 @@ public Q_SLOTS:
     /*!
      * Changed current remote to complex style mode.
      */
+    void musicStripRemote();
+    /*!
+     * Changed current remote to strip mode.
+     */
     void musicDeleteRemote();
     /*!
      * Delete current remote.

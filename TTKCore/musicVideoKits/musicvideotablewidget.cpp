@@ -57,10 +57,10 @@ void MusicVideoTableWidget::resizeWindow(int delta)
 {
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 292 + delta*0.4);
-    headerview->resizeSection(2, 148 + delta*0.4);
-    headerview->resizeSection(3, 31 + delta*0.1);
-    headerview->resizeSection(4, 55 + delta*0.1);
+    headerview->resizeSection(1, 297 + delta*0.45);
+    headerview->resizeSection(2, 150 + delta*0.45);
+    headerview->resizeSection(3, 55 + delta*0.1);
+    headerview->resizeSection(4, 24);
     headerview->resizeSection(5, 24);
     headerview->resizeSection(6, 24);
     headerview->resizeSection(7, 24);
@@ -140,13 +140,13 @@ void MusicVideoTableWidget::createSearchedItems(const MusicSearchedItem &songIte
     item->setToolTip(songItem.m_artistname);
     setItem(count, 2, item);
 
-                      item = new QTableWidgetItem;
-    item->setIcon(QIcon(randToGetStrength()));
-    setItem(count, 3, item);
-
                       item = new QTableWidgetItem(songItem.m_time);
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
+    setItem(count, 3, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(randToGetStrength()));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
@@ -209,19 +209,6 @@ void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
     createContextMenu(rightClickMenu);
 
     rightClickMenu.exec(QCursor::pos());
-}
-
-QString MusicVideoTableWidget::randToGetStrength() const
-{
-    switch(qrand()%5)
-    {
-        case 0: return QString::fromUtf8(":/video/video_1");
-        case 1: return QString::fromUtf8(":/video/video_2");
-        case 2: return QString::fromUtf8(":/video/video_3");
-        case 3: return QString::fromUtf8(":/video/video_4");
-        case 4: return QString::fromUtf8(":/video/video_5");
-        default:return QString::fromUtf8(":/video/video_5");
-    }
 }
 
 void MusicVideoTableWidget::downloadLocalMovie(int row)
