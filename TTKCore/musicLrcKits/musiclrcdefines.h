@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include <QStringList>
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the lrc defines.

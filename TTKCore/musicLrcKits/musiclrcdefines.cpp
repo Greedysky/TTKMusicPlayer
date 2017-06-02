@@ -1,5 +1,4 @@
 #include "musiclrcdefines.h"
-#include <QDebug>
 
 MusicLrcDefines::MusicLrcDefines()
 {
@@ -77,7 +76,7 @@ int MusicLrcDefines::findDesktopPreSize(int index) const
 
 int MusicLrcDefines::findDesktopNextSize(int index) const
 {
-    if(index == -1 || index == m_inlineLrcSize.count() - 1)
+    if(index == -1 || index == m_desktopLrcSize.count() - 1)
     {
         return m_desktopLrcSize.last().toInt();
     }
