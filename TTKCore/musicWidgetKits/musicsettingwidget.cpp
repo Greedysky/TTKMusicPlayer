@@ -447,6 +447,7 @@ void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
     m_ui->item_S10->setEnabled(state);
     m_ui->item_S12->setEnabled(state);
     m_ui->item_S14->setEnabled(state);
+    m_ui->item_S16->setEnabled(state);
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
@@ -508,6 +509,7 @@ void MusicSettingWidget::commitTheResults()
     M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
     M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
     M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
+    M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
     M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
 
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
