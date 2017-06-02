@@ -373,6 +373,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
 }
 
 
+
 MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *parent)
     : MusicLrcContainerForDesktop(parent)
 {
@@ -427,6 +428,7 @@ void MusicLrcContainerHorizontalDesktop::resizeLrcSizeArea()
     }
     m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
 }
+
 
 
 MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *parent)
