@@ -38,6 +38,7 @@
         <lrcDFgColor value="255,79,147"/>
         <lrcDBgColor value="14,179,255"/>
         <lrcDWindowType value="1"/>
+        <lrcDSingleLineType value="0"/>
         <lrcDLocked value="0"/>
         <lrcDGeometry value="178,415"/>
     </desktopLrc>
@@ -80,7 +81,6 @@
         <downloadCacheSize value="1024"/>
         <downloadLimit value="1"/>
         <downloadServer value="0"/>
-        <downloadServerMultiple value="1"/>
         <downloadDLoadLimit value="100"/>
         <downloadULoadLimit value="100"/>
     </downloads>

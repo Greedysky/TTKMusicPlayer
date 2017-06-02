@@ -107,6 +107,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QString DLrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).toString();
     int DLrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     int DLrcWindowTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcWindowTypeChoiced).toInt();
+    int DLrcSingleLineTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt();
     int DLrcLockedChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt();
     QPoint DLrcGeometry = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
 
@@ -228,6 +229,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(showDLrc, "lrcDBgColor", XmlAttribute("value", DLrcBgColorChoiced));
 
     writeDomElement(showDLrc, "lrcDWindowType", XmlAttribute("value", DLrcWindowTypeChoiced));
+    writeDomElement(showDLrc, "lrcDSingleLineType", XmlAttribute("value", DLrcSingleLineTypeChoiced));
     writeDomElement(showDLrc, "lrcDLocked", XmlAttribute("value", DLrcLockedChoiced));
     writeDomElement(showDLrc, "lrcDGeometry", XmlAttribute("value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())));
 

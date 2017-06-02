@@ -16,6 +16,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
 
     m_containerType = "DESKTOP";
     m_reverse = false;
+    m_singleLineType = false;
     m_windowLocked = false;
     m_verticalWindow = false;
     m_currentLrcFontSize = 0;
@@ -36,7 +37,7 @@ QString MusicLrcContainerForDesktop::getClassName()
 
 void MusicLrcContainerForDesktop::startTimerClock()
 {
-    m_musicLrcContainer[!m_reverse]->startTimerClock();
+    m_musicLrcContainer[!m_singleLineType ? !m_reverse : 0]->startTimerClock();
 }
 
 void MusicLrcContainerForDesktop::stopLrcMask()
@@ -64,6 +65,7 @@ void MusicLrcContainerForDesktop::setSettingParameter()
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
     m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
+    m_singleLineType = M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt() == 1;
     QPoint point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
     if(!point.isNull())
     {
@@ -91,11 +93,19 @@ bool MusicLrcContainerForDesktop::getPlayStatus() const
 
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
-    m_reverse = !m_reverse;
-    m_musicLrcContainer[ m_reverse]->reset();
-    m_musicLrcContainer[ m_reverse]->setText(second);
-    m_musicLrcContainer[!m_reverse]->setText(first);
-    m_musicLrcContainer[!m_reverse]->startLrcMask(time);
+    if(!m_singleLineType)
+    {
+        m_reverse = !m_reverse;
+        m_musicLrcContainer[ m_reverse]->reset();
+        m_musicLrcContainer[ m_reverse]->setText(second);
+        m_musicLrcContainer[!m_reverse]->setText(first);
+        m_musicLrcContainer[!m_reverse]->startLrcMask(time);
+    }
+    else
+    {
+        m_musicLrcContainer[0]->setText(first);
+        m_musicLrcContainer[0]->startLrcMask(time);
+    }
 
     resizeLrcSizeArea();
 }
@@ -136,6 +146,27 @@ void MusicLrcContainerForDesktop::toolStyleChanged()
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     createColorMenu(menu);
     menu.exec(QCursor::pos());
+}
+
+void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
+{
+    m_singleLineType = !m_singleLineType;
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced, m_singleLineType);
+
+    if(m_singleLineType)
+    {
+        if(!m_reverse)
+        {
+            m_musicLrcContainer[0]->setText(m_musicLrcContainer[1]->text());
+            startTimerClock();
+        }
+        m_musicLrcContainer[1]->hide();
+    }
+    else
+    {
+        m_musicLrcContainer[1]->show();
+    }
+    m_musicLrcContainer[1]->setText(QString());
 }
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
@@ -293,7 +324,11 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     {
         manager->setLrcFontSize(size);
     }
-    m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
+
+    if(!m_singleLineType)
+    {
+        m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
+    }
 
     resizeLrcSizeArea();
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_currentLrcFontSize);
@@ -357,6 +392,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
+    menu.addAction(!m_singleLineType ? tr("SingleLine") : tr("DoubleLine"), this, SLOT(setSingleLineTypeChanged()));
     menu.addSeparator();
 
     QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
@@ -411,7 +447,10 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
         m_musicLrcContainer[0]->setGeometry(0, 20,
                                             m_musicLrcContainer[0]->x(),
                                             m_geometry.y());
-        m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
+        if(!m_singleLineType)
+        {
+            m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
+        }
     }
 }
 
@@ -420,13 +459,16 @@ void MusicLrcContainerHorizontalDesktop::resizeLrcSizeArea()
     int width = m_musicLrcContainer[0]->x();
     m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
 
-    width = m_musicLrcContainer[1]->x();
-    int pos = m_geometry.x() - width;
-    if(pos < 0 )
+    if(!m_singleLineType)
     {
-        pos = 0;
+        width = m_musicLrcContainer[1]->x();
+        int pos = m_geometry.x() - width;
+        if(pos < 0 )
+        {
+            pos = 0;
+        }
+        m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
     }
-    m_musicLrcContainer[1]->setGeometry(pos, m_geometry.y() + 20, width, m_geometry.y());
 }
 
 
@@ -468,7 +510,10 @@ void MusicLrcContainerVerticalDesktop::initCurrentLrc() const
         m_musicLrcContainer[0]->setGeometry(20, 0,
                                             m_geometry.y(),
                                             m_musicLrcContainer[0]->x());
-        m_musicLrcContainer[1]->setGeometry(m_geometry.x() + 20, 0, 0, 0);
+        if(!m_singleLineType)
+        {
+            m_musicLrcContainer[1]->setGeometry(m_geometry.x() + 20, 0, 0, 0);
+        }
     }
 }
 
@@ -477,11 +522,14 @@ void MusicLrcContainerVerticalDesktop::resizeLrcSizeArea()
     int height = m_musicLrcContainer[0]->x();
     m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
 
-    height = m_musicLrcContainer[1]->x();
-    int pos = m_geometry.x() - height;
-    if(pos < 0 )
+    if(!m_singleLineType)
     {
-        pos = 0;
+        height = m_musicLrcContainer[1]->x();
+        int pos = m_geometry.x() - height;
+        if(pos < 0 )
+        {
+            pos = 0;
+        }
+        m_musicLrcContainer[1]->setGeometry(m_geometry.y() + 20, pos, m_geometry.y(), height);
     }
-    m_musicLrcContainer[1]->setGeometry(m_geometry.y() + 20, pos, m_geometry.y(), height);
 }

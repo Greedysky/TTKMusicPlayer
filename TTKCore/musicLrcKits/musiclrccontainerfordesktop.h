@@ -108,6 +108,10 @@ public Q_SLOTS:
     /*!
      * Set current color style changed.
      */
+    void setSingleLineTypeChanged();
+    /*!
+     * Set single line type changed.
+     */
 
 protected:
     void setSelfGeometry() const;
@@ -137,7 +141,7 @@ protected:
      * Override the widget event.
      */
 
-    bool m_verticalWindow;
+    bool m_verticalWindow, m_singleLineType;
     bool m_windowLocked, m_reverse;
     int m_currentLrcFontSize;
     QPoint m_offset, m_geometry;
@@ -175,6 +179,7 @@ protected:
     /*!
      * Resize lrc size area by change size.
      */
+
 };
 
 
@@ -204,6 +209,7 @@ protected:
     /*!
      * Resize lrc size area by change size.
      */
+
 };
 
 #endif // MUSICLRCCONTAINERFORDESKTOP_H

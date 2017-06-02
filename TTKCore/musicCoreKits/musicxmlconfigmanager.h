@@ -152,7 +152,12 @@ public:
     inline int readDLrcWindowType() const
     { return readXmlAttributeByTagNameValue("lrcDWindowType").toInt(); }
     /*!
-     * Read Show Desktop Lrc Locked Config.
+     * Read Show Desktop Lrc Window Type.
+     */
+    inline int readDLrcSingleLineType() const
+    { return readXmlAttributeByTagNameValue("lrcDSingleLineType").toInt(); }
+    /*!
+     * Read Show Desktop Lrc Single Line Type.
      */
     inline int readShowDLrcLocked() const
     { return readXmlAttributeByTagNameValue("lrcDLocked").toInt(); }
