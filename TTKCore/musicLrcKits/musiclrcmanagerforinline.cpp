@@ -66,11 +66,11 @@ void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_maskLinearGradient, 0));
     if(ttplus < 0)
     {
-        painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+        painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, m_geometry.y(), Qt::AlignLeft, text());
     }
     else
     {
-        painter.drawText(ttplus, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+        painter.drawText(ttplus, 0, m_lrcMaskWidth, m_geometry.y(), Qt::AlignLeft, text());
     }
     painter.end();
 }

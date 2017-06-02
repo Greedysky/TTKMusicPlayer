@@ -85,7 +85,7 @@ void MusicPreviewLabel::setParameter(const QStringList &para)
 {
     Q_ASSERT(para.count() == 3);
     m_font.setFamily(para[0]);
-    m_font.setPointSize(para[1].toInt() + 13);
+    m_font.setPointSize(para[1].toInt());
     int type = para[2].toInt();
     m_font.setBold( (type == 1 || type == 3) );
     m_font.setItalic( (type == 2 || type == 3) );

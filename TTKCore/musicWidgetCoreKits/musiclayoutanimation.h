@@ -50,6 +50,10 @@ public:
     /*!
      * Add widget to container.
      */
+    void removeWidget(QWidget *widget);
+    /*!
+     * Remove widget to container.
+     */
 
 private Q_SLOTS:
     void valueChanged(const QVariant &value);

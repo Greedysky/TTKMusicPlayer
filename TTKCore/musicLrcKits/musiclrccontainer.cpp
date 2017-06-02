@@ -166,7 +166,7 @@ void MusicLrcContainer::setSettingParameter(const QString &t) const
         manager->setFontFamily(M_SETTING_PTR->value(t + "LrcFamilyChoiced").toInt());
         manager->setFontType(M_SETTING_PTR->value(t + "LrcTypeChoiced").toInt());
         manager->setFontTransparent(M_SETTING_PTR->value(t + "LrcColorTransChoiced").toInt());
-        manager->setLrcFontSize((MusicLRCManager::LrcSizeTable)(M_SETTING_PTR->value(t + "LrcSizeChoiced").toInt()));
+        manager->setLrcFontSize(M_SETTING_PTR->value(t + "LrcSizeChoiced").toInt());
     }
     if(M_SETTING_PTR->value(t + "LrcColorChoiced").toInt() != -1)
     {

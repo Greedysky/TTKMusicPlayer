@@ -38,16 +38,6 @@ void MusicLRCManager::startTimerClock()
     m_timer->start(LRC_PER_TIME);
 }
 
-void MusicLRCManager::setLrcFontSize(LrcSizeTable size)
-{
-    if(size > 0)
-    {
-        m_font.setPointSize(size);
-    }
-    setText( text() );
-    update();
-}
-
 void MusicLRCManager::setFontFamily(int index)
 {
     if(index < 0)
@@ -70,6 +60,55 @@ void MusicLRCManager::setFontType(int type)
 {
     m_font.setBold( (type == 1 || type == 3) );
     m_font.setItalic( (type == 2 || type == 3) );
+}
+
+void MusicLRCManager::setSelfGeometry(const QPoint &point)
+{
+    m_geometry = point;
+}
+
+void MusicLRCManager::setSelfGeometry(int x, int y)
+{
+    m_geometry = QPoint(x, y);
+    m_lrcPerWidth = x;
+}
+
+int MusicLRCManager::x() const
+{
+    return m_geometry.x();
+}
+
+int MusicLRCManager::y() const
+{
+    return m_geometry.y();
+}
+
+void MusicLRCManager::setX(int x)
+{
+    m_geometry.setX(x);
+}
+
+void MusicLRCManager::setY(int y)
+{
+    m_geometry.setY(y);
+}
+
+void MusicLRCManager::reset()
+{
+    m_intervalCount = 0.0f;
+    m_lrcMaskWidth = 0.0f;
+    m_timer->stop();
+    update();
+}
+
+void MusicLRCManager::setLrcFontSize(int size)
+{
+    if(size > 0)
+    {
+        m_font.setPointSize(size);
+    }
+    setText( text() );
+    update();
 }
 
 void MusicLRCManager::startLrcMask(qint64 intervaltime)

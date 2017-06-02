@@ -12,6 +12,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+#define MUSIC_LRC_INLINE_MAX_LINE   11
+
 class MusicTranslationThread;
 
 /*! @brief The class of the core lrc analysis.

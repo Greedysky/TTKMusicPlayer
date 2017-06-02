@@ -27,34 +27,6 @@ public:
     /*!
      * Get class object name.
      */
-    void setSelfGeometry(const QPoint &point);
-    /*!
-     * Set self geometry by point.
-     */
-    void setSelfGeometry(int x, int y);
-    /*!
-     * Set self geometry by x and y.
-     */
-    int x() const;
-    /*!
-     * Get self geometry x.
-     */
-    int y() const;
-    /*!
-     * Get self geometry y.
-     */
-    void resetOrigin();
-    /*!
-     * Reset to origin state.
-     */
-    void setLrcFontSize(int size);
-    /*!
-     * Set adjust font szie by value.
-     */
-    inline int getFirstFontSize() const { return m_font.pointSize(); }
-    /*!
-     * Get current font szie.
-     */
 
 };
 
@@ -81,6 +53,7 @@ protected:
     /*!
      * Override the widget event.
      */
+
 };
 
 
@@ -106,6 +79,7 @@ protected:
     /*!
      * Override the widget event.
      */
+
 };
 
 #endif // MUSICLRCMANAGERFORDESKTOP_H

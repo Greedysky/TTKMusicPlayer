@@ -5,6 +5,7 @@
 #include "musicdesktoplrcuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
+#include "musiclrcdefines.h"
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -60,7 +61,7 @@ void MusicLrcContainerForDesktop::setSettingParameter()
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
         m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt();
-        manager->setLrcFontSize(MStatic_cast(MusicLRCManager::LrcSizeTable, m_currentLrcFontSize));
+        manager->setLrcFontSize(m_currentLrcFontSize);
     }
     m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
     QPoint point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
@@ -91,8 +92,7 @@ bool MusicLrcContainerForDesktop::getPlayStatus() const
 void MusicLrcContainerForDesktop::updateCurrentLrc(const QString &first, const QString &second, qint64 time)
 {
     m_reverse = !m_reverse;
-    MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[m_reverse])->resetOrigin();
-    m_musicLrcContainer[ m_reverse]->stopLrcMask();
+    m_musicLrcContainer[ m_reverse]->reset();
     m_musicLrcContainer[ m_reverse]->setText(second);
     m_musicLrcContainer[!m_reverse]->setText(first);
     m_musicLrcContainer[!m_reverse]->startLrcMask(time);
@@ -114,7 +114,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
 
 void MusicLrcContainerForDesktop::setLrcBiggerChanged()
 {
-    if(m_currentLrcFontSize > 35)
+    if(m_currentLrcFontSize > MusicLrcDefines().findDesktopLastSize() - 1)
     {
         return;
     }
@@ -123,7 +123,7 @@ void MusicLrcContainerForDesktop::setLrcBiggerChanged()
 
 void MusicLrcContainerForDesktop::setLrcSmallerChanged()
 {
-    if(m_currentLrcFontSize < 25)
+    if(m_currentLrcFontSize < MusicLrcDefines().findDesktopFirstSize() - 1)
     {
         return;
     }
@@ -142,7 +142,7 @@ void MusicLrcContainerForDesktop::setSelfGeometry() const
 {
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setSelfGeometry(m_geometry.x(), m_geometry.y());
+        manager->setSelfGeometry(m_geometry.x(), m_geometry.y());
     }
 }
 
@@ -291,7 +291,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     int size = resize ? ++m_currentLrcFontSize : --m_currentLrcFontSize;
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
-        MStatic_cast(MusicLRCManagerForDesktop*, manager)->setLrcFontSize(size);
+        manager->setLrcFontSize(size);
     }
     m_musicLrcContainer[1]->setText(m_musicLrcContainer[1]->text());
 
@@ -394,7 +394,7 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
     setSelfGeometry();
-    m_currentLrcFontSize = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->getFirstFontSize();
+    m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();
 }
 
 QString MusicLrcContainerHorizontalDesktop::getClassName()
@@ -408,7 +408,7 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
     if(m_currentTime == 0)
     {
         m_musicLrcContainer[0]->setGeometry(0, 20,
-                                            MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->x(),
+                                            m_musicLrcContainer[0]->x(),
                                             m_geometry.y());
         m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
     }
@@ -416,10 +416,10 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
 
 void MusicLrcContainerHorizontalDesktop::resizeLrcSizeArea()
 {
-    int width = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->x();
+    int width = m_musicLrcContainer[0]->x();
     m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
 
-    width = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[1])->x();
+    width = m_musicLrcContainer[1]->x();
     int pos = m_geometry.x() - width;
     if(pos < 0 )
     {
@@ -450,7 +450,7 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
     desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
 
     setSelfGeometry();
-    m_currentLrcFontSize = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->getFirstFontSize();
+    m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();
 }
 
 QString MusicLrcContainerVerticalDesktop::getClassName()
@@ -465,17 +465,17 @@ void MusicLrcContainerVerticalDesktop::initCurrentLrc() const
     {
         m_musicLrcContainer[0]->setGeometry(20, 0,
                                             m_geometry.y(),
-                                            MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->x());
+                                            m_musicLrcContainer[0]->x());
         m_musicLrcContainer[1]->setGeometry(m_geometry.x() + 20, 0, 0, 0);
     }
 }
 
 void MusicLrcContainerVerticalDesktop::resizeLrcSizeArea()
 {
-    int height = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[0])->x();
+    int height = m_musicLrcContainer[0]->x();
     m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
 
-    height = MStatic_cast(MusicLRCManagerForDesktop*, m_musicLrcContainer[1])->x();
+    height = m_musicLrcContainer[1]->x();
     int pos = m_geometry.x() - height;
     if(pos < 0 )
     {

@@ -10,6 +10,7 @@ INCLUDEPATH += $$PWD
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
+    $$PWD/musiclrcdefines.h \
     $$PWD/musiclrcmanager.h \
     $$PWD/musiclrcmanagerfordesktop.h \
     $$PWD/musiclrcmanagerforinline.h \
@@ -36,6 +37,7 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
+    $$PWD/musiclrcdefines.cpp \
     $$PWD/musiclrcmanager.cpp \
     $$PWD/musiclrcmanagerfordesktop.cpp \
     $$PWD/musiclrcmanagerforinline.cpp \

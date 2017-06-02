@@ -76,6 +76,11 @@ void MusicLayoutAnimation::addWidget(QWidget *widget)
     m_widgetLayout->addWidget(widget);
 }
 
+void MusicLayoutAnimation::removeWidget(QWidget *widget)
+{
+    m_widgetLayout->removeWidget(widget);
+}
+
 void MusicLayoutAnimation::valueChanged(const QVariant &value)
 {
     m_currentValue = -value.toFloat();

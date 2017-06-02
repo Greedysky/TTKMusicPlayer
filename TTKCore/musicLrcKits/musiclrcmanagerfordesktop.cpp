@@ -12,39 +12,6 @@ QString MusicLRCManagerForDesktop::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLRCManagerForDesktop::setSelfGeometry(const QPoint &point)
-{
-    m_geometry = point;
-}
-
-void MusicLRCManagerForDesktop::setSelfGeometry(int x, int y)
-{
-    m_geometry = QPoint(x, y);
-    m_lrcPerWidth = x;
-}
-
-int MusicLRCManagerForDesktop::x() const
-{
-    return m_geometry.x();
-}
-
-int MusicLRCManagerForDesktop::y() const
-{
-    return m_geometry.y();
-}
-
-void MusicLRCManagerForDesktop::resetOrigin()
-{
-    m_intervalCount = 0.0f;
-    m_lrcMaskWidth = 0.0f;
-    update();
-}
-
-void MusicLRCManagerForDesktop::setLrcFontSize(int size)
-{
-    m_font.setPointSize(size);
-    update();
-}
 
 
 MusicLRCManagerHorizontalDesktop::MusicLRCManagerHorizontalDesktop(QWidget *parent)

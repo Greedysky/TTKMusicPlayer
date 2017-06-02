@@ -9,6 +9,7 @@
 #include "musicglobalhotkey.h"
 #include "musicapplicationobject.h"
 #include "musiclrccolorwidget.h"
+#include "musiclrcdefines.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -166,8 +167,7 @@ void MusicSettingWidget::initInlineLrcWidget()
     m_ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->fontSizeComboBox->addItems(QStringList() << tr("smaller") << tr("small")
-                                     << tr("middle") << tr("big") << tr("bigger"));
+    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInlineLrcSize());
     m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
     m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("origin") << tr("red") << tr("orange")
                                                 << tr("yellow") << tr("green") << tr("blue") << tr("indigo")
@@ -207,9 +207,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     m_ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->DfontSizeComboBox->addItems(QStringList() << tr("smaller3") << tr("smaller2") << tr("smaller") << tr("small3")
-                                   << tr("small2") << tr("small") << tr("middle") << tr("big") << tr("big2") << tr("big3")
-                                   << tr("bigger") << tr("bigger2") << tr("bigger3"));
+    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
     m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
     m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("origin") << tr("red") << tr("orange")
                                    << tr("yellow") << tr("green") << tr("blue") << tr("indigo") << tr("purple")
@@ -378,7 +376,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->showInlineCheckBox->setEnabled(false);
 
     m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt());
-    m_ui->fontSizeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt() - 13);
+    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInlineLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt()));
     m_ui->fontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt());
     m_ui->fontDefaultColorComboBox->setCurrentIndex(-1);
     if(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
@@ -396,7 +394,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
     ////////////////////////////////////////////////
     m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
-    m_ui->DfontSizeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt() - 24);
+    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt());
     m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
     if(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
@@ -479,7 +477,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, m_ui->fontDefaultColorComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced, m_ui->fontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentIndex() + 13);
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, m_ui->fontTypeComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, m_ui->transparentSlider->value());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedFg));
@@ -488,7 +486,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentIndex() + 24);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, m_ui->DtransparentSlider->value());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedFg));
@@ -657,7 +655,7 @@ void MusicSettingWidget::showInlineLrcDemo()
 {
     QStringList para;
     para << m_ui->fontComboBox->currentText()
-         << QString::number(m_ui->fontSizeComboBox->currentIndex())
+         << m_ui->fontSizeComboBox->currentText()
          << QString::number(m_ui->fontTypeComboBox->currentIndex());
 
     m_ui->showLabel->setParameter(para);
@@ -669,7 +667,7 @@ void MusicSettingWidget::showDesktopLrcDemo()
 {
     QStringList para;
     para << m_ui->DfontComboBox->currentText()
-         << QString::number(m_ui->DfontSizeComboBox->currentIndex())
+         << m_ui->DfontSizeComboBox->currentText()
          << QString::number(m_ui->DfontTypeComboBox->currentIndex());
 
     m_ui->DshowLabel->setParameter(para);

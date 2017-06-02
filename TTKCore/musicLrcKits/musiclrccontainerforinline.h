@@ -86,7 +86,7 @@ public:
     /*!
      * Get state of background is artist shown.
      */
-    void setLrcSize(MusicLRCManager::LrcSizeTable = MusicLRCManager::Middle) const;
+    void setLrcSize(int size);
     /*!
      * Set current lrc size.
      */
@@ -110,7 +110,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void lrcSizeChanged(QAction *action) const;
+    void lrcSizeChanged(QAction *action);
     /*!
      * Set current lrc size by action.
      */
@@ -206,6 +206,10 @@ protected:
     void setItemStyleSheet(int index, int size, int transparent);
     /*!
      * Set per lrc line style sheet by index and size and transparent.
+     */
+    void setLrcSizeProperty(int property);
+    /*!
+     * Set current lrc size property.
      */
     void resizeWidth(int w, int h);
     /*!

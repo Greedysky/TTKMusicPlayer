@@ -53,15 +53,6 @@ public:
         Mask    ///*color mask*/
     };
 
-    enum LrcSizeTable
-    {
-        Smaller = 13,   ///*lrc size smaller*/
-        Small = 14,     ///*lrc size small*/
-        Middle = 15,    ///*lrc size middle*/
-        Big = 16,       ///*lrc size big*/
-        Bigger = 17     ///*lrc size bigger*/
-    };
-
     explicit MusicLRCManager(QWidget *parent = 0);
     /*!
      * Object contsructor.
@@ -92,10 +83,6 @@ public:
     /*!
      * Set mask linear gradient color.
      */
-    void setLrcFontSize(LrcSizeTable size);
-    /*!
-     * Set lrc font size by given size type.
-     */
     void setFontFamily(int index);
     /*!
      * Set lrc font family by given type.
@@ -111,6 +98,43 @@ public:
     inline void setSpeedLevel(int l) { m_speedLevel = l;}
     /*!
      * Set lrc font speed level by given value.
+     */
+
+    void setSelfGeometry(const QPoint &point);
+    /*!
+     * Set self geometry by point.
+     */
+    void setSelfGeometry(int x, int y);
+    /*!
+     * Set self geometry by x and y.
+     */
+    int x() const;
+    /*!
+     * Get self geometry x.
+     */
+    int y() const;
+    /*!
+     * Get self geometry y.
+     */
+    void setX(int x);
+    /*!
+     * Set self geometry x.
+     */
+    void setY(int y);
+    /*!
+     * Set self geometry y.
+     */
+    void reset();
+    /*!
+     * Reset to origin state.
+     */
+    void setLrcFontSize(int size);
+    /*!
+     * Set adjust font szie by value.
+     */
+    inline int getFirstFontSize() const { return m_font.pointSize(); }
+    /*!
+     * Get current font szie.
      */
 
 public Q_SLOTS:

@@ -1,6 +1,7 @@
 #include "musiclrcfloatsettingwidget.h"
 #include "musiclrccontainerforinline.h"
 #include "musicinlinefloatuiobject.h"
+#include "musiclrcdefines.h"
 
 #include <QTimer>
 #include <QPushButton>
@@ -112,13 +113,19 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    line->setLrcSize(MStatic_cast(MusicLRCManager::LrcSizeTable, line->getLrcSize() + 1));
+    MusicLrcDefines lrc;
+    int v = lrc.findInlineLrcIndex(line->getLrcSize());
+    v = lrc.findInlineNextSize(v);
+    line->setLrcSize(v);
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    line->setLrcSize(MStatic_cast(MusicLRCManager::LrcSizeTable, line->getLrcSize() - 1));
+    MusicLrcDefines lrc;
+    int v = lrc.findInlineLrcIndex(line->getLrcSize());
+    v = lrc.findInlinePreSize(v);
+    line->setLrcSize(v);
 }
 
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
