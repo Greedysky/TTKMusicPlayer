@@ -165,7 +165,6 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
     }
     else
     {
-        m_musicLrcContainer[0]->move(0, 20);
         m_musicLrcContainer[1]->show();
     }
     m_musicLrcContainer[1]->setText(QString());
@@ -460,6 +459,20 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
     }
 }
 
+void MusicLrcContainerHorizontalDesktop::setSingleLineTypeChanged()
+{
+    MusicLrcContainerForDesktop::setSingleLineTypeChanged();
+    if(m_singleLineType)
+    {
+        int width = m_musicLrcContainer[0]->x();
+        m_musicLrcContainer[0]->move((m_widgetWidth - width)/2, 20);
+    }
+    else
+    {
+        m_musicLrcContainer[0]->move(0, 20);
+    }
+}
+
 void MusicLrcContainerHorizontalDesktop::resizeLrcSizeArea()
 {
     int width = m_musicLrcContainer[0]->x();
@@ -527,6 +540,20 @@ void MusicLrcContainerVerticalDesktop::initCurrentLrc() const
             m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
             m_musicLrcContainer[1]->setGeometry(m_geometry.x() + 20, 0, 0, 0);
         }
+    }
+}
+
+void MusicLrcContainerVerticalDesktop::setSingleLineTypeChanged()
+{
+    MusicLrcContainerForDesktop::setSingleLineTypeChanged();
+    if(m_singleLineType)
+    {
+        int height = m_musicLrcContainer[0]->x();
+        m_musicLrcContainer[0]->move(20, (m_widgetWidth - height)/2);
+    }
+    else
+    {
+        m_musicLrcContainer[0]->move(20, 0);
     }
 }
 

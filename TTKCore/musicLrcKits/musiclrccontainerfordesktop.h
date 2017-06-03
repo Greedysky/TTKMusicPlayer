@@ -108,7 +108,7 @@ public Q_SLOTS:
     /*!
      * Set current color style changed.
      */
-    void setSingleLineTypeChanged();
+    virtual void setSingleLineTypeChanged();
     /*!
      * Set single line type changed.
      */
@@ -174,6 +174,12 @@ public:
      * Init current lrc when the first show.
      */
 
+public Q_SLOTS:
+    virtual void setSingleLineTypeChanged() override;
+    /*!
+     * Set single line type changed.
+     */
+
 protected:
     virtual void resizeLrcSizeArea() override;
     /*!
@@ -202,6 +208,12 @@ public:
     virtual void initCurrentLrc() const override;
     /*!
      * Init current lrc when the first show.
+     */
+
+public Q_SLOTS:
+    virtual void setSingleLineTypeChanged() override;
+    /*!
+     * Set single line type changed.
      */
 
 protected:
