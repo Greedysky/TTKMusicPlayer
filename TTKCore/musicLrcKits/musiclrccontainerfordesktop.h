@@ -14,10 +14,10 @@
 #include <QPushButton>
 #include "musiclrccontainer.h"
 
-#define TOOLBAR_MAIN_HEIGHT 35
-#define TOOLBAR_HEIGHT      23
-#define TOOLBAR_WIDTH       31
-#define TOOLBAR_TEXT_LENGTH 58
+#define TOOLBAR_MAIN_HEIGHT     35
+#define TOOLBAR_HEIGHT          23
+#define TOOLBAR_WIDTH           31
+#define TOOLBAR_TEXT_LENGTH     58
 
 
 class MusicLRCManagerForDesktop;
@@ -143,7 +143,7 @@ protected:
 
     bool m_verticalWindow, m_singleLineType;
     bool m_windowLocked, m_reverse;
-    int m_currentLrcFontSize;
+    int m_currentLrcFontSize, m_widgetWidth;
     QPoint m_offset, m_geometry;
 
     QBoxLayout *m_toolBarLayout;

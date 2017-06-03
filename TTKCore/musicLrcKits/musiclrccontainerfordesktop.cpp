@@ -20,6 +20,7 @@ MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     m_windowLocked = false;
     m_verticalWindow = false;
     m_currentLrcFontSize = 0;
+    m_widgetWidth = 0;
 }
 
 MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
@@ -164,6 +165,7 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
     }
     else
     {
+        m_musicLrcContainer[0]->move(0, 20);
         m_musicLrcContainer[1]->show();
     }
     m_musicLrcContainer[1]->setText(QString());
@@ -415,7 +417,8 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
 {
     m_verticalWindow = false;
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    m_geometry.setX(windowSize.width() - 300);
+    m_widgetWidth = windowSize.width() - 300;
+    m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
 
     m_toolBarWidget = new QWidget(this);
@@ -444,11 +447,14 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
     MusicLrcContainerForDesktop::initCurrentLrc();
     if(m_currentTime == 0)
     {
-        m_musicLrcContainer[0]->setGeometry(0, 20,
-                                            m_musicLrcContainer[0]->x(),
-                                            m_geometry.y());
-        if(!m_singleLineType)
+        int width = m_musicLrcContainer[0]->x();
+        if(m_singleLineType)
         {
+            m_musicLrcContainer[0]->setGeometry((m_widgetWidth - width)/2, 20, width, m_geometry.y());
+        }
+        else
+        {
+            m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
             m_musicLrcContainer[1]->setGeometry(0, m_geometry.y() + 20, 0, 0);
         }
     }
@@ -457,10 +463,13 @@ void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
 void MusicLrcContainerHorizontalDesktop::resizeLrcSizeArea()
 {
     int width = m_musicLrcContainer[0]->x();
-    m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
-
-    if(!m_singleLineType)
+    if(m_singleLineType)
     {
+        m_musicLrcContainer[0]->setGeometry((m_widgetWidth - width)/2, 20, width, m_geometry.y());
+    }
+    else
+    {
+        m_musicLrcContainer[0]->setGeometry(0, 20, width, m_geometry.y());
         width = m_musicLrcContainer[1]->x();
         int pos = m_geometry.x() - width;
         if(pos < 0 )
@@ -478,7 +487,8 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
 {
     m_verticalWindow = true;
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-    m_geometry.setX(windowSize.height() - 150);
+    m_widgetWidth = windowSize.height() - 150;
+    m_geometry.setX(m_widgetWidth);
     m_geometry.setY(60);
 
     m_toolBarWidget = new QWidget(this);
@@ -507,11 +517,14 @@ void MusicLrcContainerVerticalDesktop::initCurrentLrc() const
     MusicLrcContainerForDesktop::initCurrentLrc();
     if(m_currentTime == 0)
     {
-        m_musicLrcContainer[0]->setGeometry(20, 0,
-                                            m_geometry.y(),
-                                            m_musicLrcContainer[0]->x());
-        if(!m_singleLineType)
+        int height = m_musicLrcContainer[0]->x();
+        if(m_singleLineType)
         {
+            m_musicLrcContainer[0]->setGeometry(20, (m_widgetWidth - height)/2, m_geometry.y(), height);
+        }
+        else
+        {
+            m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
             m_musicLrcContainer[1]->setGeometry(m_geometry.x() + 20, 0, 0, 0);
         }
     }
@@ -520,10 +533,14 @@ void MusicLrcContainerVerticalDesktop::initCurrentLrc() const
 void MusicLrcContainerVerticalDesktop::resizeLrcSizeArea()
 {
     int height = m_musicLrcContainer[0]->x();
-    m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
-
-    if(!m_singleLineType)
+    if(m_singleLineType)
     {
+        m_musicLrcContainer[0]->setGeometry(20, (m_widgetWidth - height)/2, m_geometry.y(), height);
+    }
+    else
+    {
+        m_musicLrcContainer[0]->setGeometry(20, 0, m_geometry.y(), height);
+
         height = m_musicLrcContainer[1]->x();
         int pos = m_geometry.x() - height;
         if(pos < 0 )
