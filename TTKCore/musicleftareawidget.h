@@ -12,6 +12,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
+class MusicSoundKMicroWidget;
 class MusicCloudSharedSongWidget;
 class MusicQualityChoicePopWidget;
 
@@ -47,6 +48,10 @@ public:
     void musictLoveStateClicked(bool state);
     /*!
      * Reset current music love icon state.
+     */
+    void createSoundKMicroWidget(const QString &name);
+    /*!
+     * Create sound KMicro widget.
      */
 
 Q_SIGNALS:
@@ -115,6 +120,7 @@ protected:
 
     int m_currentIndex;
     QWidget *m_stackedWidget;
+    MusicSoundKMicroWidget *m_soundKMicroWidget;
     MusicQualityChoicePopWidget *m_qualityChoiceWidget;
     MusicCloudSharedSongWidget *m_cloudSharedSongWidget;
 

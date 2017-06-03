@@ -173,6 +173,10 @@ public Q_SLOTS:
     /*!
      * Open music song shared widget in play widget.
      */
+    void musicSongKMicroWidgetPy();
+    /*!
+     * Open music song KMicro widget in play widget.
+     */
     void musicSearchQuery(QAction *action);
     /*!
      * Open music song search query.

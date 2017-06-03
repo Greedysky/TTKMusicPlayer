@@ -45,6 +45,10 @@ public:
     /*!
      * Set current state button style.
      */
+    void startSeachKMicro(const QString &name);
+    /*!
+     * Start seach KMicro.
+     */
 
 public slots:
     void volumeChanged(int volume);

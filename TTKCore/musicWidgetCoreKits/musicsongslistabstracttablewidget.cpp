@@ -7,6 +7,7 @@
 #include "musicdownloadwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicapplication.h"
+#include "musicleftareawidget.h"
 
 MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *parent)
     : MusicSlowMovingTableWidget(parent)
@@ -153,6 +154,16 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
     shareWidget.exec();
 }
 
+void MusicSongsListAbstractTableWidget::musicSongKMicroWidget()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget( getCurrentSongName() );
+}
+
 void MusicSongsListAbstractTableWidget::musicSongTransferWidget()
 {
     if(m_musicSongs->isEmpty())
@@ -189,7 +200,7 @@ void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
     menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), this, SLOT(musicSongTransferWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), this, SLOT(musicSimilarFoundWidget()));
     menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), this, SLOT(musicSongSharedWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"));
+    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), this, SLOT(musicSongKMicroWidget()));
 }
 
 QString MusicSongsListAbstractTableWidget::getCurrentSongPath() const

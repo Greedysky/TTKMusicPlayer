@@ -15,6 +15,7 @@
 #include "musiclrccommentswidget.h"
 #include "musiclrctranslatedwidget.h"
 #include "musiclayoutanimation.h"
+#include "musicleftareawidget.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -311,6 +312,16 @@ void MusicLrcContainerForInline::showSongCommentsWidget()
     m_commentsWidget->setCurrentSongName(m_currentSongName);
 }
 
+void MusicLrcContainerForInline::showSoundKMicroWidget()
+{
+    if(m_currentSongName.isEmpty())
+    {
+        return;
+    }
+
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
+}
+
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
@@ -328,6 +339,11 @@ void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 
 void MusicLrcContainerForInline::musicSongMovieClicked()
 {
+    if(m_currentSongName.isEmpty())
+    {
+        return;
+    }
+
     MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
 }
 
@@ -605,6 +621,7 @@ void MusicLrcContainerForInline::initFunctionLabel()
 
     connect(translation, SIGNAL(clicked()), m_lrcAnalysis, SLOT(getTranslatedLrc()));
     connect(movie, SIGNAL(clicked()), SLOT(musicSongMovieClicked()));
+    connect(microphone, SIGNAL(clicked()), SLOT(showSoundKMicroWidget()));
     connect(message, SIGNAL(clicked()), SLOT(showSongCommentsWidget()));
 
     functionLayout->addStretch(1);

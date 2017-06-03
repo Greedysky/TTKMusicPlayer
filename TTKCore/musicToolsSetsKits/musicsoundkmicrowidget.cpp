@@ -112,6 +112,11 @@ void MusicSoundKMicroWidget::setStateButtonStyle(bool style)  const
                                              MusicUIObject::MKGVideoBtnOriginOff);
 }
 
+void MusicSoundKMicroWidget::startSeachKMicro(const QString &name)
+{
+    m_searchWidget->startSeachKMicro(name);
+}
+
 void MusicSoundKMicroWidget::volumeChanged(int volume)
 {
     m_mediaPlayer->setVolume(volume);

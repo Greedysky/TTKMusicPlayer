@@ -233,6 +233,12 @@ void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
                                  SLOT(mvURLChanged(bool,QString,QString)));
 }
 
+void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)
+{
+    m_searchEdit->setText(name);
+    startToSearch();
+}
+
 void MusicSoundKMicroSearchWidget::startToSearch()
 {
     m_searchTableWidget->setQueryMVFlag(m_queryMv);

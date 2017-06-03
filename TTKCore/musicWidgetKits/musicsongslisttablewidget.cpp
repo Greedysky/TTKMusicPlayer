@@ -13,6 +13,7 @@
 #include "musicopenfilewidget.h"
 #include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
+#include "musicleftareawidget.h"
 
 #include <QUrl>
 #include <QAction>
@@ -585,6 +586,16 @@ void MusicSongsListTableWidget::musicSongSharedWidgetPy()
     MusicSongSharingWidget shareWidget(this);
     shareWidget.setSongName( getSongName(m_playRowIndex) );
     shareWidget.exec();
+}
+
+void MusicSongsListTableWidget::musicSongKMicroWidgetPy()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget( getSongName(m_playRowIndex) );
 }
 
 void MusicSongsListTableWidget::musicSearchQuery(QAction *action)

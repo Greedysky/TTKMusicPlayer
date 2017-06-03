@@ -11,6 +11,7 @@
 #include "musicconnectmobilewidget.h"
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicepopwidget.h"
+#include "musicsoundkmicrowidget.h"
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
@@ -18,16 +19,19 @@
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
 MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
-    : QWidget(parent), m_qualityChoiceWidget(nullptr)
+    : QWidget(parent)
 {
     m_instance = this;
     m_stackedWidget = nullptr;
+    m_soundKMicroWidget = nullptr;
+    m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
 {
+    delete m_soundKMicroWidget;
     delete m_qualityChoiceWidget;
     delete m_cloudSharedSongWidget;
     delete m_stackedWidget;
@@ -109,6 +113,16 @@ void MusicLeftAreaWidget::musictLoveStateClicked(bool state)
 {
     m_ui->musicBestLove->setStyleSheet(state ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
     emit currentLoveStateChanged();
+}
+
+void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
+{
+    if(m_soundKMicroWidget == nullptr)
+    {
+        m_soundKMicroWidget = new MusicSoundKMicroWidget(this);
+    }
+    m_soundKMicroWidget->startSeachKMicro(name);
+    m_soundKMicroWidget->show();
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()

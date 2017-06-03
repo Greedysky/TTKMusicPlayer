@@ -100,6 +100,10 @@ public Q_SLOTS:
     /*!
      * Open music song shared widget.
      */
+    void musicSongKMicroWidget();
+    /*!
+     * Open music song KMicro widget.
+     */
     void musicSongTransferWidget();
     /*!
      * Open music song transfer widget.

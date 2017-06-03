@@ -94,6 +94,10 @@ public:
     /*!
      * Connect to parent.
      */
+    void startSeachKMicro(const QString &name);
+    /*!
+     * Start seach KMicro.
+     */
 
 public slots:
     void startToSearch();

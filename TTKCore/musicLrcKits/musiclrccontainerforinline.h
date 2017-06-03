@@ -150,6 +150,10 @@ public Q_SLOTS:
     /*!
      * Show song comments widget.
      */
+    void showSoundKMicroWidget();
+    /*!
+     * Show song KMicro widget.
+     */
 
 private Q_SLOTS:
     void getTranslatedLrcFinished(const QString &data);
