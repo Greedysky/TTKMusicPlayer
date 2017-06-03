@@ -204,14 +204,6 @@ protected:
     /*!
      * Draw window background rect by picture.
      */
-    void reRenderImage(int delta, const QImage *input, QImage *output);
-    /*!
-     * Rerender the image by color burn transform.
-     */
-    uint colorBurnTransform(int c, int delta);
-    /*!
-     * Image color burn transform.
-     */
 
     Ui::MusicApplication *m_ui;
     MusicUserWindow *m_musicUserWindow;

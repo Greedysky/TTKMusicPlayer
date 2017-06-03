@@ -405,7 +405,7 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     {
         origin = origin.convertToFormat(QImage::Format_ARGB32);
     }
-    reRenderImage(35, &origin, &origin);
+    MusicUtils::Widget::reRenderImage(35, &origin, &origin);
 
     QPixmap afterDeal( size );
     afterDeal.fill(Qt::transparent);
@@ -417,35 +417,4 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 
     emit setTransparent(m_listAlpha);
     m_ui->background->setPixmap(afterDeal);
-}
-
-void MusicTopAreaWidget::reRenderImage(int delta, const QImage *input, QImage *output)
-{
-    for(int w=0; w<input->width(); w++)
-    {
-        for(int h=0; h<input->height(); h++)
-        {
-            QRgb rgb = input->pixel(w, h);
-            uint resultR = colorBurnTransform(qRed(rgb), delta);
-            uint resultG = colorBurnTransform(qGreen(rgb), delta);
-            uint resultB = colorBurnTransform(qBlue(rgb), delta);
-            uint newRgb = ((resultR & 255)<<16 | (resultG & 255)<<8 | (resultB & 255));
-            output->setPixel(w, h, newRgb);
-        }
-    }
-}
-
-uint MusicTopAreaWidget::colorBurnTransform(int c, int delta)
-{
-    Q_ASSERT(0 <= delta && delta < 255);
-
-    int result = (c - (uint)(c*delta)/(255 - delta));
-    if(result > 255)
-    {
-        result = 255;
-    }else if(result < 0)
-    {
-        result = 0;
-    }
-    return result;
 }
