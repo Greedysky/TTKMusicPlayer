@@ -182,6 +182,10 @@ public Q_SLOTS:
     /*!
      * Changed current remote to strip mode.
      */
+    void musicRipplesRemote();
+    /*!
+     * Changed current remote to ripples mode.
+     */
     void musicDeleteRemote();
     /*!
      * Delete current remote.

@@ -11,6 +11,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
+#include "musicremotewidgetforripples.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
@@ -340,6 +341,17 @@ void MusicTopAreaWidget::musicStripRemote()
     createRemoteWidget();
 }
 
+void MusicTopAreaWidget::musicRipplesRemote()
+{
+    if(m_musicRemoteWidget)
+    {
+        delete m_musicRemoteWidget;
+    }
+    m_musicRemoteWidget = new MusicRemoteWidgetForRipples;
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    createRemoteWidget();
+}
+
 void MusicTopAreaWidget::musicDeleteRemote()
 {
     delete m_musicRemoteWidget;
@@ -357,6 +369,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
     else if(type->text() == tr("SimpleStyleRemote")) musicSimpleStyleRemote();
     else if(type->text() == tr("ComplexStyleRemote")) musicComplexStyleRemote();
     else if(type->text() == tr("StripRemote")) musicStripRemote();
+    else if(type->text() == tr("RipplesRemote")) musicRipplesRemote();
     else
     {
         m_musicRemoteWidget = tempRemote;

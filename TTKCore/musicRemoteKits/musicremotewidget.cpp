@@ -6,6 +6,7 @@
 #include "musicremotewidgetforsimplestyle.h"
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
+#include "musicremotewidgetforripples.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicsettingmanager.h"
@@ -164,6 +165,8 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
                 !MObject_cast(MusicRemoteWidgetForDiamond*, this));
     menu.addAction(tr("StripRemote"))->setEnabled(
                 !MObject_cast(MusicRemoteWidgetForStrip*, this));
+    menu.addAction(tr("RipplesRemote"))->setEnabled(
+                !MObject_cast(MusicRemoteWidgetForRipples*, this));
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 
