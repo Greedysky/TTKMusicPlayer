@@ -18,6 +18,11 @@ QString MusicDownLoadQueryWYThread::getClassName()
 
 void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_SEARCH_URL, URL_KEY);
@@ -40,7 +45,7 @@ void MusicDownLoadQueryWYThread::startSearchSong(QueryType type, const QString &
 
 void MusicDownLoadQueryWYThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -144,6 +149,11 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 
 void MusicDownLoadQueryWYThread::startMVListQuery(int id)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QNetworkRequest request;
     request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_MV_URL, URL_KEY).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

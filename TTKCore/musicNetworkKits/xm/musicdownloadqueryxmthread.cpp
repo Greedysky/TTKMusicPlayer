@@ -18,6 +18,11 @@ QString MusicDownLoadQueryXMThread::getClassName()
 
 void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     deleteAll();
@@ -39,7 +44,7 @@ void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &
 
 void MusicDownLoadQueryXMThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -148,7 +153,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
                                                               const QString &id, const QString &format)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !m_manager)
     {
         return;
     }

@@ -30,6 +30,10 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
     deleteAll();
     m_pageTotal = 0;
 
@@ -50,6 +54,10 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
 
 void MusicDownLoadQueryXMPlaylistThread::startSearchSong(const QString &playlist)
 {
+    if(!m_manager)
+    {
+        return;
+    }
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
                       MusicCryptographicHash::decryptData(XM_PLAYLIST_A_DATA_URL, URL_KEY).arg(playlist).arg(1).arg(m_pageSize),
@@ -66,7 +74,7 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(const QString &playlist
 
 void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -140,7 +148,7 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
-    if(reply && reply->error() == QNetworkReply::NoError)
+    if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
         bytes = bytes.replace("xiami(", "");

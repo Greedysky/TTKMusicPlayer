@@ -16,6 +16,11 @@
 void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager, QNetworkRequest *request,
                                                  const QString &query, const QString &type)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QNetworkRequest re;
     re.setUrl(QUrl(MusicCryptographicHash::decryptData(XM_COOKIE_URL, URL_KEY)));
     QNetworkReply *reply = manager->get(re);
@@ -40,6 +45,11 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
 void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                     const QString &songID)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QNetworkRequest request;
     makeTokenQueryUrl(manager, &request,
                       MusicCryptographicHash::decryptData(XM_LRC_DATA_URL, URL_KEY).arg(songID),

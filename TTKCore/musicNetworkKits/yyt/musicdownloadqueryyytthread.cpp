@@ -21,6 +21,11 @@ QString MusicDownLoadQueryYYTThread::getClassName()
 
 void MusicDownLoadQueryYYTThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_URL, URL_KEY).arg(text);
@@ -117,7 +122,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
 void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
                                                            const QString &id)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !m_manager)
     {
         return;
     }

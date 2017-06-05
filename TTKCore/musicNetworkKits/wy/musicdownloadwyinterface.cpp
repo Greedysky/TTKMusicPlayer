@@ -13,6 +13,11 @@
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QString &id, int bitrate)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_INFO_URL, URL_KEY).arg(bitrate*1000).arg(id);
 
     QNetworkRequest request;
@@ -61,6 +66,11 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QVariantMap &key, const QString &id, int bitrate)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     qlonglong dfsId = key.value("dfsId").toLongLong();
     if(key.isEmpty() || dfsId == 0)
     {
@@ -80,6 +90,11 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     const QString id = key["id"].toString();
     if(all)
     {

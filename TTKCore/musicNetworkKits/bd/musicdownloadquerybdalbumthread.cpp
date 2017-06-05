@@ -22,6 +22,11 @@ void MusicDownLoadQueryBDAlbumThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryBDAlbumThread::startSearchSong(const QString &album)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_ALBUM_URL, URL_KEY).arg(album);
     deleteAll();
 
@@ -41,7 +46,7 @@ void MusicDownLoadQueryBDAlbumThread::startSearchSong(const QString &album)
 
 void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;

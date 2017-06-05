@@ -19,6 +19,11 @@ QString MusicDownLoadQueryBDLearnThread::getClassName()
 
 void MusicDownLoadQueryBDLearnThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     Q_UNUSED(type);
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SG_LEAEN_URL, URL_KEY).arg(text).arg(1).arg(30);
     deleteAll();
@@ -101,6 +106,11 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
 
 void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QString key = MusicCryptographicHash::decryptData(BD_SG_LEAEN_PA_URL, URL_KEY).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -141,6 +151,11 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
 
 void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::MusicSongInfomation *info)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(info->m_songId);
 
     QNetworkRequest request;

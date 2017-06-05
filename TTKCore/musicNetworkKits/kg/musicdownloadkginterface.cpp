@@ -14,7 +14,7 @@
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash, QNetworkAccessManager *manager)
 {
-    if(hash.isEmpty())
+    if(hash.isEmpty() || !manager)
     {
         return;
     }
@@ -58,6 +58,11 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     if(all)
     {
         readFromMusicSongAttribute(info, key["hash"].toString(), manager);
@@ -84,7 +89,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash, QNetworkAccessManager *manager)
 {
-    if(hash.isEmpty())
+    if(hash.isEmpty() || !manager)
     {
         return;
     }

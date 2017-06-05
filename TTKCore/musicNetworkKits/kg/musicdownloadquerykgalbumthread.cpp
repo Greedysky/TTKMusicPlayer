@@ -24,6 +24,11 @@ void MusicDownLoadQueryKGAlbumThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryKGAlbumThread::startSearchSong(const QString &album)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = album;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ALBUM_URL, URL_KEY).arg(album);
     deleteAll();
@@ -44,7 +49,7 @@ void MusicDownLoadQueryKGAlbumThread::startSearchSong(const QString &album)
 
 void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -118,6 +123,11 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 
 void MusicDownLoadQueryKGAlbumThread::readFromMusicSongAlbumInfo(MusicObject::MusicSongInfomation *info)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ALBUM_INFO_URL, URL_KEY).arg(m_searchText);
 
     QNetworkRequest request;

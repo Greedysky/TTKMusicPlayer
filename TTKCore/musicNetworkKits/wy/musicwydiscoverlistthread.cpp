@@ -37,6 +37,11 @@ void MusicWYDiscoverListThread::deleteAll()
 
 void MusicWYDiscoverListThread::startSearchSong()
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_TOPLIST_URL, URL_KEY);
     deleteAll();
 
@@ -139,6 +144,11 @@ void MusicWYDiscoverListThread::searchTopListInfoFinished()
 
 void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QNetworkRequest request;
     request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_URL, URL_KEY).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

@@ -19,6 +19,11 @@ QString MusicDownLoadQueryQQThread::getClassName()
 
 void MusicDownLoadQueryQQThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
@@ -39,7 +44,7 @@ void MusicDownLoadQueryQQThread::startSearchSong(QueryType type, const QString &
 
 void MusicDownLoadQueryQQThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -156,7 +161,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
 void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &id)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !m_manager)
     {
         return;
     }
@@ -240,7 +245,7 @@ void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSong
 
 QString MusicDownLoadQueryQQThread::getMovieKey(int id, const QString &videoId)
 {
-    if(videoId.isEmpty())
+    if(videoId.isEmpty() || !m_manager)
     {
         return QString();
     }

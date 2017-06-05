@@ -104,7 +104,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
                                                     const QString &id, QNetworkAccessManager *manager)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !manager)
     {
         return;
     }

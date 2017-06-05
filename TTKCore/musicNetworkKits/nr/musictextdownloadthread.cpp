@@ -16,7 +16,7 @@ QString MusicTextDownLoadThread::getClassName()
 
 void MusicTextDownLoadThread::startToDownload()
 {
-    if( !m_file->exists() || m_file->size() < 4 )
+    if( m_file && (!m_file->exists() || m_file->size() < 4) )
     {
         if( m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) )
         {
@@ -52,7 +52,7 @@ void MusicTextDownLoadThread::startToDownload()
 
 void MusicTextDownLoadThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_file)
     {
         deleteAll();
         return;

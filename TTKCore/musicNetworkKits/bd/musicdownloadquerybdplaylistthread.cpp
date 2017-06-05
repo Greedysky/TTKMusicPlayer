@@ -30,6 +30,11 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryBDPlaylistThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_URL, URL_KEY)
@@ -53,6 +58,11 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QSet<QString> 
 {
     foreach(const QString &id, ids)
     {
+        if(!m_manager)
+        {
+            return;
+        }
+
         QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_ATTR_URL, URL_KEY).arg(id);
 
         QNetworkRequest request;
@@ -71,6 +81,11 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QSet<QString> 
 
 void MusicDownLoadQueryBDPlaylistThread::startSearchSong(const QString &playlist)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl =  MusicCryptographicHash::decryptData(BD_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;
@@ -171,7 +186,7 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
-    if(reply && reply->error() == QNetworkReply::NoError)
+    if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
 

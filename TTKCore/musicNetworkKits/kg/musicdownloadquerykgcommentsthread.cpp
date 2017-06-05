@@ -44,6 +44,11 @@ void MusicDownLoadQueryKGCommentsThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryKGCommentsThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
 

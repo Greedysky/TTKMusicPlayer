@@ -30,6 +30,11 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_URL, URL_KEY)
@@ -53,6 +58,11 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
 
 void MusicDownLoadQueryWYPlaylistThread::startSearchSong(const QString &playlist)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;

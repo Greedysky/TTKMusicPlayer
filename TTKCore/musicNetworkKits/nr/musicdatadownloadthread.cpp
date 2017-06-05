@@ -18,7 +18,7 @@ QString MusicDataDownloadThread::getClassName()
 
 void MusicDataDownloadThread::startToDownload()
 {
-    if( !m_file->exists() || m_file->size() < 4 )
+    if( m_file && (!m_file->exists() || m_file->size() < 4) )
     {
         if( m_file->open(QIODevice::WriteOnly) )
         {
@@ -41,6 +41,11 @@ void MusicDataDownloadThread::startToDownload()
 
 void MusicDataDownloadThread::startRequest(const QUrl &url)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_timer.start(MT_S2MS);
     QNetworkRequest request;
     request.setUrl(url);
@@ -66,7 +71,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
 
 void MusicDataDownloadThread::downLoadFinished()
 {
-    if(!m_file)
+    if(!m_file || !m_reply)
     {
         deleteAll();
         return;

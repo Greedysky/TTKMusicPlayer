@@ -22,6 +22,11 @@ void MusicDownLoadQueryWYArtistThread::startSearchSong(QueryType type, const QSt
 
 void MusicDownLoadQueryWYArtistThread::startSearchSong(const QString &artist)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_ARTIST_URL, URL_KEY).arg(artist);
     deleteAll();
 
@@ -43,7 +48,7 @@ void MusicDownLoadQueryWYArtistThread::startSearchSong(const QString &artist)
 
 void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;

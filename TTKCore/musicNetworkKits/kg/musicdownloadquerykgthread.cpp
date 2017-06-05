@@ -19,6 +19,11 @@ QString MusicDownLoadQueryKGThread::getClassName()
 
 void MusicDownLoadQueryKGThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
@@ -39,7 +44,7 @@ void MusicDownLoadQueryKGThread::startSearchSong(QueryType type, const QString &
 
 void MusicDownLoadQueryKGThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -140,7 +145,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
 void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &hash)
 {
-    if(hash.isEmpty())
+    if(hash.isEmpty() || !m_manager)
     {
         return;
     }

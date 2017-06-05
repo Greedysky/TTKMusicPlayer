@@ -18,6 +18,11 @@ QString MusicDownLoadQueryBDThread::getClassName()
 
 void MusicDownLoadQueryBDThread::startSearchSong(QueryType type, const QString &text)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     m_searchText = text.trimmed();
     m_currentType = type;
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
@@ -38,7 +43,7 @@ void MusicDownLoadQueryBDThread::startSearchSong(QueryType type, const QString &
 
 void MusicDownLoadQueryBDThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
@@ -147,7 +152,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
 void MusicDownLoadQueryBDThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &id)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !m_manager)
     {
         return;
     }
@@ -196,7 +201,7 @@ void MusicDownLoadQueryBDThread::readFromMusicMVAttribute(MusicObject::MusicSong
 void MusicDownLoadQueryBDThread::readFromMusicMVInfo(MusicObject::MusicSongInfomation *info,
                                                      const QString &id)
 {
-    if(id.isEmpty())
+    if(id.isEmpty() || !m_manager)
     {
         return;
     }

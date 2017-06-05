@@ -30,6 +30,11 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryQQPlaylistThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_URL, URL_KEY)
@@ -52,6 +57,10 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSong(int offset)
 
 void MusicDownLoadQueryQQPlaylistThread::startSearchSong(const QString &playlist)
 {
+    if(!m_manager)
+    {
+        return;
+    }
     QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
 
     QNetworkRequest request;
@@ -131,7 +140,7 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
-    if(reply && reply->error() == QNetworkReply::NoError)
+    if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
         bytes = bytes.replace("jsonCallback(", "");

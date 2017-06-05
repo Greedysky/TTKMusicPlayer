@@ -44,6 +44,11 @@ void MusicDownLoadQueryWYCommentsThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryWYCommentsThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SG_COMMIT_URL, URL_KEY)

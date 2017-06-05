@@ -44,6 +44,11 @@ void MusicDownLoadQueryQQCommentsThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryQQCommentsThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
 

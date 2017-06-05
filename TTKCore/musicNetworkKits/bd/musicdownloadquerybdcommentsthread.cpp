@@ -45,6 +45,11 @@ void MusicDownLoadQueryBDCommentsThread::startSearchSong(QueryType type, const Q
 
 void MusicDownLoadQueryBDCommentsThread::startSearchSong(int offset)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     deleteAll();
     m_pageTotal = 0;
 

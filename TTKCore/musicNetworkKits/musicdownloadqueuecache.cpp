@@ -111,8 +111,13 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
         m_file = nullptr;
         return;
     }
-    m_timer.start(MT_S2MS);
 
+    if(!m_request || !m_manager || !m_reply)
+    {
+        return;
+    }
+
+    m_timer.start(MT_S2MS);
     m_request->setUrl(QUrl(url));
     m_reply = m_manager->get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -123,7 +128,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
 
 void MusicDownloadQueueCache::downLoadFinished()
 {
-    if(m_isAbort)
+    if(m_isAbort || !m_request || !m_manager || !m_reply || !m_file)
     {
         return;
     }
@@ -141,12 +146,21 @@ void MusicDownloadQueueCache::downLoadFinished()
 
 void MusicDownloadQueueCache::readyReadSlot()
 {
+    if(!m_file || !m_reply)
+    {
+        return;
+    }
+
     m_file->write(m_reply->readAll());
     m_file->flush();
 }
 
 void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
 {
+    if(!m_file || !m_reply)
+    {
+        return;
+    }
 #ifndef MUSIC_DEBUG
     Q_UNUSED(code);
 #endif

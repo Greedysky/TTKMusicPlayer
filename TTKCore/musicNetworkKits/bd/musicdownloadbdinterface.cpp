@@ -15,6 +15,11 @@
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QString &bit)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QString key = MusicCryptographicHash::decryptData(BD_SONG_ATTR_PA_URL, URL_KEY).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -86,6 +91,11 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QString &format, const QString &quality, bool all)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QString formatString = format;
     foreach(const QString &f, formatString.split(","))
     {
@@ -132,6 +142,11 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_INFO_URL, URL_KEY).arg(info->m_songId);
 
     QNetworkRequest request;
@@ -184,6 +199,11 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
 
 void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(info->m_songId);
 
     QNetworkRequest request;

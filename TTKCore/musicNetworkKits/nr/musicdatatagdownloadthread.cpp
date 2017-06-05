@@ -26,7 +26,7 @@ void MusicDataTagDownloadThread::setTags(const QString &smlUrl, const QString &t
 
 void MusicDataTagDownloadThread::startToDownload()
 {
-    if( !m_file->exists() || m_file->size() < 4 )
+    if( m_file && (!m_file->exists() || m_file->size() < 4) )
     {
         if( m_file->open(QIODevice::WriteOnly) )
         {

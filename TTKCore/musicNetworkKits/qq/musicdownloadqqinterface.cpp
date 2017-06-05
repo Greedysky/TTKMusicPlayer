@@ -15,6 +15,11 @@
 void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QVariantMap &key, int bitrate)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     MusicTime::timeSRand();
     QString mid = key["strMediaMid"].toString();
     if(mid.isEmpty())
@@ -107,6 +112,11 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
+    if(!manager)
+    {
+        return;
+    }
+
     if(all)
     {
         readFromMusicSongAttribute(info, manager, key, MB_128);
@@ -139,6 +149,11 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 QString MusicDownLoadQQInterface::getMusicKey(QNetworkAccessManager *manager, const QString &time)
 {
+    if(!manager)
+    {
+        return QString();
+    }
+
     QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_KEY_URL, URL_KEY).arg(time);
 
     QNetworkRequest request;

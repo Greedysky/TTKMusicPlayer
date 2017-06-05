@@ -22,6 +22,10 @@ void MusicDownLoadQueryXMAlbumThread::startSearchSong(QueryType type, const QStr
 
 void MusicDownLoadQueryXMAlbumThread::startSearchSong(const QString &album)
 {
+    if(!m_manager)
+    {
+        return;
+    }
     m_searchText = album;
     deleteAll();
 
@@ -43,7 +47,7 @@ void MusicDownLoadQueryXMAlbumThread::startSearchSong(const QString &album)
 
 void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
