@@ -3,6 +3,7 @@
 #include "musicplayer.h"
 #include "musicplaylist.h"
 #include "../qmmp/visual.h"
+#include "../qmmp/visualfactory.h"
 
 #include <QSlider>
 
