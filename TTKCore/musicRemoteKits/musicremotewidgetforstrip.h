@@ -11,6 +11,8 @@
 
 #include "musicremotewidget.h"
 
+class MusicMarqueeWidget;
+
 /*! @brief The class of the desktop strip remote widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -43,7 +45,7 @@ protected:
     QPushButton *m_lrcButton, *m_wallPaperButton, *m_listButton;
     QPushButton *m_windowStateButton;
     QToolButton *m_closeButton;
-    QLabel *m_textLabel;
+    MusicMarqueeWidget *m_songNameLabel;
     QWidget *m_bottomWidget;
 
 };

@@ -1,6 +1,7 @@
 #include "musicremotewidgetforstrip.h"
 #include "musictinyuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicmarqueewidget.h"
 
 MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     : MusicRemoteWidget(parent)
@@ -20,7 +21,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     mhbox->addWidget(m_bottomWidget);
     m_mainWidget->setLayout(mhbox);
 
-    m_textLabel = new QLabel(this);
+    m_songNameLabel = new MusicMarqueeWidget(this);
     m_lrcButton = new QPushButton(this);
     m_wallPaperButton = new QPushButton(this);
     m_listButton = new QPushButton(this);
@@ -28,7 +29,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     m_closeButton = new QToolButton(this);
 
     m_closeButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MFontStyle03);
+    m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
     m_closeButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     m_lrcButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcOff);
     m_wallPaperButton->setStyleSheet(MusicUIObject::MKGTinyBtnWallpaperOff);
@@ -55,7 +56,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
 
     QHBoxLayout *topWidgetBox = new QHBoxLayout(topWidget);
     topWidgetBox->setContentsMargins(0, 0, 0, 0);
-    topWidgetBox->addWidget(m_textLabel);
+    topWidgetBox->addWidget(m_songNameLabel);
     topWidgetBox->setSpacing(1);
     topWidgetBox->addWidget(m_windowStateButton);
     topWidgetBox->addWidget(m_SettingButton);
@@ -87,7 +88,7 @@ MusicRemoteWidgetForStrip::~MusicRemoteWidgetForStrip()
     delete m_listButton;
     delete m_windowStateButton;
     delete m_closeButton;
-    delete m_textLabel;
+    delete m_songNameLabel;
 //    delete m_bottomWidget;
 }
 
@@ -98,8 +99,8 @@ QString MusicRemoteWidgetForStrip::getClassName()
 
 void MusicRemoteWidgetForStrip::setLabelText(const QString &value)
 {
-    m_textLabel->setText(MusicUtils::Widget::elidedText(font(), value,
-                         Qt::ElideRight, 160));
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value,
+                             Qt::ElideRight, 350));
 }
 
 void MusicRemoteWidgetForStrip::windowStateChanged()
