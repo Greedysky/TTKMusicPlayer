@@ -24,7 +24,11 @@ MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
     mhbox->setContentsMargins(5, 0, 5, 0);
     mhbox->setSpacing(0);
-    mhbox->addWidget(Visual::visuals()->last());
+    QList<Visual *> *vs = Visual::visuals();
+    if(!vs->isEmpty() && vs->last())
+    {
+        mhbox->addWidget(vs->last());
+    }
     mhbox->addWidget(bottomWidget);
     m_mainWidget->setLayout(mhbox);
 
