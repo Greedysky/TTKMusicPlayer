@@ -53,6 +53,7 @@ set(MUSIC_HEADERS
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.h
@@ -109,6 +110,7 @@ set(MUSIC_HEADERS
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.h
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcdefines.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerforinline.h
@@ -136,6 +138,8 @@ set(MUSIC_HEADERS
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforcircle.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.h
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.h
+    ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.h
+    ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforripples.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicaudiorecordercore.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.h
@@ -164,8 +168,10 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolsitemselecteddialog.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicgrabwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicdownloadrecordconfigmanager.h
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.h
@@ -175,9 +181,6 @@ set(MUSIC_HEADERS
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransferwidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.h
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.h
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.h
     ${MUSIC_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.h
@@ -244,28 +247,28 @@ set(MUSIC_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedtablewidget.h
-    ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.h
+    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicenhancedwidget.h
+    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
     ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaybackmodewidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.h
     ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.h
     ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.h
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.h
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.h
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorywidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
@@ -334,6 +337,7 @@ set(MUSIC_SOURCES
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.cpp
@@ -386,6 +390,7 @@ set(MUSIC_SOURCES
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchinlineedit.cpp
     ${MUSIC_LOCALSEARCH_DIR}/musiclocalsongsearchpopwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcanalysis.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcdefines.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerforinline.cpp
@@ -413,6 +418,8 @@ set(MUSIC_SOURCES
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforcircle.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforsimplestyle.cpp
     ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforcomplexstyle.cpp
+    ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforstrip.cpp
+    ${MUSIC_REMOTEWIDGET_DIR}/musicremotewidgetforripples.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicaudiorecordercore.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicdesktopwallpaperthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musictimerautoobject.cpp
@@ -440,16 +447,15 @@ set(MUSIC_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolstablewidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsongchecktoolsitemselecteddialog.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicgrabwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicdownloadrecordconfigmanager.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/core/musicwebentainradiodatebase.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilereceiveserver.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/core/musicfilesenderserver.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnectmobilewidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransferwidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebradiotoolwidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiowidget.cpp
-    ${MUSIC_TOOLSWIDGET_DIR}/musicwebentainradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
     ${MUSIC_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
@@ -520,28 +526,28 @@ set(MUSIC_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsongstoolitemrenamedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplaywidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistfunctionwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicqualitychoicewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicqualitychoicepopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundlistwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpalettewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundpopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicenhancedwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
     ${MUSIC_WIDGET_DIR}/musicsimilarfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaybackmodewidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaybackmodepopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicvolumepopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmorefunctionspopwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplayedlistwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplayedlistpopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicalbumfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsoundeffectswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicartistfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsonglistsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.cpp
-    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorywidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
@@ -575,9 +581,9 @@ SET(MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsongringtonemakerwidget.ui
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsongchecktoolswidget.ui
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsongchecktoolsitemselecteddialog.ui
+    ${MUSIC_UI_DIR}/musicToolsetsKits/musicsoundkmicrowidget.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musiccloudfilemanagerdialog.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicconnecttransferwidget.ui
-    ${MUSIC_UI_DIR}/musicToolsKits/musicwebentainradiowidget.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicwebmusicradiowidget.ui
     ${MUSIC_UI_DIR}/musicUserKits/musicuserdialog.ui
     ${MUSIC_UI_DIR}/musicUserKits/musicusermanagerdialog.ui
