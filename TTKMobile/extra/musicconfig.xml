@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
     <music>
-        <ver value="2.4.8.0"/>
+        <ver value="2.5.0.0"/>
         <playMode value="2"/>
         <playVolume value="100"/>
         <lastPlayIndex value="1">0,-1</lastPlayIndex>

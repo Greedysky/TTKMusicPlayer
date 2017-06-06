@@ -6,5 +6,5 @@
 # * works are strictly forbiden.
 # =================================================
 
-# update time 2017.04.10
-TTKMusicPlayer = 2.4.8.0
+# update time 2017.06.06
+TTKMusicPlayer = 2.5.0.0
