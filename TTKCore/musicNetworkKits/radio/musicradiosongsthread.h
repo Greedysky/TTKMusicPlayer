@@ -11,7 +11,7 @@
 
 #include "musicradiothreadabstract.h"
 
-typedef struct MUSIC_NETWORK_EXPORT SongRadioInfo
+typedef struct MUSIC_NETWORK_EXPORT RadioSongInfo
 {
     QString m_songUrl;
     QString m_songName;
@@ -19,8 +19,8 @@ typedef struct MUSIC_NETWORK_EXPORT SongRadioInfo
     QString m_songPicUrl;
     QString m_albumName;
     QString m_lrcUrl;
-}SongRadioInfo;
-TTK_DECLARE_LISTS(SongRadioInfo)
+}RadioSongInfo;
+TTK_DECLARE_LISTS(RadioSongInfo)
 
 /*! @brief The class of music radio thread of song info.
  * @author Greedysky <greedysky@163.com>
@@ -43,7 +43,7 @@ public:
     /*!
      * Start to download data.
      */
-    SongRadioInfo getMusicSongInfo();
+    RadioSongInfo getMusicSongInfo();
     /*!
      * Get music song information.
      */
@@ -55,7 +55,7 @@ public Q_SLOTS:
      */
 
 protected:
-    SongRadioInfo m_songInfo;
+    RadioSongInfo m_songInfo;
 
 };
 

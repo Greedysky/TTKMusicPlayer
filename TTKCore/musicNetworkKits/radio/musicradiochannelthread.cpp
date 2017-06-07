@@ -27,7 +27,7 @@ void MusicRadioChannelThread::startToDownload(const QString &)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(channelUrl, URL_KEY)));
+    request.setUrl(QUrl(MusicCryptographicHash::decryptData(CHANNEL_URL, URL_KEY)));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -48,7 +48,7 @@ void MusicRadioChannelThread::startToDownload(const QString &)
 
 }
 
-ChannelInfos MusicRadioChannelThread::getMusicChannel()
+RadioChannelInfos MusicRadioChannelThread::getMusicChannel()
 {
     return m_channels;
 }
@@ -76,7 +76,7 @@ void MusicRadioChannelThread::downLoadFinished()
             foreach(const QVariant &var, channels)
             {
                 value = var.toMap();
-                ChannelInfo channel;
+                RadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
                 m_channels << channel;

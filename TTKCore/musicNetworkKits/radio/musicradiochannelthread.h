@@ -11,12 +11,12 @@
 
 #include "musicradiothreadabstract.h"
 
-typedef struct MUSIC_NETWORK_EXPORT ChannelInfo
+typedef struct MUSIC_NETWORK_EXPORT RadioChannelInfo
 {
     QString m_id;
     QString m_name;
-}ChannelInfo;
-TTK_DECLARE_LISTS(ChannelInfo)
+}RadioChannelInfo;
+TTK_DECLARE_LISTS(RadioChannelInfo)
 
 /*! @brief The class of music radio thread of song channel.
  * @author Greedysky <greedysky@163.com>
@@ -39,7 +39,7 @@ public:
     /*!
      * Start to download data.
      */
-    ChannelInfos getMusicChannel();
+    RadioChannelInfos getMusicChannel();
     /*!
      * Get music channel.
      */
@@ -51,7 +51,7 @@ public Q_SLOTS:
      */
 
 protected:
-    ChannelInfos m_channels;
+    RadioChannelInfos m_channels;
 
 };
 

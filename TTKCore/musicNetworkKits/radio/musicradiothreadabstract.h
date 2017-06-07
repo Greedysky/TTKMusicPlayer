@@ -12,9 +12,10 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-const QString channelUrl  = "bkNHdDVjMFdFMllITEJKTXBSSEsyNXhHWGJ2d0RjdUtJV0hwVk0yMzVUNy9wOTBxSXBkWFQ2MDBlcmtVcHoxeg==";
-const QString playListUrl = "RzAwMGlXbFVFTC9NY29YUUo5ZlR3VjNMZmpicFkybkpZVGRtL2FIMDhaeGpmbmN3Q0h5QmhQRCtnVm5xTkRENVN4TTQ0WS9QT0Nvc1haUEY=";
-const QString songsUrl    = "Z1pzMFpFZytLQnAzaG95SHR4SkYwOUk0Z3BBTm1wVkZYTUczK1hwT0REM0tXd0hueGVFeVpVMVRmdXhVbDMrMm9KRzBleGRmMnZIN3RCWmpwOU9YWUcrQlgvMG4yWHJC";
+const QString CHANNEL_URL  = "bkNHdDVjMFdFMllITEJKTXBSSEsyNXhHWGJ2d0RjdUtJV0hwVk0yMzVUNy9wOTBxSXBkWFQ2MDBlcmtVcHoxeg==";
+const QString PLAYLIST_URL = "RzAwMGlXbFVFTC9NY29YUUo5ZlR3VjNMZmpicFkybkpZVGRtL2FIMDhaeGpmbmN3Q0h5QmhQRCtnVm5xTkRENVN4TTQ0WS9QT0Nvc1haUEY=";
+const QString SONG_URL     = "Z1pzMFpFZytLQnAzaG95SHR4SkYwOUk0Z3BBTm1wVkZYTUczK1hwT0REM0tXd0hueGVFeVpVMVRmdXhVbDMrMm9KRzBleGRmMnZIN3RCWmpwOU9YWUcrQlgvMG4yWHJC";
+const QString LRC_URL      = "NmdYZm9tYkZjdHJOc1ZNNjIxSFdsc0NZc0xWa1RsM0dhMCtSaTdveGZPaz0=";
 
 /*! @brief The class of music radio thread base.
  * @author Greedysky <greedysky@163.com>

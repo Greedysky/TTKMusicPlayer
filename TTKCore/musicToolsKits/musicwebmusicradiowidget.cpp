@@ -134,6 +134,7 @@ void MusicWebMusicRadioWidget::radioPrevious()
     {
         m_currentPlayListIndex = 0;
     }
+
     m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
 
     if(!m_isPlaying)
@@ -158,6 +159,7 @@ void MusicWebMusicRadioWidget::radioNext()
     {
         m_currentPlayListIndex = 0;
     }
+
     m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
 
     if(!m_isPlaying)
@@ -192,11 +194,12 @@ void MusicWebMusicRadioWidget::getSongInfoFinished()
 
 void MusicWebMusicRadioWidget::startToPlay()
 {
-    SongRadioInfo info;
+    RadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
+
     if(info.m_songUrl.isEmpty())
     {
         return;
@@ -242,11 +245,12 @@ void MusicWebMusicRadioWidget::startToPlay()
 
 void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
 {
-    SongRadioInfo info;
+    RadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
+
     if(info.m_songUrl.isEmpty())
     {
         return;
@@ -260,18 +264,18 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
 
 void MusicWebMusicRadioWidget::picDownloadStateChanged()
 {
-    SongRadioInfo info;
+    RadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
+
     if(info.m_songUrl.isEmpty())
     {
         return;
     }
 
-    QString path = ART_DIR_FULL + info.m_artistName + SKN_FILE;
-    QPixmap pix(path);
+    QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);
     if(pix.isNull())
     {
         pix.load(":/image/lb_defaultArt");
@@ -298,8 +302,10 @@ void MusicWebMusicRadioWidget::positionChanged(qint64 position)
         m_ui->lrcLabel->setText(lrc);
         return;
     }
+
     int index = m_analysis->getCurrentIndex();
     qint64 time = m_analysis->findTime(index);
+
     if(time < position*MT_S2MS && time != -1)
     {
         QString lrc;
