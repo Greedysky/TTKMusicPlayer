@@ -2,6 +2,7 @@
 #include "musictinyuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
+///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
 
@@ -17,7 +18,6 @@ MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    Visual::initialize(this);
     enableRipples(true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);

@@ -27,6 +27,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
+    Visual::initialize(MusicApplication::instance());
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -246,7 +247,6 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
 
 void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
 {
-    Visual::initialize(MusicApplication::instance());
     foreach(VisualFactory *v, Visual::factories())
     {
         if(v->properties().shortName.contains("analyzer"))
@@ -258,7 +258,6 @@ void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
 
 void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
 {
-    Visual::initialize(MusicApplication::instance());
     foreach(VisualFactory *v, Visual::factories())
     {
         if(v->properties().shortName.contains("projectm"))
