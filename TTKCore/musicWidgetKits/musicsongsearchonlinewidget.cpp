@@ -489,6 +489,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     m_textLabel = new QLabel(this);
     m_textLabel->setTextFormat(Qt::RichText);
     m_textLabel->setText(tr("&nbsp;find no result"));
+    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     funcLayout->addWidget(m_textLabel);
 
     m_playButton = new QPushButton(tr("Play"), this);
@@ -564,7 +565,7 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;
-    m_textLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
+    m_textLabel->setText(tr("&nbsp;find <font color=#80B7F1> %1 </font> result")
                          .arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
     m_textLabel->setToolTip(name);
 }

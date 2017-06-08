@@ -149,9 +149,6 @@
      <height>23</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background:white</string>
-   </property>
    <property name="text">
     <string> 暂无所搜到的歌词</string>
    </property>

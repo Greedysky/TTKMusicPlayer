@@ -25,6 +25,8 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     m_ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->closeButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+    m_ui->functionTopLabel->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle03);
+
     connect(m_ui->lrcSearchButton, SIGNAL(clicked()), SLOT(lrcSearchButtonClicked()));
     connect(m_ui->lrcSearchDownload, SIGNAL(clicked()), SLOT(lrcSearchDownloadClicked()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -69,7 +71,7 @@ void MusicLrcSearchWidget::lrcSearchButtonClicked() const
     m_ui->stateLabel->setText(tr("lrc is searching now!"));
     QString text = m_ui->songSearchEdit->text().trimmed();
     m_ui->tableWidget->startSearchQuery( text );
-    m_ui->functionTopLabel->setText(tr("&nbsp;find <font color=red> %1 </font> result")
+    m_ui->functionTopLabel->setText(tr("&nbsp;find <font color=#80B7F1> %1 </font> result")
                                   .arg(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 245)));
 }
 
