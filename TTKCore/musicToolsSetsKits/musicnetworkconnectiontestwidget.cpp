@@ -5,8 +5,8 @@
 #include "musicglobal.h"
 
 #define CHECK_WWW_VISIT       "www.baidu.com"
-#define CHECK_NORMAL_VISIT    "api.itwusun.com"
-#define CHECK_VIP_VISIT       "vip.itwusun.com"
+#define CHECK_NORMAL_VISIT    "github.com"
+#define CHECK_VIP_VISIT       "qmmp.ylsoftware.com"
 #define CHECK_DOWNLOAD_VISIT  "download.qt.io"
 #define CHECK_SERVER_VISIT    "download.csdn.net"
 
