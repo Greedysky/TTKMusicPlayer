@@ -30,19 +30,19 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &playlist) override;
+    virtual void startToSearch(QueryType type, const QString &playlist) override;
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startSearchSong(int offset) override;
+    virtual void startToSearch(int offset) override;
     /*!
      * Start to search data from name and type bt paging.
      */
-    void startSearchSongAll(const QSet<QString> &ids);
+    void startToSearchAll(const QSet<QString> &ids);
     /*!
      * Start to search all data.
      */
-    void startSearchSong(const QString &playlist);
+    void startToSearch(const QString &playlist);
     /*!
      * Start to Search data.
      */

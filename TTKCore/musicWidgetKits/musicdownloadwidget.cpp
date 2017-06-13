@@ -187,7 +187,7 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
 
     m_ui->downloadName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
     m_downloadThread->setQueryAllRecords(true);
-    m_downloadThread->startSearchSong(type, name);
+    m_downloadThread->startToSearch(type, name);
 }
 
 void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInfomation &info,

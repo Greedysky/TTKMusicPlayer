@@ -76,7 +76,7 @@ public:
      * Get person.
      */
 
-    void startToTranslation(TranslationType type, const QString &data);
+    void startToDownload(TranslationType type, const QString &data);
     /*!
      * Start to translation data.
      */

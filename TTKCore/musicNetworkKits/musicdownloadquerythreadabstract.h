@@ -85,12 +85,12 @@ public:
     /*!
      * Release the network object.
      */
-    virtual void startSearchSong(QueryType type, const QString &text) = 0;
+    virtual void startToSearch(QueryType type, const QString &text) = 0;
     /*!
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
-    virtual void startSearchSong(int offset);
+    virtual void startToSearch(int offset);
     /*!
      * Start to search data from name and type bt paging.
      */

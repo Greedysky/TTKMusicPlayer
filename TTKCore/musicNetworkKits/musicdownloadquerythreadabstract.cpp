@@ -38,7 +38,7 @@ void MusicDownLoadQueryThreadAbstract::deleteAll()
     }
 }
 
-void MusicDownLoadQueryThreadAbstract::startSearchSong(int offset)
+void MusicDownLoadQueryThreadAbstract::startToSearch(int offset)
 {
     Q_UNUSED(offset);
 }

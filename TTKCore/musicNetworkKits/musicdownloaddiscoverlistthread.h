@@ -33,7 +33,7 @@ public:
     /*!
      * Release the network object.
      */
-    virtual void startSearchSong() = 0;
+    virtual void startToSearch() = 0;
     /*!
      * Start to Search data from toplist.
      * Subclass should implement this function.

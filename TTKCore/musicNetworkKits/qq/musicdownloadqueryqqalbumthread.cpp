@@ -14,13 +14,13 @@ QString MusicDownLoadQueryQQAlbumThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryQQAlbumThread::startSearchSong(QueryType type, const QString &album)
+void MusicDownLoadQueryQQAlbumThread::startToSearch(QueryType type, const QString &album)
 {
     Q_UNUSED(type);
-    startSearchSong(album);
+    startToSearch(album);
 }
 
-void MusicDownLoadQueryQQAlbumThread::startSearchSong(const QString &album)
+void MusicDownLoadQueryQQAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)
     {

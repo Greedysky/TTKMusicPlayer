@@ -30,11 +30,11 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &artist) override;
+    virtual void startToSearch(QueryType type, const QString &artist) override;
     /*!
      * Start to Search data from name and type.
      */
-    void startSearchSong(const QString &artist);
+    void startToSearch(const QString &artist);
     /*!
      * Start to Search data from name and type.
      */

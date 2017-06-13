@@ -549,6 +549,6 @@ void MusicLrcAnalysis::getTranslatedLrc()
 #endif
     }
 
-    m_translationThread->startToTranslation(MusicTranslationThread::Type_Auto,
-                                            MusicTranslationThread::Type_Zh, data);
+    m_translationThread->startToDownload(MusicTranslationThread::Type_Auto,
+                                         MusicTranslationThread::Type_Zh, data);
 }

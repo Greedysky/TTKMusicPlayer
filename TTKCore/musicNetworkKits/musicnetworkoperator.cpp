@@ -22,7 +22,7 @@ QString MusicNetworkOperator::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicNetworkOperator::startToOperator()
+void MusicNetworkOperator::startToDownload()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search ip operator API

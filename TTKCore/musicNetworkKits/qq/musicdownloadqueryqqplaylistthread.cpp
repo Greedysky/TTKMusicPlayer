@@ -15,20 +15,20 @@ QString MusicDownLoadQueryQQPlaylistThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryQQPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
+void MusicDownLoadQueryQQPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)
     {
-        startSearchSong(playlist);
+        startToSearch(playlist);
     }
     else
     {
         m_searchText = playlist.isEmpty() ? "10000000" : playlist;
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryQQPlaylistThread::startSearchSong(int offset)
+void MusicDownLoadQueryQQPlaylistThread::startToSearch(int offset)
 {
     if(!m_manager)
     {
@@ -55,7 +55,7 @@ void MusicDownLoadQueryQQPlaylistThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryQQPlaylistThread::startSearchSong(const QString &playlist)
+void MusicDownLoadQueryQQPlaylistThread::startToSearch(const QString &playlist)
 {
     if(!m_manager)
     {

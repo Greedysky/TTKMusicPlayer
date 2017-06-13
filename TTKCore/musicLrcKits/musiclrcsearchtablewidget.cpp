@@ -40,7 +40,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->show();
     m_loadingLabel->start();
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
+    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
 void MusicLrcSearchTableWidget::musicDownloadLocal(int row)

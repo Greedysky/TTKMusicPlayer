@@ -29,7 +29,7 @@ public:
     /*!
      * Get class object name.
      */
-    void startToOperator();
+    void startToDownload();
     /*!
      * Start to get current ip operator from net.
      */

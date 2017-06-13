@@ -15,20 +15,20 @@ QString MusicDownLoadQueryXMPlaylistThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
+void MusicDownLoadQueryXMPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)
     {
-        startSearchSong(playlist);
+        startToSearch(playlist);
     }
     else
     {
         m_searchText = playlist;
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
+void MusicDownLoadQueryXMPlaylistThread::startToSearch(int offset)
 {
     if(!m_manager)
     {
@@ -52,7 +52,7 @@ void MusicDownLoadQueryXMPlaylistThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startSearchSong(const QString &playlist)
+void MusicDownLoadQueryXMPlaylistThread::startToSearch(const QString &playlist)
 {
     if(!m_manager)
     {

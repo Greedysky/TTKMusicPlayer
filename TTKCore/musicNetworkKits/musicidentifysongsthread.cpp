@@ -49,7 +49,7 @@ bool MusicIdentifySongsThread::getKey()
     return !m_accessKey.isEmpty() && !m_accessSecret.isEmpty();
 }
 
-void MusicIdentifySongsThread::query(const QString &path)
+void MusicIdentifySongsThread::startToDownload(const QString &path)
 {
     QString boundary = "----";
     QString startBoundary = "--" + boundary;

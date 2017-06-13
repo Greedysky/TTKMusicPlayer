@@ -16,7 +16,7 @@ QString MusicDownLoadQueryXMThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryXMThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)
     {
@@ -141,7 +141,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
         connect(yyt, SIGNAL(createSearchedItems(MusicSearchedItem)), SIGNAL(createSearchedItems(MusicSearchedItem)));
         connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        yyt->startSearchSong(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        yyt->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();
         m_musicSongInfos << yyt->getMusicSongInfos();
     }

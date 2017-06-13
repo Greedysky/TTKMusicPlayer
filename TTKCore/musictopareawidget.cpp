@@ -31,9 +31,9 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
     ///////////////////////////////////////////////////////
-    MusicDownLoadDiscoverListThread *discover = M_DOWNLOAD_QUERY_PTR->getDiscoverListThread();
+    MusicDownLoadDiscoverListThread *discover = M_DOWNLOAD_QUERY_PTR->getDiscoverListThread(this);
     connect(discover, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished(QString)));
-    discover->startSearchSong();
+    discover->startToSearch();
 
     m_counterPVThread = new MusicCounterPVDownloadThread(this);
     m_counterPVThread->startToDownload();

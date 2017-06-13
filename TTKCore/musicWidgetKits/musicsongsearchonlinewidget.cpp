@@ -87,7 +87,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     m_loadingLabel->show();
     m_loadingLabel->start();
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)

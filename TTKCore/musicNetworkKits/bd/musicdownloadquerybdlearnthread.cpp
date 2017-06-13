@@ -17,7 +17,7 @@ QString MusicDownLoadQueryBDLearnThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryBDLearnThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)
     {

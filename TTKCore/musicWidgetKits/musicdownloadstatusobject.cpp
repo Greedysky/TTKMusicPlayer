@@ -129,7 +129,7 @@ void MusicDownloadStatusObject::musicCheckHasLrcAlready()
        }
        ///Start the request query
        m_downloadLrcThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-       m_downloadLrcThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
+       m_downloadLrcThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, filename);
        connect(m_downloadLrcThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicHaveNoLrcAlready()));
        showDownLoadInfoFor(MusicObject::DW_Buffing);
     }

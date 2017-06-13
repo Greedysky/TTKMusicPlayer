@@ -806,7 +806,7 @@ void MusicSettingWidget::testNetworkConnection()
 {
     MusicNetworkOperator *netOpr = new MusicNetworkOperator(this);
     connect(netOpr, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
-    netOpr->startToOperator();
+    netOpr->startToDownload();
 }
 
 void MusicSettingWidget::checkNetworkConnection()

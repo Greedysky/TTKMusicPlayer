@@ -122,7 +122,7 @@ void MusicIdentifySongsWidget::detectedTimeOut()
     m_recordCore->addWavHeader(RECORD_IN_FILE);
 
     MusicSemaphoreLoop loop;
-    m_detectedThread->query(RECORD_IN_FILE);
+    m_detectedThread->startToDownload(RECORD_IN_FILE);
     connect(m_detectedThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -286,7 +286,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
+    down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
     loop.exec();
 
     if(!down->getMusicSongInfos().isEmpty())

@@ -22,7 +22,7 @@ QString MusicDownLoadQueryKWCommentsThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryKWCommentsThread::startSearchSong(QueryType type, const QString &name)
+void MusicDownLoadQueryKWCommentsThread::startToSearch(QueryType type, const QString &name)
 {
     Q_UNUSED(type);
 
@@ -30,7 +30,7 @@ void MusicDownLoadQueryKWCommentsThread::startSearchSong(QueryType type, const Q
     MusicDownLoadQueryKWThread *query = new MusicDownLoadQueryKWThread(this);
     query->setQueryAllRecords(false);
     query->setQuerySimplify(true);
-    query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
+    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -38,11 +38,11 @@ void MusicDownLoadQueryKWCommentsThread::startSearchSong(QueryType type, const Q
     if(!query->getMusicSongInfos().isEmpty())
     {
         m_rawData["songID"] = query->getMusicSongInfos().first().m_songId;
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryKWCommentsThread::startSearchSong(int offset)
+void MusicDownLoadQueryKWCommentsThread::startToSearch(int offset)
 {
     if(!m_manager)
     {

@@ -279,7 +279,7 @@ void MusicLrcCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    m_commentsThread->startSearchSong(MusicDownLoadQueryThreadAbstract::OtherQuery, name);
+    m_commentsThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, name);
     connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -303,7 +303,7 @@ void MusicLrcCommentsWidget::buttonClicked(int index)
     deleteCommentsItems();
     int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
-    m_commentsThread->startSearchSong(m_pagingWidgetObject->currentIndex() - 1);
+    m_commentsThread->startToSearch(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicLrcCommentsWidget::createEMOJILabelWidget()

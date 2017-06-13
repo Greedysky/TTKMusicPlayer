@@ -41,7 +41,7 @@ public:
     /*!
      * Get query song id keys.
      */
-    void query(const QString &path);
+    void startToDownload(const QString &path);
     /*!
      * To query song by input path.
      */

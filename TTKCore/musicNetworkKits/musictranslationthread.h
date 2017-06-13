@@ -52,7 +52,7 @@ public:
     /*!
      * Get class object name.
      */
-    void startToTranslation(TranslationType from, TranslationType to, const QString &data);
+    void startToDownload(TranslationType from, TranslationType to, const QString &data);
     /*!
      * Start to translation data.
      */

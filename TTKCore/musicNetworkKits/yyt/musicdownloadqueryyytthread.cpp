@@ -19,7 +19,7 @@ QString MusicDownLoadQueryYYTThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryYYTThread::startSearchSong(QueryType type, const QString &text)
+void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)
     {

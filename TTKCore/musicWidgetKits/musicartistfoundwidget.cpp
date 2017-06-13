@@ -66,7 +66,7 @@ void MusicArtistFoundWidget::setSongName(const QString &name)
     MusicFoundAbstractWidget::setSongName(name);
     m_downloadThread->setQueryAllRecords(false);
     m_downloadThread->setQuerySimplify(true);
-    m_downloadThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery,
+    m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery,
                                       MusicUtils::String::artistName(name));
 }
 

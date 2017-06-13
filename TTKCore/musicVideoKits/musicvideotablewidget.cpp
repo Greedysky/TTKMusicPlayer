@@ -38,7 +38,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
     MusicQueryItemTableWidget::startSearchQuery(text);
     m_loadingLabel->show();
     m_loadingLabel->start();
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
 void MusicVideoTableWidget::musicDownloadLocal(int row)

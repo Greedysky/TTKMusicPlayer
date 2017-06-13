@@ -30,11 +30,11 @@ public:
      * Get class object name.
      */
 
-    virtual void startSearchSong(QueryType type, const QString &name) override;
+    virtual void startToSearch(QueryType type, const QString &name) override;
     /*!
      * Start to Search data from name.
      */
-    virtual void startSearchSong(int offset) override;
+    virtual void startToSearch(int offset) override;
     /*!
      * Start to search data from name and type bt paging.
      */

@@ -22,7 +22,7 @@ QString MusicDownLoadQueryXMCommentsThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryXMCommentsThread::startSearchSong(QueryType type, const QString &name)
+void MusicDownLoadQueryXMCommentsThread::startToSearch(QueryType type, const QString &name)
 {
     Q_UNUSED(type);
 
@@ -30,7 +30,7 @@ void MusicDownLoadQueryXMCommentsThread::startSearchSong(QueryType type, const Q
     MusicDownLoadQueryXMThread *query = new MusicDownLoadQueryXMThread(this);
     query->setQueryAllRecords(false);
     query->setQuerySimplify(true);
-    query->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
+    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
@@ -38,11 +38,11 @@ void MusicDownLoadQueryXMCommentsThread::startSearchSong(QueryType type, const Q
     if(!query->getMusicSongInfos().isEmpty())
     {
         m_rawData["songID"] = query->getMusicSongInfos().first().m_songId.toInt();
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryXMCommentsThread::startSearchSong(int offset)
+void MusicDownLoadQueryXMCommentsThread::startToSearch(int offset)
 {
     if(!m_manager)
     {

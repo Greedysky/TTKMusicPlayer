@@ -64,7 +64,7 @@ int MusicVoiceTtsThread::getPerson() const
     return m_person;
 }
 
-void MusicVoiceTtsThread::startToTranslation(TranslationType type, const QString &data)
+void MusicVoiceTtsThread::startToDownload(TranslationType type, const QString &data)
 {
     m_parser->startToDownload( MusicCryptographicHash::decryptData(VOICETTS_URL, URL_KEY)
                                .arg(mapTypeFromEnumToString(type)).arg(data)

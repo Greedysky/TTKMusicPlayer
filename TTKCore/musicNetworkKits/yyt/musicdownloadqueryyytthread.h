@@ -27,7 +27,7 @@ public:
     /*!
      * Get class object name.
      */
-    virtual void startSearchSong(QueryType type, const QString &text) override;
+    virtual void startToSearch(QueryType type, const QString &text) override;
     /*!
      * Start to search data from name and type.
      */

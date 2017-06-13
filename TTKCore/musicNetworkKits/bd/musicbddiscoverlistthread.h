@@ -27,7 +27,7 @@ public:
     /*!
      * Get class object name.
      */
-    virtual void startSearchSong() override;
+    virtual void startToSearch() override;
     /*!
      * Start to Search data from toplist.
      */

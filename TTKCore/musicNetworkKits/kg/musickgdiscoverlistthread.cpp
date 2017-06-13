@@ -14,7 +14,7 @@ QString MusicKGDiscoverListThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicKGDiscoverListThread::startSearchSong()
+void MusicKGDiscoverListThread::startToSearch()
 {
     if(!m_manager)
     {

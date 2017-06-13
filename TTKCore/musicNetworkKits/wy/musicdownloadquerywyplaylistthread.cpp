@@ -15,20 +15,20 @@ QString MusicDownLoadQueryWYPlaylistThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
+void MusicDownLoadQueryWYPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)
     {
-        startSearchSong(playlist);
+        startToSearch(playlist);
     }
     else
     {
         m_searchText = playlist.isEmpty() ? "all" : playlist;
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
+void MusicDownLoadQueryWYPlaylistThread::startToSearch(int offset)
 {
     if(!m_manager)
     {
@@ -56,7 +56,7 @@ void MusicDownLoadQueryWYPlaylistThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startSearchSong(const QString &playlist)
+void MusicDownLoadQueryWYPlaylistThread::startToSearch(const QString &playlist)
 {
     if(!m_manager)
     {

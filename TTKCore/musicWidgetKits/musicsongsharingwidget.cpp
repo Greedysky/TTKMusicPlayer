@@ -68,7 +68,7 @@ int MusicSongSharingWidget::exec()
 void MusicSongSharingWidget::confirmButtonClicked()
 {
     MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
-    down->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
+    down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
 
     MusicSemaphoreLoop loop;
     connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));

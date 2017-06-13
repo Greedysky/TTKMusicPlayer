@@ -15,20 +15,20 @@ QString MusicDownLoadQueryBDPlaylistThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startSearchSong(QueryType type, const QString &playlist)
+void MusicDownLoadQueryBDPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)
     {
-        startSearchSong(playlist);
+        startToSearch(playlist);
     }
     else
     {
         m_searchText = playlist;
-        startSearchSong(0);
+        startToSearch(0);
     }
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startSearchSong(int offset)
+void MusicDownLoadQueryBDPlaylistThread::startToSearch(int offset)
 {
     if(!m_manager)
     {
@@ -54,7 +54,7 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSong(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QSet<QString> &ids)
+void MusicDownLoadQueryBDPlaylistThread::startToSearchAll(const QSet<QString> &ids)
 {
     foreach(const QString &id, ids)
     {
@@ -79,7 +79,7 @@ void MusicDownLoadQueryBDPlaylistThread::startSearchSongAll(const QSet<QString> 
     }
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startSearchSong(const QString &playlist)
+void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
 {
     if(!m_manager)
     {
@@ -135,7 +135,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                 m_pageTotal = text.toInt();
             }
         }
-        startSearchSongAll(songIds);
+        startToSearchAll(songIds);
     }
 
 //    emit downLoadDataChanged(QString());

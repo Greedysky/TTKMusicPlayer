@@ -49,7 +49,7 @@ void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
         return;
     }
     m_downLoadManager->setQueryAllRecords(true);
-    m_downLoadManager->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
