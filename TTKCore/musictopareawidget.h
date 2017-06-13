@@ -16,7 +16,6 @@
 class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
-class MusicWYDiscoverListThread;
 class MusicCounterPVDownloadThread;
 
 namespace Ui {
@@ -105,7 +104,7 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
-    void musicSearchTopListInfoFinished();
+    void musicSearchTopListInfoFinished(const QString &data);
     /*!
      * Search top list information finished.
      */
@@ -213,7 +212,6 @@ protected:
     MusicUserWindow *m_musicUserWindow;
     MusicBackgroundSkinDialog *m_musicbgskin;
     MusicRemoteWidget *m_musicRemoteWidget;
-    MusicWYDiscoverListThread *m_getDiscoverThread;
     MusicCounterPVDownloadThread *m_counterPVThread;
 
     QString m_currentBgSkin;

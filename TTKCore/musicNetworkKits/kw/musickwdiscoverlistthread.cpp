@@ -1,20 +1,20 @@
-#include "musicwydiscoverlistthread.h"
-#include "musicdownloadwyinterface.h"
+#include "musickwdiscoverlistthread.h"
+#include "musicdownloadkwinterface.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicWYDiscoverListThread::MusicWYDiscoverListThread(QObject *parent)
+MusicKWDiscoverListThread::MusicKWDiscoverListThread(QObject *parent)
     : MusicDownLoadDiscoverListThread(parent)
 {
 
 }
 
-QString MusicWYDiscoverListThread::getClassName()
+QString MusicKWDiscoverListThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicWYDiscoverListThread::startSearchSong()
+void MusicKWDiscoverListThread::startSearchSong()
 {
     if(!m_manager)
     {
@@ -22,14 +22,12 @@ void MusicWYDiscoverListThread::startSearchSong()
     }
 
     m_topListInfo.clear();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_TOPLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_SONG_TOPLIST_URL, URL_KEY);
     deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -40,7 +38,7 @@ void MusicWYDiscoverListThread::startSearchSong()
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicWYDiscoverListThread::downLoadFinished()
+void MusicKWDiscoverListThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -54,7 +52,7 @@ void MusicWYDiscoverListThread::downLoadFinished()
         while(m_reply->canReadLine())
         {
             QString text = m_reply->readLine();
-            QRegExp regx(QString("/song\\?id=(\\d+)"));
+            QRegExp regx(QString("/yinyue/(\\d+)"));
             int pos = QString(text).indexOf(regx);
             while(pos != -1)
             {
@@ -72,11 +70,11 @@ void MusicWYDiscoverListThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(QString());
+    emit downLoadDataChanged(m_topListInfo);
     deleteAll();
 }
 
-void MusicWYDiscoverListThread::searchTopListInfoFinished()
+void MusicKWDiscoverListThread::searchTopListInfoFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
@@ -85,34 +83,15 @@ void MusicWYDiscoverListThread::searchTopListInfoFinished()
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        QVariant data = parser.parse(bytes.replace("lrclist", "'lrclist'").replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("code") && value.contains("songs") && value["code"].toInt() == 200)
+            if(value.contains("songinfo"))
             {
-                QVariantList datas = value["songs"].toList();
-                foreach(const QVariant &var, datas)
-                {
-                    if(var.isNull())
-                    {
-                        continue;
-                    }
-
-                    value = var.toMap();
-                    QVariantList artistsArray = value["artists"].toList();
-                    foreach(const QVariant &artistValue, artistsArray)
-                    {
-                        if(artistValue.isNull())
-                        {
-                            continue;
-                        }
-                        QVariantMap artistMap = artistValue.toMap();
-                        m_topListInfo = artistMap["name"].toString();
-                    }
-
-                    m_topListInfo += " - " + value["name"].toString();
-                }
+                value = value["songinfo"].toMap();
+                m_topListInfo = QString("%1 - %2").arg(value["artist"].toString())
+                                                  .arg(value["name"].toString());
             }
         }
     }
@@ -121,7 +100,7 @@ void MusicWYDiscoverListThread::searchTopListInfoFinished()
     deleteAll();
 }
 
-void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
+void MusicKWDiscoverListThread::searchTopListInformation(const QString &id)
 {
     if(!m_manager)
     {
@@ -129,10 +108,8 @@ void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_URL, URL_KEY).arg(id)));
+    request.setUrl(QUrl(MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

@@ -36,6 +36,13 @@
 #include "musicdownloadquerykwcommentsthread.h"
 #include "musicdownloadqueryqqcommentsthread.h"
 
+#include "musicwydiscoverlistthread.h"
+#include "musicxmdiscoverlistthread.h"
+#include "musicbddiscoverlistthread.h"
+#include "musicqqdiscoverlistthread.h"
+#include "musickgdiscoverlistthread.h"
+#include "musickwdiscoverlistthread.h"
+
 #include "musicdatadownloadthread.h"
 
 #include "musictextdownloadthread.h"
@@ -136,6 +143,23 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getCommentThread(QO
         default: thread = new MusicDownLoadQueryWYCommentsThread(parent);
     }
     M_LOGGER_INFO(QString("getCommentThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadDiscoverListThread *MusicDownLoadQueryFactory::getDiscoverListThread(QObject *parent)
+{
+    MusicDownLoadDiscoverListThread *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicWYDiscoverListThread(parent); break;
+        case 1:  thread = new MusicQQDiscoverListThread(parent); break;
+        case 2:  thread = new MusicXMDiscoverListThread(parent); break;
+        case 3:  thread = new MusicBDDiscoverListThread(parent); break;
+        case 4:  thread = new MusicKWDiscoverListThread(parent); break;
+        case 5:  thread = new MusicKGDiscoverListThread(parent); break;
+        default: thread = new MusicWYDiscoverListThread(parent);
+    }
     return thread;
 }
 

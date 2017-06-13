@@ -27,6 +27,8 @@ const QString KG_MV_ATTR_URL       = "ajJaR0tsRUUzcUE0ZnZGYmhhR205TkwvUGFMcSt3RU
 ///////////////////////////////////////////////////////////////////////////
 const QString KG_SG_COMMIT_URL     = "bEoxaXdMVjlvczg1T2VCZEtCOENUQkFPNXlzZ3BsS3FVVUc3M0ZibnM2Q0VvbURVTHV1NmFHdmR2VnpBRFhXVnl0OVFBZys2MmErVitzZ3VpT2ZjZTUydHpMN3ExQ0tUVnFmRXNiR0lER2tkZmVTUWVuL2tpODBKRS9SWk9kNnNlbitTYzdIV2EwZUtHOFhn";
 ///////////////////////////////////////////////////////////////////////////
+const QString KG_SONG_TOPLIST_URL  = "Q2Y3c1ZjdUtmVVZrTWhLNjdTandxRVhsckVXY3gwZmJ0OVljc1VUUkY3MWMyL2p3Wnp2cld1ZUF3L0FqbWY5WmZKRkRyMVlLck95YVdnM3A=";
+///////////////////////////////////////////////////////////////////////////
 const QString KG_PLAYLIST_URL      = "cmdDakZXanFhVHdmTysyQ2FzbDVxMERadXBJaHJodmVuQytKYTM2TXpnN0hudjd1ekppTDZKaThBQ3FSbm1jVjlNTkxQTGxNc1JWMWNONUt5ZC9wMG5jU0t3MTNRS0VnQ1RCY2ljMzdQcnU3WmhaZlMzYm1yN3RNY2NsSEZRVjJzSjJmdVVqL28zM2VYSUpHTFJJK3VnPT0=";
 const QString KG_PLAYLIST_ATTR_URL = "WFZ6WjlEOWtHQ3UrTnUxbDVmZHNSd2IrblY1VlNDS2pZTXN0TEloRUc1aW42eEthN1RVdzFvRllNcW5hdWdqUmJSYmh0T2hzVGRDLzh5dmpZUm1pc2taTHJIdnlUeWRiMkdEYXZpb1J1d3FiQ01heGJQM1diRXArYTllUGZKakdKVUltV0RxSGhHaz0=";
 ///////////////////////////////////////////////////////////////////////////

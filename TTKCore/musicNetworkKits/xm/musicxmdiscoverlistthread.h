@@ -1,5 +1,5 @@
-#ifndef MUSICWYDISCOVERLISTTHREAD_H
-#define MUSICWYDISCOVERLISTTHREAD_H
+#ifndef MUSICXMDISCOVERLISTTHREAD_H
+#define MUSICXMDISCOVERLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,16 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicdownloadxminterface.h"
 #include "MusicDownLoadDiscoverListThread.h"
 
-/*! @brief The class to wangyi discover toplist.
+/*! @brief The class to xiami discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicXMDiscoverListThread : public MusicDownLoadDiscoverListThread,
+                                                       private MusicDownLoadXMInterface
 {
     Q_OBJECT
 public:
-    explicit MusicWYDiscoverListThread(QObject *parent = 0);
+    explicit MusicXMDiscoverListThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -37,17 +39,7 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void searchTopListInfoFinished();
-    /*!
-     * Search top list information finished.
-     */
-
-protected:
-    void searchTopListInformation(const QString &id);
-    /*!
-     * Search top list information.
-     */
 
 };
 
-#endif // MUSICWYDISCOVERLISTTHREAD_H
+#endif // MUSICXMDISCOVERLISTTHREAD_H

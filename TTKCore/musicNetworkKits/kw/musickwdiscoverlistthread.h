@@ -1,5 +1,5 @@
-#ifndef MUSICWYDISCOVERLISTTHREAD_H
-#define MUSICWYDISCOVERLISTTHREAD_H
+#ifndef MUSICKWDISCOVERLISTTHREAD_H
+#define MUSICKWDISCOVERLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,14 +11,14 @@
 
 #include "MusicDownLoadDiscoverListThread.h"
 
-/*! @brief The class to wangyi discover toplist.
+/*! @brief The class to kuwo discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicKWDiscoverListThread : public MusicDownLoadDiscoverListThread
 {
     Q_OBJECT
 public:
-    explicit MusicWYDiscoverListThread(QObject *parent = 0);
+    explicit MusicKWDiscoverListThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -50,4 +50,4 @@ protected:
 
 };
 
-#endif // MUSICWYDISCOVERLISTTHREAD_H
+#endif // MUSICKWDISCOVERLISTTHREAD_H
