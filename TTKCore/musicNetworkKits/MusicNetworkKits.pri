@@ -90,7 +90,8 @@ HEADERS  += \
     $$PWD/musicidentifysongsthread.h \
     $$PWD/musicsourceupdatethread.h \
     $$PWD/musiccounterpvdownloadthread.h \
-    $$PWD/musicdownloaddiscoverlistthread.h
+    $$PWD/musicdownloaddiscoverlistthread.h \
+    $$PWD/musicdownloadpagingthread.h
 
 }
 
@@ -167,6 +168,7 @@ SOURCES += \
     $$PWD/musicidentifysongsthread.cpp \
     $$PWD/musicsourceupdatethread.cpp \
     $$PWD/musiccounterpvdownloadthread.cpp \
-    $$PWD/musicdownloaddiscoverlistthread.cpp
+    $$PWD/musicdownloaddiscoverlistthread.cpp \
+    $$PWD/musicdownloadpagingthread.cpp
 
 }

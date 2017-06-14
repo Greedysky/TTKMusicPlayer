@@ -303,7 +303,7 @@ void MusicLrcCommentsWidget::buttonClicked(int index)
     deleteCommentsItems();
     int total = ceil(m_commentsThread->getPageTotal()*1.0/m_commentsThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
-    m_commentsThread->startToSearch(m_pagingWidgetObject->currentIndex() - 1);
+    m_commentsThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicLrcCommentsWidget::createEMOJILabelWidget()

@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicobject.h"
-#include "musicnetworkabstract.h"
+#include "musicdownloadpagingthread.h"
 
 typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 {
@@ -59,7 +59,7 @@ TTK_DECLARE_LISTS(MusicSongCommentItem)
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicDownLoadPagingThread
 {
     Q_OBJECT
 public:
@@ -81,19 +81,13 @@ public:
     /*!
      * Get class object name.
      */
-    virtual void deleteAll() override;
-    /*!
-     * Release the network object.
-     */
+
     virtual void startToSearch(QueryType type, const QString &text) = 0;
     /*!
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
-    virtual void startToSearch(int offset);
-    /*!
-     * Start to search data from name and type bt paging.
-     */
+
     inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     /*!
      * Set search data quality.
@@ -138,18 +132,6 @@ public:
     /*!
      * Return the current song container.
      */
-    inline QVariantMap getRawData() const { return m_rawData; }
-    /*!
-     * Return the current raw data.
-     */
-    inline int getPageSize() const { return m_pageSize; }
-    /*!
-     * Return the each page max size.
-     */
-    inline int getPageTotal() const { return m_pageTotal; }
-    /*!
-     * Return the page total number.
-     */
 
 Q_SIGNALS:
     void clearAllItems();
@@ -167,13 +149,11 @@ protected:
      * Map query server string.
      */
 
-    int m_pageSize, m_pageTotal;
     MusicObject::MusicSongInfomations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QString m_queryServer;
     QueryType m_currentType;
     bool m_queryAllRecords, m_querySimplify, m_queryExtraMovie;
-    QVariantMap m_rawData;
 
 };
 

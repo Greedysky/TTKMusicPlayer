@@ -24,11 +24,11 @@ void MusicDownLoadQueryXMPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryXMPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryXMPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

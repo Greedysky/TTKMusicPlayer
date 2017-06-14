@@ -24,11 +24,11 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryBDPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

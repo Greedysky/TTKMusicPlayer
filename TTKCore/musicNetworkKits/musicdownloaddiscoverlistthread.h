@@ -9,12 +9,12 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicnetworkabstract.h"
+#include "musicdownloadpagingthread.h"
 
 /*! @brief The class to download discover toplist abstract thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadDiscoverListThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadDiscoverListThread : public MusicDownLoadPagingThread
 {
     Q_OBJECT
 public:
@@ -23,15 +23,9 @@ public:
      * Object contsructor.
      */
 
-    virtual ~MusicDownLoadDiscoverListThread();
-
     static QString getClassName();
     /*!
      * Get class object name.
-     */
-    virtual void deleteAll() override;
-    /*!
-     * Release the network object.
      */
     virtual void startToSearch() = 0;
     /*!

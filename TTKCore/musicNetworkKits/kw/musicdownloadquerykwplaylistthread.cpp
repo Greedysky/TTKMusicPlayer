@@ -24,11 +24,11 @@ void MusicDownLoadQueryKWPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist.isEmpty() ? "167" : playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryKWPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryKWPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

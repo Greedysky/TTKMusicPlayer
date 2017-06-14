@@ -24,11 +24,11 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryKGPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryKGPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

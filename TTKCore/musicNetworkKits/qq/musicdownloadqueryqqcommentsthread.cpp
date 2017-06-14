@@ -38,11 +38,11 @@ void MusicDownLoadQueryQQCommentsThread::startToSearch(QueryType type, const QSt
     if(!query->getMusicSongInfos().isEmpty())
     {
         m_rawData["songID"] = query->getMusicSongInfos().first().m_songId;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryQQCommentsThread::startToSearch(int offset)
+void MusicDownLoadQueryQQCommentsThread::startToPage(int offset)
 {
     if(!m_manager)
     {

@@ -24,11 +24,11 @@ void MusicDownLoadQueryQQPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist.isEmpty() ? "10000000" : playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryQQPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryQQPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

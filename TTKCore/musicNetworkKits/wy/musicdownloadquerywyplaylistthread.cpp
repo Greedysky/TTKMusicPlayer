@@ -24,11 +24,11 @@ void MusicDownLoadQueryWYPlaylistThread::startToSearch(QueryType type, const QSt
     else
     {
         m_searchText = playlist.isEmpty() ? "all" : playlist;
-        startToSearch(0);
+        startToPage(0);
     }
 }
 
-void MusicDownLoadQueryWYPlaylistThread::startToSearch(int offset)
+void MusicDownLoadQueryWYPlaylistThread::startToPage(int offset)
 {
     if(!m_manager)
     {

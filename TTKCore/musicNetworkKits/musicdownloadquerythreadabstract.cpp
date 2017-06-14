@@ -1,22 +1,13 @@
 #include "musicdownloadquerythreadabstract.h"
 
 MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *parent)
-    : MusicNetworkAbstract(parent)
+    : MusicDownLoadPagingThread(parent)
 {
-    m_pageSize = 0;
-    m_pageTotal = 0;
     m_queryAllRecords = false;
     m_querySimplify = false;
     m_queryExtraMovie = true;
     m_searchQuality = tr("SD");
     m_queryServer = "Invalid";
-
-    m_manager = new QNetworkAccessManager(this);
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-#endif
 }
 
 MusicDownLoadQueryThreadAbstract::~MusicDownLoadQueryThreadAbstract()
@@ -27,20 +18,6 @@ MusicDownLoadQueryThreadAbstract::~MusicDownLoadQueryThreadAbstract()
 QString MusicDownLoadQueryThreadAbstract::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicDownLoadQueryThreadAbstract::deleteAll()
-{
-    if(m_reply)
-    {
-        m_reply->deleteLater();
-        m_reply = nullptr;
-    }
-}
-
-void MusicDownLoadQueryThreadAbstract::startToSearch(int offset)
-{
-    Q_UNUSED(offset);
 }
 
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const

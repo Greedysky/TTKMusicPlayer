@@ -286,9 +286,10 @@ void MusicPlaylistFoundWidget::buttonClicked(int index)
         m_gridLayout->removeWidget(w);
         delete w;
     }
+
     int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
-    m_downloadThread->startToSearch(m_pagingWidgetObject->currentIndex() - 1);
+    m_downloadThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
 
 void MusicPlaylistFoundWidget::resizeEvent(QResizeEvent *event)
