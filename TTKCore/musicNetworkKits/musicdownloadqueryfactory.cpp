@@ -29,12 +29,12 @@
 #include "musicdownloadquerykgplaylistthread.h"
 #include "musicdownloadquerykwplaylistthread.h"
 
-#include "musicdownloadquerywycommentsthread.h"
-#include "musicdownloadqueryxmcommentsthread.h"
-#include "musicdownloadquerybdcommentsthread.h"
-#include "musicdownloadquerykgcommentsthread.h"
-#include "musicdownloadquerykwcommentsthread.h"
-#include "musicdownloadqueryqqcommentsthread.h"
+#include "musicwycommentsthread.h"
+#include "musicxmcommentsthread.h"
+#include "musicbdcommentsthread.h"
+#include "musickgcommentsthread.h"
+#include "musickwcommentsthread.h"
+#include "musicqqcommentsthread.h"
 
 #include "musicwydiscoverlistthread.h"
 #include "musicxmdiscoverlistthread.h"
@@ -134,13 +134,13 @@ MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getCommentThread(QObject
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  thread = new MusicDownLoadQueryWYCommentsThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQCommentsThread(parent); break;
-        case 2:  thread = new MusicDownLoadQueryXMCommentsThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDCommentsThread(parent); break;
-        case 4:  thread = new MusicDownLoadQueryKWCommentsThread(parent); break;
-        case 5:  thread = new MusicDownLoadQueryKGCommentsThread(parent); break;
-        default: thread = new MusicDownLoadQueryWYCommentsThread(parent);
+        case 0:  thread = new MusicWYCommentsThread(parent); break;
+        case 1:  thread = new MusicQQCommentsThread(parent); break;
+        case 2:  thread = new MusicXMCommentsThread(parent); break;
+        case 3:  thread = new MusicBDCommentsThread(parent); break;
+        case 4:  thread = new MusicKWCommentsThread(parent); break;
+        case 5:  thread = new MusicKGCommentsThread(parent); break;
+        default: thread = new MusicWYCommentsThread(parent);
     }
     return thread;
 }

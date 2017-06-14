@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYKGCOMMENTSTHREAD_H
-#define MUSICDOWNLOADQUERYKGCOMMENTSTHREAD_H
+#ifndef MUSICKWCOMMENTSTHREAD_H
+#define MUSICKWCOMMENTSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,14 +11,14 @@
 
 #include "musicdownloadcommentsthread.h"
 
-/*! @brief The class to kugou query song comments download data from net.
+/*! @brief The class to kuwo query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicKWCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryKGCommentsThread(QObject *parent = 0);
+    explicit MusicKWCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -45,4 +45,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYKGCOMMENTSTHREAD_H
+#endif // MUSICKWCOMMENTSTHREAD_H

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYBDCOMMENTSTHREAD_H
-#define MUSICDOWNLOADQUERYBDCOMMENTSTHREAD_H
+#ifndef MUSICBDCOMMENTSTHREAD_H
+#define MUSICBDCOMMENTSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -14,11 +14,11 @@
 /*! @brief The class to baidu query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryBDCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicBDCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryBDCommentsThread(QObject *parent = 0);
+    explicit MusicBDCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -45,4 +45,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYBDCOMMENTSTHREAD_H
+#endif // MUSICBDCOMMENTSTHREAD_H

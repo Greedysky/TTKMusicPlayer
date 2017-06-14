@@ -1,4 +1,4 @@
-#include "musicdownloadquerybdcommentsthread.h"
+#include "musicbdcommentsthread.h"
 #include "musicdownloadquerybdthread.h"
 #include "musicsemaphoreloop.h"
 
@@ -6,18 +6,18 @@
 #include "qjson/parser.h"
 #include "qaeswrap.h"
 
-MusicDownLoadQueryBDCommentsThread::MusicDownLoadQueryBDCommentsThread(QObject *parent)
+MusicBDCommentsThread::MusicBDCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
 }
 
-QString MusicDownLoadQueryBDCommentsThread::getClassName()
+QString MusicBDCommentsThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryBDCommentsThread::startToSearch(const QString &name)
+void MusicBDCommentsThread::startToSearch(const QString &name)
 {
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryBDThread *query = new MusicDownLoadQueryBDThread(this);
@@ -35,7 +35,7 @@ void MusicDownLoadQueryBDCommentsThread::startToSearch(const QString &name)
     }
 }
 
-void MusicDownLoadQueryBDCommentsThread::startToPage(int offset)
+void MusicBDCommentsThread::startToPage(int offset)
 {
     if(!m_manager)
     {
@@ -69,7 +69,7 @@ void MusicDownLoadQueryBDCommentsThread::startToPage(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryBDCommentsThread::downLoadFinished()
+void MusicBDCommentsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {

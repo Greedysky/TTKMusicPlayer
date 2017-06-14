@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYXMCOMMENTSTHREAD_H
-#define MUSICDOWNLOADQUERYXMCOMMENTSTHREAD_H
+#ifndef MUSICWYCOMMENTSTHREAD_H
+#define MUSICWYCOMMENTSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -9,18 +9,16 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicdownloadxminterface.h"
 #include "musicdownloadcommentsthread.h"
 
-/*! @brief The class to xiami query song comments download data from net.
+/*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMCommentsThread : public MusicDownLoadCommentsThread,
-                                                                private MusicDownLoadXMInterface
+class MUSIC_NETWORK_EXPORT MusicWYCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryXMCommentsThread(QObject *parent = 0);
+    explicit MusicWYCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -47,4 +45,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYXMCOMMENTSTHREAD_H
+#endif // MUSICWYCOMMENTSTHREAD_H

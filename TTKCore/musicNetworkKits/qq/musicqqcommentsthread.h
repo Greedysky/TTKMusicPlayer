@@ -1,16 +1,16 @@
-#ifndef MUSICDOWNLOADQUERYQQCOMMENTSTHREAD_H
-#define MUSICDOWNLOADQUERYQQCOMMENTSTHREAD_H
+#ifndef MUSICQQCOMMENTSTHREAD_H
+#define MUSICQQCOMMENTSTHREAD_H
 
 #include "musicdownloadcommentsthread.h"
 
 /*! @brief The class to qq query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicQQCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryQQCommentsThread(QObject *parent = 0);
+    explicit MusicQQCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -37,4 +37,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICDOWNLOADQUERYQQCOMMENTSTHREAD_H
+#endif // MUSICQQCOMMENTSTHREAD_H

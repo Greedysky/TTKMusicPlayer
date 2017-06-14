@@ -1,22 +1,22 @@
-#include "musicdownloadquerykwcommentsthread.h"
+#include "musickwcommentsthread.h"
 #include "musicdownloadquerykwthread.h"
 #include "musicsemaphoreloop.h"
 
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryKWCommentsThread::MusicDownLoadQueryKWCommentsThread(QObject *parent)
+MusicKWCommentsThread::MusicKWCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
 }
 
-QString MusicDownLoadQueryKWCommentsThread::getClassName()
+QString MusicKWCommentsThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryKWCommentsThread::startToSearch(const QString &name)
+void MusicKWCommentsThread::startToSearch(const QString &name)
 {
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryKWThread *query = new MusicDownLoadQueryKWThread(this);
@@ -34,7 +34,7 @@ void MusicDownLoadQueryKWCommentsThread::startToSearch(const QString &name)
     }
 }
 
-void MusicDownLoadQueryKWCommentsThread::startToPage(int offset)
+void MusicKWCommentsThread::startToPage(int offset)
 {
     if(!m_manager)
     {
@@ -60,7 +60,7 @@ void MusicDownLoadQueryKWCommentsThread::startToPage(int offset)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryKWCommentsThread::downLoadFinished()
+void MusicKWCommentsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {

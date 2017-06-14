@@ -1,40 +1,40 @@
-#include "musicdownloadqueryqqcommentsthread.h"
-#include "musicdownloadqueryqqthread.h"
+#include "musicwycommentsthread.h"
+#include "musicdownloadquerywythread.h"
 #include "musicsemaphoreloop.h"
 
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryQQCommentsThread::MusicDownLoadQueryQQCommentsThread(QObject *parent)
+MusicWYCommentsThread::MusicWYCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
 }
 
-QString MusicDownLoadQueryQQCommentsThread::getClassName()
+QString MusicWYCommentsThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryQQCommentsThread::startToSearch(const QString &name)
+void MusicWYCommentsThread::startToSearch(const QString &name)
 {
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryQQThread *query = new MusicDownLoadQueryQQThread(this);
+    MusicDownLoadQueryWYThread *query = new MusicDownLoadQueryWYThread(this);
     query->setQueryAllRecords(false);
     query->setQuerySimplify(true);
     query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
     connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
-    m_rawData["songID"].clear();
+    m_rawData["songID"] = 0;
     if(!query->getMusicSongInfos().isEmpty())
     {
-        m_rawData["songID"] = query->getMusicSongInfos().first().m_songId;
+        m_rawData["songID"] = query->getMusicSongInfos().first().m_songId.toInt();
         startToPage(0);
     }
 }
 
-void MusicDownLoadQueryQQCommentsThread::startToPage(int offset)
+void MusicWYCommentsThread::startToPage(int offset)
 {
     if(!m_manager)
     {
@@ -43,25 +43,25 @@ void MusicDownLoadQueryQQCommentsThread::startToPage(int offset)
 
     deleteAll();
     m_pageTotal = 0;
-
-    QUrl musicUrl = QString(MusicCryptographicHash::decryptData(QQ_SG_COMMIT_DATA_URL, URL_KEY));
-
+    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SG_COMMIT_URL, URL_KEY)
+                    .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset);
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->post( request, MusicCryptographicHash::decryptData(QQ_SG_COMMIT_URL, URL_KEY)
-                               .arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
+    m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
-void MusicDownLoadQueryQQCommentsThread::downLoadFinished()
+void MusicWYCommentsThread::downLoadFinished()
 {
     if(m_reply == nullptr)
     {
@@ -72,28 +72,27 @@ void MusicDownLoadQueryQQCommentsThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["code"].toInt() == 0)
+            if(value["code"].toLongLong() == 200)
             {
-                m_pageTotal = value["commenttotal"].toInt();
-
-                QVariantList comments = value["comment"].toList();
+                m_pageTotal = value["total"].toLongLong();
+                QVariantList comments = value["comments"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     MusicSongCommentItem comment;
                     value = comm.toMap();
-                    comment.m_likedCount = QString::number(value["praisenum"].toInt());
-                    comment.m_time = QString::number(value["time"].toLongLong()*1000);
-                    comment.m_content = value["rootcommentcontent"].toString();
+                    QVariantMap user = value["user"].toMap();
+                    comment.m_nickName = user["nickname"].toString();
+                    comment.m_avatarUrl = user["avatarUrl"].toString();
 
-                    comment.m_nickName = value["nick"].toString();
-                    comment.m_avatarUrl = value["avatarurl"].toString();
+                    comment.m_likedCount = QString::number(value["likedCount"].toLongLong());
+                    comment.m_time = QString::number(value["time"].toLongLong());
+                    comment.m_content = value["content"].toString();
 
                     emit createSearchedItems(comment);
                 }
