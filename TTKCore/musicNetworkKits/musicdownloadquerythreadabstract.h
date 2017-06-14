@@ -46,16 +46,6 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
 }MusicPlaylistItem;
 TTK_DECLARE_LISTS(MusicPlaylistItem)
 
-typedef struct MUSIC_NETWORK_EXPORT MusicSongCommentItem
-{
-    QString m_nickName;
-    QString m_avatarUrl;
-    QString m_time;
-    QString m_content;
-    QString m_likedCount;
-}MusicSongCommentItem;
-TTK_DECLARE_LISTS(MusicSongCommentItem)
-
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */

@@ -14,6 +14,7 @@
 
 #define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
 
+class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
 
@@ -44,7 +45,7 @@ public:
     /*!
      * Get playlist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getCommentThread(QObject *parent = 0);
+    MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
     /*!
      * Get comment thread object by type.
      */

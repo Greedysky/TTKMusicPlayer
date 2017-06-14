@@ -1,12 +1,12 @@
 #ifndef MUSICDOWNLOADQUERYQQCOMMENTSTHREAD_H
 #define MUSICDOWNLOADQUERYQQCOMMENTSTHREAD_H
 
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadcommentsthread.h"
 
 /*! @brief The class to qq query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQCommentsThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
@@ -15,26 +15,18 @@ public:
      * Object contsructor.
      */
 
-    virtual ~MusicDownLoadQueryQQCommentsThread();
-
     static QString getClassName();
     /*!
      * Get class object name.
      */
 
-    virtual void startToSearch(QueryType type, const QString &name) override;
+    virtual void startToSearch(const QString &name) override;
     /*!
      * Start to Search data from name.
      */
     virtual void startToPage(int offset) override;
     /*!
      * Start to search data from name and type bt paging.
-     */
-
-Q_SIGNALS:
-    void createSearchedItems(const MusicSongCommentItem &comments);
-    /*!
-     * Create the current song comment.
      */
 
 public Q_SLOTS:

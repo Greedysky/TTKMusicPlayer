@@ -128,9 +128,9 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
     return thread;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getCommentThread(QObject *parent)
+MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getCommentThread(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    MusicDownLoadCommentsThread *thread = nullptr;
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
@@ -142,7 +142,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getCommentThread(QO
         case 5:  thread = new MusicDownLoadQueryKGCommentsThread(parent); break;
         default: thread = new MusicDownLoadQueryWYCommentsThread(parent);
     }
-    M_LOGGER_INFO(QString("getCommentThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

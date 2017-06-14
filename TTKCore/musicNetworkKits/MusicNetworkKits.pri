@@ -172,3 +172,9 @@ SOURCES += \
     $$PWD/musicdownloadpagingthread.cpp
 
 }
+
+HEADERS += \
+    $$PWD/musicdownloadcommentsthread.h
+
+SOURCES += \
+    $$PWD/musicdownloadcommentsthread.cpp

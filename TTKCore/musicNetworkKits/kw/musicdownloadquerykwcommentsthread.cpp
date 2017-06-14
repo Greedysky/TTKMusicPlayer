@@ -6,15 +6,9 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryKWCommentsThread::MusicDownLoadQueryKWCommentsThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
-    m_queryServer = "Kuwo";
-}
-
-MusicDownLoadQueryKWCommentsThread::~MusicDownLoadQueryKWCommentsThread()
-{
-    deleteAll();
 }
 
 QString MusicDownLoadQueryKWCommentsThread::getClassName()
@@ -22,10 +16,8 @@ QString MusicDownLoadQueryKWCommentsThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryKWCommentsThread::startToSearch(QueryType type, const QString &name)
+void MusicDownLoadQueryKWCommentsThread::startToSearch(const QString &name)
 {
-    Q_UNUSED(type);
-
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryKWThread *query = new MusicDownLoadQueryKWThread(this);
     query->setQueryAllRecords(false);

@@ -7,15 +7,9 @@
 #include "qaeswrap.h"
 
 MusicDownLoadQueryBDCommentsThread::MusicDownLoadQueryBDCommentsThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
-    m_queryServer = "Baidu";
-}
-
-MusicDownLoadQueryBDCommentsThread::~MusicDownLoadQueryBDCommentsThread()
-{
-    deleteAll();
 }
 
 QString MusicDownLoadQueryBDCommentsThread::getClassName()
@@ -23,10 +17,8 @@ QString MusicDownLoadQueryBDCommentsThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryBDCommentsThread::startToSearch(QueryType type, const QString &name)
+void MusicDownLoadQueryBDCommentsThread::startToSearch(const QString &name)
 {
-    Q_UNUSED(type);
-
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryBDThread *query = new MusicDownLoadQueryBDThread(this);
     query->setQueryAllRecords(false);
