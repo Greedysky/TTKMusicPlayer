@@ -10,6 +10,7 @@
 #include "musicapplicationobject.h"
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
+#include "musicregeditmanager.h"
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -431,10 +432,19 @@ void MusicSettingWidget::initControllerParameter()
     ///////////////////////////////////////////////////////////////////////////
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
-    m_ui->setDefaultPlayerCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt());
-    if(m_ui->setDefaultPlayerCheckBox->isChecked())
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt() && MusicRegeditManager().isFileAssociate())
     {
-        m_ui->setDefaultPlayerCheckBox->setEnabled(false);
+        m_ui->setDefaultPlayerCheckBox->setChecked(true);
+        if(m_ui->setDefaultPlayerCheckBox->isChecked())
+        {
+            m_ui->setDefaultPlayerCheckBox->setEnabled(false);
+        }
+    }
+    else
+    {
+        m_ui->setDefaultPlayerCheckBox->setEnabled(true);
+        m_ui->setDefaultPlayerCheckBox->setChecked(false);
+        M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, false);
     }
 }
 

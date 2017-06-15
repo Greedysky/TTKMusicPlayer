@@ -87,8 +87,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
 
     const QString iconString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\DefaultIcon";
     QSettings iconSetting(iconString, QSettings::NativeFormat);
-    iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                                    .arg(0));
+    iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace("/", "\\")).arg(1));
 
     const QString openString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
