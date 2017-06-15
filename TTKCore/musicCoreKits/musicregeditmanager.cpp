@@ -34,14 +34,20 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
     settings.setValue ("WallpaperStyle", wallpaperStyle);
 }
 
+bool MusicRegeditManager::isFileAssociate()
+{
+    return currentNodeHasExist("mp3");
+}
+
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 {
     QStringList types = MusicFormats::supportFormatsString();
     for(int i=0; i<types.count(); ++i)
     {
-        if(!currentNodeHasExist(types[i]))
+        const QString type = types[i];
+        if(!currentNodeHasExist(type))
         {
-            createMusicRegedit(types[i], i + 1);
+            createMusicRegedit(type);
         }
     }
 }
@@ -49,7 +55,7 @@ void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
 bool MusicRegeditManager::currentNodeHasExist(const QString &key)
 {
     bool state = false;
-    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
+    QString keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
     QSettings keyXSetting(keyX, QSettings::NativeFormat);
     state = (keyXSetting.value("Default").toString() == "TTKMusicPlayer." + key);
 
@@ -64,9 +70,9 @@ bool MusicRegeditManager::currentNodeHasExist(const QString &key)
     return state;
 }
 
-void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
+void MusicRegeditManager::createMusicRegedit(const QString &key)
 {
-    QString keyX = "HKEY_CLASSES_ROOT\\." + key;
+    QString keyX = "HKEY_CURRENT_USER\\Software\\Classes\\." + key;
     QSettings keyXSetting(keyX, QSettings::NativeFormat);
     keyX = keyXSetting.value("Default").toString();
     if(keyX.isEmpty() || keyX != "TTKMusicPlayer." + key)
@@ -75,29 +81,29 @@ void MusicRegeditManager::createMusicRegedit(const QString &key, int index)
     }
 
     ////////////////////////////////////////////////////////
-    const QString keyString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key;
+    const QString keyString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key;
     QSettings keySetting(keyString, QSettings::NativeFormat);
     keySetting.setValue("Default", key + QObject::tr("File"));
 
-    const QString iconString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key + "\\DefaultIcon";
+    const QString iconString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\DefaultIcon";
     QSettings iconSetting(iconString, QSettings::NativeFormat);
     iconSetting.setValue("Default", QString("%1,%2").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                                    .arg(index));
+                                                    .arg(0));
 
-    const QString openString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key + "\\Shell\\Open";
+    const QString openString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\Shell\\Open";
     QSettings openSetting(openString, QSettings::NativeFormat);
     openSetting.setValue("Default", QObject::tr("user TTKMusicPlayer play"));
 
-    const QString openComString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key + "\\Shell\\Open\\Command";
+    const QString openComString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
     openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
                                      + QString(" -Open \"%1\""));
 
-    const QString playListString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key + "\\Shell\\PlayList";
+    const QString playListString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
     playListSetting.setValue("Default", QObject::tr("add TTKMusicPlayer playList"));
 
-    const QString playListComString = "HKEY_CLASSES_ROOT\\TTKMusicPlayer." + key + "\\Shell\\PlayList\\Command";
+    const QString playListComString = "HKEY_CURRENT_USER\\Software\\Classes\\TTKMusicPlayer." + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
     playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
                                          + QString(" -List \"%1\""));

@@ -9,7 +9,7 @@
 #include "qjson/parser.h"
 
 MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
-                                           QObject *parent)
+                                                 QObject *parent)
     : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
 {
 

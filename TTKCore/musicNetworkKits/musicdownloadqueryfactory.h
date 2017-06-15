@@ -45,14 +45,17 @@ public:
     /*!
      * Get playlist thread object by type.
      */
+
     MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
     /*!
      * Get comment thread object by type.
      */
+
     MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
     /*!
      * Get discover list thread object by type.
      */
+
     MusicDownLoadThreadAbstract *getDownloadSmallPicThread(const QString &url, const QString &save,
                                                            MusicDownLoadThreadAbstract::Download_Type type,
                                                            QObject *parent = 0);
