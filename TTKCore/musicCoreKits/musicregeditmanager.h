@@ -18,11 +18,6 @@
 class MUSIC_CORE_EXPORT MusicRegeditManager
 {
 public:
-    MusicRegeditManager() = default;
-    /*!
-     * Object contsructor.
-     */
-
     static QString getClassName();
     /*!
      * Get class object name.

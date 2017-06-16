@@ -8,7 +8,7 @@
 MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent)
 {
-    setColumnCount(6);
+    setColumnCount(7);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 213);
@@ -16,6 +16,7 @@ MusicLrcSearchTableWidget::MusicLrcSearchTableWidget(QWidget *parent)
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 24);
     headerview->resizeSection(5, 24);
+    headerview->resizeSection(6, 24);
 }
 
 MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
@@ -63,10 +64,37 @@ void MusicLrcSearchTableWidget::musicDownloadLocal(int row)
     lrcDownload->startToDownload();
 }
 
+void MusicLrcSearchTableWidget::listCellEntered(int row, int column)
+{
+    if(column == 6)
+    {
+        setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+        unsetCursor();
+    }
+
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+}
+
+void MusicLrcSearchTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 6:
+            musicDownloadLocal(row);
+            break;
+        default:
+            break;
+    }
+}
+
 void MusicLrcSearchTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(6);
+    setColumnCount(7);
 }
 
 void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
@@ -105,6 +133,10 @@ void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &son
     item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
     item->setToolTip(songItem.m_type);
     setItem(count, 5, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    setItem(count, 6, item);
 }
 
 void MusicLrcSearchTableWidget::itemDoubleClicked(int row, int column)
