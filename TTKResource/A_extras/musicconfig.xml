@@ -18,6 +18,10 @@
         <bgTransparent value="100"/>
         <bgListTransparent value="33"/>
     </backgroundSkin>
+    <hotkey>
+        <hotkeyEnable value="0"/>
+        <hotkeyString value=""/>
+    </hotkey>
     <inlineLrc>
         <showInlineLrc value="1"/>
         <lrcColor value="-1"/>

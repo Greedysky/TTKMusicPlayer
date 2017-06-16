@@ -26,11 +26,16 @@ public:
     /*!
      * Get class object name.
      */
+
     void connectParentObject(QObject *object);
     /*!
      * To connect parent slot object.
      */
 
+    void setHotKeys(const QStringList &keys);
+    /*!
+     * Set hotKey by given string list keys.
+     */
     void setHotKey(int index, const QString &key);
     /*!
      * Set hotKey by given index and string key.
@@ -60,6 +65,19 @@ public:
     QString toString(int key, int modifiers);
     /*!
      * Mapping the virtual key to string key.
+     */
+    int count() const;
+    /*!
+     * Get hotkey count.
+     */
+
+    QStringList getDefaultKeys() const;
+    /*!
+     * Get default key string.
+     */
+    QStringList getKeys() const;
+    /*!
+     * Get key string.
      */
 
 protected:

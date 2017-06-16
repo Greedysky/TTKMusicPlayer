@@ -369,8 +369,24 @@ void MusicSettingWidget::initControllerParameter()
         m_ui->quitRadioBox->setChecked(true);
     }
     m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
+
     ///////////////////////////////////////////////////////////////////////////
+    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
+    if(hotkeys.count() != M_HOTKEY_PTR->count())
+    {
+        hotkeys = M_HOTKEY_PTR->getDefaultKeys();
+    }
+    m_ui->item_S2->setText(hotkeys[0]);
+    m_ui->item_S4->setText(hotkeys[1]);
+    m_ui->item_S6->setText(hotkeys[2]);
+    m_ui->item_S8->setText(hotkeys[3]);
+    m_ui->item_S10->setText(hotkeys[4]);
+    m_ui->item_S12->setText(hotkeys[5]);
+    m_ui->item_S14->setText(hotkeys[6]);
+    m_ui->item_S16->setText(hotkeys[7]);
+    m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool());
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
+
     ////////////////////////////////////////////////
     //Set init parameter
     m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
@@ -394,6 +410,7 @@ void MusicSettingWidget::initControllerParameter()
         showInlineLrcDemo();
     }
     m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
+
     ////////////////////////////////////////////////
     m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
     m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
@@ -412,6 +429,7 @@ void MusicSettingWidget::initControllerParameter()
         showDesktopLrcDemo();
     }
     m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+
     ////////////////////////////////////////////////
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
@@ -423,6 +441,7 @@ void MusicSettingWidget::initControllerParameter()
     MusicUtils::Widget::setComboboxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
+
     ///////////////////////////////////////////////////////////////////////////
     m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
     m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
@@ -430,6 +449,7 @@ void MusicSettingWidget::initControllerParameter()
     {
         m_ui->fadeInAndOutCheckBox->click();
     }
+
     ///////////////////////////////////////////////////////////////////////////
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
@@ -513,15 +533,20 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, m_ui->downloadLimitSpeedComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, m_ui->uploadLimitSpeedComboBox->currentText());
 
-    M_HOTKEY_PTR->setHotKey(0, m_ui->item_S2->text());
-    M_HOTKEY_PTR->setHotKey(1, m_ui->item_S4->text());
-    M_HOTKEY_PTR->setHotKey(2, m_ui->item_S6->text());
-    M_HOTKEY_PTR->setHotKey(3, m_ui->item_S8->text());
-    M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
-    M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
-    M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
-    M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
+    if(m_ui->globalHotkeyBox->isChecked())
+    {
+        M_HOTKEY_PTR->setHotKey(0, m_ui->item_S2->text());
+        M_HOTKEY_PTR->setHotKey(1, m_ui->item_S4->text());
+        M_HOTKEY_PTR->setHotKey(2, m_ui->item_S6->text());
+        M_HOTKEY_PTR->setHotKey(3, m_ui->item_S8->text());
+        M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
+        M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
+        M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
+        M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
+        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(STRING_SPLITER));
+    }
     M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());
 
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, m_ui->fadeOutSpinBox->value());

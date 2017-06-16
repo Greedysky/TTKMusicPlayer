@@ -1067,6 +1067,19 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     xml.readOtherLoadConfig();
 
+    ////////////////////////music hotkey
+    //////////////////////////////////////////////////////////////
+    if(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool())
+    {
+        QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
+        if(hotkeys.count() != M_HOTKEY_PTR->count())
+        {
+            hotkeys = M_HOTKEY_PTR->getDefaultKeys();
+        }
+        M_HOTKEY_PTR->setHotKeys(hotkeys);
+        M_HOTKEY_PTR->enabledAll(true);
+    }
+
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown

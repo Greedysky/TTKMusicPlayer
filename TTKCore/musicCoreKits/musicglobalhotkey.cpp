@@ -29,9 +29,16 @@ void MusicGlobalHotKey::connectParentObject(QObject *object)
 
 void MusicGlobalHotKey::setDefaultKey()
 {
-    QStringList keys;
-    keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
-         << "Ctrl+Down" << "Ctrl+S" << "Ctrl+I" << "Ctrl+M";
+    QStringList keys(getDefaultKeys());
+    for(int i=0; i<m_hotkeys.count(); ++i)
+    {
+        setHotKey(i, keys[i]);
+        setEnabled(i, false);
+    }
+}
+
+void MusicGlobalHotKey::setHotKeys(const QStringList &keys)
+{
     for(int i=0; i<m_hotkeys.count(); ++i)
     {
         setHotKey(i, keys[i]);
@@ -113,4 +120,27 @@ QString MusicGlobalHotKey::toString(int key, int modifiers)
     }
 
     return keyStr + QKeySequence(key).toString();
+}
+
+int MusicGlobalHotKey::count() const
+{
+    return m_hotkeys.count();
+}
+
+QStringList MusicGlobalHotKey::getDefaultKeys() const
+{
+    QStringList keys;
+    keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
+         << "Ctrl+Down" << "Ctrl+S" << "Ctrl+I" << "Ctrl+M";
+    return keys;
+}
+
+QStringList MusicGlobalHotKey::getKeys() const
+{
+    QStringList keys;
+    foreach(QxtGlobalShortcut *key, m_hotkeys)
+    {
+        keys << key->shortcut().toString();
+    }
+    return keys;
 }
