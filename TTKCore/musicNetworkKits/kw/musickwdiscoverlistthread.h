@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "MusicDownLoadDiscoverListThread.h"
+#include "musicdownloaddiscoverlistthread.h"
 
 /*! @brief The class to kuwo discover toplist.
  * @author Greedysky <greedysky@163.com>

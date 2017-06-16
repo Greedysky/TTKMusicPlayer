@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "musicdownloadxminterface.h"
-#include "MusicDownLoadDiscoverListThread.h"
+#include "musicdownloaddiscoverlistthread.h"
 
 /*! @brief The class to xiami discover toplist.
  * @author Greedysky <greedysky@163.com>
