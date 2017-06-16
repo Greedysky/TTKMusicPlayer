@@ -1,4 +1,5 @@
 #include "musicfilereceiveserver.h"
+#include "musicobject.h"
 
 #include <QFileInfo>
 
@@ -40,14 +41,14 @@ void MusicFileReceiveServer::readPendingDatagrams()
         m_receiveSocket->readDatagram(datagram.data(), datagram.size(),
                                       &sender, &senderPort);
 
-        if(datagram.contains(SPLITE_STR))
+        if(datagram.contains(STRING_SPLITER))
         {
             if(m_saveDir.isEmpty())
             {
                 M_LOGGER_ERROR("The Save Path Is Empty!");
                 return;
             }
-            QString path = QString(datagram).split(SPLITE_STR).first();
+            QString path = QString(datagram).split(STRING_SPLITER).first();
             m_file->close();
             m_file->setFileName(m_saveDir + "/" + QFileInfo(path).fileName() );
             m_file->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Unbuffered);

@@ -114,6 +114,8 @@
 #define DEFAULT_INDEX_LEVEL4    -666
 #define DEFAULT_INDEX_LEVEL5    -555
 ///////////////////////////////////////
+#define STRING_SPLITER          "*|||*"
+///////////////////////////////////////
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>

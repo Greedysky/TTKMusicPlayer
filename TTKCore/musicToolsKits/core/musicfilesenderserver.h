@@ -17,7 +17,6 @@
 #define MAX_DATA        8000
 #define SEND_PORT       7754
 #define RECEVIE_PORT    7755
-#define SPLITE_STR      "*|||*"
 #define DATAGRAM        "BACK_ON"
 
 /*! @brief The class of the file sender server.
