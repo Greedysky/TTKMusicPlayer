@@ -192,8 +192,8 @@ namespace MusicUIObject
             QPushButton{ border-radius:3px; background-color:#80B7F1; color:white;}";
 
     const QString MPushButtonStyle04 = " \
-            QPushButton{ border:1px solid #777777; background:#EEEEEE; color:#555555;} \
-            QPushButton::hover{ border:1px solid #444444; color:#222222;} \
+            QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777;} \
+            QPushButton::hover{ border:1px solid #555555; color:#444444;} \
             QPushButton::disabled{ color:#999999;}";
 
     const QString MPushButtonStyle05 = " \

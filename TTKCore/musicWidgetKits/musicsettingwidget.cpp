@@ -331,6 +331,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyPortEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->proxyPwdEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+    m_ui->proxyAreaEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
     m_ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadServerComboBox));
     m_ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
@@ -751,6 +752,7 @@ void MusicSettingWidget::setNetworkProxyControl(int enable)
     m_ui->proxyPortEdit->setEnabled(enable != 2);
     m_ui->proxyUsernameEdit->setEnabled(enable != 2);
     m_ui->proxyPwdEdit->setEnabled(enable != 2);
+    m_ui->proxyAreaEdit->setEnabled(enable != 2);
 }
 
 bool MusicSettingWidget::setNetworkProxyByType(int type)
