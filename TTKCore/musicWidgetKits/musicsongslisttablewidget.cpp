@@ -338,33 +338,7 @@ void MusicSongsListTableWidget::listCellEntered(int row, int column)
     {
         unsetCursor();
     }
-    ///current play table item should not clear something
-    bool isCurrentIndex;
-    emit isCurrentIndexs(isCurrentIndex);
-    if(isCurrentIndex)
-    {
-        if((it = item(m_playRowIndex, 0)) != nullptr)
-        {
-            it->setIcon(QIcon());
-        }
-        if((it = item(m_playRowIndex, 2)) != nullptr)
-        {
-            it->setIcon(QIcon());
-        }
-        if((it = item(m_playRowIndex, 3)) != nullptr)
-        {
-            it->setIcon(QIcon());
-        }
-        if((it = item(m_playRowIndex, 4)) != nullptr)
-        {
-            it->setIcon(QIcon());
-        }
-        if((it = item(m_playRowIndex, 5)) != nullptr)
-        {
-            it->setText(QString());
-            it->setIcon(QIcon());
-        }
-    }
+
     MusicSongsListAbstractTableWidget::listCellEntered(row, column);
 
     //To show music Songs Item information
@@ -502,9 +476,9 @@ void MusicSongsListTableWidget::showTimeOut()
         m_musicSongsInfoWidget->setMusicSongInformation( song );
         m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
                                             QCursor::pos().y(), 264, 108);
-        bool isCurrentIndex;
-        emit isCurrentIndexs(isCurrentIndex);
-        m_musicSongsInfoWidget->setVisible( isCurrentIndex ? (m_musicSongsPlayWidget &&
+        bool state;
+        emit isCurrentIndexs(state);
+        m_musicSongsInfoWidget->setVisible( state ? (m_musicSongsPlayWidget &&
                                             !m_musicSongsPlayWidget->getItemRenameState()) : true);
     }
 }
@@ -885,9 +859,9 @@ void MusicSongsListTableWidget::startToDrag()
             item(i, 5)->setText(songs[i].getMusicTime());
         }
 
-        bool isCurrent;
-        emit isCurrentIndexs(isCurrent);
-        if(isCurrent)
+        bool state;
+        emit isCurrentIndexs(state);
+        if(state)
         {
             selectRow(index);
         }
