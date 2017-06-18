@@ -85,15 +85,23 @@ public Q_SLOTS:
     /*!
      * Open the music at local path.
      */
+    void musicEditTag();
+    /*!
+     * Music modify tag start.
+     */
+    void musicSaveTag();
+    /*!
+     * Music modify tag save.
+     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
-    void saveModifyData();
+    void setEditLineEnable(bool enable);
     /*!
-     * Save modify data to local file.
+     * Eet editLine enable.
      */
 
     Ui::MusicFileInformationWidget *m_ui;

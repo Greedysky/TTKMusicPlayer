@@ -54,15 +54,19 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setStyleSheet(MusicUIObject::MLineEditStyle01);
+    setEditLineEnable(false);
 
+    m_ui->editButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+    connect(m_ui->editButton, SIGNAL(clicked()), SLOT(musicEditTag()));
+    connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(musicSaveTag()));
     connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
 {
-    saveModifyData();
     delete m_ui;
 }
 
@@ -79,6 +83,54 @@ void MusicFileInformationWidget::musicOpenFileDir()
         message.setText(tr("The origin one does not exist!"));
         message.exec();
     }
+}
+
+void MusicFileInformationWidget::musicEditTag()
+{
+    setEditLineEnable(!m_ui->fileAlbumEdit->isEnabled());
+}
+
+void MusicFileInformationWidget::musicSaveTag()
+{
+    MusicSongTag tag;
+    if(!tag.readFile(m_path))
+    {
+        return;
+    }
+
+    QString value = m_ui->fileAlbumEdit->text().trimmed();
+    if(value != "-" && m_ui->fileAlbumEdit->getTextEdited())
+    {
+        tag.setAlbum(value);
+    }
+
+    value = m_ui->fileArtistEdit->text().trimmed();
+    if(value != "-" && m_ui->fileArtistEdit->getTextEdited())
+    {
+        tag.setArtist(value);
+    }
+
+    value = m_ui->fileGenreEdit->text().trimmed();
+    if(value != "-" && m_ui->fileGenreEdit->getTextEdited())
+    {
+        tag.setGenre(value);
+    }
+
+    value = m_ui->fileTitleEdit->text().trimmed();
+    if(value != "-" && m_ui->fileTitleEdit->getTextEdited())
+    {
+        tag.setTitle(value);
+    }
+
+    value = m_ui->fileYearEdit->text().trimmed();
+    if(value != "-" && m_ui->fileYearEdit->getTextEdited())
+    {
+        tag.setYear(value);
+    }
+
+    MusicMessageBox message;
+    message.setText(tr("Save Successfully!"));
+    message.exec();
 }
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)
@@ -110,28 +162,15 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
                                    .arg(tag.getMode())).isEmpty() ? "-" : check) : "-" );
 }
 
-void MusicFileInformationWidget::saveModifyData()
+void MusicFileInformationWidget::setEditLineEnable(bool enable)
 {
-    MusicSongTag tag;
-    if(!tag.readFile(m_path))
-    {
-        return;
-    }
+    m_ui->fileAlbumEdit->setEnabled(enable);
+    m_ui->fileArtistEdit->setEnabled(enable);
+    m_ui->fileGenreEdit->setEnabled(enable);
+    m_ui->fileTitleEdit->setEnabled(enable);
+    m_ui->fileYearEdit->setEnabled(enable);
 
-    QString value = m_ui->fileAlbumEdit->text().trimmed();
-    if(value != "-" && m_ui->fileAlbumEdit->getTextEdited()) tag.setAlbum(value);
-
-    value = m_ui->fileArtistEdit->text().trimmed();
-    if(value != "-" && m_ui->fileArtistEdit->getTextEdited()) tag.setArtist(value);
-
-    value = m_ui->fileGenreEdit->text().trimmed();
-    if(value != "-" && m_ui->fileGenreEdit->getTextEdited()) tag.setGenre(value);
-
-    value = m_ui->fileTitleEdit->text().trimmed();
-    if(value != "-" && m_ui->fileTitleEdit->getTextEdited()) tag.setTitle(value);
-
-    value = m_ui->fileYearEdit->text().trimmed();
-    if(value != "-" && m_ui->fileYearEdit->getTextEdited()) tag.setYear(value);
+    m_ui->saveButton->setEnabled(enable);
 }
 
 int MusicFileInformationWidget::exec()
