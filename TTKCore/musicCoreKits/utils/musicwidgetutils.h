@@ -67,6 +67,7 @@ namespace MusicUtils
         /*!
          * Get bitmap mask from rect.
          */
+
         MUSIC_CORE_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
         /*!
          * Rerender the image by color burn transform.

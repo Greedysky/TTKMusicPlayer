@@ -13,34 +13,34 @@ QString MusicUtils::String::removeStringBy(const QString &value, const QString &
     return s;
 }
 
-QStringList MusicUtils::String::splitString(const QString &value)
+QStringList MusicUtils::String::splitString(const QString &value, const QString &key)
 {
-    QStringList strings = value.split(" - ");
+    QStringList strings = value.split(QString(" %1 ").arg(key));
     if(strings.isEmpty() || strings.count() == 1)
     {
-        strings = value.split("-");
+        strings = value.split(key);
     }
     return strings;
 }
 
-QString MusicUtils::String::artistName(const QString &value)
+QString MusicUtils::String::artistName(const QString &value, const QString &key)
 {
     QStringList s = splitString(value);
     if(s.count() >= 2)
     {
-        int index = value.indexOf("-");
+        int index = value.indexOf(key);
         return value.left(index).trimmed();
     }
 
     return value;
 }
 
-QString MusicUtils::String::songName(const QString &value)
+QString MusicUtils::String::songName(const QString &value, const QString &key)
 {
     QStringList s = splitString(value);
     if(s.count() >= 2)
     {
-        int index = value.indexOf("-") + 1;
+        int index = value.indexOf(key) + 1;
         return value.right(value.length() - index).trimmed();
     }
 
