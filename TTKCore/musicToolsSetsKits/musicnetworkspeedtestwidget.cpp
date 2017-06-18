@@ -28,7 +28,7 @@ MusicNetworkSpeedTestWidget::MusicNetworkSpeedTestWidget(QWidget *parent)
     m_totalDown = 0;
     m_testAverage = 0;
     m_ui->speedWidget->setAnimating(false);
-    m_ui->speedWidget->setRatio(50);
+    m_ui->speedWidget->setRatio(100);
 
     m_ui->suspensionButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->suspensionButton->setCursor(QCursor((Qt::PointingHandCursor)));
