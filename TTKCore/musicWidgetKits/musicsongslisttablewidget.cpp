@@ -22,6 +22,14 @@
 #include <QMouseEvent>
 
 #define ROW_HIGHT   30
+#define SEARCH_ITEM_DEFINE(index, names) \
+    case index: \
+    if(names.count() >= index + 1) \
+    { \
+        MusicRightAreaWidget::instance()->songResearchButtonSearched(names[index]); \
+    } \
+    break;
+
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent), m_openFileWidget(nullptr),
@@ -583,25 +591,12 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
     QStringList names(MusicUtils::String::splitString(songName));
     switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
     {
-        case 0:
-            if(names.count() >= 1)
-            {
-                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[0]);
-            }
+        SEARCH_ITEM_DEFINE(0, names);
+        SEARCH_ITEM_DEFINE(1, names);
+        SEARCH_ITEM_DEFINE(2, names);
+        default:
+            MusicRightAreaWidget::instance()->songResearchButtonSearched(songName);
             break;
-        case 1:
-            if(names.count() >= 2)
-            {
-                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[1]);
-            }
-            break;
-        case 2:
-            if(names.count() >= 3)
-            {
-                MusicRightAreaWidget::instance()->songResearchButtonSearched(names[2]);
-            }
-            break;
-        default: break;
     }
 }
 
@@ -876,5 +871,6 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
     {
         menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i + DEFAULT_INDEX_LEVEL1);
     }
+    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_INDEX_LEVEL5);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }
