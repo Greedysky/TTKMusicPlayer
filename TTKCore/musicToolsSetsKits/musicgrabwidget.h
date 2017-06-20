@@ -51,6 +51,7 @@ protected:
      */
 
     bool m_isDrawing;
+    QPixmap m_originPixmap;
     QPoint m_ptCursor, m_ptStart, m_ptEnd;
 
 };

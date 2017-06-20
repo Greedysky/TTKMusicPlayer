@@ -12,11 +12,18 @@
 MusicGrabWidget::MusicGrabWidget(QWidget *parent)
     : QWidget(parent)
 {
-    setWindowFlags(Qt::Widget | Qt::FramelessWindowHint);
-    setWindowOpacity(0.1);
+    setWindowFlags( Qt::Widget | Qt::FramelessWindowHint );
     resize(QApplication::desktop()->width(), QApplication::desktop()->height());
     setCursor(Qt::CrossCursor);
     m_isDrawing = false;
+
+#ifndef MUSIC_GREATER_NEW
+    m_originPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
+                                         0, 0, width(), height());
+#else
+    m_originPixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
+                                         0, 0, width(), height());
+#endif
 }
 
 QString MusicGrabWidget::getClassName()
@@ -62,7 +69,9 @@ void MusicGrabWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    painter.setPen(QPen(Qt::black, 5));
+    painter.setPen(QPen(QColor("#80B7F1"), 1));
+
+    painter.drawPixmap(0, 0, width(), height(), m_originPixmap);
 
     int width, height;
     if(m_isDrawing)
