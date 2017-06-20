@@ -161,5 +161,6 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         m_currentIndex = index;
     }
+
     emit currentIndexChanged(m_currentIndex);
 }

@@ -862,6 +862,7 @@ void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool 
         m_playControl = true;
         musicStatePlay();
         m_playControl = false;
+
         if(remove)
         {
             QFile::remove(prePlayName);
