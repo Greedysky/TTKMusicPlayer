@@ -18,7 +18,7 @@
 #endif
 
 #define WINDOW_HEIGHT   503
-#define WINDOW_WIDTH    661
+#define WINDOW_WIDTH    667
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_windowPopup(popup)
