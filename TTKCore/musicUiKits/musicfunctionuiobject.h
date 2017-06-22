@@ -95,7 +95,6 @@ namespace MusicUIObject
             background-image: url(:/functions/btn_unshow_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_unshow_hover);}";
 
-
     const QString MKGBtnListLoop = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_listLoop_normal);} \

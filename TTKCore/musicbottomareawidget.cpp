@@ -5,6 +5,7 @@
 #include "musicsystemtraymenu.h"
 #include "musicwindowextras.h"
 #include "musiclocalsongsearchdialog.h"
+#include "musicfunctionuiobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -121,40 +122,62 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 
 void MusicBottomAreaWidget::setWindowConcise()
 {
-//    bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
-//    m_supperClass->resize( con ? 380 : 1033, m_supperClass->height());
-//    m_ui->musicWindowConcise->setGeometry(con ? 295 : 888, 30, 25, 25);
-//    m_ui->minimization->setGeometry(con ? 325 : 949, 30, 25, 25);
-//    m_ui->windowClose->setGeometry(con ? 350 : 977, 30, 25, 25);
-////    m_ui->musicWindowConcise->setIcon(QIcon(QString::fromUtf8(con ? ":/image/conciseout" : ":/image/concisein")));
-//    m_ui->musicSongSearchLine->setVisible( !con );
-//    m_ui->resizeWindowLabel->setVisible( !con );
-//    ////////////////////////////////////////////////////////////
-//    m_ui->songsContainer->resize(320, con ? 460 : 490);
-//    m_ui->musicPrevious->setGeometry(con ? 35 : 64, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
-//    m_ui->musicKey->setGeometry(con ? 65 : 127, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
-//    m_ui->musicNext->setGeometry(con ? 95 : 190, con ? 550 : 576, con ? 30 : 50, con ? 30 : 50);
-//    m_ui->musicTimeWidget->move(con ? 15 : 240, 593);
-////    m_ui->verticalLayoutWidget->move(con ? 30 : 255, 583);
-//    m_ui->showCurrentSong->move(con ? 85 : 310, 578);
-//    m_ui->playCurrentTime->move(con ? 307 : 532, 588);
-//    m_ui->playTotalTime->move(con ? 342 : 566, 588);
-//    m_ui->musicBestLove->move(con ? 175 : 695, con ? 555 : 598);
-//    m_ui->musicPlayMode->move(con ? 197 : 735, con ? 552 : 595);
-//    m_ui->musicSimilarFound->move(con ? 220 : 775, con ? 552 : 595);
-//    m_ui->musicDownload->move(con ? 245 : 815, con ? 552 : 595);
-//    m_ui->musicDesktopLrc->move(con ? 270 : 857, con ? 554 : 597);
-//    m_ui->musicSound->move(con ? 290 : 890, con ? 555 : 598);
-//    m_ui->musicSoundSlider->move(con ? 310 : 915, con ? 555 : 599);
-//    ////////////////////////////////////////////////////////////
-//    m_ui->musicEnhancedButton->setVisible( !con );
-//    m_ui->lrcDisplayAllButton->setVisible(m_ui->SurfaceStackedWidget->currentIndex() == 2 && !con);
-//    m_musicWindowExtras->disableBlurBehindWindow( !con );
-//    ////////////////////////////////////////////////////////////
-//    if(m_musicLocalSongSearch)
-//    {
-//        m_musicLocalSongSearch->move(60, con ? 505 : 535);
-//    }
+    bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+
+    m_ui->topRightWidget->setVisible(!con);
+    m_ui->centerRightWidget->setVisible(!con);
+    m_ui->bottomCenterWidget->setVisible(!con);
+    m_ui->bottomRightWidget->setVisible(!con);
+    m_ui->bottomLeftWidget->setMinimumWidth(con ? 370 : 220);
+
+    m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
+    m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::MKGBtnConciseOut : MusicUIObject::MKGBtnConciseIn);
+    m_ui->minimization->setParent(con ? m_ui->background : m_ui->topRightWidget);
+    m_ui->windowClose->setParent(con ? m_ui->background : m_ui->topRightWidget);
+
+    m_ui->musicBestLove->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicDownload->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicMoreFunction->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicSound->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+    m_ui->musicDesktopLrc->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
+
+    if(con)
+    {
+        MusicApplication::instance()->setMinimumSize(370, WINDOW_HEIGHT_MIN);
+        MusicApplication::instance()->setMaximumSize(370, WINDOW_HEIGHT_MIN);
+
+        m_ui->musicWindowConcise->move(295, 20);
+        m_ui->musicWindowConcise->show();
+        m_ui->minimization->move(320, 20);
+        m_ui->minimization->show();
+        m_ui->windowClose->move(345, 20);
+        m_ui->windowClose->show();
+
+        m_ui->horizontalLayout_7->addWidget(m_ui->musicBestLove);
+        m_ui->horizontalLayout_7->addWidget(m_ui->musicDownload);
+        m_ui->horizontalLayout_7->addWidget(m_ui->musicMoreFunction);
+        m_ui->horizontalLayout_7->addWidget(m_ui->musicSound);
+        m_ui->horizontalLayout_7->addWidget(m_ui->musicDesktopLrc);
+    }
+    else
+    {
+        QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+        MusicApplication::instance()->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+        MusicApplication::instance()->setMaximumSize(size.width(), size.height());
+
+        m_ui->horizontalLayout_3->insertWidget(6, m_ui->musicWindowConcise);
+        m_ui->horizontalLayout_3->addWidget(m_ui->minimization);
+        m_ui->horizontalLayout_3->addWidget(m_ui->windowClose);
+
+        m_ui->horizontalLayout_6->insertWidget(0, m_ui->musicBestLove);
+        m_ui->horizontalLayout_6->insertWidget(1, m_ui->musicDownload);
+        m_ui->horizontalLayout_6->insertWidget(2, m_ui->musicMoreFunction);
+        m_ui->horizontalLayout_6->insertWidget(4, m_ui->musicSound);
+        m_ui->horizontalLayout_6->insertWidget(6, m_ui->musicDesktopLrc);
+    }
+
+    m_ui->lrcDisplayAllButton->setVisible(m_ui->surfaceStackedWidget->currentIndex() == 2 && !con);
+    m_musicWindowExtras->disableBlurBehindWindow( !con );
 }
 
 QString MusicBottomAreaWidget::getSearchedText() const
