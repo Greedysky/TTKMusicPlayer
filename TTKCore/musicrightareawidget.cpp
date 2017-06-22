@@ -232,6 +232,11 @@ void MusicRightAreaWidget::getParameterSetting() const
 
 void MusicRightAreaWidget::musicFunctionClicked(int index)
 {
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
+    {
+        MusicApplication::instance()->musicWindowConciseChanged();
+    }
+
     MusicFunction key = MStatic_cast(MusicFunction, index);
     if(key == LrcWidget) ///lrc option
     {
@@ -410,10 +415,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
 {
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
+    {
+        MusicApplication::instance()->musicWindowConciseChanged();
+    }
     if(m_ui->surfaceStackedWidget->currentIndex() != 1)
     {
         musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
     }
+
     m_ui->musiclrccontainerforinline->showSongCommentsWidget();
 }
 
