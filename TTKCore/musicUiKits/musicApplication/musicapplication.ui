@@ -23,7 +23,7 @@
    <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
     <normaloff>:/image/lb_player_logo</normaloff>:/image/lb_player_logo</iconset>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout_5">
+  <layout class="QHBoxLayout" name="mainLayout">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -41,7 +41,7 @@
    </property>
    <item>
     <widget class="MusicTransitionAnimationLabel" name="background">
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="backgroundLayout">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -74,7 +74,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="topWidgetLayout">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -132,7 +132,7 @@
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="topRightWidgetLayout">
             <property name="spacing">
              <number>12</number>
             </property>
@@ -166,7 +166,7 @@
               <property name="styleSheet">
                <string notr="true">#searchWidget{background:rgba(255,255,255,200); border-radius:15px;}</string>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <layout class="QHBoxLayout" name="searchWidgetLayout">
                <property name="spacing">
                 <number>0</number>
                </property>
@@ -416,7 +416,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="hcenterWidgetLayout">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -449,7 +449,7 @@
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QVBoxLayout" name="centerLeftWidgetLayout">
             <property name="spacing">
              <number>0</number>
             </property>
@@ -619,7 +619,7 @@
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="centerRightWidgetLayout">
             <property name="spacing">
              <number>0</number>
             </property>
@@ -652,7 +652,7 @@
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <layout class="QHBoxLayout" name="stackedFunctionWidgetLayout">
                <property name="leftMargin">
                 <number>5</number>
                </property>
@@ -736,7 +736,7 @@
                    <height>16777215</height>
                   </size>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <layout class="QHBoxLayout" name="stackedWidgetFunctionOptionLayout">
                   <property name="spacing">
                    <number>0</number>
                   </property>
@@ -968,7 +968,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <layout class="QHBoxLayout" name="bottomWidgetLayout">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -998,7 +998,7 @@
              <height>16777215</height>
             </size>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <layout class="QHBoxLayout" name="bottomLeftWidgetLayout">
             <property name="spacing">
              <number>0</number>
             </property>
@@ -1167,7 +1167,7 @@
               <property name="styleSheet">
                <string notr="true"/>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <layout class="QHBoxLayout" name="timeWidgetLayout">
                <property name="spacing">
                 <number>0</number>
                </property>
@@ -1268,7 +1268,7 @@
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <layout class="QHBoxLayout" name="bottomRightWidgetLayout">
             <property name="spacing">
              <number>15</number>
             </property>

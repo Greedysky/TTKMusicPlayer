@@ -154,11 +154,11 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->windowClose->move(345, 20);
         m_ui->windowClose->show();
 
-        m_ui->horizontalLayout_7->addWidget(m_ui->musicBestLove);
-        m_ui->horizontalLayout_7->addWidget(m_ui->musicDownload);
-        m_ui->horizontalLayout_7->addWidget(m_ui->musicMoreFunction);
-        m_ui->horizontalLayout_7->addWidget(m_ui->musicSound);
-        m_ui->horizontalLayout_7->addWidget(m_ui->musicDesktopLrc);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicBestLove);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDownload);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicMoreFunction);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicSound);
+        m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDesktopLrc);
     }
     else
     {
@@ -166,15 +166,15 @@ void MusicBottomAreaWidget::setWindowConcise()
         MusicApplication::instance()->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
         MusicApplication::instance()->setMaximumSize(size.width(), size.height());
 
-        m_ui->horizontalLayout_3->insertWidget(6, m_ui->musicWindowConcise);
-        m_ui->horizontalLayout_3->addWidget(m_ui->minimization);
-        m_ui->horizontalLayout_3->addWidget(m_ui->windowClose);
+        m_ui->topRightWidgetLayout->insertWidget(6, m_ui->musicWindowConcise);
+        m_ui->topRightWidgetLayout->addWidget(m_ui->minimization);
+        m_ui->topRightWidgetLayout->addWidget(m_ui->windowClose);
 
-        m_ui->horizontalLayout_6->insertWidget(0, m_ui->musicBestLove);
-        m_ui->horizontalLayout_6->insertWidget(1, m_ui->musicDownload);
-        m_ui->horizontalLayout_6->insertWidget(2, m_ui->musicMoreFunction);
-        m_ui->horizontalLayout_6->insertWidget(4, m_ui->musicSound);
-        m_ui->horizontalLayout_6->insertWidget(6, m_ui->musicDesktopLrc);
+        m_ui->bottomRightWidgetLayout->insertWidget(0, m_ui->musicBestLove);
+        m_ui->bottomRightWidgetLayout->insertWidget(1, m_ui->musicDownload);
+        m_ui->bottomRightWidgetLayout->insertWidget(2, m_ui->musicMoreFunction);
+        m_ui->bottomRightWidgetLayout->insertWidget(4, m_ui->musicSound);
+        m_ui->bottomRightWidgetLayout->insertWidget(6, m_ui->musicDesktopLrc);
     }
 
     m_ui->lrcDisplayAllButton->setVisible(m_ui->surfaceStackedWidget->currentIndex() == 2 && !con);
