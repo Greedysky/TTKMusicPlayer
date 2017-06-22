@@ -52,7 +52,7 @@ public:
     /*!
      * Get class object name.
      */
-    inline bool readCategoryConfig(){ return readConfig(":/data/playlist"); }
+    inline bool readCategoryConfig() { return readConfig(":/data/playlist"); }
     /*!
      * Read user datas from xml file by given name.
      */

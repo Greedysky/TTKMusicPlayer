@@ -32,7 +32,7 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readMusicXMLConfig(){ return readConfig(MUSICPATH_FULL); }
+    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
     /*!
      * Read music datas from xml file by given name.
      */
