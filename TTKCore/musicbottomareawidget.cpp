@@ -123,6 +123,7 @@ void MusicBottomAreaWidget::setRange(int min, int max) const
 void MusicBottomAreaWidget::setWindowConcise()
 {
     bool con = m_musicWindowExtras->isDisableBlurBehindWindow();
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, con);
 
     m_ui->topRightWidget->setVisible(!con);
     m_ui->centerRightWidget->setVisible(!con);

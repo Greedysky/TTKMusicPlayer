@@ -972,7 +972,7 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(event->pos().y() <= 50)
+    if(event->pos().y() <= 50 && !M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
     {
         MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
     }
@@ -1165,6 +1165,12 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, xml.readLanguageIndex());
 
     setGeometry( xml.readWindowGeometry() );
+    value = xml.readWindowConciseConfig();
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, value);
+    if(value == 1)
+    {
+        musicWindowConciseChanged();
+    }
 }
 
 void MusicApplication::writeXMLConfigToText()

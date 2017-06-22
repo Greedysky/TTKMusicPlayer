@@ -40,6 +40,8 @@ public:
         CloseNetWorkChoiced,            ///*Close NetWork Parameter*/
         FileAssociationChoiced,         ///*File Association Parameter*/
         ExtraDevicePathChoiced,         ///*Set Extra Device Path Parameter*/
+        WindowConciseChoiced,           ///*Window Concise Parameter*/
+        RemoteWidgetModeChoiced,        ///*Remote Widget Mode Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/

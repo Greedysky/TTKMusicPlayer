@@ -69,6 +69,16 @@ public:
     /*!
      * Read Close Network Config.
      */
+    inline int readWindowConciseConfig() const
+    { return readXmlAttributeByTagNameValue("windowConcise").toInt(); }
+    /*!
+     * Read Window Concise Config.
+     */
+    inline int readRemoteWidgetModeConfig() const
+    { return readXmlAttributeByTagNameValue("remoteWidgetMode").toInt(); }
+    /*!
+     * Read Remote Widget Mode Config.
+     */
     inline int readSystemAutoPlayConfig() const
     { return readXmlAttributeByTagNameValue("autoPlay").toInt(); }
     /*!

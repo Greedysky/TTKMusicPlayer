@@ -81,6 +81,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     int closeEventChoiced = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toInt();
     int closeNetWorkChoiced = M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt();
     int fileAssociationChoiced = M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt();
+    int windowConciseChoiced = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toInt();
+    int remoteWidgetModeChoiced = M_SETTING_PTR->value(MusicSettingManager::RemoteWidgetModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
@@ -190,6 +192,8 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(settingsDom, "closeEvent", XmlAttribute("value", closeEventChoiced));
     writeDomElement(settingsDom, "closeNetwork", XmlAttribute("value", closeNetWorkChoiced));
     writeDomElement(settingsDom, "fileAssociation", XmlAttribute("value", fileAssociationChoiced));
+    writeDomElement(settingsDom, "windowConcise", XmlAttribute("value", windowConciseChoiced));
+    writeDomElement(settingsDom, "remoteWidgetMode", XmlAttribute("value", remoteWidgetModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(backgroundSkinDom, "bgTheme", XmlAttribute("value", bgThemeChoiced));
