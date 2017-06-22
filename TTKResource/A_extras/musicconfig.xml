@@ -12,6 +12,8 @@
         <closeEvent value="1"/>
         <closeNetwork value="0"/>
         <fileAssociation value="0"/>
+        <windowConcise value="0"/>
+        <remoteWidgetMode value="0"/>
     </settings>
     <backgroundSkin>
         <bgTheme value="theme-15"/>

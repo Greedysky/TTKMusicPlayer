@@ -1039,6 +1039,13 @@ void MusicApplication::readXMLConfigFromText()
         default:break;
     }
     //////////////////////////////////////////////////////////////
+    value = xml.readRemoteWidgetModeConfig();
+    if(value != 0)
+    {
+        m_topAreaWidget->musicRemoteTypeChanged(value);
+        M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, value);
+    }
+    //////////////////////////////////////////////////////////////
     //The size of the volume of the allocation of songs
     value = xml.readMusicPlayVolumeConfig();
     musicVolumeChanged(value);

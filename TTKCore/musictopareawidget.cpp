@@ -360,22 +360,35 @@ void MusicTopAreaWidget::musicDeleteRemote()
 
 void MusicTopAreaWidget::musicRemoteTypeChanged(QAction *type)
 {
-    MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
-    m_musicRemoteWidget = nullptr;
-    if(type->text() == tr("CircleRemote")) musicCircleRemote();
-    else if(type->text() == tr("DiamondRemote")) musicDiamondRemote();
-    else if(type->text() == tr("SquareRemote")) musicSquareRemote();
-    else if(type->text() == tr("RectangleRemote")) musicRectangleRemote();
-    else if(type->text() == tr("SimpleStyleRemote")) musicSimpleStyleRemote();
-    else if(type->text() == tr("ComplexStyleRemote")) musicComplexStyleRemote();
-    else if(type->text() == tr("StripRemote")) musicStripRemote();
-    else if(type->text() == tr("RipplesRemote")) musicRipplesRemote();
-    else
+    if(!m_musicRemoteWidget)
     {
-        m_musicRemoteWidget = tempRemote;
         return;
     }
-    tempRemote->deleteLater();
+
+    MusicRemoteWidget *tempRemote = m_musicRemoteWidget;
+    m_musicRemoteWidget = nullptr;
+
+    musicRemoteTypeChanged(type->data().toInt());
+
+    if(m_musicRemoteWidget)
+    {
+        tempRemote->deleteLater();
+    }
+}
+
+void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
+{
+    switch(type)
+    {
+        case MusicRemoteWidget::Circle: musicCircleRemote(); break;
+        case MusicRemoteWidget::Square: musicSquareRemote(); break;
+        case MusicRemoteWidget::Rectangle: musicRectangleRemote(); break;
+        case MusicRemoteWidget::SimpleStyle: musicSimpleStyleRemote(); break;
+        case MusicRemoteWidget::ComplexStyle: musicComplexStyleRemote(); break;
+        case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
+        case MusicRemoteWidget::Strip: musicStripRemote(); break;
+        case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
+    }
 }
 
 void MusicTopAreaWidget::createRemoteWidget()

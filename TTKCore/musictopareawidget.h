@@ -193,6 +193,10 @@ public Q_SLOTS:
     /*!
      * Switch to diff remote type.
      */
+    void musicRemoteTypeChanged(int type);
+    /*!
+     * Switch to diff remote type.
+     */
 
 protected:
     void createRemoteWidget();

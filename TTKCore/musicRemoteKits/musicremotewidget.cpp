@@ -140,6 +140,18 @@ void MusicRemoteWidget::musicVolumeChanged(int value)
     m_volumeButton->setStyleSheet(style);
 }
 
+void MusicRemoteWidget::show()
+{
+    MusicAbstractMoveWidget::show();
+    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, mapRemoteTypeIndex());
+}
+
+bool MusicRemoteWidget::close()
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, Null);
+    return MusicAbstractMoveWidget::close();
+}
+
 void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     QWidget::contextMenuEvent(event);
@@ -151,22 +163,30 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
     menu.addSeparator();
 
-    menu.addAction(tr("CircleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForCircle*, this));
-    menu.addAction(tr("SquareRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForSquare*, this));
-    menu.addAction(tr("RectangleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForRectangle*, this));
-    menu.addAction(tr("SimpleStyleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
-    menu.addAction(tr("ComplexStyleRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
-    menu.addAction(tr("DiamondRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForDiamond*, this));
-    menu.addAction(tr("StripRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForStrip*, this));
-    menu.addAction(tr("RipplesRemote"))->setEnabled(
-                !MObject_cast(MusicRemoteWidgetForRipples*, this));
+    QAction * action = menu.addAction(tr("CircleRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForCircle*, this));
+    action->setData(Circle);
+    action = menu.addAction(tr("SquareRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForSquare*, this));
+    action->setData(Square);
+    action = menu.addAction(tr("RectangleRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRectangle*, this));
+    action->setData(Rectangle);
+    action = menu.addAction(tr("SimpleStyleRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForSimpleStyle*, this));
+    action->setData(SimpleStyle);
+    action = menu.addAction(tr("ComplexStyleRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForComplexStyle*, this));
+    action->setData(ComplexStyle);
+    action = menu.addAction(tr("DiamondRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForDiamond*, this));
+    action->setData(Diamond);
+    action = menu.addAction(tr("StripRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForStrip*, this));
+    action->setData(Strip);
+    action = menu.addAction(tr("RipplesRemote"));
+    action->setEnabled(!MObject_cast(MusicRemoteWidgetForRipples*, this));
+    action->setData(Ripples);
     menu.addAction(tr("quit"), this, SLOT(close()));
     connect(&menu, SIGNAL(triggered(QAction*)), SIGNAL(musicRemoteTypeChanged(QAction*)));
 
@@ -177,4 +197,17 @@ void MusicRemoteWidget::adjustPostion(QWidget *w)
 {
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     w->move( windowSize.width() - w->width() - 150, w->height() + 70);
+}
+
+int MusicRemoteWidget::mapRemoteTypeIndex()
+{
+    if(MObject_cast(MusicRemoteWidgetForCircle*, this)) return Circle;
+    else if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
+    else if(MObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
+    else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
+    else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
+    else if(MObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
+    else if(MObject_cast(MusicRemoteWidgetForStrip*, this)) return Strip;
+    else if(MObject_cast(MusicRemoteWidgetForRipples*, this)) return Ripples;
+    else return Null;
 }

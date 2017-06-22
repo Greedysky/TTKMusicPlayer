@@ -27,6 +27,19 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
+    enum RemoteType
+    {
+        Null = 0,
+        Circle,
+        Square,
+        Rectangle,
+        SimpleStyle,
+        ComplexStyle,
+        Diamond,
+        Strip,
+        Ripples
+    };
+
     explicit MusicRemoteWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
@@ -85,6 +98,14 @@ public Q_SLOTS:
     /*!
      * Set current play volume change by value.
      */
+    void show();
+    /*!
+     * Override show function.
+     */
+    bool close();
+    /*!
+     * Override close function.
+     */
 
 protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
@@ -94,6 +115,10 @@ protected:
     void adjustPostion(QWidget *w);
     /*!
      * Adjust the widget postion.
+     */
+    int mapRemoteTypeIndex();
+    /*!
+     * Map remote type to index.
      */
 
     QPushButton *m_showMainWindow, *m_PreSongButton;
