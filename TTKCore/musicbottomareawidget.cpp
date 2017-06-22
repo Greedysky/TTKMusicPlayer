@@ -177,7 +177,6 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->bottomRightWidgetLayout->insertWidget(6, m_ui->musicDesktopLrc);
     }
 
-    m_ui->lrcDisplayAllButton->setVisible(m_ui->surfaceStackedWidget->currentIndex() == 2 && !con);
     m_musicWindowExtras->disableBlurBehindWindow( !con );
 }
 
@@ -210,7 +209,6 @@ void MusicBottomAreaWidget::musicSearch()
     {
         m_musicLocalSongSearch = new MusicLocalSongSearchDialog(MusicApplication::instance());
         resizeWindow();
-//        m_musicLocalSongSearch->move(51, !m_musicWindowExtras->isDisableBlurBehindWindow() ? 505 : 535);
     }
     m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
 }
