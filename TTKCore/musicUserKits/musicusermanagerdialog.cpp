@@ -13,7 +13,7 @@ MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
        m_ui(new Ui::MusicUserManagerDialog)
 {
     m_ui->setupUi(this);
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     createButtonPopMenu();

@@ -12,6 +12,8 @@
 MusicNetworkSpeedSuspensionWidget::MusicNetworkSpeedSuspensionWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent), m_thread(nullptr)
 {
+    setWindowFlags( windowFlags() | Qt::Tool );
+
     resize(200, 25);
     QDesktopWidget* desktopWidget = QApplication::desktop();
     if(desktopWidget && desktopWidget->screen())

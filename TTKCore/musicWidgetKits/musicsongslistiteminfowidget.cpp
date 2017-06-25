@@ -10,7 +10,7 @@ MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
       m_ui(new Ui::MusicSongsListItemInfoWidget)
 {
     m_ui->setupUi(this);
-    setWindowFlags(Qt::FramelessWindowHint);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
 }
 
 MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()
