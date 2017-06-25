@@ -31,6 +31,11 @@ namespace MusicUIObject
             background-image: url(:/lrc/lb_wallpaper_normal);} \
             QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_hover);}";
 
+    const QString MKGInlineFloatWallpaperOn = " \
+            QPushButton{ border:none;\
+            background-image: url(:/lrc/lb_wallpaper_on_normal);} \
+            QPushButton:hover{ background-image: url(:/lrc/lb_wallpaper_on_hover);}";
+
     const QString MKGInlineFloatSearch = " \
             QPushButton{ border:none;\
             background-image: url(:/lrc/lb_search_normal);} \

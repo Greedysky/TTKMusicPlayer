@@ -175,6 +175,8 @@
         <file alias="lb_update_normal">../TTKResource/lrc/lb_update_normal.png</file>
         <file alias="lb_wallpaper_hover">../TTKResource/lrc/lb_wallpaper_hover.png</file>
         <file alias="lb_wallpaper_normal">../TTKResource/lrc/lb_wallpaper_normal.png</file>
+        <file alias="lb_wallpaper_on_hover">../TTKResource/lrc/lb_wallpaper_on_hover.png</file>
+        <file alias="lb_wallpaper_on_normal">../TTKResource/lrc/lb_wallpaper_on_normal.png</file>
         <file alias="lb_photo_hover">../TTKResource/lrc/lb_photo_hover.png</file>
         <file alias="lb_photo_normal">../TTKResource/lrc/lb_photo_normal.png</file>
         <file alias="lb_border_hover">../TTKResource/lrc/lb_border_hover.png</file>

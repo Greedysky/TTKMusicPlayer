@@ -46,6 +46,10 @@ public Q_SLOTS:
     /*!
      * Close float setting widget.
      */
+    void musicContainerForWallpaperClicked();
+    /*!
+     * Lrc desktop wallpaper button clicked.
+     */
 
 protected:
     QPushButton *m_more, *m_update, *m_search;

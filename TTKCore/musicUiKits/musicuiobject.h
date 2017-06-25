@@ -228,6 +228,11 @@ namespace MusicUIObject
     const QString MPushButtonStyle13 = " \
             QPushButton::menu-indicator{ image:none;}";
 
+    const QString MPushButtonStyle14 = " \
+            QPushButton{ color:#E6C117;} \
+            QPushButton:hover{ color:#E6E317;} \
+            QPushButton{ text-align:right;}";
+
 
 ///RadioButton
 //////////////////////////////////////////////////////
