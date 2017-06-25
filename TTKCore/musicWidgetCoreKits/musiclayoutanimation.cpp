@@ -71,9 +71,14 @@ void MusicLayoutAnimation::connectTo(QObject *parent)
     connect(m_animation, SIGNAL(finished()), parent, SLOT(updateAnimationLrc()));
 }
 
-void MusicLayoutAnimation::addWidget(QWidget *widget)
+void MusicLayoutAnimation::addStretch(int stretch)
 {
-    m_widgetLayout->addWidget(widget);
+    m_widgetLayout->addStretch(stretch);
+}
+
+void MusicLayoutAnimation::addWidget(QWidget *widget, int stretch, Qt::Alignment alignment)
+{
+    m_widgetLayout->addWidget(widget, stretch, alignment);
 }
 
 void MusicLayoutAnimation::removeWidget(QWidget *widget)

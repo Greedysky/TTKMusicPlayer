@@ -75,7 +75,7 @@ public:
      * Get current play total time.
      */
 
-    inline void getLrcAnalysisModel(MusicLrcAnalysis *analysis)  { m_lrcAnalysis = analysis;}
+    inline void setLrcAnalysisModel(MusicLrcAnalysis *analysis)  { m_lrcAnalysis = analysis;}
     /*!
      * Set lrc analysis model.
      */

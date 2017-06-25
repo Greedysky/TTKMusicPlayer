@@ -2,6 +2,7 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musiclrcfloatsettingwidget.h"
 #include "musicinlinefloatuiobject.h"
+#include "musicrightareawidget.h"
 
 #include <QPushButton>
 
@@ -47,6 +48,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
 
     connect(m_update, SIGNAL(clicked()), parent, SIGNAL(theCurrentLrcUpdated()));
     connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
+    connect(m_wallp, SIGNAL(clicked()), MusicRightAreaWidget::instance(), SLOT(musicContainerForWallpaperClicked()));
     connect(m_photo, SIGNAL(clicked()), m_floatPhotoWidget, SLOT(show()));
     connect(m_floatSettingWidget, SIGNAL(widgetClose()), SLOT(closeFloatSettingWidget()));
     connect(m_more, SIGNAL(clicked()), this, SLOT(showFloatSettingWidget()));

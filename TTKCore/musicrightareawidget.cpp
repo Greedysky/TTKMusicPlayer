@@ -3,6 +3,7 @@
 #include "musicapplication.h"
 #include "musicuiobject.h"
 #include "musiclrccontainerfordesktop.h"
+#include "musiclrccontainerforwallpaper.h"
 #include "musicvideoplaywidget.h"
 #include "musicdownloadstatusobject.h"
 #include "musicsettingwidget.h"
@@ -29,6 +30,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_instance = this;
     m_stackedFuncWidget = nullptr;
     m_musicLrcForDesktop = nullptr;
+    m_musicLrcForWallpaper = nullptr;
 
     m_downloadStatusLabel = new MusicDownloadStatusObject(parent);
     m_setting = new MusicSettingWidget(this);
@@ -41,6 +43,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_setting;
     delete m_downloadStatusLabel;
     delete m_musicLrcForDesktop;
+    delete m_musicLrcForWallpaper;
 }
 
 QString MusicRightAreaWidget::getClassName()
@@ -96,6 +99,10 @@ void MusicRightAreaWidget::stopLrcMask() const
     {
        m_ui->musiclrccontainerforinline->stopLrcMask();
        m_musicLrcForDesktop->stopLrcMask();
+       if(m_musicLrcForWallpaper)
+       {
+           m_musicLrcForWallpaper->stopLrcMask();
+       }
     }
 }
 
@@ -105,6 +112,10 @@ void MusicRightAreaWidget::startTimerClock() const
     {
        m_ui->musiclrccontainerforinline->startTimerClock();
        m_musicLrcForDesktop->startTimerClock();
+       if(m_musicLrcForWallpaper)
+       {
+           m_musicLrcForWallpaper->startTimerClock();
+       }
     }
 }
 
@@ -156,6 +167,10 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
             }
             m_musicLrcForDesktop->setCurrentTime(intervalTime, total);
             m_musicLrcForDesktop->updateCurrentLrc(currentLrc, laterLrc, intervalTime);
+            if(m_musicLrcForWallpaper)
+            {
+                m_musicLrcForWallpaper->updateCurrentLrc(intervalTime);
+            }
         }
     }
 }
@@ -169,6 +184,11 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 
         m_musicLrcForDesktop->stopLrcMask();
         m_musicLrcForDesktop->setCurrentSongName( name );
+        if(m_musicLrcForWallpaper)
+        {
+            m_musicLrcForWallpaper->stopLrcMask();
+            m_musicLrcForWallpaper->setCurrentSongName( name );
+        }
 
         if(!m_ui->musiclrccontainerforinline->transLyricFileToTime( path ))
         {
@@ -614,4 +634,20 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::MKGTinyBtnLrcExpand :
                                                              MusicUIObject::MKGTinyBtnLrcCollapse);
     m_ui->musicWindowConcise->setEnabled(!lrcDisplayAll);
+}
+
+void MusicRightAreaWidget::musicContainerForWallpaperClicked()
+{
+    if(m_musicLrcForWallpaper)
+    {
+        delete m_musicLrcForWallpaper;
+        m_musicLrcForWallpaper = nullptr;
+    }
+    else
+    {
+        m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
+        m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
+        m_musicLrcForWallpaper->setSettingParameter();
+        m_musicLrcForWallpaper->showFullScreen();
+    }
 }

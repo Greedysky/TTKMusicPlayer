@@ -47,7 +47,7 @@ public:
     /*!
      * Set mask linear gradient color.
      */
-    virtual void setSettingParameter();
+    virtual void setSettingParameter() override;
     /*!
      * Set setting parameter.
      */

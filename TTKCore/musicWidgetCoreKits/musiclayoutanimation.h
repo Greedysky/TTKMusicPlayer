@@ -46,7 +46,11 @@ public:
     /*!
      * Connect to parent.
      */
-    void addWidget(QWidget *widget);
+    void addStretch(int stretch = 0);
+    /*!
+     * Add widget layout stretch.
+     */
+    void addWidget(QWidget *widget, int stretch = 0, Qt::Alignment alignment = 0);
     /*!
      * Add widget to container.
      */
