@@ -55,12 +55,10 @@ protected:
      * Set desktop wallpaper.
      */
 
-    bool m_run;
-    bool m_returnToOrigin;
-    int m_currentImageIndex;
-    int m_originType;
-    MusicObject::MStriantMap m_paramter;
+    bool m_run, m_returnToOrigin;
+    int m_currentImageIndex, m_originType;
     QString m_originPath;
+    MusicObject::MStriantMap m_paramter;
 
 };
 

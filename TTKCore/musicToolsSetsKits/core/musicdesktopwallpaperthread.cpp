@@ -52,6 +52,7 @@ void MusicDesktopWallpaperThread::run()
     int type = m_paramter.value("Type").toInt();
     int func = m_paramter.value("Func").toInt();
     m_returnToOrigin = m_paramter.value("Close").toBool();
+
     while(m_run)
     {
         if(path.isEmpty())
@@ -65,7 +66,7 @@ void MusicDesktopWallpaperThread::run()
             QStringList names = M_BACKGROUND_PTR->getArtPhotoPaths();
             !names.isEmpty() ? path << names : path << m_originPath;
         }
-        if( func == 1) ///random mode
+        if(func == 1) ///random mode
         {
             m_currentImageIndex = qrand() % path.size();
         }

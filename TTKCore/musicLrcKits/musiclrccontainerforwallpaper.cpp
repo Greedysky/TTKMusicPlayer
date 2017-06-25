@@ -1,4 +1,5 @@
 #include "musiclrccontainerforwallpaper.h"
+#include "musicdesktopwallpaperthread.h"
 #include "musiclrcmanagerforinline.h"
 #include "musiclayoutanimation.h"
 #include "musiclrcanalysis.h"
@@ -31,11 +32,23 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     vBoxLayout->addWidget(m_layoutWidget);
 
     m_animationFreshTime = 0;
+
+    m_wallThread = new MusicDesktopWallpaperThread(this);
+    MusicObject::MStriantMap para;
+    para.insert("Mode", 2);
+    para.insert("Path", "Play");
+    para.insert("Type", 2);
+    para.insert("Func", 1);
+    para.insert("Time", 10);
+    para.insert("Close", true);
+    m_wallThread->setParamters(para);
 }
 
 MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
 {
     clearAllMusicLRCManager();
+    m_wallThread->stopAndQuitThread();
+    delete m_wallThread;
 }
 
 QString MusicLrcContainerForWallpaper::getClassName()
@@ -105,6 +118,7 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
         m_animationFreshTime = time;
         m_layoutWidget->start();
     }
+    m_wallThread->start();
 }
 
 void MusicLrcContainerForWallpaper::changeCurrentLrcColor()

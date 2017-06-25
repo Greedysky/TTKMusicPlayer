@@ -12,6 +12,7 @@
 #include "musiclrccontainer.h"
 
 class MusicLayoutAnimation;
+class MusicDesktopWallpaperThread;
 
 /*! @brief The class of the wall paper lrc container.
  * @author Greedysky <greedysky@163.com>
@@ -80,7 +81,7 @@ protected:
 
     int m_animationFreshTime;
     MusicLayoutAnimation *m_layoutWidget;
-
+    MusicDesktopWallpaperThread *m_wallThread;
 };
 
 #endif // MUSICLRCCONTAINERFORWALLPAPER_H
