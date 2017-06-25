@@ -26,7 +26,7 @@ QString MusicLrcContainer::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const
+void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType)
 {
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
@@ -57,6 +57,7 @@ void MusicLrcContainer::setLinearGradientColor(MusicLRCManager::LrcColorType lrc
     }
     M_SETTING_PTR->setValue( (m_containerType == "DESKTOP") ? MusicSettingManager::DLrcColorChoiced :
                                                               MusicSettingManager::LrcColorChoiced, lrcColorType);
+    emit linearGradientColorChanged();
 }
 
 void MusicLrcContainer::setSettingParameter()
@@ -160,7 +161,7 @@ void MusicLrcContainer::clearAllMusicLRCManager()
     }
 }
 
-void MusicLrcContainer::setSettingParameter(const QString &t) const
+void MusicLrcContainer::setSettingParameter(const QString &t)
 {
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {

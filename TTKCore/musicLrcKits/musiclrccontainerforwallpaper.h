@@ -38,7 +38,7 @@ public:
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) const override;
+    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) override;
     /*!
      * Set mask linear gradient color.
      */
@@ -54,6 +54,12 @@ public:
     void updateCurrentLrc(qint64 time);
     /*!
      * Update current lrc by given time.
+     */
+
+public Q_SLOTS:
+    void changeCurrentLrcColor();
+    /*!
+     * Change current lrc linear color.
      */
 
 private Q_SLOTS:

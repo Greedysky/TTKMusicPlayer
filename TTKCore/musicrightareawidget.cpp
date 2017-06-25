@@ -143,6 +143,10 @@ void MusicRightAreaWidget::setSettingParameter() const
 {
     m_musicLrcForDesktop->setSettingParameter();
     m_ui->musiclrccontainerforinline->setSettingParameter();
+    if(m_musicLrcForWallpaper)
+    {
+        m_musicLrcForWallpaper->setSettingParameter();
+    }
 }
 
 bool MusicRightAreaWidget::checkSettingParameterValue() const
@@ -649,5 +653,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
+        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper,
+                                                  SLOT(changeCurrentLrcColor()));
     }
 }

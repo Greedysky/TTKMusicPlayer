@@ -49,12 +49,13 @@ void MusicLrcContainerForDesktop::stopLrcMask()
     }
 }
 
-void MusicLrcContainerForDesktop::setMaskLinearGradientColor(const QList<QColor> &colors) const
+void MusicLrcContainerForDesktop::setMaskLinearGradientColor(const QList<QColor> &colors)
 {
     foreach(MusicLRCManager *manager, m_musicLrcContainer)
     {
         manager->setMaskLinearGradientColor(colors);
     }
+    emit maskLinearGradientColorChanged();
 }
 
 void MusicLrcContainerForDesktop::setSettingParameter()

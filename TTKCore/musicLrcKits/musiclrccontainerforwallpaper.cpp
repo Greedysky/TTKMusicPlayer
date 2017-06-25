@@ -54,9 +54,10 @@ void MusicLrcContainerForWallpaper::stopLrcMask()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForWallpaper::setMaskLinearGradientColor(const QList<QColor> &colors) const
+void MusicLrcContainerForWallpaper::setMaskLinearGradientColor(const QList<QColor> &colors)
 {
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setMaskLinearGradientColor(colors);
+    emit maskLinearGradientColorChanged();
 }
 
 void MusicLrcContainerForWallpaper::setSettingParameter()
@@ -94,7 +95,7 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     }
     m_layoutWidget->addStretch(1);
 
-    initCurrentLrc(tr("noCurrentSongPlay"));
+    initCurrentLrc(tr("Init Wallpaper Module"));
 }
 
 void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
@@ -104,6 +105,11 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
         m_animationFreshTime = time;
         m_layoutWidget->start();
     }
+}
+
+void MusicLrcContainerForWallpaper::changeCurrentLrcColor()
+{
+    setSettingParameter();
 }
 
 void MusicLrcContainerForWallpaper::updateAnimationLrc()

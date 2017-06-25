@@ -47,7 +47,7 @@ public:
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) const override;
+    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) override;
     /*!
      * Set mask linear gradient color.
      */

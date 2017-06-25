@@ -44,12 +44,12 @@ public:
      * Stop timer clock to draw lrc.
      * Subclass should implement this function.
      */
-    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) const = 0;
+    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) = 0;
     /*!
      * Set mask linear gradient color.
      * Subclass should implement this function.
      */
-    virtual void setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType) const;
+    virtual void setLinearGradientColor(MusicLRCManager::LrcColorType lrcColorType);
     /*!
      * Set linear gradient color.
      */
@@ -97,6 +97,14 @@ Q_SIGNALS:
     /*!
      * Change current setting widget to setting widget.
      */
+    void maskLinearGradientColorChanged();
+    /*!
+     * Mask linear gradient color changed.
+     */
+    void linearGradientColorChanged();
+    /*!
+     * Linear gradient color changed.
+     */
 
 public Q_SLOTS:
     void currentLrcCustom();
@@ -137,7 +145,7 @@ protected:
     /*!
      * Clear all music lrc manager.
      */
-    void setSettingParameter(const QString &t) const;
+    void setSettingParameter(const QString &t);
     /*!
      * Set setting parameter by diff type.
      */

@@ -91,9 +91,10 @@ void MusicLrcContainerForInline::stopLrcMask()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForInline::setMaskLinearGradientColor(const QList<QColor> &colors) const
+void MusicLrcContainerForInline::setMaskLinearGradientColor(const QList<QColor> &colors)
 {
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setMaskLinearGradientColor(colors);
+    emit maskLinearGradientColorChanged();
 }
 
 void MusicLrcContainerForInline::setSettingParameter()
