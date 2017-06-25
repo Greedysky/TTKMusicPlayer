@@ -14,6 +14,7 @@
 #include "musicuiobject.h"
 #include "musicsettingmanager.h"
 
+class MusicLrcAnalysis;
 class MusicLrcSearchWidget;
 
 /*! @brief The class of the lrc container base.
@@ -72,6 +73,15 @@ public:
     qint64 getTotalTime() const;
     /*!
      * Get current play total time.
+     */
+
+    inline void getLrcAnalysisModel(MusicLrcAnalysis *analysis)  { m_lrcAnalysis = analysis;}
+    /*!
+     * Set lrc analysis model.
+     */
+    inline MusicLrcAnalysis* getLrcAnalysisModel() const { return m_lrcAnalysis;}
+    /*!
+     * Get lrc analysis model.
      */
 
 Q_SIGNALS:
@@ -135,6 +145,7 @@ protected:
     bool m_linkLocalLrc;
     qint64 m_currentTime, m_totalTime;
     QString m_currentSongName, m_containerType;
+    MusicLrcAnalysis *m_lrcAnalysis;
     QList<MusicLRCManager*> m_musicLrcContainer;
     MusicLrcSearchWidget *m_musicLrcSearchWidget;
 

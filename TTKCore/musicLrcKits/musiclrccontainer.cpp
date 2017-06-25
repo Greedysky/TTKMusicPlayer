@@ -12,6 +12,7 @@ MusicLrcContainer::MusicLrcContainer(QWidget *parent)
     m_currentTime = 0;
     m_totalTime = 0;
     m_linkLocalLrc = true;
+    m_lrcAnalysis = nullptr;
     m_musicLrcSearchWidget = nullptr;
 }
 

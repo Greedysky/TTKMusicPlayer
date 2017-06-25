@@ -14,7 +14,6 @@
 
 class MusicLrcFloatWidget;
 class MusicClickedLabel;
-class MusicLrcAnalysis;
 class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
 class MusicLayoutAnimation;
@@ -86,6 +85,7 @@ public:
     /*!
      * Get state of background is artist shown.
      */
+
     void setLrcSize(int size);
     /*!
      * Set current lrc size.
@@ -227,7 +227,6 @@ protected:
     qint64 m_changeSpeedValue;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
-    MusicLrcAnalysis *m_lrcAnalysis;
     MusicLrcCommentsWidget *m_commentsWidget;
     MusicLrcTranslatedWidget *m_translatedWidget;
     MusicLayoutAnimation *m_layoutWidget;
