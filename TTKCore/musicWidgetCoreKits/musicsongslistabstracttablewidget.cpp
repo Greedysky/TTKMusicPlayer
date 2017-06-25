@@ -149,7 +149,7 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
         return;
     }
 
-    MusicSongSharingWidget shareWidget;
+    MusicSongSharingWidget shareWidget(this);
     shareWidget.setSongName( getCurrentSongName() );
     shareWidget.exec();
 }

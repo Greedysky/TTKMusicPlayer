@@ -185,7 +185,6 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     {
         m_ui->musiclrccontainerforinline->stopLrcMask();
         m_ui->musiclrccontainerforinline->setCurrentSongName( name );
-
         m_musicLrcForDesktop->stopLrcMask();
         m_musicLrcForDesktop->setCurrentSongName( name );
         if(m_musicLrcForWallpaper)
