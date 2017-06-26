@@ -11,7 +11,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadwyinterface.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.h
-    ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywycommentsthread.h
+    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicwydiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.h
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.h
@@ -22,34 +22,39 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmartistthread.h
     ${MUSIC_NETWORK_DIR}/xm/musicxmtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.h
-    ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/xm/musicxmcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/xm/musicxmdiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadkginterface.h
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.h
-    ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/kg/musickgcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/kg/musickgdiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadkwinterface.h
     ${MUSIC_NETWORK_DIR}/kw/musickwtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.h
-    ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/kw/musickwcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/kw/musickwdiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.h
-    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/bd/musicbdcommentsthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.h
+    ${MUSIC_NETWORK_DIR}/bd/musicbddiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqqinterface.h
     ${MUSIC_NETWORK_DIR}/qq/musicqqtextdownloadthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.h
-    ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/qq/musicqqcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/qq/musicqqdiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
@@ -67,6 +72,9 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.h
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.h
     ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
@@ -80,7 +88,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadwyinterface.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywythread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwytextdownloadthread.cpp
-    ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywycommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/wy/musicwycommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicwydiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.cpp
@@ -91,34 +99,39 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmartistthread.cpp
     ${MUSIC_NETWORK_DIR}/xm/musicxmtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.cpp
-    ${MUSIC_NETWORK_DIR}/xm/musicdownloadqueryxmcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/xm/musicxmcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/xm/musicxmdiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadkginterface.cpp
     ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.cpp
-    ${MUSIC_NETWORK_DIR}/kg/musicdownloadquerykgcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/kg/musickgcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/kg/musickgdiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadkwinterface.cpp
     ${MUSIC_NETWORK_DIR}/kw/musickwtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.cpp
-    ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/kw/musickwcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/kw/musickwdiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadbdinterface.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdplaylistthread.cpp
-    ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/bd/musicbdcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.cpp
+    ${MUSIC_NETWORK_DIR}/bd/musicbddiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqqinterface.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicqqtextdownloadthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.cpp
-    ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/qq/musicqqcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/qq/musicqqdiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
@@ -136,5 +149,8 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.cpp
     ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.cpp
   )
   

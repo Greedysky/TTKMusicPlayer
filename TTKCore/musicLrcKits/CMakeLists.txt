@@ -9,6 +9,7 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainer.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerfordesktop.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforinline.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.h
@@ -31,6 +32,7 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanager.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerfordesktop.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmanagerforinline.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforwallpaper.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainer.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerfordesktop.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrccontainerforinline.cpp
