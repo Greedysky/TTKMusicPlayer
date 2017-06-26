@@ -56,16 +56,13 @@ void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
     }
 }
 
-QList<QColor> MusicLrcColorWidget::getColors()
+QList<QColor> MusicLrcColorWidget::getColors() const
 {
     QList<QColor> colors;
     for(int i=0; i<m_ui->listWidget->count(); ++i)
     {
         colors << m_ui->listWidget->item(i)->backgroundColor();
     }
-
-    QLinearGradient line;
-
     return colors;
 }
 

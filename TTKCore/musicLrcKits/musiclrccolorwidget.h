@@ -36,7 +36,7 @@ public:
     /*!
      * Set current colors.
      */
-    QList<QColor> getColors();
+    QList<QColor> getColors() const;
     /*!
      * Get selected colors.
      */
