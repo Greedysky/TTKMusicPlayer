@@ -162,7 +162,7 @@ void MusicUserRecordWidget::openFileButtonClickedS()
     {
         name = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
     }
-    path = QString("%1%2").arg(CACHE_DIR_FULL)
+    path = QString("%1%2").arg(AVATAR_DIR_FULL)
                           .arg(QString(name.toHex().toUpper()));
     file.copy( path );
     file.close();

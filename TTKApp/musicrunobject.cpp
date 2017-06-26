@@ -13,6 +13,8 @@
 #define S_CACHE_DIR_FULL          S_DOWNLOADS_DIR_FULL + CACHE_DIR
 #define S_ART_DIR_FULL            S_DOWNLOADS_DIR_FULL + ART_DIR
 #define S_BACKGROUND_DIR_FULL     S_DOWNLOADS_DIR_FULL + BACKGROUND_DIR
+#define S_AVATAR_DIR_FULL         S_DOWNLOADS_DIR_FULL + AVATAR_DIR
+#define S_USER_THEME_DIR_FULL     S_DOWNLOADS_DIR_FULL + USER_THEME_DIR
 
 #define S_COFIGPATH_FULL          S_APPDATA_DIR_FULL + COFIGPATH
 #define S_MUSICPATH_FULL          S_APPDATA_DIR_FULL + MUSICPATH
@@ -26,7 +28,6 @@
 #define S_THEME_DIR_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + THEME_DIR
 #define S_PLUGINS_DIR_FULL        MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + PLUGINS_DIR
 #define S_LANGUAGE_DIR_FULL       MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + LANGUAGE_DIR
-#define S_SOUNDPATH_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + SOUNDPATH
 
 #ifdef Q_OS_WIN
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
@@ -106,7 +107,7 @@ void MusicRunObject::dirIsExist(const QString &name)
     QDir dir;
     if(!dir.exists(name))
     {
-        dir.mkdir(name);
+        dir.mkpath(name);
     }
 }
 
@@ -121,6 +122,8 @@ void MusicRunObject::checkTheDirectoryExist()
     dirIsExist(S_CACHE_DIR_FULL);
     dirIsExist(S_ART_DIR_FULL);
     dirIsExist(S_BACKGROUND_DIR_FULL);
+    dirIsExist(S_AVATAR_DIR_FULL);
+    dirIsExist(S_USER_THEME_DIR_FULL);
 
     dirIsExist(S_THEME_DIR_FULL);
     dirIsExist(S_PLUGINS_DIR_FULL);
@@ -160,10 +163,6 @@ void MusicRunObject::checkTheFileNeededExist()
     if(!QFile::exists(S_BARRAGEPATH_FULL))
     {
         QFile::copy(":/data/musicbarrage.ttk", S_BARRAGEPATH_FULL);
-    }
-    if(!QFile::exists(S_SOUNDPATH_FULL))
-    {
-        QFile::copy(":/data/sound.wav", S_SOUNDPATH_FULL);
     }
 
 #ifdef Q_OS_UNIX

@@ -169,7 +169,8 @@ QString MusicTransformWidget::getTransformSongName() const
 
 void MusicTransformWidget::transformFinish()
 {
-    QSound::play(SOUNDPATH_FULL);
+    QSound::play(":/data/sound");
+
     m_path.removeAt(0);
     m_ui->listWidget->clear();
 

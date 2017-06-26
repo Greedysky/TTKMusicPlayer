@@ -8,7 +8,6 @@
         <file alias="musichistory.ttk">../TTKResource/A_extras/musichistory.ttk</file>
         <file alias="musicuser.dll">../TTKResource/A_extras/musicuser.dll</file>
         <file alias="musicuser.ttk">../TTKResource/A_extras/musicuser.ttk</file>
-        <file alias="sound.wav">../TTKResource/A_extras/sound.wav</file>
         <file alias="TTKLDD.sh">../TTKResource/A_extras/TTKLDD.sh</file>
         <file alias="TTKService.sh">../TTKResource/A_extras/TTKService.sh</file>
     </qresource>

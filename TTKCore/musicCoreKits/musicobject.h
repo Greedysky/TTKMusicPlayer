@@ -29,6 +29,8 @@
 #define THEME_DIR               "MTheme/"
 #define CACHE_DIR               "MCached/"
 #define ART_DIR                 "MArt/"
+#define AVATAR_DIR              "MRes/avatar/"
+#define USER_THEME_DIR          "MRes/theme/"
 #define PLUGINS_DIR             "MPlugins/"
 #define BACKGROUND_DIR          "MArt/background/"
 #define LANGUAGE_DIR            "MLanguage/"
@@ -61,7 +63,6 @@
 #define DARABASEPATH            "musicuser.dll"
 #define USERPATH                "musicuser.ttk"
 #define BARRAGEPATH             "musicbarrage.ttk"
-#define SOUNDPATH               "sound.wav"
 
 ///////////////////////////////////////
 #if defined (Q_OS_ANDROID)
@@ -79,6 +80,8 @@
 #define CACHE_DIR_FULL          DOWNLOADS_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
+#define AVATAR_DIR_FULL         DOWNLOADS_DIR_FULL + AVATAR_DIR
+#define USER_THEME_DIR_FULL     DOWNLOADS_DIR_FULL + USER_THEME_DIR
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
@@ -92,7 +95,6 @@
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
-#define SOUNDPATH_FULL          MusicObject::getAppDir() + SOUNDPATH
 
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC

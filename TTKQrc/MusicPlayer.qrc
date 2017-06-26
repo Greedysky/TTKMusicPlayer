@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/data">
         <file alias="playlist">../TTKResource/A_extras/playlist</file>
+        <file alias="sound">../TTKResource/A_extras/sound.wav</file>
     </qresource>
     <qresource prefix="/image">
         <file alias="lb_logo">../TTKResource/logo_pic.png</file>
