@@ -11,7 +11,6 @@
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QSignalMapper>
-#include <QDebug>
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -97,7 +96,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     {
         QString fileName = info.fileName();
         fileName.chop(4);
-        m_backgroundList->createItem(fileName, info.filePath());
+        m_backgroundList->createItem(fileName, info.filePath(), false);
     }
 
     files = QDir(USER_THEME_DIR_FULL)
@@ -106,7 +105,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
     {
         QString fileName = info.fileName();
         fileName.chop(4);
-        m_myBackgroundList->createItem(fileName, info.filePath());
+        m_myBackgroundList->createItem(fileName, info.filePath(), true);
     }
 }
 
@@ -220,7 +219,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetItemClicked(const QString &n
     {
         QString path = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(name).arg(SKN_FILE);
         QFile::copy(QString("%1%2%3").arg(THEME_DIR_FULL).arg(name).arg(SKN_FILE), path);
-        m_myBackgroundList->createItem(name, path);
+        m_myBackgroundList->createItem(name, path, true);
     }
     m_myBackgroundList->clearSelectState();
     m_myBackgroundList->setCurrentItemName(name);
@@ -247,6 +246,7 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
         data << fileName.trimmed().toInt();
     }
     qSort(data.begin(), data.end(), qGreater<int>());
+
     if(!data.isEmpty())
     {
         m_myThemeIndex = data.first();
@@ -256,9 +256,9 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
         }
     }
 
-    QFile::copy(path, QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL)
-                             .arg(m_myThemeIndex + 1).arg(SKN_FILE));
-    m_myBackgroundList->createItem(QString("theme-%1").arg(m_myThemeIndex + 1), path);
+    QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(m_myThemeIndex + 1).arg(SKN_FILE);
+    QFile::copy(path, des);
+    m_myBackgroundList->createItem(QString("theme-%1").arg(m_myThemeIndex + 1), des, true);
 }
 
 int MusicBackgroundSkinDialog::exec()

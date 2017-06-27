@@ -1,6 +1,8 @@
 #include "musicbackgroundlistwidget.h"
+#include "musicmessagebox.h"
 
 #include <QPainter>
+#include <QMouseEvent>
 
 MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     : QLabel(parent)
@@ -9,7 +11,9 @@ MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     setCursor(Qt::PointingHandCursor);
 
     m_printMask = false;
+    m_closeMask = false;
     m_isSelected = false;
+    m_closeSet = false;
 }
 
 QString MusicBackgroundListItem::getClassName()
@@ -23,16 +27,31 @@ void MusicBackgroundListItem::select(bool select)
     update();
 }
 
+void MusicBackgroundListItem::closeSet(bool set)
+{
+    m_closeSet = set;
+    update();
+}
+
 void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
 {
     QLabel::mousePressEvent(event);
-    emit itemClicked(this);
+
+    if(m_closeSet && QRect(width() - 14 - 6, 6, 14, 14).contains(event->pos()))
+    {
+        emit closeClicked(this);
+    }
+    else
+    {
+        emit itemClicked(this);
+    }
 }
 
 void MusicBackgroundListItem::leaveEvent(QEvent *event)
 {
     QLabel::leaveEvent(event);
     m_printMask = false;
+    m_closeMask = false;
     update();
 }
 
@@ -40,6 +59,7 @@ void MusicBackgroundListItem::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);
     m_printMask = true;
+    m_closeMask = true;
     update();
 }
 
@@ -59,7 +79,6 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.setBrush(QColor(0, 0, 0, 155));
         painter.drawRect(rect());
 
-
         QFont f = painter.font();
         f.setPixelSize(13);
         painter.setFont(f);
@@ -69,6 +88,12 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
         painter.drawText((width() - metric.width(tr("Used By 88888")))/2, 50, tr("Used By 88888"));
         painter.drawText((width() - metric.width(tr("Au: Greedysky")))/2, 68, tr("Au: Greedysky"));
+    }
+
+    if(m_closeSet && m_closeMask)
+    {
+        QPainter painter(this);
+        painter.drawPixmap(width() - 14 - 6, 6, 14, 14, QPixmap(":/functions/btn_close_hover"));
     }
 }
 
@@ -123,13 +148,15 @@ void MusicBackgroundListWidget::clearAllItems()
     }
 }
 
-void MusicBackgroundListWidget::createItem(const QString &name, const QString &path)
+void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
+    item->closeSet(state);
     item->setFileName(name);
+    item->setFilePath(path);
     item->setPixmap( QPixmap(path).scaled(item->size()) );
-    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)),
-                  SLOT(itemHasClicked(MusicBackgroundListItem*)));
+    connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
+    connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
     m_layout->addWidget(item, m_items.count()/4, m_items.count()%4, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
@@ -147,11 +174,55 @@ bool MusicBackgroundListWidget::contains(const QString &name) const
     return false;
 }
 
+int MusicBackgroundListWidget::find(MusicBackgroundListItem *item) const
+{
+    for(int i=0; i<m_items.count(); ++i)
+    {
+        if(m_items[i] == item)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 void MusicBackgroundListWidget::updateLastedItem()
 {
     if(!m_items.isEmpty())
     {
         itemHasClicked(m_items.last());
+    }
+}
+
+void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
+{
+    if(m_items.count() == 1)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Last One Item Can not be deleted!"));
+        message.exec();
+        return;
+    }
+
+    m_layout->removeWidget(item);
+    int index = find(item);
+    int cIndex = find(m_currentItem);
+    QFile::remove(item->getFilePath());
+    m_items.takeAt(index)->deleteLater();
+
+    if(index == cIndex)
+    {
+        m_currentItem = nullptr;
+        if(!m_items.isEmpty())
+        {
+            itemHasClicked( m_items[index == 0 ? 0 : index - 1] );
+        }
+    }
+
+    for(int i=index; i<m_items.count(); ++i)
+    {
+        m_layout->addWidget(m_items[i], i/4, i%4, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 

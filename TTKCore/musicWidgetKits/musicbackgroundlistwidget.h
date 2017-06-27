@@ -41,6 +41,14 @@ public:
     /*!
      * Get item file name.
      */
+    inline void setFilePath(const QString &path) { m_path = path; }
+    /*!
+     * Set item file name.
+     */
+    inline QString getFilePath() const { return m_path; }
+    /*!
+     * Get item file name.
+     */
 
     void select(bool select);
     /*!
@@ -50,8 +58,20 @@ public:
     /*!
      * Get current selected item state.
      */
+    void closeSet(bool set);
+    /*!
+     * Close option set the current item.
+     */
+    inline bool isCloseSet() const { return m_closeSet; }
+    /*!
+     * Get close option set the current item.
+     */
 
 Q_SIGNALS:
+    void closeClicked(MusicBackgroundListItem *item);
+    /*!
+     * Current item close clicked.
+     */
     void itemClicked(MusicBackgroundListItem *item);
     /*!
      * Current item clicked.
@@ -66,9 +86,9 @@ protected:
      * Override the widget event.
      */
 
-    bool m_printMask;
-    bool m_isSelected;
-    QString m_name;
+    bool m_printMask, m_isSelected;
+    bool m_closeMask, m_closeSet;
+    QString m_name, m_path;
 
 };
 
@@ -103,13 +123,17 @@ public:
     /*!
      * Clear All Items.
      */
-    void createItem(const QString &name, const QString &path);
+    void createItem(const QString &name, const QString &path, bool state);
     /*!
      * Create item by name and path.
      */
     bool contains(const QString &name) const;
     /*!
-     * Current item contans or not.
+     * Current item contains or not.
+     */
+    int find(MusicBackgroundListItem *item) const;
+    /*!
+     * Current item index at container.
      */
 
     void updateLastedItem();
@@ -129,6 +153,10 @@ Q_SIGNALS:
      */
 
 private Q_SLOTS:
+    void itemCloseClicked(MusicBackgroundListItem *item);
+    /*!
+     * Current item close clicked.
+     */
     void itemHasClicked(MusicBackgroundListItem *item);
     /*!
      * Current item has clicked.
