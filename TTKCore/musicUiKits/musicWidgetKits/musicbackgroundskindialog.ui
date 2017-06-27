@@ -58,7 +58,7 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="MusicClickedLabel" name="mySkin">
+  <widget class="MusicClickedLabel" name="recommendSkin">
    <property name="geometry">
     <rect>
      <x>24</x>
@@ -71,7 +71,7 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
-    <string>皮肤</string>
+    <string>推荐</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -121,7 +121,7 @@
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="MusicAnimationStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -130,9 +130,8 @@
       <height>281</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
+    <widget class="QScrollArea" name="recommandScrollArea"/>
+    <widget class="QScrollArea" name="userScrollArea"/>
    </widget>
   </widget>
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
@@ -206,11 +205,30 @@
     <string/>
    </property>
   </widget>
+  <widget class="MusicClickedLabel" name="mySkin">
+   <property name="geometry">
+    <rect>
+     <x>105</x>
+     <y>40</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>我的</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>mySkin</zorder>
+  <zorder>recommendSkin</zorder>
   <zorder>customSkin</zorder>
   <zorder>paletteButton</zorder>
   <zorder>listTransparentLabel</zorder>
@@ -218,6 +236,7 @@
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
   <zorder>resetWindowButton</zorder>
+  <zorder>mySkin</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -235,6 +254,12 @@
    <class>MusicBackgroundPopWidget</class>
    <extends>QWidget</extends>
    <header>musicbackgroundpopwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicAnimationStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>musicanimationstackedwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

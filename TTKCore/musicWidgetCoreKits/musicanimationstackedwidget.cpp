@@ -164,6 +164,16 @@ void MusicAnimationStackedWidget::setLength(int length, AnimationType type)
     }
 }
 
+int MusicAnimationStackedWidget::getPreviousIndex() const
+{
+    return m_previousIndex;
+}
+
+int MusicAnimationStackedWidget::getCurrentIndex() const
+{
+    return m_currentIndex;
+}
+
 void MusicAnimationStackedWidget::setDuration(int duration)
 {
     m_animation->setDuration(duration);

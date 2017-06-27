@@ -412,8 +412,10 @@ void MusicTopAreaWidget::createRemoteWidget()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
-    QString path = THEME_DIR_FULL + m_currentBgSkin + SKN_FILE;
+    QString path = USER_THEME_DIR_FULL + m_currentBgSkin + SKN_FILE;
+    MusicBackgroundSkinDialog::themeValidCheck(m_currentBgSkin, path);
     M_BACKGROUND_PTR->setMBackground(path);
+
     if(m_musicbgskin)
     {
         m_musicbgskin->updateBackground(path);

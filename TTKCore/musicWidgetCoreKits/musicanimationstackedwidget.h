@@ -52,6 +52,14 @@ public:
     /*!
      * Set animation start and end pos distance and animation type.
      */
+    int getPreviousIndex() const;
+    /*!
+     * Get previoud index.
+     */
+    int getCurrentIndex() const;
+    /*!
+     * Get current index.
+     */
 
     void setDuration(int duration);
     /*!

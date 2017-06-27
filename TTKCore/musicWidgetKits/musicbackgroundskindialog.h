@@ -34,7 +34,10 @@ public:
     /*!
      * Get class object name.
      */
-
+    static bool themeValidCheck(QString &name, QString &path);
+    /*!
+     * Theme valid check.
+     */
     void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
@@ -80,6 +83,18 @@ public Q_SLOTS:
     /*!
      * Change index to custom skin dialog.
      */
+    void backgroundListWidgetChanged(int index);
+    /*!
+     * Background list widget changed.
+     */
+    void backgroundListWidgetItemClicked(const QString &name);
+    /*!
+     * Background list widget item has clicked.
+     */
+    void myBackgroundListWidgetItemClicked(const QString &name);
+    /*!
+     * My background list widget item has clicked.
+     */
     virtual int exec();
     /*!
      * Override exec function.
@@ -95,8 +110,9 @@ protected:
      * Copy custom file to local themes dir path.
      */
 
+    int m_myThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
-    MusicBackgroundListWidget *m_backgroundList;
+    MusicBackgroundListWidget *m_backgroundList, *m_myBackgroundList;
 
 };
 

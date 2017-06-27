@@ -107,6 +107,14 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
     }
 }
 
+void MusicBackgroundListWidget::clearSelectState()
+{
+    foreach(MusicBackgroundListItem *item, m_items)
+    {
+        item->select(false);
+    }
+}
+
 void MusicBackgroundListWidget::clearAllItems()
 {
     while(!m_items.isEmpty())
@@ -122,8 +130,21 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
     item->setPixmap( QPixmap(path).scaled(item->size()) );
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)),
                   SLOT(itemHasClicked(MusicBackgroundListItem*)));
-    m_layout->addWidget(item, m_items.count()/4, m_items.count()%4);
+    m_layout->addWidget(item, m_items.count()/4, m_items.count()%4, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
+}
+
+bool MusicBackgroundListWidget::contains(const QString &name) const
+{
+    foreach(MusicBackgroundListItem *item, m_items)
+    {
+        if(item->getFileName() == name)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void MusicBackgroundListWidget::updateLastedItem()

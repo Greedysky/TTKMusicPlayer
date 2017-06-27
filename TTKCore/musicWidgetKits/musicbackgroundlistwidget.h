@@ -14,6 +14,8 @@
 #include "musicuiobject.h"
 #include "musicglobaldefine.h"
 
+#define CURRENT_ITEMS_COUNT         47
+
 /*! @brief The class of the background list item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -93,6 +95,10 @@ public:
     /*!
      * Select current item by name when the widget show.
      */
+    void clearSelectState();
+    /*!
+     * Clear select state.
+     */
     void clearAllItems();
     /*!
      * Clear All Items.
@@ -100,6 +106,10 @@ public:
     void createItem(const QString &name, const QString &path);
     /*!
      * Create item by name and path.
+     */
+    bool contains(const QString &name) const;
+    /*!
+     * Current item contans or not.
      */
 
     void updateLastedItem();

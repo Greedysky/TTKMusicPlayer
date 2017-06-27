@@ -29,8 +29,9 @@
 #define THEME_DIR               "MTheme/"
 #define CACHE_DIR               "MCached/"
 #define ART_DIR                 "MArt/"
-#define AVATAR_DIR              "MRes/avatar/"
-#define USER_THEME_DIR          "MRes/theme/"
+#define RES_DIR                 "MRes/"
+#define AVATAR_DIR              "avatar/"
+#define USER_THEME_DIR          "theme/"
 #define PLUGINS_DIR             "MPlugins/"
 #define BACKGROUND_DIR          "MArt/background/"
 #define LANGUAGE_DIR            "MLanguage/"
@@ -80,8 +81,6 @@
 #define CACHE_DIR_FULL          DOWNLOADS_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
-#define AVATAR_DIR_FULL         DOWNLOADS_DIR_FULL + AVATAR_DIR
-#define USER_THEME_DIR_FULL     DOWNLOADS_DIR_FULL + USER_THEME_DIR
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
@@ -91,6 +90,8 @@
 #define DARABASEPATH_FULL       APPDATA_DIR_FULL + DARABASEPATH
 #define USERPATH_FULL           APPDATA_DIR_FULL + USERPATH
 #define BARRAGEPATH_FULL        APPDATA_DIR_FULL + BARRAGEPATH
+#define AVATAR_DIR_FULL         APPDATA_DIR_FULL + AVATAR_DIR
+#define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
