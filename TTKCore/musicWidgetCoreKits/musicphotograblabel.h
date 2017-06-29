@@ -19,16 +19,17 @@ class MUSIC_WIDGET_EXPORT MusicPhotoGrabItem : public QWidget
 {
     Q_OBJECT
 public:
-    enum DIRECTION {
-        UPPER=0,
-        LOWER,
-        LEFT,
-        RIGHT,
-        LEFTUPPER,
-        LEFTLOWER,
-        RIGHTLOWER,
-        RIGHTUPPER,
-        NONE
+    enum Direction
+    {
+        Direction_No = 0,                                           ///*no direction*/
+        Direction_Left = 1,                                         ///*left direction*/
+        Direction_Top = 2,                                          ///*top direction*/
+        Direction_Right = 4,                                        ///*right direction*/
+        Direction_Bottom = 8,                                       ///*bottom direction*/
+        Direction_LeftTop = Direction_Left + Direction_Top,         ///*left top direction*/
+        Direction_LeftBottom = Direction_Left + Direction_Bottom,   ///*left bottom direction*/
+        Direction_RightTop = Direction_Right + Direction_Top,       ///*right top direction*/
+        Direction_RightBottom = Direction_Right + Direction_Bottom  ///*right bottom direction*/
     };
     explicit MusicPhotoGrabItem(QWidget *parent = 0);
     /*!
@@ -40,9 +41,15 @@ public:
      * Get class object name.
      */
     void setBorderRect(const QRect &rect);
+    /*!
+     * Set border rect.
+     */
 
 Q_SIGNALS:
     void rectChanged();
+    /*!
+     * Current rect changed.
+     */
 
 private Q_SLOTS:
     void onMouseChange(int x,int y);
@@ -60,19 +67,21 @@ protected:
      * Override the widget event.
      */
 
-    DIRECTION getRegion(const QPoint &cursor);
+    Direction getRegion(const QPoint &cursor);
     /*!
      * Get region rect.
      */
 
 private:
     bool m_isPressed;
-    DIRECTION m_direction;
+    Direction m_direction;
     QPoint m_originPoint, m_movePos;
     QPolygon m_listMarker;
     QRect m_currentRect, m_borderRect;
 
 };
+
+
 
 /*! @brief The class of the photo grab label.
  * @author Greedysky <greedysky@163.com>
@@ -95,6 +104,10 @@ public:
     /*!
      * Set song image path.
      */
+    QPixmap pixmap();
+    /*!
+     * Get changed pixmap.
+     */
 
 Q_SIGNALS:
     void intersectedPixmap(const QPixmap &pix);
@@ -104,6 +117,9 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void rectChanged();
+    /*!
+     * Current rect changed.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;

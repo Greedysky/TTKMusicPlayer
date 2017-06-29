@@ -2,15 +2,16 @@
 
 #include <QPixmap>
 #include <QPainter>
-#include <QDebug>
 #include <QMouseEvent>
 
-const int PADDING = 6;
+#define PADDING          6
+#define PIX_HEIGHT      16
+#define PIX_WIDTH       16
 
 MusicPhotoGrabItem::MusicPhotoGrabItem(QWidget *parent)
     : QWidget(parent)
 {
-    m_direction = NONE;
+    m_direction = Direction_No;
     m_isPressed = false;
 
     setMouseTracking(true);
@@ -23,9 +24,11 @@ QString MusicPhotoGrabItem::getClassName()
 
 void MusicPhotoGrabItem::setBorderRect(const QRect &rect)
 {
-    m_borderRect = rect - QMargins(2, 2, 2, 2);
+    m_borderRect = rect - QMargins(1, 1, 1, 1);
     move(m_borderRect.topLeft());
-    resize(m_borderRect.width(), m_borderRect.width());
+    int v = (m_borderRect.width() < m_borderRect.height()) ?
+             m_borderRect.width() : m_borderRect.height();
+    resize(v, v);
 }
 
 void MusicPhotoGrabItem::onMouseChange(int x, int y)
@@ -35,10 +38,34 @@ void MusicPhotoGrabItem::onMouseChange(int x, int y)
         return;
     }
 
-    const int rx = (x >= m_originPoint.x()) ? m_originPoint.x() : x;
-    const int ry = (y >= m_originPoint.y()) ? m_originPoint.y() : y;
-    const int rw = abs(x - m_originPoint.x());
-    const int rh = abs(y - m_originPoint.y());
+    int rx = (x >= m_originPoint.x()) ? m_originPoint.x() : x;
+    int ry = (y >= m_originPoint.y()) ? m_originPoint.y() : y;
+    int rw = abs(x - m_originPoint.x());
+    int rh = abs(y - m_originPoint.y());
+
+    if(!m_borderRect.contains(QRect(rx, ry, rw, rh)))
+    {
+        return;
+    }
+
+    if(m_direction != Direction_No)
+    {
+        switch(m_direction)
+        {
+            case Direction_Left:
+            case Direction_Right:
+            case Direction_LeftTop:
+            case Direction_LeftBottom:
+                rh = rw; break;
+            case Direction_Top:
+            case Direction_Bottom:
+            case Direction_RightTop:
+            case Direction_RightBottom:
+                rw = rh; break;
+            default:
+                break;
+        }
+    }
 
     m_currentRect = QRect(rx, ry, rw, rh);
     setGeometry(m_currentRect);
@@ -50,7 +77,7 @@ void MusicPhotoGrabItem::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_isPressed = true;
-        if(m_direction != NONE)
+        if(m_direction != Direction_No)
         {
             mouseGrabber();
         }
@@ -64,7 +91,7 @@ void MusicPhotoGrabItem::mouseReleaseEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_isPressed = false;
-        if(m_direction != NONE)
+        if(m_direction != Direction_No)
         {
             setCursor(QCursor(Qt::SizeAllCursor));
         }
@@ -91,53 +118,58 @@ void MusicPhotoGrabItem::mouseMoveEvent(QMouseEvent *event)
         m_direction = getRegion(gloPoint);
         switch(m_direction)
         {
-            case NONE:
-            case RIGHT:
-            case RIGHTLOWER:
+            case Direction_No:
+            case Direction_Right:
+            case Direction_RightBottom:
                 m_originPoint = pt_lu;
                 break;
-            case RIGHTUPPER:
+            case Direction_RightTop:
                 m_originPoint = pt_ll;
                 break;
-            case LEFT:
-            case LEFTLOWER:
+            case Direction_Left:
+            case Direction_LeftBottom:
                 m_originPoint = pt_ru;
                 break;
-            case LEFTUPPER:
-            case UPPER:
+            case Direction_LeftTop:
+            case Direction_Top:
                 m_originPoint = pt_rl;
                 break;
-            case LOWER:
+            case Direction_Bottom:
                 m_originPoint = pt_lu;
                 break;
         }
     }
     else
     {
-        if(m_direction != NONE)
+        if(m_direction != Direction_No)
         {
-            const int global_x = gloPoint.x();
             switch(m_direction)
             {
-                case LEFT:
-                    return onMouseChange(global_x, pt_ll.y() + 1);
-                case RIGHT:
-                    return onMouseChange(global_x, pt_rl.y() + 1);
-                case UPPER:
+                case Direction_Left:
+                    return onMouseChange(gloPoint.x(), pt_ll.y() + 1);
+                case Direction_Right:
+                    return onMouseChange(gloPoint.x(), pt_rl.y() + 1);
+                case Direction_Top:
                     return onMouseChange(pt_lu.x(), gloPoint.y());
-                case LOWER:
+                case Direction_Bottom:
                     return onMouseChange(pt_rl.x() + 1, gloPoint.y());
-                case LEFTUPPER:
-                case RIGHTUPPER:
-                case LEFTLOWER:
-                case RIGHTLOWER:
-                    return onMouseChange(global_x, gloPoint.y());
+                case Direction_LeftTop:
+                case Direction_RightTop:
+                case Direction_LeftBottom:
+                case Direction_RightBottom:
+                    break;
+//                    return onMouseChange(gloPoint.x(), gloPoint.y());
                 default:
                     break;
             }
         }
         else
         {
+            if(!m_borderRect.contains(QRect(event->globalPos() - m_movePos, size())))
+            {
+                return;
+            }
+
             move(event->globalPos() - m_movePos);
             m_movePos = event->globalPos() - pos();
         }
@@ -176,9 +208,9 @@ void MusicPhotoGrabItem::paintEvent(QPaintEvent *event)
     painter.drawPoints(m_listMarker);
 }
 
-MusicPhotoGrabItem::DIRECTION MusicPhotoGrabItem::getRegion(const QPoint &cursor)
+MusicPhotoGrabItem::Direction MusicPhotoGrabItem::getRegion(const QPoint &cursor)
 {
-    MusicPhotoGrabItem::DIRECTION ret_dir = NONE;
+    Direction ret_dir = Direction_No;
     // left upper
     QPoint pt_lu = mapToParent(rect().topLeft());
     // right lower
@@ -190,50 +222,50 @@ MusicPhotoGrabItem::DIRECTION MusicPhotoGrabItem::getRegion(const QPoint &cursor
     if(pt_lu.x() + PADDING >= x && pt_lu.x() <= x &&
        pt_lu.y() + PADDING >= y && pt_lu.y() <= y)
     {
-        ret_dir = LEFTUPPER;
+        ret_dir = Direction_LeftTop;
         setCursor(QCursor(Qt::SizeFDiagCursor));
     }
     else if(x >= pt_rl.x() - PADDING && x <= pt_rl.x() &&
             y >= pt_rl.y() - PADDING && y <= pt_rl.y())
     {
-        ret_dir = RIGHTLOWER;
+        ret_dir = Direction_RightBottom;
         setCursor(QCursor(Qt::SizeFDiagCursor));
     }
     else if(x <= pt_lu.x() + PADDING && x >= pt_lu.x() &&
             y >= pt_rl.y() - PADDING && y <= pt_rl.y())
     {
-        ret_dir = LEFTLOWER;
+        ret_dir = Direction_LeftBottom;
         setCursor(QCursor(Qt::SizeBDiagCursor));
     }
     else if(x <= pt_rl.x() && x >= pt_rl.x() - PADDING &&
             y >= pt_lu.y() && y <= pt_lu.y() + PADDING)
     {
-        ret_dir = RIGHTUPPER;
+        ret_dir = Direction_RightTop;
         setCursor(QCursor(Qt::SizeBDiagCursor));
     }
     else if(x <= pt_lu.x() + PADDING && x >= pt_lu.x())
     {
-        ret_dir = LEFT;
+        ret_dir = Direction_Left;
         setCursor(QCursor(Qt::SizeHorCursor));
     }
     else if(x <= pt_rl.x() && x >= pt_rl.x() - PADDING)
     {
-        ret_dir = RIGHT;
+        ret_dir = Direction_Right;
         setCursor(QCursor(Qt::SizeHorCursor));
     }
     else if(y >= pt_lu.y() && y <= pt_lu.y() + PADDING)
     {
-        ret_dir = UPPER;
+        ret_dir = Direction_Top;
         setCursor(QCursor(Qt::SizeVerCursor));
     }
     else if(y <= pt_rl.y() && y >= pt_rl.y() - PADDING)
     {
-        ret_dir = LOWER;
+        ret_dir = Direction_Bottom;
         setCursor(QCursor(Qt::SizeVerCursor));
     }
     else
     {
-        ret_dir = NONE;
+        ret_dir = Direction_No;
         setCursor(QCursor(Qt::SizeAllCursor));
     }
 
@@ -283,18 +315,33 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
     m_grabItem->show();
 }
 
-void MusicPhotoGrabLabel::rectChanged()
+QPixmap MusicPhotoGrabLabel::pixmap()
 {
     QPixmap img(m_path);
-    emit intersectedPixmap(img.copy(
+    return img.copy(
             QRect((m_grabItem->geometry().topLeft() - m_imgRect.topLeft())*m_ratio,
-                   m_grabItem->geometry().size()*m_ratio)).scaled(100, 100));
+                   m_grabItem->geometry().size()*m_ratio));
+}
+
+void MusicPhotoGrabLabel::rectChanged()
+{
+    emit intersectedPixmap( pixmap() );
 }
 
 void MusicPhotoGrabLabel::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
+
+    QPixmap bgPix(":/lrc/lb_transparent");
+    for(int i=0; i<ceil(width()/PIX_WIDTH); ++i)
+    {
+        for(int j=0; j<=ceil(height()/PIX_HEIGHT); ++j)
+        {
+            painter.drawPixmap(i*PIX_WIDTH, j*PIX_HEIGHT, PIX_WIDTH, PIX_HEIGHT, bgPix);
+        }
+    }
+
     QPixmap img(m_path);
     painter.drawPixmap(m_imgRect, img);
     painter.end();

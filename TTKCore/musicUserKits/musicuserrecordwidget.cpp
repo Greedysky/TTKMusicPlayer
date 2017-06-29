@@ -105,7 +105,7 @@ void MusicUserRecordWidget::initTabS()
     m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     connect(m_ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
     connect(m_ui->saveFileButton_S, SIGNAL(clicked()), SLOT(saveFileButtonClickedS()));
-    connect(m_ui->bigPixmapLabel_S, SIGNAL(intersectedPixmap(QPixmap)), m_ui->smlPixmapLabel_S, SLOT(setPixmap(QPixmap)));
+    connect(m_ui->bigPixmapLabel_S, SIGNAL(intersectedPixmap(QPixmap)), SLOT(intersectedPixmap(QPixmap)));
 }
 
 void MusicUserRecordWidget::initTabT()
@@ -167,20 +167,21 @@ void MusicUserRecordWidget::saveFileButtonClickedS()
         return;
     }
 
-    QFile file(m_iconLocalPath);
-    QByteArray name;
-    if(file.open(QIODevice::ReadOnly))
-    {
-        name = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
-    }
-
+    QPixmap pix(m_ui->bigPixmapLabel_S->pixmap());
+    QByteArray name(QCryptographicHash::hash(QByteArray::number(pix.cacheKey()), QCryptographicHash::Md5));
     QString path = QString("%1%2").arg(AVATAR_DIR_FULL)
                           .arg(QString(name.toHex().toUpper()));
-    file.copy( path );
-    file.close();
+    pix.save(path + JPG_FILE);
+
+    QFile::rename(path + JPG_FILE, path);
 
     m_userModel->updateUserIcon(m_ui->userIDLabel_F->text(), path);
     emit userIconChanged(m_ui->userIDLabel_F->text(), path);
+}
+
+void MusicUserRecordWidget::intersectedPixmap(const QPixmap &pix)
+{
+    m_ui->smlPixmapLabel_S->setPixmap(pix.scaled(100, 100));
 }
 
 void MusicUserRecordWidget::changeVerificationCodeT()

@@ -67,6 +67,10 @@ public Q_SLOTS:
     /*!
      * Save selected new pic button clicked.
      */
+    void intersectedPixmap(const QPixmap &pix);
+    /*!
+     * Send intersected pixmap if intersected flag set.
+     */
     void changeVerificationCodeT();
     /*!
      * Change verfication button clicked.

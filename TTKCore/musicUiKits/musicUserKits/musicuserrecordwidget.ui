@@ -98,7 +98,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -377,7 +377,7 @@ QTabBar::tab:selected {
        <string>(请选择图片文件，最佳尺寸400X400，支持JPG,JPEG,PNG,GIF)</string>
       </property>
      </widget>
-     <widget class="MusicPhotoGrabLabel" name="bigPixmapLabel_S">
+     <widget class="MusicPhotoGrabLabel" name="bigPixmapLabel_S" native="true">
       <property name="geometry">
        <rect>
         <x>50</x>
