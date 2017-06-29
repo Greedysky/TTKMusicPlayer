@@ -99,10 +99,13 @@ void MusicUserRecordWidget::initTabF()
 void MusicUserRecordWidget::initTabS()
 {
     QString path = m_userModel->getUserIcon(m_ui->userIDLabel_F->text());
-    m_ui->bigPixmapLabel_S->setPixmap(QPixmap(path).scaled(m_ui->bigPixmapLabel_S->size()));
+//    m_ui->bigPixmapLabel_S->setImagePath(path);
     m_ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(m_ui->smlPixmapLabel_S->size()));
     m_ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
+    m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     connect(m_ui->openFileButton_S, SIGNAL(clicked()), SLOT(openFileButtonClickedS()));
+    connect(m_ui->saveFileButton_S, SIGNAL(clicked()), SLOT(saveFileButtonClickedS()));
+    connect(m_ui->bigPixmapLabel_S, SIGNAL(intersectedPixmap(QPixmap)), m_ui->smlPixmapLabel_S, SLOT(setPixmap(QPixmap)));
 }
 
 void MusicUserRecordWidget::initTabT()
@@ -147,22 +150,31 @@ void MusicUserRecordWidget::confirmButtonClickedF()
 
 void MusicUserRecordWidget::openFileButtonClickedS()
 {
-    QString path =  QFileDialog::getOpenFileName(
+    m_iconLocalPath =  QFileDialog::getOpenFileName(
                               this, QString(), "./", "Images (*.png *.bmp *.jpg)");
-    if(path.isEmpty())
+    if(m_iconLocalPath.isEmpty())
     {
         return;
     }
-    m_ui->bigPixmapLabel_S->setPixmap(QPixmap( path ).scaled(m_ui->bigPixmapLabel_S->size()));
-    m_ui->smlPixmapLabel_S->setPixmap(QPixmap( path ).scaled(m_ui->smlPixmapLabel_S->size()));
+    m_ui->bigPixmapLabel_S->setImagePath(m_iconLocalPath);
+    m_ui->smlPixmapLabel_S->setPixmap(QPixmap( m_iconLocalPath ).scaled(m_ui->smlPixmapLabel_S->size()));
+}
 
-    QFile file(path);
+void MusicUserRecordWidget::saveFileButtonClickedS()
+{
+    if(m_iconLocalPath.isEmpty() || !QFile::exists(m_iconLocalPath))
+    {
+        return;
+    }
+
+    QFile file(m_iconLocalPath);
     QByteArray name;
     if(file.open(QIODevice::ReadOnly))
     {
         name = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
     }
-    path = QString("%1%2").arg(AVATAR_DIR_FULL)
+
+    QString path = QString("%1%2").arg(AVATAR_DIR_FULL)
                           .arg(QString(name.toHex().toUpper()));
     file.copy( path );
     file.close();

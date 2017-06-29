@@ -123,7 +123,7 @@
     <string>关闭</string>
    </property>
   </widget>
-  <widget class="MusicLrcArtPhotoLabel" name="imageLabel" native="true">
+  <widget class="MusicPhotoModLabel" name="imageLabel" native="true">
    <property name="geometry">
     <rect>
      <x>44</x>
@@ -190,9 +190,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicLrcArtPhotoLabel</class>
+   <class>MusicPhotoModLabel</class>
    <extends>QWidget</extends>
-   <header>musiclrcartphotolabel.h</header>
+   <header>musicphotomodlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

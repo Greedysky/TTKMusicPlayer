@@ -98,7 +98,7 @@ QTabBar::tab:selected {
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -377,7 +377,7 @@ QTabBar::tab:selected {
        <string>(请选择图片文件，最佳尺寸400X400，支持JPG,JPEG,PNG,GIF)</string>
       </property>
      </widget>
-     <widget class="QLabel" name="bigPixmapLabel_S">
+     <widget class="MusicPhotoModLabel" name="bigPixmapLabel_S">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -427,6 +427,22 @@ QTabBar::tab:selected {
       </property>
       <property name="text">
        <string>选择头像</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="saveFileButton_S">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>320</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string>确定选择</string>
       </property>
      </widget>
     </widget>
@@ -893,6 +909,12 @@ QTabBar::tab:selected {
    <class>MusicCodeArea</class>
    <extends>QLabel</extends>
    <header>musiccodearea.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicPhotoModLabel</class>
+   <extends>QWidget</extends>
+   <header>musicphotomodlabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

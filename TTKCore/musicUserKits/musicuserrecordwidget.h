@@ -63,6 +63,10 @@ public Q_SLOTS:
     /*!
      * Open selected new pic button clicked.
      */
+    void saveFileButtonClickedS();
+    /*!
+     * Save selected new pic button clicked.
+     */
     void changeVerificationCodeT();
     /*!
      * Change verfication button clicked.
@@ -96,6 +100,7 @@ protected:
 
     Ui::MusicUserRecordWidget *m_ui;
     MusicUserModel *m_userModel;
+    QString m_iconLocalPath;
 
 };
 

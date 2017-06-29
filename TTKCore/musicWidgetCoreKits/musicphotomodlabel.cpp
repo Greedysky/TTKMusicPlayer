@@ -1,10 +1,10 @@
-#include "musiclrcartphotolabel.h"
+#include "musicphotomodlabel.h"
 
 #include <qmath.h>
 #include <QPainter>
 #include <QWheelEvent>
 
-MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
+MusicPhotoModLabel::MusicPhotoModLabel(QWidget *parent)
     : QWidget(parent)
 {
     m_width = 0;
@@ -13,12 +13,12 @@ MusicLrcArtPhotoLabel::MusicLrcArtPhotoLabel(QWidget *parent)
     m_picMoved = false;
 }
 
-QString MusicLrcArtPhotoLabel::getClassName()
+QString MusicPhotoModLabel::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
+void MusicPhotoModLabel::setImagePath(const QString &path)
 {
     m_path = path;
     m_showPix.load(path);
@@ -27,7 +27,7 @@ void MusicLrcArtPhotoLabel::setImagePath(const QString &path)
     m_ratio = m_width*1.0/m_height;
 }
 
-void MusicLrcArtPhotoLabel::saveImagePath(const QString &path) const
+void MusicPhotoModLabel::saveImagePath(const QString &path) const
 {
     QPixmap px(m_width, m_height);
     QPainter paint(&px);
@@ -36,7 +36,7 @@ void MusicLrcArtPhotoLabel::saveImagePath(const QString &path) const
     px.save(path);
 }
 
-void MusicLrcArtPhotoLabel::paintEvent(QPaintEvent *event)
+void MusicPhotoModLabel::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
@@ -51,11 +51,12 @@ void MusicLrcArtPhotoLabel::paintEvent(QPaintEvent *event)
 
     m_imagePos.setX(m_imagePos.x() + m_deltaPos.x());
     m_imagePos.setY(m_imagePos.y() + m_deltaPos.y());
-    painter.drawPixmap(m_imagePos.x(), m_imagePos.y(), m_width, m_height, m_showPix);
+    QRect imageRect(m_imagePos.x(), m_imagePos.y(), m_width, m_height);
+    painter.drawPixmap(imageRect, m_showPix);
     painter.end();
 }
 
-void MusicLrcArtPhotoLabel::wheelEvent(QWheelEvent *event)
+void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
 {
     m_deltaPos = QPoint();
     QWidget::wheelEvent(event);
@@ -79,7 +80,7 @@ void MusicLrcArtPhotoLabel::wheelEvent(QWheelEvent *event)
     update();
 }
 
-void MusicLrcArtPhotoLabel::mousePressEvent(QMouseEvent *event)
+void MusicPhotoModLabel::mousePressEvent(QMouseEvent *event)
 {
 //    QWidget::mousePressEvent(event);
     if(event->button() == Qt::MiddleButton ||
@@ -90,7 +91,7 @@ void MusicLrcArtPhotoLabel::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcArtPhotoLabel::mouseMoveEvent(QMouseEvent *event)
+void MusicPhotoModLabel::mouseMoveEvent(QMouseEvent *event)
 {
 //    QWidget::mouseMoveEvent(event);
     if(m_picMoved)
@@ -101,47 +102,9 @@ void MusicLrcArtPhotoLabel::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void MusicLrcArtPhotoLabel::mouseReleaseEvent(QMouseEvent *event)
+void MusicPhotoModLabel::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 //    QWidget::mouseReleaseEvent(event);
     m_picMoved = false;
-}
-
-void MusicLrcArtPhotoLabel::mapRGBTableToPixmap()
-{
-    QImage image = m_showPix.toImage();
-    for(int i=0; i<image.height(); i++)
-    {
-        uchar* out = image.scanLine(i);
-        for(int j=0; j<image.width(); j++)
-        {
-            *out = mapValueToColor(*out); //R
-            ++out;
-            *out = mapValueToColor(*out); //G
-            ++out;
-            *out = mapValueToColor(*out); //B
-            ++out;
-            *out++ = 0xff; //A
-        }
-    }
-    m_showPix = QPixmap::fromImage(image);
-}
-
-uchar MusicLrcArtPhotoLabel::mapValueToColor(float value)
-{
-    int x = m_deltaPos.x();
-    int y = m_deltaPos.y();
-
-    float color = (value - x)/y *255.0 + 127.5 ;
-    if(color < 0.0)
-    {
-        color = 0.0;
-    }
-    else if(color > 255.0)
-    {
-        color = 255.0;
-    }
-    uchar ucolor = (uchar)roundf(color);
-    return ucolor;
 }

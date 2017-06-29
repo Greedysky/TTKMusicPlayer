@@ -1,5 +1,5 @@
-#ifndef MUSICLRCARTPHOTOLABEL_H
-#define MUSICLRCARTPHOTOLABEL_H
+#ifndef MUSICPHOTOMODLABEL_H
+#define MUSICPHOTOMODLABEL_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,14 +15,14 @@
 #define PIX_HEIGHT 16
 #define PIX_WIDTH  16
 
-/*! @brief The class of the lrc art photo label.
+/*! @brief The class of the photo modify label.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcArtPhotoLabel : public QWidget
+class MUSIC_LRC_EXPORT MusicPhotoModLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcArtPhotoLabel(QWidget *parent = 0);
+    explicit MusicPhotoModLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -40,6 +40,12 @@ public:
      * Set save song image path.
      */
 
+Q_SIGNALS:
+    void intersectedPixmap(const QPixmap &pix);
+    /*!
+     * Send intersected pixmap if intersected flag set.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
@@ -48,15 +54,6 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
-     */
-
-    void mapRGBTableToPixmap();
-    /*!
-     * Map RGB table to pixmap.
-     */
-    uchar mapValueToColor(float value);
-    /*!
-     * Map RGB vlaue to color by value.
      */
 
     QString m_path;
@@ -68,4 +65,4 @@ protected:
 
 };
 
-#endif // MUSICLRCARTPHOTOLABEL_H
+#endif // MUSICPHOTOMODLABEL_H

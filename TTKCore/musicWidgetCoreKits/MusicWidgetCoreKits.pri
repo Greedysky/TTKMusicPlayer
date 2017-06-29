@@ -41,8 +41,9 @@ HEADERS  += \
     $$PWD/musicgiflabelwidget.h \
     $$PWD/musicemojilabelwidget.h \
     $$PWD/musicopenfilewidget.h \
-    $$PWD/musicsplititemclickedlabel.h
-    
+    $$PWD/musicsplititemclickedlabel.h \
+    $$PWD/musicphotomodlabel.h
+
 }
 
 contains(CONFIG, TTK_BUILD_LIB){
@@ -78,6 +79,7 @@ SOURCES += \
     $$PWD/musicgiflabelwidget.cpp \
     $$PWD/musicemojilabelwidget.cpp \
     $$PWD/musicopenfilewidget.cpp \
-    $$PWD/musicsplititemclickedlabel.cpp
+    $$PWD/musicsplititemclickedlabel.cpp \
+    $$PWD/musicphotomodlabel.cpp
 
 }
