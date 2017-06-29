@@ -48,7 +48,7 @@ public:
      * Get current page index.
      */
 
-signals:
+Q_SIGNALS:
     void mapped(int index);
     /*!
      * Mapped the clicked page index.

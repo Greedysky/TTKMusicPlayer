@@ -40,12 +40,6 @@ public:
      * Set save song image path.
      */
 
-Q_SIGNALS:
-    void intersectedPixmap(const QPixmap &pix);
-    /*!
-     * Send intersected pixmap if intersected flag set.
-     */
-
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;

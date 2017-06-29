@@ -377,7 +377,7 @@ QTabBar::tab:selected {
        <string>(请选择图片文件，最佳尺寸400X400，支持JPG,JPEG,PNG,GIF)</string>
       </property>
      </widget>
-     <widget class="MusicPhotoModLabel" name="bigPixmapLabel_S">
+     <widget class="MusicPhotoGrabLabel" name="bigPixmapLabel_S">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -912,9 +912,9 @@ QTabBar::tab:selected {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicPhotoModLabel</class>
+   <class>MusicPhotoGrabLabel</class>
    <extends>QWidget</extends>
-   <header>musicphotomodlabel.h</header>
+   <header>musicphotograblabel.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

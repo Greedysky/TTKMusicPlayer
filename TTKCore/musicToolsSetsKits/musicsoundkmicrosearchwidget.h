@@ -41,7 +41,7 @@ public:
      * Set query MV flag.
      */
 
-signals:
+Q_SIGNALS:
     void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Set current media url.
@@ -99,7 +99,7 @@ public:
      * Start seach KMicro.
      */
 
-public slots:
+public Q_SLOTS:
     void startToSearch();
     /*!
      * Start to search.

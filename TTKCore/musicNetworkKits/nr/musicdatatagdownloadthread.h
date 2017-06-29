@@ -38,7 +38,7 @@ public:
      * Start to download data.
      */
 
-signals:
+Q_SIGNALS:
     void finished();
     /*!
      * Modify tag finished.

@@ -50,7 +50,7 @@ public:
      * Start seach KMicro.
      */
 
-public slots:
+public Q_SLOTS:
     void volumeChanged(int volume);
     /*!
      * Current volume changed.

@@ -4,6 +4,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 
+#define ITEM_COUNT      4
+
 MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     : QLabel(parent)
 {
@@ -157,7 +159,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
     item->setPixmap( QPixmap(path).scaled(item->size()) );
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
-    m_layout->addWidget(item, m_items.count()/4, m_items.count()%4, Qt::AlignLeft | Qt::AlignTop);
+    m_layout->addWidget(item, m_items.count()/ITEM_COUNT, m_items.count()%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     m_items << item;
 }
 
@@ -222,7 +224,7 @@ void MusicBackgroundListWidget::itemCloseClicked(MusicBackgroundListItem *item)
 
     for(int i=index; i<m_items.count(); ++i)
     {
-        m_layout->addWidget(m_items[i], i/4, i%4, Qt::AlignLeft | Qt::AlignTop);
+        m_layout->addWidget(m_items[i], i/ITEM_COUNT, i%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);
     }
 }
 
