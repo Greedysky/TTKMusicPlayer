@@ -15,6 +15,7 @@ HEADERS  += \
     $$PWD/utils/musicwidgetutils.h \
     $$PWD/utils/musicnumberutils.h \
     $$PWD/utils/musicstringutils.h \
+    $$PWD/utils/musicalgorithmutils.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicdatabaseobject.h \
@@ -49,6 +50,7 @@ SOURCES += \
     $$PWD/utils/musicwidgetutils.cpp \
     $$PWD/utils/musicnumberutils.cpp \
     $$PWD/utils/musicstringutils.cpp \
+    $$PWD/utils/musicalgorithmutils.cpp \
     $$PWD/musicformats.cpp \
     $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \
@@ -69,9 +71,3 @@ SOURCES += \
     $$PWD/musiclicensecore.cpp
 
 }
-
-HEADERS += \
-    $$PWD/utils/musicalgorithmutils.h
-
-SOURCES += \
-    $$PWD/utils/musicalgorithmutils.cpp

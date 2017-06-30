@@ -56,6 +56,7 @@ public:
     /*!
      * Write datas into xml file by given name.
      */
+
     QString readXmlAttributeByTagNameValue(const QString &tagName) const;
     /*!
      * Read xml attribute by tagName and default name "value".
