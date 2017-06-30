@@ -1,7 +1,7 @@
 #include "musicdownloadkginterface.h"
-#include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
+#include "musicalgorithmutils.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -19,9 +19,8 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         return;
     }
 
-    QByteArray encodedData = QCryptographicHash::hash(QString("%1kgcloud").arg(hash).toUtf8(),
-                                                      QCryptographicHash::Md5).toHex().toLower();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_ATTR_URL, URL_KEY).arg(QString(encodedData)).arg(hash);
+    QByteArray encodedData = MusicUtils::Algorithm::md5(QString("%1kgcloud").arg(hash).toUtf8()).toHex().toLower();
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_ATTR_URL, false).arg(QString(encodedData)).arg(hash);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -94,7 +93,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_INFO_URL, URL_KEY).arg(hash);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(hash);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -120,7 +119,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
         {
             info->m_artistId = QString::number(value["singerId"].toULongLong());
             info->m_smallPicUrl = value["imgUrl"].toString().replace("{size}", "480");
-            info->m_lrcUrl = MusicCryptographicHash::decryptData(KG_SONG_LRC_URL, URL_KEY)
+            info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                     .arg(value["songName"].toString()).arg(hash)
                                                     .arg(value["timeLength"].toInt()*1000);
         }

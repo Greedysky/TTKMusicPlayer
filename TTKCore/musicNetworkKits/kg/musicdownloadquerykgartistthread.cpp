@@ -27,7 +27,7 @@ void MusicDownLoadQueryKGArtistThread::startToSearch(const QString &artist)
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ARTIST_URL, URL_KEY).arg(artist).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
 
     QNetworkRequest request;

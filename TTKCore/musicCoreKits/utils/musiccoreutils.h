@@ -13,7 +13,7 @@
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the utils object namespace.
+/*! @brief The class of the utils core object namespace.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

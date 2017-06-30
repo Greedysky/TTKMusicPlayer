@@ -19,6 +19,10 @@
 
 #include <QFileDialog>
 
+#ifdef Q_CC_GNU
+    #pragma GCC diagnostic ignored "-Wparentheses"
+#endif
+
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
     m_ui(new Ui::MusicSoundKMicroWidget)

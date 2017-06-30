@@ -28,7 +28,7 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
 
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_URL, URL_KEY).arg(text);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_URL, false).arg(text);
     deleteAll();
 
     QNetworkRequest request;
@@ -127,7 +127,7 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_ATTR_URL, URL_KEY).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

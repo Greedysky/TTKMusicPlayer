@@ -1,8 +1,8 @@
 #include "musiclicensecore.h"
+#include "musicalgorithmutils.h"
 
 #include <QStringList>
 #include <QNetworkInterface>
-#include <QCryptographicHash>
 
 #define VALUE0   "ds231'332c53sd3!3d50147562s21.^6"
 #define VALUE1   ".,lflfgdfKfdgdf2031..s121&&%%##"
@@ -68,7 +68,7 @@ QByteArray MusicLicenseCore::hmacSha1(const QByteArray &data, const QByteArray &
     QByteArray newSecretKey = key;
     if(newSecretKey.length() > blockSize)
     {
-        newSecretKey = QCryptographicHash::hash(newSecretKey, QCryptographicHash::Sha1);
+        newSecretKey = MusicUtils::Algorithm::sha1(newSecretKey);
     }
 
     QByteArray innerPadding(blockSize, char(0x36));
@@ -83,8 +83,8 @@ QByteArray MusicLicenseCore::hmacSha1(const QByteArray &data, const QByteArray &
     QByteArray total = outerPadding;
     QByteArray part = innerPadding;
     part.append(data);
-    total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-    return QCryptographicHash::hash(total, QCryptographicHash::Sha1);
+    total.append(MusicUtils::Algorithm::sha1(part));
+    return MusicUtils::Algorithm::sha1(total);
 }
 
 QString MusicLicenseCore::splitString(const QByteArray &data, const QByteArray &key)

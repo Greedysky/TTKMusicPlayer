@@ -45,9 +45,9 @@ void MusicXMCommentsThread::startToPage(int offset)
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_SG_COMMIT_DATA_URL, URL_KEY).arg(m_rawData["songID"].toInt())
+                      MusicUtils::Algorithm::mdII(XM_SG_COMMIT_DATA_URL, false).arg(m_rawData["songID"].toInt())
                       .arg(offset + 1).arg(m_pageSize),
-                      MusicCryptographicHash::decryptData(XM_SG_COMMIT_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_SG_COMMIT_URL, false));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

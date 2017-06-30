@@ -44,7 +44,7 @@ void MusicQQCommentsThread::startToPage(int offset)
     deleteAll();
     m_pageTotal = 0;
 
-    QUrl musicUrl = QString(MusicCryptographicHash::decryptData(QQ_SG_COMMIT_DATA_URL, URL_KEY));
+    QUrl musicUrl = QString(MusicUtils::Algorithm::mdII(QQ_SG_COMMIT_DATA_URL, false));
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -54,7 +54,7 @@ void MusicQQCommentsThread::startToPage(int offset)
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->post( request, MusicCryptographicHash::decryptData(QQ_SG_COMMIT_URL, URL_KEY)
+    m_reply = m_manager->post( request, MusicUtils::Algorithm::mdII(QQ_SG_COMMIT_URL, false)
                                .arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),

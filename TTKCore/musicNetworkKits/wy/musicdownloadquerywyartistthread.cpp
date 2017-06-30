@@ -27,14 +27,14 @@ void MusicDownLoadQueryWYArtistThread::startToSearch(const QString &artist)
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_ARTIST_URL, URL_KEY).arg(artist);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(artist);
     deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -87,7 +87,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_smallPicUrl = smallPicUrl;
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(WY_SONG_LRC_URL, URL_KEY).arg(value["id"].toInt());
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(value["id"].toInt());
 
                     readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
 

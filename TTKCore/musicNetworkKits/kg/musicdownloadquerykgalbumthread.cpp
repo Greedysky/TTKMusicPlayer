@@ -30,7 +30,7 @@ void MusicDownLoadQueryKGAlbumThread::startToSearch(const QString &album)
     }
 
     m_searchText = album;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ALBUM_URL, URL_KEY).arg(album);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album);
     deleteAll();
 
     QNetworkRequest request;
@@ -128,7 +128,7 @@ void MusicDownLoadQueryKGAlbumThread::readFromMusicSongAlbumInfo(MusicObject::Mu
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_ALBUM_INFO_URL, URL_KEY).arg(m_searchText);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(m_searchText);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

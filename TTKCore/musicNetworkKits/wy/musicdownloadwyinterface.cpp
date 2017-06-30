@@ -1,7 +1,7 @@
 #include "musicdownloadwyinterface.h"
-#include "musiccryptographichash.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musicalgorithmutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -18,7 +18,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_INFO_URL, URL_KEY).arg(bitrate*1000).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -82,7 +82,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = key.value("extension").toString();
         attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
-        attr.m_url = MusicCryptographicHash::decryptData(WY_SONG_PATH_URL, URL_KEY).arg(encryptedId(dfsId)).arg(dfsId);
+        attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false).arg(encryptedId(dfsId)).arg(dfsId);
         info->m_songAttrs.append(attr);
     }
 }
@@ -139,7 +139,7 @@ QString MusicDownLoadWYInterface::encryptedId(const QString &string)
         array2[i] = array2[i]^array1[i%length];
     }
 
-    QByteArray encodedData = QCryptographicHash::hash(array2, QCryptographicHash::Md5);
+    QByteArray encodedData = MusicUtils::Algorithm::md5(array2);
 #if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
     encodedData = encodedData.toBase64(QByteArray::Base64UrlEncoding);
 #else

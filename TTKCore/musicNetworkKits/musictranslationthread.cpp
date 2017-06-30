@@ -25,7 +25,7 @@ void MusicTranslationThread::startToDownload(TranslationType from, TranslationTy
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl( MusicCryptographicHash::decryptData(TRANSLATION_URL, URL_KEY).arg(mapTypeFromEnumToString(from))
+    request.setUrl( MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from))
                                             .arg(data).arg(mapTypeFromEnumToString(to)) );
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),

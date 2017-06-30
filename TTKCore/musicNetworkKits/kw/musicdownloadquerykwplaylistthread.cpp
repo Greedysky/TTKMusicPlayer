@@ -37,7 +37,7 @@ void MusicDownLoadQueryKWPlaylistThread::startToPage(int offset)
 
     deleteAll();
     m_pageTotal = 0;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_PLAYLIST_URL, URL_KEY)
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_URL, false)
                     .arg(m_searchText).arg(offset).arg(m_pageSize);
 
     QNetworkRequest request;
@@ -61,7 +61,7 @@ void MusicDownLoadQueryKWPlaylistThread::startToSearch(const QString &playlist)
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(playlist);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -158,7 +158,7 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
                     musicInfo.m_albumId = value["albumid"].toString();
 
 //                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
-                    musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(musicInfo.m_songId);
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(musicInfo.m_songId);
                     ///music normal songs urls
                     readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);
 
@@ -217,7 +217,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetails(const QString &p
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_PLAYLIST_ATTR_URL, URL_KEY).arg(pid);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(pid);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

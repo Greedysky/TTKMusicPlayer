@@ -114,7 +114,7 @@ void MusicNetworkSpeedTestWidget::networkTestStart()
     m_ui->testButton->setEnabled(false);
     m_testTimer.stop();
     delete m_testDownload;
-    m_testDownload = new MusicDataDownloadThread(MusicCryptographicHash::decryptData(testUrl, URL_KEY), testName,
+    m_testDownload = new MusicDataDownloadThread(MusicUtils::Algorithm::mdII(testUrl, false), testName,
                          MusicDownLoadThreadAbstract::Download_BigBG, this);
     if(M_NETWORK_PTR->isOnline())
     {

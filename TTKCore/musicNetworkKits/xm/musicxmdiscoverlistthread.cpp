@@ -26,8 +26,8 @@ void MusicXMDiscoverListThread::startToSearch()
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_SONG_TOPLIST_DATA_URL, URL_KEY),
-                      MusicCryptographicHash::decryptData(XM_SONG_TOPLIST_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false),
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
 
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL

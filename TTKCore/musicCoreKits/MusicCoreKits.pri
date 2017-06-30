@@ -69,3 +69,9 @@ SOURCES += \
     $$PWD/musiclicensecore.cpp
 
 }
+
+HEADERS += \
+    $$PWD/utils/musicalgorithmutils.h
+
+SOURCES += \
+    $$PWD/utils/musicalgorithmutils.cpp

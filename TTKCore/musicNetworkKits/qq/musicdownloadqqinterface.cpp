@@ -1,9 +1,9 @@
 #include "musicdownloadqqinterface.h"
-#include "musiccryptographichash.h"
 #include "musicnumberdefine.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
+#include "musicalgorithmutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -37,7 +37,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
 
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_128_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_128_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size128"].toULongLong());
         attr.m_format = "mp3";
         attr.m_bitrate = bitrate;
@@ -53,7 +53,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
 
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_192_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_192_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeogg"].toULongLong());
         attr.m_format = "ogg";
         attr.m_bitrate = bitrate;
@@ -69,7 +69,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
 
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_320_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_320_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size320"].toULongLong());
         attr.m_format = "mp3";
         attr.m_bitrate = bitrate;
@@ -85,7 +85,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
 
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_APE_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_APE_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeape"].toULongLong());
         attr.m_format = "ape";
         attr.m_bitrate = bitrate;
@@ -101,7 +101,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
 
         MusicObject::MusicSongAttribute attr;
-        attr.m_url = MusicCryptographicHash::decryptData(QQ_SONG_FLAC_URL, URL_KEY).arg(mid).arg(vkey).arg(randKey);
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_FLAC_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
         attr.m_format = "flac";
         attr.m_bitrate = bitrate;
@@ -154,7 +154,7 @@ QString MusicDownLoadQQInterface::getMusicKey(QNetworkAccessManager *manager, co
         return QString();
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_KEY_URL, URL_KEY).arg(time);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(time);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

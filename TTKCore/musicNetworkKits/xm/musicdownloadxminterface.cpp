@@ -1,8 +1,8 @@
 #include "musicdownloadxminterface.h"
-#include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
+#include "musicalgorithmutils.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -22,7 +22,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
     }
 
     QNetworkRequest re;
-    re.setUrl(QUrl(MusicCryptographicHash::decryptData(XM_COOKIE_URL, URL_KEY)));
+    re.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
     QNetworkReply *reply = manager->get(re);
     MusicSemaphoreLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -35,10 +35,10 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
     QString time = QString::number(MusicTime::timeStamp());
     QString appkey = "12574478";
     QString token = tk.split("_").front();
-    QString data = MusicCryptographicHash::decryptData(XM_QUERY_DATA_URL, URL_KEY).arg(query);
-    QString sign = QCryptographicHash::hash((token + "&" + time + "&" + appkey + "&" + data).toUtf8(), QCryptographicHash::Md5).toHex();
+    QString data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
+    QString sign = MusicUtils::Algorithm::md5((token + "&" + time + "&" + appkey + "&" + data).toUtf8()).toHex();
 
-    request->setUrl(QUrl(MusicCryptographicHash::decryptData(XM_QUERY_URL, URL_KEY).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
+    request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
 }
 
@@ -52,8 +52,8 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfoma
 
     QNetworkRequest request;
     makeTokenQueryUrl(manager, &request,
-                      MusicCryptographicHash::decryptData(XM_LRC_DATA_URL, URL_KEY).arg(songID),
-                      MusicCryptographicHash::decryptData(XM_LRC_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(songID),
+                      MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

@@ -29,8 +29,8 @@ void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &te
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_SONG_DATA_URL, URL_KEY).arg(text).arg(1).arg(30),
-                      MusicCryptographicHash::decryptData(XM_SONG_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(30),
+                      MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
@@ -162,7 +162,7 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
     attr.m_bitrate = 1000;
     attr.m_format = format;
     attr.m_size = "-";
-    attr.m_url = MusicCryptographicHash::decryptData(XM_MV_ATTR_URL, URL_KEY).arg(id);
+    attr.m_url = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(id);
     QUrl musicUrl = attr.m_url;
 
     QNetworkRequest request;

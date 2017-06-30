@@ -77,7 +77,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     if(!down->getMusicSongInfos().isEmpty())
     {
         MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
-        downLoadDataChanged(MusicCryptographicHash::decryptData(WEB_PLAYER, URL_KEY) + info.m_songId, info.m_smallPicUrl);
+        downLoadDataChanged(MusicUtils::Algorithm::mdII(WEB_PLAYER, false) + info.m_songId, info.m_smallPicUrl);
     }
     else
     {
@@ -97,25 +97,25 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(MusicCryptographicHash::decryptData(QQ_SHARE, URL_KEY)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl)
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl)
                                .arg(m_ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(m_ui->renrenButton->isChecked())
     {
-        url = QString(MusicCryptographicHash::decryptData(RENREN_SHARE, URL_KEY)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicUtils::Algorithm::mdII(RENREN_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicCryptographicHash::decryptData(QQ_SPACE_SHARE, URL_KEY)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
                                      .arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->qqblogButton->isChecked())
     {
-        url = QString(MusicCryptographicHash::decryptData(QQ_MICBG_SHARE, URL_KEY)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicUtils::Algorithm::mdII(QQ_MICBG_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(m_ui->sinaButton->isChecked())
     {
-        url = QString(MusicCryptographicHash::decryptData(SINA_SHARE, URL_KEY)).arg(playUrl).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(SINA_SHARE, false)).arg(playUrl).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->weixingButton->isChecked())
     {

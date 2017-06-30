@@ -1,8 +1,8 @@
 #include "musicdownloadbdinterface.h"
-#include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
+#include "musicalgorithmutils.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qaeswrap.h"
@@ -20,13 +20,13 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         return;
     }
 
-    QString key = MusicCryptographicHash::decryptData(BD_SONG_ATTR_PA_URL, URL_KEY).arg(info->m_songId)
+    QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");
     eKey.replace('=', "%3D");
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_ATTR_URL, URL_KEY).arg(key).arg(eKey);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -147,7 +147,7 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_INFO_URL, URL_KEY).arg(info->m_songId);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -204,7 +204,7 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(info->m_songId);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -240,8 +240,8 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
                 value = var.toMap();
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["songLink"].toString();
-                attr.m_url.replace(MusicCryptographicHash::decryptData(BD_SONG_YYDOWN_URL, URL_KEY),
-                                   MusicCryptographicHash::decryptData(BD_SONG_SSDOWN_URL, URL_KEY));
+                attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_SONG_YYDOWN_URL, false),
+                                   MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));
                 attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                 attr.m_format = value["format"].toString();
                 attr.m_bitrate = map2NormalBitrate(value["rate"].toInt());

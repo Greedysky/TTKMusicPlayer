@@ -15,7 +15,7 @@ class QComboBox;
 #include "musicnumberdefine.h"
 #include "musicglobaldefine.h"
 
-/*! @brief The class of the utils object namespace.
+/*! @brief The class of the utils widget object namespace.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

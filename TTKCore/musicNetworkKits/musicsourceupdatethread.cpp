@@ -18,7 +18,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash::decryptData(VERSION_URL, URL_KEY));
+    download->startToDownload(MusicUtils::Algorithm::mdII(VERSION_URL, false));
 }
 
 QString MusicSourceUpdateThread::getLastedVersion() const

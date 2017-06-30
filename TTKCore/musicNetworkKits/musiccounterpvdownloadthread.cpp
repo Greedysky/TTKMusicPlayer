@@ -23,10 +23,10 @@ void MusicCounterPVDownloadThread::startToDownload()
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(QURTY_URL, URL_KEY)));
-    request.setRawHeader("Host", MusicCryptographicHash::decryptData(HOST_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(REFER_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Cookie", MusicCryptographicHash::decryptData(COOKIE_URL, URL_KEY).toUtf8());
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QURTY_URL, false)));
+    request.setRawHeader("Host", MusicUtils::Algorithm::mdII(HOST_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
+    request.setRawHeader("Cookie", MusicUtils::Algorithm::mdII(COOKIE_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));

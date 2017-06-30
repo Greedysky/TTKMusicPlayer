@@ -5,7 +5,6 @@
 #include "musiccoremplayer.h"
 #include "musicdownloadwidget.h"
 #include "musicitemdelegate.h"
-#include "musiccryptographichash.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicdatadownloadthread.h"
@@ -345,7 +344,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[row];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-    QString musicEnSong = MusicCryptographicHash::encryptData(musicSong, DOWNLOAD_KEY);
+    QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);

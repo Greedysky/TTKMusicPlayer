@@ -40,7 +40,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
     m_ui->stackedWidget->setCurrentIndex(1);
     QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicCryptographicHash::decryptData(DOWNLOAD_URL, URL_KEY)).arg(localDwonload),
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false)).arg(localDwonload),
                                                                     MusicObject::getAppDir() + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
@@ -49,7 +49,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 
 void MusicSourceUpdateWidget::upgradeFailedClicked()
 {
-    MusicUtils::Core::openUrl(MusicCryptographicHash::decryptData(CSDN_URL, URL_KEY), false);
+    MusicUtils::Core::openUrl(MusicUtils::Algorithm::mdII(CSDN_URL, false), false);
 }
 
 void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)

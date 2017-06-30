@@ -81,6 +81,10 @@ private:
 
 };
 
+#if QT_VERSION < QT_VERSION_CHECK(5,3,0)
+inline QRect operator-(const QRect &rect, const QMargins &margins);
+#endif
+
 
 
 /*! @brief The class of the photo grab label.
@@ -90,7 +94,7 @@ class MUSIC_WIDGET_EXPORT MusicPhotoGrabLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPhotoGrabLabel(QWidget *parent = nullptr);
+    explicit MusicPhotoGrabLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */

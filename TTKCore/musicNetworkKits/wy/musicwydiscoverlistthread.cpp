@@ -22,14 +22,14 @@ void MusicWYDiscoverListThread::startToSearch()
     }
 
     m_topListInfo.clear();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SONG_TOPLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_TOPLIST_URL, false);
     deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -129,10 +129,10 @@ void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(WY_SONG_URL, URL_KEY).arg(id)));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(WY_SONG_URL, false).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

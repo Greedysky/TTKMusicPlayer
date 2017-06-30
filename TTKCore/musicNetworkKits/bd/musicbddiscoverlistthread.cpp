@@ -22,7 +22,7 @@ void MusicBDDiscoverListThread::startToSearch()
     }
 
     m_topListInfo.clear();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_TOPLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false);
     deleteAll();
 
     QNetworkRequest request;
@@ -118,7 +118,7 @@ void MusicBDDiscoverListThread::searchTopListInformation(const QString &id)
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(BD_SONG_FMINFO_URL, URL_KEY).arg(id)));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

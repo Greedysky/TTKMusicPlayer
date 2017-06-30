@@ -31,8 +31,8 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_ALBUM_DATA_URL, URL_KEY).arg(album),
-                      MusicCryptographicHash::decryptData(XM_ALBUM_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_ALBUM_DATA_URL, false).arg(album),
+                      MusicUtils::Algorithm::mdII(XM_ALBUM_URL, false));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

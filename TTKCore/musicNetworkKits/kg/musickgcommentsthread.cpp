@@ -44,7 +44,7 @@ void MusicKGCommentsThread::startToPage(int offset)
     deleteAll();
     m_pageTotal = 0;
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SG_COMMIT_URL, URL_KEY)
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SG_COMMIT_URL, false)
                     .arg(m_rawData["songID"].toString()).arg(offset + 1).arg(m_pageSize);
     QNetworkRequest request;
     request.setUrl(musicUrl);

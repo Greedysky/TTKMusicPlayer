@@ -27,7 +27,7 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(SONG_URL, URL_KEY) + id));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(SONG_URL, false) + id));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -88,7 +88,7 @@ void MusicRadioSongsThread::downLoadFinished()
                 m_songInfo.m_albumName = value["albumName"].toString();
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 
-                QString lrcPrefix = MusicCryptographicHash::decryptData(LRC_URL, URL_KEY);
+                QString lrcPrefix = MusicUtils::Algorithm::mdII(LRC_URL, false);
                 if(!m_songInfo.m_lrcUrl.contains(lrcPrefix))
                 {
                     m_songInfo.m_lrcUrl = lrcPrefix + m_songInfo.m_lrcUrl;

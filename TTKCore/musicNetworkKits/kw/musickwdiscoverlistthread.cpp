@@ -22,7 +22,7 @@ void MusicKWDiscoverListThread::startToSearch()
     }
 
     m_topListInfo.clear();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_SONG_TOPLIST_URL, URL_KEY);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_TOPLIST_URL, false);
     deleteAll();
 
     QNetworkRequest request;
@@ -108,7 +108,7 @@ void MusicKWDiscoverListThread::searchTopListInformation(const QString &id)
     }
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(id)));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

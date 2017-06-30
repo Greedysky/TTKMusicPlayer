@@ -27,7 +27,7 @@ void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_ALBUM_URL, URL_KEY).arg(album);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ALBUM_URL, false).arg(album);
     deleteAll();
 
     QNetworkRequest request;

@@ -1,7 +1,7 @@
 #include "musicdownloadkwinterface.h"
-#include "musiccryptographichash.h"
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
+#include "musicalgorithmutils.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -20,7 +20,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTR_URL, URL_KEY).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3192") && bitrate == MB_192 && suffix == "mp3")
@@ -29,7 +29,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTR_URL, URL_KEY).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3H") && bitrate == MB_320 && suffix == "mp3")
@@ -38,7 +38,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTR_URL, URL_KEY).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("AL") && bitrate == MB_1000 && suffix == "ape")
@@ -47,7 +47,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTRS_URL, URL_KEY).arg(id).arg(suffix);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP4") && bitrate == MB_1000 && suffix == "mp4")
@@ -56,7 +56,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTRS_URL, URL_KEY).arg(id).arg(suffix);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MV") && bitrate == MB_1000 && suffix == "mkv")
@@ -65,7 +65,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicCryptographicHash::decryptData(KW_SONG_ATTRS_URL, URL_KEY).arg(id).arg(suffix);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
         info->m_songAttrs.append(attr);
     }
 }
@@ -109,7 +109,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfoma
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KW_SONG_INFO_URL, URL_KEY).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -137,7 +137,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfoma
             info->m_smallPicUrl = value["artpic"].toString();
             if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains("null"))
             {
-                info->m_smallPicUrl = MusicCryptographicHash::decryptData(KW_ALBUM_COVER_URL, URL_KEY) + info->m_smallPicUrl;
+                info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
             }
         }
     }

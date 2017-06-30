@@ -43,13 +43,13 @@ void MusicWYCommentsThread::startToPage(int offset)
 
     deleteAll();
     m_pageTotal = 0;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(WY_SG_COMMIT_URL, URL_KEY)
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SG_COMMIT_URL, false)
                     .arg(m_rawData["songID"].toInt()).arg(m_pageSize).arg(m_pageSize*offset);
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
-    request.setRawHeader("Referer", MusicCryptographicHash::decryptData(WY_BASE_URL, URL_KEY).toUtf8());
+    request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

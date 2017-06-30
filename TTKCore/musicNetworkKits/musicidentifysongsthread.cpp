@@ -1,11 +1,11 @@
 #include "musicidentifysongsthread.h"
 #include "musicsourcedownloadthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicalgorithmutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QFile>
-#include <QCryptographicHash>
 
 #define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
 #define ACRUA_URL     "U0NDS2dzQVpNM3V3aGhtZmVOdW83d2VielBHdTcxTEk4QmpTSUxvQ2ZsdWVSaE1wWW5EOG8wMm83bitKVlJnZHZ1dlBSUT09"
@@ -42,7 +42,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash::decryptData(ACRUA_URL, URL_KEY));
+    download->startToDownload(MusicUtils::Algorithm::mdII(ACRUA_URL, false));
 
     loop.exec();
 
@@ -87,7 +87,7 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     content.append(endBoundary);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicCryptographicHash::decryptData(QUERY_URL, URL_KEY)));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false)));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
@@ -165,7 +165,7 @@ QByteArray MusicIdentifySongsThread::hmacSha1(const QByteArray &data, const QByt
     QByteArray newSecretKey = secretKey;
     if(newSecretKey.length() > blockSize)
     {
-        newSecretKey = QCryptographicHash::hash(newSecretKey, QCryptographicHash::Sha1);
+        newSecretKey = MusicUtils::Algorithm::sha1(newSecretKey);
     }
 
     QByteArray innerPadding(blockSize, char(0x36));
@@ -180,7 +180,7 @@ QByteArray MusicIdentifySongsThread::hmacSha1(const QByteArray &data, const QByt
     QByteArray total = outerPadding;
     QByteArray part = innerPadding;
     part.append(data);
-    total.append(QCryptographicHash::hash(part, QCryptographicHash::Sha1));
-    QByteArray hashed = QCryptographicHash::hash(total, QCryptographicHash::Sha1);
+    total.append(MusicUtils::Algorithm::sha1(part));
+    QByteArray hashed = MusicUtils::Algorithm::sha1(total);
     return hashed;
 }

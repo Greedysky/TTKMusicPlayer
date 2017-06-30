@@ -26,7 +26,7 @@ void MusicDownLoadQueryQQThread::startToSearch(QueryType type, const QString &te
 
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
 
     QNetworkRequest request;
@@ -98,8 +98,8 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         musicInfo.m_albumId = value["albummid"].toString();
                         if(!m_querySimplify)
                         {
-                            musicInfo.m_lrcUrl = MusicCryptographicHash::decryptData(QQ_SONG_LRC_URL, URL_KEY).arg(musicInfo.m_songId);
-                            musicInfo.m_smallPicUrl = MusicCryptographicHash::decryptData(QQ_SONG_PIC_URL, URL_KEY)
+                            musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                            musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                         .arg(musicInfo.m_albumId.right(2).left(1))
                                         .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                             readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
@@ -166,7 +166,7 @@ void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_MV_INFO_URL, URL_KEY).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_INFO_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -251,7 +251,7 @@ QString MusicDownLoadQueryQQThread::getMovieKey(int id, const QString &videoId)
     }
 
     QString fn = QString("%1.p%2.1.mp4").arg(videoId).arg(id - 10000);
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_MV_KEY_URL, URL_KEY).arg(id).arg(videoId).arg(fn);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_MV_KEY_URL, false).arg(id).arg(videoId).arg(fn);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

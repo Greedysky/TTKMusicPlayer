@@ -22,7 +22,7 @@ void MusicQQDiscoverListThread::startToSearch()
     }
 
     m_topListInfo.clear();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(QQ_SONG_TOPLIST_C_URL, URL_KEY).arg(4);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_TOPLIST_C_URL, false).arg(4);
     deleteAll();
 
     QNetworkRequest request;

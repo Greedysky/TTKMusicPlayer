@@ -37,7 +37,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
 
     deleteAll();
     m_pageTotal = 0;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_URL, URL_KEY)
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false)
                     .arg(m_searchText).arg(m_pageSize*offset);
 
     QNetworkRequest request;
@@ -63,7 +63,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearchAll(const QSet<QString> &i
             return;
         }
 
-        QUrl musicUrl = MusicCryptographicHash::decryptData(BD_PLAYLIST_ATTR_URL, URL_KEY).arg(id);
+        QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(id);
 
         QNetworkRequest request;
         request.setUrl(musicUrl);
@@ -86,7 +86,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
         return;
     }
 
-    QUrl musicUrl =  MusicCryptographicHash::decryptData(BD_PLAYLIST_ATTR_URL, URL_KEY).arg(playlist);
+    QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

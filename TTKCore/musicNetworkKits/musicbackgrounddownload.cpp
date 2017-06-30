@@ -25,7 +25,7 @@ void MusicBackgroundDownload::startToDownload()
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     ///Set search image API
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash::decryptData(BIG_ART_URL, URL_KEY).arg(m_artName));
+    download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));
 }
 
 void MusicBackgroundDownload::downLoadFinished(const QByteArray &bytes)

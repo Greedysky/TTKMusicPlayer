@@ -272,6 +272,13 @@ MusicPhotoGrabItem::Direction MusicPhotoGrabItem::getRegion(const QPoint &cursor
     return ret_dir;
 }
 
+#if QT_VERSION < QT_VERSION_CHECK(5,3,0)
+QRect operator-(const QRect &rect, const QMargins &margins)
+{
+    return QRect(QPoint(rect.left() + margins.left(), rect.top() + margins.top()),
+                 QPoint(rect.right() - margins.right(), rect.bottom() - margins.bottom()));
+}
+#endif
 
 
 MusicPhotoGrabLabel::MusicPhotoGrabLabel(QWidget *parent)
@@ -313,6 +320,7 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
 
     m_grabItem->setBorderRect(m_imgRect);
     m_grabItem->show();
+    update();
 }
 
 QPixmap MusicPhotoGrabLabel::pixmap()

@@ -74,7 +74,7 @@ bool MusicCloudSharedSongTableWidget::getKey()
 
     MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicCryptographicHash::decryptData(QN_UA_URL, URL_KEY));
+    download->startToDownload(MusicUtils::Algorithm::mdII(QN_UA_URL, false));
 
     loop.exec();
     updateListToServer();
@@ -244,7 +244,7 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
         return;
     }
 
-    QString url = m_qnUploadData->getDownloadUrl(MusicCryptographicHash::decryptData(QN_PRFIX, URL_KEY), it->toolTip());
+    QString url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(QN_PRFIX, false), it->toolTip());
     (new MusicDataDownloadThread( url, MusicUtils::Core::musicPrefix() + it->toolTip(),
          MusicDownLoadThreadAbstract::Download_Music, this))->startToDownload();
 }

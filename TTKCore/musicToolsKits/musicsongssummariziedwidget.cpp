@@ -7,7 +7,6 @@
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicprogresswidget.h"
-#include "musiccryptographichash.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"
 #include "musicplayedlistpopwidget.h"
@@ -546,7 +545,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, const QString &time,
                                                         const QString &format, bool play)
 {
-    QString musicSong = MusicCryptographicHash::decryptData(name, DOWNLOAD_KEY);
+    QString musicSong = MusicUtils::Algorithm::mdII(name, ALG_DOWNLOAD_KEY);
     const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     item->m_songs << MusicSong(path, 0, time, musicSong);

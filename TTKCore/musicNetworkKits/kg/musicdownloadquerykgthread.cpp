@@ -26,7 +26,7 @@ void MusicDownLoadQueryKGThread::startToSearch(QueryType type, const QString &te
 
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
 
     QNetworkRequest request;
@@ -150,9 +150,8 @@ void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSong
         return;
     }
 
-    QByteArray encodedData = QCryptographicHash::hash(QString("%1kugoumvcloud").arg(hash).toUtf8(),
-                                                      QCryptographicHash::Md5).toHex().toLower();
-    QUrl musicUrl = MusicCryptographicHash::decryptData(KG_MV_ATTR_URL, URL_KEY).arg(QString(encodedData)).arg(hash);
+    QByteArray encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(hash).toUtf8()).toHex().toLower();
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_MV_ATTR_URL, false).arg(QString(encodedData)).arg(hash);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

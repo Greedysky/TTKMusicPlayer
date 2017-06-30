@@ -25,7 +25,7 @@ void MusicDownLoadQueryBDThread::startToSearch(QueryType type, const QString &te
 
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SONG_SEARCH_URL, URL_KEY).arg(text).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
 
     QNetworkRequest request;
@@ -157,7 +157,7 @@ void MusicDownLoadQueryBDThread::readFromMusicMVAttribute(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_URL, URL_KEY).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -206,7 +206,7 @@ void MusicDownLoadQueryBDThread::readFromMusicMVInfo(MusicObject::MusicSongInfom
         return;
     }
 
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_MV_INFO_ATTR_URL, URL_KEY).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_URL, false).arg(id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

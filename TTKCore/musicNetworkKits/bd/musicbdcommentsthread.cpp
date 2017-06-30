@@ -46,14 +46,14 @@ void MusicBDCommentsThread::startToPage(int offset)
     m_pageTotal = 0;
 
     QString time = "1494911685";
-    QString key = QCryptographicHash::hash(QString("baidu_taihe_music_secret_key" + time).toUtf8(), QCryptographicHash::Md5).toHex().mid(8, 16);
-    QString data = MusicCryptographicHash::decryptData(BD_SG_COMMIT_DATA_URL, URL_KEY).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
+    QString key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
+    QString data = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
     QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
-    QString sign = QCryptographicHash::hash(QString("baidu_taihe_music" + eKey + time).toUtf8(), QCryptographicHash::Md5).toHex();
+    QString sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");
     eKey.replace('=', "%3D");
-    QUrl musicUrl = MusicCryptographicHash::decryptData(BD_SG_COMMIT_URL, URL_KEY).arg(time).arg(sign).arg(eKey);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

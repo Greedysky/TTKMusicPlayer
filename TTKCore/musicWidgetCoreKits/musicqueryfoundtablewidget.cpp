@@ -1,7 +1,6 @@
 #include "musicqueryfoundtablewidget.h"
 #include "musicdatadownloadthread.h"
 #include "musicdownloadwidget.h"
-#include "musiccryptographichash.h"
 #include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicsemaphoreloop.h"
@@ -219,7 +218,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
     {
         if(attr.m_bitrate == findMinTag.first())
         {
-            QString musicEnSong = MusicCryptographicHash::encryptData(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, DOWNLOAD_KEY);
+            QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
             QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
             MusicSemaphoreLoop loop(this);

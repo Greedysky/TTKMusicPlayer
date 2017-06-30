@@ -38,16 +38,6 @@ QString MusicCryptographicHash::decrypt(const QString &data, const QString &key,
     return d;
 }
 
-QString MusicCryptographicHash::encryptData(const QString &data, const QString &key, Priority p)
-{
-    return MusicCryptographicHash().encrypt(data, key, p);
-}
-
-QString MusicCryptographicHash::decryptData(const QString &data, const QString &key, Priority p)
-{
-    return MusicCryptographicHash().decrypt(data, key, p);
-}
-
 std::string MusicCryptographicHash::xxteaEncrypt(std::string data, std::string key)
 {
     data = QString(QString(data.c_str()).toUtf8()).toStdString();

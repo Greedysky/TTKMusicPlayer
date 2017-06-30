@@ -1,7 +1,7 @@
 #include "musicusermodel.h"
+#include "musicalgorithmutils.h"
 
 #include <QStringList>
-#include <QCryptographicHash>
 #include <QtSql/QSqlRecord>
 #include <QSet>
 
@@ -167,7 +167,7 @@ QStringList MusicUserModel::getAllUsers()
 
 QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
 {
-    return QCryptographicHash::hash( pwd.toLatin1(), QCryptographicHash::Md5).toHex();
+    return MusicUtils::Algorithm::md5( pwd.toLatin1() ).toHex();
 }
 
 QStringList MusicUserModel::getAllCities()

@@ -39,8 +39,8 @@ void MusicDownLoadQueryXMPlaylistThread::startToPage(int offset)
 
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_PLAYLIST_DATA_URL, URL_KEY).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
-                      MusicCryptographicHash::decryptData(XM_PLAYLIST_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_URL, false));
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -60,8 +60,8 @@ void MusicDownLoadQueryXMPlaylistThread::startToSearch(const QString &playlist)
     }
     QNetworkRequest request;
     makeTokenQueryUrl(m_manager, &request,
-                      MusicCryptographicHash::decryptData(XM_PLAYLIST_A_DATA_URL, URL_KEY).arg(playlist).arg(1).arg(m_pageSize),
-                      MusicCryptographicHash::decryptData(XM_PLAYLIST_A_URL, URL_KEY));
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_DATA_URL, false).arg(playlist).arg(1).arg(m_pageSize),
+                      MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_URL, false));
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

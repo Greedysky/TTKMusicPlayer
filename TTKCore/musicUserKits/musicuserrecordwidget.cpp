@@ -4,9 +4,9 @@
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
 #include "musicwidgetutils.h"
+#include "musicalgorithmutils.h"
 
 #include <QFileDialog>
-#include <QCryptographicHash>
 #include <QStyledItemDelegate>
 
 MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
@@ -168,7 +168,7 @@ void MusicUserRecordWidget::saveFileButtonClickedS()
     }
 
     QPixmap pix(m_ui->bigPixmapLabel_S->pixmap());
-    QByteArray name(QCryptographicHash::hash(QByteArray::number(pix.cacheKey()), QCryptographicHash::Md5));
+    QByteArray name(MusicUtils::Algorithm::md5(QByteArray::number(pix.cacheKey())));
     QString path = QString("%1%2").arg(AVATAR_DIR_FULL)
                           .arg(QString(name.toHex().toUpper()));
     pix.save(path + JPG_FILE);
