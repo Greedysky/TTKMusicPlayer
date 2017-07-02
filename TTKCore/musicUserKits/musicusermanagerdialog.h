@@ -40,6 +40,10 @@ public:
     /*!
      * Set current user's uid.
      */
+    void setUserModel(MusicUserModel *model);
+    /*!
+     * Set user model.
+     */
 
 Q_SIGNALS:
     void userStateChanged(const QString &uid, const QString &icon);

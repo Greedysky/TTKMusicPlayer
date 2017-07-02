@@ -17,7 +17,6 @@ MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
     setAttribute(Qt::WA_TranslucentBackground);
 
     createButtonPopMenu();
-    m_userModel = new MusicUserModel(this);
 
     connect(m_ui->logoffButton, SIGNAL(clicked()), SLOT(musicUserLogoff()));
     connect(m_ui->userIcon, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
@@ -32,7 +31,6 @@ MusicUserManagerDialog::~MusicUserManagerDialog()
                                 QString::number(m_userModel->getUserLogTime(m_currentUserUID)
                                 .toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
     }
-    delete m_userModel;
     delete m_ui;
 }
 
@@ -48,6 +46,11 @@ void MusicUserManagerDialog::setUserUID(const QString &uid)
     m_ui->userIcon->setPixmap(QPixmap(m_userModel->getUserIcon(uid)).scaled(m_ui->userIcon->size()));
     createUserTime();
     m_time.start();
+}
+
+void MusicUserManagerDialog::setUserModel(MusicUserModel *model)
+{
+    m_userModel = model;
 }
 
 void MusicUserManagerDialog::createUserTime() const

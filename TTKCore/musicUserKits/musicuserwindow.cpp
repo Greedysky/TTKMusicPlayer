@@ -15,13 +15,18 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
      m_ui(new Ui::MusicUserWindow)
 {
     m_ui->setupUi(this);
+
     m_ui->userNameL->setStyleSheet(MusicUIObject::MPushButtonStyle07);
+    m_ui->userNameU->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     m_ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
 
     connectDatabase();
 
+    m_userModel = new MusicUserModel(this);
     m_userManager = new MusicUserManagerDialog(this);
+    m_userManager->setUserModel(m_userModel);
+
     connect(m_ui->userIconU, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(m_ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(m_ui->userIconL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
@@ -35,6 +40,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
 MusicUserWindow::~MusicUserWindow()
 {
     delete m_userManager;
+    delete m_userModel;
     delete m_ui;
     disConnectDatabase();
 }
@@ -127,11 +133,10 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
     else
     {
         m_userManager->setUserUID(uid);
-        m_ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon),
-                                                                   QPixmap(":/usermanager/lb_mask"),
-                                                                   m_ui->userIconL->size()));
-        m_ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), uid, Qt::ElideRight, 44));
-        m_ui->userNameL->setToolTip(uid);
+        m_ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon), QPixmap(":/usermanager/lb_mask"),
+                                                                     m_ui->userIconL->size()));
+        m_ui->userNameL->setToolTip(m_userModel->getUserName(uid));
+        m_ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), m_ui->userNameL->toolTip(), Qt::ElideRight, 44));
         setCurrentIndex(1);
     }
 }
@@ -139,6 +144,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
 void MusicUserWindow::musicUserLogin()
 {
     MusicUserDialog dialog;
+    dialog.setUserModel(m_userModel);
     connect(&dialog, SIGNAL(userLoginSuccess(QString,QString)),
                      SLOT(userStateChanged(QString,QString)));
     dialog.exec();
@@ -157,6 +163,7 @@ void MusicUserWindow::musicUserContextLogin()
 void MusicUserWindow::checkToAutoLogin()
 {
     MusicUserDialog dialog;
+    dialog.setUserModel(m_userModel);
     QString name, icon;
     dialog.checkToAutoLogin(name, icon);
     userStateChanged(name, icon);

@@ -40,6 +40,10 @@ public:
     /*!
      * Check current user to login auto automatic.
      */
+    void setUserModel(MusicUserModel *model);
+    /*!
+     * Set user model.
+     */
 
 Q_SIGNALS:
     void userLoginSuccess(const QString &uid, const QString &icon);

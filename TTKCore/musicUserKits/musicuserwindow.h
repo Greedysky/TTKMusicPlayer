@@ -12,6 +12,7 @@
 #include <QStackedWidget>
 #include "musicglobaldefine.h"
 
+class MusicUserModel;
 class MusicUserDialog;
 class MusicUserManagerDialog;
 
@@ -70,6 +71,7 @@ protected:
      */
 
     Ui::MusicUserWindow *m_ui;
+    MusicUserModel* m_userModel;
     MusicUserManagerDialog *m_userManager;
 
 };

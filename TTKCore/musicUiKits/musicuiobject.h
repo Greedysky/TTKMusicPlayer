@@ -204,7 +204,7 @@ namespace MusicUIObject
             QPushButton{ font-size:17px; font-weight:bold; }";
 
     const QString MPushButtonStyle07 = MPushButtonStyle02 + " \
-            QPushButton{ font-size:17px; font-weight:bold; color:#FFFFFF;}";
+            QPushButton{ font-size:12px; color:#FFFFFF;}";
 
     const QString MPushButtonStyle08 = " \
             QPushButton{ color:#CCCCCC;} \
