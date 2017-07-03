@@ -49,9 +49,13 @@ protected:
     /*!
      * Override the widget event.
      */
+    void grabPixmap();
+    /*!
+     * Grab pixmap.
+     */
 
     bool m_isDrawing;
-    QPixmap m_originPixmap;
+    QPixmap m_originPixmap, m_grabPixmap;
     QPoint m_ptCursor, m_ptStart, m_ptEnd;
 
 };
