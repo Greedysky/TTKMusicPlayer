@@ -52,6 +52,14 @@ public:
     /*!
      * Get Geometric Stretch.
      */
+    inline void setCrossStretch(bool c) { m_crossStretch = c;}
+    /*!
+     * Set Cross Stretch.
+     */
+    inline bool gettCrossStretch() const { return m_crossStretch;}
+    /*!
+     * Get Cross Stretch.
+     */
 
 Q_SIGNALS:
     void rectChanged();
@@ -79,7 +87,8 @@ protected:
      * Get region rect.
      */
 
-    bool m_isPressed, m_geometricStretch;
+    bool m_isPressed;
+    bool m_crossStretch, m_geometricStretch;
     Direction m_direction;
     QPoint m_originPoint, m_movePos;
     QPolygon m_listMarker;

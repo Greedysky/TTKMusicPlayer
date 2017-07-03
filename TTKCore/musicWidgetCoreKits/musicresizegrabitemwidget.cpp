@@ -11,6 +11,8 @@ MusicResizeGrabItemWidget::MusicResizeGrabItemWidget(QWidget *parent)
     m_direction = Direction_No;
     m_isPressed = false;
     m_geometricStretch = false;
+    m_crossStretch = false;
+
     setMouseTracking(true);
 }
 
@@ -150,8 +152,9 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
                 case Direction_RightTop:
                 case Direction_LeftBottom:
                 case Direction_RightBottom:
-                    break;
-//                    return onMouseChange(gloPoint.x(), gloPoint.y());
+                    if(m_crossStretch)
+                        return onMouseChange(gloPoint.x(), gloPoint.y());
+                    else break;
                 default:
                     break;
             }
