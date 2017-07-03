@@ -39,3 +39,7 @@ HEADERS += \
 
 #load extra define
 include(../TTKExtrasDefine.pri)
+
+win32{
+    RC_FILE = Devicewatcher.rc
+}

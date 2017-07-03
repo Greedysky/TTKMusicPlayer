@@ -165,7 +165,7 @@ static inline HWND dw_create_internal_window(const void* userData)
 	QString className = ::className();
 	HINSTANCE hi = qWinAppInst();
 
-	WNDCLASS wc;
+    WNDCLASSW wc;
 	wc.style = 0;
 	wc.lpfnWndProc = dw_internal_proc;
 	wc.cbClsExtra = 0;
@@ -175,17 +175,17 @@ static inline HWND dw_create_internal_window(const void* userData)
 	wc.hCursor = 0;
 	wc.hbrBackground = 0;
 	wc.lpszMenuName = NULL;
-	wc.lpszClassName = reinterpret_cast<const wchar_t *>(className.utf16());
-	RegisterClass(&wc);
+    wc.lpszClassName = reinterpret_cast<const wchar_t *>(className.utf16());
+    RegisterClassW(&wc);
 
-	HWND hwnd = CreateWindow(wc.lpszClassName,	   // classname
-							 wc.lpszClassName,	   // window name
-							 0,					  // style
-							 0, 0, 0, 0,			 // geometry
-							 0,					  // parent
-							 0,					  // menu handle
-							 hi,					 // application
-							 0);					 // windows creation data.
+    HWND hwnd = CreateWindowW(wc.lpszClassName,	   // classname
+                              wc.lpszClassName,	   // window name
+                              0,					  // style
+                              0, 0, 0, 0,			 // geometry
+                              0,					  // parent
+                              0,					  // menu handle
+                              hi,					 // application
+                              0);					 // windows creation data.
 	if (!hwnd) {
 		qWarning("QDeviceWatcherPrivate: Failed to create internal window: %d", (int)GetLastError());
 #if CONFIG_NOTIFICATION
@@ -205,9 +205,9 @@ static inline HWND dw_create_internal_window(const void* userData)
 #else
 	} else if (userData) {
 #ifdef GWLP_USERDATA
-		SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)userData);
+        SetWindowLongPtrW(hwnd, GWLP_USERDATA, (LONG_PTR)userData);
 #else
-		SetWindowLong(hwnd, GWL_USERDATA, (LONG)userData);
+        SetWindowLongW(hwnd, GWL_USERDATA, (LONG)userData);
 #endif
 	}
 #endif //CONFIG_NOTIFICATION
@@ -222,7 +222,7 @@ static inline void dw_destroy_internal_window(HWND hwnd)
 #if CONFIG_NOTIFICATION
 	UnregisterDeviceNotification(hDevNotify);
 #endif
-	UnregisterClass(reinterpret_cast<const wchar_t *>(className().utf16()), qWinAppInst());
+    UnregisterClassW(reinterpret_cast<const wchar_t *>(className().utf16()), qWinAppInst());
 }
 
 

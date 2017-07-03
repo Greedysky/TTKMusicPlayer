@@ -42,6 +42,10 @@ set(MUSIC_SOURCES
     uncompr.c
     zutil.c
   )
+  
+if(WIN32)
+    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
+endif()
 
 if(TTK_BUILD_SHARED)
   add_library(${TARGET_NAME} SHARED ${MUSIC_SOURCES} ${MUSIC_HEADERS})

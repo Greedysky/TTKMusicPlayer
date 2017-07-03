@@ -33,6 +33,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGETCORE_KITS_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.h
     ${MUSIC_WIDGETCORE_DIR}/musicsongslistabstracttablewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicfoundabstractwidget.h
+    ${MUSIC_WIDGETCORE_DIR}/musicphotomodlabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicphotograblabel.h
+    ${MUSIC_WIDGETCORE_DIR}/musicresizegrabitemwidget.h
+    
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGETCORE_KITS_SOURCES
@@ -68,5 +72,9 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGETCORE_KITS_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musictransitionanimationlabel.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicsongslistabstracttablewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicfoundabstractwidget.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicphotomodlabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicphotograblabel.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musicresizegrabitemwidget.cpp
+    
   )
   

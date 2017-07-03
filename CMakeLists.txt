@@ -72,7 +72,11 @@ include_directories(${MUSIC_VIDEOKITS_DIR}/core)
 include_directories(${MUSIC_WIDGET_DIR})
 include_directories(${MUSIC_WIDGETCORE_DIR})
 include_directories(${MUSIC_UI_DIR})
+
+
+include_directories(${MUSIC_THIRDPARTY_DIR})
 include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
+include_directories(${MUSIC_THIRDPARTY_DIR}/Devicewatcher)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qaes)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qhz2py)

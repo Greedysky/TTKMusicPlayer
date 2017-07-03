@@ -19,6 +19,10 @@ SET(MUSIC_QRC
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
+  if(WIN32)
+    list(APPEND MUSIC_RCC_SRCS TTKQrc.rc)
+  endif()
+  
   if(TTK_BUILD_SHARED)
     add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS})
   else()
@@ -27,7 +31,11 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   target_link_libraries(${TARGET_NAME} Qt5::Core)
 else()
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
-
+  
+  if(WIN32)
+    list(APPEND MUSIC_RCC_SRCS TTKQrc.rc)
+  endif()
+  
   if(TTK_BUILD_SHARED)
     add_library(${TARGET_NAME} SHARED ${MUSIC_RCC_SRCS})
   else()

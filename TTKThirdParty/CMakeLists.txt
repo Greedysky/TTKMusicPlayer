@@ -10,3 +10,4 @@ add_definitions(-DQT_THREAD)
 
 add_subdirectory(zlib)
 add_subdirectory(MusicExtras)
+add_subdirectory(Devicewatcher)

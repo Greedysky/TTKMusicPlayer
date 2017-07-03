@@ -65,7 +65,7 @@ endif()
 
 
 set(MUSIC_HEADERS
-    musicextrasglobaldefine.h
+    ../musicextrasglobaldefine.h
     qaes/aes.h
     qaes/aes_locl.h
     qaes/cbc128.h
@@ -151,7 +151,7 @@ set(MUSIC_SOURCES
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp)
+    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp MusicExtras.rc)
 else(UNIX)
     list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_x11.cpp)
 endif()

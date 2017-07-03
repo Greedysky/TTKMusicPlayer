@@ -13,7 +13,6 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchtablewidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.h
-    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotolabel.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
@@ -39,7 +38,6 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcsearchtablewidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotouploadwidget.cpp
-    ${MUSIC_LRCMANAGER_DIR}/musiclrcartphotolabel.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp
