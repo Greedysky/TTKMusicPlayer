@@ -43,7 +43,8 @@ HEADERS  += \
     $$PWD/musicopenfilewidget.h \
     $$PWD/musicsplititemclickedlabel.h \
     $$PWD/musicphotomodlabel.h \
-    $$PWD/musicphotograblabel.h
+    $$PWD/musicphotograblabel.h \
+    $$PWD/musicresizegrabitemwidget.h
 
 }
 
@@ -82,6 +83,7 @@ SOURCES += \
     $$PWD/musicopenfilewidget.cpp \
     $$PWD/musicsplititemclickedlabel.cpp \
     $$PWD/musicphotomodlabel.cpp \
-    $$PWD/musicphotograblabel.cpp
+    $$PWD/musicphotograblabel.cpp \
+    $$PWD/musicresizegrabitemwidget.cpp
 
 }
