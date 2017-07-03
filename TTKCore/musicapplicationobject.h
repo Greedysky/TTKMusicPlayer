@@ -12,9 +12,9 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+class QDeviceWatcher;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
-class MusicMobileDevicesThread;
 class QPropertyAnimation;
 
 /*! @brief The class of the app object widget.
@@ -104,9 +104,13 @@ public Q_SLOTS:
     /*!
      * Timer parameter changed.
      */
-    void musicDevicesLinuxChanged(bool state);
+    void musicDeviceNameChanged(const QString &name);
     /*!
-     * Detect mobile devices on linux.
+     * Detect mobile devices name changed.
+     */
+    void musicDeviceChanged(bool state);
+    /*!
+     * Detect mobile devices changed.
      */
     void musicSetEqualizer();
     /*!
@@ -131,7 +135,7 @@ protected:
     QPropertyAnimation *m_animation;
     MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDevices;
-    MusicMobileDevicesThread *m_mobileDevicesLinux;
+    QDeviceWatcher *m_deviceWatcher;
 
     static MusicApplicationObject *m_instance;
 };

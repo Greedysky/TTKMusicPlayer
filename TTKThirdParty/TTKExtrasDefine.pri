@@ -6,5 +6,11 @@
 # * works are strictly forbiden.
 # =================================================
 
-TEMPLATE = subdirs
-SUBDIRS = zlib MusicExtras Devicewatcher
+INCLUDEPATH += \
+    $$PWD/ \
+    $$PWD/../
+
+HEADERS  += \
+    $$PWD/musicextrasglobaldefine.h \
+    $$PWD/../musicglobal.h \
+    $$PWD/../musicprivate.h

@@ -27,8 +27,6 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-INCLUDEPATH += ../../
-
 win32{
     LIBS += -L../../bin/$$TTKMusicPlayer -lTTKUi
 }
@@ -36,10 +34,7 @@ unix:!mac{
     LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
 }
 
-HEADERS  += \
-    musicextrasglobaldefine.h \
-    ../../musicglobal.h \
-    ../../musicprivate.h
+include(../TTKExtrasDefine.pri)
 
 include(qaes/QAes.pri)
 include(qhz2py/QHz2Py.pri)

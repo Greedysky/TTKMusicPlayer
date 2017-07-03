@@ -7,7 +7,9 @@
 # =================================================
 
 INCLUDEPATH += \
+        $$PWD \
         $$PWD/zlib \
+        $$PWD/Devicewatcher \
         $$PWD/MusicExtras \
         $$PWD/MusicExtras/qaes \
         $$PWD/MusicExtras/qhz2py \

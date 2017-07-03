@@ -37,7 +37,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
             CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
@@ -47,7 +47,7 @@ win32{
         }
 
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -57,7 +57,7 @@ win32{
     equals(QT_MAJOR_VERSION, 4){
         QT  += multimedia
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKExtras -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch

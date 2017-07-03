@@ -1,8 +1,8 @@
 #include "musicapplicationobject.h"
-#ifdef Q_OS_WIN
-# include <Windows.h>
-# include <Dbt.h>
-#endif
+//#ifdef Q_OS_WIN
+//# include <Windows.h>
+//# include <Dbt.h>
+//#endif
 #include "musicmobiledeviceswidget.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
@@ -11,17 +11,18 @@
 #include "musicequalizerdialog.h"
 #include "musicsettingmanager.h"
 #include "musicregeditmanager.h"
-#include "musicmobiledevicesthread.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsoundeffectswidget.h"
 #include "musicmessageaboutdialog.h"
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
-
+#include <QDebug>
 #include <QPropertyAnimation>
 #include <QApplication>
 #include <QDesktopWidget>
+
+#include "qdevicewatcher.h"
 
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
@@ -35,14 +36,13 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     windowStartAnimationOpacity();
 
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
-#ifdef Q_OS_UNIX
-    m_mobileDevicesLinux = new MusicMobileDevicesThread(this);
-    connect(m_mobileDevicesLinux, SIGNAL(devicesChanged(bool)), SLOT(musicDevicesLinuxChanged(bool)));
-    m_mobileDevicesLinux->start();
-#elif defined Q_OS_WIN
-    m_mobileDevicesLinux = nullptr;
-#endif
     m_setWindowToTop = false;
+
+    m_deviceWatcher = new QDeviceWatcher(this);
+    connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(musicDeviceChanged(bool)));
+    connect(m_deviceWatcher, SIGNAL(deviceAdded(QString)), SLOT(musicDeviceNameChanged(QString)));
+    m_deviceWatcher->appendEventReceiver(this);
+    m_deviceWatcher->start();
 
     musicToolSetsParameter();
 }
@@ -50,10 +50,10 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 MusicApplicationObject::~MusicApplicationObject()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
-    delete m_mobileDevicesLinux;
     delete m_mobileDevices;
     delete m_musicTimerAutoObj;
     delete m_animation;
+    delete m_deviceWatcher;
 }
 
 QString MusicApplicationObject::getClassName()
@@ -107,52 +107,53 @@ void MusicApplicationObject::nativeEvent(const QByteArray &,
 void MusicApplicationObject::winEvent(MSG *msg, long *)
 {
 #  endif
-    if(msg->message == WM_DEVICECHANGE)
-    {
-        PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
-        switch(msg->wParam)
-        {
-            case DBT_DEVICETYPESPECIFIC:
-                break;
-            case DBT_DEVICEARRIVAL:
-                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-                {
-                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-                    if (lpdbv->dbcv_flags == 0)
-                    {
-                        DWORD unitmask = lpdbv ->dbcv_unitmask;
-                        int i;
-                        for(i = 0; i < 26; ++i)
-                        {
-                            if(unitmask & 0x1)
-                                break;
-                            unitmask = unitmask >> 1;
-                        }
-                        QString dev((char)(i + 'A'));
-                        M_LOGGER_INFO(QString("USB_Arrived and The USBDisk is: %1").arg(dev));
-                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, dev + ":/");
-                        delete m_mobileDevices;
-                        m_mobileDevices = new MusicMobileDevicesWidget;
-                        m_mobileDevices->show();
-                    }
-                }
-                break;
-            case DBT_DEVICEREMOVECOMPLETE:
-                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-                {
-                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-                    if (lpdbv -> dbcv_flags == 0)
-                    {
-                        M_LOGGER_INFO("USB_remove");
-                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, QString());
-                        delete m_mobileDevices;
-                        m_mobileDevices = nullptr;
-                    }
-                }
-                break;
-            default: break;
-        }
-    }
+    Q_UNUSED(msg);
+//    if(msg->message == WM_DEVICECHANGE)
+//    {
+//        PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
+//        switch(msg->wParam)
+//        {
+//            case DBT_DEVICETYPESPECIFIC:
+//                break;
+//            case DBT_DEVICEARRIVAL:
+//                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
+//                {
+//                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
+//                    if (lpdbv->dbcv_flags == 0)
+//                    {
+//                        DWORD unitmask = lpdbv ->dbcv_unitmask;
+//                        int i;
+//                        for(i = 0; i < 26; ++i)
+//                        {
+//                            if(unitmask & 0x1)
+//                                break;
+//                            unitmask = unitmask >> 1;
+//                        }
+//                        QString dev((char)(i + 'A'));
+//                        M_LOGGER_INFO(QString("USB_Arrived and The USBDisk is: %1").arg(dev));
+//                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, dev + ":/");
+//                        delete m_mobileDevices;
+//                        m_mobileDevices = new MusicMobileDevicesWidget;
+//                        m_mobileDevices->show();
+//                    }
+//                }
+//                break;
+//            case DBT_DEVICEREMOVECOMPLETE:
+//                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
+//                {
+//                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
+//                    if (lpdbv -> dbcv_flags == 0)
+//                    {
+//                        M_LOGGER_INFO("USB_remove");
+//                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, QString());
+//                        delete m_mobileDevices;
+//                        m_mobileDevices = nullptr;
+//                    }
+//                }
+//                break;
+//            default: break;
+//        }
+//    }
 }
 #endif
 
@@ -207,7 +208,12 @@ void MusicApplicationObject::musicToolSetsParameter()
     m_musicTimerAutoObj->runTimerAutoConfig();
 }
 
-void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
+void MusicApplicationObject::musicDeviceNameChanged(const QString &name)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, name);
+}
+
+void MusicApplicationObject::musicDeviceChanged(bool state)
 {
     delete m_mobileDevices;
     m_mobileDevices = nullptr;
@@ -215,6 +221,10 @@ void MusicApplicationObject::musicDevicesLinuxChanged(bool state)
     {
         m_mobileDevices = new MusicMobileDevicesWidget;
         m_mobileDevices->show();
+    }
+    else
+    {
+        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, QString());
     }
 }
 
