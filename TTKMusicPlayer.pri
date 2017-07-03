@@ -75,7 +75,7 @@ unix:!mac{
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
     QMAKE_CXXFLAGS += -Wswitch
-    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lzlib
+    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
 }
 
 DEFINES += MUSIC_LIBRARY

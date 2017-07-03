@@ -39,4 +39,3 @@ HEADERS += \
 
 #load extra define
 include(../TTKExtrasDefine.pri)
-

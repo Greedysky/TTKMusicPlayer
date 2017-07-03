@@ -17,10 +17,10 @@
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
-#include <QDebug>
-#include <QPropertyAnimation>
+
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QPropertyAnimation>
 
 #include "qdevicewatcher.h"
 
