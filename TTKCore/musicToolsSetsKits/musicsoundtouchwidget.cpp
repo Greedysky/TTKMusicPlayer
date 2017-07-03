@@ -101,6 +101,11 @@ void MusicSoundTouchWidget::analysisOutput()
 void MusicSoundTouchWidget::onRecordStart()
 {
     m_recordCore->onRecordStart();
+    if(m_recordCore->error())
+    {
+        return;
+    }
+
     m_ui->playButton->setEnabled(false);
     m_ui->openButton->setEnabled(false);
 }

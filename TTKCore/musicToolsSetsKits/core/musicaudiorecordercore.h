@@ -26,7 +26,7 @@ class MUSIC_TOOLSET_EXPORT MusicAudioRecorderCore : public QObject
 {
     Q_OBJECT
 public:
-    struct HEADER
+    typedef struct MUSIC_TOOLSET_EXPORT HEADER
     {
         char RIFFNAME[4];
         unsigned long nRIFFLength;
@@ -41,7 +41,7 @@ public:
         unsigned short    nBitsPerSample;
         char    DATANAME[4];
         unsigned long   nDataLength;
-    };
+    }HEADER;
 
     explicit MusicAudioRecorderCore(QObject *parent = 0);
     /*!
@@ -74,6 +74,10 @@ public:
     QString getFileName() const;
     /*!
      * Get output file name.
+     */
+    bool error() const;
+    /*!
+     * Current input device error or not.
      */
 
 public Q_SLOTS:

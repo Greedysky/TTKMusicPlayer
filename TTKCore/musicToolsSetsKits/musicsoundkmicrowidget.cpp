@@ -407,6 +407,10 @@ void MusicSoundKMicroWidget::recordStateChanged(bool state)
         if(m_recordCore)
         {
             m_recordCore->onRecordStart();
+            if(m_recordCore->error())
+            {
+                return;
+            }
         }
     }
     else

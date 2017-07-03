@@ -93,6 +93,11 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
     if(m_detectedButton->styleSheet().contains(MusicUIObject::MKGSongsDetectStartBtn))
     {
         m_recordCore->onRecordStart();
+        if(m_recordCore->error())
+        {
+            return;
+        }
+
         m_detectedMovie->start();
         m_timer->start();
         m_detectedButton->setStyleSheet(MusicUIObject::MKGSongsDetectStopBtn);

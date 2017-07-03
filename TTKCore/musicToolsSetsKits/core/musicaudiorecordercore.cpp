@@ -60,36 +60,36 @@ QString MusicAudioRecorderCore::getClassName()
 
 int MusicAudioRecorderCore::addWavHeader(const char *filename)
 {
-    HEADER DestionFileHeader;
-    DestionFileHeader.RIFFNAME[0] = 'R';
-    DestionFileHeader.RIFFNAME[1] = 'I';
-    DestionFileHeader.RIFFNAME[2] = 'F';
-    DestionFileHeader.RIFFNAME[3] = 'F';
+    HEADER destionFileHeader;
+    destionFileHeader.RIFFNAME[0] = 'R';
+    destionFileHeader.RIFFNAME[1] = 'I';
+    destionFileHeader.RIFFNAME[2] = 'F';
+    destionFileHeader.RIFFNAME[3] = 'F';
 
-    DestionFileHeader.WAVNAME[0] = 'W';
-    DestionFileHeader.WAVNAME[1] = 'A';
-    DestionFileHeader.WAVNAME[2] = 'V';
-    DestionFileHeader.WAVNAME[3] = 'E';
+    destionFileHeader.WAVNAME[0] = 'W';
+    destionFileHeader.WAVNAME[1] = 'A';
+    destionFileHeader.WAVNAME[2] = 'V';
+    destionFileHeader.WAVNAME[3] = 'E';
 
-    DestionFileHeader.FMTNAME[0] = 'f';
-    DestionFileHeader.FMTNAME[1] = 'm';
-    DestionFileHeader.FMTNAME[2] = 't';
-    DestionFileHeader.FMTNAME[3] = 0x20;
-    DestionFileHeader.nFMTLength = 16;
-    DestionFileHeader.nAudioFormat = 1;
+    destionFileHeader.FMTNAME[0] = 'f';
+    destionFileHeader.FMTNAME[1] = 'm';
+    destionFileHeader.FMTNAME[2] = 't';
+    destionFileHeader.FMTNAME[3] = 0x20;
+    destionFileHeader.nFMTLength = 16;
+    destionFileHeader.nAudioFormat = 1;
 
-    DestionFileHeader.DATANAME[0] = 'd';
-    DestionFileHeader.DATANAME[1] = 'a';
-    DestionFileHeader.DATANAME[2] = 't';
-    DestionFileHeader.DATANAME[3] = 'a';
-    DestionFileHeader.nBitsPerSample = 16;
-    DestionFileHeader.nBytesPerSample = 2;
-    DestionFileHeader.nSampleRate = 8000;
-    DestionFileHeader.nBytesPerSecond = 16000;
-    DestionFileHeader.nChannleNumber = 1;
+    destionFileHeader.DATANAME[0] = 'd';
+    destionFileHeader.DATANAME[1] = 'a';
+    destionFileHeader.DATANAME[2] = 't';
+    destionFileHeader.DATANAME[3] = 'a';
+    destionFileHeader.nBitsPerSample = 16;
+    destionFileHeader.nBytesPerSample = 2;
+    destionFileHeader.nSampleRate = 8000;
+    destionFileHeader.nBytesPerSecond = 16000;
+    destionFileHeader.nChannleNumber = 1;
 
     int nFileLen = 0;
-    int nSize = sizeof(DestionFileHeader);
+    int nSize = sizeof(destionFileHeader);
 
     FILE *fp_s = nullptr;
     FILE *fp_d = nullptr;
@@ -99,18 +99,20 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
         return OPEN_FILE_ERROR;
     }
     fp_d = fopen(filename, "wb+");
+
     if (fp_d == nullptr)
     {
         return SAVE_FILE_ERROR;
     }
-    int nWrite = fwrite(&DestionFileHeader, 1, nSize, fp_d);
-    if (nWrite != nSize)
+    int nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+    if(nWrite != nSize)
     {
         fclose(fp_s);
         fclose(fp_d);
         return WRITE_FILE_ERROR;
     }
-    while( !feof(fp_s))
+
+    while(!feof(fp_s))
     {
         char readBuf[4096];
         int nRead = fread(readBuf, 1, 4096, fp_s);
@@ -121,18 +123,21 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
 
         nFileLen += nRead;
     }
+
     fseek(fp_d, 0L, SEEK_SET);
-    DestionFileHeader.nRIFFLength = nFileLen - 8 + nSize;
-    DestionFileHeader.nDataLength = nFileLen;
-    nWrite = fwrite(&DestionFileHeader, 1, nSize, fp_d);
-    if (nWrite != nSize)
+    destionFileHeader.nRIFFLength = nFileLen - 8 + nSize;
+    destionFileHeader.nDataLength = nFileLen;
+    nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+    if(nWrite != nSize)
     {
         fclose(fp_s);
         fclose(fp_d);
         return REWRITE_FILE_ERROR;
     }
+
     fclose(fp_s);
     fclose(fp_d);
+
     return nFileLen;
 }
 
@@ -160,6 +165,16 @@ void MusicAudioRecorderCore::setFileName(const QString &name)
 QString MusicAudioRecorderCore::getFileName() const
 {
     return m_mpOutputFile->fileName();
+}
+
+bool MusicAudioRecorderCore::error() const
+{
+    if(!m_mpAudioInputFile)
+    {
+        return true;
+    }
+
+    return (m_mpAudioInputFile->error() != QAudio::NoError);
 }
 
 void MusicAudioRecorderCore::onRecordStart()

@@ -129,6 +129,10 @@ void MusicAudioRecorderWidget::initMonitor()
 void MusicAudioRecorderWidget::onRecordStart()
 {
     m_recordCore->onRecordStart();
+    if(m_recordCore->error())
+    {
+        return;
+    }
 
     m_ui->stopButton->setEnabled(true);
     m_ui->startButton->setEnabled(false);
