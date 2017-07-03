@@ -25,7 +25,7 @@ set(MUSIC_SOURCES
 
 if(WIN32)
     list(APPEND MUSIC_SOURCES qdevicewatcher_win32.cpp Devicewatcher.rc)
-else(APPLE)
+elseif(APPLE)
     list(APPEND MUSIC_SOURCES qdevicewatcher_mac.cpp)
 else(UNIX)
     list(APPEND MUSIC_SOURCES qdevicewatcher_linux.cpp)
