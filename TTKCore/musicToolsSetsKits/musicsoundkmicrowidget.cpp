@@ -29,6 +29,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint );
 #if defined MUSIC_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
 #endif
