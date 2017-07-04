@@ -4,6 +4,7 @@
 #include "musiccontextuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
+#include "musicrightareawidget.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -18,7 +19,7 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     m_showLrcAction = new QAction(QIcon(":/contextMenu/btn_lrc"),tr("showDeskLrc"), this);
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this);
-    connect(m_lockLrcAction, SIGNAL(triggered()), SIGNAL(setWindowLockedChanged()));
+    connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
 
     createPlayWidgetActions();
     addSeparator();
@@ -66,6 +67,11 @@ void MusicSystemTrayMenu::lockDesktopLrc(bool lock)
     m_lockLrcAction->setText(!lock ? tr("lockLrc") : tr("unlockLrc"));
 }
 
+void MusicSystemTrayMenu::setWindowLockedChanged()
+{
+    MusicRightAreaWidget::instance()->setWindowLockedChanged();
+}
+
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
     m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay : MusicUIObject::MKGContextPause);
@@ -102,7 +108,7 @@ void MusicSystemTrayMenu::showDesktopLrc()
     bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
     m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
     m_lockLrcAction->setEnabled(show);
-    emit setShowDesktopLrc(show);
+    MusicRightAreaWidget::instance()->setDestopLrcVisible(show);
 }
 
 void MusicSystemTrayMenu::createPlayWidgetActions()

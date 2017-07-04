@@ -45,7 +45,6 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     }
     vBoxLayout->addWidget(m_layoutWidget);
 
-//    setLinearGradientColor(MusicLRCColor::Origin);
     m_mouseMovedAt = QPoint(-1, -1);
     m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;

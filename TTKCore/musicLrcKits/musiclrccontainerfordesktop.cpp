@@ -4,8 +4,10 @@
 #include "musicfunctionuiobject.h"
 #include "musicdesktoplrcuiobject.h"
 #include "musicsettingmanager.h"
-#include "musicapplication.h"
 #include "musiclrcdefines.h"
+
+#include "musicapplication.h"
+#include "musicbottomareawidget.h"
 
 MusicLrcContainerForDesktop::MusicLrcContainerForDesktop(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -112,7 +114,7 @@ void MusicLrcContainerForDesktop::setWindowLockedChanged()
        setStyleSheet(MusicUIObject::MBackgroundStyle01);
     }
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced,  m_windowLocked ? 1 : 0);
-    emit setWindowLockedChanged(m_windowLocked);
+    MusicBottomAreaWidget::instance()->lockDesktopLrc(m_windowLocked);
 }
 
 void MusicLrcContainerForDesktop::setLrcBiggerChanged()
@@ -393,7 +395,7 @@ void MusicLrcContainerForDesktop::leaveEvent(QEvent *event)
 void MusicLrcContainerForDesktop::closeEvent(QCloseEvent *event)
 {
     MusicLrcContainer::closeEvent(event);
-    emit desktopLrcClosed();
+    MusicBottomAreaWidget::instance()->desktopLrcClosed();
 }
 
 void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
@@ -412,7 +414,7 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addAction(tr("hide"), this, SLOT(close()));
-    menu.addAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
+    menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("unlockLrc"): tr("lockLrc"), this, SLOT(setWindowLockedChanged()));
     menu.addMenu(&changColorMenu);
     menu.addSeparator();
 

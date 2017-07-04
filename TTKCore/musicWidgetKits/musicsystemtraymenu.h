@@ -51,16 +51,6 @@ public:
      * Set current play volume.
      */
 
-Q_SIGNALS:
-    void setShowDesktopLrc(bool status);
-    /*!
-     * Set show desktop lrc state changed.
-     */
-    void setWindowLockedChanged();
-    /*!
-     * Lock current desktop lrc state changed.
-     */
-
 public Q_SLOTS:
     void showDesktopLrc();
     /*!
@@ -69,6 +59,10 @@ public Q_SLOTS:
     void lockDesktopLrc(bool lock);
     /*!
      * Lock current desktop lrc or not.
+     */
+    void setWindowLockedChanged();
+    /*!
+     * Lock current desktop lrc state changed.
      */
 
 protected:

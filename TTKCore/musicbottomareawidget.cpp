@@ -70,8 +70,6 @@ void MusicBottomAreaWidget::createSystemTrayIcon()
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
     m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
-    connect(m_systemTrayMenu, SIGNAL(setShowDesktopLrc(bool)), SIGNAL(setShowDesktopLrc(bool)));
-    connect(m_systemTrayMenu, SIGNAL(setWindowLockedChanged()), SIGNAL(setWindowLockedChanged()));
 
     m_systemTray->setContextMenu(m_systemTrayMenu);
     m_systemTray->show();

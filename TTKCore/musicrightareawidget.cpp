@@ -530,8 +530,6 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
                  SLOT(musicSetting()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
                  SLOT(changeDesktopLrcWidget()));
-    connect(m_musicLrcForDesktop, SIGNAL(desktopLrcClosed()), SIGNAL(desktopLrcClosed()));
-    connect(m_musicLrcForDesktop, SIGNAL(setWindowLockedChanged(bool)), SIGNAL(lockDesktopLrc(bool)));
 
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, type);
     deskLrc->deleteLater();

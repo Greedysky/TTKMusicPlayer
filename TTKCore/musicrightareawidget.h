@@ -134,14 +134,6 @@ Q_SIGNALS:
     /*!
      * Current background transparent changed.
      */
-    void desktopLrcClosed();
-    /*!
-     * Set desktop lrc close state.
-     */
-    void lockDesktopLrc(bool lock);
-    /*!
-     * Lock or not current desktop lrc emit.
-     */
 
 public Q_SLOTS:
     void musicFunctionClicked(int index);

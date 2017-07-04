@@ -106,16 +106,6 @@ public:
      * Resize window bound by widgte resize called.
      */
 
-Q_SIGNALS:
-    void setShowDesktopLrc(bool show);
-    /*!
-     * Set show desktop lrc state changed emit.
-     */
-    void setWindowLockedChanged();
-    /*!
-     * Lock current desktop lrc state changed.
-     */
-
 public Q_SLOTS:
     void musicSearch();
     /*!

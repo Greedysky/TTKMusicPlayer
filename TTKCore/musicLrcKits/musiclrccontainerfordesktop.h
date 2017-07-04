@@ -74,10 +74,6 @@ public:
      */
 
 Q_SIGNALS:
-    void desktopLrcClosed();
-    /*!
-     * Desktop lrc close state changed emit.
-     */
     void setWindowLockedChanged(bool lock);
     /*!
      * Lock current desktop lrc state changed emit.
