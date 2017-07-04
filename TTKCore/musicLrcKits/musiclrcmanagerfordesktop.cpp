@@ -29,6 +29,7 @@ void MusicLRCManagerHorizontalDesktop::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setFont(m_font);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int begin = (rect().height() - QFontMetrics(m_font).height())/2;
     m_linearGradient.setFinalStop(0, QFontMetrics(m_font).height());

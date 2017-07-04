@@ -21,6 +21,7 @@ QString MusicLRCManagerForInline::getClassName()
 void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     QFont font(m_font);
     int ttplus = font.pointSize() - m_gradientFontSize;
