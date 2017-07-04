@@ -43,10 +43,6 @@ public:
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) override;
-    /*!
-     * Set mask linear gradient color.
-     */
     virtual void setSettingParameter() override;
     /*!
      * Set setting parameter.
@@ -178,6 +174,10 @@ protected:
     virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
+     */
+    void createColorMenu(QMenu &menu);
+    /*!
+     * Create color menu.
      */
     void changeLrcPostion(const QString &type);
     /*!

@@ -67,12 +67,6 @@ void MusicLrcContainerForWallpaper::stopLrcMask()
     m_layoutWidget->stop();
 }
 
-void MusicLrcContainerForWallpaper::setMaskLinearGradientColor(const QList<QColor> &colors)
-{
-    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setMaskLinearGradientColor(colors);
-    emit maskLinearGradientColorChanged();
-}
-
 void MusicLrcContainerForWallpaper::setSettingParameter()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
@@ -157,12 +151,13 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
 
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt());
-        setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
+        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        setLinearGradientColor(index);
     }
     else
     {
-        w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
-        setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
+        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
+                         MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        setLinearGradientColor(cl);
     }
 }

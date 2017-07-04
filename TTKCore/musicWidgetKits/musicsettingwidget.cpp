@@ -10,6 +10,7 @@
 #include "musicapplicationobject.h"
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"
+#include "musiclrcmanager.h"
 #include "musicregeditmanager.h"
 
 #include <QFontDatabase>
@@ -170,9 +171,9 @@ void MusicSettingWidget::initInlineLrcWidget()
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInlineLrcSize());
     m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("origin") << tr("red") << tr("orange")
-                                                << tr("yellow") << tr("green") << tr("blue") << tr("indigo")
-                                                << tr("purple") << tr("white") << tr("black"));
+    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray")
+                                                << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple")
+                                                << tr("IOrange") << tr("IIndigo"));
     connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
@@ -210,9 +211,8 @@ void MusicSettingWidget::initDesktopLrcWidget()
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
     m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("origin") << tr("red") << tr("orange")
-                                   << tr("yellow") << tr("green") << tr("blue") << tr("indigo") << tr("purple")
-                                   << tr("white") << tr("black"));
+    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed")
+                                                    << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
     connect(m_ui->DfontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
@@ -418,7 +418,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
     if(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
     {
-        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt());
+        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() - LRC_COLOR_OFFSET);
     }
     else
     {
@@ -516,7 +516,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::LrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedBg));
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
+                                                 m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
@@ -619,44 +620,23 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     {
         return;
     }
-    QColor color(Qt::black);
-    switch(index)
-    {
-        case 0: color = QColor(14, 179, 255);break;
-        case 1: color = QColor(214, 51, 44);break;
-        case 2: color = QColor(230, 130, 52);break;
-        case 3: color = QColor(243, 209, 0);break;
-        case 4: color = QColor(62, 164, 140);break;
-        case 5: color = QColor(76, 147, 193);break;
-        case 6: color = QColor(29, 237, 235);break;
-        case 7: color = QColor(156, 115, 155);break;
-        case 8: color = QColor(255, 255, 255);break;
-        case 9: color = QColor(0, 0, 0);break;
-        default: break;
-    }
 
     if(key == Inline)
     {
-        m_lrcSelectedFg.clear();
-        m_lrcSelectedBg.clear();
-        m_lrcSelectedFg << QColor(222, 54, 4) << QColor(255, 255, 255) << QColor(222, 54, 4);
-        m_lrcSelectedBg << color << QColor(255, 255, 255) << color;
-
+        MusicLRCColor cl = MusicLRCManager::mapIndexToColor(MStatic_cast(MusicLRCColor::LrcColorType, index));
+        m_lrcSelectedFg = cl.m_fgColor;
+        m_lrcSelectedBg = cl.m_bgColor;
         m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFg);
         m_ui->noPlayedPushButton->setLinearGradient(m_lrcSelectedBg);
-
         showInlineLrcDemo();
     }
     else
     {
-        m_DlrcSelectedFg.clear();
-        m_DlrcSelectedBg.clear();
-        m_DlrcSelectedFg << QColor(222, 54, 4) << QColor(255, 255, 255) << QColor(222, 54, 4);
-        m_DlrcSelectedBg << color << QColor(255, 255, 255) << color;
-
+        MusicLRCColor cl = MusicLRCManager::mapIndexToColor(MStatic_cast(MusicLRCColor::LrcColorType, index + LRC_COLOR_OFFSET));
+        m_DlrcSelectedFg = cl.m_fgColor;
+        m_DlrcSelectedBg = cl.m_bgColor;
         m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFg);
         m_ui->DnoPlayedPushButton->setLinearGradient(m_DlrcSelectedBg);
-
         showDesktopLrcDemo();
     }
 }
@@ -668,13 +648,13 @@ void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
     {
         label = m_ui->showLabel;
         label->setTransparent(2.55*value);
-        label->setLinearGradient(m_lrcSelectedBg, m_lrcSelectedFg);
+        label->setLinearGradient(m_lrcSelectedFg, m_lrcSelectedBg);
     }
     else
     {
         label = m_ui->DshowLabel;
         label->setTransparent(2.55*value);
-        label->setLinearGradient(m_DlrcSelectedBg, m_DlrcSelectedFg);
+        label->setLinearGradient(m_DlrcSelectedFg, m_DlrcSelectedBg);
     }
     label->update();
 }
@@ -691,25 +671,25 @@ void MusicSettingWidget::desktopLrcTransChanged(int index)
 
 void MusicSettingWidget::showInlineLrcDemo()
 {
-    QStringList para;
-    para << m_ui->fontComboBox->currentText()
-         << m_ui->fontSizeComboBox->currentText()
-         << QString::number(m_ui->fontTypeComboBox->currentIndex());
-
-    m_ui->showLabel->setParameter(para);
-    m_ui->showLabel->setLinearGradient(m_lrcSelectedBg, m_lrcSelectedFg);
+    MusicPreviewLabelItem item;
+    item.m_family = m_ui->fontComboBox->currentText();
+    item.m_size = m_ui->fontSizeComboBox->currentText().toInt();
+    item.m_type = m_ui->fontTypeComboBox->currentIndex();
+    item.m_fg = m_lrcSelectedFg;
+    item.m_bg = m_lrcSelectedBg;
+    m_ui->showLabel->setLinearGradient(item);
     m_ui->showLabel->update();
 }
 
 void MusicSettingWidget::showDesktopLrcDemo()
 {
-    QStringList para;
-    para << m_ui->DfontComboBox->currentText()
-         << m_ui->DfontSizeComboBox->currentText()
-         << QString::number(m_ui->DfontTypeComboBox->currentIndex());
-
-    m_ui->DshowLabel->setParameter(para);
-    m_ui->DshowLabel->setLinearGradient(m_DlrcSelectedBg, m_DlrcSelectedFg);
+    MusicPreviewLabelItem item;
+    item.m_family = m_ui->DfontComboBox->currentText();
+    item.m_size = m_ui->DfontSizeComboBox->currentText().toInt();
+    item.m_type = m_ui->DfontTypeComboBox->currentIndex();
+    item.m_fg = m_DlrcSelectedFg;
+    item.m_bg = m_DlrcSelectedBg;
+    m_ui->DshowLabel->setLinearGradient(item);
     m_ui->DshowLabel->update();
 }
 

@@ -17,19 +17,54 @@
 #include <QPainter>
 #include "musicglobaldefine.h"
 
-#define LRC_PER_TIME 30
+#define LRC_PER_TIME        30
+#define LRC_COLOR_OFFSET    9
 
-const QColor CL_Origin = QColor(14,179,255);
-const QColor CL_Red    = QColor(214,51,44);
-const QColor CL_Orange = QColor(230,130,52);
-const QColor CL_Yellow = QColor(243,209,0);
-const QColor CL_Green  = QColor(62,164,140);
-const QColor CL_Blue   = QColor(76,147,193);
-const QColor CL_Indigo = QColor(29,237,235);
-const QColor CL_Purple = QColor(156,115,155);
-const QColor CL_White  = QColor(255,255,255);
-const QColor CL_Black  = QColor(0,0,0);
-const QColor CL_Mask   = QColor(222,54,4);
+typedef struct MUSIC_LRC_EXPORT MusicLRCColor
+{
+    enum LrcColorType
+    {
+        Null = -1,   ///*color null*/
+        IYellow,     ///*color yellow*/
+        IBlue,       ///*color blue*/
+        IGray,       ///*color gray*/
+        IPink,       ///*color pink*/
+        IGreen,      ///*color green*/
+        IRed,        ///*color red*/
+        IPurple,     ///*color purple*/
+        IOrange,     ///*color orange*/
+        IIndigo,     ///*color indigo*/
+
+        DWhite,      ///*color white*/
+        DBlue,       ///*color blue*/
+        DRed,        ///*color red*/
+        DBlack,      ///*color black*/
+        DYellow,     ///*color yellow*/
+        DPurple,     ///*color purple*/
+        DGreen,      ///*color green*/
+
+    };
+
+    QList<QColor> m_fgColor;
+    QList<QColor> m_bgColor;
+    MusicLRCColor::LrcColorType m_index;
+
+    MusicLRCColor() { }
+
+    MusicLRCColor(const QList<QColor> &fg, const QList<QColor> &bg,
+                  MusicLRCColor::LrcColorType index = MusicLRCColor::Null)
+    {
+        m_fgColor = fg;
+        m_bgColor = bg;
+        m_index = index;
+    }
+
+    bool custum() const
+    {
+        return m_index == MusicLRCColor::Null;
+    }
+
+}MusicLRCColor;
 
 /*! @brief The class of the lrc manager base.
  * @author Greedysky <greedysky@163.com>
@@ -38,21 +73,6 @@ class MUSIC_LRC_EXPORT MusicLRCManager : public QLabel
 {
     Q_OBJECT
 public:
-    enum LrcColorType
-    {
-        Origin, ///*color origin*/
-        Red,    ///*color red*/
-        Orange, ///*color orange*/
-        Yellow, ///*color yellow*/
-        Green,  ///*color green*/
-        Blue,   ///*color blue*/
-        Indigo, ///*color indigo*/
-        Purple, ///*color purple*/
-        White,  ///*color white*/
-        Black,  ///*color black*/
-        Mask    ///*color mask*/
-    };
-
     explicit MusicLRCManager(QWidget *parent = 0);
     /*!
      * Object contsructor.
@@ -63,6 +83,12 @@ public:
     /*!
      * Get class object name.
      */
+
+    static MusicLRCColor mapIndexToColor(MusicLRCColor::LrcColorType index);
+    /*!
+     * Map index to color.
+     */
+
     void startTimerClock();
     /*!
      * Start timer clock to draw lrc.
@@ -75,13 +101,9 @@ public:
     /*!
      * Stop timer clock to draw lrc mask.
      */
-    void setLinearGradientColor(const QList<QColor> &colors);
+    void setLinearGradientColor(const MusicLRCColor &color);
     /*!
      * Set linear gradient color.
-     */
-    void setMaskLinearGradientColor(const QList<QColor> &colors);
-    /*!
-     * Set mask linear gradient color.
      */
     void setFontFamily(int index);
     /*!

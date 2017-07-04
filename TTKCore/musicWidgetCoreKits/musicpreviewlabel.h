@@ -42,6 +42,15 @@ protected:
 };
 
 
+typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
+{
+    QString m_family;
+    int m_size;
+    int m_type;
+    QList<QColor> m_fg;
+    QList<QColor> m_bg;
+}MusicPreviewLabelItem;
+
 /*! @brief The class of the lrc setting preview label.
  * @author Greedysky <greedysky@163.com>
  */
@@ -58,9 +67,9 @@ public:
     /*!
      * Get class object name.
      */
-    void setParameter(const QStringList &para);
+    void setLinearGradient(const MusicPreviewLabelItem &item);
     /*!
-     * Set preview parameters(Family\PointSize\Bold or Italic).
+     * Set linear gradient item.
      */
     void setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg);
     /*!

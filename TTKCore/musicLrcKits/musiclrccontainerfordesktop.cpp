@@ -49,15 +49,6 @@ void MusicLrcContainerForDesktop::stopLrcMask()
     }
 }
 
-void MusicLrcContainerForDesktop::setMaskLinearGradientColor(const QList<QColor> &colors)
-{
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
-    {
-        manager->setMaskLinearGradientColor(colors);
-    }
-    emit maskLinearGradientColorChanged();
-}
-
 void MusicLrcContainerForDesktop::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
@@ -169,6 +160,27 @@ void MusicLrcContainerForDesktop::setSingleLineTypeChanged()
         m_musicLrcContainer[1]->show();
     }
     m_musicLrcContainer[1]->setText(QString());
+}
+
+void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
+{
+    QActionGroup *group = new QActionGroup(this);
+    group->addAction(menu.addAction(tr("DWhite")))->setData(0 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DBlue")))->setData(1 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DRed")))->setData(2 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DBlack")))->setData(3 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DYellow")))->setData(4 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DPurple")))->setData(5 + LRC_COLOR_OFFSET);
+    group->addAction(menu.addAction(tr("DGreen")))->setData(6 + LRC_COLOR_OFFSET);
+    connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
+    menu.addSeparator();
+    menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
+
+    int index = M_SETTING_PTR->value("DLrcColorChoiced").toInt() - LRC_COLOR_OFFSET;
+    if(index > -1 && index < group->actions().count())
+    {
+        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+    }
 }
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const

@@ -62,33 +62,33 @@ QString MusicPreviewLabel::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicPreviewLabel::setLinearGradient(const MusicPreviewLabelItem &item)
+{
+    m_font.setFamily(item.m_family);
+    m_font.setPointSize(item.m_size);
+    m_font.setBold( (item.m_type == 1 || item.m_type == 3) );
+    m_font.setItalic( (item.m_type == 2 || item.m_type == 3) );
+
+    setLinearGradient(item.m_fg, item.m_bg);
+}
+
 void MusicPreviewLabel::setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg)
 {
     QLinearGradient linearGradient, maskLinearGradient;
-    for(int i=0; i<fg.count(); ++i)
-    {
-        QColor rgb = fg[i];
-        rgb.setAlpha(m_transparent);
-        linearGradient.setColorAt((i+1)*1.0/fg.count(), rgb);
-    }
     for(int i=0; i<bg.count(); ++i)
     {
         QColor rgb = bg[i];
         rgb.setAlpha(m_transparent);
-        maskLinearGradient.setColorAt((i+1)*1.0/bg.count(), rgb);
+        linearGradient.setColorAt((i+1)*1.0/bg.count(), rgb);
+    }
+    for(int i=0; i<fg.count(); ++i)
+    {
+        QColor rgb = fg[i];
+        rgb.setAlpha(m_transparent);
+        maskLinearGradient.setColorAt((i+1)*1.0/fg.count(), rgb);
     }
     m_linearGradient = linearGradient;
     m_maskLinearGradient = maskLinearGradient;
-}
-
-void MusicPreviewLabel::setParameter(const QStringList &para)
-{
-    Q_ASSERT(para.count() == 3);
-    m_font.setFamily(para[0]);
-    m_font.setPointSize(para[1].toInt());
-    int type = para[2].toInt();
-    m_font.setBold( (type == 1 || type == 3) );
-    m_font.setItalic( (type == 2 || type == 3) );
 }
 
 void MusicPreviewLabel::paintEvent(QPaintEvent *)

@@ -45,7 +45,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     }
     vBoxLayout->addWidget(m_layoutWidget);
 
-    setLinearGradientColor(MusicLRCManager::Origin);
+//    setLinearGradientColor(MusicLRCColor::Origin);
     m_mouseMovedAt = QPoint(-1, -1);
     m_mousePressedAt = QPoint(-1, -1);
     m_mouseLeftPressed = false;
@@ -89,12 +89,6 @@ void MusicLrcContainerForInline::stopLrcMask()
 {
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->stopLrcMask();
     m_layoutWidget->stop();
-}
-
-void MusicLrcContainerForInline::setMaskLinearGradientColor(const QList<QColor> &colors)
-{
-    m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->setMaskLinearGradientColor(colors);
-    emit maskLinearGradientColorChanged();
 }
 
 void MusicLrcContainerForInline::setSettingParameter()
@@ -501,6 +495,29 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
+void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
+{
+    QActionGroup *group = new QActionGroup(this);
+    group->addAction(menu.addAction(tr("IYellow")))->setData(0);
+    group->addAction(menu.addAction(tr("IBlue")))->setData(1);
+    group->addAction(menu.addAction(tr("IGray")))->setData(2);
+    group->addAction(menu.addAction(tr("IPink")))->setData(3);
+    group->addAction(menu.addAction(tr("IGreen")))->setData(4);
+    group->addAction(menu.addAction(tr("IRed")))->setData(5);
+    group->addAction(menu.addAction(tr("IPurple")))->setData(6);
+    group->addAction(menu.addAction(tr("IOrange")))->setData(7);
+    group->addAction(menu.addAction(tr("IIndigo")))->setData(8);
+    connect(group, SIGNAL(triggered(QAction*)), SLOT(changeCurrentLrcColor(QAction*)));
+    menu.addSeparator();
+    menu.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
+
+    int index = M_SETTING_PTR->value("LrcColorChoiced").toInt();
+    if(index > -1 && index < group->actions().count())
+    {
+        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+    }
+}
+
 void MusicLrcContainerForInline::changeLrcPostion(const QString &type)
 {
     int index = m_lrcAnalysis->getCurrentIndex();
@@ -702,15 +719,17 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     value = (value > 100) ? 100 : value;
     w->setFontTransparent(value);
     w->setTransparent(value);
+
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        setLinearGradientColor((MusicLRCManager::LrcColorType)M_SETTING_PTR->value("LrcColorChoiced").toInt());
-        setMaskLinearGradientColor( QList<QColor>() << CL_Mask << CL_White << CL_Mask );
+        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        setLinearGradientColor(index);
     }
     else
     {
-        w->setLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
-        setMaskLinearGradientColor(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()));
+        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
+                         MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        setLinearGradientColor(cl);
     }
 }
 

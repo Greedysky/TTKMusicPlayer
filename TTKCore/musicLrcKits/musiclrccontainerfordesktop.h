@@ -47,10 +47,6 @@ public:
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setMaskLinearGradientColor(const QList<QColor> &colors) override;
-    /*!
-     * Set mask linear gradient color.
-     */
     virtual void setSettingParameter() override;
     /*!
      * Set setting parameter.
@@ -114,6 +110,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void createColorMenu(QMenu &menu);
+    /*!
+     * Create color menu.
+     */
     void setSelfGeometry() const;
     /*!
      * Set self geometry.

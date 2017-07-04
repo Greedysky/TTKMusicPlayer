@@ -38,6 +38,113 @@ void MusicLRCManager::startTimerClock()
     m_timer->start(LRC_PER_TIME);
 }
 
+MusicLRCColor MusicLRCManager::mapIndexToColor(MusicLRCColor::LrcColorType index)
+{
+    QList<QColor> fg, bg;
+    switch(index)
+    {
+        case MusicLRCColor::IYellow :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(250, 218, 131) << QColor(250, 218, 131) << QColor(250, 218, 131);
+                break;
+            }
+        case MusicLRCColor::IBlue :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(93, 177, 240)  << QColor(93, 177, 240)  << QColor(93, 177, 240);
+                break;
+            }
+        case MusicLRCColor::IGray :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(139, 135, 150) << QColor(139, 135, 150) << QColor(139, 135, 150);
+                break;
+            }
+        case MusicLRCColor::IPink :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(225, 125, 179) << QColor(225, 125, 179) << QColor(225, 125, 179);
+                break;
+            }
+        case MusicLRCColor::IGreen :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(157, 196, 0)   << QColor(157, 196, 0)   << QColor(157, 196, 0);
+                break;
+            }
+        case MusicLRCColor::IRed :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(255, 42, 45)   << QColor(255, 42, 45)   << QColor(255, 42, 45);
+                break;
+            }
+        case MusicLRCColor::IPurple :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(138, 0, 226)   << QColor(138, 0, 226)   << QColor(138, 0, 226);
+                break;
+            }
+        case MusicLRCColor::IOrange :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(228, 157, 0)   << QColor(228, 157, 0)   << QColor(228, 157, 0);
+                break;
+            }
+        case MusicLRCColor::IIndigo :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(23, 211, 190)  << QColor(23, 211, 190)  << QColor(23, 211, 190);
+                break;
+            }
+        case MusicLRCColor::DWhite :
+            {
+                bg << QColor(255, 255, 255) << QColor(255, 255, 255) << QColor(255, 255, 255);
+                fg << QColor(255, 255, 0)   << QColor(255, 255, 0)   << QColor(255, 255, 0);
+                break;
+            }
+        case MusicLRCColor::DBlue :
+            {
+                bg << QColor(0, 52, 138)    << QColor(0, 128, 192)   << QColor(3, 202, 252);
+                fg << QColor(130, 247, 253) << QColor(255, 255, 255) << QColor(3, 233, 252);
+                break;
+            }
+        case MusicLRCColor::DRed :
+            {
+                bg << QColor(255, 172, 0)   << QColor(255, 0, 0)     << QColor(170, 0, 0);
+                fg << QColor(255, 255, 164) << QColor(255, 255, 0)   << QColor(255, 100, 26);
+                break;
+            }
+        case MusicLRCColor::DBlack :
+            {
+                bg << QColor(225, 225, 225) << QColor(106, 106, 106) << QColor(0, 0, 0);
+                fg << QColor(255, 255, 255) << QColor(222, 222, 222) << QColor(128, 255, 255);
+                break;
+            }
+        case MusicLRCColor::DYellow :
+            {
+                bg << QColor(2, 166, 174)   << QColor(128, 255, 255) << QColor(2, 166, 174);
+                fg << QColor(255, 128, 0)   << QColor(255, 255, 0)   << QColor(255, 128, 0);
+                break;
+            }
+        case MusicLRCColor::DPurple :
+            {
+                bg << QColor(64, 0, 128)    << QColor(255, 128, 255) << QColor(64, 0, 128);
+                fg << QColor(255, 55, 146)  << QColor(255, 243, 134) << QColor(255, 55, 146);
+                break;
+            }
+        case MusicLRCColor::DGreen :
+            {
+                bg << QColor(147, 255, 38)  << QColor(70, 176, 0)    << QColor(0, 85, 0);
+                fg << QColor(255, 255, 255) << QColor(154, 255, 17)  << QColor(255, 255, 0);
+                break;
+            }
+        default: break;
+    };
+
+    return MusicLRCColor(fg, bg, index);
+}
+
 void MusicLRCManager::setFontFamily(int index)
 {
     if(index < 0)
@@ -113,11 +220,6 @@ void MusicLRCManager::setLrcFontSize(int size)
 
 void MusicLRCManager::startLrcMask(qint64 intervaltime)
 {
-    /*Open the mask, need to specify the current lyrics start with the interval
-      between the end of,Here set every 30 msec update a mask width, because if
-      too frequent updates,The CPU occupancy rate will increase, and if the time
-      interval is too large, then the animation is not smooth
-    */
     m_intervalCount = 0.0f;
     m_geometry.setX(QFontMetrics(m_font).width(text()));
     qreal count = intervaltime / m_speedLevel;
@@ -132,31 +234,28 @@ void MusicLRCManager::stopLrcMask()
     update();
 }
 
-void MusicLRCManager::setLinearGradientColor(const QList<QColor> &colors)
+void MusicLRCManager::setLinearGradientColor(const MusicLRCColor &color)
 {
-    //The first parameter coordinates relative to the US, the area above,
-    //calculated in accordance with the proportion of
     QLinearGradient linearGradient;
-    for(int i=0; i<colors.count(); ++i)
+    QList<QColor> cl = color.m_bgColor;
+    for(int i=0; i<cl.count(); ++i)
     {
-        QColor rgb = colors[i];
+        QColor rgb = cl[i];
         rgb.setAlpha(m_transparent*2.55);
-        linearGradient.setColorAt((i+1)*1.0/colors.count(), rgb);
+        linearGradient.setColorAt((i+1)*1.0/cl.count(), rgb);
     }
     m_linearGradient = linearGradient;
-    update();
-}
 
-void MusicLRCManager::setMaskLinearGradientColor(const QList<QColor> &colors)
-{
     QLinearGradient maskLinearGradient;
-    for(int i=0; i<colors.count(); ++i)
+    cl = color.m_fgColor;
+    for(int i=0; i<cl.count(); ++i)
     {
-        QColor rgb = colors[i];
+        QColor rgb = cl[i];
         rgb.setAlpha(m_transparent*2.55);
-        maskLinearGradient.setColorAt((i+1)*1.0/colors.count(), rgb);
+        maskLinearGradient.setColorAt((i+1)*1.0/cl.count(), rgb);
     }
     m_maskLinearGradient = maskLinearGradient;
+
     update();
 }
 
