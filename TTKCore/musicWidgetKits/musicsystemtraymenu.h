@@ -24,7 +24,7 @@ class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
 public:
-    MusicSystemTrayMenu(QWidget *parent = 0);
+    explicit MusicSystemTrayMenu(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
