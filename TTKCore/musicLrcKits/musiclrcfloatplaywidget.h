@@ -35,7 +35,23 @@ public:
      * Resize window bound by given width and height.
      */
 
+public Q_SLOTS:
+    void musicStatePlay();
+    /*!
+     * Set current player to play or not.
+     */
+
 protected:
+    virtual void enterEvent(QEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+    void setCurrentPlayState();
+    /*!
+     * Set current play state icon.
+     */
+
+    bool m_firstInit;
     QToolButton *m_musicPrevious, *m_musicNext, *m_musicKey;
 
 };

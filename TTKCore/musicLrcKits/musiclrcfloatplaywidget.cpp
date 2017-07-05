@@ -1,6 +1,7 @@
 #include "musiclrcfloatplaywidget.h"
 #include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
+#include "musicapplication.h"
 
 #include <QBoxLayout>
 #include <QToolButton>
@@ -8,9 +9,6 @@
 MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
 {
-    setObjectName("MusicLrcFloatPlayWidget");
-    setStyleSheet(QString("#MusicLrcFloatPlayWidget{%1}").arg(MusicUIObject::MBackgroundStyle08));
-
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(2, 2, 2, 2);
     layout->setSpacing(0);
@@ -25,7 +23,6 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
 
     m_musicPrevious->setStyleSheet(MusicUIObject::MKGBtnPrevious);
     m_musicNext->setStyleSheet(MusicUIObject::MKGBtnNext);
-    m_musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
 
     m_musicPrevious->setCursor(QCursor(Qt::PointingHandCursor));
     m_musicKey->setCursor(QCursor(Qt::PointingHandCursor));
@@ -35,7 +32,18 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     m_musicNext->setFixedSize(44, 44);
     m_musicKey->setFixedSize(44, 44);
 
+    connect(m_musicKey, SIGNAL(clicked()), SLOT(musicStatePlay()));
+    connect(m_musicPrevious, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
+    connect(m_musicNext, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicPlayNext()));
+
+    m_musicKey->setToolTip(tr("Play"));
+    m_musicPrevious->setToolTip(tr("Previous"));
+    m_musicNext->setToolTip(tr("Next"));
+
     resizeWindow(0, 0);
+    setCurrentPlayState();
+
+    m_firstInit = true;
     show();
 }
 
@@ -57,4 +65,29 @@ void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
     m_rectOut = QRect(260 + width/2, 655 + height, 145, 60);
 
     setGeometry(m_rectOut);
+
+    if((width != 0 && height != 0) && m_firstInit && !m_blockAnimation)
+    {
+        m_firstInit = false;
+        animationIn();
+    }
+}
+
+void MusicLrcFloatPlayWidget::musicStatePlay()
+{
+    MusicApplication *w = MusicApplication::instance();
+    w->musicStatePlay();
+    setCurrentPlayState();
+}
+
+void MusicLrcFloatPlayWidget::enterEvent(QEvent *event)
+{
+    MusicFloatAbstractWidget::enterEvent(event);
+    setCurrentPlayState();
+}
+
+void MusicLrcFloatPlayWidget::setCurrentPlayState()
+{
+    MusicApplication *w = MusicApplication::instance();
+    m_musicKey->setStyleSheet(w->isPlaying() ? MusicUIObject::MKGBtnPause : MusicUIObject::MKGBtnPlay);
 }
