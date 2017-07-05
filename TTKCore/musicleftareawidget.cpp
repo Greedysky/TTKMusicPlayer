@@ -127,6 +127,29 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
     m_soundKMicroWidget->show();
 }
 
+void MusicLeftAreaWidget::showFullOrNormal()
+{
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    {
+        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+    }
+
+    bool state = !m_ui->topWidget->isVisible();
+    m_ui->topWidget->setVisible(state);
+    m_ui->bottomWidget->setVisible(state);
+    m_ui->centerLeftWidget->setVisible(state);
+    m_ui->songsContainer->setVisible(state);
+    m_ui->stackedFunctionWidget->setVisible(state);
+    m_ui->lrcDisplayAllButton->setVisible(state);
+
+    state ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
+}
+
+bool MusicLeftAreaWidget::iaFullOrNormal() const
+{
+    return !m_ui->topWidget->isVisible();
+}
+
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
 {
     MusicDownloadMgmtWidget mgmt(this);

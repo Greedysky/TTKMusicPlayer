@@ -54,6 +54,15 @@ public:
      * Create sound KMicro widget.
      */
 
+    void showFullOrNormal();
+    /*!
+     * Show full container or not.
+     */
+    bool iaFullOrNormal() const;
+    /*!
+     * Current is show full container.
+     */
+
 Q_SIGNALS:
     void currentLoveStateChanged();
     /*!

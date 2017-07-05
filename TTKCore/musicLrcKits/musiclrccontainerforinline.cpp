@@ -211,6 +211,11 @@ void MusicLrcContainerForInline::resizeWindow()
     {
         width += 320;
     }
+    if(MusicLeftAreaWidget::instance()->iaFullOrNormal())
+    {
+        width += (m_lrcDisplayAll ? 50 : (320 + 50));
+    }
+
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
 }
 
@@ -316,6 +321,11 @@ void MusicLrcContainerForInline::showSoundKMicroWidget()
     MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
 }
 
+void MusicLrcContainerForInline::showFullOrNormal()
+{
+    MusicLeftAreaWidget::instance()->showFullOrNormal();
+}
+
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
@@ -372,6 +382,9 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
     menu.addAction(tr("errorLrc"), this, SLOT(theCurrentLrcError()));
+    menu.addSeparator();
+    menu.addAction(MusicLeftAreaWidget::instance()->iaFullOrNormal() ? tr("showNormalMode") : tr("showFullMode"),
+                   this, SLOT(showFullOrNormal()));
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);

@@ -150,6 +150,10 @@ public Q_SLOTS:
     /*!
      * Show song KMicro widget.
      */
+    void showFullOrNormal();
+    /*!
+     * Show full container or not.
+     */
 
 private Q_SLOTS:
     void getTranslatedLrcFinished(const QString &data);
