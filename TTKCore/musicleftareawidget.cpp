@@ -309,6 +309,7 @@ void MusicLeftAreaWidget::showFullOrNormal()
     m_ui->stackedFunctionWidget->setVisible(m_isFullOrNormal);
     m_ui->lrcDisplayAllButton->setVisible(m_isFullOrNormal);
 
+    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
     m_isFullOrNormal ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
     m_ui->musiclrccontainerforinline->showFullOrNormal();
 }

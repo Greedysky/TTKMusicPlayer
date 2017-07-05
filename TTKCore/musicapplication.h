@@ -80,16 +80,16 @@ public:
     /*!
      * Get music list current song lovest contains.
      */
-
     void updateCurrentArtist();
     /*!
      * Update current artist when it download finished.
      */
-    int getPlayState() const;
+
+    bool isPlaying() const;
     /*!
      * Get current play state.
      */
-    int getPlayMode() const;
+    MusicObject::SongPlayMode getPlayMode() const;
     /*!
      * Get current play mode.
      */

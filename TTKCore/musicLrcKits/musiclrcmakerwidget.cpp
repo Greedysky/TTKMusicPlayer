@@ -346,7 +346,7 @@ void MusicLrcMakerWidget::setCurrentSecondWidget()
         return;
     }
 
-    if(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState)
+    if(!MusicApplication::instance()->isPlaying())
     {
         firstWidgetStateButtonClicked();
     }
@@ -560,7 +560,7 @@ void MusicLrcMakerWidget::createMainWidget()
 
 void MusicLrcMakerWidget::createFirstWidget()
 {
-    m_ui->stateButton_F->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState ? tr("Play") : tr("Stop"));
+    m_ui->stateButton_F->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Stop"));
 
     m_ui->artNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->songNameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
@@ -639,7 +639,7 @@ void MusicLrcMakerWidget::createThirdWidget()
         m_musicLrcContainer.append(w);
     }
     ///////////////////////////////////////////////////////////////
-    m_ui->stateButton_T->setText(MusicApplication::instance()->getPlayState() != MusicPlayer::PlayingState  ? tr("Play") : tr("Stop"));
+    m_ui->stateButton_T->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Stop"));
     m_ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     m_ui->lrc_make_up_T->setToolTip(tr("Before 1s"));
     m_ui->lrc_make_down_T->setToolTip(tr("After 1s"));

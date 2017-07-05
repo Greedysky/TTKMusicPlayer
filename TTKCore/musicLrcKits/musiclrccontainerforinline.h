@@ -13,6 +13,7 @@
 #include "musiclrccontainer.h"
 
 class MusicLrcFloatWidget;
+class MusicLrcFloatPlayWidget;
 class MusicClickedLabel;
 class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
@@ -93,6 +94,11 @@ public:
     void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
+     */
+
+    void createFloatPlayWidget();
+    /*!
+     * Create float play widget.
      */
     void showFullOrNormal();
     /*!
@@ -231,6 +237,7 @@ protected:
     qint64 m_changeSpeedValue;
     QWidget *m_functionLabel;
     MusicLrcFloatWidget *m_lrcFloatWidget;
+    MusicLrcFloatPlayWidget *m_floatPlayWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
     MusicLrcCommentsWidget *m_commentsWidget;
     MusicLrcTranslatedWidget *m_translatedWidget;

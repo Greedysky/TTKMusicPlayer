@@ -2,6 +2,7 @@
 #include "musiclrcmanagerforinline.h"
 #include "musiclrcartphotouploadwidget.h"
 #include "musiclrcfloatwidget.h"
+#include "musiclrcfloatplaywidget.h"
 #include "musiclrclocallinkwidget.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
@@ -56,6 +57,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     initFunctionLabel();
 
     m_lrcFloatWidget = new MusicLrcFloatWidget(this);
+    m_floatPlayWidget = nullptr;
     initCurrentLrc(tr("noCurrentSongPlay"));
     createNoLrcCurrentInfo();
 
@@ -69,6 +71,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_lrcAnalysis;
     delete m_functionLabel;
     delete m_lrcFloatWidget;
+    delete m_floatPlayWidget;
     delete m_noLrcCurrentInfo;
     delete m_commentsWidget;
     delete m_translatedWidget;
@@ -218,6 +221,16 @@ void MusicLrcContainerForInline::resizeWindow()
     }
 
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+}
+
+void MusicLrcContainerForInline::createFloatPlayWidget()
+{
+    delete m_floatPlayWidget;
+    m_floatPlayWidget = nullptr;
+    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
+    {
+        m_floatPlayWidget = new MusicLrcFloatPlayWidget(this);
+    }
 }
 
 void MusicLrcContainerForInline::showFullOrNormal()
@@ -786,7 +799,12 @@ void MusicLrcContainerForInline::resizeWidth(int w, int h)
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
         MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(w);
-        m_lrcFloatWidget->resizeWindow(w, h);
+    }
+
+    m_lrcFloatWidget->resizeWindow(w, h);
+    if(m_floatPlayWidget)
+    {
+        m_floatPlayWidget->resizeWindow(w, h);
     }
 
     if(m_lrcAnalysis->isEmpty())

@@ -729,7 +729,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     actions << musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlayListLoop()));
     actions << musicPlaybackMode.addAction(tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
     actions << musicPlaybackMode.addAction(tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
-    MusicObject::SongPlayMode mode = MStatic_cast(MusicObject::SongPlayMode, MusicApplication::instance()->getPlayMode());
+    MusicObject::SongPlayMode mode = MusicApplication::instance()->getPlayMode();
     int index = -1;
     switch(mode)
     {

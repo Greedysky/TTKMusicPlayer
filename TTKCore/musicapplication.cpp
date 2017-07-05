@@ -261,12 +261,12 @@ void MusicApplication::updateCurrentArtist()
     m_musicSongTree->updateCurrentArtist();
 }
 
-int MusicApplication::getPlayState() const
+bool MusicApplication::isPlaying() const
 {
-    return m_musicPlayer->state();
+    return m_musicPlayer->isPlaying();
 }
 
-int MusicApplication::getPlayMode() const
+MusicObject::SongPlayMode MusicApplication::getPlayMode() const
 {
     return m_musicList->playbackMode();
 }
@@ -1140,6 +1140,7 @@ void MusicApplication::readXMLConfigFromText()
     }
     m_bottomAreaWidget->showPlayStatus(m_playControl);
     m_rightAreaWidget->showPlayStatus(m_playControl);
+    m_topAreaWidget->showPlayStatus(m_playControl);
     //////////////////////////////////////////////////////////////
     //When the configuration is close to the direct exit
     value = xml.readSystemCloseConfig();

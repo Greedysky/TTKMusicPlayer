@@ -221,7 +221,6 @@ protected:
     QString m_currentBgSkin;
     int m_alpha, m_listAlpha;
     QTimer m_pictureCarouselTimer;
-    bool m_currentPlayStatus;
 
     static MusicTopAreaWidget *m_instance;
 };

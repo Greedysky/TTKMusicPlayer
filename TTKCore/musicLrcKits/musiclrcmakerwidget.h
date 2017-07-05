@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicobject.h"
 #include "musicabstractmovewidget.h"
 
 namespace Ui {
@@ -233,7 +234,8 @@ protected:
     QStringList m_plainText;
     QMap<int, qint64> m_times;
 
-    int m_currentLine, m_playMode;
+    int m_currentLine;
+    MusicObject::SongPlayMode m_playMode;
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;

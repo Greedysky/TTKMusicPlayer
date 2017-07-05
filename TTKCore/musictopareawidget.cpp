@@ -38,7 +38,6 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_counterPVThread = new MusicCounterPVDownloadThread(this);
     m_counterPVThread->startToDownload();
     ///////////////////////////////////////////////////////
-    m_currentPlayStatus = true;
     m_listAlpha = 40;
 }
 
@@ -136,7 +135,6 @@ void MusicTopAreaWidget::setTimerStop()
 
 void MusicTopAreaWidget::showPlayStatus(bool status)
 {
-    m_currentPlayStatus = status;
     if(m_musicRemoteWidget)
     {
         m_musicRemoteWidget->showPlayStatus(status);
@@ -398,7 +396,7 @@ void MusicTopAreaWidget::createRemoteWidget()
         return;
     }
 
-    m_musicRemoteWidget->showPlayStatus(m_currentPlayStatus);
+    m_musicRemoteWidget->showPlayStatus(!MusicApplication::instance()->isPlaying());
     m_musicRemoteWidget->setVolumeValue(m_ui->musicSound->value());
     connect(m_musicRemoteWidget, SIGNAL(musicWindowSignal()), MusicApplication::instance(), SLOT(showNormal()));
     connect(m_musicRemoteWidget, SIGNAL(musicPlayPreviousSignal()), MusicApplication::instance(), SLOT(musicPlayPrevious()));
