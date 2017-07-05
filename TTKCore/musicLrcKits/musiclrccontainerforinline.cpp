@@ -398,22 +398,25 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
 
     //////////////////////////////////////////////////
     QActionGroup *group = new QActionGroup(this);
-    QAction *ac1 = group->addAction(changeLrcSize.addAction(tr("smaller")));
-    QAction *ac2 = group->addAction(changeLrcSize.addAction(tr("small")));
-    QAction *ac3 = group->addAction(changeLrcSize.addAction(tr("middle")));
-    QAction *ac4 = group->addAction(changeLrcSize.addAction(tr("big")));
-    QAction *ac5 = group->addAction(changeLrcSize.addAction(tr("bigger")));
-    int size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
-    (size == 14) ? ac1->setIcon(QIcon(":/contextMenu/btn_selected")) : ac1->setIcon(QIcon());
-    (size == 18) ? ac2->setIcon(QIcon(":/contextMenu/btn_selected")) : ac2->setIcon(QIcon());
-    (size == 26) ? ac3->setIcon(QIcon(":/contextMenu/btn_selected")) : ac3->setIcon(QIcon());
-    (size == 36) ? ac4->setIcon(QIcon(":/contextMenu/btn_selected")) : ac4->setIcon(QIcon());
-    (size == 72) ? ac5->setIcon(QIcon(":/contextMenu/btn_selected")) : ac5->setIcon(QIcon());
-    ac1->setData(0);
-    ac2->setData(1);
-    ac3->setData(2);
-    ac4->setData(3);
-    ac5->setData(4);
+    group->addAction(changeLrcSize.addAction(tr("smaller")))->setData(0);
+    group->addAction(changeLrcSize.addAction(tr("small")))->setData(1);
+    group->addAction(changeLrcSize.addAction(tr("middle")))->setData(2);
+    group->addAction(changeLrcSize.addAction(tr("big")))->setData(3);
+    group->addAction(changeLrcSize.addAction(tr("bigger")))->setData(4);
+    int index = -1, size = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+    switch(size)
+    {
+        case 14: index = 0; break;
+        case 18: index = 1; break;
+        case 26: index = 2; break;
+        case 36: index = 3; break;
+        case 72: index = 4; break;
+        default: break;
+    }
+    if(index > -1 && index < group->actions().count())
+    {
+        group->actions()[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+    }
     connect(group, SIGNAL(triggered(QAction*)), SLOT(lrcSizeChanged(QAction*)));
 
     changeLrcSize.addSeparator();

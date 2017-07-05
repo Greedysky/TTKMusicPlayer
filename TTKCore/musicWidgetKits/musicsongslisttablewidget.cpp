@@ -723,17 +723,27 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
 
     rightClickMenu.addMenu(&musicPlaybackMode);
-    QAction *order = musicPlaybackMode.addAction(tr("OrderPlay"), MusicApplication::instance(), SLOT(musicPlayOrder()));
-    QAction *random = musicPlaybackMode.addAction(tr("RandomPlay"), MusicApplication::instance(), SLOT(musicPlayRandom()));
-    QAction *lCycle = musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlayListLoop()));
-    QAction *sCycle = musicPlaybackMode.addAction(tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
-    QAction *once = musicPlaybackMode.addAction(tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
+    QList<QAction*> actions;
+    actions << musicPlaybackMode.addAction(tr("OrderPlay"), MusicApplication::instance(), SLOT(musicPlayOrder()));
+    actions << musicPlaybackMode.addAction(tr("RandomPlay"), MusicApplication::instance(), SLOT(musicPlayRandom()));
+    actions << musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlayListLoop()));
+    actions << musicPlaybackMode.addAction(tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
+    actions << musicPlaybackMode.addAction(tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
     MusicObject::SongPlayMode mode = MStatic_cast(MusicObject::SongPlayMode, MusicApplication::instance()->getPlayMode());
-    (mode == MusicObject::MC_PlayOrder) ? order->setIcon(QIcon(":/contextMenu/btn_selected")) : order->setIcon(QIcon());
-    (mode == MusicObject::MC_PlayRandom) ? random->setIcon(QIcon(":/contextMenu/btn_selected")) : random->setIcon(QIcon());
-    (mode == MusicObject::MC_PlayListLoop) ? lCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : lCycle->setIcon(QIcon());
-    (mode == MusicObject::MC_PlayOneLoop) ? sCycle->setIcon(QIcon(":/contextMenu/btn_selected")) : sCycle->setIcon(QIcon());
-    (mode == MusicObject::MC_PlayOnce) ? once->setIcon(QIcon(":/contextMenu/btn_selected")) : once->setIcon(QIcon());
+    int index = -1;
+    switch(mode)
+    {
+        case MusicObject::MC_PlayOrder: index = 0; break;
+        case MusicObject::MC_PlayRandom: index = 1; break;
+        case MusicObject::MC_PlayListLoop: index = 2; break;
+        case MusicObject::MC_PlayOneLoop: index = 3; break;
+        case MusicObject::MC_PlayOnce: index = 4; break;
+        default: break;
+    }
+    if(index > -1 && index < actions.count())
+    {
+        actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+    }
 
     QMenu musicAddNewFiles(tr("addNewFiles"), &rightClickMenu);
     rightClickMenu.addMenu(&musicAddNewFiles);
