@@ -28,6 +28,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
+    m_isFullOrNormal = true;
     Visual::initialize(MusicApplication::instance());
 }
 
@@ -127,27 +128,9 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
     m_soundKMicroWidget->show();
 }
 
-void MusicLeftAreaWidget::showFullOrNormal()
+bool MusicLeftAreaWidget::isFullOrNormal() const
 {
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
-    {
-        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
-    }
-
-    bool state = !m_ui->topWidget->isVisible();
-    m_ui->topWidget->setVisible(state);
-    m_ui->bottomWidget->setVisible(state);
-    m_ui->centerLeftWidget->setVisible(state);
-    m_ui->songsContainer->setVisible(state);
-    m_ui->stackedFunctionWidget->setVisible(state);
-    m_ui->lrcDisplayAllButton->setVisible(state);
-
-    state ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
-}
-
-bool MusicLeftAreaWidget::iaFullOrNormal() const
-{
-    return !m_ui->topWidget->isVisible();
+    return !m_isFullOrNormal;
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
@@ -309,6 +292,25 @@ void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()
 
     delete m_cloudSharedSongWidget;
     m_cloudSharedSongWidget = nullptr;
+}
+
+void MusicLeftAreaWidget::showFullOrNormal()
+{
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    {
+        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+    }
+
+    m_isFullOrNormal = !m_isFullOrNormal;
+    m_ui->topWidget->setVisible(m_isFullOrNormal);
+    m_ui->bottomWidget->setVisible(m_isFullOrNormal);
+    m_ui->centerLeftWidget->setVisible(m_isFullOrNormal);
+    m_ui->songsContainer->setVisible(m_isFullOrNormal);
+    m_ui->stackedFunctionWidget->setVisible(m_isFullOrNormal);
+    m_ui->lrcDisplayAllButton->setVisible(m_isFullOrNormal);
+
+    m_isFullOrNormal ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
+    m_ui->musiclrccontainerforinline->showFullOrNormal();
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)

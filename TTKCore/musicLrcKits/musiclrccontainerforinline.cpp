@@ -67,6 +67,7 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
 {
     clearAllMusicLRCManager();
     delete m_lrcAnalysis;
+    delete m_functionLabel;
     delete m_lrcFloatWidget;
     delete m_noLrcCurrentInfo;
     delete m_commentsWidget;
@@ -211,12 +212,25 @@ void MusicLrcContainerForInline::resizeWindow()
     {
         width += 320;
     }
-    if(MusicLeftAreaWidget::instance()->iaFullOrNormal())
+    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
     {
         width += (m_lrcDisplayAll ? 50 : (320 + 50));
     }
 
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);
+}
+
+void MusicLrcContainerForInline::showFullOrNormal()
+{
+    QHBoxLayout *l = MStatic_cast(QHBoxLayout*, m_functionLabel->layout());
+    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
+    {
+        l->removeItem(l->itemAt(l->count() - 1));
+    }
+    else
+    {
+        l->addStretch(1);
+    }
 }
 
 void MusicLrcContainerForInline::lrcSizeChanged(QAction *action)
@@ -321,11 +335,6 @@ void MusicLrcContainerForInline::showSoundKMicroWidget()
     MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
 }
 
-void MusicLrcContainerForInline::showFullOrNormal()
-{
-    MusicLeftAreaWidget::instance()->showFullOrNormal();
-}
-
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
 {
     QString text;
@@ -348,6 +357,10 @@ void MusicLrcContainerForInline::musicSongMovieClicked()
         return;
     }
 
+    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
+    {
+        MusicLeftAreaWidget::instance()->showFullOrNormal();
+    }
     MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
 }
 
@@ -383,8 +396,8 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *)
     menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
     menu.addAction(tr("errorLrc"), this, SLOT(theCurrentLrcError()));
     menu.addSeparator();
-    menu.addAction(MusicLeftAreaWidget::instance()->iaFullOrNormal() ? tr("showNormalMode") : tr("showFullMode"),
-                   this, SLOT(showFullOrNormal()));
+    menu.addAction(MusicLeftAreaWidget::instance()->isFullOrNormal() ? tr("showNormalMode") : tr("showFullMode"),
+                   MusicLeftAreaWidget::instance(), SLOT(showFullOrNormal()));
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
@@ -622,9 +635,9 @@ void MusicLrcContainerForInline::initCurrentLrc(const QString &str)
 
 void MusicLrcContainerForInline::initFunctionLabel()
 {
-    QWidget *functionLabel = new QWidget(this);
-    functionLabel->setFixedHeight(40);
-    QHBoxLayout *functionLayout = new QHBoxLayout(functionLabel);
+    m_functionLabel = new QWidget(this);
+    m_functionLabel->setFixedHeight(40);
+    QHBoxLayout *functionLayout = new QHBoxLayout(m_functionLabel);
     functionLayout->setContentsMargins(0, 0, 0, 0);
 
     QPushButton *translation = new QPushButton(this);
@@ -663,9 +676,9 @@ void MusicLrcContainerForInline::initFunctionLabel()
     functionLayout->addWidget(microphone);
     functionLayout->addWidget(message);
     functionLayout->addStretch(1);
-    functionLabel->setLayout(functionLayout);
+    m_functionLabel->setLayout(functionLayout);
 
-    layout()->addWidget(functionLabel);
+    layout()->addWidget(m_functionLabel);
 }
 
 void MusicLrcContainerForInline::setItemStyleSheet()

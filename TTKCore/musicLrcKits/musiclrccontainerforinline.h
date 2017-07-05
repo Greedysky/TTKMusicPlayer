@@ -94,6 +94,10 @@ public:
     /*!
      * Resize window bound by widgte resize called.
      */
+    void showFullOrNormal();
+    /*!
+     * Show full container or not.
+     */
 
 Q_SIGNALS:
     void updateCurrentTime(qint64 time);
@@ -149,10 +153,6 @@ public Q_SLOTS:
     void showSoundKMicroWidget();
     /*!
      * Show song KMicro widget.
-     */
-    void showFullOrNormal();
-    /*!
-     * Show full container or not.
      */
 
 private Q_SLOTS:
@@ -229,6 +229,7 @@ protected:
     bool m_lrcDisplayAll;
     int m_animationFreshTime;
     qint64 m_changeSpeedValue;
+    QWidget *m_functionLabel;
     MusicLrcFloatWidget *m_lrcFloatWidget;
     MusicClickedLabel *m_noLrcCurrentInfo;
     MusicLrcCommentsWidget *m_commentsWidget;

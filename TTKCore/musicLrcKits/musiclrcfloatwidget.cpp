@@ -3,6 +3,7 @@
 #include "musiclrcfloatsettingwidget.h"
 #include "musicinlinefloatuiobject.h"
 #include "musicrightareawidget.h"
+#include "musicleftareawidget.h"
 
 #include <QPushButton>
 
@@ -104,6 +105,11 @@ void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
     {
         m_wallp->setStyleSheet(MusicUIObject::MKGInlineFloatWallpaper + MusicUIObject::MPushButtonStyle09 +
                                MusicUIObject::MPushButtonStyle01);
+    }
+
+    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
+    {
+        MusicLeftAreaWidget::instance()->showFullOrNormal();
     }
     MusicRightAreaWidget::instance()->musicContainerForWallpaperClicked();
 }

@@ -2,6 +2,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicclickedlabel.h"
 #include "musicinlinefloatuiobject.h"
+#include "musicleftareawidget.h"
 
 #include <qmath.h>
 #include <QTimer>
@@ -98,8 +99,9 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(0, 530 + height, 115 + width, 105);
-    m_rectOut = QRect(0, 330 + height, 662 + width, 180);
+    bool f = MusicLeftAreaWidget::instance()->isFullOrNormal();
+    m_rectIn = QRect(0, (f ? 680 : 530) + height, 115 + width, 105);
+    m_rectOut = QRect(0, (f ? 480 : 330) + height, 662 + width, 180);
 
     m_filmBGWidget->move(width/2, 0);
     m_checkBox->move(width/2 + 20, 130);
