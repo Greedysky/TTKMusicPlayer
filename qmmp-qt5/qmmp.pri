@@ -13,8 +13,8 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050400
 
 #Version
 
-TTKMusicPlayer = 2.5.0.0
-QMMP_VERSION = 1.1.3
+TTKMusicPlayer = 2.5.1.0
+QMMP_VERSION = 1.1.9
 
 #Comment/uncomment this if you want to change plugins list
 

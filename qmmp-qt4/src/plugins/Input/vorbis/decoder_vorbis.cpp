@@ -76,6 +76,7 @@ DecoderVorbis::DecoderVorbis(const QString &url, QIODevice *i)
     m_last_section = -1;
     m_bitrate = 0;
     m_url = url;
+    len = 0;
 }
 
 

@@ -8,8 +8,8 @@ RCC_DIR=./.build/rcc
 
 #Version
 
-TTKMusicPlayer = 2.5.0.0
-QMMP_VERSION = 0.10.3
+TTKMusicPlayer = 2.5.1.0
+QMMP_VERSION = 0.10.9
 
 #Comment/uncomment this if you want to change plugins list
 

@@ -73,26 +73,23 @@ AACFile::AACFile(QIODevice *i, bool metaData, bool adts)
             int frame_length = ((((unsigned int)buf[adts_offset+3] & 0x3)) << 11)
                     | (((unsigned int)buf[adts_offset+4]) << 3) | (buf[adts_offset+5] >> 5);
 
-            if(frame_length == 0)
-                break;
-
-            if(adts_offset + frame_length > buf_at - 6)
-                break;
+            if(frame_length == 0 || (adts_offset + frame_length > buf_at - 6))
+            {
+                adts_offset++;
+                continue;
+            }
 
             //check second sync word
             if ((buf[adts_offset + frame_length] == 0xFF) &&
                     ((buf[adts_offset + frame_length + 1] & 0xF6) == 0xF0))
             {
                 qDebug("AACFile: ADTS header found");
+                if (!i->isSequential() && adts)
+                    parseADTS();
+                m_isValid = true;
+                m_offset += adts_offset;
+                return;
             }
-            else
-                break;
-
-            if (!i->isSequential() && adts)
-                parseADTS();
-            m_isValid = true;
-            m_offset += adts_offset;
-            return;
         }
         adts_offset++;
     }

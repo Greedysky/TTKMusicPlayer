@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -122,7 +122,6 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
 {
     DecoderFLAC *dflac = (DecoderFLAC *) client_data;
     qint64 res = dflac->data()->input->read((char *)buffer, *bytes);
-    dflac->data()->last_bytes += res;
 
     if (res > 0)
     {
@@ -139,7 +138,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
 
 }
 
-static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDecoder *,
+static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDecoder *d,
         const FLAC__Frame *frame,
         const FLAC__int32* const buffer[],
         void *client_data)
@@ -150,9 +149,16 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDec
     if (dflac->data()->abort)
         return FLAC__STREAM_DECODER_WRITE_STATUS_ABORT;
 
-    dflac->data()->bitrate = dflac->data()->last_bytes * 8.0 * frame->header.sample_rate /
-                             frame->header.blocksize / 1000.0;
-    dflac->data()->last_bytes = 0;
+    //bitrate calculation
+    FLAC__uint64 decode_position = 0;
+    if(FLAC__stream_decoder_get_decode_position(d, &decode_position) &&
+            decode_position > dflac->data()->last_decode_position)
+    {
+        dflac->data()->bitrate = (decode_position - dflac->data()->last_decode_position) * 8.0 * frame->header.sample_rate /
+                frame->header.blocksize / 1000.0;
+    }
+
+    dflac->data()->last_decode_position = decode_position;
 
     dflac->data()->sample_buffer_fill = pack_pcm_signed (
                                             dflac->data()->sample_buffer,
@@ -210,6 +216,8 @@ static void flac_callback_metadata (const FLAC__StreamDecoder *,
         dflac->data()->channels = metadata->data.stream_info.channels;
         dflac->data()->sample_rate = metadata->data.stream_info.sample_rate;
         dflac->data()->length = dflac->data()->total_samples * 1000 / dflac->data()->sample_rate;
+        dflac->data()->bitrate = dflac->data()->input->size() * 8 * metadata->data.stream_info.sample_rate /
+                metadata->data.stream_info.total_samples / 1000;
     }
 }
 
@@ -230,7 +238,6 @@ static void flac_callback_error (const FLAC__StreamDecoder *,
 DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
         : Decoder(i)
 {
-    m_data = 0;
     m_path = path;
     m_data = new flac_data;
     m_data->decoder = NULL;
@@ -241,6 +248,7 @@ DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
     m_sz = 0;
     m_buf = 0;
     m_offset = 0;
+    m_track = 0;
 }
 
 
@@ -319,7 +327,7 @@ bool DecoderFLAC::initialize()
     m_data->bitrate = -1;
     m_data->abort = 0;
     m_data->sample_buffer_fill = 0;
-    m_data->last_bytes = 0;
+    m_data->last_decode_position = 0;
     if (!m_data->decoder)
     {
         qDebug("DecoderFLAC: creating FLAC__StreamDecoder");

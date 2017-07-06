@@ -55,35 +55,38 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *i) const
 {
     QStringList filters = properties().filters;
 
-    AVProbeData  pd;
+    AVProbeData pd;
+    memset(&pd, 0, sizeof(pd));
     uint8_t buf[PROBE_BUFFER_SIZE + AVPROBE_PADDING_SIZE];
-    pd.filename = 0;
     pd.buf_size = i->peek((char*)buf, sizeof(buf) - AVPROBE_PADDING_SIZE);
     pd.buf = buf;
     if(pd.buf_size < PROBE_BUFFER_SIZE)
         return false;
     AVInputFormat *fmt = av_probe_input_format(&pd, 1);
     if(!fmt)
-    {
         return false;
-    }
-    if(filters.contains("*.wma") && !memcmp(fmt->name, "asf", 3))
+
+    QStringList formats = QString::fromLatin1(fmt->name).split(",");
+
+    if(filters.contains("*.wma") && formats.contains("asf"))
         return true;
-    else if(filters.contains("*.mp3") && !memcmp(fmt->name, "mp3", 3))
+    else if(filters.contains("*.mp3") && formats.contains("mp3"))
         return true;
-    else if(filters.contains("*.aac") && !memcmp(fmt->name, "aac", 3))
+    else if(filters.contains("*.aac") && formats.contains("aac"))
         return true;
-    else if(filters.contains("*.ac3") && !memcmp(fmt->name, "eac3", 4))
+    else if(filters.contains("*.ac3") && formats.contains("eac3"))
         return true;
-    else if(filters.contains("*.dts") && !memcmp(fmt->name, "dts", 3))
+    else if(filters.contains("*.dts") && formats.contains("dts"))
         return true;
-    else if(filters.contains("*.mka") && !memcmp(fmt->name, "mka", 3))
+    else if(filters.contains("*.mka") && formats.contains("mka"))
         return true;
-    else if(filters.contains("*.vqf") && !memcmp(fmt->name, "vqf", 3))
+    else if(filters.contains("*.vqf") && formats.contains("vqf"))
         return true;
-    else if(filters.contains("*.ape") && !memcmp(fmt->name, "ape", 3))
+    else if(filters.contains("*.ape") && formats.contains("ape"))
         return true;
-    else if(filters.contains("*.tta") && !memcmp(fmt->name, "tta", 3))
+    else if(filters.contains("*.tta") && formats.contains("tta"))
+        return true;
+    else if(filters.contains("*.m4a") && (formats.contains("m4a") || formats.contains("mp4")))
         return true;
     return false;
 }
@@ -92,7 +95,7 @@ const DecoderProperties DecoderFFmpegFactory::properties() const
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters;
-    filters << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.ra" << "*.shn" << "*.vqf" << "*.ac3";
+    filters << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.aac" << "*.ra" << "*.shn" << "*.vqf" << "*.ac3";
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
     if(!avcodec_find_decoder(AV_CODEC_ID_WMAV1))

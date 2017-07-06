@@ -51,6 +51,9 @@ DecoderModPlug::DecoderModPlug(const QString &path) : Decoder(0)
     m_soundFile = 0;
     m_sampleSize = 0;
     m_instance = this;
+    m_bps = 0;
+    m_preampFactor = 0.0f;
+    m_usePreamp = false;
 }
 
 DecoderModPlug::~DecoderModPlug()

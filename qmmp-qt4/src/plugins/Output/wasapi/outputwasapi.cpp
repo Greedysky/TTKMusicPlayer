@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
+ *   Copyright (C) 2016-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,7 +34,7 @@ const IID IID_IAudioRenderClient = __uuidof(IAudioRenderClient);
 const IID IID_IChannelAudioVolume = __uuidof(IChannelAudioVolume);
 const IID IID_ISimpleAudioVolume = __uuidof(ISimpleAudioVolume);
 
-#define WASAPI_BUFSIZE 20000000LL //2s
+#define WASAPI_BUFSIZE 10000000LL //1s
 
 #ifndef AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM
 #define AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM 0x80000000
@@ -151,7 +151,7 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
         qDebug("OutputWASAPI: format is not supported, using converter");
     }
 
-    if((result = m_pAudioClient->Initialize(AUDCLNT_SHAREMODE_SHARED, streamFlags, 20000000LL, 0, (WAVEFORMATEX *)&wfex, NULL)) != S_OK)
+    if((result = m_pAudioClient->Initialize(AUDCLNT_SHAREMODE_SHARED, streamFlags, WASAPI_BUFSIZE, 0, (WAVEFORMATEX *)&wfex, NULL)) != S_OK)
     {
         qWarning("OutputWASAPI: IAudioClient::Initialize failed, error code = 0x%lx", result);
         return false;
@@ -191,7 +191,9 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
 
 qint64 OutputWASAPI::latency()
 {
-    return 0;
+    UINT32 frames = 0;
+    m_pAudioClient->GetCurrentPadding(&frames);
+    return frames * 1000 / sampleRate();
 }
 
 qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 len)
@@ -228,8 +230,8 @@ qint64 OutputWASAPI::writeAudio(unsigned char *data, qint64 len)
 void OutputWASAPI::drain()
 {
     UINT32 frames = 0;
-    m_pAudioClient->GetCurrentPadding(&frames);
-    usleep((m_bufferFrames - frames) * 1000000L / sampleRate());
+    while((m_pAudioClient->GetCurrentPadding(&frames) == S_OK) && (frames > 0))
+        usleep(50);
 }
 
 void OutputWASAPI::suspend()

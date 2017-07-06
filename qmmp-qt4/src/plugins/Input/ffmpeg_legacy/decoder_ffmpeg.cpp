@@ -73,6 +73,8 @@ DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
     m_output_at = 0;
     m_skipBytes = 0;
     m_stream = 0;
+    c = 0;
+    wma_idx = 0;
     av_init_packet(&m_pkt);
     av_init_packet(&m_temp_pkt);
 }

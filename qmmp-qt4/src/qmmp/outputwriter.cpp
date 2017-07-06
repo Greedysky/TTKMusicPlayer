@@ -53,6 +53,7 @@ OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
     m_format_converter = 0;
     m_channel_converter = 0;
     m_output_buf = 0;
+    m_output_size = 0;
 }
 
 OutputWriter::~OutputWriter()
@@ -274,6 +275,7 @@ void OutputWriter::run()
     quint64 l;
     qint64 m = 0;
     size_t output_at = 0;
+    unsigned char *tmp = 0;
 
     dispatch(Qmmp::Playing);
 
@@ -342,7 +344,15 @@ void OutputWriter::run()
                 m_output_buf = new unsigned char[m_output_size * sampleSize()];
             }
 
-            m_format_converter->fromFloat(b->data, m_output_buf, b->samples);
+            if(m_format_converter)
+            {
+                m_format_converter->fromFloat(b->data, m_output_buf, b->samples);
+                tmp = m_output_buf;
+            }
+            else
+            {
+                tmp = (unsigned char*)b->data;
+            }
             output_at = b->samples * m_output->sampleSize();
 
             while (l < output_at && !m_pause && !m_prev_pause)
@@ -356,7 +366,7 @@ void OutputWriter::run()
                     break;
                 }
                 mutex()->unlock();
-                m = m_output->writeAudio(m_output_buf + l, output_at - l);
+                m = m_output->writeAudio(tmp + l, output_at - l);
                 if(m >= 0)
                 {
                     m_totalWritten += m;

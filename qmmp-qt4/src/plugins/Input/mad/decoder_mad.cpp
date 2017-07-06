@@ -3,7 +3,7 @@
  *                                                                         *
  * Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>             *
  * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2009-2013 Ilya Kotov forkotov02@hotmail.ru                *
+ * Copyright (C) 2009-2017 Ilya Kotov forkotov02@hotmail.ru                *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,6 +29,7 @@
 #include "decoder_mad.h"
 
 #define XING_MAGIC (('X' << 24) | ('i' << 16) | ('n' << 8) | 'g')
+#define XING_MAGIC2 (('I' << 24) | ('n' << 16) | ('f' << 8) | 'o')
 #define INPUT_BUFFER_SIZE (32*1024)
 
 DecoderMAD::DecoderMAD(QIODevice *i) : Decoder(i)
@@ -128,7 +129,12 @@ void DecoderMAD::deinit()
 
 bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 {
-    if (bitlen < 64 || mad_bit_read(&ptr, 32) != XING_MAGIC)
+    quint32 xing_magic = 0;
+    if (bitlen < 64)
+        goto fail;
+
+    xing_magic = mad_bit_read(&ptr, 32);
+    if(xing_magic != XING_MAGIC && xing_magic != XING_MAGIC2)
         goto fail;
 
     xing.flags = mad_bit_read(&ptr, 32);
@@ -141,6 +147,12 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 
         xing.frames = mad_bit_read(&ptr, 32);
         bitlen -= 32;
+        
+        if(!xing.frames)
+        {
+            qDebug("DecoderMAD: invalid xing header (zero number of frames)");
+            goto fail;
+        }
     }
 
     if (xing.flags & XING_BYTES)
@@ -150,6 +162,12 @@ bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 
         xing.bytes = mad_bit_read(&ptr, 32);
         bitlen -= 32;
+        
+        if(!xing.bytes)
+        {
+            qDebug("DecoderMAD: invalid xing header (zero number of bytes)");
+            goto fail;
+        }
     }
 
     if (xing.flags & XING_TOC)

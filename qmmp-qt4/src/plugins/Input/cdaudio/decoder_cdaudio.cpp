@@ -129,6 +129,8 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
                 return tracks;
             }
             qDebug("DecoderCDAudio: found cd audio capable drive \"%s\"", *cd_drives);
+            device_path = QString(*cd_drives);
+            cdio_free_device_list(cd_drives); //free device list
         }
         else
         {
@@ -136,9 +138,6 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
             cdio_free_device_list(cd_drives);
             return tracks;
         }
-        device_path = QString(*cd_drives);
-        if (cd_drives && *cd_drives) //free device list
-            cdio_free_device_list(cd_drives);
     }
     else
     {

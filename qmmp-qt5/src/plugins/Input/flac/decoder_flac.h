@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -50,7 +50,7 @@ struct flac_data
     unsigned sample_rate;
     unsigned channels;
 
-    FLAC__uint64 last_bytes;
+    FLAC__uint64 last_decode_position;
 
     int ok; /* was this stream successfully opened? */
     //struct decoder_error error;

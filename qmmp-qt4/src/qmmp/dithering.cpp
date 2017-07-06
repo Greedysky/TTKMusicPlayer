@@ -27,19 +27,15 @@ Dithering::Dithering() : Effect()
     m_lsb = 0.0f;
     m_required = false;
     m_enabled = false;
+    m_chan = 2;
+    clearHistory();
 }
 
 void Dithering::configure(quint32 srate, ChannelMap map)
 {
     m_chan = map.count();
     m_required = false;
-    for(int i = 0; i < 9; ++i)
-    {
-        m_dither[i].error[0] = 0.0f;
-        m_dither[i].error[1] = 0.0f;
-        m_dither[i].error[2] = 0.0f;
-        m_dither[i].random = 0;
-    }
+    clearHistory();
     Effect::configure(srate, map);
 }
 
@@ -82,6 +78,17 @@ void Dithering::setEnabled(bool enabled)
 {
     m_enabled = enabled;
     (m_required && m_enabled) ? qDebug("Dithering: enabled") : qDebug("Dithering: disabled");
+}
+
+void Dithering::clearHistory()
+{
+    for(int i = 0; i < 9; ++i)
+    {
+        m_dither[i].error[0] = 0.0f;
+        m_dither[i].error[1] = 0.0f;
+        m_dither[i].error[2] = 0.0f;
+        m_dither[i].random = 0;
+    }
 }
 
 quint32 Dithering::prng(quint32 state) // 32-bit pseudo-random number generator

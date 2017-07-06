@@ -41,12 +41,12 @@ DecoderWavPack::DecoderWavPack(const QString &path)
     m_context = 0;
     m_parser = 0;
     m_output_buf = 0;
-    m_parser = 0;
     m_length_in_bytes = 0;
     m_totalBytes = 0;
     m_frame_size = 0;
     m_offset = 0;
     m_bps = 0;
+    m_track = 0;
 }
 
 DecoderWavPack::~DecoderWavPack()

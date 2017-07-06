@@ -5,11 +5,12 @@ The TTKMusicplayer plugin for run
 
 * __
 * |__AppData
+  * |__avatar
+  * |__theme
   * |music.lis
   * |musicbarrage.ttk
   * |musicconfig.xml
   * |musichistory.ttk
-  * |musicradio.dll
   * |musicuser.dll
   * |musicuser.ttk
   * |musicdown.ttk
@@ -26,4 +27,3 @@ The TTKMusicplayer plugin for run
   * |__MPlugins
   * |__plugins
   * |__projectM
-  * |sound.wav

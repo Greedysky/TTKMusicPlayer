@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -135,6 +135,8 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
         factory = Decoder::findByPath(source->url(), m_settings->determineFileTypeByContent());
     if(!factory)
         factory = Decoder::findByMime(source->contentType());
+    if(factory && !factory->properties().noInput && source->ioDevice() && source->url().contains("://"))
+        factory = (factory->canDecode(source->ioDevice()) ? factory : 0);
     if(!factory && source->ioDevice() && source->url().contains("://")) //ignore content of local files
         factory = Decoder::findByContent(source->ioDevice());
     if(!factory && source->url().contains("://"))
@@ -246,7 +248,6 @@ void QmmpAudioEngine::pause()
         m_output->recycler()->cond()->wakeAll();
         m_output->recycler()->mutex()->unlock();
     }
-
 }
 
 void QmmpAudioEngine::setMuted(bool muted)
@@ -274,19 +275,6 @@ void QmmpAudioEngine::stop()
 
     if (m_output)
     {
-        m_output->mutex()->lock ();
-        m_output->stop();
-        m_output->mutex()->unlock();
-    }
-
-    // wake up threads
-    if (m_output)
-    {
-        m_output->mutex()->lock();
-        m_output->recycler()->cond()->wakeAll();
-        m_output->mutex()->unlock();
-        if(m_output->isRunning())
-            m_output->wait();
         delete m_output;
         m_output = 0;
     }
@@ -395,9 +383,17 @@ void QmmpAudioEngine::run()
         }
         //metadata
         if(m_decoder->hasMetaData())
-            StateHandler::instance()->dispatch(m_decoder->takeMetaData());
+        {
+            QMap<Qmmp::MetaData, QString> m = m_decoder->takeMetaData();
+            m[Qmmp::URL] = m_inputs[m_decoder]->url();
+            StateHandler::instance()->dispatch(m);
+        }
         if(m_inputs[m_decoder]->hasMetaData())
-            StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeMetaData());
+        {
+            QMap<Qmmp::MetaData, QString> m = m_inputs[m_decoder]->takeMetaData();
+            m[Qmmp::URL] = m_inputs[m_decoder]->url();
+            StateHandler::instance()->dispatch(m);
+        }
         if(m_inputs[m_decoder]->hasStreamInfo())
             StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeStreamInfo());
         //wait more data
@@ -541,6 +537,22 @@ void QmmpAudioEngine::run()
         m_output->mutex()->unlock();
     }
     mutex()->unlock();
+
+    if (m_output)
+    {
+        if(m_user_stop || (m_done && !m_finish))
+        {
+            m_output->mutex()->lock ();
+            m_output->stop();
+            m_output->recycler()->cond()->wakeAll();
+            m_output->mutex()->unlock();
+        }
+
+        if(m_output->isRunning())
+        {
+            m_output->wait();
+        }
+    }
 }
 
 void QmmpAudioEngine::flush(bool final)

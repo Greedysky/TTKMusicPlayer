@@ -40,6 +40,7 @@ public:
     void setEnabled(bool enabled);
 
 private:
+    void clearHistory();
     int m_chan;
 
     typedef struct
