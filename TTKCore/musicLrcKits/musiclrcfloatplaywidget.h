@@ -43,6 +43,9 @@ public Q_SLOTS:
 
 protected:
     virtual void enterEvent(QEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *) override {}
+    virtual void mousePressEvent(QMouseEvent *) override {}
+    virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
      * Override the widget event.
      */

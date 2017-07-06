@@ -16,6 +16,7 @@
 #include "musicleftareawidget.h"
 #include "musicrightareawidget.h"
 #include "musicsoundkmicrowidget.h"
+#include "musicmessagebox.h"
 
 #include <QTimer>
 
@@ -173,6 +174,10 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 MusicDesktopWallpaperWidget *w = new MusicDesktopWallpaperWidget(this);
                 m_containItem = w;
                 w->show();
+#else
+                MusicMessageBox message;
+                message.setText(tr("Not Supported On Current Plantform!"));
+                message.exec();
 #endif
                 break;
             }
