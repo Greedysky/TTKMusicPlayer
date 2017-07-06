@@ -12,12 +12,12 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
-typedef struct MUSIC_LRC_EXPORT LocalDataItem
+typedef struct MUSIC_LRC_EXPORT MusicLocalDataItem
 {
     QString m_name;
     QString m_path;
-}LocalDataItem;
-TTK_DECLARE_LISTS(LocalDataItem)
+}MusicLocalDataItem;
+TTK_DECLARE_LISTS(MusicLocalDataItem)
 
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>
@@ -39,7 +39,7 @@ public:
     /*!
      * Check if current item has in.
      */
-    void createAllItems(const LocalDataItems &items);
+    void createAllItems(const MusicLocalDataItems &items);
     /*!
      * Create all items.
      */

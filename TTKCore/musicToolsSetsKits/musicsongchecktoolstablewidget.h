@@ -21,7 +21,7 @@ public:
      * Get class object name.
      */
 
-    void createAllItems(const SongCheckToolsRenames &items);
+    void createAllItems(const MusicSongCheckToolsRenames &items);
     /*!
      * Create all items.
      */
@@ -64,7 +64,7 @@ public:
      * Get class object name.
      */
 
-    void createAllItems(const SongCheckToolsDuplicates &songs);
+    void createAllItems(const MusicSongCheckToolsDuplicates &songs);
     /*!
      * Create all items.
      */
@@ -117,7 +117,7 @@ public:
      * Get class object name.
      */
 
-    void createAllItems(const SongCheckToolsQualitys &songs);
+    void createAllItems(const MusicSongCheckToolsQualitys &songs);
     /*!
      * Create all items.
      */

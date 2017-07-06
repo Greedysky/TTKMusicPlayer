@@ -24,8 +24,8 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRe
 
     foreach(const MusicDownloadRecord &record, records)
     {
-        writeDomElementMutilText(download, "value", XmlAttributes() << XmlAttribute("name", record.m_name)
-                                                 << XmlAttribute("size", record.m_size), record.m_path);
+        writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("name", record.m_name)
+                                                 << MusicXmlAttribute("size", record.m_size), record.m_path);
     }
 
     //Write to file

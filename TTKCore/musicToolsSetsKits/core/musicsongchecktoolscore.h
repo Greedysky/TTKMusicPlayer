@@ -46,7 +46,7 @@ public:
      */
 
 Q_SIGNALS:
-    void finished(const SongCheckToolsRenames &items);
+    void finished(const MusicSongCheckToolsRenames &items);
     /*!
      * Rename check finished.
      */
@@ -65,7 +65,7 @@ protected:
     bool m_run;
     MusicSongs *m_songItems;
     MusicObject::MIntList m_itemIDs;
-    SongCheckToolsRenames m_datas;
+    MusicSongCheckToolsRenames m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
@@ -112,7 +112,7 @@ public:
      */
 
 Q_SIGNALS:
-    void finished(const SongCheckToolsDuplicates &items);
+    void finished(const MusicSongCheckToolsDuplicates &items);
     /*!
      * Duplicate check finished.
      */
@@ -131,7 +131,7 @@ protected:
     bool m_run;
     MusicSongs *m_songItems;
     MusicObject::MIntList m_itemIDs;
-    SongCheckToolsDuplicates m_datas;
+    MusicSongCheckToolsDuplicates m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
 };
@@ -165,7 +165,7 @@ public:
      */
 
 Q_SIGNALS:
-    void finished(const SongCheckToolsQualitys &items);
+    void finished(const MusicSongCheckToolsQualitys &items);
     /*!
      * Quality check finished.
      */

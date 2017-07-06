@@ -24,8 +24,8 @@ void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecor
 
     foreach(const MusicBarrageRecord &record, records)
     {
-        writeDomElementMutilText(download, "value", XmlAttributes() << XmlAttribute("color", record.m_color)
-                                 << XmlAttribute("size", record.m_size), record.m_value);
+        writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("color", record.m_color)
+                                 << MusicXmlAttribute("size", record.m_size), record.m_value);
     }
 
     //Write to file

@@ -65,7 +65,7 @@ public Q_SLOTS:
     /*!
      * Rename reCheck button clicked.
      */
-    void renameCheckFinished(const SongCheckToolsRenames &items);
+    void renameCheckFinished(const MusicSongCheckToolsRenames &items);
     /*!
      * Rename check finished.
      */
@@ -81,7 +81,7 @@ public Q_SLOTS:
     /*!
      * Quality reCheck button clicked.
      */
-    void qualityCheckFinished(const SongCheckToolsQualitys &items);
+    void qualityCheckFinished(const MusicSongCheckToolsQualitys &items);
     /*!
      * Quality check finished.
      */
@@ -97,7 +97,7 @@ public Q_SLOTS:
     /*!
      * Duplicate reCheck button clicked.
      */
-    void duplicateCheckFinished(const SongCheckToolsDuplicates &items);
+    void duplicateCheckFinished(const MusicSongCheckToolsDuplicates &items);
     /*!
      * Duplicate check finished.
      */

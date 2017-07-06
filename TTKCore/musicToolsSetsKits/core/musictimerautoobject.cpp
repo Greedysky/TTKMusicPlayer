@@ -13,7 +13,7 @@
 MusicTimerAutoObject::MusicTimerAutoObject(QObject *parent)
     : QObject(parent)
 {
-    TimeObjectPair play, stop, shutdown;
+    MusicTimeObject play, stop, shutdown;
     play.m_index = 0;
     stop.m_index = 1;
     shutdown.m_index = 2;
@@ -72,7 +72,7 @@ void MusicTimerAutoObject::timeout()
 
     for(int i=0; i<m_timeObjects.count(); ++i)
     {
-        TimeObjectPair *pair = &m_timeObjects[i];
+        MusicTimeObject *pair = &m_timeObjects[i];
         if(pair->m_state && hour == pair->m_hour && minute == pair->m_minute)
         {
             switch(pair->m_index)

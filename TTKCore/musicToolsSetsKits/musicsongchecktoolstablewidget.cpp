@@ -29,12 +29,12 @@ QString MusicSongCheckToolsRenameTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsRenameTableWidget::createAllItems(const SongCheckToolsRenames &items)
+void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckToolsRenames &items)
 {
     setRowCount(items.count());
     for(int i=0; i<items.count(); ++i)
     {
-        const SongCheckToolsRename song = items[i];
+        const MusicSongCheckToolsRename song = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
@@ -133,12 +133,12 @@ QString MusicSongCheckToolsDuplicateTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const SongCheckToolsDuplicates &songs)
+void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongCheckToolsDuplicates &songs)
 {
     setRowCount(songs.count());
     for(int i=0; i<songs.count(); ++i)
     {
-        const SongCheckToolsDuplicate song = songs[i];
+        const MusicSongCheckToolsDuplicate song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);
@@ -268,12 +268,12 @@ QString MusicSongCheckToolsQualityTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongCheckToolsQualityTableWidget::createAllItems(const SongCheckToolsQualitys &songs)
+void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckToolsQualitys &songs)
 {
     setRowCount(songs.count());
     for(int i=0; i<songs.count(); ++i)
     {
-        const SongCheckToolsQuality song = songs[i];
+        const MusicSongCheckToolsQuality song = songs[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         setItem(i, 0, item);

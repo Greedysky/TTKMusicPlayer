@@ -15,22 +15,22 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-typedef struct MUSIC_TOOLSET_EXPORT TimeObjectPair
+typedef struct MUSIC_TOOLSET_EXPORT MusicTimeObject
 {
     int m_index;
     int m_hour;
     int m_minute;
     bool m_state;
 
-    TimeObjectPair()
+    MusicTimeObject()
     {
         m_index = -1;
         m_hour = -1;
         m_minute = -1;
         m_state = false;
     }
-}TimeObjectPair;
-TTK_DECLARE_LISTS(TimeObjectPair)
+}MusicTimeObject;
+TTK_DECLARE_LISTS(MusicTimeObject)
 
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
@@ -67,7 +67,7 @@ protected:
      */
 
     QTimer m_timer;
-    TimeObjectPairs m_timeObjects;
+    MusicTimeObjects m_timeObjects;
 
 };
 

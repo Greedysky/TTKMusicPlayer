@@ -51,9 +51,9 @@ void MusicWebMusicRadioListView::initListItems()
 
 void MusicWebMusicRadioListView::addListWidgetItem()
 {
-    RadioChannelInfos channels = m_getChannelThread->getMusicChannel();
+    MusicRadioChannelInfos channels = m_getChannelThread->getMusicChannel();
 
-    foreach(const RadioChannelInfo &channel, channels)
+    foreach(const MusicRadioChannelInfo &channel, channels)
     {
         QListWidgetItem *item = new QListWidgetItem(channel.m_name, this);
         item->setSizeHint(QSize(80, 30));
@@ -63,7 +63,7 @@ void MusicWebMusicRadioListView::addListWidgetItem()
 
 void MusicWebMusicRadioListView::itemHasClicked(QListWidgetItem *item)
 {
-    RadioChannelInfos channels = m_getChannelThread->getMusicChannel();
+    MusicRadioChannelInfos channels = m_getChannelThread->getMusicChannel();
     if(m_musicRadio == nullptr)
     {
         m_musicRadio = new MusicWebMusicRadioWidget(this);

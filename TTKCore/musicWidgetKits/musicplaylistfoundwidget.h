@@ -109,7 +109,7 @@ public Q_SLOTS:
     /*!
      * Set current index to playlist menu page.
      */
-    void categoryChanged(const PlaylistCategoryItem &category);
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
     /*!
      * Current category changed.
      */

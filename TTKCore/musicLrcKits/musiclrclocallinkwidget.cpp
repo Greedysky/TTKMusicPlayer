@@ -35,7 +35,7 @@ bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
     return false;
 }
 
-void MusicLrcLocalLinkTableWidget::createAllItems(const LocalDataItems &items)
+void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItems &items)
 {
     int count = rowCount();
     setRowCount(count + items.count());
@@ -122,12 +122,12 @@ void MusicLrcLocalLinkWidget::searchInLocalMLrc()
     m_ui->fuzzyButton->isChecked();
     QStringList list = QDir(MusicUtils::Core::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden |
                                                        QDir::NoSymLinks | QDir::NoDotAndDotDot);
-    LocalDataItems items;
+    MusicLocalDataItems items;
     foreach(const QString &var, list)
     {
         if(var.contains(title, m_ui->fuzzyButton->isChecked() ? Qt::CaseInsensitive : Qt::CaseSensitive))
         {
-            LocalDataItem item;
+            MusicLocalDataItem item;
             item.m_name = var;
             item.m_path = MusicUtils::Core::lrcPrefix() + var;
             items << item;
@@ -151,8 +151,8 @@ void MusicLrcLocalLinkWidget::findInLocalFile()
         return;
     }
 
-    LocalDataItems items;
-    LocalDataItem item;
+    MusicLocalDataItems items;
+    MusicLocalDataItem item;
     item.m_name = QFileInfo(picPath).fileName();
     item.m_path = picPath;
     items << item;

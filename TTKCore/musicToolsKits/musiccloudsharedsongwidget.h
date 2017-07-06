@@ -39,7 +39,7 @@ public:
     /*!
      * Get query cloud id keys.
      */
-    inline const UploadDatas& getUploadDatas() const { return m_waitedFiles;}
+    inline const MusicUploadDatas& getUploadDatas() const { return m_waitedFiles;}
     /*!
      * Get upload datas.
      */
@@ -139,7 +139,7 @@ protected:
 
     bool m_uploading;
     int m_currentUploadIndex;
-    UploadDatas m_waitedFiles;
+    MusicUploadDatas m_waitedFiles;
     QNSimpleListData *m_qnListData;
     QNSimpleDeleteData *m_qnDeleteData;
     QNSimpleUploadData *m_qnUploadData;

@@ -23,8 +23,8 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
 
     foreach(const MusicUserRecord &record, records)
     {
-        writeDomElementMutilText(musicPlayer, "username", XmlAttributes() << XmlAttribute("name", record.m_userName)
-                                   << XmlAttribute("userRp", record.m_rememberPWD) << XmlAttribute("userAl", record.m_autoLogin),
+        writeDomElementMutilText(musicPlayer, "username", MusicXmlAttributes() << MusicXmlAttribute("name", record.m_userName)
+                                   << MusicXmlAttribute("userRp", record.m_rememberPWD) << MusicXmlAttribute("userAl", record.m_autoLogin),
                                    record.m_password);
     }
 

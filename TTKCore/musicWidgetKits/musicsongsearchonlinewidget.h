@@ -15,7 +15,7 @@
 #define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
 #define AUDITION_STOP MStatic_cast(int, Qt::transparent)
 
-typedef struct MUSIC_WIDGET_EXPORT DownloadData
+typedef struct MUSIC_WIDGET_EXPORT MusicDownloadData
 {
     QString m_songName;
     QString m_time;
@@ -33,8 +33,8 @@ typedef struct MUSIC_WIDGET_EXPORT DownloadData
         return !(m_songName.isEmpty() && m_time.isEmpty() && m_format.isEmpty());
     }
 
-}DownloadData;
-TTK_DECLARE_LISTS(DownloadData)
+}MusicDownloadData;
+TTK_DECLARE_LISTS(MusicDownloadData)
 
 class QLabel;
 class QPushButton;
@@ -146,7 +146,7 @@ protected:
     bool m_queryAllRecords;
     int m_previousAuditionRow;
     MusicCoreMPlayer *m_audition;
-    DownloadData m_downloadData;
+    MusicDownloadData m_downloadData;
 
 };
 

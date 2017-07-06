@@ -22,7 +22,7 @@ QString MusicPlaylistFoundCategoryItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundCategoryItem::setCategory(const PlaylistCategory &category)
+void MusicPlaylistFoundCategoryItem::setCategory(const MusicPlaylistCategory &category)
 {
     m_category = category;
 
@@ -79,7 +79,7 @@ QString MusicPlaylistFoundCategoryPopWidget::getClassName()
 
 void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
-    PlaylistCategorys categorys;
+    MusicPlaylistCategorys categorys;
     MusicCategoryConfigManager manager;
     manager.readCategoryConfig();
     manager.readCategoryConfig(categorys, server);
@@ -98,10 +98,10 @@ void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QOb
     scrollArea->setWidget(containWidget);
     layout->addWidget(scrollArea);
 
-    foreach(const PlaylistCategory &category, categorys)
+    foreach(const MusicPlaylistCategory &category, categorys)
     {
         MusicPlaylistFoundCategoryItem *item = new MusicPlaylistFoundCategoryItem(this);
-        connect(item, SIGNAL(categoryChanged(PlaylistCategoryItem)), obj, SLOT(categoryChanged(PlaylistCategoryItem)));
+        connect(item, SIGNAL(categoryChanged(MusicPlaylistCategoryItem)), obj, SLOT(categoryChanged(MusicPlaylistCategoryItem)));
         item->setCategory(category);
         containLayout->addWidget(item);
     }

@@ -39,7 +39,7 @@ void MusicCloudFileManagerDialog::setReuploadState(bool state)
     m_ui->reuploadButton->setEnabled(state);
 }
 
-void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)
+void MusicCloudFileManagerDialog::creatFileManager(const MusicUploadData &data)
 {
     int index = m_ui->uploadedTableWidget->rowCount();
     m_ui->uploadedTableWidget->setRowCount(index + 1);
@@ -53,7 +53,7 @@ void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)
     m_ui->uploadedTableWidget->setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, (data.m_state == UploadData::Successed) ? 100 : 0);
+    item->setData(MUSIC_PROCS_ROLE, (data.m_state == MusicUploadData::Successed) ? 100 : 0);
     m_ui->uploadedTableWidget->setItem(index, 2, item);
 
                       item = new QTableWidgetItem;
@@ -62,16 +62,16 @@ void MusicCloudFileManagerDialog::creatFileManager(const UploadData &data)
     m_ui->uploadedTableWidget->setItem(index, 3, item);
 }
 
-void MusicCloudFileManagerDialog::creatFilesManager(const UploadDatas &datas)
+void MusicCloudFileManagerDialog::creatFilesManager(const MusicUploadDatas &datas)
 {
     m_ui->uploadedTableWidget->clear();
-    foreach(const UploadData &data, datas)
+    foreach(const MusicUploadData &data, datas)
     {
         creatFileManager(data);
     }
 }
 
-void MusicCloudFileManagerDialog::updateItemProgress(int percent, const UploadData &data)
+void MusicCloudFileManagerDialog::updateItemProgress(int percent, const MusicUploadData &data)
 {
     for(int i=0; i<m_ui->uploadedTableWidget->rowCount(); ++i)
     {
@@ -110,13 +110,13 @@ void MusicCloudFileManagerDialog::show()
     return MusicAbstractMoveDialog::show();
 }
 
-QIcon MusicCloudFileManagerDialog::getIconByDataState(UploadData::State state)
+QIcon MusicCloudFileManagerDialog::getIconByDataState(MusicUploadData::State state)
 {
     switch(state)
     {
-        case UploadData::Waited :    return QIcon(":/tiny/lb_wait");
-        case UploadData::Successed : return QIcon(":/tiny/lb_right");
-        case UploadData::Errored :   return QIcon(":/tiny/lb_error");
+        case MusicUploadData::Waited :    return QIcon(":/tiny/lb_wait");
+        case MusicUploadData::Successed : return QIcon(":/tiny/lb_right");
+        case MusicUploadData::Errored :   return QIcon(":/tiny/lb_error");
         default: return QIcon();
     }
 }

@@ -12,7 +12,7 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
-typedef struct MUSIC_TOOL_EXPORT UploadData
+typedef struct MUSIC_TOOL_EXPORT MusicUploadData
 {
     enum State{
         Waited = 0,     ///0 waited
@@ -24,17 +24,17 @@ typedef struct MUSIC_TOOL_EXPORT UploadData
     QString m_name;
     State m_state;
 
-    inline bool operator<(const UploadData &other) const
+    inline bool operator<(const MusicUploadData &other) const
     {
         return m_name < other.m_name;
     }
 
-    inline bool operator==(const UploadData &other) const
+    inline bool operator==(const MusicUploadData &other) const
     {
         return !(*this < other || other < *this);
     }
-}UploadData;
-TTK_DECLARE_LISTS(UploadData)
+}MusicUploadData;
+TTK_DECLARE_LISTS(MusicUploadData)
 
 namespace Ui {
 class MusicCloudFileManagerDialog;
@@ -63,15 +63,15 @@ public:
     /*!
      * Set reupload state.
      */
-    void creatFileManager(const UploadData &data);
+    void creatFileManager(const MusicUploadData &data);
     /*!
      * Creat file manager item.
      */
-    void creatFilesManager(const UploadDatas &datas);
+    void creatFilesManager(const MusicUploadDatas &datas);
     /*!
      * Creat file manager items.
      */
-    void updateItemProgress(int percent, const UploadData &data);
+    void updateItemProgress(int percent, const MusicUploadData &data);
     /*!
      * Update item progress.
      */
@@ -91,7 +91,7 @@ public Q_SLOTS:
      */
 
 protected:
-    QIcon getIconByDataState(UploadData::State state);
+    QIcon getIconByDataState(MusicUploadData::State state);
     /*!
      * Get icon by data state.
      */

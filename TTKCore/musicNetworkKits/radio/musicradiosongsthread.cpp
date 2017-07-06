@@ -48,7 +48,7 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
 
 }
 
-RadioSongInfo MusicRadioSongsThread::getMusicSongInfo()
+MusicRadioSongInfo MusicRadioSongsThread::getMusicSongInfo()
 {
     return m_songInfo;
 }

@@ -48,7 +48,7 @@ void MusicRadioChannelThread::startToDownload(const QString &)
 
 }
 
-RadioChannelInfos MusicRadioChannelThread::getMusicChannel()
+MusicRadioChannelInfos MusicRadioChannelThread::getMusicChannel()
 {
     return m_channels;
 }
@@ -76,7 +76,7 @@ void MusicRadioChannelThread::downLoadFinished()
             foreach(const QVariant &var, channels)
             {
                 value = var.toMap();
-                RadioChannelInfo channel;
+                MusicRadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
                 m_channels << channel;

@@ -137,10 +137,10 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         setItem(i, 2, item);
 
         ///insert server datas into caches
-        UploadData data;
+        MusicUploadData data;
         data.m_path = dataItem.m_name.trimmed();
         data.m_name = data.m_path;
-        data.m_state = UploadData::Successed;
+        data.m_state = MusicUploadData::Successed;
         if(!m_waitedFiles.contains(data))
         {
             m_waitedFiles << data;
@@ -155,10 +155,10 @@ void MusicCloudSharedSongTableWidget::uploadFileFinished(const QString &name)
 {
     for(int i=0; i<m_waitedFiles.count(); ++i)
     {
-        UploadData *data = &m_waitedFiles[i];
+        MusicUploadData *data = &m_waitedFiles[i];
         if(data->m_path == m_waitedFiles[m_currentUploadIndex].m_path)
         {
-            data->m_state = (data->m_name == name) ? UploadData::Successed : UploadData::Errored;
+            data->m_state = (data->m_name == name) ? MusicUploadData::Successed : MusicUploadData::Errored;
             m_fileDialog->updateItemProgress(100, *data);
             ++m_currentUploadIndex;
             startToUploadFile();
@@ -199,10 +199,11 @@ void MusicCloudSharedSongTableWidget::deleteFileToServer()
     {
         return;
     }
-    UploadData data;
+
+    MusicUploadData data;
     data.m_path = it->toolTip();
     data.m_name = data.m_path;
-    data.m_state = UploadData::Successed;
+    data.m_state = MusicUploadData::Successed;
     m_waitedFiles.removeOne(data);
     m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_name);
 
@@ -218,7 +219,7 @@ void MusicCloudSharedSongTableWidget::deleteFileToServer()
 
 void MusicCloudSharedSongTableWidget::deleteFilesToServer()
 {
-    foreach(const UploadData &data, m_waitedFiles)
+    foreach(const MusicUploadData &data, m_waitedFiles)
     {
         m_waitedFiles.removeOne(data);
         m_qnDeleteData->deleteDataToServer(QN_BUCKET, data.m_name);
@@ -257,10 +258,10 @@ void MusicCloudSharedSongTableWidget::uploadFileToServer()
     {
         foreach(const QString &file, path)
         {
-            UploadData data;
+            MusicUploadData data;
             data.m_path = file.trimmed();
             data.m_name = QFileInfo(file).fileName().trimmed();
-            data.m_state = UploadData::Waited;
+            data.m_state = MusicUploadData::Waited;
             if(!m_waitedFiles.contains(data))
             {
                 m_waitedFiles << data;
@@ -284,10 +285,10 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     {
         foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicFormats::supportFormatsFilterString()))
         {
-            UploadData data;
+            MusicUploadData data;
             data.m_path = file.absoluteFilePath().trimmed();
             data.m_name = file.fileName().trimmed();
-            data.m_state = UploadData::Waited;
+            data.m_state = MusicUploadData::Waited;
             if(!m_waitedFiles.contains(data))
             {
                 m_waitedFiles << data;
@@ -380,9 +381,9 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
     m_uploading = true;
     emit updateLabelMessage(tr("Files Is Uploading!"));
 
-    UploadData data = m_waitedFiles[m_currentUploadIndex];
+    MusicUploadData data = m_waitedFiles[m_currentUploadIndex];
     QFile file(data.m_path);
-    if(!file.open(QIODevice::ReadOnly) || data.m_state == UploadData::Successed)
+    if(!file.open(QIODevice::ReadOnly) || data.m_state == MusicUploadData::Successed)
     {
         ++m_currentUploadIndex;
         startToUploadFile();
@@ -394,9 +395,9 @@ void MusicCloudSharedSongTableWidget::startToUploadFile()
 
 bool MusicCloudSharedSongTableWidget::uploadHasFailed()
 {
-    foreach(const UploadData &data, m_waitedFiles)
+    foreach(const MusicUploadData &data, m_waitedFiles)
     {
-        if(data.m_state != UploadData::Successed)
+        if(data.m_state != MusicUploadData::Successed)
         {
             return true;
         }

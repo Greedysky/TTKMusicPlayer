@@ -13,49 +13,49 @@ namespace MusicObject
     };
 }
 
-typedef struct MUSIC_TOOLSET_EXPORT SongCheckToolsRename
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
     QString m_RecommendName;
     QString m_filePath;
 
-    SongCheckToolsRename(const QString &locaName, const QString &recommendName, const QString &path)
+    MusicSongCheckToolsRename(const QString &locaName, const QString &recommendName, const QString &path)
     {
         m_locaName = locaName;
         m_RecommendName = recommendName;
         m_filePath = path;
     }
-}SongCheckToolsRename;
-TTK_DECLARE_LISTS(SongCheckToolsRename)
+}MusicSongCheckToolsRename;
+TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
 
 
-typedef struct MUSIC_TOOLSET_EXPORT SongCheckToolsDuplicate
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
     QString m_bitRate;
 
-    SongCheckToolsDuplicate(const MusicSong &song, const QString &bitRate)
+    MusicSongCheckToolsDuplicate(const MusicSong &song, const QString &bitRate)
     {
         m_song = song;
         m_bitRate = bitRate;
     }
-}SongCheckToolsDuplicate;
-TTK_DECLARE_LISTS(SongCheckToolsDuplicate)
+}MusicSongCheckToolsDuplicate;
+TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 
 
-typedef struct MUSIC_TOOLSET_EXPORT SongCheckToolsQuality
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
     QString m_bitRate;
     int m_quality;
 
-    SongCheckToolsQuality(const MusicSong &song, const QString &bitRate, int quality)
+    MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitRate, int quality)
     {
         m_song = song;
         m_bitRate = bitRate;
         m_quality = quality;
     }
-}SongCheckToolsQuality;
-TTK_DECLARE_LISTS(SongCheckToolsQuality)
+}MusicSongCheckToolsQuality;
+TTK_DECLARE_LISTS(MusicSongCheckToolsQuality)
 
 #endif // MUSICSONGCHECKTOOLSUNIT_H

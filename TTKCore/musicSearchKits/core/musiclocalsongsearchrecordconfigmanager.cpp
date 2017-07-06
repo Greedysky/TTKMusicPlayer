@@ -25,7 +25,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearc
 
     foreach(const MusicSearchRecord &record, records)
     {
-        writeDomElementText(download, "value", XmlAttribute("name", record.m_name), record.m_time);
+        writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_time);
     }
 
     //Write to file

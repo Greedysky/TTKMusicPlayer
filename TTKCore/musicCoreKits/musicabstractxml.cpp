@@ -119,7 +119,7 @@ QDomElement MusicAbstractXml::writeDom(QDomElement &element, const QString &node
 }
 
 QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QString &node,
-                                              const XmlAttribute &attr)
+                                              const MusicXmlAttribute &attr)
 {
     QDomElement domElement = writeDom(element, node);
     writeAttribute(domElement, attr);
@@ -127,7 +127,7 @@ QDomElement MusicAbstractXml::writeDomElement(QDomElement &element, const QStrin
 }
 
 QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const QString &node,
-                                                   const XmlAttributes &attrs)
+                                                   const MusicXmlAttributes &attrs)
 {
     if(attrs.isEmpty())
     {
@@ -142,7 +142,7 @@ QDomElement MusicAbstractXml::writeDomElementMutil(QDomElement &element, const Q
     return domElement;
 }
 
-void MusicAbstractXml::writeAttribute(QDomElement &element, const XmlAttribute &attr)
+void MusicAbstractXml::writeAttribute(QDomElement &element, const MusicXmlAttribute &attr)
 {
     switch(attr.m_value.type())
     {
@@ -162,7 +162,7 @@ void MusicAbstractXml::writeAttribute(QDomElement &element, const XmlAttribute &
 }
 
 QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QString &node,
-                                                  const XmlAttribute &attr, const QString &text)
+                                                  const MusicXmlAttribute &attr, const QString &text)
 {
     QDomElement domElement = writeDomElement(element, node, attr);
     QDomText domText = m_ddom->createTextNode( text );
@@ -171,7 +171,7 @@ QDomElement MusicAbstractXml::writeDomElementText(QDomElement &element, const QS
 }
 
 QDomElement MusicAbstractXml::writeDomElementMutilText(QDomElement &element, const QString &node,
-                                                       const XmlAttributes &attrs, const QString &text)
+                                                       const MusicXmlAttributes &attrs, const QString &text)
 {
     if(attrs.isEmpty())
     {

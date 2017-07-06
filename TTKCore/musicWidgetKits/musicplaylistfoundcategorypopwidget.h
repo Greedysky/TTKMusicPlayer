@@ -29,13 +29,13 @@ public:
      * Get class object name.
      */
 
-    void setCategory(const PlaylistCategory &category);
+    void setCategory(const MusicPlaylistCategory &category);
     /*!
      * Set current category.
      */
 
 Q_SIGNALS:
-    void categoryChanged(const PlaylistCategoryItem &category);
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
     /*!
      * Current category changed.
      */
@@ -47,7 +47,7 @@ public Q_SLOTS:
      */
 
 protected:
-    PlaylistCategory m_category;
+    MusicPlaylistCategory m_category;
 
 };
 

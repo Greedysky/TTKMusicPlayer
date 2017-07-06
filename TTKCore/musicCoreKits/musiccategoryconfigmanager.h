@@ -11,30 +11,30 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_CORE_EXPORT PlaylistCategoryItem
+typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
 {
     QString m_id;
     QString m_name;
 
-    PlaylistCategoryItem()
+    MusicPlaylistCategoryItem()
     {
 
     }
 
-    PlaylistCategoryItem(const QString &id, const QString &name)
+    MusicPlaylistCategoryItem(const QString &id, const QString &name)
     {
         m_id = id;
         m_name = name;
     }
-}PlaylistCategoryItem;
-TTK_DECLARE_LISTS(PlaylistCategoryItem)
+}MusicPlaylistCategoryItem;
+TTK_DECLARE_LISTS(MusicPlaylistCategoryItem)
 
-typedef struct MUSIC_CORE_EXPORT PlaylistCategory
+typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategory
 {
     QString m_category;
-    PlaylistCategoryItems m_items;
-}PlaylistCategory;
-TTK_DECLARE_LISTS(PlaylistCategory)
+    MusicPlaylistCategoryItems m_items;
+}MusicPlaylistCategory;
+TTK_DECLARE_LISTS(MusicPlaylistCategory)
 
 /*! @brief The class of the category Config Manager.
  * @author Greedysky <greedysky@163.com>
@@ -56,7 +56,7 @@ public:
     /*!
      * Read user datas from xml file by given name.
      */
-    void readCategoryConfig(PlaylistCategorys &records, const QString &key);
+    void readCategoryConfig(MusicPlaylistCategorys &records, const QString &key);
     /*!
      * Read user datas into xml file.
      */

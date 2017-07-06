@@ -194,7 +194,7 @@ void MusicWebMusicRadioWidget::getSongInfoFinished()
 
 void MusicWebMusicRadioWidget::startToPlay()
 {
-    RadioSongInfo info;
+    MusicRadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
@@ -245,7 +245,7 @@ void MusicWebMusicRadioWidget::startToPlay()
 
 void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
 {
-    RadioSongInfo info;
+    MusicRadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
@@ -264,7 +264,7 @@ void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
 
 void MusicWebMusicRadioWidget::picDownloadStateChanged()
 {
-    RadioSongInfo info;
+    MusicRadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();

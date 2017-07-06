@@ -76,7 +76,7 @@ void MusicDownloadQueueCache::addImageQueue(const QStringList &url,
     m_imageQueue.clear();
     for(int i=0; i<url.count(); ++i)
     {
-        DownloadQueueData data;
+        MusicDownloadQueueData data;
         data.m_url = url[i];
         data.m_savePath = savePath[i];
         m_imageQueue << data;

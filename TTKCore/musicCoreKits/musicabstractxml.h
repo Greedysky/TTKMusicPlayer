@@ -17,18 +17,18 @@
 #include "musicsong.h"
 #include "musicobject.h"
 
-typedef struct MUSIC_CORE_EXPORT XmlAttribute
+typedef struct MUSIC_CORE_EXPORT MusicXmlAttribute
 {
     QString m_key;
     QVariant m_value;
 
-    XmlAttribute(const QString &key, const QVariant &value)
+    MusicXmlAttribute(const QString &key, const QVariant &value)
     {
         m_key = key;
         m_value = value;
     }
-}XmlAttribute;
-TTK_DECLARE_LISTS(XmlAttribute)
+}MusicXmlAttribute;
+TTK_DECLARE_LISTS(MusicXmlAttribute)
 
 /*! @brief The class of the base class of xml interface.
  * @author Greedysky <greedysky@163.com>
@@ -87,22 +87,22 @@ public:
      * Append xml element nodes by node name.
      */
     QDomElement writeDomElement(QDomElement &element, const QString &node,
-                                const XmlAttribute &attr);
+                                const MusicXmlAttribute &attr);
     /*!
      * Append xml element nodes by node name\ key name and value.
      */
     QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
-                                     const XmlAttributes &attrs);
+                                     const MusicXmlAttributes &attrs);
     /*!
      * Append xml elements nodes by node name\ keys name and values.
      */
     QDomElement writeDomElementText(QDomElement &element, const QString &node,
-                                    const XmlAttribute &attr, const QString &text);
+                                    const MusicXmlAttribute &attr, const QString &text);
     /*!
      * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
     QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
-                                         const XmlAttributes &attrs, const QString &text);
+                                         const MusicXmlAttributes &attrs, const QString &text);
     /*!
      * Append xml elements nodes by node name\ keys name \ values and attribute's text.
      */
@@ -110,7 +110,7 @@ public:
     /*!
      * Append xml element nodes by node name and attribute's text.
      */
-    void writeAttribute(QDomElement &element, const XmlAttribute &attr);
+    void writeAttribute(QDomElement &element, const MusicXmlAttribute &attr);
     /*!
      * Append xml element nodes key name and value.
      */
