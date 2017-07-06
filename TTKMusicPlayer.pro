@@ -40,7 +40,7 @@ unix:{
     !exists($$output):system(mkdir $$output)
 
     system(find TTKLanguage -name *.ts | xargs $$LRELEASE_EXECUTABLE)
-    system(find TTKLanguage -name *.qm | xargs rename -vf 's/.qm/.ln/' *  )
+    system(find TTKLanguage -name *.qm | xargs rename -v -f 's/.qm/.ln/' *  )
     system(for F in TTKLanguage/*.ln ; do mv $F $$output ;done)
 }
 win32:{
