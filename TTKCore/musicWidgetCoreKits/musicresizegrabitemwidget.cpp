@@ -1,5 +1,6 @@
 #include "musicresizegrabitemwidget.h"
 
+#include <qmath.h>
 #include <QPainter>
 #include <QMouseEvent>
 

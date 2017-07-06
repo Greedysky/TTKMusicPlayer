@@ -1,5 +1,6 @@
 #include "musicphotograblabel.h"
 
+#include <qmath.h>
 #include <QPixmap>
 #include <QPainter>
 

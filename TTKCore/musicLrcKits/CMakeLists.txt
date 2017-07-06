@@ -16,6 +16,7 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatplaywidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.h
@@ -41,6 +42,7 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatsettingwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatphotowidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcfloatplaywidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcmakerwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrcerrorwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrclocallinkwidget.cpp

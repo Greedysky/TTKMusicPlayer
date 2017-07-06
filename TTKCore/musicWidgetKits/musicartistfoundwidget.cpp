@@ -7,6 +7,7 @@
 
 #include "qrcodewidget.h"
 
+#include <qmath.h>
 #include <QCheckBox>
 #include <QPushButton>
 #include <QBoxLayout>

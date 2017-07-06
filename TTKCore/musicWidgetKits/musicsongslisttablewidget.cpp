@@ -15,6 +15,7 @@
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
 
+#include <qmath.h>
 #include <QUrl>
 #include <QAction>
 #include <QTimer>

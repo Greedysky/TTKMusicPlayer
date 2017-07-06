@@ -1,6 +1,7 @@
 #include "musiccutsliderwidget.h"
 #include "musicuiobject.h"
 
+#include <qmath.h>
 #include <QPainter>
 #include <QMouseEvent>
 
