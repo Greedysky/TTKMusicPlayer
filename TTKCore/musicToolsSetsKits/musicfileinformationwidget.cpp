@@ -135,6 +135,12 @@ void MusicFileInformationWidget::musicSaveTag()
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)
 {
+    if(name.contains('='))
+    {
+        m_ui->viewButton->setEnabled(false);
+    }
+    //cache song should not allow open url
+
     MusicSongTag tag;
     bool state = tag.readFile(m_path = name);
     QFileInfo fin(name);

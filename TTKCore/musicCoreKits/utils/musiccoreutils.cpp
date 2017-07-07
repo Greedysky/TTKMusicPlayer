@@ -130,8 +130,8 @@ bool MusicUtils::Core::openUrl(const QString &path, bool local)
     {
         QString p = path;
         p.replace('/', "\\");
-        p = " /select," + p;
-        HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", toLocal8Bit(p), nullptr, true);
+        p = "/select," + p;
+        HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", toLocal8Bit(p), nullptr, SW_SHOWNORMAL);
         return (int)value >= 32;
     }
 #else
