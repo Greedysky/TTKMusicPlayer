@@ -545,7 +545,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
 void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, const QString &time,
                                                         const QString &format, bool play)
 {
-    QString musicSong = MusicUtils::Algorithm::mdII(name, ALG_DOWNLOAD_KEY);
+    QString musicSong = MusicUtils::Algorithm::mdII(name, ALG_DOWNLOAD_KEY, false);
     const QString path = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(name).arg(format);
     MusicSongItem *item = &m_songItems[MUSIC_NETWORK_LIST];
     item->m_songs << MusicSong(path, 0, time, musicSong);
