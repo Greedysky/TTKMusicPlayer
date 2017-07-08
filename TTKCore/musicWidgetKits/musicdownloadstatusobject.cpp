@@ -4,12 +4,12 @@
 #include "musicbottomareawidget.h"
 #include "musicsongsearchonlinewidget.h"
 #endif
-#include "musicbackgrounddownload.h"
 #include "musicnetworkthread.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnetworkthread.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicdownloadbackgroundthread.h"
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 
@@ -169,7 +169,8 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
                                                         MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
         ///download big picture
-        (new MusicBackgroundDownload( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this))->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)
+                            ->startToDownload();
     }
     else
     {

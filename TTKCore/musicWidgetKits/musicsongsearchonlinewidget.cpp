@@ -1,6 +1,6 @@
 #include "musicsongsearchonlinewidget.h"
-#include "musicbackgrounddownload.h"
 #include "musiclocalsongsearchrecordconfigmanager.h"
+#include "musicdownloadbackgroundthread.h"
 #include "musicmessagebox.h"
 #include "musiccoremplayer.h"
 #include "musicdownloadwidget.h"
@@ -354,7 +354,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                                     MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
     ///download big picture
-    (new MusicBackgroundDownload(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this))->startToDownload();
+    M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;

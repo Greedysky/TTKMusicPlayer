@@ -17,6 +17,7 @@
 class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
+class MusicDownloadBackgroundThread;
 
 /*! @brief The class to produce the downlaod query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -65,6 +66,12 @@ public:
     MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
                                                       MusicDownLoadThreadAbstract::Download_Type type,
                                                       QObject *parent = 0);
+    /*!
+     * Get download lrc object by type.
+     */
+
+    MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
+                                                           QObject *parent = 0);
     /*!
      * Get download lrc object by type.
      */
