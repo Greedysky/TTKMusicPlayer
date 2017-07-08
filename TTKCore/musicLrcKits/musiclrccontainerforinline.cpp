@@ -230,6 +230,7 @@ void MusicLrcContainerForInline::createFloatPlayWidget()
     if(MusicLeftAreaWidget::instance()->isFullOrNormal())
     {
         m_floatPlayWidget = new MusicLrcFloatPlayWidget(this);
+        m_floatPlayWidget->resizeWindow(width(), height());
     }
 }
 
@@ -815,7 +816,7 @@ void MusicLrcContainerForInline::resizeWidth(int w, int h)
     m_lrcFloatWidget->resizeWindow(w, h);
     if(m_floatPlayWidget)
     {
-        m_floatPlayWidget->resizeWindow(w, h);
+        m_floatPlayWidget->resizeWindow(width(), height());
     }
 
     if(m_lrcAnalysis->isEmpty())
