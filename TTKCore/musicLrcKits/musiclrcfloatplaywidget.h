@@ -54,7 +54,6 @@ protected:
      * Set current play state icon.
      */
 
-    bool m_firstInit;
     QToolButton *m_musicPrevious, *m_musicNext, *m_musicKey;
 
 };

@@ -43,7 +43,6 @@ MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     resizeWindow(0, 0);
     setCurrentPlayState();
 
-    m_firstInit = true;
     show();
 }
 
@@ -61,14 +60,13 @@ QString MusicLrcFloatPlayWidget::getClassName()
 
 void MusicLrcFloatPlayWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(260 + width/2, 600 + height, 145, 60);
-    m_rectOut = QRect(260 + width/2, 655 + height, 145, 60);
+    m_rectIn = QRect((width - this->width())/2, height - this->height(), 145, 60);
+    m_rectOut = QRect((width - this->width())/2, height - 5, 145, 60);
 
     setGeometry(m_rectOut);
 
-    if((width != 0 && height != 0) && m_firstInit && !m_blockAnimation)
+    if((width != 0 && height != 0) && !m_blockAnimation)
     {
-        m_firstInit = false;
         animationIn();
     }
 }
