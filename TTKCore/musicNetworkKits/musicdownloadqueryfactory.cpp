@@ -202,6 +202,13 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(con
 MusicDownloadBackgroundThread *MusicDownLoadQueryFactory::getDownloadBigPicThread(const QString &name, const QString &save,
                                                                                   QObject *parent)
 {
-//    (new MusicQQBackgroundThread(name, save, parent))->startToDownload();
-    return (new MusicQQBackgroundThread(name, save, parent));
+    bool ll = M_SETTING_PTR->value(MusicSettingManager::BgLosslessChoiced).toBool();
+    if(ll)
+    {
+        return (new MusicQQBackgroundThread(name, save, parent));
+    }
+    else
+    {
+        return (new MusicKWBackgroundThread(name, save, parent));
+    }
 }

@@ -73,7 +73,7 @@ public:
     MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
                                                            QObject *parent = 0);
     /*!
-     * Get download lrc object by type.
+     * Get download big picture object by type.
      */
 
 protected:

@@ -44,6 +44,7 @@ public:
         RemoteWidgetModeChoiced,        ///*Remote Widget Mode Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
+        BgLosslessChoiced,              ///*Bg Lossless Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
         BgListTransparentChoiced,       ///*Bg List Transparent Parameter*/
 

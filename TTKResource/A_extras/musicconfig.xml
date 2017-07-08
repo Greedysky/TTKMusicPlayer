@@ -19,6 +19,7 @@
         <bgTheme value="theme-15"/>
         <bgTransparent value="100"/>
         <bgListTransparent value="33"/>
+        <bgLossless value="0"/>
     </backgroundSkin>
     <hotkey>
         <hotkeyEnable value="0"/>

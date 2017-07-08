@@ -12,7 +12,7 @@
 #include "musicobject.h"
 #include "musicnetworkabstract.h"
 
-/*! @brief The class of downloading art background image.
+/*! @brief The class of download art background image.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundThread : public MusicNetworkAbstract

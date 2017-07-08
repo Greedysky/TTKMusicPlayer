@@ -11,7 +11,7 @@
 
 #include "musicdownloadbackgroundthread.h"
 
-/*! @brief The class of qq downloading art background image.
+/*! @brief The class of qq download art background image.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicQQBackgroundThread : public MusicDownloadBackgroundThread

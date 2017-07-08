@@ -245,6 +245,8 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadCacheManRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->downloadFullRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->downloadLimitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->downloadHerImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->downloadNorImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
 
     m_ui->downloadServerComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadServerComboBox));
     m_ui->downloadServerComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
@@ -291,6 +293,7 @@ void MusicSettingWidget::initDownloadWidget()
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();
+    m_ui->downloadNorImgRadioBox->click();
 }
 
 void MusicSettingWidget::initSoundEffectWidget()
@@ -441,6 +444,8 @@ void MusicSettingWidget::initControllerParameter()
     MusicUtils::Widget::setComboboxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
+    M_SETTING_PTR->value(MusicSettingManager::BgLosslessChoiced).toBool() ?
+                     m_ui->downloadHerImgRadioBox->click() : m_ui->downloadNorImgRadioBox->click();
 
     ///////////////////////////////////////////////////////////////////////////
     m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
@@ -525,6 +530,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedFg));
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedBg));
 
+    M_SETTING_PTR->setValue(MusicSettingManager::BgLosslessChoiced, m_ui->downloadHerImgRadioBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, m_ui->downloadDirEdit->text());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced, m_ui->downloadLrcDirEdit->text());
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced, m_ui->downloadCacheAutoRadioBox->isChecked());

@@ -89,6 +89,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
     QString bgTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toString();
     QString bgListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toString();
+    int bgLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::BgLosslessChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int hotkeyEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toInt();
@@ -200,7 +201,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(backgroundSkinDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
     writeDomElement(backgroundSkinDom, "bgTransparent", MusicXmlAttribute("value", bgTransparentChoiced));
     writeDomElement(backgroundSkinDom, "bgListTransparent", MusicXmlAttribute("value", bgListTransparentChoiced));
-
+    writeDomElement(backgroundSkinDom, "bgLossless", MusicXmlAttribute("value", bgLosslessChoiced));
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(hotkeyDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnableChoiced));
     writeDomElement(hotkeyDom, "hotkeyString", MusicXmlAttribute("value", hotkeyStringChoiced));

@@ -94,6 +94,11 @@ public:
     /*!
      * Read Background Transparent Config.
      */
+    inline QString readBackgroundLossless() const
+    { return readXmlAttributeByTagNameValue("bgLossless"); }
+    /*!
+     * Read Background Lossless Config.
+     */
     inline QString readBackgroundListTransparent() const
     { return readXmlAttributeByTagNameValue("bgListTransparent"); }
     /*!
