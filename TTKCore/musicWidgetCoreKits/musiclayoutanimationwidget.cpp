@@ -1,10 +1,10 @@
-#include "musiclayoutanimation.h"
+#include "musiclayoutanimationwidget.h"
 
 #include <QPainter>
 #include <QBoxLayout>
 #include <QPropertyAnimation>
 
-MusicLayoutAnimation::MusicLayoutAnimation(QWidget *parent)
+MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)
     : QWidget(parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -32,19 +32,19 @@ MusicLayoutAnimation::MusicLayoutAnimation(QWidget *parent)
     connect(m_animation, SIGNAL(finished()), SLOT(animationFinished()));
 }
 
-MusicLayoutAnimation::~MusicLayoutAnimation()
+MusicLayoutAnimationWidget::~MusicLayoutAnimationWidget()
 {
     delete m_widgetLayout;
     delete m_mainWidget;
     delete m_animation;
 }
 
-QString MusicLayoutAnimation::getClassName()
+QString MusicLayoutAnimationWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLayoutAnimation::start()
+void MusicLayoutAnimationWidget::start()
 {
     if(m_isAnimating)
     {
@@ -59,47 +59,47 @@ void MusicLayoutAnimation::start()
     m_animation->start();
 }
 
-void MusicLayoutAnimation::stop()
+void MusicLayoutAnimationWidget::stop()
 {
     m_isAnimating = false;
     m_animation->stop();
     m_mainWidget->show();
 }
 
-void MusicLayoutAnimation::connectTo(QObject *parent)
+void MusicLayoutAnimationWidget::connectTo(QObject *parent)
 {
     connect(m_animation, SIGNAL(finished()), parent, SLOT(updateAnimationLrc()));
 }
 
-void MusicLayoutAnimation::addStretch(int stretch)
+void MusicLayoutAnimationWidget::addStretch(int stretch)
 {
     m_widgetLayout->addStretch(stretch);
 }
 
-void MusicLayoutAnimation::addWidget(QWidget *widget, int stretch, Qt::Alignment alignment)
+void MusicLayoutAnimationWidget::addWidget(QWidget *widget, int stretch, Qt::Alignment alignment)
 {
     m_widgetLayout->addWidget(widget, stretch, alignment);
 }
 
-void MusicLayoutAnimation::removeWidget(QWidget *widget)
+void MusicLayoutAnimationWidget::removeWidget(QWidget *widget)
 {
     m_widgetLayout->removeWidget(widget);
 }
 
-void MusicLayoutAnimation::valueChanged(const QVariant &value)
+void MusicLayoutAnimationWidget::valueChanged(const QVariant &value)
 {
     m_currentValue = -value.toFloat();
     update();
 }
 
-void MusicLayoutAnimation::animationFinished()
+void MusicLayoutAnimationWidget::animationFinished()
 {
     m_currentValue = 0;
     m_isAnimating = false;
     m_mainWidget->show();
 }
 
-void MusicLayoutAnimation::paintEvent(QPaintEvent * event)
+void MusicLayoutAnimationWidget::paintEvent(QPaintEvent * event)
 {
     if(m_isAnimating)
     {

@@ -1,5 +1,5 @@
-#ifndef MUSICLAYOUTANIMATION_H
-#define MUSICLAYOUTANIMATION_H
+#ifndef MUSICLAYOUTANIMATIONWIDGET_H
+#define MUSICLAYOUTANIMATIONWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -15,18 +15,18 @@
 class QVBoxLayout;
 class QPropertyAnimation;
 
-/*! @brief The class of the layout float animation.
+/*! @brief The class of the layout float animation widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicLayoutAnimation : public QWidget
+class MUSIC_WIDGET_EXPORT MusicLayoutAnimationWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLayoutAnimation(QWidget *parent = 0);
+    explicit MusicLayoutAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicLayoutAnimation();
+    ~MusicLayoutAnimationWidget();
 
     static QString getClassName();
     /*!
@@ -83,4 +83,4 @@ protected:
 
 };
 
-#endif // MUSICLAYOUTANIMATION_H
+#endif // MUSICLAYOUTANIMATIONWIDGET_H

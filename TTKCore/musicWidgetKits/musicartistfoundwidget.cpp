@@ -1,6 +1,6 @@
 #include "musicartistfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musictime.h"
@@ -144,7 +144,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
         m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
         m_iconLabel->setFixedSize(180, 180);
 
-        MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
         {

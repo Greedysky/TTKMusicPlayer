@@ -1,6 +1,6 @@
 #include "musiccloudsharedsongwidget.h"
 #include "musicdatadownloadthread.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicopenfilewidget.h"
 #include "musicleftareawidget.h"
 #include "musicnumberdefine.h"
@@ -72,7 +72,7 @@ bool MusicCloudSharedSongTableWidget::getKey()
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(QN_UA_URL, false));
 

@@ -76,7 +76,6 @@ HEADERS  += \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
-    $$PWD/musicsourcedownloadthread.h \
     $$PWD/musicnetworkthread.h \
     $$PWD/musicnetworkproxy.h \
     $$PWD/musicnetworkoperator.h \
@@ -89,7 +88,6 @@ HEADERS  += \
     $$PWD/musicvoicettsthread.h \
     $$PWD/musicidentifysongsthread.h \
     $$PWD/musicsourceupdatethread.h \
-    $$PWD/musiccounterpvdownloadthread.h \
     $$PWD/musicdownloaddiscoverlistthread.h \
     $$PWD/musicdownloadpagingthread.h \
     $$PWD/musicdownloadcommentsthread.h
@@ -155,7 +153,6 @@ SOURCES += \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
-    $$PWD/musicsourcedownloadthread.cpp \
     $$PWD/musicnetworkthread.cpp \
     $$PWD/musicnetworkproxy.cpp \
     $$PWD/musicnetworkoperator.cpp \
@@ -168,9 +165,16 @@ SOURCES += \
     $$PWD/musicvoicettsthread.cpp \
     $$PWD/musicidentifysongsthread.cpp \
     $$PWD/musicsourceupdatethread.cpp \
-    $$PWD/musiccounterpvdownloadthread.cpp \
     $$PWD/musicdownloaddiscoverlistthread.cpp \
     $$PWD/musicdownloadpagingthread.cpp \
     $$PWD/musicdownloadcommentsthread.cpp
 
 }
+
+SOURCES += \
+    $$PWD/musicdownloadsourcethread.cpp \
+    $$PWD/musicdownloadcounterpvthread.cpp
+
+HEADERS += \
+    $$PWD/musicdownloadsourcethread.h \
+    $$PWD/musicdownloadcounterpvthread.h

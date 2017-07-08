@@ -1,24 +1,24 @@
-#include "musiccounterpvdownloadthread.h"
+#include "musicdownloadcounterpvthread.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicCounterPVDownloadThread::MusicCounterPVDownloadThread(QObject *parent)
+MusicDownloadCounterPVThread::MusicDownloadCounterPVThread(QObject *parent)
     : MusicNetworkAbstract(parent)
 {
 
 }
 
-MusicCounterPVDownloadThread::~MusicCounterPVDownloadThread()
+MusicDownloadCounterPVThread::~MusicDownloadCounterPVThread()
 {
     deleteAll();
 }
 
-QString MusicCounterPVDownloadThread::getClassName()
+QString MusicDownloadCounterPVThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicCounterPVDownloadThread::startToDownload()
+void MusicDownloadCounterPVThread::startToDownload()
 {
     m_manager = new QNetworkAccessManager(this);
 
@@ -41,7 +41,7 @@ void MusicCounterPVDownloadThread::startToDownload()
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 
-void MusicCounterPVDownloadThread::downLoadFinished()
+void MusicDownloadCounterPVThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {

@@ -1,5 +1,5 @@
 #include "musicbackgrounddownload.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicdatadownloadthread.h"
 #include "musicbackgroundmanager.h"
 #ifndef MUSIC_MOBILE
@@ -22,7 +22,7 @@ QString MusicBackgroundDownload::getClassName()
 
 void MusicBackgroundDownload::startToDownload()
 {
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     ///Set search image API
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));

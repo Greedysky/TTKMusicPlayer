@@ -30,9 +30,7 @@ HEADERS  += \
     $$PWD/musictoastlabel.h \
     $$PWD/musicroundanimationlabel.h \
     $$PWD/musicanimationstackedwidget.h \
-    $$PWD/musiclayoutanimation.h \
     $$PWD/musictransitionanimationlabel.h \
-    $$PWD/musiccodearea.h \
     $$PWD/musicfloatabstractwidget.h \
     $$PWD/musicfoundabstractwidget.h \
     $$PWD/musictimersliderwidget.h \
@@ -44,7 +42,9 @@ HEADERS  += \
     $$PWD/musicsplititemclickedlabel.h \
     $$PWD/musicphotomodlabel.h \
     $$PWD/musicphotograblabel.h \
-    $$PWD/musicresizegrabitemwidget.h
+    $$PWD/musicresizegrabitemwidget.h \
+    $$PWD/musiccodeareawidget.h \
+    $$PWD/musiclayoutanimationwidget.h
 
 }
 
@@ -70,9 +70,7 @@ SOURCES += \
     $$PWD/musictoastlabel.cpp \
     $$PWD/musicroundanimationlabel.cpp \
     $$PWD/musicanimationstackedwidget.cpp \
-    $$PWD/musiclayoutanimation.cpp \
     $$PWD/musictransitionanimationlabel.cpp \
-    $$PWD/musiccodearea.cpp \
     $$PWD/musicfloatabstractwidget.cpp \
     $$PWD/musicfoundabstractwidget.cpp \
     $$PWD/musictimersliderwidget.cpp \
@@ -84,6 +82,8 @@ SOURCES += \
     $$PWD/musicsplititemclickedlabel.cpp \
     $$PWD/musicphotomodlabel.cpp \
     $$PWD/musicphotograblabel.cpp \
-    $$PWD/musicresizegrabitemwidget.cpp
+    $$PWD/musicresizegrabitemwidget.cpp \
+    $$PWD/musiccodeareawidget.cpp \
+    $$PWD/musiclayoutanimationwidget.cpp
 
 }

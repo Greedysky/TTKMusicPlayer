@@ -1,7 +1,7 @@
 #include "musiclrccontainerforwallpaper.h"
 #include "musicdesktopwallpaperthread.h"
 #include "musiclrcmanagerforinline.h"
-#include "musiclayoutanimation.h"
+#include "musiclayoutanimationwidget.h"
 #include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 #ifdef Q_OS_WIN
@@ -27,7 +27,7 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
 #endif
 
     m_containerType = "WALLPAPER";
-    m_layoutWidget = new MusicLayoutAnimation(this);
+    m_layoutWidget = new MusicLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
     vBoxLayout->addWidget(m_layoutWidget);
 

@@ -1,5 +1,5 @@
 #include "musicvoicettsthread.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 
 MusicVoiceTtsThread::MusicVoiceTtsThread(QObject *parent)
     : QObject(parent)
@@ -9,7 +9,7 @@ MusicVoiceTtsThread::MusicVoiceTtsThread(QObject *parent)
     m_volume = 5;
     m_person = 0;
 
-    m_parser = new MusicSourceDownloadThread(this);
+    m_parser = new MusicDownloadSourceThread(this);
     connect(m_parser, SIGNAL(downLoadByteDataChanged(QByteArray)),
                       SIGNAL(downLoadDataChanged(QByteArray)));
 }

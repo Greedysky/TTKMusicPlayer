@@ -2,7 +2,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 
 #include <QCheckBox>
 #include <QBoxLayout>
@@ -199,7 +199,7 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
 
 void MusicSimilarFoundWidget::urlHasChanged(const QString &imageUrl)
 {
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(imageUrl);
 }

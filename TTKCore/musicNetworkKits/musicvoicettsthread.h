@@ -14,7 +14,7 @@
 
 const QString VOICETTS_URL = "a0h4b0NBMmlrcjJGeFNDc200UnZUUGEzTm5BZENRUUZBckFUcGpmNlQ5aE5FY1p1M3h0anpFdFM5SDV2UW5Ba1pENHRVeGFGa0RNbHRzK25SZ0RkQk95anNZcmhLYnRHTlJpSi9nRFF3Mi9hVXlvajZ4SGhVZz09";
 
-class MusicSourceDownloadThread;
+class MusicDownloadSourceThread;
 
 /*! @brief The class of translation voice by tts thread.
  * @author Greedysky <greedysky@163.com>
@@ -94,7 +94,7 @@ protected:
      */
 
     int m_speed, m_pitch, m_volume, m_person;
-    MusicSourceDownloadThread *m_parser;
+    MusicDownloadSourceThread *m_parser;
 
 };
 

@@ -17,7 +17,7 @@
 #include "musicfunctionuiobject.h"
 #include "musicdownloaddiscoverlistthread.h"
 #include "musicdownloadqueryfactory.h"
-#include "musiccounterpvdownloadthread.h"
+#include "musicdownloadcounterpvthread.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -35,7 +35,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     connect(discover, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished(QString)));
     discover->startToSearch();
 
-    m_counterPVThread = new MusicCounterPVDownloadThread(this);
+    m_counterPVThread = new MusicDownloadCounterPVThread(this);
     m_counterPVThread->startToDownload();
     ///////////////////////////////////////////////////////
     m_listAlpha = 40;

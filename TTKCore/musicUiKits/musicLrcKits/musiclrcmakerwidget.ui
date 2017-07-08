@@ -779,7 +779,7 @@
       <string>取消</string>
      </property>
     </widget>
-    <widget class="MusicLayoutAnimation" name="lrcViewer" native="true">
+    <widget class="MusicLayoutAnimationWidget" name="lrcViewer" native="true">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -967,9 +967,9 @@
    <header>musicclickedslider.h</header>
   </customwidget>
   <customwidget>
-   <class>MusicLayoutAnimation</class>
+   <class>MusicLayoutAnimationWidget</class>
    <extends>QWidget</extends>
-   <header location="global">musiclayoutanimation.h</header>
+   <header location="global">musiclayoutanimationwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

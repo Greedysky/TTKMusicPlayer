@@ -15,7 +15,7 @@
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"
 #include "musiclrctranslatedwidget.h"
-#include "musiclayoutanimation.h"
+#include "musiclayoutanimationwidget.h"
 #include "musicleftareawidget.h"
 
 #include <QPainter>
@@ -36,7 +36,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_lrcAnalysis->setLineMax(MUSIC_LRC_INLINE_MAX_LINE);
 
     m_containerType = "INLINE";
-    m_layoutWidget = new MusicLayoutAnimation(this);
+    m_layoutWidget = new MusicLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
