@@ -93,7 +93,7 @@ Screenshots.
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*
-**£¨This product won't be updated anymore.£©**
+**(This product won't be updated anymore.)**
 
 ![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/0.png?raw=true)
 ![1](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/1.png?raw=true)
@@ -141,8 +141,8 @@ Copyright
  * Copyright (c) 2015 - 2017 Greedysky Studio.
  * All rights reserved!
  * Redistribution and use of the source code or any derivative.
- * works are strictly forbiden.
- * mail: greedysky@163.com.
+ * Works are strictly forbiden.
+ * Mail: greedysky@163.com.
  
 How To Contribute
 -------
