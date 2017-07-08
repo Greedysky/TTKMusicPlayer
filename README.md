@@ -16,15 +16,15 @@ Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Gre
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt4.8.6 for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.5 for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.5 for android 32bit
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
-| Linux    | 4.8.6 GCC & 5.5 GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                            |
-| Windows  | 4.8.7 GCC & 5.X GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
+| Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                            |
+| Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
 | OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
 | Android     | 5.5 & 5.5.1     | ![Android](https://img.shields.io/wercker/ci/wercker/docs.svg)                          |
  
@@ -93,6 +93,7 @@ Screenshots.
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*
+**£¨This product won't be updated anymore.£©**
 
 ![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/0.png?raw=true)
 ![1](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/1.png?raw=true)
