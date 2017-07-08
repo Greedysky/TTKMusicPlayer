@@ -42,7 +42,7 @@ void TTKNetworkHelper::searchSong(const QString &text)
 
     m_queryType = T_SearcSong;
     m_queryThread->setQueryAllRecords(true);
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void TTKNetworkHelper::searchMovie(const QString &text)
@@ -54,7 +54,7 @@ void TTKNetworkHelper::searchMovie(const QString &text)
 
     m_queryType = T_SearcMovie;
     m_queryThread->setQueryAllRecords(true);
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+    m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
 void TTKNetworkHelper::searchLrc(const QString &text)
@@ -65,7 +65,7 @@ void TTKNetworkHelper::searchLrc(const QString &text)
     }
 
     m_queryType = T_SearcLrc;
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
+    m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
 void TTKNetworkHelper::downloadSong(const QString &text)
@@ -77,7 +77,7 @@ void TTKNetworkHelper::downloadSong(const QString &text)
 
     m_queryType = T_DownloadSong;
     m_queryThread->setQueryAllRecords(true);
-    m_queryThread->startSearchSong(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
+    m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
 void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
@@ -198,7 +198,7 @@ void TTKNetworkHelper::searchDataDwonloadFinished()
     MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[m_currentIndex];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
-    QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
+    QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
     emit downForSearchSongFinished( musicEnSong, downloadName );
 }
@@ -265,7 +265,7 @@ void TTKNetworkHelper::downForSearchSong(int index)
     }
 
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
-    QString musicEnSong = MusicCryptographicHash().encrypt(musicSong, DOWNLOAD_KEY);
+    QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
     MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
                                                                      MusicDownLoadThreadAbstract::Download_Music, this);
@@ -305,7 +305,7 @@ void TTKNetworkHelper::downForSearchLrc(int index)
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     musicSong = QString("%1%2.%3").arg(MusicUtils::Core::lrcPrefix()).arg(musicSong).arg(LRC_FILE);
 
-    MusicDownLoadThreadAbstract *downlrc = M_DOWNLOAD_QUERY_PTR->getDownloadLrc(musicSongInfo.m_lrcUrl, musicSong,
+    MusicDownLoadThreadAbstract *downlrc = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, musicSong,
                                            MusicDownLoadThreadAbstract::Download_Lrc, this);
     QEventLoop loop(this);
     connect(downlrc, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));

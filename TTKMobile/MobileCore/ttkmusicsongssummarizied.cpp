@@ -1,5 +1,5 @@
 #include "ttkmusicsongssummarizied.h"
-#include "musiccryptographichash.h"
+#include "musicalgorithmutils.h"
 
 TTKMusicSongsSummarizied::TTKMusicSongsSummarizied(QObject *parent)
     : QObject(parent)
@@ -48,7 +48,7 @@ void TTKMusicSongsSummarizied::importOtherMusicSongs(int index, const QStringLis
 
 void TTKMusicSongsSummarizied::importNetworkMusicSongs(const QString &key, const QString &path)
 {
-    QString musicSong = MusicCryptographicHash().decrypt(key, DOWNLOAD_KEY);
+    QString musicSong = MusicUtils::Algorithm::mdII(key, ALG_DOWNLOAD_KEY, false);
     MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
     MusicSong music(path, 0, QString(), musicSong);
     if(!item->m_songs.contains(music))

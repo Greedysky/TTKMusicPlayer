@@ -44,27 +44,27 @@ void TTKMusicConfigManager::writeXMLConfig()
     QDomElement showLrc = writeDom(musicPlayer, "inlineLrc");
     QDomElement downloads = writeDom(musicPlayer, "downloads");
     //Class B
-    writeDomElement(music, "ver", XmlAttribute("value", TTKMUSIC_VERSION_STR));
-    writeDomElement(music, "playMode", XmlAttribute("value", playModeChoiced));
-    writeDomElement(music, "playVolume", XmlAttribute("value", volumeChoiced));
-    writeDomElementText(music, "lastPlayIndex", XmlAttribute("value", lastPlayIndexChoiced[0]),
+    writeDomElement(music, "ver", MusicXmlAttribute("value", TTKMUSIC_VERSION_STR));
+    writeDomElement(music, "playMode", MusicXmlAttribute("value", playModeChoiced));
+    writeDomElement(music, "playVolume", MusicXmlAttribute("value", volumeChoiced));
+    writeDomElementText(music, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndexChoiced[0]),
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
-    writeDomElement(music, "WifiConnect", XmlAttribute("value", mobileWifiConnectChoiced));
+    writeDomElement(music, "wifiConnect", MusicXmlAttribute("value", mobileWifiConnectChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(equalizer, "enhancedMusic", XmlAttribute("value", enhancedMusicChoiced));
-    writeDomElement(equalizer, "equalizerEnable", XmlAttribute("value", equalizerEnableChoiced));
-    writeDomElement(equalizer, "equalizerIndex", XmlAttribute("value", equalizerIndexChoiced));
-    writeDomElement(equalizer, "equalizerValue", XmlAttribute("value", equalizerValueChoiced));
+    writeDomElement(equalizer, "enhancedMusic", MusicXmlAttribute("value", enhancedMusicChoiced));
+    writeDomElement(equalizer, "equalizerEnable", MusicXmlAttribute("value", equalizerEnableChoiced));
+    writeDomElement(equalizer, "equalizerIndex", MusicXmlAttribute("value", equalizerIndexChoiced));
+    writeDomElement(equalizer, "equalizerValue", MusicXmlAttribute("value", equalizerValueChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(showLrc, "lrcColor", XmlAttribute("value", lrcColorChoiced));
-    writeDomElement(showLrc, "lrcSize", XmlAttribute("value", lrcSizeChoiced));
-    writeDomElement(showLrc, "lrcType", XmlAttribute("value", lrcTypeChoiced));
-    writeDomElement(showLrc, "lrcFgColor", XmlAttribute("value", lrcFgColorChoiced));
+    writeDomElement(showLrc, "lrcColor", MusicXmlAttribute("value", lrcColorChoiced));
+    writeDomElement(showLrc, "lrcSize", MusicXmlAttribute("value", lrcSizeChoiced));
+    writeDomElement(showLrc, "lrcType", MusicXmlAttribute("value", lrcTypeChoiced));
+    writeDomElement(showLrc, "lrcFgColor", MusicXmlAttribute("value", lrcFgColorChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(downloads, "downloadServer", XmlAttribute("value", downloadServer));
+    writeDomElement(downloads, "downloadServer", MusicXmlAttribute("value", downloadServer));
     ///////////////////////////////////////////////////////////////////////////
     //Write to file
     QTextStream out(m_file);
@@ -89,13 +89,13 @@ void TTKMusicConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     {
 
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList",
-                                                   XmlAttributes() << XmlAttribute("name", musics[i].m_itemName) << XmlAttribute("index", i)
-                                                   << XmlAttribute("count", musics[i].m_songs.count()));
+                                                   MusicXmlAttributes() << MusicXmlAttribute("name", musics[i].m_itemName) << MusicXmlAttribute("index", i)
+                                                   << MusicXmlAttribute("count", musics[i].m_songs.count()));
         foreach(const MusicSong &song, musics[i].m_songs)
         {
-            writeDomElementMutilText(pathDom, "value", XmlAttributes() << XmlAttribute("name", song.getMusicName())
-                                     << XmlAttribute("playCount", song.getMusicPlayCount())
-                                     << XmlAttribute("time", song.getMusicTime()), song.getMusicPath());
+            writeDomElementMutilText(pathDom, "value", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
+                                     << MusicXmlAttribute("playCount", song.getMusicPlayCount())
+                                     << MusicXmlAttribute("time", song.getMusicTime()), song.getMusicPath());
         }
     }
 
@@ -149,7 +149,7 @@ void TTKMusicConfigManager::readOtherLoadConfig() const
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
                      readXmlAttributeByTagNameValue("downloadServer").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::MobileWifiConnectChoiced,
-                     readXmlAttributeByTagNameValue("WifiConnect").toInt());
+                     readXmlAttributeByTagNameValue("wifiConnect").toInt());
 }
 
 MusicSongs TTKMusicConfigManager::readMusicFilePath(const QDomNode &node) const

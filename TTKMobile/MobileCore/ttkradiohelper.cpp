@@ -64,7 +64,7 @@ void TTKRadioHelper::playStateChanged()
 
 void TTKRadioHelper::getChannelFinished()
 {
-    ChannelInfos channels = m_getChannelThread->getMusicChannel();
+    MusicRadioChannelInfos channels = m_getChannelThread->getMusicChannel();
     if(m_songsThread == nullptr || m_playListThread == nullptr)
     {
         m_playListThread = new MusicRadioPlayListThread(this, m_cookJar);
@@ -91,7 +91,7 @@ void TTKRadioHelper::getPlayListFinished()
 
 void TTKRadioHelper::getSongInfoFinished()
 {
-    SongRadioInfo info;
+    MusicRadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
@@ -121,7 +121,7 @@ void TTKRadioHelper::getSongInfoFinished()
 
 void TTKRadioHelper::picDownloadStateChanged()
 {
-    SongRadioInfo info;
+    MusicRadioSongInfo info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();

@@ -35,12 +35,6 @@ public:
      * Subclass should implement this function.
      */
 
-Q_SIGNALS:
-    void musicBgDownloadFinished();
-    /*!
-     * Artist picture to download finished.
-     */
-
 public Q_SLOTS:
     virtual void downLoadFinished() override;
     /*!
