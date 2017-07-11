@@ -124,3 +124,10 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
         emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
     }
 }
+
+void MusicDataDownloadThread::updateDownloadSpeed()
+{
+    QString label = MusicUtils::Number::speed2Label(m_currentReceived - m_hasReceived);
+    MusicDownLoadThreadAbstract::updateDownloadSpeed();
+    emit downloadSpeedLabelChanged(label);
+}

@@ -17,8 +17,8 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, con
     m_url = url;
     m_savePathName = save;
     m_downloadType = type;
-    m_hasReceived = -1;
-    m_currentReceived = -1;
+    m_hasReceived = 0;
+    m_currentReceived = 0;
 
     if(QFile::exists(save))
     {

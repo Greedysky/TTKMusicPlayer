@@ -68,7 +68,7 @@ public Q_SLOTS:
      * Download ssl reply error.
      */
 #endif
-    void updateDownloadSpeed();
+    virtual void updateDownloadSpeed();
     /*!
      * Updata download speed due the user mod the net speed limited.
      */
