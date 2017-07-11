@@ -115,7 +115,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font-size:15px</string>
+       <string notr="true">font-size:15px; color:rgb(100, 100, 100);</string>
       </property>
       <property name="text">
        <string>天天酷音正在检测版本号...</string>

@@ -13,6 +13,7 @@
 #define S_CACHE_DIR_FULL          S_DOWNLOADS_DIR_FULL + CACHE_DIR
 #define S_ART_DIR_FULL            S_DOWNLOADS_DIR_FULL + ART_DIR
 #define S_BACKGROUND_DIR_FULL     S_DOWNLOADS_DIR_FULL + BACKGROUND_DIR
+#define S_UPDATE_DIR_FULL         S_DOWNLOADS_DIR_FULL + UPDATE_DIR
 
 #define S_COFIGPATH_FULL          S_APPDATA_DIR_FULL + COFIGPATH
 #define S_MUSICPATH_FULL          S_APPDATA_DIR_FULL + MUSICPATH
@@ -122,6 +123,7 @@ void MusicRunObject::checkTheDirectoryExist()
     dirIsExist(S_CACHE_DIR_FULL);
     dirIsExist(S_ART_DIR_FULL);
     dirIsExist(S_BACKGROUND_DIR_FULL);
+    dirIsExist(S_UPDATE_DIR_FULL);
 
     dirIsExist(S_AVATAR_DIR_FULL);
     dirIsExist(S_USER_THEME_DIR_FULL);

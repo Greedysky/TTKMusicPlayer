@@ -116,7 +116,7 @@ void MusicDataDownloadThread::downLoadReadyRead()
 void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     MusicDownLoadThreadAbstract::downloadProgress(bytesReceived, bytesTotal);
-    /// only download music data can that show progress
+    /// only download music data or oather type can that show progress
     if(m_downloadType == Download_Music || m_downloadType == Download_Other)
     {
         QString total = QString::number(bytesTotal*1.0/MH_MB2B);
