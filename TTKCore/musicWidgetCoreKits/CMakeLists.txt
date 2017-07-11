@@ -19,12 +19,12 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGETCORE_KITS_HEADERS
     ${MUSIC_WIDGETCORE_DIR}/musicmovinglabelslider.h
     ${MUSIC_WIDGETCORE_DIR}/musictoastlabel.h
     ${MUSIC_WIDGETCORE_DIR}/musicroundanimationlabel.h
-    ${MUSIC_WIDGETCORE_DIR}/musiccodearea.h
+    ${MUSIC_WIDGETCORE_DIR}/musiccodeareawidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicfloatabstractwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.h
-    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimation.h
+    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimationwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicopenfilewidget.h
     ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.h
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.h
@@ -58,12 +58,12 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGETCORE_KITS_SOURCES
     ${MUSIC_WIDGETCORE_DIR}/musicmovinglabelslider.cpp
     ${MUSIC_WIDGETCORE_DIR}/musictoastlabel.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicroundanimationlabel.cpp
-    ${MUSIC_WIDGETCORE_DIR}/musiccodearea.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musiccodeareawidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicfloatabstractwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musictimersliderwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musiccutsliderwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicanimationstackedwidget.cpp
-    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimation.cpp
+    ${MUSIC_WIDGETCORE_DIR}/musiclayoutanimationwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicopenfilewidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musictoolmenuwidget.cpp
     ${MUSIC_WIDGETCORE_DIR}/musicgiflabelwidget.cpp

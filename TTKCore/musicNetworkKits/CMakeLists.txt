@@ -39,6 +39,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.h
     ${MUSIC_NETWORK_DIR}/kw/musickwcommentsthread.h
     ${MUSIC_NETWORK_DIR}/kw/musickwdiscoverlistthread.h
+    ${MUSIC_NETWORK_DIR}/kw/musickwbackgroundthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.h
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.h
@@ -55,15 +56,16 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicqqcommentsthread.h
     ${MUSIC_NETWORK_DIR}/qq/musicqqdiscoverlistthread.h
+    ${MUSIC_NETWORK_DIR}/qq/musicqqbackgroundthread.h
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.h
-    ${MUSIC_NETWORK_DIR}/musicsourcedownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadsourcethread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkproxy.h
     ${MUSIC_NETWORK_DIR}/musicnetworkoperator.h
     ${MUSIC_NETWORK_DIR}/musicnetworktestthread.h
-    ${MUSIC_NETWORK_DIR}/musicbackgrounddownload.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.h
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.h
     ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.h
@@ -71,7 +73,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.h
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.h
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.h
-    ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadcounterpvthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.h
@@ -116,6 +118,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/kw/musicdownloadquerykwplaylistthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musickwcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/kw/musickwdiscoverlistthread.cpp
+    ${MUSIC_NETWORK_DIR}/kw/musickwbackgroundthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.cpp
     ${MUSIC_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.cpp
@@ -132,15 +135,16 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/qq/musicdownloadqueryqqplaylistthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicqqcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/qq/musicqqdiscoverlistthread.cpp
+    ${MUSIC_NETWORK_DIR}/qq/musicqqbackgroundthread.cpp
     ${MUSIC_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadthreadabstract.cpp
-    ${MUSIC_NETWORK_DIR}/musicsourcedownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadsourcethread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkproxy.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkoperator.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworktestthread.cpp
-    ${MUSIC_NETWORK_DIR}/musicbackgrounddownload.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadquerythreadabstract.cpp
@@ -148,7 +152,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/musicvoicettsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicidentifysongsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicsourceupdatethread.cpp
-    ${MUSIC_NETWORK_DIR}/musiccounterpvdownloadthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadcounterpvthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.cpp
