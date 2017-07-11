@@ -38,7 +38,7 @@ Q_SIGNALS:
     /*!
      * Update download url finished.
      */
-    void downloadSpeedLabelChanged(const QString &speed);
+    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
     /*!
      * Update download speed label.
      */

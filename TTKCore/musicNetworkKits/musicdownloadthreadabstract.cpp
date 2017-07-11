@@ -70,8 +70,8 @@ void MusicDownLoadThreadAbstract::sslErrors(QNetworkReply* reply, const QList<QS
 
 void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
-    Q_UNUSED(bytesTotal);
     m_currentReceived = bytesReceived;
+    m_totalSize = bytesTotal;
 }
 
 void MusicDownLoadThreadAbstract::updateDownloadSpeed()

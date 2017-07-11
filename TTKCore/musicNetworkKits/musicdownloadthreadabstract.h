@@ -82,7 +82,7 @@ protected:
     QFile *m_file;
     QString m_url, m_savePathName;
     Download_Type m_downloadType;
-    qint64 m_hasReceived, m_currentReceived;
+    qint64 m_hasReceived, m_currentReceived, m_totalSize;
     QTimer m_timer;
 
 };

@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
+#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -44,6 +45,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
                                                                     UPDATE_DIR_FULL + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
+    connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
     download->startToDownload();
 }
 
@@ -72,6 +74,12 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
         m_ui->titleLable_F->setAlignment(Qt::AlignCenter);
     }
     m_ui->titleLable_F->setText( text );
+}
+
+void MusicSourceUpdateWidget::downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft)
+{
+    m_ui->speedLabel->setText(tr("Speed: %1").arg(speed));
+    m_ui->timeLabel->setText(tr("Left: %1").arg(MusicTime::normalTime2Label(timeLeft)));
 }
 
 void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total)
