@@ -33,8 +33,8 @@ MusicApplication::MusicApplication(QWidget *parent)
 {
     m_instance = this;
     m_applicationObject = new MusicApplicationObject(this);
-    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
+    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_rightAreaWidget = new MusicRightAreaWidget(this);
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
     ////////////////////////////////////////////////

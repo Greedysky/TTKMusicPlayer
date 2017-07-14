@@ -6,7 +6,7 @@
 # ifdef Q_CC_MINGW
 #   include <winsock2.h>
 # endif
-# include <windows.h>
+# include <qt_windows.h>
 # include <cstdio>
 # include <iphlpapi.h>
 #elif defined Q_OS_UNIX

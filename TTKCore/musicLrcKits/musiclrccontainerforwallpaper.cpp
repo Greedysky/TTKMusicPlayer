@@ -5,7 +5,7 @@
 #include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 #ifdef Q_OS_WIN
-#include "windows.h"
+#include <qt_windows.h>
 #endif
 #include <QBoxLayout>
 
