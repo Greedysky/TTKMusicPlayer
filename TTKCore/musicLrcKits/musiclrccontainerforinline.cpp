@@ -473,6 +473,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theLinkLrcChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
+//    menu.addAction(tr("artbgsetting"), this, SLOT(theArtBgUploaded()));
     menu.addSeparator();
 
     QString fileName = m_lrcAnalysis->getCurrentFileName();

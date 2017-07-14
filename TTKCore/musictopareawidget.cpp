@@ -218,7 +218,15 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
     QString art_path = M_BACKGROUND_PTR->getArtPhotoPath();
-    !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
+    if(!art_path.isEmpty())
+    {
+        M_BACKGROUND_PTR->indexIncrease();
+        drawWindowBackgroundRectString(art_path);
+    }
+    else
+    {
+        drawWindowBackgroundRect();
+    }
 }
 
 void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)

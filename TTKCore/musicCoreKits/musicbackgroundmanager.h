@@ -40,10 +40,19 @@ public:
     /*!
      * Get artist photo current index.
      */
+    inline void setCurrentIndex(int index) { m_currentIndex = index; }
+    /*!
+     * Set artist photo current index.
+     */
+    inline void indexIncrease() { m_currentIndex++; }
+    /*!
+     * Set artist photo current index + 1.
+     */
     inline int getArtPhotoCount() const { return m_photos.count(); }
     /*!
      * Get artist photo count.
      */
+
     QString getArtPhotoPath();
     /*!
      * Get artist photo path.
