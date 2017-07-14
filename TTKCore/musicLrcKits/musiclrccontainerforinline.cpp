@@ -17,6 +17,8 @@
 #include "musiclrctranslatedwidget.h"
 #include "musiclayoutanimationwidget.h"
 #include "musicleftareawidget.h"
+#include "musictopareawidget.h"
+#include "musicbackgroundmanager.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -473,7 +475,8 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theLinkLrcChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
-//    menu.addAction(tr("artbgsetting"), this, SLOT(theArtBgUploaded()));
+    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtBackground()))
+                   ->setEnabled(!M_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     QString fileName = m_lrcAnalysis->getCurrentFileName();

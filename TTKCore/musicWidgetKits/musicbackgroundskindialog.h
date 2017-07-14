@@ -38,6 +38,15 @@ public:
     /*!
      * Theme valid check.
      */
+    static QString cpoyArtFileToLocal(const QString &path);
+    /*!
+     * Copy art file to local themes dir path.
+     */
+    void updateArtFileTheme(const QString &theme);
+    /*!
+     * Update art file theme.
+     */
+
     void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
@@ -108,6 +117,10 @@ protected:
     void cpoyFileFromLocal(const QString &path);
     /*!
      * Copy custom file to local themes dir path.
+     */
+    static int cpoyFileToLocal(const QString &path);
+    /*!
+     * Copy custom file .
      */
 
     int m_myThemeIndex;

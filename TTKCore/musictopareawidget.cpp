@@ -183,6 +183,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
     {
         return;
     }
+
     if(m_musicbgskin)
     {
         m_musicbgskin->setSkinTransToolText(index);
@@ -197,11 +198,27 @@ void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
     {
         m_musicbgskin->updateBackground(fileName);
     }
+
     if(m_ui->surfaceStackedWidget->currentIndex() == 1)
     {
         return;
     }
+
     drawWindowBackgroundRectString(fileName);
+}
+
+void MusicTopAreaWidget::musicSetAsArtBackground()
+{
+    QString path = M_BACKGROUND_PTR->getArtPhotoPathNoIndex();
+    if(!path.isEmpty())
+    {
+        path = MusicBackgroundSkinDialog::cpoyArtFileToLocal(path);
+        if(m_musicbgskin)
+        {
+            m_musicbgskin->updateArtFileTheme(path);
+        }
+        musicBackgroundSkinChanged(path);
+    }
 }
 
 void MusicTopAreaWidget::musicBgTransparentChanged()

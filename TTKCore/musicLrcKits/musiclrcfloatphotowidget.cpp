@@ -130,7 +130,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
-    M_BACKGROUND_PTR->setArtPhotoPaths(list);
+    M_BACKGROUND_PTR->setArtPhotoPathList(list);
     close();
 }
 
@@ -171,7 +171,7 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
 void MusicLrcFloatPhotoWidget::artHasChanged()
 {
     m_selectNum.clear();
-    m_artPath = M_BACKGROUND_PTR->getArtPhotoPaths();
+    m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;

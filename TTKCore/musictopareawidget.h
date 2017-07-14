@@ -116,6 +116,10 @@ public Q_SLOTS:
     /*!
      * Send user to login.
      */
+    void musicSetAsArtBackground();
+    /*!
+     * Set background as art big picture.
+     */
     void musicBgTransparentChanged();
     /*!
      * Current background transparent changed.
