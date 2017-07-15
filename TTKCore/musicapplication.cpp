@@ -1110,7 +1110,12 @@ void MusicApplication::readXMLConfigFromText()
     m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
                                    xml.readBackgroundTransparent().toInt(),
                                    xml.readBackgroundListTransparent().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgLosslessChoiced, xml.readBackgroundLossless().toInt());
+    //////////////////////////////////////////////////////////////
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, xml.readOtherBgLossless().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, xml.readOtherUpdate().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, xml.readOtherSearch().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, xml.readOtherAlbum().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, xml.readOtherInfo().toInt());
     //////////////////////////////////////////////////////////////
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
