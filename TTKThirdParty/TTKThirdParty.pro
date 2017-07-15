@@ -8,3 +8,6 @@
 
 TEMPLATE = subdirs
 SUBDIRS = zlib MusicExtras Devicewatcher
+win32{
+    SUBDIRS += MiniDumper
+}
