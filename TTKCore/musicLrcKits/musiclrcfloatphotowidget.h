@@ -12,8 +12,8 @@
 #include "musicclickedlabel.h"
 #include "musicfloatabstractwidget.h"
 
-class QPushButton;
 class QCheckBox;
+class QPushButton;
 
 /*! @brief The class of the lrc photo float pixmap item.
  * @author Greedysky <greedysky@163.com>
@@ -33,6 +33,10 @@ public:
      * Get class object name.
      */
 
+    void setPhoto(const QString &path);
+    /*!
+     * Set photo path and pix.
+     */
     void setBoxChecked(bool check);
     /*!
      * Set check box checked state.
@@ -65,9 +69,19 @@ public Q_SLOTS:
     /*!
      * User selected the plane pic.
      */
+    void exportArtPixmap();
+    /*!
+     * Export art pixmap.
+     */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     int m_index;
+    QString m_pixPath;
     QCheckBox *m_checkBox;
 
 };

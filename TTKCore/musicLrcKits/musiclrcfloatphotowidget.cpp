@@ -4,9 +4,11 @@
 #include "musicleftareawidget.h"
 
 #include <qmath.h>
+#include <QMenu>
 #include <QTimer>
 #include <QCheckBox>
 #include <QPushButton>
+#include <QFileDialog>
 
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65
@@ -36,6 +38,23 @@ QString MusicLrcFloatPhotoItem::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
+{
+    m_pixPath = path;
+
+    QPixmap pix;
+    if(m_pixPath.isEmpty())
+    {
+        pix.fill(Qt::black);
+    }
+    else
+    {
+        pix.load(m_pixPath);
+        pix = pix.scaled(size());
+    }
+    setPixmap(pix);
+}
+
 void MusicLrcFloatPhotoItem::setBoxChecked(bool check)
 {
     m_checkBox->setChecked(check);
@@ -61,6 +80,29 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
     if(!pixmap()->isNull())
     {
         emit itemClicked(m_index);
+    }
+}
+
+void MusicLrcFloatPhotoItem::exportArtPixmap()
+{
+    QString filename = QFileDialog::getSaveFileName( this,
+        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    if(!filename.isEmpty())
+    {
+        QPixmap pix(m_pixPath);
+        pix.save(filename, "jpg");
+    }
+}
+
+void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicClickedLabel::contextMenuEvent(event);
+    if(!pixmap()->isNull())
+    {
+        QMenu menu(this);
+        menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+        menu.addAction(tr("Export"), this, SLOT(exportArtPixmap()));
+        menu.exec(QCursor::pos());
     }
 }
 
@@ -183,14 +225,10 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
     m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
 
-    QPixmap nullPix;
-    nullPix.fill(Qt::black);
-    //check show pixmap
     int indexCheck = m_currentIndex * PHOTO_PERLINE;
     for(int i=0; i<m_planes.count(); ++i)
     {
-        m_planes[i]->setPixmap( (indexCheck + i) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + i] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
+        m_planes[i]->setPhoto( (indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString() );
         //check show radio button
         m_planes[i]->setBoxChecked( m_selectNum.contains(indexCheck + i) );
         m_planes[i]->setBoxVisible( (indexCheck + i) < m_artPath.count() );
