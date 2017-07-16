@@ -36,10 +36,11 @@ public:
     bool readFile();
     bool readFile(const QString &path);
 
-    bool writeMusicTag(MusicTag tag, const QString &value);
-    bool writeCover(const QByteArray &data);
+    bool writeMusicTag(MusicTag tag, const QString &value, int id3v2Version);
+    QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
 
-    QMap<MusicTag, QString> getMusicTags() { return m_parameters; }
+    bool writeCover(const QByteArray &data, int id3v2Version);
+    QByteArray getCover() const;
 
 protected:
     QString m_path;

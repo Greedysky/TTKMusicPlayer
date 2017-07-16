@@ -6,6 +6,12 @@
 #include "musicsongtag.h"
 #include "musicmessagebox.h"
 
+#include <QBuffer>
+#include <QFileDialog>
+#include <QStyledItemDelegate>
+
+#define ADVANCE_OFFSET  150
+
 MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
     : QLineEdit(parent)
 {
@@ -55,14 +61,28 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
 
     setStyleSheet(MusicUIObject::MLineEditStyle01);
     setEditLineEnable(false);
+    m_advanceOn = false;
+    musicAdvanceClicked();
+
+    QPixmap pix;
+    pix.load(":/image/lb_defaultArt");
+    m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+    m_ui->idv3ComboBox->addItems(QStringList() << "ID3v2.3" << "ID3v2.4");
 
     m_ui->editButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->openPixButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
+    m_ui->idv3ComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->idv3ComboBox));
+    m_ui->idv3ComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->idv3ComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     connect(m_ui->editButton, SIGNAL(clicked()), SLOT(musicEditTag()));
     connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(musicSaveTag()));
     connect(m_ui->viewButton, SIGNAL(clicked()), SLOT(musicOpenFileDir()));
+    connect(m_ui->advanceLabel, SIGNAL(clicked()), SLOT(musicAdvanceClicked()));
+    connect(m_ui->openPixButton, SIGNAL(clicked()), SLOT(musicOpenImageFileDir()));
 }
 
 MusicFileInformationWidget::~MusicFileInformationWidget()
@@ -85,6 +105,68 @@ void MusicFileInformationWidget::musicOpenFileDir()
     }
 }
 
+void MusicFileInformationWidget::musicOpenImageFileDir()
+{
+    m_imagePath = QFileDialog::getOpenFileName(
+                  this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    if(m_imagePath.isEmpty())
+    {
+        return;
+    }
+
+    QPixmap pix;
+    pix.load(m_imagePath);
+    m_ui->pixmapSizeLabel->setText(QString("%1x%2").arg(pix.width()).arg(pix.height()));
+    m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+}
+
+void MusicFileInformationWidget::musicAdvanceClicked()
+{
+    if(m_advanceOn)
+    {
+        setFixedHeight(385 + ADVANCE_OFFSET);
+        m_ui->background->setFixedHeight(377 + ADVANCE_OFFSET);
+        m_ui->backgroundMask->setFixedHeight(352 + ADVANCE_OFFSET);
+        m_ui->advanceLabel->move(29, 350 + ADVANCE_OFFSET);
+        m_ui->editButton->move(310, 320 + ADVANCE_OFFSET);
+        m_ui->saveButton->move(390, 320 + ADVANCE_OFFSET);
+        m_ui->pixmapLabel->setVisible(true);
+        m_ui->label_17->setVisible(true);
+        m_ui->idv3ComboBox->setVisible(true);
+
+        MusicSongTag tag;
+        if(!tag.readFile(m_path))
+        {
+            return;
+        }
+        QPixmap pix;
+        pix.loadFromData(tag.getCover());
+        QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
+        if(pix.isNull())
+        {
+            text = "-";
+            pix.load(":/image/lb_defaultArt");
+        }
+        m_ui->pixmapSizeLabel->setText(text);
+        m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
+    }
+    else
+    {
+        setFixedHeight(385);
+        m_ui->background->setFixedHeight(377);
+        m_ui->backgroundMask->setFixedHeight(352);
+        m_ui->advanceLabel->move(29, 350);
+        m_ui->editButton->move(310, 320);
+        m_ui->saveButton->move(390, 320);
+        m_ui->pixmapLabel->setVisible(false);
+        m_ui->label_17->setVisible(false);
+        m_ui->idv3ComboBox->setVisible(false);
+    }
+
+    m_advanceOn = !m_advanceOn;
+    setBackgroundPixmap(m_ui->background, size());
+}
+
 void MusicFileInformationWidget::musicEditTag()
 {
     setEditLineEnable(!m_ui->fileAlbumEdit->isEnabled());
@@ -97,6 +179,7 @@ void MusicFileInformationWidget::musicSaveTag()
     {
         return;
     }
+    tag.setTagVersion(m_ui->idv3ComboBox->currentIndex() == 0 ? 3 : 4);
 
     QString value = m_ui->fileAlbumEdit->text().trimmed();
     if(value != "-" && m_ui->fileAlbumEdit->getTextEdited())
@@ -126,6 +209,15 @@ void MusicFileInformationWidget::musicSaveTag()
     if(value != "-" && m_ui->fileYearEdit->getTextEdited())
     {
         tag.setYear(value);
+    }
+
+    if(!m_imagePath.isEmpty())
+    {
+        QByteArray data;
+        QBuffer buffer(&data);
+        buffer.open(QIODevice::WriteOnly);
+        QPixmap(m_imagePath).save(&buffer, "jpg");
+        tag.setCover(data);
     }
 
     MusicMessageBox message;
@@ -177,6 +269,7 @@ void MusicFileInformationWidget::setEditLineEnable(bool enable)
     m_ui->fileYearEdit->setEnabled(enable);
 
     m_ui->saveButton->setEnabled(enable);
+    m_ui->openPixButton->setEnabled(enable);
 }
 
 int MusicFileInformationWidget::exec()

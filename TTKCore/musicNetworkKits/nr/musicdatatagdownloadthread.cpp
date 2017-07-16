@@ -77,6 +77,7 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
     MusicSongTag song;
     if(song.readFile(m_savePathName))
     {
+        song.setTagVersion(3);
         song.setTitle(m_title);
         song.setArtist(m_artist);
         song.setCover(data);

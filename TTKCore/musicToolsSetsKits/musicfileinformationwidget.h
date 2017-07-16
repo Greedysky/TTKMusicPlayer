@@ -85,6 +85,14 @@ public Q_SLOTS:
     /*!
      * Open the music at local path.
      */
+    void musicOpenImageFileDir();
+    /*!
+     * Open the selected user pixmap.
+     */
+    void musicAdvanceClicked();
+    /*!
+     * Music advance clicked.
+     */
     void musicEditTag();
     /*!
      * Music modify tag start.
@@ -105,7 +113,8 @@ protected:
      */
 
     Ui::MusicFileInformationWidget *m_ui;
-    QString m_path;
+    QString m_path, m_imagePath;
+    bool m_advanceOn;
 
 };
 

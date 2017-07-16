@@ -40,6 +40,10 @@ public:
     /*!
      * Read music file path.
      */
+    void setTagVersion(int id3v2Version);
+    /*!
+     * Set id3v2 tag version.
+     */
     /////////////////////////////////////////////
     QString getArtist() const;
     /*!
@@ -114,9 +118,14 @@ public:
     /*!
      * Set song genre.
      */
+    /////////////////////////////////////////////
     bool setCover(const QByteArray &data);
     /*!
      * Set song image cover art.
+     */
+    QByteArray getCover() const;
+    /*!
+     * Get song image cover art.
      */
     /////////////////////////////////////////////
     QString getSamplingRate() const;
@@ -151,6 +160,7 @@ protected:
      * Get not supported plugin path.
      */
 
+    int m_id3v2Version;
     QString m_filePath;
     TagReadAndWrite *m_tag;
     QMap<TagReadAndWrite::MusicTag, QString> m_parameters;
