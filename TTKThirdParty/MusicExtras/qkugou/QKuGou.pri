@@ -36,10 +36,10 @@ else{
 }
 
 contains(QT, webkit){
-    message("Found webkit component, build in KuGou by webkit")
+    message("Found Qt webkit component, build in KuGou by Qt webkit")
 }
 else{
-    message("Not found webkit component, build in KuGou by normal")
+    message("Not found Qt webkit component, build in KuGou by no webkit")
 }
 
 INCLUDEPATH += $$PWD

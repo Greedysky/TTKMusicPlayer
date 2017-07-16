@@ -17,7 +17,7 @@
 #include "musicfunctionuiobject.h"
 #include "musicdownloaddiscoverlistthread.h"
 #include "musicdownloadqueryfactory.h"
-#include "musiccounterpvdownloadthread.h"
+#include "musicdownloadcounterpvthread.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -35,7 +35,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     connect(discover, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished(QString)));
     discover->startToSearch();
 
-    m_counterPVThread = new MusicCounterPVDownloadThread(this);
+    m_counterPVThread = new MusicDownloadCounterPVThread(this);
     m_counterPVThread->startToDownload();
     ///////////////////////////////////////////////////////
     m_listAlpha = 40;
@@ -183,6 +183,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
     {
         return;
     }
+
     if(m_musicbgskin)
     {
         m_musicbgskin->setSkinTransToolText(index);
@@ -197,11 +198,27 @@ void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
     {
         m_musicbgskin->updateBackground(fileName);
     }
+
     if(m_ui->surfaceStackedWidget->currentIndex() == 1)
     {
         return;
     }
+
     drawWindowBackgroundRectString(fileName);
+}
+
+void MusicTopAreaWidget::musicSetAsArtBackground()
+{
+    QString path = M_BACKGROUND_PTR->getArtPhotoPathNoIndex();
+    if(!path.isEmpty())
+    {
+        path = MusicBackgroundSkinDialog::cpoyArtFileToLocal(path);
+        if(m_musicbgskin)
+        {
+            m_musicbgskin->updateArtFileTheme(path);
+        }
+        musicBackgroundSkinChanged(path);
+    }
 }
 
 void MusicTopAreaWidget::musicBgTransparentChanged()
@@ -218,7 +235,15 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
     QString art_path = M_BACKGROUND_PTR->getArtPhotoPath();
-    !art_path.isEmpty() ? drawWindowBackgroundRectString(art_path) : drawWindowBackgroundRect();
+    if(!art_path.isEmpty())
+    {
+        M_BACKGROUND_PTR->indexIncrease();
+        drawWindowBackgroundRectString(art_path);
+    }
+    else
+    {
+        drawWindowBackgroundRect();
+    }
 }
 
 void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)

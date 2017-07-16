@@ -719,7 +719,7 @@ QTabBar::tab:selected {
        <string/>
       </property>
      </widget>
-     <widget class="MusicCodeArea" name="verificationCode">
+     <widget class="MusicCodeAreaWidget" name="verificationCode">
       <property name="geometry">
        <rect>
         <x>220</x>
@@ -906,9 +906,9 @@ QTabBar::tab:selected {
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicCodeArea</class>
+   <class>MusicCodeAreaWidget</class>
    <extends>QLabel</extends>
-   <header>musiccodearea.h</header>
+   <header>musiccodeareawidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

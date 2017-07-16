@@ -1,5 +1,5 @@
 #include "musiclrccommentswidget.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicemojilabelwidget.h"
 #include "musicfunctionuiobject.h"
 #include "musicinlinelrcuiobject.h"
@@ -135,7 +135,7 @@ void MusicLrcCommentsItem::createSearchedItems(const MusicSongCommentItem &comme
     int acWidth = QFontMetrics(m_userCommit->font()).width(comments.m_content);
     setFixedHeight(height() + QFontMetrics(m_userCommit->font()).height()*(acWidth/w));
 
-    MusicSourceDownloadThread *thread = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *thread = new MusicDownloadSourceThread(this);
     connect(thread, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(iconDataDownloadFinished(QByteArray)));
     thread->startToDownload(comments.m_avatarUrl);
 }

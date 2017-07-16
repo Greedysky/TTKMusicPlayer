@@ -47,6 +47,12 @@ public:
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
         BgListTransparentChoiced,       ///*Bg List Transparent Parameter*/
 
+        OtherBgLosslessChoiced,         ///*Other Bg Lossless Parameter*/
+        OtherUpdateChoiced,             ///*Other Update Check Parameter*/
+        OtherSearchChoiced,             ///*Other Search Optimzied Parameter*/
+        OtherAlbumChoiced,              ///*Other Use File Album Parameter*/
+        OtherInfoChoiced,               ///*Other Use File Info Parameter*/
+
         ShowInlineLrcChoiced,           ///*Show Inline Lrc Parameter*/
         ShowDesktopLrcChoiced,          ///*Show Desktop Lrc Parameter*/
         LrcColorChoiced,                ///*Lrc Color Parameter*/

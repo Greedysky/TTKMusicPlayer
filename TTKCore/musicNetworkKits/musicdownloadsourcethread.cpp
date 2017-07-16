@@ -1,22 +1,22 @@
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 
-MusicSourceDownloadThread::MusicSourceDownloadThread(QObject *parent)
+MusicDownloadSourceThread::MusicDownloadSourceThread(QObject *parent)
     : MusicNetworkAbstract(parent)
 {
 
 }
 
-MusicSourceDownloadThread::~MusicSourceDownloadThread()
+MusicDownloadSourceThread::~MusicDownloadSourceThread()
 {
     deleteAll();
 }
 
-QString MusicSourceDownloadThread::getClassName()
+QString MusicDownloadSourceThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSourceDownloadThread::startToDownload(const QString &url)
+void MusicDownloadSourceThread::startToDownload(const QString &url)
 {
     m_manager = new QNetworkAccessManager(this);
 
@@ -36,7 +36,7 @@ void MusicSourceDownloadThread::startToDownload(const QString &url)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 
-void MusicSourceDownloadThread::downLoadFinished()
+void MusicDownloadSourceThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
@@ -59,7 +59,7 @@ void MusicSourceDownloadThread::downLoadFinished()
     }
 }
 
-void MusicSourceDownloadThread::replyError(QNetworkReply::NetworkError)
+void MusicDownloadSourceThread::replyError(QNetworkReply::NetworkError)
 {
     M_LOGGER_ERROR("Abnormal network connection");
     emit downLoadByteDataChanged(QByteArray());
@@ -67,7 +67,7 @@ void MusicSourceDownloadThread::replyError(QNetworkReply::NetworkError)
 }
 
 #ifndef QT_NO_SSL
-void MusicSourceDownloadThread::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
+void MusicDownloadSourceThread::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
     emit downLoadByteDataChanged(QByteArray());

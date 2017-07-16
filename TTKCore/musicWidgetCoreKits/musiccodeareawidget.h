@@ -1,5 +1,5 @@
-#ifndef MUSICCODEAREA_H
-#define MUSICCODEAREA_H
+#ifndef MUSICCODEAREAWIDGET_H
+#define MUSICCODEAREAWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,14 +11,14 @@
 
 #include "musicclickedlabel.h"
 
-/*! @brief The class of the label show code area.
+/*! @brief The class of the label show code area widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicCodeArea : public MusicClickedLabel
+class MUSIC_WIDGET_EXPORT MusicCodeAreaWidget : public MusicClickedLabel
 {
     Q_OBJECT
 public:
-    explicit MusicCodeArea(QWidget *parent = 0);
+    explicit MusicCodeAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -81,4 +81,4 @@ protected:
 
 };
 
-#endif // MUSICCODEAREA_H
+#endif // MUSICCODEAREAWIDGET_H

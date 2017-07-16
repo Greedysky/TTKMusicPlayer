@@ -5,7 +5,7 @@
 
 #include <QTime>
 #ifdef Q_OS_WIN
-#  include <windows.h>
+#  include <qt_windows.h>
 #else
 #  include <QProcess>
 #endif

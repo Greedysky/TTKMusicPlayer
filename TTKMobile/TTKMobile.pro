@@ -71,7 +71,8 @@ INCLUDEPATH += \
     ../TTKCore/musicLrcKits \
     ../TTKCore/musicNetworkKits \
     ../TTKCore/musicWidgetKits \
-    ../TTKThirdParty/MusicExtras
+    ../TTKThirdParty/MusicExtras \
+    ../TTKThirdParty
 
 
 HEADERS += \
@@ -80,6 +81,7 @@ HEADERS += \
     ../TTKCore/musicCoreKits/utils/musiccoreutils.h \
     ../TTKCore/musicCoreKits/utils/musicnumberutils.h \
     ../TTKCore/musicCoreKits/utils/musicstringutils.h \
+    ../TTKCore/musicCoreKits/utils/musicalgorithmutils.h \
     ../TTKCore/musicCoreKits/musicsong.h \
     ../TTKCore/musicCoreKits/musictime.h \
     ../TTKCore/musicCoreKits/musicformats.h \
@@ -110,6 +112,7 @@ SOURCES += \
     ../TTKCore/musicCoreKits/utils/musiccoreutils.cpp \
     ../TTKCore/musicCoreKits/utils/musicnumberutils.cpp \
     ../TTKCore/musicCoreKits/utils/musicstringutils.cpp \
+    ../TTKCore/musicCoreKits/utils/musicalgorithmutils.cpp \
     ../TTKCore/musicCoreKits/musicsong.cpp \
     ../TTKCore/musicCoreKits/musictime.cpp \
     ../TTKCore/musicCoreKits/musicformats.cpp \

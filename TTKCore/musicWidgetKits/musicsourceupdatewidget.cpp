@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
+#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -41,9 +42,10 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     m_ui->stackedWidget->setCurrentIndex(1);
     QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false)).arg(localDwonload),
-                                                                    MusicObject::getAppDir() + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
+                                                                    UPDATE_DIR_FULL + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
+    connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
     download->startToDownload();
 }
 
@@ -74,6 +76,12 @@ void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
     m_ui->titleLable_F->setText( text );
 }
 
+void MusicSourceUpdateWidget::downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft)
+{
+    m_ui->speedLabel->setText(tr("Speed: %1").arg(speed));
+    m_ui->timeLabel->setText(tr("Left: %1").arg(MusicTime::normalTime2Label(timeLeft)));
+}
+
 void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QString &total)
 {
     m_ui->fileSizeLabel->setText(tr("FileSize: %1").arg(total));
@@ -88,7 +96,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     message.setText(tr("Download Finish, Install Or Not"));
     if(message.exec() == 0)
     {
-        QProcess::startDetached(MusicObject::getAppDir() + localDwonload, QStringList());
+        QProcess::startDetached(UPDATE_DIR_FULL+ localDwonload, QStringList());
         MStatic_cast(QWidget*, parent())->close();
     }
 }

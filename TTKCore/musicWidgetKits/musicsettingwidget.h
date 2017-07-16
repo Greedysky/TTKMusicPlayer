@@ -31,7 +31,6 @@ public:
     /*!
      * Object contsructor.
      */
-    virtual ~MusicFunctionTableWidget();
 
     static QString getClassName();
     /*!
@@ -107,13 +106,27 @@ public Q_SLOTS:
     /*!
      * Set global hotkey box changed.
      */
-    void changeInlineLrcWidget();
+
+    void downloadGroupCached(int index);
     /*!
-     * Change to inline lrc widget.
+     * Set enable or disable download cache.
      */
+    void downloadGroupSpeedLimit(int index);
+    /*!
+     * Set enable or disable download speed limit.
+     */
+    void downloadDirSelected(int index);
+    /*!
+     * Set select download dir or lrc dir.
+     */
+
     void changeDesktopLrcWidget();
     /*!
      * Change to desktop lrc widget.
+     */
+    void changeInlineLrcWidget();
+    /*!
+     * Change to inline lrc widget.
      */
 
     void inlineLrcFgChanged();
@@ -166,19 +179,6 @@ public Q_SLOTS:
      * Reset desktop parameter.
      */
 
-    void downloadGroupCached(int index);
-    /*!
-     * Set enable or disable download cache.
-     */
-    void downloadGroupSpeedLimit(int index);
-    /*!
-     * Set enable or disable download speed limit.
-     */
-    void downloadDirSelected(int index);
-    /*!
-     * Set select download dir or lrc dir.
-     */
-
     void setNetworkProxyControl(int enable);
     /*!
      * Set network proxy control enabled or not.
@@ -223,17 +223,21 @@ protected:
     /*!
      * Init normal setting stack widget.
      */
-    void initInlineLrcWidget();
+    void initOtherSettingWidget();
     /*!
-     * Init inline lrc stack widget.
+     * Init other setting stack widget.
+     */
+    void initDownloadWidget();
+    /*!
+     * Init download stack widget.
      */
     void initDesktopLrcWidget();
     /*!
      * Init desktop lrc stack widget.
      */
-    void initDownloadWidget();
+    void initInlineLrcWidget();
     /*!
-     * Init download stack widget.
+     * Init inline lrc stack widget.
      */
     void initSoundEffectWidget();
     /*!

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <TTKMusicPlayer>
-    <music>
+    <musicSetting>
         <playMode value="2"/>
         <playVolume value="100"/>
         <lastPlayIndex value="1">0,-1</lastPlayIndex>
-    </music>
-    <settings>
+    </musicSetting>
+    <plusSetting>
         <geometry value="183,24,1033,660"/>
         <language value="0"/>
         <autoPlay value="0"/>
@@ -14,29 +14,36 @@
         <fileAssociation value="0"/>
         <windowConcise value="0"/>
         <remoteWidgetMode value="0"/>
-    </settings>
-    <backgroundSkin>
+    </plusSetting>
+    <otherSetting>
+        <otherBgLossless value="0"/>
+        <otherUpdate value="0"/>
+        <otherSearch value="0"/>
+        <otherAlbum value="0"/>
+        <otherInfo value="0"/>
+    </otherSetting>
+    <backgroundSetting>
         <bgTheme value="theme-15"/>
         <bgTransparent value="100"/>
         <bgListTransparent value="33"/>
-    </backgroundSkin>
-    <hotkey>
+    </backgroundSetting>
+    <hotkeySetting>
         <hotkeyEnable value="0"/>
         <hotkeyString value=""/>
-    </hotkey>
-    <inlineLrc>
+    </hotkeySetting>
+    <inlineLrcSetting>
         <showInlineLrc value="1"/>
-        <lrcColor value="-1"/>
-        <lrcSize value="17"/>
+        <lrcColor value="0"/>
+        <lrcSize value="18"/>
         <lrcFamily value="0"/>
         <lrcType value="1"/>
         <lrcTransparent value="99"/>
         <lrcFgColor value="255,24,39"/>
         <lrcBgColor value="204,255,34"/>
-    </inlineLrc>
-    <desktopLrc>
+    </inlineLrcSetting>
+    <desktopLrcSetting>
         <showDesktopLrc value="0"/>
-        <lrcDColor value="-1"/>
+        <lrcDColor value="10"/>
         <lrcDSize value="36"/>
         <lrcDFamily value="0"/>
         <lrcDType value="1"/>
@@ -47,8 +54,8 @@
         <lrcDSingleLineType value="0"/>
         <lrcDLocked value="0"/>
         <lrcDGeometry value="178,415"/>
-    </desktopLrc>
-    <equalizer>
+    </desktopLrcSetting>
+    <equalizerSetting>
         <enhancedMusic value="3"/>
         <equalizerEnale value="0"/>
         <equalizerIndex value="5"/>
@@ -62,8 +69,8 @@
         <enhancedStereo value="0"/>
         <enhancedLADSPA value="0"/>
         <enhancedSOX value="0"/>
-    </equalizer>
-    <timeSettings>
+    </equalizerSetting>
+    <timeSetting>
         <timeAutoIndex value="2"/>
         <timeAutoPlay value="1"/>
         <timeAutoPlayHour value="20"/>
@@ -79,8 +86,8 @@
         <timeAutoShutdownHour value="1"/>
         <timeAutoShutdownSecond value="54"/>
         <timeAutoShutdownRepeat value="0"/>
-    </timeSettings>
-    <downloads>
+    </timeSetting>
+    <downloadSetting>
         <downloadMusicPath value=""/>
         <downloadLrcPath value=""/>
         <downloadCacheLimit value="1"/>
@@ -89,5 +96,5 @@
         <downloadServer value="0"/>
         <downloadDLoadLimit value="100"/>
         <downloadULoadLimit value="100"/>
-    </downloads>
+    </downloadSetting>
 </TTKMusicPlayer>

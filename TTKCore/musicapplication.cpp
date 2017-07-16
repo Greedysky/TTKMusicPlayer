@@ -33,8 +33,8 @@ MusicApplication::MusicApplication(QWidget *parent)
 {
     m_instance = this;
     m_applicationObject = new MusicApplicationObject(this);
-    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
+    m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_rightAreaWidget = new MusicRightAreaWidget(this);
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
     ////////////////////////////////////////////////
@@ -779,7 +779,6 @@ void MusicApplication::musicCreateRightMenu()
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));
-    rightClickMenu.addAction(tr("AudioRecorder"), m_applicationObject, SLOT(musicAudioRecorder()));
     rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
     QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
     spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
@@ -1111,6 +1110,12 @@ void MusicApplication::readXMLConfigFromText()
     m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
                                    xml.readBackgroundTransparent().toInt(),
                                    xml.readBackgroundListTransparent().toInt());
+    //////////////////////////////////////////////////////////////
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, xml.readOtherBgLossless().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, xml.readOtherUpdate().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, xml.readOtherSearch().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, xml.readOtherAlbum().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, xml.readOtherInfo().toInt());
     //////////////////////////////////////////////////////////////
     //Configuration from next time also stopped at the last record.
     QStringList keyList;

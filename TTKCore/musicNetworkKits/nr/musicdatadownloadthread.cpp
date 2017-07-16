@@ -1,5 +1,6 @@
 #include "musicdatadownloadthread.h"
 #include "musicconnectionpool.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
@@ -116,11 +117,18 @@ void MusicDataDownloadThread::downLoadReadyRead()
 void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 {
     MusicDownLoadThreadAbstract::downloadProgress(bytesReceived, bytesTotal);
-    /// only download music data can that show progress
+    /// only download music data or oather type can that show progress
     if(m_downloadType == Download_Music || m_downloadType == Download_Other)
     {
-        QString total = QString::number(bytesTotal*1.0/MH_MB2B);
-        total = total.left(total.indexOf(".") + 3) + "M";
+        QString total = MusicUtils::Number::size2Label(bytesTotal);
         emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
     }
+}
+
+void MusicDataDownloadThread::updateDownloadSpeed()
+{
+    QString label = MusicUtils::Number::speed2Label(m_currentReceived - m_hasReceived);
+    qint64 time = (m_totalSize - m_currentReceived)/(m_currentReceived - m_hasReceived);
+    emit downloadSpeedLabelChanged(label, time);
+    MusicDownLoadThreadAbstract::updateDownloadSpeed();
 }

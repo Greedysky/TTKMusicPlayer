@@ -1,14 +1,111 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
-#include "musicclickedlabel.h"
 #include "musicinlinefloatuiobject.h"
 #include "musicleftareawidget.h"
 
 #include <qmath.h>
+#include <QMenu>
 #include <QTimer>
 #include <QCheckBox>
 #include <QPushButton>
-#include <QButtonGroup>
+#include <QFileDialog>
+
+#define PHOTO_WIDTH     110
+#define PHOTO_HEIGHT    65
+#define PHOTO_PERLINE   3
+
+MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
+    : MusicClickedLabel(parent)
+{
+    resize(PHOTO_WIDTH, PHOTO_HEIGHT);
+
+    m_index = index;
+    m_checkBox = new QCheckBox(this);
+    m_checkBox->setGeometry(90, 45, 20, 20);
+    m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    connect(this, SIGNAL(clicked()), SLOT(sendUserSelectArt()));
+    connect(m_checkBox, SIGNAL(clicked()), SLOT(sendUserBoxClicked()));
+}
+
+MusicLrcFloatPhotoItem::~MusicLrcFloatPhotoItem()
+{
+    delete m_checkBox;
+}
+
+QString MusicLrcFloatPhotoItem::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
+{
+    m_pixPath = path;
+
+    QPixmap pix;
+    if(m_pixPath.isEmpty())
+    {
+        pix.fill(Qt::black);
+    }
+    else
+    {
+        pix.load(m_pixPath);
+        pix = pix.scaled(size());
+    }
+    setPixmap(pix);
+}
+
+void MusicLrcFloatPhotoItem::setBoxChecked(bool check)
+{
+    m_checkBox->setChecked(check);
+}
+
+bool MusicLrcFloatPhotoItem::boxChecked()
+{
+    return m_checkBox->isChecked();
+}
+
+void MusicLrcFloatPhotoItem::setBoxVisible(bool v)
+{
+    m_checkBox->setVisible(v);
+}
+
+void MusicLrcFloatPhotoItem::sendUserBoxClicked()
+{
+    emit boxClicked(m_index);
+}
+
+void MusicLrcFloatPhotoItem::sendUserSelectArt()
+{
+    if(!pixmap()->isNull())
+    {
+        emit itemClicked(m_index);
+    }
+}
+
+void MusicLrcFloatPhotoItem::exportArtPixmap()
+{
+    QString filename = QFileDialog::getSaveFileName( this,
+        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    if(!filename.isEmpty())
+    {
+        QPixmap pix(m_pixPath);
+        pix.save(filename, "jpg");
+    }
+}
+
+void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicClickedLabel::contextMenuEvent(event);
+    if(!pixmap()->isNull())
+    {
+        QMenu menu(this);
+        menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+        menu.addAction(tr("Export"), this, SLOT(exportArtPixmap()));
+        menu.exec(QCursor::pos());
+    }
+}
+
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
@@ -17,25 +114,20 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MBackgroundStyle08));
 
     m_filmBGWidget = new QWidget(this);
+    m_filmBGWidget->setObjectName("FilmBGWidget");
     m_filmBGWidget->setGeometry(0, 0, 662, 125);
-    m_filmBGWidget->setStyleSheet("background-image:url(':/lrc/lb_film_bg');");
+    m_filmBGWidget->setStyleSheet("#FilmBGWidget{background-image:url(':/lrc/lb_film_bg');}");
 
-    m_plane1 = new MusicClickedLabel(m_filmBGWidget);
-    m_plane1->setGeometry(100, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane2 = new MusicClickedLabel(m_filmBGWidget);
-    m_plane2->setGeometry(280, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-    m_plane3 = new MusicClickedLabel(m_filmBGWidget);
-    m_plane3->setGeometry(460, 30, PHOTO_WIDTH, PHOTO_HEIGHT);
-
-    m_radio1 = new QCheckBox(m_filmBGWidget);
-    m_radio1->setGeometry(190, 75, 20, 20);
-    m_radio1->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_radio2 = new QCheckBox(m_filmBGWidget);
-    m_radio2->setGeometry(370, 75, 20, 20);
-    m_radio2->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_radio3 = new QCheckBox(m_filmBGWidget);
-    m_radio3->setGeometry(550, 75, 20, 20);
-    m_radio3->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    MusicLrcFloatPhotoItem *item;
+    item = new MusicLrcFloatPhotoItem(0, m_filmBGWidget);
+    item->move(100, 30);
+    m_planes << item;
+    item = new MusicLrcFloatPhotoItem(1, m_filmBGWidget);
+    item->move(280, 30);
+    m_planes << item;
+    item = new MusicLrcFloatPhotoItem(2, m_filmBGWidget);
+    item->move(460, 30);
+    m_planes << item;
 
     m_checkBox = new QCheckBox(tr("All"), this);
     m_checkBox->setGeometry(20, 130, 100, 20);
@@ -63,28 +155,21 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     connect(m_confirmButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
     connect(m_previous, SIGNAL(clicked()), SLOT(photoPrevious()));
     connect(m_next, SIGNAL(clicked()), SLOT(photoNext()));
-    connect(m_plane1, SIGNAL(clicked()), SLOT(sendUserSelectArtBg1()));
-    connect(m_plane2, SIGNAL(clicked()), SLOT(sendUserSelectArtBg2()));
-    connect(m_plane3, SIGNAL(clicked()), SLOT(sendUserSelectArtBg3()));
-
-    QButtonGroup *radioGroup = new QButtonGroup(this);
-    radioGroup->setExclusive(false);
-    radioGroup->addButton(m_radio1, 0);
-    radioGroup->addButton(m_radio2, 1);
-    radioGroup->addButton(m_radio3, 2);
-    connect(radioGroup, SIGNAL(buttonClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
+    foreach(MusicLrcFloatPhotoItem *item, m_planes)
+    {
+        connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBg(int)));
+        connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
+    }
     connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SLOT(artHasChanged()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
 }
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 {
-    delete m_radio1;
-    delete m_radio2;
-    delete m_radio3;
-    delete m_plane1;
-    delete m_plane2;
-    delete m_plane3;
+    while(!m_planes.isEmpty())
+    {
+        delete m_planes.takeLast();
+    }
     delete m_previous;
     delete m_next;
     delete m_confirmButton;
@@ -130,7 +215,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
-    M_BACKGROUND_PTR->setArtPhotoPaths(list);
+    M_BACKGROUND_PTR->setArtPhotoPathList(list);
     close();
 }
 
@@ -140,23 +225,14 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
     m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
 
-    QPixmap nullPix;
-    nullPix.fill(Qt::black);
-    //check show pixmap
     int indexCheck = m_currentIndex * PHOTO_PERLINE;
-    m_plane1->setPixmap( (indexCheck + 0) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 0] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
-    m_plane2->setPixmap( (indexCheck + 1) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 1] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
-    m_plane3->setPixmap( (indexCheck + 2) < m_artPath.count() ? QPixmap( m_artPath[indexCheck + 2] )
-                                           .scaled(PHOTO_WIDTH, PHOTO_HEIGHT): nullPix );
-    //check show radio button
-    m_radio1->setChecked( m_selectNum.contains(indexCheck + 0) );
-    m_radio2->setChecked( m_selectNum.contains(indexCheck + 1) );
-    m_radio3->setChecked( m_selectNum.contains(indexCheck + 2) );
-    m_radio1->setVisible( (indexCheck + 0) < m_artPath.count() );
-    m_radio2->setVisible( (indexCheck + 1) < m_artPath.count() );
-    m_radio3->setVisible( (indexCheck + 2) < m_artPath.count() );
+    for(int i=0; i<m_planes.count(); ++i)
+    {
+        m_planes[i]->setPhoto( (indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString() );
+        //check show radio button
+        m_planes[i]->setBoxChecked( m_selectNum.contains(indexCheck + i) );
+        m_planes[i]->setBoxVisible( (indexCheck + i) < m_artPath.count() );
+    }
 }
 
 void MusicLrcFloatPhotoWidget::photoPrevious()
@@ -171,7 +247,7 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
 void MusicLrcFloatPhotoWidget::artHasChanged()
 {
     m_selectNum.clear();
-    m_artPath = M_BACKGROUND_PTR->getArtPhotoPaths();
+    m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;
@@ -188,31 +264,19 @@ void MusicLrcFloatPhotoWidget::photoNext()
     showPhoto();
 }
 
-void MusicLrcFloatPhotoWidget::sendUserSelectArtBg1()
+void MusicLrcFloatPhotoWidget::sendUserSelectArtBg(int index)
 {
-    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 0);
-}
-
-void MusicLrcFloatPhotoWidget::sendUserSelectArtBg2()
-{
-    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 1);
-}
-
-void MusicLrcFloatPhotoWidget::sendUserSelectArtBg3()
-{
-    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + 2);
+    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)
 {
     bool status = true;
-    switch(index)
+    if(-1 < index && index < m_planes.count())
     {
-        case 0: status = m_radio1->isChecked(); break;
-        case 1: status = m_radio2->isChecked(); break;
-        case 2: status = m_radio3->isChecked(); break;
-        default: break;
+        status = m_planes[index]->boxChecked();
     }
+
     index = m_currentIndex * PHOTO_PERLINE + index;
     if(status)
     {
@@ -238,9 +302,10 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
     }
     else
     {
-        m_radio1->setChecked(false);
-        m_radio2->setChecked(false);
-        m_radio3->setChecked(false);
+        foreach(MusicLrcFloatPhotoItem *item, m_planes)
+        {
+            item->setBoxChecked(false);
+        }
         m_selectNum.clear();
     }
 }

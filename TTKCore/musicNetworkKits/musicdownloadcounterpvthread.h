@@ -1,5 +1,5 @@
-#ifndef MUSICCOUNTERPVDOWNLOADTHREAD_H
-#define MUSICCOUNTERPVDOWNLOADTHREAD_H
+#ifndef MUSICDOWNLOADCOUNTERPVTHREAD_H
+#define MUSICDOWNLOADCOUNTERPVTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,15 +19,15 @@ const QString COOKIE_URL = "cWpxdUI0YmIyNDdOcWp6TWZvMy9hYkdNN25UYVdpdStSUEV6Q3Zp
 /*! @brief The class of get counter pv of player.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicCounterPVDownloadThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownloadCounterPVThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicCounterPVDownloadThread(QObject *parent = 0);
+    explicit MusicDownloadCounterPVThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicCounterPVDownloadThread();
+    virtual ~MusicDownloadCounterPVThread();
 
     static QString getClassName();
     /*!
@@ -45,4 +45,4 @@ public Q_SLOTS:
      */
 };
 
-#endif // MUSICCOUNTERPVDOWNLOADTHREAD_H
+#endif // MUSICDOWNLOADCOUNTERPVTHREAD_H

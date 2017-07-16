@@ -19,6 +19,7 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWid
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
     m_textLabel->setGeometry(0, 0, 40, 20);
     m_textLabel->setAlignment(Qt::AlignCenter);
+    m_textLabel->setFocusPolicy(Qt::NoFocus);
     m_textLabel->setStyleSheet(MusicUIObject::MLabelStyle01);
 }
 
@@ -45,6 +46,9 @@ void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
     MusicClickedSlider::mousePressEvent(event);
     m_isMoving = false;
     emit sliderMoved( m_value );
+#ifdef Q_OS_UNIX
+    m_textLabel->show();
+#endif
     m_textLabel->raise();
 }
 
@@ -85,7 +89,9 @@ void MusicMovingLabelSlider::mouseReleaseEvent(QMouseEvent *event)
 void MusicMovingLabelSlider::enterEvent(QEvent *event)
 {
     MusicClickedSlider::enterEvent(event);
+#ifndef Q_OS_UNIX
     m_textLabel->show();
+#endif
 }
 
 void MusicMovingLabelSlider::leaveEvent(QEvent *event)

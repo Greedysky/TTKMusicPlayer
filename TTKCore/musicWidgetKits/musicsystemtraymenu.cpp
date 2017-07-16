@@ -5,6 +5,7 @@
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicrightareawidget.h"
+#include "musictopareawidget.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -20,10 +21,14 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
+    m_loginAction = new QAction(QIcon(":/contextMenu/btn_login"), QString("Sdfsdfsdf"), this);
+    connect(m_loginAction, SIGNAL(triggered()), MusicTopAreaWidget::instance(), SLOT(musicUserContextLogin()));
 
+#ifndef Q_OS_UNIX
     createPlayWidgetActions();
     addSeparator();
     createVolumeWidgetActions();
+#endif
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
@@ -31,18 +36,21 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addSeparator();
     addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addSeparator();
-    addAction(QIcon(":/contextMenu/btn_login"), tr("logout"));
+    addAction(m_loginAction);
     addAction(tr("appClose"), parent, SLOT(quitWindowClose()));
 }
 
 MusicSystemTrayMenu::~MusicSystemTrayMenu()
 {
+#ifndef Q_OS_UNIX
     delete m_showText;
     delete m_PlayOrStop;
     delete m_volumeButton;
+    delete m_volumeSlider;
+#endif
     delete m_showLrcAction;
     delete m_lockLrcAction;
-    delete m_volumeSlider;
+    delete m_loginAction;
 }
 
 QString MusicSystemTrayMenu::getClassName()
@@ -52,8 +60,12 @@ QString MusicSystemTrayMenu::getClassName()
 
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
+#ifndef Q_OS_UNIX
     m_showText->setText(MusicUtils::Widget::elidedText(font(), text, Qt::ElideRight, 160));
     m_showText->setToolTip(text);
+#else
+    Q_UNUSED(text);
+#endif
 }
 
 void MusicSystemTrayMenu::showDesktopLrc(bool show) const
@@ -74,11 +86,16 @@ void MusicSystemTrayMenu::setWindowLockedChanged()
 
 void MusicSystemTrayMenu::showPlayStatus(bool status) const
 {
+#ifndef Q_OS_UNIX
     m_PlayOrStop->setStyleSheet(status ? MusicUIObject::MKGContextPlay : MusicUIObject::MKGContextPause);
+#else
+    Q_UNUSED(status);
+#endif
 }
 
 void MusicSystemTrayMenu::setVolumeValue(int value) const
 {
+#ifndef Q_OS_UNIX
     m_volumeSlider->blockSignals(true);
     m_volumeSlider->setValue(value);
     m_volumeSlider->blockSignals(false);
@@ -101,6 +118,9 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
         style += "QToolButton{ margin-left:-64px; }";
     }
     m_volumeButton->setStyleSheet(style);
+#else
+    Q_UNUSED(value);
+#endif
 }
 
 void MusicSystemTrayMenu::showDesktopLrc()
@@ -109,6 +129,13 @@ void MusicSystemTrayMenu::showDesktopLrc()
     m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
     m_lockLrcAction->setEnabled(show);
     MusicRightAreaWidget::instance()->setDestopLrcVisible(show);
+}
+
+void MusicSystemTrayMenu::showEvent(QShowEvent *event)
+{
+    QMenu::showEvent(event);
+    bool state = MusicTopAreaWidget::instance()->getUserLoginState();
+    m_loginAction->setText(state ? tr("logout") : tr("login"));
 }
 
 void MusicSystemTrayMenu::createPlayWidgetActions()

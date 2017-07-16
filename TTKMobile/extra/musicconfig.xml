@@ -5,7 +5,7 @@
         <playMode value="2"/>
         <playVolume value="100"/>
         <lastPlayIndex value="1">0,-1</lastPlayIndex>
-        <WifiConnect value="0"/>
+        <wifiConnect value="0"/>
     </music>
     <equalizer>
         <enhancedMusic value="1"/>

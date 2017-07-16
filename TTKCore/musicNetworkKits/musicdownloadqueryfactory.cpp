@@ -51,6 +51,9 @@
 #include "musickwtextdownloadthread.h"
 #include "musicqqtextdownloadthread.h"
 
+#include "musickwbackgroundthread.h"
+#include "musicqqbackgroundthread.h"
+
 QString MusicDownLoadQueryFactory::getClassName()
 {
     return "MusicDownLoadQueryFactory";
@@ -194,4 +197,18 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(con
         case 5: return (new MusicTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));
+}
+
+MusicDownloadBackgroundThread *MusicDownLoadQueryFactory::getDownloadBigPicThread(const QString &name, const QString &save,
+                                                                                  QObject *parent)
+{
+    bool ll = M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toBool();
+    if(ll)
+    {
+        return (new MusicQQBackgroundThread(name, save, parent));
+    }
+    else
+    {
+        return (new MusicKWBackgroundThread(name, save, parent));
+    }
 }

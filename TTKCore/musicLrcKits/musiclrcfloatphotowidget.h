@@ -9,15 +9,83 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicclickedlabel.h"
 #include "musicfloatabstractwidget.h"
 
-#define PHOTO_WIDTH     110
-#define PHOTO_HEIGHT    65
-#define PHOTO_PERLINE   3
-
-class QPushButton;
 class QCheckBox;
-class MusicClickedLabel;
+class QPushButton;
+
+/*! @brief The class of the lrc photo float pixmap item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLrcFloatPhotoItem : public MusicClickedLabel
+{
+    Q_OBJECT
+public:
+    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicLrcFloatPhotoItem();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void setPhoto(const QString &path);
+    /*!
+     * Set photo path and pix.
+     */
+    void setBoxChecked(bool check);
+    /*!
+     * Set check box checked state.
+     */
+    bool boxChecked();
+    /*!
+     * Get check box checked state.
+     */
+    void setBoxVisible(bool v);
+    /*!
+     * Set check box vidible.
+     */
+
+Q_SIGNALS:
+    void itemClicked(int index);
+    /*!
+     * Current plane item clicked.
+     */
+    void boxClicked(int index);
+    /*!
+     * Current check box clicked.
+     */
+
+public Q_SLOTS:
+    void sendUserBoxClicked();
+    /*!
+     * User selected the check box state.
+     */
+    void sendUserSelectArt();
+    /*!
+     * User selected the plane pic.
+     */
+    void exportArtPixmap();
+    /*!
+     * Export art pixmap.
+     */
+
+protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    int m_index;
+    QString m_pixPath;
+    QCheckBox *m_checkBox;
+
+};
+
 
 /*! @brief The class of the lrc photo float widget.
  * @author Greedysky <greedysky@163.com>
@@ -70,17 +138,9 @@ public Q_SLOTS:
     /*!
      * Update current artist pic.
      */
-    void sendUserSelectArtBg1();
+    void sendUserSelectArtBg(int index);
     /*!
-     * User selected the first plane pic.
-     */
-    void sendUserSelectArtBg2();
-    /*!
-     * User selected the second plane pic.
-     */
-    void sendUserSelectArtBg3();
-    /*!
-     * User selected the third plane pic.
+     * User selected the plane pic.
      */
     void userSelectCheckBoxChecked(int index);
     /*!
@@ -108,8 +168,7 @@ protected:
     QWidget *m_filmBGWidget;
     QCheckBox *m_checkBox;
     QPushButton *m_previous, *m_next, *m_confirmButton;
-    MusicClickedLabel *m_plane1, *m_plane2, *m_plane3;
-    QCheckBox *m_radio1, *m_radio2, *m_radio3;
+    QList<MusicLrcFloatPhotoItem*> m_planes;
 
 };
 

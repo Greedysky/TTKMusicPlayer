@@ -86,6 +86,13 @@ void MusicXMLConfigManager::writeXMLConfig()
     int remoteWidgetModeChoiced = M_SETTING_PTR->value(MusicSettingManager::RemoteWidgetModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
+    int otherBgLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toInt();
+    int otherUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toInt();
+    int otherSearchChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toInt();
+    int otherAlbumChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toInt();
+    int otherInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toInt();
+
+    ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
     QString bgTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toString();
     QString bgListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toString();
@@ -170,106 +177,114 @@ void MusicXMLConfigManager::writeXMLConfig()
     createProcessingInstruction();
     QDomElement musicPlayerDom = createRoot("TTKMusicPlayer");
     //Class A
-    QDomElement musicDom = writeDom(musicPlayerDom, "music");
-    QDomElement settingsDom = writeDom(musicPlayerDom, "settings");
-    QDomElement backgroundSkinDom = writeDom(musicPlayerDom, "backgroundSkin");
-    QDomElement hotkeyDom = writeDom(musicPlayerDom, "hotkey");
-    QDomElement showLrcDom = writeDom(musicPlayerDom, "inlineLrc");
-    QDomElement showDLrcDom = writeDom(musicPlayerDom, "desktopLrc");
-    QDomElement equalizerDom = writeDom(musicPlayerDom, "equalizer");
-    QDomElement timeSettingsDom = writeDom(musicPlayerDom, "timeSettings");
-    QDomElement downloadsDom = writeDom(musicPlayerDom, "downloads");
+    QDomElement musicSetting = writeDom(musicPlayerDom, "musicSetting");
+    QDomElement plusSettingDom = writeDom(musicPlayerDom, "plusSetting");
+    QDomElement otherSettingDom = writeDom(musicPlayerDom, "otherSetting");
+    QDomElement backgroundSettingDom = writeDom(musicPlayerDom, "backgroundSetting");
+    QDomElement hotkeySettingDom = writeDom(musicPlayerDom, "hotkeySetting");
+    QDomElement inlineLrcSettingDom = writeDom(musicPlayerDom, "inlineLrcSetting");
+    QDomElement desktopLrcSettingDom = writeDom(musicPlayerDom, "desktopLrcSetting");
+    QDomElement equalizerSettingDom = writeDom(musicPlayerDom, "equalizerSetting");
+    QDomElement timeSettingDom = writeDom(musicPlayerDom, "timeSetting");
+    QDomElement downloadSettingDom = writeDom(musicPlayerDom, "downloadSetting");
     //Class B
-    writeDomElement(musicDom, "playMode", MusicXmlAttribute("value", playModeChoiced));
-    writeDomElement(musicDom, "playVolume", MusicXmlAttribute("value", volumeChoiced));
-    writeDomElementText(musicDom, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndexChoiced[0]),
+    writeDomElement(musicSetting, "playMode", MusicXmlAttribute("value", playModeChoiced));
+    writeDomElement(musicSetting, "playVolume", MusicXmlAttribute("value", volumeChoiced));
+    writeDomElementText(musicSetting, "lastPlayIndex", MusicXmlAttribute("value", lastPlayIndexChoiced[0]),
                         QString("%1,%2").arg(lastPlayIndexChoiced[1]).arg(lastPlayIndexChoiced[2]));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(settingsDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPositionChoiced.x())
+    writeDomElement(plusSettingDom, "geometry", MusicXmlAttribute("value", QString("%1,%2,%3,%4").arg(widgetPositionChoiced.x())
                     .arg(widgetPositionChoiced.y()).arg(widgetSizeChoiced.width()).arg(widgetSizeChoiced.height())));
-    writeDomElement(settingsDom, "language", MusicXmlAttribute("value", languageIndexChoiced));
-    writeDomElement(settingsDom, "autoPlay", MusicXmlAttribute("value", autoPlayChoiced));
-    writeDomElement(settingsDom, "closeEvent", MusicXmlAttribute("value", closeEventChoiced));
-    writeDomElement(settingsDom, "closeNetwork", MusicXmlAttribute("value", closeNetWorkChoiced));
-    writeDomElement(settingsDom, "fileAssociation", MusicXmlAttribute("value", fileAssociationChoiced));
-    writeDomElement(settingsDom, "windowConcise", MusicXmlAttribute("value", windowConciseChoiced));
-    writeDomElement(settingsDom, "remoteWidgetMode", MusicXmlAttribute("value", remoteWidgetModeChoiced));
+    writeDomElement(plusSettingDom, "language", MusicXmlAttribute("value", languageIndexChoiced));
+    writeDomElement(plusSettingDom, "autoPlay", MusicXmlAttribute("value", autoPlayChoiced));
+    writeDomElement(plusSettingDom, "closeEvent", MusicXmlAttribute("value", closeEventChoiced));
+    writeDomElement(plusSettingDom, "closeNetwork", MusicXmlAttribute("value", closeNetWorkChoiced));
+    writeDomElement(plusSettingDom, "fileAssociation", MusicXmlAttribute("value", fileAssociationChoiced));
+    writeDomElement(plusSettingDom, "windowConcise", MusicXmlAttribute("value", windowConciseChoiced));
+    writeDomElement(plusSettingDom, "remoteWidgetMode", MusicXmlAttribute("value", remoteWidgetModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(backgroundSkinDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
-    writeDomElement(backgroundSkinDom, "bgTransparent", MusicXmlAttribute("value", bgTransparentChoiced));
-    writeDomElement(backgroundSkinDom, "bgListTransparent", MusicXmlAttribute("value", bgListTransparentChoiced));
+    writeDomElement(otherSettingDom, "otherBgLossless", MusicXmlAttribute("value", otherBgLosslessChoiced));
+    writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherUpdateChoiced));
+    writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearchChoiced));
+    writeDomElement(otherSettingDom, "otherAlbum", MusicXmlAttribute("value", otherAlbumChoiced));
+    writeDomElement(otherSettingDom, "otherInfo", MusicXmlAttribute("value", otherInfoChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(hotkeyDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnableChoiced));
-    writeDomElement(hotkeyDom, "hotkeyString", MusicXmlAttribute("value", hotkeyStringChoiced));
-
-    ///////////////////////////////////////////////
-    writeDomElement(showLrcDom, "showInlineLrc", MusicXmlAttribute("value", showInlineLrcChoiced));
-    writeDomElement(showLrcDom, "lrcColor", MusicXmlAttribute("value", lrcColorChoiced));
-    writeDomElement(showLrcDom, "lrcSize", MusicXmlAttribute("value", lrcSizeChoiced));
-    writeDomElement(showLrcDom, "lrcFamily", MusicXmlAttribute("value", lrcFamilyChoiced));
-    writeDomElement(showLrcDom, "lrcType", MusicXmlAttribute("value", lrcTypeChoiced));
-    writeDomElement(showLrcDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparentChoiced));
-    writeDomElement(showLrcDom, "lrcFgColor", MusicXmlAttribute("value", lrcFgColorChoiced));
-    writeDomElement(showLrcDom, "lrcBgColor", MusicXmlAttribute("value", lrcBgColorChoiced));
-
-    ///////////////////////////////////////////////
-    writeDomElement(showDLrcDom, "showDesktopLrc", MusicXmlAttribute("value", showDesktopLrcChoiced));
-    writeDomElement(showDLrcDom, "lrcDColor", MusicXmlAttribute("value", DLrcColorChoiced));
-    writeDomElement(showDLrcDom, "lrcDSize", MusicXmlAttribute("value", DLrcSizeChoiced));
-    writeDomElement(showDLrcDom, "lrcDFamily", MusicXmlAttribute("value", DLrcFamilyChoiced));
-    writeDomElement(showDLrcDom, "lrcDType", MusicXmlAttribute("value", DLrcTypeChoiced));
-    writeDomElement(showDLrcDom, "lrcDTransparent", MusicXmlAttribute("value", DLrcTransparentChoiced));
-    writeDomElement(showDLrcDom, "lrcDFgColor", MusicXmlAttribute("value", DLrcFgColorChoiced));
-    writeDomElement(showDLrcDom, "lrcDBgColor", MusicXmlAttribute("value", DLrcBgColorChoiced));
-    writeDomElement(showDLrcDom, "lrcDWindowType", MusicXmlAttribute("value", DLrcWindowTypeChoiced));
-    writeDomElement(showDLrcDom, "lrcDSingleLineType", MusicXmlAttribute("value", DLrcSingleLineTypeChoiced));
-    writeDomElement(showDLrcDom, "lrcDLocked", MusicXmlAttribute("value", DLrcLockedChoiced));
-    writeDomElement(showDLrcDom, "lrcDGeometry", MusicXmlAttribute("value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())));
-
-    ///////////////////////////////////////////////
-    writeDomElement(equalizerDom, "enhancedMusic", MusicXmlAttribute("value", enhancedMusicChoiced));
-    writeDomElement(equalizerDom, "equalizerEnable", MusicXmlAttribute("value", equalizerEnableChoiced));
-    writeDomElement(equalizerDom, "equalizerIndex", MusicXmlAttribute("value", equalizerIndexChoiced));
-    writeDomElement(equalizerDom, "equalizerValue", MusicXmlAttribute("value", equalizerValueChoiced));
-    writeDomElement(equalizerDom, "enhancedBalance", MusicXmlAttribute("value", enhancedBalanceChoiced));
-    writeDomElement(equalizerDom, "enhancedFadeEnable", MusicXmlAttribute("value", enhancedFadeEnableChoiced));
-    writeDomElement(equalizerDom, "enhancedFadeInValue", MusicXmlAttribute("value", enhancedFadeInValueChoiced));
-    writeDomElement(equalizerDom, "enhancedFadeOutValue", MusicXmlAttribute("value", enhancedFadeOutValueChoiced));
-    writeDomElement(equalizerDom, "enhancedBS2B", MusicXmlAttribute("value", enhancedBS2BChoiced));
-    writeDomElement(equalizerDom, "enhancedCrossfade", MusicXmlAttribute("value", enhancedCrossfadeChoiced));
-    writeDomElement(equalizerDom, "enhancedStereo", MusicXmlAttribute("value", enhancedStereoChoiced));
-    writeDomElement(equalizerDom, "enhancedLADSPA", MusicXmlAttribute("value", enhancedLADSPAChoiced));
-    writeDomElement(equalizerDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOXChoiced));
+    writeDomElement(backgroundSettingDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
+    writeDomElement(backgroundSettingDom, "bgTransparent", MusicXmlAttribute("value", bgTransparentChoiced));
+    writeDomElement(backgroundSettingDom, "bgListTransparent", MusicXmlAttribute("value", bgListTransparentChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(timeSettingsDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndexChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlay", MusicXmlAttribute("value", timeAutoPlayChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlayHour", MusicXmlAttribute("value", timeAutoPlayHourChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlaySecond", MusicXmlAttribute("value", timeAutoPlaySecondChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlayRepeat", MusicXmlAttribute("value", timeAutoPlayRepeatChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlayItemIndex", MusicXmlAttribute("value", timeAutoPlayItemIndexChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoPlaySongIndex", MusicXmlAttribute("value", timeAutoPlaySongIndexChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoStop", MusicXmlAttribute("value", timeAutoStopChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoStopHour", MusicXmlAttribute("value", timeAutoStopHourChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoStopSecond", MusicXmlAttribute("value", timeAutoStopSecondChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoStopRepeat", MusicXmlAttribute("value", timeAutoStopRepeatChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoShutdown", MusicXmlAttribute("value", timeAutoShutdownChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoShutdownHour", MusicXmlAttribute("value", timeAutoShutdownHourChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoShutdownSecond", MusicXmlAttribute("value", timeAutoShutdownSecondChoiced));
-    writeDomElement(timeSettingsDom, "timeAutoShutdownRepeat", MusicXmlAttribute("value", timeAutoShutdownRepeatChoiced));
+    writeDomElement(hotkeySettingDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnableChoiced));
+    writeDomElement(hotkeySettingDom, "hotkeyString", MusicXmlAttribute("value", hotkeyStringChoiced));
 
     ///////////////////////////////////////////////
-    writeDomElement(downloadsDom, "downloadMusicPath", MusicXmlAttribute("value", downloadMusicPath));
-    writeDomElement(downloadsDom, "downloadLrcPath", MusicXmlAttribute("value", downloadLrcPath));
-    writeDomElement(downloadsDom, "downloadCacheLimit", MusicXmlAttribute("value", downloadCacheLimit));
-    writeDomElement(downloadsDom, "downloadCacheSize", MusicXmlAttribute("value", downloadCacheSize));
-    writeDomElement(downloadsDom, "downloadLimit", MusicXmlAttribute("value", downloadLimit));
-    writeDomElement(downloadsDom, "downloadServer", MusicXmlAttribute("value", downloadServer));
-    writeDomElement(downloadsDom, "downloadDLoadLimit", MusicXmlAttribute("value", downloadDLoadLimit));
-    writeDomElement(downloadsDom, "downloadULoadLimit", MusicXmlAttribute("value", downloadULoadLimit));
+    writeDomElement(inlineLrcSettingDom, "showInlineLrc", MusicXmlAttribute("value", showInlineLrcChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcColor", MusicXmlAttribute("value", lrcColorChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcSize", MusicXmlAttribute("value", lrcSizeChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcFamily", MusicXmlAttribute("value", lrcFamilyChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcType", MusicXmlAttribute("value", lrcTypeChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparentChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcFgColor", MusicXmlAttribute("value", lrcFgColorChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcBgColor", MusicXmlAttribute("value", lrcBgColorChoiced));
+
+    ///////////////////////////////////////////////
+    writeDomElement(desktopLrcSettingDom, "showDesktopLrc", MusicXmlAttribute("value", showDesktopLrcChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDColor", MusicXmlAttribute("value", DLrcColorChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDSize", MusicXmlAttribute("value", DLrcSizeChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDFamily", MusicXmlAttribute("value", DLrcFamilyChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDType", MusicXmlAttribute("value", DLrcTypeChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDTransparent", MusicXmlAttribute("value", DLrcTransparentChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDFgColor", MusicXmlAttribute("value", DLrcFgColorChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDBgColor", MusicXmlAttribute("value", DLrcBgColorChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDWindowType", MusicXmlAttribute("value", DLrcWindowTypeChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDSingleLineType", MusicXmlAttribute("value", DLrcSingleLineTypeChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDLocked", MusicXmlAttribute("value", DLrcLockedChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDGeometry", MusicXmlAttribute("value", QString("%1,%2").arg(DLrcGeometry.x()).arg(DLrcGeometry.y())));
+
+    ///////////////////////////////////////////////
+    writeDomElement(equalizerSettingDom, "enhancedMusic", MusicXmlAttribute("value", enhancedMusicChoiced));
+    writeDomElement(equalizerSettingDom, "equalizerEnable", MusicXmlAttribute("value", equalizerEnableChoiced));
+    writeDomElement(equalizerSettingDom, "equalizerIndex", MusicXmlAttribute("value", equalizerIndexChoiced));
+    writeDomElement(equalizerSettingDom, "equalizerValue", MusicXmlAttribute("value", equalizerValueChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedBalance", MusicXmlAttribute("value", enhancedBalanceChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedFadeEnable", MusicXmlAttribute("value", enhancedFadeEnableChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedFadeInValue", MusicXmlAttribute("value", enhancedFadeInValueChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedFadeOutValue", MusicXmlAttribute("value", enhancedFadeOutValueChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedBS2B", MusicXmlAttribute("value", enhancedBS2BChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedCrossfade", MusicXmlAttribute("value", enhancedCrossfadeChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedStereo", MusicXmlAttribute("value", enhancedStereoChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedLADSPA", MusicXmlAttribute("value", enhancedLADSPAChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOXChoiced));
+
+    ///////////////////////////////////////////////////////////////////////////
+    writeDomElement(timeSettingDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndexChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlay", MusicXmlAttribute("value", timeAutoPlayChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlayHour", MusicXmlAttribute("value", timeAutoPlayHourChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlaySecond", MusicXmlAttribute("value", timeAutoPlaySecondChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlayRepeat", MusicXmlAttribute("value", timeAutoPlayRepeatChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlayItemIndex", MusicXmlAttribute("value", timeAutoPlayItemIndexChoiced));
+    writeDomElement(timeSettingDom, "timeAutoPlaySongIndex", MusicXmlAttribute("value", timeAutoPlaySongIndexChoiced));
+    writeDomElement(timeSettingDom, "timeAutoStop", MusicXmlAttribute("value", timeAutoStopChoiced));
+    writeDomElement(timeSettingDom, "timeAutoStopHour", MusicXmlAttribute("value", timeAutoStopHourChoiced));
+    writeDomElement(timeSettingDom, "timeAutoStopSecond", MusicXmlAttribute("value", timeAutoStopSecondChoiced));
+    writeDomElement(timeSettingDom, "timeAutoStopRepeat", MusicXmlAttribute("value", timeAutoStopRepeatChoiced));
+    writeDomElement(timeSettingDom, "timeAutoShutdown", MusicXmlAttribute("value", timeAutoShutdownChoiced));
+    writeDomElement(timeSettingDom, "timeAutoShutdownHour", MusicXmlAttribute("value", timeAutoShutdownHourChoiced));
+    writeDomElement(timeSettingDom, "timeAutoShutdownSecond", MusicXmlAttribute("value", timeAutoShutdownSecondChoiced));
+    writeDomElement(timeSettingDom, "timeAutoShutdownRepeat", MusicXmlAttribute("value", timeAutoShutdownRepeatChoiced));
+
+    ///////////////////////////////////////////////
+    writeDomElement(downloadSettingDom, "downloadMusicPath", MusicXmlAttribute("value", downloadMusicPath));
+    writeDomElement(downloadSettingDom, "downloadLrcPath", MusicXmlAttribute("value", downloadLrcPath));
+    writeDomElement(downloadSettingDom, "downloadCacheLimit", MusicXmlAttribute("value", downloadCacheLimit));
+    writeDomElement(downloadSettingDom, "downloadCacheSize", MusicXmlAttribute("value", downloadCacheSize));
+    writeDomElement(downloadSettingDom, "downloadLimit", MusicXmlAttribute("value", downloadLimit));
+    writeDomElement(downloadSettingDom, "downloadServer", MusicXmlAttribute("value", downloadServer));
+    writeDomElement(downloadSettingDom, "downloadDLoadLimit", MusicXmlAttribute("value", downloadDLoadLimit));
+    writeDomElement(downloadSettingDom, "downloadULoadLimit", MusicXmlAttribute("value", downloadULoadLimit));
 
     //Write to file
     QTextStream out(m_file);

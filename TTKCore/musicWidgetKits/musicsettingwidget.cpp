@@ -32,27 +32,9 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     m_listIndex = 0;
 }
 
-MusicFunctionTableWidget::~MusicFunctionTableWidget()
-{
-
-}
-
 QString MusicFunctionTableWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicFunctionTableWidget::listCellClicked(int row, int column)
-{
-    Q_UNUSED(column);
-    emit currentIndexChanged(row + m_listIndex);
-    selectRow( currentRow() );
-}
-
-void MusicFunctionTableWidget::leaveEvent(QEvent *event)
-{
-    QTableWidget::leaveEvent(event);
-    listCellEntered(-1, -1);
 }
 
 void MusicFunctionTableWidget::addFunctionItems(int index, const QStringList &icon, const QStringList &path)
@@ -74,6 +56,19 @@ void MusicFunctionTableWidget::addFunctionItems(int index, const QStringList &ic
     }
 }
 
+void MusicFunctionTableWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    emit currentIndexChanged(row + m_listIndex);
+    selectRow( currentRow() );
+}
+
+void MusicFunctionTableWidget::leaveEvent(QEvent *event)
+{
+    QTableWidget::leaveEvent(event);
+    listCellEntered(-1, -1);
+}
+
 
 MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -89,10 +84,10 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ////////////////////////////////////////////////
-    m_ui->normalFunTableWidget->setRowCount(3);
+    m_ui->normalFunTableWidget->setRowCount(4);
     m_ui->normalFunTableWidget->addFunctionItems(0,
-        QStringList() << ":/contextMenu/btn_setting" << ":/contextMenu/btn_keyboard" << ":/contextMenu/btn_download",
-        QStringList() << tr("Normal") << tr("Hotkey") << tr("Dwonload"));
+        QStringList() << ":/contextMenu/btn_setting" << ":/contextMenu/btn_keyboard" << ":/contextMenu/btn_download"  << ":/contextMenu/btn_ablum",
+        QStringList() << tr("Normal") << tr("Hotkey") << tr("Dwonload") << tr("Other"));
     m_ui->lrcFunTableWidget->setRowCount(2);
     m_ui->lrcFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount(),
         QStringList() << ":/contextMenu/btn_lrc" << ":/contextMenu/btn_desktopLrc",
@@ -117,9 +112,10 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 
     ////////////////////////////////////////////////
     initNormalSettingWidget();
-    initInlineLrcWidget();
-    initDesktopLrcWidget();
     initDownloadWidget();
+    initOtherSettingWidget();
+    initDesktopLrcWidget();
+    initInlineLrcWidget();
     initSoundEffectWidget();
     initNetworkWidget();
     ////////////////////////////////////////////////
@@ -133,6 +129,400 @@ MusicSettingWidget::~MusicSettingWidget()
 QString MusicSettingWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSettingWidget::initControllerParameter()
+{
+    //Set init parameter
+    m_ui->autoPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::AutoPlayChoiced).toBool());
+    m_ui->backPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList().first().toInt());
+    if(!M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool())
+    {
+        m_ui->minimumRadioBox->setChecked(true);
+    }
+    else
+    {
+        m_ui->quitRadioBox->setChecked(true);
+    }
+    m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
+
+    ///////////////////////////////////////////////////////////////////////////
+    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
+    if(hotkeys.count() != M_HOTKEY_PTR->count())
+    {
+        hotkeys = M_HOTKEY_PTR->getDefaultKeys();
+    }
+    m_ui->item_S2->setText(hotkeys[0]);
+    m_ui->item_S4->setText(hotkeys[1]);
+    m_ui->item_S6->setText(hotkeys[2]);
+    m_ui->item_S8->setText(hotkeys[3]);
+    m_ui->item_S10->setText(hotkeys[4]);
+    m_ui->item_S12->setText(hotkeys[5]);
+    m_ui->item_S14->setText(hotkeys[6]);
+    m_ui->item_S16->setText(hotkeys[7]);
+    m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool());
+    globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
+
+    ////////////////////////////////////////////////
+    M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toBool() ?
+                     m_ui->otherHerImgRadioBox->click() : m_ui->otherNorImgRadioBox->click();
+    m_ui->otherUpdateCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool());
+    m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toBool());
+    m_ui->otherAlbumCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool());
+    m_ui->otherInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toBool());
+
+    ////////////////////////////////////////////////
+    m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
+    m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
+    m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
+    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
+                     m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
+
+    MusicUtils::Widget::setComboboxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    MusicUtils::Widget::setComboboxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+    M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
+                     m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
+
+    ////////////////////////////////////////////////
+    //Set init parameter
+    m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
+    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
+    m_ui->showInlineCheckBox->setEnabled(false);
+
+    m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt());
+    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInlineLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt()));
+    m_ui->fontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt());
+    m_ui->fontDefaultColorComboBox->setCurrentIndex(-1);
+    if(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
+    {
+        m_ui->fontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt());
+    }
+    else
+    {
+        m_lrcSelectedFg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString());
+        m_lrcSelectedBg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBgColorChoiced).toString());
+        m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFg);
+        m_ui->noPlayedPushButton->setLinearGradient(m_lrcSelectedBg);
+        showInlineLrcDemo();
+    }
+    m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
+
+    ////////////////////////////////////////////////
+    m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
+    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
+    m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt());
+    m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
+    if(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
+    {
+        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() - LRC_COLOR_OFFSET);
+    }
+    else
+    {
+        m_DlrcSelectedFg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFgColorChoiced).toString());
+        m_DlrcSelectedBg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).toString());
+        m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFg);
+        m_ui->DnoPlayedPushButton->setLinearGradient(m_DlrcSelectedBg);
+        showDesktopLrcDemo();
+    }
+    m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+
+    ///////////////////////////////////////////////////////////////////////////
+    m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
+    m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
+    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnableChoiced).toInt())
+    {
+        m_ui->fadeInAndOutCheckBox->click();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
+    m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt() && MusicRegeditManager().isFileAssociate())
+    {
+        m_ui->setDefaultPlayerCheckBox->setChecked(true);
+        if(m_ui->setDefaultPlayerCheckBox->isChecked())
+        {
+            m_ui->setDefaultPlayerCheckBox->setEnabled(false);
+        }
+    }
+    else
+    {
+        m_ui->setDefaultPlayerCheckBox->setEnabled(true);
+        m_ui->setDefaultPlayerCheckBox->setChecked(false);
+        M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, false);
+    }
+}
+
+void MusicSettingWidget::clearFunctionTableSelection()
+{
+    m_ui->normalFunTableWidget->clearSelection();
+    m_ui->lrcFunTableWidget->clearSelection();
+    m_ui->supperFunTableWidget->clearSelection();
+}
+
+void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
+{
+    m_ui->item_S2->setEnabled(state);
+    m_ui->item_S4->setEnabled(state);
+    m_ui->item_S6->setEnabled(state);
+    m_ui->item_S8->setEnabled(state);
+    m_ui->item_S10->setEnabled(state);
+    m_ui->item_S12->setEnabled(state);
+    m_ui->item_S14->setEnabled(state);
+    m_ui->item_S16->setEnabled(state);
+}
+
+void MusicSettingWidget::downloadGroupCached(int index)
+{
+    m_ui->downloadSpinBox->setEnabled(index);
+}
+
+void MusicSettingWidget::downloadGroupSpeedLimit(int index)
+{
+    m_ui->downloadLimitSpeedComboBox->setEnabled(index);
+    m_ui->uploadLimitSpeedComboBox->setEnabled(index);
+}
+
+void MusicSettingWidget::downloadDirSelected(int index)
+{
+    QFileDialog dialog;
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setViewMode(QFileDialog::Detail);
+    if(dialog.exec())
+    {
+        QString path;
+        if(!(path = dialog.directory().absolutePath()).isEmpty())
+        {
+            index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
+        }
+    }
+}
+void MusicSettingWidget::changeDesktopLrcWidget()
+{
+    m_ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MusicSettingWidget::changeInlineLrcWidget()
+{
+    m_ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MusicSettingWidget::inlineLrcFgChanged()
+{
+    lcrColorValue(Inline, "LRCFGCOLORCHOICED", m_ui->playedPushButton);
+}
+
+void MusicSettingWidget::inlineLrcBgChanged()
+{
+    lcrColorValue(Inline, "LRCBGCOLORCHOICED", m_ui->noPlayedPushButton);
+}
+
+void MusicSettingWidget::defaultLrcColorChanged(int index)
+{
+    lrcColorByDefault(Inline, index);
+}
+
+void MusicSettingWidget::inlineLrcTransChanged(int index)
+{
+    lrcTransparentValue(Inline, index);
+}
+
+void MusicSettingWidget::showInlineLrcDemo()
+{
+    MusicPreviewLabelItem item;
+    item.m_family = m_ui->fontComboBox->currentText();
+    item.m_size = m_ui->fontSizeComboBox->currentText().toInt();
+    item.m_type = m_ui->fontTypeComboBox->currentIndex();
+    item.m_fg = m_lrcSelectedFg;
+    item.m_bg = m_lrcSelectedBg;
+    m_ui->showLabel->setLinearGradient(item);
+    m_ui->showLabel->update();
+}
+
+void MusicSettingWidget::resetInlineParameter()
+{
+    m_ui->fontComboBox->setCurrentIndex(0);
+    m_ui->fontSizeComboBox->setCurrentIndex(0);
+    m_ui->fontTypeComboBox->setCurrentIndex(0);
+    m_ui->fontDefaultColorComboBox->setCurrentIndex(0);
+    m_ui->transparentSlider->setValue(100);
+}
+
+void MusicSettingWidget::desktopFgChanged()
+{
+    lcrColorValue(Desktop, "DLRCFGCOLORCHOICED", m_ui->DplayedPushButton);
+}
+
+void MusicSettingWidget::desktopBgChanged()
+{
+    lcrColorValue(Desktop, "DLRCBGCOLORCHOICED", m_ui->DnoPlayedPushButton);
+}
+
+void MusicSettingWidget::defaultDesktopLrcColorChanged(int index)
+{
+    lrcColorByDefault(Desktop, index);
+}
+
+void MusicSettingWidget::desktopLrcTransChanged(int index)
+{
+    lrcTransparentValue(Desktop, index);
+}
+
+void MusicSettingWidget::showDesktopLrcDemo()
+{
+    MusicPreviewLabelItem item;
+    item.m_family = m_ui->DfontComboBox->currentText();
+    item.m_size = m_ui->DfontSizeComboBox->currentText().toInt();
+    item.m_type = m_ui->DfontTypeComboBox->currentIndex();
+    item.m_fg = m_DlrcSelectedFg;
+    item.m_bg = m_DlrcSelectedBg;
+    m_ui->DshowLabel->setLinearGradient(item);
+    m_ui->DshowLabel->update();
+}
+
+void MusicSettingWidget::resetDesktopParameter()
+{
+    m_ui->DfontComboBox->setCurrentIndex(0);
+    m_ui->DfontSizeComboBox->setCurrentIndex(0);
+    m_ui->DfontTypeComboBox->setCurrentIndex(0);
+    m_ui->DfontDefaultColorComboBox->setCurrentIndex(0);
+    m_ui->DtransparentSlider->setValue(100);
+}
+
+void MusicSettingWidget::setNetworkProxyControl(int enable)
+{
+    m_ui->proxyTypeTestButton->setEnabled(enable != 2);
+    m_ui->proxyIpEdit->setEnabled(enable != 2);
+    m_ui->proxyPortEdit->setEnabled(enable != 2);
+    m_ui->proxyUsernameEdit->setEnabled(enable != 2);
+    m_ui->proxyPwdEdit->setEnabled(enable != 2);
+    m_ui->proxyAreaEdit->setEnabled(enable != 2);
+}
+
+void MusicSettingWidget::testNetworkProxy()
+{
+    setNetworkProxyByType(0);
+}
+
+void MusicSettingWidget::testProxyStateChanged(bool state)
+{
+    MusicMessageBox message;
+    message.setText(state ? tr("Test Successed!") : tr("Test Failed!") );
+    message.exec();
+}
+
+void MusicSettingWidget::testNetworkConnection()
+{
+    MusicNetworkOperator *netOpr = new MusicNetworkOperator(this);
+    connect(netOpr, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
+    netOpr->startToDownload();
+}
+
+void MusicSettingWidget::checkNetworkConnection()
+{
+    MusicNetworkConnectionTestWidget *w = new MusicNetworkConnectionTestWidget(this);
+    w->show();
+}
+
+void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
+{
+    M_LOGGER_INFO(name);
+    m_ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
+    m_ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
+}
+
+void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
+{
+    m_ui->fadeInSpinBox->setEnabled(state);
+    m_ui->fadeOutSpinBox->setEnabled(state);
+}
+
+void MusicSettingWidget::commitTheResults()
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, m_ui->languageComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced, m_ui->autoPlayCheckBox->isChecked());
+    QStringList list = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
+    list[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
+    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced, m_ui->quitRadioBox->isChecked());
+    M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
+    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, m_ui->setDefaultPlayerCheckBox->isChecked());
+    if(m_ui->setDefaultPlayerCheckBox->isChecked())
+    {
+        m_ui->setDefaultPlayerCheckBox->setEnabled(false);
+    }
+
+    if(m_ui->globalHotkeyBox->isChecked())
+    {
+        M_HOTKEY_PTR->setHotKey(0, m_ui->item_S2->text());
+        M_HOTKEY_PTR->setHotKey(1, m_ui->item_S4->text());
+        M_HOTKEY_PTR->setHotKey(2, m_ui->item_S6->text());
+        M_HOTKEY_PTR->setHotKey(3, m_ui->item_S8->text());
+        M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
+        M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
+        M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
+        M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
+        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(STRING_SPLITER));
+    }
+    M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, m_ui->otherHerImgRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, m_ui->otherUpdateCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, m_ui->otherSearchCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, m_ui->otherAlbumCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, m_ui->otherInfoCheckBox->isChecked());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, m_ui->fontDefaultColorComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced, m_ui->fontComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, m_ui->fontTypeComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, m_ui->transparentSlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedFg));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedBg));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
+                                                 m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, m_ui->DtransparentSlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedFg));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedBg));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, m_ui->downloadDirEdit->text());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced, m_ui->downloadLrcDirEdit->text());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced, m_ui->downloadCacheAutoRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced, m_ui->downloadSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, m_ui->downloadFullRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, m_ui->downloadServerComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, m_ui->downloadLimitSpeedComboBox->currentText());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, m_ui->uploadLimitSpeedComboBox->currentText());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, m_ui->fadeOutSpinBox->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, m_ui->fadeInAndOutCheckBox->isChecked());
+
+    if(!applyNetworkProxy())
+    {
+        return;
+    }
+
+    emit parameterSettingChanged();
+    close();
+}
+
+int MusicSettingWidget::exec()
+{
+    setBackgroundPixmap(m_ui->background, size());
+    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicSettingWidget::initNormalSettingWidget()
@@ -153,83 +543,16 @@ void MusicSettingWidget::initNormalSettingWidget()
     connect(m_ui->globalHotkeyBox, SIGNAL(clicked(bool)), SLOT(globalHotkeyBoxChanged(bool)));
 }
 
-void MusicSettingWidget::initInlineLrcWidget()
+void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->showInlineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontComboBox));
-    m_ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->fontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontSizeComboBox));
-    m_ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->fontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontTypeComboBox));
-    m_ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->fontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontDefaultColorComboBox));
-    m_ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInlineLrcSize());
-    m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray")
-                                                << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple")
-                                                << tr("IOrange") << tr("IIndigo"));
-    connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
-    connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
-    connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
-    connect(m_ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
+    m_ui->otherNorImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->otherHerImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->otherUpdateCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherAlbumCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    m_ui->noPlayedPushButton->setText(tr("No"));
-    m_ui->playedPushButton->setText(tr("Yes"));
-    connect(m_ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(inlineLrcBgChanged()));
-    connect(m_ui->playedPushButton, SIGNAL(clicked()), SLOT(inlineLrcFgChanged()));
-    connect(m_ui->transparentSlider, SIGNAL(valueChanged(int)), SLOT(inlineLrcTransChanged(int)));
-
-    m_ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInlineParameter()));
-
-    resetInlineParameter();
-}
-
-void MusicSettingWidget::initDesktopLrcWidget()
-{
-    m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontComboBox));
-    m_ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->DfontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontSizeComboBox));
-    m_ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->DfontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontTypeComboBox));
-    m_ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->DfontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontDefaultColorComboBox));
-    m_ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
-    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
-    m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed")
-                                                    << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
-    connect(m_ui->DfontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
-    connect(m_ui->DfontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
-    connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
-    connect(m_ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
-
-    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    m_ui->DnoPlayedPushButton->setText(tr("No"));
-    m_ui->DplayedPushButton->setText(tr("Yes"));
-    connect(m_ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBgChanged()));
-    connect(m_ui->DplayedPushButton, SIGNAL(clicked()), SLOT(desktopFgChanged()));
-    connect(m_ui->DtransparentSlider, SIGNAL(valueChanged(int)), SLOT(desktopLrcTransChanged(int)));
-
-    m_ui->DresetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->DresetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
-
-    resetDesktopParameter();
+    m_ui->otherNorImgRadioBox->click();
 }
 
 void MusicSettingWidget::initDownloadWidget()
@@ -291,6 +614,85 @@ void MusicSettingWidget::initDownloadWidget()
 
     m_ui->downloadCacheAutoRadioBox->click();
     m_ui->downloadFullRadioBox->click();
+}
+
+void MusicSettingWidget::initDesktopLrcWidget()
+{
+    m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontComboBox));
+    m_ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontSizeComboBox));
+    m_ui->DfontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->DfontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontTypeComboBox));
+    m_ui->DfontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->DfontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontDefaultColorComboBox));
+    m_ui->DfontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->DfontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
+    m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
+    m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
+    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed")
+                                                    << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
+    connect(m_ui->DfontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
+    connect(m_ui->DfontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
+    connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
+    connect(m_ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
+
+    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->DnoPlayedPushButton->setText(tr("No"));
+    m_ui->DplayedPushButton->setText(tr("Yes"));
+    connect(m_ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBgChanged()));
+    connect(m_ui->DplayedPushButton, SIGNAL(clicked()), SLOT(desktopFgChanged()));
+    connect(m_ui->DtransparentSlider, SIGNAL(valueChanged(int)), SLOT(desktopLrcTransChanged(int)));
+
+    m_ui->DresetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->DresetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
+
+    resetDesktopParameter();
+}
+
+void MusicSettingWidget::initInlineLrcWidget()
+{
+    m_ui->showInlineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->fontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontComboBox));
+    m_ui->fontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->fontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontSizeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontSizeComboBox));
+    m_ui->fontSizeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->fontSizeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontTypeComboBox));
+    m_ui->fontTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->fontTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontDefaultColorComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->fontDefaultColorComboBox));
+    m_ui->fontDefaultColorComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->fontDefaultColorComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
+    m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInlineLrcSize());
+    m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
+    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray")
+                                                << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple")
+                                                << tr("IOrange") << tr("IIndigo"));
+    connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
+    connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
+    connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
+    connect(m_ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
+
+    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->noPlayedPushButton->setText(tr("No"));
+    m_ui->playedPushButton->setText(tr("Yes"));
+    connect(m_ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(inlineLrcBgChanged()));
+    connect(m_ui->playedPushButton, SIGNAL(clicked()), SLOT(inlineLrcFgChanged()));
+    connect(m_ui->transparentSlider, SIGNAL(valueChanged(int)), SLOT(inlineLrcTransChanged(int)));
+
+    m_ui->resetPushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->resetPushButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->resetPushButton, SIGNAL(clicked()), SLOT(resetInlineParameter()));
+
+    resetInlineParameter();
 }
 
 void MusicSettingWidget::initSoundEffectWidget()
@@ -355,233 +757,6 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyTypeComboBox->setCurrentIndex(2);
 }
 
-void MusicSettingWidget::initControllerParameter()
-{
-    //Set init parameter
-    m_ui->autoPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::AutoPlayChoiced).toBool());
-    m_ui->backPlayCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList().first().toInt());
-    if(!M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool())
-    {
-        m_ui->minimumRadioBox->setChecked(true);
-    }
-    else
-    {
-        m_ui->quitRadioBox->setChecked(true);
-    }
-    m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
-
-    ///////////////////////////////////////////////////////////////////////////
-    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
-    if(hotkeys.count() != M_HOTKEY_PTR->count())
-    {
-        hotkeys = M_HOTKEY_PTR->getDefaultKeys();
-    }
-    m_ui->item_S2->setText(hotkeys[0]);
-    m_ui->item_S4->setText(hotkeys[1]);
-    m_ui->item_S6->setText(hotkeys[2]);
-    m_ui->item_S8->setText(hotkeys[3]);
-    m_ui->item_S10->setText(hotkeys[4]);
-    m_ui->item_S12->setText(hotkeys[5]);
-    m_ui->item_S14->setText(hotkeys[6]);
-    m_ui->item_S16->setText(hotkeys[7]);
-    m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool());
-    globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
-
-    ////////////////////////////////////////////////
-    //Set init parameter
-    m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
-    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
-    m_ui->showInlineCheckBox->setEnabled(false);
-
-    m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt());
-    m_ui->fontSizeComboBox->setCurrentIndex(MusicLrcDefines().findInlineLrcIndex(M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt()));
-    m_ui->fontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt());
-    m_ui->fontDefaultColorComboBox->setCurrentIndex(-1);
-    if(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt() != -1)
-    {
-        m_ui->fontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcColorChoiced).toInt());
-    }
-    else
-    {
-        m_lrcSelectedFg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString());
-        m_lrcSelectedBg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBgColorChoiced).toString());
-        m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFg);
-        m_ui->noPlayedPushButton->setLinearGradient(m_lrcSelectedBg);
-        showInlineLrcDemo();
-    }
-    m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
-
-    ////////////////////////////////////////////////
-    m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
-    m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
-    m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt());
-    m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
-    if(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() != -1)
-    {
-        m_ui->DfontDefaultColorComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcColorChoiced).toInt() - LRC_COLOR_OFFSET);
-    }
-    else
-    {
-        m_DlrcSelectedFg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFgColorChoiced).toString());
-        m_DlrcSelectedBg = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).toString());
-        m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFg);
-        m_ui->DnoPlayedPushButton->setLinearGradient(m_DlrcSelectedBg);
-        showDesktopLrcDemo();
-    }
-    m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
-
-    ////////////////////////////////////////////////
-    m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
-    m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
-    m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
-                     m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
-
-    MusicUtils::Widget::setComboboxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    MusicUtils::Widget::setComboboxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
-                     m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
-
-    ///////////////////////////////////////////////////////////////////////////
-    m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
-    m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
-    if(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnableChoiced).toInt())
-    {
-        m_ui->fadeInAndOutCheckBox->click();
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
-    m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt() && MusicRegeditManager().isFileAssociate())
-    {
-        m_ui->setDefaultPlayerCheckBox->setChecked(true);
-        if(m_ui->setDefaultPlayerCheckBox->isChecked())
-        {
-            m_ui->setDefaultPlayerCheckBox->setEnabled(false);
-        }
-    }
-    else
-    {
-        m_ui->setDefaultPlayerCheckBox->setEnabled(true);
-        m_ui->setDefaultPlayerCheckBox->setChecked(false);
-        M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, false);
-    }
-}
-
-void MusicSettingWidget::globalHotkeyBoxChanged(bool state)
-{
-    m_ui->item_S2->setEnabled(state);
-    m_ui->item_S4->setEnabled(state);
-    m_ui->item_S6->setEnabled(state);
-    m_ui->item_S8->setEnabled(state);
-    m_ui->item_S10->setEnabled(state);
-    m_ui->item_S12->setEnabled(state);
-    m_ui->item_S14->setEnabled(state);
-    m_ui->item_S16->setEnabled(state);
-}
-
-void MusicSettingWidget::changeInlineLrcWidget()
-{
-    m_ui->stackedWidget->setCurrentIndex(4);
-}
-
-void MusicSettingWidget::changeDesktopLrcWidget()
-{
-    m_ui->stackedWidget->setCurrentIndex(3);
-}
-
-void MusicSettingWidget::commitTheResults()
-{
-    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, m_ui->languageComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced, m_ui->autoPlayCheckBox->isChecked());
-    QStringList list = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
-    list[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced, m_ui->quitRadioBox->isChecked());
-    M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
-    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, m_ui->setDefaultPlayerCheckBox->isChecked());
-    if(m_ui->setDefaultPlayerCheckBox->isChecked())
-    {
-        m_ui->setDefaultPlayerCheckBox->setEnabled(false);
-    }
-
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, m_ui->fontDefaultColorComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced, m_ui->fontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, m_ui->fontTypeComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, m_ui->transparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedFg));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedBg));
-
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
-                                                 m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, m_ui->DtransparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedFg));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBgColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedBg));
-
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, m_ui->downloadDirEdit->text());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced, m_ui->downloadLrcDirEdit->text());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced, m_ui->downloadCacheAutoRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced, m_ui->downloadSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, m_ui->downloadFullRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, m_ui->downloadServerComboBox->currentIndex());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced, m_ui->downloadLimitSpeedComboBox->currentText());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, m_ui->uploadLimitSpeedComboBox->currentText());
-
-    if(m_ui->globalHotkeyBox->isChecked())
-    {
-        M_HOTKEY_PTR->setHotKey(0, m_ui->item_S2->text());
-        M_HOTKEY_PTR->setHotKey(1, m_ui->item_S4->text());
-        M_HOTKEY_PTR->setHotKey(2, m_ui->item_S6->text());
-        M_HOTKEY_PTR->setHotKey(3, m_ui->item_S8->text());
-        M_HOTKEY_PTR->setHotKey(4, m_ui->item_S10->text());
-        M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
-        M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
-        M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
-        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(STRING_SPLITER));
-    }
-    M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());
-
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, m_ui->fadeOutSpinBox->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, m_ui->fadeInAndOutCheckBox->isChecked());
-
-    if(!applyNetworkProxy())
-    {
-        return;
-    }
-
-    emit parameterSettingChanged();
-    close();
-}
-
-void MusicSettingWidget::inlineLrcFgChanged()
-{
-    lcrColorValue(Inline, "LRCFGCOLORCHOICED", m_ui->playedPushButton);
-}
-
-void MusicSettingWidget::desktopFgChanged()
-{
-    lcrColorValue(Desktop, "DLRCFGCOLORCHOICED", m_ui->DplayedPushButton);
-}
-
-void MusicSettingWidget::inlineLrcBgChanged()
-{
-    lcrColorValue(Inline, "LRCBGCOLORCHOICED", m_ui->noPlayedPushButton);
-}
-
-void MusicSettingWidget::desktopBgChanged()
-{
-    lcrColorValue(Desktop, "DLRCBGCOLORCHOICED", m_ui->DnoPlayedPushButton);
-}
-
 void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *obj)
 {
     key == Inline ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1)
@@ -602,16 +777,6 @@ void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *ob
         if(type == "LRCBGCOLORCHOICED") m_lrcSelectedBg = colors;
     }
     key == Inline ? showInlineLrcDemo() : showDesktopLrcDemo();
-}
-
-void MusicSettingWidget::defaultDesktopLrcColorChanged(int index)
-{
-    lrcColorByDefault(Desktop, index);
-}
-
-void MusicSettingWidget::defaultLrcColorChanged(int index)
-{
-    lrcColorByDefault(Inline, index);
 }
 
 void MusicSettingWidget::lrcColorByDefault(Type key, int index)
@@ -659,105 +824,13 @@ void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
     label->update();
 }
 
-void MusicSettingWidget::inlineLrcTransChanged(int index)
+bool MusicSettingWidget::applyNetworkProxy()
 {
-    lrcTransparentValue(Inline, index);
-}
-
-void MusicSettingWidget::desktopLrcTransChanged(int index)
-{
-    lrcTransparentValue(Desktop, index);
-}
-
-void MusicSettingWidget::showInlineLrcDemo()
-{
-    MusicPreviewLabelItem item;
-    item.m_family = m_ui->fontComboBox->currentText();
-    item.m_size = m_ui->fontSizeComboBox->currentText().toInt();
-    item.m_type = m_ui->fontTypeComboBox->currentIndex();
-    item.m_fg = m_lrcSelectedFg;
-    item.m_bg = m_lrcSelectedBg;
-    m_ui->showLabel->setLinearGradient(item);
-    m_ui->showLabel->update();
-}
-
-void MusicSettingWidget::showDesktopLrcDemo()
-{
-    MusicPreviewLabelItem item;
-    item.m_family = m_ui->DfontComboBox->currentText();
-    item.m_size = m_ui->DfontSizeComboBox->currentText().toInt();
-    item.m_type = m_ui->DfontTypeComboBox->currentIndex();
-    item.m_fg = m_DlrcSelectedFg;
-    item.m_bg = m_DlrcSelectedBg;
-    m_ui->DshowLabel->setLinearGradient(item);
-    m_ui->DshowLabel->update();
-}
-
-void MusicSettingWidget::resetInlineParameter()
-{
-    m_ui->fontComboBox->setCurrentIndex(0);
-    m_ui->fontSizeComboBox->setCurrentIndex(0);
-    m_ui->fontTypeComboBox->setCurrentIndex(0);
-    m_ui->fontDefaultColorComboBox->setCurrentIndex(0);
-    m_ui->transparentSlider->setValue(100);
-}
-
-void MusicSettingWidget::resetDesktopParameter()
-{
-    m_ui->DfontComboBox->setCurrentIndex(0);
-    m_ui->DfontSizeComboBox->setCurrentIndex(0);
-    m_ui->DfontTypeComboBox->setCurrentIndex(0);
-    m_ui->DfontDefaultColorComboBox->setCurrentIndex(0);
-    m_ui->DtransparentSlider->setValue(100);
-}
-
-int MusicSettingWidget::exec()
-{
-    setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
-}
-
-void MusicSettingWidget::clearFunctionTableSelection()
-{
-    m_ui->normalFunTableWidget->clearSelection();
-    m_ui->lrcFunTableWidget->clearSelection();
-    m_ui->supperFunTableWidget->clearSelection();
-}
-
-void MusicSettingWidget::downloadGroupCached(int index)
-{
-    m_ui->downloadSpinBox->setEnabled(index);
-}
-
-void MusicSettingWidget::downloadGroupSpeedLimit(int index)
-{
-    m_ui->downloadLimitSpeedComboBox->setEnabled(index);
-    m_ui->uploadLimitSpeedComboBox->setEnabled(index);
-}
-
-void MusicSettingWidget::downloadDirSelected(int index)
-{
-    QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::Directory);
-    dialog.setViewMode(QFileDialog::Detail);
-    if(dialog.exec())
+    if(m_ui->proxyTypeComboBox->currentIndex() != 2)
     {
-        QString path;
-        if(!(path = dialog.directory().absolutePath()).isEmpty())
-        {
-            index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
-        }
+        return setNetworkProxyByType(1);
     }
-}
-
-void MusicSettingWidget::setNetworkProxyControl(int enable)
-{
-    m_ui->proxyTypeTestButton->setEnabled(enable != 2);
-    m_ui->proxyIpEdit->setEnabled(enable != 2);
-    m_ui->proxyPortEdit->setEnabled(enable != 2);
-    m_ui->proxyUsernameEdit->setEnabled(enable != 2);
-    m_ui->proxyPwdEdit->setEnabled(enable != 2);
-    m_ui->proxyAreaEdit->setEnabled(enable != 2);
+    return true;
 }
 
 bool MusicSettingWidget::setNetworkProxyByType(int type)
@@ -796,51 +869,4 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
         proxy.applyProxy();
     }
     return true;
-}
-
-void MusicSettingWidget::testNetworkProxy()
-{
-    setNetworkProxyByType(0);
-}
-
-bool MusicSettingWidget::applyNetworkProxy()
-{
-    if(m_ui->proxyTypeComboBox->currentIndex() != 2)
-    {
-        return setNetworkProxyByType(1);
-    }
-    return true;
-}
-
-void MusicSettingWidget::testProxyStateChanged(bool state)
-{
-    MusicMessageBox message;
-    message.setText(state ? tr("Test Successed!") : tr("Test Failed!") );
-    message.exec();
-}
-
-void MusicSettingWidget::testNetworkConnection()
-{
-    MusicNetworkOperator *netOpr = new MusicNetworkOperator(this);
-    connect(netOpr, SIGNAL(getNetworkOperatorFinished(QString)), SLOT(testNetworkConnectionStateChanged(QString)));
-    netOpr->startToDownload();
-}
-
-void MusicSettingWidget::checkNetworkConnection()
-{
-    MusicNetworkConnectionTestWidget *w = new MusicNetworkConnectionTestWidget(this);
-    w->show();
-}
-
-void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)
-{
-    M_LOGGER_INFO(name);
-    m_ui->netConnectionTypeValue->setText(!name.isEmpty() ? name : tr("Unknown"));
-    m_ui->netConnectionWayValue->setText(!name.isEmpty() ? "UDP" : tr("Unknown"));
-}
-
-void MusicSettingWidget::musicFadeInAndOutClicked(bool state)
-{
-    m_ui->fadeInSpinBox->setEnabled(state);
-    m_ui->fadeOutSpinBox->setEnabled(state);
 }

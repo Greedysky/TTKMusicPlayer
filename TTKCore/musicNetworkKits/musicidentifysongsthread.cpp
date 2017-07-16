@@ -1,5 +1,5 @@
 #include "musicidentifysongsthread.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
 #///QJson import
@@ -40,7 +40,7 @@ bool MusicIdentifySongsThread::getKey()
     MusicSemaphoreLoop loop;
     connect(this, SIGNAL(getKeyFinished()), &loop, SLOT(quit()));
 
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(ACRUA_URL, false));
 

@@ -49,6 +49,7 @@ public:
     /*!
      * Read music datas into xml file.
      */
+
     inline int readMusicPlayModeConfig() const
     { return readXmlAttributeByTagNameValue("playMode").toInt(); }
     /*!
@@ -84,6 +85,33 @@ public:
     /*!
      * Read System Auto Play Config.
      */
+
+    inline QString readOtherBgLossless() const
+    { return readXmlAttributeByTagNameValue("otherBgLossless"); }
+    /*!
+     * Read Other Background Lossless Config.
+     */
+    inline QString readOtherUpdate() const
+    { return readXmlAttributeByTagNameValue("otherUpdate"); }
+    /*!
+     * Read Other Update Check Config.
+     */
+    inline QString readOtherSearch() const
+    { return readXmlAttributeByTagNameValue("otherSearch"); }
+    /*!
+     * Read Search Optimzied Config.
+     */
+    inline QString readOtherAlbum() const
+    { return readXmlAttributeByTagNameValue("otherAlbum"); }
+    /*!
+     * Read Use File Album Config.
+     */
+    inline QString readOtherInfo() const
+    { return readXmlAttributeByTagNameValue("otherInfo"); }
+    /*!
+     * Read Other Use File Info Config.
+     */
+
     inline QString readBackgroundTheme() const
     { return readXmlAttributeByTagNameValue("bgTheme"); }
     /*!
@@ -99,6 +127,7 @@ public:
     /*!
      * Read Background List Transparent Config.
      */
+
     inline int readShowInlineLrc() const
     { return readXmlAttributeByTagNameValue("showInlineLrc").toInt(); }
     /*!
@@ -174,6 +203,7 @@ public:
     /*!
      * Read Show Desktop Lrc Locked Config.
      */
+
     inline int readEnhancedMusicConfig() const
     { return readXmlAttributeByTagNameValue("enhancedMusic").toInt(); }
     /*!
@@ -239,11 +269,13 @@ public:
     /*!
      * Read Enhanced SOX.
      */
+
     inline int readLanguageIndex() const
     { return readXmlAttributeByTagNameValue("language").toInt(); }
     /*!
      * Read Language Index Config.
      */
+
     inline int readDownloadCacheLimit() const
     { return readXmlAttributeByTagNameValue("downloadCacheLimit").toInt(); }
     /*!

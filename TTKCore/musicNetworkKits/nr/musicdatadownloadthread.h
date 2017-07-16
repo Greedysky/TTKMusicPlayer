@@ -34,9 +34,13 @@ public:
      */
 
 Q_SIGNALS:
-    void urlHasChanged(const QString &url);
+    void downloadUrlChanged(const QString &url);
     /*!
-     * Emit download finished.
+     * Update download url finished.
+     */
+    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
+    /*!
+     * Update download speed label.
      */
     void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
@@ -55,6 +59,10 @@ public Q_SLOTS:
     virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
     /*!
      * Get download received and total data.
+     */
+    virtual void updateDownloadSpeed() override;
+    /*!
+     * Updata download speed due the user mod the net speed limited.
      */
     void downLoadReadyRead();
     /*!

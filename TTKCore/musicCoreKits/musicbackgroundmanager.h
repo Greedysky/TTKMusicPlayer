@@ -40,24 +40,46 @@ public:
     /*!
      * Get artist photo current index.
      */
-    inline int getArtPhotoCount() const { return m_photos.count(); }
+    inline void setCurrentIndex(int index) { m_currentIndex = index; }
+    /*!
+     * Set artist photo current index.
+     */
+    inline int count() const { return m_photos.count(); }
     /*!
      * Get artist photo count.
      */
+    inline bool isEmpty() const { return m_photos.isEmpty(); }
+    /*!
+     * Get artist photo count is 0.
+     */
+
+    void indexIncrease();
+    /*!
+     * Set artist photo current index + 1.
+     */
+    void indexDecrease();
+    /*!
+     * Set artist photo current index - 1.
+     */
+
     QString getArtPhotoPath();
     /*!
      * Get artist photo path.
+     */
+    QString getArtPhotoPathNoIndex();
+    /*!
+     * Get artist photo path no index.
      */
     QString getArtPhotoPathByIndex(int index = -1) const;
     /*!
      * Get artist photo path by given index.
      */
 
-    QStringList getArtPhotoPaths() const;
+    QStringList getArtPhotoPathList() const;
     /*!
      * Get artist photo path list.
      */
-    void setArtPhotoPaths(const QStringList &list);
+    void setArtPhotoPathList(const QStringList &list);
     /*!
      * Set artist photo path by given path list.
      */
@@ -66,11 +88,11 @@ public:
      * Set user select current index.
      */
 
-    void setMBackground(const QString &path) { m_background = path;}
+    void setMBackground(const QString &path) { m_background = path; }
     /*!
      * Set artist background picture by path.
      */
-    QString getMBackground() const {return m_background;}
+    QString getMBackground() const { return m_background; }
     /*!
      * Get artist background picture path.
      */
@@ -92,10 +114,9 @@ protected:
      */
     ~MusicBackgroundManager() = default;
 
-    QString m_currentArtName;
-    QString m_background;
-    QStringList m_photos;
     int m_currentIndex;
+    QStringList m_photos;
+    QString m_currentArtName, m_background;
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };

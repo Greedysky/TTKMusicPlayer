@@ -4,7 +4,6 @@
 //# include <Dbt.h>
 //#endif
 #include "musicmobiledeviceswidget.h"
-#include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
@@ -165,12 +164,6 @@ void MusicApplicationObject::musicAboutUs()
 void MusicApplicationObject::musicVersionUpdate()
 {
     MusicSourceUpdateWidget(MusicApplication::instance()).exec();
-}
-
-void MusicApplicationObject::musicAudioRecorder()
-{
-    MusicAudioRecorderWidget recorder;
-    recorder.exec();
 }
 
 void MusicApplicationObject::musicTimerWidget()

@@ -2,7 +2,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 
 #include <QCheckBox>
 #include <QBoxLayout>
@@ -175,7 +175,7 @@ void MusicSimilarFoundWidget::createLabels()
         if(data.m_singerName.contains(artName) && downloadCounter < 3)
         {
             downloadCounter++;
-            urlHasChanged(data.m_smallPicUrl);
+            downloadUrlChanged(data.m_smallPicUrl);
         }
     }
 
@@ -197,9 +197,9 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
     }
 }
 
-void MusicSimilarFoundWidget::urlHasChanged(const QString &imageUrl)
+void MusicSimilarFoundWidget::downloadUrlChanged(const QString &imageUrl)
 {
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(imageUrl);
 }

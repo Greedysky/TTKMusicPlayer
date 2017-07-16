@@ -63,7 +63,7 @@ void MusicDesktopWallpaperThread::run()
         if(m_paramter["Mode"].toInt() == 2)
         {
             path.clear();
-            QStringList names = M_BACKGROUND_PTR->getArtPhotoPaths();
+            QStringList names = M_BACKGROUND_PTR->getArtPhotoPathList();
             !names.isEmpty() ? path << names : path << m_originPath;
         }
         if(func == 1) ///random mode

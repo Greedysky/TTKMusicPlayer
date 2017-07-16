@@ -702,7 +702,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>152</y>
+       <y>147</y>
        <width>81</width>
        <height>16</height>
       </rect>
@@ -715,7 +715,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>120</y>
+       <y>115</y>
        <width>111</width>
        <height>16</height>
       </rect>
@@ -728,7 +728,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>120</y>
+       <y>115</y>
        <width>121</width>
        <height>16</height>
       </rect>
@@ -741,7 +741,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>185</y>
+       <y>190</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -759,7 +759,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>275</y>
+       <y>290</y>
        <width>110</width>
        <height>16</height>
       </rect>
@@ -771,8 +771,8 @@ font-weight:bold;</string>
     <widget class="QRadioButton" name="downloadLimitRadioBox">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>275</y>
+       <x>150</x>
+       <y>290</y>
        <width>110</width>
        <height>16</height>
       </rect>
@@ -785,7 +785,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>150</y>
+       <y>145</y>
        <width>101</width>
        <height>22</height>
       </rect>
@@ -795,7 +795,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>75</x>
-       <y>302</y>
+       <y>322</y>
        <width>110</width>
        <height>22</height>
       </rect>
@@ -805,7 +805,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>275</x>
-       <y>302</y>
+       <y>322</y>
        <width>110</width>
        <height>22</height>
       </rect>
@@ -815,7 +815,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>235</x>
-       <y>153</y>
+       <y>148</y>
        <width>21</width>
        <height>16</height>
       </rect>
@@ -828,7 +828,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>305</y>
+       <y>325</y>
        <width>31</width>
        <height>16</height>
       </rect>
@@ -841,7 +841,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>305</y>
+       <y>325</y>
        <width>31</width>
        <height>16</height>
       </rect>
@@ -854,7 +854,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>195</x>
-       <y>305</y>
+       <y>325</y>
        <width>31</width>
        <height>16</height>
       </rect>
@@ -867,7 +867,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>395</x>
-       <y>305</y>
+       <y>325</y>
        <width>31</width>
        <height>16</height>
       </rect>
@@ -880,7 +880,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>120</y>
+       <y>115</y>
        <width>81</width>
        <height>16</height>
       </rect>
@@ -893,7 +893,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>210</y>
+       <y>220</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -906,7 +906,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>207</y>
+       <y>217</y>
        <width>150</width>
        <height>22</height>
       </rect>
@@ -916,7 +916,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>245</y>
+       <y>260</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -932,6 +932,135 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="four">
+    <widget class="QLabel" name="baseSetOtherWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>基本设置</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="otherNorImgRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>50</y>
+       <width>80</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>普清</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="otherHerImgRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>50</y>
+       <width>80</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>高清</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherImageLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>50</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>写真图片质量</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherUpdateCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>110</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>软件启动时检查更新</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherSearchCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>140</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启搜索词优化</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherAlbumCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>从文件中读取专辑封面</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherInfoCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>200</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>从文件中读取歌曲信息</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherShowInfoOtherWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>85</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>其他设置</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="five">
     <widget class="QLabel" name="DbaseSetSongWordWidget">
      <property name="geometry">
       <rect>
@@ -1169,7 +1298,7 @@ font-weight:bold;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="five">
+   <widget class="QWidget" name="six">
     <widget class="QLabel" name="baseSetSongWordWidget">
      <property name="geometry">
       <rect>
@@ -1407,7 +1536,7 @@ font-weight:bold;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="six">
+   <widget class="QWidget" name="seven">
     <widget class="QLabel" name="setSoundOutWidget">
      <property name="geometry">
       <rect>
@@ -1601,7 +1730,7 @@ font-weight:bold;</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="seven">
+   <widget class="QWidget" name="eight">
     <widget class="QLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
@@ -1934,7 +2063,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>150</y>
+      <y>180</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -1955,7 +2084,7 @@ font-weight:bold;;</string>
       <x>0</x>
       <y>45</y>
       <width>125</width>
-      <height>101</height>
+      <height>125</height>
      </rect>
     </property>
    </widget>
@@ -1963,7 +2092,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>180</y>
+      <y>210</y>
       <width>125</width>
       <height>60</height>
      </rect>
@@ -1973,7 +2102,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>280</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -1992,7 +2121,7 @@ font-weight:bold;;</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>280</y>
+      <y>310</y>
       <width>125</width>
       <height>60</height>
      </rect>

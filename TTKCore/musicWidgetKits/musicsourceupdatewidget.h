@@ -50,6 +50,10 @@ public Q_SLOTS:
     /*!
      * Download data from kuwo net finished.
      */
+    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
+    /*!
+     * Update download speed label.
+     */
     void downloadProgressChanged(float percent, const QString &total);
     /*!
      * Update download percent\ total size progress.

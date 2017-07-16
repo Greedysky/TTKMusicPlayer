@@ -1,5 +1,5 @@
-#ifndef MUSICSOURCEDOWNLOADTHREAD_H
-#define MUSICSOURCEDOWNLOADTHREAD_H
+#ifndef MUSICDOWNLOADSOURCETHREAD_H
+#define MUSICDOWNLOADSOURCETHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -14,15 +14,15 @@
 /*! @brief The class of source data download thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSourceDownloadThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicDownloadSourceThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicSourceDownloadThread(QObject *parent = 0);
+    explicit MusicDownloadSourceThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicSourceDownloadThread();
+    ~MusicDownloadSourceThread();
 
     static QString getClassName();
     /*!
@@ -57,4 +57,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICSOURCEDOWNLOADTHREAD_H
+#endif // MUSICDOWNLOADSOURCETHREAD_H

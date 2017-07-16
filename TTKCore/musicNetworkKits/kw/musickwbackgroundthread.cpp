@@ -1,34 +1,33 @@
-#include "musicbackgrounddownload.h"
-#include "musicsourcedownloadthread.h"
+#include "musickwbackgroundthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicdatadownloadthread.h"
-#include "musicbackgroundmanager.h"
-#ifndef MUSIC_MOBILE
-#include "musictopareawidget.h"
-#endif
+
 #///QJson import
 #include "qjson/parser.h"
 
-MusicBackgroundDownload::MusicBackgroundDownload(const QString &name, const QString &save,
+const QString BIG_ART_URL = "NUJnNFVlSHprVzdaMWxMdXRvbEp5a3lldU51Um9GeU5RKzRDWFNER2FHL3pSRE1uK1VNRzVhVk53Y1JBUTlMbnhjeFBvRFMySnpUSldlY21xQjBkWE5GTWVkVXFsa0lNa1RKSnE3VHEwMDFPdVRDbXhUSThhWkM4TFI4RUZqbHFzVFFnQkpOY2hUR2c2YWdzb3U2cjBKSUdMYnpnZktucEJpbDVBTDlzMGF0QVMwcEtLR2JWVnc9PQ==";
+
+MusicKWBackgroundThread::MusicKWBackgroundThread(const QString &name, const QString &save,
                                                  QObject *parent)
-    : QObject(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
+    : MusicDownloadBackgroundThread(name, save, parent)
 {
 
 }
 
-QString MusicBackgroundDownload::getClassName()
+QString MusicKWBackgroundThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicBackgroundDownload::startToDownload()
+void MusicKWBackgroundThread::startToDownload()
 {
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     ///Set search image API
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(m_artName));
 }
 
-void MusicBackgroundDownload::downLoadFinished(const QByteArray &bytes)
+void MusicKWBackgroundThread::downLoadDataFinished(const QByteArray &bytes)
 {
     QJson::Parser parser;
     bool ok;
@@ -50,26 +49,10 @@ void MusicBackgroundDownload::downLoadFinished(const QByteArray &bytes)
                     MusicDataDownloadThread *down = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
                                             .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
                                             MusicDownLoadThreadAbstract::Download_BigBG, this);
-                    connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(bgDownLoadFinished()));
+                    connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
                     down->startToDownload();
                 }
             }
         }
-    }
-}
-
-void MusicBackgroundDownload::bgDownLoadFinished()
-{
-    if( ++m_index >= m_counter)
-    {
-        M_BACKGROUND_PTR->setArtName( m_artName );
-#ifndef MUSIC_MOBILE
-        MusicTopAreaWidget::instance()->musicBgThemeDownloadFinished();
-#else
-        QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
-        M_BACKGROUND_PTR->setMBackground(path);
-        emit M_BACKGROUND_PTR->setUserSelectArtIndex(0);
-#endif
-        deleteLater();
     }
 }

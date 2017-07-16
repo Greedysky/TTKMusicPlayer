@@ -10,6 +10,7 @@
 #include "musicnetworkthread.h"
 
 #include <QDir>
+#include <QDateTime>
 #include <QMessageBox>
 #include <QFontMetrics>
 
@@ -139,7 +140,7 @@ QString TTKMusicUtils::normalizeTime(qint64 time, const QString &format)
 
 QString TTKMusicUtils::fromMSecsSinceEpoch(qint64 msecs, const QString &format)
 {
-    return MusicTime::fromMSecsSinceEpoch(msecs).toString(format);
+    return QDateTime::fromMSecsSinceEpoch(msecs).toString(format);
 }
 
 QString TTKMusicUtils::size2Label(qint64 size)

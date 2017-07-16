@@ -1,5 +1,5 @@
 #include "musicplaylistfoundwidget.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicplaylistfoundinfowidget.h"
 #include "musicdownloadqueryfactory.h"
@@ -86,7 +86,7 @@ void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem 
         m_topListenButton->setText(item.m_playCount);
     }
 
-    MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(item.m_coverUrl);
 }

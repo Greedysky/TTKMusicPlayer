@@ -81,7 +81,7 @@ public Q_SLOTS:
     /*!
      * Send recieved data from net.
      */
-    void urlHasChanged(const QString &imageUrl);
+    void downloadUrlChanged(const QString &imageUrl);
     /*!
      * Data download finished and send to shared on web.
      */

@@ -7,7 +7,7 @@
 #include "musiclrcanalysis.h"
 #include "musiclrcmanagerforinline.h"
 #include "musicstringutils.h"
-#include "musicsourcedownloadthread.h"
+#include "musicdownloadsourcethread.h"
 #include "musicvideouiobject.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
@@ -255,7 +255,7 @@ void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url, const QSt
         m_mediaPlayer->play();
 
         ////////////////////////////////////////////////////////////////
-        MusicSourceDownloadThread *download = new MusicSourceDownloadThread(this);
+        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(lrcUrl);
     }

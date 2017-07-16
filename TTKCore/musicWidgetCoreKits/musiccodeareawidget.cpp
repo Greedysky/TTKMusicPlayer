@@ -1,4 +1,4 @@
-#include "musiccodearea.h"
+#include "musiccodeareawidget.h"
 #include "musictime.h"
 
 #include <QPainter>
@@ -9,7 +9,7 @@
 #define DEF_CONVERSEROTATE  10
 #define DEF_CONVERSESCALE   15
 
-MusicCodeArea::MusicCodeArea(QWidget *parent)
+MusicCodeAreaWidget::MusicCodeAreaWidget(QWidget *parent)
     : MusicClickedLabel(parent)
 {
     MusicTime::timeSRand();
@@ -28,12 +28,12 @@ MusicCodeArea::MusicCodeArea(QWidget *parent)
     m_nCodeCount = DEF_CODECOUNT;
 }
 
-QString MusicCodeArea::getClassName()
+QString MusicCodeAreaWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicCodeArea::renderPicture()
+void MusicCodeAreaWidget::renderPicture()
 {
     QStringList number;
     for(int i=0; i<m_nCodeCount; i++)
@@ -59,17 +59,17 @@ void MusicCodeArea::renderPicture()
     update();
 }
 
-void MusicCodeArea::setCodeCount(int nCount)
+void MusicCodeAreaWidget::setCodeCount(int nCount)
 {
     m_nCodeCount = nCount;
 }
 
-void MusicCodeArea::setNoisyPointCount(int nCount)
+void MusicCodeAreaWidget::setNoisyPointCount(int nCount)
 {
     m_nNoisyPointCount = nCount;
 }
 
-void MusicCodeArea::paintEvent(QPaintEvent *event)
+void MusicCodeAreaWidget::paintEvent(QPaintEvent *event)
 {
     MusicClickedLabel::paintEvent(event);
     QPainter painter(this);
@@ -92,7 +92,7 @@ void MusicCodeArea::paintEvent(QPaintEvent *event)
     drawNoisyPoint(painter);
 }
 
-void MusicCodeArea::drawOutline(QPainter &painter)
+void MusicCodeAreaWidget::drawOutline(QPainter &painter)
 {
     painter.setPen(Qt::darkGreen);
     painter.setPen(Qt::DashLine);
@@ -100,7 +100,7 @@ void MusicCodeArea::drawOutline(QPainter &painter)
     painter.drawRect(rect());
 }
 
-void MusicCodeArea::drawNoisyPoint(QPainter &painter)
+void MusicCodeAreaWidget::drawNoisyPoint(QPainter &painter)
 {
 	painter.setPen(Qt::red);
 	painter.setPen(Qt::DotLine);
@@ -111,7 +111,7 @@ void MusicCodeArea::drawNoisyPoint(QPainter &painter)
     }
 }
 
-void MusicCodeArea::drawConversion(QPainter &painter)
+void MusicCodeAreaWidget::drawConversion(QPainter &painter)
 {
     if(qrand() % 2)
     {

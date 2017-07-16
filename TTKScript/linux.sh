@@ -16,7 +16,7 @@ done
 #rename
 for i in $SOURCE/*.qm
 do
-  `rename -vf 's/.qm/.ln/' $i`
+  `rename -v -f 's/.qm/.ln/' $i`
 done
 
 #move

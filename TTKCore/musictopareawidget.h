@@ -16,7 +16,7 @@
 class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
-class MusicCounterPVDownloadThread;
+class MusicDownloadCounterPVThread;
 
 namespace Ui {
     class MusicApplication;
@@ -115,6 +115,10 @@ public Q_SLOTS:
     void musicUserContextLogin();
     /*!
      * Send user to login.
+     */
+    void musicSetAsArtBackground();
+    /*!
+     * Set background as art big picture.
      */
     void musicBgTransparentChanged();
     /*!
@@ -216,7 +220,7 @@ protected:
     MusicUserWindow *m_musicUserWindow;
     MusicBackgroundSkinDialog *m_musicbgskin;
     MusicRemoteWidget *m_musicRemoteWidget;
-    MusicCounterPVDownloadThread *m_counterPVThread;
+    MusicDownloadCounterPVThread *m_counterPVThread;
 
     QString m_currentBgSkin;
     int m_alpha, m_listAlpha;
