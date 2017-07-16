@@ -4,6 +4,8 @@
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
 #include "musicwidgetutils.h"
+#include "musicsettingmanager.h"
+#include "musicsongtag.h"
 
 MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
     : QWidget(parent),
@@ -48,7 +50,23 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info
     m_ui->timeValue->setText(
                 MusicUtils::Widget::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()) );
 
-    if(!showArtPicture(musicArt) && !showArtPicture(info.getMusicArtistBack()))
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
+    {
+        MusicSongTag tag;
+        if(tag.readFile(info.getMusicPath()))
+        {
+            QPixmap pix;
+            pix.loadFromData(tag.getCover());
+            if(!pix.isNull())
+            {
+                m_ui->artPicture->setPixmap(pix.scaled(60, 60));
+                return;
+            }
+        }
+    }
+
+    if(!showArtPicture(musicArt) &&
+       !showArtPicture(info.getMusicArtistBack()))
     {
         m_ui->artPicture->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
