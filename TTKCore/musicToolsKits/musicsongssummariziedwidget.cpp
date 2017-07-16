@@ -148,8 +148,15 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
             filelist.removeAll(path);
             continue;
         }
+
         QString time = tag.readFile(path) ? tag.getLengthString() : "-";
-        item->m_songs << MusicSong(path, 0, time, QString());
+        QString name;
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toBool() &&
+           !tag.getTitle().isEmpty() && !tag.getArtist().isEmpty())
+        {
+            name = tag.getArtist() + " - "+ tag.getTitle();
+        }
+        item->m_songs << MusicSong(path, 0, time, name);
         progress.setValue(++i);
     }
     item->m_itemObject->updateSongsFileName(item->m_songs);

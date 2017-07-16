@@ -199,6 +199,7 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
     {
         m_musicList->appendMedia(files);
     }
+
     if(files.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
     {
         m_musicList->setCurrentIndex(0);

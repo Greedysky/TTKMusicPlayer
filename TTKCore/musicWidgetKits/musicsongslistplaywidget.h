@@ -107,6 +107,7 @@ protected:
      * Show artist small picture, if no exsit there is default pic.
      */
 
+    bool m_noCover;
     QString m_totalTime;
     int m_currentPlayIndex;
     QLabel *m_artPictureLabel, *m_timeLabel;

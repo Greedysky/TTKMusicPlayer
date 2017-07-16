@@ -23,6 +23,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     setPalette(pal);
     setAutoFillBackground(true);
 
+    m_noCover = false;
     m_currentPlayIndex = index;
     m_totalTime = "/00:00";
 
@@ -119,7 +120,12 @@ void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
 {
-    QString name = m_songNameLabel->toolTip();
+    if(!m_noCover && M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
+    {
+        return;
+    }
+
+    QString name = m_songNameLabel->toolTip().trimmed();
     if(!showArtPicture(MusicUtils::String::artistName(name)) &&
        !showArtPicture(MusicUtils::String::songName(name)))
     {
@@ -165,9 +171,26 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
     {
         m_totalTime = "/" + tag.getLengthString();
     }
+
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
+
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
+    {
+        QPixmap pix;
+        pix.loadFromData(tag.getCover());
+        if(pix.isNull())
+        {
+            m_noCover = true;
+        }
+        else
+        {
+            m_noCover = false;
+            m_artPictureLabel->setPixmap(pix.scaled(60, 60));
+            return;
+        }
+    }
 
     if(!showArtPicture(MusicUtils::String::artistName(name)) &&
        !showArtPicture(MusicUtils::String::songName(name)))
