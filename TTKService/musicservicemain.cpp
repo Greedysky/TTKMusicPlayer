@@ -3,11 +3,15 @@
 #include "musicxmlconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
+#include "musicversion.h"
+#include "minidumper.h"
 
-#include <QApplication>
 #include <QTranslator>
+#include <QApplication>
 
 #define TTK_DEBUG
+
+MiniDumper dumper(L"TTK", TTKMUSIC_VERSION_STRW);
 
 int main(int argc, char *argv[])
 {

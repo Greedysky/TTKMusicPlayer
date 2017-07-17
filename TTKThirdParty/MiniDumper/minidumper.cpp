@@ -10,7 +10,7 @@ LPWSTR MiniDumper::m_szDumpFilePath;
 
 MiniDumper::MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber)
 {
-	m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"QtApplication");
+    m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"TTK");
     m_szAppVersion = szVersion ? wcsdup(szVersion) : wcsdup( L"1.0.0.0");
     m_szAppBuildNumber = szBuildNumber ? wcsdup(szBuildNumber) : wcsdup( L"0000");
 	m_szDumpFilePath = NULL;

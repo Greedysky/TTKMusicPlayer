@@ -11,6 +11,7 @@
 
 //update time 2017.07.07
 #define TTKMUSIC_VERSION_STR    "2.5.1.0"
+#define TTKMUSIC_VERSION_STRW   L"2.5.1.0"
 #define TTKMUSIC_VER_TIME_STR   "(2017/07/07)"
 
 #define TTKMUSIC_MAJOR_VERSION 2

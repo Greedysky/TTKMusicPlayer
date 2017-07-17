@@ -10,6 +10,7 @@ INCLUDEPATH += \
         $$PWD \
         $$PWD/zlib \
         $$PWD/Devicewatcher \
+        $$PWD/MiniDumper \
         $$PWD/MusicExtras \
         $$PWD/MusicExtras/qaes \
         $$PWD/MusicExtras/qhz2py \
