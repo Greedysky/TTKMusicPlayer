@@ -17,6 +17,8 @@
 #include "musicrightareawidget.h"
 #include "musicsoundkmicrowidget.h"
 #include "musicmessagebox.h"
+#include "musicspectrumwidget.h"
+#include <QDebug>
 
 #include <QTimer>
 
@@ -53,16 +55,6 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 QString MusicToolSetsWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicToolSetsWidget::clearAllItems()
-{
-    clear();
-}
-
-void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
 }
 
 void MusicToolSetsWidget::addListWidgetItem()
@@ -164,7 +156,15 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
-                MusicLeftAreaWidget::instance()->musicAnalyzerSpectrumWidget();
+                if((m_toolsFlags & MusicObject::TT_Spectrum) !=
+                                   MusicObject::TT_Spectrum)
+                {
+                    m_toolsFlags |= MusicObject::TT_Spectrum;
+                    MusicSpectrumWidget *w= new MusicSpectrumWidget;
+                    connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)),
+                               SLOT(resetFlag(MusicObject::ToolsType)));
+                    w->show();
+                }
                 break;
             }
         case 6:
@@ -233,4 +233,19 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
         default:
             break;
     }
+}
+
+void MusicToolSetsWidget::resetFlag(MusicObject::ToolsType flag)
+{
+    m_toolsFlags &= ~flag;
+}
+
+void MusicToolSetsWidget::clearAllItems()
+{
+    clear();
+}
+
+void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
 }
