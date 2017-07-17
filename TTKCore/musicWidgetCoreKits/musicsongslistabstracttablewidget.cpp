@@ -52,7 +52,7 @@ void MusicSongsListAbstractTableWidget::setParentToolIndex(int index)
 
 void MusicSongsListAbstractTableWidget::musicPlayClicked()
 {
-    if(rowCount() == 0 || currentRow() < 0 )
+    if(rowCount() == 0 || currentRow() < 0)
     {
         return;
     }

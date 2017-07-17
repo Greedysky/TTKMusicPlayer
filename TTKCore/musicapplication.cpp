@@ -199,11 +199,6 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
     {
         m_musicList->appendMedia(files);
     }
-
-    if(files.count() > 0 && m_musicList->currentIndex() < 0 && m_musicSongTree->getCurrentPlayToolIndex() == 0)
-    {
-        m_musicList->setCurrentIndex(0);
-    }
 }
 
 QString MusicApplication::musicDownloadContains(bool &contains) const
@@ -370,6 +365,7 @@ void MusicApplication::musicStatePlay()
     {
         return;//The playlist is not performing space-time
     }
+
     if(m_playControl)
     {
         m_ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPause);
@@ -1125,13 +1121,17 @@ void MusicApplication::readXMLConfigFromText()
     //add new music file to playlist
     value = keyList[1].toInt();
     m_musicList->addMedia(m_musicSongTree->getMusicSongsFilePath(value));
-    m_ui->musicPlayedList->append(value, songs[value].m_songs);
+    if(-1 < value && value < songs.count())
+    {
+        m_ui->musicPlayedList->append(value, songs[value].m_songs);
+    }
     if(success && keyList[0] == "1")
     {
         QTimer::singleShot(MT_MS, m_musicSongTree, SLOT(setCurrentIndex()));
-        m_currentMusicSongTreeIndex = value;
+        int index = keyList[2].toInt();
+        m_currentMusicSongTreeIndex = (index == DEFAULT_INDEX_LEVEL0) ? DEFAULT_INDEX_LEVEL0 : value;
         m_musicList->blockSignals(true);
-        m_musicList->setCurrentIndex(keyList[2].toInt());
+        m_musicList->setCurrentIndex(index);
         m_musicList->blockSignals(false);
         m_ui->musicPlayedList->setCurrentIndex(m_musicList->currentMediaString());
     }

@@ -174,6 +174,12 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
 QStringList MusicSongsSummariziedWidget::getMusicSongsFileName(int index) const
 {
     QStringList list;
+
+    if(index < 0 || index >= m_songItems.count())
+    {
+        return list;
+    }
+
     foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicName();
@@ -184,6 +190,12 @@ QStringList MusicSongsSummariziedWidget::getMusicSongsFileName(int index) const
 QStringList MusicSongsSummariziedWidget::getMusicSongsFilePath(int index) const
 {
     QStringList list;
+
+    if(index < 0 || index >= m_songItems.count())
+    {
+        return list;
+    }
+
     foreach(const MusicSong &song, m_songItems[index].m_songs)
     {
         list << song.getMusicPath();
@@ -239,6 +251,11 @@ int MusicSongsSummariziedWidget::getSearchFileListIndexAndClear(int row)
 
 void MusicSongsSummariziedWidget::setCurrentMusicSongTreeIndex(int index)
 {
+    if(m_currentPlayToolIndex < 0)
+    {
+        return;
+    }
+
     if(!m_songItems[m_currentPlayToolIndex].m_songs.isEmpty())
     {
         m_songItems[m_currentPlayToolIndex].m_itemObject->replacePlayWidgetRow();
@@ -258,11 +275,19 @@ void MusicSongsSummariziedWidget::playLocation(int index)
 void MusicSongsSummariziedWidget::selectRow(int index)
 {
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentPlayToolIndex);
+    if(m_currentPlayToolIndex < 0)
+    {
+        return;
+    }
     m_songItems[m_currentPlayToolIndex].m_itemObject->selectRow(index);
 }
 
 void MusicSongsSummariziedWidget::setTimerLabel(const QString &time) const
 {
+    if(m_currentPlayToolIndex < 0)
+    {
+        return;
+    }
     m_songItems[m_currentPlayToolIndex].m_itemObject->setTimerLabel(time);
 }
 
@@ -679,7 +704,7 @@ void MusicSongsSummariziedWidget::isSearchFileListEmpty(bool &empty)
 
 void MusicSongsSummariziedWidget::setMusicPlayCount(int index)
 {
-    if(index < 0)
+    if(index < 0 || m_currentPlayToolIndex < 0)
     {
         return;
     }
@@ -694,7 +719,7 @@ void MusicSongsSummariziedWidget::setMusicPlayCount(int index)
 
 void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
 {
-    if(index < 0 || m_currentPlayToolIndex == MUSIC_RECENT_LIST)
+    if(index < 0 || m_currentPlayToolIndex < 0 || m_currentPlayToolIndex == MUSIC_RECENT_LIST)
     {
         return;
     }
@@ -743,6 +768,10 @@ void MusicSongsSummariziedWidget::getMusicLists(MusicSongItems &songs)
 
 void MusicSongsSummariziedWidget::updateCurrentArtist()
 {
+    if(m_currentPlayToolIndex < 0)
+    {
+        return;
+    }
     m_songItems[m_currentPlayToolIndex].m_itemObject->updateCurrentArtist();
 }
 
