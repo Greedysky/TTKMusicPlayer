@@ -10,7 +10,7 @@ LPWSTR MiniDumper::m_szDumpFilePath;
 
 MiniDumper::MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber)
 {
-	m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"QtApplication");
+    m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"TTK");
     m_szAppVersion = szVersion ? wcsdup(szVersion) : wcsdup( L"1.0.0.0");
     m_szAppBuildNumber = szBuildNumber ? wcsdup(szBuildNumber) : wcsdup( L"0000");
 	m_szDumpFilePath = NULL;
@@ -56,20 +56,20 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 	HMODULE hDll = NULL;
 	WCHAR szDbgHelpPath[_MAX_PATH];
 
-	if (GetModuleFileName( NULL, szDbgHelpPath, _MAX_PATH ))
+    if (GetModuleFileNameW( NULL, szDbgHelpPath, _MAX_PATH ))
 	{
 		WCHAR *pSlash = wcsrchr( szDbgHelpPath, L'\\');
 		if (pSlash)
 		{
 			wcscpy( pSlash+1, L"DBGHELP.DLL" );
-			hDll = ::LoadLibrary( szDbgHelpPath );
+            hDll = ::LoadLibraryW( szDbgHelpPath );
 		}
 	}
 
 	if (hDll==NULL)
 	{
 		// load any version we can
-		hDll = ::LoadLibrary( L"DBGHELP.DLL");
+        hDll = ::LoadLibraryW( L"DBGHELP.DLL");
 	}
 
 	LPCWSTR szResult = NULL;
@@ -87,7 +87,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 			
 			if(m_szDumpFilePath == NULL)
 			{
-				if (GetModuleFileName(NULL, szDbgHelpPath, _MAX_PATH))
+                if (GetModuleFileNameW(NULL, szDbgHelpPath, _MAX_PATH))
 				{
 					WCHAR *pSlash = wcsrchr(szDbgHelpPath, L'\\');
 					if (pSlash)
@@ -96,7 +96,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 						wcscpy(szDumpPath, szDbgHelpPath);
 					}
 				}
-				else if (!GetTempPath( _MAX_PATH, szDumpPath ))
+                else if (!GetTempPathW( _MAX_PATH, szDumpPath ))
 					wcscpy( szDumpPath, L"c:\\temp\\" );
 			}
 			else
@@ -124,13 +124,13 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 					wcscat( szDumpPath, m_szAppBuildNumber);
 					wcscat( szDumpPath, szFileNumber);
 					wcscat( szDumpPath, L".dmp" );					
-					hFile = ::CreateFile( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_NEW,
-											FILE_ATTRIBUTE_NORMAL, NULL );
+                    hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_NEW,
+                                        FILE_ATTRIBUTE_NORMAL, NULL );
 					i++;
 					if(i > MAX_DUMP_FILE_NUMBER)
 					{
-						hFile = ::CreateFile( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS,
-											FILE_ATTRIBUTE_NORMAL, NULL );
+                        hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS,
+                                               FILE_ATTRIBUTE_NORMAL, NULL );
 						break;
 					}
 				}

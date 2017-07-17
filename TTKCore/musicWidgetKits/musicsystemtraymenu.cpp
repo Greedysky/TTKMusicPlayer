@@ -21,13 +21,15 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     connect(m_showLrcAction, SIGNAL(triggered()), SLOT(showDesktopLrc()));
     m_lockLrcAction = new QAction(QIcon(":/contextMenu/btn_lock"), tr("lockLrc"), this);
     connect(m_lockLrcAction, SIGNAL(triggered()), SLOT(setWindowLockedChanged()));
-    m_loginAction = new QAction(QIcon(":/contextMenu/btn_login"), QString("Sdfsdfsdf"), this);
+#ifndef Q_OS_UNIX
+    m_loginAction = new QAction(QIcon(":/contextMenu/btn_login"), QString(" "), this);
     connect(m_loginAction, SIGNAL(triggered()), MusicTopAreaWidget::instance(), SLOT(musicUserContextLogin()));
 
-#ifndef Q_OS_UNIX
     createPlayWidgetActions();
     addSeparator();
     createVolumeWidgetActions();
+#else
+    m_loginAction = nullptr;
 #endif
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
@@ -36,7 +38,9 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addSeparator();
     addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addSeparator();
+#ifndef Q_OS_UNIX
     addAction(m_loginAction);
+#endif
     addAction(tr("appClose"), parent, SLOT(quitWindowClose()));
 }
 
@@ -134,8 +138,10 @@ void MusicSystemTrayMenu::showDesktopLrc()
 void MusicSystemTrayMenu::showEvent(QShowEvent *event)
 {
     QMenu::showEvent(event);
+#ifndef Q_OS_UNIX
     bool state = MusicTopAreaWidget::instance()->getUserLoginState();
     m_loginAction->setText(state ? tr("logout") : tr("login"));
+#endif
 }
 
 void MusicSystemTrayMenu::createPlayWidgetActions()

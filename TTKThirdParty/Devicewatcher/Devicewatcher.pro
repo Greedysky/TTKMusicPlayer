@@ -6,6 +6,8 @@
 # * works are strictly forbiden.
 # =================================================
 
+QT       += core
+
 TEMPLATE = lib
 
 include(../../TTKVersion.pri)
