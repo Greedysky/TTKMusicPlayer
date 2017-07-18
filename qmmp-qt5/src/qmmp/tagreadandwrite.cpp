@@ -1,7 +1,6 @@
 #include "tagreadandwrite.h"
 
 #include <taglib/fileref.h>
-#include <taglib/tag.h>
 #include <taglib/tpropertymap.h>
 #include <taglib/id3v2tag.h>
 #include <taglib/mpegfile.h>
@@ -80,25 +79,25 @@ bool TagReadAndWrite::readFile(const QString &path)
     return true;
 }
 
-bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
+bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value, int id3v2Version)
 {
     if(m_path.isEmpty())
     {
         return false;
     }
 
-    TagLib::FileRef tagFile(m_path.toLocal8Bit().constData());
-    if(tagFile.isNull())
+    TagLib::MPEG::File file(m_path.toLocal8Bit().constData());
+    if(!file.isValid())
     {
         return false;
     }
 
-    if(!tagFile.tag())
+    TagLib::ID3v2::Tag *tags = file.ID3v2Tag(true);
+    if(!tags)
     {
         return false;
     }
 
-    TagLib::Tag *tags = tagFile.tag();
     switch(tag)
     {
         case TAG_TITLE:
@@ -125,7 +124,7 @@ bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
         default: break;
     }
 
-    if(tagFile.save())
+    if(file.save(TagLib::MPEG::File::AllTags, true, id3v2Version))
     {
         m_parameters[tag] = value;
         return true;
@@ -133,7 +132,7 @@ bool TagReadAndWrite::writeMusicTag(MusicTag tag, const QString &value)
     return false;
 }
 
-bool TagReadAndWrite::writeCover(const QByteArray &data)
+bool TagReadAndWrite::writeCover(const QByteArray &data, int id3v2Version)
 {
     if(m_path.isEmpty())
     {
@@ -156,9 +155,34 @@ bool TagReadAndWrite::writeCover(const QByteArray &data)
     }
 
     frame->setMimeType("image/jpeg");
-    frame->setDescription("Cover");
+    frame->setDescription("TTK");
     frame->setType(TagLib::ID3v2::AttachedPictureFrame::FrontCover);
     frame->setPicture(TagLib::ByteVector(data.data(), data.size()));
 
-    return file.save();
+    return file.save(TagLib::MPEG::File::AllTags, true, id3v2Version);
+}
+
+QByteArray TagReadAndWrite::getCover() const
+{
+    if(m_path.isEmpty())
+    {
+        return QByteArray();
+    }
+
+    TagLib::MPEG::File file(m_path.toLocal8Bit().constData());
+    TagLib::ID3v2::Tag *tag = file.ID3v2Tag(true);
+    TagLib::ID3v2::FrameList frames = tag->frameList("APIC");
+    TagLib::ID3v2::AttachedPictureFrame *frame = 0;
+
+    if(frames.isEmpty())
+    {
+        return QByteArray();
+    }
+    else
+    {
+        frame = static_cast<TagLib::ID3v2::AttachedPictureFrame*>(frames.front());
+    }
+
+    TagLib::ByteVector data = frame->picture();
+    return QByteArray(data.data(), data.size());
 }
