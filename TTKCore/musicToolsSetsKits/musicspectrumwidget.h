@@ -16,6 +16,13 @@ namespace Ui {
 class MusicSpectrumWidget;
 }
 
+typedef struct MUSIC_TOOLSET_EXPORT MusicSpectrum
+{
+    QString m_name;
+    QWidget *m_obj;
+}MusicSpectrum;
+TTK_DECLARE_LISTS(MusicSpectrum)
+
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
  */
@@ -41,6 +48,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void spectrumTypeChanged(int index);
+    /*!
+     * Spectrum Type Changed.
+     */
     void show();
     /*!
      * Override show function.
@@ -51,7 +62,20 @@ protected:
     /*!
      * Override the widget event.
      */
+    void adjustWidgetLayout();
+    /*!
+     * Adjust widget layout.
+     */
+    void showSpectrum(const QString &name, bool state);
+    /*!
+     * Show spectrum by name and state.
+     */
+    int findSpectrumWidget(const QString &name);
+    /*!
+     * Find spectrum widget index by name.
+     */
 
+    MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
 
 };

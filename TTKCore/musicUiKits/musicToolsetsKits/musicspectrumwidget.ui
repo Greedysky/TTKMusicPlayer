@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>363</height>
+    <width>600</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>475</width>
-     <height>355</height>
+     <width>592</width>
+     <height>395</height>
     </rect>
    </property>
    <property name="text">
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>457</x>
+     <x>574</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -60,43 +60,108 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>475</width>
-     <height>330</height>
+     <width>592</width>
+     <height>370</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:rgba(255,255,255,150)</string>
    </property>
-  </widget>
-  <widget class="MusicGifLabelWidget" name="iconLabel">
-   <property name="geometry">
-    <rect>
-     <x>24</x>
-     <y>44</y>
-     <width>93</width>
-     <height>93</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>571</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="viewLayout"/>
+   </widget>
+   <widget class="QCheckBox" name="analyzerBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Analyzer</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="analyzer2Box">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Analyzer2</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="fwaveBox">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWave</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="gwaveBox">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GWave</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="histogramBox">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Histogram</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="ewaveBox">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>20</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EWave</string>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>iconLabel</zorder>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>MusicGifLabelWidget</class>
-   <extends>QLabel</extends>
-   <header location="global">musicgiflabelwidget.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
