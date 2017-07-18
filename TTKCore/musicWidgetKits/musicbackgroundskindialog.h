@@ -34,6 +34,11 @@ public:
     /*!
      * Get class object name.
      */
+
+    static QString setMBackground(QString &name);
+    /*!
+     * Set artist background picture by name.
+     */
     static bool themeValidCheck(QString &name, QString &path);
     /*!
      * Theme valid check.
@@ -50,10 +55,6 @@ public:
     void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
-     */
-    void updateBackground(const QString &text);
-    /*!
-     * Update this bg when user change the current bg.
      */
     int getListBgSkinAlpha() const;
     /*!

@@ -88,16 +88,28 @@ public:
      * Set user select current index.
      */
 
-    void setMBackground(const QString &path) { m_background = path; }
+    void addObserver(QObject *object);
+    /*!
+     * Add observer.
+     */
+    void removeObserver(QObject *object);
+    /*!
+     * Remove observer.
+     */
+    void setMBackground(const QString &path);
     /*!
      * Set artist background picture by path.
      */
-    QString getMBackground() const { return m_background; }
+    QString getMBackground() const;
     /*!
      * Get artist background picture path.
      */
 
 Q_SIGNALS:
+    void backgroundChanged();
+    /*!
+     * Background image changed.
+     */
     void artHasChanged();
     /*!
      * New art has been set emit.
@@ -112,10 +124,10 @@ protected:
     /*!
      * Object contsructor.
      */
-    ~MusicBackgroundManager() = default;
 
     int m_currentIndex;
     QStringList m_photos;
+    QList<QObject*> m_observer;
     QString m_currentArtName, m_background;
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)

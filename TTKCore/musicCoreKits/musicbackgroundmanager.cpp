@@ -100,3 +100,25 @@ void MusicBackgroundManager::setUserSelectArtIndex(int index)
     m_currentIndex = index;
     emit userSelectIndexChanged();
 }
+
+void MusicBackgroundManager::addObserver(QObject *object)
+{
+    m_observer << object;
+    connect(this, SIGNAL(backgroundChanged()), object, SLOT(backgroundChanged()));
+}
+
+void MusicBackgroundManager::removeObserver(QObject *object)
+{
+    m_observer.removeAll(object);
+    disconnect(this, SIGNAL(backgroundChanged()), object, SLOT(backgroundChanged()));
+}
+
+void MusicBackgroundManager::setMBackground(const QString &path)
+{
+    m_background = path;
+}
+
+QString MusicBackgroundManager::getMBackground() const
+{
+    return m_background;
+}

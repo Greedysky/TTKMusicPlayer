@@ -194,11 +194,6 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 
 void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
 {
-    if(m_musicbgskin)
-    {
-        m_musicbgskin->updateBackground(fileName);
-    }
-
     if(m_ui->surfaceStackedWidget->currentIndex() == 1)
     {
         return;
@@ -435,14 +430,7 @@ void MusicTopAreaWidget::createRemoteWidget()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
-    QString path = USER_THEME_DIR_FULL + m_currentBgSkin + SKN_FILE;
-    MusicBackgroundSkinDialog::themeValidCheck(m_currentBgSkin, path);
-    M_BACKGROUND_PTR->setMBackground(path);
-
-    if(m_musicbgskin)
-    {
-        m_musicbgskin->updateBackground(path);
-    }
+    QString path = MusicBackgroundSkinDialog::setMBackground(m_currentBgSkin);
     m_pictureCarouselTimer.stop();
     drawWindowBackgroundRectString(path);
 }

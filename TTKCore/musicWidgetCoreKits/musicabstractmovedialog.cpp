@@ -17,16 +17,28 @@ MusicAbstractMoveDialog::MusicAbstractMoveDialog(QWidget *parent)
     m_moveOption = false;
     m_leftButtonPress = false;
     m_showShadow = true;
+    m_background = nullptr;
+
+    M_BACKGROUND_PTR->addObserver(this);
 }
 
 MusicAbstractMoveDialog::~MusicAbstractMoveDialog()
 {
-
+    M_BACKGROUND_PTR->removeObserver(this);
 }
 
 QString MusicAbstractMoveDialog::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicAbstractMoveDialog::backgroundChanged()
+{
+    if(m_background)
+    {
+        QPixmap pix(M_BACKGROUND_PTR->getMBackground());
+        MStatic_cast(QLabel*, m_background)->setPixmap(pix.scaled(size()));
+    }
 }
 
 void MusicAbstractMoveDialog::paintEvent(QPaintEvent *event)
@@ -86,6 +98,7 @@ void MusicAbstractMoveDialog::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicAbstractMoveDialog::setBackgroundPixmap(QLabel *label, const QSize &size)
 {
+    m_background = label;
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     label->setPixmap(pix.scaled(size));
 }

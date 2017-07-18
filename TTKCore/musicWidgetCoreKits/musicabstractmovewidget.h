@@ -39,6 +39,12 @@ public:
      * Set or not block widget moving.
      */
 
+public Q_SLOTS:
+    void backgroundChanged();
+    /*!
+     * Background image changed.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -55,6 +61,7 @@ protected:
     QPoint m_pressAt;
     bool m_moveOption, m_showShadow;
     bool m_leftButtonPress;
+    QWidget *m_background;
 
 };
 
