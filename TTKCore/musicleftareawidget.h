@@ -102,14 +102,6 @@ public Q_SLOTS:
     /*!
      * Change to shared cloud widget.
      */
-    void musicAnalyzerSpectrumWidget();
-    /*!
-     * Show analyzer spectrum widget.
-     */
-    void musicProjectMSpectrumWidget();
-    /*!
-     * Show projectM spectrum widget.
-     */
     void cloudSharedSongUploadAllDone();
     /*!
      * All files upload finsihed.

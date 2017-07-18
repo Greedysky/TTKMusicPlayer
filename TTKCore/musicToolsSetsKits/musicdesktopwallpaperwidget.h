@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicobject.h"
 #include "musicabstractmovewidget.h"
 
 class MusicDesktopWallpaperThread;
@@ -33,6 +34,12 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
      */
 
 public Q_SLOTS:
@@ -74,6 +81,10 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void initWidgetStyle() const;
     /*!
      * Create all widget style in layout.

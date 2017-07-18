@@ -75,7 +75,11 @@
 #  define MObject_cast(x,y) (qobject_cast< x >(y))
 #endif
 
-#define TTK_DECLARE_LISTS(Class) typedef QList<Class> Class##s;
+#define TTK_DECLARE_LISTS(Class) \
+    typedef QList<Class> Class##s;
+
+#define TTK_DECLARE_FLAGS(Flags, Enum) \
+    typedef QFlags<Enum> Flags;
 
 //////////////////////////////////////
 /*! @brief The namespace of the application object.

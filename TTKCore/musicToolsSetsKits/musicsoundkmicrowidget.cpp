@@ -29,10 +29,11 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint );
 #if defined MUSIC_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
 #endif
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -316,6 +317,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
+    emit resetFlag(MusicObject::TT_SoundKMicro);
     while(!m_musicLrcContainer.isEmpty())
     {
         delete m_musicLrcContainer.takeLast();

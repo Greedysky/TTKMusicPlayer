@@ -18,6 +18,9 @@ MusicNetworkSpeedTestWidget::MusicNetworkSpeedTestWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -61,6 +64,12 @@ MusicNetworkSpeedTestWidget::~MusicNetworkSpeedTestWidget()
 QString MusicNetworkSpeedTestWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicNetworkSpeedTestWidget::closeEvent(QCloseEvent *event)
+{
+    emit resetFlag(MusicObject::TT_SpeedTest);
+    MusicAbstractMoveWidget::closeEvent(event);
 }
 
 void MusicNetworkSpeedTestWidget::settingButton()

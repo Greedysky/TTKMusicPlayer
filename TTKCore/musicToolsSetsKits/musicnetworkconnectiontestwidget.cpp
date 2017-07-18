@@ -98,6 +98,9 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 {
     m_ui->setupUi(this);
 
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -202,4 +205,10 @@ void MusicNetworkConnectionTestWidget::testFinshed()
         m_ui->iconLabel->stop();
         m_ui->startButton->setText(tr("startTest"));
     }
+}
+
+void MusicNetworkConnectionTestWidget::closeEvent(QCloseEvent *event)
+{
+    emit resetFlag(MusicObject::TT_ConnectionTest);
+    MusicAbstractMoveWidget::closeEvent(event);
 }

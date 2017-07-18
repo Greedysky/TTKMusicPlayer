@@ -57,7 +57,6 @@ protected:
      */
 
     MusicObject::ToolsTypes m_toolsFlags;
-    QWidget *m_containItem;
 
 };
 

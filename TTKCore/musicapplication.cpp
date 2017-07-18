@@ -777,15 +777,6 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));
     rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
-    QMenu spectrumControl(tr("ShowingSpectrum"), &rightClickMenu);
-    spectrumControl.addAction(tr("AnalyzerSpectrum"), m_leftAreaWidget, SLOT(musicAnalyzerSpectrumWidget()));
-    spectrumControl.addAction(tr("ProjectMSpectrum"), m_leftAreaWidget, SLOT(musicProjectMSpectrumWidget()))->setEnabled(
-#if !defined Q_OS_WIN || defined MUSIC_GREATER_NEW
-    false);
-#else
-    true);
-#endif
-    rightClickMenu.addMenu(&spectrumControl);
     rightClickMenu.addSeparator();
 
     QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));

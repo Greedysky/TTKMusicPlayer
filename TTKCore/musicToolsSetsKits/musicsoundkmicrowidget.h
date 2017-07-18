@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicobject.h"
 #include "musicabstractmovewidget.h"
 
 namespace Ui {
@@ -48,6 +49,12 @@ public:
     void startSeachKMicro(const QString &name);
     /*!
      * Start seach KMicro.
+     */
+
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
      */
 
 public Q_SLOTS:

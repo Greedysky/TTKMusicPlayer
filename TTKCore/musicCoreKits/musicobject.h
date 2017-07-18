@@ -210,7 +210,7 @@ namespace MusicObject
         TT_GrabWindow =     0x02000,   ///*Grab Window*/
         TT_SoundKMicro =    0x04000    ///*Sound KMicro*/
     };
-    Q_DECLARE_FLAGS(ToolsTypes, ToolsType)
+    TTK_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
     static QString getAppDir()
     {

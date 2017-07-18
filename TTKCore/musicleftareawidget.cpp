@@ -15,7 +15,6 @@
 #include "musicrightareawidget.h"
 ///qmmp incldue
 #include "visual.h"
-#include "visualfactory.h"
 
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
@@ -29,6 +28,7 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
     m_isFullOrNormal = true;
+
     Visual::initialize(MusicApplication::instance());
 }
 
@@ -250,28 +250,6 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
     switchToSelectedItemStyle(4);
-}
-
-void MusicLeftAreaWidget::musicAnalyzerSpectrumWidget()
-{
-    foreach(VisualFactory *v, Visual::factories())
-    {
-        if(v->properties().shortName.contains("analyzer"))
-        {
-            Visual::setEnabled(v);
-        }
-    }
-}
-
-void MusicLeftAreaWidget::musicProjectMSpectrumWidget()
-{
-    foreach(VisualFactory *v, Visual::factories())
-    {
-        if(v->properties().shortName.contains("projectm"))
-        {
-            Visual::setEnabled(v);
-        }
-    }
 }
 
 void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()

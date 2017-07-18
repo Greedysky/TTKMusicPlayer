@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QWidget>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the grab area widget.
@@ -29,6 +30,12 @@ public:
      * Get class object name.
      */
 
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
+     */
+
 private Q_SLOTS:
     void musicCreateRightMenu();
     /*!
@@ -40,6 +47,7 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;

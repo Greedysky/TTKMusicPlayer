@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "musicobject.h"
 #include "musicabstractmovewidget.h"
 
 class MusicNetworkTestThread;
@@ -90,6 +91,12 @@ public:
      * Get class object name.
      */
 
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
+     */
+
 public Q_SLOTS:
     void show();
     /*!
@@ -105,6 +112,11 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     int m_countIndex;
     Ui::MusicNetworkConnectionTestWidget *m_ui;
     QList<MusicNetworkConnectionItem*> m_connectionItems;
