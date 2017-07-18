@@ -44,13 +44,10 @@ public:
     void add(float *data, size_t samples, int chan);
     void clear();
 
-
 private slots:
     void timeout();
-    void toggleFullScreen();
     void readSettings();
     void writeSettings();
-
 
 private:
     virtual void hideEvent (QHideEvent *);

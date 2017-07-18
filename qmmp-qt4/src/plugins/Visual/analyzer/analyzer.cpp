@@ -44,7 +44,7 @@ Analyzer::Analyzer (QWidget *parent) : Visual (parent)
     m_cols = 0;
     m_update = false;
 
-    setWindowTitle (tr("Qmmp Analyzer"));
+    setWindowTitle (tr("Analyzer"));
     setMinimumSize(2*300-30,105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
@@ -114,11 +114,6 @@ void Analyzer::timeout()
     memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
     mutex()->unlock ();
     update();
-}
-
-void Analyzer::toggleFullScreen()
-{
-    setWindowState(windowState() ^Qt::WindowFullScreen);
 }
 
 void Analyzer::readSettings()
@@ -396,8 +391,5 @@ void Analyzer::createMenu()
         act->setCheckable(true);
         peaksFalloff->addAction(act);
     }
-    m_menu->addSeparator();
-    QAction *fullScreenAction = m_menu->addAction(tr("&Full Screen"), this, SLOT(toggleFullScreen()), tr("F"));
-    addAction(fullScreenAction);
     update();
 }

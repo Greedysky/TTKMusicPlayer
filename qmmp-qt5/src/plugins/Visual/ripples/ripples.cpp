@@ -37,7 +37,6 @@ Ripples::Ripples (QWidget *parent) : Visual (parent)
     setAttribute(Qt::WA_QuitOnClose, false);
 
     m_intern_vis_data = 0;
-    m_peaks = 0;
     m_x_scale = 0;
     m_buffer_at = 0;
     m_rows = 0;
@@ -45,7 +44,7 @@ Ripples::Ripples (QWidget *parent) : Visual (parent)
     m_analyzer_falloff = 2.2;
     m_cell_size = QSize(15, 6);
 
-    setWindowTitle (tr("Qmmp Analyzer"));
+    setWindowTitle (tr("Ripples"));
     m_timer = new QTimer (this);
     m_timer->setInterval(40);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
@@ -58,8 +57,6 @@ Ripples::~Ripples()
 {
     delete [] m_left_buffer;
 
-    if(m_peaks)
-        delete [] m_peaks;
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
     if(m_x_scale)
@@ -140,19 +137,15 @@ void Ripples::process (float *left, float *right)
     {
         m_rows = rows;
         m_cols = cols;
-        if(m_peaks)
-            delete [] m_peaks;
         if(m_intern_vis_data)
             delete [] m_intern_vis_data;
         if(m_x_scale)
             delete [] m_x_scale;
-        m_peaks = new double[m_cols * 2];
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
 
         for(int i = 0; i < m_cols * 2; ++i)
         {
-            m_peaks[i] = 0;
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
@@ -211,6 +204,9 @@ void Ripples::process (float *left, float *right)
 void Ripples::draw (QPainter *p)
 {
     QBrush brush(Qt::SolidPattern);
+    brush.setColor(Qt::white);
+    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
@@ -222,7 +218,6 @@ void Ripples::draw (QPainter *p)
 
         for (int i = 0; i <= m_intern_vis_data[j]; ++i)
         {
-            brush.setColor(Qt::white);
             p->fillRect (x, height() - i * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
         }

@@ -44,8 +44,8 @@ Analyzer::Analyzer (QWidget *parent) : Visual (parent)
     m_cols = 0;
     m_update = false;
 
-    setWindowTitle (tr("Qmmp Analyzer"));
-    setMinimumSize(2*300-30,105);
+    setWindowTitle (tr("Analyzer"));
+    setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
     m_left_buffer = new float[VISUAL_BUFFER_SIZE];
@@ -114,11 +114,6 @@ void Analyzer::timeout()
     memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
     mutex()->unlock ();
     update();
-}
-
-void Analyzer::toggleFullScreen()
-{
-    setWindowState(windowState() ^Qt::WindowFullScreen);
 }
 
 void Analyzer::readSettings()
@@ -214,7 +209,7 @@ void Analyzer::closeEvent (QCloseEvent *event)
 void Analyzer::paintEvent (QPaintEvent * e)
 {
     QPainter painter (this);
-    painter.fillRect(e->rect(),m_bgColor);
+    painter.fillRect(e->rect(), m_bgColor);
     draw(&painter);
 }
 
@@ -317,6 +312,8 @@ void Analyzer::process (float *left, float *right)
 void Analyzer::draw (QPainter *p)
 {
     QBrush brush(Qt::SolidPattern);
+    p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
@@ -396,8 +393,5 @@ void Analyzer::createMenu()
         act->setCheckable(true);
         peaksFalloff->addAction(act);
     }
-    m_menu->addSeparator();
-    QAction *fullScreenAction = m_menu->addAction(tr("&Full Screen"), this, SLOT(toggleFullScreen()), tr("F"));
-    addAction(fullScreenAction);
     update();
 }

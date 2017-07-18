@@ -38,4 +38,4 @@ Visual *VisualRipplesFactory::create(QWidget *parent)
     return new Ripples(parent);
 }
 
-Q_EXPORT_PLUGIN2(analyzer,VisualRipplesFactory)
+Q_EXPORT_PLUGIN2(ripples,VisualRipplesFactory)

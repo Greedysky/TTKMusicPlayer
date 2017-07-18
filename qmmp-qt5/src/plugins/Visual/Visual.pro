@@ -1,7 +1,4 @@
 include(../../../qmmp.pri)
 TEMPLATE = subdirs
 
-SUBDIRS += analyzer ripples
-contains(CONFIG, PROJECTM_PLUGIN){
-   SUBDIRS += projectm
-}
+SUBDIRS += analyzer ewave fwave gwave histogram lineplus ripples

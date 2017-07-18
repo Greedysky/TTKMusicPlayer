@@ -50,7 +50,7 @@ private:
     void draw(QPainter *p);
 
     QTimer *m_timer;
-    double *m_intern_vis_data, *m_peaks;
+    double *m_intern_vis_data;
     int *m_x_scale, m_buffer_at, m_cols, m_rows;
     double m_analyzer_falloff;
     float *m_left_buffer;
