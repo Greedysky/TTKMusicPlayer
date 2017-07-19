@@ -12,6 +12,7 @@
 #include "musicobject.h"
 #include "musicabstractmovewidget.h"
 
+class Spek;
 namespace Ui {
 class MusicSpectrumWidget;
 }
@@ -48,6 +49,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void tabIndexChanged(int index);
+    /*!
+     * Tab Index Changed.
+     */
     void spectrumTypeChanged(int index);
     /*!
      * Spectrum Type Changed.
@@ -56,13 +61,21 @@ public Q_SLOTS:
     /*!
      * Override show function.
      */
+    void localFileButtonClicked();
+    /*!
+     * Local file button clicked.
+     */
+    void openFileButtonClicked();
+    /*!
+     * Open file button clicked.
+     */
 
 protected:
     virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void adjustWidgetLayout();
+    void adjustWidgetLayout(int offset);
     /*!
      * Adjust widget layout.
      */
@@ -74,7 +87,12 @@ protected:
     /*!
      * Find spectrum widget index by name.
      */
+    void createSpekWidget();
+    /*!
+     * Create spek widget.
+     */
 
+    Spek *m_spekWidget;
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
 

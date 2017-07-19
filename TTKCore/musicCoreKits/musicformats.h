@@ -31,6 +31,10 @@ public:
     /*!
      * Get player supported formats filter dialog.
      */
+    static QStringList supportFormatsSpekString();
+    /*!
+     * Get spek supported formats filter dialog.
+     */
 
 };
 

@@ -77,3 +77,10 @@ QStringList MusicFormats::supportFormatsFilterDialogString()
                            "*.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr "
                            "*.dgz *.s3gz *.xmgz *.itgz)";
 }
+
+QStringList MusicFormats::supportFormatsSpekString()
+{
+    return QStringList()<< "*.3gp *.aac *.aif *.aifc *.aiff *.amr *.awb *.ape *.au *.dts *.flac "
+                           "*.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra "
+                           "*.ram *.snd *.wav *.wma *.wv";
+}
