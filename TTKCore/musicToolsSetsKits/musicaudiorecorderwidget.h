@@ -14,8 +14,9 @@
 #include <QAudioOutput>
 #include <QMouseEvent>
 #include <QAudioDeviceInfo>
+#include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicabstractmovedialog.h"
+#include "musicabstractmovewidget.h"
 
 #define BufferSize 14096
 
@@ -29,7 +30,7 @@ class MusicAudioRecorderCore;
 /*! @brief The class of the audio recorder widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicAudioRecorderWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicAudioRecorderWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -42,6 +43,12 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
      */
 
 public Q_SLOTS:
@@ -81,12 +88,16 @@ public Q_SLOTS:
     /*!
      * Change current to label show.
      */
-    virtual int exec();
+    void show();
     /*!
-     * Override exec function.
+     * Override show function.
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     int applyVolumeToSample(short iSample);
     /*!
      * Apply volume to sample.

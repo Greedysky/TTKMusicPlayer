@@ -24,7 +24,7 @@
     if((m_toolsFlags & flag) != flag) \
     { \
         m_toolsFlags |= flag; \
-        type *w= new type(MusicApplication::instance()); \
+        type *w= new type(); \
         connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType))); \
         w->raise(); \
         w->show(); \
@@ -139,7 +139,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 1:
             {
-                MusicAudioRecorderWidget(this).exec();
+                NEW_OPERATOR(MusicObject::TT_AudioRecord, MusicAudioRecorderWidget);
                 break;
             }
         case 2:
@@ -194,7 +194,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 10:
             {
-                MusicVolumeGainWidget(this).exec();
+                NEW_OPERATOR(MusicObject::TT_SoundGain, MusicVolumeGainWidget);
                 break;
             }
         case 11:
@@ -204,7 +204,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 12:
             {
-                MusicSoundTouchWidget(this).exec();
+                NEW_OPERATOR(MusicObject::TT_SoundTouch, MusicSoundTouchWidget);
                 break;
             }
         case 13:

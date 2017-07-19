@@ -9,7 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstractmovedialog.h"
+#include "musicobject.h"
+#include "musicabstractmovewidget.h"
 
 namespace Ui {
 class MusicSoundTouchWidget;
@@ -20,7 +21,7 @@ class MusicAudioRecorderCore;
 /*! @brief The class of the sound touch widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -35,10 +36,16 @@ public:
      * Get class object name.
      */
 
-public Q_SLOTS:
-    virtual int exec();
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
     /*!
-     * Override exec function.
+     * Reset window open flag.
+     */
+
+public Q_SLOTS:
+    void show();
+    /*!
+     * Override show function.
      */
 
 private Q_SLOTS:
@@ -85,6 +92,10 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void setText(const QString &text);
     /*!
      * Set label text.

@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "musicabstractmovedialog.h"
+#include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
 
 /*! @brief The class of the volume gain table widget.
@@ -45,7 +45,7 @@ class QProcess;
 /*! @brief The class of the volume gain widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicVolumeGainWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicVolumeGainWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -60,10 +60,16 @@ public:
      * Get class object name.
      */
 
-public Q_SLOTS:
-    virtual int exec();
+Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
     /*!
-     * Override exec function.
+     * Reset window open flag.
+     */
+
+public Q_SLOTS:
+    void show();
+    /*!
+     * Override show function.
      */
 
 private Q_SLOTS:
@@ -105,6 +111,10 @@ private Q_SLOTS:
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void createItemFinished(const QString &track, const QString &album);
     /*!
      * Create table item finished.

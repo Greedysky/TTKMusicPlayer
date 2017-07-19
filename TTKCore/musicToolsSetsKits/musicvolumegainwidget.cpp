@@ -41,10 +41,13 @@ void MusicVolumeGainTableWidget::listCellClicked(int row, int column)
 
 
 MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicVolumeGainWidget), m_process(nullptr)
 {
     m_ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -114,6 +117,12 @@ MusicVolumeGainWidget::~MusicVolumeGainWidget()
 QString MusicVolumeGainWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicVolumeGainWidget::closeEvent(QCloseEvent *event)
+{
+    MusicAbstractMoveWidget::closeEvent(event);
+    emit resetFlag(MusicObject::TT_SoundGain);
 }
 
 void MusicVolumeGainWidget::createItemFinished(const QString &track, const QString &album)
@@ -337,16 +346,16 @@ void MusicVolumeGainWidget::applyOutput()
     }
 }
 
-int MusicVolumeGainWidget::exec()
+void MusicVolumeGainWidget::show()
 {
     if(!QFile::exists(MAKE_GAIN_FULL))
     {
         MusicMessageBox message;
         message.setText(tr("Lack of plugin file!"));
         message.exec();
-        return -1;
+        return;
     }
 
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
+    MusicAbstractMoveWidget::show();
 }

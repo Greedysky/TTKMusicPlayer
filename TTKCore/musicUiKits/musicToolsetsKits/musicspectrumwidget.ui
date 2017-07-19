@@ -142,6 +142,13 @@ QTabBar::tab:selected {
           <number>0</number>
          </property>
          <item>
+          <widget class="QCheckBox" name="analyzerBox">
+           <property name="text">
+            <string>Analyzer</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="analyzer2Box">
            <property name="text">
             <string>Analyzer2</string>
@@ -173,13 +180,6 @@ QTabBar::tab:selected {
           <widget class="QCheckBox" name="histogramBox">
            <property name="text">
             <string>Histogram</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="analyzerBox">
-           <property name="text">
-            <string>Analyzer</string>
            </property>
           </widget>
          </item>

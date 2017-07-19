@@ -93,7 +93,7 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     {
         showSpectrum(type.m_name, false);
     }
-//    delete m_spekWidget;
+    delete m_spekWidget;
     delete m_ui;
 }
 
@@ -225,7 +225,7 @@ void MusicSpectrumWidget::createSpekWidget()
         SpekFactory *decoderfac = nullptr;
         if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)) )
         {
-            m_spekWidget = decoderfac->create(0);
+            m_spekWidget = decoderfac->create(nullptr);
             m_ui->spekAreaLayout->addWidget(m_spekWidget);
         }
     }

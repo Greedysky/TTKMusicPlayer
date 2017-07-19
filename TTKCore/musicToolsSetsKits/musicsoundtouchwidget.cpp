@@ -2,7 +2,6 @@
 #include "ui_musicsoundtouchwidget.h"
 #include "musicaudiorecordercore.h"
 #include "musicmessagebox.h"
-#include "musicobject.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
 
@@ -11,10 +10,13 @@
 #include <QFileDialog>
 
 MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicSoundTouchWidget)
 {
     m_ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -76,18 +78,18 @@ QString MusicSoundTouchWidget::getClassName()
     return staticMetaObject.className();
 }
 
-int MusicSoundTouchWidget::exec()
+void MusicSoundTouchWidget::show()
 {
     if(!QFile::exists(MAKE_SOUNDTOUCH_FULL))
     {
         MusicMessageBox message;
         message.setText(tr("Lack of plugin file!"));
         message.exec();
-        return -1;
+        return;
     }
 
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
+    MusicAbstractMoveWidget::show();
 }
 
 void MusicSoundTouchWidget::analysisOutput()
@@ -179,6 +181,13 @@ void MusicSoundTouchWidget::finished(int code)
     }
     m_ui->playWavButton->setEnabled(true);
 }
+
+void MusicSoundTouchWidget::closeEvent(QCloseEvent *event)
+{
+    MusicAbstractMoveWidget::closeEvent(event);
+    emit resetFlag(MusicObject::TT_SoundTouch);
+}
+
 
 void MusicSoundTouchWidget::setText(const QString &text)
 {

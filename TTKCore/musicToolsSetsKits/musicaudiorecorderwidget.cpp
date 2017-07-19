@@ -9,10 +9,13 @@
 #include <QFileDialog>
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicAudioRecorderWidget), m_mBuffer(BufferSize, 0)
 {
     m_ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -202,6 +205,12 @@ void MusicAudioRecorderWidget::createAudioOutput()
     m_mpAudioOutputSound = new QAudioOutput(outputDevice, m_mFormatSound, this);
 }
 
+void MusicAudioRecorderWidget::closeEvent(QCloseEvent *event)
+{
+    MusicAbstractMoveWidget::closeEvent(event);
+    emit resetFlag(MusicObject::TT_AudioRecord);
+}
+
 int MusicAudioRecorderWidget::applyVolumeToSample(short iSample)
 {
     //Calculate volume, Volume limited to  max 30000 and min -30000
@@ -263,8 +272,8 @@ void MusicAudioRecorderWidget::onTimeOut()
     m_ui->progress->setValue(m_miMaxValue);
 }
 
-int MusicAudioRecorderWidget::exec()
+void MusicAudioRecorderWidget::show()
 {
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
+    MusicAbstractMoveWidget::show();
 }
