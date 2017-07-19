@@ -1,9 +1,11 @@
 #include "musicspectrumwidget.h"
 #include "ui_musicspectrumwidget.h"
 #include "musicuiobject.h"
+#include <QPluginLoader>
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
+#include "spekfactory.h"
 
 #define ITEM_DEFAULT_COUNT      3
 #define ITEM_OFFSET             107

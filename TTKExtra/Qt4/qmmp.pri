@@ -41,5 +41,6 @@ HEADERS += \
     $$PWD/channelconverter_p.h \
     $$PWD/audioconverter.h \
     $$PWD/dithering_p.h \
-    $$PWD/tagreadandwrite.h
+    $$PWD/tagreadandwrite.h \
+    $$PWD/spekfactory.h
     
