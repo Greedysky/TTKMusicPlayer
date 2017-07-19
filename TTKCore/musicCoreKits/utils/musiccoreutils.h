@@ -20,6 +20,10 @@ namespace MusicUtils
 {
     namespace Core
     {
+        MUSIC_CORE_EXPORT QString pluginPath(const QString &module, const QString &format);
+        /*!
+         * Get qmmp plugin dir path.
+         */
         MUSIC_CORE_EXPORT QString lrcPrefix();
         /*!
          * Get lrc dir prefix path.

@@ -1,5 +1,6 @@
 #include "musiccoreutils.h"
 #include "musicsettingmanager.h"
+#include "musicversion.h"
 
 #include <QUrl>
 #include <QDesktopServices>
@@ -8,6 +9,25 @@
 #include <Windows.h>
 #include <shellapi.h>
 #endif
+
+QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
+{
+    QString path;
+#ifdef Q_OS_WIN
+#  ifdef MUSIC_GREATER_NEW
+    path = QString("plugins/%1/%2.dll").arg(module).arg(format);
+#  else
+    path = QString("../bin/%1/plugins/%2/%3.dll").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
+#  endif
+#elif defined Q_OS_UNIX
+#  ifdef MUSIC_GREATER_NEW
+    path = QString("qmmp/%1/%2.so").arg(module).arg(format);
+#  else
+    path = QString("../lib/%1/qmmp/%2/%3.so").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
+#  endif
+#endif
+    return path;
+}
 
 QString MusicUtils::Core::lrcPrefix()
 {

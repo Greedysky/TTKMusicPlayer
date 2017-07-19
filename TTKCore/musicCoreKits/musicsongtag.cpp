@@ -2,6 +2,7 @@
 #include "musictime.h"
 #include "musicformats.h"
 #include "musicversion.h"
+#include "musiccoreutils.h"
 
 #include <QStringList>
 #include <QPluginLoader>
@@ -77,7 +78,8 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     {
         if(formats.value(key).contains(suffix))
         {
-            QString path = getNotSupportedPluginPath(key);
+
+            QString path = MusicUtils::Core::pluginPath("Input", key);
             loader.setFileName(path);
             break;
         }
@@ -108,25 +110,6 @@ bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)
     }
 
     return !m_parameters.isEmpty();
-}
-
-QString MusicSongTag::getNotSupportedPluginPath(const QString &format)
-{
-    QString path;
-#ifdef Q_OS_WIN
-#  ifdef MUSIC_GREATER_NEW
-    path = QString("plugins/Input/%1.dll").arg(format);
-#  else
-    path = QString("../bin/plugins/Input/%1.dll").arg(format);
-#  endif
-#elif defined Q_OS_UNIX
-#  ifdef MUSIC_GREATER_NEW
-    path = QString("qmmp/Input/%1.so").arg(format);
-#  else
-    path = QString("../lib/qmmp/Input/%1.so").arg(format);
-#  endif
-#endif
-    return path;
 }
 
 QString MusicSongTag::getArtist() const

@@ -155,10 +155,6 @@ protected:
     /*!
      * Read other taglib not support file format.
      */
-    QString getNotSupportedPluginPath(const QString &format);
-    /*!
-     * Get not supported plugin path.
-     */
 
     int m_id3v2Version;
     QString m_filePath;
