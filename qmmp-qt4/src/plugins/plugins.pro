@@ -1,7 +1,4 @@
 TEMPLATE = subdirs
 
-SUBDIRS += Effect \
-           Input \
-           Output \
-           Visual
+SUBDIRS += Effect Input Output Spek Visual
 
