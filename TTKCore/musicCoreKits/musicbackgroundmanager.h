@@ -105,6 +105,11 @@ public:
      * Get artist background picture path.
      */
 
+    void backgroundHasChanged();
+    /*!
+     * Get artist background picture path.
+     */
+
 Q_SIGNALS:
     void backgroundChanged();
     /*!

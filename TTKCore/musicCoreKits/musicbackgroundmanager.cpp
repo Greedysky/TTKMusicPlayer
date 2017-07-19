@@ -122,3 +122,8 @@ QString MusicBackgroundManager::getMBackground() const
 {
     return m_background;
 }
+
+void MusicBackgroundManager::backgroundHasChanged()
+{
+    emit backgroundChanged();
+}

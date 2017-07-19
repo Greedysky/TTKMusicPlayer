@@ -221,7 +221,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetItemClicked(const QString &n
 
     QString s = name;
     setMBackground(s);
-    emit M_BACKGROUND_PTR->backgroundChanged();
+    emit M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 void MusicBackgroundSkinDialog::myBackgroundListWidgetItemClicked(const QString &name)
@@ -233,7 +233,7 @@ void MusicBackgroundSkinDialog::myBackgroundListWidgetItemClicked(const QString 
 
     QString s = name;
     setMBackground(s);
-    emit M_BACKGROUND_PTR->backgroundChanged();
+    emit M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
 int MusicBackgroundSkinDialog::exec()
