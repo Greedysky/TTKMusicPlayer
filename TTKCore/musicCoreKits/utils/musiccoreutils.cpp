@@ -21,9 +21,9 @@ QString MusicUtils::Core::pluginPath(const QString &module, const QString &forma
 #  endif
 #elif defined Q_OS_UNIX
 #  ifdef MUSIC_GREATER_NEW
-    path = QString("qmmp/%1/%2.so").arg(module).arg(format);
+    path = QString("qmmp/%1/lib%2.so").arg(module).arg(format);
 #  else
-    path = QString("../lib/%1/qmmp/%2/%3.so").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
+    path = QString("../lib/%1/qmmp/%2/lib%3.so").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
 #  endif
 #endif
     return path;

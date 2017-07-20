@@ -42,5 +42,5 @@ HEADERS += \
     $$PWD/audioconverter.h \
     $$PWD/dithering_p.h \
     $$PWD/tagreadandwrite.h \
-    $$PWD/spekfactory
+    $$PWD/spekfactory.h
     
