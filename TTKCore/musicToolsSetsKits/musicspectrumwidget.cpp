@@ -43,18 +43,16 @@
 
 
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(parent),
+    : MusicAbstractMoveWidget(false, parent),
       m_ui(new Ui::MusicSpectrumWidget)
 {
     m_ui->setupUi(this);
 
-    setStyleSheet(MusicUIObject::MMenuStyle02);
-
-    setAttribute(Qt::WA_TranslucentBackground, false);
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_spekWidget = nullptr;
+    setStyleSheet(MusicUIObject::MMenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);

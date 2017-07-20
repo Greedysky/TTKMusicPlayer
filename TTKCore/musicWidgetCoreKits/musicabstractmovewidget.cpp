@@ -7,11 +7,17 @@
 #define HEIGHT 4
 
 MusicAbstractMoveWidget::MusicAbstractMoveWidget(QWidget *parent)
+    : MusicAbstractMoveWidget(true, parent)
+{
+
+}
+
+MusicAbstractMoveWidget::MusicAbstractMoveWidget(bool transparent, QWidget *parent)
     : QWidget(parent)
 {
     ///Remove the title bar
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
-    setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_TranslucentBackground, transparent);
 
     m_moveOption = false;
     m_leftButtonPress = false;

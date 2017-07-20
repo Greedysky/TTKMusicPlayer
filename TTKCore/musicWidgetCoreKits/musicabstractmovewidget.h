@@ -24,6 +24,10 @@ public:
     /*!
      * Object contsructor.
      */
+    explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
     virtual ~MusicAbstractMoveWidget();
 
     static QString getClassName();
