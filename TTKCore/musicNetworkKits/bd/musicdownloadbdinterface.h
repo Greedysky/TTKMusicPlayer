@@ -49,21 +49,21 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadBDInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QString &bit);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QString &format, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager);
+    void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager);
+    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

@@ -42,17 +42,17 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadKGInterface
 {
 public:
     void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QString &hash, QNetworkAccessManager *manager);
+                                    const QString &hash, QNetworkAccessManager *&manager);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QVariantMap &key, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
-                                    const QString &hash, QNetworkAccessManager *manager);
+                                    const QString &hash, QNetworkAccessManager *&manager);
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

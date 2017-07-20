@@ -52,7 +52,7 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadXMInterface
 {
 public:
-    void makeTokenQueryUrl(QNetworkAccessManager *manager, QNetworkRequest *request, const QString &query, const QString &type);
+    void makeTokenQueryUrl(QNetworkAccessManager *&manager, QNetworkRequest *request, const QString &query, const QString &type);
     /*!
      * Make token query url string.
      */
@@ -66,7 +66,7 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                               const QString &songID);
     /*!
      * Read tags(lrc) from query results.

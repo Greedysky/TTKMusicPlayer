@@ -52,7 +52,7 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
-                              const QString &id, QNetworkAccessManager *manager);
+                              const QString &id, QNetworkAccessManager *&manager);
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

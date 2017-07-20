@@ -12,7 +12,7 @@
 #include <QNetworkAccessManager>
 
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                                          const QString &hash, QNetworkAccessManager *manager)
+                                                          const QString &hash, QNetworkAccessManager *&manager)
 {
     if(hash.isEmpty() || !manager)
     {
@@ -54,7 +54,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
     if(!manager)
@@ -86,7 +86,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 }
 
 void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
-                                                          const QString &hash, QNetworkAccessManager *manager)
+                                                          const QString &hash, QNetworkAccessManager *&manager)
 {
     if(hash.isEmpty() || !manager)
     {

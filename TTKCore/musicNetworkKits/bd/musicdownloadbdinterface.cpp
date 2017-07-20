@@ -12,7 +12,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                           const QString &bit)
 {
     if(!manager)
@@ -88,7 +88,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                           const QString &format, const QString &quality, bool all)
 {
     if(!manager)
@@ -140,7 +140,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager)
+void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager)
 {
     if(!manager)
     {
@@ -197,7 +197,7 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager)
+void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager)
 {
     if(!manager)
     {

@@ -47,17 +47,17 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadWYInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QString &id, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QVariantMap &key, const QString &id, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                     const QVariantMap &key, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.

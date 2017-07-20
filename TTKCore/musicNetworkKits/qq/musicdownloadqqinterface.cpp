@@ -12,7 +12,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                           const QVariantMap &key, int bitrate)
 {
     if(!manager)
@@ -109,7 +109,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
     if(!manager)
@@ -147,7 +147,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-QString MusicDownLoadQQInterface::getMusicKey(QNetworkAccessManager *manager, const QString &time)
+QString MusicDownLoadQQInterface::getMusicKey(QNetworkAccessManager *&manager, const QString &time)
 {
     if(!manager)
     {

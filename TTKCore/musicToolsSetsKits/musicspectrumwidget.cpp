@@ -48,6 +48,8 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    setStyleSheet(MusicUIObject::MMenuStyle02);
+
     setAttribute(Qt::WA_TranslucentBackground, false);
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
@@ -225,7 +227,7 @@ void MusicSpectrumWidget::createSpekWidget()
         SpekFactory *decoderfac = nullptr;
         if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)) )
         {
-            m_spekWidget = decoderfac->create(nullptr);
+            m_spekWidget = decoderfac->create(this);
             m_ui->spekAreaLayout->addWidget(m_spekWidget);
         }
     }

@@ -13,7 +13,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager, QNetworkRequest *request,
+void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *&manager, QNetworkRequest *request,
                                                  const QString &query, const QString &type)
 {
     if(!manager)
@@ -42,7 +42,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *manager,
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *manager,
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
                                                     const QString &songID)
 {
     if(!manager)
