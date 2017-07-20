@@ -29,7 +29,7 @@ const VisualProperties VisualFWaveFactory::properties() const
     properties.name = tr("FWave Plugin");
     properties.shortName = "fwave";
     properties.hasSettings = true;
-    properties.hasAbout = true;
+    properties.hasAbout = false;
     return properties;
 }
 

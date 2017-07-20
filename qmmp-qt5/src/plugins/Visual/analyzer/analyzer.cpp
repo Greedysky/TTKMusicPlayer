@@ -30,6 +30,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "analyzer.h"
+#include "colorwidget.h"
 
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
@@ -50,6 +51,7 @@ Analyzer::Analyzer (QWidget *parent) : Visual (parent)
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
     m_left_buffer = new float[VISUAL_BUFFER_SIZE];
     m_right_buffer = new float[VISUAL_BUFFER_SIZE];
+    m_cell_size = QSize(15, 6);
 
     clear();
     createMenu();
@@ -124,12 +126,7 @@ void Analyzer::readSettings()
     m_analyzer_falloff = settings.value("analyzer_falloff", 2.2).toDouble();
     m_show_peaks = settings.value("show_peaks", true).toBool();
     m_timer->setInterval(1000 / settings.value("refresh_rate", 25).toInt());
-    m_color1.setNamedColor(settings.value("color1", "Green").toString());
-    m_color2.setNamedColor(settings.value("color2", "Yellow").toString());
-    m_color3.setNamedColor(settings.value("color3", "Red").toString());
-    m_bgColor.setNamedColor(settings.value("bg_color", "Black").toString());
-    m_peakColor.setNamedColor(settings.value("peak_color", "Cyan").toString());
-    m_cell_size = settings.value("cells_size", QSize(15, 6)).toSize();
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
 
 
     if(!m_update)
@@ -185,7 +182,18 @@ void Analyzer::writeSettings()
     act = m_analyzerFalloffGroup->checkedAction ();
     settings.setValue("analyzer_falloff", act ? act->data().toDouble() : 2.2);
     settings.setValue("show_peaks", m_peaksAction->isChecked());
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
+}
+
+void Analyzer::changeColor()
+{
+    ColorWidget c;
+    c.setColors(m_colors);
+    if(c.exec())
+    {
+        m_colors = c.getColors();
+    }
 }
 
 void Analyzer::hideEvent (QHideEvent *)
@@ -198,18 +206,10 @@ void Analyzer::showEvent (QShowEvent *)
     m_timer->start();
 }
 
-void Analyzer::closeEvent (QCloseEvent *event)
-{
-    //save geometry
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.setValue("Analyzer/geometry", saveGeometry());
-    Visual::closeEvent(event); //removes visualization object
-}
-
 void Analyzer::paintEvent (QPaintEvent * e)
 {
     QPainter painter (this);
-    painter.fillRect(e->rect(), m_bgColor);
+    painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
@@ -311,7 +311,11 @@ void Analyzer::process (float *left, float *right)
 
 void Analyzer::draw (QPainter *p)
 {
-    QBrush brush(Qt::SolidPattern);
+    QLinearGradient line(0, 0, 0, height());
+    for(int i=0; i<m_colors.count(); ++i)
+    {
+        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+    }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
@@ -325,21 +329,14 @@ void Analyzer::draw (QPainter *p)
 
         for (int i = 0; i <= m_intern_vis_data[j]; ++i)
         {
-            if (i <= m_rows/3)
-                brush.setColor(m_color1);
-            else if (i > m_rows/3 && i <= 2 * m_rows / 3)
-                brush.setColor(m_color2);
-            else
-                brush.setColor(m_color3);
-
             p->fillRect (x, height() - i * m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
+                         m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
 
         if (m_show_peaks)
         {
             p->fillRect (x, height() - int(m_peaks[j])*m_cell_size.height() + 1,
-                         m_cell_size.width() - 2, m_cell_size.height() - 2, m_peakColor);
+                         m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
         }
     }
 }
@@ -393,5 +390,7 @@ void Analyzer::createMenu()
         act->setCheckable(true);
         peaksFalloff->addAction(act);
     }
+    m_menu->addAction("Color", this, SLOT(changeColor()));
+
     update();
 }

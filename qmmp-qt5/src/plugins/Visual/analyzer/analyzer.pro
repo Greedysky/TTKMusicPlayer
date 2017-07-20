@@ -13,8 +13,9 @@ HEADERS += analyzer.h \
 SOURCES += analyzer.cpp \
            fft.c \
            visualanalyzerfactory.cpp \
-           colorwidget.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

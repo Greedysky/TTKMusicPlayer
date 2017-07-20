@@ -46,14 +46,21 @@ public:
 
 private slots:
     void timeout();
+    void readSettings();
+    void writeSettings();
+    void changeColor();
 
 private:
-    virtual void hideEvent (QHideEvent *);
-    virtual void showEvent (QShowEvent *);
-    void paintEvent(QPaintEvent *);
+    virtual void hideEvent (QHideEvent *e);
+    virtual void showEvent (QShowEvent *e);
+    void paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *e);
     void process(float *l, float *r);
     void draw(QPainter *p);
+    void createMenu();
 
+    QList<QColor> m_colors;
+    QMenu *m_menu;
     QTimer *m_timer;
     double *m_intern_vis_data, *m_peaks;
     int *m_x_scale;

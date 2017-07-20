@@ -30,6 +30,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "lineplus.h"
+#include "colorwidget.h"
 
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
@@ -56,6 +57,8 @@ LinePlus::LinePlus (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(3, 2);
 
     clear();
+    createMenu();
+    readSettings();
 }
 
 LinePlus::~LinePlus()
@@ -118,6 +121,31 @@ void LinePlus::timeout()
     update();
 }
 
+void LinePlus::readSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("LinePlus");
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+}
+
+void LinePlus::writeSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("LinePlus");
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.endGroup();
+}
+
+void LinePlus::changeColor()
+{
+    ColorWidget c;
+    c.setColors(m_colors);
+    if(c.exec())
+    {
+        m_colors = c.getColors();
+    }
+}
+
 void LinePlus::hideEvent (QHideEvent *)
 {
     m_timer->stop();
@@ -133,6 +161,12 @@ void LinePlus::paintEvent (QPaintEvent * e)
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
+}
+
+void LinePlus::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::RightButton)
+        m_menu->exec(e->globalPos());
 }
 
 void LinePlus::process (float *left, float *right)
@@ -224,8 +258,11 @@ void LinePlus::process (float *left, float *right)
 
 void LinePlus::draw (QPainter *p)
 {
-    QBrush brush(Qt::SolidPattern);
-    brush.setColor(Qt::white);
+    QLinearGradient line(0, 0, 0, height());
+    for(int i=0; i<m_colors.count(); ++i)
+    {
+        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+    }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
@@ -238,9 +275,20 @@ void LinePlus::draw (QPainter *p)
             x += rdx; //correct right part position
 
         int hh = m_intern_vis_data[j] * m_cell_size.height();
-        p->fillRect (x, height() - hh, m_cell_size.width() - 1, hh, brush);
+        p->fillRect (x, height() - hh, m_cell_size.width() - 1, hh, line);
 
         p->fillRect (x, height() - int(m_peaks[j])*m_cell_size.height(),
-                     m_cell_size.width() - 1, m_cell_size.height(), QColor("Cyan"));
+                     m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
+}
+
+void LinePlus::createMenu()
+{
+    m_menu = new QMenu (this);
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
+
+    m_menu->addAction("Color", this, SLOT(changeColor()));
+
+    update();
 }

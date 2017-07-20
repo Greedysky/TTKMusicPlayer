@@ -30,6 +30,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "ewave.h"
+#include "colorwidget.h"
 
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
@@ -56,6 +57,8 @@ EWave::EWave (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(6, 2);
 
     clear();
+    createMenu();
+    readSettings();
 }
 
 EWave::~EWave()
@@ -117,6 +120,31 @@ void EWave::timeout()
     update();
 }
 
+void EWave::readSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("EWave");
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+}
+
+void EWave::writeSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("EWave");
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.endGroup();
+}
+
+void EWave::changeColor()
+{
+    ColorWidget c;
+    c.setColors(m_colors);
+    if(c.exec())
+    {
+        m_colors = c.getColors();
+    }
+}
+
 void EWave::hideEvent (QHideEvent *)
 {
     m_timer->stop();
@@ -132,6 +160,12 @@ void EWave::paintEvent (QPaintEvent * e)
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
+}
+
+void EWave::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::RightButton)
+        m_menu->exec(e->globalPos());
 }
 
 void EWave::process (float *left, float *right)
@@ -223,10 +257,13 @@ void EWave::process (float *left, float *right)
 
 void EWave::draw (QPainter *p)
 {
-    QBrush brush(Qt::SolidPattern);
-    brush.setColor(Qt::white);
+    QLinearGradient line(0, 0, 0, height());
+    for(int i=0; i<m_colors.count(); ++i)
+    {
+        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+    }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setBrush(brush);
+    p->setBrush(line);
 
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
@@ -243,4 +280,15 @@ void EWave::draw (QPainter *p)
     }
     psx << QPoint(width(), height());
     p->drawPolygon(psx);
+}
+
+void EWave::createMenu()
+{
+    m_menu = new QMenu (this);
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
+
+    m_menu->addAction("Color", this, SLOT(changeColor()));
+
+    update();
 }

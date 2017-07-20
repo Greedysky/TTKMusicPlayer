@@ -7,12 +7,15 @@ QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libgwave.so
 HEADERS += gwave.h \
            fft.h \
            visualgwavefactory.h \
-           inlines.h
+           inlines.h \
+           colorwidget.h
            
 SOURCES += gwave.cpp \
            fft.c \
-           visualgwavefactory.cpp
+           visualgwavefactory.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

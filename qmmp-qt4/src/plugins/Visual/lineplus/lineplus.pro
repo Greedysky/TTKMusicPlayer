@@ -7,12 +7,15 @@ QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/liblineplus.so
 HEADERS += lineplus.h \
            fft.h \
            visuallineplusfactory.h \
-           inlines.h
+           inlines.h \
+           colorwidget.h
            
 SOURCES += lineplus.cpp \
            fft.c \
-           visuallineplusfactory.cpp
+           visuallineplusfactory.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

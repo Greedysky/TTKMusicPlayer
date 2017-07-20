@@ -4,6 +4,7 @@
 #include "spek-spectrogram.h"
 
 #include <cmath>
+#include <QMenu>
 #include <QPainter>
 #include <QDateTime>
 #include <QApplication>
@@ -48,16 +49,13 @@ SpekSpectrogram::SpekSpectrogram(QWidget *parent) :
     urange(URANGE),
     lrange(LRANGE)
 {
-    setAttribute(Qt::WA_DeleteOnClose, false);
-    setAttribute(Qt::WA_QuitOnClose, false);
-
     this->create_palette();
 }
 
 SpekSpectrogram::~SpekSpectrogram()
 {
-    qDebug() << "~SpekSpectrogram";
-//    this->stop();
+    qDebug() << "~Spek";
+    this->stop();
 }
 
 void SpekSpectrogram::open(const QString &path)
@@ -78,6 +76,20 @@ void SpekSpectrogram::paintEvent(QPaintEvent *event)
 void SpekSpectrogram::resizeEvent(QResizeEvent *event)
 {
     Spek::resizeEvent(event);
+    start();
+}
+
+void SpekSpectrogram::contextMenuEvent(QContextMenuEvent *event)
+{
+    Spek::contextMenuEvent(event);
+    QMenu menu(this);
+    QMenu typeMenu("Type", &menu);
+    typeMenu.addAction("Spectrum")->setData(10);
+    typeMenu.addAction("Sox")->setData(20);
+    typeMenu.addAction("Mono")->setData(30);
+    connect(&typeMenu, SIGNAL(triggered(QAction*)), this, SLOT(typeChanged(QAction*)));
+    menu.addMenu(&typeMenu);
+    menu.exec(QCursor::pos());
 }
 
 static QString time_formatter(int unit)
@@ -189,7 +201,7 @@ static void pipeline_cb(int bands, int sample, float *values, void *cb_data)
 {
     SpekSpectrogram *spek = static_cast<SpekSpectrogram*>(cb_data);
     if (sample == -1) {
-        spek->stop();
+//        spek->stop();
         return;
     }
 
@@ -243,6 +255,19 @@ void SpekSpectrogram::stop()
         spek_pipeline_close(this->pipeline);
         this->pipeline = NULL;
     }
+}
+
+void SpekSpectrogram::typeChanged(QAction *action)
+{
+    switch(action->data().toInt())
+    {
+        case 10: palette = PALETTE_SPECTRUM; break;
+        case 20: palette = PALETTE_SOX; break;
+        case 30: palette = PALETTE_MONO; break;
+        default: break;
+    }
+    create_palette();
+    start();
 }
 
 void SpekSpectrogram::create_palette()

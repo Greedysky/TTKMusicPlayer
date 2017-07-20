@@ -27,7 +27,7 @@ const VisualProperties VisualHistogramFactory::properties() const
     VisualProperties properties;
     properties.name = tr("Histogram Plugin");
     properties.shortName = "histogram";
-    properties.hasSettings = false;
+    properties.hasSettings = true;
     properties.hasAbout = false;
     return properties;
 }

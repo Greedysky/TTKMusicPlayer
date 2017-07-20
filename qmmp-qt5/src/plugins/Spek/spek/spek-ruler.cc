@@ -63,7 +63,7 @@ void SpekRuler::draw_tick(QPainter &dc, int tick)
     } else if (this->pos == RIGHT){
         dc.drawText(this->x + GAP, this->y + p - h / 2, label);
     } else if (this->pos == BOTTOM) {
-        dc.drawText(this->x + p - w / 2, this->y + GAP, label);
+        dc.drawText(this->x + p - w / 2, this->y + GAP*2, label);
     } else if (this->pos == LEFT){
         dc.drawText(this->x - w - GAP, this->y + p - h / 2, label);
     }

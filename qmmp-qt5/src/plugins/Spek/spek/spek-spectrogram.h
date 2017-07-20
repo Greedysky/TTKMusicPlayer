@@ -14,6 +14,7 @@ struct spek_pipeline;
 
 class SpekSpectrogram : public Spek
 {
+    Q_OBJECT
 public:
     explicit SpekSpectrogram(QWidget *parent = 0);
     ~SpekSpectrogram();
@@ -27,9 +28,13 @@ public:
     inline int getLRange() const { return lrange; }
     Palette getPalette() const { return palette; }
 
+private slots:
+    void typeChanged(QAction *action);
+
 private:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     void paint(QPainter *dc);
     void create_palette();

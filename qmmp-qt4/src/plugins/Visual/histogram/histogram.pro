@@ -7,13 +7,15 @@ QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libhistogram.so
 HEADERS += histogram.h \
            fft.h \
            visualhistogramfactory.h \
-           inlines.h
-           
+           inlines.h \
+           colorwidget.h
 
 SOURCES += histogram.cpp \
            fft.c \
-           visualhistogramfactory.cpp
+           visualhistogramfactory.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

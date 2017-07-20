@@ -10,15 +10,16 @@ HEADERS += analyzer.h \
            inlines.h \
            colorwidget.h
            
-           
 SOURCES += analyzer.cpp \
            fft.c \
            visualanalyzerfactory.cpp \
            colorwidget.cpp
 
+FORMS    += colorwidget.ui
+
 INCLUDEPATH += ../../../
 CONFIG += warn_on \
-          plugin
+            plugin
 
 TEMPLATE = lib
 
@@ -29,10 +30,10 @@ win32:{
     LIBS += -lqmmp0
 }
 
-unix:{
+unix{
     isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
-    LIBS += -lqmmp -L/usr/lib -I/usr/include
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
+    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
+    LIBS += -lqmmp -L/usr/lib -I/usr/include
 }

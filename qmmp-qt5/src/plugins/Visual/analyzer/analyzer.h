@@ -48,16 +48,17 @@ private slots:
     void timeout();
     void readSettings();
     void writeSettings();
+    void changeColor();
 
 private:
-    virtual void hideEvent (QHideEvent *);
-    virtual void showEvent (QShowEvent *);
-    virtual void closeEvent (QCloseEvent *);
-    void paintEvent(QPaintEvent *);
+    virtual void hideEvent (QHideEvent *e);
+    virtual void showEvent (QShowEvent *e);
+    void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
     void process(float *l, float *r);
     void draw(QPainter *p);
     void createMenu();
+    
     QTimer *m_timer;
     double *m_intern_vis_data;
     double *m_peaks;
@@ -71,11 +72,7 @@ private:
     int m_cols, m_rows;
     bool m_update;
     //colors
-    QColor m_color1;
-    QColor m_color2;
-    QColor m_color3;
-    QColor m_bgColor;
-    QColor m_peakColor;
+    QList<QColor> m_colors;
     QSize m_cell_size;
     QMenu *m_menu;
     QAction *m_peaksAction;

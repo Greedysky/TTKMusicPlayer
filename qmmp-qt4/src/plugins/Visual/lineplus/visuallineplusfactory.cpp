@@ -29,7 +29,7 @@ const VisualProperties VisualLinePlusFactory::properties() const
     properties.name = tr("LinePlus Plugin");
     properties.shortName = "lineplus";
     properties.hasSettings = true;
-    properties.hasAbout = true;
+    properties.hasAbout = false;
     return properties;
 }
 

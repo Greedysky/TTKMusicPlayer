@@ -30,6 +30,7 @@
 #include "fft.h"
 #include "inlines.h"
 #include "gwave.h"
+#include "colorwidget.h"
 
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
@@ -56,6 +57,8 @@ GWave::GWave (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(16, 2);
 
     clear();
+    createMenu();
+    readSettings();
 }
 
 GWave::~GWave()
@@ -117,6 +120,31 @@ void GWave::timeout()
     update();
 }
 
+void GWave::readSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("GWave");
+    m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+}
+
+void GWave::writeSettings()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("GWave");
+    settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.endGroup();
+}
+
+void GWave::changeColor()
+{
+    ColorWidget c;
+    c.setColors(m_colors);
+    if(c.exec())
+    {
+        m_colors = c.getColors();
+    }
+}
+
 void GWave::hideEvent (QHideEvent *)
 {
     m_timer->stop();
@@ -132,6 +160,12 @@ void GWave::paintEvent (QPaintEvent * e)
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
+}
+
+void GWave::mousePressEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::RightButton)
+        m_menu->exec(e->globalPos());
 }
 
 void GWave::process (float *left, float *right)
@@ -223,10 +257,13 @@ void GWave::process (float *left, float *right)
 
 void GWave::draw (QPainter *p)
 {
-    QPen pen(Qt::SolidLine);
-    pen.setColor(Qt::white);
+    QLinearGradient line(0, 0, 0, height());
+    for(int i=0; i<m_colors.count(); ++i)
+    {
+        line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
+    }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(pen);
+    p->setPen(QPen(line, 1));
 
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
@@ -248,4 +285,15 @@ void GWave::draw (QPainter *p)
         p->drawLine(psx, pxr);
         psx = pxr;
     }
+}
+
+void GWave::createMenu()
+{
+    m_menu = new QMenu (this);
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
+    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
+
+    m_menu->addAction("Color", this, SLOT(changeColor()));
+
+    update();
 }

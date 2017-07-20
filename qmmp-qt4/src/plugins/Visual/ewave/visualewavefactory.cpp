@@ -29,7 +29,7 @@ const VisualProperties VisualEWaveFactory::properties() const
     properties.name = tr("EWave Plugin");
     properties.shortName = "ewave";
     properties.hasSettings = true;
-    properties.hasAbout = true;
+    properties.hasAbout = false;
     return properties;
 }
 

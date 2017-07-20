@@ -29,7 +29,7 @@ const VisualProperties VisualGWaveFactory::properties() const
     properties.name = tr("GWave Plugin");
     properties.shortName = "gwave";
     properties.hasSettings = true;
-    properties.hasAbout = true;
+    properties.hasAbout = false;
     return properties;
 }
 

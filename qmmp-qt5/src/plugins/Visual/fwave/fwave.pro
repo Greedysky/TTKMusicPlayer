@@ -7,12 +7,15 @@ QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfwave.so
 HEADERS += fwave.h \
            fft.h \
            visualfwavefactory.h \
-           inlines.h
+           inlines.h \
+           colorwidget.h
            
 SOURCES += fwave.cpp \
            fft.c \
-           visualfwavefactory.cpp
+           visualfwavefactory.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

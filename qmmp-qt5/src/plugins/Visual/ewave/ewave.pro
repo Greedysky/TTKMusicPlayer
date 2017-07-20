@@ -7,12 +7,15 @@ QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libewave.so
 HEADERS += ewave.h \
            fft.h \
            visualewavefactory.h \
-           inlines.h
+           inlines.h \
+           colorwidget.h
            
 SOURCES += ewave.cpp \
            fft.c \
-           visualewavefactory.cpp
+           visualewavefactory.cpp \
+           colorwidget.cpp
 
+FORMS    += colorwidget.ui
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \
