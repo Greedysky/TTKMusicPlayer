@@ -42,7 +42,9 @@ Oschina: **<u>http://git.oschina.net/greedysky/Musicplayer</u>**
 
 Qmmp Player You Can See Here: **<u>http://qmmp.ylsoftware.com</u>**
 
-Qmmp Source You Can See Here: **<u>https://github.com/Greedysky/qmmp</u>**
+Qmmp Source You Can See Here: **<u>https://github.com/Greedysky/TTKMusicplayer/tree/plugins</u>**
+
+Qmmp Source You Can See Here(extra): **<u>https://github.com/Greedysky/qmmp</u>**
 
 Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
@@ -88,17 +90,15 @@ Screenshots.
  * Support converting different music formats, and can change the sound as like Tom Cat, also can enhance the sound.
  * Local music transferred to the cloud or mobile device.
  * Local music and the human voice humming recognition.
- * Music song, artist, album and playlist supported.
+ * Music song, artist, album and playlist searcg supported.
+ * Music song spectrum and test supported.
  
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*
-**(This product won't be updated anymore.)**
+**(This project won't be updated anymore.)**
 
 ![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/0.png?raw=true)
-![1](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/1.png?raw=true)
-![2](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/2.png?raw=true)
-![3](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/3.png?raw=true)
 ![4](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/4.png?raw=true)
 ![5](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/5.png?raw=true)
 ![6](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/6.png?raw=true)
