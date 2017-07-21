@@ -30,6 +30,8 @@ void MusicDownLoadQueryBDArtistThread::startToSearch(const QString &artist)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
 
+    qDebug() << musicUrl;
+
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -87,8 +89,10 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
-                                                   m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;

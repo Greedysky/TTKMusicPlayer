@@ -20,6 +20,14 @@ class MUSIC_NETWORK_EXPORT MusicNetworkAbstract : public QObject
 {
     Q_OBJECT
 public:
+    typedef enum StateCode
+    {
+        Init = 0xFFFFF00,   ///Network state init
+        Success = 0,        ///Network state success
+        Error = -1,         ///Network state error
+        UnKnow = 2,         ///Network state unknow
+    }StateCode;
+
     explicit MusicNetworkAbstract(QObject *parent = 0);
     /*!
      * Object contsructor.
@@ -63,6 +71,7 @@ public Q_SLOTS:
 #endif
 
 protected:
+    StateCode m_stateCode;
     QNetworkReply *m_reply;
     QNetworkAccessManager *m_manager;
 

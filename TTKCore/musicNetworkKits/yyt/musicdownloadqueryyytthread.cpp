@@ -96,7 +96,10 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                         musicInfo.m_singerName = value["artistName"].toString();
                     }
 
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicMVAttribute(&musicInfo, musicInfo.m_songId);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;

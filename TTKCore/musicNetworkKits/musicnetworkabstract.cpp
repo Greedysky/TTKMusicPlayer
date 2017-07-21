@@ -3,12 +3,14 @@
 MusicNetworkAbstract::MusicNetworkAbstract(QObject *parent)
     : QObject(parent)
 {
+    m_stateCode = Init;
     m_reply = nullptr;
     m_manager = nullptr;
 }
 
 MusicNetworkAbstract::~MusicNetworkAbstract()
 {
+    m_stateCode = Success;
     deleteAll();
 }
 

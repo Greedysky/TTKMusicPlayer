@@ -41,7 +41,6 @@ const QString BD_PLAYLIST_URL       = "OTg2WnpjQ3N2RnZZc2ZHUWJEdVA1aWRFaGhqVHN4O
 const QString BD_PLAYLIST_ATTR_URL  = "NXJsZ3ArR0JHeXFJYmdWUi9sOVNTaHlxbEpuekJYSVFrVkloY0U3d2VtU1VKOFZqcjlQTVNkMkJLbzJDSUxBb0ZWM0laZ0lVZHh1Y2RHUWRxVU5rS2hNMEpFM08yK0hxZXlYZGNlK0hpcys2RkVKRm94Uk5nUXlEVGo4QjlwQnFKQ0JmV0hGenBTTERoRG4xUGc0Z3I5OWtWMEhLMVh0RzBoeTdLQT09";
 ///////////////////////////////////////////////////////////////////////////
 
-class QNetworkAccessManager;
 
 /*! @brief The class to baidu query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -49,21 +48,20 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadBDInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                    const QString &bit);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &bit);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                    const QString &format, const QString &quality, bool all);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &format,
+                                    const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager);
+    void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager);
+    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

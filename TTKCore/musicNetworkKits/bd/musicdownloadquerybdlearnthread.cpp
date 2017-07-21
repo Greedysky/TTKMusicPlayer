@@ -81,8 +81,11 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
                     musicInfo.m_songId = value["song_id"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicLrcAttribute(&musicInfo);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
