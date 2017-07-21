@@ -95,9 +95,13 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["hash"].toString();
 
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAlbumInfo(&musicInfo);
-                        readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString(), m_manager);
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

@@ -30,8 +30,6 @@ void MusicDownLoadQueryBDArtistThread::startToSearch(const QString &artist)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
 
-    qDebug() << musicUrl;
-
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

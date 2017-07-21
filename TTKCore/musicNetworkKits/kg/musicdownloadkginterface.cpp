@@ -12,9 +12,9 @@
 #include <QNetworkAccessManager>
 
 void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                                          const QString &hash, QNetworkAccessManager *&manager)
+                                                          const QString &hash)
 {
-    if(hash.isEmpty() || !manager)
+    if(hash.isEmpty())
     {
         return;
     }
@@ -30,8 +30,9 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
@@ -54,41 +55,36 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     if(all)
     {
-        readFromMusicSongAttribute(info, key["hash"].toString(), manager);
-        readFromMusicSongAttribute(info, key["320hash"].toString(), manager);
-        readFromMusicSongAttribute(info, key["sqhash"].toString(), manager);
+        readFromMusicSongAttribute(info, key["hash"].toString());
+        readFromMusicSongAttribute(info, key["320hash"].toString());
+        readFromMusicSongAttribute(info, key["sqhash"].toString());
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, key["hash"].toString(), manager);
+            readFromMusicSongAttribute(info, key["hash"].toString());
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, key["320hash"].toString(), manager);
+            readFromMusicSongAttribute(info, key["320hash"].toString());
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, key["sqhash"].toString(), manager);
+            readFromMusicSongAttribute(info, key["sqhash"].toString());
         }
     }
 }
 
 void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
-                                                          const QString &hash, QNetworkAccessManager *&manager)
+                                                          const QString &hash)
 {
-    if(hash.isEmpty() || !manager)
+    if(hash.isEmpty())
     {
         return;
     }
@@ -103,8 +99,9 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
