@@ -102,9 +102,9 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 }
 
 void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
-                                                    const QString &id, QNetworkAccessManager *&manager)
+                                                    const QString &id)
 {
-    if(id.isEmpty() || !manager)
+    if(id.isEmpty())
     {
         return;
     }
@@ -119,8 +119,9 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfoma
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();

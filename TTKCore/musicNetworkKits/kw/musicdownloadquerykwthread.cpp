@@ -86,10 +86,13 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                         musicInfo.m_albumId = value["ALBUMID"].toString();
                         if(!m_querySimplify)
                         {
-                            readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(musicInfo.m_songId);
                             ///music normal songs urls
                             readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
@@ -109,8 +112,11 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     {
                         //mv
                         musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicMVInfoAttribute(&musicInfo, MB_750, musicInfo.m_songId, "mp4");
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicMVInfoAttribute(&musicInfo, MB_1000, musicInfo.m_songId, "mkv");
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
