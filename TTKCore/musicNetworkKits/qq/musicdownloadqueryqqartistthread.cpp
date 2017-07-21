@@ -100,7 +100,10 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                         musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                     .arg(musicInfo.m_albumId.right(2).left(1))
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

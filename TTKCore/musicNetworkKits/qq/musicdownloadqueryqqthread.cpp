@@ -102,7 +102,10 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                             musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                         .arg(musicInfo.m_albumId.right(2).left(1))
                                         .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
-                            readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
@@ -122,7 +125,9 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     {
                         //MV
                         QString mvId = value["vid"].toString();
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicMVAttribute(&musicInfo, mvId);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -231,7 +236,9 @@ void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSong
                     attr.m_bitrate = bitRate;
 
                 bitRate = flValue["id"].toULongLong();
+                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 QString key = getMovieKey(bitRate, id);
+                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 if(!key.isEmpty())
                 {
                     QString fn = QString("%1.p%2.1.mp4").arg(id).arg(bitRate - 10000);
