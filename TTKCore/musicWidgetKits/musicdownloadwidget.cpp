@@ -9,8 +9,8 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
 
-#include <QFileDialog>
 #include <QLabel>
+#include <QFileDialog>
 
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
@@ -302,7 +302,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
         }
         else if(attr.m_bitrate > MB_320)   ///cd
         {
-            m_ui->viewArea->createItem(MB_500, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
+            m_ui->viewArea->createItem(attr.m_bitrate, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                      .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
                                      QString(":/quality/lb_cd_quality"));
         }
@@ -448,7 +448,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
-        if(musicAttr.m_bitrate == bitrate || musicAttr.m_bitrate > 321)
+        if(musicAttr.m_bitrate == bitrate/* || musicAttr.m_bitrate > 321*/)
         {
             if(!M_NETWORK_PTR->isOnline())
             {
