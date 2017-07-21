@@ -10,14 +10,8 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                                          const QString &id, int bitrate)
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &id, int bitrate)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(id);
 
     QNetworkRequest request;
@@ -28,8 +22,9 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
@@ -63,18 +58,13 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QVariantMap &key, const QString &id, int bitrate)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     qlonglong dfsId = key.value("dfsId").toLongLong();
     if(key.isEmpty() || dfsId == 0)
     {
-        readFromMusicSongAttribute(info, manager, id, bitrate);
+        readFromMusicSongAttribute(info, id, bitrate);
     }
     else
     {
@@ -87,39 +77,34 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     const QString id = key["id"].toString();
     if(all)
     {
-        readFromMusicSongAttribute(info, manager, key["bMusic"].toMap(), id, MB_128);
-        readFromMusicSongAttribute(info, manager, key["mMusic"].toMap(), id,  MB_192);
-        readFromMusicSongAttribute(info, manager, key["hMusic"].toMap(), id,  MB_320);
-//        readFromMusicSongAttribute(info, manager, QVariantMap(), id,  MB_999);
+        readFromMusicSongAttribute(info, key["bMusic"].toMap(), id, MB_128);
+        readFromMusicSongAttribute(info, key["mMusic"].toMap(), id,  MB_192);
+        readFromMusicSongAttribute(info, key["hMusic"].toMap(), id,  MB_320);
+//        readFromMusicSongAttribute(info, QVariantMap(), id,  MB_999);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, manager, key["bMusic"].toMap(), id,  MB_128);
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), id,  MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongAttribute(info, manager, key["mMusic"].toMap(), id,  MB_192);
+            readFromMusicSongAttribute(info, key["mMusic"].toMap(), id,  MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, manager, key["hMusic"].toMap(), id,  MB_320);
+            readFromMusicSongAttribute(info, key["hMusic"].toMap(), id,  MB_320);
         }
 //        else if(quality == QObject::tr("CD"))
 //        {
-//            readFromMusicSongAttribute(info, manager, QVariantMap(), id,  MB_999);
+//            readFromMusicSongAttribute(info, QVariantMap(), id,  MB_999);
 //        }
     }
 }

@@ -13,17 +13,13 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *&manager, QNetworkRequest *request,
+void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
                                                  const QString &query, const QString &type)
 {
-    if(!manager)
-    {
-        return;
-    }
-
+    QNetworkAccessManager manager;
     QNetworkRequest re;
     re.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
-    QNetworkReply *reply = manager->get(re);
+    QNetworkReply *reply = manager.get(re);
     MusicSemaphoreLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
@@ -42,16 +38,12 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkAccessManager *&manager
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info,
                                                     const QString &songID)
 {
-    if(!manager)
-    {
-        return;
-    }
-
+    QNetworkAccessManager manager;
     QNetworkRequest request;
-    makeTokenQueryUrl(manager, &request,
+    makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(songID),
                       MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -61,7 +53,7 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfoma
     request.setSslConfiguration(sslConfig);
 #endif
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get( request );
+    QNetworkReply *reply = manager.get( request );
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();

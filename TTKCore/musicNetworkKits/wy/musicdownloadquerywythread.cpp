@@ -100,7 +100,9 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 
                         if(!m_querySimplify)
                         {
-                            readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
@@ -124,7 +126,9 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
                             continue;
                         }
 
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         startMVListQuery(mvid);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     }
                 }
             }
@@ -149,11 +153,6 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 
 void MusicDownLoadQueryWYThread::startMVListQuery(int id)
 {
-    if(!m_manager)
-    {
-        return;
-    }
-
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(WY_SONG_MV_URL, false).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
