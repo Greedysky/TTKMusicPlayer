@@ -40,8 +40,21 @@ private Q_SLOTS:
     /*!
      * Window statec hanged.
      */
+    void show();
+    /*!
+     * Override show function.
+     */
+    bool close();
+    /*!
+     * Override close function.
+     */
 
 protected:
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
     QPushButton *m_lrcButton, *m_wallPaperButton, *m_listButton;
     QPushButton *m_windowStateButton;
     QToolButton *m_closeButton;

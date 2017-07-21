@@ -46,6 +46,11 @@ public:
      * Set desktop wall control panel.
      */
 
+    void setLeftWinEnable();
+    /*!
+     * Set left win key enable.
+     */
+
 protected:
     bool currentNodeHasExist(const QString &key);
     /*!

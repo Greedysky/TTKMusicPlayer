@@ -1,6 +1,9 @@
 #include "musicregeditmanager.h"
 #include "musicformats.h"
 
+#ifdef Q_OS_WIN
+#include <qt_windows.h>
+#endif
 #include <QSettings>
 #include <QStringList>
 #include <QApplication>
@@ -8,6 +11,24 @@
 QString MusicRegeditManager::getClassName()
 {
     return "MusicRegeditManager";
+}
+
+bool MusicRegeditManager::isFileAssociate()
+{
+    return currentNodeHasExist("mp3");
+}
+
+void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
+{
+    QStringList types = MusicFormats::supportFormatsString();
+    for(int i=0; i<types.count(); ++i)
+    {
+        const QString type = types[i];
+        if(!currentNodeHasExist(type))
+        {
+            createMusicRegedit(type);
+        }
+    }
 }
 
 void MusicRegeditManager::setDesktopWallAutoStart(bool state)
@@ -34,22 +55,17 @@ void MusicRegeditManager::setDesktopWallControlPanel(const QString &originPath, 
     settings.setValue ("WallpaperStyle", wallpaperStyle);
 }
 
-bool MusicRegeditManager::isFileAssociate()
+void MusicRegeditManager::setLeftWinEnable()
 {
-    return currentNodeHasExist("mp3");
-}
-
-void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
-{
-    QStringList types = MusicFormats::supportFormatsString();
-    for(int i=0; i<types.count(); ++i)
-    {
-        const QString type = types[i];
-        if(!currentNodeHasExist(type))
-        {
-            createMusicRegedit(type);
-        }
-    }
+#ifdef Q_OS_WIN
+    INPUT input[4];
+    memset(input, 0, sizeof(input));
+    input[0].type = input[1].type = input[2].type = input[3].type = INPUT_KEYBOARD;
+    input[0].ki.wVk = input[2].ki.wVk = VK_LWIN;
+    input[1].ki.wVk = input[3].ki.wVk = 0x44;
+    input[2].ki.dwFlags = input[3].ki.dwFlags = KEYEVENTF_KEYUP;
+    SendInput(4, input, sizeof(INPUT));
+#endif
 }
 
 bool MusicRegeditManager::currentNodeHasExist(const QString &key)

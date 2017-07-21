@@ -39,6 +39,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_counterPVThread->startToDownload();
     ///////////////////////////////////////////////////////
     m_listAlpha = 40;
+    m_lastRemoteBeforeWallpaper = -1;
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
@@ -348,15 +349,26 @@ void MusicTopAreaWidget::musicComplexStyleRemote()
     createRemoteWidget();
 }
 
-void MusicTopAreaWidget::musicStripRemote()
+void MusicTopAreaWidget::musicWallpaperRemote(bool create)
 {
-    if(m_musicRemoteWidget)
+    if(create)
+    {
+        if(m_musicRemoteWidget)
+        {
+            m_lastRemoteBeforeWallpaper = m_musicRemoteWidget->mapRemoteTypeIndex();
+            delete m_musicRemoteWidget;
+        }
+        m_musicRemoteWidget = new MusicRemoteWidgetForStrip;
+        m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+        createRemoteWidget();
+    }
+    else
     {
         delete m_musicRemoteWidget;
+        m_musicRemoteWidget = nullptr;
+        musicRemoteTypeChanged(m_lastRemoteBeforeWallpaper);
+        m_lastRemoteBeforeWallpaper = -1;
     }
-    m_musicRemoteWidget = new MusicRemoteWidgetForStrip;
-    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
-    createRemoteWidget();
 }
 
 void MusicTopAreaWidget::musicRipplesRemote()
@@ -404,14 +416,13 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::SimpleStyle: musicSimpleStyleRemote(); break;
         case MusicRemoteWidget::ComplexStyle: musicComplexStyleRemote(); break;
         case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
-        case MusicRemoteWidget::Strip: musicStripRemote(); break;
         case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
     }
 }
 
 void MusicTopAreaWidget::createRemoteWidget()
 {
-    if(m_musicRemoteWidget == nullptr)
+    if(!m_musicRemoteWidget)
     {
         return;
     }

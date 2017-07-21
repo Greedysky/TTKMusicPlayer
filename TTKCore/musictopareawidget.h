@@ -181,9 +181,9 @@ public Q_SLOTS:
     /*!
      * Changed current remote to complex style mode.
      */
-    void musicStripRemote();
+    void musicWallpaperRemote(bool create);
     /*!
-     * Changed current remote to strip mode.
+     * Changed current remote to wallpaper mode.
      */
     void musicRipplesRemote();
     /*!
@@ -222,6 +222,7 @@ protected:
     MusicRemoteWidget *m_musicRemoteWidget;
     MusicDownloadCounterPVThread *m_counterPVThread;
 
+    int m_lastRemoteBeforeWallpaper;
     QString m_currentBgSkin;
     int m_alpha, m_listAlpha;
     QTimer m_pictureCarouselTimer;

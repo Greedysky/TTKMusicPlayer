@@ -455,6 +455,11 @@ QString MusicLrcAnalysis::getText(int index) const
     {
         index = m_currentShowLrcContainer.count() - 1;
     }
+
+    if(index <0 || index >= m_currentShowLrcContainer.count())
+    {
+        return QString();
+    }
     return m_currentShowLrcContainer[index];
 }
 

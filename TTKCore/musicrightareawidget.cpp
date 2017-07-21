@@ -17,7 +17,8 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionlistuiobject.h"
-
+#include "musicregeditmanager.h"
+#include "musictopareawidget.h"
 #include "kugouwindow.h"
 
 #include <QPropertyAnimation>
@@ -641,16 +642,23 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
 {
     if(m_musicLrcForWallpaper)
     {
+        MusicTopAreaWidget::instance()->musicWallpaperRemote(false);
         delete m_musicLrcForWallpaper;
         m_musicLrcForWallpaper = nullptr;
     }
     else
     {
+        MusicRegeditManager().setLeftWinEnable();
+
         m_musicLrcForWallpaper = new MusicLrcContainerForWallpaper;
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
         connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper,
                                                   SLOT(changeCurrentLrcColor()));
+
+        MusicApplication::instance()->activateWindow();
+        MusicApplication::instance()->showMinimized();
+        MusicTopAreaWidget::instance()->musicWallpaperRemote(true);
     }
 }
