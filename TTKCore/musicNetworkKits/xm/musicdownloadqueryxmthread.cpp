@@ -28,9 +28,11 @@ void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &te
     deleteAll();
 
     QNetworkRequest request;
-    makeTokenQueryUrl(m_manager, &request,
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(30),
                       MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
@@ -93,9 +95,11 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         {
                             musicInfo.m_smallPicUrl = value["albumLogo"].toString();
 
-                            readFromMusicSongLrc(&musicInfo, m_manager, musicInfo.m_songId);
-                            readFromMusicSongAttribute(&musicInfo, value["listenFiles"],
-                                                       m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongLrc(&musicInfo, musicInfo.m_songId);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
+
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
                                 continue;
@@ -114,7 +118,9 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     {
                         //MV
                         musicInfo.m_songId = value["mvId"].toString();
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicMVInfoAttribute(&musicInfo, musicInfo.m_songId, "mp4");
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

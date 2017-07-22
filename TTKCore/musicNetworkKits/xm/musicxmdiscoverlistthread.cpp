@@ -25,10 +25,11 @@ void MusicXMDiscoverListThread::startToSearch()
     deleteAll();
 
     QNetworkRequest request;
-    makeTokenQueryUrl(m_manager, &request,
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
-
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

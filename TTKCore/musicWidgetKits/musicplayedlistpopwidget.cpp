@@ -319,17 +319,19 @@ void MusicPlayedListPopWidget::updateSongsFileName()
 
 void MusicPlayedListPopWidget::setPlayListCount(int count)
 {
-    for(int i=MAX_SIZE-1; i>=0; --i)
-    {
-        m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
-        count = count/10;
-    }
-
-    if(count > 1000)
+    if(count >= 1000)
     {
         for(int i=MAX_SIZE-1; i>=0; --i)
         {
             m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(9)));
+        }
+    }
+    else
+    {
+        for(int i=MAX_SIZE-1; i>=0; --i)
+        {
+            m_labels[i]->setPixmap(QPixmap(QString(":/tiny/lb_number%1").arg(count%10)));
+            count = count/10;
         }
     }
 }

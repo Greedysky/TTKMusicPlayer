@@ -8,6 +8,7 @@
 #include <qt_windows.h>
 #endif
 #include <QBoxLayout>
+#include <QDebug>
 
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -112,7 +113,11 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
         m_animationFreshTime = time;
         m_layoutWidget->start();
     }
-    m_wallThread->start();
+
+    if(!m_wallThread->isRunning())
+    {
+        m_wallThread->start();
+    }
 }
 
 void MusicLrcContainerForWallpaper::changeCurrentLrcColor()

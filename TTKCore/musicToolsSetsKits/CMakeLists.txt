@@ -31,6 +31,7 @@ set_property(GLOBAL PROPERTY MUSIC_TOOLSETS_KITS_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicspectrumwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_TOOLSETS_KITS_SOURCES
@@ -63,5 +64,6 @@ set_property(GLOBAL PROPERTY MUSIC_TOOLSETS_KITS_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrowidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosettingpopwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicsoundkmicrosearchwidget.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/musicspectrumwidget.cpp
   )
   

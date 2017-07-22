@@ -87,10 +87,13 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                         musicInfo.m_artistId = value["ARTISTID"].toString();
                         musicInfo.m_albumId = value["ALBUMID"].toString();
 
-                        readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(musicInfo.m_songId);
                         ///music normal songs urls
                         readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

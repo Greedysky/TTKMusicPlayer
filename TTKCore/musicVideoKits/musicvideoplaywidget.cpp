@@ -21,10 +21,8 @@
 #define WINDOW_WIDTH    661
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(bool popup, QWidget *parent)
-    : MusicAbstractMoveWidget(parent), m_windowPopup(popup)
+    : MusicAbstractMoveWidget(false, parent), m_windowPopup(popup)
 {
-    setAttribute(Qt::WA_TranslucentBackground, false);
-
     if(popup)
     {
         resize(WINDOW_WIDTH, WINDOW_HEIGHT);

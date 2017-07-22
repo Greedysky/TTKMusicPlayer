@@ -95,7 +95,10 @@ void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
 {
     QPixmap pix;
     pix.loadFromData(data);
-    m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+    if(!pix.isNull())
+    {
+        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+    }
     m_topListenButton->raise();
     m_playButton->raise();
 }

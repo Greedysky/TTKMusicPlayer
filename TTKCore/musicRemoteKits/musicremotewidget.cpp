@@ -117,6 +117,18 @@ void MusicRemoteWidget::setLabelText(const QString &text)
     Q_UNUSED(text);
 }
 
+int MusicRemoteWidget::mapRemoteTypeIndex()
+{
+    if(MObject_cast(MusicRemoteWidgetForCircle*, this)) return Circle;
+    else if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
+    else if(MObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
+    else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
+    else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
+    else if(MObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
+    else if(MObject_cast(MusicRemoteWidgetForRipples*, this)) return Ripples;
+    else return Null;
+}
+
 void MusicRemoteWidget::musicVolumeChanged(int value)
 {
     emit musicVolumeSignal(value);
@@ -155,7 +167,7 @@ bool MusicRemoteWidget::close()
 
 void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget::contextMenuEvent(event);
+    MusicAbstractMoveWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
     menu.setAttribute(Qt::WA_TranslucentBackground);
@@ -182,9 +194,6 @@ void MusicRemoteWidget::contextMenuEvent(QContextMenuEvent *event)
     action = menu.addAction(tr("DiamondRemote"));
     action->setEnabled(!MObject_cast(MusicRemoteWidgetForDiamond*, this));
     action->setData(Diamond);
-    action = menu.addAction(tr("StripRemote"));
-    action->setEnabled(!MObject_cast(MusicRemoteWidgetForStrip*, this));
-    action->setData(Strip);
     action = menu.addAction(tr("RipplesRemote"));
     action->setEnabled(!MObject_cast(MusicRemoteWidgetForRipples*, this));
     action->setData(Ripples);
@@ -198,17 +207,4 @@ void MusicRemoteWidget::adjustPostion(QWidget *w)
 {
     QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     w->move( windowSize.width() - w->width() - 150, w->height() + 70);
-}
-
-int MusicRemoteWidget::mapRemoteTypeIndex()
-{
-    if(MObject_cast(MusicRemoteWidgetForCircle*, this)) return Circle;
-    else if(MObject_cast(MusicRemoteWidgetForSquare*, this)) return Square;
-    else if(MObject_cast(MusicRemoteWidgetForRectangle*, this)) return Rectangle;
-    else if(MObject_cast(MusicRemoteWidgetForSimpleStyle*, this)) return SimpleStyle;
-    else if(MObject_cast(MusicRemoteWidgetForComplexStyle*, this)) return ComplexStyle;
-    else if(MObject_cast(MusicRemoteWidgetForDiamond*, this)) return Diamond;
-    else if(MObject_cast(MusicRemoteWidgetForStrip*, this)) return Strip;
-    else if(MObject_cast(MusicRemoteWidgetForRipples*, this)) return Ripples;
-    else return Null;
 }

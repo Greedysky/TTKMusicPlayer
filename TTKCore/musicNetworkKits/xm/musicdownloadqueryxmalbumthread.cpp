@@ -30,9 +30,11 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
     deleteAll();
 
     QNetworkRequest request;
-    makeTokenQueryUrl(m_manager, &request,
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_ALBUM_DATA_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(XM_ALBUM_URL, false));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
@@ -99,9 +101,11 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         musicInfo.m_albumId = albumInfo;
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
 
-                        readFromMusicSongLrc(&musicInfo, m_manager, value["songId"].toString());
-                        readFromMusicSongAttribute(&musicInfo, value["listenFiles"],
-                                                   m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongLrc(&musicInfo, value["songId"].toString());
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
+
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;

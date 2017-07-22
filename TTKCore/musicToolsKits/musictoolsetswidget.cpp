@@ -24,7 +24,7 @@
     if((m_toolsFlags & flag) != flag) \
     { \
         m_toolsFlags |= flag; \
-        type *w= new type(); \
+        type *w= new type(this); \
         connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType))); \
         w->raise(); \
         w->show(); \

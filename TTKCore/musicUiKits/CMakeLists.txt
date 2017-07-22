@@ -39,6 +39,7 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsongchecktoolswidget.ui
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsongchecktoolsitemselecteddialog.ui
     ${MUSIC_UI_DIR}/musicToolsetsKits/musicsoundkmicrowidget.ui
+    ${MUSIC_UI_DIR}/musicToolsetsKits/musicspectrumwidget.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musiccloudfilemanagerdialog.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicconnecttransferwidget.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicwebmusicradiowidget.ui

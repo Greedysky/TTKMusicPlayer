@@ -11,15 +11,11 @@
 #include <QNetworkRequest>
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
+#include <QDebug>
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &bit)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
@@ -36,8 +32,9 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
@@ -72,7 +69,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
                     if(attr.m_url.contains("pan."))
                     {
-                        readFromMusicPayAttribute(info, manager);
+                        readFromMusicPayAttribute(info);
                     }
                     else
                     {
@@ -88,14 +85,9 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &format, const QString &quality, bool all)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     QString formatString = format;
     foreach(const QString &f, formatString.split(","))
     {
@@ -103,11 +95,11 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             if(f != "flac")
             {
-                readFromMusicSongAttribute(info, manager, f);
+                readFromMusicSongAttribute(info, f);
             }
             else
             {
-                readFromMusicLLAttribute(info, manager);
+                readFromMusicLLAttribute(info);
             }
         }
         else
@@ -117,36 +109,31 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 int bit = map2NormalBitrate(f.toInt());
                 if(quality == QObject::tr("ST") && bit <= MB_64)
                 {
-                    readFromMusicSongAttribute(info, manager, f);
+                    readFromMusicSongAttribute(info, f);
                 }
                 else if(quality == QObject::tr("SD") && bit > MB_64 && bit <= MB_128)
                 {
-                    readFromMusicSongAttribute(info, manager, f);
+                    readFromMusicSongAttribute(info, f);
                 }
                 else if(quality == QObject::tr("HQ") && bit > MB_128 && bit <= MB_192)
                 {
-                    readFromMusicSongAttribute(info, manager, f);
+                    readFromMusicSongAttribute(info, f);
                 }
                 else if(quality == QObject::tr("SQ") && bit > MB_192 && bit <= MB_320)
                 {
-                    readFromMusicSongAttribute(info, manager, f);
+                    readFromMusicSongAttribute(info, f);
                 }
             }
             else if(quality == QObject::tr("CD"))
             {
-                readFromMusicLLAttribute(info, manager);
+                readFromMusicLLAttribute(info);
             }
         }
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager)
+void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
@@ -157,8 +144,9 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
@@ -197,13 +185,8 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager)
+void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info)
 {
-    if(!manager)
-    {
-        return;
-    }
-
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
@@ -214,8 +197,9 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
+    QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager->get(request);
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();

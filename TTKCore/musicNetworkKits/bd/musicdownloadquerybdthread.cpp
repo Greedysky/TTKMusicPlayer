@@ -90,8 +90,10 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                             musicInfo.m_lrcUrl = value["lrclink"].toString();
                             musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                            readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
-                                                       m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                             if(musicInfo.m_songAttrs.isEmpty())
                             {
                                 continue;
@@ -112,7 +114,9 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                         if(value["has_mv"].toInt() == 1)
                         {
                             musicInfo.m_songId = value["song_id"].toString();
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             readFromMusicMVAttribute(&musicInfo, musicInfo.m_songId);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         }
 
                         if(musicInfo.m_songAttrs.isEmpty())
@@ -193,7 +197,10 @@ void MusicDownLoadQueryBDThread::readFromMusicMVAttribute(MusicObject::MusicSong
             {
                 path = path.split("/").back().split("_").front();
             }
+
+            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             readFromMusicMVInfo(info, path);
+            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         }
     }
 }

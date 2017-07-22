@@ -39,7 +39,6 @@ const QString WY_PLAYLIST_URL      = "aDd0V0k1Y1lWcXBqZ3VMQWhaWmp6eFlUYXJmZmRyan
 const QString WY_PLAYLIST_ATTR_URL = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
 ///////////////////////////////////////////////////////////////////////////
 
-class QNetworkAccessManager;
 
 /*! @brief The class to wangyi query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -47,18 +46,17 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadWYInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &id, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QVariantMap &key,
                                     const QString &id, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                    const QVariantMap &key, const QString &id, int bitrate);
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                    const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QVariantMap &key,
+                                    const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

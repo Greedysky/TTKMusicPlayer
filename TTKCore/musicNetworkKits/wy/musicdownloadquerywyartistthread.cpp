@@ -89,7 +89,9 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(value["id"].toInt());
 
-                    readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

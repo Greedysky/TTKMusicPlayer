@@ -36,7 +36,6 @@ public:
         SimpleStyle,
         ComplexStyle,
         Diamond,
-        Strip,
         Ripples
     };
 
@@ -61,6 +60,10 @@ public:
     virtual void setLabelText(const QString &text);
     /*!
      * Set current song text.
+     */
+    int mapRemoteTypeIndex();
+    /*!
+     * Map remote type to index.
      */
 
 Q_SIGNALS:
@@ -115,10 +118,6 @@ protected:
     void adjustPostion(QWidget *w);
     /*!
      * Adjust the widget postion.
-     */
-    int mapRemoteTypeIndex();
-    /*!
-     * Map remote type to index.
      */
 
     QPushButton *m_showMainWindow, *m_PreSongButton;

@@ -93,8 +93,10 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                        readFromMusicSongAttribute(&musicInfo, m_manager, value["all_rate"].toString(),
-                                                   m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;

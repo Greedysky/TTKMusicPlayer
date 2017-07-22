@@ -8,6 +8,7 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
 {
     setGeometry(200, 200, 320, 80);
     adjustPostion(this);
+    setAttribute(Qt::WA_DeleteOnClose, false);
 
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(5, 5, 5, 5);
@@ -111,4 +112,27 @@ void MusicRemoteWidgetForStrip::windowStateChanged()
     m_windowStateButton->setStyleSheet(f  ? MusicUIObject::MKGTinyBtnExpand :
                                             MusicUIObject::MKGTinyBtnCollapse);
     m_windowStateButton->setToolTip(f ? tr("Expand") : tr("Collapse"));
+}
+
+void MusicRemoteWidgetForStrip::show()
+{
+    MusicAbstractMoveWidget::show();
+}
+
+bool MusicRemoteWidgetForStrip::close()
+{
+    return MusicAbstractMoveWidget::close();
+}
+
+void MusicRemoteWidgetForStrip::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicAbstractMoveWidget::contextMenuEvent(event);
+    QMenu menu(this);
+    menu.setWindowFlags( menu.windowFlags() | Qt::FramelessWindowHint);
+    menu.setAttribute(Qt::WA_TranslucentBackground);
+    menu.setStyleSheet(MusicUIObject::MMenuStyle03);
+    menu.addAction(QIcon(":/contextMenu/btn_selected"), tr("WindowTop"))->setEnabled(false);
+    menu.addAction(tr("showMainWindow"), this, SIGNAL(musicWindowSignal()));
+    menu.addAction(tr("quit"), this, SLOT(close()));
+    menu.exec(QCursor::pos());
 }

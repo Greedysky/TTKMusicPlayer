@@ -106,7 +106,9 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                         musicInfo.m_singerName = artistMap["name"].toString();
                     }
 
-                    readFromMusicSongAttribute(&musicInfo, m_manager, value, m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

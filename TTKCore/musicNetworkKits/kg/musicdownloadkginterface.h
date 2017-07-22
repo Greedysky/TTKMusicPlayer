@@ -33,7 +33,6 @@ const QString KG_PLAYLIST_URL      = "cmdDakZXanFhVHdmTysyQ2FzbDVxMERadXBJaHJodm
 const QString KG_PLAYLIST_ATTR_URL = "WFZ6WjlEOWtHQ3UrTnUxbDVmZHNSd2IrblY1VlNDS2pZTXN0TEloRUc1aW42eEthN1RVdzFvRllNcW5hdWdqUmJSYmh0T2hzVGRDLzh5dmpZUm1pc2taTHJIdnlUeWRiMkdEYXZpb1J1d3FiQ01heGJQM1diRXArYTllUGZKakdKVUltV0RxSGhHaz0=";
 ///////////////////////////////////////////////////////////////////////////
 
-class QNetworkAccessManager;
 
 /*! @brief The class to kugou query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -41,18 +40,16 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadKGInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
-                                    const QString &hash, QNetworkAccessManager *&manager);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &hash);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, QNetworkAccessManager *&manager,
-                                    const QVariantMap &key, const QString &quality, bool all);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QVariantMap &key,
+                                    const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
-                                    const QString &hash, QNetworkAccessManager *&manager);
+    void readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info, const QString &hash);
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

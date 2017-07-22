@@ -33,7 +33,6 @@ const QString KW_PLAYLIST_URL      = "OTc4ZUwvTFdHbW0rekNzWGx6aHR1QXg5TnhKRUdmQ2
 const QString KW_PLAYLIST_ATTR_URL = "UzZ0NDRTM2s1Mm5OUTZvZDdTRUlCZ0hsVjhZbGh3aWZYNWpLcnQ5WC95VWVTSmFZZXNkU242N3Fsc0haT1l4cUxXRUdjOWwrd2c4M2FDUk9hWXJGVldWVThzcG16UC9DT1lvTnlYT2VqZVlyaFhUY1FsTlJFVE9OQ2NOdTQ5RCt4cFY0SS8rV2NRUTdMUlE5SU85NElXNVlhamF4ajdPeGNteWZPQ1loaXVVPQ==";
 ///////////////////////////////////////////////////////////////////////////
 
-class QNetworkAccessManager;
 
 /*! @brief The class to kuwo query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -51,8 +50,7 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
-                              const QString &id, QNetworkAccessManager *&manager);
+    void readFromMusicSongPic(MusicObject::MusicSongInfomation *info, const QString &id);
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

@@ -13,8 +13,10 @@
 #endif
 
 MusicGrabWidget::MusicGrabWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(nullptr)
 {
+    Q_UNUSED(parent);
+
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
 
