@@ -5,8 +5,8 @@
 #endif
 
 VS_VERSION_INFO VERSIONINFO
-    FILEVERSION 2,5,1,0
-    PRODUCTVERSION 2,5,1,0
+    FILEVERSION 2,5,2,0
+    PRODUCTVERSION 2,5,2,0
     FILEFLAGSMASK 0x3fL
 
 #ifdef _DEBUG
@@ -25,10 +25,10 @@ BEGIN
             BEGIN
                 VALUE "CompanyName", "Greedysky studio, Ltd."
                 VALUE "FileDescription", "TTKExtras"
-                VALUE "FileVersion", "2.5.1.0"
+                VALUE "FileVersion", "2.5.2.0"
                 VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2017"
                 VALUE "ProductName", "TTKExtras"
-                VALUE "ProductVersion", "2.5.1.0"
+                VALUE "ProductVersion", "2.5.2.0"
             END
     END
     BLOCK "VarFileInfo"
