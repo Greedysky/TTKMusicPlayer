@@ -1,5 +1,5 @@
 #include "colorwidget.h"
-#include "ui_ColorWidget.h"
+#include "ui_colorwidget.h"
 
 #include <QColorDialog>
 
