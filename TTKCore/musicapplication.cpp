@@ -21,6 +21,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
 #include "musiccoreutils.h"
+#include "musicplaylistmanager.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -524,35 +525,31 @@ void MusicApplication::musicImportSongsItemList()
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
-    dialog.setNameFilters(QStringList() << "All File(*.*)" << "TTKList File(*.lis)");
+    dialog.setNameFilters(MusicFormats::supportFormatsPlaylistDialogString());
 
     if(dialog.exec())
     {
-        MusicXMLConfigManager manager(this);
-        foreach(const QString &file, dialog.selectedFiles())
-        {
-            if(manager.readConfig(file))
-            {
-                MusicSongItems items;
-                manager.readMusicSongsConfig(items);
-                m_musicSongTree->appendMusicLists(items);
-            }
-        }
+        MusicPlayListManager manager;
+        MusicSongItems items;
+        manager.getMusicSongItems(dialog.selectedFiles(), items);
+        m_musicSongTree->appendMusicLists(items);
     }
 }
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save List File"), QString(), "TTKList File(*.lis)");
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save List File"), QString(),
+                                                    MusicFormats::supportFormatsPlaylistString());
     if(!fileName.isEmpty())
     {
-        MusicXMLConfigManager manager(this);
         MusicSongItems items = m_musicSongTree->getMusicLists();
         if(index < 0 || index >= items.count())
         {
             return;
         }
-        manager.writeMusicSongsConfig(MusicSongItems() << items[index], fileName);
+
+        MusicPlayListManager manager;
+        manager.setMusicSongItems(fileName, items[index]);
     }
 }
 

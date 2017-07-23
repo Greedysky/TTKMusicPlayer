@@ -84,3 +84,16 @@ QStringList MusicFormats::supportFormatsSpekString()
                            "*.flv *.gsm *.m4a *.m4p *.mp3 *.mp4 *.mp+ *.mpc *.mpp *.oga *.ogg *.opus *.ra "
                            "*.ram *.snd *.wav *.wma *.wv";
 }
+
+QStringList MusicFormats::supportFormatsPlaylistDialogString()
+{
+    return QStringList()<< "File(*.lis *.m3u *.m3u8 *.pls *.wpl *.xspf)"
+                        << "TTKlist File(*.lis)" << "M3U File(*.m3u)" << "M3U8 File(*.m3u8)" << "Playlist File(*.pls)"
+                        << "Windows Playlist File(*.wpl)" << "XML Shareable Playlist File(*.xspf)";
+}
+
+QString MusicFormats::supportFormatsPlaylistString()
+{
+    return QString ("TTKlist File(*.lis);;M3U File(*.m3u);;M3U8 File(*.m3u8);;Playlist File(*.pls);;"
+                    "Windows Playlist File(*.wpl);;XML Shareable Playlist File(*.xspf)");
+}

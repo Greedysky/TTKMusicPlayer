@@ -35,6 +35,14 @@ public:
     /*!
      * Get spek supported formats filter dialog.
      */
+    static QStringList supportFormatsPlaylistDialogString();
+    /*!
+     * Get playlist supported formats filter dialog.
+     */
+    static QString supportFormatsPlaylistString();
+    /*!
+     * Get playlist supported formats dialog.
+     */
 
 };
 

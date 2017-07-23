@@ -40,7 +40,8 @@ HEADERS  += \
     $$PWD/musicsystemenvironment.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
-    $$PWD/musiclicensecore.h
+    $$PWD/musiclicensecore.h \
+    $$PWD/musicplaylistmanager.h
 
 }
 
@@ -68,6 +69,7 @@ SOURCES += \
     $$PWD/musicsystemenvironment.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
-    $$PWD/musiclicensecore.cpp
+    $$PWD/musiclicensecore.cpp \
+    $$PWD/musicplaylistmanager.cpp
 
 }
