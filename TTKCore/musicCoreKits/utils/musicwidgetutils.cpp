@@ -38,7 +38,7 @@ QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text,
 void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
 {
     QPalette pal = widget->palette();
-    pal.setBrush(QPalette::Base, QBrush(QColor(255, 255, 255, alpha)));
+    pal.setBrush(QPalette::Base, QBrush(QColor(0xFF, 0xFF, 0xFF, alpha)));
     widget->setPalette(pal);
 }
 
@@ -98,6 +98,7 @@ QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QPixmap &mas
     QPixmap image(mask);
     QPainter painter(&image);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, src.scaled(size));
     painter.end();
 
@@ -115,6 +116,14 @@ QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int rat
     return mask;
 }
 
+int MusicUtils::Widget::reRenderAlpha(int alpha, int value)
+{
+    if(alpha < 0) return 0;
+    else if(alpha > 0xFF) return 0xFF;
+
+    return (0xFF - alpha)*1.0/100*value + alpha;
+}
+
 void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *output)
 {
     for(int w=0; w<input->width(); w++)
@@ -125,7 +134,7 @@ void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *o
             uint resultR = colorBurnTransform(qRed(rgb), delta);
             uint resultG = colorBurnTransform(qGreen(rgb), delta);
             uint resultB = colorBurnTransform(qBlue(rgb), delta);
-            uint newRgb = ((resultR & 255)<<16 | (resultG & 255)<<8 | (resultB & 255));
+            uint newRgb = ((resultR & 0xFF)<<16 | (resultG & 0xFF)<<8 | (resultB & 0xFF));
             output->setPixel(w, h, newRgb);
         }
     }
@@ -133,12 +142,12 @@ void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *o
 
 uint MusicUtils::Widget::colorBurnTransform(int c, int delta)
 {
-    Q_ASSERT(0 <= delta && delta < 255);
+    Q_ASSERT(0 <= delta && delta < 0xFF);
 
-    int result = (c - (uint)(c*delta)/(255 - delta));
-    if(result > 255)
+    int result = (c - (uint)(c*delta)/(0xFF - delta));
+    if(result > 0xFF)
     {
-        result = 255;
+        result = 0xFF;
     }else if(result < 0)
     {
         result = 0;
