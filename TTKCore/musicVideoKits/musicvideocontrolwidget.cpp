@@ -165,7 +165,7 @@ QWidget *MusicVideoControlWidget::createVideoBarrageWidget()
     m_lineEditBarrage->setFixedHeight(24);
     m_lineEditBarrage->setPlaceholderText(tr("just one barrage!"));
 
-    m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle05);
+    m_lineEditBarrage->setStyleSheet(MusicUIObject::MLineEditStyle06);
     connect(m_lineEditBarrage, SIGNAL(enterFinished(QString)), SLOT(sendBarrageClicked()));
 
     m_barrageSend = new QPushButton(pairWidget);

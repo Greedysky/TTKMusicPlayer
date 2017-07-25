@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:white;</string>
    </property>
   </widget>
   <widget class="QRadioButton" name="radioButton1">
@@ -154,7 +154,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>34</x>
-     <y>285</y>
+     <y>272</y>
      <width>181</width>
      <height>20</height>
     </rect>

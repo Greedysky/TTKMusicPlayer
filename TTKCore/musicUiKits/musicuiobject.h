@@ -115,7 +115,7 @@ namespace MusicUIObject
             border:1px solid #666666;";
 
     const QString MBorderStyle03 = " \
-            border:1px solid #55555;";
+            border:1px solid #555555;";
 
     const QString MBorderStyle04 = " \
             border:1px solid gray;";
@@ -175,7 +175,7 @@ namespace MusicUIObject
             QToolButton::menu-indicator{ image:None;}";
 
     const QString MToolButtonStyle05 = " \
-            QToolButton{ border:1px solid #777777; background:#EEEEEE; color:#555555;} \
+            QToolButton{ border:1px solid #777777; background:#FFFFFF; color:#555555;} \
             QToolButton::hover{ border:1px solid #444444; color:#222222;} \
             QToolButton::disabled{ color:#999999;}";
 
@@ -319,7 +319,10 @@ namespace MusicUIObject
     const QString MLineEditStyle04 = MLineEditStyle02 + " \
             QLineEdit{ color:#6495ED;}";
 
-    const QString MLineEditStyle05 = MLineEditStyle01 + " \
+    const QString MLineEditStyle05 = " \
+            QLineEdit{ color:#6495ED; border:1px solid #555555; }";
+
+    const QString MLineEditStyle06 = MLineEditStyle01 + " \
             QLineEdit{ color:white; border:1px solid #545454;} \
             QLineEdit::disabled{ color:#323232; border:1px solid #323232;}";
 

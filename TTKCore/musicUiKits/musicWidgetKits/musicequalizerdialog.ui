@@ -604,7 +604,7 @@ font-weight:bold;
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:white;</string>
    </property>
   </widget>
   <zorder>background</zorder>

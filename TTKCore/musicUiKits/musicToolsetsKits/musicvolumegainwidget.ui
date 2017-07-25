@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{background:rgba(255,255,255,150);}
+    <string notr="true">QWidget{background:white;}
 QLabel{background:transparent;}</string>
    </property>
    <widget class="QToolButton" name="addFileButton">
@@ -203,7 +203,7 @@ QProgressBar::chunk {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QGroupBox{border:1px solid #FFF;background:transparent;}</string>
+     <string notr="true">QGroupBox{border:1px solid #555;background:transparent;}</string>
     </property>
     <property name="title">
      <string/>

@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{color:#666666;background:rgba(255,255,255,200);}
+    <string notr="true">QWidget{color:#666666;background:white;}
 QLabel{background:transparent;color:#666666;}
 QRadioButton{background:transparent;}
 QRadioButton::indicator::unchecked{ image: url(:/control/btn_radioButton_unchecked); }

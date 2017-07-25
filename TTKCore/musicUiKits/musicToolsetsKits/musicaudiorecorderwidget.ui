@@ -68,7 +68,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150);</string>
+    <string notr="true">background:white;</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox_2">
@@ -79,6 +79,9 @@
      <width>190</width>
      <height>90</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QGroupBox{border:1px solid #555;}</string>
    </property>
    <property name="title">
     <string/>
@@ -146,7 +149,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+    <string notr="true">QGroupBox{border:1px solid #555;}</string>
    </property>
    <property name="title">
     <string/>

@@ -55,19 +55,6 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="Line" name="line_2">
-   <property name="geometry">
-    <rect>
-     <x>13</x>
-     <y>347</y>
-     <width>445</width>
-     <height>5</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
@@ -78,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QGroupBox{border:1px solid #FFF;}</string>
+    <string notr="true">QGroupBox{border:1px solid #555;}</string>
    </property>
    <property name="title">
     <string>设置壁纸来源方式</string>
@@ -346,14 +333,13 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:white;</string>
    </property>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>line_2</zorder>
   <zorder>groupBox</zorder>
   <zorder>pictureType</zorder>
   <zorder>urlLineEdit</zorder>

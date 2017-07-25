@@ -68,7 +68,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background:white;</string>
    </property>
    <widget class="QComboBox" name="stateComboBox">
     <property name="geometry">

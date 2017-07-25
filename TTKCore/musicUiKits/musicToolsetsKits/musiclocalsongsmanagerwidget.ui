@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>668</width>
-    <height>448</height>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>660</width>
-     <height>440</height>
+     <height>450</height>
     </rect>
    </property>
    <property name="text">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>415</height>
+     <height>425</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -135,7 +135,7 @@
      <x>129</x>
      <y>64</y>
      <width>535</width>
-     <height>380</height>
+     <height>390</height>
     </rect>
    </property>
   </widget>
@@ -145,8 +145,11 @@
      <x>129</x>
      <y>29</y>
      <width>535</width>
-     <height>36</height>
+     <height>425</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
    </property>
    <widget class="QCheckBox" name="allSelectedcheckBox">
     <property name="geometry">
@@ -188,8 +191,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/tiny/lb_transparent);color:#6495ED;
-background:rgba(255,255,255,50)</string>
+     <string notr="true">color:#6495ED;border: 1px solid #555;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="scanButton">
@@ -286,17 +288,24 @@ background:rgba(255,255,255,50)</string>
     <string/>
    </property>
   </widget>
+  <zorder>background</zorder>
+  <zorder>topTitleName</zorder>
+  <zorder>topTitleCloseButton</zorder>
+  <zorder>backgroundMask1</zorder>
+  <zorder>toolWidget</zorder>
+  <zorder>songlistsTable</zorder>
+  <zorder>loadingLabel</zorder>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>MusicLocalSongsTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>musiclocalsongstablewidget.h</header>
-  </customwidget>
   <customwidget>
    <class>MusicGifLabelWidget</class>
    <extends>QLabel</extends>
    <header>musicgiflabelwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicLocalSongsTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclocalsongstablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

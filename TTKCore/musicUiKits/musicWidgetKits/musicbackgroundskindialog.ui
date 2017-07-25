@@ -119,7 +119,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,150)</string>
+    <string notr="true">background:white;</string>
    </property>
    <widget class="MusicAnimationStackedWidget" name="stackedWidget">
     <property name="geometry">
@@ -240,15 +240,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
+  </customwidget>
+  <customwidget>
    <class>MusicClickedLabel</class>
    <extends>QLabel</extends>
    <header>musicclickedlabel.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicTransitionAnimationLabel</class>
-   <extends>QLabel</extends>
-   <header>musictransitionanimationlabel.h</header>
   </customwidget>
   <customwidget>
    <class>MusicBackgroundPopWidget</class>

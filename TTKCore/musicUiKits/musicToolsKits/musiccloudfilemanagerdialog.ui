@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget{background:rgba(255,255,255,150);}
+    <string notr="true">QWidget{background:white;}
 QLabel{background:transparent;}</string>
    </property>
   </widget>

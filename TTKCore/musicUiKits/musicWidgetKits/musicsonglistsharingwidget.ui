@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:white</string>
+    <string notr="true">background:white;</string>
    </property>
    <property name="currentIndex">
     <number>0</number>

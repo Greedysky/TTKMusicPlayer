@@ -18,16 +18,16 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     m_enable = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
     m_textLabel = new QLabel(this);
-    m_textLabel->setStyleSheet(MusicUIObject::MBackgroundStyle10);
+    m_textLabel->setStyleSheet(MusicUIObject::MBackgroundStyle08);
 
     setText(tr("null"));
 
     QWidget *func = new QWidget(this);
-    func->setStyleSheet(MusicUIObject::MBackgroundStyle11);
+    func->setStyleSheet(MusicUIObject::MBackgroundStyle04);
     QHBoxLayout *funcLayout = new QHBoxLayout(func);
     funcLayout->setContentsMargins(0, 5, 5, 0);
     funcLayout->setSpacing(0);
@@ -172,9 +172,8 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->backgroundMask->setStyleSheet(QString("#backgroundMask{%1}").arg(MusicUIObject::MBackgroundStyle11));
-    m_ui->volumeLeftlabel->setStyleSheet(MusicUIObject::MColorStyle06);
-    m_ui->volumeRightLabel->setStyleSheet(MusicUIObject::MColorStyle06);
+    m_ui->volumeLeftlabel->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->volumeRightLabel->setStyleSheet(MusicUIObject::MColorStyle03);
 
     m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
     m_ui->volumeSlider->setRange(-100, 100);

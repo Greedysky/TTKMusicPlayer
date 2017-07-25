@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255)</string>
+    <string notr="true">background:white;</string>
    </property>
    <widget class="QToolButton" name="renameButton">
     <property name="geometry">
@@ -916,9 +916,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicSongCheckToolsRenameTableWidget</class>
-   <extends>QTableWidget</extends>
-   <header>musicsongchecktoolstablewidget.h</header>
+   <class>MusicClickedLabel</class>
+   <extends>QLabel</extends>
+   <header>musicclickedlabel.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicGifLabelWidget</class>
@@ -926,9 +927,9 @@
    <header>musicgiflabelwidget.h</header>
   </customwidget>
   <customwidget>
-   <class>MusicClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
+   <class>MusicSongCheckToolsRenameTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musicsongchecktoolstablewidget.h</header>
   </customwidget>
   <customwidget>
    <class>MusicSongCheckToolsDuplicateTableWidget</class>

@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:rgba(255,255,255,200)</string>
+    <string notr="true">background:white;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="confirmButton">
