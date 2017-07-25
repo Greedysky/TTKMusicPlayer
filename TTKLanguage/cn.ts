@@ -6086,7 +6086,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="81"/>
         <source>Speed: %1</source>
-        <translation>传送速率: %</translation>
+        <translation>传送速率: %1</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="82"/>
