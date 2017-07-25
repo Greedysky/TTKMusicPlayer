@@ -37,6 +37,10 @@ MusicNetworkConnectionItem::MusicNetworkConnectionItem(QWidget *parent)
 
 MusicNetworkConnectionItem::~MusicNetworkConnectionItem()
 {
+    if(m_testThread->isRunning())
+    {
+        m_testThread->stopAndQuitThread();
+    }
     delete m_testThread;
     delete m_iconLabel;
     delete m_nameText;
@@ -71,6 +75,10 @@ void MusicNetworkConnectionItem::stop()
 
     m_stateText->setText(tr("Not Detected"));
     m_stateText->setStyleSheet(MusicUIObject::MColorStyle03);
+    if(m_testThread->isRunning())
+    {
+        m_testThread->stopAndQuitThread();
+    }
 }
 
 void MusicNetworkConnectionItem::testFinshed(bool state)

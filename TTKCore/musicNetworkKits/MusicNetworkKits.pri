@@ -81,7 +81,6 @@ HEADERS  += \
     $$PWD/musicnetworkthread.h \
     $$PWD/musicnetworkproxy.h \
     $$PWD/musicnetworkoperator.h \
-    $$PWD/musicnetworktestthread.h \
     $$PWD/musicdownloadqueuecache.h \
     $$PWD/musicdownloadqueryfactory.h \
     $$PWD/musicdownloadquerythreadabstract.h \
@@ -162,7 +161,6 @@ SOURCES += \
     $$PWD/musicnetworkthread.cpp \
     $$PWD/musicnetworkproxy.cpp \
     $$PWD/musicnetworkoperator.cpp \
-    $$PWD/musicnetworktestthread.cpp \
     $$PWD/musicdownloadqueuecache.cpp \
     $$PWD/musicdownloadqueryfactory.cpp \
     $$PWD/musicdownloadquerythreadabstract.cpp \
