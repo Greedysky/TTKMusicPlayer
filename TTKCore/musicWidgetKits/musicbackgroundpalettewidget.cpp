@@ -169,7 +169,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
     QFile::remove(COLOR_FILE);
     if(!m_confirmButtonClicked)
     {
-        emit currentColorToMemoryChanged( M_BACKGROUND_PTR->getMBackground() );
+        emit currentColorToMemoryChanged(m_previousBackground);
     }
     while(!m_widgets.isEmpty())
     {
@@ -236,6 +236,7 @@ void MusicBackgroundPaletteWidget::currentColorToMemory(const QString &path)
 
 int MusicBackgroundPaletteWidget::exec()
 {
-    updateBackground(M_BACKGROUND_PTR->getMBackground());
+    m_previousBackground = M_BACKGROUND_PTR->getMBackground();
+    updateBackground(m_previousBackground);
     return MusicAbstractMoveDialog::exec();
 }

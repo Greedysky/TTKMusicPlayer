@@ -75,10 +75,6 @@ Q_SIGNALS:
     /*!
      * Update app bg when user change the current bg emit.
      */
-    void currentColorChanged(const QString &path);
-    /*!
-     * Update app bg when user change the current bg emit.
-     */
 
 public Q_SLOTS:
     void showPaletteDialog();
@@ -104,6 +100,10 @@ public Q_SLOTS:
     void myBackgroundListWidgetItemClicked(const QString &name);
     /*!
      * My background list widget item has clicked.
+     */
+    void currentColorChanged(const QString &path);
+    /*!
+     * Update app bg when user change the current bg emit.
      */
     virtual int exec();
     /*!

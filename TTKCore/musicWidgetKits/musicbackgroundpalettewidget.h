@@ -122,6 +122,7 @@ protected:
     Ui::MusicBackgroundPaletteWidget *m_ui;
     QList<QWidget*> m_widgets;
     QColor m_currentColor;
+    QString m_previousBackground;
     bool m_confirmButtonClicked;
 
 };

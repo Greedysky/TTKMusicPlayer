@@ -73,7 +73,6 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
     connect(m_backgroundList, SIGNAL(itemClicked(QString)), SLOT(backgroundListWidgetItemClicked(QString)));
     connect(m_myBackgroundList, SIGNAL(itemClicked(QString)), SLOT(myBackgroundListWidgetItemClicked(QString)));
-    connect(this, SIGNAL(currentColorChanged(QString)), MusicTopAreaWidget::instance(), SLOT(musicBgTransparentChanged(QString)));
     connect(m_ui->resetWindowButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicResetWindow()));
 }
 
@@ -162,7 +161,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog()
     connect(&paletteWidget, SIGNAL(currentColorToFileChanged(QString)),
                             SLOT(showPaletteDialog(QString)));
     connect(&paletteWidget, SIGNAL(currentColorToMemoryChanged(QString)),
-                            SIGNAL(currentColorChanged(QString)));
+                            SLOT(currentColorChanged(QString)));
     paletteWidget.exec();
 }
 
@@ -233,6 +232,13 @@ void MusicBackgroundSkinDialog::myBackgroundListWidgetItemClicked(const QString 
 
     QString s = name;
     setMBackground(s);
+    emit M_BACKGROUND_PTR->backgroundHasChanged();
+}
+
+void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
+{
+    MusicTopAreaWidget::instance()->musicBgTransparentChanged(path);
+    M_BACKGROUND_PTR->setMBackground(path);
     emit M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
