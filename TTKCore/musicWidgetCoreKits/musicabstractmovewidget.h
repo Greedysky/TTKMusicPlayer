@@ -69,4 +69,32 @@ protected:
 
 };
 
+
+/*! @brief The class of the moving widget single without ui widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MusicAbstractMoveSingleWidget : public MusicAbstractMoveWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicAbstractMoveSingleWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+    virtual ~MusicAbstractMoveSingleWidget();
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+protected:
+    QWidget *m_container;
+
+};
+
 #endif // MUSICABSTRACTMOVEWIDGET_H

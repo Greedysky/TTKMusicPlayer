@@ -156,17 +156,17 @@ void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)
 }
 
 
-
 MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
-    : QWidget(parent)
+    : MusicAbstractMoveSingleWidget(parent)
 {
     ///Remove the title bar
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
-    raise();
+    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint | Qt::Tool);
+    blockMoveOption(true);
 
+    raise();
     resize(400, 490);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(m_container);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
@@ -207,7 +207,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     layout->addWidget(topWidget);
     layout->addWidget(searchWidget);
     layout->addWidget(m_searchTableWidget);
-    setLayout(layout);
+    m_container->setLayout(layout);
 
     m_queryMv = true;
     mvButton->setChecked(true);

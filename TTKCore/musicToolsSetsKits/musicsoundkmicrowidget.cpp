@@ -318,6 +318,7 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
     emit resetFlag(MusicObject::TT_SoundKMicro);
+
     while(!m_musicLrcContainer.isEmpty())
     {
         delete m_musicLrcContainer.takeLast();
@@ -331,13 +332,13 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 void MusicSoundKMicroWidget::paintEvent(QPaintEvent *event)
 {
     MusicAbstractMoveWidget::paintEvent(event);
-    m_searchWidget->move( geometry().topRight() + QPoint(5, 0) );
+    m_searchWidget->move( geometry().topRight() + QPoint(5, -4) );
 }
 
 void MusicSoundKMicroWidget::mouseMoveEvent(QMouseEvent *event)
 {
     MusicAbstractMoveWidget::mouseMoveEvent(event);
-    m_searchWidget->move( geometry().topRight() + QPoint(5, 0) );
+    m_searchWidget->move( geometry().topRight() + QPoint(5, -4) );
 }
 
 void MusicSoundKMicroWidget::multiMediaChanged()

@@ -10,6 +10,7 @@
    =================================================*/
 
 #include "musicquerytablewidget.h"
+#include "musicabstractmovewidget.h"
 
 /*! @brief The class of the sound kmicro search table widget.
  * @author Greedysky <greedysky@163.com>
@@ -76,7 +77,7 @@ class MusicLocalSongSearchEdit;
 /*! @brief The class of the sound kmicro search widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public QWidget
+class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public MusicAbstractMoveSingleWidget
 {
     Q_OBJECT
 public:

@@ -2,6 +2,7 @@
 #include "musicbackgroundmanager.h"
 
 #include <QPainter>
+#include <QBoxLayout>
 
 #define WIDTH  4
 #define HEIGHT 4
@@ -106,4 +107,33 @@ void MusicAbstractMoveWidget::setBackgroundPixmap(QLabel *label, const QSize &si
     m_background = label;
     QPixmap pix(M_BACKGROUND_PTR->getMBackground());
     label->setPixmap(pix.scaled(size));
+}
+
+
+
+MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(QWidget *parent)
+    : MusicAbstractMoveSingleWidget(true, parent)
+{
+
+}
+
+MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent)
+    : MusicAbstractMoveWidget(transparent, parent)
+{
+    QVBoxLayout *l = new QVBoxLayout(this);
+    l->setContentsMargins(WIDTH, HEIGHT, WIDTH, HEIGHT);
+    l->setSpacing(0);
+    m_container = new QWidget(this);
+    l->addWidget(m_container);
+    setLayout(l);
+}
+
+MusicAbstractMoveSingleWidget::~MusicAbstractMoveSingleWidget()
+{
+    delete m_container;
+}
+
+QString MusicAbstractMoveSingleWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
