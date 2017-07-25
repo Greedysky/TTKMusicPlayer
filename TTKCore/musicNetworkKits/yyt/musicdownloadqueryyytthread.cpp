@@ -7,6 +7,9 @@
 
 const QString BD_MV_INFO_URL       = "dVBTZDgydDQvak9sYkp6c3VhYTZqV3k2NG9RK1dxcjNPYlZLWVZUWGx0aXlSRmY1YlBkV0ZGa0F5L2Y1U285M3VNTWtSYUI1N0tCRUNuK29VNUtqTXN6V0Y1TDZkYWJFS0Nqa280MjZHTnc4M1l3cUhqVldEOU9iblpSU0xvMzhSY0sxM1ZNRTZaUzM5RnhWRUJuWjRtdEJwWmFoNy9PYw==";
 const QString BD_MV_INFO_ATTR_URL  = "S2p0SWNvNVNIVUEzV1QxOE83eTRsM0EwR3dGMUV2SXVNNWs1bW1iNUN1L0lxNHFCbXNCMDlkVjhZdFdzZGlvNVhJZzZOLzBUZE1MYjRnbGxkRzhiN2c9PQ==";
+const QString BD_MV_INFO_ID        = "Q3o1b2RqcE1Tam5Vc2FnSQ==";
+const QString BD_MV_INFO_DID       = "R2hwbW1ZRVI0cjV2Qm1lT0RrQjBrbHVFN3hLUnJyWDh3VDYzeU5VemxoQUZ0bGtC";
+const QString BD_MV_INFO_DV        = "cEoxTGtxZW9qQ1d0UHhZZWpabnNnSlBLTWV5Z055RThINHA2V3ZjNWs4V0RPUXVLekdoVE56Qzd2YW1YbEwwbQ==";
 
 MusicDownLoadQueryYYTThread::MusicDownLoadQueryYYTThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
@@ -34,9 +37,9 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("App-Id", "10201041");
-    request.setRawHeader("Device-Id", "178bc560c9e8d719e048c7e8f2d25fcb");
-    request.setRawHeader("Device-V", "QW5kcm9pZF80LjQuMl83NjgqMTE4NF8xMDAwMDEwMDA=");
+    request.setRawHeader("App-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_ID, false).toUtf8());
+    request.setRawHeader("Device-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_DID, false).toUtf8());
+    request.setRawHeader("Device-V", MusicUtils::Algorithm::mdII(BD_MV_INFO_DV, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -135,9 +138,9 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("App-Id", "10201041");
-    request.setRawHeader("Device-Id", "178bc560c9e8d719e048c7e8f2d25fcb");
-    request.setRawHeader("Device-V", "QW5kcm9pZF80LjQuMl83NjgqMTE4NF8xMDAwMDEwMDA=");
+    request.setRawHeader("App-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_ID, false).toUtf8());
+    request.setRawHeader("Device-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_DID, false).toUtf8());
+    request.setRawHeader("Device-V", MusicUtils::Algorithm::mdII(BD_MV_INFO_DV, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
