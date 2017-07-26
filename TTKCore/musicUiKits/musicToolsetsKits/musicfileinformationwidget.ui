@@ -203,7 +203,7 @@
     <string>歌手信息:</string>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileArtistEdit">
+  <widget class="QLineEdit" name="fileArtistEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -216,10 +216,10 @@
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileTitleEdit">
+  <widget class="QLineEdit" name="fileTitleEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -232,7 +232,7 @@
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
@@ -261,7 +261,7 @@
     <string>专辑信息:</string>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileAlbumEdit">
+  <widget class="QLineEdit" name="fileAlbumEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -274,7 +274,7 @@
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -319,7 +319,7 @@
     <string>流派:</string>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileGenreEdit">
+  <widget class="QLineEdit" name="fileGenreEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -332,7 +332,7 @@
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -422,7 +422,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="MusicModifyLineEdit" name="fileYearEdit">
+  <widget class="QLineEdit" name="fileYearEdit">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -435,7 +435,7 @@
     </rect>
    </property>
    <property name="readOnly">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_13">
@@ -731,11 +731,6 @@
    <extends>QLabel</extends>
    <header>musicclickedlabel.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicModifyLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>musicfileinformationwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

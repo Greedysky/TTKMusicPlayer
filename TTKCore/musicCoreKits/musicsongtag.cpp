@@ -139,7 +139,13 @@ QString MusicSongTag::getYear() const
 
 QString MusicSongTag::getTrackNum() const
 {
-    return m_parameters[TagReadAndWrite::TAG_TRACK];
+    QString v = m_parameters[TagReadAndWrite::TAG_TRACK];
+    bool ok = true;
+    if(v.toInt(&ok) > 0)
+    {
+        return !ok ? "-" : v;
+    }
+    return "-";
 }
 
 QString MusicSongTag::getGenre() const

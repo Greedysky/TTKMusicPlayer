@@ -10,53 +10,11 @@
    =================================================*/
 
 #include <QDialog>
-#include <QLineEdit>
-#include <QMouseEvent>
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
 class MusicFileInformationWidget;
 }
-
-/*! @brief The class of the modify lineEdit.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOLSET_EXPORT MusicModifyLineEdit : public QLineEdit
-{
-    Q_OBJECT
-public:
-    explicit MusicModifyLineEdit(QWidget *parent = 0);
-    /*!
-     * Object contsructor.
-     */
-    virtual ~MusicModifyLineEdit();
-
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
-    bool getTextEdited() const { return m_isTextEdited;}
-    /*!
-     * Get text edit state.
-     */
-
-private Q_SLOTS:
-    void isTextEdited();
-    /*!
-     * Current text edit state changed.
-     */
-
-protected:
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
-
-    bool m_isTextEdited;
-
-};
-
 
 /*! @brief The class of the file information widget.
  * @author Greedysky <greedysky@163.com>

@@ -12,41 +12,6 @@
 
 #define ADVANCE_OFFSET  150
 
-MusicModifyLineEdit::MusicModifyLineEdit(QWidget *parent)
-    : QLineEdit(parent)
-{
-    m_isTextEdited = false;
-    connect(this, SIGNAL(textEdited(QString)), SLOT(isTextEdited()));
-}
-
-MusicModifyLineEdit::~MusicModifyLineEdit()
-{
-
-}
-
-QString MusicModifyLineEdit::getClassName()
-{
-    return staticMetaObject.className();
-}
-
-void MusicModifyLineEdit::isTextEdited()
-{
-    m_isTextEdited = true;
-}
-
-void MusicModifyLineEdit::leaveEvent(QEvent *event)
-{
-    QLineEdit::leaveEvent(event);
-    setReadOnly(true);
-}
-
-void MusicModifyLineEdit::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    QLineEdit::mouseDoubleClickEvent(event);
-    setReadOnly(false);
-}
-
-
 MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicFileInformationWidget)
@@ -182,31 +147,31 @@ void MusicFileInformationWidget::musicSaveTag()
     tag.setTagVersion(m_ui->idv3ComboBox->currentIndex() == 0 ? 3 : 4);
 
     QString value = m_ui->fileAlbumEdit->text().trimmed();
-    if(value != "-" && m_ui->fileAlbumEdit->getTextEdited())
+    if(value != "-")
     {
         tag.setAlbum(value);
     }
 
     value = m_ui->fileArtistEdit->text().trimmed();
-    if(value != "-" && m_ui->fileArtistEdit->getTextEdited())
+    if(value != "-")
     {
         tag.setArtist(value);
     }
 
     value = m_ui->fileGenreEdit->text().trimmed();
-    if(value != "-" && m_ui->fileGenreEdit->getTextEdited())
+    if(value != "-")
     {
         tag.setGenre(value);
     }
 
     value = m_ui->fileTitleEdit->text().trimmed();
-    if(value != "-" && m_ui->fileTitleEdit->getTextEdited())
+    if(value != "-")
     {
         tag.setTitle(value);
     }
 
     value = m_ui->fileYearEdit->text().trimmed();
-    if(value != "-" && m_ui->fileYearEdit->getTextEdited())
+    if(value != "-")
     {
         tag.setYear(value);
     }
