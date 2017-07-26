@@ -483,8 +483,7 @@ void MusicSongsListTableWidget::showTimeOut()
     {
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         m_musicSongsInfoWidget->setMusicSongInformation( song );
-        m_musicSongsInfoWidget->setGeometry(mapToGlobal(QPoint(width(), 0)).x() + 8,
-                                            QCursor::pos().y(), 264, 108);
+        m_musicSongsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
         bool state;
         emit isCurrentIndexs(state);
         m_musicSongsInfoWidget->setVisible( state ? (m_musicSongsPlayWidget &&

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>260</width>
-    <height>108</height>
+    <width>268</width>
+    <height>116</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,167 +17,171 @@
    <string notr="true">QWidget{background:#FDFDFD;}
 </string>
   </property>
-  <widget class="QLabel" name="songNameValue">
+  <widget class="QWidget" name="background" native="true">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>242</width>
-     <height>15</height>
+     <x>4</x>
+     <y>4</y>
+     <width>260</width>
+     <height>108</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QWidget{background:#FDFDFD;}
+</string>
    </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
+   <widget class="QLabel" name="songNameValue">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>242</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="artPicture">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>35</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(0, 0, 0)</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="artlist">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>35</y>
+      <width>45</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>艺术家:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="size">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>55</y>
+      <width>34</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>大小:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="type">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>55</y>
+      <width>31</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>类型:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="time">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>77</y>
+      <width>80</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>最新播放次数:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="artlistValue">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>35</y>
+      <width>122</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="sizeValue">
+    <property name="geometry">
+     <rect>
+      <x>119</x>
+      <y>55</y>
+      <width>50</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="typeValue">
+    <property name="geometry">
+     <rect>
+      <x>211</x>
+      <y>55</y>
+      <width>41</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeValue">
+    <property name="geometry">
+     <rect>
+      <x>165</x>
+      <y>77</y>
+      <width>86</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
-  <widget class="QLabel" name="artPicture">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>35</y>
-     <width>60</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:rgb(0, 0, 0)</string>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="artlist">
-   <property name="geometry">
-    <rect>
-     <x>85</x>
-     <y>35</y>
-     <width>45</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>艺术家:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="size">
-   <property name="geometry">
-    <rect>
-     <x>85</x>
-     <y>55</y>
-     <width>34</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>大小:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="type">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>55</y>
-     <width>31</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>类型:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="time">
-   <property name="geometry">
-    <rect>
-     <x>85</x>
-     <y>77</y>
-     <width>80</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>最新播放次数:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="artlistValue">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>35</y>
-     <width>122</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="sizeValue">
-   <property name="geometry">
-    <rect>
-     <x>119</x>
-     <y>55</y>
-     <width>50</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="typeValue">
-   <property name="geometry">
-    <rect>
-     <x>211</x>
-     <y>55</y>
-     <width>41</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="timeValue">
-   <property name="geometry">
-    <rect>
-     <x>165</x>
-     <y>77</y>
-     <width>86</width>
-     <height>15</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <zorder>songNameValue</zorder>
-  <zorder>artlist</zorder>
-  <zorder>size</zorder>
-  <zorder>type</zorder>
-  <zorder>time</zorder>
-  <zorder>artlistValue</zorder>
-  <zorder>sizeValue</zorder>
-  <zorder>typeValue</zorder>
-  <zorder>timeValue</zorder>
-  <zorder>artPicture</zorder>
  </widget>
  <resources/>
  <connections/>
