@@ -579,7 +579,7 @@ void MusicLrcMakerWidget::createFirstWidget()
     m_ui->lrcTextEdit->setTextCursor(cur);
 
     m_ui->timeSlider_F->setFocusPolicy(Qt::NoFocus);
-    m_ui->timeSlider_F->setStyleSheet(MusicUIObject::MSliderStyle07);
+    m_ui->timeSlider_F->setStyleSheet(MusicUIObject::MSliderStyle09);
     m_ui->stateButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->previousButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->nextButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -615,7 +615,7 @@ void MusicLrcMakerWidget::createSecondWidget()
     m_ui->makeTextEdit->setFont( font );
 
     m_ui->timeSlider_S->setFocusPolicy(Qt::NoFocus);
-    m_ui->timeSlider_S->setStyleSheet(MusicUIObject::MSliderStyle07);
+    m_ui->timeSlider_S->setStyleSheet(MusicUIObject::MSliderStyle09);
     m_ui->previousButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->nextButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->cancelButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -648,7 +648,7 @@ void MusicLrcMakerWidget::createThirdWidget()
     connect(m_ui->lrc_make_up_T, SIGNAL(clicked()), SLOT(lrcSpeedSlower()));
     connect(m_ui->lrc_make_down_T, SIGNAL(clicked()), SLOT(lrcSpeedFaster()));
 
-    m_ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle07);
+    m_ui->timeSlider_T->setStyleSheet(MusicUIObject::MSliderStyle09);
     m_ui->stateButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->remakeButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->uploadButton_T->setStyleSheet(MusicUIObject::MPushButtonStyle04);

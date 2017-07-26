@@ -175,7 +175,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->volumeLeftlabel->setStyleSheet(MusicUIObject::MColorStyle03);
     m_ui->volumeRightLabel->setStyleSheet(MusicUIObject::MColorStyle03);
 
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
+    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle08);
     m_ui->volumeSlider->setRange(-100, 100);
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setToolTip("0");

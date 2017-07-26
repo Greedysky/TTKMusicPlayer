@@ -641,7 +641,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultDesktopLrcColorChanged(int)));
 
-    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->DtransparentSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
     m_ui->DnoPlayedPushButton->setText(tr("No"));
     m_ui->DplayedPushButton->setText(tr("Yes"));
     connect(m_ui->DnoPlayedPushButton, SIGNAL(clicked()), SLOT(desktopBgChanged()));
@@ -681,7 +681,7 @@ void MusicSettingWidget::initInlineLrcWidget()
     connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(m_ui->fontDefaultColorComboBox, SIGNAL(currentIndexChanged(int)), SLOT(defaultLrcColorChanged(int)));
 
-    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
+    m_ui->transparentSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
     m_ui->noPlayedPushButton->setText(tr("No"));
     m_ui->playedPushButton->setText(tr("Yes"));
     connect(m_ui->noPlayedPushButton, SIGNAL(clicked()), SLOT(inlineLrcBgChanged()));

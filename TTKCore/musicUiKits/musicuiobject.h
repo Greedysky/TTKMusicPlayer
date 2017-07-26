@@ -387,14 +387,27 @@ namespace MusicUIObject
             QSlider::add-page:vertical{ background:white; border:1px solid #ACF;}";
 
     const QString MSliderStyle05 = " \
+            QSlider::groove:horizontal{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, \
+            stop:0 #B5B4B4, stop:1 #FCFCFC); height:4px;} \
+            QSlider::handle:horizontal{ border-image:url(:/control/lb_slider_handle_normal); \
+            width:21px; margin-top:-8px; margin-bottom:-8px;} \
+            QSlider::handle:horizontal:disabled{ border-image:url(:/control/lb_slider_disable);} \
+            QSlider::handle:horizontal:hover{ border-image:url(:/control/lb_slider_handle_hover); border:none;}";
+
+    const QString MSliderStyle06 = MSliderStyle05 + " \
+            QSlider::groove:horizontal{ background:white;} \
+            QSlider::sub-page:horizontal{ background:#AFC7F8;} \
+            QSlider::add-page:horizontal{ background:white; border:1px solid #ACF;}";
+
+    const QString MSliderStyle07 = " \
             QSlider::add-page:Horizontal{ background-color:rgb(87, 97, 106); height:4px;} \
             QSlider::sub-page:Horizontal{ background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, \
             y2:0, stop:0 rgba(231, 80, 229, 255), stop:1 rgba(7, 208, 255, 255)); height:4px;} \
             QSlider::groove:Horizontal{ background:transparent;height:4px;} \
             QSlider::handle:Horizontal{ border-image:url(':/image/lb_slider'); \
-            width:8px;height:6px; margin:-2px -3px -2px 0px;}";
+            width:8px; height:6px; margin:-2px 0px -2px 0px;}";
 
-    const QString MSliderStyle06 = " \
+    const QString MSliderStyle08 = " \
             QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back);} \
             QSlider::sub-page:horizontal{ border-image:url(:/control/lb_volume_fore);} \
             QSlider::add-page:horizontal{ background-image:url(:/control/lb_volume_back);} \
@@ -402,7 +415,7 @@ namespace MusicUIObject
             background-image:url(:/control/lb_volume_handle_normal); width:13px;} \
             QSlider::handle:horizontal:hover{ background-image:url(:/control/lb_volume_handle_hover);}";
 
-    const QString MSliderStyle07 = " \
+    const QString MSliderStyle09 = " \
             QSlider::groove:horizontal{ background-image:url(:/control/lb_volume_back);} \
             QSlider::sub-page:horizontal{ border-image:url(:/control/lb_make_fore);} \
             QSlider::add-page:horizontal{ border-image:url(:/control/lb_make_back);} \

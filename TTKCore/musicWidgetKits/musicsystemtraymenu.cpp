@@ -206,7 +206,7 @@ void MusicSystemTrayMenu::createVolumeWidgetActions()
 
     m_volumeSlider = new MusicClickedSlider(Qt::Horizontal, widgetActionContainer);
     m_volumeSlider->setRange(0, 100);
-    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle06);
+    m_volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle08);
 
     vbox->addWidget(m_volumeButton);
     vbox->addWidget(m_volumeSlider);
