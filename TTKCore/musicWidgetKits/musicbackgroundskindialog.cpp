@@ -11,7 +11,6 @@
 #include <QScrollBar>
 #include <QFileDialog>
 #include <QSignalMapper>
-#include <QDebug>
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

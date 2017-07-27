@@ -4,7 +4,6 @@
 #include "musicgiflabelwidget.h"
 
 #include <qmath.h>
-#include <QLabel>
 
 MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     : QWidget(parent)
@@ -71,9 +70,10 @@ void MusicTimerSliderWidget::setRange(int min, int max)
 void MusicTimerSliderWidget::sliderMovedAt(int pos) const
 {
     int max = m_slider->maximum();
-    if(max != 0)
+    if(max > 0)
     {
-        m_label->move(ceil(pos*(m_slider->width())*1.0/max) - 1, 5);
+        float delta = m_slider->width()*(-0.015/800) + 0.0275;
+        m_label->move(ceil(qint64(pos)*m_slider->width()*(1.0 - delta)/max) - 1, 5);
     }
 }
 

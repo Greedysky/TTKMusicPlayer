@@ -11,7 +11,6 @@
 #include <QNetworkRequest>
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
-#include <QDebug>
 
 void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
                                                           const QString &bit)

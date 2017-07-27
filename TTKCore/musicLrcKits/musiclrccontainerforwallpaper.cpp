@@ -8,7 +8,6 @@
 #include <qt_windows.h>
 #endif
 #include <QBoxLayout>
-#include <QDebug>
 
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent)

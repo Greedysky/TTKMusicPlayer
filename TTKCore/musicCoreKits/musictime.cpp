@@ -1,10 +1,12 @@
 #include "musictime.h"
+#include "musicnumberdefine.h"
 
 #include <QDateTime>
 
 MusicTime::MusicTime()
 {
     m_defaultType = All_Msec;
+    m_greedyMode = false;
     init();
 }
 
@@ -103,24 +105,31 @@ void MusicTime::timeSRand()
 
 QString MusicTime::msecTime2LabelJustified()
 {
-    return toString("mm:ss");
+    if(!m_greedyMode)
+    {
+        return toString("mm:ss");
+    }
+    else
+    {
+        int min = m_day*MT_H2S + MT_H*m_hour + m_min;
+        return QString::number(min).rightJustified(2, '0') + ":" +
+               QString::number(m_sec).rightJustified(2, '0');
+    }
 }
 
-QString MusicTime::msecTime2LabelJustified(qint64 time)
+QString MusicTime::msecTime2LabelJustified(qint64 time, bool greedy)
 {
     MusicTime t(time, MusicTime::All_Msec);
-    return t.toString("mm:ss");
-}
-
-QString MusicTime::normalTime2LabelJustified()
-{
-    return toString("hh:mm:ss");
-}
-
-QString MusicTime::normalTime2LabelJustified(qint64 time)
-{
-    MusicTime t(time, MusicTime::All_Msec);
-    return t.toString("hh:mm:ss");
+    if(!greedy || time < MT_H2S*MT_S2MS)
+    {
+        return t.toString("mm:ss");
+    }
+    else
+    {
+        int min = t.getDay()*MT_H2S + MT_H*t.getHour() + t.getMinute();
+        return QString::number(min).rightJustified(2, '0') + ":" +
+               QString::number(t.getSecond()).rightJustified(2, '0');
+    }
 }
 
 QString MusicTime::normalTime2Label() const
@@ -272,6 +281,7 @@ void MusicTime::init()
 
 void MusicTime::copyToThis(const MusicTime &other)
 {
+    m_greedyMode = other.getGreedy();
     m_defaultType = other.getType();
     m_day = other.getDay();
     m_hour = other.getHour();

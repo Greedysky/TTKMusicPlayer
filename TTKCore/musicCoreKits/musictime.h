@@ -68,6 +68,15 @@ public:
      * Get current time type, see Type.
      */
 
+    inline void setGreedy(bool mode) { m_greedyMode = mode; }
+    /*!
+     * Set current greedy mode.
+     */
+    inline bool getGreedy() const { return m_greedyMode; }
+    /*!
+     * Get current greedy mode.
+     */
+
     inline void setDay(int day) { m_day = day; }
     /*!
      * Set current day.
@@ -154,17 +163,9 @@ public:
     /*!
      * Transform msec time to string format(mm:ss).
      */
-    static QString msecTime2LabelJustified(qint64 time);
+    static QString msecTime2LabelJustified(qint64 time, bool greedy = true);
     /*!
      * Transform msec time to string format(mm:ss).
-     */
-    QString normalTime2LabelJustified();
-    /*!
-     * Transform msec time to string format(hh:mm:ss).
-     */
-    static QString normalTime2LabelJustified(qint64 time);
-    /*!
-     * Transform msec time to string format(hh:mm:ss).
      */
     QString normalTime2Label() const;
     /*!
@@ -223,6 +224,7 @@ protected:
      * Transform time value by different time type;
      */
 
+    bool m_greedyMode;
     Type m_defaultType;
     int m_day, m_hour;
     int m_min, m_sec, m_msec;
