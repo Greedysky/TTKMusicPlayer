@@ -74,13 +74,13 @@ void MusicDataTagDownloadThread::downLoadFinished()
 
 void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
 {
-    MusicSongTag song;
-    if(song.readFile(m_savePathName))
+    MusicSongTag tag;
+    if(tag.readFile(m_savePathName))
     {
-        song.setTagVersion(3);
-        song.setTitle(m_title);
-        song.setArtist(m_artist);
-        song.setCover(data);
+        tag.setTagVersion(3);
+        tag.setTitle(m_title);
+        tag.setArtist(m_artist);
+        tag.setCover(data);
         M_LOGGER_INFO("write tag has finished!");
     }
 

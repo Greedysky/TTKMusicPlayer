@@ -99,13 +99,12 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         m_ui->label_17->setVisible(true);
         m_ui->idv3ComboBox->setVisible(true);
 
-        MusicSongTag tag;
-        if(!tag.readFile(m_path))
-        {
-            return;
-        }
         QPixmap pix;
-        pix.loadFromData(tag.getCover());
+        MusicSongTag tag;
+        if(tag.readFile(m_path))
+        {
+            pix.loadFromData(tag.getCover());
+        }
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
         if(pix.isNull())
         {

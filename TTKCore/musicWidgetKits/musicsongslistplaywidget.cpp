@@ -167,16 +167,16 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path)
 {
     MusicSongTag tag;
-    if(tag.readFile(path))
+    bool state = tag.readFile(path);
+    if(state)
     {
         m_totalTime = "/" + tag.getLengthString();
     }
-
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     m_timeLabel->setText("00:00" + m_totalTime);
 
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
+    if(state && M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
     {
         QPixmap pix;
         pix.loadFromData(tag.getCover());
