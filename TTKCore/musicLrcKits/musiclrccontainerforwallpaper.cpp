@@ -103,6 +103,10 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     m_layoutWidget->addStretch(1);
 
     initCurrentLrc(tr("Init Wallpaper Module"));
+    if(!m_wallThread->isRunning())
+    {
+        m_wallThread->start();
+    }
 }
 
 void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
