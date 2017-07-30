@@ -37,6 +37,14 @@ public:
     /*!
      * Add show list items.
      */
+    inline void setFiles(const QFileInfoList &path) { m_fileNames = path; }
+    /*!
+     * Set files container.
+     */
+    inline const QFileInfoList &getFiles() const { return m_fileNames; }
+    /*!
+     * Get files container.
+     */
 
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
@@ -47,6 +55,9 @@ public Q_SLOTS:
     /*!
      * Override the widget event.
      */
+
+protected:
+    QFileInfoList m_fileNames;
 
 };
 
@@ -79,12 +90,21 @@ public:
      * Add show list item.
      */
 
+Q_SIGNALS:
+    void updateFileLists(const QFileInfoList &list);
+    /*!
+     * Update file lists.
+     */
+
 public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-
+    void listCellDoubleClicked(int row, int column);
+    /*!
+     * Table widget list double cell click.
+     */
 };
 
 #endif // MUSICLOCALSONGSTABLEWIDGET_H

@@ -14,8 +14,8 @@ MusicLocalSongsTableWidget::MusicLocalSongsTableWidget(QWidget *parent)
     setColumnCount(5);
 
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(0, 315);
-    headerview->resizeSection(1, 55);
+    headerview->resizeSection(0, 405);
+    headerview->resizeSection(1, 65);
     headerview->resizeSection(2, 105);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -46,7 +46,7 @@ void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(path[i].fileName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 260));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 350));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
@@ -112,8 +112,10 @@ MusicLocalSongsInfoTableWidget::MusicLocalSongsInfoTableWidget(QWidget *parent)
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 60);
-    headerview->resizeSection(1, 357);
-    headerview->resizeSection(2, 110);
+    headerview->resizeSection(1, 447);
+    headerview->resizeSection(2, 120);
+
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
 }
 
 QString MusicLocalSongsInfoTableWidget::getClassName()
@@ -136,7 +138,12 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
         setRowHeight(i, ROW_HEIGHT);
 
         QTableWidgetItem *item = new QTableWidgetItem;
-        item->setIcon(QIcon(QPixmap(":/image/lb_defaultArt")));
+        QPixmap pix(ART_DIR_FULL + it.key() + SKN_FILE);
+        if(pix.isNull())
+        {
+            pix.load(":/image/lb_defaultArt");
+        }
+        item->setIcon(QIcon(pix));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
@@ -162,4 +169,15 @@ void MusicLocalSongsInfoTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicLocalSongsInfoTableWidget::listCellDoubleClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    QTableWidgetItem *it = item(row, 2);
+    if(it)
+    {
+        QFileInfoList list = it->data(MUSIC_INFO_ROLE).value<QFileInfoList>();
+        emit updateFileLists(list);
+    }
 }

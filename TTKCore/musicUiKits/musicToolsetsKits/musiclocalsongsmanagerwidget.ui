@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>668</width>
-    <height>488</height>
+    <width>768</width>
+    <height>548</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>660</width>
-     <height>480</height>
+     <width>760</width>
+     <height>540</height>
     </rect>
    </property>
    <property name="text">
@@ -34,7 +34,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>100</width>
+     <width>181</width>
      <height>25</height>
     </rect>
    </property>
@@ -48,7 +48,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>643</x>
+     <x>743</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>455</height>
+     <height>515</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -106,7 +106,7 @@
      </rect>
     </property>
     <property name="text">
-     <string> 本地音乐文件（9999）</string>
+     <string> 本地音乐文件（-）</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -147,8 +147,8 @@
     <rect>
      <x>129</x>
      <y>29</y>
-     <width>535</width>
-     <height>455</height>
+     <width>635</width>
+     <height>515</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -159,7 +159,7 @@
      <rect>
       <x>15</x>
       <y>10</y>
-      <width>52</width>
+      <width>75</width>
       <height>16</height>
      </rect>
     </property>
@@ -167,7 +167,7 @@
    <widget class="QToolButton" name="auditionButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>120</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -177,7 +177,7 @@
    <widget class="QToolButton" name="addButton">
     <property name="geometry">
      <rect>
-      <x>95</x>
+      <x>145</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -187,7 +187,7 @@
    <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
-      <x>126</x>
+      <x>186</x>
       <y>5</y>
       <width>165</width>
       <height>25</height>
@@ -200,7 +200,7 @@
    <widget class="QPushButton" name="scanButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
+      <x>390</x>
       <y>5</y>
       <width>60</width>
       <height>25</height>
@@ -213,7 +213,7 @@
    <widget class="QPushButton" name="searchLineLabel">
     <property name="geometry">
      <rect>
-      <x>291</x>
+      <x>351</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -236,9 +236,9 @@ background:rgba(255,255,255,50)</string>
    <widget class="QComboBox" name="filterComboBox">
     <property name="geometry">
      <rect>
-      <x>445</x>
+      <x>525</x>
       <y>6</y>
-      <width>83</width>
+      <width>105</width>
       <height>23</height>
      </rect>
     </property>
@@ -248,7 +248,7 @@ background:rgba(255,255,255,50)</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>536</width>
+      <width>636</width>
       <height>40</height>
      </rect>
     </property>
@@ -258,7 +258,7 @@ background:rgba(255,255,255,50)</string>
     <widget class="QPushButton" name="scanCustButton">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>455</x>
        <y>5</y>
        <width>60</width>
        <height>25</height>
@@ -274,8 +274,8 @@ background:rgba(255,255,255,50)</string>
      <rect>
       <x>0</x>
       <y>40</y>
-      <width>535</width>
-      <height>420</height>
+      <width>635</width>
+      <height>480</height>
      </rect>
     </property>
     <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>

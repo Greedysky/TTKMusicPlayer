@@ -79,6 +79,10 @@ public Q_SLOTS:
     /*!
      * Search file from list.
      */
+    void updateFileLists(const QFileInfoList &list);
+    /*!
+     * Update file lists.
+     */
 
     void setShowlistButton();
     /*!
@@ -128,7 +132,7 @@ protected:
      */
 
     Ui::MusicLocalSongsManagerWidget *m_ui;
-    QFileInfoList m_filenames;
+    QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
     MusicObject::MIntsListMap m_searchfileListCache;
 
