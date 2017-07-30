@@ -15,6 +15,7 @@
 MusicSongTag::MusicSongTag()
 {
     m_tag = nullptr;
+    m_extend = true;
     m_id3v2Version = 3;
 }
 
@@ -47,7 +48,7 @@ bool MusicSongTag::readFile(const QString &file)
     m_filePath = file;
     if(!m_tag->readFile())
     {
-        return readOtherTaglibNotSupport(file);
+        return m_extend ? readOtherTaglibNotSupport(file) : false;
     }
 
     m_parameters = m_tag->getMusicTags();
@@ -66,6 +67,11 @@ void MusicSongTag::setTagVersion(int id3v2Version)
     {
         m_id3v2Version = 3;
     }
+}
+
+void MusicSongTag::setExtend(bool extend)
+{
+    m_extend = extend;
 }
 
 bool MusicSongTag::readOtherTaglibNotSupport(const QString &path)

@@ -84,9 +84,13 @@ public Q_SLOTS:
     /*!
      * Select to show list mode.
      */
-    void setShowPathButton();
+    void setShowArtButton();
     /*!
-     * Select to show path mode.
+     * Select to show art mode.
+     */
+    void setShowAlbumButton();
+    /*!
+     * Select to show album mode.
      */
     virtual int exec();
     /*!
@@ -118,9 +122,12 @@ protected:
     /*!
      * Current custom dir path changed.
      */
+    void controlEnable(bool state);
+    /*!
+     * Control enable or disable.
+     */
 
     Ui::MusicLocalSongsManagerWidget *m_ui;
-    int m_currentIndex;
     QFileInfoList m_filenames;
     MusicLocalSongsManagerThread *m_thread;
     MusicObject::MIntsListMap m_searchfileListCache;

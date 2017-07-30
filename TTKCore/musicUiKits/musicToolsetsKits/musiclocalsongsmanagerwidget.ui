@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>668</width>
-    <height>458</height>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>660</width>
-     <height>450</height>
+     <height>480</height>
     </rect>
    </property>
    <property name="text">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>425</height>
+     <height>455</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -83,7 +83,7 @@
      <string>按列表显示</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="showPathButton">
+   <widget class="QPushButton" name="showArtButton">
     <property name="geometry">
      <rect>
       <x>8</x>
@@ -93,7 +93,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>按路径显示</string>
+     <string>按艺术家显示</string>
     </property>
    </widget>
    <widget class="QLabel" name="songCountLabel">
@@ -128,16 +128,19 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-  </widget>
-  <widget class="MusicLocalSongsTableWidget" name="songlistsTable">
-   <property name="geometry">
-    <rect>
-     <x>129</x>
-     <y>64</y>
-     <width>535</width>
-     <height>390</height>
-    </rect>
-   </property>
+   <widget class="QPushButton" name="showAlbumButton">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>130</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>按专辑显示</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="toolWidget" native="true">
    <property name="geometry">
@@ -145,7 +148,7 @@
      <x>129</x>
      <y>29</y>
      <width>535</width>
-     <height>425</height>
+     <height>455</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -266,6 +269,18 @@ background:rgba(255,255,255,50)</string>
      </property>
     </widget>
    </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>535</width>
+      <height>420</height>
+     </rect>
+    </property>
+    <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>
+    <widget class="MusicLocalSongsInfoTableWidget" name="songInfoTable"/>
+   </widget>
    <zorder>backgroundMask2</zorder>
    <zorder>allSelectedcheckBox</zorder>
    <zorder>auditionButton</zorder>
@@ -274,12 +289,13 @@ background:rgba(255,255,255,50)</string>
    <zorder>scanButton</zorder>
    <zorder>searchLineLabel</zorder>
    <zorder>filterComboBox</zorder>
+   <zorder>stackedWidget</zorder>
   </widget>
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
      <x>364</x>
-     <y>219</y>
+     <y>235</y>
      <width>58</width>
      <height>58</height>
     </rect>
@@ -288,13 +304,6 @@ background:rgba(255,255,255,50)</string>
     <string/>
    </property>
   </widget>
-  <zorder>background</zorder>
-  <zorder>topTitleName</zorder>
-  <zorder>topTitleCloseButton</zorder>
-  <zorder>backgroundMask1</zorder>
-  <zorder>toolWidget</zorder>
-  <zorder>songlistsTable</zorder>
-  <zorder>loadingLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -304,6 +313,11 @@ background:rgba(255,255,255,50)</string>
   </customwidget>
   <customwidget>
    <class>MusicLocalSongsTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclocalsongstablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicLocalSongsInfoTableWidget</class>
    <extends>QTableWidget</extends>
    <header>musiclocalsongstablewidget.h</header>
   </customwidget>

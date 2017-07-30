@@ -44,6 +44,10 @@ public:
     /*!
      * Set id3v2 tag version.
      */
+    void setExtend(bool extend);
+    /*!
+     * Set extend flag.
+     */
     /////////////////////////////////////////////
     QString getArtist() const;
     /*!
@@ -156,6 +160,7 @@ protected:
      * Read other taglib not support file format.
      */
 
+    bool m_extend;
     int m_id3v2Version;
     QString m_filePath;
     TagReadAndWrite *m_tag;
