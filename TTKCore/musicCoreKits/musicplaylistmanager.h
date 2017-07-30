@@ -92,6 +92,10 @@ public:
     /*!
      * Get class object name.
      */
+    static void messageAlert();
+    /*!
+     * Import error message alert.
+     */
     void setMusicSongItems(const QString &save, const MusicSongItem &item);
     /*!
      * Write music playlist data to file.

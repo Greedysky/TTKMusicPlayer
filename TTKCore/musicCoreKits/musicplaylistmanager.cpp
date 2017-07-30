@@ -2,6 +2,7 @@
 #include "musicxmlconfigmanager.h"
 #include "musictime.h"
 #include "musicversion.h"
+#include "musicmessagebox.h"
 
 MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -35,7 +36,7 @@ void MusicWPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     QDomElement bodySettingDom = writeDom(musicPlayerDom, "body");
     //Class B
     writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
-                         MusicXmlAttribute("content", QString("TTKMusicplayer %1").arg(TTKMUSIC_VERSION_STR)));
+                         MusicXmlAttribute("content", QString("%1 %2").arg(APPNAME).arg(TTKMUSIC_VERSION_STR)));
 //    writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "ItemCount") <<
 //                         MusicXmlAttribute("content", QString("%1").arg(musics.count())));
     for(int i=0; i<musics.count(); ++i)
@@ -63,7 +64,25 @@ void MusicWPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
 
 void MusicWPLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
 {
-    QDomNodeList nodes = m_ddom->elementsByTagName("seq");
+    bool state = false;
+    QDomNodeList nodes = m_ddom->elementsByTagName("head");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomNodeList nodelist = nodes.at(i).childNodes();
+        for(int i=0; i<nodelist.count(); ++i)
+        {
+            QDomElement element = nodelist.at(i).toElement();
+            state = element.attribute("content").contains(APPNAME);
+        }
+    }
+
+    if(!state)
+    {
+        MusicPlayListManager::messageAlert();
+        return;
+    }
+
+    nodes = m_ddom->elementsByTagName("seq");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);
@@ -161,7 +180,29 @@ void MusicXSPFConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
 
 void MusicXSPFConfigManager::readMusicSongsConfig(MusicSongItems &musics)
 {
-    QDomNodeList nodes = m_ddom->elementsByTagName("trackList");
+    bool state = false;
+    QDomNodeList nodes = m_ddom->elementsByTagName("playlist");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomNodeList nodelist = nodes.at(i).childNodes();
+        for(int i=0; i<nodelist.count(); ++i)
+        {
+            QDomNode node = nodelist.at(i);
+            if(node.nodeName() == "creator")
+            {
+                QDomElement element = node.toElement();
+                state = element.text().contains(APPNAME);
+            }
+        }
+    }
+
+    if(!state)
+    {
+        MusicPlayListManager::messageAlert();
+        return;
+    }
+
+    nodes = m_ddom->elementsByTagName("trackList");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);
@@ -199,6 +240,13 @@ MusicSongs MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) const
 QString MusicPlayListManager::getClassName()
 {
     return "MusicPlayListManager";
+}
+
+void MusicPlayListManager::messageAlert()
+{
+    MusicMessageBox message;
+    message.setText(QObject::tr("Unrecognized PlayList File!"));
+    message.exec();
 }
 
 void MusicPlayListManager::setMusicSongItems(const QString &save, const MusicSongItem &item)
@@ -276,13 +324,19 @@ void MusicPlayListManager::readM3UList(const QString &path, MusicSongItems &item
     QFile file(path);
     if(file.open(QFile::ReadOnly))
     {
+        bool state = false;
         MusicSongItem item;
         QStringList data(QString(file.readAll()).split("\n"));
         foreach(QString str, data)
         {
             str = str.trimmed();
-            if(str.startsWith("#TTKM3U") || str.isEmpty())
+            if(str.isEmpty())
             {
+                continue;
+            }
+            else if(str.startsWith("#TTKM3U"))
+            {
+                state = true;
                 continue;
             }
             else if(str.startsWith("#TTKNAME:"))
@@ -311,7 +365,19 @@ void MusicPlayListManager::readM3UList(const QString &path, MusicSongItems &item
             }
         }
         file.close();
-        items << item;
+
+        if(state)
+        {
+            items << item;
+        }
+        else
+        {
+            MusicPlayListManager::messageAlert();
+        }
+    }
+    else
+    {
+        MusicPlayListManager::messageAlert();
     }
 }
 
@@ -343,6 +409,7 @@ void MusicPlayListManager::readPLSList(const QString &path, MusicSongItems &item
     QFile file(path);
     if(file.open(QFile::ReadOnly))
     {
+        bool state = false;
         MusicSongItem item;
         QStringList data(QString(file.readAll()).split("\n"));
         if(!data.isEmpty() && data.takeFirst().toLower().contains("[playlist]"))
@@ -350,7 +417,16 @@ void MusicPlayListManager::readPLSList(const QString &path, MusicSongItems &item
             foreach(QString str, data)
             {
                 str = str.trimmed();
-                if(str.startsWith("#TTKNAME:"))
+                if(str.isEmpty())
+                {
+                    continue;
+                }
+                else if(str.startsWith("#TTKPLS"))
+                {
+                    state = true;
+                    continue;
+                }
+                else if(str.startsWith("#TTKNAME:"))
                 {
                     item.m_itemName = str.remove("#TTKNAME:");
                 }
@@ -377,7 +453,19 @@ void MusicPlayListManager::readPLSList(const QString &path, MusicSongItems &item
             }
         }
         file.close();
-        items << item;
+
+        if(state)
+        {
+            items << item;
+        }
+        else
+        {
+            MusicPlayListManager::messageAlert();
+        }
+    }
+    else
+    {
+        MusicPlayListManager::messageAlert();
     }
 }
 
@@ -385,6 +473,7 @@ void MusicPlayListManager::writePLSList(const QString &path, const MusicSongItem
 {
     QStringList data;
     data << QString("[playlist]");
+    data << QString("#TTKPLS");
     data << QString("#TTKNAME:%1").arg(item.m_itemName);
     data << QString("#TTKTIT:%2%1%3%1%4").arg(STRING_SPLITER).arg(item.m_itemIndex)
                                          .arg(item.m_sort.m_index).arg(item.m_sort.m_sortType);
