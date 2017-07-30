@@ -92,7 +92,7 @@ void MusicLocalSongsTableWidget::addShowPathItems(const QFileInfoList &path)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(path[i].absoluteFilePath());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 445));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 500));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
