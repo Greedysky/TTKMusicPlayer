@@ -1,6 +1,7 @@
 #include "musicmobiledeviceswidget.h"
 #include "musiclocalsongsmanagerwidget.h"
 #include "musicsettingmanager.h"
+#include "musicapplication.h"
 
 #include <QToolButton>
 
@@ -46,5 +47,9 @@ QString MusicMobileDevicesWidget::getClassName()
 void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
-    MusicLocalSongsManagerWidget().exec();
+    MusicLocalSongsManagerWidget *w = new MusicLocalSongsManagerWidget(MusicApplication::instance());
+#ifdef Q_OS_WIN
+    w->findExtraDevicePath(M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString());
+#endif
+    w->show();
 }

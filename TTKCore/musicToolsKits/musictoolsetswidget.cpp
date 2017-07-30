@@ -24,7 +24,7 @@
     if((m_toolsFlags & flag) != flag) \
     { \
         m_toolsFlags |= flag; \
-        type *w= new type(this); \
+        type *w= new type(MusicApplication::instance()); \
         connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType))); \
         w->raise(); \
         w->show(); \
@@ -134,7 +134,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
             {
-                MusicLocalSongsManagerWidget(this).exec();
+                NEW_OPERATOR(MusicObject::TT_LocalManager, MusicLocalSongsManagerWidget);
                 break;
             }
         case 1:

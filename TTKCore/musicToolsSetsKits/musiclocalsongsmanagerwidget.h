@@ -13,7 +13,7 @@
 #include <QMouseEvent>
 #include "musicobject.h"
 #include "musicuiobject.h"
-#include "musicabstractmovedialog.h"
+#include "musicabstractmovewidget.h"
 #include <QFileInfo>
 
 class MusicLocalSongsManagerThread;
@@ -25,7 +25,7 @@ class MusicLocalSongsManagerWidget;
 /*! @brief The class of the lcal songs manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveDialog
+class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -40,7 +40,16 @@ public:
      * Get class object name.
      */
 
+    void findExtraDevicePath(const QString &dir);
+    /*!
+     * Find extra device path.
+     */
+
 Q_SIGNALS:
+    void resetFlag(MusicObject::ToolsType flag);
+    /*!
+     * Reset window open flag.
+     */
     void addSongToPlay(const QStringList &names);
     /*!
      * Add current selected song to play lists.
@@ -96,12 +105,16 @@ public Q_SLOTS:
     /*!
      * Select to show album mode.
      */
-    virtual int exec();
+    void show();
     /*!
-     * Override exec function.
+     * Override show function.
      */
 
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
     void clearAllItems();
     /*!
      * Clear All Items.

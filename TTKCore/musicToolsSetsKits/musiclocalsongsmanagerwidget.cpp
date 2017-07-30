@@ -12,11 +12,14 @@
 #include <QStyledItemDelegate>
 
 MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
-    : MusicAbstractMoveDialog(parent),
+    : MusicAbstractMoveWidget(parent),
       m_ui(new Ui::MusicLocalSongsManagerWidget)
 {
     Q_UNUSED(qRegisterMetaType<QFileInfoList>("QFileInfoList"));
     m_ui->setupUi(this);
+
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
@@ -99,6 +102,13 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 QString MusicLocalSongsManagerWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicLocalSongsManagerWidget::findExtraDevicePath(const QString &dir)
+{
+    MusicUtils::Widget::setComboboxText(m_ui->filterComboBox, dir);
+    m_thread->setFindFilePath(dir);
+    filterScanChanged(DEFAULT_INDEX_LEVEL0);
 }
 
 void MusicLocalSongsManagerWidget::selectedAllItems(bool check)
@@ -322,10 +332,16 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
     m_ui->songInfoTable->addItems(albums);
 }
 
-int MusicLocalSongsManagerWidget::exec()
+void MusicLocalSongsManagerWidget::show()
 {
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();
+    MusicAbstractMoveWidget::show();
+}
+
+void MusicLocalSongsManagerWidget::closeEvent(QCloseEvent *event)
+{
+    MusicAbstractMoveWidget::closeEvent(event);
+    emit resetFlag(MusicObject::TT_AudioRecord);
 }
 
 void MusicLocalSongsManagerWidget::clearAllItems()
