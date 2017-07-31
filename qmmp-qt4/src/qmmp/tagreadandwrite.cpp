@@ -55,6 +55,8 @@ bool TagReadAndWrite::readFile(const QString &path)
         return false;
     }
 
+    m_path = path;
+
     TagLib::FileRef tagFile(path.toLocal8Bit().constData());
     if(tagFile.isNull())
     {

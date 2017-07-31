@@ -21,6 +21,7 @@
 #include <QSettings>
 #include <QPainter>
 #include <QMenu>
+#include <QActionGroup>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -28,45 +29,39 @@
 #include <qmmp/output.h>
 #include "fft.h"
 #include "inlines.h"
-#include "histogram.h"
+#include "xrays.h"
 #include "colorwidget.h"
 
 #define VISUAL_NODE_SIZE 512 //samples
 #define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
 
-Histogram::Histogram (QWidget *parent) : Visual (parent)
+XRays::XRays (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
-    m_x_scale = 0;
     m_buffer_at = 0;
-    m_rows = 0;
     m_cols = 0;
-    m_analyzer_falloff = 2.2;
-    m_cell_size = QSize(15, 6);
+    m_rows = 0;
 
-    setWindowTitle (tr("Histogram"));
+    setWindowTitle (tr("XRays"));
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
-    m_timer->setInterval(40);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
     m_buffer = new float[VISUAL_BUFFER_SIZE];
+    m_timer->setInterval(10);
 
     clear();
     createMenu();
     readSettings();
 }
 
-Histogram::~Histogram()
+XRays::~XRays()
 {
     delete [] m_buffer;
-
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
-    if(m_x_scale)
-        delete [] m_x_scale;
 }
 
-void Histogram::add (float *data, size_t samples, int chan)
+void XRays::add (float *data, size_t samples, int chan)
 {
     if (!m_timer->isActive ())
         return;
@@ -84,15 +79,14 @@ void Histogram::add (float *data, size_t samples, int chan)
     m_buffer_at += frames;
 }
 
-void Histogram::clear()
+void XRays::clear()
 {
     m_buffer_at = 0;
-    m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void Histogram::timeout()
+void XRays::timeout()
 {
     mutex()->lock();
     if(m_buffer_at < VISUAL_NODE_SIZE)
@@ -108,22 +102,22 @@ void Histogram::timeout()
     update();
 }
 
-void Histogram::readSettings()
+void XRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Histogram");
+    settings.beginGroup("XRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
 }
 
-void Histogram::writeSettings()
+void XRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Histogram");
+    settings.beginGroup("XRays");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 }
 
-void Histogram::changeColor()
+void XRays::changeColor()
 {
     ColorWidget c;
     c.setColors(m_colors);
@@ -133,94 +127,55 @@ void Histogram::changeColor()
     }
 }
 
-void Histogram::hideEvent (QHideEvent *)
+void XRays::hideEvent (QHideEvent *)
 {
     m_timer->stop();
 }
 
-void Histogram::showEvent (QShowEvent *)
+void XRays::showEvent (QShowEvent *)
 {
     m_timer->start();
 }
 
-void Histogram::paintEvent (QPaintEvent * e)
+void XRays::paintEvent (QPaintEvent * e)
 {
-    Q_UNUSED(e);
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void Histogram::mousePressEvent(QMouseEvent *e)
+void XRays::mousePressEvent(QMouseEvent *e)
 {
     if (e->button() == Qt::RightButton)
         m_menu->exec(e->globalPos());
 }
 
-void Histogram::process (float *buffer)
+void XRays::process (float *buffer)
 {
     static fft_state *state = 0;
     if (!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width();
+    m_cols = width();
+    m_rows = height();
 
-    if(m_rows != rows || m_cols != cols)
+    if(m_intern_vis_data)
+        delete [] m_intern_vis_data;
+
+    m_intern_vis_data = new int[m_cols];
+
+    int step = (VISUAL_NODE_SIZE << 8)/m_cols;
+    int pos = 0;
+
+    for (int i = 0; i < m_cols; ++i)
     {
-        m_rows = rows;
-        m_cols = cols;
-        if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
-        if(m_x_scale)
-            delete [] m_x_scale;
-        m_intern_vis_data = new double[m_cols];
-        m_x_scale = new int[m_cols + 1];
-
-        for(int i = 0; i < m_cols; ++i)
-        {
-            m_intern_vis_data[i] = 0;
-        }
-        for(int i = 0; i < m_cols + 1; ++i)
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
-    }
-
-    short dest[256];
-    short y;
-    int k, magnitude;
-
-    calc_freq (dest, buffer);
-
-    double y_scale = (double) 1.25 * m_rows / log(256);
-
-    for (int i = 0; i < m_cols; i++)
-    {
-        y = 0;
-        magnitude = 0;
-
-        if(m_x_scale[i] == m_x_scale[i + 1])
-        {
-            y = dest[i];
-        }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
-        {
-            y = qMax(dest[k], y);
-        }
-
-        y >>= 7; //256
-
-        if (y)
-        {
-            magnitude = int(log (y) * y_scale);
-            magnitude = qBound(0, magnitude, m_rows);
-        }
-
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
-        m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
+        pos += step;
+        m_intern_vis_data[i] = int(buffer[pos >> 8] * m_rows* 1.0);
+        m_intern_vis_data[i] = qBound(-m_rows/2, m_intern_vis_data[i], m_rows/2);
     }
 }
 
-void Histogram::draw (QPainter *p)
+void XRays::draw (QPainter *p)
 {
     QLinearGradient line(0, 0, 0, height());
     for(int i=0; i<m_colors.count(); ++i)
@@ -228,22 +183,19 @@ void Histogram::draw (QPainter *p)
         line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    p->setPen(QPen(line, 1));
 
-    int x = 0;
-    int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    for (int j = 0; j < m_cols; ++j)
+    for (int i = 0; i<m_cols - 1; ++i)
     {
-        x = j * m_cell_size.width() + 1;
-        if(j >= m_cols)
-            x += rdx; //correct right part position
-
-        int hh = m_intern_vis_data[j] * m_cell_size.height();
-        p->fillRect(x, height() - hh + 1, m_cell_size.width() - 2, hh - 2, line);
+        int h1 = m_rows/2 - m_intern_vis_data[i];
+        int h2 = m_rows/2 - m_intern_vis_data[i+1];
+        if (h1 > h2)
+            qSwap(h1, h2);
+        p->drawLine(i, h1, (i+1), h2);
     }
 }
 
-void Histogram::createMenu()
+void XRays::createMenu()
 {
     m_menu = new QMenu (this);
     connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));

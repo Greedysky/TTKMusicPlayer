@@ -17,25 +17,28 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-#ifndef HISTOGRAM_H
-#define HISTOGRAM_H
+#ifndef XRAYS_H
+#define XRAYS_H
 
 #include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;
 class QMenu;
+class QAction;
+class QActionGroup;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class Histogram : public Visual
+
+class XRays : public Visual
 {
     Q_OBJECT
 public:
-    Histogram( QWidget *parent = 0);
-    virtual ~Histogram();
+    XRays( QWidget *parent = 0);
+    virtual ~XRays();
 
     void add(float *data, size_t samples, int chan);
     void clear();
@@ -58,11 +61,9 @@ private:
     QList<QColor> m_colors;
     QMenu *m_menu;
     QTimer *m_timer;
-    double *m_intern_vis_data;
-    int *m_x_scale, m_buffer_at, m_cols, m_rows;
-    double m_analyzer_falloff;
+    int *m_intern_vis_data;
     float *m_buffer;
-    QSize m_cell_size;
+    int m_buffer_at, m_cols, m_rows;
 
 };
 

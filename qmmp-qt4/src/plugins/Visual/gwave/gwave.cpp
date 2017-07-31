@@ -268,7 +268,7 @@ void GWave::draw (QPainter *p)
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
-    QPoint psx;
+    QPoint psx(0, height());
     for (int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
@@ -285,6 +285,7 @@ void GWave::draw (QPainter *p)
         p->drawLine(psx, pxr);
         psx = pxr;
     }
+    p->drawLine(psx, QPoint(width(), height()));
 }
 
 void GWave::createMenu()
