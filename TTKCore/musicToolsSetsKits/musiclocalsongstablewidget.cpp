@@ -154,7 +154,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
         setItem(i, 1, item);
 
                          item = new QTableWidgetItem;
-        item->setText(QString("All Number %1").arg(it.value().count()));
+        item->setText(tr("All Number %1").arg(it.value().count()));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         QVariant v;
         v.setValue(it.value());

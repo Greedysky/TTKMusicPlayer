@@ -14,7 +14,7 @@
 
 MusicSongTag::MusicSongTag()
 {
-    m_tag = nullptr;
+    m_tag = new TagReadAndWrite;
     m_extend = true;
     m_id3v2Version = 3;
 }
@@ -43,10 +43,8 @@ bool MusicSongTag::readFile(const QString &file)
         return false;
     }
 
-    delete m_tag;
-    m_tag = new TagReadAndWrite(file);
     m_filePath = file;
-    if(!m_tag->readFile())
+    if(!m_tag->readFile(file))
     {
         return m_extend ? readOtherTaglibNotSupport(file) : false;
     }
