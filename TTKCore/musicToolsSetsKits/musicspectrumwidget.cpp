@@ -66,6 +66,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->gwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->histogramBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->xrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -82,6 +83,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group->addButton(m_ui->fwaveBox, 3);
     group->addButton(m_ui->gwaveBox, 4);
     group->addButton(m_ui->histogramBox, 5);
+    group->addButton(m_ui->xrayBox, 6);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(spectrumTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
@@ -128,6 +130,9 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
             break;
         case 5:
             NEW_OPERATOR(histogramBox, "histogram");
+            break;
+        case 6:
+            NEW_OPERATOR(xrayBox, "xray");
             break;
         default: break;
     }

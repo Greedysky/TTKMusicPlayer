@@ -183,6 +183,13 @@ QTabBar::tab:selected {
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QCheckBox" name="xrayBox">
+           <property name="text">
+            <string>XRay</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
