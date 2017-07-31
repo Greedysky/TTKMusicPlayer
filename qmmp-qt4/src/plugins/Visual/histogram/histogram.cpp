@@ -49,7 +49,7 @@ Histogram::Histogram (QWidget *parent) : Visual (parent)
     m_timer = new QTimer (this);
     m_timer->setInterval(40);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_left_buffer = new float[VISUAL_BUFFER_SIZE];
+    m_buffer = new float[VISUAL_BUFFER_SIZE];
 
     clear();
     createMenu();
@@ -58,7 +58,7 @@ Histogram::Histogram (QWidget *parent) : Visual (parent)
 
 Histogram::~Histogram()
 {
-    delete [] m_left_buffer;
+    delete [] m_buffer;
 
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
@@ -74,14 +74,12 @@ void Histogram::add (float *data, size_t samples, int chan)
     if(VISUAL_BUFFER_SIZE == m_buffer_at)
     {
         m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
+        memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
         return;
     }
 
     int frames = qMin(int(samples/chan), VISUAL_BUFFER_SIZE - m_buffer_at);
-
-    stereo_from_multichannel(m_left_buffer + m_buffer_at,
-                             m_left_buffer + m_buffer_at, data, frames, chan);
+    mono_from_multichannel(m_buffer + m_buffer_at, data, frames, chan);
 
     m_buffer_at += frames;
 }
@@ -103,9 +101,9 @@ void Histogram::timeout()
         return;
     }
 
-    process (m_left_buffer, m_left_buffer);
+    process (m_buffer);
     m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
+    memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
     mutex()->unlock ();
     update();
 }
@@ -159,7 +157,7 @@ void Histogram::mousePressEvent(QMouseEvent *e)
         m_menu->exec(e->globalPos());
 }
 
-void Histogram::process (float *left, float *right)
+void Histogram::process (float *buffer)
 {
     static fft_state *state = 0;
     if (!state)
@@ -176,10 +174,10 @@ void Histogram::process (float *left, float *right)
             delete [] m_intern_vis_data;
         if(m_x_scale)
             delete [] m_x_scale;
-        m_intern_vis_data = new double[m_cols * 2];
+        m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
-        for(int i = 0; i < m_cols * 2; ++i)
+        for(int i = 0; i < m_cols; ++i)
         {
             m_intern_vis_data[i] = 0;
         }
@@ -187,52 +185,38 @@ void Histogram::process (float *left, float *right)
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
     }
 
-    short dest_l[256];
-    short dest_r[256];
-    short yl, yr;
-    int j, k, magnitude_l, magnitude_r;
+    short dest[256];
+    short y;
+    int k, magnitude;
 
-    calc_freq (dest_l, left);
-    calc_freq (dest_r, right);
+    calc_freq (dest, buffer);
 
     double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
-        j = m_cols * 2 - i - 1; //mirror index
-        yl = yr = 0;
-        magnitude_l = magnitude_r = 0;
+        y = 0;
+        magnitude = 0;
 
         if(m_x_scale[i] == m_x_scale[i + 1])
         {
-            yl = dest_l[i];
-            yr = dest_r[i];
+            y = dest[i];
         }
         for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
-            yl = qMax(dest_l[k], yl);
-            yr = qMax(dest_r[k], yr);
+            y = qMax(dest[k], y);
         }
 
-        yl >>= 7; //256
-        yr >>= 7;
+        y >>= 7; //256
 
-        if (yl)
+        if (y)
         {
-            magnitude_l = int(log (yl) * y_scale);
-            magnitude_l = qBound(0, magnitude_l, m_rows);
-        }
-        if (yr)
-        {
-            magnitude_r = int(log (yr) * y_scale);
-            magnitude_r = qBound(0, magnitude_r, m_rows);
+            magnitude = int(log (y) * y_scale);
+            magnitude = qBound(0, magnitude, m_rows);
         }
 
         m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
-        m_intern_vis_data[i] = magnitude_l > m_intern_vis_data[i] ? magnitude_l : m_intern_vis_data[i];
-
-        m_intern_vis_data[j] -= m_analyzer_falloff * m_rows / 15;
-        m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
+        m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
 }
 

@@ -51,7 +51,7 @@ private:
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
-    void process(float *l, float *r);
+    void process(float *buffer);
     void draw(QPainter *p);
     void createMenu();
 
@@ -61,7 +61,7 @@ private:
     double *m_intern_vis_data;
     int *m_x_scale, m_buffer_at, m_cols, m_rows;
     double m_analyzer_falloff;
-    float *m_left_buffer;
+    float *m_buffer;
     QSize m_cell_size;
 
 };
