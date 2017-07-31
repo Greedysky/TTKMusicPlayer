@@ -12,6 +12,8 @@
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
 #include "musicregeditmanager.h"
+//qmmp
+#include <qmmpsettings.h>
 
 #include <QFontDatabase>
 #include <QColorDialog>
@@ -37,19 +39,20 @@ QString MusicFunctionTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicFunctionTableWidget::addFunctionItems(int index, const QStringList &icon, const QStringList &path)
+void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItems &items)
 {
     m_listIndex = index;
-    for(int i=0; i<rowCount(); ++i)
+    for(int i=0; i<items.count(); ++i)
     {
+        const MusicFunctionItem &&fItem = std::move(items[i]);
         QTableWidgetItem *item = nullptr;
         setItem(i, 0, item = new QTableWidgetItem());
 
-                      item = new QTableWidgetItem(QIcon(icon[i]), QString());
+                      item = new QTableWidgetItem(QIcon(fItem.m_icon), QString());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 1, item);
 
-                      item = new QTableWidgetItem(path[i]);
+                      item = new QTableWidgetItem(fItem.m_name);
         item->setTextColor(QColor(80, 80, 80));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
@@ -84,18 +87,25 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     ////////////////////////////////////////////////
-    m_ui->normalFunTableWidget->setRowCount(4);
-    m_ui->normalFunTableWidget->addFunctionItems(0,
-        QStringList() << ":/contextMenu/btn_setting" << ":/contextMenu/btn_keyboard" << ":/contextMenu/btn_download"  << ":/contextMenu/btn_ablum",
-        QStringList() << tr("Normal") << tr("Hotkey") << tr("Dwonload") << tr("Other"));
-    m_ui->lrcFunTableWidget->setRowCount(2);
-    m_ui->lrcFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount(),
-        QStringList() << ":/contextMenu/btn_lrc" << ":/contextMenu/btn_desktopLrc",
-        QStringList() << tr("Inline") << tr("Desktop"));
-    m_ui->supperFunTableWidget->setRowCount(2);
-    m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(),
-        QStringList() << ":/contextMenu/btn_equalizer" << ":/contextMenu/btn_network",
-        QStringList() << tr("Equalizer") << tr("NetWork"));
+    MusicFunctionItems items;
+    items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
+          << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
+          << MusicFunctionItem(":/contextMenu/btn_download", tr("Dwonload"))
+          << MusicFunctionItem(":/contextMenu/btn_ablum", tr("Other"));
+    m_ui->normalFunTableWidget->setRowCount(items.count());
+    m_ui->normalFunTableWidget->addFunctionItems(0, items);
+    items.clear();
+    items << MusicFunctionItem(":/contextMenu/btn_lrc", tr("Inline"))
+          << MusicFunctionItem(":/contextMenu/btn_desktopLrc", tr("Desktop"));
+    m_ui->lrcFunTableWidget->setRowCount(items.count());
+    m_ui->lrcFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount(), items);
+    items.clear();
+    items << MusicFunctionItem(":/contextMenu/btn_equalizer", tr("Equalizer"))
+          << MusicFunctionItem(":/contextMenu/btn_kmicro", tr("Audio"))
+          << MusicFunctionItem(":/contextMenu/btn_network", tr("NetWork"));
+    m_ui->supperFunTableWidget->setRowCount(3);
+    m_ui->supperFunTableWidget->addFunctionItems(m_ui->normalFunTableWidget->rowCount() + m_ui->lrcFunTableWidget->rowCount(), items);
+
     m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -117,6 +127,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     initDesktopLrcWidget();
     initInlineLrcWidget();
     initSoundEffectWidget();
+    initAudioSettingWidget();
     initNetworkWidget();
     ////////////////////////////////////////////////
 }
@@ -225,6 +236,20 @@ void MusicSettingWidget::initControllerParameter()
         showDesktopLrcDemo();
     }
     m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
+
+    ///////////////////////////////////////////////////////////////////////////
+    QmmpSettings *qmmpSettings = QmmpSettings::instance();
+    //replay gain
+    m_ui->clippingCheckBox->setChecked(qmmpSettings->replayGainPreventClipping());
+    m_ui->replayGainModeComboBox->setCurrentIndex(m_ui->replayGainModeComboBox->findData(qmmpSettings->replayGainMode()));
+    m_ui->preampSpinBox->setValue(qmmpSettings->replayGainPreamp());
+    m_ui->defaultGainSpinBox->setValue(qmmpSettings->replayGainDefaultGain());
+    //audio
+    m_ui->volumeStepSpinBox->setValue(qmmpSettings->volumeStep());
+    m_ui->softVolumeCheckBox->setChecked(qmmpSettings->useSoftVolume());
+    m_ui->bitDepthComboBox->setCurrentIndex(m_ui->bitDepthComboBox->findData(qmmpSettings->outputFormat()));
+    m_ui->ditheringCheckBox->setChecked(qmmpSettings->useDithering());
+    m_ui->bufferSizeSpinBox->setValue(qmmpSettings->bufferSize());
 
     ///////////////////////////////////////////////////////////////////////////
     m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
@@ -506,6 +531,21 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced, m_ui->uploadLimitSpeedComboBox->currentText());
 
 
+    QmmpSettings *qmmpSettings = QmmpSettings::instance();
+    int i = m_ui->replayGainModeComboBox->currentIndex();
+    qmmpSettings->setReplayGainSettings((QmmpSettings::ReplayGainMode)
+                                         m_ui->replayGainModeComboBox->itemData(i).toInt(),
+                                         m_ui->preampSpinBox->value(),
+                                         m_ui->defaultGainSpinBox->value(),
+                                         m_ui->clippingCheckBox->isChecked());
+    i = m_ui->bitDepthComboBox->currentIndex();
+    qmmpSettings->setAudioSettings(m_ui->softVolumeCheckBox->isChecked(),
+                                  (Qmmp::AudioFormat)m_ui->bitDepthComboBox->itemData(i).toInt(),
+                                   m_ui->ditheringCheckBox->isChecked());
+    qmmpSettings->setBufferSize(m_ui->bufferSizeSpinBox->value());
+    qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
+
+
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, m_ui->fadeInSpinBox->value());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, m_ui->fadeOutSpinBox->value());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, m_ui->fadeInAndOutCheckBox->isChecked());
@@ -725,6 +765,34 @@ void MusicSettingWidget::initSoundEffectWidget()
     connect(m_ui->equalizerButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetEqualizer()));
     connect(m_ui->equalizerPluginsButton, SIGNAL(clicked()), MusicApplicationObject::instance(), SLOT(musicSetSoundEffect()));
     connect(m_ui->fadeInAndOutCheckBox, SIGNAL(clicked(bool)), SLOT(musicFadeInAndOutClicked(bool)));
+}
+
+void MusicSettingWidget::initAudioSettingWidget()
+{
+    m_ui->replayGainModeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->replayGainModeComboBox));
+    m_ui->replayGainModeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->replayGainModeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    m_ui->preampSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->defaultGainSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->volumeStepSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+    m_ui->bufferSizeSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
+
+    m_ui->bitDepthComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->bitDepthComboBox));
+    m_ui->bitDepthComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->bitDepthComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    m_ui->clippingCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->softVolumeCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->ditheringCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->replayGainModeComboBox->addItem (tr("Track"), QmmpSettings::REPLAYGAIN_TRACK);
+    m_ui->replayGainModeComboBox->addItem (tr("Album"), QmmpSettings::REPLAYGAIN_ALBUM);
+    m_ui->replayGainModeComboBox->addItem (tr("Disabled"), QmmpSettings::REPLAYGAIN_DISABLED);
+    m_ui->bitDepthComboBox->addItem("16", Qmmp::PCM_S16LE);
+    m_ui->bitDepthComboBox->addItem("24", Qmmp::PCM_S24LE);
+    m_ui->bitDepthComboBox->addItem("32", Qmmp::PCM_S32LE);
+
 }
 
 void MusicSettingWidget::initNetworkWidget()

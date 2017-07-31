@@ -20,6 +20,20 @@ namespace Ui {
 class MusicSettingWidget;
 }
 
+typedef struct MUSIC_WIDGET_EXPORT MusicFunctionItem
+{
+    MusicFunctionItem() { }
+    MusicFunctionItem(const QString &icon, const QString &name)
+    {
+        m_icon = icon;
+        m_name = name;
+    }
+
+    QString m_icon;
+    QString m_name;
+}MusicFunctionItem;
+TTK_DECLARE_LISTS(MusicFunctionItem)
+
 /*! @brief The class of the list table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -36,7 +50,7 @@ public:
     /*!
      * Get class object name.
      */
-    void addFunctionItems(int index, const QStringList &icon, const QStringList &path);
+    void addFunctionItems(int index, const MusicFunctionItems &items);
     /*!
      * Add table list items by index and icons and paths.
      */
@@ -242,6 +256,10 @@ protected:
     void initSoundEffectWidget();
     /*!
      * Init sound effect stack widget.
+     */
+    void initAudioSettingWidget();
+    /*!
+     * Init audio setting stack widget.
      */
     void initNetworkWidget();
     /*!

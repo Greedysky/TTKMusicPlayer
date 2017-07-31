@@ -1731,6 +1731,334 @@ font-weight:bold;</string>
     </widget>
    </widget>
    <widget class="QWidget" name="eight">
+    <widget class="QLabel" name="setAudioGainWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>20</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>回放增益</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setAudioWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>170</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>音效设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="defaultGainLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>105</y>
+       <width>102</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>默认增益:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="replayGainModeLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>45</y>
+       <width>102</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>增益模式:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="defaultGainSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>105</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimum">
+      <number>-15</number>
+     </property>
+     <property name="maximum">
+      <number>15</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="replayGainModeComboBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>45</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="preampSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>75</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimum">
+      <number>-15</number>
+     </property>
+     <property name="maximum">
+      <number>15</number>
+     </property>
+     <property name="singleStep">
+      <number>1</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="gainValueLabel2">
+     <property name="geometry">
+      <rect>
+       <x>312</x>
+       <y>105</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>dB</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="gainValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>312</x>
+       <y>75</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>dB</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="preampLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>75</y>
+       <width>102</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>放大器:</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="clippingCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>135</y>
+       <width>383</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>使用峰值信息防止剪辑</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="bufferSizeLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>225</y>
+       <width>138</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>缓冲大小:</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="softVolumeCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>285</y>
+       <width>383</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>使用软件音量控制</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="volumeStepLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>195</y>
+       <width>138</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>音量调整步骤:</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="bufferSizeSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>225</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>80</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="suffix">
+      <string>ms</string>
+     </property>
+     <property name="minimum">
+      <number>500</number>
+     </property>
+     <property name="maximum">
+      <number>6000</number>
+     </property>
+     <property name="singleStep">
+      <number>50</number>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="volumeStepSpinBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>195</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="suffix">
+      <string notr="true">%</string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>20</number>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="ditheringCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>310</y>
+       <width>383</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>使用抖动</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="bitDepthLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>255</y>
+       <width>138</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>输出位深度:</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="bitDepthComboBox">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>255</y>
+       <width>120</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="nine">
     <widget class="QLabel" name="setProxyWidget">
      <property name="geometry">
       <rect>
@@ -2123,7 +2451,7 @@ font-weight:bold;;</string>
       <x>0</x>
       <y>310</y>
       <width>125</width>
-      <height>60</height>
+      <height>90</height>
      </rect>
     </property>
    </widget>
