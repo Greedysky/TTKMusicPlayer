@@ -146,7 +146,7 @@
      <rect>
       <x>10</x>
       <y>500</y>
-      <width>100</width>
+      <width>110</width>
       <height>20</height>
      </rect>
     </property>
@@ -180,14 +180,6 @@
      <string notr="true">color:#6495ED;border: 1px solid #555;</string>
     </property>
    </widget>
-   <zorder>showlistButton</zorder>
-   <zorder>showArtButton</zorder>
-   <zorder>songCountLabel</zorder>
-   <zorder>line</zorder>
-   <zorder>showAlbumButton</zorder>
-   <zorder>watchDirCheckBox</zorder>
-   <zorder>watchDirButton</zorder>
-   <zorder>watchDirFrequenceEdit</zorder>
   </widget>
   <widget class="QWidget" name="toolWidget" native="true">
    <property name="geometry">
