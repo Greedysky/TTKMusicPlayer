@@ -5,7 +5,7 @@
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Mobile](https://github.com/Greedysky/TTKMusicplayer#mobile)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
+### **|[About](https://github.com/Greedysky/TTKMusicplayer#usage)|[License](https://github.com/Greedysky/TTKMusicplayer#license)|[Download](https://github.com/Greedysky/TTKMusicplayer#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Screenshots](https://github.com/Greedysky/TTKMusicplayer#screenshots)|[Copyright](https://github.com/Greedysky/TTKMusicplayer#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer#how-to-contribute)|**
 
 Usage
 ----
@@ -94,15 +94,6 @@ Screenshots.
  * Music song, artist, album and playlist searcg supported.
  * Music song spectrum and test supported.
  
-Mobile
-----
-*Follow the QQ music UI to achieve most of the features.*
-**(This project won't be updated anymore.)**
-
-![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/0.png?raw=true)
-![4](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/4.png?raw=true)
-![5](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/5.png?raw=true)
-![6](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/6.png?raw=true)
 
 Screenshots
 ----
@@ -135,6 +126,9 @@ Screenshots
 
 ### Other Tools
 ![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
+
+### Spectrum
+![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
 
 Copyright
 -------

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/extra">
-        <file alias="musicconfig">musicconfig.xml</file>
-        <file alias="music">music.lis</file>
-        <file alias="TTKMobile">TTKMobile.ln</file>
-    </qresource>
-</RCC>
