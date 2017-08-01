@@ -5,7 +5,7 @@
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
 
-### **|[About](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#usage)|[License](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#license)|[Download](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#download)|[Features](https://github.com/Greedysky/TTKMusicplayer#features)|[Mobile](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#mobile)|[Copyright](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#how-to-contribute)|**
+### **|[About](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#usage)|[License](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#license)|[Download](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#download)|[Features](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#features)|[Mobile](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#mobile)|[Copyright](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#copyright)|[Contribute](https://github.com/Greedysky/TTKMusicplayer/tree/mobile#how-to-contribute)|**
 
 Usage
 ----
