@@ -946,7 +946,7 @@ void MusicApplication::dropEvent(QDropEvent *event)
     const QMimeData *data = event->mimeData();
     QStringList fileList;
 
-    foreach(QUrl url, data->urls())
+    foreach(const QUrl &url, data->urls())
     {
         fileList << url.toLocalFile();
     }
@@ -1178,6 +1178,12 @@ void MusicApplication::readXMLConfigFromText()
     {
         musicWindowConciseChanged();
     }
+
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool())
+    {
+        m_applicationObject->soureUpdateCheck();
+    }
+
 }
 
 void MusicApplication::writeXMLConfigToText()

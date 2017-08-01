@@ -73,7 +73,7 @@ protected:
 /*! @brief The class of the moving widget single without ui widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicAbstractMoveSingleWidget : public MusicAbstractMoveWidget
+class MUSIC_WIDGET_EXPORT MusicAbstractMoveSingleWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:

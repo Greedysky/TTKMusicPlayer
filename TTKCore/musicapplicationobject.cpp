@@ -65,37 +65,6 @@ MusicApplicationObject *MusicApplicationObject::instance()
     return m_instance;
 }
 
-void MusicApplicationObject::getParameterSetting()
-{
-#ifdef Q_OS_WIN
-    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt())
-    {
-        MusicRegeditManager regeditManager;
-        regeditManager.setMusicRegeditAssociateFileIcon();
-    }
-#endif
-}
-
-void MusicApplicationObject::windowStartAnimationOpacity()
-{
-    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
-    m_animation->setDuration(MT_S2MS);
-    m_animation->setStartValue(0);
-    m_animation->setEndValue(1);
-    m_animation->start();
-    QTimer::singleShot(MT_S2MS, this, SLOT(musicBackgroundSliderStateChanged()));
-}
-
-void MusicApplicationObject::windowCloseAnimationOpacity()
-{
-    m_animation->stop();
-    m_animation->setDuration(MT_S2MS);
-    m_animation->setStartValue(1);
-    m_animation->setEndValue(0);
-    m_animation->start();
-    QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
-}
-
 #if defined(Q_OS_WIN)
 #  ifdef MUSIC_GREATER_NEW
 void MusicApplicationObject::nativeEvent(const QByteArray &,
@@ -155,6 +124,44 @@ void MusicApplicationObject::winEvent(MSG *msg, long *)
 //    }
 }
 #endif
+
+void MusicApplicationObject::getParameterSetting()
+{
+#ifdef Q_OS_WIN
+    if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt())
+    {
+        MusicRegeditManager regeditManager;
+        regeditManager.setMusicRegeditAssociateFileIcon();
+    }
+#endif
+}
+
+void MusicApplicationObject::windowStartAnimationOpacity()
+{
+    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
+    m_animation->setDuration(MT_S2MS);
+    m_animation->setStartValue(0);
+    m_animation->setEndValue(1);
+    m_animation->start();
+    QTimer::singleShot(MT_S2MS, this, SLOT(musicBackgroundSliderStateChanged()));
+}
+
+void MusicApplicationObject::windowCloseAnimationOpacity()
+{
+    m_animation->stop();
+    m_animation->setDuration(MT_S2MS);
+    m_animation->setStartValue(1);
+    m_animation->setEndValue(0);
+    m_animation->start();
+    QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
+}
+
+void MusicApplicationObject::soureUpdateCheck()
+{
+    MusicSourceUpdateNotifyWidget *w = new MusicSourceUpdateNotifyWidget;
+    w->show();
+    w->start();
+}
 
 void MusicApplicationObject::musicAboutUs()
 {

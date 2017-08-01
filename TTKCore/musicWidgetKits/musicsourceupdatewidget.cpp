@@ -6,10 +6,97 @@
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musictime.h"
+#include "musicsettingmanager.h"
+#include "musicapplicationobject.h"
+
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QProcess>
+#include <QBoxLayout>
+
+MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
+    : MusicAbstractMoveSingleWidget(false, parent)
+{
+    hide();
+
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
+    setMouseTracking(true);
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
+    setStyleSheet(MusicUIObject::MBackgroundStyle17);
+    blockMoveOption(true);
+
+    QSize windowSize = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
+    setGeometry(windowSize.width() - 240, windowSize.height() - 150, 220, 100);
+
+    QVBoxLayout *vlayout = new QVBoxLayout(m_container);
+    vlayout->setContentsMargins(5, 5, 5, 5);
+    m_textLabel = new QLabel(this);
+    m_textLabel->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_textLabel->setAlignment(Qt::AlignCenter);
+
+    QWidget *contain = new QWidget(this);
+    QHBoxLayout *hlayout = new QHBoxLayout(contain);
+    hlayout->setContentsMargins(0, 0, 0, 0);
+    QPushButton *updateButton = new QPushButton(tr("Update"), contain);
+    QPushButton *nextTimeButton = new QPushButton(tr("Close"), contain);
+    updateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    nextTimeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    updateButton->setFixedSize(85, 27);
+    nextTimeButton->setFixedSize(85, 27);
+    hlayout->addWidget(updateButton);
+    hlayout->addWidget(nextTimeButton);
+    contain->setLayout(hlayout);
+
+    vlayout->addWidget(m_textLabel);
+    vlayout->addWidget(contain);
+    m_container->setLayout(vlayout);
+
+    connect(updateButton, SIGNAL(clicked()), SLOT(updateSourceClicked()));
+    connect(nextTimeButton, SIGNAL(clicked()), SLOT(close()));
+}
+
+MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
+{
+    delete m_textLabel;
+}
+
+QString MusicSourceUpdateNotifyWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicSourceUpdateNotifyWidget::start()
+{
+    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
+    connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
+    download->startToDownload();
+}
+
+void MusicSourceUpdateNotifyWidget::updateSourceClicked()
+{
+    close();
+    MusicApplicationObject::instance()->musicVersionUpdate();
+}
+
+void MusicSourceUpdateNotifyWidget::downLoadFinished(const QVariant &data)
+{
+    QVariantMap value = data.toMap();
+    QString versionStr = value["version"].toString();
+
+    if(versionStr != TTKMUSIC_VERSION_STR)
+    {
+        show();
+        m_textLabel->setText(tr("New Version Found") + "\r\n" + versionStr);
+    }
+    else
+    {
+        close();
+    }
+}
+
+
 
 MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -35,6 +122,13 @@ MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 QString MusicSourceUpdateWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicSourceUpdateWidget::start()
+{
+    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
+    connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
+    download->startToDownload();
 }
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
@@ -105,9 +199,7 @@ int MusicSourceUpdateWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
 
-    MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
-    connect(download, SIGNAL(downLoadDataChanged(QVariant)), SLOT(downLoadFinished(QVariant)));
-    download->startToDownload();
+    start();
 
     return MusicAbstractMoveDialog::exec();
 }

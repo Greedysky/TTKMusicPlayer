@@ -68,6 +68,10 @@ public:
     /*!
      * Window close animation opacity.
      */
+    void soureUpdateCheck();
+    /*!
+     * Soure update check.
+     */
 
 Q_SIGNALS:
     void enhancedMusicChanged(int type);
