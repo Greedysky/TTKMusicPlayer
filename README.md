@@ -1,4 +1,4 @@
-# TTKMusicPlayer
+# TTKMobile
 ![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/license-GPL%20V2-yellowgreen.svg?style=flat-square)
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
@@ -12,20 +12,16 @@ Usage
 **The music player use of qmmp core library based on Qt.
 Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
+### **(This project won't be updated anymore.)**
+
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
- * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.5 for android 32bit
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
-| Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                            |
-| Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
-| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
 | Android     | 5.5 & 5.5.1     | ![Android](https://img.shields.io/wercker/ci/wercker/docs.svg)                          |
  
 # For Developers
@@ -96,44 +92,14 @@ Screenshots.
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*
-**(This project won't be updated anymore.)**
 
 ![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/0.png?raw=true)
+![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/1.png?raw=true)
+![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/2.png?raw=true)
+![0](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/3.png?raw=true)
 ![4](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/4.png?raw=true)
 ![5](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/5.png?raw=true)
 ![6](https://github.com/Greedysky/Resource/blob/master/Screen/TTKMobile/6.png?raw=true)
-
-Screenshots
-----
-### Index
-![Index](https://github.com/Greedysky/Resource/blob/master/Screen/1.jpg?raw=true)
-
-### Search
-![Search](https://github.com/Greedysky/Resource/blob/master/Screen/2.jpg?raw=true)
-
-### Lrc
-![Lrc](https://github.com/Greedysky/Resource/blob/master/Screen/3.jpg?raw=true)
-
-### Desktop Lrc
-![Desktop Lrc](https://github.com/Greedysky/Resource/blob/master/Screen/4.jpg?raw=true)
-
-### Remote Controller
-![Remote Controller](https://github.com/Greedysky/Resource/blob/master/Screen/5.jpg?raw=true)
-
-### Lrc Display Expand
-![Lrc Display Expand](https://github.com/Greedysky/Resource/blob/master/Screen/6.jpg?raw=true)
-
-### MV
-![MV](https://github.com/Greedysky/Resource/blob/master/Screen/7.jpg?raw=true)
-
-### Video Barrage
-![Video Barrage](https://github.com/Greedysky/Resource/blob/master/Screen/8.jpg?raw=true)
-
-### Magic Music
-![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/9.jpg?raw=true)
-
-### Other Tools
-![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/10.jpg?raw=true)
 
 Copyright
 -------
