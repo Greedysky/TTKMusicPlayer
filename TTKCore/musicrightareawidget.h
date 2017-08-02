@@ -226,7 +226,7 @@ protected:
 
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
-    MusicSettingWidget *m_setting;
+    MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;

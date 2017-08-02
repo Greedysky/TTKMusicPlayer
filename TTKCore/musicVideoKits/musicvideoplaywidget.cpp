@@ -8,6 +8,7 @@
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsettingmanager.h"
+#include "musicapplication.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -24,6 +25,8 @@
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent), m_windowPopup(false)
 {
+    setWindowTitle("TTKMovie");
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -45,6 +48,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     searchLayout->setSpacing(0);
 
     m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
+    m_searchEdit->setStyleSheet(MusicUIObject::MColorStyle03);
     m_searchEdit->setFixedHeight(25);
     m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));
@@ -145,8 +149,8 @@ void MusicVideoPlayWidget::popup(bool popup)
         m_winTopButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
         m_winTopButton->setToolTip(tr("windowTopOn"));
         connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
-        m_winTopButton->setEnabled(false);
         topLayout->insertWidget(topLayout->count() - 1, m_winTopButton);
+        m_winTopButton->setEnabled(false);
     }
     else
     {
@@ -212,11 +216,12 @@ QString MusicVideoPlayWidget::getSearchText() const
 void MusicVideoPlayWidget::switchToSearchTable()
 {
     QHBoxLayout *topLayout = MStatic_cast(QHBoxLayout*, m_topWidget->layout());
+    delete m_backButton;
     m_backButton = new QToolButton(m_topWidget);
-    m_backButton->setFixedSize(14, 14);
+    m_backButton->setFixedSize(20, 20);
     m_backButton->setToolTip(tr("Back"));
     m_backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_backButton->setStyleSheet(MusicUIObject::MKGBtnConciseIn);
+    m_backButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
     connect(m_backButton, SIGNAL(clicked()), SLOT(switchToPlayView()));
     topLayout->insertWidget(0, m_backButton);
 
@@ -246,12 +251,12 @@ void MusicVideoPlayWidget::windowTopStateChanged()
 {
     Qt::WindowFlags flags = windowFlags();
     bool top = m_winTopButton->styleSheet().contains("btn_top_off_normal");
-    setWindowFlags( top ? (flags | Qt::WindowStaysOnTopHint) :
-                          (flags & ~Qt::WindowStaysOnTopHint) );
+    setWindowFlags( top ? (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint) );
+
     show();
+
     m_winTopButton->setToolTip(top ? tr("windowTopOff") : tr("windowTopOn"));
-    m_winTopButton->setStyleSheet(top ? MusicUIObject::MKGTinyBtnWintopOn :
-                                        MusicUIObject::MKGTinyBtnWintopOff);
+    m_winTopButton->setStyleSheet(top ? MusicUIObject::MKGTinyBtnWintopOn : MusicUIObject::MKGTinyBtnWintopOff);
 }
 
 void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
@@ -263,6 +268,12 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
 
 void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 {
+    MusicApplication *w = MusicApplication::instance();
+    if(w->isPlaying())
+    {
+        w->musicStatePlay();
+    }
+    ///stop current media play while mv starts.
     m_videoView->setMedia(data);
     m_videoView->play();
 

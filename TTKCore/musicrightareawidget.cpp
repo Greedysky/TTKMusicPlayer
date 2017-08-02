@@ -35,14 +35,13 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_videoPlayerWidget = nullptr;
 
     m_downloadStatusLabel = new MusicDownloadStatusObject(parent);
-    m_setting = new MusicSettingWidget(this);
-    connect(m_setting, SIGNAL(parameterSettingChanged()), parent,
-                       SLOT(getParameterSetting()));
+    m_settingWidget = new MusicSettingWidget(this);
+    connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(getParameterSetting()));
 }
 
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
-    delete m_setting;
+    delete m_settingWidget;
     delete m_downloadStatusLabel;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;
@@ -79,7 +78,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
 
     ///////////////////////////////////////////////////////
-    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
+    connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget,
                  SLOT(changeInlineLrcWidget()));
     connect(ui->musiclrccontainerforinline, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));
@@ -214,8 +213,8 @@ void MusicRightAreaWidget::musicCheckHasLrcAlready() const
 
 void MusicRightAreaWidget::showSettingWidget() const
 {
-    m_setting->initControllerParameter();
-    m_setting->exec();
+    m_settingWidget->initControllerParameter();
+    m_settingWidget->exec();
 }
 
 void MusicRightAreaWidget::resizeWindow()
@@ -532,11 +531,11 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
     connect(m_musicLrcForDesktop, SIGNAL(setWindowLrcTypeChanged()), SLOT(setWindowLrcTypeChanged()));
     connect(m_musicLrcForDesktop, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
-                 SLOT(musicCurrentLrcUpdated()));
+                                  SLOT(musicCurrentLrcUpdated()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(),
-                 SLOT(musicSetting()));
-    connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_setting,
-                 SLOT(changeDesktopLrcWidget()));
+                                  SLOT(musicSetting()));
+    connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget,
+                                  SLOT(changeDesktopLrcWidget()));
 
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, type);
     deskLrc->deleteLater();
