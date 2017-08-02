@@ -16,6 +16,7 @@
 #include "musicnumberdefine.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
+#include "musicwidgetutils.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -32,8 +33,8 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_instance = this;
 
     musicResetWindow();
-    windowStartAnimationOpacity();
 
+    m_animation = nullptr;
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
     m_setWindowToTop = false;
 
@@ -138,19 +139,30 @@ void MusicApplicationObject::getParameterSetting()
 
 void MusicApplicationObject::windowStartAnimationOpacity()
 {
-    m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
+    float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
+    v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
+    if(!m_animation)
+    {
+        m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
+    }
     m_animation->setDuration(MT_S2MS);
     m_animation->setStartValue(0);
-    m_animation->setEndValue(1);
+    m_animation->setEndValue(v);
     m_animation->start();
     QTimer::singleShot(MT_S2MS, this, SLOT(musicBackgroundSliderStateChanged()));
 }
 
 void MusicApplicationObject::windowCloseAnimationOpacity()
 {
+    float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
+    v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
+    if(!m_animation)
+    {
+        m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
+    }
     m_animation->stop();
     m_animation->setDuration(MT_S2MS);
-    m_animation->setStartValue(1);
+    m_animation->setStartValue(v);
     m_animation->setEndValue(0);
     m_animation->start();
     QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));

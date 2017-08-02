@@ -457,12 +457,12 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
     }
     MusicUtils::Widget::reRenderImage(35, &origin, &origin);
 
-    QPixmap after( size );
+    float v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, m_alpha);
+    MusicApplication::instance()->setWindowOpacity(v);
+
+    QPixmap after(size);
     after.fill(Qt::transparent);
     QPainter paint(&after);
-    paint.fillRect(0, 0, after.width(), after.height(),
-                   QColor(0xFF, 0xFF, 0xFF, MusicUtils::Widget::reRenderAlpha(0x2F, m_alpha)));
-    paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
     paint.drawPixmap(0, 0, QPixmap::fromImage(origin.scaled(size, Qt::KeepAspectRatioByExpanding)));
     paint.end();
 

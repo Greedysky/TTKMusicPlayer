@@ -45,6 +45,7 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_downloadStatusLabel;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;
+    delete m_videoPlayerWidget;
 }
 
 QString MusicRightAreaWidget::getClassName()

@@ -68,6 +68,17 @@ namespace MusicUtils
          * Get bitmap mask from rect.
          */
 
+        template<class T>
+        MUSIC_CORE_EXPORT T reRenderValue(T key, T alpha, T value)
+        {
+            if(alpha < 0) return 0;
+            else if(alpha > key) return key;
+
+            return (key - alpha)*1.0/100*value + alpha;
+        }
+        /*!
+         * Rerender the custum value.
+         */
         MUSIC_CORE_EXPORT int reRenderAlpha(int alpha, int value);
         /*!
          * Rerender the image alpha.

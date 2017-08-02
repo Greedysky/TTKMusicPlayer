@@ -118,10 +118,7 @@ QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int rat
 
 int MusicUtils::Widget::reRenderAlpha(int alpha, int value)
 {
-    if(alpha < 0) return 0;
-    else if(alpha > 0xFF) return 0xFF;
-
-    return (0xFF - alpha)*1.0/100*value + alpha;
+    return reRenderValue<int>(0xFF, alpha, value);
 }
 
 void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *output)

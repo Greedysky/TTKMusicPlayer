@@ -33,6 +33,9 @@ MusicApplication::MusicApplication(QWidget *parent)
       m_ui(new Ui::MusicApplication)
 {
     m_instance = this;
+#ifdef MUSIC_GREATER_NEW
+    setAttribute(Qt::WA_TranslucentBackground, false);
+#endif
     m_applicationObject = new MusicApplicationObject(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
@@ -98,6 +101,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     }
 
     readXMLConfigFromText();
+//    m_applicationObject->windowStartAnimationOpacity();
 }
 
 MusicApplication::~MusicApplication()
@@ -1094,6 +1098,7 @@ void MusicApplication::readXMLConfigFromText()
     m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
                                    xml.readBackgroundTransparent().toInt(),
                                    xml.readBackgroundListTransparent().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
     //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, xml.readOtherBgLossless().toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, xml.readOtherUpdate().toInt());
