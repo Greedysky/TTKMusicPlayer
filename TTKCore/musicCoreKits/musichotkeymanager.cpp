@@ -1,14 +1,14 @@
-#include "musicglobalhotkey.h"
+#include "musichotkeymanager.h"
 #include "qxtglobalshortcut.h"
 
 #include <QStringList>
 
-QString MusicGlobalHotKey::getClassName()
+QString MusicHotKeyManager::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicGlobalHotKey::connectParentObject(QObject *object)
+void MusicHotKeyManager::connectParentObject(QObject *object)
 {
     for(int i=0; i<8; ++i)
     {
@@ -27,7 +27,7 @@ void MusicGlobalHotKey::connectParentObject(QObject *object)
     setDefaultKey();
 }
 
-void MusicGlobalHotKey::setDefaultKey()
+void MusicHotKeyManager::setDefaultKey()
 {
     QStringList keys(getDefaultKeys());
     for(int i=0; i<m_hotkeys.count(); ++i)
@@ -37,7 +37,7 @@ void MusicGlobalHotKey::setDefaultKey()
     }
 }
 
-void MusicGlobalHotKey::setHotKeys(const QStringList &keys)
+void MusicHotKeyManager::setHotKeys(const QStringList &keys)
 {
     for(int i=0; i<m_hotkeys.count(); ++i)
     {
@@ -46,7 +46,7 @@ void MusicGlobalHotKey::setHotKeys(const QStringList &keys)
     }
 }
 
-void MusicGlobalHotKey::setHotKey(int index, const QString &key)
+void MusicHotKeyManager::setHotKey(int index, const QString &key)
 {
     if(index >= m_hotkeys.count())
     {
@@ -55,7 +55,7 @@ void MusicGlobalHotKey::setHotKey(int index, const QString &key)
     m_hotkeys[index]->setShortcut(QKeySequence(key));
 }
 
-void MusicGlobalHotKey::setHotKey(int index, int key)
+void MusicHotKeyManager::setHotKey(int index, int key)
 {
     if(index >= m_hotkeys.count())
     {
@@ -64,7 +64,7 @@ void MusicGlobalHotKey::setHotKey(int index, int key)
     m_hotkeys[index]->setShortcut(QKeySequence(key));
 }
 
-QString MusicGlobalHotKey::hotKey(int index)
+QString MusicHotKeyManager::hotKey(int index)
 {
     if(index >= m_hotkeys.count())
     {
@@ -73,7 +73,7 @@ QString MusicGlobalHotKey::hotKey(int index)
     return m_hotkeys[index]->shortcut().toString();
 }
 
-void MusicGlobalHotKey::setEnabled(int index, bool enabled)
+void MusicHotKeyManager::setEnabled(int index, bool enabled)
 {
     if(index >= m_hotkeys.count())
     {
@@ -82,7 +82,7 @@ void MusicGlobalHotKey::setEnabled(int index, bool enabled)
     m_hotkeys[index]->setEnabled(enabled);
 }
 
-bool MusicGlobalHotKey::enabled(int index)
+bool MusicHotKeyManager::enabled(int index)
 {
     if(index >= m_hotkeys.count())
     {
@@ -91,7 +91,7 @@ bool MusicGlobalHotKey::enabled(int index)
     return m_hotkeys[index]->isEnabled();
 }
 
-void MusicGlobalHotKey::enabledAll(bool enabled)
+void MusicHotKeyManager::enabledAll(bool enabled)
 {
     foreach(QxtGlobalShortcut *key, m_hotkeys)
     {
@@ -99,7 +99,7 @@ void MusicGlobalHotKey::enabledAll(bool enabled)
     }
 }
 
-QString MusicGlobalHotKey::toString(int key, int modifiers)
+QString MusicHotKeyManager::toString(int key, int modifiers)
 {
     QString strModList[] = { "Ctrl", "Shift", "Alt"};
     quint32 modList[] = { Qt::ControlModifier, Qt::ShiftModifier, Qt::AltModifier};
@@ -122,12 +122,12 @@ QString MusicGlobalHotKey::toString(int key, int modifiers)
     return keyStr + QKeySequence(key).toString();
 }
 
-int MusicGlobalHotKey::count() const
+int MusicHotKeyManager::count() const
 {
     return m_hotkeys.count();
 }
 
-QStringList MusicGlobalHotKey::getDefaultKeys() const
+QStringList MusicHotKeyManager::getDefaultKeys() const
 {
     QStringList keys;
     keys << "Ctrl+B" << "Ctrl+Left" << "Ctrl+Right" << "Ctrl+Up"
@@ -135,7 +135,7 @@ QStringList MusicGlobalHotKey::getDefaultKeys() const
     return keys;
 }
 
-QStringList MusicGlobalHotKey::getKeys() const
+QStringList MusicHotKeyManager::getKeys() const
 {
     QStringList keys;
     foreach(QxtGlobalShortcut *key, m_hotkeys)

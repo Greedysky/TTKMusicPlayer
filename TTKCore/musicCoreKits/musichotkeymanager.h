@@ -1,5 +1,5 @@
-#ifndef MUSICGLOBALHOTKEY_H
-#define MUSICGLOBALHOTKEY_H
+#ifndef MUSICHOTKEYMANAGER_H
+#define MUSICHOTKEYMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -11,14 +11,14 @@
 
 #include "musicsingleton.h"
 
-#define M_HOTKEY_PTR (MusicSingleton<MusicGlobalHotKey>::createInstance())
+#define M_HOTKEY_PTR (MusicSingleton<MusicHotKeyManager>::createInstance())
 
 class QxtGlobalShortcut;
 
 /*! @brief The class of the global hotkey setting manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicGlobalHotKey : public QObject
+class MUSIC_CORE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
 public:
@@ -88,7 +88,7 @@ protected:
 
     QList<QxtGlobalShortcut*> m_hotkeys;
 
-    DECLARE_SINGLETON_CLASS(MusicGlobalHotKey)
+    DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 };
 
-#endif // MUSICGLOBALHOTKEY_H
+#endif // MUSICHOTKEYMANAGER_H

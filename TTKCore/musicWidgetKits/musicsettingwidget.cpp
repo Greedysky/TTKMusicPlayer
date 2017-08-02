@@ -6,7 +6,7 @@
 #include "musicnetworkoperator.h"
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicmessagebox.h"
-#include "musicglobalhotkey.h"
+#include "musichotkeymanager.h"
 #include "musicapplicationobject.h"
 #include "musiclrccolorwidget.h"
 #include "musiclrcdefines.h"

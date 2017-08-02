@@ -1,5 +1,5 @@
 #include "musicglobalhotkeyedit.h"
-#include "musicglobalhotkey.h"
+#include "musichotkeymanager.h"
 
 #include <QKeyEvent>
 

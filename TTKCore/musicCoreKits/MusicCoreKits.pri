@@ -22,7 +22,6 @@ HEADERS  += \
     $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
-    $$PWD/musicglobalhotkey.h \
     $$PWD/musictime.h \
     $$PWD/musicxmlconfigmanager.h \
     $$PWD/musicplayer.h \
@@ -41,7 +40,8 @@ HEADERS  += \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
     $$PWD/musiclicensecore.h \
-    $$PWD/musicplaylistmanager.h
+    $$PWD/musicplaylistmanager.h \
+    $$PWD/musichotkeymanager.h
 
 }
 
@@ -53,7 +53,6 @@ SOURCES += \
     $$PWD/utils/musicstringutils.cpp \
     $$PWD/utils/musicalgorithmutils.cpp \
     $$PWD/musicformats.cpp \
-    $$PWD/musicglobalhotkey.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
@@ -70,6 +69,7 @@ SOURCES += \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
     $$PWD/musiclicensecore.cpp \
-    $$PWD/musicplaylistmanager.cpp
+    $$PWD/musicplaylistmanager.cpp \
+    $$PWD/musichotkeymanager.cpp
 
 }

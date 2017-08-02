@@ -17,7 +17,7 @@
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
 #include "musicapplicationobject.h"
-#include "musicglobalhotkey.h"
+#include "musichotkeymanager.h"
 #include "musicfunctionuiobject.h"
 #include "musictoastlabel.h"
 #include "musiccoreutils.h"
