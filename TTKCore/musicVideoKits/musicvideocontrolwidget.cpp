@@ -12,8 +12,8 @@
 #include <QPushButton>
 #include <QBoxLayout>
 
-MusicVideoControlWidget::MusicVideoControlWidget(bool popup, QWidget *parent)
-    : QWidget(parent), m_widgetPopup(popup)
+MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
+    : QWidget(parent)
 {
     setStyleSheet(MusicUIObject::MBackgroundStyle06);
 

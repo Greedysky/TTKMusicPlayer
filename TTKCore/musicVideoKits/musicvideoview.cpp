@@ -53,7 +53,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 }
 
 
-MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
+MusicVideoView::MusicVideoView(QWidget *parent)
     : QGraphicsView(parent)
 {
     setObjectName("MusicVideoView");
@@ -68,7 +68,7 @@ MusicVideoView::MusicVideoView(bool popup, QWidget *parent)
     connect(m_videoWidget, SIGNAL(setFullScreen()), parent, SLOT(fullscreenButtonClicked()));
     connect(m_videoWidget, SIGNAL(mediaIsPlaying(bool&)), SLOT(mediaIsPlaying(bool&)));
 
-    m_videoControl = new MusicVideoControlWidget(popup, this);
+    m_videoControl = new MusicVideoControlWidget(this);
     connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
     connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));

@@ -63,7 +63,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit MusicVideoView(bool popup, QWidget *parent = 0);
+    explicit MusicVideoView(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */

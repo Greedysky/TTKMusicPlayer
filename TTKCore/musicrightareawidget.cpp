@@ -32,6 +32,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_stackedFuncWidget = nullptr;
     m_musicLrcForDesktop = nullptr;
     m_musicLrcForWallpaper = nullptr;
+    m_videoPlayerWidget = nullptr;
 
     m_downloadStatusLabel = new MusicDownloadStatusObject(parent);
     m_setting = new MusicSettingWidget(this);
@@ -238,9 +239,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget))
+
+    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
     {
-        MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget)->resizeWindow();
+        m_videoPlayerWidget->resizeWindow();
     }
 }
 
@@ -321,15 +323,18 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         case VideoWidget: //insert video widget
             {
-                MusicVideoPlayWidget *videoPlayer = new MusicVideoPlayWidget(false, this);
-                videoPlayer->setObjectToClose(this);
-                videoPlayer->blockMoveOption(true);
-                connect(videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
-                connect(videoPlayer, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
+                if(!m_videoPlayerWidget)
+                {
+                    m_videoPlayerWidget = new MusicVideoPlayWidget(this);
+                    connect(m_videoPlayerWidget, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
+                    connect(m_videoPlayerWidget, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
+                }
+                m_videoPlayerWidget->popup(false);
+                m_videoPlayerWidget->blockMoveOption(true);
 
-                m_stackedFuncWidget = videoPlayer;
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_stackedFuncWidget = nullptr;
+                m_ui->surfaceStackedWidget->addWidget(m_videoPlayerWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(m_videoPlayerWidget);
                 m_ui->musicVideoWidgetButton->setStyleSheet(MusicUIObject::MKGFuncMVForeClicked);
                 emit updateBackgroundTheme();
                 break;
@@ -572,36 +577,37 @@ void MusicRightAreaWidget::musicButtonStyleClear(bool fore)
 
 void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
 {
-    if(MObject_cast(MusicVideoPlayWidget*, m_stackedFuncWidget))
+    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
     {
-        MusicVideoPlayWidget *video = MStatic_cast(MusicVideoPlayWidget*, m_stackedFuncWidget);
-        if(video->isPopup())
-        {
-            video->raise();
-            video->videoResearchButtonSearched(name);
-            return;
-        }
+        m_videoPlayerWidget->raise();
     }
-    musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
-    MusicVideoPlayWidget *video = MStatic_cast(MusicVideoPlayWidget*, m_stackedFuncWidget);
-    if(video)
+    else
     {
-        video->videoResearchButtonSearched(name);
+        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
     }
+    m_videoPlayerWidget->videoResearchButtonSearched(name);
 }
 
 void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
 {
+    if(!m_videoPlayerWidget)
+    {
+        return;
+    }
+
+    m_videoPlayerWidget->popup(popup, this);
     if(popup)
     {
-        musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
+        m_videoPlayerWidget->setParent(nullptr);
+        m_videoPlayerWidget->show();
+        m_videoPlayerWidget->blockMoveOption(false);
 
-        MusicVideoPlayWidget *videoPlayer = new MusicVideoPlayWidget(true);
-        videoPlayer->setObjectToClose(this);
-        videoPlayer->show();
-        m_stackedFuncWidget = videoPlayer;
-        connect(videoPlayer, SIGNAL(freshButtonClicked(bool)), SLOT(musicVideoSetPopup(bool)));
-        connect(videoPlayer, SIGNAL(fullscreenButtonClicked(bool)), SLOT(musicVideoFullscreen(bool)));
+        MusicRegeditManager().setLeftWinEnable();
+        QTimer::singleShot(1, this, [&]()
+        {
+            MusicApplication::instance()->activateWindow();
+            m_videoPlayerWidget->activateWindow();
+        });
     }
     else
     {
@@ -609,14 +615,22 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     }
 }
 
+void MusicRightAreaWidget::musicVideoClosed()
+{
+    delete m_videoPlayerWidget;
+    m_videoPlayerWidget = nullptr;
+    musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
+}
+
 void MusicRightAreaWidget::musicVideoFullscreen(bool full)
 {
-    MusicVideoPlayWidget *video = MStatic_cast(MusicVideoPlayWidget*, m_stackedFuncWidget);
-    if(video)
+    if(!m_videoPlayerWidget)
     {
-        video->resizeWindow(full);
-        video->blockMoveOption(full);
+        return;
     }
+
+    m_videoPlayerWidget->resizeWindow(full);
+    m_videoPlayerWidget->blockMoveOption(full);
 }
 
 void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()

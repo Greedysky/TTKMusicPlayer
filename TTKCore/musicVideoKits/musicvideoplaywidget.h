@@ -13,6 +13,7 @@
 
 class QLabel;
 class QPushButton;
+class QToolButton;
 class QStackedWidget;
 class MusicVideoView;
 class MusicVideoFloatWidget;
@@ -26,7 +27,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoPlayWidget(bool popup, QWidget *parent = 0);
+    explicit MusicVideoPlayWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -37,6 +38,10 @@ public:
      * Get class object name.
      */
 
+    void popup(bool popup, QObject *object = 0);
+    /*!
+     * Set the window is popup or not.
+     */
     bool isPopup() const;
     /*!
      * Get the window is popup or not.
@@ -52,10 +57,6 @@ public:
     void resizeWindow(int width, int height);
     /*!
      * Resize widget size or not.
-     */
-    void setObjectToClose(QObject *object);
-    /*!
-     * Set object to close current widget.
      */
     QString getSearchText() const;
     /*!
@@ -76,6 +77,10 @@ public Q_SLOTS:
     void switchToSearchTable();
     /*!
      * Switch to search table.
+     */
+    void switchToPlayView();
+    /*!
+     * Switch to play view.
      */
     void searchButtonClicked();
     /*!
@@ -121,10 +126,16 @@ protected:
     /*!
      * Override the widget event.
      */
+    void setTitleText(const QString &text);
+    /*!
+     * Set current title text(song name).
+     */
 
     bool m_windowPopup;
     QWidget *m_topWidget;
     QLabel *m_textLabel;
+    QString m_currentMediaName;
+    QToolButton *m_backButton;
     QPushButton *m_searchButton, *m_closeButton, *m_winTopButton;
     QStackedWidget *m_stackedWidget;
     MusicVideoView *m_videoView;

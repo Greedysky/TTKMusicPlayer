@@ -13,6 +13,7 @@
 #include "musicglobaldefine.h"
 
 class MusicSettingWidget;
+class MusicVideoPlayWidget;
 class MusicDownloadStatusObject;
 class MusicLrcContainerForDesktop;
 class MusicLrcContainerForWallpaper;
@@ -196,6 +197,10 @@ public Q_SLOTS:
     /*!
      * Set video widget popop or not.
      */
+    void musicVideoClosed();
+    /*!
+     * Set video widget close and delete.
+     */
     void musicVideoFullscreen(bool full);
     /*!
      * Set video widget fullScreen or not.
@@ -218,6 +223,7 @@ protected:
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_setting;
+    MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;
     MusicDownloadStatusObject *m_downloadStatusLabel;

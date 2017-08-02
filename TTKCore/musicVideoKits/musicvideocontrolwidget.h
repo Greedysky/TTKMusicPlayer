@@ -28,7 +28,7 @@ class MUSIC_VIDEO_EXPORT MusicVideoControlWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoControlWidget(bool popup, QWidget *parent = 0);
+    explicit MusicVideoControlWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
@@ -53,10 +53,6 @@ public:
     void mediaChanged(const QString &url);
     /*!
      * Set current media url.
-     */
-    inline bool isPopup() const { return m_widgetPopup;}
-    /*!
-     * Check widget is popup or not.
      */
     void setFixedSize(int w, int h);
     /*!
@@ -102,7 +98,6 @@ protected:
      * Create video barrage widget.
      */
 
-    bool m_widgetPopup;
     QLabel *m_timeLabel;
     QPushButton *m_playButton;
     MusicMovingLabelSlider *m_timeSlider;
