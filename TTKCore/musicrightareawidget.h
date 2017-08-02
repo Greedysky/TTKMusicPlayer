@@ -197,6 +197,10 @@ public Q_SLOTS:
     /*!
      * Set video widget popop or not.
      */
+    void musicVideoActiveWindow();
+    /*!
+     * Set video widget actived window.
+     */
     void musicVideoClosed();
     /*!
      * Set video widget close and delete.

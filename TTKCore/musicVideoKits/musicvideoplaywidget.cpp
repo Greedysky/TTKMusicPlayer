@@ -58,11 +58,18 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     topLayout->addStretch();
     topLayout->addWidget(searchWidget);
 
+    m_closeButton = new QPushButton(this);
+    m_closeButton->setToolTip(tr("Close"));
+    m_closeButton->setFixedSize(14, 14);
+    m_closeButton->setStyleSheet(MusicUIObject::MKGBtnPClose);
+    m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(musicVideoClosed()));
+    topLayout->addWidget(m_closeButton);
+
     m_searchEdit->hide();
     m_searchButton->hide();
 
     m_backButton = nullptr;
-    m_closeButton = nullptr;
     m_winTopButton = nullptr;
 
     m_topWidget->setLayout(topLayout);
@@ -115,12 +122,13 @@ QString MusicVideoPlayWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicVideoPlayWidget::popup(bool popup, QObject *object)
+void MusicVideoPlayWidget::popup(bool popup)
 {
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType,
                                 popup ? tr("InlineMode") : tr("PopupMode"));
     QHBoxLayout *topLayout = MStatic_cast(QHBoxLayout*, m_topWidget->layout());
     m_windowPopup = popup;
+    blockMoveOption(!popup);
 
     if(popup)
     {
@@ -128,6 +136,8 @@ void MusicVideoPlayWidget::popup(bool popup, QObject *object)
         setGeometry((size.width() - WINDOW_WIDTH)/2, (size.height() - WINDOW_HEIGHT)/2,
                     WINDOW_WIDTH, WINDOW_HEIGHT);
         resizeWindow(0, 0);
+        setParent(nullptr);
+        show();
 
         m_winTopButton = new QPushButton(m_topWidget);
         m_winTopButton->setFixedSize(14, 14);
@@ -136,23 +146,12 @@ void MusicVideoPlayWidget::popup(bool popup, QObject *object)
         m_winTopButton->setToolTip(tr("windowTopOn"));
         connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
         m_winTopButton->setEnabled(false);
-        topLayout->addWidget(m_winTopButton);
-
-        m_closeButton = new QPushButton(this);
-        m_closeButton->setToolTip(tr("Close"));
-        m_closeButton->setFixedSize(14, 14);
-        m_closeButton->setStyleSheet(MusicUIObject::MKGBtnPClose);
-        m_closeButton->setCursor(QCursor(Qt::PointingHandCursor));
-        connect(m_closeButton, SIGNAL(clicked()), object, SLOT(musicVideoClosed()));
-        topLayout->addWidget(m_closeButton);
+        topLayout->insertWidget(topLayout->count() - 1, m_winTopButton);
     }
     else
     {
-        Q_UNUSED(object);
         delete m_winTopButton;
         m_winTopButton = nullptr;
-        delete m_closeButton;
-        m_closeButton = nullptr;
     }
 }
 

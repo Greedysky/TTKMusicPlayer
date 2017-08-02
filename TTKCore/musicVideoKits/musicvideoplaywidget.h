@@ -38,7 +38,7 @@ public:
      * Get class object name.
      */
 
-    void popup(bool popup, QObject *object = 0);
+    void popup(bool popup);
     /*!
      * Set the window is popup or not.
      */
