@@ -18,6 +18,7 @@ QString MusicXMCommentsThread::getClassName()
 
 void MusicXMCommentsThread::startToSearch(const QString &name)
 {
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryXMThread *query = new MusicDownLoadQueryXMThread(this);
     query->setQueryAllRecords(false);
@@ -40,6 +41,8 @@ void MusicXMCommentsThread::startToPage(int offset)
     {
         return;
     }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
 
@@ -70,6 +73,7 @@ void MusicXMCommentsThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -111,4 +115,5 @@ void MusicXMCommentsThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

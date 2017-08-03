@@ -35,6 +35,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false)
@@ -50,8 +51,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
 #endif
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryBDPlaylistThread::startToSearchAll(const QSet<QString> &ids)
@@ -86,6 +86,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
     QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
 
     QNetworkRequest request;
@@ -109,6 +110,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -140,12 +142,14 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 
 //    emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDPlaylistThread::getSongAllFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
+    M_LOGGER_INFO(QString("%1 getSongAllFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -177,11 +181,13 @@ void MusicDownLoadQueryBDPlaylistThread::getSongAllFinished()
     }
 
 //    emit downLoadDataChanged(QString());
+    M_LOGGER_INFO(QString("%1 getSongAllFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
 {
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+    M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
@@ -242,4 +248,5 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
     }
 
     emit downLoadDataChanged(QString());
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

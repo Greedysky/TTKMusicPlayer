@@ -21,6 +21,7 @@ void MusicWYDiscoverListThread::startToSearch()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     m_topListInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_TOPLIST_URL, false);
     deleteAll();
@@ -48,6 +49,7 @@ void MusicWYDiscoverListThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         MusicObject::MIntSet ids;
@@ -74,10 +76,12 @@ void MusicWYDiscoverListThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicWYDiscoverListThread::searchTopListInfoFinished()
 {
+    M_LOGGER_INFO(QString("%1 searchTopListInfoFinished").arg(getClassName()));
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     if(reply && reply->error() == QNetworkReply::NoError)
     {
@@ -119,6 +123,7 @@ void MusicWYDiscoverListThread::searchTopListInfoFinished()
 
     emit downLoadDataChanged(m_topListInfo);
     deleteAll();
+    M_LOGGER_INFO(QString("%1 searchTopListInfoFinished deleteAll").arg(getClassName()));
 }
 
 void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
@@ -128,6 +133,7 @@ void MusicWYDiscoverListThread::searchTopListInformation(const QString &id)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 searchTopListInformation %2").arg(getClassName()).arg(id));
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(WY_SONG_URL, false).arg(id)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

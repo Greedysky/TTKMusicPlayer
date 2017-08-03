@@ -27,6 +27,7 @@ void MusicDownLoadQueryWYArtistThread::startToSearch(const QString &artist)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_ARTIST_URL, false).arg(artist);
     deleteAll();
 
@@ -54,6 +55,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -112,4 +114,5 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

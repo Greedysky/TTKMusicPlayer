@@ -34,6 +34,8 @@ void MusicDownLoadQueryXMPlaylistThread::startToPage(int offset)
     {
         return;
     }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
 
@@ -60,6 +62,8 @@ void MusicDownLoadQueryXMPlaylistThread::startToSearch(const QString &playlist)
     {
         return;
     }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
@@ -84,6 +88,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -143,10 +148,12 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
 
 //    emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
 {
+    M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     emit clearAllItems();      ///Clear origin items
@@ -213,4 +220,5 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
     }
 
     emit downLoadDataChanged(QString());
+    M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }

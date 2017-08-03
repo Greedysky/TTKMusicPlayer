@@ -36,6 +36,7 @@ void MusicQQBackgroundThread::deleteAll()
 
 void MusicQQBackgroundThread::startToDownload()
 {
+    M_LOGGER_INFO(QString("%1 startToDownload").arg(getClassName()));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(m_artName).arg(0).arg(50);
     deleteAll();
 
@@ -60,6 +61,7 @@ void MusicQQBackgroundThread::downLoadDataFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadDataFinished").arg(getClassName()));
     QString songId;
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -94,6 +96,7 @@ void MusicQQBackgroundThread::downLoadDataFinished()
         }
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadDataFinished deleteAll").arg(getClassName()));
     downLoadUrl(songId);
 }
 
@@ -105,6 +108,7 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadUrlFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QStringList datas;
@@ -131,10 +135,12 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
             }
         }
     }
+    M_LOGGER_INFO(QString("%1 downLoadUrlFinished deleteAll").arg(getClassName()));
 }
 
 void MusicQQBackgroundThread::downLoadUrl(const QString &id)
 {
+    M_LOGGER_INFO(QString("%1 downLoadUrl %2").arg(getClassName()).arg(id));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BIG_ART_URL, false).arg(id);
     deleteAll();
 

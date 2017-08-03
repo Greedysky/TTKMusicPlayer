@@ -27,6 +27,7 @@ void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ALBUM_URL, false).arg(album);
     deleteAll();
 
@@ -40,8 +41,7 @@ void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
 #endif
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
@@ -52,6 +52,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -117,4 +118,5 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

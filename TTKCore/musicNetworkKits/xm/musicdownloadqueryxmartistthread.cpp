@@ -26,6 +26,8 @@ void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
     {
         return;
     }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     m_searchText = artist;
     deleteAll();
 
@@ -54,6 +56,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
 
@@ -118,4 +121,5 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

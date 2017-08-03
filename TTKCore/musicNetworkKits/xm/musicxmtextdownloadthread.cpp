@@ -46,7 +46,7 @@ void MusicXMTextDownLoadThread::startToDownload()
         else
         {
             emit downLoadDataChanged("The xiami text file create failed");
-            M_LOGGER_ERROR("The xiami text file create failed!");
+            M_LOGGER_ERROR(QString("%1 file create failed!").arg(getClassName()));
             deleteAll();
         }
     }
@@ -85,11 +85,11 @@ void MusicXMTextDownLoadThread::downLoadFinished()
                 m_file->remove();
             }
             m_file->close();
-            M_LOGGER_INFO("xiami text download has finished!");
+            M_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));
         }
         else
         {
-            M_LOGGER_ERROR("xiami text download file error!");
+            M_LOGGER_ERROR(QString("%1 download file error!").arg(getClassName()));
             m_file->remove();
             m_file->close();
         }

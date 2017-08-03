@@ -21,6 +21,7 @@ void MusicQQDiscoverListThread::startToSearch()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     m_topListInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_TOPLIST_C_URL, false).arg(4);
     deleteAll();
@@ -46,6 +47,7 @@ void MusicQQDiscoverListThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
@@ -92,4 +94,5 @@ void MusicQQDiscoverListThread::downLoadFinished()
 
     emit downLoadDataChanged(m_topListInfo);
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

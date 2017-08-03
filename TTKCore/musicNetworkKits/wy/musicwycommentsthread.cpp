@@ -18,6 +18,7 @@ QString MusicWYCommentsThread::getClassName()
 
 void MusicWYCommentsThread::startToSearch(const QString &name)
 {
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryWYThread *query = new MusicDownLoadQueryWYThread(this);
     query->setQueryAllRecords(false);
@@ -41,6 +42,7 @@ void MusicWYCommentsThread::startToPage(int offset)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SG_COMMIT_URL, false)
@@ -69,6 +71,7 @@ void MusicWYCommentsThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -102,4 +105,5 @@ void MusicWYCommentsThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

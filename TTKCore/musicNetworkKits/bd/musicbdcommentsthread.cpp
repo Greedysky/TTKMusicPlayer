@@ -19,6 +19,8 @@ QString MusicBDCommentsThread::getClassName()
 
 void MusicBDCommentsThread::startToSearch(const QString &name)
 {
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
+
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryBDThread *query = new MusicDownLoadQueryBDThread(this);
     query->setQueryAllRecords(false);
@@ -42,6 +44,7 @@ void MusicBDCommentsThread::startToPage(int offset)
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
 
@@ -65,8 +68,7 @@ void MusicBDCommentsThread::startToPage(int offset)
 #endif
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
 void MusicBDCommentsThread::downLoadFinished()
@@ -77,6 +79,7 @@ void MusicBDCommentsThread::downLoadFinished()
         return;
     }
 
+    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -113,4 +116,5 @@ void MusicBDCommentsThread::downLoadFinished()
 
     emit downLoadDataChanged(QString());
     deleteAll();
+    M_LOGGER_INFO(QString("%1 finished deleteAll").arg(getClassName()));
 }
