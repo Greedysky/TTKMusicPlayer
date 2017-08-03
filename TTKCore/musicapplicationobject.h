@@ -112,7 +112,7 @@ protected:
     bool m_setWindowToTop;
     QPropertyAnimation *m_animation;
     MusicTimerAutoObject *m_musicTimerAutoObj;
-    MusicMobileDevicesWidget *m_mobileDevices;
+    MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
 
     static MusicApplicationObject *m_instance;

@@ -230,7 +230,7 @@ protected:
     MusicVideoPlayWidget *m_videoPlayerWidget;
     MusicLrcContainerForDesktop *m_musicLrcForDesktop;
     MusicLrcContainerForWallpaper *m_musicLrcForWallpaper;
-    MusicDownloadStatusObject *m_downloadStatusLabel;
+    MusicDownloadStatusObject *m_downloadStatusObject;
 
     static MusicRightAreaWidget *m_instance;
 };

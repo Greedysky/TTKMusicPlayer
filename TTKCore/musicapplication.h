@@ -307,8 +307,8 @@ private:
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;
-    MusicPlaylist* m_musicList;
-    MusicSongsSummariziedWidget *m_musicSongTree;
+    MusicPlaylist* m_musicPlayList;
+    MusicSongsSummariziedWidget *m_musicSongTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;
     MusicRightAreaWidget *m_rightAreaWidget;

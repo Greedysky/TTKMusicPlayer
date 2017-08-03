@@ -23,7 +23,7 @@
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
-    : QObject(parent), m_mobileDevices(nullptr)
+    : QObject(parent), m_mobileDeviceWidget(nullptr)
 {
     Q_INIT_RESOURCE(MusicPlayer);
     m_instance = this;
@@ -46,7 +46,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 MusicApplicationObject::~MusicApplicationObject()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
-    delete m_mobileDevices;
+    delete m_mobileDeviceWidget;
     delete m_musicTimerAutoObj;
     delete m_animation;
     delete m_deviceWatcher;
@@ -148,12 +148,12 @@ void MusicApplicationObject::musicDeviceNameChanged(const QString &name)
 
 void MusicApplicationObject::musicDeviceChanged(bool state)
 {
-    delete m_mobileDevices;
-    m_mobileDevices = nullptr;
+    delete m_mobileDeviceWidget;
+    m_mobileDeviceWidget = nullptr;
     if(state)
     {
-        m_mobileDevices = new MusicMobileDevicesWidget;
-        m_mobileDevices->show();
+        m_mobileDeviceWidget = new MusicMobileDevicesWidget;
+        m_mobileDeviceWidget->show();
     }
     else
     {

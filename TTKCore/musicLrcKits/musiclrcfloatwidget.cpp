@@ -111,9 +111,9 @@ void MusicLrcFloatWidget::musicContainerForWallpaperClicked()
                                MusicUIObject::MPushButtonStyle01);
     }
 
-    if(MusicLeftAreaWidget::instance()->isFullOrNormal())
+    if(MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
-        MusicLeftAreaWidget::instance()->showFullOrNormal();
+        MusicLeftAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
     MusicRightAreaWidget::instance()->musicContainerForWallpaperClicked();
 }

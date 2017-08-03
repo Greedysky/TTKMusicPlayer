@@ -34,7 +34,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
     m_musicLrcForWallpaper = nullptr;
     m_videoPlayerWidget = nullptr;
 
-    m_downloadStatusLabel = new MusicDownloadStatusObject(parent);
+    m_downloadStatusObject = new MusicDownloadStatusObject(parent);
     m_settingWidget = new MusicSettingWidget(this);
     connect(m_settingWidget, SIGNAL(parameterSettingChanged()), parent, SLOT(getParameterSetting()));
 }
@@ -42,7 +42,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 MusicRightAreaWidget::~MusicRightAreaWidget()
 {
     delete m_settingWidget;
-    delete m_downloadStatusLabel;
+    delete m_downloadStatusObject;
     delete m_musicLrcForDesktop;
     delete m_musicLrcForWallpaper;
     delete m_videoPlayerWidget;
@@ -209,7 +209,7 @@ void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
 
 void MusicRightAreaWidget::musicCheckHasLrcAlready() const
 {
-    m_downloadStatusLabel->musicCheckHasLrcAlready();
+    m_downloadStatusObject->musicCheckHasLrcAlready();
 }
 
 void MusicRightAreaWidget::showSettingWidget() const

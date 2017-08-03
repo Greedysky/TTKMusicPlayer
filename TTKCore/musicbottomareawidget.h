@@ -140,7 +140,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
-    MusicLocalSongSearchDialog *m_musicLocalSongSearch;
+    MusicLocalSongSearchDialog *m_musicSongSearchWidget;
 
     static MusicBottomAreaWidget *m_instance;
 };

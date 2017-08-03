@@ -22,7 +22,7 @@
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicbgskin(nullptr), m_musicRemoteWidget(nullptr)
+    : QWidget(parent), m_musicbackgroundWidget(nullptr), m_musicRemoteWidget(nullptr)
 {
     m_instance = this;
     m_musicUserWindow = new MusicUserWindow(this);
@@ -45,7 +45,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 MusicTopAreaWidget::~MusicTopAreaWidget()
 {
     delete m_musicUserWindow;
-    delete m_musicbgskin;
+    delete m_musicbackgroundWidget;
     delete m_musicRemoteWidget;
     delete m_counterPVThread;
 }
@@ -113,9 +113,9 @@ void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int list)
 
 int MusicTopAreaWidget::getBackgroundListAlpha()
 {
-    if(m_musicbgskin)
+    if(m_musicbackgroundWidget)
     {
-        m_backgroundAListlpha = m_musicbgskin->getBackgroundListAlpha();
+        m_backgroundAListlpha = m_musicbackgroundWidget->getBackgroundListAlpha();
     }
     return m_backgroundAListlpha;
 }
@@ -166,12 +166,12 @@ void MusicTopAreaWidget::musicSearchTopListInfoFinished(const QString &data)
 
 void MusicTopAreaWidget::musicShowSkinChangedWindow()
 {
-    if(m_musicbgskin == nullptr)
+    if(m_musicbackgroundWidget == nullptr)
     {
-        m_musicbgskin = new MusicBackgroundSkinDialog(this);
+        m_musicbackgroundWidget = new MusicBackgroundSkinDialog(this);
     }
-    m_musicbgskin->setCurrentBgTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundAListlpha);
-    m_musicbgskin->exec();
+    m_musicbackgroundWidget->setCurrentBgTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundAListlpha);
+    m_musicbackgroundWidget->exec();
 }
 
 void MusicTopAreaWidget::musicUserContextLogin()
@@ -186,9 +186,9 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
         return;
     }
 
-    if(m_musicbgskin)
+    if(m_musicbackgroundWidget)
     {
-        m_musicbgskin->setSkinTransToolText(index);
+        m_musicbackgroundWidget->setSkinTransToolText(index);
     }
     m_backgroundAlpha = index;
     drawWindowBackgroundRectString();
@@ -210,9 +210,9 @@ void MusicTopAreaWidget::musicSetAsArtBackground()
     if(!path.isEmpty())
     {
         path = MusicBackgroundSkinDialog::cpoyArtFileToLocal(path);
-        if(m_musicbgskin)
+        if(m_musicbackgroundWidget)
         {
-            m_musicbgskin->updateArtFileTheme(path);
+            m_musicbackgroundWidget->updateArtFileTheme(path);
         }
         musicBackgroundSkinChanged(path);
     }
@@ -269,9 +269,9 @@ void MusicTopAreaWidget::musicBgThemeChangedByResize()
 
 void MusicTopAreaWidget::musicPlayListTransparent(int index)
 {
-    if(m_musicbgskin)
+    if(m_musicbackgroundWidget)
     {
-        m_musicbgskin->setListTransToolText(index);
+        m_musicbackgroundWidget->setListTransToolText(index);
     }
     emit setTransparent(m_backgroundAListlpha = index);
 }

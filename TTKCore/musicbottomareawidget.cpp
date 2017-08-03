@@ -10,7 +10,7 @@
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicLocalSongSearch(nullptr)
+    : QWidget(parent), m_musicSongSearchWidget(nullptr)
 {
     m_instance = this;
     m_systemCloseConfig = false;
@@ -25,7 +25,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
-    delete m_musicLocalSongSearch;
+    delete m_musicSongSearchWidget;
 }
 
 QString MusicBottomAreaWidget::getClassName()
@@ -180,15 +180,15 @@ void MusicBottomAreaWidget::setWindowConcise()
 
 QString MusicBottomAreaWidget::getSearchedText() const
 {
-    return m_musicLocalSongSearch->getSearchedText();
+    return m_musicSongSearchWidget->getSearchedText();
 }
 
 void MusicBottomAreaWidget::resizeWindow()
 {
     int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
-    if(m_musicLocalSongSearch)
+    if(m_musicSongSearchWidget)
     {
-        m_musicLocalSongSearch->move(51, 554 + h);
+        m_musicSongSearchWidget->move(51, 554 + h);
     }
     m_ui->musicSongSearchLine->resizeWindow();
 
@@ -198,17 +198,17 @@ void MusicBottomAreaWidget::resizeWindow()
 
 void MusicBottomAreaWidget::clearSearchedText()
 {
-    m_musicLocalSongSearch->close();
+    m_musicSongSearchWidget->close();
 }
 
 void MusicBottomAreaWidget::musicSearch()
 {
-    if(m_musicLocalSongSearch == nullptr)
+    if(m_musicSongSearchWidget == nullptr)
     {
-        m_musicLocalSongSearch = new MusicLocalSongSearchDialog(MusicApplication::instance());
+        m_musicSongSearchWidget = new MusicLocalSongSearchDialog(MusicApplication::instance());
         resizeWindow();
     }
-    m_musicLocalSongSearch->setVisible(!m_musicLocalSongSearch->isVisible());
+    m_musicSongSearchWidget->setVisible(!m_musicSongSearchWidget->isVisible());
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

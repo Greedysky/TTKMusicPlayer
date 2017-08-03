@@ -100,7 +100,7 @@ public:
     /*!
      * Create float play widget.
      */
-    void showFullOrNormal();
+    void lrcWidgetShowFullScreen();
     /*!
      * Show full container or not.
      */

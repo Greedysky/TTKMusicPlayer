@@ -184,7 +184,7 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    bool f = MusicLeftAreaWidget::instance()->isFullOrNormal();
+    bool f = MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen();
     m_rectIn = QRect(0, (f ? 680 : 530) + height, 115 + width, 105);
     m_rectOut = QRect(0, (f ? 480 : 330) + height, 662 + width, 180);
 
