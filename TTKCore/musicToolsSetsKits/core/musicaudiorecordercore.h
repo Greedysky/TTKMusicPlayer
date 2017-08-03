@@ -22,11 +22,11 @@
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicAudioRecorderCore : public QObject
+class MUSIC_SUPER_EXPORT MusicAudioRecorderCore : public QObject
 {
     Q_OBJECT
 public:
-    typedef struct MUSIC_TOOLSET_EXPORT HEADER
+    typedef struct MUSIC_SUPER_EXPORT HEADER
     {
         char RIFFNAME[4];
         unsigned long nRIFFLength;

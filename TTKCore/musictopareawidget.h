@@ -220,7 +220,7 @@ protected:
 
     Ui::MusicApplication *m_ui;
     MusicUserWindow *m_musicUserWindow;
-    MusicBackgroundSkinDialog *m_musicbackgroundWidget;
+    MusicBackgroundSkinDialog *m_musicBackgroundWidget;
     MusicRemoteWidget *m_musicRemoteWidget;
     MusicDownloadCounterPVThread *m_counterPVThread;
 

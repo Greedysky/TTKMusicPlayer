@@ -22,7 +22,7 @@
 /*! @brief The class of the file sender server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicFileSenderServer : public QObject
+class MUSIC_SUPER_EXPORT MusicFileSenderServer : public QObject
 {
     Q_OBJECT
 public:

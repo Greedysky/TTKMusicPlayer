@@ -16,7 +16,7 @@
 /*! @brief The class of the desktop wallpaper thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperThread : public QThread
+class MUSIC_SUPER_EXPORT MusicDesktopWallpaperThread : public QThread
 {
     Q_OBJECT
 public:

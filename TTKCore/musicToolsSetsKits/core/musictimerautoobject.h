@@ -15,7 +15,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-typedef struct MUSIC_TOOLSET_EXPORT MusicTimeObject
+typedef struct MUSIC_SUPER_EXPORT MusicTimeObject
 {
     int m_index;
     int m_hour;
@@ -35,7 +35,7 @@ TTK_DECLARE_LISTS(MusicTimeObject)
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicTimerAutoObject : public QObject
+class MUSIC_SUPER_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
 public:

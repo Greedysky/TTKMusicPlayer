@@ -8,7 +8,7 @@
 /*! @brief The class of the song check tools rename thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameCore : public QThread
+class MUSIC_SUPER_EXPORT MusicSongCheckToolsRenameCore : public QThread
 {
     Q_OBJECT
 public:
@@ -74,7 +74,7 @@ protected:
 /*! @brief The class of the song check tools duplicate thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateCore : public QThread
+class MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicateCore : public QThread
 {
     Q_OBJECT
 public:
@@ -140,7 +140,7 @@ protected:
 /*! @brief The class of the song check tools quality thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityCore : public QThread
+class MUSIC_SUPER_EXPORT MusicSongCheckToolsQualityCore : public QThread
 {
     Q_OBJECT
 public:

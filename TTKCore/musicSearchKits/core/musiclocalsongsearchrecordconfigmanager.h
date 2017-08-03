@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_SEARCH_EXPORT MusicSearchRecord
+typedef struct MUSIC_SUPER_EXPORT MusicSearchRecord
 {
     QString m_name;
     QString m_time;
@@ -21,7 +21,7 @@ TTK_DECLARE_LISTS(MusicSearchRecord)
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicAbstractXml
+class MUSIC_SUPER_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:

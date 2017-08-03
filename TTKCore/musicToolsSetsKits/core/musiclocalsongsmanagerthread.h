@@ -17,7 +17,7 @@
 /*! @brief The class of the local songs manager thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerThread : public QThread
+class MUSIC_SUPER_EXPORT MusicLocalSongsManagerThread : public QThread
 {
     Q_OBJECT
 public:

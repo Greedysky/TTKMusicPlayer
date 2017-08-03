@@ -14,7 +14,7 @@
 /*! @brief The class of the file receive server.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicFileReceiveServer : public QObject
+class MUSIC_SUPER_EXPORT MusicFileReceiveServer : public QObject
 {
     Q_OBJECT
 public:

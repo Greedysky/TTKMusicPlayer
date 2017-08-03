@@ -13,7 +13,7 @@ namespace MusicObject
     };
 }
 
-typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRename
+typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
     QString m_RecommendName;
@@ -29,7 +29,7 @@ typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRename
 TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
 
 
-typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicate
+typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
     QString m_bitRate;
@@ -43,7 +43,7 @@ typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicate
 TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 
 
-typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQuality
+typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
     QString m_bitRate;

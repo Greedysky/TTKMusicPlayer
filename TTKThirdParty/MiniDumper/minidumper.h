@@ -3,6 +3,7 @@
 
 #include <qt_windows.h>
 #include "dbghelp.h"
+#include "musicextrasglobaldefine.h"
 
 // based on dbghelp.h
 typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hFile, MINIDUMP_TYPE DumpType,
@@ -13,7 +14,7 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 
 #define MAX_WARNING_MESSAGE_PATH 1024
 
-class MiniDumper
+class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
     MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = NULL);

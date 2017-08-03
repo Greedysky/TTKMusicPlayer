@@ -11,7 +11,7 @@
 
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_VIDEO_EXPORT MusicBarrageRecord
+typedef struct MUSIC_SUPER_EXPORT MusicBarrageRecord
 {
     int m_size;
     QString m_color;
@@ -22,7 +22,7 @@ TTK_DECLARE_LISTS(MusicBarrageRecord)
 /*! @brief The class of the barrage record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractXml
+class MUSIC_SUPER_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:

@@ -39,9 +39,10 @@
 #endif //Q_OS_WIN
 #include <QtCore/QList>
 #include <QtCore/QThread>
+#include "musicextrasglobaldefine.h"
 
 class QDeviceWatcher;
-class QDeviceWatcherPrivate
+class MUSIC_EXTRAS_EXPORT QDeviceWatcherPrivate
 #if CONFIG_THREAD
 		: public QThread
 #else

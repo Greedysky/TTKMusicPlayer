@@ -156,6 +156,7 @@ void MusicVideoPlayWidget::popup(bool popup)
     {
         delete m_winTopButton;
         m_winTopButton = nullptr;
+        m_videoFloatWidget->setText(MusicVideoFloatWidget::FullscreenType, " " + tr("FullScreenMode"));
     }
 }
 

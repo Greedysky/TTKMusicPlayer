@@ -13,6 +13,7 @@
 
 //////////////////////////////////////
 #ifdef MUSIC_LIBRARY
+#  define MUSIC_SUPER
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
 #  define MUSIC_WIDGET
@@ -32,11 +33,11 @@
 ///
 #define MUSIC_EXPORT
 
-#ifdef MUSIC_GUI
+#ifdef MUSIC_SUPER
 #  ifdef MUSIC_EXPORT
-#    define MUSIC_GUI_EXPORT Q_DECL_EXPORT
+#    define MUSIC_SUPER_EXPORT Q_DECL_EXPORT
 #  else
-#    define MUSIC_GUI_IMPORT Q_DECL_IMPORT
+#    define MUSIC_SUPER_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
 
@@ -117,6 +118,14 @@
 #    define MUSIC_VIDEO_EXPORT Q_DECL_EXPORT
 #  else
 #    define MUSIC_VIDEO_IMPORT Q_DECL_IMPORT
+#  endif
+#endif
+
+#ifdef MUSIC_GUI
+#  ifdef MUSIC_EXPORT
+#    define MUSIC_GUI_EXPORT Q_DECL_EXPORT
+#  else
+#    define MUSIC_GUI_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
 

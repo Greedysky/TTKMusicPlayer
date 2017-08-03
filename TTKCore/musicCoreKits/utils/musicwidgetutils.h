@@ -22,54 +22,54 @@ namespace MusicUtils
 {
     namespace Widget
     {
-        MUSIC_CORE_EXPORT void setLabelFontSize(QWidget *widget, int size);
+        MUSIC_SUPER_EXPORT void setLabelFontSize(QWidget *widget, int size);
         /*!
          * Set widget label font.
          */
-        MUSIC_CORE_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
+        MUSIC_SUPER_EXPORT void setLabelFontStyle(QWidget *widget, MusicObject::FontStyleMode type);
         /*!
          * Set widget label font.
          */
-        MUSIC_CORE_EXPORT QString elidedText(const QFont &font, const QString &text,
+        MUSIC_SUPER_EXPORT QString elidedText(const QFont &font, const QString &text,
                                              Qt::TextElideMode mode, int width);
         /*!
          * Set text elided text by font.
          */
-        MUSIC_CORE_EXPORT void setTransparent(QWidget *widget, int alpha);
+        MUSIC_SUPER_EXPORT void setTransparent(QWidget *widget, int alpha);
         /*!
          * Set widget transparent.
          */
-        MUSIC_CORE_EXPORT void setComboboxText(QComboBox *object, const QString &text);
+        MUSIC_SUPER_EXPORT void setComboboxText(QComboBox *object, const QString &text);
         /*!
          * Set Combobox text.
          */
-        MUSIC_CORE_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
+        MUSIC_SUPER_EXPORT void widgetToRound(QWidget *w, int ratioX, int ratioY);
         /*!
          * Set widget to round by ratioX and ratioY.
          */
-        MUSIC_CORE_EXPORT void fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt);
+        MUSIC_SUPER_EXPORT void fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt);
         /*!
          * Set fusion two image.
          */
-        MUSIC_CORE_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY);
+        MUSIC_SUPER_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_CORE_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY);
+        MUSIC_SUPER_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QRect &rect, int ratioX, int ratioY);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_CORE_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size);
+        MUSIC_SUPER_EXPORT QPixmap pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size);
         /*!
          * Set pixmap to round by ratio.
          */
-        MUSIC_CORE_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
+        MUSIC_SUPER_EXPORT QBitmap getBitmapMask(const QRect &rect, int ratioX, int ratioY);
         /*!
          * Get bitmap mask from rect.
          */
 
         template<class T>
-        MUSIC_CORE_EXPORT T reRenderValue(T key, T alpha, T value)
+        MUSIC_SUPER_EXPORT T reRenderValue(T key, T alpha, T value)
         {
             if(alpha < 0) return 0;
             else if(alpha > key) return key;
@@ -79,15 +79,15 @@ namespace MusicUtils
         /*!
          * Rerender the custum value.
          */
-        MUSIC_CORE_EXPORT int reRenderAlpha(int alpha, int value);
+        MUSIC_SUPER_EXPORT int reRenderAlpha(int alpha, int value);
         /*!
          * Rerender the image alpha.
          */
-        MUSIC_CORE_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
+        MUSIC_SUPER_EXPORT void reRenderImage(int delta, const QImage *input, QImage *output);
         /*!
          * Rerender the image by color burn transform.
          */
-        MUSIC_CORE_EXPORT uint colorBurnTransform(int c, int delta);
+        MUSIC_SUPER_EXPORT uint colorBurnTransform(int c, int delta);
         /*!
          * Image color burn transform.
          */
