@@ -57,6 +57,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_topAreaWidget->setupUi(m_ui);
     m_rightAreaWidget->setupUi(m_ui);
     m_leftAreaWidget->setupUi(m_ui);
+    m_topAreaWidget->musicBackgroundSliderStateChanged(false);
 
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTree, SLOT(setTransparent(int)));
     connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
@@ -101,7 +102,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     }
 
     readXMLConfigFromText();
-//    m_applicationObject->windowStartAnimationOpacity();
 }
 
 MusicApplication::~MusicApplication()
@@ -974,22 +974,6 @@ void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
         event->ignore();
     }
 }
-
-#if defined(Q_OS_WIN)
-#  ifdef MUSIC_GREATER_NEW
-bool MusicApplication::nativeEvent(const QByteArray &eventType, void *message, long *result)
-{
-    m_applicationObject->nativeEvent(eventType, message, result);
-    return MusicAbstractMoveResizeWidget::nativeEvent(eventType, message, result);
-}
-#  else
-bool MusicApplication::winEvent(MSG *message, long *result)
-{
-    m_applicationObject->winEvent(message, result);
-    return MusicAbstractMoveResizeWidget::winEvent(message, result);
-}
-#  endif
-#endif
 
 void MusicApplication::setMusicPlayIndex()
 {

@@ -42,27 +42,9 @@ public:
     /*!
      * Get current window is to top.
      */
-#if defined(Q_OS_WIN)
-#  ifdef MUSIC_GREATER_NEW
-    void nativeEvent(const QByteArray &eventType,
-                     void *message, long *result);
-    /*!
-     * Native event.
-     */
-#  else
-    void winEvent(MSG *message, long *result);
-    /*!
-     * Win event.
-     */
-#  endif
-#endif
     void getParameterSetting();
     /*!
      * Get settings parameters.
-     */
-    void windowStartAnimationOpacity();
-    /*!
-     * Window start animation opacity.
      */
     void windowCloseAnimationOpacity();
     /*!
@@ -119,10 +101,6 @@ public Q_SLOTS:
     void musicSetSoundEffect();
     /*!
      * Show set sound effect widget.
-     */
-    void musicBackgroundSliderStateChanged();
-    /*!
-     * Current slider state changed.
      */
 
 protected:

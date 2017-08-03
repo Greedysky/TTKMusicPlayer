@@ -287,16 +287,6 @@ protected:
     virtual void dropEvent(QDropEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-#if defined(Q_OS_WIN)
-#  ifdef MUSIC_GREATER_NEW
-    virtual bool nativeEvent(const QByteArray &, void *, long *) override;
-#  else
-    virtual bool winEvent(MSG *message, long *result) override;
-#  endif
-#endif
-    /*!
-     * Override the widget event.
-     */
 
     void setMusicPlayIndex();
     /*!

@@ -1,8 +1,4 @@
 #include "musicapplicationobject.h"
-//#ifdef Q_OS_WIN
-//# include <Windows.h>
-//# include <Dbt.h>
-//#endif
 #include "musicmobiledeviceswidget.h"
 #include "musictimerwidget.h"
 #include "musictimerautoobject.h"
@@ -66,66 +62,6 @@ MusicApplicationObject *MusicApplicationObject::instance()
     return m_instance;
 }
 
-#if defined(Q_OS_WIN)
-#  ifdef MUSIC_GREATER_NEW
-void MusicApplicationObject::nativeEvent(const QByteArray &,
-                                         void *message, long *)
-{
-    MSG* msg = MReinterpret_cast(MSG*, message);
-#  else
-void MusicApplicationObject::winEvent(MSG *msg, long *)
-{
-#  endif
-    Q_UNUSED(msg);
-//    if(msg->message == WM_DEVICECHANGE)
-//    {
-//        PDEV_BROADCAST_HDR lpdb = (PDEV_BROADCAST_HDR)msg->lParam;
-//        switch(msg->wParam)
-//        {
-//            case DBT_DEVICETYPESPECIFIC:
-//                break;
-//            case DBT_DEVICEARRIVAL:
-//                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-//                {
-//                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-//                    if (lpdbv->dbcv_flags == 0)
-//                    {
-//                        DWORD unitmask = lpdbv ->dbcv_unitmask;
-//                        int i;
-//                        for(i = 0; i < 26; ++i)
-//                        {
-//                            if(unitmask & 0x1)
-//                                break;
-//                            unitmask = unitmask >> 1;
-//                        }
-//                        QString dev((char)(i + 'A'));
-//                        M_LOGGER_INFO(QString("USB_Arrived and The USBDisk is: %1").arg(dev));
-//                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, dev + ":/");
-//                        delete m_mobileDevices;
-//                        m_mobileDevices = new MusicMobileDevicesWidget;
-//                        m_mobileDevices->show();
-//                    }
-//                }
-//                break;
-//            case DBT_DEVICEREMOVECOMPLETE:
-//                if(lpdb->dbch_devicetype == DBT_DEVTYP_VOLUME)
-//                {
-//                    PDEV_BROADCAST_VOLUME lpdbv = (PDEV_BROADCAST_VOLUME)lpdb;
-//                    if (lpdbv -> dbcv_flags == 0)
-//                    {
-//                        M_LOGGER_INFO("USB_remove");
-//                        M_SETTING_PTR->setValue(MusicSettingManager::ExtraDevicePathChoiced, QString());
-//                        delete m_mobileDevices;
-//                        m_mobileDevices = nullptr;
-//                    }
-//                }
-//                break;
-//            default: break;
-//        }
-//    }
-}
-#endif
-
 void MusicApplicationObject::getParameterSetting()
 {
 #ifdef Q_OS_WIN
@@ -135,21 +71,6 @@ void MusicApplicationObject::getParameterSetting()
         regeditManager.setMusicRegeditAssociateFileIcon();
     }
 #endif
-}
-
-void MusicApplicationObject::windowStartAnimationOpacity()
-{
-    float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
-    v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
-    if(!m_animation)
-    {
-        m_animation = new QPropertyAnimation(MusicApplication::instance(), "windowOpacity", this);
-    }
-    m_animation->setDuration(MT_S2MS);
-    m_animation->setStartValue(0);
-    m_animation->setEndValue(v);
-    m_animation->start();
-    QTimer::singleShot(MT_S2MS, this, SLOT(musicBackgroundSliderStateChanged()));
 }
 
 void MusicApplicationObject::windowCloseAnimationOpacity()
@@ -259,11 +180,6 @@ void MusicApplicationObject::musicSetSoundEffect()
     MusicSoundEffectsWidget sound;
     sound.setParentConnect(this);
     sound.exec();
-}
-
-void MusicApplicationObject::musicBackgroundSliderStateChanged()
-{
-    MusicTopAreaWidget::instance()->musicBackgroundSliderStateChanged(false);
 }
 
 bool MusicApplicationObject::closeCurrentEqualizer()
