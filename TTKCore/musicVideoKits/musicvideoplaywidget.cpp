@@ -48,7 +48,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     searchLayout->setSpacing(0);
 
     m_searchEdit = new MusicLocalSongSearchEdit(searchWidget);
-    m_searchEdit->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_searchEdit->setStyleSheet(MusicUIObject::MColorStyle09);
     m_searchEdit->setFixedHeight(25);
     m_searchButton = new QPushButton(searchWidget);
     m_searchButton->setIcon(QIcon(":/tiny/btn_search_main_hover"));

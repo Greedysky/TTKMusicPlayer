@@ -12,7 +12,14 @@ MusicSongsListItemInfoWidget::MusicSongsListItemInfoWidget(QWidget *parent)
       m_ui(new Ui::MusicSongsListItemInfoWidget)
 {
     m_ui->setupUi(this);
+
     setWindowFlags(windowFlags() | Qt::Tool);
+
+    m_ui->songNameValue->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->artlistValue->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->sizeValue->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->typeValue->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->timeValue->setStyleSheet(MusicUIObject::MColorStyle03);
 }
 
 MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()
