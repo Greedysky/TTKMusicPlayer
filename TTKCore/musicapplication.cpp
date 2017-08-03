@@ -1082,7 +1082,7 @@ void MusicApplication::readXMLConfigFromText()
     m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
                                    xml.readBackgroundTransparent().toInt(),
                                    xml.readBackgroundListTransparent().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
     //////////////////////////////////////////////////////////////
     M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, xml.readOtherBgLossless().toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, xml.readOtherUpdate().toInt());
@@ -1194,9 +1194,9 @@ void MusicApplication::writeXMLConfigToText()
         lastPlayIndexChoiced[2] = QString::number(m_musicList->currentIndex());
     }
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, lastPlayIndexChoiced);
-    M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBgSkin());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBgSkinAlpha());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getListBgSkinAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBackgroundPath());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getBackgroundListAlpha());
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTree->getMusicLists() );

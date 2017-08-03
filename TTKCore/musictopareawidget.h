@@ -48,27 +48,25 @@ public:
      * Set up app ui.
      */
 
-    void setParameters(const QString &skin, int alpha, int alphaR);
+    void setParameters(const QString &skin, int alpha, int list);
     /*!
      * Set background skin and alpha and list alpha parameter.
      */
-
-    inline QString getBgSkin() const { return m_currentBgSkin; }
+    inline QString getBackgroundPath() const { return m_backgroundImagePath; }
     /*!
      * Get background skin name.
      */
-    QPixmap getBgSkinPixmap() const;
-    /*!
-     * Get background skin pixmap.
-     */
-
-    inline int getBgSkinAlpha() const { return m_alpha; }
+    inline int getBackgroundAlpha() const { return m_backgroundAlpha; }
     /*!
      * Get background skin alpha.
      */
-    int getListBgSkinAlpha();
+    int getBackgroundListAlpha();
     /*!
      * Get list background skin alpha.
+     */
+    QPixmap getRendererPixmap() const;
+    /*!
+     * Get background skin pixmap.
      */
 
     bool getUserLoginState() const;
@@ -211,6 +209,10 @@ protected:
     /*!
      * Draw window background rect.
      */
+    void drawWindowBackgroundRectString();
+    /*!
+     * Draw window background rect by qimage.
+     */
     void drawWindowBackgroundRectString(const QString &path);
     /*!
      * Draw window background rect by picture.
@@ -222,9 +224,10 @@ protected:
     MusicRemoteWidget *m_musicRemoteWidget;
     MusicDownloadCounterPVThread *m_counterPVThread;
 
+    QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;
-    QString m_currentBgSkin;
-    int m_alpha, m_listAlpha;
+    QString m_backgroundImagePath;
+    int m_backgroundAlpha, m_backgroundAListlpha;
     QTimer m_pictureCarouselTimer;
 
     static MusicTopAreaWidget *m_instance;

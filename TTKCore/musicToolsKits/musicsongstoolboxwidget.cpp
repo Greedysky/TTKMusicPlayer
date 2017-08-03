@@ -378,10 +378,10 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.setBrush(gradient);
     painter.drawRect(0, 32, width(), height());
 
-    QPixmap pix(MusicTopAreaWidget::instance()->getBgSkinPixmap());
+    QPixmap pix(MusicTopAreaWidget::instance()->getRendererPixmap());
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(51, 51, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3),
-                     QColor(255, 255, 255, 2.55*MusicTopAreaWidget::instance()->getListBgSkinAlpha()));
+                     QColor(255, 255, 255, 2.55*MusicTopAreaWidget::instance()->getBackgroundListAlpha()));
 }
 
 

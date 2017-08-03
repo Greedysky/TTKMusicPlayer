@@ -139,7 +139,7 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     setListTransToolText(listAlpha);
 }
 
-int MusicBackgroundSkinDialog::getListBgSkinAlpha() const
+int MusicBackgroundSkinDialog::getBackgroundListAlpha() const
 {
     return m_ui->listTransparentButton->value();
 }

@@ -56,7 +56,7 @@ public:
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
-    int getListBgSkinAlpha() const;
+    int getBackgroundListAlpha() const;
     /*!
      * Get kist bg skin alpha.
      */
