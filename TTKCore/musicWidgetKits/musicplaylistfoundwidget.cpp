@@ -123,6 +123,7 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
     m_categoryButton = nullptr;
+    m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
     connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)),
                               SLOT(queryAllFinished(MusicPlaylistItem)));
