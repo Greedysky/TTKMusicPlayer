@@ -834,6 +834,15 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     }
 }
 
+void MusicSongsSummariziedWidget::setTransparent(int alpha)
+{
+    MusicSongsToolBoxWidget::setTransparent(alpha);
+    if(m_listMaskWidget)
+    {
+        m_listMaskWidget->update();
+    }
+}
+
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 {
     if(value >= 35*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())

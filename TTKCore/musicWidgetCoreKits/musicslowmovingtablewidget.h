@@ -53,7 +53,7 @@ protected:
      */
 
     bool m_isFirstInit;
-    int m_priviousValue, m_deltaValue;
+    int m_previousValue, m_deltaValue;
     QScrollBar *m_scrollBar;
     QTimer *m_animationTimer;
     QPropertyAnimation *m_slowAnimation;

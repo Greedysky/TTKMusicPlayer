@@ -292,9 +292,9 @@
    <property name="geometry">
     <rect>
      <x>374</x>
-     <y>104</y>
-     <width>91</width>
-     <height>41</height>
+     <y>190</y>
+     <width>85</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="cursor">
@@ -308,9 +308,9 @@
    <property name="geometry">
     <rect>
      <x>374</x>
-     <y>184</y>
-     <width>91</width>
-     <height>41</height>
+     <y>240</y>
+     <width>85</width>
+     <height>35</height>
     </rect>
    </property>
    <property name="cursor">

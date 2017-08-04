@@ -9,7 +9,7 @@ MusicSlowMovingTableWidget::MusicSlowMovingTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     m_deltaValue = 0;
-    m_priviousValue = 0;
+    m_previousValue = 0;
     m_isFirstInit = true;
     m_slowAnimation = nullptr;
     m_scrollBar = nullptr;
@@ -47,14 +47,14 @@ void MusicSlowMovingTableWidget::timeToAnimation()
     float delta = (rowCount() > 0) ? (height()*1.0/rowCount()) : 0;
     m_deltaValue = (m_deltaValue/480.0)*(m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
 
-    m_slowAnimation->setStartValue(m_priviousValue);
+    m_slowAnimation->setStartValue(m_previousValue);
     m_slowAnimation->setEndValue(m_scrollBar->value() + m_deltaValue*delta/30);
     m_slowAnimation->start();
 }
 
 void MusicSlowMovingTableWidget::valueChanged(int value)
 {
-    m_priviousValue = value;
+    m_previousValue = value;
 }
 
 void MusicSlowMovingTableWidget::wheelEvent(QWheelEvent *event)
@@ -71,7 +71,7 @@ void MusicSlowMovingTableWidget::wheelEvent(QWheelEvent *event)
     if(m_isFirstInit)
     {
         m_deltaValue = 0;
-        m_priviousValue = m_scrollBar->value();
+        m_previousValue = m_scrollBar->value();
         m_isFirstInit = false;
     }
     m_deltaValue += event->delta();

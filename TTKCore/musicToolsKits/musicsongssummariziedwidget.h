@@ -219,6 +219,10 @@ public Q_SLOTS:
     /*!
      * Music list songs sort by type.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 private Q_SLOTS:
     void sliderValueChanaged(int value);

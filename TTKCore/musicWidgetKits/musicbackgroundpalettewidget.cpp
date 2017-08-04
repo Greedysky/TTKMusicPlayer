@@ -8,6 +8,8 @@
 #include <QMouseEvent>
 
 #define COLOR_FILE "color.jpg"
+#define COLOR_COL  10
+#define COLOR_ROW  6
 
 MusicBackgroundPalette::MusicBackgroundPalette(QWidget *parent)
     : QLabel(parent)
@@ -134,11 +136,11 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     /////////////////////////////////////////
     QGridLayout *layout = new QGridLayout(m_ui->mutliWidget);
     layout->setContentsMargins(0, 0, 0, 0);
-    for(int i=0; i<6; ++i)
-        for(int j=0; j<10; ++j)
+    for(int i=0; i<COLOR_ROW; ++i)
+        for(int j=0; j<COLOR_COL; ++j)
         {
             MusicBackgroundPalette *label = new MusicBackgroundPalette(this);
-            QColor color = colors[i*10 + j];
+            QColor color = colors[i*COLOR_COL + j];
             label->setPixmap(color);
             label->setToolTip(color.name());
             layout->addWidget(label, i, j);
@@ -171,6 +173,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
     {
         emit currentColorToMemoryChanged(m_previousBackground);
     }
+
     while(!m_widgets.isEmpty())
     {
         delete m_widgets.takeLast();

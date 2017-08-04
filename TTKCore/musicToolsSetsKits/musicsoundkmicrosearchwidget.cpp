@@ -164,7 +164,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     blockMoveOption(true);
 
     raise();
-    resize(400, 490);
+    resize(408, 498);
 
     QVBoxLayout *layout = new QVBoxLayout(m_container);
     layout->setContentsMargins(0, 0, 0, 0);
