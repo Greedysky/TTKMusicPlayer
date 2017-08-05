@@ -220,7 +220,7 @@ bool DecoderMAD::findHeader()
         {
             size_t remaining = 0;
 
-            if (!m_stream.next_frame)
+            if (m_stream.next_frame)
             {
                 remaining = m_stream.bufend - m_stream.next_frame;
                 memmove (m_input_buf, m_stream.next_frame, remaining);

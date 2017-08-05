@@ -20,13 +20,14 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include "qmmpsettings.h"
 #include "dithering_p.h"
 
 Dithering::Dithering() : Effect()
 {
     m_lsb = 0.0f;
     m_required = false;
-    m_enabled = false;
+    m_enabled = QmmpSettings::instance()->useDithering();
     m_chan = 2;
     clearHistory();
 }

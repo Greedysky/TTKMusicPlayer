@@ -41,6 +41,8 @@
 #include "cueparser.h"
 #include "decoder_flac.h"
 
+#define BITRATE_CALC_TIME_MS 2000
+
 static size_t pack_pcm_signed (FLAC__byte *output,
                                const FLAC__int32 * const input[],
                                unsigned samples,
@@ -126,6 +128,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
     if (res > 0)
     {
         *bytes = res;
+		dflac->data()->read_bytes += res;
         return FLAC__STREAM_DECODER_READ_STATUS_CONTINUE;
     }
     if (res == 0)
@@ -151,14 +154,26 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDec
 
     //bitrate calculation
     FLAC__uint64 decode_position = 0;
-    if(FLAC__stream_decoder_get_decode_position(d, &decode_position) &&
-            decode_position > dflac->data()->last_decode_position)
+    if(FLAC__stream_decoder_get_decode_position(d, &decode_position))
     {
-        dflac->data()->bitrate = (decode_position - dflac->data()->last_decode_position) * 8.0 * frame->header.sample_rate /
-                frame->header.blocksize / 1000.0;
-    }
+        if(decode_position > dflac->data()->last_decode_position)
+        {
+            dflac->data()->bitrate = (decode_position - dflac->data()->last_decode_position) * 8 * frame->header.sample_rate /
+                    frame->header.blocksize / 1000;
+        }
 
-    dflac->data()->last_decode_position = decode_position;
+        dflac->data()->last_decode_position = decode_position;
+    }
+    else
+    {
+        dflac->data()->frame_counter += wide_samples;
+        if(dflac->data()->frame_counter * 1000 / frame->header.sample_rate > BITRATE_CALC_TIME_MS)
+        {
+            dflac->data()->bitrate = dflac->data()->read_bytes * 8 * frame->header.sample_rate / dflac->data()->frame_counter / 1000;
+            dflac->data()->frame_counter = 0;
+            dflac->data()->read_bytes = 0;
+        }
+    }
 
     dflac->data()->sample_buffer_fill = pack_pcm_signed (
                                             dflac->data()->sample_buffer,
@@ -174,6 +189,9 @@ static FLAC__StreamDecoderTellStatus flac_callback_tell (const FLAC__StreamDecod
         void *client_data)
 {
     DecoderFLAC *dflac = (DecoderFLAC *) client_data;
+    if(dflac->data()->input->isSequential())
+        return FLAC__STREAM_DECODER_TELL_STATUS_UNSUPPORTED;
+
     *offset = dflac->data()->input->pos ();
     return FLAC__STREAM_DECODER_TELL_STATUS_OK;
 }
@@ -183,6 +201,8 @@ static FLAC__StreamDecoderSeekStatus flac_callback_seek (const FLAC__StreamDecod
         void *client_data)
 {
     DecoderFLAC *dflac = (DecoderFLAC *) client_data;
+    if(dflac->data()->input->isSequential())
+        return FLAC__STREAM_DECODER_SEEK_STATUS_UNSUPPORTED;
 
     return dflac->data()->input->seek(offset)
            ? FLAC__STREAM_DECODER_SEEK_STATUS_OK
@@ -194,6 +214,9 @@ static FLAC__StreamDecoderLengthStatus flac_callback_length (const FLAC__StreamD
         void *client_data)
 {
     DecoderFLAC *dflac = (DecoderFLAC *) client_data;
+    if(dflac->data()->input->isSequential())
+        return FLAC__STREAM_DECODER_LENGTH_STATUS_UNSUPPORTED;
+
     *stream_length = dflac->data()->input->size();
     return FLAC__STREAM_DECODER_LENGTH_STATUS_OK;
 }
@@ -216,8 +239,15 @@ static void flac_callback_metadata (const FLAC__StreamDecoder *,
         dflac->data()->channels = metadata->data.stream_info.channels;
         dflac->data()->sample_rate = metadata->data.stream_info.sample_rate;
         dflac->data()->length = dflac->data()->total_samples * 1000 / dflac->data()->sample_rate;
-        dflac->data()->bitrate = dflac->data()->input->size() * 8 * metadata->data.stream_info.sample_rate /
-                metadata->data.stream_info.total_samples / 1000;
+
+        if(metadata->data.stream_info.total_samples > 0 && dflac->data()->length > 0)
+        {
+            dflac->data()->bitrate = dflac->data()->input->size() * 8 /  dflac->data()->length;
+        }
+        else
+        {
+            dflac->data()->bitrate = 0;
+        }
     }
 }
 
@@ -328,6 +358,10 @@ bool DecoderFLAC::initialize()
     m_data->abort = 0;
     m_data->sample_buffer_fill = 0;
     m_data->last_decode_position = 0;
+    m_data->read_bytes = 0;
+    m_data->frame_counter = 0;
+
+
     if (!m_data->decoder)
     {
         qDebug("DecoderFLAC: creating FLAC__StreamDecoder");
@@ -364,9 +398,9 @@ bool DecoderFLAC::initialize()
                 flac_callback_error,
                 this) != FLAC__STREAM_DECODER_INIT_STATUS_OK)
         {
-            data()->ok = 0;
             return false;
         }
+		qDebug("DecoderFLAC: Ogg FLAC stream found");
     }
     else if (!memcmp(buf, "fLaC", 4))
     {
@@ -382,9 +416,9 @@ bool DecoderFLAC::initialize()
                 flac_callback_error,
                 this) != FLAC__STREAM_DECODER_INIT_STATUS_OK)
         {
-            data()->ok = 0;
             return false;
         }
+		qDebug("DecoderFLAC: native FLAC stream found");
     }
     else
     {
@@ -395,7 +429,6 @@ bool DecoderFLAC::initialize()
     if (!FLAC__stream_decoder_process_until_end_of_metadata(
                 data()->decoder))
     {
-        data()->ok = 0;
         return false;
     }
 

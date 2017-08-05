@@ -35,7 +35,6 @@ struct flac_data
 {
     //FLAC__SeekableStreamDecoder *decoder;
     FLAC__StreamDecoder *decoder;
-    struct io_stream *stream;
     int bitrate;
     int abort; /* abort playing (due to an error) */
 
@@ -52,8 +51,10 @@ struct flac_data
 
     FLAC__uint64 last_decode_position;
 
-    int ok; /* was this stream successfully opened? */
-    //struct decoder_error error;
+    //counters
+    qint64 read_bytes;
+    qint64 frame_counter;
+
     QIODevice *input;
 };
 

@@ -27,7 +27,7 @@
 #include <math.h>
 #include "outputdirectsound.h"
 
-#define DS_BUFSIZE (96*1024)
+#define DS_BUFSIZE (128*1024)
 
 OutputDirectSound *OutputDirectSound::instance = 0;
 VolumeDirectSound *OutputDirectSound::volumeControl = 0;

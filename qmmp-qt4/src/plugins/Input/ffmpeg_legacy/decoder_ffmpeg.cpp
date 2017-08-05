@@ -48,6 +48,7 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
         break;
     case SEEK_END:
         absolute_pos = d->input()->size() - offset;
+		break;
     default:
         return -1;
     }

@@ -101,7 +101,6 @@ private:
     QMap <Qmmp::MetaData, QString> m_metaData;
     qint64 m_length;
     QString m_path;
-    QList<QMap<int, int> > map;
 };
 
 #endif

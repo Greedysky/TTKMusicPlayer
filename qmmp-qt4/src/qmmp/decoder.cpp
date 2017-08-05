@@ -175,7 +175,8 @@ DecoderFactory *Decoder::findByPath(const QString& source, bool useContent)
             if(m_disabledNames.contains(item->shortName()))
                 continue;
 
-            fact = item->decoderFactory();
+            if(!(fact = item->decoderFactory()))
+                continue;
 
             if(fact && fact->properties().noInput && !fact->properties().protocols.contains("file"))
                 continue;
