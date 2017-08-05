@@ -20,6 +20,9 @@
 #include <QDesktopWidget>
 #include <QPropertyAnimation>
 
+#define MARGIN_SIDE     5
+#define MARGIN_SIDE_BY  1
+
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
@@ -110,23 +113,23 @@ void MusicApplicationObject::sideAnimationByOn()
     }
 
     QPoint pt = w->mapToGlobal(w->rect().topLeft());
-    if(-5 <= pt.x() && pt.x() <= 5)
+    if(-MARGIN_SIDE <= pt.x() && pt.x() <= MARGIN_SIDE)
     {
         m_leftSideByOn = true;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(-w->width() + 1, w->y(), w->width(), w->height()));
+        m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
     }
 
     QWidget *widget = QApplication::desktop();
     pt = w->mapToGlobal(w->rect().topRight());
-    if(-5 + widget->width() <= pt.x() && pt.x() <= 5 + widget->width())
+    if(-MARGIN_SIDE + widget->width() <= pt.x() && pt.x() <= MARGIN_SIDE + widget->width())
     {
         m_rightSideByOn = true;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(widget->width() - 1, w->y(), w->width(), w->height()));
+        m_sideAnimation->setEndValue(QRect(widget->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
     }
 }
@@ -144,7 +147,7 @@ void MusicApplicationObject::sideAnimationByOff()
         m_leftSideByOn = false;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(1, w->y(), w->width(), w->height()));
+        m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
     }
     else if(m_rightSideByOn)
@@ -153,7 +156,7 @@ void MusicApplicationObject::sideAnimationByOff()
         m_rightSideByOn = false;
         m_sideAnimation->stop();
         m_sideAnimation->setStartValue(w->geometry());
-        m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - 1, w->y(), w->width(), w->height()));
+        m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
     }
 }
@@ -201,8 +204,7 @@ void MusicApplicationObject::musicSetWindowToTop()
     m_setWindowToTop = !m_setWindowToTop;
     Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
     MusicApplication::instance()->setWindowFlags( m_setWindowToTop ?
-                              (flags | Qt::WindowStaysOnTopHint) :
-                              (flags & ~Qt::WindowStaysOnTopHint) );
+                              (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint) );
     MusicApplication::instance()->show();
 }
 
@@ -216,8 +218,7 @@ void MusicApplicationObject::musicResetWindow()
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 
     MusicApplication::instance()->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2,
-                                (widget->height() - WINDOW_HEIGHT_MIN)/2,
-                                WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+                                (widget->height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationObject::musicToolSetsParameter()

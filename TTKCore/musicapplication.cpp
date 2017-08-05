@@ -983,7 +983,7 @@ void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
-    if(event->pos().y() <= 50 && !M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
+    if(event->pos().y() <= m_ui->topWidget->height() && !M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
     {
         MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(event);
     }
