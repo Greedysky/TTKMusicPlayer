@@ -111,6 +111,11 @@ public:
     /*!
      * Read Other Use File Info Config.
      */
+    inline QString readOtherSideBy() const
+    { return readXmlAttributeByTagNameValue("otherSideBy"); }
+    /*!
+     * Read Other App Side By Mode Config.
+     */
 
     inline QString readBackgroundTheme() const
     { return readXmlAttributeByTagNameValue("bgTheme"); }

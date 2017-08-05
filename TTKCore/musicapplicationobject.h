@@ -55,6 +55,19 @@ public:
      * Soure update check.
      */
 
+    void sideAnimationByOn();
+    /*!
+     * Side animation by on.
+     */
+    void sideAnimationByOff();
+    /*!
+     * Side animation by off.
+     */
+    void sideAnimationReset();
+    /*!
+     * Side animation reset.
+     */
+
 Q_SIGNALS:
     void enhancedMusicChanged(int type);
     /*!
@@ -110,7 +123,8 @@ protected:
      */
 
     bool m_setWindowToTop;
-    QPropertyAnimation *m_animation;
+    bool m_leftSideByOn, m_rightSideByOn;
+    QPropertyAnimation *m_opacityAnimation, *m_sideAnimation;
     MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;

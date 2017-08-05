@@ -993,7 +993,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>110</y>
+       <y>170</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1002,24 +1002,24 @@ font-weight:bold;</string>
       <string>软件启动时检查更新</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherSearchCheckBox">
+    <widget class="QCheckBox" name="otherSideByCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>140</y>
+       <y>200</y>
        <width>271</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>开启搜索词优化</string>
+      <string>开启左右靠边停靠模式</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="otherAlbumCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>170</y>
+       <y>80</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1032,7 +1032,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>200</y>
+       <y>110</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1045,7 +1045,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>85</y>
+       <y>145</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1057,6 +1057,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>其他设置</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherSearchCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>230</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启搜索词优化</string>
      </property>
     </widget>
    </widget>

@@ -963,6 +963,24 @@ void MusicApplication::contextMenuEvent(QContextMenuEvent *event)
     musicCreateRightMenu();
 }
 
+void MusicApplication::enterEvent(QEvent *event)
+{
+    MusicAbstractMoveResizeWidget::enterEvent(event);
+    m_applicationObject->sideAnimationByOff();
+}
+
+void MusicApplication::leaveEvent(QEvent *event)
+{
+    MusicAbstractMoveResizeWidget::leaveEvent(event);
+    m_applicationObject->sideAnimationByOn();
+}
+
+void MusicApplication::mouseReleaseEvent(QMouseEvent *event)
+{
+    MusicAbstractMoveResizeWidget::mouseReleaseEvent(event);
+    m_applicationObject->sideAnimationByOn();
+}
+
 void MusicApplication::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if(event->pos().y() <= 50 && !M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
@@ -1089,6 +1107,7 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, xml.readOtherSearch().toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, xml.readOtherAlbum().toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, xml.readOtherInfo().toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, xml.readOtherSideBy().toInt());
     //////////////////////////////////////////////////////////////
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
@@ -1179,6 +1198,7 @@ void MusicApplication::writeXMLConfigToText()
 {
     MusicXMLConfigManager xml;
 
+    m_applicationObject->sideAnimationReset();
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced, m_musicPlayList->playbackMode());

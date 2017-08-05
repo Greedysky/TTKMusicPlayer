@@ -52,6 +52,7 @@ public:
         OtherSearchChoiced,             ///*Other Search Optimzied Parameter*/
         OtherAlbumChoiced,              ///*Other Use File Album Parameter*/
         OtherInfoChoiced,               ///*Other Use File Info Parameter*/
+        OtherSideByChoiced,             ///*Other App Side By Mode Parameter*/
 
         ShowInlineLrcChoiced,           ///*Show Inline Lrc Parameter*/
         ShowDesktopLrcChoiced,          ///*Show Desktop Lrc Parameter*/
