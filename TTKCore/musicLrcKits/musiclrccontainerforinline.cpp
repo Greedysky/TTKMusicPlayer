@@ -674,6 +674,13 @@ void MusicLrcContainerForInline::initFunctionLabel()
     QPushButton *microphone = new QPushButton(this);
     QPushButton *message = new QPushButton(this);
 
+#ifdef Q_OS_UNIX
+    translation->setFocusPolicy(Qt::NoFocus);
+    movie->setFocusPolicy(Qt::NoFocus);
+    microphone->setFocusPolicy(Qt::NoFocus);
+    message->setFocusPolicy(Qt::NoFocus);
+#endif
+
     translation->setFixedSize(30, 30);
     movie->setFixedSize(30, 30);
     microphone->setFixedSize(30, 30);

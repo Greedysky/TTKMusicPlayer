@@ -286,6 +286,11 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     deleteButton->setStyleSheet(MusicUIObject::MKGTinyBtnDelete);
     connect(deleteButton, SIGNAL(clicked()), SLOT(setDeleteItemAll()));
 
+#ifdef Q_OS_UNIX
+    shareButton->setFocusPolicy(Qt::NoFocus);
+    deleteButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     QToolButton *closeButton = new QToolButton(this);
     closeButton->setFixedSize(16, 16);
     closeButton->setToolTip(tr("closeList"));

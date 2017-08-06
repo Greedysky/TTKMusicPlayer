@@ -205,6 +205,14 @@ void KugouWindow::createKugouSongWidget()
     topLayout->addWidget(d->m_buttonGroup->button(4));
     topLayout->addWidget(d->m_buttonGroup->button(5));
     topLayout->addStretch(1);
+#ifdef Q_OS_UNIX
+    d->m_buttonGroup->button(0)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(1)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(2)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(3)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(4)->setFocusPolicy(Qt::NoFocus);
+    d->m_buttonGroup->button(5)->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);

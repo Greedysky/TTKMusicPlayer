@@ -53,7 +53,7 @@ void MusicProgressWidget::initWidget()
     QToolButton *topTitleCloseButton = new QToolButton(this);
     topTitleCloseButton->setGeometry(344, 6, 20, 20);
     topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     topTitleCloseButton->setEnabled(false);
 
     m_progressBar = new QProgressBar(this);

@@ -49,6 +49,11 @@ MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     hlayout->addWidget(nextTimeButton);
     contain->setLayout(hlayout);
 
+#ifdef Q_OS_UNIX
+    updateButton->setFocusPolicy(Qt::NoFocus);
+    nextTimeButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     vlayout->addWidget(m_textLabel);
     vlayout->addWidget(contain);
     m_container->setLayout(vlayout);
@@ -104,10 +109,13 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     m_ui->upgradeButton->setEnabled(false);
+#ifdef Q_OS_UNIX
+    m_ui->upgradeButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->upgradeFailedLabel, SIGNAL(clicked()), SLOT(upgradeFailedClicked()));

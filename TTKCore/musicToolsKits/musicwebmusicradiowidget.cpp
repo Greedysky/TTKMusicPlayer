@@ -29,7 +29,7 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     connect(m_ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -41,6 +41,12 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+
+#ifdef Q_OS_UNIX
+    m_ui->playButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->previousButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->nextButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->playButton->setIconSize(QSize(31, 31));
     m_ui->previousButton->setIconSize(QSize(31, 31));

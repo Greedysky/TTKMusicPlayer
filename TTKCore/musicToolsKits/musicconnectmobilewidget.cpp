@@ -71,6 +71,11 @@ void MusicConnectMobileWidget::initFirstWidget()
     secButton->setFixedSize(200, 90);
     connect(secButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetThird()));
 
+#ifdef Q_OS_UNIX
+    firButton->setFocusPolicy(Qt::NoFocus);
+    secButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     vBox->addStretch(1);
     vBox->addWidget(textLabel, 0 ,Qt::AlignCenter);
     vBox->addStretch(1);
@@ -108,6 +113,11 @@ void MusicConnectMobileWidget::initSecondWidget()
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
     connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Mobile()));
+
+#ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
+    openButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     vBox->addWidget(backButton);
     vBox->addStretch(4);
@@ -151,6 +161,11 @@ void MusicConnectMobileWidget::initThirdWidget()
     openButton->setFixedSize(80, 40);
     openButton->setCursor(Qt::PointingHandCursor);
     connect(openButton, SIGNAL(clicked()), SLOT(openTransferFiles2Wifi()));
+
+#ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
+    openButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     vBox->addWidget(backButton);
     vBox->addStretch(3);

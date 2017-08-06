@@ -16,6 +16,9 @@ MusicMoveButton::MusicMoveButton(QWidget *parent)
     setIcon(QIcon(":/toolSets/btn_arrow"));
     setStyleSheet(MusicUIObject::MPushButtonStyle02);
     setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+    setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 QString MusicMoveButton::getClassName()

@@ -11,7 +11,7 @@ MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -19,6 +19,11 @@ MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
     m_ui->reuploadButton->setEnabled(false);
     m_ui->reuploadButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->downloadedButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
+#ifdef Q_OS_UNIX
+    m_ui->reuploadButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->downloadedButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(m_ui->reuploadButton, SIGNAL(clicked()), parent, SLOT(reuploadFileToServer()));
     connect(m_ui->downloadedButton, SIGNAL(clicked()), SLOT(downloadStateChanged()));

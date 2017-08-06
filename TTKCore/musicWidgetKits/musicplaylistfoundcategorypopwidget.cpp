@@ -4,7 +4,6 @@
 
 #include <QLabel>
 #include <QGridLayout>
-#include <QPushButton>
 #include <QSignalMapper>
 #include <QScrollArea>
 

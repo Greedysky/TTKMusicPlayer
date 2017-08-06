@@ -44,6 +44,11 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
     checkBox2->setGeometry(10, 50, 280, 25);
     checkBox2->setStyleSheet(MusicUIObject::MCheckBoxStyle04);
 
+#ifdef Q_OS_UNIX
+    checkBox->setFocusPolicy(Qt::NoFocus);
+    checkBox2->setFocusPolicy(Qt::NoFocus);
+#endif
+
     QLabel *microIconLabel = new QLabel(m_containWidget);
     microIconLabel->setGeometry(10, 92, 26, 18);
 

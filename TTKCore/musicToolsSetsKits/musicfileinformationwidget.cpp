@@ -19,7 +19,7 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     m_ui->setupUi(this);
     
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -38,6 +38,13 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->viewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->openPixButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
+#ifdef Q_OS_UNIX
+    m_ui->editButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->saveButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openPixButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->viewButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->idv3ComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->idv3ComboBox));
     m_ui->idv3ComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);

@@ -23,6 +23,9 @@ MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     m_checkBox = new QCheckBox(this);
     m_checkBox->setGeometry(90, 45, 20, 20);
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+#ifdef Q_OS_UNIX
+    m_checkBox->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(this, SIGNAL(clicked()), SLOT(sendUserSelectArt()));
     connect(m_checkBox, SIGNAL(clicked()), SLOT(sendUserBoxClicked()));
@@ -146,6 +149,13 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     m_next->setGeometry(625, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    m_checkBox->setFocusPolicy(Qt::NoFocus);
+    m_confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_previous->setFocusPolicy(Qt::NoFocus);
+    m_next->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_previous->setStyleSheet(MusicUIObject::MBackgroundStyle10 + MusicUIObject::MBorderStyle01);
     m_next->setStyleSheet(MusicUIObject::MBackgroundStyle10 + MusicUIObject::MBorderStyle01);

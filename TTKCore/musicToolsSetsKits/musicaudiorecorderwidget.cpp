@@ -18,7 +18,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
@@ -51,6 +51,18 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     m_ui->checkBox_3->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->checkBox_4->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->checkBox_5->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    m_ui->startButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->stopButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->saveButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->checkBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->checkBox_2->setFocusPolicy(Qt::NoFocus);
+    m_ui->checkBox_3->setFocusPolicy(Qt::NoFocus);
+    m_ui->checkBox_4->setFocusPolicy(Qt::NoFocus);
+    m_ui->checkBox_5->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->progress->setStyleSheet(MusicUIObject::MProgressBar02);
     m_ui->horizontalSlider->setStyleSheet(MusicUIObject::MSliderStyle01);

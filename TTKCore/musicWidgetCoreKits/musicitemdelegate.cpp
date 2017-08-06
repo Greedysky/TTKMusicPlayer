@@ -14,6 +14,9 @@ MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
 {
     m_radioButton  = new QRadioButton;
     m_radioButton->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+#ifdef Q_OS_UNIX
+    m_radioButton->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 MusicRadioButtonDelegate::~MusicRadioButtonDelegate()
@@ -60,6 +63,9 @@ MusicCheckBoxDelegate::MusicCheckBoxDelegate(QObject *parent)
 {
     m_checkBox  = new QCheckBox;
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+#ifdef Q_OS_UNIX
+    m_checkBox->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
@@ -228,6 +234,9 @@ MusicPushButtonDelegate::MusicPushButtonDelegate(QObject *parent)
     m_pushButton->setStyleSheet(MusicUIObject::MBorderStyle04 + \
                                 MusicUIObject::MBorderStyle07 + \
                                 MusicUIObject::MBackgroundStyle17);
+#ifdef Q_OS_UNIX
+    m_pushButton->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 MusicPushButtonDelegate::~MusicPushButtonDelegate()

@@ -20,7 +20,7 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     MusicUtils::Widget::setLabelFontSize(m_ui->label_6T, 9);
 #endif
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -46,6 +46,16 @@ void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &u
     initTabS();
     ///third tab
     initTabT();
+
+#ifdef Q_OS_UNIX
+    m_ui->maleRadioButton_F->setFocusPolicy(Qt::NoFocus);
+    m_ui->femaleRadioButton_F->setFocusPolicy(Qt::NoFocus);
+    m_ui->confirmButton_F->setFocusPolicy(Qt::NoFocus);
+    m_ui->openFileButton_S->setFocusPolicy(Qt::NoFocus);
+    m_ui->saveFileButton_S->setFocusPolicy(Qt::NoFocus);
+    m_ui->confirmButton_T->setFocusPolicy(Qt::NoFocus);
+#endif
+
 }
 
 void MusicUserRecordWidget::initTabF()

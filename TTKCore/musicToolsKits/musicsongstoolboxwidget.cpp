@@ -64,6 +64,12 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     menuButton->setGeometry(290, 10, 16, 16);
     connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
 
+#ifdef Q_OS_UNIX
+    enhanceButton->setFocusPolicy(Qt::NoFocus);
+    shareListButton->setFocusPolicy(Qt::NoFocus);
+    menuButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     topLayout->addWidget(m_labelIcon);
     topLayout->addWidget(m_labelText);
     topLayout->addStretch(1);

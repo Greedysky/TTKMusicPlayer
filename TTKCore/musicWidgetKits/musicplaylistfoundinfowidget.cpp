@@ -225,6 +225,13 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     grid->addWidget(functionWidget);
     ////////////////////////////////////////////////////////////////////////////
 
+#ifdef Q_OS_UNIX
+    backButton->setFocusPolicy(Qt::NoFocus);
+    playAllButton->setFocusPolicy(Qt::NoFocus);
+    m_songButton->setFocusPolicy(Qt::NoFocus);
+    infoButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     grid->addWidget(m_container);
     grid->addStretch(1);
     function->setLayout(grid);
@@ -314,6 +321,13 @@ void MusicPlaylistFoundInfoWidget::initFirstWidget()
     QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    allCheckBox->setFocusPolicy(Qt::NoFocus);
+    playButton->setFocusPolicy(Qt::NoFocus);
+    addButton->setFocusPolicy(Qt::NoFocus);
+    downloadButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     middleFuncLayout->addWidget(marginLabel);
     middleFuncLayout->addWidget(allCheckBox);

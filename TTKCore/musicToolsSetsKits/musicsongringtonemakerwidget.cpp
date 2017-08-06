@@ -19,7 +19,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -40,6 +40,14 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     m_ui->msCombo->setItemDelegate(new QStyledItemDelegate(m_ui->msCombo));
     m_ui->msCombo->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->msCombo->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+#ifdef Q_OS_UNIX
+    m_ui->addSongButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playSongButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playRingButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->saveSongButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     initControlParameter();
 
     m_startPos = 0;

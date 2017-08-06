@@ -27,7 +27,7 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_sendServer = nullptr;
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -56,6 +56,15 @@ MusicConnectTransferWidget::MusicConnectTransferWidget(QWidget *parent)
     m_ui->lineWIFIEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->searchLineEdit->setStyleSheet(MusicUIObject::MLineEditStyle05);
     connect(m_ui->searchLineEdit, SIGNAL(cursorPositionChanged(int,int)), SLOT(musicSearchIndexChanged(int,int)));
+
+#ifdef Q_OS_UNIX
+    m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->transferUSBButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->transferWIFIButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->reflashUSBButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->switchButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QTimer::singleShot(MT_MS, this, SLOT(initColumns()));
 
@@ -110,6 +119,9 @@ void MusicConnectTransferWidget::initColumns()
         button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setFixedSize(90, 25);
+#ifdef Q_OS_UNIX
+        button->setFocusPolicy(Qt::NoFocus);
+#endif
         m_ui->playListLayout->addWidget(button);
         m_buttonGroup->addButton(button, i);
     }

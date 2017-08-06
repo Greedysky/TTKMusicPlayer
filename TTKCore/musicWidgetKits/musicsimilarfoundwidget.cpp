@@ -131,6 +131,13 @@ void MusicSimilarFoundWidget::createLabels()
     downloadButton->setFixedSize(55, 25);
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
+#ifdef Q_OS_UNIX
+    allCheckBox->setFocusPolicy(Qt::NoFocus);
+    playButton->setFocusPolicy(Qt::NoFocus);
+    addButton->setFocusPolicy(Qt::NoFocus);
+    downloadButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     middleFuncLayout->addWidget(marginLabel);
     middleFuncLayout->addWidget(allCheckBox);
     middleFuncLayout->addStretch(1);

@@ -206,6 +206,9 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     showMainWindow->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(showMainWindow, 0, Qt::AlignCenter);
     connect(showMainWindow, SIGNAL(clicked()), MusicApplication::instance(), SLOT(showNormal()));
+#ifdef Q_OS_UNIX
+    showMainWindow->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QToolButton *toolWindowTypeButton = new QToolButton(m_toolBarWidget);
     toolWindowTypeButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_WIDTH,

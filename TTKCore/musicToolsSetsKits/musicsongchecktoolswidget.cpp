@@ -18,7 +18,7 @@ MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -302,6 +302,11 @@ void MusicSongCheckToolsWidget::renameWidgetInit()
     connect(m_ui->renameReCheckButton, SIGNAL(clicked()), SLOT(renameReCheckButtonClicked()));
     connect(m_ui->renameSelectAllButton, SIGNAL(clicked(bool)), m_ui->renameTableWidget, SLOT(selectedAllItems(bool)));
 
+#ifdef Q_OS_UNIX
+    m_ui->renameCheckButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->renameSelectAllButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     m_ui->renameSelectAllButton->setEnabled(false);
     m_ui->renameLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_ui->renameLoadingLabel->hide();
@@ -318,6 +323,10 @@ void MusicSongCheckToolsWidget::qualityWidgetInit()
     connect(m_ui->qualityButton, SIGNAL(clicked()), SLOT(qualityButtonClicked()));
     connect(m_ui->qualityCheckButton, SIGNAL(clicked()), SLOT(qualityButtonCheckClicked()));
     connect(m_ui->qualityReCheckButton, SIGNAL(clicked()), SLOT(qualityReCheckButtonClicked()));
+
+#ifdef Q_OS_UNIX
+    m_ui->qualityCheckButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->qualityLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_ui->qualityLoadingLabel->hide();
@@ -336,6 +345,11 @@ void MusicSongCheckToolsWidget::duplicateWidgetInit()
     connect(m_ui->duplicateCheckButton, SIGNAL(clicked()), SLOT(duplicateButtonCheckClicked()));
     connect(m_ui->duplicateReCheckButton, SIGNAL(clicked()), SLOT(duplicateReCheckButtonClicked()));
     connect(m_ui->duplicateSelectAllButton, SIGNAL(clicked(bool)), m_ui->duplicateTableWidget, SLOT(selectedAllItems(bool)));
+
+#ifdef Q_OS_UNIX
+    m_ui->duplicateSelectAllButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->duplicateCheckButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->duplicateSelectAllButton->setEnabled(false);
     m_ui->duplicateLoadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);

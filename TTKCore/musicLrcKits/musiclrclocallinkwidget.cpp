@@ -70,7 +70,7 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -81,6 +81,14 @@ MusicLrcLocalLinkWidget::MusicLrcLocalLinkWidget(QWidget *parent)
     m_ui->previewButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->deleteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->titleEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
+
+#ifdef Q_OS_UNIX
+    m_ui->fuzzyButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->localSearchButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->commitButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->previewButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->deleteButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->fuzzyButton->setChecked(true);
 

@@ -77,6 +77,10 @@ MusicLrcCommentsItem::MusicLrcCommentsItem(QWidget *parent)
     MusicClickedLabel *ReplyLabel = new MusicClickedLabel(tr("Reply"), operWidget);
     ReplyLabel->setStyleSheet(MusicUIObject::MColorStyle03);
     //////////////////////////////////////////////////////////////////////
+#ifdef Q_OS_UNIX
+    starButton->setFocusPolicy(Qt::NoFocus);
+#endif
+    //////////////////////////////////////////////////////////////////////
     operWidgetLayout->addWidget(m_timerLabel);
     operWidgetLayout->addStretch(1);
     operWidgetLayout->addWidget(ngReportLabel);
@@ -216,6 +220,11 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
     messageMiddleLayout->addStretch(1);
     messageMiddleLayout->addWidget(sendButton);
     messageMiddle->setLayout(messageMiddleLayout);
+#ifdef Q_OS_UNIX
+    closeButton->setFocusPolicy(Qt::NoFocus);
+    emojiButton->setFocusPolicy(Qt::NoFocus);
+    sendButton->setFocusPolicy(Qt::NoFocus);
+#endif
     //////////////////////////////////////////////////////////////////////
     messageBoxLayout->addWidget(m_messageEdit);
     messageBoxLayout->addWidget(messageMiddle);

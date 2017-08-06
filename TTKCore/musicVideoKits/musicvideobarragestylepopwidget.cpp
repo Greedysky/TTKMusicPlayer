@@ -104,6 +104,12 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     QPushButton *middleButton = new QPushButton(sizeWidget);
     QPushButton *bigButton = new QPushButton(sizeWidget);
 
+#ifdef Q_OS_UNIX
+    smallButton->setFocusPolicy(Qt::NoFocus);
+    middleButton->setFocusPolicy(Qt::NoFocus);
+    bigButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     smallButton->setFixedSize(16, 16);
     middleButton->setFixedSize(16, 16);
     bigButton->setFixedSize(16, 16);
@@ -139,6 +145,15 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     QPushButton *greenButton = new QPushButton(colorWidget);
     QPushButton *blueButton = new QPushButton(colorWidget);
     QPushButton *purpleButton = new QPushButton(colorWidget);
+#ifdef Q_OS_UNIX
+    whiteButton->setFocusPolicy(Qt::NoFocus);
+    redButton->setFocusPolicy(Qt::NoFocus);
+    orangeButton->setFocusPolicy(Qt::NoFocus);
+    yellowButton->setFocusPolicy(Qt::NoFocus);
+    greenButton->setFocusPolicy(Qt::NoFocus);
+    blueButton->setFocusPolicy(Qt::NoFocus);
+    purpleButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     colorLabel->setFixedSize(40, 15);
     whiteButton->setFixedSize(19, 26);

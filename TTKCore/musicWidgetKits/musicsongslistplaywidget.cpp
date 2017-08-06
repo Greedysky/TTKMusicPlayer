@@ -79,6 +79,15 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     m_moreButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_moreButton->setToolTip(tr("moreFunction"));
 
+#ifdef Q_OS_UNIX
+    addButton->setFocusPolicy(Qt::NoFocus);
+    m_downloadButton->setFocusPolicy(Qt::NoFocus);
+    m_showMVButton->setFocusPolicy(Qt::NoFocus);
+    m_loveButton->setFocusPolicy(Qt::NoFocus);
+    m_deleteButton->setFocusPolicy(Qt::NoFocus);
+    m_moreButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     QMenu *menu = new QMenu(this);
     createMoreMenu(menu);
     m_moreButton->setMenu(menu);
