@@ -14,7 +14,7 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -32,6 +32,14 @@ MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)
     m_ui->pushButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->pushButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->pushButton, SIGNAL(clicked()), SLOT(confirmButtonClicked()));
+
+#ifdef Q_OS_UNIX
+    m_ui->radioButton1->setFocusPolicy(Qt::NoFocus);
+    m_ui->radioButton2->setFocusPolicy(Qt::NoFocus);
+    m_ui->radioButton3->setFocusPolicy(Qt::NoFocus);
+    m_ui->radioButton4->setFocusPolicy(Qt::NoFocus);
+    m_ui->pushButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->radioButton1, 0);

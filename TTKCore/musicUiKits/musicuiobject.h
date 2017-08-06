@@ -173,14 +173,17 @@ namespace MusicUIObject
 
     const QString MToolButtonStyle02 = " \
             QToolButton::hover{ border:1px solid #000000;}";
-            
-    const QString MToolButtonStyle03 = MToolButtonStyle01 + " \
-            QToolButton::hover{ background-color:rgba(255, 255, 255, 20)}";
 
-    const QString MToolButtonStyle04 = MToolButtonStyle01 + " \
+    const QString MToolButtonStyle03= " \
+            QToolButton{ border:none;}";
+
+    const QString MToolButtonStyle04 = MToolButtonStyle01 + MToolButtonStyle03 + " \
+            QToolButton::hover{ background-color:rgba(255, 255, 255, 20);}";
+
+    const QString MToolButtonStyle05 = MToolButtonStyle01 + " \
             QToolButton::menu-indicator{ image:None;}";
 
-    const QString MToolButtonStyle05 = " \
+    const QString MToolButtonStyle06 = " \
             QToolButton{ border:1px solid #777777; background:#FFFFFF; color:#555555;} \
             QToolButton::hover{ border:1px solid #444444; color:#222222;} \
             QToolButton::disabled{ color:#999999;}";

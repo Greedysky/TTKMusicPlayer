@@ -20,6 +20,10 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     m_ui->userNameU->setStyleSheet(MusicUIObject::MPushButtonStyle07);
     m_ui->userNameL->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->userNameU->setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+    m_ui->userNameL->setFocusPolicy(Qt::NoFocus);
+    m_ui->userNameU->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connectDatabase();
 

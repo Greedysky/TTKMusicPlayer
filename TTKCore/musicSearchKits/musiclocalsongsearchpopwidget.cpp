@@ -75,6 +75,9 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     m_clearButton->setStyleSheet(MusicUIObject::MCustomStyle01 + MusicUIObject::MFontStyle02 +
                                  MusicUIObject::MColorStyle03 + MusicUIObject::MBorderStyle01 +
                                  MusicUIObject::MBackgroundStyle17);
+#ifdef Q_OS_UNIX
+    m_clearButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QFrame *frame = new QFrame(this);
     frame->setFixedHeight(1);

@@ -32,6 +32,9 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     closeButton->setFixedSize(14, 14);
     closeButton->setStyleSheet(MusicUIObject::MKGBtnPClose);
     closeButton->setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+    closeButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     topWidgetLayout->addWidget(closeButton);
     topWidget->setLayout(topWidgetLayout);

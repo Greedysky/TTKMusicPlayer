@@ -531,6 +531,13 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     connect(labelCheckBox, SIGNAL(clicked(bool)), m_searchTableWidget, SLOT(setSelectedAllItems(bool)));
     labelLayout->addWidget(labelCheckBox, 3);
 
+#ifdef Q_OS_UNIX
+    m_playButton->setFocusPolicy(Qt::NoFocus);
+    addButton->setFocusPolicy(Qt::NoFocus);
+    downloadButton->setFocusPolicy(Qt::NoFocus);
+    labelCheckBox->setFocusPolicy(Qt::NoFocus);
+#endif
+
     QLabel *label1 = new QLabel(tr("Song"), this);
     label1->setAlignment(Qt::AlignCenter);
     label1->setStyleSheet(MusicUIObject::MFontStyle01);

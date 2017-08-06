@@ -11,7 +11,7 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
@@ -20,6 +20,13 @@ MusicLrcSearchWidget::MusicLrcSearchWidget(QWidget *parent)
     m_ui->lrcSearchButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->lrcSearchDownload->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->closeButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
+#ifdef Q_OS_UNIX
+    m_ui->label_checkBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->lrcSearchButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->lrcSearchDownload->setFocusPolicy(Qt::NoFocus);
+    m_ui->closeButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->lrcSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->lrcSearchDownload->setCursor(QCursor(Qt::PointingHandCursor));

@@ -22,7 +22,7 @@ MusicNetworkSpeedTestWidget::MusicNetworkSpeedTestWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -41,6 +41,11 @@ MusicNetworkSpeedTestWidget::MusicNetworkSpeedTestWidget(QWidget *parent)
     m_ui->testButton->setCursor(QCursor((Qt::PointingHandCursor)));
     connect(m_ui->suspensionButton, SIGNAL(clicked()), SLOT(suspensionOpen()));
     connect(m_ui->testButton, SIGNAL(clicked()), SLOT(networkTestStart()));
+#ifdef Q_OS_UNIX
+    m_ui->suspensionButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->settingButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->testButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_thread = new MusicNetworkSpeedTestThread(this);
     connect(m_thread, SIGNAL(networkData(ulong,ulong)), SLOT(networkData(ulong,ulong)));

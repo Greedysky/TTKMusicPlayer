@@ -15,7 +15,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -42,6 +42,14 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     connect(m_ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
     connect(m_ui->confirm, SIGNAL(clicked()), SLOT(commitTheResults()));
     connect(m_ui->cancel, SIGNAL(clicked()), SLOT(close()));
+
+#ifdef Q_OS_UNIX
+    m_ui->timerToPlay->setFocusPolicy(Qt::NoFocus);
+    m_ui->timerToStop->setFocusPolicy(Qt::NoFocus);
+    m_ui->timerToShutdown->setFocusPolicy(Qt::NoFocus);
+    m_ui->confirm->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancel->setFocusPolicy(Qt::NoFocus);
+#endif
 
     initComboParameter();
     initFirstWidget();
@@ -209,6 +217,10 @@ void MusicTimerWidget::initFirstWidget()
     m_ui->psongComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->psongComboBox));
     m_ui->psongComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->psongComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+#ifdef Q_OS_UNIX
+    m_ui->noSetRadioButton1->setFocusPolicy(Qt::NoFocus);
+    m_ui->setRadioButton1->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicTimerWidget::initSecondWidget()
@@ -227,6 +239,10 @@ void MusicTimerWidget::initSecondWidget()
     m_ui->repeatComboBox2->setItemDelegate(new QStyledItemDelegate(m_ui->repeatComboBox2));
     m_ui->repeatComboBox2->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->repeatComboBox2->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+#ifdef Q_OS_UNIX
+    m_ui->noSetRadioButton2->setFocusPolicy(Qt::NoFocus);
+    m_ui->setRadioButton2->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicTimerWidget::initThreeWidget()
@@ -245,6 +261,10 @@ void MusicTimerWidget::initThreeWidget()
     m_ui->repeatComboBox3->setItemDelegate(new QStyledItemDelegate(m_ui->repeatComboBox3));
     m_ui->repeatComboBox3->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->repeatComboBox3->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+#ifdef Q_OS_UNIX
+    m_ui->noSetRadioButton3->setFocusPolicy(Qt::NoFocus);
+    m_ui->setRadioButton3->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicTimerWidget::commitTheResults()

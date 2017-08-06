@@ -18,6 +18,16 @@ MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
 
     createButtonPopMenu();
 
+#ifdef Q_OS_UNIX
+    m_ui->muiscPurchasedButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->muiscBalanceButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->muiscOVipButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->logoffButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->musicSettingButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->vipButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->muiscPackButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     connect(m_ui->logoffButton, SIGNAL(clicked()), SLOT(musicUserLogoff()));
     connect(m_ui->userIcon, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
     connect(m_ui->username, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));

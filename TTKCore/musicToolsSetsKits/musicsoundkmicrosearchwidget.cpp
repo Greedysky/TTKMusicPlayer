@@ -201,6 +201,11 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     searchLayout->addWidget(songButton);
     searchLayout->addWidget(m_searchEdit);
     searchLayout->addWidget(searchButton);
+#ifdef Q_OS_UNIX
+    mvButton->setFocusPolicy(Qt::NoFocus);
+    songButton->setFocusPolicy(Qt::NoFocus);
+    searchButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_searchTableWidget = new MusicSoundKMicroSearchTableWidget(this);
 

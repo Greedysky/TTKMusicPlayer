@@ -427,6 +427,9 @@ MusicCloudSharedSongWidget::MusicCloudSharedSongWidget(QWidget *parent)
     button->setCursor(QCursor(Qt::PointingHandCursor));
     button->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     button->setFixedWidth(40);
+#ifdef Q_OS_UNIX
+    button->setFocusPolicy(Qt::NoFocus);
+#endif
 
     bottomLayout->addWidget(m_statusLabel);
     bottomLayout->addWidget(button);

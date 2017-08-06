@@ -25,6 +25,14 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     m_NextSongButton = new QPushButton(this);
     m_PlayButton = new QPushButton(this);
     m_SettingButton = new QPushButton(this);
+#ifdef Q_OS_UNIX
+    m_showMainWindow->setFocusPolicy(Qt::NoFocus);
+    m_PreSongButton->setFocusPolicy(Qt::NoFocus);
+    m_NextSongButton->setFocusPolicy(Qt::NoFocus);
+    m_PlayButton->setFocusPolicy(Qt::NoFocus);
+    m_SettingButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     m_mainWidget = new QWidget(this);
     m_mainWidget->setObjectName("mainWidget");
 

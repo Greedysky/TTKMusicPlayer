@@ -70,6 +70,11 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     connect(m_closeButton, SIGNAL(clicked()), parent, SLOT(musicVideoClosed()));
     topLayout->addWidget(m_closeButton);
 
+#ifdef Q_OS_UNIX
+    m_searchButton->setFocusPolicy(Qt::NoFocus);
+    m_closeButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     m_searchEdit->hide();
     m_searchButton->hide();
 
@@ -148,6 +153,9 @@ void MusicVideoPlayWidget::popup(bool popup)
         m_winTopButton->setCursor(QCursor(Qt::PointingHandCursor));
         m_winTopButton->setStyleSheet(MusicUIObject::MKGTinyBtnWintopOff);
         m_winTopButton->setToolTip(tr("windowTopOn"));
+#ifdef Q_OS_UNIX
+        m_winTopButton->setFocusPolicy(Qt::NoFocus);
+#endif
         connect(m_winTopButton, SIGNAL(clicked()), SLOT(windowTopStateChanged()));
         topLayout->insertWidget(topLayout->count() - 1, m_winTopButton);
         m_winTopButton->setEnabled(false);

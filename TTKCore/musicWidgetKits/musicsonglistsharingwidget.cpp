@@ -13,7 +13,7 @@ MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -30,6 +30,12 @@ MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
                                          MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
     m_ui->readBackButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + \
                                         MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
+#ifdef Q_OS_UNIX
+    m_ui->mainOutputButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->mainInputButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->writeBackButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->readBackButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(m_ui->mainInputButton, 2);

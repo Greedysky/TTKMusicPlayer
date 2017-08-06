@@ -21,7 +21,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -102,6 +102,18 @@ void MusicDesktopWallpaperWidget::initWidgetStyle() const
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->viewButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    m_ui->netRadioButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->localRadioButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playRadioButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->viewButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->stopButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openWithstart->setFocusPolicy(Qt::NoFocus);
+    m_ui->recoveryWallpaper->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicDesktopWallpaperWidget::initParameters() const

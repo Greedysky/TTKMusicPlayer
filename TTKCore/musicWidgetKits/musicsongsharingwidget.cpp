@@ -17,7 +17,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
@@ -28,6 +28,17 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_qrCodeWidget->setMargin(2);
     m_qrCodeWidget->setIcon(":/image/lb_player_logo", 0.23);
     m_ui->QRCodeIconWidgetLayout->addWidget(m_qrCodeWidget);
+
+#ifdef Q_OS_UNIX
+    m_ui->qqButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->renrenButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->qqspaceButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->qqblogButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->sinaButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->weixingButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->shareButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(m_ui->textEdit, SIGNAL(textChanged()), SLOT(textAreaChanged()));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));

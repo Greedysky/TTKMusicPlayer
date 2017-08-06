@@ -63,7 +63,7 @@ public Q_SLOTS:
      */
 
 protected:
-    Ui::MusicDownloadResetWidget* ui;
+    Ui::MusicDownloadResetWidget* m_ui;
 
     QWidget *m_parentClass;
     QString m_currentName;

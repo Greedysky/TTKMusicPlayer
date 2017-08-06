@@ -331,14 +331,24 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     QPushButton *loveButton = new QPushButton(infoFuncWidget);
     QPushButton *downButton = new QPushButton(infoFuncWidget);
     QPushButton *shareButton = new QPushButton(infoFuncWidget);
+
+#ifdef Q_OS_UNIX
+    playButton->setFocusPolicy(Qt::NoFocus);
+    loveButton->setFocusPolicy(Qt::NoFocus);
+    downButton->setFocusPolicy(Qt::NoFocus);
+    shareButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
     playButton->setFixedSize(25, 25);
     loveButton->setFixedSize(25, 25);
     downButton->setFixedSize(25, 25);
     shareButton->setFixedSize(25, 25);
+
     playButton->setCursor(QCursor(Qt::PointingHandCursor));
     loveButton->setCursor(QCursor(Qt::PointingHandCursor));
     downButton->setCursor(QCursor(Qt::PointingHandCursor));
     shareButton->setCursor(QCursor(Qt::PointingHandCursor));
+
     playButton->setStyleSheet(MusicUIObject::MKGSongsDetectPlayBtn);
     loveButton->setStyleSheet(MusicUIObject::MKGSongsDetectUnloveBtn);
     downButton->setStyleSheet(MusicUIObject::MKGSongsDetectDownloadBtn);
@@ -425,6 +435,9 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
     reDetect->setCursor(QCursor(Qt::PointingHandCursor));
     connect(reDetect, SIGNAL(clicked()), SLOT(reDetectButtonClicked()));
+#ifdef Q_OS_UNIX
+    reDetect->setFocusPolicy(Qt::NoFocus);
+#endif
 
     widgetLayout->addStretch(2);
     widgetLayout->addWidget(iconLabel, 0, Qt::AlignCenter);

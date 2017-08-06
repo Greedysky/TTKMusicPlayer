@@ -16,7 +16,7 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     
     m_process = new QProcess(this);
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -53,8 +53,17 @@ MusicTransformWidget::MusicTransformWidget(QWidget *parent)
     m_ui->krc2lrcBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     connect(m_ui->krc2lrcBox, SIGNAL(clicked(bool)), SLOT(krc2lrcBoxChecked(bool)));
 
+#ifdef Q_OS_UNIX
+    m_ui->inputButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->outputButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->transformButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->folderBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->krc2lrcBox->setFocusPolicy(Qt::NoFocus);
+#endif
+
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
     m_currentType = Music;
+
     initControlParameter();
 }
 

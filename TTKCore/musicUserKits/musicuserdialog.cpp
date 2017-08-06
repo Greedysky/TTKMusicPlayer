@@ -20,7 +20,7 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     changeVerificationCode();
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -42,6 +42,13 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     buttonGroup->addButton(m_ui->useWechatLogin, 2);
     buttonGroup->addButton(m_ui->useSinaLogin, 3);
     connect(buttonGroup, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+
+#ifdef Q_OS_UNIX
+    m_ui->useTencentLogin->setFocusPolicy(Qt::NoFocus);
+    m_ui->useRenrenLogin->setFocusPolicy(Qt::NoFocus);
+    m_ui->useWechatLogin->setFocusPolicy(Qt::NoFocus);
+    m_ui->useSinaLogin->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 MusicUserDialog::~MusicUserDialog()
@@ -243,6 +250,8 @@ void MusicUserDialog::firstStatckWidget()
     m_ui->loginButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->forgotPwdButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
     m_ui->registerButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    m_ui->rememberPwd->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->automaticLogon->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->registerButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->forgotPwdButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -250,6 +259,13 @@ void MusicUserDialog::firstStatckWidget()
     connect(m_ui->registerButton, SIGNAL(clicked()), SLOT(registerUser()));
     connect(m_ui->forgotPwdButton, SIGNAL(clicked()), SLOT(userForgotPasswd()));
     connect(m_ui->loginButton, SIGNAL(clicked()), SLOT(checkUserLogin()));
+#ifdef Q_OS_UNIX
+    m_ui->registerButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->forgotPwdButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->loginButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->rememberPwd->setFocusPolicy(Qt::NoFocus);
+    m_ui->automaticLogon->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 void MusicUserDialog::secondStatckWidget()
@@ -261,6 +277,14 @@ void MusicUserDialog::secondStatckWidget()
     m_ui->confirmButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->agreementButton->setStyleSheet(MusicUIObject::MPushButtonStyle05);
+    m_ui->agreementCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+#ifdef Q_OS_UNIX
+    m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->agreementButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->agreementCheckBox->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -288,6 +312,11 @@ void MusicUserDialog::thirdStatckWidget()
     m_ui->verificationCodeEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->confirmButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->cancelButton_2->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+
+#ifdef Q_OS_UNIX
+    m_ui->confirmButton_2->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton_2->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_ui->confirmButton_2->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton_2->setCursor(QCursor(Qt::PointingHandCursor));

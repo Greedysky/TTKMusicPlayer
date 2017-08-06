@@ -8,34 +8,40 @@
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      ui(new Ui::MusicDownloadResetWidget)
+      m_ui(new Ui::MusicDownloadResetWidget)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     m_parentClass = parent;
 
-    ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
-    ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
     setAttribute(Qt::WA_DeleteOnClose);
 
-    ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    ui->openDetailButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-    ui->openDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_ui->openDetailButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    m_ui->openDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
 
-    connect(ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
-    connect(ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
-    connect(ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
+#ifdef Q_OS_UNIX
+    m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openDetailButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openDirButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(restartToDownload()));
+    connect(m_ui->openDetailButton, SIGNAL(clicked()), SLOT(openDetailInfo()));
+    connect(m_ui->openDirButton, SIGNAL(clicked()), SLOT(openFileLocation()));
     connect(this, SIGNAL(openStackedDownloadWidget()), MusicLeftAreaWidget::instance(),
                   SLOT(musicStackedMyDownWidgetChanged()));
 }
 
 MusicDownloadResetWidget::~MusicDownloadResetWidget()
 {
-    delete ui;
+    delete m_ui;
 }
 
 QString MusicDownloadResetWidget::getClassName()
@@ -50,7 +56,7 @@ void MusicDownloadResetWidget::setSongName(const QString &name)
 
 void MusicDownloadResetWidget::show()
 {
-    setBackgroundPixmap(ui->background, size());
+    setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveWidget::show();
 }
 

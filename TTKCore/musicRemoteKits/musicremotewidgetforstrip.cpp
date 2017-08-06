@@ -28,10 +28,17 @@ MusicRemoteWidgetForStrip::MusicRemoteWidgetForStrip(QWidget *parent)
     m_listButton = new QPushButton(this);
     m_windowStateButton = new QPushButton(this);
     m_closeButton = new QToolButton(this);
+#ifdef Q_OS_UNIX
+    m_lrcButton->setFocusPolicy(Qt::NoFocus);
+    m_wallPaperButton->setFocusPolicy(Qt::NoFocus);
+    m_listButton->setFocusPolicy(Qt::NoFocus);
+    m_windowStateButton->setFocusPolicy(Qt::NoFocus);
+    m_closeButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_closeButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_songNameLabel->setStyleSheet(MusicUIObject::MWidgetStyle01);
-    m_closeButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_closeButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_lrcButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcOff);
     m_wallPaperButton->setStyleSheet(MusicUIObject::MKGTinyBtnWallpaperOff);
     m_listButton->setStyleSheet(MusicUIObject::MKGTinyBtnList);

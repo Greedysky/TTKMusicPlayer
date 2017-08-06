@@ -36,7 +36,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -84,6 +84,12 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 
     m_recordCore = new MusicAudioRecorderCore(this);
     m_ui->transferButton->setAudioCore(m_recordCore);
+
+#ifdef Q_OS_UNIX
+    m_ui->stateButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->winTipsButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     connect(m_ui->winTipsButton, SIGNAL(clicked()), SLOT(tipsButtonChanged()));
     connect(m_ui->stateButton, SIGNAL(clicked()), SLOT(stateButtonChanged()));

@@ -18,7 +18,7 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -39,6 +39,11 @@ MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)
     connect(m_ui->eqChoice, SIGNAL(currentIndexChanged(int)), SLOT(eqChoiceIndexChanged(int)));
 
     m_ui->showEqButton->setStyleSheet(MusicUIObject::MKGEqualizerOff);
+
+#ifdef Q_OS_UNIX
+    m_ui->showEqButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->resetButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     setControlEnable(false);
     initEqualizeValue();

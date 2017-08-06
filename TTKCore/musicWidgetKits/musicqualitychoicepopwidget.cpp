@@ -148,7 +148,7 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
 
     initWidget();
 
-    setStyleSheet(MusicUIObject::MToolButtonStyle04 + MusicUIObject::MKGBtnQuality +
+    setStyleSheet(MusicUIObject::MToolButtonStyle05 + MusicUIObject::MKGBtnQuality +
                   "QToolButton{ margin-left:-45px;}" );
 }
 

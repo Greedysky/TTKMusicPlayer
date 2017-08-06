@@ -64,6 +64,14 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     connect(settingButton, SIGNAL(clicked()), parent, SIGNAL(changeCurrentLrcColorSetting()));
     settingButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + MusicUIObject::MPushButtonStyle08);
     settingButton->setGeometry(15, 175, 60, 22);
+
+#ifdef Q_OS_UNIX
+    sizeBigerButton->setFocusPolicy(Qt::NoFocus);
+    sizeSmallerButton->setFocusPolicy(Qt::NoFocus);
+    musicBgButton->setFocusPolicy(Qt::NoFocus);
+    artBgButton->setFocusPolicy(Qt::NoFocus);
+    settingButton->setFocusPolicy(Qt::NoFocus);
+#endif
 }
 
 QString MusicLrcFloatSettingWidget::getClassName()
@@ -90,6 +98,9 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
     }
     button->setGeometry(80 + index*20, 25, 16, 16);
     button->setCursor(QCursor(Qt::PointingHandCursor));
+#ifdef Q_OS_UNIX
+    button->setFocusPolicy(Qt::NoFocus);
+#endif
     return button;
 }
 

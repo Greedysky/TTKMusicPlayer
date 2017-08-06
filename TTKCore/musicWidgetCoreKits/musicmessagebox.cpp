@@ -14,7 +14,7 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     m_status = 0;
     ////////////////////////////////////////////////
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
 
@@ -22,6 +22,11 @@ MusicMessageBox::MusicMessageBox(QWidget *parent)
     m_ui->cancelButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancelButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     QFont f = font();
     f.setFamily("Times New Roman");

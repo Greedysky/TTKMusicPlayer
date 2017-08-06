@@ -15,6 +15,14 @@ MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     m_download = new QPushButton(tr(" Download"), this);
     m_share = new QPushButton(tr(" Share"), this);
 
+#ifdef Q_OS_UNIX
+    m_search->setFocusPolicy(Qt::NoFocus);
+    m_fresh->setFocusPolicy(Qt::NoFocus);
+    m_fullscreen->setFocusPolicy(Qt::NoFocus);
+    m_download->setFocusPolicy(Qt::NoFocus);
+    m_share->setFocusPolicy(Qt::NoFocus);
+#endif
+
     m_search->setGeometry(15, 10, 80, 20);
     m_fresh->setGeometry(15, 50, 80, 20);
     m_fullscreen->setGeometry(15, 90, 80, 20);

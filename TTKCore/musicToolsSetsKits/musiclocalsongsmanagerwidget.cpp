@@ -23,7 +23,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -88,6 +88,18 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_ui->showlistButton, SIGNAL(clicked()), SLOT(setShowlistButton()));
     connect(m_ui->showArtButton, SIGNAL(clicked()), SLOT(setShowArtButton()));
     connect(m_ui->showAlbumButton, SIGNAL(clicked()), SLOT(setShowAlbumButton()));
+
+#ifdef Q_OS_UNIX
+    m_ui->scanButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->scanCustButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->showlistButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->showArtButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->showAlbumButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->allSelectedcheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->watchDirCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->watchDirButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
+#endif
 
     addDrivesList();
     watchDirEnable(false);

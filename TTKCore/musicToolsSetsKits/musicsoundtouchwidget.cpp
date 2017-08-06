@@ -19,7 +19,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle03);
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -42,6 +42,14 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_ui->transformButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     connect(m_ui->playWavButton, SIGNAL(clicked()), SLOT(onRecordPlay()));
     connect(m_ui->transformButton, SIGNAL(clicked()), SLOT(transformButtonClicked()));
+
+#ifdef Q_OS_UNIX
+    m_ui->playButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->stopButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->openButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->playWavButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->transformButton->setFocusPolicy(Qt::NoFocus);
+#endif
 
     m_process = new QProcess(this);
     m_process->setProcessChannelMode(QProcess::MergedChannels);
