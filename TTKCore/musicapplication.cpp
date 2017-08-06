@@ -1086,8 +1086,9 @@ void MusicApplication::readXMLConfigFromText()
     ////////////////////////musicSetting
     //////////////////////////////////////////////////////////////
     //Set the inline lrc should be shown
-    value = xml.readShowInlineLrc();
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, value);
+//    value = xml.readShowInlineLrc();
+    //Set inline lrc mode always on
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, true);
     m_rightAreaWidget->setInlineLrcVisible(value);
     //////////////////////////////////////////////////////////////
     //Set the desktop lrc should be shown
