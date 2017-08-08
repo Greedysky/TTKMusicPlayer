@@ -9,17 +9,17 @@
  * works are strictly forbiden.
    =================================================*/
 
-//update time 2017.07.20
-#define TTKMUSIC_VERSION_STR    "2.5.2.0"
-#define TTKMUSIC_VERSION_STRW   L"2.5.2.0"
-#define TTKMUSIC_VER_TIME_STR   "(2017/07/20)"
+//update time 2017.08.08
+#define TTKMUSIC_VERSION_STR    "2.5.3.0"
+#define TTKMUSIC_VERSION_STRW   L"2.5.3.0"
+#define TTKMUSIC_VER_TIME_STR   "(2017/08/08)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
 #define TTKMUSIC_MIDLE_VERSION 5
-#define TTKMUSIC_MINOR_VERSION 2
+#define TTKMUSIC_MINOR_VERSION 3
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02520
+#define TTKMUSIC_VERSION 0x02530
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 
