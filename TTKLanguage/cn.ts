@@ -34,37 +34,37 @@
         <translation> 盖世英雄 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="242"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="250"/>
         <source> RadioPublic </source>
         <translation> 公共电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="245"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="253"/>
         <source> RadioHigh </source>
         <translation> 高潮电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="248"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="256"/>
         <source> RadioFx </source>
         <translation> 真人电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="251"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="259"/>
         <source> RadioHome </source>
         <translation> 网友电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="318"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="326"/>
         <source> MVRadio </source>
         <translation> MV电台 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="321"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="329"/>
         <source> MVRecommend </source>
         <translation> MV推荐 </translation>
     </message>
     <message>
-        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="324"/>
+        <location filename="../TTKThirdParty/MusicExtras/qkugou/kugouwindow.cpp" line="332"/>
         <source> MVFanxing </source>
         <translation> 繁星MV </translation>
     </message>
@@ -510,7 +510,7 @@
         <translation>保存录音</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicaudiorecorderwidget.cpp" line="176"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicaudiorecorderwidget.cpp" line="188"/>
         <source>choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>
@@ -694,13 +694,13 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="89"/>
-        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="96"/>
+        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="94"/>
+        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="101"/>
         <source>Downloaded</source>
         <translation>已下载</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="91"/>
+        <location filename="../TTKCore/musicToolsKits/musiccloudfilemanagerdialog.cpp" line="96"/>
         <source>Uploaded</source>
         <translation>已上传</translation>
     </message>
@@ -771,7 +771,7 @@
 <context>
     <name>MusicCloudSharedSongWidget</name>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musiccloudsharedsongwidget.cpp" line="461"/>
+        <location filename="../TTKCore/musicToolsKits/musiccloudsharedsongwidget.cpp" line="464"/>
         <source>Init Error!</source>
         <translation>初始化错误!</translation>
     </message>
@@ -794,39 +794,39 @@
         <translation>无线连接</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="92"/>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="131"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="97"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="141"/>
         <source>&lt; back</source>
         <translation>&lt; 返回</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="106"/>
         <source>use Wired Mode</source>
         <translation>使用数据线连接</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="103"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="108"/>
         <source>android phone open usb debug</source>
         <translation>安卓手机请打开USB调试</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="106"/>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="149"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="111"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="159"/>
         <source>transfer</source>
         <translation>传输文件</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="137"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="147"/>
         <source>use mobile app to connect</source>
         <translation>手机扫码连接</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="144"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="154"/>
         <source>	1. client and app must in the same wifi</source>
         <translation>	1. 手机和客户端在同一WIFI网络下</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="146"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnectmobilewidget.cpp" line="156"/>
         <source>	2. use scanning by mobile app</source>
         <translation>	2. 使用手机扫一扫二维码</translation>
     </message>
@@ -862,8 +862,8 @@
     </message>
     <message>
         <location filename="../TTKCore/musicUiKits/musicToolsKits/musicconnecttransferwidget.ui" line="282"/>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="277"/>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="278"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="289"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="290"/>
         <source>wifi</source>
         <translation>切换至WIFI传输</translation>
     </message>
@@ -874,32 +874,32 @@
     </message>
     <message>
         <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="37"/>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="194"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="206"/>
         <source>allselected</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="194"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="206"/>
         <source>allcanceled</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="243"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="255"/>
         <source>the ip address is incorrect!</source>
         <translation>输入的IP地址不正确!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="278"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="290"/>
         <source>mobile</source>
         <translation>切换至移动传输</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="138"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="150"/>
         <source>please select one item</source>
         <translation>请选择一首歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="214"/>
+        <location filename="../TTKCore/musicToolsKits/musicconnecttransferwidget.cpp" line="226"/>
         <source>Copy File Mode</source>
         <translation>正在复制文件请稍候.</translation>
     </message>
@@ -1002,52 +1002,52 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="109"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="121"/>
         <source>none</source>
         <translation>无效果</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
         <source>center</source>
         <translation>居中</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
         <source>tile</source>
         <translation>平铺</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="110"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
         <source>drawing</source>
         <translation>拉伸</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="111"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="123"/>
         <source>order</source>
         <translation>顺序播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="111"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="123"/>
         <source>random</source>
         <translation>随机播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="115"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="127"/>
         <source>%1H</source>
         <translation>%1时</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="119"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="131"/>
         <source>%1M</source>
         <translation>%1分</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="120"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="132"/>
         <source>%1S</source>
         <translation>%1秒</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="173"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="185"/>
         <source>url is now empty!</source>
         <translation>输入的路径不能为空！</translation>
     </message>
@@ -1255,39 +1255,39 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="281"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="286"/>
         <source>ST</source>
         <translation>流畅品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="293"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="298"/>
         <source>HQ</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="299"/>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="348"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="304"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="353"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="414"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="419"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="342"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="347"/>
         <source>HD</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="287"/>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="336"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="292"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="341"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="305"/>
+        <location filename="../TTKCore/musicWidgetKits/musicdownloadwidget.cpp" line="310"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -1632,12 +1632,12 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicfileinformationwidget.cpp" line="68"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicfileinformationwidget.cpp" line="75"/>
         <source>The origin one does not exist!</source>
         <translation>您所指定的文件已被移动或者不存在！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicfileinformationwidget.cpp" line="188"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicfileinformationwidget.cpp" line="195"/>
         <source>Save Successfully!</source>
         <translation>保存成功！</translation>
     </message>
@@ -1692,18 +1692,18 @@
         <translation>快捷键:</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="418"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="428"/>
         <source>No Songs Identified</source>
         <translation>没有识别的歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="419"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="429"/>
         <source>Only The Music Being Played Can Be Recognized</source>
         <translation>只有正在播放的歌曲才能被检测哦</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="391"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="420"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="401"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicidentifysongswidget.cpp" line="430"/>
         <source>Redetect</source>
         <translation>重新检测</translation>
     </message>
@@ -1895,33 +1895,33 @@
     </message>
     <message>
         <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="35"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="132"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="144"/>
         <source>allselected</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="430"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="442"/>
         <source>Overall</source>
         <translation>全盘扫描</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="138"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="150"/>
         <source>allcanceled</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="423"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="435"/>
         <source>showSongCount%1</source>
         <translation> 本地音乐文件（%1）</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="474"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="486"/>
         <source>please select one dirver</source>
         <translation>请选择某一个盘符</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="190"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="208"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="202"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musiclocalsongsmanagerwidget.cpp" line="220"/>
         <source>please select one item</source>
         <translation>请选择一首歌曲</translation>
     </message>
@@ -2003,7 +2003,7 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcartphotouploadwidget.cpp" line="87"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcartphotouploadwidget.cpp" line="93"/>
         <source>the art is empty!</source>
         <translation>输入的歌手为空!</translation>
     </message>
@@ -2078,17 +2078,17 @@
 <context>
     <name>MusicLrcCommentsWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="207"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="211"/>
         <source>Send</source>
         <translation>发送</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="349"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="358"/>
         <source>&lt;span style=&apos;font-size:15pt;color:#AAAAAA;font-style:bold;&apos;&gt;&quot;%1&quot; Commit&lt;/span&gt;&lt;span style=&apos;font-size:11pt;color:#666666;font-style:bold;&apos;&gt; (Just %2 Commits)&lt;/span&gt;</source>
         <translation>&lt;span style=&apos;font-size:15pt;color:#AAAAAA;font-style:bold;&apos;&gt;&quot;%1&quot; 的评论&lt;/span&gt;&lt;span style=&apos;font-size:11pt;color:#666666;font-style:bold;&apos;&gt; (已有 %2 条评论)&lt;/span&gt;</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="352"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccommentswidget.cpp" line="361"/>
         <source>All Comments(%1)</source>
         <translation>全部评论(%1)</translation>
     </message>
@@ -2096,54 +2096,54 @@
 <context>
     <name>MusicLrcContainerForDesktop</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="321"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="416"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="324"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="419"/>
         <source>hide</source>
         <translation>关闭歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="322"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="417"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="325"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="420"/>
         <source>lockLrc</source>
         <translation>锁定桌面歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="323"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="326"/>
         <source>lrcBiger</source>
         <translation>放大歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="324"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="327"/>
         <source>lrcSmaller</source>
         <translation>缩小歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="409"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="412"/>
         <source>updateLrc</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="325"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="328"/>
         <source>Previous</source>
         <translation>上一曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="326"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="329"/>
         <source>Next</source>
         <translation>下一曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="328"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="331"/>
         <source>Play</source>
         <translation>播放/暂停</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="327"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="330"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="320"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="323"/>
         <source>showMainWindow</source>
         <translation>打开主窗口</translation>
     </message>
@@ -2193,48 +2193,48 @@
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="405"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="408"/>
         <source>changColorMenu</source>
         <translation>配色方案</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="408"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="411"/>
         <source>searchLrcs</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="410"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="413"/>
         <source>makeLrc</source>
         <translation>歌词制作</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="411"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="414"/>
         <source>SingleLine</source>
         <translation>单行歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="411"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="414"/>
         <source>DoubleLine</source>
         <translation>双行歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="414"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="415"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="417"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="418"/>
         <source>localLinkOff</source>
         <translation>取消关联</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="415"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="418"/>
         <source>localLinkOn</source>
         <translation>打开关联</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="417"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="420"/>
         <source>unlockLrc</source>
         <translation>解锁桌面歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="422"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerfordesktop.cpp" line="425"/>
         <source>customSetting</source>
         <translation>设置</translation>
     </message>
@@ -2244,13 +2244,13 @@
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="63"/>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="149"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="833"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="840"/>
         <source>noCurrentSongPlay</source>
         <translation>当前没有正在播放的歌曲哦</translation>
     </message>
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="137"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="828"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="835"/>
         <source>unFoundLrc</source>
         <translation>还没有到相应的歌词文件哦</translation>
     </message>
@@ -2312,22 +2312,22 @@
         <translation>已还原</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="692"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="699"/>
         <source>Translation</source>
         <translation>歌词翻译</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="693"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="700"/>
         <source>MV</source>
         <translation type="unfinished">MV视频</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="694"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="701"/>
         <source>KMicro</source>
         <translation>K歌</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="695"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrccontainerforinline.cpp" line="702"/>
         <source>Message</source>
         <translation>歌曲评论</translation>
     </message>
@@ -2606,17 +2606,17 @@ p, li { white-space: pre-wrap; }
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="82"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="90"/>
         <source>you can now input</source>
         <translation>你还能够输入字</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="82"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="90"/>
         <source>word</source>
         <translation>字</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="90"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcerrorwidget.cpp" line="98"/>
         <source>report error finished</source>
         <translation>报错成功！</translation>
     </message>
@@ -2624,12 +2624,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcFloatPhotoItem</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="89"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="92"/>
         <source>choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="104"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="107"/>
         <source>Export</source>
         <translation>导出</translation>
     </message>
@@ -2637,12 +2637,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcFloatPhotoWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="132"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="135"/>
         <source>All</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="137"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatphotowidget.cpp" line="140"/>
         <source>Confirm</source>
         <translation>确定</translation>
     </message>
@@ -2701,27 +2701,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcFloatWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="21"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="22"/>
         <source> Update</source>
         <translation>更新歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="22"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="23"/>
         <source> Search</source>
         <translation>搜索歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="23"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="24"/>
         <source> More</source>
         <translation>更多选项</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="24"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="25"/>
         <source> Wallp</source>
         <translation>投影壁纸</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="25"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcfloatwidget.cpp" line="26"/>
         <source> Photo</source>
         <translation>选择写真</translation>
     </message>
@@ -2780,23 +2780,23 @@ p, li { white-space: pre-wrap; }
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="168"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="190"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="176"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="198"/>
         <source>please select one item</source>
         <translation>请选择一个歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="183"/>
         <source>Remove select lrc %1</source>
         <translation>移除歌词%1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="183"/>
         <source>success</source>
         <translation>成功</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrclocallinkwidget.cpp" line="183"/>
         <source>failed</source>
         <translation>失败</translation>
     </message>
@@ -2870,8 +2870,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="306"/>
         <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="315"/>
         <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="316"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="563"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="642"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="566"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="658"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
@@ -2952,8 +2952,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="306"/>
         <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="316"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="563"/>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="642"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="566"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="658"/>
         <source>Stop</source>
         <translation>暂停</translation>
     </message>
@@ -2963,27 +2963,27 @@ p, li { white-space: pre-wrap; }
         <translation>歌词还没有制作完成!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="644"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="660"/>
         <source>Before 1s</source>
         <translation>延后1秒</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="645"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="661"/>
         <source>After 1s</source>
         <translation>提前1秒</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="674"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="699"/>
         <source>Art name is empty!</source>
         <translation>歌手不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="679"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="704"/>
         <source>song name is empty!</source>
         <translation>歌曲名不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="684"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcmakerwidget.cpp" line="709"/>
         <source>lrc text is empty!</source>
         <translation>歌词内容不能为空！</translation>
     </message>
@@ -3060,32 +3060,32 @@ p, li { white-space: pre-wrap; }
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="66"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="73"/>
         <source>lrc is searching finished!</source>
         <translation>歌词搜索完毕！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="71"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="78"/>
         <source>lrc is searching now!</source>
         <translation>正在搜索歌词！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="94"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="101"/>
         <source>lrc is downloading now!</source>
         <translation>正在下载歌词！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="85"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="92"/>
         <source>Please Select One Item First!</source>
         <translation>请选择某一条记录！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="74"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="81"/>
         <source>&amp;nbsp;find &lt;font color=#80B7F1&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;搜索到 &lt;font color=#80B7F1&gt; %1 &lt;/font&gt; 的相关歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcsearchwidget.cpp" line="108"/>
         <source>lrc download finished!</source>
         <translation>歌词下载完毕！</translation>
     </message>
@@ -3121,7 +3121,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicmessageaboutdialog.cpp" line="39"/>
+        <location filename="../TTKCore/musicWidgetKits/musicmessageaboutdialog.cpp" line="42"/>
         <source>Counter: %1</source>
         <translation>软件启动次数: %1</translation>
     </message>
@@ -3249,8 +3249,8 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKCore/musicUiKits/musicToolsetsKits/musicnetworkconnectiontestwidget.ui" line="116"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="201"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="214"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="204"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="217"/>
         <source>startTest</source>
         <translation>开始检测</translation>
     </message>
@@ -3260,32 +3260,32 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="127"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="130"/>
         <source>Check www Visit</source>
         <translation>检测 WWW访问</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="134"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="137"/>
         <source>Check Normal Visit</source>
         <translation>检测 普通网址访问</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="141"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="144"/>
         <source>Check Vip Visit</source>
         <translation>检测 VIP网址访问</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="148"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="151"/>
         <source>Check Download Visit</source>
         <translation>检测 文件下载</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="155"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="158"/>
         <source>Check Server Visit</source>
         <translation>检测 服务器访问</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="192"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkconnectiontestwidget.cpp" line="195"/>
         <source>stopTest</source>
         <translation>停止检测</translation>
     </message>
@@ -3365,7 +3365,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkspeedtestwidget.cpp" line="179"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicnetworkspeedtestwidget.cpp" line="184"/>
         <source>Average is %1 kb/s</source>
         <translation>平均下载速度为 %1 kb/s</translation>
     </message>
@@ -3453,7 +3453,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>清空队列</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="291"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplayedlistpopwidget.cpp" line="296"/>
         <source>closeList</source>
         <translation>收起播放队列</translation>
     </message>
@@ -3461,7 +3461,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPlaylistFoundCategoryPopWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundcategorypopwidget.cpp" line="125"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundcategorypopwidget.cpp" line="124"/>
         <source>All</source>
         <translation>全部</translation>
     </message>
@@ -3510,7 +3510,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="209"/>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="245"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="252"/>
         <source>songItems</source>
         <translation>歌曲列表</translation>
     </message>
@@ -3520,22 +3520,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>歌单描述</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="305"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="312"/>
         <source>all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="306"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="313"/>
         <source>play</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="311"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="318"/>
         <source>add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="314"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundinfowidget.cpp" line="321"/>
         <source>download</source>
         <translation>下载</translation>
     </message>
@@ -3543,7 +3543,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPlaylistFoundItemWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="77"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="82"/>
         <source>%1Thous</source>
         <translation>%1万</translation>
     </message>
@@ -3551,22 +3551,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicPlaylistFoundWidget</name>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="203"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="208"/>
         <source>Recommend</source>
         <translation>推荐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="203"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="208"/>
         <source>Top</source>
         <translation>飙升</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="203"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="208"/>
         <source>Hot</source>
         <translation>最热</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="203"/>
+        <location filename="../TTKCore/musicWidgetKits/musicplaylistfoundwidget.cpp" line="208"/>
         <source>New</source>
         <translation>最新</translation>
     </message>
@@ -3675,73 +3675,73 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicRemoteWidget</name>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="35"/>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="176"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="43"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="184"/>
         <source>showMainWindow</source>
         <translation>打开主窗口</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="36"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="44"/>
         <source>Previous</source>
         <translation>上一曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="37"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="45"/>
         <source>Next</source>
         <translation>下一曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="38"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="46"/>
         <source>Play</source>
         <translation>播放/暂停</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="39"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="47"/>
         <source>showSetting</source>
         <translation>选项设置</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="183"/>
         <source>WindowTop</source>
         <translation>界面总在最前面</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="179"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="187"/>
         <source>CircleRemote</source>
         <translation>圆形遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="182"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="190"/>
         <source>SquareRemote</source>
         <translation>正方形遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="185"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="193"/>
         <source>RectangleRemote</source>
         <translation>长方形遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="188"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="196"/>
         <source>SimpleStyleRemote</source>
         <translation>简约遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="191"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="199"/>
         <source>ComplexStyleRemote</source>
         <translation>时尚遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="194"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="202"/>
         <source>DiamondRemote</source>
         <translation>菱形遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="197"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="205"/>
         <source>RipplesRemote</source>
         <translation>个性遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="200"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidget.cpp" line="208"/>
         <source>quit</source>
         <translation>退出</translation>
     </message>
@@ -3749,48 +3749,48 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicRemoteWidgetForStrip</name>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="40"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="47"/>
         <source>Lrc</source>
         <translation>歌词</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="41"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="48"/>
         <source>WallPaper</source>
         <translation>壁纸</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="42"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="49"/>
         <source>List</source>
         <translation>列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="43"/>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="114"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="50"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="121"/>
         <source>Collapse</source>
         <translation>收起遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="44"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="51"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="114"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="121"/>
         <source>Expand</source>
         <translation>展开遥控器</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="134"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="141"/>
         <source>WindowTop</source>
         <translation>界面总在最前面</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="135"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="142"/>
         <source>showMainWindow</source>
         <translation>打开主窗口</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="136"/>
+        <location filename="../TTKCore/musicRemoteKits/musicremotewidgetforstrip.cpp" line="143"/>
         <source>quit</source>
         <translation>退出</translation>
     </message>
@@ -3866,210 +3866,210 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>网络设置</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="582"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="593"/>
         <source>0</source>
         <translation>中文简体</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="582"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="593"/>
         <source>1</source>
         <translation>中文繁體</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="582"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="593"/>
         <source>2</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="719"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="754"/>
         <source>IYellow</source>
         <translation>活力黄</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="719"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="754"/>
         <source>IBlue</source>
         <translation>清爽蓝</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="719"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="754"/>
         <source>IGray</source>
         <translation>高雅灰</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="720"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="755"/>
         <source>IPink</source>
         <translation>可爱粉</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="720"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="755"/>
         <source>IGreen</source>
         <translation>田野绿</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="720"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="755"/>
         <source>IRed</source>
         <translation>热血红</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="720"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="755"/>
         <source>IPurple</source>
         <translation>魅力紫</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="721"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="756"/>
         <source>IOrange</source>
         <translation>欢乐橙</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="721"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="756"/>
         <source>IIndigo</source>
         <translation>松柏青</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="688"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="728"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="719"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="763"/>
         <source>No</source>
         <translation>未播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="689"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="729"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="720"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="764"/>
         <source>Yes</source>
         <translation>已播放</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="680"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="711"/>
         <source>DWhite</source>
         <translation>松柏青</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="680"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="711"/>
         <source>DBlue</source>
         <translation>海洋蓝</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="680"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="711"/>
         <source>DRed</source>
         <translation>火焰红</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="681"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="712"/>
         <source>DBlack</source>
         <translation>酷炫黑</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="681"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="712"/>
         <source>DYellow</source>
         <translation>秋色黄</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="681"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="712"/>
         <source>DPurple</source>
         <translation>浪漫紫</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="681"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="712"/>
         <source>DGreen</source>
         <translation>自然绿</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="635"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="666"/>
         <source>wangyiMusic</source>
         <translation>网易云音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="636"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="667"/>
         <source>qqMusic</source>
         <translation>腾讯音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="637"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="668"/>
         <source>xiamiMusic</source>
         <translation>虾米音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="638"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="669"/>
         <source>baiduMusic</source>
         <translation>百度音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="639"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="670"/>
         <source>kuwoMusic</source>
         <translation>酷我音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="640"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="671"/>
         <source>kuhouMusic</source>
         <translation>酷狗音乐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="792"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="842"/>
         <source>Track</source>
         <translation>音轨</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="793"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="843"/>
         <source>Album</source>
         <translation>专辑</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="794"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="844"/>
         <source>Disabled</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="820"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="875"/>
         <source>DefaultProxy</source>
         <translation>默认代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="820"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="875"/>
         <source>Socks5Proxy</source>
         <translation>Socks5代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="821"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="876"/>
         <source>NoProxy</source>
         <translation>不使用代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="821"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="876"/>
         <source>HttpProxy</source>
         <translation>Http代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="821"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="876"/>
         <source>HttpCachingProxy</source>
         <translation>HttpCaching代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="821"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="876"/>
         <source>FtpCachingProxy</source>
         <translation>FtpCaching代理</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="916"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="971"/>
         <source>proxy hostname is empty</source>
         <translation>代理地址不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="925"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="980"/>
         <source>proxy port is empty</source>
         <translation>代理端口不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="436"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="439"/>
         <source>Test Successed!</source>
         <translation>测试成功！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="436"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="439"/>
         <source>Test Failed!</source>
         <translation>测试失败！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="456"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="457"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="459"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsettingwidget.cpp" line="460"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -4649,7 +4649,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsimilarfoundwidget.cpp" line="150"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsimilarfoundwidget.cpp" line="157"/>
         <source>Other &quot;&lt;font color=#169AF3&gt; %1 &lt;/font&gt;&quot; things</source>
         <translation>包含 &quot;&lt;font color=#169AF3&gt; %1 &lt;/font&gt;&quot; 的歌单</translation>
     </message>
@@ -5034,7 +5034,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsonglistsharingwidget.cpp" line="76"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsonglistsharingwidget.cpp" line="82"/>
         <source>Copy Finished!</source>
         <translation>复制成功!</translation>
     </message>
@@ -5128,45 +5128,45 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="101"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="109"/>
         <source>SongName: %1 ( %2, %3, %4)</source>
         <translation>歌曲名: %1 ( %2, %3, %4)</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="106"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="114"/>
         <source>Open File Error!</source>
         <translation>文件打开失败!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="147"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="182"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="218"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="155"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="190"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="226"/>
         <source>Stop</source>
         <translation>暂停歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="159"/>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="222"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="167"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="230"/>
         <source>Play</source>
         <translation>播放歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="180"/>
         <source>Begin: </source>
         <translation>起点: </translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="173"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="181"/>
         <source>End: </source>
         <translation>终点: </translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="174"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="182"/>
         <source>Ring Info.	Cut Length: %1</source>
         <translation>铃声信息.	截取长度: %1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="192"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsongringtonemakerwidget.cpp" line="200"/>
         <source>Lack of plugin file!</source>
         <translation>缺少相应的插件文件！</translation>
     </message>
@@ -5204,22 +5204,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>&amp;nbsp;没有搜到相关内容</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="534"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="541"/>
         <source>Song</source>
         <translation>歌曲名</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="540"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="547"/>
         <source>Artist</source>
         <translation>艺术家</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="546"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="553"/>
         <source>Operator</source>
         <translation>相关操作</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="567"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="574"/>
         <source>&amp;nbsp;find &lt;font color=#80B7F1&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;搜索到 &lt;font color=#80B7F1&gt; %1 &lt;/font&gt; 的相关歌曲</translation>
     </message>
@@ -5295,28 +5295,28 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="58"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="69"/>
         <source>I used to listen music #%1# by TTKMusicPlayer,</source>
         <translation>我正在用天天酷音听 #%1#， </translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="59"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="70"/>
         <source>and recommend it to you! (From #TTKMusicPlayer#)</source>
         <translation>推荐给你们！（来自#天天酷音#）</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="101"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="109"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="112"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="120"/>
         <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="91"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="102"/>
         <source>Song does not support sharing!</source>
         <translation>该歌曲暂时不支持分享！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="157"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongsharingwidget.cpp" line="168"/>
         <source>You can enter %1 characters</source>
         <translation>你还能输入%1个字符</translation>
     </message>
@@ -5430,37 +5430,37 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>更多</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="146"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="155"/>
         <source>addToList</source>
         <translation>添加到列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="147"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="156"/>
         <source>musicCloud</source>
         <translation>网络收藏</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="149"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="158"/>
         <source>songToMobile</source>
         <translation>传歌到移动设备</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="150"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="159"/>
         <source>ringToMobile</source>
         <translation>传铃声到移动设备</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="151"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="160"/>
         <source>similar</source>
         <translation>相似歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="152"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="161"/>
         <source>songShare</source>
         <translation>分享</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="153"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsongslistplaywidget.cpp" line="162"/>
         <source>KMicro</source>
         <translation>K歌</translation>
     </message>
@@ -5754,92 +5754,92 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>列表菜单</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="163"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="169"/>
         <source>addNewItem</source>
         <translation>新建列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="166"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="172"/>
         <source>addNewFiles</source>
         <translation>添加歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="169"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="175"/>
         <source>openOnlyFiles</source>
         <translation>添加本地歌曲</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="170"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="176"/>
         <source>openOnlyDir</source>
         <translation>添加本地歌曲文件夹</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="178"/>
         <source>playLater</source>
         <translation>稍后播</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="173"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="179"/>
         <source>addToPlayList</source>
         <translation>添加到播放队列</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="174"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="180"/>
         <source>sort</source>
         <translation>排序</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="181"/>
         <source>sortByFileName</source>
         <translation>按文件名</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="176"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="182"/>
         <source>sortBySinger</source>
         <translation>按歌手</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="177"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="183"/>
         <source>sortByFileSize</source>
         <translation>按文件大小</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="178"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="184"/>
         <source>sortByAddTime</source>
         <translation>按添加时间</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="179"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="185"/>
         <source>sortByPlayTime</source>
         <translation>按歌曲时长</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="180"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="186"/>
         <source>sortByPlayCount</source>
         <translation>按播放次数</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="193"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="199"/>
         <source>collectAll</source>
         <translation>收藏整个列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="194"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="200"/>
         <source>exportList</source>
         <translation>导出列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="198"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="204"/>
         <source>deleteAll</source>
         <translation>列表清空</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="199"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="205"/>
         <source>deleteItem</source>
         <translation>删除列表</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="200"/>
+        <location filename="../TTKCore/musicToolsKits/musicsongstoolboxwidget.cpp" line="206"/>
         <source>changItemName</source>
         <translation>重命名</translation>
     </message>
@@ -5858,12 +5858,12 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
     </message>
     <message>
         <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="46"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="116"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="121"/>
         <source>On</source>
         <translation>开启</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="108"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="113"/>
         <source>Off</source>
         <translation>关闭</translation>
     </message>
@@ -5912,34 +5912,34 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="172"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="177"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="187"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="192"/>
         <source>OperatorAll</source>
         <translation>操作全部</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="187"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="192"/>
         <source>All On</source>
         <translation>全部启用</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="187"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="192"/>
         <source>All Off</source>
         <translation>全部关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="235"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="250"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="244"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="259"/>
         <source>Off</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="239"/>
-        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="250"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="248"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsoundeffectswidget.cpp" line="259"/>
         <source>On</source>
         <translation>开启</translation>
     </message>
@@ -5983,12 +5983,12 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>消除噪音</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="57"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="62"/>
         <source>Input</source>
         <translation>音频输入</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="78"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrosettingpopwidget.cpp" line="83"/>
         <source>Output</source>
         <translation>音频输出</translation>
     </message>
@@ -6021,22 +6021,22 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="169"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="175"/>
         <source>Record Finished</source>
         <translation>录音成功</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="181"/>
         <source>choose a filename to save under</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="295"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="301"/>
         <source>Recording Now, Stop It?</source>
         <translation>正在录音, 是否停止?</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="311"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="317"/>
         <source>Input Error</source>
         <translation>音频输入错误</translation>
     </message>
@@ -6110,17 +6110,17 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="86"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="94"/>
         <source>Lack of plugin file!</source>
         <translation>缺少相应的插件文件！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="147"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="155"/>
         <source>choose a filename to open under</source>
         <translation>请选择WAV文件</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="178"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musicsoundtouchwidget.cpp" line="186"/>
         <source>Transform wav file error!</source>
         <translation>转换WAV的时候出错了!</translation>
     </message>
@@ -6138,7 +6138,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="91"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="96"/>
         <source>New Version Found</source>
         <translation>发现了新版本</translation>
     </message>
@@ -6202,32 +6202,32 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="109"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="114"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="167"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="175"/>
         <source>Current version is updated!</source>
         <translation>当前版本已是最新!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="175"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="183"/>
         <source>Speed: %1</source>
         <translation>传送速率: %1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="176"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="184"/>
         <source>Left: %1</source>
         <translation>估计剩余时间: %1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="181"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="189"/>
         <source>FileSize: %1</source>
         <translation>文件大小: %1</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="190"/>
+        <location filename="../TTKCore/musicWidgetKits/musicsourceupdatewidget.cpp" line="198"/>
         <source>Download Finish, Install Or Not</source>
         <translation>下载完成,是否选择安装?</translation>
     </message>
@@ -6476,37 +6476,37 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="165"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="173"/>
         <source>%1H</source>
         <translation>%1时</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="169"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="177"/>
         <source>%1S</source>
         <translation>%1分</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="179"/>
         <source>once</source>
         <translation>仅一次</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="179"/>
         <source>evMonth</source>
         <translation>每月一次</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="179"/>
         <source>evWeek</source>
         <translation>每周一次</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="171"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="179"/>
         <source>evDay</source>
         <translation>每天</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="194"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictimerwidget.cpp" line="202"/>
         <source>defualt</source>
         <translation>默认列表</translation>
     </message>
@@ -6693,17 +6693,17 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="207"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="216"/>
         <source>the input is empty!</source>
         <translation>输入路径不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="218"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="227"/>
         <source>the out is empty!</source>
         <translation>输出路径不能为空！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="304"/>
+        <location filename="../TTKCore/musicToolsSetsKits/musictransformwidget.cpp" line="313"/>
         <source>Lack of plugin file!</source>
         <translation>缺少相应的插件文件！</translation>
     </message>
@@ -6846,59 +6846,59 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="97"/>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="151"/>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="168"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="104"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="158"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="175"/>
         <source>You entered is incorrect</source>
         <translation>请按要求填写！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="89"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="96"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>用户名不存在或密码不正确！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="122"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="129"/>
         <source>The two passwords do not match</source>
         <translation>两次输入的密码不一致！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="129"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="136"/>
         <source>The agreement does not tick</source>
         <translation>请阅读注册协议并打勾！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="138"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="145"/>
         <source>The username is existed</source>
         <translation>用户名已经存在!</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="143"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="150"/>
         <source>The register successfully</source>
         <translation>注册成功！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="175"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="182"/>
         <source>You mail is incorrect or user is not exist</source>
         <translation>邮箱用户名不正确！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="182"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="189"/>
         <source>You passwd is incorrect</source>
         <translation>密码格式不正确！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="189"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="196"/>
         <source>You verificationCode is incorrect</source>
         <translation>输入的验证码有误！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="196"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="203"/>
         <source>Change password successfully</source>
         <translation>修改密码成功！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="233"/>
+        <location filename="../TTKCore/musicUserKits/musicuserdialog.cpp" line="240"/>
         <source>This way of loading is now not supported</source>
         <translation>这个登录方式暂时还不支持！</translation>
     </message>
@@ -6951,17 +6951,17 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="64"/>
+        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="74"/>
         <source>Modifies</source>
         <translation>修改资料</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="65"/>
+        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="75"/>
         <source>Switches</source>
         <translation>切换账号</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="66"/>
+        <location filename="../TTKCore/musicUserKits/musicusermanagerdialog.cpp" line="76"/>
         <source>Spacing</source>
         <translation>音乐空间</translation>
     </message>
@@ -7147,32 +7147,32 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="204"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="214"/>
         <source>You verificationCode is incorrect</source>
         <translation>输入的验证码有误！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="211"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="221"/>
         <source>The origin password does not match</source>
         <translation>原密码不正确！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="218"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="228"/>
         <source>The two passwords do not match</source>
         <translation>两次输入的密码不一致！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="225"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="235"/>
         <source>The modity password failed</source>
         <translation>修改密码失败！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="234"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="244"/>
         <source>The modity password successfully, please relogin</source>
         <translation>修改密码成功，请重新登录！</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="240"/>
+        <location filename="../TTKCore/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
         <source>You entered is incorrect</source>
         <translation>请按要求填写！</translation>
     </message>
@@ -7185,7 +7185,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicUserKits/musicuserwindow.cpp" line="130"/>
+        <location filename="../TTKCore/musicUserKits/musicuserwindow.cpp" line="134"/>
         <source>L|R</source>
         <translation>登录|注册</translation>
     </message>
@@ -7198,7 +7198,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideobarragestylepopwidget.cpp" line="134"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideobarragestylepopwidget.cpp" line="140"/>
         <source>color</source>
         <translation>颜色</translation>
     </message>
@@ -7206,8 +7206,8 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicVideoControlWidget</name>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideocontrolwidget.cpp" line="136"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideocontrolwidget.cpp" line="166"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideocontrolwidget.cpp" line="139"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideocontrolwidget.cpp" line="169"/>
         <source>just one barrage!</source>
         <translation>嘿,骚年!来一发!</translation>
     </message>
@@ -7243,8 +7243,8 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
 <context>
     <name>MusicVideoPlayWidget</name>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="150"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="259"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="155"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="267"/>
         <source>windowTopOn</source>
         <translation>播放窗口置顶</translation>
     </message>
@@ -7254,37 +7254,37 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="132"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="137"/>
         <source>InlineMode</source>
         <translation>内嵌模式</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="94"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="132"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="294"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="299"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="99"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="137"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="302"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="307"/>
         <source>PopupMode</source>
         <translation>弹出模式</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="223"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="231"/>
         <source>Back</source>
         <translation>返回</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="305"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="307"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="313"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="315"/>
         <source>NormalMode</source>
         <translation>普通模式</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="159"/>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="305"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="167"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="313"/>
         <source>FullScreenMode</source>
         <translation>全屏模式</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="259"/>
+        <location filename="../TTKCore/musicVideoKits/musicvideoplaywidget.cpp" line="267"/>
         <source>windowTopOff</source>
         <translation>取消播放窗口置顶</translation>
     </message>
@@ -7501,7 +7501,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicToolsKits/musicwebmusicradiowidget.cpp" line="301"/>
+        <location filename="../TTKCore/musicToolsKits/musicwebmusicradiowidget.cpp" line="307"/>
         <source>unFoundLrc</source>
         <translation>未找到相应的歌词哦!</translation>
     </message>
