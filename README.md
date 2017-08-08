@@ -19,14 +19,12 @@ Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Gre
  * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
  * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
- * Qt develop version be tested on Qt5.5 for android 32bit
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
 | Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                            |
 | Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
-| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
-| Android     | 5.5 & 5.5.1     | ![Android](https://img.shields.io/wercker/ci/wercker/docs.svg)                          |
+| OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |                          |
  
 # For Developers
 
