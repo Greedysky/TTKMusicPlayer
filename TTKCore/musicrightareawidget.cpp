@@ -483,7 +483,11 @@ void MusicRightAreaWidget::musicPlaylistFound()
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()
 {
+    ///To prevent concise state changed while function musicWindowConciseChanged first called
+    bool pre = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool();
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, false);
     musicFunctionClicked(MusicRightAreaWidget::KugGouSongWidget);
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, pre);
 }
 
 void MusicRightAreaWidget::deleteStackedFuncWidget()
