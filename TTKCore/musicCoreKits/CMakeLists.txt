@@ -10,7 +10,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicformats.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
-    ${MUSIC_CORE_DIR}/musicglobalhotkey.h
+    ${MUSIC_CORE_DIR}/musichotkeymanager.h
     ${MUSIC_CORE_DIR}/musictime.h
     ${MUSIC_CORE_DIR}/musicxmlconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplayer.h
@@ -28,6 +28,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.h
     ${MUSIC_CORE_DIR}/musiclicensecore.h
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.h
+    ${MUSIC_CORE_DIR}/musicplaylistmanager.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
@@ -37,7 +38,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/utils/musicnumberutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicstringutils.cpp
     ${MUSIC_CORE_DIR}/utils/musicalgorithmutils.cpp
-    ${MUSIC_CORE_DIR}/musicglobalhotkey.cpp
+    ${MUSIC_CORE_DIR}/musichotkeymanager.cpp
     ${MUSIC_CORE_DIR}/musicformats.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
@@ -54,5 +55,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicsemaphoreloop.cpp
     ${MUSIC_CORE_DIR}/musiclicensecore.cpp
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/musicplaylistmanager.cpp
   )
   

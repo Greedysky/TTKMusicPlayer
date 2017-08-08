@@ -8,6 +8,7 @@ set_property(GLOBAL PROPERTY MUSIC_TOOLSETS_KITS_HEADERS
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongchecktoolsunit.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongchecktoolscore.h
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedsuspensionwidget.h
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicnetworkspeedtestwidget.h
@@ -41,6 +42,7 @@ set_property(GLOBAL PROPERTY MUSIC_TOOLSETS_KITS_SOURCES
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musiclocalsongsmanagerthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworkspeedtestthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicsongchecktoolscore.cpp
+    ${MUSIC_TOOLSETSWIDGET_DIR}/core/musicnetworktestthread.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musicaudiorecorderwidget.cpp
     ${MUSIC_TOOLSETSWIDGET_DIR}/musictimerwidget.cpp

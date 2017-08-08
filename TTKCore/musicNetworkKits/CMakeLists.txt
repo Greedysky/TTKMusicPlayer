@@ -64,7 +64,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/musicnetworkthread.h
     ${MUSIC_NETWORK_DIR}/musicnetworkproxy.h
     ${MUSIC_NETWORK_DIR}/musicnetworkoperator.h
-    ${MUSIC_NETWORK_DIR}/musicnetworktestthread.h
+    ${MUSIC_NETWORK_DIR}/musicnetworkoperator.h
     ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.h
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.h
@@ -143,7 +143,6 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/musicnetworkthread.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkproxy.cpp
     ${MUSIC_NETWORK_DIR}/musicnetworkoperator.cpp
-    ${MUSIC_NETWORK_DIR}/musicnetworktestthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadqueuecache.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadqueryfactory.cpp
