@@ -73,6 +73,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     //The default Volume is 100
 
     m_playControl = true;//The default in the suspended state
+    m_quitWindowClose = false;
     m_currentMusicSongTreeIndex = -1;
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
@@ -276,7 +277,8 @@ void MusicApplication::quitWindowClose()
 {
     //Write configuration files
     writeXMLConfigToText();
-    m_applicationObject->windowCloseAnimationOpacity();
+    m_quitWindowClose = true;
+    m_applicationObject->windowCloseAnimation();
 }
 
 void MusicApplication::positionChanged(qint64 position)
@@ -905,11 +907,14 @@ void MusicApplication::getCurrentPlayList(QStringList &list)
 
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
-    m_topAreaWidget->musicBgThemeChangedByResize();
-    m_rightAreaWidget->resizeWindow();
-    m_bottomAreaWidget->resizeWindow();
-    m_ui->musicPlayedList->resizeWindow();
+    if(!m_quitWindowClose && M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    {
+        M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
+        m_topAreaWidget->musicBgThemeChangedByResize();
+        m_rightAreaWidget->resizeWindow();
+        m_bottomAreaWidget->resizeWindow();
+        m_ui->musicPlayedList->resizeWindow();
+    }
     MusicAbstractMoveResizeWidget::resizeEvent(event);
 }
 
@@ -920,13 +925,13 @@ void MusicApplication::closeEvent(QCloseEvent *event)
     if(!m_bottomAreaWidget->getSystemCloseConfig() &&
         m_bottomAreaWidget->systemTrayIsVisible() )
     {
-       hide();
-       m_bottomAreaWidget->showMessage(tr("Prompt"),
-                                       tr("TTKMusicPlayer will run in the background"));
+        hide();
+        m_bottomAreaWidget->showMessage(tr("Prompt"),
+                                        tr("TTKMusicPlayer will run in the background"));
     }
     else
     {
-       quitWindowClose();
+        quitWindowClose();
     }
 }
 
@@ -1034,6 +1039,7 @@ void MusicApplication::readXMLConfigFromText()
         default:break;
     }
     //////////////////////////////////////////////////////////////
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, xml.readWindowQuitModeConfig());
     value = xml.readRemoteWidgetModeConfig();
     if(value != 0)
     {

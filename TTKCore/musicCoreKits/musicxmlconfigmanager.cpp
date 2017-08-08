@@ -84,6 +84,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     int fileAssociationChoiced = M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt();
     int windowConciseChoiced = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toInt();
     int remoteWidgetModeChoiced = M_SETTING_PTR->value(MusicSettingManager::RemoteWidgetModeChoiced).toInt();
+    int windowQuitModeChoiced = M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int otherBgLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toInt();
@@ -204,6 +205,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(plusSettingDom, "fileAssociation", MusicXmlAttribute("value", fileAssociationChoiced));
     writeDomElement(plusSettingDom, "windowConcise", MusicXmlAttribute("value", windowConciseChoiced));
     writeDomElement(plusSettingDom, "remoteWidgetMode", MusicXmlAttribute("value", remoteWidgetModeChoiced));
+    writeDomElement(plusSettingDom, "windowQuitMode", MusicXmlAttribute("value", windowQuitModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(otherSettingDom, "otherBgLossless", MusicXmlAttribute("value", otherBgLosslessChoiced));

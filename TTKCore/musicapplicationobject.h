@@ -46,9 +46,9 @@ public:
     /*!
      * Get settings parameters.
      */
-    void windowCloseAnimationOpacity();
+    void windowCloseAnimation();
     /*!
-     * Window close animation opacity.
+     * Window close animation.
      */
     void soureUpdateCheck();
     /*!
@@ -75,6 +75,10 @@ Q_SIGNALS:
      */
 
 public Q_SLOTS:
+    void windowCloseAnimationFinished();
+    /*!
+     * Window close animation finished.
+     */
     void musicAboutUs();
     /*!
      * Show about us widget.
@@ -124,10 +128,11 @@ protected:
 
     bool m_setWindowToTop;
     bool m_leftSideByOn, m_rightSideByOn;
-    QPropertyAnimation *m_opacityAnimation, *m_sideAnimation;
+    QPropertyAnimation *m_quitAnimation, *m_sideAnimation;
     MusicTimerAutoObject *m_musicTimerAutoObj;
     MusicMobileDevicesWidget *m_mobileDeviceWidget;
     QDeviceWatcher *m_deviceWatcher;
+    QWidget *m_quitContainer;
 
     static MusicApplicationObject *m_instance;
 };

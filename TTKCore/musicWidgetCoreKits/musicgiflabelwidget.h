@@ -30,7 +30,8 @@ public:
         Gif_Hourglass_White,        ///gif hourglass white
         Gif_Radio_Blue,             ///gif radio blue
         Gif_Check_Blue,             ///gif check blue
-        Gif_Record_red              ///gif record red
+        Gif_Record_red,             ///gif record red
+        Gif_Close_White             ///gif close white
     };
 
     explicit MusicGifLabelWidget(QWidget *parent = 0);
@@ -61,6 +62,15 @@ public:
      * Get the gif interval.
      */
 
+    void setInfinited(bool s);
+    /*!
+     * Set the gif infinited mode.
+     */
+    bool getInfinited() const;
+    /*!
+     * Get the gif infinited mode.
+     */
+
     void start();
     /*!
      * Start the gif.
@@ -81,10 +91,15 @@ public Q_SLOTS:
      */
 
 protected:
+    bool infinitedModeCheck();
+    /*!
+     * Infinited mode check.
+     */
+
     int m_index;
     Type m_type;
     QTimer *m_timer;
-    bool m_isRunning;
+    bool m_isRunning, m_infinited;
 
 };
 

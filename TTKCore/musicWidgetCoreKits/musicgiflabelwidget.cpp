@@ -11,12 +11,15 @@
 #define GIF_RADIO_BLUE          14
 #define GIF_CHECK_BLUE          93
 #define GIF_RECORD_RED          30
+#define GIF_CLOSE_WHITE_WIDTH   350
+#define GIF_CLOSE_WHITE_HEIGHT  50
 
 MusicGifLabelWidget::MusicGifLabelWidget(QWidget *parent)
     : QLabel(parent)
 {
     m_index = -1;
     m_isRunning = false;
+    m_infinited = true;
 
     setFixedSize(GIF_CICLE_BLUE, GIF_CICLE_BLUE);
 
@@ -49,6 +52,7 @@ void MusicGifLabelWidget::setType(Type type)
         case Gif_Radio_Blue: setFixedSize(GIF_RADIO_BLUE, GIF_RADIO_BLUE); break;
         case Gif_Check_Blue: setFixedSize(GIF_CHECK_BLUE, GIF_CHECK_BLUE); break;
         case Gif_Record_red: setFixedSize(GIF_RECORD_RED, GIF_RECORD_RED); break;
+        case Gif_Close_White: setFixedSize(GIF_CLOSE_WHITE_WIDTH, GIF_CLOSE_WHITE_HEIGHT); break;
         default: break;
     }
 }
@@ -66,6 +70,16 @@ void MusicGifLabelWidget::setInterval(int value)
 int MusicGifLabelWidget::getInterval() const
 {
     return m_timer->interval();
+}
+
+void MusicGifLabelWidget::setInfinited(bool s)
+{
+    m_infinited = s;
+}
+
+bool MusicGifLabelWidget::getInfinited() const
+{
+    return m_infinited;
 }
 
 void MusicGifLabelWidget::start()
@@ -87,9 +101,9 @@ void MusicGifLabelWidget::timeout()
     {
         case Gif_Ballon_White:
             {
-                if(m_index == 40)
+                if(m_index == 40 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_ballon_white'); \
                                        margin-left:-%1px;").arg(GIF_BALLON_WHITE*m_index));
@@ -97,9 +111,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Cicle_Blue:
             {
-                if(m_index == 12)
+                if(m_index == 12 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_cicle_blue'); \
                                        margin-left:-%1px;").arg(GIF_CICLE_BLUE*m_index));
@@ -107,9 +121,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Rice_Font_White:
             {
-                if(m_index == 8)
+                if(m_index == 8 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_white'); \
                                        margin-left:-%1px;").arg(GIF_RICE_FONT_WHITE*m_index));
@@ -118,9 +132,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Rice_Font_Black_Big:
             {
-                if(m_index == 8)
+                if(m_index == 8 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_black_big'); \
                                        margin-left:-%1px;").arg(GIF_RICE_FONT_BLACK_BIG*m_index));
@@ -128,9 +142,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Rice_Font_Black:
             {
-                if(m_index == 12)
+                if(m_index == 12 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_rice_font_black'); \
                                        margin-left:-%1px;").arg(GIF_RICE_FONT_BLACK*m_index));
@@ -138,9 +152,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Hourglass_White:
             {
-                if(m_index == 16)
+                if(m_index == 16 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_hourglass_white'); \
                                        margin-left:-%1px;").arg(GIF_HOURGLASS_WHITE*m_index));
@@ -148,9 +162,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Radio_Blue:
             {
-                if(m_index == 10)
+                if(m_index == 10 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_radio_blue'); \
                                        margin-left:-%1px;").arg(GIF_RADIO_BLUE*m_index));
@@ -158,9 +172,9 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Check_Blue:
             {
-                if(m_index == 22)
+                if(m_index == 22 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_check_blue'); \
                                        margin-left:-%1px;").arg(GIF_CHECK_BLUE*m_index));
@@ -168,14 +182,38 @@ void MusicGifLabelWidget::timeout()
             }
         case Gif_Record_red:
             {
-                if(m_index == 5)
+                if(m_index == 5 && infinitedModeCheck())
                 {
-                    m_index = 0;
+                    break;
                 }
                 setStyleSheet(QString("background-image: url(':/gif/lb_record_red'); \
                                        margin-left:-%1px;").arg(GIF_RECORD_RED*m_index));
                 break;
             }
+        case Gif_Close_White:
+            {
+                if(m_index == 12 && infinitedModeCheck())
+                {
+                    break;
+                }
+                setStyleSheet(QString("background-image: url(':/gif/lb_close_white'); \
+                                       margin-left:-%1px;").arg(GIF_CLOSE_WHITE_WIDTH*m_index));
+                break;
+            }
         default: break;
+    }
+}
+
+bool MusicGifLabelWidget::infinitedModeCheck()
+{
+    m_index = 0;
+    if(!m_infinited)
+    {
+        stop();
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }

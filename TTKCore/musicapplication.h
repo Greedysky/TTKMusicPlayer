@@ -306,7 +306,7 @@ protected:
 
 private:
     Ui::MusicApplication *m_ui;
-    bool m_playControl;
+    bool m_playControl, m_quitWindowClose;
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;

@@ -158,6 +158,14 @@ void MusicSettingWidget::initControllerParameter()
     {
         m_ui->quitRadioBox->setChecked(true);
     }
+    if(!M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    {
+        m_ui->quitOpacityRadioBox->setChecked(true);
+    }
+    else
+    {
+        m_ui->quitWindowRadioBox->setChecked(true);
+    }
     m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
     ///////////////////////////////////////////////////////////////////////////
@@ -474,6 +482,7 @@ void MusicSettingWidget::commitTheResults()
     list[0] = QString::number(m_ui->backPlayCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, list);
     M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced, m_ui->quitRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, m_ui->quitWindowRadioBox->isChecked());
     M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
     M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, m_ui->setDefaultPlayerCheckBox->isChecked());
     if(m_ui->setDefaultPlayerCheckBox->isChecked())
@@ -576,13 +585,26 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->backPlayCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->minimumRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->quitRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->quitOpacityRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->quitWindowRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->setDefaultPlayerCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->closeNetWorkCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    QButtonGroup *b1 = new QButtonGroup(this);
+    b1->addButton(m_ui->minimumRadioBox, 0);
+    b1->addButton(m_ui->quitRadioBox, 1);
+
+    QButtonGroup *b2 = new QButtonGroup(this);
+    b2->addButton(m_ui->quitOpacityRadioBox, 0);
+    b2->addButton(m_ui->quitWindowRadioBox, 1);
+
 #ifdef Q_OS_UNIX
     m_ui->autoPlayCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->backPlayCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->minimumRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->quitRadioBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->quitOpacityRadioBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->quitWindowRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->setDefaultPlayerCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->closeNetWorkCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif

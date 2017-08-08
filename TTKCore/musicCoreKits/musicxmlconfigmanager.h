@@ -80,6 +80,11 @@ public:
     /*!
      * Read Remote Widget Mode Config.
      */
+    inline int readWindowQuitModeConfig() const
+    { return readXmlAttributeByTagNameValue("windowQuitMode").toInt(); }
+    /*!
+     * Read Window Quit Mode Config.
+     */
     inline int readSystemAutoPlayConfig() const
     { return readXmlAttributeByTagNameValue("autoPlay").toInt(); }
     /*!

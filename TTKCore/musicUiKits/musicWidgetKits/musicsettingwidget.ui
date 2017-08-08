@@ -145,7 +145,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>230</y>
+       <y>255</y>
        <width>100</width>
        <height>20</height>
       </rect>
@@ -163,7 +163,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>260</y>
+       <y>280</y>
        <width>251</width>
        <height>22</height>
       </rect>
@@ -173,7 +173,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>260</y>
+       <y>280</y>
        <width>61</width>
        <height>21</height>
       </rect>
@@ -189,7 +189,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>295</y>
+       <y>310</y>
        <width>241</width>
        <height>24</height>
       </rect>
@@ -205,7 +205,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>165</y>
+       <y>195</y>
        <width>321</width>
        <height>20</height>
       </rect>
@@ -218,7 +218,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>195</y>
+       <y>225</y>
        <width>301</width>
        <height>20</height>
       </rect>
@@ -231,7 +231,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>140</y>
+       <y>165</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -261,6 +261,32 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>关闭主面板时</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="quitOpacityRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>135</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>渐隐方式退出模式</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="quitWindowRadioBox">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>135</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>窗口方式退出模式</string>
      </property>
     </widget>
    </widget>

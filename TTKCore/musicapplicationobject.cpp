@@ -13,6 +13,7 @@
 #include "musicapplication.h"
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
+#include "musicgiflabelwidget.h"
 
 #include "qdevicewatcher.h"
 
@@ -26,20 +27,22 @@
 MusicApplicationObject *MusicApplicationObject::m_instance = nullptr;
 
 MusicApplicationObject::MusicApplicationObject(QObject *parent)
-    : QObject(parent), m_mobileDeviceWidget(nullptr)
+    : QObject(parent)
 {
     Q_INIT_RESOURCE(MusicPlayer);
     m_instance = this;
 
     musicResetWindow();
 
-    m_opacityAnimation = new QPropertyAnimation(parent, "windowOpacity", this);
+    m_quitAnimation = new QPropertyAnimation(this);
     m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);;
-    m_opacityAnimation->setDuration(MT_S2MS);
+    m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250*MT_MS);
 
     m_musicTimerAutoObj = new MusicTimerAutoObject(this);
     m_setWindowToTop = false;
+    m_mobileDeviceWidget = nullptr;
+    m_quitContainer = nullptr;
 
     m_deviceWatcher = new QDeviceWatcher(this);
     connect(m_deviceWatcher, SIGNAL(deviceChanged(bool)), SLOT(musicDeviceChanged(bool)));
@@ -53,11 +56,12 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 MusicApplicationObject::~MusicApplicationObject()
 {
     Q_CLEANUP_RESOURCE(MusicPlayer);
-    delete m_mobileDeviceWidget;
     delete m_musicTimerAutoObj;
-    delete m_opacityAnimation;
+    delete m_quitAnimation;
     delete m_sideAnimation;
     delete m_deviceWatcher;
+    delete m_mobileDeviceWidget;
+    delete m_quitContainer;
 }
 
 QString MusicApplicationObject::getClassName()
@@ -81,14 +85,32 @@ void MusicApplicationObject::getParameterSetting()
 #endif
 }
 
-void MusicApplicationObject::windowCloseAnimationOpacity()
+void MusicApplicationObject::windowCloseAnimation()
 {
-    float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
-    v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
-    m_opacityAnimation->stop();
-    m_opacityAnimation->setStartValue(v);
-    m_opacityAnimation->setEndValue(0);
-    m_opacityAnimation->start();
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    {
+        MusicApplication *w = MusicApplication::instance();
+        w->setMinimumSize(0, 0); ///remove fixed size
+
+        m_quitAnimation->stop();
+        m_quitAnimation->setPropertyName("geometry");
+        m_quitAnimation->setDuration(250*MT_MS);
+        m_quitAnimation->setStartValue(w->geometry());
+        m_quitAnimation->setEndValue(QRect(w->x(), w->geometry().center().y(), w->width(), 0));
+        m_quitAnimation->start();
+        QTimer::singleShot(m_quitAnimation->duration(), this, SLOT(windowCloseAnimationFinished()));
+    }
+    else
+    {
+        float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
+        v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
+        m_quitAnimation->stop();
+        m_quitAnimation->setPropertyName("windowOpacity");
+        m_quitAnimation->setDuration(MT_S2MS);
+        m_quitAnimation->setStartValue(v);
+        m_quitAnimation->setEndValue(0);
+        m_quitAnimation->start();
+    }
     QTimer::singleShot(MT_S2MS, qApp, SLOT(quit()));
 }
 
@@ -171,12 +193,38 @@ void MusicApplicationObject::sideAnimationReset()
     if(m_leftSideByOn)
     {
         MusicApplication *w = MusicApplication::instance();
-        w->move(1, w->y());
+        w->move(MARGIN_SIDE_BY, w->y());
     }
     else if(m_rightSideByOn)
     {
         MusicApplication *w = MusicApplication::instance();
-        w->move(QApplication::desktop()->width() - w->width() - 1, w->y());
+        w->move(QApplication::desktop()->width() - w->width() - MARGIN_SIDE_BY, w->y());
+    }
+}
+
+void MusicApplicationObject::windowCloseAnimationFinished()
+{
+    if(!m_quitContainer)
+    {
+        MusicApplication *w = MusicApplication::instance();
+        w->hide();
+
+        m_quitContainer = new QWidget;
+        m_quitContainer->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
+        m_quitContainer->setAttribute(Qt::WA_TranslucentBackground);
+        MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
+        gifWidget->setType(MusicGifLabelWidget::Gif_Close_White);
+        gifWidget->setInterval(25*MT_MS);
+        gifWidget->setInfinited(false);
+        m_quitContainer->resize(gifWidget->size());
+
+        QPoint center = w->geometry().center();
+        m_quitContainer->move(QPoint(center.x() - m_quitContainer->width()/2, center.y() - m_quitContainer->height()/2));
+
+        m_quitContainer->raise();
+        m_quitContainer->show();
+        gifWidget->start();
+        gifWidget->show();
     }
 }
 

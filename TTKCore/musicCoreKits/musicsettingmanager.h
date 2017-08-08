@@ -42,6 +42,7 @@ public:
         ExtraDevicePathChoiced,         ///*Set Extra Device Path Parameter*/
         WindowConciseChoiced,           ///*Window Concise Parameter*/
         RemoteWidgetModeChoiced,        ///*Remote Widget Mode Parameter*/
+        WindowQuitModeChoiced,          ///*Window Quit Mode Parameter*/
 
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
