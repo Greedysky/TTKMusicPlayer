@@ -918,6 +918,7 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
     }
     else
     {
+        setMinimumSize(0, 0); ///remove fixed size
         m_ui->background->stop();
         event->ignore();
     }
@@ -1076,6 +1077,8 @@ void MusicApplication::readXMLConfigFromText()
     }
 
     //musicSetting
+    //Just always set fade false, because it is not finished yet.
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, false);
     //Set the inline lrc should be shown
 //    value = xml.readShowInlineLrc();
     //Set inline lrc mode always on

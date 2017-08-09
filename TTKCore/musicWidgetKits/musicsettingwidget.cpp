@@ -816,6 +816,7 @@ void MusicSettingWidget::initSoundEffectWidget()
     }
 
     m_ui->fadeInAndOutCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->fadeInAndOutCheckBox->setEnabled(false);
 
     m_ui->fadeInSpinBox->setStyleSheet(MusicUIObject::MSpinBoxStyle01);
     m_ui->fadeInSpinBox->setRange(1, 10*1000);
