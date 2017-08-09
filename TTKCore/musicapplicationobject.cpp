@@ -89,6 +89,7 @@ void MusicApplicationObject::windowCloseAnimation()
 {
     if(M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
     {
+        MusicTopAreaWidget::instance()->setTimerStop();
         MusicApplication *w = MusicApplication::instance();
         w->setMinimumSize(0, 0); ///remove fixed size
 
