@@ -40,9 +40,15 @@ public:
     /*!
      * Get no animation state.
      */
+
     QPixmap getRendererPixmap() const;
     /*!
      * Get renderer pixmap image.
+     */
+
+    void stop();
+    /*!
+     * Stop renderer pixmap animation.
      */
 
 public Q_SLOTS:

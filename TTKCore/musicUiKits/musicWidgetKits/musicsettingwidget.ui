@@ -1315,9 +1315,12 @@ font-weight:bold;</string>
       <rect>
        <x>90</x>
        <y>158</y>
-       <width>321</width>
+       <width>300</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -1334,6 +1337,32 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>显示桌面歌词</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="DfontTransValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>158</y>
+       <width>35</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100%</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="DSingleLineCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>350</y>
+       <width>100</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>单行显示歌词</string>
      </property>
     </widget>
    </widget>
@@ -1553,9 +1582,12 @@ font-weight:bold;</string>
       <rect>
        <x>90</x>
        <y>158</y>
-       <width>321</width>
+       <width>300</width>
        <height>20</height>
       </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -1572,6 +1604,19 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>显示内嵌歌词</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontTransValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>158</y>
+       <width>35</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100%</string>
      </property>
     </widget>
    </widget>

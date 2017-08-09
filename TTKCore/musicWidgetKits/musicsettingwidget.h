@@ -100,6 +100,7 @@ public:
     /*!
      * Get class object name.
      */
+
     void initControllerParameter();
     /*!
      * Init controller parameter to widget.

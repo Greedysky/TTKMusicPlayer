@@ -60,12 +60,17 @@ void MusicLrcContainerForDesktop::setSettingParameter()
         manager->setLrcFontSize(m_currentLrcFontSize);
     }
     m_windowLocked = M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt() == 1;
-    m_singleLineType = M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt() == 1;
+    //Revert in function setSingleLineTypeChanged
+    m_singleLineType = !(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt() == 1);
+    setSingleLineTypeChanged();
+
     QPoint point = M_SETTING_PTR->value(MusicSettingManager::DLrcGeometryChoiced).toPoint();
     if(!point.isNull())
     {
         move(point);
     }
+
+
 }
 
 void MusicLrcContainerForDesktop::initCurrentLrc() const

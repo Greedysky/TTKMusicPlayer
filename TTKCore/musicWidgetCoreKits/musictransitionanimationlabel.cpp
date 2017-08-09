@@ -34,6 +34,14 @@ QPixmap MusicTransitionAnimationLabel::getRendererPixmap() const
     return m_rendererPixmap;
 }
 
+void MusicTransitionAnimationLabel::stop()
+{
+    if(m_animation->state() == QPropertyAnimation::Running)
+    {
+        m_animation->stop();
+    }
+}
+
 void MusicTransitionAnimationLabel::setPixmap(const QPixmap &pix)
 {
 //    if(m_isAnimating)
@@ -78,7 +86,7 @@ void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
         QPixmap pixed( size() );
         pixed.fill(Qt::transparent);
         QPainter paint(&pixed);
-        paint.fillRect(rect(), QColor(255, 255, 255, 2.55*m_currentValue));
+        paint.fillRect(rect(), QColor(0xFF, 0xFF, 0xFF, 2.55*m_currentValue));
         paint.setCompositionMode(QPainter::CompositionMode_SourceIn);
         paint.drawPixmap(rect(), m_currentPixmap);
         paint.end();

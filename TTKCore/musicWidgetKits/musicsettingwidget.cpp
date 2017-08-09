@@ -91,7 +91,7 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
           << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
           << MusicFunctionItem(":/contextMenu/btn_download", tr("Dwonload"))
-          << MusicFunctionItem(":/contextMenu/btn_ablum", tr("Other"));
+          << MusicFunctionItem(":/tiny/btn_more_normal", tr("Other"));
     m_ui->normalFunTableWidget->setRowCount(items.count());
     m_ui->normalFunTableWidget->addFunctionItems(0, items);
     items.clear();
@@ -209,7 +209,6 @@ void MusicSettingWidget::initControllerParameter()
     ////////////////////////////////////////////////
     //Set init parameter
     m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
-    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
     m_ui->showInlineCheckBox->setEnabled(false);
 
     m_ui->fontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt());
@@ -231,6 +230,8 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
 
     ////////////////////////////////////////////////
+    m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
+    m_ui->DSingleLineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toBool());
     m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
     m_ui->DfontSizeComboBox->setCurrentIndex(MusicLrcDefines().findDesktopLrcIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt()));
     m_ui->DfontTypeComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt());
@@ -362,6 +363,7 @@ void MusicSettingWidget::defaultLrcColorChanged(int index)
 void MusicSettingWidget::inlineLrcTransChanged(int index)
 {
     lrcTransparentValue(Inline, index);
+    m_ui->fontTransValueLabel->setText(QString::number(index) + "%");
 }
 
 void MusicSettingWidget::showInlineLrcDemo()
@@ -403,6 +405,7 @@ void MusicSettingWidget::defaultDesktopLrcColorChanged(int index)
 void MusicSettingWidget::desktopLrcTransChanged(int index)
 {
     lrcTransparentValue(Desktop, index);
+    m_ui->DfontTransValueLabel->setText(QString::number(index) + "%");
 }
 
 void MusicSettingWidget::showDesktopLrcDemo()
@@ -525,8 +528,9 @@ void MusicSettingWidget::commitTheResults()
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced, m_ui->DSingleLineCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, m_ui->DfontDefaultColorComboBox->currentIndex() != -1 ?
-                                                 m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
+                                                                   m_ui->DfontDefaultColorComboBox->currentIndex() + LRC_COLOR_OFFSET : -1);
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, m_ui->DfontComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
@@ -715,6 +719,7 @@ void MusicSettingWidget::initDownloadWidget()
 void MusicSettingWidget::initDesktopLrcWidget()
 {
     m_ui->showDesktopCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->DSingleLineCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->DfontComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->DfontComboBox));
     m_ui->DfontComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->DfontComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -749,6 +754,7 @@ void MusicSettingWidget::initDesktopLrcWidget()
     connect(m_ui->DresetPushButton, SIGNAL(clicked()), SLOT(resetDesktopParameter()));
 #ifdef Q_OS_UNIX
     m_ui->showDesktopCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->DSingleLineCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->DresetPushButton->setFocusPolicy(Qt::NoFocus);
 #endif
 

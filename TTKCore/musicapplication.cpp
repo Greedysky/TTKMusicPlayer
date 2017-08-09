@@ -914,8 +914,13 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
         m_rightAreaWidget->resizeWindow();
         m_bottomAreaWidget->resizeWindow();
         m_ui->musicPlayedList->resizeWindow();
+        MusicAbstractMoveResizeWidget::resizeEvent(event);
     }
-    MusicAbstractMoveResizeWidget::resizeEvent(event);
+    else
+    {
+        m_ui->background->stop();
+        event->ignore();
+    }
 }
 
 void MusicApplication::closeEvent(QCloseEvent *event)
