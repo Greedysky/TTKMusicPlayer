@@ -56,7 +56,6 @@ public:
         OtherSideByChoiced,             ///*Other App Side By Mode Parameter*/
 
         ShowInlineLrcChoiced,           ///*Show Inline Lrc Parameter*/
-        ShowDesktopLrcChoiced,          ///*Show Desktop Lrc Parameter*/
         LrcColorChoiced,                ///*Lrc Color Parameter*/
         LrcSizeChoiced,                 ///*Lrc Size Parameter*/
         LrcTypeChoiced,                 ///*Lrc Type Parameter*/
@@ -65,6 +64,7 @@ public:
         LrcBgColorChoiced,              ///*Lrc Bg Color Parameter*/
         LrcColorTransChoiced,           ///*Lrc Color Trans Parameter*/
 
+        ShowDesktopLrcChoiced,          ///*Show Desktop Lrc Parameter*/
         DLrcColorChoiced,               ///*Desktop Lrc Color Parameter*/
         DLrcSizeChoiced,                ///*Desktop Lrc Size Parameter*/
         DLrcTypeChoiced,                ///*Desktop Lrc Type Parameter*/

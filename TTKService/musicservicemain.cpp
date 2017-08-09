@@ -46,16 +46,19 @@ int main(int argc, char *argv[])
     M_LOGGER_INFO("Load Translation");
     MusicXMLConfigManager *xml = new MusicXMLConfigManager;
     xml->readXMLConfig();
-    xml->readOtherLoadConfig();
+    xml->readSysLoadConfig();
 
     QTranslator translator;
-    translator.load(MusicUtils::Core::getLanguageName(xml->readLanguageIndex()));
+    translator.load(MusicUtils::Core::getLanguageName(
+                M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt()));
     a.installTranslator(&translator);
 
-    MusicUtils::Core::checkCacheSize(xml->readDownloadCacheSize()*MH_MB2B,
-                                     xml->readDownloadCacheLimit(),
-    M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
-    M_NETWORK_PTR->setBlockNetWork(xml->readCloseNetworkConfig());
+    MusicUtils::Core::checkCacheSize(
+                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
+                M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt(),
+                M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
+    M_NETWORK_PTR->setBlockNetWork(
+                M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
     delete xml;
     M_LOGGER_INFO("End load translation");
 

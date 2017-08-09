@@ -1023,8 +1023,10 @@ void MusicApplication::readXMLConfigFromText()
     {
         return;
     }
+    xml.readSysLoadConfig();
 
-    switch( xml.readMusicPlayModeConfig() )
+    //////////////////////////////////////////////////////////////
+    switch( M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt() )
     {
         case MusicObject::MC_PlayOrder:
             musicPlayOrder();break;
@@ -1039,45 +1041,24 @@ void MusicApplication::readXMLConfigFromText()
         default:break;
     }
     //////////////////////////////////////////////////////////////
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, xml.readWindowQuitModeConfig());
-    value = xml.readRemoteWidgetModeConfig();
+    value = M_SETTING_PTR->value(MusicSettingManager::RemoteWidgetModeChoiced).toInt();
     if(value != 0)
     {
         m_topAreaWidget->musicRemoteTypeChanged(value);
-        M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced, value);
     }
-    //////////////////////////////////////////////////////////////
-    //The size of the volume of the allocation of songs
-    value = xml.readMusicPlayVolumeConfig();
-    musicVolumeChanged(value);
-    m_musicPlayer->setSoundEffectVolume(xml.readEnhancedBalance());
 
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced, value);
+    //The size of the volume of the allocation of songs
+    musicVolumeChanged(M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt());
+    m_musicPlayer->setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
+
     //Configure playback mode
-    m_ui->musicEnhancedButton->setEnhancedMusicConfig(xml.readEnhancedMusicConfig());
-    value = xml.readEqualizerEnable();
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, value);
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced, xml.readEqualizerValue());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced, xml.readEqualizerIndex());
-    if(value == 1)
+    m_ui->musicEnhancedButton->setEnhancedMusicConfig(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt());
+    if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt() == 1)
     {
         m_musicPlayer->setEqInformation();
     }
 
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, xml.readEnhancedBalance());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, xml.readEnhancedFadeEnable());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced, xml.readEnhancedFadeInValue());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced, xml.readEnhancedFadeOutValue());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced, xml.readEnhancedBS2B());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, xml.readEnhancedCrossfade());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, xml.readEnhancedStereo());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, xml.readEnhancedLADSPA());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced, xml.readEnhancedSOX());
-    //////////////////////////////////////////////////////////////
-    xml.readOtherLoadConfig();
-
-    ////////////////////////music hotkey
-    //////////////////////////////////////////////////////////////
+    //music hotkey
     if(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool())
     {
         QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
@@ -1089,33 +1070,23 @@ void MusicApplication::readXMLConfigFromText()
         M_HOTKEY_PTR->enabledAll(true);
     }
 
-    ////////////////////////musicSetting
-    //////////////////////////////////////////////////////////////
+    //musicSetting
     //Set the inline lrc should be shown
 //    value = xml.readShowInlineLrc();
     //Set inline lrc mode always on
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, true);
-    m_rightAreaWidget->setInlineLrcVisible(value);
-    //////////////////////////////////////////////////////////////
+    m_rightAreaWidget->setInlineLrcVisible(true);
+
     //Set the desktop lrc should be shown
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced, xml.readDLrcSingleLineType());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, xml.readDLrcWindowType());
     m_rightAreaWidget->setWindowLrcTypeChanged();
-    //////////////////////////////////////////////////////////////
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, xml.readShowDLrcGeometry());
+
     //Set the current background color
     //Set the current alpha value
-    m_topAreaWidget->setParameters(xml.readBackgroundTheme(),
-                                   xml.readBackgroundTransparent().toInt(),
-                                   xml.readBackgroundListTransparent().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
-    //////////////////////////////////////////////////////////////
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced, xml.readOtherBgLossless().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, xml.readOtherUpdate().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, xml.readOtherSearch().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, xml.readOtherAlbum().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, xml.readOtherInfo().toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, xml.readOtherSideBy().toInt());
-    //////////////////////////////////////////////////////////////
+    m_topAreaWidget->setParameters(M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString(),
+                                   M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt(),
+                                   M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt());
+
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
     xml.readSystemLastPlayIndexConfig(keyList);
@@ -1137,11 +1108,9 @@ void MusicApplication::readXMLConfigFromText()
         m_musicPlayList->blockSignals(false);
         m_ui->musicPlayedList->setCurrentIndex(m_musicPlayList->currentMediaString());
     }
-    //////////////////////////////////////////////////////////////
+
     //Configure automatic playback
-    value = xml.readSystemAutoPlayConfig();
-    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced, value);
-    if(value == 1)
+    if(M_SETTING_PTR->value(MusicSettingManager::AutoPlayChoiced).toInt() == 1)
     {
         m_playControl = true;
         musicStatePlay();
@@ -1149,51 +1118,29 @@ void MusicApplication::readXMLConfigFromText()
     m_bottomAreaWidget->showPlayStatus(m_playControl);
     m_rightAreaWidget->showPlayStatus(m_playControl);
     m_topAreaWidget->showPlayStatus(m_playControl);
-    //////////////////////////////////////////////////////////////
+
     //When the configuration is close to the direct exit
-    value = xml.readSystemCloseConfig();
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced, value);
-    m_bottomAreaWidget->setSystemCloseConfig(value);
-    //////////////////////////////////////////////////////////////
+    m_bottomAreaWidget->setSystemCloseConfig(M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toInt());
+
     //Set the lrc color the user set
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced, xml.readShowLrcColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced, xml.readShowLrcFgColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBgColorChoiced, xml.readShowLrcBgColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced, xml.readShowLrcFamily());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, xml.readShowLrcType());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, xml.readShowLrcTransparent());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, xml.readShowLrcSize());
-    //////////////////////////////////////////////////////////////
-    //Set the lrc size the user set
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced, xml.readShowDLrcColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced, xml.readShowDLrcFgColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBgColorChoiced, xml.readShowDLrcBgColor());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced, xml.readShowDLrcFamily());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, xml.readShowDLrcType());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, xml.readShowDLrcTransparent());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, xml.readShowDLrcSize());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced, xml.readShowDLrcLocked());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, xml.readShowDLrcGeometry());
-    m_bottomAreaWidget->lockDesktopLrc(xml.readShowDLrcLocked());
+    m_bottomAreaWidget->lockDesktopLrc(M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt());
     m_rightAreaWidget->setSettingParameter();
-    //////////////////////////////////////////////////////////////
-    value = xml.readShowDesktopLrc();
-    ///init or reset the window
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, value);
+
+    //init or reset the window
+    value = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toInt();
     m_bottomAreaWidget->setDestopLrcVisible(value);
     m_rightAreaWidget->setDestopLrcVisible(value);
 
-    //////////////////////////////////////////////////////////////
-    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced, xml.readLanguageIndex());
-
+    //Reset geometry
     setGeometry( xml.readWindowGeometry() );
-    value = xml.readWindowConciseConfig();
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced, value);
-    if(value == 1)
+
+    //Reset window concise
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
     {
         musicWindowConciseChanged();
     }
 
+    //Update check on
     if(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool())
     {
         m_applicationObject->soureUpdateCheck();
