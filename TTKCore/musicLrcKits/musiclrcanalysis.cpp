@@ -523,6 +523,24 @@ qint64 MusicLrcAnalysis::findTime(int index) const
     }
 }
 
+qint64 MusicLrcAnalysis::MusicLrcAnalysis::findTime(const QStringList &ts) const
+{
+    if(ts.isEmpty())
+    {
+        return -1;
+    }
+
+    QStringList copy(m_currentShowLrcContainer);
+    for(int i=0; i<copy.count() - ts.count(); ++i)
+    {
+        if(copy.mid(i, ts.count()) == ts)
+        {
+            return findTime(i + getMiddle());
+        }
+    }
+    return -1;
+}
+
 QString MusicLrcAnalysis::getAllLrcs() const
 {
     QString clipString;

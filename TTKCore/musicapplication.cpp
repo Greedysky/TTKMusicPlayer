@@ -907,7 +907,7 @@ void MusicApplication::getCurrentPlayList(QStringList &list)
 
 void MusicApplication::resizeEvent(QResizeEvent *event)
 {
-    if(!m_quitWindowClose && M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toBool())
+    if(!m_quitWindowClose)
     {
         M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
         m_topAreaWidget->musicBgThemeChangedByResize();

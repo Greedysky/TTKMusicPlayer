@@ -144,6 +144,11 @@ public:
     /*!
      * Get current time by index.
      */
+    qint64 findTime(const QStringList &ts) const;
+    /*!
+     * Get current time by texts.
+     */
+
     QString getAllLrcs() const;
     /*!
      * Get all lrcs from container.

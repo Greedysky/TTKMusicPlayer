@@ -27,6 +27,8 @@
 #include <QPushButton>
 #include <QTextEdit>
 
+#define LRC_CHANGED_OFFSET_LIMIT    20
+
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
 {
@@ -537,10 +539,10 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
             m_lrcChangeOffset = 0;
         }
 
-        if(m_lrcChangeOffset !=0 && m_lrcChangeOffset % 20 == 0)
+        if(m_lrcChangeOffset !=0 && m_lrcChangeOffset % LRC_CHANGED_OFFSET_LIMIT == 0)
         {
             int index = m_lrcAnalysis->getCurrentIndex();
-            index += m_lrcChangeOffset / 20;
+            index += m_lrcChangeOffset / LRC_CHANGED_OFFSET_LIMIT;
             m_lrcChangeOffset = 0;
 
             if(index < 0)
