@@ -111,7 +111,7 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
 
 void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
 {
-    if(m_lrcAnalysis->valid())
+    if(m_lrcAnalysis->isValid())
     {
         m_animationFreshTime = time;
         m_layoutWidget->start();

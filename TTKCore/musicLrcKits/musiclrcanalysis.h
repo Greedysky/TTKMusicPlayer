@@ -119,7 +119,7 @@ public:
      * Get current file name.
      */
 
-    bool valid() const;
+    bool isValid() const;
     /*!
      * Check current index is valid or not.
      */

@@ -432,7 +432,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
     file.close();
 }
 
-bool MusicLrcAnalysis::valid() const
+bool MusicLrcAnalysis::isValid() const
 {
     return (!isEmpty()) &&
            (m_currentLrcIndex + m_lineMax <= m_currentShowLrcContainer.count());

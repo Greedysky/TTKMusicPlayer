@@ -755,7 +755,7 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
 
 void MusicLrcMakerWidget::updateCurrentLrc(qint64 time)
 {
-    if(m_analysis->valid())
+    if(m_analysis->isValid())
     {
         m_intervalTime = time;
         m_ui->lrcViewer->start();

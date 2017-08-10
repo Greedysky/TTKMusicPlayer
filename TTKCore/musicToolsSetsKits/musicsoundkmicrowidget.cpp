@@ -147,7 +147,7 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
         {
             if(currentLrc != m_musicLrcContainer[m_analysis->getMiddle()]->text())
             {
-                if(m_analysis->valid())
+                if(m_analysis->isValid())
                 {
                     m_ui->musicPage->start();
                 }

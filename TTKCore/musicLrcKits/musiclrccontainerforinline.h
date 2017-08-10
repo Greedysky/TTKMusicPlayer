@@ -36,6 +36,7 @@ public:
     /*!
      * Get class object name.
      */
+
     virtual void startTimerClock() override;
     /*!
      * Start timer clock to draw lrc.
@@ -190,10 +191,6 @@ protected:
     /*!
      * Create color menu.
      */
-    void changeLrcPostion(const QString &type);
-    /*!
-     * Change lrc postion by diff type mouse or wheel.
-     */
     void revertLrcTimeSpeed(qint64 pos);
     /*!
      * Revert lrc time speed by pos.
@@ -222,6 +219,10 @@ protected:
     /*!
      * Set per lrc line style sheet by index and size and transparent.
      */
+    int mapLrcSizeProperty(int size);
+    /*!
+     * Map lrc size property to line index.
+     */
     void setLrcSizeProperty(int property);
     /*!
      * Set current lrc size property.
@@ -231,10 +232,13 @@ protected:
      * Resize width bound by given width.
      */
 
-    QPoint m_mousePressedAt, m_mouseMovedAt;
-    bool m_mouseLeftPressed, m_showArtBackground;
-    bool m_lrcDisplayAll;
-    int m_animationFreshTime;
+    QPoint m_mousePressedAt;
+    bool m_mouseLeftPressed, m_lrcChangeState;
+    int m_lrcChangeOffset;
+
+    bool m_lrcDisplayAll, m_showArtBackground;
+    int m_animationFreshTime, m_lrcSizeProperty;
+
     qint64 m_changeSpeedValue;
     QWidget *m_functionLabel;
     MusicLrcFloatWidget *m_lrcFloatWidget;
