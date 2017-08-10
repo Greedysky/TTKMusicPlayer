@@ -234,7 +234,7 @@ protected:
 
     QPoint m_mousePressedAt;
     bool m_mouseLeftPressed, m_lrcChangeState;
-    int m_lrcChangeOffset;
+    int m_lrcChangeOffset, m_lrcChangeDelta;
 
     bool m_lrcDisplayAll, m_showArtBackground;
     int m_animationFreshTime, m_lrcSizeProperty;

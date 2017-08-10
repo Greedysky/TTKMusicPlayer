@@ -648,12 +648,11 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
     m_ui->musiclrccontainerforinline->setLrcDisplayExpand(lrcDisplayAll);
     m_ui->songsContainer->setHidden(lrcDisplayAll);
 
-    int height = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
-
+    int height = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 350 : -370, 220 + height/2));
-    lrcDisplayAllAnimation->setEndValue(QPoint(0, 220 + height/2));
+    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 350 : -370, height/2));
+    lrcDisplayAllAnimation->setEndValue(QPoint(0, height/2));
     lrcDisplayAllAnimation->start();
 
     m_ui->lrcDisplayAllButton->setStyleSheet(lrcDisplayAll ? MusicUIObject::MKGTinyBtnLrcExpand :

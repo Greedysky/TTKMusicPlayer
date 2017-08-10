@@ -55,6 +55,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_lrcDisplayAll = false;
     m_changeSpeedValue = 0;
     m_animationFreshTime = 0;
+    m_lrcChangeDelta = -1;
     m_lrcSizeProperty = -1;
 
     initFunctionLabel();
@@ -105,8 +106,12 @@ void MusicLrcContainerForInline::setSettingParameter()
     {
         m_lrcSizeProperty = size;
     }
-    setLrcSize(size);
+    if(m_lrcChangeDelta == -1)
+    {
+        m_lrcChangeDelta = size;
+    }
 
+    setLrcSize(size);
 }
 
 void MusicLrcContainerForInline::updateCurrentLrc(qint64 time)
@@ -495,7 +500,7 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
     if(m_mouseLeftPressed)
     {
-        int line = (height()-m_functionLabel->height())/2;
+        int line = (height() - m_functionLabel->height())/2;
         QPainter painter(this);
         QFont font;
         painter.setFont(font);
@@ -547,10 +552,13 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
                 index = m_lrcAnalysis->count() - m_lrcAnalysis->getMiddle() + 2;
             }
 
+            int value = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
+            value = (mapLrcSizeProperty(m_lrcChangeDelta) - mapLrcSizeProperty(value))/2;
+
             m_lrcAnalysis->setCurrentIndex(index);
             for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
             {
-                m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i));
+                m_musicLrcContainer[i]->setText(m_lrcAnalysis->getText(i - value - 1));
             }
             setItemStyleSheet();
         }

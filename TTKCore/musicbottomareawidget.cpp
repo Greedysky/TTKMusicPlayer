@@ -192,7 +192,7 @@ void MusicBottomAreaWidget::resizeWindow()
     }
     m_ui->musicSongSearchLine->resizeWindow();
 
-    h = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height();
+    h = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
 }
 
