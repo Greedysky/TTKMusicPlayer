@@ -18,6 +18,7 @@
 #include "musicdownloaddiscoverlistthread.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcounterpvthread.h"
+#include "musicotherdefine.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -181,7 +182,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == 1)
+    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
     {
         return;
     }
@@ -196,7 +197,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 
 void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == 1)
+    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
     {
         return;
     }
@@ -250,7 +251,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == 1  &&
+    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1  &&
        m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
     {
         musicBackgroundChanged();

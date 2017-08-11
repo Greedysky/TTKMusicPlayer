@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
+#include "musicotherdefine.h"
 
 #include <QFileDialog>
 #include <QButtonGroup>
@@ -315,7 +316,7 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
 void MusicLocalSongsManagerWidget::updateFileLists(const QFileInfoList &list)
 {
     m_fileNames = list;
-    m_ui->stackedWidget->setCurrentIndex(0);
+    m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
     controlEnable(true);
     addAllItems(m_fileNames);
 }
@@ -323,7 +324,7 @@ void MusicLocalSongsManagerWidget::updateFileLists(const QFileInfoList &list)
 void MusicLocalSongsManagerWidget::setShowlistButton()
 {
     loadingLabelState(true);
-    m_ui->stackedWidget->setCurrentIndex(0);
+    m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
     controlEnable(true);
     addAllItems( m_fileNames = m_ui->songlistsTable->getFiles() );
     loadingLabelState(false);
@@ -332,7 +333,7 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
 void MusicLocalSongsManagerWidget::setShowArtButton()
 {
     loadingLabelState(true);
-    m_ui->stackedWidget->setCurrentIndex(1);
+    m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
     controlEnable(false);
 
     MusicInfoData arts;
@@ -368,7 +369,7 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 void MusicLocalSongsManagerWidget::setShowAlbumButton()
 {
     loadingLabelState(true);
-    m_ui->stackedWidget->setCurrentIndex(1);
+    m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
     controlEnable(false);
 
     MusicInfoData albums;

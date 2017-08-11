@@ -8,6 +8,7 @@
 #include "musictime.h"
 #include "musicsettingmanager.h"
 #include "musicapplicationobject.h"
+#include "musicotherdefine.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -141,7 +142,7 @@ void MusicSourceUpdateWidget::start()
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
-    m_ui->stackedWidget->setCurrentIndex(1);
+    m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
     QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false)).arg(localDwonload),
                                                                     UPDATE_DIR_FULL + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);

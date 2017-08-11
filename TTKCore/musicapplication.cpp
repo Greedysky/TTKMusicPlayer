@@ -22,6 +22,7 @@
 #include "musictoastlabel.h"
 #include "musiccoreutils.h"
 #include "musicplaylistmanager.h"
+#include "musicotherdefine.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -89,7 +90,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     m_ui->lrcDisplayAllButton->hide();
     m_ui->musicKey->setFocus();
-    m_ui->surfaceStackedWidget->setCurrentIndex(0);
+    m_ui->surfaceStackedWidget->setCurrentIndex(APP_WINDOW_INDEX_0);
 
     m_ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);

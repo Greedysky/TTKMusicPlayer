@@ -12,6 +12,7 @@
 #include "musiclrcdefines.h"
 #include "musiclrcmanager.h"
 #include "musicregeditmanager.h"
+#include "musicotherdefine.h"
 //qmmp
 #include <qmmpsettings.h>
 
@@ -340,13 +341,13 @@ void MusicSettingWidget::downloadDirSelected(int index)
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
-    m_ui->stackedWidget->setCurrentIndex(4);
+    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_4);
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
 {
     selectFunctionTableIndex(1, 1);
-    m_ui->stackedWidget->setCurrentIndex(5);
+    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_5);
 }
 
 void MusicSettingWidget::inlineLrcFgChanged()

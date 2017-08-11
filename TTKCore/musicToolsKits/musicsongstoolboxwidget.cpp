@@ -9,6 +9,7 @@
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
 #include "musictopareawidget.h"
+#include "musicotherdefine.h"
 
 #include <QMenu>
 #include <QPainter>

@@ -22,6 +22,7 @@ HEADERS  += \
     $$PWD/musicformats.h \
     $$PWD/musicnumberdefine.h \
     $$PWD/musicglobaldefine.h \
+    $$PWD/musicotherdefine.h \
     $$PWD/musictime.h \
     $$PWD/musicxmlconfigmanager.h \
     $$PWD/musicplayer.h \

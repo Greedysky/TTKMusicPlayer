@@ -7,6 +7,7 @@
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicdatabaseobject.h"
+#include "musicotherdefine.h"
 
 #include <QTimer>
 
@@ -132,7 +133,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
                                                                    QPixmap(":/usermanager/lb_mask"),
                                                                    m_ui->userIconU->size()));
         m_ui->userNameU->setText(tr("L|R"));
-        setCurrentIndex(0);
+        setCurrentIndex(USER_WINDOW_INDEX_0);
     }
     else
     {
@@ -141,7 +142,7 @@ void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
                                                                      m_ui->userIconL->size()));
         m_ui->userNameL->setToolTip(m_userModel->getUserName(uid));
         m_ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), m_ui->userNameL->toolTip(), Qt::ElideRight, 44));
-        setCurrentIndex(1);
+        setCurrentIndex(USER_WINDOW_INDEX_1);
     }
 }
 

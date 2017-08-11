@@ -14,6 +14,7 @@
 #include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
 #include "musicleftareawidget.h"
+#include "musicotherdefine.h"
 
 #include <qmath.h>
 #include <QUrl>

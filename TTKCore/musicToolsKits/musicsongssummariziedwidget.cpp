@@ -12,6 +12,7 @@
 #include "musicplayedlistpopwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
+#include "musicotherdefine.h"
 
 #include <QScrollBar>
 #include <QScrollArea>
@@ -319,7 +320,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
 
     if(m_currentPlayToolIndex == id)
     {
-        MusicSongsToolBoxWidget::setCurrentIndex(0);
+        MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.first().m_widgetItem->setItemExpand(false);
         MusicApplication::instance()->musicPlayIndex(-1);
     }
@@ -358,7 +359,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
     if(m_currentPlayToolIndex != MUSIC_NORMAL_LIST && m_currentPlayToolIndex != MUSIC_LOVEST_LIST &&
        m_currentPlayToolIndex != MUSIC_NETWORK_LIST && m_currentPlayToolIndex != MUSIC_RECENT_LIST)
     {
-        MusicSongsToolBoxWidget::setCurrentIndex(0);
+        MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
         m_itemList.first().m_widgetItem->setItemExpand(false);
         MusicApplication::instance()->musicPlayIndex(-1);
     }
@@ -625,7 +626,7 @@ void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
     }
 
     /// just play it at once
-    MusicSongsToolBoxWidget::setCurrentIndex(0);
+    MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
     MusicApplication::instance()->musicPlayIndex(index, 0);
 }
 

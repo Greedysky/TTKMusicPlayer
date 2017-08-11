@@ -2,6 +2,7 @@
 #include "musicconnecttransferwidget.h"
 #include "musicanimationstackedwidget.h"
 #include "musicuiobject.h"
+#include "musicotherdefine.h"
 #include "qrcodewidget.h"
 
 #include <QLabel>
@@ -23,7 +24,7 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     initSecondWidget();
     initThirdWidget();
 
-    m_stackedWidget->setCurrentIndex(0);
+    m_stackedWidget->setCurrentIndex(CONNECT_MOBILE_INDEX_0);
 }
 
 MusicConnectMobileWidget::~MusicConnectMobileWidget()

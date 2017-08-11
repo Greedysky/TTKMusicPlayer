@@ -13,6 +13,7 @@
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
 #include "musicsemaphoreloop.h"
+#include "musicotherdefine.h"
 
 #include <QMovie>
 #include <QShortcut>
@@ -115,7 +116,7 @@ void MusicIdentifySongsWidget::detectedButtonClicked()
 
 void MusicIdentifySongsWidget::reDetectButtonClicked()
 {
-    m_mainWindow->setCurrentIndex(0);
+    m_mainWindow->setCurrentIndex(IDENTIFY_SONGS_INDEX_0);
     if(m_songPlayer)
     {
         m_songPlayer->stop();

@@ -6,6 +6,7 @@
 #include "musictinyuiobject.h"
 #include "musicplaylistfoundcategorypopwidget.h"
 #include "musicpagingwidgetobject.h"
+#include "musicotherdefine.h"
 
 #include <qmath.h>
 #include <QPushButton>
@@ -261,12 +262,12 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &i
     m_infoWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
     m_infoWidget->setMusicPlaylistItem(item, this);
     m_container->addWidget(m_infoWidget);
-    m_container->setCurrentIndex(1);
+    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }
 
 void MusicPlaylistFoundWidget::backToPlayListMenu()
 {
-    m_container->setCurrentIndex(0);
+    m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
 }
 
 void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)

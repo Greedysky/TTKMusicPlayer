@@ -3,6 +3,7 @@
 #include "musiccloudtablewidget.h"
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
+#include "musicotherdefine.h"
 
 MusicCloudFileManagerDialog::MusicCloudFileManagerDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -94,12 +95,12 @@ void MusicCloudFileManagerDialog::downloadStateChanged()
     if(m_ui->downloadedButton->text() == tr("Downloaded"))
     {
         m_ui->downloadedButton->setText(tr("Uploaded"));
-        m_ui->stackedWidget->setCurrentIndex(1);
+        m_ui->stackedWidget->setCurrentIndex(CLOUD_MANAGER_INDEX_1);
     }
     else
     {
         m_ui->downloadedButton->setText(tr("Downloaded"));
-        m_ui->stackedWidget->setCurrentIndex(0);
+        m_ui->stackedWidget->setCurrentIndex(CLOUD_MANAGER_INDEX_0);
     }
 }
 

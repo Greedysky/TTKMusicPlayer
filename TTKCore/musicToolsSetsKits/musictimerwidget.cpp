@@ -4,6 +4,7 @@
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
 #include "musicapplicationobject.h"
+#include "musicotherdefine.h"
 
 #include <QStyledItemDelegate>
 #include <QButtonGroup>
@@ -181,17 +182,17 @@ void MusicTimerWidget::initComboParameter()
 
 void MusicTimerWidget::changeFirstWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(0);
+    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_0);
 }
 
 void MusicTimerWidget::changeSecondWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(1);
+    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_1);
 }
 
 void MusicTimerWidget::changeThreeWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(2);
+    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_2);
 }
 
 void MusicTimerWidget::initFirstWidget()

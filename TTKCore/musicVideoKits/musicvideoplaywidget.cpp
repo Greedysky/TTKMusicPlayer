@@ -9,6 +9,7 @@
 #include "musictinyuiobject.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
+#include "musicotherdefine.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -95,7 +96,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_videoView = new MusicVideoView(this);
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);
-    m_stackedWidget->setCurrentIndex(0);
+    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, tr("PopupMode"));
 
     connect(m_searchButton,SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
@@ -237,7 +238,7 @@ void MusicVideoPlayWidget::switchToSearchTable()
     m_textLabel->clear();
     m_searchEdit->show();
     m_searchButton->show();
-    m_stackedWidget->setCurrentIndex(1);
+    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_1);
 }
 
 void MusicVideoPlayWidget::switchToPlayView()
@@ -248,7 +249,7 @@ void MusicVideoPlayWidget::switchToPlayView()
     setTitleText(m_currentMediaName);
     m_searchEdit->hide();
     m_searchButton->hide();
-    m_stackedWidget->setCurrentIndex(0);
+    m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
 }
 
 void MusicVideoPlayWidget::searchButtonClicked()

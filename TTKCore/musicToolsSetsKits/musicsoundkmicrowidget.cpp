@@ -15,6 +15,7 @@
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
 #include "musiccoreutils.h"
+#include "musicotherdefine.h"
 #include "musictime.h"
 
 #include <QFileDialog>
@@ -251,13 +252,13 @@ void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url, const QSt
 
     if(m_queryMv = mv)
     {
-        m_ui->stackedWidget->setCurrentIndex(0);
+        m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_0);
         m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
         m_mediaPlayer->play();
     }
     else
     {
-        m_ui->stackedWidget->setCurrentIndex(1);
+        m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_1);
         m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, url);
         m_mediaPlayer->play();
 

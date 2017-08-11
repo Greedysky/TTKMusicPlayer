@@ -19,6 +19,8 @@
 #include "musicfunctionlistuiobject.h"
 #include "musicregeditmanager.h"
 #include "musictopareawidget.h"
+#include "musicotherdefine.h"
+
 #include "kugouwindow.h"
 
 #include <QPropertyAnimation>
@@ -449,7 +451,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
-    if(m_ui->surfaceStackedWidget->currentIndex() != 1)
+    if(m_ui->surfaceStackedWidget->currentIndex() != APP_WINDOW_INDEX_1)
     {
         musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
     }
@@ -561,7 +563,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
     }
 
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
-    m_ui->surfaceStackedWidget->setCurrentIndex(0);
+    m_ui->surfaceStackedWidget->setCurrentIndex(APP_WINDOW_INDEX_0);
     emit updateBackgroundTheme();
 }
 
