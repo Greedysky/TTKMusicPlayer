@@ -143,6 +143,10 @@ public Q_SLOTS:
     /*!
      * Change to inline lrc widget.
      */
+    void changeDownloadWidget();
+    /*!
+     * Change to download widget.
+     */
 
     void inlineLrcFgChanged();
     /*!

@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     MusicUtils::Core::checkCacheSize(
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
-                M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt(),
+                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt(),
                 M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     M_NETWORK_PTR->setBlockNetWork(
                 M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());

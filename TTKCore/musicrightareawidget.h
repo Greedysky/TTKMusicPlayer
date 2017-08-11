@@ -217,6 +217,14 @@ public Q_SLOTS:
     /*!
      * Lrc desktop wallpaper button clicked.
      */
+    void musicChangeDownloadFulllyWidget();
+    /*!
+     * Change to download fully widget.
+     */
+    void musicChangeDownloadCustumWidget();
+    /*!
+     * Change to download custum widget.
+     */
 
 protected:
     void musicButtonStyleClear(bool fore);

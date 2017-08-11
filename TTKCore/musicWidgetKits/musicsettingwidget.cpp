@@ -350,6 +350,12 @@ void MusicSettingWidget::changeInlineLrcWidget()
     m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_5);
 }
 
+void MusicSettingWidget::changeDownloadWidget()
+{
+    selectFunctionTableIndex(0, 2);
+    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_2);
+}
+
 void MusicSettingWidget::inlineLrcFgChanged()
 {
     lcrColorValue(Inline, "LRCFGCOLORCHOICED", m_ui->playedPushButton);

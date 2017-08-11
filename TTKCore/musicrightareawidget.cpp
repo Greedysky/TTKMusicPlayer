@@ -686,3 +686,15 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         MusicTopAreaWidget::instance()->musicWallpaperRemote(true);
     }
 }
+
+void MusicRightAreaWidget::musicChangeDownloadFulllyWidget()
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, true);
+}
+
+void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, false);
+    m_settingWidget->changeDownloadWidget();
+    showSettingWidget();
+}

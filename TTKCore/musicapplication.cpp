@@ -786,8 +786,17 @@ void MusicApplication::musicCreateRightMenu()
     window->setIcon(QIcon(m_applicationObject->getWindowToTop() ? ":/contextMenu/btn_selected" : QString()));
     rightClickMenu.addAction(tr("resetWindow"), m_applicationObject, SLOT(musicResetWindow()));
 
+    QMenu musicDownload(tr("Download"), &rightClickMenu);
+    rightClickMenu.addMenu(&musicDownload);
+    index = !M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt();
+    actions.clear();
+    actions << musicDownload.addAction(tr("Full Download"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadFulllyWidget()));
+    actions << musicDownload.addAction(tr("Custom"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadCustumWidget()));
+    if(index > -1 && index < actions.count())
+    {
+        actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
+    }
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_setting"), tr("Setting"), this, SLOT(musicSetting()));
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_location"), tr("musicLocation"), this, SLOT(musicCurrentPlayLocation()));
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
