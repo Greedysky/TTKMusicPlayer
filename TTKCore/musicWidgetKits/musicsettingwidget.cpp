@@ -133,6 +133,8 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     initAudioSettingWidget();
     initNetworkWidget();
     ////////////////////////////////////////////////
+    selectFunctionTableIndex(0, 0);
+
 }
 
 MusicSettingWidget::~MusicSettingWidget()
@@ -337,12 +339,14 @@ void MusicSettingWidget::downloadDirSelected(int index)
 }
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(3);
+    selectFunctionTableIndex(1, 0);
+    m_ui->stackedWidget->setCurrentIndex(4);
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
 {
-    m_ui->stackedWidget->setCurrentIndex(4);
+    selectFunctionTableIndex(1, 1);
+    m_ui->stackedWidget->setCurrentIndex(5);
 }
 
 void MusicSettingWidget::inlineLrcFgChanged()
@@ -581,6 +585,21 @@ int MusicSettingWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
+}
+
+void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
+{
+    clearFunctionTableSelection();
+    switch(row)
+    {
+        case 0:
+            m_ui->normalFunTableWidget->selectRow(col); break;
+        case 1:
+            m_ui->lrcFunTableWidget->selectRow(col); break;
+        case 2:
+            m_ui->supperFunTableWidget->selectRow(col); break;
+        default: break;
+    }
 }
 
 void MusicSettingWidget::initNormalSettingWidget()

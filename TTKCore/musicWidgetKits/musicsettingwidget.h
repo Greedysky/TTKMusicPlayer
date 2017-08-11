@@ -234,6 +234,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void selectFunctionTableIndex(int row, int col);
+    /*!
+     * Select function table index.
+     */
     void initNormalSettingWidget();
     /*!
      * Init normal setting stack widget.
