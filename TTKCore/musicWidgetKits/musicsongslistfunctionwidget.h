@@ -43,14 +43,6 @@ public:
      */
 
 Q_SIGNALS:
-    void musicSearch();
-    /*!
-     * Show searched text widget.
-     */
-    void musicCurrentPlayLocation();
-    /*!
-     * Show current play index.
-     */
     void deleteObject();
     /*!
      * Delete self object.

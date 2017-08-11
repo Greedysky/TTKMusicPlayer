@@ -13,7 +13,7 @@
 MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -36,7 +36,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(29, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
-    connect(searchButton, SIGNAL(clicked()), MusicBottomAreaWidget::instance(), SLOT(musicSearch()));
+    connect(searchButton, SIGNAL(clicked()), MusicBottomAreaWidget::instance(), SLOT(musicSearchWidget()));
 
     m_currentAnimationValue = 1;
     m_timer.setInterval(3*MT_S2MS);

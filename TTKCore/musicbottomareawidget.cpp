@@ -201,7 +201,7 @@ void MusicBottomAreaWidget::clearSearchedText()
     m_musicSongSearchWidget->close();
 }
 
-void MusicBottomAreaWidget::musicSearch()
+void MusicBottomAreaWidget::musicSearchWidget()
 {
     if(m_musicSongSearchWidget == nullptr)
     {

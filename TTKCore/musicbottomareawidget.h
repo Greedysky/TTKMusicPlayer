@@ -107,7 +107,7 @@ public:
      */
 
 public Q_SLOTS:
-    void musicSearch();
+    void musicSearchWidget();
     /*!
      * Show searched text widget.
      */
