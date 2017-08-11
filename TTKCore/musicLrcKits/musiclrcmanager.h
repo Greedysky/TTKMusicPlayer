@@ -20,8 +20,12 @@
 #define LRC_PER_TIME        30
 #define LRC_COLOR_OFFSET    9
 
-typedef struct MUSIC_LRC_EXPORT MusicLRCColor
+/*! @brief The class of the lrc color.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_LRC_EXPORT MusicLRCColor
 {
+public:
     enum LrcColorType
     {
         Null = -1,   ///*color null*/
@@ -45,26 +49,28 @@ typedef struct MUSIC_LRC_EXPORT MusicLRCColor
 
     };
 
+    MusicLRCColor();
+    MusicLRCColor(const QList<QColor> &fg, const QList<QColor> &bg,
+                  MusicLRCColor::LrcColorType index = MusicLRCColor::Null);
+    /*!
+     * Object contsructor.
+     */
+
+    static MusicLRCColor mapIndexToColor(MusicLRCColor::LrcColorType index);
+    /*!
+     * Map index to color.
+     */
+
+    bool isCustum() const;
+    /*!
+     * Current lrc color is man custum.
+     */
+
     QList<QColor> m_fgColor;
     QList<QColor> m_bgColor;
     MusicLRCColor::LrcColorType m_index;
 
-    MusicLRCColor() { }
-
-    MusicLRCColor(const QList<QColor> &fg, const QList<QColor> &bg,
-                  MusicLRCColor::LrcColorType index = MusicLRCColor::Null)
-    {
-        m_fgColor = fg;
-        m_bgColor = bg;
-        m_index = index;
-    }
-
-    bool custum() const
-    {
-        return m_index == MusicLRCColor::Null;
-    }
-
-}MusicLRCColor;
+};
 
 /*! @brief The class of the lrc manager base.
  * @author Greedysky <greedysky@163.com>
@@ -82,11 +88,6 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
-     */
-
-    static MusicLRCColor mapIndexToColor(MusicLRCColor::LrcColorType index);
-    /*!
-     * Map index to color.
      */
 
     void startTimerClock();

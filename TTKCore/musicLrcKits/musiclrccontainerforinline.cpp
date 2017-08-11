@@ -204,6 +204,7 @@ void MusicLrcContainerForInline::setLrcSize(int size)
 
     resizeWindow();
     setItemStyleSheet();
+    startTimerClock();
 }
 
 int MusicLrcContainerForInline::getLrcSize() const

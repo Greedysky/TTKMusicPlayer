@@ -3,42 +3,20 @@
 #include <QFile>
 #include <QFontDatabase>
 
-MusicLRCManager::MusicLRCManager(QWidget *parent)
-    : QLabel(parent)
+MusicLRCColor::MusicLRCColor()
 {
-    m_intervalCount = 0.0f;
 
-    m_linearGradient.setStart(0, 0);
-    m_maskLinearGradient.setStart(0, 0);
-
-    m_font.setFamily("Times New Roman");
-    m_font.setBold(true);
-
-    m_lrcMaskWidth = 0;
-    m_lrcMaskWidthInterval = 0;
-    m_speedLevel = 1;
-    m_transparent = 100;
-
-    m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), SLOT(setUpdateMask()));
 }
 
-MusicLRCManager::~MusicLRCManager()
+MusicLRCColor::MusicLRCColor(const QList<QColor> &fg, const QList<QColor> &bg,
+                             MusicLRCColor::LrcColorType index)
 {
-    delete m_timer;
+    m_fgColor = fg;
+    m_bgColor = bg;
+    m_index = index;
 }
 
-QString MusicLRCManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
-void MusicLRCManager::startTimerClock()
-{
-    m_timer->start(LRC_PER_TIME);
-}
-
-MusicLRCColor MusicLRCManager::mapIndexToColor(MusicLRCColor::LrcColorType index)
+MusicLRCColor MusicLRCColor::mapIndexToColor(MusicLRCColor::LrcColorType index)
 {
     QList<QColor> fg, bg;
     switch(index)
@@ -143,6 +121,48 @@ MusicLRCColor MusicLRCManager::mapIndexToColor(MusicLRCColor::LrcColorType index
     };
 
     return MusicLRCColor(fg, bg, index);
+}
+
+bool MusicLRCColor::isCustum() const
+{
+    return m_index == MusicLRCColor::Null;
+}
+
+
+
+MusicLRCManager::MusicLRCManager(QWidget *parent)
+    : QLabel(parent)
+{
+    m_intervalCount = 0.0f;
+
+    m_linearGradient.setStart(0, 0);
+    m_maskLinearGradient.setStart(0, 0);
+
+    m_font.setFamily("Times New Roman");
+    m_font.setBold(true);
+
+    m_lrcMaskWidth = 0;
+    m_lrcMaskWidthInterval = 0;
+    m_speedLevel = 1;
+    m_transparent = 100;
+
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), SLOT(setUpdateMask()));
+}
+
+MusicLRCManager::~MusicLRCManager()
+{
+    delete m_timer;
+}
+
+QString MusicLRCManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicLRCManager::startTimerClock()
+{
+    m_timer->start(LRC_PER_TIME);
 }
 
 void MusicLRCManager::setFontFamily(int index)

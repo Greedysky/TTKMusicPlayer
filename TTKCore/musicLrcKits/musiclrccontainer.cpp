@@ -28,7 +28,7 @@ QString MusicLrcContainer::getClassName()
 
 void MusicLrcContainer::setLinearGradientColor(MusicLRCColor::LrcColorType lrcColorType)
 {
-    MusicLRCColor cl = MusicLRCManager::mapIndexToColor(lrcColorType);
+    MusicLRCColor cl = MusicLRCColor::mapIndexToColor(lrcColorType);
     setLinearGradientColor(cl);
 }
 
