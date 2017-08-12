@@ -11,7 +11,8 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 
     MusicSkinConfigItem()
     {
-        m_useCount = 0;
+        m_name = "Greedysky";
+        m_useCount = 8888;
     }
 
     bool isValid() const
@@ -66,10 +67,10 @@ public:
 };
 
 
-/*! @brief The class of the background image core.
+/*! @brief The class of the background image wrap.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicBackgroundImageCore
+class MUSIC_CORE_EXPORT MusicBackgroundImageWrap
 {
 public:
     static QString getClassName();

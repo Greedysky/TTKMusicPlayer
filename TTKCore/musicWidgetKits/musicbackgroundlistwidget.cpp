@@ -28,7 +28,7 @@ void MusicBackgroundListItem::updatePixImage()
     if(!m_path.isEmpty())
     {
         MusicBackgroundImage image;
-        if(MusicBackgroundImageCore::outputSkin(image, m_path))
+        if(MusicBackgroundImageWrap::outputSkin(image, m_path))
         {
             m_imageInfo = image.m_item;
             setPixmap(image.m_pix.scaled(size()));

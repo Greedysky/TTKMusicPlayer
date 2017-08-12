@@ -211,6 +211,11 @@ void MusicTopAreaWidget::musicSetAsArtBackground()
     if(!path.isEmpty())
     {
         path = MusicBackgroundSkinDialog::cpoyArtFileToLocal(path);
+        if(path.isEmpty())
+        {
+            return;
+        }
+
         if(m_musicBackgroundWidget)
         {
             m_musicBackgroundWidget->updateArtFileTheme(path);
@@ -228,6 +233,16 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 {
     m_backgroundImagePath = fileName;
     musicBgTransparentChanged();
+}
+
+void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileName)
+{
+    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
+    {
+        return;
+    }
+
+    musicBackgroundSkinChanged(fileName);
 }
 
 void MusicTopAreaWidget::musicBackgroundChanged()

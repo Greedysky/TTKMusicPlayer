@@ -7,7 +7,6 @@
 
 #include <QFile>
 #include <QBuffer>
-#include <QDebug>
 
 #define WIN_NAME_MAX_LENGTH     256
 #ifdef Q_CC_GNU
@@ -54,12 +53,12 @@ void MusicSkinConfigManager::readSkinXMLConfig(MusicSkinConfigItem &item)
 
 
 
-QString MusicBackgroundImageCore::getClassName()
+QString MusicBackgroundImageWrap::getClassName()
 {
-    return "MusicBackgroundImageCore";
+    return "MusicBackgroundImageWrap";
 }
 
-bool MusicBackgroundImageCore::outputSkin(MusicBackgroundImage &image, const QString &path)
+bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QString &path)
 {
     unzFile zFile = unzOpen64(path.toLocal8Bit().constData());
     if(NULL == zFile)
@@ -143,7 +142,7 @@ bool MusicBackgroundImageCore::outputSkin(MusicBackgroundImage &image, const QSt
     return true;
 }
 
-bool MusicBackgroundImageCore::inputSkin(const MusicBackgroundImage &image, const QString &path)
+bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, const QString &path)
 {
     zipFile zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
     if(NULL == zFile)

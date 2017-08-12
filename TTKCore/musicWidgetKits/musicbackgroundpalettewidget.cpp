@@ -1,6 +1,7 @@
 #include "musicbackgroundpalettewidget.h"
 #include "ui_musicbackgroundpalettewidget.h"
 #include "musicbackgroundmanager.h"
+#include "musicbackgroundimage.h"
 #include "musicotherdefine.h"
 #include "musicuiobject.h"
 
@@ -192,8 +193,15 @@ QString MusicBackgroundPaletteWidget::getClassName()
 
 void MusicBackgroundPaletteWidget::updateBackground(const QString &text)
 {
-    QPixmap pix(text);
-    m_ui->background->setPixmap(pix.scaled( size() ));
+    MusicBackgroundImage image;
+    if(MusicBackgroundImageWrap::outputSkin(image, text))
+    {
+        m_ui->background->setPixmap(image.m_pix.scaled(size()));
+    }
+    else
+    {
+        m_ui->background->setPixmap(QPixmap(text).scaled(size()));
+    }
 }
 
 void MusicBackgroundPaletteWidget::paletteColorClicked()

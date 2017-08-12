@@ -14,6 +14,7 @@
 #include "musictopareawidget.h"
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
+#include "musicotherdefine.h"
 
 #include "qdevicewatcher.h"
 
@@ -55,7 +56,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
 
 MusicApplicationObject::~MusicApplicationObject()
 {
+    cleanUp();
     Q_CLEANUP_RESOURCE(MusicPlayer);
+
     delete m_musicTimerAutoObj;
     delete m_quitAnimation;
     delete m_sideAnimation;
@@ -329,4 +332,15 @@ bool MusicApplicationObject::closeCurrentEqualizer()
         emit enhancedMusicChanged(0);
     }
     return true;
+}
+
+void MusicApplicationObject::cleanUp()
+{
+    QFile::remove(TEMPORARY_DIR);
+    QFile::remove(MUSIC_COLOR_FILE);
+    QFile::remove(MUSIC_IMAGE_FILE);
+    QFile::remove(MUSIC_RECORD_FILE);
+    QFile::remove(MUSIC_RECORD_IN_FILE);
+    QFile::remove(MUSIC_RECORD_OUT_FILE);
+    QFile::remove(MUSIC_NETWORK_TEST_FILE);
 }
