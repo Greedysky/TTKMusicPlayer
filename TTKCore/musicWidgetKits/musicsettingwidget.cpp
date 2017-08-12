@@ -637,6 +637,8 @@ void MusicSettingWidget::initNormalSettingWidget()
     m_ui->quitWindowRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->setDefaultPlayerCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->closeNetWorkCheckBox->setFocusPolicy(Qt::NoFocus);
+
+    m_ui->quitWindowRadioBox->hide();
 #endif
 
     m_ui->languageComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->languageComboBox));

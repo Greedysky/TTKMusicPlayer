@@ -10,8 +10,9 @@
 
 #include <QFile>
 #include <sys/stat.h>
-#include "zconf.h"
-#include "zlib.h"
+
+#include "zlib/zconf.h"
+#include "zlib/zlib.h"
 
 const wchar_t key[] = { L'@', L'G', L'a', L'w', L'^', L'2',
                         L't', L'G', L'Q', L'6', L'1', L'-',

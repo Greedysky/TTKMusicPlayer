@@ -24,6 +24,8 @@ INCLUDEPATH += $$PWD/../
 
 win32{
     LIBS += -L../../../bin/$$TTKMusicPlayer -lzlib
+    HEADERS  += $$PWD/iowin32.h
+    SOURCES += $$PWD/iowin32.c
 }
 unix:!mac{
     LIBS += -L../../../lib/$$TTKMusicPlayer -lzlib
@@ -33,7 +35,6 @@ HEADERS  += \
     $$PWD/zip.h \
     $$PWD/unzip.h \
     $$PWD/mztools.h \
-    $$PWD/iowin32.h \
     $$PWD/ioapi.h \
     $$PWD/crypt.h
 
@@ -41,7 +42,6 @@ SOURCES += \
     $$PWD/zip.c \
     $$PWD/unzip.c \
     $$PWD/mztools.c \
-    $$PWD/iowin32.c \
     $$PWD/ioapi.c
     
 win32{

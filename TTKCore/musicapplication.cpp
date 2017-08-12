@@ -1089,8 +1089,10 @@ void MusicApplication::readXMLConfigFromText()
     //musicSetting
     //Just always set fade false, because it is not finished yet.
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, false);
-    //Set the inline lrc should be shown
-//    value = xml.readShowInlineLrc();
+#ifdef Q_OS_UNIX
+     //Disable  window quit mode on unix
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, false);
+#endif
     //Set inline lrc mode always on
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, true);
     m_rightAreaWidget->setInlineLrcVisible(true);
