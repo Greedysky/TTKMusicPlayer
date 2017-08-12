@@ -7,7 +7,7 @@
 #include "musicwidgetutils.h"
 #include "musictime.h"
 
-#include "qrcodewidget.h"
+#include "qrencode/qrcodewidget.h"
 
 #include <qmath.h>
 #include <QCheckBox>

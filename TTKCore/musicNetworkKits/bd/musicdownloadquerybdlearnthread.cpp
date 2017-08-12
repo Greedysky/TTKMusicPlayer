@@ -4,7 +4,7 @@
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
-#include "qaeswrap.h"
+#include "qaes/qaeswrap.h"
 
 MusicDownLoadQueryBDLearnThread::MusicDownLoadQueryBDLearnThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)

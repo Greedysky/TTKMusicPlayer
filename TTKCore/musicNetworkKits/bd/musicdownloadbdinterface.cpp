@@ -5,7 +5,7 @@
 #include "musicalgorithmutils.h"
 #///QJson import
 #include "qjson/parser.h"
-#include "qaeswrap.h"
+#include "qaes/qaeswrap.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>

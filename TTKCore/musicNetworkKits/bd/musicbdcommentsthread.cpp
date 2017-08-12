@@ -4,7 +4,7 @@
 
 #///QJson import
 #include "qjson/parser.h"
-#include "qaeswrap.h"
+#include "qaes/qaeswrap.h"
 
 MusicBDCommentsThread::MusicBDCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)

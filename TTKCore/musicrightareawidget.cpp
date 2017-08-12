@@ -21,7 +21,7 @@
 #include "musictopareawidget.h"
 #include "musicotherdefine.h"
 
-#include "kugouwindow.h"
+#include "qkugou/kugouwindow.h"
 
 #include <QPropertyAnimation>
 

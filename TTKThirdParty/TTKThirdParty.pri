@@ -8,14 +8,7 @@
 
 INCLUDEPATH += \
         $$PWD \
-        $$PWD/zlib \
+        $$PWD/Zlib \
         $$PWD/Devicewatcher \
         $$PWD/MiniDumper \
-        $$PWD/MusicExtras \
-        $$PWD/MusicExtras/qaes \
-        $$PWD/MusicExtras/qhz2py \
-        $$PWD/MusicExtras/qkugou \
-        $$PWD/MusicExtras/qiniu \
-        $$PWD/MusicExtras/qjson \
-        $$PWD/MusicExtras/qrencode \
-        $$PWD/MusicExtras/qshortcut
+        $$PWD/MusicExtras

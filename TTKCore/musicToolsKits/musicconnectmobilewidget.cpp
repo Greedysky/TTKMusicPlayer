@@ -3,7 +3,8 @@
 #include "musicanimationstackedwidget.h"
 #include "musicuiobject.h"
 #include "musicotherdefine.h"
-#include "qrcodewidget.h"
+
+#include "qrencode/qrcodewidget.h"
 
 #include <QLabel>
 #include <QPainter>

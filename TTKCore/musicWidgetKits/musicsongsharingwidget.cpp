@@ -9,7 +9,7 @@
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
 
-#include "qrcodewidget.h"
+#include "qrencode/qrcodewidget.h"
 
 MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

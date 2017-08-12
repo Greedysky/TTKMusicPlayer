@@ -12,7 +12,7 @@
 #include "musictoastlabel.h"
 #include "musicsemaphoreloop.h"
 
-#include "qnconf.h"
+#include "qiniu/qnconf.h"
 #///QJson import
 #include "qjson/parser.h"
 

@@ -19,7 +19,7 @@ const wchar_t key[] = { L'@', L'G', L'a', L'w', L'^', L'2',
 
 MusicLrcFromKrc::MusicLrcFromKrc()
 {
-    m_resultBytes = new uchar[MH_MB2B];
+    m_resultBytes = new uchar[MH_MB2B*MH_B2BS];
 }
 
 MusicLrcFromKrc::~MusicLrcFromKrc()
@@ -128,7 +128,7 @@ int MusicLrcFromKrc::sncasecmp(char *s1, char *s2, size_t n)
 
 int MusicLrcFromKrc::decompression(unsigned char *src, size_t srcsize, size_t *dstsize)
 {
-    *dstsize = MH_MB2B;
+    *dstsize = MH_MB2B*MH_B2BS;
     if(Z_OK != uncompress(m_resultBytes, (uLongf*)dstsize, src, srcsize))
     {
         return -1;

@@ -1,5 +1,5 @@
 #include "musichotkeymanager.h"
-#include "qxtglobalshortcut.h"
+#include "qshortcut/qxtglobalshortcut.h"
 
 #include <QStringList>
 

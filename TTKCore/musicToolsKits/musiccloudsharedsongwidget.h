@@ -10,9 +10,9 @@
    =================================================*/
 
 #include <QLabel>
-#include "qnsimplelistdata.h"
-#include "qnsimpleuploaddata.h"
-#include "qnsimpledeletedata.h"
+#include "qiniu/qnsimplelistdata.h"
+#include "qiniu/qnsimpleuploaddata.h"
+#include "qiniu/qnsimpledeletedata.h"
 #include "musiccloudfilemanagerdialog.h"
 
 class MusicOpenFileWidget;
