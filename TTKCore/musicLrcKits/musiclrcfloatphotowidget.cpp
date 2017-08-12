@@ -93,7 +93,7 @@ void MusicLrcFloatPhotoItem::exportArtPixmap()
     if(!filename.isEmpty())
     {
         QPixmap pix(m_pixPath);
-        pix.save(filename, "jpg");
+        pix.save(filename, JPG_FILE_PREFIX);
     }
 }
 

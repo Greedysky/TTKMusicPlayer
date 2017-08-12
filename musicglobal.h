@@ -75,6 +75,15 @@
 #  define MObject_cast(x,y) (qobject_cast< x >(y))
 #endif
 
+#ifndef _MSC_VER
+  //gcc version less than 3.4.0
+  #if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
+    #define STRCAT(a, b)    a##b
+  #else
+    #define STRCAT(a, b)    a b
+  #endif
+#endif
+
 #define TTK_DECLARE_LISTS(Class) \
     typedef QList<Class> Class##s;
 

@@ -187,7 +187,7 @@ void MusicFileInformationWidget::musicSaveTag()
         QByteArray data;
         QBuffer buffer(&data);
         buffer.open(QIODevice::WriteOnly);
-        QPixmap(m_imagePath).save(&buffer, "jpg");
+        QPixmap(m_imagePath).save(&buffer, JPG_FILE_PREFIX);
         tag.setCover(data);
     }
 

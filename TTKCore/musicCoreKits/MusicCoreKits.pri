@@ -37,6 +37,7 @@ HEADERS  += \
     $$PWD/musicsongtag.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
+    $$PWD/musicbackgroundimage.h \
     $$PWD/musicsystemenvironment.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
@@ -66,6 +67,7 @@ SOURCES += \
     $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
+    $$PWD/musicbackgroundimage.cpp \
     $$PWD/musicsystemenvironment.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \

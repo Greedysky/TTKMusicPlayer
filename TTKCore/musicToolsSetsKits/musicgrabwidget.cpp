@@ -143,7 +143,7 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
     QWidget::keyPressEvent(event);
     if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
     {
-        QString filename = MusicObject::getAppDir() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".jpg";
+        QString filename = MusicObject::getAppDir() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + JPG_FILE;
         musicCreateRightMenu(filename);
     }
     else if(event->key() == Qt::Key_Escape)

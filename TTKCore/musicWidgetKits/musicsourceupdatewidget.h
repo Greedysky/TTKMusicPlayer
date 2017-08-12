@@ -12,7 +12,6 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstractmovewidget.h"
 
-#define DD_TYPE_EXE     ".exe"
 #define CSDN_URL        "S1Nqc1N0ZmI3c3pHeWE2Z1BhMTE4WlFVMjNBVG5qRjZkZ0tVRmV2L0VJeVF0bUlTOGE1Zmp3Z0xpZWRpM25lOA=="
 
 namespace Ui {

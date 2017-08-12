@@ -55,6 +55,26 @@ bool MusicAbstractXml::writeConfig(const QString &name)
     return true;
 }
 
+QString MusicAbstractXml::toString() const
+{
+    if(!m_ddom)
+    {
+        return QString();
+    }
+
+    return m_ddom->toString();
+}
+
+QByteArray MusicAbstractXml::toByteArray() const
+{
+    if(!m_ddom)
+    {
+        return QByteArray();
+    }
+
+    return m_ddom->toByteArray();
+}
+
 QString MusicAbstractXml::readXmlAttributeByTagNameValue(const QString &tagName) const
 {
     return readXmlAttributeByTagName(tagName, "value");

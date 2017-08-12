@@ -57,6 +57,15 @@ public:
      * Write datas into xml file by given name.
      */
 
+    QString toString() const;
+    /*!
+     * Xml stream data to string.
+     */
+    QByteArray toByteArray() const;
+    /*!
+     * Xml stream data to byteArray.
+     */
+
     QString readXmlAttributeByTagNameValue(const QString &tagName) const;
     /*!
      * Read xml attribute by tagName and default name "value".

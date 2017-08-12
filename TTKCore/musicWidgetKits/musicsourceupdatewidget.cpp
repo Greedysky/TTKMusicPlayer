@@ -143,7 +143,7 @@ void MusicSourceUpdateWidget::start()
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
     m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
-    QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
+    QString localDwonload = "v" + m_newVersionStr + EXE_FILE;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false)).arg(localDwonload),
                                                                     UPDATE_DIR_FULL + localDwonload, MusicDownLoadThreadAbstract::Download_Other, this);
     connect(download, SIGNAL(downloadProgressChanged(float,QString,qint64)), SLOT(downloadProgressChanged(float,QString)));
@@ -194,7 +194,7 @@ void MusicSourceUpdateWidget::downloadProgressChanged(float percent, const QStri
 
 void MusicSourceUpdateWidget::downloadProgressFinished()
 {
-    QString localDwonload = "v" + m_newVersionStr + DD_TYPE_EXE;
+    QString localDwonload = "v" + m_newVersionStr + EXE_FILE;
     MusicMessageBox message(this);
     message.setText(tr("Download Finish, Install Or Not"));
     if(message.exec() == 0)
