@@ -55,13 +55,38 @@ bool MusicAbstractXml::writeConfig(const QString &name)
     return true;
 }
 
+bool MusicAbstractXml::fromString(const QString &data)
+{
+    delete m_file;
+    delete m_ddom;
+    m_file = nullptr;
+    m_ddom = new QDomDocument;
+    if( !m_ddom->setContent(data) )
+    {
+        return false;
+    }
+    return true;
+}
+
+bool MusicAbstractXml::fromByteArray(const QByteArray &data)
+{
+    delete m_file;
+    delete m_ddom;
+    m_file = nullptr;
+    m_ddom = new QDomDocument;
+    if( !m_ddom->setContent(data) )
+    {
+        return false;
+    }
+    return true;
+}
+
 QString MusicAbstractXml::toString() const
 {
     if(!m_ddom)
     {
         return QString();
     }
-
     return m_ddom->toString();
 }
 
@@ -71,7 +96,6 @@ QByteArray MusicAbstractXml::toByteArray() const
     {
         return QByteArray();
     }
-
     return m_ddom->toByteArray();
 }
 

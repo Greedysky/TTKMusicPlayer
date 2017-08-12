@@ -23,6 +23,19 @@ QString MusicBackgroundListItem::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicBackgroundListItem::updatePixImage()
+{
+    if(!m_path.isEmpty())
+    {
+        MusicBackgroundImage image;
+        if(MusicBackgroundImageCore::outputSkin(image, m_path))
+        {
+            m_imageInfo = image.m_item;
+            setPixmap(image.m_pix.scaled(size()));
+        }
+    }
+}
+
 void MusicBackgroundListItem::select(bool select)
 {
     m_isSelected = select;
@@ -88,8 +101,10 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 
         painter.setPen(Qt::white);
         painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
-        painter.drawText((width() - metric.width(tr("Used By 88888")))/2, 50, tr("Used By 88888"));
-        painter.drawText((width() - metric.width(tr("Au: Greedysky")))/2, 68, tr("Au: Greedysky"));
+        QString v = tr("Used By %1").arg(m_imageInfo.m_useCount);
+        painter.drawText((width() - metric.width(v))/2, 50, v);
+                v = tr("Au: %1").arg(m_imageInfo.m_name);
+        painter.drawText((width() - metric.width(v))/2, 68, v);
     }
 
     if(m_closeSet && m_closeMask)
@@ -156,7 +171,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
     item->closeSet(state);
     item->setFileName(name);
     item->setFilePath(path);
-    item->setPixmap( QPixmap(path).scaled(item->size()) );
+    item->updatePixImage();
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
     m_layout->addWidget(item, m_items.count()/ITEM_COUNT, m_items.count()%ITEM_COUNT, Qt::AlignLeft | Qt::AlignTop);

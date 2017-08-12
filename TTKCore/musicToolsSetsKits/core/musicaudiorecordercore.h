@@ -14,10 +14,7 @@
 #include <QAudioOutput>
 #include <QAudioDeviceInfo>
 #include "musicglobaldefine.h"
-
-#define RECORD_FILE         "record.raw"
-#define RECORD_IN_FILE      "record_input.wav"
-#define RECORD_OUT_FILE     "record_output.wav"
+#include "musicotherdefine.h"
 
 /*! @brief The class of the audio recorder core.
  * @author Greedysky <greedysky@163.com>

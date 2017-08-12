@@ -7,6 +7,7 @@
 #include "musicmessagebox.h"
 #include "musicnetworkthread.h"
 #include "musicnetworkspeedsuspensionwidget.h"
+#include "musicotherdefine.h"
 
 #include <QMenu>
 #include <QActionGroup>
@@ -128,7 +129,7 @@ void MusicNetworkSpeedTestWidget::networkTestStart()
     m_ui->testButton->setEnabled(false);
     m_testTimer.stop();
     delete m_testDownload;
-    m_testDownload = new MusicDataDownloadThread(MusicUtils::Algorithm::mdII(testUrl, false), testName,
+    m_testDownload = new MusicDataDownloadThread(MusicUtils::Algorithm::mdII(testUrl, false), MUSIC_NETWORK_TEST_FILE,
                          MusicDownLoadThreadAbstract::Download_BigBG, this);
     if(M_NETWORK_PTR->isOnline())
     {
@@ -177,7 +178,7 @@ void MusicNetworkSpeedTestWidget::networkTestStop()
     m_testDownload = nullptr;
     m_testTimer.stop();
     ///remove temp file
-    QFile::remove(testName);
+    QFile::remove(MUSIC_NETWORK_TEST_FILE);
     m_ui->testButton->setEnabled(true);
 
     MusicMessageBox message(this);

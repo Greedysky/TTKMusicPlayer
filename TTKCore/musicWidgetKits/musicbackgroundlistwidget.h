@@ -12,7 +12,7 @@
 #include <QLabel>
 #include <QGridLayout>
 #include "musicuiobject.h"
-#include "musicglobaldefine.h"
+#include "musicbackgroundimage.h"
 
 #define CURRENT_ITEMS_COUNT         47
 
@@ -50,6 +50,10 @@ public:
      * Get item file name.
      */
 
+    void updatePixImage();
+    /*!
+     * Update pix image.
+     */
     void select(bool select);
     /*!
      * Select the current item.
@@ -89,6 +93,7 @@ protected:
     bool m_printMask, m_isSelected;
     bool m_closeMask, m_closeSet;
     QString m_name, m_path;
+    MusicSkinConfigItem m_imageInfo;
 
 };
 

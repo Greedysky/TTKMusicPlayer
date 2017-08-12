@@ -1,11 +1,15 @@
 #include "musicbackgroundimage.h"
+#include "musicnumberdefine.h"
+#include "musicotherdefine.h"
 
 #include "ttkzip/zip.h"
 #include "ttkzip/unzip.h"
 
 #include <QFile>
 #include <QBuffer>
+#include <QDebug>
 
+#define WIN_NAME_MAX_LENGTH     256
 #ifdef Q_CC_GNU
 #  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
@@ -21,7 +25,7 @@ QString MusicSkinConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSkinConfigManager::writeMusicSongsConfig(const MusicSkinConfigItem &item, const QString &path)
+void MusicSkinConfigManager::writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path)
 {
     //Open wirte file
     if( !writeConfig( path ) )
@@ -42,7 +46,7 @@ void MusicSkinConfigManager::writeMusicSongsConfig(const MusicSkinConfigItem &it
     m_ddom->save(out, 4);
 }
 
-void MusicSkinConfigManager::readMusicSongsConfig(MusicSkinConfigItem &item)
+void MusicSkinConfigManager::readSkinXMLConfig(MusicSkinConfigItem &item)
 {
     item.m_name = readXmlAttributeByTagNameValue("name");
     item.m_useCount = readXmlAttributeByTagNameValue("useCount").toInt();
@@ -72,11 +76,11 @@ bool MusicBackgroundImageCore::outputSkin(MusicBackgroundImage &image, const QSt
 
     for(int i=0; i<gInfo.number_entry; ++i)
     {
-        char file[256] = {0};
-        char ext[256] = {0};
-        char com[1024] = {0};
+        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char ext[WIN_NAME_MAX_LENGTH] = {0};
+        char com[MH_KB] = {0};
 
-        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, 256, com, 1024) != UNZ_OK)
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
         {
             break;
         }
@@ -86,7 +90,7 @@ bool MusicBackgroundImageCore::outputSkin(MusicBackgroundImage &image, const QSt
             break;
         }
 
-        char data[1024] = {0};
+        char data[MH_KB] = {0};
         int size = 0;
 
         QByteArray arrayData;
@@ -108,13 +112,22 @@ bool MusicBackgroundImageCore::outputSkin(MusicBackgroundImage &image, const QSt
         }
         else if(QString(file).toLower().contains(XML_FILE))
         {
+            while(true)
+            {
+                size= unzReadCurrentFile(zFile, data, sizeof(data));
+                if(size <= 0)
+                {
+                    break;
+                }
+                arrayData.append(data, size);
+            }
+
             MusicSkinConfigManager manager;
             MusicSkinConfigItem item;
-            if(manager.readConfig(file))
+            if(manager.fromByteArray(arrayData))
             {
-                manager.readMusicSongsConfig(item);
-                image.m_name = item.m_name;
-                image.m_useCount = item.m_useCount;
+                manager.readSkinXMLConfig(item);
+                image.m_item = item;
             }
         }
 
@@ -139,7 +152,7 @@ bool MusicBackgroundImageCore::inputSkin(const MusicBackgroundImage &image, cons
     }
 
     QString nPrefix(path);
-    nPrefix.chop(5);
+    nPrefix.chop(strlen(TTS_FILE));
     int level = 5;
 
     zip_fileinfo fileInfo;
@@ -153,17 +166,14 @@ bool MusicBackgroundImageCore::inputSkin(const MusicBackgroundImage &image, cons
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 
-    MusicSkinConfigItem sss;
-    sss.m_name = image.m_name;
-    sss.m_useCount = image.m_useCount;
     MusicSkinConfigManager manager;
-    manager.writeMusicSongsConfig(sss, TEMPORARY_DIR);
+    manager.writeSkinXMLConfig(image.m_item, MUSIC_IMAGE_FILE);
     data = manager.toByteArray();
 
     zipOpenNewFileInZip(zFile, (nPrefix + XML_FILE).toLocal8Bit().constData(), &fileInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, level);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
-    QFile::remove(TEMPORARY_DIR);
+    QFile::remove(MUSIC_IMAGE_FILE);
 
     zipClose(zFile, 0);
 

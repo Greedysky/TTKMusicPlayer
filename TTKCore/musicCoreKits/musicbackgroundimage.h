@@ -4,25 +4,6 @@
 #include <QPixmap>
 #include "musicabstractxml.h"
 
-typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
-{
-    QPixmap m_pix;
-    QString m_name;
-    int m_useCount;
-
-    MusicBackgroundImage()
-    {
-        m_useCount = -1;
-    }
-
-    bool isValid() const
-    {
-        return m_pix.isNull() && m_name.isEmpty() && m_useCount == -1;
-    }
-
-}MusicBackgroundImage;
-TTK_DECLARE_LISTS(MusicBackgroundImage)
-
 typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 {
     QString m_name;
@@ -30,16 +11,30 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 
     MusicSkinConfigItem()
     {
-        m_useCount = -1;
+        m_useCount = 0;
     }
 
     bool isValid() const
     {
-        return m_name.isEmpty() && m_useCount == -1;
+        return m_name.isEmpty() && m_useCount == 0;
     }
 
 }MusicSkinConfigItem;
 TTK_DECLARE_LISTS(MusicSkinConfigItem)
+
+
+typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
+{
+    QPixmap m_pix;
+    MusicSkinConfigItem m_item;
+
+    bool isValid() const
+    {
+        return m_pix.isNull() && m_item.isValid();
+    }
+
+}MusicBackgroundImage;
+TTK_DECLARE_LISTS(MusicBackgroundImage)
 
 
 /*! @brief The class of the skin XML Config Manager.
@@ -59,13 +54,13 @@ public:
      * Get class object name.
      */
 
-    void writeMusicSongsConfig(const MusicSkinConfigItem &item, const QString &path);
+    void writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path);
     /*!
-     * Write music datas into xml file.
+     * Write datas into xml file.
      */
-    void readMusicSongsConfig(MusicSkinConfigItem &item);
+    void readSkinXMLConfig(MusicSkinConfigItem &item);
     /*!
-     * Read music datas into xml file.
+     * Read datas into xml file.
      */
 
 };
@@ -81,12 +76,11 @@ public:
     /*!
      * Get class object name.
      */
-
-    bool outputSkin(MusicBackgroundImage &image, const QString &path);
+    static bool outputSkin(MusicBackgroundImage &image, const QString &path);
     /*!
      * Transfer file to image data.
      */
-    bool inputSkin(const MusicBackgroundImage &image, const QString &path);
+    static bool inputSkin(const MusicBackgroundImage &image, const QString &path);
     /*!
      * Transfer image data to file.
      */

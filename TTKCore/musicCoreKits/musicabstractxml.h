@@ -56,6 +56,14 @@ public:
     /*!
      * Write datas into xml file by given name.
      */
+    bool fromString(const QString &data);
+    /*!
+     * Xml stream data from string.
+     */
+    bool fromByteArray(const QByteArray &data);
+    /*!
+     * Xml stream data from byteArray.
+     */
 
     QString toString() const;
     /*!

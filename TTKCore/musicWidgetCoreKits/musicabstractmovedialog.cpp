@@ -1,5 +1,6 @@
 #include "musicabstractmovedialog.h"
 #include "musicbackgroundmanager.h"
+#include "musicbackgroundimage.h"
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -42,8 +43,7 @@ void MusicAbstractMoveDialog::backgroundChanged()
 {
     if(m_background)
     {
-        QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-        MStatic_cast(QLabel*, m_background)->setPixmap(pix.scaled(size()));
+        setBackgroundPixmap(size());
     }
 }
 
@@ -105,6 +105,19 @@ void MusicAbstractMoveDialog::mouseReleaseEvent(QMouseEvent *event)
 void MusicAbstractMoveDialog::setBackgroundPixmap(QLabel *label, const QSize &size)
 {
     m_background = label;
-    QPixmap pix(M_BACKGROUND_PTR->getMBackground());
-    label->setPixmap(pix.scaled(size));
+    setBackgroundPixmap(size);
+}
+
+void MusicAbstractMoveDialog::setBackgroundPixmap(const QSize &size)
+{
+    QLabel *label = MStatic_cast(QLabel*, m_background);
+    MusicBackgroundImage image;
+    if(MusicBackgroundImageCore::outputSkin(image, M_BACKGROUND_PTR->getMBackground()))
+    {
+        label->setPixmap(image.m_pix.scaled(size));
+    }
+    else
+    {
+        label->setPixmap(QPixmap(M_BACKGROUND_PTR->getMBackground()).scaled(size));
+    }
 }

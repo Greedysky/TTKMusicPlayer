@@ -63,7 +63,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     m_ui->pitchLabelValue->setText("0");
     m_ui->rateLabelValue->setText("2500");
 
-    setText(MusicObject::getAppDir() + RECORD_FILE);
+    setText(MusicObject::getAppDir() + MUSIC_RECORD_FILE);
     m_ui->playWavButton->setEnabled(false);
     m_ui->transformButton->setEnabled(false);
 
@@ -130,7 +130,7 @@ void MusicSoundTouchWidget::onRecordStop()
 
 void MusicSoundTouchWidget::onRecordPlay()
 {
-    QSound::play(MusicObject::getAppDir() + RECORD_OUT_FILE);
+    QSound::play(MusicObject::getAppDir() + MUSIC_RECORD_OUT_FILE);
 //    m_recordCore->onRecordPlay();
 }
 
@@ -164,14 +164,14 @@ void MusicSoundTouchWidget::openWavButtonClicked()
 void MusicSoundTouchWidget::transformButtonClicked()
 {
     QString input = m_recordCore->getFileName();
-    if(input == RECORD_FILE)
+    if(input == MUSIC_RECORD_FILE)
     {
-        m_recordCore->addWavHeader(RECORD_IN_FILE);
-        input = MusicObject::getAppDir() + RECORD_IN_FILE;
+        m_recordCore->addWavHeader(MUSIC_RECORD_IN_FILE);
+        input = MusicObject::getAppDir() + MUSIC_RECORD_IN_FILE;
     }
 
     QStringList key;
-    key << input << (MusicObject::getAppDir() + RECORD_OUT_FILE)
+    key << input << (MusicObject::getAppDir() + MUSIC_RECORD_OUT_FILE)
                           << QString("-tempo=%1").arg(m_ui->tempoSlider->value())
                           << QString("-pitch=%1").arg(m_ui->pitchSlider->value())
                           << QString("-rate=%1").arg(m_ui->rateSlider->value());

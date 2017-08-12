@@ -1090,7 +1090,7 @@ void MusicApplication::readXMLConfigFromText()
     //Just always set fade false, because it is not finished yet.
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, false);
 #ifdef Q_OS_UNIX
-     //Disable  window quit mode on unix
+    //Disable  window quit mode on unix
     M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, false);
 #endif
     //Set inline lrc mode always on
@@ -1101,8 +1101,7 @@ void MusicApplication::readXMLConfigFromText()
     m_rightAreaWidget->setWindowLrcTypeChanged();
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, xml.readShowDLrcGeometry());
 
-    //Set the current background color
-    //Set the current alpha value
+    //Set the current background color and alpha value
     m_topAreaWidget->setParameters(M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString(),
                                    M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt(),
                                    M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt());

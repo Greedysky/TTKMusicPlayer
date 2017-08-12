@@ -35,7 +35,7 @@ public:
      * Get class object name.
      */
 
-    static QString setMBackground(QString &name);
+    static QPixmap setMBackground(QString &name);
     /*!
      * Set artist background picture by name.
      */

@@ -16,7 +16,7 @@ MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
     m_mpAudioOutputFile = nullptr;
 
     m_mpOutputFile = new QFile(this);
-    m_mpOutputFile->setFileName( RECORD_FILE );
+    m_mpOutputFile->setFileName( MUSIC_RECORD_FILE );
 
     m_mFormatFile.setSampleSize(16);
     m_mFormatFile.setSampleType(QAudioFormat::SignedInt);
@@ -44,9 +44,9 @@ MusicAudioRecorderCore::MusicAudioRecorderCore(QObject *parent)
 
 MusicAudioRecorderCore::~MusicAudioRecorderCore()
 {
-    QFile::remove(RECORD_FILE);
-    QFile::remove(RECORD_IN_FILE);
-    QFile::remove(RECORD_OUT_FILE);
+    QFile::remove(MUSIC_RECORD_FILE);
+    QFile::remove(MUSIC_RECORD_IN_FILE);
+    QFile::remove(MUSIC_RECORD_OUT_FILE);
 
     delete m_mpOutputFile;
     delete m_mpAudioInputFile;

@@ -29,13 +29,13 @@ public:
      * Get class object name.
      */
 
-    void writeMusicSongsConfig(const MusicSongItems &musics, const QString &path);
+    void writeWPLXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
-     * Write music datas into xml file.
+     * Write datas into xml file.
      */
-    void readMusicSongsConfig(MusicSongItems &musics);
+    void readWPLXMLConfig(MusicSongItems &musics);
     /*!
-     * Read music datas into xml file.
+     * Read datas into xml file.
      */
 
 protected:
@@ -64,13 +64,13 @@ public:
      * Get class object name.
      */
 
-    void writeMusicSongsConfig(const MusicSongItems &musics, const QString &path);
+    void writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
-     * Write music datas into xml file.
+     * Write datas into xml file.
      */
-    void readMusicSongsConfig(MusicSongItems &musics);
+    void readXSPFXMLConfig(MusicSongItems &musics);
     /*!
-     * Read music datas into xml file.
+     * Read datas into xml file.
      */
 
 protected:

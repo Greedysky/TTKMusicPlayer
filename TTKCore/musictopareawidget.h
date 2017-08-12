@@ -209,6 +209,10 @@ protected:
     /*!
      * Draw window background rect.
      */
+    void drawWindowBackgroundRect(const QImage &image);
+    /*!
+     * Draw window background rect.
+     */
     void drawWindowBackgroundRectString();
     /*!
      * Draw window background rect by qimage.

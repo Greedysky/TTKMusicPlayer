@@ -1,13 +1,13 @@
 #include "musicbackgroundpalettewidget.h"
 #include "ui_musicbackgroundpalettewidget.h"
 #include "musicbackgroundmanager.h"
+#include "musicotherdefine.h"
 #include "musicuiobject.h"
 
 #include <QGridLayout>
 #include <QColorDialog>
 #include <QMouseEvent>
 
-#define COLOR_FILE "color.jpg"
 #define COLOR_COL  10
 #define COLOR_ROW  6
 
@@ -19,7 +19,7 @@ MusicBackgroundPalette::MusicBackgroundPalette(QWidget *parent)
 
 MusicBackgroundPalette::~MusicBackgroundPalette()
 {
-    QFile::remove(COLOR_FILE);
+    QFile::remove(MUSIC_COLOR_FILE);
 }
 
 QString MusicBackgroundPalette::getClassName()
@@ -38,9 +38,9 @@ void MusicBackgroundPalette::copyColorToMemory(const QColor &color)
 {
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(color);
-    if(image.save( COLOR_FILE ))
+    if(image.save( MUSIC_COLOR_FILE ))
     {
-        emit currentColorToMemoryChanged( COLOR_FILE );
+        emit currentColorToMemoryChanged( MUSIC_COLOR_FILE );
     }
 }
 
@@ -172,7 +172,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
 
 MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
 {
-    QFile::remove(COLOR_FILE);
+    QFile::remove(MUSIC_COLOR_FILE);
     if(!m_confirmButtonClicked)
     {
         emit currentColorToMemoryChanged(m_previousBackground);
@@ -203,9 +203,9 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
         m_confirmButtonClicked = true;
         QImage image(16, 16, QImage::Format_ARGB32);
         image.fill(m_currentColor);
-        if(image.save( COLOR_FILE ))
+        if(image.save( MUSIC_COLOR_FILE ))
         {
-            emit currentColorToFileChanged( COLOR_FILE );
+            emit currentColorToFileChanged( MUSIC_COLOR_FILE );
         }
     }
     close();
@@ -229,9 +229,9 @@ void MusicBackgroundPaletteWidget::currentColorToFile(const QColor &color)
 
     QImage image(16, 16, QImage::Format_ARGB32);
     image.fill(m_currentColor = color);
-    if(image.save( COLOR_FILE ))
+    if(image.save( MUSIC_COLOR_FILE ))
     {
-        currentColorToMemory( COLOR_FILE );
+        currentColorToMemory( MUSIC_COLOR_FILE );
     }
 }
 

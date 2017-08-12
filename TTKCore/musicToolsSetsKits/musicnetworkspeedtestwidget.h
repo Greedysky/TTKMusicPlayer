@@ -19,7 +19,6 @@ class MusicNetworkSpeedTestThread;
 class MusicNetworkSpeedSuspensionWidget;
 
 const QString testUrl = "Mnk5YVlmSkd3VzB3WTYvMkFlNVZpa0pycmFaSEFyWTJuSDNNV1pvOXBWUWluVVduL0cveENGSHM1OGJnL0MxWmV2MlQ2ZEx5ak5sUDlWREtnSC9tSmxQOXRtY0N1ZHBXeWlzRmtaNXBMWUUzM09HOFYrYkJJdTZ6R3dUbDVyQmRpMERmYy9VVmVCeHUvdFhL";
-const QString testName = "tempCache.tt";
 
 namespace Ui {
 class MusicNetworkSpeedTestWidget;

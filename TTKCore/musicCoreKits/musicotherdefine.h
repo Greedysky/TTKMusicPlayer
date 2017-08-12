@@ -11,6 +11,13 @@
 
 #include <QObject>
 
+#define MUSIC_COLOR_FILE            "color.jpg"
+#define MUSIC_IMAGE_FILE            "image_cache"
+#define MUSIC_RECORD_FILE           "record.raw"
+#define MUSIC_RECORD_IN_FILE        "record_input.wav"
+#define MUSIC_RECORD_OUT_FILE       "record_output.wav"
+#define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
+
 //MusicLrcMakerWidget
 #define LRC_MAKER_INDEX_0           0
 #define LRC_MAKER_INDEX_1           1

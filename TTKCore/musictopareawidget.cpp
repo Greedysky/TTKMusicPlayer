@@ -432,9 +432,21 @@ void MusicTopAreaWidget::createRemoteWidget()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
-    QString path = MusicBackgroundSkinDialog::setMBackground(m_backgroundImagePath);
     m_pictureCarouselTimer.stop();
-    drawWindowBackgroundRectString(path);
+    drawWindowBackgroundRect(MusicBackgroundSkinDialog::setMBackground(m_backgroundImagePath).toImage());
+}
+
+void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
+{
+    QImage origin(image);
+    if(!origin.colorTable().isEmpty())
+    {
+        origin = origin.convertToFormat(QImage::Format_ARGB32);
+    }
+    MusicUtils::Widget::reRenderImage(35, &origin, &origin);
+
+    m_backgroundImage = origin;
+    drawWindowBackgroundRectString();
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString()
@@ -455,13 +467,5 @@ void MusicTopAreaWidget::drawWindowBackgroundRectString()
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString(const QString &path)
 {
-    QImage origin(path);
-    if(!origin.colorTable().isEmpty())
-    {
-        origin = origin.convertToFormat(QImage::Format_ARGB32);
-    }
-    MusicUtils::Widget::reRenderImage(35, &origin, &origin);
-
-    m_backgroundImage = origin;
-    drawWindowBackgroundRectString();
+    drawWindowBackgroundRect(QImage(path));
 }

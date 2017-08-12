@@ -15,7 +15,7 @@ QString MusicWPLConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
+void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     if( musics.isEmpty() )
     {
@@ -62,7 +62,7 @@ void MusicWPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     m_ddom->save(out, 4);
 }
 
-void MusicWPLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
+void MusicWPLConfigManager::readWPLXMLConfig(MusicSongItems &musics)
 {
     bool state = false;
     QDomNodeList nodes = m_ddom->elementsByTagName("head");
@@ -128,7 +128,7 @@ QString MusicXSPFConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicXSPFConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
+void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     if( musics.isEmpty() )
     {
@@ -178,7 +178,7 @@ void MusicXSPFConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
     m_ddom->save(out, 4);
 }
 
-void MusicXSPFConfigManager::readMusicSongsConfig(MusicSongItems &musics)
+void MusicXSPFConfigManager::readXSPFXMLConfig(MusicSongItems &musics)
 {
     bool state = false;
     QDomNodeList nodes = m_ddom->elementsByTagName("playlist");
@@ -504,14 +504,14 @@ void MusicPlayListManager::readWPLList(const QString &path, MusicSongItems &item
     MusicWPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readMusicSongsConfig(items);
+        manager.readWPLXMLConfig(items);
     }
 }
 
 void MusicPlayListManager::writeWPLList(const QString &path, const MusicSongItem &item)
 {
     MusicWPLConfigManager manager;
-    manager.writeMusicSongsConfig(MusicSongItems() << item, path);
+    manager.writeWPLXMLConfig(MusicSongItems() << item, path);
 }
 
 void MusicPlayListManager::readXSPFList(const QString &path, MusicSongItems &items)
@@ -519,12 +519,12 @@ void MusicPlayListManager::readXSPFList(const QString &path, MusicSongItems &ite
     MusicXSPFConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readMusicSongsConfig(items);
+        manager.readXSPFXMLConfig(items);
     }
 }
 
 void MusicPlayListManager::writeXSPFList(const QString &path, const MusicSongItem &item)
 {
     MusicXSPFConfigManager manager;
-    manager.writeMusicSongsConfig(MusicSongItems() << item, path);
+    manager.writeXSPFXMLConfig(MusicSongItems() << item, path);
 }

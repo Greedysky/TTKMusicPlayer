@@ -61,6 +61,10 @@ protected:
     /*!
      * Set background pixmap.
      */
+    void setBackgroundPixmap(const QSize &size);
+    /*!
+     * Set background pixmap.
+     */
 
     QPoint m_pressAt;
     bool m_moveOption, m_showShadow;
