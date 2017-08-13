@@ -3,6 +3,8 @@
 #///QJson import
 #include "qjson/parser.h"
 
+#define D_URL   "cmw5eWcwaXhCSDYvU1RoR3U5ZFV2NVppeDlyVkwxbFZtYnJZK3g5SzViaHFXc3FYQ09RblRYVHhORGVFVmFnN0RRUm5jZz09"
+
 MusicDownLoadQueryQQPlaylistThread::MusicDownLoadQueryQQPlaylistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
@@ -44,7 +46,7 @@ void MusicDownLoadQueryQQPlaylistThread::startToPage(int offset)
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Referer", "http://y.qq.com/y/static/taoge/taoge_list.html");
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

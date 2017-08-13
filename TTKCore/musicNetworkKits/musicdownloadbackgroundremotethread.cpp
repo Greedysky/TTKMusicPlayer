@@ -1,6 +1,8 @@
 #include "musicdownloadbackgroundremotethread.h"
 #include "musicdownloadsourcethread.h"
 
+#define D_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
+
 MusicSkinRemoteConfigManager::MusicSkinRemoteConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
@@ -75,7 +77,7 @@ void MusicDownloadBackgroundRemoteThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
-    download->startToDownload("http://xl7xml.client.xunlei.com/7.9/onlineskin.xml");
+    download->startToDownload(MusicUtils::Algorithm::mdII(D_URL, false));
 }
 
 void MusicDownloadBackgroundRemoteThread::downLoadDataFinished(const QByteArray &bytes)
