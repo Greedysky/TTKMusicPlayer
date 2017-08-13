@@ -25,6 +25,7 @@ HEADERS  += \
     $$PWD/musicbackgroundlistwidget.h \
     $$PWD/musicbackgroundpalettewidget.h \
     $$PWD/musicbackgroundpopwidget.h \
+    $$PWD/musicbackgroundremotewidget.h \
     $$PWD/musicdownloadwidget.h \
     $$PWD/musicdownloadmgmtwidget.h \
     $$PWD/musicdownloadstatusobject.h \
@@ -69,6 +70,7 @@ SOURCES += \
     $$PWD/musicbackgroundlistwidget.cpp \
     $$PWD/musicbackgroundpalettewidget.cpp \
     $$PWD/musicbackgroundpopwidget.cpp \
+    $$PWD/musicbackgroundremotewidget.cpp \
     $$PWD/musicdownloadwidget.cpp \
     $$PWD/musicdownloadmgmtwidget.cpp \
     $$PWD/musicdownloadstatusobject.cpp \

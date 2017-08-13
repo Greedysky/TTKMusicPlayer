@@ -1,6 +1,14 @@
 #ifndef MUSICBACKGROUNDIMAGE_H
 #define MUSICBACKGROUNDIMAGE_H
 
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (c) 2015 - 2017 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
+
 #include <QPixmap>
 #include "musicabstractxml.h"
 
@@ -17,7 +25,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 
     bool isValid() const
     {
-        return m_name.isEmpty() && m_useCount == 0;
+        return !(m_name.isEmpty() && m_useCount == 0);
     }
 
 }MusicSkinConfigItem;
@@ -31,7 +39,7 @@ typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
 
     bool isValid() const
     {
-        return m_pix.isNull() && m_item.isValid();
+        return !m_pix.isNull() && m_item.isValid();
     }
 
 }MusicBackgroundImage;
@@ -76,6 +84,11 @@ public:
     static QString getClassName();
     /*!
      * Get class object name.
+     */
+
+    static bool outputSkin(QPixmap &image, const QString &path);
+    /*!
+     * Transfer file to image data.
      */
     static bool outputSkin(MusicBackgroundImage &image, const QString &path);
     /*!

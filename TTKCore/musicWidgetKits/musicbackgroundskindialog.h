@@ -16,6 +16,7 @@ class MusicBackgroundSkinDialog;
 }
 
 class MusicBackgroundListWidget;
+class MusicBackgroundRemoteWidget;
 
 /*! @brief The class of the local background widget.
  * @author Greedysky <greedysky@163.com>
@@ -101,6 +102,10 @@ public Q_SLOTS:
     /*!
      * My background list widget item has clicked.
      */
+    void remoteBackgroundListWidgetItemClicked(const QString &name);
+    /*!
+     * Remote background list widget item has clicked.
+     */
     void currentColorChanged(const QString &path);
     /*!
      * Update app bg when user change the current bg emit.
@@ -111,6 +116,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name);
+    /*!
+     * Background list widget item has clicked changed.
+     */
     void addThemeListWidgetItem();
     /*!
      * Add all theme into list.
@@ -118,6 +127,10 @@ protected:
     void cpoyFileFromLocal(const QString &path);
     /*!
      * Copy custom file to local themes dir path.
+     */
+    static int cpoyFileToLocalIndex();
+    /*!
+     * Copy custom file index.
      */
     static int cpoyFileToLocal(const QString &path);
     /*!
@@ -127,6 +140,7 @@ protected:
     int m_myThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
     MusicBackgroundListWidget *m_backgroundList, *m_myBackgroundList;
+    MusicBackgroundRemoteWidget *m_remoteBackgroundList;
 
 };
 

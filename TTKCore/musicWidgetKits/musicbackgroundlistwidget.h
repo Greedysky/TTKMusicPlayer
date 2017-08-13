@@ -54,6 +54,11 @@ public:
     /*!
      * Update pix image.
      */
+    void updatePixImage(const MusicBackgroundImage &image);
+    /*!
+     * Update pix image.
+     */
+
     void select(bool select);
     /*!
      * Select the current item.
@@ -62,6 +67,7 @@ public:
     /*!
      * Get current selected item state.
      */
+
     void closeSet(bool set);
     /*!
      * Close option set the current item.
@@ -69,6 +75,15 @@ public:
     inline bool isCloseSet() const { return m_closeSet; }
     /*!
      * Get close option set the current item.
+     */
+
+    void showName(bool set);
+    /*!
+     * Show title name set the current item.
+     */
+    inline bool isShowName() const { return m_showName; }
+    /*!
+     * Get show title name set the current item.
      */
 
 Q_SIGNALS:
@@ -91,7 +106,7 @@ protected:
      */
 
     bool m_printMask, m_isSelected;
-    bool m_closeMask, m_closeSet;
+    bool m_closeMask, m_closeSet, m_showName;
     QString m_name, m_path;
     MusicSkinConfigItem m_imageInfo;
 
@@ -132,6 +147,15 @@ public:
     /*!
      * Create item by name and path.
      */
+    void createItem(const QString &icon, bool state);
+    /*!
+     * Create item by icon.
+     */
+    void updateItem(const MusicBackgroundImage &image, const QString &path);
+    /*!
+     * Update item by backgroud image.
+     */
+
     bool contains(const QString &name) const;
     /*!
      * Current item contains or not.

@@ -3,23 +3,36 @@
 
 #include <QStringList>
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const QString &url,
-                            const QString &save, Download_Type type, QObject *parent)
-    : MusicDownLoadThreadAbstract(url, save, type, parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(Download_Type type, QObject *parent)
+    : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
 {
-    m_request = nullptr;
-    m_isDownload = false;
-    m_isAbort = false;
+
 }
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const QStringList &url,
-                        const QStringList &save, Download_Type type, QObject *parent)
-    : MusicDownLoadThreadAbstract(QString(), QString(), type, parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &data, Download_Type type, QObject *parent)
+    : MusicDownLoadThreadAbstract(data.m_url, data.m_savePath, type, parent)
 {
     m_request = nullptr;
     m_isDownload = false;
     m_isAbort = false;
-    addImageQueue(url, save);
+
+    m_manager = new QNetworkAccessManager(this);
+    m_request = new QNetworkRequest();
+#ifndef QT_NO_SSL
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
+                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
+
+    QSslConfiguration sslConfig = m_request->sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    m_request->setSslConfiguration(sslConfig);
+#endif
+}
+
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, Download_Type type, QObject *parent)
+    : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
+{
+    addImageQueue(datas);
 }
 
 MusicDownloadQueueCache::~MusicDownloadQueueCache()
@@ -39,17 +52,6 @@ QString MusicDownloadQueueCache::getClassName()
 
 void MusicDownloadQueueCache::startToDownload()
 {
-    m_manager = new QNetworkAccessManager(this);
-    m_request = new QNetworkRequest();
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-
-    QSslConfiguration sslConfig = m_request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    m_request->setSslConfiguration(sslConfig);
-#endif
     if(!m_imageQueue.isEmpty())
     {
         startOrderImageQueue();
@@ -70,17 +72,9 @@ void MusicDownloadQueueCache::abort()
     }
 }
 
-void MusicDownloadQueueCache::addImageQueue(const QStringList &url,
-                                            const QStringList &savePath)
+void MusicDownloadQueueCache::addImageQueue(const MusicDownloadQueueDatas &datas)
 {
-    m_imageQueue.clear();
-    for(int i=0; i<url.count(); ++i)
-    {
-        MusicDownloadQueueData data;
-        data.m_url = url[i];
-        data.m_savePath = savePath[i];
-        m_imageQueue << data;
-    }
+    m_imageQueue = datas;
 }
 
 void MusicDownloadQueueCache::startOrderImageQueue()
@@ -112,7 +106,7 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
         return;
     }
 
-    if(!m_request || !m_manager || !m_reply)
+    if(!m_request || !m_manager)
     {
         return;
     }
@@ -122,7 +116,6 @@ void MusicDownloadQueueCache::startDownload(const QString &url)
     m_reply = m_manager->get(*m_request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(readyRead()), SLOT(readyReadSlot()));
-    connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(errorSlot(QNetworkReply::NetworkError)));
 }
 

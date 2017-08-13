@@ -132,6 +132,7 @@
     </property>
     <widget class="QScrollArea" name="recommandScrollArea"/>
     <widget class="QScrollArea" name="userScrollArea"/>
+    <widget class="QScrollArea" name="remoteScrollArea"/>
    </widget>
   </widget>
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
@@ -224,6 +225,25 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="MusicClickedLabel" name="remoteSkin">
+   <property name="geometry">
+    <rect>
+     <x>187</x>
+     <y>40</y>
+     <width>80</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string>在线</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -237,6 +257,7 @@
   <zorder>skinTransparentButton</zorder>
   <zorder>resetWindowButton</zorder>
   <zorder>mySkin</zorder>
+  <zorder>remoteSkin</zorder>
  </widget>
  <customwidgets>
   <customwidget>

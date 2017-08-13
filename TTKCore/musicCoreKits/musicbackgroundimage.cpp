@@ -58,6 +58,67 @@ QString MusicBackgroundImageWrap::getClassName()
     return "MusicBackgroundImageWrap";
 }
 
+bool MusicBackgroundImageWrap::outputSkin(QPixmap &image, const QString &path)
+{
+    unzFile zFile = unzOpen64(path.toLocal8Bit().constData());
+    if(NULL == zFile)
+    {
+        return false;
+    }
+
+    unz_file_info64 fileInfo;
+    unz_global_info64 gInfo;
+    if (unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
+    {
+        return false;
+    }
+
+    for(int i=0; i<gInfo.number_entry; ++i)
+    {
+        char file[WIN_NAME_MAX_LENGTH] = {0};
+        char ext[WIN_NAME_MAX_LENGTH] = {0};
+        char com[MH_KB] = {0};
+
+        if(unzGetCurrentFileInfo64(zFile, &fileInfo, file, sizeof(file), ext, WIN_NAME_MAX_LENGTH, com, MH_KB) != UNZ_OK)
+        {
+            break;
+        }
+
+        if(unzOpenCurrentFile(zFile) != UNZ_OK)
+        {
+            break;
+        }
+
+        char data[MH_KB] = {0};
+        int size = 0;
+
+        QByteArray arrayData;
+        if(QString(file).toLower().contains("image/bkg"))
+        {
+            while(true)
+            {
+                size= unzReadCurrentFile(zFile, data, sizeof(data));
+                if(size <= 0)
+                {
+                    break;
+                }
+                arrayData.append(data, size);
+            }
+            image.loadFromData(arrayData);
+        }
+
+        unzCloseCurrentFile(zFile);
+
+        if(i < gInfo.number_entry - 1 && unzGoToNextFile(zFile) != UNZ_OK)
+        {
+            return false;
+        }
+    }
+    unzClose(zFile);
+
+    return true;
+}
+
 bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QString &path)
 {
     unzFile zFile = unzOpen64(path.toLocal8Bit().constData());
@@ -150,8 +211,7 @@ bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, cons
         return false;
     }
 
-    QString nPrefix(path);
-    nPrefix.chop(strlen(TTS_FILE));
+    QString nPrefix = QFileInfo(path).baseName();
     int level = 5;
 
     zip_fileinfo fileInfo;

@@ -93,7 +93,8 @@ HEADERS  += \
     $$PWD/musicdownloadcommentsthread.h \
     $$PWD/musicdownloadsourcethread.h \
     $$PWD/musicdownloadcounterpvthread.h \
-    $$PWD/musicdownloadbackgroundthread.h
+    $$PWD/musicdownloadbackgroundthread.h \
+    $$PWD/musicdownloadbackgroundremotethread.h
 
 }
 
@@ -173,6 +174,7 @@ SOURCES += \
     $$PWD/musicdownloadcommentsthread.cpp \
     $$PWD/musicdownloadsourcethread.cpp \
     $$PWD/musicdownloadcounterpvthread.cpp \
-    $$PWD/musicdownloadbackgroundthread.cpp
+    $$PWD/musicdownloadbackgroundthread.cpp \
+    $$PWD/musicdownloadbackgroundremotethread.cpp
 
 }
