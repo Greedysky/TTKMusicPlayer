@@ -153,7 +153,7 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["artist"].toString();
                     musicInfo.m_songName = value["name"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);

@@ -10,7 +10,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &id, int bitrate)
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &id, int bitrate)
 {
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(id);
 
@@ -58,7 +58,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, const QString &id, int bitrate)
 {
     qlonglong dfsId = key.value("dfsId").toLongLong();
@@ -77,7 +77,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
     const QString id = key["id"].toString();

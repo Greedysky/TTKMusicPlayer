@@ -174,7 +174,7 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MusicSongAttributes attrs = musicSongInfos[row].m_songAttrs;
     if(!attrs.isEmpty())
     {
@@ -189,7 +189,7 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
     {
         return;
     }
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
 }
@@ -213,7 +213,7 @@ void MusicVideoTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoTableWidget::downloadLocalMovie(int row)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

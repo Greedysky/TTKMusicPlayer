@@ -85,7 +85,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
 
                     value = var.toMap();
 
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songId = QString::number(value["videoId"].toULongLong());
                     musicInfo.m_songName = value["title"].toString();
 
@@ -128,7 +128,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
                                                            const QString &id)
 {
     if(id.isEmpty() || !m_manager)
@@ -185,7 +185,7 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
     }
 }
 
-void MusicDownLoadQueryYYTThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryYYTThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
                                                                const QString &url, const QString &size, const QString &duration)
 {
     if(url.isEmpty())

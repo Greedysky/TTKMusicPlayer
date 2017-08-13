@@ -87,7 +87,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
     if(!down->getMusicSongInfos().isEmpty())
     {
-        MusicObject::MusicSongInfomation info(down->getMusicSongInfos().first());
+        MusicObject::MusicSongInformation info(down->getMusicSongInfos().first());
         downLoadDataChanged(MusicUtils::Algorithm::mdII(WEB_PLAYER, false) + info.m_songId, info.m_smallPicUrl);
     }
     else

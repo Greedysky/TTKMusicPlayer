@@ -186,7 +186,7 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["singers"].toString();
                     musicInfo.m_songName = value["songName"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());

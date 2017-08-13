@@ -38,7 +38,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info,
                                                     const QString &songID)
 {
     QNetworkAccessManager manager;
@@ -92,7 +92,7 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInfoma
     }
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, int bitrate)
 {
     MusicObject::MusicSongAttribute attr;
@@ -103,7 +103,7 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     info->m_songAttrs.append(attr);
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariant &key, const QString &quality, bool all)
 {
     foreach(const QVariant &song, key.toList())

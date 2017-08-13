@@ -77,7 +77,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["singername"].toString();
                     musicInfo.m_songName = value["songname"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
@@ -153,7 +153,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &hash)
 {
     if(hash.isEmpty() || !m_manager)
@@ -211,7 +211,7 @@ void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadQueryKGThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryKGThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
                                                               const QVariantMap &key)
 {
     MusicObject::MusicSongAttribute attr;

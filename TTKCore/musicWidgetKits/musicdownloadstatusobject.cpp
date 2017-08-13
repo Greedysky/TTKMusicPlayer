@@ -143,7 +143,7 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         return;
     }
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_parentWidget->getCurrentFileName();
@@ -151,8 +151,8 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         QString artistName = MusicUtils::String::artistName(filename);
         QString songName = MusicUtils::String::songName(filename);
 
-        MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
+        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
+        foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )

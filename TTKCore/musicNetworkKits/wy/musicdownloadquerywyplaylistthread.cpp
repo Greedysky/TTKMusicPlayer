@@ -179,7 +179,7 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = value["name"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(value["id"].toInt());

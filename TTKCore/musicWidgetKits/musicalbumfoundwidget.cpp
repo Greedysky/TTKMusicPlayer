@@ -99,7 +99,7 @@ void MusicAlbumFoundWidget::resizeWindow()
 
 void MusicAlbumFoundWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));
@@ -107,7 +107,7 @@ void MusicAlbumFoundWidget::queryAllFinished()
     else
     {
         bool hasItem = false;
-        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
+        foreach(const MusicObject::MusicSongInformation &info, musicSongInfos)
         {
             if(m_songNameFull.contains(info.m_songName))
             {
@@ -128,14 +128,14 @@ void MusicAlbumFoundWidget::queryAllFinished()
 
 void MusicAlbumFoundWidget::queryAlbumFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_albumTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));
     }
     else
     {
-        MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
+        MusicObject::MusicSongInformation currentInfo = musicSongInfos.first();
         QStringList lists = currentInfo.m_albumId.split("<>");
         if(lists.count() < 4)
         {
@@ -181,7 +181,7 @@ void MusicAlbumFoundWidget::queryAlbumFinished()
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
+        foreach(const MusicObject::MusicSongInformation &info, musicSongInfos)
         {
             if(!info.m_smallPicUrl.isEmpty() && info.m_smallPicUrl != "null")
             {

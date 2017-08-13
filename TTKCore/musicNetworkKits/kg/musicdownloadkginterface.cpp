@@ -11,7 +11,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &hash)
 {
     if(hash.isEmpty())
@@ -55,7 +55,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
     if(all)
@@ -81,7 +81,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info,
                                                           const QString &hash)
 {
     if(hash.isEmpty())

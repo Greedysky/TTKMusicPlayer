@@ -84,7 +84,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = value["name"].toString();
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_smallPicUrl = smallPicUrl;

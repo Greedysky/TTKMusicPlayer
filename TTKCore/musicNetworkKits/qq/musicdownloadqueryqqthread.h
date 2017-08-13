@@ -41,7 +41,7 @@ public Q_SLOTS:
      */
 
 protected:
-    void readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
                                   const QString &id);
     /*!
      * Read mv tags(size\bitrate\url) from query results.

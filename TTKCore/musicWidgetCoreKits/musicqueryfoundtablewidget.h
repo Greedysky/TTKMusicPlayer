@@ -37,7 +37,7 @@ public:
     /*!
      * Data download to local file.
      */
-    const MusicObject::MusicSongInfomations& getMusicSongInfos() const;
+    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
     /*!
      * Return the current song container.
      */
@@ -77,7 +77,7 @@ protected:
     /*!
      * Add search music to play list by index.
      */
-    bool downloadDataFrom(const MusicObject::MusicSongInfomation &downloadInfo, bool play);
+    bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
     /*!
      * Download data from net and just play or not.
      */

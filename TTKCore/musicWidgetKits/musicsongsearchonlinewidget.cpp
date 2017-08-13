@@ -91,7 +91,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
     {
         return;
@@ -112,7 +112,7 @@ void MusicSongSearchOnlineTableWidget::auditionStop()
 
 void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;
@@ -299,7 +299,7 @@ void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
         return;
     }
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
@@ -340,8 +340,8 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::DW_DownLoading);
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[row];
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[row];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
     QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);

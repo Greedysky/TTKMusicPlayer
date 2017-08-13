@@ -48,20 +48,20 @@ const QString BD_PLAYLIST_ATTR_URL  = "NXJsZ3ArR0JHeXFJYmdWUi9sOVNTaHlxbEpuekJYS
 class MUSIC_NETWORK_EXPORT MusicDownLoadBDInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &bit);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &bit);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &format,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &format,
                                     const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info);
+    void readFromMusicLLAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info);
+    void readFromMusicPayAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */

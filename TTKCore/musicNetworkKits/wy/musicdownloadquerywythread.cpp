@@ -78,7 +78,7 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
                     value = var.toMap();
                     if(m_currentType != MovieQuery)
                     {
-                        MusicObject::MusicSongInfomation musicInfo;
+                        MusicObject::MusicSongInformation musicInfo;
                         musicInfo.m_songName = value["name"].toString();
                         musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
                         musicInfo.m_songId = QString::number(value["id"].toInt());
@@ -181,7 +181,7 @@ void MusicDownLoadQueryWYThread::startMVListQuery(int id)
         if(value.contains("code") && value["code"].toInt() == 200)
         {
             value = value["data"].toMap();
-            MusicObject::MusicSongInfomation musicInfo;
+            MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songName = value["name"].toString();
             musicInfo.m_singerName = value["artistName"].toString();
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());

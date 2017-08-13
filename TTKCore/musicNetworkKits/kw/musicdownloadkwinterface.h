@@ -40,17 +40,17 @@ const QString KW_PLAYLIST_ATTR_URL = "UzZ0NDRTM2s1Mm5OUTZvZDdTRUlCZ0hsVjhZbGh3aW
 class MUSIC_NETWORK_EXPORT MusicDownLoadKWInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &suffix,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
                                     const QString &format, const QString &id, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                     const QString &format, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongPic(MusicObject::MusicSongInfomation *info, const QString &id);
+    void readFromMusicSongPic(MusicObject::MusicSongInformation *info, const QString &id);
     /*!
      * Read tags(lrc\smallpic) from query results.
      */

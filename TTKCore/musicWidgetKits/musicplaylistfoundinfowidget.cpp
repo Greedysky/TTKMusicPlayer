@@ -248,7 +248,7 @@ void MusicPlaylistFoundInfoWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 
 void MusicPlaylistFoundInfoWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_playlistTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_playlistTableWidget->getMusicSongInfos());
     m_songButton->setText(tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));
 }
 

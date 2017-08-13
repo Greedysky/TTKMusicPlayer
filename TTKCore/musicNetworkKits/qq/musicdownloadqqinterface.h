@@ -49,12 +49,12 @@ class QNetworkAccessManager;
 class MUSIC_NETWORK_EXPORT MusicDownLoadQQInterface
 {
 public:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QVariantMap &key,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
                                     int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QVariantMap &key,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
                                     const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.

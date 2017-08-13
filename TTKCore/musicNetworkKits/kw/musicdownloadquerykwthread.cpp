@@ -76,7 +76,7 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["ARTIST"].toString();
                     musicInfo.m_songName = value["SONGNAME"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toString().toInt()*1000);
@@ -155,7 +155,7 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info, int bitrate,
+void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, int bitrate,
                                                               const QString &id, const QString &format)
 {
     if(id.isEmpty())

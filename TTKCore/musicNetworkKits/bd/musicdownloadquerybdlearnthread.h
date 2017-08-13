@@ -40,11 +40,11 @@ public Q_SLOTS:
      */
 
 protected:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicLrcAttribute(MusicObject::MusicSongInfomation *info);
+    void readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read lrc tag from query results.
      */

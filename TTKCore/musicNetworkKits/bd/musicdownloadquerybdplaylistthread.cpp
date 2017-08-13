@@ -213,7 +213,7 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["author"].toString();
                     musicInfo.m_songName = value["title"].toString();
                     musicInfo.m_timeLength = "-";

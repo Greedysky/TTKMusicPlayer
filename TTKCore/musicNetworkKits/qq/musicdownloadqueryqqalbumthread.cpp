@@ -83,7 +83,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     foreach(const QVariant &var, value["singer"].toList())
                     {
                         if(var.isNull())

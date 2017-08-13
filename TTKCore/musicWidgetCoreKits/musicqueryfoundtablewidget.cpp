@@ -53,7 +53,7 @@ void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
 
 void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -64,7 +64,7 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
-const MusicObject::MusicSongInfomations& MusicQueryFoundTableWidget::getMusicSongInfos() const
+const MusicObject::MusicSongInformations& MusicQueryFoundTableWidget::getMusicSongInfos() const
 {
     Q_ASSERT(m_downLoadManager);
     return m_downLoadManager->getMusicSongInfos();
@@ -72,7 +72,7 @@ const MusicObject::MusicSongInfomations& MusicQueryFoundTableWidget::getMusicSon
 
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MIntList list = getSelectedItems();
     for(int i=0; i<list.count(); ++i)
     {
@@ -190,7 +190,7 @@ void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
         return;
     }
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row >= musicSongInfos.count())
     {
         return;
@@ -199,7 +199,7 @@ void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
     downloadDataFrom(musicSongInfos[row], play);
 }
 
-bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongInfomation &downloadInfo, bool play)
+bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play)
 {
     if(!M_NETWORK_PTR->isOnline())
     {

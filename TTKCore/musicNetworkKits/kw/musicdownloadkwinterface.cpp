@@ -11,7 +11,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info, const QString &suffix,
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
                                                           const QString &format, const QString &id, int bitrate)
 {
     if(format.contains("MP3128") && bitrate == MB_128 && suffix == "mp3")
@@ -70,7 +70,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &format, const QString &quality, bool all)
 {
     if(all)
@@ -101,7 +101,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info,
                                                     const QString &id)
 {
     if(id.isEmpty())

@@ -100,7 +100,7 @@ protected:
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderCore *m_recordCore;
     MusicIdentifySongsThread *m_detectedThread;
-    MusicObject::MusicSongInfomation m_currentSong;
+    MusicObject::MusicSongInformation m_currentSong;
 
 };
 

@@ -76,7 +76,7 @@ void MusicSimilarFoundWidget::resizeWindow()
 
 void MusicSimilarFoundWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noSimilar"));
@@ -103,7 +103,7 @@ void MusicSimilarFoundWidget::createLabels()
     scrollArea->setWidget(m_mainWindow);
     layout()->addWidget(scrollArea);
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
     QWidget *function = new QWidget(m_mainWindow);
     function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
     QGridLayout *grid = new QGridLayout(function);
@@ -177,7 +177,7 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(new QLabel(artLimitString, function), 5, 6, 1, 2, Qt::AlignCenter);
 
     int downloadCounter = 0;
-    foreach(const MusicObject::MusicSongInfomation &data, musicSongInfos)
+    foreach(const MusicObject::MusicSongInformation &data, musicSongInfos)
     {
         if(data.m_singerName.contains(artName) && downloadCounter < 3)
         {

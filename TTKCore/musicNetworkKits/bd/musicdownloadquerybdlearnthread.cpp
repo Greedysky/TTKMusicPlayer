@@ -76,7 +76,7 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["artist_name"].toString();
                     musicInfo.m_songName = value["song_title"].toString();
                     musicInfo.m_songId = value["song_id"].toString();
@@ -109,7 +109,7 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info)
+void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info)
 {
     if(!m_manager)
     {
@@ -154,7 +154,7 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
     }
 }
 
-void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::MusicSongInfomation *info)
+void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info)
 {
     if(!m_manager)
     {

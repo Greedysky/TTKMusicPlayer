@@ -46,7 +46,7 @@ public Q_SLOTS:
      */
 
 protected:
-    void readFromMusicSongAlbumInfo(MusicObject::MusicSongInfomation *info);
+    void readFromMusicSongAlbumInfo(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(album info) from query results.
      */

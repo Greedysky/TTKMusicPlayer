@@ -58,17 +58,17 @@ public:
     /*!
      * Make token query url string.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                     const QVariantMap &key, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                     const QVariant &key, const QString &quality, bool all);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongLrc(MusicObject::MusicSongInfomation *info, const QString &songID);
+    void readFromMusicSongLrc(MusicObject::MusicSongInformation *info, const QString &songID);
     /*!
      * Read tags(lrc) from query results.
      */

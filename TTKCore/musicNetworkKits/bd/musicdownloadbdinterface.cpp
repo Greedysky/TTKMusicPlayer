@@ -12,7 +12,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &bit)
 {
     QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(info->m_songId)
@@ -84,7 +84,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &format, const QString &quality, bool all)
 {
     QString formatString = format;
@@ -131,7 +131,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInfomation *info)
+void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info)
 {
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_INFO_URL, false).arg(info->m_songId);
 
@@ -184,7 +184,7 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     }
 }
 
-void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInfomation *info)
+void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongInformation *info)
 {
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(info->m_songId);
 

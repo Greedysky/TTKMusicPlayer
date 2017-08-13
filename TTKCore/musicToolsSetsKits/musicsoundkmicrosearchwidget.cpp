@@ -75,7 +75,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
         return;
     }
 
-    MusicObject::MusicSongInfomations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
     {
         if(m_queryMv)

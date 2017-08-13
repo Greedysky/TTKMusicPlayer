@@ -124,7 +124,7 @@ public:
     /*!
      * Return the current song name.
      */
-    inline const MusicObject::MusicSongInfomations& getMusicSongInfos() const { return m_musicSongInfos; }
+    inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
     /*!
      * Return the current song container.
      */
@@ -145,7 +145,7 @@ protected:
      * Map query server string.
      */
 
-    MusicObject::MusicSongInfomations m_musicSongInfos;
+    MusicObject::MusicSongInformations m_musicSongInfos;
     QString m_searchText, m_searchQuality;
     QString m_queryServer;
     QueryType m_currentType;

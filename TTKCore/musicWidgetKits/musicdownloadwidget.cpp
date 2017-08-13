@@ -15,18 +15,18 @@
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
 {
-    m_infomation = new QLabel(this);
+    m_information = new QLabel(this);
     m_icon = new QLabel(this);
     m_text = new QLabel(this);
 
     m_text->setGeometry(0, 0, 60, ROW_HEIGHT);
     m_icon->setGeometry(70, 0, 30, ROW_HEIGHT);
-    m_infomation->setGeometry(170, 0, 150, ROW_HEIGHT);
+    m_information->setGeometry(170, 0, 150, ROW_HEIGHT);
 }
 
 MusicDownloadTableItem::~MusicDownloadTableItem()
 {
-    delete m_infomation;
+    delete m_information;
     delete m_icon;
     delete m_text;
 }
@@ -41,9 +41,9 @@ void MusicDownloadTableItem::setIcon(const QString &name)
     m_icon->setPixmap(QPixmap(name).scaled(28, 18));
 }
 
-void MusicDownloadTableItem::setInfomation(const QString &info)
+void MusicDownloadTableItem::setInformation(const QString &info)
 {
-    m_infomation->setText(info);
+    m_information->setText(info);
 }
 
 void MusicDownloadTableItem::setText(const QString &text)
@@ -93,7 +93,7 @@ void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, cons
 
     MusicDownloadTableItem *item = new MusicDownloadTableItem(this);
     item->setIcon(icon);
-    item->setInfomation(info);
+    item->setInformation(info);
     item->setText(type);
     m_items << item;
 
@@ -195,7 +195,7 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
     m_downloadThread->startToSearch(type, name);
 }
 
-void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInfomation &info,
+void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info,
                                       MusicDownLoadQueryThreadAbstract::QueryType type)
 {
     m_queryType = type;
@@ -240,16 +240,16 @@ void MusicDownloadWidget::queryAllFinished()
     }
 }
 
-MusicObject::MusicSongInfomation MusicDownloadWidget::getMatchMusicSongInfomation()
+MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformation()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
         QString filename = m_downloadThread->getSearchedText();
         QString artistName = MusicUtils::String::artistName(filename);
         QString songName = MusicUtils::String::songName(filename);
-        MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos.first();
-        foreach(const MusicObject::MusicSongInfomation &var, musicSongInfos)
+        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
+        foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
                 var.m_songName.contains(songName, Qt::CaseInsensitive) )
@@ -261,12 +261,12 @@ MusicObject::MusicSongInfomation MusicDownloadWidget::getMatchMusicSongInfomatio
         qSort(musicSongInfo.m_songAttrs);
         return musicSongInfo;
     }
-    return MusicObject::MusicSongInfomation();
+    return MusicObject::MusicSongInformation();
 }
 
 void MusicDownloadWidget::queryAllFinishedMusic()
 {
-    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         queryAllFinishedMusic(musicSongInfo.m_songAttrs);
@@ -321,7 +321,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
 
 void MusicDownloadWidget::queryAllFinishedMovie()
 {
-    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         queryAllFinishedMovie(musicSongInfo.m_songAttrs);
@@ -440,14 +440,14 @@ void MusicDownloadWidget::dataDownloadFinished()
 
 void MusicDownloadWidget::startToDownloadMusic()
 {
-    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         startToDownloadMusic(musicSongInfo);
     }
 }
 
-void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfomation &musicSongInfo)
+void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     int bitrate = m_ui->viewArea->getCurrentBitrate();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
@@ -509,14 +509,14 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfom
 
 void MusicDownloadWidget::startToDownloadMovie()
 {
-    MusicObject::MusicSongInfomation musicSongInfo(getMatchMusicSongInfomation());
+    MusicObject::MusicSongInformation musicSongInfo(getMatchMusicSongInformation());
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         startToDownloadMovie(musicSongInfo);
     }
 }
 
-void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfomation &musicSongInfo)
+void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
     int bitrate = m_ui->viewArea->getCurrentBitrate();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;

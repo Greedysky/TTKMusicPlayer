@@ -41,7 +41,7 @@ public:
     /*!
      * Set current item icon.
      */
-    void setInfomation(const QString &info);
+    void setInformation(const QString &info);
     /*!
      * Set current item other infomation(size\type\time).
      */
@@ -51,7 +51,7 @@ public:
      */
 
 protected:
-    QLabel *m_text, *m_infomation, *m_icon;
+    QLabel *m_text, *m_information, *m_icon;
 
 };
 
@@ -120,7 +120,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInfomation &info,
+    void setSongName(const MusicObject::MusicSongInformation &info,
                      MusicDownLoadQueryThreadAbstract::QueryType type);
     /*!
      * Set current name to search and download musics.
@@ -176,7 +176,7 @@ protected:
      * Set widget moved into given pos.
      */
 
-    MusicObject::MusicSongInfomation getMatchMusicSongInfomation();
+    MusicObject::MusicSongInformation getMatchMusicSongInformation();
     /*!
      * Get match music song infomation.
      */
@@ -200,7 +200,7 @@ protected:
     /*!
      * Strat to download music.
      */
-    void startToDownloadMusic(const MusicObject::MusicSongInfomation &musicSongInfo);
+    void startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo);
     /*!
      * Strat to download music.
      */
@@ -208,7 +208,7 @@ protected:
     /*!
      * Strat to download movie.
      */
-    void startToDownloadMovie(const MusicObject::MusicSongInfomation &musicSongInfo);
+    void startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo);
     /*!
      * Strat to download movie.
      */
@@ -217,7 +217,7 @@ protected:
     bool m_querySingleInfo;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
-    MusicObject::MusicSongInfomation m_singleSongInfo;
+    MusicObject::MusicSongInformation m_singleSongInfo;
 
 };
 

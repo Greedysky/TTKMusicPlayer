@@ -78,7 +78,7 @@ void MusicArtistFoundWidget::resizeWindow()
 
 void MusicArtistFoundWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_downloadThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_downloadThread->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
@@ -86,7 +86,7 @@ void MusicArtistFoundWidget::queryAllFinished()
     else
     {
         bool hasItem = false;
-        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
+        foreach(const MusicObject::MusicSongInformation &info, musicSongInfos)
         {
             if(m_songNameFull.contains(info.m_songName))
             {
@@ -107,7 +107,7 @@ void MusicArtistFoundWidget::queryAllFinished()
 
 void MusicArtistFoundWidget::queryArtistFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_artistTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_artistTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
@@ -118,7 +118,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
         m_statusLabel = nullptr;
 
         m_artistTableWidget->show();
-        MusicObject::MusicSongInfomation currentInfo = musicSongInfos.first();
+        MusicObject::MusicSongInformation currentInfo = musicSongInfos.first();
 
         layout()->removeWidget(m_mainWindow);
         QScrollArea *scrollArea = new QScrollArea(this);
@@ -146,7 +146,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        foreach(const MusicObject::MusicSongInfomation &info, musicSongInfos)
+        foreach(const MusicObject::MusicSongInformation &info, musicSongInfos)
         {
             if(!info.m_smallPicUrl.isEmpty() && info.m_smallPicUrl != "null")
             {

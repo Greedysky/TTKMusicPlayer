@@ -172,7 +172,7 @@ namespace MusicObject
     /*! @brief The class of the music song information.
      * @author Greedysky <greedysky@163.com>
      */
-    typedef struct MusicSongInfomation
+    typedef struct MusicSongInformation
     {
         MusicSongAttributes m_songAttrs;
         QString m_songId;
@@ -183,8 +183,8 @@ namespace MusicObject
         QString m_singerName;
         QString m_songName;
         QString m_timeLength;
-    }MusicSongInfomation;
-    TTK_DECLARE_LISTS(MusicSongInfomation)
+    }MusicSongInformation;
+    TTK_DECLARE_LISTS(MusicSongInformation)
     ///////////////////////////////////////
 
     enum DownLoadMode

@@ -82,7 +82,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["author"].toString();
                     musicInfo.m_songName = value["title"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toString().toInt()*1000);

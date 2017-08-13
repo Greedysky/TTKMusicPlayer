@@ -41,7 +41,7 @@ public Q_SLOTS:
      */
 
 protected:
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInfomation *info,
+    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
                                       const QString &id, const QString &format);
     /*!
      * Read mv info attribute from query results.

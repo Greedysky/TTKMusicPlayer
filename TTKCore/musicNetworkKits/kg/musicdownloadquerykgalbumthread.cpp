@@ -82,7 +82,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = value["filename"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
@@ -128,7 +128,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKGAlbumThread::readFromMusicSongAlbumInfo(MusicObject::MusicSongInfomation *info)
+void MusicDownLoadQueryKGAlbumThread::readFromMusicSongAlbumInfo(MusicObject::MusicSongInformation *info)
 {
     if(!m_manager)
     {

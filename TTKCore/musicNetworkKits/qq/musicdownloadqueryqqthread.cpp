@@ -80,7 +80,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInfomation musicInfo;
+                    MusicObject::MusicSongInformation musicInfo;
                     foreach(const QVariant &var, value["singer"].toList())
                     {
                         if(var.isNull())
@@ -166,7 +166,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSongInfomation *info,
+void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
                                                           const QString &id)
 {
     if(id.isEmpty() || !m_manager)
