@@ -75,19 +75,12 @@ include_directories(${MUSIC_UI_DIR})
 
 
 include_directories(${MUSIC_THIRDPARTY_DIR})
-include_directories(${MUSIC_THIRDPARTY_DIR}/zlib)
+include_directories(${MUSIC_THIRDPARTY_DIR}/Zlib)
 include_directories(${MUSIC_THIRDPARTY_DIR}/Devicewatcher)
 if(WIN32)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MiniDumper)
 endif()
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qaes)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qhz2py)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qiniu)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qjson)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qkugou)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qrencode)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras/qshortcut)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION})

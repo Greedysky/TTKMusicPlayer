@@ -77,6 +77,7 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_HEADERS
     ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.h
     ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.h
+    ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundremotethread.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
@@ -155,5 +156,6 @@ set_property(GLOBAL PROPERTY MUSIC_NETWORK_KITS_SOURCES
     ${MUSIC_NETWORK_DIR}/musicdownloadcommentsthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloaddiscoverlistthread.cpp
     ${MUSIC_NETWORK_DIR}/musicdownloadpagingthread.cpp
+    ${MUSIC_NETWORK_DIR}/musicdownloadbackgroundremotethread.cpp
   )
   

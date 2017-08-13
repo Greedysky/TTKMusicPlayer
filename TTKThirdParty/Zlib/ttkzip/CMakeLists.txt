@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-set(TARGET_NAME zlib)
+set(TARGET_NAME TTKZip)
 project(${TARGET_NAME})
 
 if(COMMAND cmake_policy)
@@ -14,39 +14,23 @@ add_definitions(-DZLIB_DLL)
 add_definitions(-DZLIB_INTERNAL)
 
 set(MUSIC_HEADERS
-    zconf.h
-    zlib.h
-    crc32.h
-    deflate.h
-    gzguts.h
-    inffixed.h
-    inffast.h
-    inflate.h
-    inftrees.h
-    trees.h
-    zutil.h
+    zip.h
+    unzip.h
+    mztools.h
+    ioapi.h
+    crypt.h
   )
 
 set(MUSIC_SOURCES
-    adler32.c
-    compress.c
-    crc32.c
-    deflate.c
-    gzclose.c
-    gzlib.c
-    gzread.c
-    gzwrite.c
-    inflate.c
-    infback.c
-    inftrees.c
-    inffast.c
-    trees.c
-    uncompr.c
-    zutil.c
+    zip.c
+    unzip.c
+    mztools.c
+    ioapi.c
   )
-  
+
 if(WIN32)
-    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_HEADERS iowin32.h)
+    list(APPEND MUSIC_SOURCES iowin32.c ${TARGET_NAME}.rc)
 endif()
 
 if(TTK_BUILD_SHARED)
@@ -54,3 +38,4 @@ if(TTK_BUILD_SHARED)
 else()
   add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_HEADERS})
 endif()
+target_link_libraries(${TARGET_NAME} zlib)

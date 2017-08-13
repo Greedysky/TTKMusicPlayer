@@ -29,6 +29,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musiclicensecore.h
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplaylistmanager.h
+    ${MUSIC_CORE_DIR}/musicbackgroundimage.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
@@ -56,5 +57,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musiclicensecore.cpp
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicplaylistmanager.cpp
+    ${MUSIC_CORE_DIR}/musicbackgroundimage.cpp
   )
   
