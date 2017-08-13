@@ -20,6 +20,9 @@ namespace Ui {
 class MusicSettingWidget;
 }
 
+/*! @brief The class of the function tool item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_WIDGET_EXPORT MusicFunctionItem
 {
     MusicFunctionItem() { }

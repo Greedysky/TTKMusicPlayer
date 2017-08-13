@@ -11,6 +11,9 @@
 
 #include "musicradiothreadabstract.h"
 
+/*! @brief The class of the radio song info item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicRadioSongInfo
 {
     QString m_songUrl;

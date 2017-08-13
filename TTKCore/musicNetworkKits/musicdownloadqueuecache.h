@@ -11,6 +11,9 @@
 
 #include "musicdownloadthreadabstract.h"
 
+/*! @brief The class of the download queue data.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicDownloadQueueData
 {
     QString m_url;        ///*download url*/

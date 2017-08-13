@@ -11,6 +11,9 @@
 
 #include "musicabstractxml.h"
 
+/*! @brief The class of the playlist category item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
 {
     QString m_id;
@@ -29,6 +32,9 @@ typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
 }MusicPlaylistCategoryItem;
 TTK_DECLARE_LISTS(MusicPlaylistCategoryItem)
 
+/*! @brief The class of the playlist category core.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategory
 {
     QString m_category;

@@ -12,6 +12,9 @@
 #include <QPixmap>
 #include "musicabstractxml.h"
 
+/*! @brief The class of the skin config item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 {
     QString m_name;
@@ -31,7 +34,9 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 }MusicSkinConfigItem;
 TTK_DECLARE_LISTS(MusicSkinConfigItem)
 
-
+/*! @brief The class of the skin backgroud image item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
 {
     QPixmap m_pix;

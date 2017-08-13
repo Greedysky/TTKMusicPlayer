@@ -11,6 +11,9 @@
 
 #include "musicabstractxml.h"
 
+/*! @brief The class of the user record item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_SUPER_EXPORT MusicUserRecord
 {
     QString m_userName;

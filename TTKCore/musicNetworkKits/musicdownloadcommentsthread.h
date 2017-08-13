@@ -12,6 +12,9 @@
 #include "musicobject.h"
 #include "musicdownloadpagingthread.h"
 
+/*! @brief The class of the song comment item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicSongCommentItem
 {
     QString m_nickName;

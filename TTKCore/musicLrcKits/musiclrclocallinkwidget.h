@@ -12,6 +12,9 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
+/*! @brief The class of the local data item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_LRC_EXPORT MusicLocalDataItem
 {
     QString m_name;

@@ -156,6 +156,9 @@ TTK_DECLARE_LISTS(MusicSong)
 ////////////////////////////////////////////////////////
 class MusicSongsListTableWidget;
 
+/*! @brief The class of the music song sort tag.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicSort
 {
     int m_index;
@@ -168,6 +171,9 @@ typedef struct MUSIC_CORE_EXPORT MusicSort
     }
 }MusicSort;
 
+/*! @brief The class of the music song item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicSongItem
 {
     int m_itemIndex;

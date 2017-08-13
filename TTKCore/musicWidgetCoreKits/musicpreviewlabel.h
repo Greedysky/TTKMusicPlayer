@@ -41,7 +41,9 @@ protected:
 
 };
 
-
+/*! @brief The class of the label previewed.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
 {
     QString m_family;

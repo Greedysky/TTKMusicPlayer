@@ -145,6 +145,9 @@
  */
 namespace MusicObject
 {
+    /*! @brief The class of the music song atrribute.
+     * @author Greedysky <greedysky@163.com>
+     */
     typedef struct MusicSongAttribute
     {
         int m_bitrate;
@@ -166,6 +169,9 @@ namespace MusicObject
 
     ///////////////////////////////////////
 
+    /*! @brief The class of the music song information.
+     * @author Greedysky <greedysky@163.com>
+     */
     typedef struct MusicSongInfomation
     {
         MusicSongAttributes m_songAttrs;

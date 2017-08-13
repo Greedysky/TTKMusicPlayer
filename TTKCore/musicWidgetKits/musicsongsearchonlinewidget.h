@@ -15,6 +15,9 @@
 #define AUDITION_PLAY MStatic_cast(int, Qt::yellow)
 #define AUDITION_STOP MStatic_cast(int, Qt::transparent)
 
+/*! @brief The class of the data download item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_WIDGET_EXPORT MusicDownloadData
 {
     QString m_songName;

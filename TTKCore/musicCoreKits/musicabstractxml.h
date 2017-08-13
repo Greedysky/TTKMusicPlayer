@@ -17,6 +17,9 @@
 #include "musicsong.h"
 #include "musicobject.h"
 
+/*! @brief The class of the xml attribute.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_CORE_EXPORT MusicXmlAttribute
 {
     QString m_key;

@@ -315,6 +315,9 @@ protected:
 
 class QScrollArea;
 
+/*! @brief The class of the tool box widget item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_TOOL_EXPORT MusicToolBoxWidgetItem
 {
     int m_itemIndex;

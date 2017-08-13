@@ -17,6 +17,9 @@ namespace Ui {
 class MusicSpectrumWidget;
 }
 
+/*! @brief The class of the music spectrum object.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_TOOLSET_EXPORT MusicSpectrum
 {
     QString m_name;

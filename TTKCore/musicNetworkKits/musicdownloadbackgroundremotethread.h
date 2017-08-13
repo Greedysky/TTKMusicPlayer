@@ -11,6 +11,9 @@
 
 #include "musicabstractxml.h"
 
+/*! @brief The class of the remote skin item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteItem
 {
     QString m_name;
@@ -31,6 +34,9 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteItem
 }MusicSkinRemoteItem;
 TTK_DECLARE_LISTS(MusicSkinRemoteItem)
 
+/*! @brief The class of the remote skin item group.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteGroup
 {
     QString m_group;

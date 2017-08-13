@@ -11,6 +11,9 @@
 
 #include "musicradiothreadabstract.h"
 
+/*! @brief The class of the radio channel info item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
 {
     QString m_id;

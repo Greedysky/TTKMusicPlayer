@@ -12,6 +12,9 @@
 #include "musicobject.h"
 #include "musicdownloadpagingthread.h"
 
+/*! @brief The class of the searched data item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 {
     QString m_songname;
@@ -21,6 +24,9 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 }MusicSearchedItem;
 TTK_DECLARE_LISTS(MusicSearchedItem)
 
+/*! @brief The class of the playlist data item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
 {
     QString m_id;

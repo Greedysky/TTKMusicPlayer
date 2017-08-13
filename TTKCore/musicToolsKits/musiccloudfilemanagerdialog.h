@@ -12,6 +12,9 @@
 #include "musicabstractmovedialog.h"
 #include "musicabstracttablewidget.h"
 
+/*! @brief The class of the local upload record item.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_TOOL_EXPORT MusicUploadData
 {
     enum State{

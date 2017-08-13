@@ -13,6 +13,9 @@ namespace MusicObject
     };
 }
 
+/*! @brief The class of the song check tools rename.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
@@ -28,7 +31,9 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
 }MusicSongCheckToolsRename;
 TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
 
-
+/*! @brief The class of the song check tools duplicate.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
@@ -42,7 +47,9 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
 }MusicSongCheckToolsDuplicate;
 TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 
-
+/*! @brief The class of the song check tools quality.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;

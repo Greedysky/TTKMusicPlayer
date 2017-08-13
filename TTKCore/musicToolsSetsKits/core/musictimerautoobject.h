@@ -15,6 +15,9 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the time check object.
+ * @author Greedysky <greedysky@163.com>
+ */
 typedef struct MUSIC_SUPER_EXPORT MusicTimeObject
 {
     int m_index;
