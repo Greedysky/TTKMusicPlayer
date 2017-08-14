@@ -138,6 +138,7 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
     progress.setTitle(tr("Import File Mode"));
     progress.setRange(0, filelist.count());
 
+
     MusicSongTag tag;
     MusicSongItem *item = &m_songItems[m_currentImportIndex];
     int i=0;
