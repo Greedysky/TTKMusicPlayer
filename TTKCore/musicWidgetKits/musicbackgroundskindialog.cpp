@@ -264,18 +264,28 @@ void MusicBackgroundSkinDialog::remoteBackgroundListWidgetItemClicked(const QStr
 {
     MusicBackgroundImage image;
     m_remoteBackgroundList->outputRemoteSkin(image, name);
-    if(image.isValid())
+    if(!image.isValid())
+    {
+        return;
+    }
+
+    if(!m_myBackgroundList->contains(image))
     {
         int index = cpoyFileToLocalIndex();
         QString theme = QString("theme-%1").arg(index + 1);
         QString des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
         MusicBackgroundImageWrap::inputSkin(image, des);
 
-        if(!m_myBackgroundList->contains(theme))
-        {
-            m_myBackgroundList->createItem(theme, des, true);
-        }
+        m_myBackgroundList->createItem(theme, des, true);
         listWidgetItemClicked(m_myBackgroundList, theme);
+    }
+    else
+    {
+        MusicBackgroundListItem *it = m_myBackgroundList->find(image);
+        if(it)
+        {
+            listWidgetItemClicked(m_myBackgroundList, it->getFileName());
+        }
     }
 }
 

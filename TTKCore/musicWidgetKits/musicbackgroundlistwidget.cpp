@@ -16,7 +16,8 @@ MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     m_closeMask = false;
     m_isSelected = false;
     m_closeSet = false;
-    m_showName = true;
+    m_showNameMask = true;
+    m_selectedMask = true;
 }
 
 QString MusicBackgroundListItem::getClassName()
@@ -42,21 +43,36 @@ void MusicBackgroundListItem::updatePixImage(const MusicBackgroundImage &image)
     setPixmap(image.m_pix.scaled(size()));
 }
 
-void MusicBackgroundListItem::select(bool select)
+bool MusicBackgroundListItem::contains(const MusicSkinConfigItem &item) const
 {
-    m_isSelected = select;
+    if(item.isValid() && m_imageInfo.isValid())
+    {
+        return item.m_name == m_imageInfo.m_name;
+    }
+    return false;
+}
+
+void MusicBackgroundListItem::setSelect(bool s)
+{
+    m_isSelected = s;
     update();
 }
 
-void MusicBackgroundListItem::closeSet(bool set)
+void MusicBackgroundListItem::setSelectEnable(bool s)
 {
-    m_closeSet = set;
+    m_selectedMask = s;
     update();
 }
 
-void MusicBackgroundListItem::showName(bool set)
+void MusicBackgroundListItem::setCloseEnable(bool s)
 {
-    m_showName = set;
+    m_closeSet = s;
+    update();
+}
+
+void MusicBackgroundListItem::setShowNameEnable(bool s)
+{
+    m_showNameMask = s;
     update();
 }
 
@@ -94,7 +110,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
 {
     QLabel::paintEvent(event);
 
-    if(m_isSelected)
+    if(m_isSelected && m_selectedMask)
     {
         QPainter painter(this);
         painter.drawPixmap(width() - 17, height() - 17, 17, 17, QPixmap(":/tiny/lb_selected"));
@@ -112,7 +128,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
         QFontMetrics metric(painter.font());
 
         painter.setPen(Qt::white);
-        if(m_showName)
+        if(m_showNameMask)
         {
             painter.drawText((width() - metric.width(m_name))/2, 32, m_name);
         }
@@ -157,7 +173,7 @@ void MusicBackgroundListWidget::setCurrentItemName(const QString &name)
     {
         if(item->getFileName() == name)
         {
-            item->select(true);
+            item->setSelect(true);
             m_currentItem = item;
             break;
         }
@@ -168,7 +184,7 @@ void MusicBackgroundListWidget::clearSelectState()
 {
     foreach(MusicBackgroundListItem *item, m_items)
     {
-        item->select(false);
+        item->setSelect(false);
     }
 }
 
@@ -183,7 +199,7 @@ void MusicBackgroundListWidget::clearAllItems()
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
-    item->closeSet(state);
+    item->setCloseEnable(state);
     item->setFileName(name);
     item->setFilePath(path);
     item->updatePixImage();
@@ -196,7 +212,7 @@ void MusicBackgroundListWidget::createItem(const QString &name, const QString &p
 void MusicBackgroundListWidget::createItem(const QString &icon, bool state)
 {
     MusicBackgroundListItem *item = new MusicBackgroundListItem(this);
-    item->closeSet(state);
+    item->setCloseEnable(state);
     item->setPixmap(QPixmap(icon).scaled(item->size()));
     connect(item, SIGNAL(itemClicked(MusicBackgroundListItem*)), SLOT(itemHasClicked(MusicBackgroundListItem*)));
     connect(item, SIGNAL(closeClicked(MusicBackgroundListItem*)), SLOT(itemCloseClicked(MusicBackgroundListItem*)));
@@ -210,7 +226,8 @@ void MusicBackgroundListWidget::updateItem(const MusicBackgroundImage &image, co
     {
         if(item->getFileName().isEmpty())
         {
-            item->showName(false);
+            item->setShowNameEnable(false);
+            item->setSelectEnable(false);
             item->setFileName(path);
             item->updatePixImage(image);
             break;
@@ -231,6 +248,19 @@ bool MusicBackgroundListWidget::contains(const QString &name) const
     return false;
 }
 
+bool MusicBackgroundListWidget::contains(const MusicBackgroundImage &image) const
+{
+    foreach(MusicBackgroundListItem *item, m_items)
+    {
+        if(item->contains(image.m_item))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 int MusicBackgroundListWidget::find(MusicBackgroundListItem *item) const
 {
     for(int i=0; i<m_items.count(); ++i)
@@ -242,6 +272,32 @@ int MusicBackgroundListWidget::find(MusicBackgroundListItem *item) const
     }
 
     return -1;
+}
+
+MusicBackgroundListItem* MusicBackgroundListWidget::find(const QString &name) const
+{
+    foreach(MusicBackgroundListItem *item, m_items)
+    {
+        if(item->getFileName() == name)
+        {
+            return item;
+        }
+    }
+
+    return nullptr;
+}
+
+MusicBackgroundListItem* MusicBackgroundListWidget::find(const MusicBackgroundImage &image) const
+{
+    foreach(MusicBackgroundListItem *item, m_items)
+    {
+        if(item->contains(image.m_item))
+        {
+            return item;
+        }
+    }
+
+    return nullptr;
 }
 
 void MusicBackgroundListWidget::updateLastedItem()
@@ -287,10 +343,10 @@ void MusicBackgroundListWidget::itemHasClicked(MusicBackgroundListItem *item)
 {
     if(m_currentItem)
     {
-        m_currentItem->select(false);
+        m_currentItem->setSelect(false);
     }
 
     m_currentItem = item;
-    m_currentItem->select(true);
+    m_currentItem->setSelect(true);
     emit itemClicked(item->getFileName());
 }

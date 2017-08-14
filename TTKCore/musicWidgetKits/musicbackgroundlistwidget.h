@@ -58,8 +58,12 @@ public:
     /*!
      * Update pix image.
      */
+    bool contains(const MusicSkinConfigItem &item) const;
+    /*!
+     * Current item contains or not.
+     */
 
-    void select(bool select);
+    void setSelect(bool s);
     /*!
      * Select the current item.
      */
@@ -68,20 +72,29 @@ public:
      * Get current selected item state.
      */
 
-    void closeSet(bool set);
+    void setSelectEnable(bool s);
+    /*!
+     * Select the current item enable or not.
+     */
+    inline bool isSelectEnable() const { return m_selectedMask; }
+    /*!
+     * Get current selected item state.
+     */
+
+    void setCloseEnable(bool s);
     /*!
      * Close option set the current item.
      */
-    inline bool isCloseSet() const { return m_closeSet; }
+    inline bool isCloseEnable() const { return m_closeSet; }
     /*!
      * Get close option set the current item.
      */
 
-    void showName(bool set);
+    void setShowNameEnable(bool s);
     /*!
      * Show title name set the current item.
      */
-    inline bool isShowName() const { return m_showName; }
+    inline bool isShowNameEnable() const { return m_showNameMask; }
     /*!
      * Get show title name set the current item.
      */
@@ -105,8 +118,8 @@ protected:
      * Override the widget event.
      */
 
-    bool m_printMask, m_isSelected;
-    bool m_closeMask, m_closeSet, m_showName;
+    bool m_printMask, m_isSelected, m_selectedMask;
+    bool m_closeMask, m_closeSet, m_showNameMask;
     QString m_name, m_path;
     MusicSkinConfigItem m_imageInfo;
 
@@ -135,6 +148,7 @@ public:
     /*!
      * Select current item by name when the widget show.
      */
+
     void clearSelectState();
     /*!
      * Clear select state.
@@ -143,6 +157,7 @@ public:
     /*!
      * Clear All Items.
      */
+
     void createItem(const QString &name, const QString &path, bool state);
     /*!
      * Create item by name and path.
@@ -160,9 +175,22 @@ public:
     /*!
      * Current item contains or not.
      */
+    bool contains(const MusicBackgroundImage &image) const;
+    /*!
+     * Current item contains or not.
+     */
+
     int find(MusicBackgroundListItem *item) const;
     /*!
      * Current item index at container.
+     */
+    MusicBackgroundListItem* find(const QString &name) const;
+    /*!
+     * Find item by name.
+     */
+    MusicBackgroundListItem* find(const MusicBackgroundImage &image) const;
+    /*!
+     * Find item by image.
      */
 
     void updateLastedItem();

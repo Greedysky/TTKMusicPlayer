@@ -12,6 +12,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(0, 0, 0, 0);
     hbox->setSpacing(0);
+
     m_listWidget = new MusicBackgroundListWidget(this);
     hbox->addWidget(m_listWidget);
     setLayout(hbox);
@@ -83,7 +84,7 @@ QWidget* MusicBackgroundRemoteWidget::createFunctionsWidget(bool revert, QWidget
         m_functionsWidget->setLayout(hbox);
     }
 
-    QHBoxLayout *ly = (QHBoxLayout*)m_functionsWidget->layout();
+    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, m_functionsWidget->layout());
     int count = ly->count();
     if(revert)
     {
@@ -199,6 +200,9 @@ QPushButton* MusicBackgroundRemoteWidget::createButton(const QString &name)
     btn->setCursor(QCursor(Qt::PointingHandCursor));
     btn->setFixedSize(35, 20);
     btn->hide();
+#ifdef Q_OS_UNIX
+    btn->setFocusPolicy(Qt::NoFocus);
+#endif
     m_functionsItems << btn;
 
     return btn;
