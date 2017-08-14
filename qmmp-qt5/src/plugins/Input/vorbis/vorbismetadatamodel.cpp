@@ -49,14 +49,15 @@ VorbisMetaDataModel::~VorbisMetaDataModel()
 QHash<QString, QString> VorbisMetaDataModel::audioProperties()
 {
     QHash<QString, QString> ap;
-    if(m_file->audioProperties())
+    TagLib::Vorbis::Properties *property = m_file->audioProperties();
+    if(property)
     {
-        QString text = QString("%1").arg(m_file->audioProperties()->length()/60);
-        text +=":"+QString("%1").arg(m_file->audioProperties()->length()%60,2,10,QChar('0'));
+        QString text = QString("%1").arg(property->length()/60);
+        text +=":"+QString("%1").arg(property->length()%60,2,10,QChar('0'));
         ap.insert(tr("Length"), text);
-        ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(m_file->audioProperties()->sampleRate()));
-        ap.insert(tr("Channels"), QString("%1").arg(m_file->audioProperties()->channels()));
-        ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(m_file->audioProperties()->bitrate()));
+        ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(property->sampleRate()));
+        ap.insert(tr("Channels"), QString("%1").arg(property->channels()));
+        ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(property->bitrate()));
         ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(m_file->length()/1024));
     }
     return ap;

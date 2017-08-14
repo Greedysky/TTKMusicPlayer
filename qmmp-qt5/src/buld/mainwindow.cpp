@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     list->appendMedia("/home/greedysky/qmmp_all/1.opus");
   #endif
 #elif defined Q_OS_WIN
-    list->appendMedia("D:/Qt/Workspace/qmmp_all/1.flac");
+    list->appendMedia("D:/Qt/Workspace/qmmp_all/flac.flac");
 #endif
 
     m_sound->setPlaylist(list);

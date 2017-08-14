@@ -55,7 +55,14 @@ QHash<QString, QString> MPEGMetaDataModel::audioProperties()
     QHash<QString, QString> ap;
     QString text;
     QString v;
-    switch((int)m_file->audioProperties()->version())
+    
+    TagLib::MPEG::Properties *property = m_file->audioProperties();
+    if(!property)
+    {
+        return ap;
+    }
+
+    switch((int)property->version())
     {
         case TagLib::MPEG::Header::Version1:
         v = "1";
@@ -66,13 +73,13 @@ QHash<QString, QString> MPEGMetaDataModel::audioProperties()
         case TagLib::MPEG::Header::Version2_5:
         v = "2.5";
     }
-    text = QString("MPEG-%1 layer %2").arg(v).arg(m_file->audioProperties()->layer());
+    text = QString("MPEG-%1 layer %2").arg(v).arg(property->layer());
     ap.insert(tr("Format"), text);
-    text = QString("%1").arg(m_file->audioProperties()->bitrate());
+    text = QString("%1").arg(property->bitrate());
     ap.insert(tr("Bitrate"), text+" "+tr("kbps"));
-    text = QString("%1").arg(m_file->audioProperties()->sampleRate());
+    text = QString("%1").arg(property->sampleRate());
     ap.insert(tr("Sample rate"), text+" "+tr("Hz"));
-    switch (m_file->audioProperties()->channelMode())
+    switch (property->channelMode())
     {
     case TagLib::MPEG::Header::Stereo:
         ap.insert(tr("Mode"), "Stereo");
@@ -89,15 +96,15 @@ QHash<QString, QString> MPEGMetaDataModel::audioProperties()
     }
     text = QString("%1 "+tr("KB")).arg(m_file->length()/1024);
     ap.insert(tr("File size"), text);
-    if (m_file->audioProperties()->protectionEnabled())
+    if (property->protectionEnabled())
         ap.insert(tr("Protection"), tr("Yes"));
     else
         ap.insert(tr("Protection"), tr("No"));
-    if (m_file->audioProperties()->isCopyrighted())
+    if (property->isCopyrighted())
         ap.insert(tr("Copyright"), tr("Yes"));
     else
         ap.insert(tr("Copyright"), tr("No"));
-    if (m_file->audioProperties()->isOriginal())
+    if (property->isOriginal())
         ap.insert(tr("Original"), tr("Yes"));
     else
         ap.insert(tr("Original"), tr("No"));
