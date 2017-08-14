@@ -25,7 +25,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_noCover = false;
     m_currentPlayIndex = index;
-    m_totalTime = "/00:00";
+    m_totalTimeLabel = "/00:00";
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
@@ -122,9 +122,13 @@ QString MusicSongsListPlayWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongsListPlayWidget::insertTimerLabel(const QString &t) const
+void MusicSongsListPlayWidget::insertTimerLabel(const QString &time, const QString &total)
 {
-    m_timeLabel->setText(t + m_totalTime);
+    if(m_totalTimeLabel.contains("00:00"))
+    {
+        m_totalTimeLabel = total;
+    }
+    m_timeLabel->setText(time + m_totalTimeLabel);
 }
 
 void MusicSongsListPlayWidget::updateCurrentArtist()
@@ -177,13 +181,13 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 {
     MusicSongTag tag;
     bool state = tag.readFile(path);
-    if(state)
-    {
-        m_totalTime = "/" + tag.getLengthString();
-    }
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
-    m_timeLabel->setText("00:00" + m_totalTime);
+    if(state)
+    {
+        m_totalTimeLabel = "/" + tag.getLengthString();
+    }
+    m_timeLabel->setText("00:00" + m_totalTimeLabel);
 
     if(state && M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
     {

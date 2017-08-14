@@ -72,7 +72,7 @@ public:
     /*!
      * Set music sort.
      */
-    void setTimerLabel(const QString &t) const;
+    void setTimerLabel(const QString &time, const QString &total) const;
     /*!
      * Update item time label time.
      */

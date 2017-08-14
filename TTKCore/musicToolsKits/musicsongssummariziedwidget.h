@@ -93,7 +93,7 @@ public:
     /*!
      * Select the current play row.
      */
-    void setTimerLabel(const QString &time) const;
+    void setTimerLabel(const QString &time, const QString &total) const;
     /*!
      * Update item time label time.
      */

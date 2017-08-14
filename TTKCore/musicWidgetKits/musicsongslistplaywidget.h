@@ -35,7 +35,7 @@ public:
      * Get class object name.
      */
 
-    void insertTimerLabel(const QString &t) const;
+    void insertTimerLabel(const QString &time, const QString &total);
     /*!
      * Update item time label time.
      */
@@ -108,8 +108,8 @@ protected:
      */
 
     bool m_noCover;
-    QString m_totalTime;
     int m_currentPlayIndex;
+    QString m_totalTimeLabel;
     QLabel *m_artPictureLabel, *m_timeLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
