@@ -199,8 +199,19 @@ void MusicLocalPeer::receiveConnection()
         return;
     }
 
-    while(socket->bytesAvailable() < (int)sizeof(quint32))
+    while(true)
     {
+        if(socket->state() == QLocalSocket::UnconnectedState)
+        {
+            qWarning("QtLocalPeer: Peer disconnected");
+            delete socket;
+            return;
+        }
+        
+        if(socket->bytesAvailable() >= qint64(sizeof(quint32)))
+        {
+            break;
+        }
         socket->waitForReadyRead();
     }
 
