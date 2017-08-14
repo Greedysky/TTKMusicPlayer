@@ -3,12 +3,15 @@
 #include "musicversion.h"
 
 #include <QUrl>
-#include <QDesktopServices>
 #include <QTextCodec>
+#include <QSettings>
+#include <QDesktopServices>
 #ifdef Q_OS_WIN
 #include <Windows.h>
 #include <shellapi.h>
 #endif
+///qmmp incldue
+#include "qmmp.h"
 
 QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
 {
@@ -196,4 +199,28 @@ const char* MusicUtils::Core::toLocal8Bit(const QString &str)
 const char* MusicUtils::Core::toUtf8(const QString &str)
 {
     return str.toUtf8().constData();
+}
+
+void MusicUtils::Core::midTransferFile()
+{
+    QString conf_path = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("Midi");
+    settings.setValue("conf_path", conf_path);
+    settings.endGroup();
+
+    QFile file(conf_path);
+    if(file.open(QFile::ReadOnly))
+    {
+        QByteArray data = file.readAll();
+        file.close();
+
+        if(file.open(QFile::WriteOnly))
+        {
+            data.remove(0, data.indexOf("\r\n"));
+            data.insert(0, QString("dir %1freepats/").arg(MAKE_CONFIG_DIR_FULL));
+            file.write(data);
+        }
+    }
+    file.close();
 }

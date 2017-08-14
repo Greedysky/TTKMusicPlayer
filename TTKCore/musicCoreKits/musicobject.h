@@ -66,6 +66,7 @@
 #define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
 #define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
 
+#define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
 #define MAKE_TRANSFORM          STRCAT(PLUGINS_DIR, "avconv.dll")
 #define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, "avk2l.dll")
 #define MAKE_PLAYER             STRCAT(PLUGINS_DIR, "avplayer.dll")
@@ -117,6 +118,7 @@
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
 
+#define MAKE_CONFIG_DIR_FULL    MusicObject::getAppDir() + MAKE_CONFIG_DIR
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
 #define MAKE_KRC2LRC_FULL       MusicObject::getAppDir() + MAKE_KRC2LRC
 #define MAKE_PLAYER_FULL        MusicObject::getAppDir() + MAKE_PLAYER

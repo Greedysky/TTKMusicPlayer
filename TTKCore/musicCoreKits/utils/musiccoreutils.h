@@ -80,6 +80,11 @@ namespace MusicUtils
         /*!
          * Trasform string to utf8 char.
          */
+
+        MUSIC_SUPER_EXPORT void midTransferFile();
+        /*!
+         * Mid config file transfer operator.
+         */
     }
 }
 

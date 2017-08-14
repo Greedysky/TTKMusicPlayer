@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 #ifndef MUSIC_GREATER_NEW
     MusicUtils::Core::setLocalCodec();
 #endif
+    MusicUtils::Core::midTransferFile();
     ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
     QFont font;
