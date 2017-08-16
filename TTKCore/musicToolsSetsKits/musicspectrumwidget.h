@@ -13,6 +13,8 @@
 #include "musicabstractmovewidget.h"
 
 class Spek;
+class QCheckBox;
+
 namespace Ui {
 class MusicSpectrumWidget;
 }
@@ -60,6 +62,10 @@ public Q_SLOTS:
     /*!
      * Spectrum Type Changed.
      */
+    void spectrumPlusTypeChanged(int index);
+    /*!
+     * Spectrum Plus Type Changed.
+     */
     void show();
     /*!
      * Override show function.
@@ -78,6 +84,14 @@ protected:
     /*!
      * Override the widget event.
      */
+    void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    /*!
+     * New spectrum widget.
+     */
+    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    /*!
+     * New spek widget.
+     */
     void adjustWidgetLayout(int offset);
     /*!
      * Adjust widget layout.
@@ -90,12 +104,11 @@ protected:
     /*!
      * Find spectrum widget index by name.
      */
-    void createSpekWidget();
+    void fspekStateChanged();
     /*!
-     * Create spek widget.
+     * FSpek state button clicked.
      */
 
-    Spek *m_spekWidget;
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
 

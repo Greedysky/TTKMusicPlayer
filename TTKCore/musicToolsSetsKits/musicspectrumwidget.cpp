@@ -16,32 +16,6 @@
 #define ITEM_DEFAULT_COUNT      3
 #define ITEM_OFFSET             107
 
-#define NEW_OPERATOR(widget, type)  \
-    if(m_ui->widget->isChecked()) \
-    { \
-        showSpectrum(type, true); \
-        QList<Visual *> *vs = Visual::visuals(); \
-        if(!vs->isEmpty()) \
-        { \
-            MusicSpectrum t; \
-            t.m_name = type; \
-            t.m_obj = vs->last(); \
-            m_ui->spectrumAreaLayout->addWidget(t.m_obj); \
-            m_types << t; \
-        } \
-    } \
-    else \
-    { \
-        int index = findSpectrumWidget(type); \
-        if(index != -1) \
-        { \
-            MusicSpectrum t = m_types.takeAt(index); \
-            m_ui->spectrumAreaLayout->removeWidget(t.m_obj); \
-            showSpectrum(type, false); \
-        } \
-    }
-
-
 MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent),
       m_ui(new Ui::MusicSpectrumWidget)
@@ -51,7 +25,6 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, true);
 
-    m_spekWidget = nullptr;
     setStyleSheet(MusicUIObject::MMenuStyle02);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
@@ -63,10 +36,16 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->analyzerBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->analyzer2Box->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->ewaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->gwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->histogramBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->xrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->monowaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->fspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->spekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->spekBox->hide();
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -79,10 +58,17 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->analyzerBox->setFocusPolicy(Qt::NoFocus);
     m_ui->analyzer2Box->setFocusPolicy(Qt::NoFocus);
     m_ui->ewaveBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->fwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->gwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->histogramBox->setFocusPolicy(Qt::NoFocus);
     m_ui->xrayBox->setFocusPolicy(Qt::NoFocus);
+
+    m_ui->fwaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->monowaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->multiwaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->fspekBox->setFocusPolicy(Qt::NoFocus);
+
+    m_ui->spekBox->setFocusPolicy(Qt::NoFocus);
+
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
 #endif
@@ -92,11 +78,18 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group->addButton(m_ui->analyzerBox, 0);
     group->addButton(m_ui->analyzer2Box, 1);
     group->addButton(m_ui->ewaveBox, 2);
-    group->addButton(m_ui->fwaveBox, 3);
-    group->addButton(m_ui->gwaveBox, 4);
-    group->addButton(m_ui->histogramBox, 5);
-    group->addButton(m_ui->xrayBox, 6);
+    group->addButton(m_ui->gwaveBox, 3);
+    group->addButton(m_ui->histogramBox, 4);
+    group->addButton(m_ui->xrayBox, 5);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(spectrumTypeChanged(int)));
+
+    QButtonGroup *group1 = new QButtonGroup(this);
+    group1->setExclusive(false);
+    group1->addButton(m_ui->fwaveBox, 0);
+    group1->addButton(m_ui->monowaveBox, 1);
+    group1->addButton(m_ui->multiwaveBox, 2);
+    group1->addButton(m_ui->fspekBox, 3);
+    connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
 }
@@ -107,7 +100,6 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     {
         showSpectrum(type.m_name, false);
     }
-    delete m_spekWidget;
     delete m_ui;
 }
 
@@ -118,7 +110,19 @@ QString MusicSpectrumWidget::getClassName()
 
 void MusicSpectrumWidget::tabIndexChanged(int index)
 {
-    adjustWidgetLayout(index == 0 ? m_types.count() - ITEM_DEFAULT_COUNT : 0);
+    switch(index)
+    {
+        case 0:
+            adjustWidgetLayout(m_ui->spectrumAreaLayout->count() - ITEM_DEFAULT_COUNT);
+            break;
+        case 1:
+            adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
+            break;
+        case 2:
+            adjustWidgetLayout(m_ui->spekLayout->count() - ITEM_DEFAULT_COUNT);
+            break;
+        default: break;
+    }
 }
 
 void MusicSpectrumWidget::spectrumTypeChanged(int index)
@@ -126,30 +130,50 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
     switch(index)
     {
         case 0:
-            NEW_OPERATOR(analyzerBox, "analyzer");
+            newSpectrumWidget(m_ui->analyzerBox, "analyzer", m_ui->spectrumAreaLayout);
             break;
         case 1:
-            NEW_OPERATOR(analyzer2Box, "lineplus");
+            newSpectrumWidget(m_ui->analyzer2Box, "lineplus", m_ui->spectrumAreaLayout);
             break;
         case 2:
-            NEW_OPERATOR(ewaveBox, "ewave");
+            newSpectrumWidget(m_ui->ewaveBox, "ewave", m_ui->spectrumAreaLayout);
             break;
         case 3:
-            NEW_OPERATOR(fwaveBox, "fwave");
+            newSpectrumWidget(m_ui->gwaveBox, "gwave", m_ui->spectrumAreaLayout);
             break;
         case 4:
-            NEW_OPERATOR(gwaveBox, "gwave");
+            newSpectrumWidget(m_ui->histogramBox, "histogram", m_ui->spectrumAreaLayout);
             break;
         case 5:
-            NEW_OPERATOR(histogramBox, "histogram");
-            break;
-        case 6:
-            NEW_OPERATOR(xrayBox, "xray");
+            newSpectrumWidget(m_ui->xrayBox, "xray", m_ui->spectrumAreaLayout);
             break;
         default: break;
     }
 
-    adjustWidgetLayout(m_types.count() - ITEM_DEFAULT_COUNT);
+    adjustWidgetLayout(m_ui->spectrumAreaLayout->count() - ITEM_DEFAULT_COUNT);
+}
+
+void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            newSpectrumWidget(m_ui->fwaveBox, "fwave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 1:
+            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 2:
+            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 3:
+            newSpekWidget(m_ui->fspekBox, "fspek", m_ui->spectrumPlusAreaLayout);
+            fspekStateChanged();
+            break;
+        default: break;
+    }
+
+    adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::show()
@@ -160,17 +184,19 @@ void MusicSpectrumWidget::show()
 
 void MusicSpectrumWidget::localFileButtonClicked()
 {
-    createSpekWidget();
+    newSpekWidget(m_ui->spekBox, "qspek", m_ui->spekAreaLayout);
 
-    if(m_spekWidget)
+    int index = findSpectrumWidget("qspek");
+    if(index != -1)
     {
-        m_spekWidget->open( SoundCore::instance()->url() );
+        Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
+        spek->open( SoundCore::instance()->url() );
     }
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    createSpekWidget();
+    newSpekWidget(m_ui->spekBox, "qspek", m_ui->spekAreaLayout);
 
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
@@ -179,9 +205,11 @@ void MusicSpectrumWidget::openFileButtonClicked()
     if(dialog.exec())
     {
         QString path = dialog.selectedFiles().last();
-        if(m_spekWidget && !path.isEmpty())
+        int index = findSpectrumWidget("qspek");
+        if(index != -1 && !path.isEmpty())
         {
-            m_spekWidget->open( path );
+            Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
+            spek->open( path );
         }
     }
 }
@@ -190,6 +218,66 @@ void MusicSpectrumWidget::closeEvent(QCloseEvent *event)
 {
     emit resetFlag(MusicObject::TT_Spectrum);
     MusicAbstractMoveWidget::closeEvent(event);
+}
+
+void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout)
+{
+    if(box->isChecked())
+    {
+        showSpectrum(name, true);
+        QList<Visual *> *vs = Visual::visuals();
+        if(!vs->isEmpty())
+        {
+            MusicSpectrum t;
+            t.m_name = name;
+            t.m_obj = vs->last();
+            layout->addWidget(t.m_obj);
+            m_types << t;
+        }
+    }
+    else
+    {
+        int index = findSpectrumWidget(name);
+        if(index != -1)
+        {
+            MusicSpectrum t = m_types.takeAt(index);
+            layout->removeWidget(t.m_obj);
+            showSpectrum(name, false);
+        }
+    }
+}
+
+void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout)
+{
+    if(box->isChecked())
+    {
+        if(findSpectrumWidget(name) == -1)
+        {
+            QPluginLoader loader;
+            loader.setFileName(MusicUtils::Core::pluginPath("Spek", name));
+            QObject *obj = loader.instance();
+            SpekFactory *decoderfac = nullptr;
+            if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)) )
+            {
+                Spek *spekWidget = decoderfac->create(this);
+                MusicSpectrum sp;
+                sp.m_name = name;
+                sp.m_obj = spekWidget;
+                m_types << sp;
+                layout->addWidget(spekWidget);
+            }
+        }
+    }
+    else
+    {
+        int index = findSpectrumWidget(name);
+        if(index != -1)
+        {
+            MusicSpectrum t = m_types.takeAt(index);
+            layout->removeWidget(t.m_obj);
+            delete t.m_obj;
+        }
+    }
 }
 
 void MusicSpectrumWidget::adjustWidgetLayout(int offset)
@@ -232,18 +320,15 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
     return -1;
 }
 
-void MusicSpectrumWidget::createSpekWidget()
+void MusicSpectrumWidget::fspekStateChanged()
 {
-    if(!m_spekWidget)
+    if(m_ui->fspekBox->isChecked())
     {
-        QPluginLoader loader;
-        loader.setFileName(MusicUtils::Core::pluginPath("Spek", "spek"));
-        QObject *obj = loader.instance();
-        SpekFactory *decoderfac = nullptr;
-        if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)) )
+        int index = findSpectrumWidget("fspek");
+        if(index != -1)
         {
-            m_spekWidget = decoderfac->create(this);
-            m_ui->spekAreaLayout->addWidget(m_spekWidget);
+            Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
+            spek->open( SoundCore::instance()->url() );
         }
     }
 }

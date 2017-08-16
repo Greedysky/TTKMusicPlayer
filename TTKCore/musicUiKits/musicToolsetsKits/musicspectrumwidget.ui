@@ -163,13 +163,6 @@ QTabBar::tab:selected {
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="fwaveBox">
-           <property name="text">
-            <string>FWave</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QCheckBox" name="gwaveBox">
            <property name="text">
             <string>GWave</string>
@@ -196,6 +189,104 @@ QTabBar::tab:selected {
       <item>
        <widget class="QWidget" name="spectrumAreaWidget" native="true">
         <layout class="QVBoxLayout" name="spectrumAreaLayout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="spectrumPlusWidget">
+     <attribute name="title">
+      <string>高级显示</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="spectrumPlusLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="spectrumPlusFuncionts" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="spectrumPlusFunciontsLayout">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="fwaveBox">
+           <property name="text">
+            <string>FWave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="monowaveBox">
+           <property name="text">
+            <string>Monowave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="multiwaveBox">
+           <property name="text">
+            <string>Multiwave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="fspekBox">
+           <property name="text">
+            <string>FSpek</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="spectrumPlusAreaWidget" native="true">
+        <layout class="QVBoxLayout" name="spectrumPlusAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>
@@ -260,6 +351,16 @@ QTabBar::tab:selected {
          <property name="bottomMargin">
           <number>0</number>
          </property>
+         <item>
+          <widget class="QCheckBox" name="spekBox">
+           <property name="text">
+            <string>Spek</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
