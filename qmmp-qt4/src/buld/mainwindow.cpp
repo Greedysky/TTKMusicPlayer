@@ -2,11 +2,9 @@
 #include "ui_mainwindow.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
+
 #include "../qmmp/visual.h"
 #include "../qmmp/visualfactory.h"
-
-#include <QSlider>
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

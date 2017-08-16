@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/fwave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libfwave.so
 
+include(../common/Visual.pri)
 
 HEADERS += fwave.h \
-           fft.h \
-           visualfwavefactory.h \
-           inlines.h \
-           colorwidget.h
+           visualfwavefactory.h
            
 SOURCES += fwave.cpp \
-           fft.c \
-           visualfwavefactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualfwavefactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

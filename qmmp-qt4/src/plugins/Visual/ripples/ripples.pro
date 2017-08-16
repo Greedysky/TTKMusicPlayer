@@ -3,17 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/ripples
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libripples.so
 
+include(../common/Visual.pri)
 
 HEADERS += ripples.h \
-           fft.h \
-           visualripplesfactory.h \
-           inlines.h
+           visualripplesfactory.h
            
-
 SOURCES += ripples.cpp \
-           fft.c \
            visualripplesfactory.cpp
-
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

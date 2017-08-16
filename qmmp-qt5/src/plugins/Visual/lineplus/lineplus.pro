@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/lineplus
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/liblineplus.so
 
+include(../common/Visual.pri)
 
 HEADERS += lineplus.h \
-           fft.h \
-           visuallineplusfactory.h \
-           inlines.h \
-           colorwidget.h
+           visuallineplusfactory.h
            
 SOURCES += lineplus.cpp \
-           fft.c \
-           visuallineplusfactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visuallineplusfactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/gwave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libgwave.so
 
+include(../common/Visual.pri)
 
 HEADERS += gwave.h \
-           fft.h \
-           visualgwavefactory.h \
-           inlines.h \
-           colorwidget.h
+           visualgwavefactory.h
            
 SOURCES += gwave.cpp \
-           fft.c \
-           visualgwavefactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualgwavefactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

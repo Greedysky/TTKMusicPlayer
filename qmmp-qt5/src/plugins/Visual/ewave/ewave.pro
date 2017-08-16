@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/ewave
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libewave.so
 
+include(../common/Visual.pri)
 
 HEADERS += ewave.h \
-           fft.h \
-           visualewavefactory.h \
-           inlines.h \
-           colorwidget.h
+           visualewavefactory.h
            
 SOURCES += ewave.cpp \
-           fft.c \
-           visualewavefactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualewavefactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/xrays
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libxrays.so
 
+include(../common/Visual.pri)
 
 HEADERS += xrays.h \
-           fft.h \
-           visualxraysfactory.h \
-           inlines.h \
-           colorwidget.h
+           visualxraysfactory.h
            
 SOURCES += xrays.cpp \
-           fft.c \
-           visualxraysfactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualxraysfactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

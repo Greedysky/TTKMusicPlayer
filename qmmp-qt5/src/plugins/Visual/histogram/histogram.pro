@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/histogram
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libhistogram.so
 
+include(../common/Visual.pri)
 
 HEADERS += histogram.h \
-           fft.h \
-           visualhistogramfactory.h \
-           inlines.h \
-           colorwidget.h
+           visualhistogramfactory.h
 
 SOURCES += histogram.cpp \
-           fft.c \
-           visualhistogramfactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualhistogramfactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

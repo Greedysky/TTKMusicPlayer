@@ -2,10 +2,9 @@
 #include "ui_mainwindow.h"
 #include "musicplayer.h"
 #include "musicplaylist.h"
+
 #include "../qmmp/visual.h"
 #include "../qmmp/visualfactory.h"
-
-#include <QSlider>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,23 +26,18 @@ MainWindow::MainWindow(QWidget *parent) :
         slider->setRange(-20, 20);
         slider->setTickPosition(QSlider::TicksLeft);
         slider->setTickInterval(10);
+        connect(slider, SIGNAL(valueChanged(int)), SLOT(applySettings()));
 
         m_sliders << slider;
         ui->equalizerLayout->addWidget(slider);
     }
 
     MusicPlaylist *list = new MusicPlaylist(this);
-
 #ifdef Q_OS_UNIX
-  #ifdef Q_OS_ANDROID
-    list->appendMedia("/storage/emulated/0/QMMP/1.opus");
-  #else
-    list->appendMedia("/home/greedysky/qmmp_all/1.opus");
-  #endif
-#elif defined Q_OS_WIN
+    list->appendMedia("/home/greedysky/qmmp_all/1.mp3");
+#else
     list->appendMedia("D:/Qt/Workspace/qmmp_all/flac.flac");
 #endif
-
     m_sound->setPlaylist(list);
 }
 

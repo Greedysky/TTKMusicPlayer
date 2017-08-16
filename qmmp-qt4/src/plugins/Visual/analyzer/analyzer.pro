@@ -3,19 +3,13 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Visual/analyzer
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Visual/libanalyzer.so
 
+include(../common/Visual.pri)
 
 HEADERS += analyzer.h \
-           fft.h \
-           visualanalyzerfactory.h \
-           inlines.h \
-           colorwidget.h
+           visualanalyzerfactory.h
            
 SOURCES += analyzer.cpp \
-           fft.c \
-           visualanalyzerfactory.cpp \
-           colorwidget.cpp
-
-FORMS    += colorwidget.ui
+           visualanalyzerfactory.cpp
 
 INCLUDEPATH += ../../../
 CONFIG += warn_on \

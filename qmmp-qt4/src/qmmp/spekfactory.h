@@ -1,23 +1,10 @@
-/***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
- ***************************************************************************/
-
+/* =================================================
+ * This file is part of the TTK Music Player qmmp plugin project
+ * Copyright (c) 2015 - 2017 Greedysky Studio
+ * All rights reserved!
+ * Redistribution and use of the source code or any derivative
+ * works are strictly forbiden.
+   =================================================*/
 #ifndef SPEKFACTORY_H
 #define SPEKFACTORY_H
 
@@ -69,12 +56,12 @@ public:
         hasAbout = false;
         hasSettings = false;
     }
-    QString name;      /*!< Effect plugin full name */
-    QString shortName; /*!< Effect plugin short name for internal usage */
+    QString name;      /*!< Spek plugin full name */
+    QString shortName; /*!< Spek plugin short name for internal usage */
     bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
     bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
-/*! @brief %Spek plugin interface (Spek factory).
+/*! @brief Spek plugin interface (Spek factory).
  * @author Greedysky <greedysky@163.com>
  */
 class Q_DECL_EXPORT SpekFactory
