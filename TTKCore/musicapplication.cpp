@@ -75,7 +75,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     m_playControl = true;//The default in the suspended state
     m_quitWindowClose = false;
-    m_currentMusicSongTreeIndex = -1;
+    m_currentMusicSongTreeIndex = DEFAULT_INDEX_LEVEL0;
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
@@ -153,7 +153,7 @@ QString MusicApplication::getCurrentFilePath() const
 
 bool MusicApplication::checkMusicListCurrentIndex() const
 {
-    return (m_musicPlayList->currentIndex() == -1);
+    return (m_musicPlayList->currentIndex() == DEFAULT_INDEX_LEVEL0);
 }
 
 void MusicApplication::musicLoadCurrentSongLrc()
@@ -161,7 +161,7 @@ void MusicApplication::musicLoadCurrentSongLrc()
     //display current ArtTheme pic
     m_topAreaWidget->musicBgThemeDownloadFinished();
     //Loading the current song lrc
-    if(m_musicPlayList->currentIndex() == -1)
+    if(m_musicPlayList->currentIndex() == DEFAULT_INDEX_LEVEL0)
     {
         return;
     }
@@ -181,30 +181,42 @@ void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
 
     QStringList files(items), sfx = MusicFormats::supportFormatsString();
     QString suffix;
-    int failedCount = 0;
 
+    QStringList failedFiles;
     foreach(const QString &path, items)
     {
         suffix = QFileInfo(path).suffix();
         if( !sfx.contains(suffix.toLower()) )
         {
-            ++failedCount;
+            failedFiles << path;
             files.removeOne(path);
         }
     }
 
-    if(failedCount != 0)
+    if(!files.isEmpty())
     {
-        MusicMessageBox message;
-        message.setText(tr("not supported count %1").arg(failedCount));
-        message.exec();
-        return;
+        m_musicSongTreeWidget->importOtherMusicSongs(files);
+        if(m_currentMusicSongTreeIndex == MUSIC_NORMAL_LIST)
+        {
+            m_musicPlayList->appendMedia(files);
+        }
     }
 
-    m_musicSongTreeWidget->importOtherMusicSongs(files);
-    if(m_currentMusicSongTreeIndex == MUSIC_NORMAL_LIST)
+    if(!failedFiles.isEmpty())
     {
-        m_musicPlayList->appendMedia(files);
+        MusicMessageBox message;
+        message.setText(tr("not supported count %1").arg(failedFiles.count()));
+        message.exec();
+
+        QFile file("import_failed_file_log.txt");
+        if(file.open(QFile::WriteOnly))
+        {
+            foreach(const QString &name, failedFiles)
+            {
+                file.write(name.toUtf8() + "\r\n");
+            }
+        }
+        file.close();
     }
 }
 
@@ -212,11 +224,11 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 {
     contains = false;
     QString path;
-    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != -1)
+    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_INDEX_LEVEL0)
     {
         int index = m_musicPlayList->currentIndex();
         MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
-        if(index > -1 && m_musicSongTreeWidget->getCurrentPlayToolIndex() < items.count())
+        if(index > DEFAULT_INDEX_LEVEL0 && m_musicSongTreeWidget->getCurrentPlayToolIndex() < items.count())
         {
             MusicSongs currentSongs = items[m_musicSongTreeWidget->getCurrentPlayToolIndex()].m_songs;
             MusicSong currentSong = currentSongs[index];
@@ -230,11 +242,11 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
 
 bool MusicApplication::musicLovestContains() const
 {
-    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != -1)
+    if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_INDEX_LEVEL0)
     {
         int index = m_musicPlayList->currentIndex();
         MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
-        if(index > -1 && m_musicSongTreeWidget->getCurrentPlayToolIndex() < items.count())
+        if(index > DEFAULT_INDEX_LEVEL0 && m_musicSongTreeWidget->getCurrentPlayToolIndex() < items.count())
         {
             MusicSongs currentSongs = items[m_musicSongTreeWidget->getCurrentPlayToolIndex()].m_songs;
             MusicSongs loveSongs = items[MUSIC_LOVEST_LIST].m_songs;
@@ -246,7 +258,7 @@ bool MusicApplication::musicLovestContains() const
 
 bool MusicApplication::musicListLovestContains(int index) const
 {
-    if(m_musicSongTreeWidget->currentIndex() != -1 && index > -1)
+    if(m_musicSongTreeWidget->currentIndex() != DEFAULT_INDEX_LEVEL0 && index > DEFAULT_INDEX_LEVEL0)
     {
         MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
         if(m_musicSongTreeWidget->currentIndex() < items.count())
@@ -322,7 +334,7 @@ void MusicApplication::stateChanged()
 void MusicApplication::showCurrentSong(int index)
 {
     QString name;
-    if(index > -1) //The list to end
+    if(index > DEFAULT_INDEX_LEVEL0) //The list to end
     {
         name = getCurrentFileName();
         ///detecting whether the file has been downloaded
@@ -750,7 +762,7 @@ void MusicApplication::musicCreateRightMenu()
     actions << musicPlaybackMode.addAction(tr("ListCycle"), this, SLOT(musicPlayListLoop()));
     actions << musicPlaybackMode.addAction(tr("SingleCycle"), this, SLOT(musicPlayOneLoop()));
     actions << musicPlaybackMode.addAction(tr("PlayOnce"), this, SLOT(musicPlayItemOnce()));
-    int index = -1;
+    int index = DEFAULT_INDEX_LEVEL0;
     switch(mode)
     {
         case MusicObject::MC_PlayOrder: index = 0; break;
@@ -760,7 +772,7 @@ void MusicApplication::musicCreateRightMenu()
         case MusicObject::MC_PlayOnce: index = 4; break;
         default: break;
     }
-    if(index > -1 && index < actions.count())
+    if(index > DEFAULT_INDEX_LEVEL0 && index < actions.count())
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
@@ -792,7 +804,7 @@ void MusicApplication::musicCreateRightMenu()
     actions.clear();
     actions << musicDownload.addAction(tr("Full Download"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadFulllyWidget()));
     actions << musicDownload.addAction(tr("Custom"), MusicRightAreaWidget::instance(), SLOT(musicChangeDownloadCustumWidget()));
-    if(index > -1 && index < actions.count())
+    if(index > DEFAULT_INDEX_LEVEL0 && index < actions.count())
     {
         actions[index]->setIcon(QIcon(":/contextMenu/btn_selected"));
     }
@@ -844,7 +856,7 @@ void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool 
     for(int i=index.count() - 1; i>=0; --i)
     {
         m_musicPlayList->removeMedia(index[i]);
-        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i-1])
+        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])
         {
             oldIndex -= i;
             contains = true;
@@ -1025,7 +1037,7 @@ void MusicApplication::setMusicPlayIndex()
 void MusicApplication::readXMLConfigFromText()
 {
     MusicXMLConfigManager xml;
-    int value = -1;
+    int value = DEFAULT_INDEX_LEVEL0;
 
     //Path configuration song
     MusicSongItems songs;
@@ -1113,7 +1125,7 @@ void MusicApplication::readXMLConfigFromText()
     //add new music file to playlist
     value = keyList[1].toInt();
     m_musicPlayList->addMedia(m_musicSongTreeWidget->getMusicSongsFilePath(value));
-    if(-1 < value && value < songs.count())
+    if(DEFAULT_INDEX_LEVEL0 < value && value < songs.count())
     {
         m_ui->musicPlayedList->append(value, songs[value].m_songs);
     }
