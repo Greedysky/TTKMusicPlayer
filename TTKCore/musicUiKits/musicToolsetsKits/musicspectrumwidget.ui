@@ -275,6 +275,13 @@ QTabBar::tab:selected {
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="volumeWaveBox">
+           <property name="text">
+            <string>VolumeWave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="fspekBox">
            <property name="text">
             <string>FSpek</string>

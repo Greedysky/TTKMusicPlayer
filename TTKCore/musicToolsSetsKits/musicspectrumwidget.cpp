@@ -43,6 +43,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->monowaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->fspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->spekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->spekBox->hide();
@@ -66,6 +67,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->monowaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->multiwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->fspekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->volumeWaveBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->spekBox->setFocusPolicy(Qt::NoFocus);
 
@@ -88,7 +90,8 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group1->addButton(m_ui->fwaveBox, 0);
     group1->addButton(m_ui->monowaveBox, 1);
     group1->addButton(m_ui->multiwaveBox, 2);
-    group1->addButton(m_ui->fspekBox, 3);
+    group1->addButton(m_ui->volumeWaveBox, 3);
+    group1->addButton(m_ui->fspekBox, 4);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
@@ -136,10 +139,10 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
             newSpectrumWidget(m_ui->analyzer2Box, "lineplus", m_ui->spectrumAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->ewaveBox, "ewave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->ewaveBox, "espewave", m_ui->spectrumAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->gwaveBox, "gwave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->gwaveBox, "gspewave", m_ui->spectrumAreaLayout);
             break;
         case 4:
             newSpectrumWidget(m_ui->histogramBox, "histogram", m_ui->spectrumAreaLayout);
@@ -158,7 +161,7 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
     switch(index)
     {
         case 0:
-            newSpectrumWidget(m_ui->fwaveBox, "fwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->fwaveBox, "fspewave", m_ui->spectrumPlusAreaLayout);
             break;
         case 1:
             newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
@@ -167,6 +170,9 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
             newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 3:
+            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 4:
             newSpekWidget(m_ui->fspekBox, "fspek", m_ui->spectrumPlusAreaLayout);
             fspekStateChanged();
             break;
