@@ -272,7 +272,9 @@ void FSpek::process(float *buffer)
         m_cols = cols;
         m_backgroundImage = QImage(1024*4, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
-        
+        for(int i=0; i<m_cols; ++i)
+            m_backgroundImage.setPixel(i, m_rows/2, qRgb(0xff, 0xff, 0xff));
+
         m_intern_vis_data = 0;
         for(int i = 0; i < 2; ++i)
         {
@@ -316,11 +318,16 @@ void FSpek::process(float *buffer)
         m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0, 0xff, 0));
         m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0, 0xff, 0));
     }
+    m_backgroundImage.setPixel(m_pixPos, m_rows/2, qRgb(0xff, 0xff, 0xff));
+
     ++m_pixPos;
 }
 
 void FSpek::draw (QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->drawImage(0, 0, m_backgroundImage.scaled(size()));
+    if(!m_backgroundImage.isNull())
+    {
+        p->drawImage(0, 0, m_backgroundImage.scaled(size()));
+    }
 }

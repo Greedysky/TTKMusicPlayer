@@ -6,7 +6,7 @@ const VisualProperties VisualGWaveFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("GWave Plugin");
-    properties.shortName = "gwave";
+    properties.shortName = "gspewave";
     properties.hasSettings = true;
     properties.hasAbout = false;
     return properties;

@@ -118,6 +118,8 @@ void MultiWave::process (float *buffer)
         m_x_scale = new int[2];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
+        for(int i=0; i<m_cols; ++i)
+            m_backgroundImage.setPixel(i, m_rows/2, qRgb(0xff, 0xff, 0xff));
 
         for(int i = 0; i < 2; ++i)
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
@@ -165,7 +167,12 @@ void MultiWave::draw (QPainter *p)
             m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0xff, 0, 0));
             m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0xff, 0, 0));
         }
+        m_backgroundImage.setPixel(m_pixPos, m_rows/2, qRgb(0xff, 0xff, 0xff));
     }
     ++m_pixPos;
-    p->drawImage(0, 0, m_backgroundImage);
+
+    if(!m_backgroundImage.isNull())
+    {
+        p->drawImage(0, 0, m_backgroundImage);
+    }
 }

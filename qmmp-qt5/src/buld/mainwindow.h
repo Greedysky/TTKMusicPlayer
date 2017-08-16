@@ -21,6 +21,7 @@ public:
 public slots:
     void setVolume(int value);
     void setTimeValue(qint64 value);
+    void applySettings();
     void setSeek(int value);
 
 private:

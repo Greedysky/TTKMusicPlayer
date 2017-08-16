@@ -6,7 +6,7 @@ const VisualProperties VisualFWaveFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("FWave Plugin");
-    properties.shortName = "fwave";
+    properties.shortName = "fspewave";
     properties.hasSettings = true;
     properties.hasAbout = false;
     return properties;
