@@ -60,10 +60,9 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info
     if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
     {
         MusicSongTag tag;
-        if(tag.readFile(info.getMusicPath()))
+        if(tag.read(info.getMusicPath()))
         {
-            QPixmap pix;
-            pix.loadFromData(tag.getCover());
+            QPixmap pix = tag.getCover();
             if(!pix.isNull())
             {
                 m_ui->artPicture->setPixmap(pix.scaled(60, 60));

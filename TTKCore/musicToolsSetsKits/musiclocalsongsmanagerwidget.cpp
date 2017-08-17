@@ -338,10 +338,9 @@ void MusicLocalSongsManagerWidget::setShowArtButton()
 
     MusicInfoData arts;
     MusicSongTag tag;
-    tag.setExtend(false);
     foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
     {
-        if(tag.readFile(info.absoluteFilePath()))
+        if(tag.read(info.absoluteFilePath()))
         {
             QString artString = tag.getArtist().trimmed();
             if(artString.isEmpty())
@@ -374,10 +373,9 @@ void MusicLocalSongsManagerWidget::setShowAlbumButton()
 
     MusicInfoData albums;
     MusicSongTag tag;
-    tag.setExtend(false);
     foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
     {
-        if(tag.readFile(info.absoluteFilePath()))
+        if(tag.read(info.absoluteFilePath()))
         {
             QString albumString = tag.getAlbum().trimmed();
             if(albumString.isEmpty())

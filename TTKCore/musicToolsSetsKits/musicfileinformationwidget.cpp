@@ -6,7 +6,6 @@
 #include "musicsongtag.h"
 #include "musicmessagebox.h"
 
-#include <QBuffer>
 #include <QFileDialog>
 #include <QStyledItemDelegate>
 
@@ -108,9 +107,9 @@ void MusicFileInformationWidget::musicAdvanceClicked()
 
         QPixmap pix;
         MusicSongTag tag;
-        if(tag.readFile(m_path))
+        if(tag.read(m_path))
         {
-            pix.loadFromData(tag.getCover());
+            pix = tag.getCover();
         }
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
         if(pix.isNull())
@@ -146,11 +145,10 @@ void MusicFileInformationWidget::musicEditTag()
 void MusicFileInformationWidget::musicSaveTag()
 {
     MusicSongTag tag;
-    if(!tag.readFile(m_path))
+    if(!tag.read(m_path))
     {
         return;
     }
-    tag.setTagVersion(m_ui->idv3ComboBox->currentIndex() == 0 ? 3 : 4);
 
     QString value = m_ui->fileAlbumEdit->text().trimmed();
     if(value != "-")
@@ -184,12 +182,10 @@ void MusicFileInformationWidget::musicSaveTag()
 
     if(!m_imagePath.isEmpty())
     {
-        QByteArray data;
-        QBuffer buffer(&data);
-        buffer.open(QIODevice::WriteOnly);
-        QPixmap(m_imagePath).save(&buffer, JPG_FILE_PREFIX);
-        tag.setCover(data);
+        tag.setCover(QPixmap(m_imagePath));
     }
+
+    tag.save();
 
     MusicMessageBox message;
     message.setText(tr("Save Successfully!"));
@@ -205,7 +201,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     //cache song should not allow open url
 
     MusicSongTag tag;
-    bool state = tag.readFile(m_path = name);
+    bool state = tag.read(m_path = name);
     QFileInfo fin(name);
     QString check;
     m_ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );

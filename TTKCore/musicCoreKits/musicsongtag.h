@@ -9,7 +9,6 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include "tagreadandwrite.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song tag.
@@ -18,6 +17,29 @@
 class MUSIC_CORE_EXPORT MusicSongTag
 {
 public:
+    enum MusicTag
+    {
+        TAG_UNKNOWN = -1,
+        TAG_TITLE = 0,   /*!< Title */
+        TAG_ARTIST,      /*!< Artist  */
+        TAG_ALBUMARTIST, /*!< Album artist  */
+        TAG_ALBUM,       /*!< Album */
+        TAG_COMMENT,     /*!< Comment */
+        TAG_GENRE,       /*!< Genre */
+        TAG_COMPOSER,    /*!< Composer */
+        TAG_YEAR,        /*!< Year */
+        TAG_TRACK,       /*!< Track number */
+        TAG_DISCNUMBER,  /*!< Disc number */
+        TAG_URL,         /*!< Stream url or local file path */
+        TAG_LENGTH,      /*!< Length */
+        TAG_FORMAT,      /*!< Format */
+        TAG_SAMPLERATE,  /*!< Sample rate */
+        TAG_MODE,        /*!< Mode */
+        TAG_BITRATE,     /*!< Bitrate */
+        TAG_CHANNEL,     /*!< Chrannel */
+        TAG_COVER        /*!< Cove */
+    };
+
     MusicSongTag();
     /*!
      * Object contsructor.
@@ -26,27 +48,27 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicSongTag();
 
     static QString getClassName();
     /*!
      * Get class object name.
      */
-    bool readFile(const QString &file);
+    bool read(const QString &file);
     /*!
      * Read music file to anaylsis.
+     */
+    bool save();
+    /*!
+     * Save music tags to music file.
+     */
+
+    QString getDecoder() const;
+    /*!
+     * Read music decoder name.
      */
     QString getFilePath() const;
     /*!
      * Read music file path.
-     */
-    void setTagVersion(int id3v2Version);
-    /*!
-     * Set id3v2 tag version.
-     */
-    void setExtend(bool extend);
-    /*!
-     * Set extend flag.
      */
     /////////////////////////////////////////////
     QString getArtist() const;
@@ -94,40 +116,44 @@ public:
      * Get song file path.
      */
     /////////////////////////////////////////////
-    bool setArtist(const QString &artist);
+    void setArtist(const QString &artist);
     /*!
      * Set artist name.
      */
-    bool setTitle(const QString &title);
+    void setTitle(const QString &title);
     /*!
      * Set song title.
      */
-    bool setAlbum(const QString &album);
+    void setAlbum(const QString &album);
     /*!
      * Set song album.
      */
-    bool setComment(const QString &comment);
+    void setComment(const QString &comment);
     /*!
      * Set song comment.
      */
-    bool setYear(const QString &year);
+    void setYear(const QString &year);
     /*!
      * Set song year.
      */
-    bool setTrackNum(const QString &track);
+    void setTrackNum(const QString &track);
     /*!
      * Set song track number.
      */
-    bool setGenre(const QString &genre);
+    void setGenre(const QString &genre);
     /*!
      * Set song genre.
      */
     /////////////////////////////////////////////
-    bool setCover(const QByteArray &data);
+    void setCover(const QPixmap &pix);
     /*!
      * Set song image cover art.
      */
-    QByteArray getCover() const;
+    void setCover(const QByteArray &data);
+    /*!
+     * Set song image cover art.
+     */
+    QPixmap getCover() const;
     /*!
      * Get song image cover art.
      */
@@ -155,16 +181,21 @@ public:
     /////////////////////////////////////////////
 
 protected:
-    bool readOtherTaglibNotSupport(const QString &path);
+    QString findPluginPath() const;
     /*!
-     * Read other taglib not support file format.
+     * Find current pluin store path.
+     */
+    bool readOtherTaglib();
+    /*!
+     * Read other taglib not by plugin.
+     */
+    bool saveOtherTaglib();
+    /*!
+     * Save other taglib not by plugin.
      */
 
-    bool m_extend;
-    int m_id3v2Version;
     QString m_filePath;
-    TagReadAndWrite *m_tag;
-    QMap<TagReadAndWrite::MusicTag, QString> m_parameters;
+    QMap<MusicTag, QVariant> m_parameters;
 
 };
 

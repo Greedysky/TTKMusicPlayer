@@ -101,7 +101,7 @@ void MusicSongRingtoneMaker::initInputPath()
 
     m_inputFilePath = path;
     MusicSongTag tag;
-    if(tag.readFile(m_inputFilePath))
+    if(tag.read(m_inputFilePath))
     {
         QString name = QFileInfo(m_inputFilePath).fileName();
         m_ui->songLabelValue->setToolTip( name );

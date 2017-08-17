@@ -68,6 +68,12 @@ public:
      * Returns path to cover pixmap.
      */
     virtual QString coverPath();
+    /*!
+     * Set cover pixmap data.
+     * Subclass should reimplement this function. Default implementation returns empty pixmap.
+     */
+    virtual bool setCover(const QByteArray &data);
+
 };
 
 #endif // METADATAMODEL_H

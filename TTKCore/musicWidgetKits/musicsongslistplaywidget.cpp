@@ -180,7 +180,7 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path)
 {
     MusicSongTag tag;
-    bool state = tag.readFile(path);
+    bool state = tag.read(path);
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
     if(state)
@@ -191,8 +191,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(state && M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
     {
-        QPixmap pix;
-        pix.loadFromData(tag.getCover());
+        QPixmap pix = tag.getCover();
         if(pix.isNull())
         {
             m_noCover = true;

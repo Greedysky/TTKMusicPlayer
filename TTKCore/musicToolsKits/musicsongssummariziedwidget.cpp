@@ -150,7 +150,7 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
             continue;
         }
 
-        bool state = tag.readFile(path);
+        bool state = tag.read(path);
         QString time = state ? tag.getLengthString() : "-";
         QString name;
         if(M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toBool() && state &&

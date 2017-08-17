@@ -56,7 +56,7 @@ void MusicSongCheckToolsRenameCore::run()
                     return;
                 }
 
-                if(!tag.readFile(song.getMusicPath()))
+                if(!tag.read(song.getMusicPath()))
                 {
                     continue;
                 }
@@ -147,7 +147,7 @@ void MusicSongCheckToolsDuplicateCore::run()
                     return;
                 }
 
-                if(!tag.readFile(song.getMusicPath()))
+                if(!tag.read(song.getMusicPath()))
                 {
                     continue;
                 }
@@ -227,7 +227,7 @@ void MusicSongCheckToolsQualityCore::run()
                 return;
             }
 
-            if(!tag.readFile(song.getMusicPath()))
+            if(!tag.read(song.getMusicPath()))
             {
                 continue;
             }
