@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "monowave.h"
@@ -168,9 +169,16 @@ void MonoWave::process (float *buffer)
 void MonoWave::draw (QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    float l = 1.0f;
+    if(SoundCore::instance())
+    {
+        l = SoundCore::instance()->volume()*1.0/100;
+    }
+
     for (int j = 1; j < m_rows; ++j)
     {
-        int v = m_intern_vis_data[j - 1];
+        int v = m_intern_vis_data[j - 1] * l;
         if(m_pixPos >= m_cols)
         {
             m_pixPos = m_cols - 1;

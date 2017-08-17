@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "xrays.h"
@@ -162,10 +163,16 @@ void XRays::draw (QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
 
+    float l = 1.0f;
+    if(SoundCore::instance())
+    {
+        l = SoundCore::instance()->volume()*1.0/100;
+    }
+
     for (int i = 0; i<m_cols - 1; ++i)
     {
-        int h1 = m_rows/2 - m_intern_vis_data[i];
-        int h2 = m_rows/2 - m_intern_vis_data[i+1];
+        int h1 = (m_rows/2 - m_intern_vis_data[i])*l;
+        int h2 = (m_rows/2 - m_intern_vis_data[i+1])*l;
         if (h1 > h2)
             qSwap(h1, h2);
         p->drawLine(i, h1, (i+1), h2);

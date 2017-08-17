@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "multiwave.h"
@@ -155,6 +156,13 @@ void MultiWave::process (float *buffer)
 void MultiWave::draw (QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+
+    float l = 1.0f;
+    if(SoundCore::instance())
+    {
+        l = SoundCore::instance()->volume()*1.0/100;
+    }
+
     if(m_cols != 0)
     {
         if(m_pixPos >= m_cols)
@@ -162,7 +170,7 @@ void MultiWave::draw (QPainter *p)
             m_pixPos = m_cols - 1;
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
-        for(int i=0; i<m_intern_vis_data/2; ++i)
+        for(int i=0; i<m_intern_vis_data*l/2; ++i)
         {
             m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0xff, 0, 0));
             m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0xff, 0, 0));

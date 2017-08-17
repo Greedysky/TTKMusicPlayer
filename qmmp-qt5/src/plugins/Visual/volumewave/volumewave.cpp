@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "volumewave.h"
@@ -194,9 +195,15 @@ void VolumeWave::draw (QPainter *p)
 
     if(m_intern_vis_data)
     {
+        float l = 1.0f, r = 1.0f;
+        if(SoundCore::instance())
+        {
+            l = SoundCore::instance()->leftVolume()*1.0/100;
+            r = SoundCore::instance()->rightVolume()*1.0/100;
+        }
         int wid = ceil(m_rows/2);
-        p->fillRect(0, 0, m_intern_vis_data[0]*m_cols/m_rows, wid, line);
-        p->fillRect(0, wid, m_intern_vis_data[1]*m_cols/m_rows, wid, line);
+        p->fillRect(0, 0, m_intern_vis_data[0]*l*m_cols/m_rows, wid, line);
+        p->fillRect(0, wid, m_intern_vis_data[1]*r*m_cols/m_rows, wid, line);
     }
 
     p->setPen(Qt::white);

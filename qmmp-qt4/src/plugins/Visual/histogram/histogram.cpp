@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
+#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "histogram.h"
@@ -209,13 +210,19 @@ void Histogram::draw (QPainter *p)
     int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
+    float l = 1.0f;
+    if(SoundCore::instance())
+    {
+        l = SoundCore::instance()->volume()*1.0/100;
+    }
+
     for (int j = 0; j < m_cols; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)
             x += rdx; //correct right part position
 
-        int hh = m_intern_vis_data[j] * m_cell_size.height();
+        int hh = m_intern_vis_data[j] * l * m_cell_size.height();
         p->fillRect(x, height() - hh + 1, m_cell_size.width() - 2, hh - 2, line);
     }
 }
