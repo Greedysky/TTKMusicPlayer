@@ -35,6 +35,7 @@ public:
     QHash<QString, QString> audioProperties();
     QList<TagModel* > tags();
     QPixmap cover();
+    bool setCover(const QByteArray &data);
 
 private:
     QList<TagModel* > m_tags;

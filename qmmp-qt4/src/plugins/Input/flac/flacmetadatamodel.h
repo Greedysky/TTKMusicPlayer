@@ -36,6 +36,7 @@ public:
     QList<TagModel* > tags();
     QPixmap cover();
     QString coverPath();
+    bool setCover(const QByteArray &data);
 
 private:
     QString m_path;

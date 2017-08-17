@@ -53,3 +53,9 @@ QString MetaDataModel::coverPath()
 {
     return QString();
 }
+
+bool MetaDataModel::setCover(const QByteArray &data)
+{
+    Q_UNUSED(data);
+    return false;
+}

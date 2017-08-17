@@ -42,7 +42,6 @@ HEADERS += \
     channelconverter_p.h \
     audioconverter.h \
     dithering_p.h \
-    tagreadandwrite.h \
     spekfactory.h
     
 SOURCES += recycler.cpp \
@@ -77,8 +76,7 @@ SOURCES += recycler.cpp \
     channelmap.cpp \
     channelconverter.cpp \
     volume.cpp \
-    dithering.cpp \
-    tagreadandwrite.cpp
+    dithering.cpp
     
 unix:TARGET = ../../lib/$$TTKMusicPlayer/qmmp
 win32:TARGET = ../../../bin/$$TTKMusicPlayer/qmmp
@@ -125,9 +123,8 @@ unix {
         tagmodel.h \
         visualfactory.h \
         visual.h \
-        volume.h \
-        tagreadandwrite.h
-
+        volume.h
+        
     devel.path = /include/qmmp
     INSTALLS += target \
         devel

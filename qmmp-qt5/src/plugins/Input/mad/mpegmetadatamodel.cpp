@@ -73,6 +73,9 @@ QHash<QString, QString> MPEGMetaDataModel::audioProperties()
         case TagLib::MPEG::Header::Version2_5:
         v = "2.5";
     }
+    text = QString("%1").arg(property->length()/60);
+    text +=":"+QString("%1").arg(property->length()%60,2,10,QChar('0'));
+    ap.insert(tr("Length"), text);
     text = QString("MPEG-%1 layer %2").arg(v).arg(property->layer());
     ap.insert(tr("Format"), text);
     text = QString("%1").arg(property->bitrate());
@@ -148,6 +151,30 @@ QPixmap MPEGMetaDataModel::cover()
         }
     }
     return QPixmap();
+}
+
+bool MPEGMetaDataModel::setCover(const QByteArray &data)
+{
+    TagLib::ID3v2::Tag *tag = m_file->ID3v2Tag(true);
+    TagLib::ID3v2::FrameList frames = tag->frameList("APIC");
+    TagLib::ID3v2::AttachedPictureFrame *frame = 0;
+
+    if(frames.isEmpty())
+    {
+        frame = new TagLib::ID3v2::AttachedPictureFrame;
+        tag->addFrame(frame);
+    }
+    else
+    {
+        frame = static_cast<TagLib::ID3v2::AttachedPictureFrame*>(frames.front());
+    }
+
+    frame->setMimeType("image/jpeg");
+    frame->setDescription("TTK");
+    frame->setType(TagLib::ID3v2::AttachedPictureFrame::FrontCover);
+    frame->setPicture(TagLib::ByteVector(data.data(), data.size()));
+
+    return m_file->save(TagLib::MPEG::File::AllTags, false, 3);
 }
 
 MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file, TagLib::MPEG::File::TagTypes tagType)
@@ -405,7 +432,14 @@ void MpegFileTagModel::remove()
 void MpegFileTagModel::save()
 {
     if(m_tag)
-        m_file->save(m_tagType, false);
+    {
+        if (m_tagType == TagLib::MPEG::File::ID3v2)
+        {
+            m_file->save(m_tagType, false, 3);
+        }
+        else
+            m_file->save(m_tagType, false);
+    }
     else
         m_file->strip(m_tagType);
 }

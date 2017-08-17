@@ -128,6 +128,58 @@ QString FLACMetaDataModel::coverPath()
     return MetaDataManager::instance()->getCoverPath(m_path);
 }
 
+bool FLACMetaDataModel::setCover(const QByteArray &data)
+{
+    FLAC__Metadata_Chain *chain = FLAC__metadata_chain_new();
+    FLAC__metadata_chain_read(chain, qPrintable(m_path));
+    FLAC__Metadata_Iterator *iterator = FLAC__metadata_iterator_new();
+    FLAC__metadata_iterator_init(iterator, chain);
+    FLAC__StreamMetadata* metadata = 0;
+
+    do
+    {
+        FLAC__MetadataType block = FLAC__metadata_iterator_get_block_type(iterator);
+        if(block == FLAC__METADATA_TYPE_PICTURE)
+        {
+            metadata = FLAC__metadata_iterator_get_block(iterator);
+            break;
+        }
+    }while(FLAC__metadata_iterator_next(iterator));
+
+    if(!metadata)
+    {
+        metadata = FLAC__metadata_object_new(FLAC__METADATA_TYPE_PICTURE);
+    }
+
+    if(metadata)
+    {
+        FLAC__metadata_object_picture_set_description(metadata, (FLAC__byte*)"TTK", true);
+        FLAC__metadata_object_picture_set_mime_type(metadata, "image/jpeg", true);
+        FLAC__metadata_object_picture_set_data(metadata, (FLAC__byte*)data.data(), data.length(), true);
+
+        if(FLAC__metadata_iterator_set_block(iterator, metadata))
+        {
+            if(metadata)
+                FLAC__metadata_object_delete(metadata);
+            if(iterator)
+                FLAC__metadata_iterator_delete(iterator);
+            if(chain)
+                FLAC__metadata_chain_delete(chain);
+            return false;
+        }
+    }
+
+    bool state = FLAC__metadata_chain_write(chain, false, FLAC__metadata_chain_status(chain));
+    if(metadata)
+        FLAC__metadata_object_delete(metadata);
+    if(iterator)
+        FLAC__metadata_iterator_delete(iterator);
+    if(chain)
+        FLAC__metadata_chain_delete(chain);
+
+    return state;
+}
+
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file) : TagModel(TagModel::Save)
 {
     m_file = file;
