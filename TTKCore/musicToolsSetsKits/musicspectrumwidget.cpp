@@ -230,8 +230,14 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
 {
     if(box->isChecked())
     {
+        int before = Visual::visuals()->count();
         showSpectrum(name, true);
         QList<Visual *> *vs = Visual::visuals();
+        if(before == vs->count())
+        {
+            return;
+        }
+
         if(!vs->isEmpty())
         {
             MusicSpectrum t;
