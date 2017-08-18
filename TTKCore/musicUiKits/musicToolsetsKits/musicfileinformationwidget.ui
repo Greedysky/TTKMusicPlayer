@@ -339,7 +339,7 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>259</y>
+     <y>264</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -352,7 +352,7 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>289</y>
+     <y>299</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -368,7 +368,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>284</y>
+     <y>294</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -381,7 +381,7 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>289</y>
+     <y>299</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -397,7 +397,7 @@
    <property name="geometry">
     <rect>
      <x>89</x>
-     <y>254</y>
+     <y>259</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -413,7 +413,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>284</y>
+     <y>294</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -455,7 +455,7 @@
    <property name="geometry">
     <rect>
      <x>254</x>
-     <y>259</y>
+     <y>264</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -471,7 +471,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>254</y>
+     <y>259</y>
      <width>141</width>
      <height>23</height>
     </rect>
@@ -484,7 +484,7 @@
    <property name="geometry">
     <rect>
      <x>24</x>
-     <y>229</y>
+     <y>232</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -497,45 +497,13 @@
    <property name="geometry">
     <rect>
      <x>74</x>
-     <y>234</y>
+     <y>237</y>
      <width>380</width>
      <height>5</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_16">
-   <property name="geometry">
-    <rect>
-     <x>29</x>
-     <y>319</y>
-     <width>54</width>
-     <height>12</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>编码详述:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="descriptionEdit">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>89</x>
-     <y>314</y>
-     <width>365</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -625,7 +593,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>IDV3版本:</string>
+    <string>解码器:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="openPixButton">
@@ -642,16 +610,6 @@
    </property>
    <property name="text">
     <string>选择图片</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="idv3ComboBox">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>370</y>
-     <width>120</width>
-     <height>23</height>
-    </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label_18">
@@ -672,6 +630,19 @@
     <rect>
      <x>250</x>
      <y>410</y>
+     <width>120</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="decoderLabel">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>373</y>
      <width>120</width>
      <height>16</height>
     </rect>
@@ -715,15 +686,13 @@
   <zorder>BitrateEdit</zorder>
   <zorder>label_15</zorder>
   <zorder>line_3</zorder>
-  <zorder>label_16</zorder>
-  <zorder>descriptionEdit</zorder>
   <zorder>advanceLabel</zorder>
   <zorder>pixmapLabel</zorder>
   <zorder>openPixButton</zorder>
-  <zorder>idv3ComboBox</zorder>
   <zorder>label_17</zorder>
   <zorder>label_18</zorder>
   <zorder>pixmapSizeLabel</zorder>
+  <zorder>decoderLabel</zorder>
  </widget>
  <customwidgets>
   <customwidget>

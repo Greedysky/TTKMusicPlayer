@@ -228,7 +228,6 @@ QString MusicSongTag::findPluginPath() const
     return QString();
 }
 
-
 bool MusicSongTag::readOtherTaglib()
 {
     QPluginLoader loader;

@@ -7,7 +7,6 @@
 #include "musicmessagebox.h"
 
 #include <QFileDialog>
-#include <QStyledItemDelegate>
 
 #define ADVANCE_OFFSET  150
 
@@ -31,7 +30,6 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     QPixmap pix;
     pix.load(":/image/lb_defaultArt");
     m_ui->pixmapLabel->setPixmap(pix.scaled(m_ui->pixmapLabel->size()));
-    m_ui->idv3ComboBox->addItems(QStringList() << "ID3v2.3" << "ID3v2.4");
 
     m_ui->editButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -44,10 +42,6 @@ MusicFileInformationWidget::MusicFileInformationWidget(QWidget *parent)
     m_ui->openPixButton->setFocusPolicy(Qt::NoFocus);
     m_ui->viewButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    m_ui->idv3ComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->idv3ComboBox));
-    m_ui->idv3ComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->idv3ComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     connect(m_ui->editButton, SIGNAL(clicked()), SLOT(musicEditTag()));
     connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(musicSaveTag()));
@@ -103,7 +97,7 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         m_ui->saveButton->move(390, 320 + ADVANCE_OFFSET);
         m_ui->pixmapLabel->setVisible(true);
         m_ui->label_17->setVisible(true);
-        m_ui->idv3ComboBox->setVisible(true);
+        m_ui->decoderLabel->setVisible(true);
 
         QPixmap pix;
         MusicSongTag tag;
@@ -130,7 +124,7 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         m_ui->saveButton->move(390, 320);
         m_ui->pixmapLabel->setVisible(false);
         m_ui->label_17->setVisible(false);
-        m_ui->idv3ComboBox->setVisible(false);
+        m_ui->decoderLabel->setVisible(false);
     }
 
     m_advanceOn = !m_advanceOn;
@@ -216,15 +210,12 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->fileYearEdit->setText( state ? ((check = tag.getYear()).isEmpty() ? "-" : check) : "-" );
     m_ui->fileTimeEdit->setText( state ? ((check = tag.getLengthString()).isEmpty() ? "-" : check) : "-" );
 
-    m_ui->BitrateEdit->setText( state ? ((check = (tag.getBitrate()))
-                              .isEmpty() ? "-" : check) : "-" );
-    m_ui->ChannelEdit->setText( state ? ((check = tag.getChannel())
-                                    .isEmpty() ? "-" : check) : "-" );
-    m_ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate())
-                                   .isEmpty() ? "-" : check) : "-" );
+    m_ui->BitrateEdit->setText( state ? ((check = (tag.getBitrate())).isEmpty() ? "-" : check) : "-" );
+    m_ui->ChannelEdit->setText( state ? ((check = tag.getChannel()).isEmpty() ? "-" : check) : "-" );
+    m_ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate()).isEmpty() ? "-" : check) : "-" );
     m_ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
-    m_ui->descriptionEdit->setText( state ? ((check = QString("%1 %2").arg(tag.getFormat())
-                                   .arg(tag.getMode())).isEmpty() ? "-" : check) : "-" );
+    m_ui->decoderLabel->setText(state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-" );
+
 }
 
 void MusicFileInformationWidget::setEditLineEnable(bool enable)
