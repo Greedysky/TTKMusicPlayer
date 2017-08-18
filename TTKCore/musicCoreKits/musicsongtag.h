@@ -9,6 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
+#include "tagreadandwrite.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of the music song tag.
@@ -17,29 +18,6 @@
 class MUSIC_CORE_EXPORT MusicSongTag
 {
 public:
-    enum MusicTag
-    {
-        TAG_UNKNOWN = -1,
-        TAG_TITLE = 0,   /*!< Title */
-        TAG_ARTIST,      /*!< Artist  */
-        TAG_ALBUMARTIST, /*!< Album artist  */
-        TAG_ALBUM,       /*!< Album */
-        TAG_COMMENT,     /*!< Comment */
-        TAG_GENRE,       /*!< Genre */
-        TAG_COMPOSER,    /*!< Composer */
-        TAG_YEAR,        /*!< Year */
-        TAG_TRACK,       /*!< Track number */
-        TAG_DISCNUMBER,  /*!< Disc number */
-        TAG_URL,         /*!< Stream url or local file path */
-        TAG_LENGTH,      /*!< Length */
-        TAG_FORMAT,      /*!< Format */
-        TAG_SAMPLERATE,  /*!< Sample rate */
-        TAG_MODE,        /*!< Mode */
-        TAG_BITRATE,     /*!< Bitrate */
-        TAG_CHANNEL,     /*!< Chrannel */
-        TAG_COVER        /*!< Cove */
-    };
-
     MusicSongTag();
     /*!
      * Object contsructor.
@@ -195,7 +173,7 @@ protected:
      */
 
     QString m_filePath;
-    QMap<MusicTag, QVariant> m_parameters;
+    QMap<TagReadAndWrite::MusicTag, QVariant> m_parameters;
 
 };
 

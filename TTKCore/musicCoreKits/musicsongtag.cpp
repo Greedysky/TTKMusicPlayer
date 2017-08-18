@@ -3,6 +3,7 @@
 #include "musicformats.h"
 #include "musicversion.h"
 #include "musiccoreutils.h"
+#include "tagreadandwrite.h"
 
 #include <QBuffer>
 #include <QStringList>
@@ -60,32 +61,32 @@ QString MusicSongTag::getFilePath() const
 
 QString MusicSongTag::getArtist() const
 {
-    return m_parameters[TAG_ARTIST].toString();
+    return m_parameters[TagReadAndWrite::TAG_ARTIST].toString();
 }
 
 QString MusicSongTag::getTitle() const
 {
-    return m_parameters[TAG_TITLE].toString();
+    return m_parameters[TagReadAndWrite::TAG_TITLE].toString();
 }
 
 QString MusicSongTag::getAlbum() const
 {
-    return m_parameters[TAG_ALBUM].toString();
+    return m_parameters[TagReadAndWrite::TAG_ALBUM].toString();
 }
 
 QString MusicSongTag::getComment() const
 {
-    return m_parameters[TAG_COMMENT].toString();
+    return m_parameters[TagReadAndWrite::TAG_COMMENT].toString();
 }
 
 QString MusicSongTag::getYear() const
 {
-    return m_parameters[TAG_YEAR].toString();
+    return m_parameters[TagReadAndWrite::TAG_YEAR].toString();
 }
 
 QString MusicSongTag::getTrackNum() const
 {
-    QString v = m_parameters[TAG_TRACK].toString();
+    QString v = m_parameters[TagReadAndWrite::TAG_TRACK].toString();
     bool ok = true;
     if(v.toInt(&ok) > 0)
     {
@@ -96,69 +97,69 @@ QString MusicSongTag::getTrackNum() const
 
 QString MusicSongTag::getGenre() const
 {
-    return m_parameters[TAG_GENRE].toString();
+    return m_parameters[TagReadAndWrite::TAG_GENRE].toString();
 }
 
 QString MusicSongTag::getAlbumArtist() const
 {
-    return m_parameters[TAG_ALBUMARTIST].toString();
+    return m_parameters[TagReadAndWrite::TAG_ALBUMARTIST].toString();
 }
 
 QString MusicSongTag::getComposer() const
 {
-    return m_parameters[TAG_COMPOSER].toString();
+    return m_parameters[TagReadAndWrite::TAG_COMPOSER].toString();
 }
 
 QString MusicSongTag::getChannel() const
 {
-    return m_parameters[TAG_CHANNEL].toString();
+    return m_parameters[TagReadAndWrite::TAG_CHANNEL].toString();
 }
 
 QString MusicSongTag::getURL() const
 {
-    return m_parameters[TAG_URL].toString();
+    return m_parameters[TagReadAndWrite::TAG_URL].toString();
 }
 
 /////////////////////////////////////////////
 void MusicSongTag::setArtist(const QString &artist)
 {
-    m_parameters[TAG_ARTIST] = artist;
+    m_parameters[TagReadAndWrite::TAG_ARTIST] = artist;
 }
 
 void MusicSongTag::setTitle(const QString &title)
 {
-    m_parameters[TAG_TITLE] = title;
+    m_parameters[TagReadAndWrite::TAG_TITLE] = title;
 }
 
 void MusicSongTag::setAlbum(const QString &album)
 {
-    m_parameters[TAG_ALBUM] = album;
+    m_parameters[TagReadAndWrite::TAG_ALBUM] = album;
 }
 
 void MusicSongTag::setComment(const QString &comment)
 {
-    m_parameters[TAG_COMMENT] = comment;
+    m_parameters[TagReadAndWrite::TAG_COMMENT] = comment;
 }
 
 void MusicSongTag::setYear(const QString &year)
 {
-    m_parameters[TAG_YEAR] = year;
+    m_parameters[TagReadAndWrite::TAG_YEAR] = year;
 }
 
 void MusicSongTag::setTrackNum(const QString &track)
 {
-    m_parameters[TAG_TRACK] = track;
+    m_parameters[TagReadAndWrite::TAG_TRACK] = track;
 }
 
 void MusicSongTag::setGenre(const QString &genre)
 {
-    m_parameters[TAG_GENRE] = genre;
+    m_parameters[TagReadAndWrite::TAG_GENRE] = genre;
 }
 
 void MusicSongTag::setCover(const QPixmap &pix)
 {
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,4,7,0)
-    m_parameters[TAG_COVER] = pix;
+    m_parameters[TagReadAndWrite::TAG_COVER] = pix;
 #else
     Q_UNUSED(data);
 #endif
@@ -169,7 +170,7 @@ void MusicSongTag::setCover(const QByteArray &data)
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
     QPixmap pix;
     pix.loadFromData(data);
-    m_parameters[TAG_COVER] = pix;
+    m_parameters[TagReadAndWrite::TAG_COVER] = pix;
 #else
     Q_UNUSED(data);
 #endif
@@ -178,7 +179,7 @@ void MusicSongTag::setCover(const QByteArray &data)
 QPixmap MusicSongTag::getCover() const
 {
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
-    return m_parameters[TAG_COVER].value<QPixmap>();
+    return m_parameters[TagReadAndWrite::TAG_COVER].value<QPixmap>();
 #else
     return QPixmap();
 #endif
@@ -187,28 +188,28 @@ QPixmap MusicSongTag::getCover() const
 /////////////////////////////////////////////
 QString MusicSongTag::getSamplingRate() const
 {
-    return m_parameters[TAG_SAMPLERATE].toString();
+    return m_parameters[TagReadAndWrite::TAG_SAMPLERATE].toString();
 }
 
 QString MusicSongTag::getFormat() const
 {
-    return m_parameters[TAG_FORMAT].toString();
+    return m_parameters[TagReadAndWrite::TAG_FORMAT].toString();
 }
 
 QString MusicSongTag::getMode() const
 {
-    return m_parameters[TAG_MODE].toString();
+    return m_parameters[TagReadAndWrite::TAG_MODE].toString();
 }
 
 QString MusicSongTag::getBitrate() const
 {
-    return m_parameters[TAG_BITRATE].toString();
+    return m_parameters[TagReadAndWrite::TAG_BITRATE].toString();
 }
 
 QString MusicSongTag::getLengthString() const
 {
     return MusicTime::msecTime2LabelJustified(
-           m_parameters[TAG_LENGTH].toULongLong());
+           m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
 }
 
 QString MusicSongTag::findPluginPath() const
@@ -227,6 +228,7 @@ QString MusicSongTag::findPluginPath() const
     return QString();
 }
 
+
 bool MusicSongTag::readOtherTaglib()
 {
     QPluginLoader loader;
@@ -242,30 +244,59 @@ bool MusicSongTag::readOtherTaglib()
             QHash<QString, QString> datas = model->audioProperties();
             MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));
             QString ts = QString::number(t.getTimeStamp(MusicTime::All_Msec));
-            m_parameters.insert(TAG_LENGTH, ts);
-            m_parameters.insert(TAG_SAMPLERATE, datas.value("Sample rate"));
-            m_parameters.insert(TAG_BITRATE, datas.value("Bitrate"));
-            m_parameters.insert(TAG_CHANNEL, datas.value("Channels"));
+            m_parameters.insert(TagReadAndWrite::TAG_LENGTH, ts);
+            m_parameters.insert(TagReadAndWrite::TAG_SAMPLERATE, datas.value("Sample rate"));
+            m_parameters.insert(TagReadAndWrite::TAG_BITRATE, datas.value("Bitrate"));
+            m_parameters.insert(TagReadAndWrite::TAG_CHANNEL, datas.value("Channels"));
+
+            m_parameters.insert(TagReadAndWrite::TAG_COVER, model->cover());
+
+            QList<TagModel* > tags = model->tags();
+            if(!tags.isEmpty())
+            {
+                TagModel *tagModel = tags.first();
+                if(tags.count() == 3)
+                {
+                    tagModel = tags[1]; //id3v2 mode tag
+                }
+
+                m_parameters[TagReadAndWrite::TAG_TITLE] = tagModel->value(Qmmp::TITLE);
+                m_parameters[TagReadAndWrite::TAG_ARTIST] = tagModel->value(Qmmp::ARTIST);
+                m_parameters[TagReadAndWrite::TAG_ALBUM] = tagModel->value(Qmmp::ALBUM);
+                m_parameters[TagReadAndWrite::TAG_YEAR] = tagModel->value(Qmmp::YEAR);
+                m_parameters[TagReadAndWrite::TAG_COMMENT] = tagModel->value(Qmmp::COMMENT);
+                m_parameters[TagReadAndWrite::TAG_TRACK] = tagModel->value(Qmmp::TRACK);
+                m_parameters[TagReadAndWrite::TAG_GENRE] = tagModel->value(Qmmp::GENRE);
+            }
         }
 
-        m_parameters.insert(TAG_COVER, model->cover());
-
-        QList<TagModel* > tags = model->tags();
-        if(!tags.isEmpty())
+        if(m_parameters[TagReadAndWrite::TAG_LENGTH].toString().isEmpty())
         {
-            TagModel *tagModel = tags.first();
-            if(tags.count() == 3)
+            int len = 0;
+            QList<FileInfo*> infos(decoderfac->createPlayList(m_filePath, true, 0));
+            if(!infos.isEmpty())
             {
-                tagModel = tags[1]; //id3v2 mode tag
+                len = infos.first()->length();
+                QString t = QString::number(len*MT_S2MS);
+
+                m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t);
+            }
+            qDeleteAll(infos);
+
+            if(len == 0)
+            {
+                TagReadAndWrite tag;
+                if(tag.readFile(m_filePath))
+                {
+                    QMap<TagReadAndWrite::MusicTag, QString> data = tag.getMusicTags();
+                    m_parameters.insert(TagReadAndWrite::TAG_LENGTH, data[TagReadAndWrite::TAG_LENGTH]);
+                }
             }
 
-            m_parameters[TAG_TITLE] = tagModel->value(Qmmp::TITLE);
-            m_parameters[TAG_ARTIST] = tagModel->value(Qmmp::ARTIST);
-            m_parameters[TAG_ALBUM] = tagModel->value(Qmmp::ALBUM);
-            m_parameters[TAG_YEAR] = tagModel->value(Qmmp::YEAR);
-            m_parameters[TAG_COMMENT] = tagModel->value(Qmmp::COMMENT);
-            m_parameters[TAG_TRACK] = tagModel->value(Qmmp::TRACK);
-            m_parameters[TAG_GENRE] = tagModel->value(Qmmp::GENRE);
+            if(m_parameters[TagReadAndWrite::TAG_LENGTH].toString().isEmpty())
+            {
+                m_parameters[TagReadAndWrite::TAG_LENGTH] = "0";
+            }
         }
 
         delete model;
@@ -287,32 +318,33 @@ bool MusicSongTag::saveOtherTaglib()
     {
         status = true;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath);
-
-        QList<TagModel* > tags = model->tags();
-        if(!tags.isEmpty())
+        if(model)
         {
-            TagModel *tagModel = tags.first();
-            if(tags.count() == 3)
+            QList<TagModel* > tags = model->tags();
+            if(!tags.isEmpty())
             {
-                tagModel = tags[1]; //id3v2 mode tag
+                TagModel *tagModel = tags.first();
+                if(tags.count() == 3)
+                {
+                    tagModel = tags[1]; //id3v2 mode tag
+                }
+
+                tagModel->setValue(Qmmp::ALBUM, getAlbum());
+                tagModel->setValue(Qmmp::ARTIST, getArtist());
+                tagModel->setValue(Qmmp::TITLE, getTitle());
+                tagModel->setValue(Qmmp::YEAR, getYear());
+                tagModel->setValue(Qmmp::GENRE, getGenre());
+                tagModel->save();
             }
 
-            tagModel->setValue(Qmmp::ALBUM, getAlbum());
-            tagModel->setValue(Qmmp::ARTIST, getArtist());
-            tagModel->setValue(Qmmp::TITLE, getTitle());
-            tagModel->setValue(Qmmp::YEAR, getYear());
-            tagModel->setValue(Qmmp::GENRE, getGenre());
-            tagModel->save();
+            ////////////////////////////////////////////////////////////////////
+            QByteArray data;
+            QBuffer buffer(&data);
+            buffer.open(QIODevice::WriteOnly);
+            getCover().save(&buffer, JPG_FILE_PREFIX);
+            model->setCover(data);
+            ////////////////////////////////////////////////////////////////////
         }
-
-        ////////////////////////////////////////////////////////////////////
-        QByteArray data;
-        QBuffer buffer(&data);
-        buffer.open(QIODevice::WriteOnly);
-        getCover().save(&buffer, JPG_FILE_PREFIX);
-        model->setCover(data);
-        ////////////////////////////////////////////////////////////////////
-
         delete model;
         loader.unload();
     }
