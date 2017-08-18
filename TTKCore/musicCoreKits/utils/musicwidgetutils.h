@@ -67,9 +67,13 @@ namespace MusicUtils
         /*!
          * Get bitmap mask from rect.
          */
+        MUSIC_SUPER_EXPORT QByteArray getPixmapData(const QPixmap &pix);
+        /*!
+         * Get pximap data.
+         */
 
         template<class T>
-        MUSIC_SUPER_EXPORT T reRenderValue(T key, T alpha, T value)
+        MUSIC_SUPER_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
             if(alpha < 0) return 0;
             else if(alpha > key) return key;

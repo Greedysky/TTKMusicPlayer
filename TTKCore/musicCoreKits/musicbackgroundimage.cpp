@@ -1,12 +1,12 @@
 #include "musicbackgroundimage.h"
 #include "musicnumberdefine.h"
 #include "musicotherdefine.h"
+#include "musicwidgetutils.h"
 
 #include "ttkzip/zip.h"
 #include "ttkzip/unzip.h"
 
 #include <QFile>
-#include <QBuffer>
 
 #define WIN_NAME_MAX_LENGTH     256
 #ifdef Q_CC_GNU
@@ -218,10 +218,7 @@ bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, cons
     memset(&fileInfo, 0, sizeof(fileInfo));
 
     zipOpenNewFileInZip(zFile, (nPrefix + SKN_FILE).toLocal8Bit().constData(), &fileInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, level);
-    QByteArray data;
-    QBuffer buffer(&data);
-    buffer.open(QIODevice::WriteOnly);
-    image.m_pix.save(&buffer, JPG_FILE_PREFIX);
+    QByteArray data = MusicUtils::Widget::getPixmapData(image.m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 

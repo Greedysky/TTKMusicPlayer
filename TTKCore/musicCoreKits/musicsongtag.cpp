@@ -3,13 +3,13 @@
 #include "musicformats.h"
 #include "musicversion.h"
 #include "musiccoreutils.h"
-#include "tagreadandwrite.h"
+#include "musicwidgetutils.h"
 
-#include <QBuffer>
 #include <QStringList>
 #include <QPluginLoader>
 #include <QFileInfo>
 ///qmmp incldue
+#include "tagreadandwrite.h"
 #include "decoderfactory.h"
 #include "metadatamodel.h"
 #include "decoder.h"
@@ -24,7 +24,6 @@ MusicSongTag::MusicSongTag(const QString &file)
 {
     read(file);
 }
-
 
 QString MusicSongTag::getClassName()
 {
@@ -334,11 +333,7 @@ bool MusicSongTag::saveOtherTaglib()
             }
 
             ////////////////////////////////////////////////////////////////////
-            QByteArray data;
-            QBuffer buffer(&data);
-            buffer.open(QIODevice::WriteOnly);
-            getCover().save(&buffer, JPG_FILE_PREFIX);
-            model->setCover(data);
+            model->setCover(MusicUtils::Widget::getPixmapData(getCover()));
             ////////////////////////////////////////////////////////////////////
         }
         delete model;

@@ -3,6 +3,7 @@
 #include <QComboBox>
 #include <QBitmap>
 #include <QPainter>
+#include <QBuffer>
 
 void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
 {
@@ -114,6 +115,18 @@ QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int rat
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawRoundedRect(rect, ratioX, ratioY);
     return mask;
+}
+
+QByteArray MusicUtils::Widget::getPixmapData(const QPixmap &pix)
+{
+    QByteArray data;
+    QBuffer buffer(&data);
+    if(buffer.open(QIODevice::WriteOnly))
+    {
+        pix.save(&buffer, JPG_FILE_PREFIX);
+    }
+    buffer.close();
+    return data;
 }
 
 int MusicUtils::Widget::reRenderAlpha(int alpha, int value)

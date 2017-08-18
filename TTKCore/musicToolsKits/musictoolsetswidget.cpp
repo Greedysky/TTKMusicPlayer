@@ -24,7 +24,7 @@
     if((m_toolsFlags & flag) != flag) \
     { \
         m_toolsFlags |= flag; \
-        type *w= new type(MusicApplication::instance()); \
+        type *w = new type(MusicApplication::instance()); \
         connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType))); \
         w->raise(); \
         w->show(); \
@@ -50,8 +50,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     QTimer::singleShot(MT_MS, this, SLOT(addListWidgetItem()));
 #endif
     MusicUtils::Widget::setTransparent(this, 50);
-    connect(this, SIGNAL(itemClicked(QListWidgetItem*)),
-                  SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
