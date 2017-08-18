@@ -13,7 +13,7 @@
 /*! @brief Helper class to spek widget.
  * @author Greedysky <greedysky@163.com>
  */
-class Q_DECL_EXPORT Spek : public QWidget
+class Spek : public QWidget
 {
 public:
     /*!
@@ -45,7 +45,7 @@ public:
 /*! @brief Helper class to store spek plugin properies.
  * @author Greedysky <greedysky@163.com>
  */
-class Q_DECL_EXPORT SpekProperties
+class SpekProperties
 {
 public:
     /*!
@@ -64,7 +64,7 @@ public:
 /*! @brief Spek plugin interface (Spek factory).
  * @author Greedysky <greedysky@163.com>
  */
-class Q_DECL_EXPORT SpekFactory
+class SpekFactory
 {
 public:
     /*!
