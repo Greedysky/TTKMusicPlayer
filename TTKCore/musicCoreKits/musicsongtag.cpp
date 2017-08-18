@@ -158,7 +158,7 @@ void MusicSongTag::setGenre(const QString &genre)
 
 void MusicSongTag::setCover(const QPixmap &pix)
 {
-#if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,4,7,0)
+#if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
     m_parameters[TagReadAndWrite::TAG_COVER] = pix;
 #else
     Q_UNUSED(data);
