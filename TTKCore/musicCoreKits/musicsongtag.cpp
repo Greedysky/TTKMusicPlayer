@@ -238,13 +238,17 @@ bool MusicSongTag::readOtherTaglib()
     DecoderFactory *decoderfac = nullptr;
     if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)) )
     {
+        int length = 0;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath);
         if(model != nullptr)
         {
             QHash<QString, QString> datas = model->audioProperties();
             MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));
-            QString ts = QString::number(t.getTimeStamp(MusicTime::All_Msec));
-            m_parameters.insert(TagReadAndWrite::TAG_LENGTH, ts);
+            length = t.getTimeStamp(MusicTime::All_Msec);
+            if(length != 0)
+            {
+                m_parameters.insert(TagReadAndWrite::TAG_LENGTH, QString::number(length));
+            }
             m_parameters.insert(TagReadAndWrite::TAG_SAMPLERATE, datas.value("Sample rate"));
             m_parameters.insert(TagReadAndWrite::TAG_BITRATE, datas.value("Bitrate"));
             m_parameters.insert(TagReadAndWrite::TAG_CHANNEL, datas.value("Channels"));
@@ -270,33 +274,26 @@ bool MusicSongTag::readOtherTaglib()
             }
         }
 
-        if(m_parameters[TagReadAndWrite::TAG_LENGTH].toString().isEmpty())
+        if(length == 0)
         {
-            int len = 0;
             QList<FileInfo*> infos(decoderfac->createPlayList(m_filePath, true, 0));
             if(!infos.isEmpty())
             {
-                len = infos.first()->length();
-                QString t = QString::number(len*MT_S2MS);
-
-                m_parameters.insert(TagReadAndWrite::TAG_LENGTH, t);
+                length = infos.first()->length();
             }
             qDeleteAll(infos);
 
-            if(len == 0)
+            if(length == 0)
             {
                 TagReadAndWrite tag;
                 if(tag.readFile(m_filePath))
                 {
                     QMap<TagReadAndWrite::MusicTag, QString> data = tag.getMusicTags();
-                    m_parameters.insert(TagReadAndWrite::TAG_LENGTH, data[TagReadAndWrite::TAG_LENGTH]);
+                    length = data[TagReadAndWrite::TAG_LENGTH].toInt();
                 }
             }
 
-            if(m_parameters[TagReadAndWrite::TAG_LENGTH].toString().isEmpty())
-            {
-                m_parameters[TagReadAndWrite::TAG_LENGTH] = "0";
-            }
+            m_parameters[TagReadAndWrite::TAG_LENGTH] = QString::number(length);
         }
 
         delete model;

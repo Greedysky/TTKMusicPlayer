@@ -15,19 +15,11 @@
 
 QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
 {
-    QString path;
+    QString path = MusicObject::getAppDir();
 #ifdef Q_OS_WIN
-#  ifdef MUSIC_GREATER_NEW
-    path = QString("plugins/%1/%2.dll").arg(module).arg(format);
-#  else
-    path = QString("../bin/%1/plugins/%2/%3.dll").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
-#  endif
+    path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
 #elif defined Q_OS_UNIX
-#  ifdef MUSIC_GREATER_NEW
-    path = QString("qmmp/%1/lib%2.so").arg(module).arg(format);
-#  else
-    path = QString("../lib/%1/qmmp/%2/lib%3.so").arg(TTKMUSIC_VERSION_STR).arg(module).arg(format);
-#  endif
+    path = path + QString("qmmp/%1/lib%2.so").arg(module).arg(format);
 #endif
     return path;
 }
