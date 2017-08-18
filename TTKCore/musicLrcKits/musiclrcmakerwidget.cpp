@@ -181,10 +181,7 @@ MusicLrcMakerWidget::MusicLrcMakerWidget(QWidget *parent)
 
 MusicLrcMakerWidget::~MusicLrcMakerWidget()
 {
-    while(!m_musicLrcContainer.isEmpty())
-    {
-        delete m_musicLrcContainer.takeLast();
-    }
+    qDeleteAll(m_musicLrcContainer);
     delete m_lineItem;
     delete m_analysis;
     resetToOriginPlayMode();

@@ -190,10 +190,7 @@ void MusicBackgroundListWidget::clearSelectState()
 
 void MusicBackgroundListWidget::clearAllItems()
 {
-    while(!m_items.isEmpty())
-    {
-        delete m_items.takeLast();
-    }
+    qDeleteAll(m_items);
 }
 
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)

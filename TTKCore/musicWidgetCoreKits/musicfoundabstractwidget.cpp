@@ -26,10 +26,7 @@ MusicFoundAbstractWidget::MusicFoundAbstractWidget(QWidget *parent)
 
 MusicFoundAbstractWidget::~MusicFoundAbstractWidget()
 {
-    while(!m_resizeWidget.isEmpty())
-    {
-        delete m_resizeWidget.takeLast();
-    }
+    qDeleteAll(m_resizeWidget);
     delete m_statusLabel;
     delete m_mainWindow;
 }

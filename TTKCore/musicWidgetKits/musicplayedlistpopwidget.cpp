@@ -31,10 +31,7 @@ MusicPlayedListPopWidget::MusicPlayedListPopWidget(QWidget *parent)
 MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
 {
     delete m_playedListWidget;
-    while(!m_labels.isEmpty())
-    {
-        delete m_labels.takeLast();
-    }
+    qDeleteAll(m_labels);
 }
 
 QString MusicPlayedListPopWidget::getClassName()

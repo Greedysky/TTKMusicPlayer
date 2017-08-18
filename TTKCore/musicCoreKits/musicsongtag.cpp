@@ -277,7 +277,7 @@ bool MusicSongTag::readOtherTaglib()
             QList<FileInfo*> infos(decoderfac->createPlayList(m_filePath, true, 0));
             if(!infos.isEmpty())
             {
-                length = infos.first()->length();
+                length = infos.first()->length()*MT_S2MS;
             }
             qDeleteAll(infos);
 

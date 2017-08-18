@@ -111,10 +111,7 @@ MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
 MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 {
     delete m_caseButton;
-    while(!m_buttons.isEmpty())
-    {
-        delete m_buttons.takeLast();
-    }
+    qDeleteAll(m_buttons);
 }
 
 QString MusicEnhancedPopWidget::getClassName()

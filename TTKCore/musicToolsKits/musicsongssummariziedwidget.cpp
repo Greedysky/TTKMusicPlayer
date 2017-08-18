@@ -936,9 +936,7 @@ void MusicSongsSummariziedWidget::clearAllLists()
 {
     while(!m_songItems.isEmpty())
     {
-        MusicSongsListTableWidget *w = m_songItems.takeLast().m_itemObject;
-        delete w;
-        w = nullptr;
+        delete m_songItems.takeLast().m_itemObject;
     }
 }
 

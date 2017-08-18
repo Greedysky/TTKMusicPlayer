@@ -326,10 +326,7 @@ void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
     MusicAbstractMoveWidget::closeEvent(event);
     emit resetFlag(MusicObject::TT_SoundKMicro);
 
-    while(!m_musicLrcContainer.isEmpty())
-    {
-        delete m_musicLrcContainer.takeLast();
-    }
+    qDeleteAll(m_musicLrcContainer);
     delete m_analysis;
     delete m_mediaPlayer;
     delete m_searchWidget;

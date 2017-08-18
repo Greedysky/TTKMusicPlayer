@@ -74,10 +74,7 @@ QString MusicDownloadTableWidget::getClassName()
 
 void MusicDownloadTableWidget::clearAllItems()
 {
-    while(!m_items.isEmpty())
-    {
-        delete m_items.takeFirst();
-    }
+    qDeleteAll(m_items);
     MusicAbstractTableWidget::clear();
     setColumnCount(1);
 }

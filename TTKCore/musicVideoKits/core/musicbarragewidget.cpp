@@ -140,11 +140,8 @@ void MusicBarrageWidget::addBarrage(const MusicBarrageRecord &record)
 
 void MusicBarrageWidget::deleteItems()
 {
-    while(!m_labels.isEmpty())
-    {
-        delete m_labels.takeLast();
-        delete m_animations.takeLast();
-    }
+    qDeleteAll(m_labels);
+    qDeleteAll(m_animations);
 }
 
 void MusicBarrageWidget::createLabel()

@@ -176,10 +176,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
 MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
 {
-    while(!m_planes.isEmpty())
-    {
-        delete m_planes.takeLast();
-    }
+    qDeleteAll(m_planes);
     delete m_previous;
     delete m_next;
     delete m_confirmButton;

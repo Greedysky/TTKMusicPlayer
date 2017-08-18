@@ -86,14 +86,8 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
 
 MusicEMOJILabelWidget::~MusicEMOJILabelWidget()
 {
-    while(!m_labelItems.isEmpty())
-    {
-        delete m_labelItems.takeLast();
-    }
-    while(!m_buttonItems.isEmpty())
-    {
-        delete m_buttonItems.takeLast();
-    }
+    qDeleteAll(m_labelItems);
+    qDeleteAll(m_buttonItems);
 }
 
 QString MusicEMOJILabelWidget::getClassName()

@@ -179,10 +179,7 @@ MusicBackgroundPaletteWidget::~MusicBackgroundPaletteWidget()
         emit currentColorToMemoryChanged(m_previousBackground);
     }
 
-    while(!m_widgets.isEmpty())
-    {
-        delete m_widgets.takeLast();
-    }
+    qDeleteAll(m_widgets);
     delete m_ui;
 }
 

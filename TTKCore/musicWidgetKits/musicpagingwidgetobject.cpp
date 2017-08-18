@@ -17,10 +17,7 @@ MusicPagingWidgetObject::MusicPagingWidgetObject(QObject *parent)
 
 MusicPagingWidgetObject::~MusicPagingWidgetObject()
 {
-    while(!m_pagingItems.isEmpty())
-    {
-        delete m_pagingItems.takeLast();
-    }
+    qDeleteAll(m_pagingItems);
     delete m_pagingWidget;
 }
 

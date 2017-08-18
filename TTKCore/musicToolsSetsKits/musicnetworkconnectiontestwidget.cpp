@@ -167,10 +167,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 
 MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 {
-    while(!m_connectionItems.isEmpty())
-    {
-        delete m_connectionItems.takeLast();
-    }
+    qDeleteAll(m_connectionItems);
     delete m_ui;
 }
 
