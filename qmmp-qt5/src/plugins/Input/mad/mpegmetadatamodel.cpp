@@ -82,6 +82,7 @@ QHash<QString, QString> MPEGMetaDataModel::audioProperties()
     ap.insert(tr("Bitrate"), text+" "+tr("kbps"));
     text = QString("%1").arg(property->sampleRate());
     ap.insert(tr("Sample rate"), text+" "+tr("Hz"));
+    ap.insert(tr("Channels"), QString::number(property->channels()));
     switch (property->channelMode())
     {
     case TagLib::MPEG::Header::Stereo:

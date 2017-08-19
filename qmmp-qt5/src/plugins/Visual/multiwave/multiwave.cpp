@@ -152,7 +152,7 @@ void MultiWave::process (float *buffer)
     m_intern_vis_data -= m_analyzer_falloff * m_rows / 15;
     m_intern_vis_data = magnitude > m_intern_vis_data ? magnitude : m_intern_vis_data;
 }
-
+#include <QDebug>
 void MultiWave::draw (QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
@@ -172,8 +172,9 @@ void MultiWave::draw (QPainter *p)
         }
         for(int i=0; i<m_intern_vis_data*l/2; ++i)
         {
-            m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0xff, 0, 0));
-            m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0xff, 0, 0));
+            int r = qMin(0x5f + i*3, 0xff);
+            m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(r, 0, 0));
+            m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(r, 0, 0));
         }
         m_backgroundImage.setPixel(m_pixPos, m_rows/2, qRgb(0xff, 0xff, 0xff));
     }

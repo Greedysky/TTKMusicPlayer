@@ -154,7 +154,7 @@ bool FLACMetaDataModel::setCover(const QByteArray &data)
         FLAC__metadata_object_picture_set_mime_type(metadata, "image/jpeg", true);
         FLAC__metadata_object_picture_set_data(metadata, (FLAC__byte*)data.data(), data.length(), true);
 
-        if(FLAC__metadata_iterator_set_block(iterator, metadata))
+        if(!FLAC__metadata_iterator_set_block(iterator, metadata))
         {
             if(metadata)
                 FLAC__metadata_object_delete(metadata);

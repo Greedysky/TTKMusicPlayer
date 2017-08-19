@@ -315,8 +315,9 @@ void FSpek::process(float *buffer)
 
     for(int i=0; i<m_intern_vis_data/2; ++i)
     {
-        m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0, 0xff, 0));
-        m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0, 0xff, 0));
+        int g = qMin(0x5f + i*3, 0xff);
+        m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0, g, 0));
+        m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0, g, 0));
     }
     m_backgroundImage.setPixel(m_pixPos, m_rows/2, qRgb(0xff, 0xff, 0xff));
 
