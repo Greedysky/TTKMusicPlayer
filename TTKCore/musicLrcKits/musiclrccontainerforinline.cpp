@@ -19,6 +19,7 @@
 #include "musicleftareawidget.h"
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
+#include "musictime.h"
 
 #include <QPainter>
 #include <QClipboard>
@@ -28,6 +29,7 @@
 #include <QTextEdit>
 
 #define LRC_CHANGED_OFFSET_LIMIT    20
+#define LRC_TIME_LABEL_POSITION     20
 
 MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     : MusicLrcContainer(parent)
@@ -55,6 +57,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_mouseLeftPressed = false;
     m_showArtBackground = true;
     m_lrcDisplayAll = false;
+    m_mouseMoved = false;
     m_changeSpeedValue = 0;
     m_animationFreshTime = 0;
     m_lrcChangeDelta = -1;
@@ -509,6 +512,19 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *event)
         painter.setFont(font);
         painter.setPen(QColor(Qt::white));
         painter.drawLine(0, line, width(), line);
+
+        qint64 v = m_lrcAnalysis->getCurrentIndex() - 1;
+        if(v < 0)
+        {
+            v = 0;
+        }
+        else if(v >= m_lrcAnalysis->count())
+        {
+            v = m_lrcAnalysis->count() - m_lrcAnalysis->getMiddle() + 2;
+        }
+        v = m_lrcAnalysis->findTime(v);
+        painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION/2, MusicTime::msecTime2LabelJustified(v));
+
         painter.end();
     }
 }
@@ -525,6 +541,7 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
     {
         m_layoutWidget->stop();
 
+        m_mouseMoved = true;
         int offset = event->globalY() - m_mousePressedAt.y();
         m_mousePressedAt = event->globalPos();
 
@@ -565,6 +582,7 @@ void MusicLrcContainerForInline::mouseMoveEvent(QMouseEvent *event)
             }
             setItemStyleSheet();
         }
+
         update();
     }
 }
@@ -573,6 +591,7 @@ void MusicLrcContainerForInline::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
+        m_mouseMoved = false;
         m_mouseLeftPressed = true;
         setCursor(Qt::CrossCursor);
         m_mousePressedAt = event->globalPos();
@@ -591,7 +610,7 @@ void MusicLrcContainerForInline::mouseReleaseEvent(QMouseEvent *event)
         m_mousePressedAt = event->globalPos();
         update();
 
-        if(m_lrcAnalysis->isValid())
+        if(m_lrcAnalysis->isValid() && m_mouseMoved)
         {
             qint64 time = m_lrcAnalysis->findTime(m_lrcAnalysis->getCurrentIndex());
             if(time != -1)

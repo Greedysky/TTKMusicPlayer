@@ -233,7 +233,7 @@ protected:
      */
 
     QPoint m_mousePressedAt;
-    bool m_mouseLeftPressed, m_lrcChangeState;
+    bool m_mouseLeftPressed, m_lrcChangeState, m_mouseMoved;
     int m_lrcChangeOffset, m_lrcChangeDelta;
 
     bool m_lrcDisplayAll, m_showArtBackground;
