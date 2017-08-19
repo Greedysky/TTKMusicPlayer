@@ -333,7 +333,11 @@ bool MusicSongTag::saveOtherTaglib()
             }
 
             ////////////////////////////////////////////////////////////////////
-            model->setCover(MusicUtils::Widget::getPixmapData(getCover()));
+            QPixmap pix = getCover();
+            if(!pix.isNull())
+            {
+                model->setCover(MusicUtils::Widget::getPixmapData(pix));
+            }
             ////////////////////////////////////////////////////////////////////
         }
         delete model;
