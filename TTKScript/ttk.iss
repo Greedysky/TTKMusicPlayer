@@ -48,4 +48,4 @@ Filename: "{sys}\cmd.exe"; Parameters:" /c takeown /f ""{app}"" /r /d y & icacls
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [PostCompile]
-Name: "make_cert.bat";Parameters:"D:\Qt\v2.5.3.0.exe" ;Flags: cmdprompt redirectoutput
+Name: "D:\Qt\Workspace\TTKMusicplayer\TTKScript\make_cert.bat";Parameters:"D:\Qt\v2.5.3.0.exe" ;Flags: cmdprompt redirectoutput
