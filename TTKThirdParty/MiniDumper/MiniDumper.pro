@@ -18,11 +18,22 @@ unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKDumper
 CONFIG       += warn_off
 unix:VERSION += $$TTKMusicPlayer
 
+INCLUDEPATH += $$PWD/../../TTKCore/musicCoreKits
+
+win32{
+    LIBS += -lpsapi
+
+HEADERS += \
+    $$PWD/mini.h
+}
+
 SOURCES += \
-    $$PWD/minidumper.cpp
+    $$PWD/minidumper.cpp \
+    $$PWD/ttkdumper.cpp
     
 HEADERS += \
-    $$PWD/minidumper.h
+    $$PWD/minidumper.h \
+    $$PWD/ttkdumper.h
 
 #load extra define
 include(../TTKExtrasDefine.pri)

@@ -3,17 +3,12 @@
 #include "musicxmlconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
-#include "musicversion.h"
+#include "ttkdumper.h"
 
 #include <QTranslator>
 #include <QApplication>
 
 #define TTK_DEBUG
-
-#ifndef Q_OS_UNIX
-#include "minidumper.h"
-MiniDumper dumper(L"TTK", TTKMUSIC_VERSION_STRW);
-#endif
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +24,9 @@ int main(int argc, char *argv[])
     MusicUtils::Core::setLocalCodec();
 #endif
     MusicUtils::Core::midTransferFile();
+    ///////////////////////////////////////////////////////
+    TTKDumper dumper;
+    dumper.run();
     ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
     QFont font;

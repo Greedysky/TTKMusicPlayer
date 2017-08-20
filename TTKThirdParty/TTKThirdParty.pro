@@ -7,7 +7,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = Zlib MusicExtras Devicewatcher
-win32{
-    SUBDIRS += MiniDumper
-}
+SUBDIRS = Zlib MusicExtras Devicewatcher MiniDumper

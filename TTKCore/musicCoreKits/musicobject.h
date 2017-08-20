@@ -10,7 +10,7 @@
    =================================================*/
 
 #include <QDir>
-#include <QApplication>
+#include <QCoreApplication>
 #if defined (Q_OS_ANDROID)
 #include <QtAndroidExtras/QtAndroid>
 #include <QtAndroidExtras/QAndroidJniEnvironment>
@@ -53,6 +53,12 @@
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
 
+#define MAKE_TRANSFORM_PREFIX   "avconv.dll"
+#define MAKE_KRC2LRC_PREFIX     "avk2l.dll"
+#define MAKE_PLAYER_PREFIX      "avplayer.dll"
+#define MAKE_GAIN_PREFIX        "avgain.dll"
+#define MAKE_SOUNDTOUCH_PREFIX  "avm2v.dll"
+
 #define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
 #define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
 #define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
@@ -67,11 +73,11 @@
 #define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
 
 #define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
-#define MAKE_TRANSFORM          STRCAT(PLUGINS_DIR, "avconv.dll")
-#define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, "avk2l.dll")
-#define MAKE_PLAYER             STRCAT(PLUGINS_DIR, "avplayer.dll")
-#define MAKE_GAIN               STRCAT(PLUGINS_DIR, "avgain.dll")
-#define MAKE_SOUNDTOUCH         STRCAT(PLUGINS_DIR, "avm2v.dll")
+#define MAKE_TRANSFORM          STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
+#define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
+#define MAKE_PLAYER             STRCAT(PLUGINS_DIR, MAKE_PLAYER_PREFIX)
+#define MAKE_GAIN               STRCAT(PLUGINS_DIR, MAKE_GAIN_PREFIX)
+#define MAKE_SOUNDTOUCH         STRCAT(PLUGINS_DIR, MAKE_SOUNDTOUCH_PREFIX)
 #ifdef Q_OS_UNIX
 #define MAKE_NETS               STRCAT(PLUGINS_DIR, "avnets.dll")
 #endif
@@ -259,7 +265,7 @@ namespace MusicObject
         }
         return path;
 #else
-        return QApplication::applicationDirPath() + "/";
+        return QCoreApplication::applicationDirPath() + "/";
 #endif
     }
     /*!

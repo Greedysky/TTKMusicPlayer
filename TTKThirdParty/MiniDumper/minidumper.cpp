@@ -1,4 +1,7 @@
 #include "minidumper.h"
+
+#ifdef Q_OS_WIN
+#include "mini.h"
 #include <wchar.h>
 
 LPCWSTR MiniDumper::m_szAppName;
@@ -48,6 +51,9 @@ void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
 
 LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 {
+    qDebug() << "Fffffffffffffffffffffffffff";
+    checkExtraProcessQuit();
+
 	LONG retval = EXCEPTION_CONTINUE_SEARCH;
 
 	// firstly see if dbghelp.dll is around and has the function we need
@@ -187,3 +193,19 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
 	return retval;
 }
+
+#elif defined Q_OS_UNIX
+void _signal_handler(IN int signo)
+{
+//    _backtrace(signo);
+    exit(0);
+}
+
+MiniDumper::MiniDumper()
+{
+    signal(SIGPIPE, _signal_handler);
+    signal(SIGSEGV, _signal_handler);
+    signal(SIGFPE, _signal_handler);
+    signal(SIGABRT, _signal_handler);
+}
+#endif
