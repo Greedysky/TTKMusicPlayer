@@ -17,24 +17,24 @@
 namespace MusicUIObject
 {
     const QString MKGTinyBtnPlay = " \
-            QPushButton{ border:none; \
+            QToolButton,QPushButton{ border:none; \
             background-image: url(:/tiny/btn_play_normal);} \
-            QPushButton:hover{ background-image: url(:/tiny/btn_play_hover);}";
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_play_hover);}";
 
     const QString MKGTinyBtnPause = " \
-            QPushButton{ border:none; \
+            QToolButton,QPushButton{ border:none; \
             background-image: url(:/tiny/btn_pause_normal);} \
-            QPushButton:hover{ background-image: url(:/tiny/btn_pause_hover);}";
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_pause_hover);}";
 
     const QString MKGTinyBtnNext = " \
-            QPushButton{ border:none; \
+            QToolButton,QPushButton{ border:none; \
             background-image: url(:/tiny/btn_next_normal);} \
-            QPushButton:hover{ background-image: url(:/tiny/btn_next_hover);}";
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_next_hover);}";
 
     const QString MKGTinyBtnPrevious = " \
-            QPushButton{ border:none; \
+            QToolButton,QPushButton{ border:none; \
             background-image: url(:/tiny/btn_previous_normal);} \
-            QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover);}";
+            QToolButton:hover,QPushButton:hover{ background-image: url(:/tiny/btn_previous_hover);}";
 
     const QString MKGTinyBtnList = " \
             QPushButton{ border:none; \

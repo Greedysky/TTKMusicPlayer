@@ -23,6 +23,7 @@
 #include "musiccoreutils.h"
 #include "musicplaylistmanager.h"
 #include "musicotherdefine.h"
+#include "musictinyuiobject.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -328,7 +329,8 @@ void MusicApplication::durationChanged(qint64 duration)
 void MusicApplication::stateChanged()
 {
     m_playControl = true;
-    m_ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+    bool concise = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool();
+    m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGBtnPlay);
 }
 
 void MusicApplication::showCurrentSong(int index)
@@ -349,9 +351,10 @@ void MusicApplication::showCurrentSong(int index)
     }
     else
     {
+        bool concise = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool();
         m_ui->musicBestLove->setStyleSheet(MusicUIObject::MKGBtnUnLove);
         m_ui->musicDownload->setStyleSheet(MusicUIObject::MKGBtnUnDownload);
-        m_ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->stop();
         m_rightAreaWidget->stopLrcMask();
@@ -386,9 +389,10 @@ void MusicApplication::musicStatePlay()
         return;//The playlist is not performing space-time
     }
 
+    bool concise = M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool();
     if(m_playControl)
     {
-        m_ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPause);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MKGTinyBtnPause : MusicUIObject::MKGBtnPause);
         m_playControl = false;
         m_musicPlayer->play();
         m_topAreaWidget->musicBgThemeDownloadFinished();
@@ -396,7 +400,7 @@ void MusicApplication::musicStatePlay()
     }
     else
     {
-        m_ui->musicKey->setStyleSheet(MusicUIObject::MKGBtnPlay);
+        m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGBtnPlay);
         m_playControl = true;
         m_musicPlayer->pause();
         m_topAreaWidget->setTimerStop();

@@ -6,6 +6,7 @@
 #include "musicwindowextras.h"
 #include "musiclocalsongsearchdialog.h"
 #include "musicfunctionuiobject.h"
+#include "musictinyuiobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -127,7 +128,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->centerRightWidget->setVisible(!con);
     m_ui->bottomCenterWidget->setVisible(!con);
     m_ui->bottomRightWidget->setVisible(!con);
-    m_ui->bottomLeftWidget->setMinimumWidth(con ? 370 : 220);
+    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? 370 : 220);
 
     m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
     m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::MKGBtnConciseOut : MusicUIObject::MKGBtnConciseIn);
@@ -140,10 +141,13 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->musicSound->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
     m_ui->musicDesktopLrc->setParent(con ? m_ui->background : m_ui->bottomRightWidget);
 
+    m_ui->musicTimeWidget->setParent(con ? m_ui->background : m_ui->bottomCenterWidget);
+
     if(con)
     {
-        MusicApplication::instance()->setMinimumSize(370, WINDOW_HEIGHT_MIN);
-        MusicApplication::instance()->setMaximumSize(370, WINDOW_HEIGHT_MIN);
+        MusicApplication *app = MusicApplication::instance();
+        app->setMinimumSize(370, WINDOW_HEIGHT_MIN);
+        app->setMaximumSize(370, WINDOW_HEIGHT_MIN);
 
         m_ui->musicWindowConcise->move(295, 20);
         m_ui->musicWindowConcise->show();
@@ -152,17 +156,34 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->windowClose->move(345, 20);
         m_ui->windowClose->show();
 
+        m_ui->musicPrevious->setStyleSheet(MusicUIObject::MKGTinyBtnPrevious);
+        m_ui->musicKey->setStyleSheet(app->isPlaying() ? MusicUIObject::MKGTinyBtnPause : MusicUIObject::MKGTinyBtnPlay);
+        m_ui->musicNext->setStyleSheet(MusicUIObject::MKGTinyBtnNext);
+        m_ui->musicPrevious->setFixedSize(28, 28);
+        m_ui->musicKey->setFixedSize(28, 28);
+        m_ui->musicNext->setFixedSize(28, 28);
+
         m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicBestLove);
         m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDownload);
         m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicMoreFunction);
         m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicSound);
         m_ui->bottomLeftWidgetLayout->addWidget(m_ui->musicDesktopLrc);
+
+        m_ui->bottomLeftContainWidgetLayout->addWidget(m_ui->musicTimeWidget);
     }
     else
     {
         QSize size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
-        MusicApplication::instance()->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
-        MusicApplication::instance()->setMaximumSize(size.width(), size.height());
+        MusicApplication *app = MusicApplication::instance();
+        app->setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+        app->setMaximumSize(size.width(), size.height());
+
+        m_ui->musicPrevious->setStyleSheet(MusicUIObject::MKGBtnPrevious);
+        m_ui->musicKey->setStyleSheet(app->isPlaying() ? MusicUIObject::MKGBtnPause : MusicUIObject::MKGBtnPlay);
+        m_ui->musicNext->setStyleSheet(MusicUIObject::MKGBtnNext);
+        m_ui->musicPrevious->setFixedSize(44, 44);
+        m_ui->musicKey->setFixedSize(44, 44);
+        m_ui->musicNext->setFixedSize(44, 44);
 
         m_ui->topRightWidgetLayout->insertWidget(6, m_ui->musicWindowConcise);
         m_ui->topRightWidgetLayout->addWidget(m_ui->minimization);
@@ -173,6 +194,8 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->bottomRightWidgetLayout->insertWidget(2, m_ui->musicMoreFunction);
         m_ui->bottomRightWidgetLayout->insertWidget(4, m_ui->musicSound);
         m_ui->bottomRightWidgetLayout->insertWidget(6, m_ui->musicDesktopLrc);
+
+        m_ui->bottomCenterWidgetLayout->addWidget(m_ui->musicTimeWidget, 3, 0, 1, 6);
     }
 
     m_musicWindowExtras->disableBlurBehindWindow( !con );
