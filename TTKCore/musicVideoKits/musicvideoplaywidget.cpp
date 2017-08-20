@@ -17,6 +17,7 @@
 #include <QToolButton>
 #include <QStackedWidget>
 #ifdef Q_OS_UNIX
+#include <QApplication>
 #include <QDesktopWidget>
 #endif
 

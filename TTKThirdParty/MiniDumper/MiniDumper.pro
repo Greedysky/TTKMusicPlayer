@@ -22,9 +22,6 @@ INCLUDEPATH += $$PWD/../../TTKCore/musicCoreKits
 
 win32{
     LIBS += -lpsapi
-
-HEADERS += \
-    $$PWD/mini.h
 }
 
 SOURCES += \
@@ -32,6 +29,7 @@ SOURCES += \
     $$PWD/ttkdumper.cpp
     
 HEADERS += \
+    $$PWD/mini.h \
     $$PWD/minidumper.h \
     $$PWD/ttkdumper.h
 

@@ -27,7 +27,7 @@ win32{
 }
 unix{
     TARGET = ../lib/$$TTKMusicPlayer/TTKService
-    LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore
+    LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore -lTTKDumper
 }
 
 

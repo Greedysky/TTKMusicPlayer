@@ -1,7 +1,7 @@
 #include "minidumper.h"
+#include "mini.h"
 
 #ifdef Q_OS_WIN
-#include "mini.h"
 #include <wchar.h>
 
 LPCWSTR MiniDumper::m_szAppName;
@@ -51,7 +51,6 @@ void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
 
 LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 {
-    qDebug() << "Fffffffffffffffffffffffffff";
     checkExtraProcessQuit();
 
 	LONG retval = EXCEPTION_CONTINUE_SEARCH;
@@ -186,26 +185,24 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 		szResult = L"DBGHELP.DLL not found";
 	}
 
-	if (szResult)
-	{
-		//PrintDebug(_T("[MiniDumper] Mini Dump result:[%s]"),szResult);		
-	}
-
 	return retval;
 }
 
 #elif defined Q_OS_UNIX
-void _signal_handler(IN int signo)
+#include <signal.h>
+
+void errorHandler(int type)
 {
-//    _backtrace(signo);
+    qDebug() << "Error Type " << type;
+    checkExtraProcessQuit();
     exit(0);
 }
 
 MiniDumper::MiniDumper()
 {
-    signal(SIGPIPE, _signal_handler);
-    signal(SIGSEGV, _signal_handler);
-    signal(SIGFPE, _signal_handler);
-    signal(SIGABRT, _signal_handler);
+    signal(SIGPIPE, errorHandler);
+    signal(SIGSEGV, errorHandler);
+    signal(SIGFPE, errorHandler);
+    signal(SIGABRT, errorHandler);
 }
 #endif

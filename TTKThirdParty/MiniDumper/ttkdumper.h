@@ -22,9 +22,7 @@ public:
     void run();
 
 protected:
-#ifdef Q_OS_WIN
     MiniDumper *m_winDump;
-#endif
 
 };
 

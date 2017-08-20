@@ -37,7 +37,8 @@ private:
 class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
-    MiniDumper()
+    MiniDumper();
+
 };
 
 #endif

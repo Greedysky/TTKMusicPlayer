@@ -6,17 +6,17 @@ TTKDumper::TTKDumper()
 {
 #ifdef Q_OS_WIN
     m_winDump = new MiniDumper(L"TTK", TTKMUSIC_VERSION_STRW);
+#elif defined Q_OS_UNIX
+    m_winDump = new MiniDumper();
 #endif
 }
 
 TTKDumper::~TTKDumper()
 {
-#ifdef Q_OS_WIN
     delete m_winDump;
-#endif
 }
 
 void TTKDumper::run()
 {
-
+    ///do nothing
 }
