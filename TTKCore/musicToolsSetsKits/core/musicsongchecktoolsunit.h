@@ -8,8 +8,8 @@ namespace MusicObject
 {
     enum MusicSongCheckToolsMode
     {
-        Check,
-        Apply
+        Check,      ///Song Check Mode
+        Apply       ///Song Apply Mode
     };
 }
 

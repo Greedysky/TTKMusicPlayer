@@ -189,6 +189,22 @@ namespace MusicObject
     TTK_DECLARE_LISTS(MusicSongInformation)
     ///////////////////////////////////////
 
+    enum PlayState
+    {
+        PS_StoppedState,      ///*stop state*/
+        PS_PlayingState,      ///*play state*/
+        PS_PausedState        ///*pause state*/
+    };
+
+    enum PlayMode
+    {
+        PM_PlayOrder = 1,   ///*play order*/
+        PM_PlayRandom,      ///*play random*/
+        PM_PlayListLoop,    ///*play list loop*/
+        PM_PlayOneLoop,     ///*play single loop*/
+        PM_PlayOnce         ///*play just once*/
+    };
+
     enum DownLoadMode
     {
         DW_Null,           ///*network null*/
@@ -196,15 +212,6 @@ namespace MusicObject
         DW_DownLoading,    ///*network download*/
         DW_Buffing,        ///*network buffing*/
         DW_Waiting         ///*network waiting*/
-    };
-
-    enum SongPlayMode
-    {
-        MC_PlayOrder = 1,   ///*play order*/
-        MC_PlayRandom,      ///*play random*/
-        MC_PlayListLoop,    ///*play list loop*/
-        MC_PlayOneLoop,     ///*play single loop*/
-        MC_PlayOnce         ///*play just once*/
     };
 
     enum FontStyleMode

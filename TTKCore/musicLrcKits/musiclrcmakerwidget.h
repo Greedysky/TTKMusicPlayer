@@ -235,7 +235,7 @@ protected:
     QMap<int, qint64> m_times;
 
     int m_currentLine;
-    MusicObject::SongPlayMode m_playMode;
+    MusicObject::PlayMode m_playMode;
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;

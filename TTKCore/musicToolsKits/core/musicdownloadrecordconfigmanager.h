@@ -31,8 +31,8 @@ class MUSIC_SUPER_EXPORT MusicDownloadRecordConfigManager : public MusicAbstract
 public:
     enum Type
     {
-        Normal,
-        Cloud
+        Normal,         ///Local File Config
+        Cloud           ///Cloud File Config
     };
 
     explicit MusicDownloadRecordConfigManager(Type type, QObject *parent = 0);

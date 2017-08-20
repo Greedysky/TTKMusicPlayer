@@ -30,6 +30,7 @@ public:
         OpenFileFail,       ///*open file failed*/
         LrcEmpty            ///*current lrc empty*/
     };
+
     enum LrcFormat
     {
         Type01, ///*[xx:xx.xxx]*/

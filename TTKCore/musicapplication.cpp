@@ -67,7 +67,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     setAcceptDrops(true);
 
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayOrder);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOrder);
     //The default is the order of play
 
     m_musicPlayer->setPlaylist(m_musicPlayList);
@@ -80,7 +80,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_musicPlayer, SIGNAL(stateChanged(MusicPlayer::State)), SLOT(stateChanged()));
+    connect(m_musicPlayer, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(stateChanged()));
     connect(m_musicPlayList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
 
     connect(m_musicSongTreeWidget, SIGNAL(clearSearchText()), m_bottomAreaWidget, SLOT(clearSearchedText()));
@@ -282,7 +282,7 @@ bool MusicApplication::isPlaying() const
     return m_musicPlayer->isPlaying();
 }
 
-MusicObject::SongPlayMode MusicApplication::getPlayMode() const
+MusicObject::PlayMode MusicApplication::getPlayMode() const
 {
     return m_musicPlayList->playbackMode();
 }
@@ -418,7 +418,7 @@ void MusicApplication::musicPlayPrevious()
     {
         return;//The playlist is not performing space-time
     }
-    if(m_musicPlayList->playbackMode() == MusicObject::MC_PlayRandom)
+    if(m_musicPlayList->playbackMode() == MusicObject::PM_PlayRandom)
     {
         m_musicPlayList->setCurrentIndex();
     }
@@ -437,7 +437,7 @@ void MusicApplication::musicPlayNext()
     {
         return;//The playlist is not performing space-time
     }
-    if(m_musicPlayList->playbackMode() == MusicObject::MC_PlayRandom)
+    if(m_musicPlayList->playbackMode() == MusicObject::PM_PlayRandom)
     {
         m_musicPlayList->setCurrentIndex();
     }
@@ -452,32 +452,32 @@ void MusicApplication::musicPlayNext()
 
 void MusicApplication::musicPlayOrder()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayOrder);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOrder);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOrder);
 }
 
 void MusicApplication::musicPlayRandom()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayRandom);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayRandom);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayRandom);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayRandom);
 }
 
 void MusicApplication::musicPlayListLoop()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayListLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayListLoop);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayListLoop);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayListLoop);
 }
 
 void MusicApplication::musicPlayOneLoop()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayOneLoop);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOneLoop);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOneLoop);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOneLoop);
 }
 
 void MusicApplication::musicPlayItemOnce()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::MC_PlayOnce);
-    m_ui->musicPlayMode->setPlaybackMode(MusicObject::MC_PlayOnce);
+    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOnce);
+    m_ui->musicPlayMode->setPlaybackMode(MusicObject::PM_PlayOnce);
 }
 
 void MusicApplication::musicVolumeMute()
@@ -759,7 +759,7 @@ void MusicApplication::musicCreateRightMenu()
     QMenu musicPlaybackMode(tr("playbackMode"), &rightClickMenu);
     rightClickMenu.addMenu(&musicPlaybackMode);
 
-    MusicObject::SongPlayMode mode = m_musicPlayList->playbackMode();
+    MusicObject::PlayMode mode = m_musicPlayList->playbackMode();
     QList<QAction*> actions;
     actions << musicPlaybackMode.addAction(tr("OrderPlay"), this, SLOT(musicPlayOrder()));
     actions << musicPlaybackMode.addAction(tr("RandomPlay"), this, SLOT(musicPlayRandom()));
@@ -769,11 +769,11 @@ void MusicApplication::musicCreateRightMenu()
     int index = DEFAULT_INDEX_LEVEL0;
     switch(mode)
     {
-        case MusicObject::MC_PlayOrder: index = 0; break;
-        case MusicObject::MC_PlayRandom: index = 1; break;
-        case MusicObject::MC_PlayListLoop: index = 2; break;
-        case MusicObject::MC_PlayOneLoop: index = 3; break;
-        case MusicObject::MC_PlayOnce: index = 4; break;
+        case MusicObject::PM_PlayOrder: index = 0; break;
+        case MusicObject::PM_PlayRandom: index = 1; break;
+        case MusicObject::PM_PlayListLoop: index = 2; break;
+        case MusicObject::PM_PlayOneLoop: index = 3; break;
+        case MusicObject::PM_PlayOnce: index = 4; break;
         default: break;
     }
     if(index > DEFAULT_INDEX_LEVEL0 && index < actions.count())
@@ -1060,15 +1060,15 @@ void MusicApplication::readXMLConfigFromText()
     //////////////////////////////////////////////////////////////
     switch( M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt() )
     {
-        case MusicObject::MC_PlayOrder:
+        case MusicObject::PM_PlayOrder:
             musicPlayOrder();break;
-        case MusicObject::MC_PlayRandom:
+        case MusicObject::PM_PlayRandom:
             musicPlayRandom();break;
-        case MusicObject::MC_PlayListLoop:
+        case MusicObject::PM_PlayListLoop:
             musicPlayListLoop();break;
-        case MusicObject::MC_PlayOneLoop:
+        case MusicObject::PM_PlayOneLoop:
             musicPlayOneLoop();break;
-        case MusicObject::MC_PlayOnce:
+        case MusicObject::PM_PlayOnce:
             musicPlayItemOnce();break;
         default:break;
     }

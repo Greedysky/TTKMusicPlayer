@@ -89,7 +89,7 @@ public:
     /*!
      * Get current play state.
      */
-    MusicObject::SongPlayMode getPlayMode() const;
+    MusicObject::PlayMode getPlayMode() const;
     /*!
      * Get current play mode.
      */

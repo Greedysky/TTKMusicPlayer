@@ -34,7 +34,7 @@ public:
      * Create all widget in layout.
      */
 
-    void setPlaybackMode(MusicObject::SongPlayMode mode);
+    void setPlaybackMode(MusicObject::PlayMode mode);
     /*!
      * Set current play mode.
      */

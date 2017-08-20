@@ -30,11 +30,11 @@ public:
     /*!
      * Get class object name.
      */
-    MusicObject::SongPlayMode playbackMode() const;
+    MusicObject::PlayMode playbackMode() const;
     /*!
      * Get current play mode.
      */
-    void setPlaybackMode(MusicObject::SongPlayMode mode);
+    void setPlaybackMode(MusicObject::PlayMode mode);
     /*!
      * Set current play mode.
      */
@@ -94,7 +94,7 @@ Q_SIGNALS:
     /*!
      * Current play index changed emit.
      */
-    void playbackModeChanged(MusicObject::SongPlayMode mode);
+    void playbackModeChanged(MusicObject::PlayMode mode);
     /*!
      * Current play mode changed emit.
      */
@@ -120,7 +120,7 @@ public Q_SLOTS:
 protected:
     int m_currentIndex;
     QStringList m_mediaList;
-    MusicObject::SongPlayMode m_playbackMode;
+    MusicObject::PlayMode m_playbackMode;
 
 };
 

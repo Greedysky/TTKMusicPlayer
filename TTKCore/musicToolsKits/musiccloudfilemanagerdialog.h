@@ -17,7 +17,8 @@
  */
 typedef struct MUSIC_TOOL_EXPORT MusicUploadData
 {
-    enum State{
+    enum State
+    {
         Waited = 0,     ///0 waited
         Successed,      ///1 successed
         Errored         ///2 error

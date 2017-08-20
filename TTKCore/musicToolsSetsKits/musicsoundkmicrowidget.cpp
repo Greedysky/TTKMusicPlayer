@@ -198,10 +198,10 @@ void MusicSoundKMicroWidget::playButtonChanged()
     m_mediaPlayer->play();
     switch(m_mediaPlayer->state())
     {
-        case MusicCoreMPlayer::PlayingState:
+        case MusicObject::PS_PlayingState:
             setButtonStyle(false);
             break;
-        case MusicCoreMPlayer::PausedState:
+        case MusicObject::PS_PausedState:
             setButtonStyle(true);
             break;
         default: break;
@@ -209,7 +209,7 @@ void MusicSoundKMicroWidget::playButtonChanged()
 
     if(!m_queryMv)
     {
-        if(m_mediaPlayer->state() == MusicCoreMPlayer::PlayingState)
+        if(m_mediaPlayer->state() == MusicObject::PS_PlayingState)
         {
             m_musicLrcContainer[m_analysis->getMiddle()]->startLrcMask(m_intervalTime);
         }
@@ -387,7 +387,7 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
 void MusicSoundKMicroWidget::recordStateChanged(bool state)
 {
-    if(state && m_mediaPlayer->state() != MusicCoreMPlayer::StoppedState)
+    if(state && m_mediaPlayer->state() != MusicObject::PS_StoppedState)
     {
         m_ui->gifLabel->start();
         m_ui->recordButton->setStyleSheet(MusicUIObject::MKGRerecord);

@@ -27,13 +27,6 @@ class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 {
     Q_OBJECT
 public:
-    enum State
-    {
-        StoppedState,   ///*stop state*/
-        PlayingState,   ///*play state*/
-        PausedState     ///*pause state*/
-    };
-
     enum Enhanced
     {
         EnhancedOff,    ///*enhanced off, no any effect*/
@@ -58,7 +51,7 @@ public:
     /*!
      * Get current player is playing or not.
      */
-    State state() const;
+    MusicObject::PlayState state() const;
     /*!
      * Get current player state.
      */
@@ -120,7 +113,7 @@ public:
      */
 
 Q_SIGNALS:
-    void stateChanged(MusicPlayer::State newState);
+    void stateChanged(MusicObject::PlayState newState);
     /*!
      * Current state changed.
      */
@@ -192,7 +185,7 @@ protected:
      */
 
     MusicPlaylist *m_playlist;
-    State m_state;
+    MusicObject::PlayState m_state;
     SoundCore *m_music;
     QTimer m_timer;
     QString m_currentMedia;

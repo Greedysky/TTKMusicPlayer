@@ -6,7 +6,7 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
 {
     MusicTime::timeSRand();
     m_currentIndex = -1;
-    m_playbackMode = MusicObject::MC_PlayOrder;
+    m_playbackMode = MusicObject::PM_PlayOrder;
 }
 
 QString MusicPlaylist::getClassName()
@@ -14,12 +14,12 @@ QString MusicPlaylist::getClassName()
     return staticMetaObject.className();
 }
 
-MusicObject::SongPlayMode MusicPlaylist::playbackMode() const
+MusicObject::PlayMode MusicPlaylist::playbackMode() const
 {
     return m_playbackMode;
 }
 
-void MusicPlaylist::setPlaybackMode(MusicObject::SongPlayMode mode)
+void MusicPlaylist::setPlaybackMode(MusicObject::PlayMode mode)
 {
     m_playbackMode = mode;
 }
@@ -137,23 +137,23 @@ void MusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MusicObject::MC_PlayOneLoop: break;
-            case MusicObject::MC_PlayOrder:
+            case MusicObject::PM_PlayOneLoop: break;
+            case MusicObject::PM_PlayOrder:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = -1;
                 }
                 break;
-            case MusicObject::MC_PlayListLoop:
+            case MusicObject::PM_PlayListLoop:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = 0;
                 }
                 break;
-            case MusicObject::MC_PlayRandom:
+            case MusicObject::PM_PlayRandom:
                 m_currentIndex = rand() % m_mediaList.count();
                 break;
-            case MusicObject::MC_PlayOnce :
+            case MusicObject::PM_PlayOnce :
                 break;
         }
     }

@@ -738,15 +738,15 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
     MusicApplication *w = MusicApplication::instance();
     switch(m_playMode)
     {
-        case MusicObject::MC_PlayOrder:
+        case MusicObject::PM_PlayOrder:
             w->musicPlayOrder(); break;
-        case MusicObject::MC_PlayRandom:
+        case MusicObject::PM_PlayRandom:
             w->musicPlayRandom(); break;
-        case MusicObject::MC_PlayListLoop:
+        case MusicObject::PM_PlayListLoop:
             w->musicPlayListLoop(); break;
-        case MusicObject::MC_PlayOneLoop:
+        case MusicObject::PM_PlayOneLoop:
             w->musicPlayOneLoop(); break;
-        case MusicObject::MC_PlayOnce:
+        case MusicObject::PM_PlayOnce:
             w->musicPlayItemOnce(); break;
     }
 }

@@ -8,7 +8,7 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
     : QObject(parent)
 {
     m_process = nullptr;
-    m_playState = StoppedState;
+    m_playState = MusicObject::PS_StoppedState;
     m_category = NullCategory;
 
     m_timer.setInterval(MT_S2MS);
@@ -45,7 +45,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     }
 
     m_category = type;
-    m_playState = StoppedState;
+    m_playState = MusicObject::PS_StoppedState;
     m_process = new QProcess(this);
     connect(m_process, SIGNAL(finished(int)), SIGNAL(finished()));
 
@@ -154,7 +154,7 @@ void MusicCoreMPlayer::setVolume(int value)
 
 bool MusicCoreMPlayer::isPlaying() const
 {
-    return m_playState == PlayingState;
+    return m_playState == MusicObject::PS_PlayingState;
 }
 
 void MusicCoreMPlayer::play()
@@ -166,15 +166,15 @@ void MusicCoreMPlayer::play()
     }
 
     m_process->write("pause\n");
-    if(m_playState == StoppedState || m_playState == PausedState)
+    if(m_playState == MusicObject::PS_StoppedState || m_playState == MusicObject::PS_PausedState)
     {
-        m_playState = PlayingState;
+        m_playState = MusicObject::PS_PlayingState;
         connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
         m_process->write("get_time_pos\n");
     }
     else
     {
-        m_playState = PausedState;
+        m_playState = MusicObject::PS_PausedState;
         disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
     }
     emit stateChanged(m_playState);
@@ -255,7 +255,7 @@ void MusicCoreMPlayer::musicStandardRecieve()
 
 void MusicCoreMPlayer::stop()
 {
-    m_playState = StoppedState;
+    m_playState = MusicObject::PS_StoppedState;
     m_timer.stop();
     if(!m_process)
     {

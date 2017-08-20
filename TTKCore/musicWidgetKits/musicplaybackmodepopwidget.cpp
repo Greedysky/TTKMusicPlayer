@@ -14,27 +14,27 @@ QString MusicPlayBackModePopWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::SongPlayMode mode)
+void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
 {
     switch( mode )
     {
-        case MusicObject::MC_PlayOrder:
+        case MusicObject::PM_PlayOrder:
                 setStyleSheet(MusicUIObject::MKGBtnOrder);
                 setToolTip(tr("OrderPlay"));
                 break;
-        case MusicObject::MC_PlayRandom:
+        case MusicObject::PM_PlayRandom:
                 setStyleSheet(MusicUIObject::MKGBtnRandom);
                 setToolTip(tr("RandomPlay"));
                 break;
-        case MusicObject::MC_PlayListLoop:
+        case MusicObject::PM_PlayListLoop:
                 setStyleSheet(MusicUIObject::MKGBtnListLoop);
                 setToolTip(tr("ListCycle"));
                 break;
-        case MusicObject::MC_PlayOneLoop:
+        case MusicObject::PM_PlayOneLoop:
                 setStyleSheet(MusicUIObject::MKGBtnOneLoop);
                 setToolTip(tr("SingleCycle"));
                 break;
-        case MusicObject::MC_PlayOnce:
+        case MusicObject::PM_PlayOnce:
                 setStyleSheet(MusicUIObject::MKGBtnOnce);
                 setToolTip(tr("PlayOnce"));
                 break;

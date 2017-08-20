@@ -21,7 +21,8 @@ class MUSIC_WIDGET_EXPORT MusicGifLabelWidget : public QLabel
 {
     Q_OBJECT
 public:
-    enum Type{
+    enum Type
+    {
         Gif_Ballon_White,           ///gif ballon white
         Gif_Cicle_Blue,             ///gif cicle blue
         Gif_Rice_Font_White,        ///gif rice font white

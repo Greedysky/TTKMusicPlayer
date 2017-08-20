@@ -10,6 +10,7 @@
    =================================================*/
 
 #include <QTimer>
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 class QProcess;
@@ -21,13 +22,6 @@ class MUSIC_CORE_EXPORT MusicCoreMPlayer : public QObject
 {
     Q_OBJECT
 public:
-    enum State
-    {
-        StoppedState,   ///*stop state*/
-        PlayingState,   ///*play state*/
-        PausedState     ///*pause state*/
-    };
-
     enum Category
     {
         NullCategory,   ///*no category*/
@@ -79,7 +73,7 @@ public:
     /*!
      * Get current player is playing or not.
      */
-    inline State state() const { return m_playState; }
+    inline MusicObject::PlayState state() const { return m_playState; }
     /*!
      * Get current player state.
      */
@@ -105,7 +99,7 @@ Q_SIGNALS:
     /*!
      * Current media data path changed.
      */
-    void stateChanged(State state);
+    void stateChanged(MusicObject::PlayState state);
     /*!
      * Current state changed.
      */
@@ -169,7 +163,7 @@ protected:
      */
 
     QProcess *m_process;
-    State m_playState;
+    MusicObject::PlayState m_playState;
     Category m_category;
     QTimer m_timer;
 
