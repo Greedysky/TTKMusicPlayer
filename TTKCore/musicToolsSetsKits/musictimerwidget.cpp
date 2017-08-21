@@ -5,9 +5,10 @@
 #include "musicnumberdefine.h"
 #include "musicapplicationobject.h"
 #include "musicotherdefine.h"
+#include "musictoolsetsuiobject.h"
 
-#include <QStyledItemDelegate>
 #include <QButtonGroup>
+#include <QStyledItemDelegate>
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -21,16 +22,9 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    connect(m_ui->timerToPlay, SIGNAL(clicked()), SLOT(changeFirstWidget()));
-    connect(m_ui->timerToStop, SIGNAL(clicked()), SLOT(changeSecondWidget()));
-    connect(m_ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
-
-    m_ui->timerToPlay->setIcon(QIcon(":/toolSets/btn_timer_play"));
-    m_ui->timerToStop->setIcon(QIcon(":/toolSets/btn_timer_stop"));
-    m_ui->timerToShutdown->setIcon(QIcon(":/toolSets/btn_timer_down"));
-    m_ui->timerToPlay->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->timerToStop->setStyleSheet(MusicUIObject::MPushButtonStyle04);
-    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->timerToPlay->setStyleSheet(MusicUIObject::MKGTimeToPlay);
+    m_ui->timerToStop->setStyleSheet(MusicUIObject::MKGTimeToStop);
+    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MKGTimeToDown);
     m_ui->confirm->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->cancel->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->timerToPlay->setCursor(QCursor(Qt::PointingHandCursor));
@@ -38,9 +32,7 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     m_ui->timerToShutdown->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->confirm->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->cancel->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(m_ui->timerToPlay, SIGNAL(clicked()), SLOT(changeFirstWidget()));
-    connect(m_ui->timerToStop, SIGNAL(clicked()), SLOT(changeSecondWidget()));
-    connect(m_ui->timerToShutdown, SIGNAL(clicked()), SLOT(changeThreeWidget()));
+
     connect(m_ui->confirm, SIGNAL(clicked()), SLOT(commitTheResults()));
     connect(m_ui->cancel, SIGNAL(clicked()), SLOT(close()));
 
@@ -58,6 +50,12 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     initThreeWidget();
     initParemeter();
 
+    QButtonGroup *group0 = new QButtonGroup(this);
+    group0->addButton(m_ui->timerToPlay, 0);
+    group0->addButton(m_ui->timerToStop, 1);
+    group0->addButton(m_ui->timerToShutdown, 2);
+    connect(group0, SIGNAL(buttonClicked(int)), SLOT(changeWidgetIndex(int)));
+
     QButtonGroup *group1 = new QButtonGroup(this);
     group1->addButton(m_ui->noSetRadioButton1, 0);
     group1->addButton(m_ui->setRadioButton1, 1);
@@ -72,6 +70,8 @@ MusicTimerWidget::MusicTimerWidget(QWidget *parent)
     group3->addButton(m_ui->noSetRadioButton3, 4);
     group3->addButton(m_ui->setRadioButton3, 5);
     connect(group3, SIGNAL(buttonClicked(int)), SLOT(buttonClicked(int)));
+
+    changeWidgetIndex(0);
 }
 
 MusicTimerWidget::~MusicTimerWidget()
@@ -180,19 +180,20 @@ void MusicTimerWidget::initComboParameter()
     m_repeat << tr("once") << tr("evMonth") << tr("evWeek") << tr("evDay");
 }
 
-void MusicTimerWidget::changeFirstWidget()
+void MusicTimerWidget::changeWidgetIndex(int index)
 {
-    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_0);
-}
+    m_ui->timerToPlay->setStyleSheet(MusicUIObject::MKGTimeToPlay);
+    m_ui->timerToStop->setStyleSheet(MusicUIObject::MKGTimeToStop);
+    m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MKGTimeToDown);
 
-void MusicTimerWidget::changeSecondWidget()
-{
-    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_1);
-}
+    switch(index)
+    {
+        case 0: m_ui->timerToPlay->setStyleSheet(MusicUIObject::MKGTimeToPlayClicked); break;
+        case 1: m_ui->timerToStop->setStyleSheet(MusicUIObject::MKGTimeToStopClicked); break;
+        case 2: m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MKGTimeToDownClicked); break;
+    }
 
-void MusicTimerWidget::changeThreeWidget()
-{
-    m_ui->stackedWidget->setCurrentIndex(TIMER_MANAGER_INDEX_2);
+    m_ui->stackedWidget->setCurrentIndex(index);
 }
 
 void MusicTimerWidget::initFirstWidget()

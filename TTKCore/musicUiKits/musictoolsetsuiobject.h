@@ -109,6 +109,33 @@ namespace MusicUIObject
             background-image: url(:/toolSets/btn_record_finish_normal);} \
             QToolButton:hover{ background-image: url(:/toolSets/btn_record_finish_hover);}";
             
+    const QString MKGTimeToStop = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_stop);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_timer_stop_hover);}";
+
+    const QString MKGTimeToStopClicked = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_stop_clicked);}";
+
+    const QString MKGTimeToPlay = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_play);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_timer_play_hover);}";
+            
+    const QString MKGTimeToPlayClicked = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_play_clicked);}";
+
+    const QString MKGTimeToDown = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_down);} \
+            QPushButton:hover{ background-image: url(:/toolSets/btn_timer_down_hover);}";
+
+    const QString MKGTimeToDownClicked = " \
+            QPushButton{ border:none; \
+            background-image: url(:/toolSets/btn_timer_down_clicked);}";
+            
 }
 
 #endif // MUSICTOOLSETSUIOBJECT_H

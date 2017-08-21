@@ -40,17 +40,9 @@ public:
      */
 
 public Q_SLOTS:
-    void changeFirstWidget();
+    void changeWidgetIndex(int index);
     /*!
-     * Change to time to play widget.
-     */
-    void changeSecondWidget();
-    /*!
-     * Change to time to stop widget.
-     */
-    void changeThreeWidget();
-    /*!
-     * Change to time to shutdown widget.
+     * Change to index widget.
      */
     void commitTheResults();
     /*!

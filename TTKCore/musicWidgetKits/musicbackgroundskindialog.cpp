@@ -80,6 +80,9 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
 
+    m_ui->skinTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
+
     connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
                                        SLOT(musicBgTransparentChanged(int)));
     connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), parent,

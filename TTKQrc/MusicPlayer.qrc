@@ -320,8 +320,14 @@
     <qresource prefix="/toolSets">
         <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>
         <file alias="btn_timer_play">../TTKResource/toolSets/btn_timer_play.png</file>
+        <file alias="btn_timer_play_hover">../TTKResource/toolSets/btn_timer_play_hover.png</file>
+        <file alias="btn_timer_play_clicked">../TTKResource/toolSets/btn_timer_play_clicked.png</file>
         <file alias="btn_timer_down">../TTKResource/toolSets/btn_timer_down.png</file>
+        <file alias="btn_timer_down_hover">../TTKResource/toolSets/btn_timer_down_hover.png</file>
+        <file alias="btn_timer_down_clicked">../TTKResource/toolSets/btn_timer_down_clicked.png</file>
         <file alias="btn_timer_stop">../TTKResource/toolSets/btn_timer_stop.png</file>
+        <file alias="btn_timer_stop_hover">../TTKResource/toolSets/btn_timer_stop_hover.png</file>
+        <file alias="btn_timer_stop_clicked">../TTKResource/toolSets/btn_timer_stop_clicked.png</file>
         <file alias="btn_tool_on">../TTKResource/toolSets/btn_tool_on.png</file>
         <file alias="btn_tool_off">../TTKResource/toolSets/btn_tool_off.png</file>
         <file alias="lb_mobile_devices">../TTKResource/toolSets/lb_mobile_devices.png</file>

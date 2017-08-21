@@ -374,7 +374,7 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>125</width>
+     <width>130</width>
      <height>325</height>
     </rect>
    </property>
@@ -384,40 +384,40 @@
    <widget class="QPushButton" name="timerToPlay">
     <property name="geometry">
      <rect>
-      <x>19</x>
-      <y>30</y>
-      <width>81</width>
-      <height>25</height>
+      <x>1</x>
+      <y>25</y>
+      <width>127</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>定时播放</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="timerToStop">
     <property name="geometry">
      <rect>
-      <x>19</x>
-      <y>75</y>
-      <width>81</width>
-      <height>25</height>
+      <x>1</x>
+      <y>55</y>
+      <width>127</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>定时停止</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="timerToShutdown">
     <property name="geometry">
      <rect>
-      <x>19</x>
-      <y>120</y>
-      <width>81</width>
-      <height>25</height>
+      <x>1</x>
+      <y>85</y>
+      <width>127</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>定时关机</string>
+     <string/>
     </property>
    </widget>
   </widget>
@@ -450,9 +450,9 @@
   <widget class="QWidget" name="backgroundMask2" native="true">
    <property name="geometry">
     <rect>
-     <x>129</x>
+     <x>134</x>
      <y>29</y>
-     <width>345</width>
+     <width>340</width>
      <height>325</height>
     </rect>
    </property>
