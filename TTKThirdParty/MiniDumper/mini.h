@@ -16,6 +16,10 @@
 #include "psapi.h"
 #include "tlhelp32.h"
 
+/*! @brief The functions of process wrapper.
+ * @author Greedysky <greedysky@163.com>
+ */
+
 static inline QStringList getProcessLists()
 {
     QStringList lprocess;

@@ -42,6 +42,10 @@
 #include "musicextrasglobaldefine.h"
 
 class QDeviceWatcher;
+
+/*! @brief The class of the device watcher private.
+ * @author WangBin <wbsecg1@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QDeviceWatcherPrivate
 #if CONFIG_THREAD
 		: public QThread

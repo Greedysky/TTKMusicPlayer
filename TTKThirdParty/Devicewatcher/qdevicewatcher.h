@@ -15,6 +15,9 @@
 
 class QDeviceWatcherPrivate;
 
+/*! @brief The class of the device watcher.
+ * @author WangBin <wbsecg1@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QDeviceWatcher : public QObject
 {
 	Q_OBJECT
@@ -40,7 +43,9 @@ protected:
 	QDeviceWatcherPrivate *d_ptr;
 };
 
-
+/*! @brief The class of the device watcher event.
+ * @author WangBin <wbsecg1@gmail.com>
+ */
 class MUSIC_EXTRAS_EXPORT QDeviceChangeEvent : public QEvent
 {
 public:

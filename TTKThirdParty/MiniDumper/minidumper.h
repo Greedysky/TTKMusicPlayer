@@ -15,6 +15,9 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 
 #define MAX_WARNING_MESSAGE_PATH 1024
 
+/*! @brief The class of the mini dumper win32.
+ * @author DoubleLi <517712484@qq.com>
+ */
 class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
@@ -34,11 +37,13 @@ private:
 };
 
 #elif defined Q_OS_UNIX
+/*! @brief The class of the mini dumper linux.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
     MiniDumper();
-
 };
 
 #endif

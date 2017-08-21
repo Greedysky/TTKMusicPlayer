@@ -13,13 +13,22 @@
 
 class MiniDumper;
 
+/*! @brief The class of the ttk dumper.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_EXTRAS_EXPORT TTKDumper
 {
 public:
     TTKDumper();
+    /*!
+     * Object contsructor.
+     */
     ~TTKDumper();
 
     void run();
+    /*!
+     * Run.
+     */
 
 protected:
     MiniDumper *m_winDump;
