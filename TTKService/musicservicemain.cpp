@@ -1,10 +1,9 @@
 #include "musicapplication.h"
-#include "musiccoreutils.h"
-#include "musicxmlconfigmanager.h"
-#include "musicsettingmanager.h"
-#include "musicnetworkthread.h"
+#include "musicruntimemanager.h"
+#include "musicnumberdefine.h"
 #include "ttkdumper.h"
 
+#include <QTimer>
 #include <QTranslator>
 #include <QApplication>
 
@@ -20,49 +19,23 @@ int main(int argc, char *argv[])
     }
 #endif
     ///////////////////////////////////////////////////////
-#ifndef MUSIC_GREATER_NEW
-    MusicUtils::Core::setLocalCodec();
-#endif
-    MusicUtils::Core::midTransferFile();
-    ///////////////////////////////////////////////////////
-    TTKDumper dumper;
-    dumper.run();
-    ///////////////////////////////////////////////////////
-#ifdef Q_OS_UNIX
-    QFont font;
-    font.setPixelSize(13);
-    qApp->setFont(font);
-#endif
-    ///////////////////////////////////////////////////////
-    M_LOGGER_INFO("MusicApplication Begin");
     QCoreApplication::setOrganizationName("TTKMusicPlayer");
     QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
     QCoreApplication::setApplicationName("TTKMusicPlayer");
 
-    //detect the current network state
-    M_NETWORK_PTR->start();
+    TTKDumper dumper;
+    dumper.run();
 
-    M_LOGGER_INFO("Load Translation");
-    MusicXMLConfigManager *xml = new MusicXMLConfigManager;
-    xml->readXMLConfig();
-    xml->readSysLoadConfig();
+    MusicRunTimeManager manager;
+    manager.run();
 
     QTranslator translator;
-    translator.load(MusicUtils::Core::getLanguageName(
-                M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt()));
+    translator.load(manager.translator());
     a.installTranslator(&translator);
-
-    MusicUtils::Core::checkCacheSize(
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,
-                M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt(),
-                M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
-    M_NETWORK_PTR->setBlockNetWork(
-                M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
-    delete xml;
-    M_LOGGER_INFO("End load translation");
 
     MusicApplication w;
     w.show();
+    ///////////////////////////////////////////////////////
 
     if(argc == 4)
     {
