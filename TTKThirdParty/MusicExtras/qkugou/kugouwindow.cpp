@@ -1,15 +1,20 @@
 #include "kugouwindow.h"
 #include "kugouuiobject.h"
 
-#ifdef MUSIC_WEBKIT
-# ifdef MUSIC_GREATER_NEW
-#  include <QtWebKitWidgets/QWebView>
-#  include <QtWebKitWidgets/QWebFrame>
-# else
-#  include <QWebView>
-#  include <QWebFrame>
+#ifdef Q_OS_WIN
+ #include <QAxWidget>
+#else
+# ifdef MUSIC_WEBKIT
+#  ifdef MUSIC_GREATER_NEW
+#   include <QtWebKitWidgets/QWebView>
+#   include <QtWebKitWidgets/QWebFrame>
+#  else
+#   include <QWebView>
+#   include <QWebFrame>
+#  endif
 # endif
 #endif
+
 #include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>
@@ -48,7 +53,7 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 {
     TTK_INIT_PRIVATE;
 
-#ifdef MUSIC_WEBKIT
+#if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
@@ -80,21 +85,30 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 
 void KugouWindow::setUrl(const QString &url)
 {
-#ifdef MUSIC_WEBKIT
     TTK_D(KugouWindow);
+#ifdef Q_OS_WIN
+    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    if(w)
+    {
+        w->dynamicCall("Navigate(const QString&)", url);
+    }
+#else
+ #ifdef MUSIC_WEBKIT
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
     }
-#else
+ #else
     Q_UNUSED(url);
+    Q_UNUSED(d);
+ #endif
 #endif
 }
 
 void KugouWindow::goBack()
 {
-#ifdef MUSIC_WEBKIT
+#if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
     TTK_D(KugouWindow);
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
@@ -118,10 +132,24 @@ void KugouWindow::kugouSongIndexChanged(int index)
         case 4: url = KugouUrl::getSongShowUrl(); break;
         case 5: url = KugouUrl::getSongHeroesUrl(); break;
     }
-#ifdef MUSIC_WEBKIT
-    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+
+#ifdef Q_OS_WIN
+    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    if(w)
+    {
+        w->dynamicCall("Navigate(const QString&)", url);
+    }
 #else
+ #ifdef MUSIC_WEBKIT
+    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+ #else
+    Q_UNUSED(url);
     Q_UNUSED(d);
+ #endif
 #endif
 }
 
@@ -137,10 +165,24 @@ void KugouWindow::kugouRadioIndexChanged(int index)
         case 2: url = KugouUrl::getRadioFxUrl(); break;
         case 3: url = KugouUrl::getRadioHomeUrl(); break;
     }
-#ifdef MUSIC_WEBKIT
-    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+
+#ifdef Q_OS_WIN
+    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    if(w)
+    {
+        w->dynamicCall("Navigate(const QString&)", url);
+    }
 #else
+ #ifdef MUSIC_WEBKIT
+    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+ #else
+    Q_UNUSED(url);
     Q_UNUSED(d);
+ #endif
 #endif
 }
 
@@ -155,10 +197,49 @@ void KugouWindow::kugouMVIndexChanged(int index)
         case 1: url = KugouUrl::getMVRecommendUrl(); break;
         case 2: url = KugouUrl::getMVFanxingUrl(); break;
     }
-#ifdef MUSIC_WEBKIT
-    MStatic_cast(QWebView*, d->m_webView)->setUrl(QUrl( url ));
+
+#ifdef Q_OS_WIN
+    QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
+    if(w)
+    {
+        w->dynamicCall("Navigate(const QString&)", url);
+    }
 #else
+ #ifdef MUSIC_WEBKIT
+    QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+ #else
+    Q_UNUSED(url);
     Q_UNUSED(d);
+ #endif
+#endif
+}
+
+void KugouWindow::createWebViewer()
+{
+    TTK_D(KugouWindow);
+    if(d->m_webView)
+    {
+        delete d->m_webView;
+    }
+#ifdef Q_OS_WIN
+    //IE web view
+    QAxWidget *view = new QAxWidget(this);
+    view->setWindowFlags(Qt::FramelessWindowHint);
+    view->setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}");
+    view->setObjectName("WebWidget");
+    view->setFocusPolicy(Qt::StrongFocus);
+    view->setProperty("DisplayAlerts", false);
+    view->setProperty("DisplayScrollBars", true);
+    d->m_webView = view;
+#else
+    QWebView *view = new QWebView(this);
+    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    d->m_webView = view;
 #endif
 }
 
@@ -213,14 +294,9 @@ void KugouWindow::createKugouSongWidget()
     d->m_buttonGroup->button(4)->setFocusPolicy(Qt::NoFocus);
     d->m_buttonGroup->button(5)->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    QWebView *view = new QWebView(this);
-    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-
+    createWebViewer();
     layout->addWidget(d->m_topWidget);
-    layout->addWidget(d->m_webView = view);
-
+    layout->addWidget(d->m_webView);
     kugouSongIndexChanged(0);
 #else
     Q_UNUSED(d);
@@ -268,13 +344,9 @@ void KugouWindow::createKugouRadioWidget()
     topLayout->addWidget(d->m_buttonGroup->button(3));
     topLayout->addStretch(1);
 
-    QWebView *view = new QWebView(this);
-    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-
+    createWebViewer();
     layout->addWidget(d->m_topWidget);
-    layout->addWidget(d->m_webView = view);
-
+    layout->addWidget(d->m_webView);
     kugouRadioIndexChanged(0);
 #else
     Q_UNUSED(d);
@@ -293,11 +365,13 @@ void KugouWindow::createKugouListWidget()
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 #ifdef MUSIC_WEBKIT
-    QWebView *view = new QWebView(this);
-    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    view->setUrl(QUrl( KugouUrl::getListUrl() ));
-    layout->addWidget(d->m_webView = view);
+    createWebViewer();
+    layout->addWidget(d->m_webView);
+ #ifdef Q_OS_WIN
+    MObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", KugouUrl::getListUrl());
+ #else
+    MObject_cast(QWebView*, d->m_webView)w->setUrl(KugouUrl::getListUrl());
+ #endif
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);
@@ -340,13 +414,9 @@ void KugouWindow::createKugouMVWidget()
     topLayout->addWidget(d->m_buttonGroup->button(2));
     topLayout->addStretch(1);
 
-    QWebView *view = new QWebView(this);
-    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-
+    createWebViewer();
     layout->addWidget(d->m_topWidget);
-    layout->addWidget(d->m_webView = view);
-
+    layout->addWidget(d->m_webView);
     kugouMVIndexChanged(0);
 #else
     Q_UNUSED(d);
@@ -365,10 +435,8 @@ void KugouWindow::createKugouSingleWidget()
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 #ifdef MUSIC_WEBKIT
-    QWebView *view = new QWebView(this);
-    view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    layout->addWidget(d->m_webView = view);
+    createWebViewer();
+    layout->addWidget(d->m_webView);
 #else
     Q_UNUSED(d);
     QLabel *pix = new QLabel(this);

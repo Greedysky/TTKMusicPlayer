@@ -8,38 +8,37 @@
 
 equals(QT_MAJOR_VERSION, 5){
     win32{
-        msvc{
-            exists($$[QT_INSTALL_LIBS]/libQt5WebKit.lib){
-                QT       += webkit webkitwidgets
-                DEFINES  += MUSIC_WEBKIT
-            }
-        }
-
-        gcc{
-            exists($$[QT_INSTALL_LIBS]/libQt5WebKit.a){
-                QT       += webkit webkitwidgets
-                DEFINES  += MUSIC_WEBKIT
-            }
-        }
+        QT += axcontainer
+        DEFINES += MUSIC_WEBKIT
     }
 
     unix:!mac{
         exists($$[QT_INSTALL_LIBS]/libQt5WebKit.so){
-            QT       += webkit webkitwidgets
-            DEFINES  += MUSIC_WEBKIT
+            QT += webkit webkitwidgets
+            DEFINES += MUSIC_WEBKIT
         }
     }
 }
 else{
-    QT       += webkit webkitwidgets
-    DEFINES  += MUSIC_WEBKIT
+    DEFINES += MUSIC_WEBKIT
+    win32{
+        CONFIG += qaxcontainer
+    }
+    else{
+        QT += webkit webkitwidgets
+    }
 }
 
-contains(QT, webkit){
-    message("Found Qt webkit component, build in KuGou by Qt webkit")
+win32{
+    message("Webview build in KuGou by QAxContainer")
 }
-else{
-    message("Not found Qt webkit component, build in KuGou by no webkit")
+unix:!mac{
+    contains(QT, webkit){
+        message("Found Qt webkit component, build in KuGou by Qt webkit")
+    }
+    else{
+        message("Not found Qt webkit component, build in KuGou by no webkit")
+    }
 }
 
 INCLUDEPATH += $$PWD

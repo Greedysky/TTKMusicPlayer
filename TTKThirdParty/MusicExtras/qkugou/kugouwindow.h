@@ -62,6 +62,10 @@ public Q_SLOTS:
      */
 
 protected:
+    void createWebViewer();
+    /*!
+     * Create web view widget.
+     */
     void createKugouSongWidget();
     /*!
      * Create kugou song widget.

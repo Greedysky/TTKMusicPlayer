@@ -35,9 +35,10 @@ MusicApplication::MusicApplication(QWidget *parent)
       m_ui(new Ui::MusicApplication)
 {
     m_instance = this;
-#ifdef MUSIC_GREATER_NEW
+//#ifdef MUSIC_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
-#endif
+//#endif
+
     m_applicationObject = new MusicApplicationObject(this);
     m_topAreaWidget = new MusicTopAreaWidget(this);
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
