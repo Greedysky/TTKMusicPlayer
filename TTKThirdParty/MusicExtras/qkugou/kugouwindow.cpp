@@ -226,7 +226,7 @@ void KugouWindow::createWebViewer()
         delete d->m_webView;
     }
 #ifdef Q_OS_WIN
-    //IE web view
+    //ie web view
     QAxWidget *view = new QAxWidget(this);
     view->setWindowFlags(Qt::FramelessWindowHint);
     view->setMouseTracking(false);
@@ -237,10 +237,12 @@ void KugouWindow::createWebViewer()
     view->setProperty("DisplayScrollBars", true);
     d->m_webView = view;
 #else
+ # ifdef MUSIC_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     d->m_webView = view;
+ #endif
 #endif
 }
 
@@ -371,7 +373,7 @@ void KugouWindow::createKugouListWidget()
  #ifdef Q_OS_WIN
     MObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", KugouUrl::getListUrl());
  #else
-    MObject_cast(QWebView*, d->m_webView)w->setUrl(KugouUrl::getListUrl());
+    MObject_cast(QWebView*, d->m_webView)->setUrl(KugouUrl::getListUrl());
  #endif
 #else
     Q_UNUSED(d);

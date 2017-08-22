@@ -4,6 +4,7 @@
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
 
+#include <QFont>
 #include <QApplication>
 
 MusicRunTimeManager::MusicRunTimeManager()
