@@ -33,8 +33,8 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
 #if defined MUSIC_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
 #endif
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, true);
+//    setAttribute(Qt::WA_DeleteOnClose, true);
+//    setAttribute(Qt::WA_QuitOnClose, true);
 
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
