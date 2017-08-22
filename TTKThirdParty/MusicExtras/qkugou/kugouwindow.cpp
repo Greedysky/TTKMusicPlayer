@@ -229,6 +229,7 @@ void KugouWindow::createWebViewer()
     //IE web view
     QAxWidget *view = new QAxWidget(this);
     view->setWindowFlags(Qt::FramelessWindowHint);
+    view->setMouseTracking(false);
     view->setControl("{8856F961-340A-11D0-A96B-00C04FD705A2}");
     view->setObjectName("WebWidget");
     view->setFocusPolicy(Qt::StrongFocus);

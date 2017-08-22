@@ -97,13 +97,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
 
-    QObjectList result = foreachWidget(this);
-    foreach(QObject *obj, result)
-    {
-        QWidget *widget = MObject_cast(QWidget*, obj);
-        widget->installEventFilter(this);
-        widget->setMouseTracking(true);
-    }
+    m_ui->background->installEventFilter(this);
+    m_ui->background->setMouseTracking(true);
 
     readXMLConfigFromText();
 }
