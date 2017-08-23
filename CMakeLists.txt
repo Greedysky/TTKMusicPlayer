@@ -77,9 +77,7 @@ include_directories(${MUSIC_UI_DIR})
 include_directories(${MUSIC_THIRDPARTY_DIR})
 include_directories(${MUSIC_THIRDPARTY_DIR}/Zlib)
 include_directories(${MUSIC_THIRDPARTY_DIR}/Devicewatcher)
-if(WIN32)
 include_directories(${MUSIC_THIRDPARTY_DIR}/MiniDumper)
-endif()
 include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
 
 

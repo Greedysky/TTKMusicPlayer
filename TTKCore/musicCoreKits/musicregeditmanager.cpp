@@ -96,6 +96,7 @@ int MusicRegeditManager::getLocalIEVersion() const
     delete[] pData;
     return HIWORD(fixedFileInfo->dwProductVersionMS);
 #endif
+    return -1;
 }
 
 bool MusicRegeditManager::currentNodeHasExist(const QString &key)
