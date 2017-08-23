@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkReply>
 #include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
 

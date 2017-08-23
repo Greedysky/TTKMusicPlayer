@@ -14,13 +14,18 @@ add_definitions(-DQT_THREAD)
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
     minidumper.h
-    
+    ttkdumper.h
+    mini.h
   )
 
 set(MUSIC_SOURCES
+    ttkdumper.cpp
     minidumper.cpp
-    MiniDumper.rc
   )
+  
+if(WIN32)
+    list(APPEND MUSIC_SOURCES MiniDumper.rc)
+endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
@@ -30,7 +35,13 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES}  ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  target_link_libraries(${TARGET_NAME} Qt5::Core)
+  
+  set(QT5_LIBS Qt5::Core)
+  if(WIN32)
+      list(APPEND QT5_LIBS -lpsapi)
+  endif()
+  target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
+  
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   
@@ -39,5 +50,11 @@ else()
   else()
     add_library(${TARGET_NAME} STATIC ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
   endif()
-  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY})
+  
+  set(QT4_LIBS ${QT_QTCORE_LIBRARY})
+  if(WIN32)
+      list(APPEND QT4_LIBS -lpsapi)
+  endif()
+  target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
+
 endif()

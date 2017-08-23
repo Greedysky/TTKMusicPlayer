@@ -2,7 +2,7 @@
 #include "kugouuiobject.h"
 
 #ifdef Q_OS_WIN
- #include <QAxWidget>
+ #include <ActiveQt/QAxWidget>
 #else
 # ifdef MUSIC_WEBKIT
 #  ifdef MUSIC_GREATER_NEW

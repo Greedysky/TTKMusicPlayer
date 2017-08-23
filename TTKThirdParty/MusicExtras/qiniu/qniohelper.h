@@ -10,7 +10,7 @@
    =================================================*/
 
 #include "qnconf.h"
-#include <QHttpMultiPart>
+#include <QtNetwork/QHttpMultiPart>
 
 class QNMac;
 class QNPutExtra;

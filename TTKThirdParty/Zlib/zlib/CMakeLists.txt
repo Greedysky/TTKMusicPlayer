@@ -11,7 +11,6 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 add_definitions(-DZLIB_DLL)
-add_definitions(-DZLIB_INTERNAL)
 
 set(MUSIC_HEADERS
     zconf.h

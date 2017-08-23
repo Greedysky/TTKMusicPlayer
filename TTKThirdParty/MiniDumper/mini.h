@@ -40,7 +40,7 @@ static inline QStringList getProcessLists()
 
         HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, 0, aProcesses[i]);
         wchar_t buffer[50];
-        GetModuleBaseName(hProcess, 0, buffer, 50);
+        GetModuleBaseNameW(hProcess, 0, buffer, 50);
         CloseHandle(hProcess);
         lprocess << QString::fromWCharArray(buffer);
     }
@@ -50,19 +50,19 @@ static inline QStringList getProcessLists()
 
 static inline bool killProcess(LPCWSTR processName)
 {
-   PROCESSENTRY32 pe;
+   PROCESSENTRY32W pe;
    DWORD id = 0;
    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-   pe.dwSize = sizeof(PROCESSENTRY32);
-   if(!Process32First(hSnapshot,&pe))
+   pe.dwSize = sizeof(PROCESSENTRY32W);
+   if(!Process32FirstW(hSnapshot, &pe))
    {
        return false;
    }
 
    while(true)
    {
-       pe.dwSize = sizeof(PROCESSENTRY32);
-       if(Process32Next(hSnapshot, &pe) == FALSE)
+       pe.dwSize = sizeof(PROCESSENTRY32W);
+       if(Process32NextW(hSnapshot, &pe) == FALSE)
        {
            break;
        }

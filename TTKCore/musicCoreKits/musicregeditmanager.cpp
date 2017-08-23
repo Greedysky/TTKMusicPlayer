@@ -4,7 +4,6 @@
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
 #include <ole2.h>
-#include <ExDisp.h>
 #endif
 #include <QSettings>
 #include <QStringList>
@@ -73,14 +72,14 @@ void MusicRegeditManager::setLeftWinEnable()
 int MusicRegeditManager::getLocalIEVersion() const
 {
 #ifdef Q_OS_WIN
-    DWORD versionInfoSize = GetFileVersionInfoSize(L"mshtml.dll", NULL);
+    DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", NULL);
     if(versionInfoSize == 0)
     {
         return -1;
     }
 
     BYTE *pData = new BYTE[versionInfoSize];
-    if(!GetFileVersionInfo(L"mshtml.dll", 0, versionInfoSize, pData))
+    if(!GetFileVersionInfoW(L"mshtml.dll", 0, versionInfoSize, pData))
     {
         delete[] pData;
         return -1;
@@ -88,7 +87,7 @@ int MusicRegeditManager::getLocalIEVersion() const
 
     VS_FIXEDFILEINFO *fixedFileInfo = NULL;
     UINT fixedFileInfoSize = 0;
-    if(!VerQueryValue(pData, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
+    if(!VerQueryValueW(pData, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
     {
         delete[] pData;
         return -1;

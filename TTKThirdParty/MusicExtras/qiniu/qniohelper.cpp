@@ -3,7 +3,7 @@
 #include "qnutils.h"
 #include "qnmac.h"
 
-#include <QHttpPart>
+#include <QtNetwork/QHttpPart>
 
 QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
                    const QString &key, const QString &fileName, const QNPutExtra *putExtra)
