@@ -276,6 +276,16 @@ void MusicApplicationObject::musicResetWindow()
 void MusicApplicationObject::musicToolSetsParameter()
 {
     m_musicTimerAutoObj->runTimerAutoConfig();
+#ifdef Q_OS_WIN
+    MusicRegeditManager regeditManager;
+    int version = regeditManager.getLocalIEVersion();
+    if(version == -1 || version < 8)
+    {
+        MusicMessageBox message;
+        message.setText(version == -1 ? QObject::tr("No IE Core Detected!") : QObject::tr("IE Version Less Than 8!"));
+        message.exec();
+    }
+#endif
 }
 
 void MusicApplicationObject::musicDeviceNameChanged(const QString &name)

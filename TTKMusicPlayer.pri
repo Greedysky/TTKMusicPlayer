@@ -33,7 +33,7 @@ QT_VER_PATCH = $$member(QT_VER_STRING, 2)
 include(TTKVersion.pri)
 
 win32{
-    LIBS += -lIphlpapi -luser32
+    LIBS += -lIphlpapi -lVersion
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{

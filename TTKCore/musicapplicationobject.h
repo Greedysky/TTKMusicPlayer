@@ -101,7 +101,7 @@ public Q_SLOTS:
      */
     void musicToolSetsParameter();
     /*!
-     * Timer parameter changed.
+     * Tools sets parameter changed.
      */
     void musicDeviceNameChanged(const QString &name);
     /*!

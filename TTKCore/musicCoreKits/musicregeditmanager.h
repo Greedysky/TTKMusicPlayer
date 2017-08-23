@@ -51,6 +51,11 @@ public:
      * Set left win key enable.
      */
 
+    int getLocalIEVersion() const;
+    /*!
+     * Get local IE version.
+     */
+
 protected:
     bool currentNodeHasExist(const QString &key);
     /*!

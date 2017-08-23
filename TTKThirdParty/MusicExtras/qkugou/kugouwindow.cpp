@@ -234,7 +234,7 @@ void KugouWindow::createWebViewer()
     view->setObjectName("WebWidget");
     view->setFocusPolicy(Qt::StrongFocus);
     view->setProperty("DisplayAlerts", false);
-    view->setProperty("DisplayScrollBars", true);
+    view->setProperty("DisplayScrollBars", false);
     d->m_webView = view;
 #else
  # ifdef MUSIC_WEBKIT
