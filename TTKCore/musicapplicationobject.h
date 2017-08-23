@@ -119,6 +119,10 @@ public Q_SLOTS:
     /*!
      * Show set sound effect widget.
      */
+    void musicEffectChanged();
+    /*!
+     * Sound effect changed.
+     */
 
 protected:
     bool closeCurrentEqualizer();

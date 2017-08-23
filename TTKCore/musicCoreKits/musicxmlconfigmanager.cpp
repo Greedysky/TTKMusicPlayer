@@ -449,8 +449,9 @@ void MusicXMLConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("equalizerEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced,
                      readXmlAttributeByTagNameValue("equalizerValue"));
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced,
-                     readXmlAttributeByTagNameValue("enhancedBalance").toInt());
+//    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced,
+//                     readXmlAttributeByTagNameValue("enhancedBalance").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, 0);
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced,
                      readXmlAttributeByTagNameValue("enhancedFadeEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced,

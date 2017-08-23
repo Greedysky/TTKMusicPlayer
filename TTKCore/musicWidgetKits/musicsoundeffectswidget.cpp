@@ -102,6 +102,19 @@ bool MusicSoundEffectsItemWidget::pluginEnable() const
     return m_enable;
 }
 
+void MusicSoundEffectsItemWidget::soundEffectChanged(Type type, bool enable)
+{
+    QString plugin( transformQStringFromEnum(type) );
+    foreach(EffectFactory *factory, Effect::factories())
+    {
+        if(factory->properties().name.contains(plugin))
+        {
+            Effect::setEnabled(factory, enable);
+            break;
+        }
+    }
+}
+
 void MusicSoundEffectsItemWidget::setPluginEnable()
 {
     if(!m_enable)
@@ -124,20 +137,12 @@ void MusicSoundEffectsItemWidget::setPluginEnable()
 
 void MusicSoundEffectsItemWidget::soundEffectCheckBoxChanged(bool state)
 {
-    QString plugin( transformQStringFromEnum() );
-    foreach(EffectFactory *factory, Effect::factories())
-    {
-        if(factory->properties().name.contains(plugin))
-        {
-            Effect::setEnabled(factory, state);
-            break;
-        }
-    }
+    soundEffectChanged(m_type, state);
 }
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    QString plugin( transformQStringFromEnum() );
+    QString plugin( transformQStringFromEnum(m_type) );
     foreach(EffectFactory *factory, Effect::factories())
     {
         if(factory->properties().name.contains(plugin))
@@ -148,10 +153,10 @@ void MusicSoundEffectsItemWidget::soundEffectValueChanged()
     }
 }
 
-QString MusicSoundEffectsItemWidget::transformQStringFromEnum()
+QString MusicSoundEffectsItemWidget::transformQStringFromEnum(Type type)
 {
     QString plugin;
-    switch(m_type)
+    switch(type)
     {
         case BS2B:      plugin = "BS2B"; break;
         case Crossfade: plugin = "Crossfade"; break;
@@ -325,6 +330,7 @@ void MusicSoundEffectsWidget::writeSoundEffect()
 {
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced, m_ui->BS2BWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced, m_ui->CrossfadeWidget->pluginEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced, m_ui->StereoWidget->pluginEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced, m_ui->SOXWidget->pluginEnable());
 #ifdef Q_OS_UNIX
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced, m_ui->LADSPAWidget->pluginEnable());

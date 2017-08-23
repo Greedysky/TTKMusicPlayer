@@ -141,10 +141,13 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_buttons[3]->setStyleSheet(prfix.arg(type == 4 ? "vocalOn" : "vocalOff"), type == 4);
 
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
 
     ////////////////////////////////////////////////////////////////////
+    if(type != 0)
+    {
+        M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
+    }
     foreach(EffectFactory *factory, Effect::factories())
     {
         Effect::setEnabled(factory, false);
@@ -158,8 +161,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
 
 void MusicEnhancedPopWidget::caseButtonOnAndOff()
 {
-    setEnhancedMusicConfig( m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ?
-                            m_lastSelectedIndex : 0);
+    setEnhancedMusicConfig( m_caseButton->styleSheet().contains(":/enhance/btn_magic_off_normal") ? m_lastSelectedIndex : 0);
 }
 
 void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)

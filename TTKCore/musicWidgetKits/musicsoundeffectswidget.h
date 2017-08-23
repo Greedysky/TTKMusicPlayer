@@ -60,6 +60,11 @@ public:
      * Get plugin enable or not.
      */
 
+    static void soundEffectChanged(Type type, bool enable);
+    /*!
+     * Sound effect changed.
+     */
+
 public Q_SLOTS:
     void setPluginEnable();
     /*!
@@ -75,7 +80,7 @@ public Q_SLOTS:
      */
 
 protected:
-    QString transformQStringFromEnum();
+    static QString transformQStringFromEnum(Type type);
     /*!
      * Transform string from enum.
      */

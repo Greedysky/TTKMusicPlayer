@@ -314,6 +314,7 @@ void MusicApplicationObject::musicSetEqualizer()
     {
         return;
     }
+
     MusicEqualizerDialog equalizer;
     equalizer.exec();
 }
@@ -324,9 +325,32 @@ void MusicApplicationObject::musicSetSoundEffect()
     {
         return;
     }
+
     MusicSoundEffectsWidget sound;
     sound.setParentConnect(this);
     sound.exec();
+}
+
+void MusicApplicationObject::musicEffectChanged()
+{
+    int v = 0;
+    v = M_SETTING_PTR->value(MusicSettingManager::EnhancedBS2BChoiced).toInt();
+    if(v == 1) MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::BS2B, true);
+
+    v = M_SETTING_PTR->value(MusicSettingManager::EnhancedCrossfadeChoiced).toInt();
+    if(v == 1) MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Crossfade, true);
+
+    v = M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt();
+    if(v == 1) MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::Stereo, true);
+
+    v = M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt();
+    if(v == 1) MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::SoX, true);
+
+#ifdef Q_OS_UNIX
+    v = M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt();
+    if(v == 1) MusicSoundEffectsItemWidget::soundEffectChanged(MusicSoundEffectsItemWidget::LADSPA, true);
+#endif
+
 }
 
 bool MusicApplicationObject::closeCurrentEqualizer()

@@ -1077,10 +1077,11 @@ void MusicApplication::readXMLConfigFromText()
 
     //The size of the volume of the allocation of songs
     musicVolumeChanged(M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt());
-    m_musicPlayer->setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
+//    m_musicPlayer->setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
 
     //Configure playback mode
     m_ui->musicEnhancedButton->setEnhancedMusicConfig(M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt());
+    m_applicationObject->musicEffectChanged();
     if(M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt() == 1)
     {
         m_musicPlayer->setEqInformation();
