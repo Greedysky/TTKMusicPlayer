@@ -48,7 +48,6 @@ public Q_SLOTS:
 protected:
     MusicQueryTableDelegate *m_checkBoxDelegate;
 
-
 };
 
 #endif // MUSICFILLITEMTABLEWIDGET_H

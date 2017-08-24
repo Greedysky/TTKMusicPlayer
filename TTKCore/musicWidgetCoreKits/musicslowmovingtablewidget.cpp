@@ -15,6 +15,9 @@ MusicSlowMovingTableWidget::MusicSlowMovingTableWidget(QWidget *parent)
     m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
     m_animationTimer->setInterval(100*MT_MS);
+
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
+
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
 }
 

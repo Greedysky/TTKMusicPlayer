@@ -24,8 +24,6 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(3, 25);
     headerview->resizeSection(4, 45);
 
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + MusicUIObject::MScrollBarStyle02);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
     setMovedScrollBar( verticalScrollBar() );
 
     m_playRowIndex = -1;

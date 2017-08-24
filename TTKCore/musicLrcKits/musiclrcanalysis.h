@@ -150,7 +150,11 @@ public:
      * Get current time by texts.
      */
 
-    QString getAllLrcs() const;
+    QStringList getAllLrcList() const;
+    /*!
+     * Get all lrcs from container.
+     */
+    QString getAllLrcString() const;
     /*!
      * Get all lrcs from container.
      */

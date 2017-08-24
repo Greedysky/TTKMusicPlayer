@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
-    <height>313</height>
+    <width>608</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>4</x>
      <y>4</y>
-     <width>400</width>
-     <height>305</height>
+     <width>600</width>
+     <height>505</height>
     </rect>
    </property>
    <property name="text">
@@ -31,7 +31,7 @@
     <rect>
      <x>14</x>
      <y>4</y>
-     <width>91</width>
+     <width>141</width>
      <height>25</height>
     </rect>
    </property>
@@ -45,7 +45,7 @@
   <widget class="QToolButton" name="topTitleCloseButton">
    <property name="geometry">
     <rect>
-     <x>382</x>
+     <x>582</x>
      <y>6</y>
      <width>20</width>
      <height>20</height>
@@ -60,19 +60,92 @@
     <rect>
      <x>4</x>
      <y>29</y>
-     <width>400</width>
-     <height>280</height>
+     <width>600</width>
+     <height>480</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:white;</string>
+    <string notr="true">#backgroundMask{background:rgba(255,255,255,228);}</string>
    </property>
+   <widget class="QScrollArea" name="viewArea">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>275</width>
+      <height>330</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="MusicLrcPosterTableWidget" name="lrcArea">
+    <property name="geometry">
+     <rect>
+      <x>305</x>
+      <y>30</y>
+      <width>275</width>
+      <height>330</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>375</y>
+      <width>470</width>
+      <height>90</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openButton">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>400</y>
+      <width>75</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>打开图片</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>440</y>
+      <width>75</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>保存海报</string>
+    </property>
+   </widget>
   </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicLrcPosterTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclrcposterwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

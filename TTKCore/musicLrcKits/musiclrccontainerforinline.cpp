@@ -325,7 +325,7 @@ void MusicLrcContainerForInline::lrcOpenFileDir() const
 void MusicLrcContainerForInline::lrcCopyClipboard() const
 {
     QClipboard *clipBoard = QApplication::clipboard();
-    clipBoard->setText(m_lrcAnalysis->getAllLrcs());
+    clipBoard->setText(m_lrcAnalysis->getAllLrcString());
 }
 
 void MusicLrcContainerForInline::showLocalLinkWidget()
@@ -361,7 +361,9 @@ void MusicLrcContainerForInline::showSoundKMicroWidget()
 
 void MusicLrcContainerForInline::showLrcPosterWidget()
 {
-    MusicLrcPosterWidget(this).exec();
+    MusicLrcPosterWidget poster(this);
+    poster.setCurrentLrcs(m_lrcAnalysis->getAllLrcList(), m_currentSongName);
+    poster.exec();
 }
 
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
@@ -421,11 +423,12 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     changeLrcLinkMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
+    bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
     menu.addAction(tr("updateLrc"), this, SIGNAL(currentLrcUpdated()));
     menu.addAction(tr("makeLrc"), this, SLOT(showLrcMakedWidget()));
     menu.addAction(tr("errorLrc"), this, SLOT(showLrcErrorWidget()));
-    menu.addAction(tr("lrcPoster"), this, SLOT(showLrcPosterWidget()));
+    menu.addAction(tr("lrcPoster"), this, SLOT(showLrcPosterWidget()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
     menu.addAction(MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("showNormalMode") : tr("showFullMode"),
                    MusicLeftAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()));
@@ -433,7 +436,6 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);
 
-    bool hasLrcContainer = !m_lrcAnalysis->isEmpty();
     menu.addMenu(&changeLrcTimeFast)->setEnabled(hasLrcContainer);
     menu.addMenu(&changeLrcTimeSlow)->setEnabled(hasLrcContainer);
     menu.addAction(tr("revert"), this, SLOT(revertLrcTimeSpeed()))->setEnabled(hasLrcContainer);

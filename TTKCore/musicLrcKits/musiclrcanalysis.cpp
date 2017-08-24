@@ -541,7 +541,12 @@ qint64 MusicLrcAnalysis::MusicLrcAnalysis::findTime(const QStringList &ts) const
     return -1;
 }
 
-QString MusicLrcAnalysis::getAllLrcs() const
+QStringList MusicLrcAnalysis::getAllLrcList() const
+{
+    return m_lrcContainer.values();
+}
+
+QString MusicLrcAnalysis::getAllLrcString() const
 {
     QString clipString;
     foreach(const QString &s, m_lrcContainer.values())

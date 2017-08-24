@@ -102,7 +102,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     readXMLConfigFromText();
 
-    QTimer::singleShot(MT_S*100, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
+    QTimer::singleShot(MT_S*50, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 
 MusicApplication::~MusicApplication()

@@ -62,9 +62,6 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     headerview->resizeSection(5, 45);
 
     MusicUtils::Widget::setTransparent(this, 0);
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MLineEditStyle01 + \
-                  MusicUIObject::MTableWidgetStyle04);
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
