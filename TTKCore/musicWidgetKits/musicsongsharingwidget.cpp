@@ -64,10 +64,10 @@ void MusicSongSharingWidget::setSongName(const QString &name)
 
     QString path = ART_DIR_FULL + MusicUtils::String::artistName(name) + SKN_FILE;
     m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
-                                  ? path : ":/image/lb_defaultArt").scaled(50, 50));
+                                    ? path : ":/image/lb_defaultArt").scaled(50, 50));
 
     m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) +
-                          tr("and recommend it to you! (From #TTKMusicPlayer#)"));
+                            tr("and recommend it to you! (From #TTKMusicPlayer#)"));
 }
 
 int MusicSongSharingWidget::exec()
@@ -135,7 +135,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
         return;
     }
 
-    url.replace("player?song=", "player%3Fsong%3D");
+    url.replace("song?id=", "song%3Fid%3D");
     url.replace('#', "%23");
 
     MusicUtils::Core::openUrl(url, false);
