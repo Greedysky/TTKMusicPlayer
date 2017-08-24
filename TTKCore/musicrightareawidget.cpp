@@ -93,8 +93,6 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
                  SLOT(songResearchButtonSearched(QString)));
-    ///////////////////////////////////////////////////////
-    QTimer::singleShot(MT_MS, this, SLOT(musicLoadSongIndexWidget()));
 }
 
 void MusicRightAreaWidget::stopLrcMask() const

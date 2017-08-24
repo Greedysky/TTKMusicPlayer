@@ -239,9 +239,9 @@ font-weight:bold;
    <property name="geometry">
     <rect>
      <x>409</x>
-     <y>42</y>
+     <y>46</y>
      <width>75</width>
-     <height>31</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="text">

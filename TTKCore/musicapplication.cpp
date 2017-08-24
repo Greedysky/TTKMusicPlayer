@@ -101,6 +101,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->background->setMouseTracking(true);
 
     readXMLConfigFromText();
+
+    QTimer::singleShot(MT_S*100, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 
 MusicApplication::~MusicApplication()
