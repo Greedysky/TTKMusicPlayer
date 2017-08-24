@@ -23,20 +23,20 @@ namespace MusicUtils
 {
     namespace Algorithm
     {
-        MUSIC_SUPER_EXPORT QByteArray md5(const QByteArray &data);
+        MUSIC_UTILS_EXPORT QByteArray md5(const QByteArray &data);
         /*!
          * Get md5 algorithm.
          */
-        MUSIC_SUPER_EXPORT QByteArray sha1(const QByteArray &data);
+        MUSIC_UTILS_EXPORT QByteArray sha1(const QByteArray &data);
         /*!
          * Get sha1 algorithm.
          */
 
-        MUSIC_SUPER_EXPORT QString mdII(const QString &data, bool encode);
+        MUSIC_UTILS_EXPORT QString mdII(const QString &data, bool encode);
         /*!
          * Get mdII(greedysky) algorithm.
          */
-        MUSIC_SUPER_EXPORT QString mdII(const QString &data, const QString &key, bool encode);
+        MUSIC_UTILS_EXPORT QString mdII(const QString &data, const QString &key, bool encode);
         /*!
          * Get mdII(greedysky) algorithm.
          */

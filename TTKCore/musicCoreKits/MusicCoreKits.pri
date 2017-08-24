@@ -6,16 +6,10 @@
 # * works are strictly forbiden.
 # =================================================
 
-INCLUDEPATH += $$PWD \
-               $$PWD/utils
+INCLUDEPATH += $$PWD
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/utils/musiccoreutils.h \
-    $$PWD/utils/musicwidgetutils.h \
-    $$PWD/utils/musicnumberutils.h \
-    $$PWD/utils/musicstringutils.h \
-    $$PWD/utils/musicalgorithmutils.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicdatabaseobject.h \
@@ -50,11 +44,6 @@ HEADERS  += \
 
 contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
-    $$PWD/utils/musiccoreutils.cpp \
-    $$PWD/utils/musicwidgetutils.cpp \
-    $$PWD/utils/musicnumberutils.cpp \
-    $$PWD/utils/musicstringutils.cpp \
-    $$PWD/utils/musicalgorithmutils.cpp \
     $$PWD/musicformats.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \

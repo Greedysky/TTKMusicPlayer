@@ -23,6 +23,7 @@
 #  define MUSIC_TOOL
 #  define MUSIC_TOOLSET
 #  define MUSIC_USER
+#  define MUSIC_UTILS
 #  define MUSIC_VIDEO
 #  define MUSIC_GUI
 #endif
@@ -110,6 +111,14 @@
 #    define MUSIC_USER_EXPORT Q_DECL_EXPORT
 #  else
 #    define MUSIC_USER_IMPORT Q_DECL_IMPORT
+#  endif
+#endif
+
+#ifdef MUSIC_UTILS
+#  ifdef MUSIC_EXPORT
+#    define MUSIC_UTILS_EXPORT Q_DECL_EXPORT
+#  else
+#    define MUSIC_UTILS_IMPORT Q_DECL_IMPORT
 #  endif
 #endif
 

@@ -1,12 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
-    ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
-    ${MUSIC_CORE_DIR}/utils/musiccoreutils.h
-    ${MUSIC_CORE_DIR}/utils/musicwidgetutils.h
-    ${MUSIC_CORE_DIR}/utils/musicnumberutils.h
-    ${MUSIC_CORE_DIR}/utils/musicstringutils.h
-    ${MUSIC_CORE_DIR}/utils/musicalgorithmutils.h
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicformats.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
@@ -34,12 +28,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
-    ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
-    ${MUSIC_CORE_DIR}/utils/musiccoreutils.cpp
-    ${MUSIC_CORE_DIR}/utils/musicwidgetutils.cpp
-    ${MUSIC_CORE_DIR}/utils/musicnumberutils.cpp
-    ${MUSIC_CORE_DIR}/utils/musicstringutils.cpp
-    ${MUSIC_CORE_DIR}/utils/musicalgorithmutils.cpp
     ${MUSIC_CORE_DIR}/musichotkeymanager.cpp
     ${MUSIC_CORE_DIR}/musicformats.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp

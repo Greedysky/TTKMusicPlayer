@@ -19,32 +19,32 @@ namespace MusicUtils
 {
     namespace String
     {
-        MUSIC_SUPER_EXPORT QString removeStringBy(const QString &value, const QString &key = " ");
+        MUSIC_UTILS_EXPORT QString removeStringBy(const QString &value, const QString &key = " ");
         /*!
          * Remove given key in string, default is space.
          */
-        MUSIC_SUPER_EXPORT QStringList splitString(const QString &value, const QString &key = "-");
+        MUSIC_UTILS_EXPORT QStringList splitString(const QString &value, const QString &key = "-");
         /*!
          * Get split string value.
          */
-        MUSIC_SUPER_EXPORT QString artistName(const QString &value, const QString &key = "-");
+        MUSIC_UTILS_EXPORT QString artistName(const QString &value, const QString &key = "-");
         /*!
          * Get song artist name.
          */
-        MUSIC_SUPER_EXPORT QString songName(const QString &value, const QString &key = "-");
+        MUSIC_UTILS_EXPORT QString songName(const QString &value, const QString &key = "-");
         /*!
          * Get song name.
          */
 
-        MUSIC_SUPER_EXPORT QList<QColor> readColorConfig(const QString &value);
+        MUSIC_UTILS_EXPORT QList<QColor> readColorConfig(const QString &value);
         /*!
          * Transform colors string to color list.
          */
-        MUSIC_SUPER_EXPORT QString writeColorConfig(const QColor &color);
+        MUSIC_UTILS_EXPORT QString writeColorConfig(const QColor &color);
         /*!
          * Transform color to color string.
          */
-        MUSIC_SUPER_EXPORT QString writeColorConfig(const QList<QColor> &colors);
+        MUSIC_UTILS_EXPORT QString writeColorConfig(const QList<QColor> &colors);
         /*!
          * Transform color list to colors string.
          */
