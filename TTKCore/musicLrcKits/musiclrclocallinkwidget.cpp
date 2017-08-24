@@ -7,7 +7,6 @@
 #include "musicdownloadstatusobject.h"
 
 #include <QDir>
-#include <QFileDialog>
 
 MusicLrcLocalLinkTableWidget::MusicLrcLocalLinkTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -152,8 +151,7 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    QString picPath = QFileDialog::getOpenFileName(
-                      this, QString(), "./", "LRC (*.lrc)");
+    QString picPath = MusicUtils::Widget::getOpenFileDialog(this, "LRC (*.lrc)");
     if(picPath.isEmpty() || m_ui->searchedTable->contains(picPath))
     {
         return;

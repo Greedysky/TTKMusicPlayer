@@ -138,7 +138,7 @@ void MusicDesktopWallpaperWidget::initParameters() const
 
 void MusicDesktopWallpaperWidget::viewButtonPressed()
 {
-    QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
+    QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
         m_ui->urlLineEdit->setText(path);

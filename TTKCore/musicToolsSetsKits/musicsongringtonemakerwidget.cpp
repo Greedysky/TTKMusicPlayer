@@ -9,7 +9,6 @@
 #include "musictime.h"
 
 #include <QProcess>
-#include <QFileDialog>
 #include <QStyledItemDelegate>
 
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
@@ -93,7 +92,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    QString path = QFileDialog::getOpenFileName(this, QString(), "./", filter);
+    QString path = MusicUtils::Widget::getOpenFileDialog(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -127,7 +126,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1 )").arg(m_ui->formatCombo->currentText().toLower());
-    value = QFileDialog::getSaveFileName(this, QString(), "./", value);
+    value = MusicUtils::Widget::getSaveFileDialog(this, value);
     if(value.isEmpty())
     {
         return;

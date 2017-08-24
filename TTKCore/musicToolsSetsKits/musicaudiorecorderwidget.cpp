@@ -2,11 +2,11 @@
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
 #include "musiccoreutils.h"
+#include "musicwidgetutils.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
 
 #include <QMovie>
-#include <QFileDialog>
 
 MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -184,8 +184,7 @@ void MusicAudioRecorderWidget::onRecordStop()
 
 void MusicAudioRecorderWidget::onRecordSave()
 {
-    QString filename = QFileDialog::getSaveFileName( this,
-        tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
+    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Wav(*.wav)");
     if(!filename.isEmpty())
     {
         m_recordCore->addWavHeader(MusicUtils::Core::toLocal8Bit(filename));

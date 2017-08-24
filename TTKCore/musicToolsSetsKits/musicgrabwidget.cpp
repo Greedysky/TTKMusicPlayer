@@ -1,10 +1,10 @@
 #include "musicgrabwidget.h"
+#include "musicwidgetutils.h"
 
 #include <QMenu>
 #include <QScreen>
 #include <QPainter>
 #include <QMouseEvent>
-#include <QFileDialog>
 #include <QApplication>
 #include <QDesktopWidget>
 
@@ -49,8 +49,7 @@ void MusicGrabWidget::mouseMoveEvent(QMouseEvent *event)
 
 void MusicGrabWidget::musicCreateRightMenu()
 {
-    QString filename = QFileDialog::getSaveFileName(this,
-        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         musicCreateRightMenu(filename);

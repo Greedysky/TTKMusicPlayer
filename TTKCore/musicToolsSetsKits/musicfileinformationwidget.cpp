@@ -5,8 +5,7 @@
 #include "musicnumberutils.h"
 #include "musicsongtag.h"
 #include "musicmessagebox.h"
-
-#include <QFileDialog>
+#include "musicwidgetutils.h"
 
 #define ADVANCE_OFFSET  150
 
@@ -72,8 +71,7 @@ void MusicFileInformationWidget::musicOpenFileDir()
 
 void MusicFileInformationWidget::musicOpenImageFileDir()
 {
-    m_imagePath = QFileDialog::getOpenFileName(
-                  this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    m_imagePath = MusicUtils::Widget::getOpenFileDialog(this);
     if(m_imagePath.isEmpty())
     {
         return;

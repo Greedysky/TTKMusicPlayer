@@ -16,9 +16,9 @@
 //qmmp
 #include <qmmpsettings.h>
 
+#include <QFileDialog>
 #include <QFontDatabase>
 #include <QColorDialog>
-#include <QFileDialog>
 #include <QButtonGroup>
 #include <QAudioDeviceInfo>
 #include <QStyledItemDelegate>

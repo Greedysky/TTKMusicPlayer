@@ -559,8 +559,8 @@ void MusicApplication::musicImportSongsItemList()
 
 void MusicApplication::musicExportSongsItemList(int index)
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save List File"), QString(),
-                                                    MusicFormats::supportFormatsPlaylistString());
+    QString fileName = MusicUtils::Widget::getSaveFileDialog(this, tr("Save List File"),
+                                                             MusicFormats::supportFormatsPlaylistString());
     if(!fileName.isEmpty())
     {
         MusicSongItems items = m_musicSongTreeWidget->getMusicLists();

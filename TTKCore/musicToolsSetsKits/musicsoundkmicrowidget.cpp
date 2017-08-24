@@ -18,8 +18,6 @@
 #include "musicotherdefine.h"
 #include "musictime.h"
 
-#include <QFileDialog>
-
 #ifdef Q_CC_GNU
     #pragma GCC diagnostic ignored "-Wparentheses"
 #endif
@@ -178,8 +176,7 @@ void MusicSoundKMicroWidget::playFinished()
 
         recordStateChanged(false);
 
-        QString filename = QFileDialog::getSaveFileName( this,
-            tr("choose a filename to save under"), QDir::currentPath(), "Wav(*.wav)");
+        QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Wav(*.wav)");
         if(!filename.isEmpty())
         {
             m_recordCore->addWavHeader(MusicUtils::Core::toLocal8Bit(filename));

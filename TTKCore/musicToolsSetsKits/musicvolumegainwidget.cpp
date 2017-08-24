@@ -175,7 +175,7 @@ void MusicVolumeGainWidget::setControlEnable(bool enable)
 void MusicVolumeGainWidget::addFileButtonClicked()
 {
     QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::ExistingFiles );
+    dialog.setFileMode(QFileDialog::ExistingFiles);
     dialog.setViewMode(QFileDialog::Detail);
     dialog.setNameFilters( QStringList() << "All File(*.*)" << "MP3 File(*.mp3)" );
     if(dialog.exec())
@@ -204,7 +204,7 @@ void MusicVolumeGainWidget::addFileButtonClicked()
 void MusicVolumeGainWidget::addFilesButtonClicked()
 {
     QFileDialog dialog(this);
-    dialog.setFileMode(QFileDialog::Directory );
+    dialog.setFileMode(QFileDialog::Directory);
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {

@@ -108,7 +108,7 @@ void MusicTransformWidget::initInputPath()
         }
         filter = filter.trimmed() + ")";
 
-        path = QFileDialog::getOpenFileName( this, QString(), "./", filter);
+        path = MusicUtils::Widget::getOpenFileDialog(this, filter);
         if(path.isEmpty() || m_path.contains(path))
         {
             return;
@@ -160,7 +160,7 @@ QFileInfoList MusicTransformWidget::getFileList(const QString &path)
 
 void MusicTransformWidget::initOutputPath()
 {
-    QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
+    QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
         m_ui->outputLineEdit->setText(path);

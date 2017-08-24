@@ -8,9 +8,9 @@
 #include "musictopareawidget.h"
 #include "musicapplicationobject.h"
 #include "musicotherdefine.h"
+#include "musicwidgetutils.h"
 
 #include <QScrollBar>
-#include <QFileDialog>
 #include <QSignalMapper>
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
@@ -197,8 +197,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
 
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    QString customSkinPath =  QFileDialog::getOpenFileName(
-                              this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    QString customSkinPath = MusicUtils::Widget::getOpenFileDialog(this);
     if(customSkinPath.isEmpty())
     {
         return;

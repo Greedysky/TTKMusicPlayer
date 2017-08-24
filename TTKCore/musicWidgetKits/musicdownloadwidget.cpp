@@ -392,7 +392,7 @@ void MusicDownloadWidget::setMoveWidget(QWidget *w, int pos)
 void MusicDownloadWidget::downloadDirSelected()
 {
     QFileDialog dialog;
-    dialog.setFileMode(QFileDialog::Directory );
+    dialog.setFileMode(QFileDialog::Directory);
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {

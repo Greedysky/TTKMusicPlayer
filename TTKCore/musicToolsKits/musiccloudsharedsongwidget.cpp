@@ -252,8 +252,7 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
 
 void MusicCloudSharedSongTableWidget::uploadFileToServer()
 {
-    QStringList path = QFileDialog::getOpenFileNames(this,
-                       QString(), "./", "File (*.mp3)");
+    QStringList path = MusicUtils::Widget::getOpenFilesDialog(this, "File (*.mp3)");
     if(!path.isEmpty())
     {
         foreach(const QString &file, path)
@@ -280,7 +279,7 @@ void MusicCloudSharedSongTableWidget::uploadFileToServer()
 
 void MusicCloudSharedSongTableWidget::uploadFilesToServer()
 {
-    QString path =  QFileDialog::getExistingDirectory(this, QString(), "./");
+    QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
         foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicFormats::supportFormatsFilterString()))

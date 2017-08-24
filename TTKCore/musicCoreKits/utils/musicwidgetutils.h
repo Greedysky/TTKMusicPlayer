@@ -95,6 +95,46 @@ namespace MusicUtils
         /*!
          * Image color burn transform.
          */
+
+        MUSIC_SUPER_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter);
+        /*!
+         * Get open file dialog.
+         */
+        MUSIC_SUPER_EXPORT QString getOpenFileDialog(QWidget *obj, const QString &filter);
+        /*!
+         * Get open file dialog.
+         */
+        MUSIC_SUPER_EXPORT QString getOpenFileDialog(QWidget *obj);
+        /*!
+         * Get open file dialog.
+         */
+
+        MUSIC_SUPER_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter);
+        /*!
+         * Get open files dialog.
+         */
+        MUSIC_SUPER_EXPORT QStringList getOpenFilesDialog(QWidget *obj, const QString &filter);
+        /*!
+         * Get open files dialog.
+         */
+        MUSIC_SUPER_EXPORT QStringList getOpenFilesDialog(QWidget *obj);
+        /*!
+         * Get open files dialog.
+         */
+
+        MUSIC_SUPER_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter);
+        /*!
+         * Get save file dialog.
+         */
+        MUSIC_SUPER_EXPORT QString getSaveFileDialog(QWidget *obj, const QString &filter);
+        /*!
+         * Get save file dialog.
+         */
+        MUSIC_SUPER_EXPORT QString getSaveFileDialog(QWidget *obj);
+        /*!
+         * Get save file dialog.
+         */
+
     }
 }
 

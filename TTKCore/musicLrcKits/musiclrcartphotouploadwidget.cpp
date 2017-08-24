@@ -3,8 +3,7 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicmessagebox.h"
-
-#include <QFileDialog>
+#include "musicwidgetutils.h"
 
 MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -63,8 +62,7 @@ void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 {
-    QString picPath = QFileDialog::getOpenFileName(
-                      this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    QString picPath = MusicUtils::Widget::getOpenFileDialog(this);
     if(picPath.isEmpty())
     {
         return;

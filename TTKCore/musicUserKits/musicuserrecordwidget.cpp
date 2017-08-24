@@ -6,7 +6,6 @@
 #include "musicwidgetutils.h"
 #include "musicalgorithmutils.h"
 
-#include <QFileDialog>
 #include <QStyledItemDelegate>
 
 MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
@@ -160,8 +159,7 @@ void MusicUserRecordWidget::confirmButtonClickedF()
 
 void MusicUserRecordWidget::openFileButtonClickedS()
 {
-    m_iconLocalPath =  QFileDialog::getOpenFileName(
-                              this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    m_iconLocalPath = MusicUtils::Widget::getOpenFileDialog(this);
     if(m_iconLocalPath.isEmpty())
     {
         return;

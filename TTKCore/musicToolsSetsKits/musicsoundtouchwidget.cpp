@@ -7,7 +7,6 @@
 
 #include <QSound>
 #include <QProcess>
-#include <QFileDialog>
 
 MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -151,8 +150,7 @@ void MusicSoundTouchWidget::rateSliderValueChanged(int value)
 
 void MusicSoundTouchWidget::openWavButtonClicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this,
-        tr("choose a filename to open under"), QDir::currentPath(), "Wav(*.wav)");
+    QString filename = MusicUtils::Widget::getOpenFileDialog(this, "Wav(*.wav)");
     if(!filename.isEmpty())
     {
         m_ui->transformButton->setEnabled(true);

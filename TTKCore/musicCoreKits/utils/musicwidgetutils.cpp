@@ -4,6 +4,7 @@
 #include <QBitmap>
 #include <QPainter>
 #include <QBuffer>
+#include <QFileDialog>
 
 void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
 {
@@ -163,4 +164,49 @@ uint MusicUtils::Widget::colorBurnTransform(int c, int delta)
         result = 0;
     }
     return result;
+}
+
+QString MusicUtils::Widget::getOpenFileDialog(QWidget *obj, const QString &title, const QString &filter)
+{
+    return QFileDialog::getOpenFileName(obj, title, QDir::currentPath(), filter);
+}
+
+QString MusicUtils::Widget::getOpenFileDialog(QWidget *obj, const QString &filter)
+{
+    return getOpenFileDialog(obj, QObject::tr("choose a filename to open under"), filter);
+}
+
+QString MusicUtils::Widget::getOpenFileDialog(QWidget *obj)
+{
+    return getOpenFileDialog(obj, "Images (*.png *.bmp *.jpg)");
+}
+
+QStringList MusicUtils::Widget::getOpenFilesDialog(QWidget *obj, const QString &title, const QString &filter)
+{
+    return QFileDialog::getOpenFileNames(obj, title, QDir::currentPath(), filter);
+}
+
+QStringList MusicUtils::Widget::getOpenFilesDialog(QWidget *obj, const QString &filter)
+{
+    return getOpenFilesDialog(obj, QObject::tr("choose a filename to open under"), filter);
+}
+
+QStringList MusicUtils::Widget::getOpenFilesDialog(QWidget *obj)
+{
+    return getOpenFilesDialog(obj, "Images (*.png *.bmp *.jpg)");
+}
+
+QString MusicUtils::Widget::getSaveFileDialog(QWidget *obj, const QString &title, const QString &filter)
+{
+    return QFileDialog::getSaveFileName(obj, title, QDir::currentPath(), filter);
+}
+
+QString MusicUtils::Widget::getSaveFileDialog(QWidget *obj, const QString &filter)
+{
+    return getSaveFileDialog(obj, QObject::tr("choose a filename to save under"), filter);
+}
+
+QString MusicUtils::Widget::getSaveFileDialog(QWidget *obj)
+{
+    return getSaveFileDialog(obj, "Images (*.png *.bmp *.jpg)");
 }

@@ -7,7 +7,6 @@
 
 #include <QPainter>
 #include <QScrollBar>
-#include <QFileDialog>
 #include <QDebug>
 
 #define ITEM_SCROLL_WIDTH   8
@@ -186,8 +185,7 @@ void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString
 
 void MusicLrcPosterWidget::openButtonClicked()
 {
-    QString picPath = QFileDialog::getOpenFileName(
-                      this, QString(), "./", "Images (*.png *.bmp *.jpg)");
+    QString picPath = MusicUtils::Widget::getOpenFileDialog(this);
     if(picPath.isEmpty())
     {
         return;
@@ -198,8 +196,7 @@ void MusicLrcPosterWidget::openButtonClicked()
 
 void MusicLrcPosterWidget::saveButtonClicked()
 {
-    QString filename = QFileDialog::getSaveFileName( this,
-        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         QRect rect = m_itemWidget->rect();

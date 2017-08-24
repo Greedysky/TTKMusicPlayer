@@ -2,13 +2,13 @@
 #include "musicbackgroundmanager.h"
 #include "musicinlinefloatuiobject.h"
 #include "musicleftareawidget.h"
+#include "musicwidgetutils.h"
 
 #include <qmath.h>
 #include <QMenu>
 #include <QTimer>
 #include <QCheckBox>
 #include <QPushButton>
-#include <QFileDialog>
 
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65
@@ -88,8 +88,7 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    QString filename = QFileDialog::getSaveFileName( this,
-        tr("choose a filename to save under"), QDir::currentPath(), "Jpeg(*.jpg)");
+    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         QPixmap pix(m_pixPath);
