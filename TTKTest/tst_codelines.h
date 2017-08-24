@@ -8,6 +8,10 @@ class CodeLinesTest : public QObject
     Q_OBJECT
 private Q_SLOTS:
     void initTestCase();
+    void codeLines();
+    void stringEncode();
+    void stringDecode();
+    void cleanupTestCase();
 
 };
 

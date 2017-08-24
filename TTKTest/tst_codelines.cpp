@@ -1,5 +1,6 @@
 #include "tst_codelines.h"
 #include "musicglobal.h"
+#include "musicalgorithmutils.h"
 
 #include <QDir>
 #include <QMap>
@@ -29,6 +30,11 @@ void foreachFileFromDirectory(const QDir &directory, const std::function<void(co
 }
 
 void CodeLinesTest::initTestCase()
+{
+
+}
+
+void CodeLinesTest::codeLines()
 {
     int fileCount = 0, lineCount = 0;
 
@@ -87,4 +93,19 @@ void CodeLinesTest::initTestCase()
     {
         qDebug() << QString(".%1 Type  All count %2").arg(key).arg(categorys[key]);
     }
+}
+
+void CodeLinesTest::stringEncode()
+{
+    qDebug() << MusicUtils::Algorithm::mdII("TEST_STRING", false);
+}
+
+void CodeLinesTest::stringDecode()
+{
+    qDebug() << MusicUtils::Algorithm::mdII("TEST_STRING", true);
+}
+
+void CodeLinesTest::cleanupTestCase()
+{
+
 }
