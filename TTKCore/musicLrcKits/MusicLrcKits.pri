@@ -32,7 +32,8 @@ HEADERS  += \
     $$PWD/musiclrccolorwidget.h \
     $$PWD/musiclrccommentswidget.h \
     $$PWD/musiclrctranslatedwidget.h \
-    $$PWD/musiclrccontainerforwallpaper.h
+    $$PWD/musiclrccontainerforwallpaper.h \
+    $$PWD/musiclrcposterwidget.h
 
 }
 
@@ -60,6 +61,7 @@ SOURCES += \
     $$PWD/musiclrccolorwidget.cpp \
     $$PWD/musiclrccommentswidget.cpp \
     $$PWD/musiclrctranslatedwidget.cpp \
-    $$PWD/musiclrccontainerforwallpaper.cpp
+    $$PWD/musiclrccontainerforwallpaper.cpp \
+    $$PWD/musiclrcposterwidget.cpp
 
 }

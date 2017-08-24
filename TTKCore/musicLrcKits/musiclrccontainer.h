@@ -84,7 +84,7 @@ public:
      */
 
 Q_SIGNALS:
-    void theCurrentLrcUpdated();
+    void currentLrcUpdated();
     /*!
      * The current lrc should update, emit it.
      */
@@ -122,15 +122,15 @@ public Q_SLOTS:
     /*!
      * Show search lrcs widget.
      */
-    void theCurrentLrcMaked();
+    void showLrcMakedWidget();
     /*!
      * Show making lrcs widget.
      */
-    void theLinkLrcChanged();
+    void linkLrcStateChanged();
     /*!
      * Link current lrc state changed.
      */
-    void theCurrentLrcError();
+    void showLrcErrorWidget();
     /*!
      * Show making error lrcs widget.
      */

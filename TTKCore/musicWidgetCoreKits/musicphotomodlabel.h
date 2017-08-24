@@ -40,6 +40,12 @@ public:
      * Set save song image path.
      */
 
+Q_SIGNALS:
+    void deltaValueChanged(float v);
+    /*!
+     * Delta value changed.
+     */
+
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
@@ -52,9 +58,9 @@ protected:
 
     QString m_path;
     QPixmap m_showPix;
-    int m_width, m_height;
     float m_ratio;
     bool m_picMoved;
+    int m_width, m_height, m_originWidth;
     QPoint m_pressedPos, m_deltaPos, m_imagePos;
 
 };

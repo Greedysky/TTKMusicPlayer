@@ -43,6 +43,7 @@ MusicLrcArtPhotoUploadWidget::MusicLrcArtPhotoUploadWidget(QWidget *parent)
     connect(m_ui->selectButton, SIGNAL(clicked()), SLOT(selectButtonClicked()));
     connect(m_ui->closeButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->uploadButton, SIGNAL(clicked()), SLOT(uploadButtonClicked()));
+    connect(m_ui->imageLabel, SIGNAL(deltaValueChanged(float)), SLOT(deltaValueChanged(float)));
 }
 
 MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
@@ -53,6 +54,11 @@ MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
 QString MusicLrcArtPhotoUploadWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
+{
+    m_ui->deltaValueLabel->setText(QString::number(MStatic_cast(int, v*100)) + "%");
 }
 
 void MusicLrcArtPhotoUploadWidget::selectButtonClicked()

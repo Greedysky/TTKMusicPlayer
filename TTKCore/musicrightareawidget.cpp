@@ -83,9 +83,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ///////////////////////////////////////////////////////
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget,
                  SLOT(changeInlineLrcWidget()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
+    connect(ui->musiclrccontainerforinline, SIGNAL(currentLrcUpdated()), MusicApplication::instance(),
                  SLOT(musicCurrentLrcUpdated()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(theArtBgHasChanged()),
+    connect(ui->musiclrccontainerforinline, SIGNAL(artBgHasChanged()),
                  SIGNAL(updateBgThemeDownload()));
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(),
                  SLOT(musicSetting()));
@@ -535,7 +535,7 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
     m_musicLrcForDesktop->setVisible(true);
 
     connect(m_musicLrcForDesktop, SIGNAL(setWindowLrcTypeChanged()), SLOT(setWindowLrcTypeChanged()));
-    connect(m_musicLrcForDesktop, SIGNAL(theCurrentLrcUpdated()), MusicApplication::instance(),
+    connect(m_musicLrcForDesktop, SIGNAL(currentLrcUpdated()), MusicApplication::instance(),
                                   SLOT(musicCurrentLrcUpdated()));
     connect(m_musicLrcForDesktop, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(),
                                   SLOT(musicSetting()));

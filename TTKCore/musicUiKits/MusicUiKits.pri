@@ -34,6 +34,7 @@ FORMS    += \
     $$PWD/musicLrcKits/musiclrcsearchwidget.ui \
     $$PWD/musicLrcKits/musiclrclocallinkwidget.ui \
     $$PWD/musicLrcKits/musiclrccolorwidget.ui \
+    $$PWD/musicLrcKits/musiclrcposterwidget.ui \
     $$PWD/musicToolsetsKits/musicaudiorecorderwidget.ui \
     $$PWD/musicToolsetsKits/musicdesktopwallpaperwidget.ui \
     $$PWD/musicToolsetsKits/musicfileinformationwidget.ui \

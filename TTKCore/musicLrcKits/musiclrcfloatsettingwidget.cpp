@@ -127,7 +127,7 @@ void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
     if(line->artBackgroundIsShow())
     {
-        line->theArtBgChanged();
+        line->artBackgroundChanged();
     }
 }
 
@@ -136,7 +136,7 @@ void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
     if(!line->artBackgroundIsShow())
     {
-        line->theArtBgChanged();
+        line->artBackgroundChanged();
     }
 }
 

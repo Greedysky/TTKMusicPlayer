@@ -111,7 +111,7 @@ Q_SIGNALS:
     /*!
      * Update current play time when user adjust the progress.
      */
-    void theArtBgHasChanged();
+    void artBgHasChanged();
     /*!
      * The art background state has changed emit.
      */
@@ -133,11 +133,11 @@ public Q_SLOTS:
     /*!
      * Save lrc time changed to current lrc file.
      */
-    void theArtBgChanged();
+    void artBackgroundChanged();
     /*!
      * The art background state has changed.
      */
-    void theArtBgUploaded();
+    void showArtBackgroundUploadedWidget();
     /*!
      * The art background has uploaded.
      */
@@ -160,6 +160,10 @@ public Q_SLOTS:
     void showSoundKMicroWidget();
     /*!
      * Show song KMicro widget.
+     */
+    void showLrcPosterWidget();
+    /*!
+     * Show lrc poster widget.
      */
 
 private Q_SLOTS:

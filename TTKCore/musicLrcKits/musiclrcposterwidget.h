@@ -1,5 +1,5 @@
-#ifndef MUSICLRCARTPHOTOUPLOADWIDGET_H
-#define MUSICLRCARTPHOTOUPLOADWIDGET_H
+#ifndef MUSICLRCPOSTERWIDGET_H
+#define MUSICLRCPOSTERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,21 +12,21 @@
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
-class MusicLrcArtPhotoUploadWidget;
+class MusicLrcPosterWidget;
 }
 
-/*! @brief The class of the lrc art photo upload.
+/*! @brief The class of the lrc art poster maker widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDialog
+class MUSIC_LRC_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLrcArtPhotoUploadWidget();
+    virtual ~MusicLrcPosterWidget();
 
     static QString getClassName();
     /*!
@@ -34,26 +34,14 @@ public:
      */
 
 public Q_SLOTS:
-    void deltaValueChanged(float v);
-    /*!
-     * Delta value changed.
-     */
-    void selectButtonClicked();
-    /*!
-     * Select button clicked.
-     */
-    void uploadButtonClicked();
-    /*!
-     * Upload button clicked.
-     */
     virtual int exec();
     /*!
      * Override exec function.
      */
 
 protected:
-    Ui::MusicLrcArtPhotoUploadWidget *m_ui;
+    Ui::MusicLrcPosterWidget *m_ui;
 
 };
 
-#endif // MUSICLRCARTPHOTOUPLOADWIDGET_H
+#endif // MUSICLRCPOSTERWIDGET_H

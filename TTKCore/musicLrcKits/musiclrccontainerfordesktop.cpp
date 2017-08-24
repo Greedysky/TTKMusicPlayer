@@ -260,7 +260,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolMakeLrcTextButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_TEXT_LENGTH,
                                         m_verticalWindow ? TOOLBAR_TEXT_LENGTH : TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolMakeLrcTextButton, 0, Qt::AlignCenter);
-    connect(toolMakeLrcTextButton, SIGNAL(clicked()), SLOT(theCurrentLrcMaked()));
+    connect(toolMakeLrcTextButton, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
 
     QToolButton *toolSearchLrcTextButton = new QToolButton(m_toolBarWidget);
     toolSearchLrcTextButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_TEXT_LENGTH,
@@ -272,13 +272,13 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     toolUpdateLrcTextButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_TEXT_LENGTH,
                                           m_verticalWindow ? TOOLBAR_TEXT_LENGTH : TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolUpdateLrcTextButton, 0, Qt::AlignCenter);
-    connect(toolUpdateLrcTextButton, SIGNAL(clicked()), SIGNAL(theCurrentLrcUpdated()));
+    connect(toolUpdateLrcTextButton, SIGNAL(clicked()), SIGNAL(currentLrcUpdated()));
 
     QToolButton *toolErrorLrcTextButton = new QToolButton(m_toolBarWidget);
     toolErrorLrcTextButton->setFixedSize(m_verticalWindow ? TOOLBAR_HEIGHT : TOOLBAR_TEXT_LENGTH,
                                          m_verticalWindow ? TOOLBAR_TEXT_LENGTH : TOOLBAR_HEIGHT);
     m_toolBarLayout->addWidget(toolErrorLrcTextButton, 0, Qt::AlignCenter);
-    connect(toolErrorLrcTextButton, SIGNAL(clicked()), SLOT(theCurrentLrcError()));
+    connect(toolErrorLrcTextButton, SIGNAL(clicked()), SLOT(showLrcErrorWidget()));
 
     QToolButton *toolWindowLockedButton = new QToolButton(m_toolBarWidget);
     toolWindowLockedButton->setFixedSize(TOOLBAR_HEIGHT, TOOLBAR_HEIGHT);
@@ -414,12 +414,12 @@ void MusicLrcContainerForDesktop::contextMenuEvent(QContextMenuEvent *event)
     changColorMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
-    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
-    menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
+    menu.addAction(tr("updateLrc"), this, SIGNAL(currentLrcUpdated()));
+    menu.addAction(tr("makeLrc"), this, SLOT(showLrcMakedWidget()));
     menu.addAction(!m_singleLineType ? tr("SingleLine") : tr("DoubleLine"), this, SLOT(setSingleLineTypeChanged()));
     menu.addSeparator();
 
-    QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
+    QAction *lrcLinkAc = menu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addAction(tr("hide"), this, SLOT(close()));
     menu.addAction(QIcon(":/contextMenu/btn_lock"), m_windowLocked ? tr("unlockLrc"): tr("lockLrc"), this, SLOT(setWindowLockedChanged()));

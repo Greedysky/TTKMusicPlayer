@@ -15,6 +15,7 @@
 #include "musicrightareawidget.h"
 #include "musiclrccommentswidget.h"
 #include "musiclrctranslatedwidget.h"
+#include "musiclrcposterwidget.h"
 #include "musiclayoutanimationwidget.h"
 #include "musicleftareawidget.h"
 #include "musictopareawidget.h"
@@ -303,17 +304,17 @@ void MusicLrcContainerForInline::saveLrcTimeChanged()
     m_lrcAnalysis->saveLrcTimeChanged();
 }
 
-void MusicLrcContainerForInline::theArtBgChanged()
+void MusicLrcContainerForInline::artBackgroundChanged()
 {
     m_showArtBackground = !m_showArtBackground;
-    emit theArtBgHasChanged();
+    emit artBgHasChanged();
 }
 
-void MusicLrcContainerForInline::theArtBgUploaded()
+void MusicLrcContainerForInline::showArtBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtBackground = true;
-    emit theArtBgHasChanged();
+    emit artBgHasChanged();
 }
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
@@ -356,6 +357,11 @@ void MusicLrcContainerForInline::showSoundKMicroWidget()
     }
 
     MusicLeftAreaWidget::instance()->createSoundKMicroWidget(m_currentSongName);
+}
+
+void MusicLrcContainerForInline::showLrcPosterWidget()
+{
+    MusicLrcPosterWidget(this).exec();
 }
 
 void MusicLrcContainerForInline::getTranslatedLrcFinished(const QString &data)
@@ -416,9 +422,10 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
     menu.addAction(tr("searchLrcs"), this, SLOT(searchMusicLrcs()));
-    menu.addAction(tr("updateLrc"), this, SIGNAL(theCurrentLrcUpdated()));
-    menu.addAction(tr("makeLrc"), this, SLOT(theCurrentLrcMaked()));
-    menu.addAction(tr("errorLrc"), this, SLOT(theCurrentLrcError()));
+    menu.addAction(tr("updateLrc"), this, SIGNAL(currentLrcUpdated()));
+    menu.addAction(tr("makeLrc"), this, SLOT(showLrcMakedWidget()));
+    menu.addAction(tr("errorLrc"), this, SLOT(showLrcErrorWidget()));
+    menu.addAction(tr("lrcPoster"), this, SLOT(showLrcPosterWidget()));
     menu.addSeparator();
     menu.addAction(MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("showNormalMode") : tr("showFullMode"),
                    MusicLeftAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()));
@@ -477,11 +484,11 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
     //////////////////////////////////////////////////
-    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(theArtBgChanged()));
+    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(artBackgroundChanged()));
     m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
-    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(theLinkLrcChanged()));
+    QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
-    menu.addAction(tr("artbgupload"), this, SLOT(theArtBgUploaded()));
+    menu.addAction(tr("artbgupload"), this, SLOT(showArtBackgroundUploadedWidget()));
     menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtBackground()))
                    ->setEnabled(!M_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
@@ -489,7 +496,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     QString fileName = m_lrcAnalysis->getCurrentFileName();
     bool fileCheck = !fileName.isEmpty() && QFile::exists(fileName);
     changeLrcLinkMenu.addAction(tr("localLink"), this, SLOT(showLocalLinkWidget()));
-    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(theLinkLrcChanged()));
+    QAction *lrcLinkAc = changeLrcLinkMenu.addAction(tr("localLinkOff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? lrcLinkAc->setText(tr("localLinkOff")) : lrcLinkAc->setText(tr("localLinkOn"));
     menu.addMenu(&changeLrcLinkMenu);
     menu.addAction(tr("copyToClip"), this, SLOT(lrcCopyClipboard()))->setEnabled( fileCheck );
@@ -687,7 +694,7 @@ void MusicLrcContainerForInline::createNoLrcCurrentInfo()
     m_noLrcCurrentInfo->setStyleSheet(MusicUIObject::MColorStyle06);
     m_noLrcCurrentInfo->setText(tr("makeLrc"));
 
-    connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(theCurrentLrcMaked()));
+    connect(m_noLrcCurrentInfo, SIGNAL(clicked()), SLOT(showLrcMakedWidget()));
     m_noLrcCurrentInfo->hide();
 }
 

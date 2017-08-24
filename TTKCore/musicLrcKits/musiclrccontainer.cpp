@@ -103,7 +103,7 @@ void MusicLrcContainer::searchMusicLrcs()
     m_musicLrcSearchWidget->exec();
 }
 
-void MusicLrcContainer::theCurrentLrcMaked()
+void MusicLrcContainer::showLrcMakedWidget()
 {
     MusicLrcMakerWidget *w = new MusicLrcMakerWidget(this);
     w->setCurrentSongName(m_currentSongName);
@@ -111,7 +111,7 @@ void MusicLrcContainer::theCurrentLrcMaked()
     w->show();
 }
 
-void MusicLrcContainer::theLinkLrcChanged()
+void MusicLrcContainer::linkLrcStateChanged()
 {
     m_linkLocalLrc = !m_linkLocalLrc;
     foreach(MusicLRCManager *w, m_musicLrcContainer)
@@ -120,7 +120,7 @@ void MusicLrcContainer::theLinkLrcChanged()
     }
 }
 
-void MusicLrcContainer::theCurrentLrcError()
+void MusicLrcContainer::showLrcErrorWidget()
 {
     MusicLrcErrorWidget(this).exec();
 }

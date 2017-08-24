@@ -9,6 +9,7 @@ MusicPhotoModLabel::MusicPhotoModLabel(QWidget *parent)
 {
     m_width = 0;
     m_height = 0;
+    m_originWidth = 0;
     m_ratio = 0.0f;
     m_picMoved = false;
 }
@@ -24,6 +25,7 @@ void MusicPhotoModLabel::setImagePath(const QString &path)
     m_showPix.load(path);
     m_width = m_showPix.width();
     m_height = m_showPix.height();
+    m_originWidth = m_width;
     m_ratio = m_width*1.0/m_height;
 }
 
@@ -58,9 +60,15 @@ void MusicPhotoModLabel::paintEvent(QPaintEvent *event)
 
 void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
 {
-    m_deltaPos = QPoint();
     QWidget::wheelEvent(event);
+    m_deltaPos = QPoint();
+
     float delta = event->delta() / 100.0;
+    float dv = m_width*1.0/m_originWidth;
+    if(dv >= 5 && delta > 0)
+    {
+        return;
+    }
 
     m_width = delta > 0 ?  m_width * delta : m_width * (1 / -delta);
     m_height = delta > 0 ?  m_height * delta : m_height * (1 / -delta);
@@ -75,6 +83,9 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
         m_height = 10;
         m_width = m_height*m_ratio;
     }
+
+    dv = m_width*1.0/m_originWidth;
+    emit deltaValueChanged(dv);
 
     m_showPix.scaled(m_width, m_height, Qt::KeepAspectRatio);
     update();

@@ -60,7 +60,7 @@ MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     m_wallp->setEnabled(false);
 #endif
 
-    connect(m_update, SIGNAL(clicked()), parent, SIGNAL(theCurrentLrcUpdated()));
+    connect(m_update, SIGNAL(clicked()), parent, SIGNAL(currentLrcUpdated()));
     connect(m_search, SIGNAL(clicked()), parent, SLOT(searchMusicLrcs()));
     connect(m_wallp, SIGNAL(clicked()), SLOT(musicContainerForWallpaperClicked()));
     connect(m_photo, SIGNAL(clicked()), m_floatPhotoWidget, SLOT(show()));
