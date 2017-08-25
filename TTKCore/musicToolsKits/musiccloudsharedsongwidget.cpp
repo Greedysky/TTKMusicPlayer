@@ -40,7 +40,7 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     m_openFileWidget = nullptr;
     m_currentUploadIndex = 0;
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
 
     m_fileDialog = new MusicCloudFileManagerDialog(this);
     m_networkManager = new QNetworkAccessManager(this);

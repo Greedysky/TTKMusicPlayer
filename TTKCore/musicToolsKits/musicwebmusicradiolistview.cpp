@@ -11,8 +11,8 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
     setFrameShape(QFrame::NoFrame);//Set No Border
-    setStyleSheet(MusicUIObject::MScrollBarStyle02 + \
-                  MusicUIObject::MScrollBarStyle03.arg(50));
+    setStyleSheet(MusicUIObject::MScrollBarStyle03 + \
+                  MusicUIObject::MScrollBarStyle05.arg(50));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
     MusicUtils::Widget::setTransparent(this, 50);

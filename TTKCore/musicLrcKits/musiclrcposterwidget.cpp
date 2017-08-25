@@ -17,6 +17,7 @@
 MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_type = Type_01;
     m_pixPath = M_BACKGROUND_PTR->getArtPhotoPathNoIndex();
 }
 
@@ -47,35 +48,95 @@ void MusicLrcPosterItemWidget::textChanged(const QStringList &data)
     update();
 }
 
+void MusicLrcPosterItemWidget::currentTypeChanged(int type)
+{
+    m_type = MStatic_cast(Type, type);
+    update();
+}
+
 void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
 
     QPainter painter(this);
+    switch(m_type)
+    {
+        case Type_01: drawTheme1(&painter); break;
+        case Type_02: drawTheme2(&painter); break;
+    }
+}
+
+void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
+{
     QPixmap pix(m_pixPath);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
-    painter.drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
+    painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
 
     QFontMetrics fm(font());
     int lineHeight = fm.height();
     int offset = pix.height() + 5*ITEM_BORDER + lineHeight;
-
-    painter.setPen(QColor(0x66, 0x66, 0x66));
+    int v = 1;
+    //////////////////////////////////////////////////////////////////////////////
+    painter->setPen(QColor(0x66, 0x66, 0x66));
     for(int i=0; i<m_data.count(); ++i)
     {
-        offset = pix.height() + 5*ITEM_BORDER*(i + 1) + lineHeight*(i + 1);
-        painter.drawText(2*ITEM_BORDER, offset, m_data[i]);
+        v = fm.width(m_data[i])/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
+        offset = pix.height() + 5*ITEM_BORDER*(i+1) + v*lineHeight*(i+1);
+        painter->drawText(2*ITEM_BORDER, offset, width() - 4*ITEM_BORDER, v*lineHeight, Qt::TextWrapAnywhere, m_data[i]);
     }
-
+    //////////////////////////////////////////////////////////////////////////////
     if(!m_data.isEmpty())
     {
-        offset += 5*ITEM_BORDER + lineHeight;
+        offset += 5*ITEM_BORDER + v*lineHeight;
     }
 
-    QString title = "---" + MusicUtils::String::artistName(m_title) + "●" + MusicUtils::String::songName(m_title);
-    painter.drawText(2*ITEM_BORDER, offset, width() - 3*ITEM_BORDER, lineHeight, Qt::AlignRight, title);
-
+    QString title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title))
+                                          .arg(MusicUtils::String::songName(m_title));
+    v = fm.width(title)/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
+    painter->drawText(2*ITEM_BORDER, offset, width() - 4*ITEM_BORDER, v*lineHeight, Qt::AlignRight | Qt::TextWrapAnywhere, title);
+    //////////////////////////////////////////////////////////////////////////////
+    offset += 5*ITEM_BORDER + v*lineHeight;
+    painter->drawText(2*ITEM_BORDER, offset, width() - 4*ITEM_BORDER, lineHeight, Qt::AlignCenter, tr("TTKMusicPlayer"));
+    offset += 3*ITEM_BORDER;
+    //////////////////////////////////////////////////////////////////////////////
     setFixedHeight(offset >= ITEM_HEIGHT ? offset + 2*lineHeight : ITEM_HEIGHT);
+}
+
+void MusicLrcPosterItemWidget::drawTheme2(QPainter *painter)
+{
+    QFontMetrics fm(font());
+    int lineHeight = fm.height();
+    int offset = 5*ITEM_BORDER + lineHeight;
+    int v = 1;
+    //////////////////////////////////////////////////////////////////////////////
+    for(int i=0; i<m_data.count(); ++i)
+    {
+        v = fm.width(m_data[i])/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
+        offset = 5*ITEM_BORDER*(i+1) + v*lineHeight*(i+1);
+    }
+    painter->setPen(QColor(0x66, 0x66, 0x66));
+    //////////////////////////////////////////////////////////////////////////////
+    QString title = QString("--- %1 ● %2").arg(MusicUtils::String::artistName(m_title))
+                                          .arg(MusicUtils::String::songName(m_title));
+    v = fm.width(title)/(ITEM_WIDTH - 16*ITEM_BORDER) + 1;
+    offset += 18*ITEM_BORDER + v*lineHeight;
+    if(offset < ITEM_HEIGHT)
+    {
+        offset = ITEM_HEIGHT;
+    }
+    painter->drawText(8*ITEM_BORDER, offset - 8*ITEM_BORDER - v*lineHeight, ITEM_WIDTH - 16*ITEM_BORDER, v*lineHeight, Qt::AlignRight | Qt::TextWrapAnywhere, title);
+    //////////////////////////////////////////////////////////////////////////////
+    painter->setPen(QPen(QColor(0xBB, 0xBB, 0xBB), ITEM_BORDER));
+    painter->drawRect(5*ITEM_BORDER, 5*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, offset - 10*ITEM_BORDER);
+    setFixedHeight(offset);
+    painter->setPen(QColor(0x66, 0x66, 0x66));
+    //////////////////////////////////////////////////////////////////////////////
+    for(int i=0; i<m_data.count(); ++i)
+    {
+        v = fm.width(m_data[i])/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
+        offset = 3*ITEM_BORDER + 5*ITEM_BORDER*(i+1) + v*lineHeight*(i+1);
+        painter->drawText(8*ITEM_BORDER, offset, width() - 16*ITEM_BORDER, v*lineHeight, Qt::TextWrapAnywhere, m_data[i]);
+    }
 }
 
 
@@ -86,7 +147,7 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     setColumnCount(2);
     QHeaderView *headerview = horizontalHeader();
@@ -133,6 +194,43 @@ void MusicLrcPosterTableWidget::listCellClicked(int row, int column)
 
 
 
+MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
+    : QListWidget(parent)
+{
+    setIconSize(QSize(40, 40));
+    setFrameShape(QFrame::NoFrame);
+    setViewMode(QListView::IconMode);
+    setMovement(QListView::Static);
+    setFlow(QListView::TopToBottom);
+    setSelectionMode(QListWidget::SingleSelection);
+    setFocusPolicy(Qt::ClickFocus);
+    setHorizontalScrollMode(QListWidget::ScrollPerPixel);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    addListWidgetItem();
+}
+
+QString MusicLrcPosterThemeListWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicLrcPosterThemeListWidget::addListWidgetItem()
+{
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Default"), this);
+    item->setSizeHint(QSize(70, 80));
+    addItem(item);
+
+                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Plain"), this);
+    item->setSizeHint(QSize(70, 80));
+    addItem(item);
+
+    setFixedWidth(70*count());
+}
+
+
+
 MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicLrcPosterWidget)
@@ -152,8 +250,17 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
     m_ui->viewArea->setFrameShadow(QFrame::Plain);
     m_ui->viewArea->setAlignment(Qt::AlignVCenter);
     m_ui->viewArea->setWidget(m_itemWidget);
-    m_ui->viewArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
+    m_ui->viewArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
     connect(m_ui->lrcArea, SIGNAL(textChanged(QStringList)), m_itemWidget, SLOT(textChanged(QStringList)));
+
+    m_themeWidget = new MusicLrcPosterThemeListWidget(this);
+    m_ui->listArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_ui->listArea->setWidgetResizable(true);
+    m_ui->listArea->setFrameShape(QFrame::NoFrame);
+    m_ui->listArea->setFrameShadow(QFrame::Plain);
+    m_ui->listArea->setAlignment(Qt::AlignVCenter);
+    m_ui->listArea->setWidget(m_themeWidget);
+    m_ui->listArea->horizontalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle04);
 
     m_ui->openButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->saveButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
@@ -163,12 +270,13 @@ MusicLrcPosterWidget::MusicLrcPosterWidget(QWidget *parent)
 #endif
     connect(m_ui->openButton, SIGNAL(clicked()), SLOT(openButtonClicked()));
     connect(m_ui->saveButton, SIGNAL(clicked()), SLOT(saveButtonClicked()));
-
+    connect(m_themeWidget, SIGNAL(currentRowChanged(int)), m_itemWidget, SLOT(currentTypeChanged(int)));
 }
 
 MusicLrcPosterWidget::~MusicLrcPosterWidget()
 {
     delete m_itemWidget;
+    delete m_themeWidget;
     delete m_ui;
 }
 

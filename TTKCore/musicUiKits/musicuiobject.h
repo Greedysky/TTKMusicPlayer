@@ -292,10 +292,21 @@ namespace MusicUIObject
             QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;} \
             QScrollBar::add-page, QScrollBar::sub-page{ background:none;}";
 
-    const QString MScrollBarStyle02 = MScrollBarStyle01 + " \
+    const QString MScrollBarStyle02 = " \
+            QScrollBar{ background:#FFFFFF; height:8px; padding-left:0px; padding-right:0px;} \
+            QScrollBar::handle:horizontal{ border-radius:4px; background:#CFCFCF; min-width: 30px;} \
+            QScrollBar::handle:horizontal::disabled{ background:#DBDBDB;} \
+            QScrollBar::handle:horizontal:hover{ background:#BBBBBB;} \
+            QScrollBar::add-line, QScrollBar::sub-line{ background:none; border:none;} \
+            QScrollBar::add-page, QScrollBar::sub-page{ background:none;}";
+
+    const QString MScrollBarStyle03 = MScrollBarStyle01 + " \
             QScrollBar{ background:transparent;}";
 
-    const QString MScrollBarStyle03 = " \
+    const QString MScrollBarStyle04 = MScrollBarStyle02 + " \
+            QScrollBar{ background:transparent;}";
+
+    const QString MScrollBarStyle05 = " \
             QScrollBar{ background:rgba(255, 255, 255, %1);}";
 
 

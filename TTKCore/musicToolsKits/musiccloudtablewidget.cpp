@@ -17,7 +17,7 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     headerview->resizeSection(2, 111);
     headerview->resizeSection(3, 50);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
 
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_progressBarDelegate);
@@ -54,7 +54,7 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     headerview->resizeSection(3, 111);
     headerview->resizeSection(4, 50);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
 
     m_progressBarDelegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(3, m_progressBarDelegate);

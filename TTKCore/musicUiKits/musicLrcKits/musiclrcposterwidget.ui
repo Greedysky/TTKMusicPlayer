@@ -90,7 +90,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QScrollArea" name="listArea">
     <property name="geometry">
      <rect>
       <x>20</x>

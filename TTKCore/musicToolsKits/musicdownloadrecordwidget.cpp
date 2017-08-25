@@ -18,7 +18,7 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03.arg(50));
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
 
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);

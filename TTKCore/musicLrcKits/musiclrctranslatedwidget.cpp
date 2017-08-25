@@ -45,7 +45,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     m_plainText->setAlignment(Qt::AlignCenter);
 
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle02);
+    scrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
     scrollArea->setWidgetResizable(true);
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setAlignment(Qt::AlignLeft);
