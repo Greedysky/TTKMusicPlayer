@@ -16,7 +16,7 @@ win32:TARGET = ../../../bin/$$TTKMusicPlayer/TTKDumper
 unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKDumper
 
 CONFIG       += warn_off
-unix:VERSION += $$TTKMusicPlayer
+unix:VERSION += 1.0.0
 
 INCLUDEPATH += $$PWD/../../TTKCore/musicCoreKits
 
@@ -37,5 +37,5 @@ HEADERS += \
 include(../TTKExtrasDefine.pri)
 
 win32{
-    RC_FILE = MiniDumper.rc
+    RC_FILE = TTKDumper.rc
 }

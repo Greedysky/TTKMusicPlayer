@@ -39,12 +39,11 @@ include(../TTKExtrasDefine.pri)
 include(qaes/QAes.pri)
 include(qhz2py/QHz2Py.pri)
 include(qiniu/QiNiu.pri)
-include(qimage/QImage.pri)
 include(qjson/QJson.pri)
 include(qkugou/QKuGou.pri)
 include(qrencode/QRencode.pri)
 include(qshortcut/QShortCut.pri)
 
 win32{
-    RC_FILE = MusicExtras.rc
+    RC_FILE = TTKExtras.rc
 }

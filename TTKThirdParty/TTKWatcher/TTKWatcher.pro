@@ -43,5 +43,5 @@ HEADERS += \
 include(../TTKExtrasDefine.pri)
 
 win32{
-    RC_FILE = Devicewatcher.rc
+    RC_FILE = TTKWatcher.rc
 }

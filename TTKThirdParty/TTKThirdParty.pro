@@ -7,4 +7,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = Zlib MusicExtras Devicewatcher MiniDumper
+SUBDIRS = Zlib TTKDumper TTKWatcher TTKImage TTKExtras

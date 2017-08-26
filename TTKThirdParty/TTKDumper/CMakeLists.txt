@@ -25,7 +25,7 @@ set(MUSIC_SOURCES
   )
   
 if(WIN32)
-    list(APPEND MUSIC_SOURCES MiniDumper.rc)
+    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

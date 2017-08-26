@@ -4,7 +4,8 @@
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
-#include "qimage/qimagewrap.h"
+
+#include "qimagewrap.h"
 
 #include <QPainter>
 #include <QScrollBar>

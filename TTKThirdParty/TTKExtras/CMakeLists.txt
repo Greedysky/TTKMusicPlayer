@@ -162,7 +162,7 @@ set(MUSIC_SOURCES
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp MusicExtras.rc)
+    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp ${TARGET_NAME}.rc)
 else(UNIX)
     list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_x11.cpp)
 endif()

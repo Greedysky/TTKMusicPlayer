@@ -9,6 +9,7 @@
 INCLUDEPATH += \
         $$PWD \
         $$PWD/Zlib \
-        $$PWD/Devicewatcher \
-        $$PWD/MiniDumper \
-        $$PWD/MusicExtras
+        $$PWD/TTKWatcher \
+        $$PWD/TTKDumper \
+        $$PWD/TTKExtras \
+        $$PWD/TTKImage
