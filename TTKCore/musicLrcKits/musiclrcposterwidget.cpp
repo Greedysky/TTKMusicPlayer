@@ -8,7 +8,6 @@
 
 #include <QPainter>
 #include <QScrollBar>
-#include <QDebug>
 
 #define ITEM_SCROLL_WIDTH   8
 #define ITEM_BORDER         3
@@ -692,7 +691,11 @@ void MusicLrcPosterWidget::saveButtonClicked()
         {
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
+#ifdef MUSIC_GREATER_NEW
         m_itemWidget->grab(rect).save(filename, JPG_FILE_PREFIX);
+#else
+        QPixmap::grabWidget(this, rect).save(filename, JPG_FILE_PREFIX);
+#endif
     }
 }
 
