@@ -10,6 +10,7 @@ MusicToastLabel::MusicToastLabel(QWidget *parent)
 {
     setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
     setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_QuitOnClose);
     setAttribute(Qt::WA_DeleteOnClose);
 
     m_font = font();

@@ -1,4 +1,5 @@
 #include "musiclrcmanagerfordesktop.h"
+#include "musicnumberdefine.h"
 
 MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent)
     : MusicLRCManager(parent)
@@ -83,7 +84,7 @@ void MusicLRCManagerVerticalDesktop::paintEvent(QPaintEvent *)
     }
 
     painter.translate(m_geometry.y(), 0);
-    painter.rotate(90);
+    painter.rotate(MA_90);
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture
     painter.setPen(QColor(0, 0, 0, 2*m_transparent));

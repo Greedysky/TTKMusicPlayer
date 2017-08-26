@@ -12,6 +12,7 @@
 #include <QListWidget>
 #include "musicabstractmovedialog.h"
 #include "musicfillitemtablewidget.h"
+#include "windows.h"
 
 namespace Ui {
 class MusicLrcPosterWidget;
@@ -26,8 +27,16 @@ class MUSIC_LRC_EXPORT MusicLrcPosterItemWidget : public QWidget
 public:
     enum Type
     {
-        Type_01,
-        Type_02
+        Type_01,    ///thmeme 1
+        Type_02,    ///thmeme 2
+        Type_03,    ///thmeme 3
+        Type_04,    ///thmeme 4
+        Type_05,    ///thmeme 5
+        Type_06,    ///thmeme 6
+        Type_07,    ///thmeme 7
+        Type_08,    ///thmeme 8
+        Type_09,    ///thmeme 9
+        Type_10     ///thmeme 10
     };
 
     explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
@@ -69,7 +78,45 @@ protected:
      * Override the widget event.
      */
     void drawTheme1(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
     void drawTheme2(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme3(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme4(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme5(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme6(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme7(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme8(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme9(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme10(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
 
     Type m_type;
     QStringList m_data;

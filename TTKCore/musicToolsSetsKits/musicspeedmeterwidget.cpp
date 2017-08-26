@@ -1,4 +1,5 @@
 #include "musicspeedmeterwidget.h"
+#include "musicnumberdefine.h"
 
 MusicSpeedMeterWidget::MusicSpeedMeterWidget(QWidget *parent)
     : QWidget(parent)
@@ -169,7 +170,7 @@ void MusicSpeedMeterWidget::drawMark(QPainter *painter)
             painter->save();
             QPointF textPot(0 - textWidth/2, m_colorCircleRadius + S_SPACE + S_LONG + S_SPACE + textHeight);
             painter->translate(textPot);
-            painter->rotate(180);
+            painter->rotate(MA_180);
             painter->drawText(QPointF(-textWidth, textHeight/2), strValue);
             painter->restore();            
         }
