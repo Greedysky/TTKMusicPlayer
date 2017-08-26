@@ -216,6 +216,18 @@
         <file alias="lb_make_up_hover">../TTKResource/lrc/lb_make_up_hover.png</file>
         <file alias="lb_make_down_normal">../TTKResource/lrc/lb_make_down_normal.png</file>
         <file alias="lb_make_down_hover">../TTKResource/lrc/lb_make_down_hover.png</file>
+        <file alias="lb_poster_letter_line">../TTKResource/lrc/lb_poster_letter_line.png</file>
+        <file alias="lb_poster_letter_background">../TTKResource/lrc/lb_poster_letter_background.png</file>
+        <file alias="lb_poster_thumb1">../TTKResource/lrc/lb_poster_thumb1.png</file>
+        <file alias="lb_poster_thumb2">../TTKResource/lrc/lb_poster_thumb2.png</file>
+        <file alias="lb_poster_thumb3">../TTKResource/lrc/lb_poster_thumb3.png</file>
+        <file alias="lb_poster_thumb4">../TTKResource/lrc/lb_poster_thumb4.png</file>
+        <file alias="lb_poster_thumb5">../TTKResource/lrc/lb_poster_thumb5.png</file>
+        <file alias="lb_poster_thumb6">../TTKResource/lrc/lb_poster_thumb6.png</file>
+        <file alias="lb_poster_thumb7">../TTKResource/lrc/lb_poster_thumb7.png</file>
+        <file alias="lb_poster_thumb8">../TTKResource/lrc/lb_poster_thumb8.png</file>
+        <file alias="lb_poster_thumb9">../TTKResource/lrc/lb_poster_thumb9.png</file>
+        <file alias="lb_poster_thumb10">../TTKResource/lrc/lb_poster_thumb10.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>

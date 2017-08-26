@@ -224,6 +224,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     //////////////////////////////////////////////////////////////////////////////
     qSort(list);
     painter->rotate(-MA_90);
+    painter->translate(-2*ITEM_BORDER, 0);
     QPixmap pix(m_pixPath);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     offset = list.last() + delta - 2*ITEM_BORDER;
@@ -361,7 +362,7 @@ void MusicLrcPosterItemWidget::drawTheme8(QPainter *painter)
     painter->drawText(5*ITEM_BORDER, offset - v - 10*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //////////////////////////////////////////////////////////////////////////////
     painter->translate(0, 0);
-    QPixmap borer("C:/Users/Greedysky/Desktop/1.png");
+    QPixmap borer(":/lrc/lb_poster_letter_line");
     for(int i=0; i<=ceil(ITEM_WIDTH/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width()*i, 0, borer.width(), borer.height(), borer);
@@ -419,7 +420,7 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
     painter->drawText(5*ITEM_BORDER, offset - v - 10*ITEM_BORDER, ITEM_WIDTH - 10*ITEM_BORDER, v, Qt::AlignRight | Qt::TextWordWrap, title);
     //////////////////////////////////////////////////////////////////////////////
     painter->translate(0, 0);
-    QPixmap borer("C:/Users/Greedysky/Desktop/1.png");
+    QPixmap borer(":/lrc/lb_poster_letter_line");
     for(int i=0; i<=ceil(ITEM_WIDTH/borer.width()); ++i)
     {
         painter->drawPixmap(borer.width()*i, 0, borer.width(), borer.height(), borer);
@@ -435,8 +436,8 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
     painter->rotate(-90);
     painter->translate(0, 0);
     //////////////////////////////////////////////////////////////////////////////
-    QPixmap sssss("C:/Users/Greedysky/Desktop/3.png");
-    painter->drawPixmap(ITEM_WIDTH - sssss.width() - 2*ITEM_BORDER, sssss.height(), sssss.width(), sssss.height(), sssss);
+    QPixmap background(":/lrc/lb_poster_letter_background");
+    painter->drawPixmap(ITEM_WIDTH - background.width() - 2*ITEM_BORDER, background.height(), background.width(), background.height(), background);
     //////////////////////////////////////////////////////////////////////////////
     setFixedHeight(offset);
     painter->setPen(QColor(0x66, 0x66, 0x66));
@@ -466,8 +467,24 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 
     gaussRect = QRect((pix.width() - gWidth)/2, (pix.height() - gHeight)/2 + fixedOffset, gWidth, gHeight);
     painter->drawPixmap(gaussRect, QPixmap::fromImage(gauss));
+    //////////////////////////////////////////////////////////////////////////////
+    QFontMetrics fm(font());
+    int lineHeight = fm.height();
+    int v = 1;
+    offset = 3*ITEM_BORDER;
 
-
+    for(int i=0; i<m_data.count(); ++i)
+    {
+        v = fm.width(m_data[i])/(gaussRect.width() - 6*ITEM_BORDER) + 1;
+        v = 3*ITEM_BORDER + v*lineHeight;
+        if(offset + v >= gauss.height())
+        {
+            break;
+        }
+        painter->setPen(QColor(0x66, 0x66, 0x66));
+        painter->drawText(3*ITEM_BORDER + gaussRect.x(), offset + gaussRect.y(), gaussRect.width() - 6*ITEM_BORDER, v, Qt::AlignHCenter | Qt::TextWordWrap, m_data[i]);
+        offset += v;
+    }
 }
 
 
@@ -549,43 +566,43 @@ QString MusicLrcPosterThemeListWidget::getClassName()
 
 void MusicLrcPosterThemeListWidget::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Default"), this);
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb1") ,tr("Default"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Plain"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb2") ,tr("Plain"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Classical"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb3") ,tr("Classical"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Quiet"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb4") ,tr("Quiet"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Peaceful"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb5") ,tr("Peaceful"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Bright"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb6") ,tr("Bright"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Notepad"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb7") ,tr("Notepad"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Letter"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb8") ,tr("Letter"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Envelope"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb9") ,tr("Envelope"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
-                     item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("Photo"), this);
+                     item = new QListWidgetItem(QIcon(":/lrc/lb_poster_thumb10") ,tr("Photo"), this);
     item->setSizeHint(QSize(70, 80));
     addItem(item);
 
