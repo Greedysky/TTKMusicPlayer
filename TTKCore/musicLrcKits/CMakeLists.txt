@@ -24,6 +24,7 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_HEADERS
     ${MUSIC_LRCMANAGER_DIR}/musiclrccommentswidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrctranslatedwidget.h
     ${MUSIC_LRCMANAGER_DIR}/musiclrccolorwidget.h
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcposterwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_SOURCES
@@ -50,5 +51,5 @@ set_property(GLOBAL PROPERTY MUSIC_LRC_KITS_SOURCES
     ${MUSIC_LRCMANAGER_DIR}/musiclrccommentswidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrctranslatedwidget.cpp
     ${MUSIC_LRCMANAGER_DIR}/musiclrccolorwidget.cpp
+    ${MUSIC_LRCMANAGER_DIR}/musiclrcposterwidget.cpp
   )
-  

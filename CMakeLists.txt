@@ -77,9 +77,10 @@ include_directories(${MUSIC_UI_DIR})
 
 include_directories(${MUSIC_THIRDPARTY_DIR})
 include_directories(${MUSIC_THIRDPARTY_DIR}/Zlib)
-include_directories(${MUSIC_THIRDPARTY_DIR}/Devicewatcher)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MiniDumper)
-include_directories(${MUSIC_THIRDPARTY_DIR}/MusicExtras)
+include_directories(${MUSIC_THIRDPARTY_DIR}/TTKWatcher)
+include_directories(${MUSIC_THIRDPARTY_DIR}/TTKDumper)
+include_directories(${MUSIC_THIRDPARTY_DIR}/TTKExtras)
+include_directories(${MUSIC_THIRDPARTY_DIR}/TTKImage)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION})
@@ -179,3 +180,4 @@ add_subdirectory(TTKThirdParty)
 add_subdirectory(TTKCore)
 add_subdirectory(TTKService)
 add_subdirectory(TTKApp)
+add_subdirectory(TTKTest)

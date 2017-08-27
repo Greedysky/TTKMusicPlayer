@@ -9,8 +9,8 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QTest>
 #include <QDebug>
+#include <QtTest/QTest>
 #include <QSharedPointer>
 
 namespace MusicAutoTest
