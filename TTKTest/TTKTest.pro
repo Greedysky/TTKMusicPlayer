@@ -31,9 +31,7 @@ INCLUDEPATH += $$PWD/../ \
 win32{
     LIBS += -L../bin/$$TTKMusicPlayer -lTTKCore
 }
-unix{
-    LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore
-}
+
 
 HEADERS  += \
     musicautotest.h \

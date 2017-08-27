@@ -12,7 +12,6 @@
 #include <QListWidget>
 #include "musicabstractmovedialog.h"
 #include "musicfillitemtablewidget.h"
-#include "windows.h"
 
 namespace Ui {
 class MusicLrcPosterWidget;
