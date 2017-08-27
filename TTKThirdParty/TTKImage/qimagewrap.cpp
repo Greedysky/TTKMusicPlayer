@@ -1,5 +1,5 @@
 #include "qimagewrap.h"
-#include "filter.h"
+#include "imagefilter.h"
 
 #include <QImage>
 

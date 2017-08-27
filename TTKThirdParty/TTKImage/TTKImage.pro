@@ -24,7 +24,7 @@ SOURCES += \
     $$PWD/qimagewrap.cpp
     
 HEADERS += \
-    $$PWD/filter.h \
+    $$PWD/imagefilter.h \
     $$PWD/qimagewrap.h
 
 #load extra define
