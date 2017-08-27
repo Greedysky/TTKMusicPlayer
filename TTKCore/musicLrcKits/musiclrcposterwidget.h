@@ -119,7 +119,8 @@ protected:
 
     Type m_type;
     QStringList m_data;
-    QString m_pixPath, m_title;
+    QPixmap m_pixmap;
+    QString m_title;
 
 };
 

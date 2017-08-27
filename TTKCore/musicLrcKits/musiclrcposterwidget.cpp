@@ -4,6 +4,7 @@
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
+#include "musicbackgroundimage.h"
 
 #include "qimagewrap.h"
 
@@ -19,7 +20,14 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_type = Type_01;
-    m_pixPath = M_BACKGROUND_PTR->getArtPhotoPathNoIndex();
+
+    m_pixmap.load(M_BACKGROUND_PTR->getArtPhotoPathNoIndex());
+    if(m_pixmap.isNull())
+    {
+        MusicBackgroundImage image;
+        MusicBackgroundImageWrap::outputSkin(image, M_BACKGROUND_PTR->getMBackground());
+        m_pixmap = image.m_pix;
+    }
 }
 
 QString MusicLrcPosterItemWidget::getClassName()
@@ -34,7 +42,7 @@ bool MusicLrcPosterItemWidget::hasScroll() const
 
 void MusicLrcPosterItemWidget::setImagePath(const QString &path)
 {
-    m_pixPath = path;
+    m_pixmap.load(path);
     update();
 }
 
@@ -79,7 +87,7 @@ void MusicLrcPosterItemWidget::paintEvent(QPaintEvent *event)
 
 void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
 {
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
 
@@ -154,7 +162,7 @@ void MusicLrcPosterItemWidget::drawTheme2(QPainter *painter)
 
 void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
 {
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     painter->drawPixmap(ITEM_BORDER, ITEM_BORDER, pix);
 
@@ -225,7 +233,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     qSort(list);
     painter->rotate(-MA_90);
     painter->translate(-2*ITEM_BORDER, 0);
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     offset = list.last() + delta - 2*ITEM_BORDER;
     painter->drawPixmap(ITEM_BORDER, offset, pix);
@@ -255,7 +263,7 @@ void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
     v = fm.width(title)/(ITEM_WIDTH - 4*ITEM_BORDER) + 1;
     painter->drawText(2*ITEM_BORDER, offset, width() - 4*ITEM_BORDER, v*lineHeight, Qt::AlignRight | Qt::TextWordWrap, title);
     //////////////////////////////////////////////////////////////////////////////
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     offset += 3*ITEM_BORDER + lineHeight;
     painter->drawPixmap(ITEM_BORDER, offset, pix);
@@ -265,7 +273,7 @@ void MusicLrcPosterItemWidget::drawTheme5(QPainter *painter)
 
 void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
 {
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
     int fixedOffset = (pix.width() - offset)/2;
@@ -454,7 +462,7 @@ void MusicLrcPosterItemWidget::drawTheme9(QPainter *painter)
 
 void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
 {
-    QPixmap pix(m_pixPath);
+    QPixmap pix(m_pixmap);
     pix = pix.scaled(ITEM_WIDTH - 2*ITEM_BORDER, ITEM_WIDTH - 2*ITEM_BORDER, Qt::KeepAspectRatio);
     int offset = qMin(pix.width(), pix.height());
     int fixedOffset = (ITEM_HEIGHT - offset)/2;
