@@ -60,8 +60,6 @@ void MusicLrcPosterItemWidget::textChanged(const QStringList &data)
 void MusicLrcPosterItemWidget::currentTypeChanged(int type)
 {
     m_type = MStatic_cast(Type, type);
-    setFixedHeight(ITEM_HEIGHT);
-
     update();
 }
 
