@@ -13,10 +13,11 @@ contains(CONFIG, TTK_BUILD_LIB){
 }
 
 CONFIG += TTK_NO_MSVC_LINK_NEED
-win32:msvc{
-    CONFIG -= TTK_NO_MSVC_LINK_NEED
+win32{
+    msvc{
+        CONFIG -= TTK_NO_MSVC_LINK_NEED
+    }
 }
-
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
 
@@ -28,6 +29,9 @@ unix{
     TARGET = ../lib/$$TTKMusicPlayer/TTKService
     LIBS += -L./lib/$$TTKMusicPlayer -lTTKCore -lTTKDumper
 }
+
+
+INCLUDEPATH += ../TTKCore
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
