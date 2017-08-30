@@ -82,6 +82,35 @@ protected:
 };
 
 
+/*! @brief The class of the asx XML Config Manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_CORE_EXPORT MusicASXConfigManager : public MusicAbstractXml
+{
+    Q_OBJECT
+public:
+    explicit MusicASXConfigManager(QObject *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void writeASXXMLConfig(const MusicSongItems &musics, const QString &path);
+    /*!
+     * Write datas into xml file.
+     */
+    void readASXXMLConfig(MusicSongItems &musics);
+    /*!
+     * Read datas into xml file.
+     */
+
+};
+
+
 /*! @brief The class of the playlist manager.
  * @author Greedysky <greedysky@163.com>
  */
@@ -145,6 +174,14 @@ protected:
     void writeXSPFList(const QString &path, const MusicSongItem &item);
     /*!
      * Write xspf music playlist data to file.
+     */
+    void readASXList(const QString &path, MusicSongItems &items);
+    /*!
+     * Read asx music playlist data from file.
+     */
+    void writeASXList(const QString &path, const MusicSongItem &item);
+    /*!
+     * Write asx music playlist data to file.
      */
 
 };

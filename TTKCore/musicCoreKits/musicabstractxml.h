@@ -102,6 +102,14 @@ public:
     /*!
      * Create xml node nodes by node name.
      */
+    QDomElement createRoot(const QString &node, const MusicXmlAttribute &attr);
+    /*!
+     * Create xml node nodes by node atrr.
+     */
+    QDomElement createRoot(const QString &node, const MusicXmlAttributes &attrs);
+    /*!
+     * Create xml node nodes by node atrrs.
+     */
     QDomElement writeDom(QDomElement &element, const QString &node);
     /*!
      * Append xml element nodes by node name.

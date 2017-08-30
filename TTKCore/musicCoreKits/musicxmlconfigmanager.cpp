@@ -17,12 +17,8 @@ QString MusicXMLConfigManager::getClassName()
 
 void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
 {
-    if( musics.isEmpty() )
-    {
-        return;
-    }
     //Open wirte file
-    if( !writeConfig( path ) )
+    if( musics.isEmpty() || !writeConfig( path ) )
     {
         return;
     }
@@ -36,7 +32,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
                               MusicXmlAttributes() << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                                               << MusicXmlAttribute("count", item.m_songs.count()) << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
                                               << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
-        foreach(const MusicSong &song, musics[i].m_songs)
+        foreach(const MusicSong &song, item.m_songs)
         {
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
                                      << MusicXmlAttribute("playCount", song.getMusicPlayCount())

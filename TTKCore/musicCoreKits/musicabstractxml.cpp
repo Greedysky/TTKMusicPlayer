@@ -155,6 +155,25 @@ QDomElement MusicAbstractXml::createRoot(const QString &node)
     return domElement;
 }
 
+QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttribute &attr)
+{
+    QDomElement domElement = m_ddom->createElement( node );
+    writeAttribute(domElement, attr);
+    m_ddom->appendChild( domElement );
+    return domElement;
+}
+
+QDomElement MusicAbstractXml::createRoot(const QString &node, const MusicXmlAttributes &attrs)
+{
+    QDomElement domElement = m_ddom->createElement( node );
+    foreach(const MusicXmlAttribute &attr, attrs)
+    {
+        writeAttribute(domElement, attr);
+    }
+    m_ddom->appendChild( domElement );
+    return domElement;
+}
+
 QDomElement MusicAbstractXml::writeDom(QDomElement &element, const QString &node)
 {
     QDomElement domElement = m_ddom->createElement( node );

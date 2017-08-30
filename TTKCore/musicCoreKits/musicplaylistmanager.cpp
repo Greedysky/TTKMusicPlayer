@@ -17,12 +17,8 @@ QString MusicWPLConfigManager::getClassName()
 
 void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, const QString &path)
 {
-    if( musics.isEmpty() )
-    {
-        return;
-    }
     //Open wirte file
-    if( !writeConfig( path ) )
+    if( musics.isEmpty() || !writeConfig( path ) )
     {
         return;
     }
@@ -73,6 +69,7 @@ void MusicWPLConfigManager::readWPLXMLConfig(MusicSongItems &musics)
         {
             QDomElement element = nodelist.at(i).toElement();
             state = element.attribute("content").contains(APPNAME);
+            break;
         }
     }
 
@@ -130,12 +127,8 @@ QString MusicXSPFConfigManager::getClassName()
 
 void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path)
 {
-    if( musics.isEmpty() )
-    {
-        return;
-    }
     //Open wirte file
-    if( !writeConfig( path ) )
+    if( musics.isEmpty() || !writeConfig( path ) )
     {
         return;
     }
@@ -192,6 +185,7 @@ void MusicXSPFConfigManager::readXSPFXMLConfig(MusicSongItems &musics)
             {
                 QDomElement element = node.toElement();
                 state = element.text().contains(APPNAME);
+                break;
             }
         }
     }
@@ -237,6 +231,108 @@ MusicSongs MusicXSPFConfigManager::readMusicFilePath(const QDomNode &node) const
 
 
 
+MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
+{
+
+}
+
+QString MusicASXConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, const QString &path)
+{
+    //Open wirte file
+    if( musics.isEmpty() || !writeConfig( path ) )
+    {
+        return;
+    }
+    ///////////////////////////////////////////////////////
+    QDomElement musicPlayerDom = createRoot("asx", MusicXmlAttribute("version ", "3.0"));
+    //Class A
+    for(int i=0; i<musics.count(); ++i)
+    {
+        const MusicSongItem &item = musics[i];
+
+        writeDomText(musicPlayerDom, "title", item.m_itemName);
+
+        foreach(const MusicSong &song, musics[i].m_songs)
+        {
+            //Class B
+            QDomElement trackDom = writeDom(musicPlayerDom, "entry");
+
+            writeDomText(trackDom, "title", song.getMusicArtistBack());
+            writeDomElement(trackDom, "ref", MusicXmlAttribute("href", song.getMusicPath()));
+
+            writeDomText(trackDom, "author", APPNAME);
+            writeDomElementMutil(trackDom, "ttkitem", MusicXmlAttributes()
+                                                        << MusicXmlAttribute("name", song.getMusicName())
+                                                        << MusicXmlAttribute("playCount", song.getMusicPlayCount())
+                                                        << MusicXmlAttribute("time", song.getMusicTime())
+                                                        << MusicXmlAttribute("src", song.getMusicPath()));
+
+            writeDomElementMutil(trackDom, "ttklist", MusicXmlAttributes()
+                              << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
+                              << MusicXmlAttribute("count", item.m_songs.count())
+                              << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
+                              << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
+        }
+    }
+
+    //Write to file
+    QTextStream out(m_file);
+    m_ddom->save(out, 4);
+}
+
+void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
+{
+    bool state = false;
+    QDomNodeList nodes = m_ddom->elementsByTagName("author");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomNode node = nodes.at(i);
+        if(node.nodeName() == "author")
+        {
+            QDomElement element = node.toElement();
+            state = element.text().contains(APPNAME);
+            break;
+        }
+    }
+
+    if(!state)
+    {
+        MusicPlayListManager::messageAlert();
+        return;
+    }
+
+    MusicSongItem item;
+    nodes = m_ddom->elementsByTagName("ttkitem");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        QDomElement element = nodes.at(i).toElement();
+        item.m_songs << MusicSong(element.attribute("src"),
+                           element.attribute("playCount").toInt(),
+                           element.attribute("time"),
+                           element.attribute("name"));
+    }
+
+    nodes = m_ddom->elementsByTagName("ttklist");
+    if(!nodes.isEmpty())
+    {
+        QDomElement element = nodes.at(0).toElement();
+        item.m_itemIndex = element.attribute("index").toInt();
+        item.m_itemName = element.attribute("name");
+        QString string = element.attribute("sortIndex");
+        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
+        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
+        musics << item;
+    }
+}
+
+
+
 QString MusicPlayListManager::getClassName()
 {
     return "MusicPlayListManager";
@@ -273,6 +369,10 @@ void MusicPlayListManager::setMusicSongItems(const QString &save, const MusicSon
     {
         writeXSPFList(save, item);
     }
+    else if(suffix == "asx")
+    {
+        writeASXList(save, item);
+    }
 }
 
 void MusicPlayListManager::getMusicSongItems(const QStringList &open, MusicSongItems &items)
@@ -300,6 +400,10 @@ void MusicPlayListManager::getMusicSongItems(const QStringList &open, MusicSongI
         else if(suffix == "xspf")
         {
             readXSPFList(path, items);
+        }
+        else if(suffix == "asx")
+        {
+            readASXList(path, items);
         }
     }
 }
@@ -527,4 +631,19 @@ void MusicPlayListManager::writeXSPFList(const QString &path, const MusicSongIte
 {
     MusicXSPFConfigManager manager;
     manager.writeXSPFXMLConfig(MusicSongItems() << item, path);
+}
+
+void MusicPlayListManager::readASXList(const QString &path, MusicSongItems &items)
+{
+    MusicASXConfigManager manager;
+    if(manager.readConfig(path))
+    {
+        manager.readASXXMLConfig(items);
+    }
+}
+
+void MusicPlayListManager::writeASXList(const QString &path, const MusicSongItem &item)
+{
+    MusicASXConfigManager manager;
+    manager.writeASXXMLConfig(MusicSongItems() << item, path);
 }
