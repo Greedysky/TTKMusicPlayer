@@ -35,7 +35,14 @@ public:
         Type_07,    ///thmeme 7
         Type_08,    ///thmeme 8
         Type_09,    ///thmeme 9
-        Type_10     ///thmeme 10
+        Type_10,    ///thmeme 10
+        Type_11,    ///thmeme 11
+        Type_12,    ///thmeme 12
+        Type_13,    ///thmeme 13
+        Type_14,    ///thmeme 14
+        Type_15,    ///thmeme 15
+        Type_16,    ///thmeme 16
+        Type_17     ///thmeme 17
     };
 
     explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
@@ -113,6 +120,34 @@ protected:
      * Draw theme.
      */
     void drawTheme10(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme11(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme12(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme13(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme14(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme15(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme16(QPainter *painter);
+    /*!
+     * Draw theme.
+     */
+    void drawTheme17(QPainter *painter);
     /*!
      * Draw theme.
      */
