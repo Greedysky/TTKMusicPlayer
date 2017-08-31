@@ -54,6 +54,7 @@ public:
         OtherAlbumChoiced,              ///*Other Use File Album Parameter*/
         OtherInfoChoiced,               ///*Other Use File Info Parameter*/
         OtherSideByChoiced,             ///*Other App Side By Mode Parameter*/
+        OtherSideByInChoiced,           ///*Other App Side By In Mode Parameter*/
 
         ShowInlineLrcChoiced,           ///*Show Inline Lrc Parameter*/
         LrcColorChoiced,                ///*Lrc Color Parameter*/

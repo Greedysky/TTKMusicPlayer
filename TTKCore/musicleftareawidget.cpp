@@ -274,6 +274,11 @@ void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()
 
 void MusicLeftAreaWidget::lrcWidgetShowFullScreen()
 {
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
+    {
+        return;
+    }
+
     if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();

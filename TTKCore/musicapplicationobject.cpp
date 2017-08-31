@@ -138,6 +138,8 @@ void MusicApplicationObject::sideAnimationByOn()
         return;
     }
 
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
+
     QPoint pt = w->mapToGlobal(w->rect().topLeft());
     if(-MARGIN_SIDE <= pt.x() && pt.x() <= MARGIN_SIDE)
     {
@@ -166,6 +168,8 @@ void MusicApplicationObject::sideAnimationByOff()
     {
         return;
     }
+
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
 
     MusicApplication *w = MusicApplication::instance();
     if(m_leftSideByOn)
