@@ -3006,7 +3006,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcPosterItemWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="117"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="127"/>
         <source>TTKMusicPlayer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3014,53 +3014,88 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcPosterThemeListWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="577"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="928"/>
         <source>Default</source>
         <translation type="unfinished">Default</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="581"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="932"/>
         <source>Plain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="585"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="936"/>
         <source>Classical</source>
         <translation type="unfinished">Classical</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="589"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="940"/>
         <source>Quiet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="593"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="944"/>
         <source>Peaceful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="597"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="948"/>
         <source>Bright</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="601"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="952"/>
         <source>Notepad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="605"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="956"/>
         <source>Letter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="609"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="960"/>
         <source>Envelope</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="613"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="964"/>
         <source>Photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="968"/>
+        <source>Spring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="972"/>
+        <source>Summer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="976"/>
+        <source>Autumn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="980"/>
+        <source>Winter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="984"/>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="988"/>
+        <source>Slender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="992"/>
+        <source>Red</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3088,7 +3123,7 @@ p, li { white-space: pre-wrap; }
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="631"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="1010"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -7744,7 +7779,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>无损品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musicplaylistmanager.cpp" line="248"/>
+        <location filename="../TTKCore/musicCoreKits/musicplaylistmanager.cpp" line="344"/>
         <source>Unrecognized PlayList File!</source>
         <translation type="unfinished"></translation>
     </message>

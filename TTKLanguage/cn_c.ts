@@ -3002,7 +3002,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcPosterItemWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="117"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="127"/>
         <source>TTKMusicPlayer</source>
         <translation>天天酷音</translation>
     </message>
@@ -3010,54 +3010,89 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcPosterThemeListWidget</name>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="577"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="928"/>
         <source>Default</source>
         <translation>默認</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="581"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="932"/>
         <source>Plain</source>
         <translation>純文字</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="585"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="936"/>
         <source>Classical</source>
         <translation>經典</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="589"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="940"/>
         <source>Quiet</source>
         <translation>靜謐</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="593"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="944"/>
         <source>Peaceful</source>
         <translation>安寧</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="597"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="948"/>
         <source>Bright</source>
         <translation>明鏡</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="601"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="952"/>
         <source>Notepad</source>
         <translation>記事本</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="605"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="956"/>
         <source>Letter</source>
         <translation>信紙</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="609"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="960"/>
         <source>Envelope</source>
         <translation>信封</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="613"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="964"/>
         <source>Photo</source>
         <translation>相紙</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="968"/>
+        <source>Spring</source>
+        <translation>春</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="972"/>
+        <source>Summer</source>
+        <translation>夏</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="976"/>
+        <source>Autumn</source>
+        <translation>秋</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="980"/>
+        <source>Winter</source>
+        <translation>冬</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="984"/>
+        <source>Compile</source>
+        <translation>篆刻</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="988"/>
+        <source>Slender</source>
+        <translation>纖細</translation>
+    </message>
+    <message>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="992"/>
+        <source>Red</source>
+        <translation>紅信紙</translation>
     </message>
 </context>
 <context>
@@ -3084,7 +3119,7 @@ p, li { white-space: pre-wrap; }
         <translation>保存海報</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="631"/>
+        <location filename="../TTKCore/musicLrcKits/musiclrcposterwidget.cpp" line="1010"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
@@ -7740,7 +7775,7 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>无损品质</translation>
     </message>
     <message>
-        <location filename="../TTKCore/musicCoreKits/musicplaylistmanager.cpp" line="248"/>
+        <location filename="../TTKCore/musicCoreKits/musicplaylistmanager.cpp" line="344"/>
         <source>Unrecognized PlayList File!</source>
         <translation>不能識別的列表文件!</translation>
     </message>
