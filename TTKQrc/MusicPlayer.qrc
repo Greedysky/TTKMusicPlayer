@@ -416,6 +416,7 @@
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
     </qresource>
     <qresource prefix="/tiny">
+        <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>
         <file alias="lb_arrow_up_normal">../TTKResource/tiny/lb_arrow_up_normal.png</file>
         <file alias="lb_arrow_down_normal">../TTKResource/tiny/lb_arrow_down_normal.png</file>
         <file alias="lb_star">../TTKResource/tiny/lb_star.png</file>

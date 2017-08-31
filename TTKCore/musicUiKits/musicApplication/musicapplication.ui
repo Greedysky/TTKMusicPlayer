@@ -1276,13 +1276,13 @@
           <widget class="QWidget" name="bottomRightWidget" native="true">
            <property name="minimumSize">
             <size>
-             <width>380</width>
+             <width>375</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>380</width>
+             <width>375</width>
              <height>16777215</height>
             </size>
            </property>
@@ -1472,6 +1472,68 @@
            </layout>
           </widget>
          </item>
+         <item>
+          <widget class="QWidget" name="bottomRightResizeWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>10</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>10</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="resizeLabelWidget">
+              <property name="minimumSize">
+               <size>
+                <width>10</width>
+                <height>10</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>10</width>
+                <height>10</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -1554,8 +1616,5 @@
    <header>musictransitionanimationlabel.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
- </resources>
  <connections/>
 </ui>

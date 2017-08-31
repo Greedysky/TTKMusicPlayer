@@ -130,12 +130,12 @@ void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &son
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setIcon(QIcon(":/tiny/lb_server_type"));
     item->setToolTip(songItem.m_type);
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    item->setIcon(QIcon(":/contextMenu/btn_download"));
     setItem(count, 6, item);
 }
 

@@ -42,6 +42,7 @@ MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+    ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);
     connect(ui->musicDesktopLrc, SIGNAL(clicked()), m_systemTrayMenu, SLOT(showDesktopLrc()));
 }
@@ -67,7 +68,7 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
     m_systemTray = new QSystemTrayIcon(MusicApplication::instance());
-    m_systemTray->setIcon(QIcon(QString::fromUtf8(":/image/lb_player_logo")));
+    m_systemTray->setIcon(QIcon(":/image/lb_player_logo"));
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
     m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
