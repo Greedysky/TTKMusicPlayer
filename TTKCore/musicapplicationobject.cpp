@@ -273,8 +273,13 @@ void MusicApplicationObject::musicResetWindow()
     M_SETTING_PTR->setValue(MusicSettingManager::ScreenSize, widget->size());
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, QSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN));
 
-    MusicApplication::instance()->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2,
-                                (widget->height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    QWidget *w = MusicApplication::instance();
+    if(w->isMaximized() || w->isMinimized() || w->isFullScreen())
+    {
+        w->showNormal();
+    }
+    w->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2, (widget->height() - WINDOW_HEIGHT_MIN)/2,
+                    WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationObject::musicToolSetsParameter()
