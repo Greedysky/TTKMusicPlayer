@@ -98,23 +98,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     M_HOTKEY_PTR->connectParentObject(this);
 
     /////////// Mouse tracking
-    QList<QWidget*> list;
-    list <<
-    m_ui->background <<
-    m_ui->topLeftWidget <<
-    m_ui->topRightWidget <<
-    m_ui->centerLeftWidget <<
-    m_ui->bottomLeftWidget <<
-    m_ui->bottomCenterWidget <<
-    m_ui->bottomRightWidget <<
-    m_ui->musicTimeWidget <<
-    m_ui->bottomRightResizeWidget <<
-    m_ui->resizeLabelWidget;
-    foreach(QWidget *w, list)
-    {
-        w->installEventFilter(this);
-        w->setMouseTracking(true);
-    }
+    m_ui->background->installEventFilter(this);
+    m_ui->background->setMouseTracking(true);
 
     readXMLConfigFromText();
 
