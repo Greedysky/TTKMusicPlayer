@@ -31,6 +31,10 @@ public:
     /*!
      * Get class object name.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);

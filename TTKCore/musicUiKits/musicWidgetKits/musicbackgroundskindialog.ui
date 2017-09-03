@@ -138,7 +138,7 @@
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
    <property name="geometry">
     <rect>
-     <x>249</x>
+     <x>89</x>
      <y>369</y>
      <width>70</width>
      <height>25</height>
@@ -151,7 +151,7 @@
   <widget class="QLabel" name="listTransparentLabel">
    <property name="geometry">
     <rect>
-     <x>184</x>
+     <x>24</x>
      <y>369</y>
      <width>60</width>
      <height>25</height>
@@ -161,23 +161,10 @@
     <string>列表透明</string>
    </property>
   </widget>
-  <widget class="QLabel" name="skinTransparentLabel">
-   <property name="geometry">
-    <rect>
-     <x>24</x>
-     <y>369</y>
-     <width>60</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>皮肤透明</string>
-   </property>
-  </widget>
   <widget class="MusicBackgroundPopWidget" name="skinTransparentButton" native="true">
    <property name="geometry">
     <rect>
-     <x>89</x>
+     <x>259</x>
      <y>369</y>
      <width>70</width>
      <height>25</height>
@@ -244,6 +231,19 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QCheckBox" name="skinTransparentLabelBox">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>369</y>
+     <width>70</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>皮肤透明</string>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -252,12 +252,12 @@
   <zorder>customSkin</zorder>
   <zorder>paletteButton</zorder>
   <zorder>listTransparentLabel</zorder>
-  <zorder>skinTransparentLabel</zorder>
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
   <zorder>resetWindowButton</zorder>
   <zorder>mySkin</zorder>
   <zorder>remoteSkin</zorder>
+  <zorder>skinTransparentLabelBox</zorder>
  </widget>
  <customwidgets>
   <customwidget>

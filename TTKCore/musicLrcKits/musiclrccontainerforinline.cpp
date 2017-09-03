@@ -431,7 +431,8 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("lrcPoster"), this, SLOT(showLrcPosterWidget()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
     menu.addAction(MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen() ? tr("showNormalMode") : tr("showFullMode"),
-                   MusicLeftAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()));
+                   MusicLeftAreaWidget::instance(), SLOT(lrcWidgetShowFullScreen()))
+                   ->setEnabled(!M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool());
     menu.addSeparator();
     menu.addMenu(&changColorMenu);
     menu.addMenu(&changeLrcSize);

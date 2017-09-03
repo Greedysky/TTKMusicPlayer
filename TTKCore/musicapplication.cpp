@@ -63,7 +63,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_leftAreaWidget->setupUi(m_ui);
     m_topAreaWidget->musicBackgroundSliderStateChanged(false);
 
-    connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_musicSongTreeWidget, SLOT(setTransparent(int)));
+    connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_leftAreaWidget, SLOT(setTransparent(int)));
     connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));
 
@@ -98,6 +98,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_ui->musicTimeWidget->setObject(this);
     M_HOTKEY_PTR->connectParentObject(this);
 
+    /////////// Mouse tracking
     m_ui->background->installEventFilter(this);
     m_ui->background->setMouseTracking(true);
 
@@ -1206,6 +1207,7 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBackgroundPath());
     M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
     M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getBackgroundListAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced, m_topAreaWidget->getBackgroundTransparentEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
     xml.writeMusicSongsConfig( m_musicSongTreeWidget->getMusicLists() );

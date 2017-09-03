@@ -12,6 +12,7 @@
 #include "musiccloudsharedsongwidget.h"
 #include "musicqualitychoicepopwidget.h"
 #include "musicsoundkmicrowidget.h"
+#include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
 ///qmmp incldue
 #include "visual.h"
@@ -131,6 +132,21 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
 bool MusicLeftAreaWidget::isLrcWidgetShowFullScreen() const
 {
     return !m_lrcWidgetShowFullScreen;
+}
+
+void MusicLeftAreaWidget::setTransparent(int index)
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, index);
+    switch(m_currentIndex)
+    {
+        case 0: MStatic_cast(MusicSongsSummariziedWidget*, m_ui->songsContainer->widget(0))->setTransparent(index); break;
+        case 1: MStatic_cast(MusicToolSetsWidget*, m_ui->songsContainer->widget(1))->setTransparent(index); break;
+        case 2: MStatic_cast(MusicWebMusicRadioListView*, m_ui->songsContainer->widget(1))->setTransparent(index); break;
+        case 3: MStatic_cast(MusicDownloadRecordWidget*, m_ui->songsContainer->widget(1))->setTransparent(index); break;
+        case 4: MStatic_cast(MusicConnectMobileWidget*, m_ui->songsContainer->widget(1))->setTransparent(index); break;
+        case 5: if(m_cloudSharedSongWidget) m_cloudSharedSongWidget->setTransparent(index); break;
+        default: break;
+    }
 }
 
 void MusicLeftAreaWidget::musicDownloadSongToLocal()
@@ -274,6 +290,11 @@ void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()
 
 void MusicLeftAreaWidget::lrcWidgetShowFullScreen()
 {
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
+    {
+        return;
+    }
+
     if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
     {
         MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
@@ -294,6 +315,8 @@ void MusicLeftAreaWidget::lrcWidgetShowFullScreen()
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)
 {
+    setTransparent(M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt());
+
     m_ui->musicButton_cloud->setStyleSheet(MusicUIObject::MKGItemFavourite);
     m_ui->musicButton_mydownl->setStyleSheet(MusicUIObject::MKGItemDownload);
     m_ui->musicButton_playlist->setStyleSheet(MusicUIObject::MKGItemMusic);

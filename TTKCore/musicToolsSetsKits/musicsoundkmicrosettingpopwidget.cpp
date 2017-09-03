@@ -38,11 +38,11 @@ void MusicSoundKMicroSettingPopWidget::initWidget()
 
     QCheckBox *checkBox = new QCheckBox(tr("Hear Yourself Singing"), m_containWidget);
     checkBox->setGeometry(10, 20, 280, 25);
-    checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle04);
+    checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle05);
 
     QCheckBox *checkBox2 = new QCheckBox(tr("Noise Elimination"), m_containWidget);
     checkBox2->setGeometry(10, 50, 280, 25);
-    checkBox2->setStyleSheet(MusicUIObject::MCheckBoxStyle04);
+    checkBox2->setStyleSheet(MusicUIObject::MCheckBoxStyle05);
 
 #ifdef Q_OS_UNIX
     checkBox->setFocusPolicy(Qt::NoFocus);

@@ -92,6 +92,10 @@ public Q_SLOTS:
     /*!
      * Other login way, but now there is no supported.
      */
+    virtual int exec();
+    /*!
+     * Override exec function.
+     */
 
 protected:
     void firstStatckWidget();

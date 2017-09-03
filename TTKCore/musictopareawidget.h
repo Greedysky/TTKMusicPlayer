@@ -64,6 +64,10 @@ public:
     /*!
      * Get list background skin alpha.
      */
+    bool getBackgroundTransparentEnable() const;
+    /*!
+     * Get bg window skin enable.
+     */
     QPixmap getRendererPixmap() const;
     /*!
      * Get background skin pixmap.

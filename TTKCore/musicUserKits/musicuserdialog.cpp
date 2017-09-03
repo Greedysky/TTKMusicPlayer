@@ -29,10 +29,8 @@ MusicUserDialog::MusicUserDialog(QWidget *parent)
     secondStatckWidget();
     thirdStatckWidget();
 
-    connect(m_ui->userComboBox, SIGNAL(currentIndexChanged(QString)),
-                              SLOT(userComboBoxChanged(QString)));
-    connect(m_ui->userComboBox, SIGNAL(editTextChanged(QString)),
-                              SLOT(userEditTextChanged(QString)));
+    connect(m_ui->userComboBox, SIGNAL(currentIndexChanged(QString)), SLOT(userComboBoxChanged(QString)));
+    connect(m_ui->userComboBox, SIGNAL(editTextChanged(QString)), SLOT(userEditTextChanged(QString)));
     m_userName = m_ui->userComboBox->currentText();
     readFromUserConfig();
 
@@ -79,7 +77,7 @@ void MusicUserDialog::setUserModel(MusicUserModel *model)
 
 void MusicUserDialog::userLogin()
 {
-    windowRectChanged(0, 181);
+    windowRectChanged(0, 231);
 }
 
 void MusicUserDialog::checkUserLogin()
@@ -113,7 +111,7 @@ void MusicUserDialog::checkUserLogin()
 
 void MusicUserDialog::registerUser()
 {
-    windowRectChanged(1, 300);
+    windowRectChanged(1, 400);
 }
 
 void MusicUserDialog::checkRegisterUser()
@@ -162,7 +160,7 @@ void MusicUserDialog::checkRegisterUser()
 
 void MusicUserDialog::userForgotPasswd()
 {
-    windowRectChanged(2, 251);
+    windowRectChanged(2, 330);
 }
 
 void MusicUserDialog::checkUserForgotPasswd()
@@ -239,6 +237,12 @@ void MusicUserDialog::buttonClicked(int)
     MusicMessageBox message;
     message.setText(tr("This way of loading is now not supported"));
     message.exec();
+}
+
+int MusicUserDialog::exec()
+{
+    setBackgroundPixmap(m_ui->background, size());
+    return MusicAbstractMoveDialog::exec();
 }
 
 void MusicUserDialog::firstStatckWidget()
@@ -433,7 +437,7 @@ void MusicUserDialog::windowRectChanged(int index, int height)
 {
     clearOriginData();
     m_ui->stackedWidget->setCurrentIndex(index);
-    m_ui->stackedWidget->setGeometry(QRect(4, 29, 331, height));
+    m_ui->stackedWidget->setGeometry(QRect(4, 29, 381, height));
     QRect other = geometry();
     other.setHeight(height + 33);
     setGeometry(other);

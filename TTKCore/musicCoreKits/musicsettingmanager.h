@@ -47,6 +47,7 @@ public:
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
         BgListTransparentChoiced,       ///*Bg List Transparent Parameter*/
+        BgTransparentEnableChoiced,     ///*Bg Transparent Enable Parameter*/
 
         OtherBgLosslessChoiced,         ///*Other Bg Lossless Parameter*/
         OtherUpdateChoiced,             ///*Other Update Check Parameter*/
@@ -54,6 +55,7 @@ public:
         OtherAlbumChoiced,              ///*Other Use File Album Parameter*/
         OtherInfoChoiced,               ///*Other Use File Info Parameter*/
         OtherSideByChoiced,             ///*Other App Side By Mode Parameter*/
+        OtherSideByInChoiced,           ///*Other App Side By In Mode Parameter*/
 
         ShowInlineLrcChoiced,           ///*Show Inline Lrc Parameter*/
         LrcColorChoiced,                ///*Lrc Color Parameter*/

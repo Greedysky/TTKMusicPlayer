@@ -121,6 +121,15 @@ int MusicTopAreaWidget::getBackgroundListAlpha()
     return m_backgroundAListlpha;
 }
 
+bool MusicTopAreaWidget::getBackgroundTransparentEnable() const
+{
+    if(m_musicBackgroundWidget)
+    {
+        return m_musicBackgroundWidget->getBackgroundTransparentEnable();
+    }
+    return false;
+}
+
 QPixmap MusicTopAreaWidget::getRendererPixmap() const
 {
     return m_ui->background->getRendererPixmap();

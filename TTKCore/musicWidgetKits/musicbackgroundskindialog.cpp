@@ -9,6 +9,7 @@
 #include "musicapplicationobject.h"
 #include "musicotherdefine.h"
 #include "musicwidgetutils.h"
+#include "musicsettingmanager.h"
 
 #include <QScrollBar>
 #include <QSignalMapper>
@@ -33,6 +34,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->paletteButton->setFocusPolicy(Qt::NoFocus);
     m_ui->customSkin->setFocusPolicy(Qt::NoFocus);
     m_ui->resetWindowButton->setFocusPolicy(Qt::NoFocus);
+    m_ui->skinTransparentLabelBox->setFocusPolicy(Qt::NoFocus);
 #endif
 
     QSignalMapper *group = new QSignalMapper(this);
@@ -80,15 +82,13 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
 
-    m_ui->skinTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
+    m_ui->skinTransparentLabelBox->setStyleSheet(MusicUIObject::MCheckBoxStyle04);
     m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
 
-    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), parent,
-                                       SLOT(musicBgTransparentChanged(int)));
-    connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), parent,
-                                       SLOT(musicBackgroundSliderStateChanged(bool)));
-    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), parent,
-                                       SLOT(musicPlayListTransparent(int)));
+    connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
+    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBgTransparentChanged(int)));
+    connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundSliderStateChanged(bool)));
+    connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicPlayListTransparent(int)));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(showPaletteDialog()));
     connect(m_ui->customSkin, SIGNAL(clicked()) ,SLOT(showCustomSkinDialog()));
@@ -152,21 +152,32 @@ void MusicBackgroundSkinDialog::updateArtFileTheme(const QString &theme)
     m_myBackgroundList->createItem(theme, des, true);
     m_myBackgroundList->updateLastedItem();
 }
-
+#include <QDebug>
 void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int listAlpha)
 {
     m_backgroundList->setCurrentItemName(theme);
     m_myBackgroundList->setCurrentItemName(theme);
     //Set the the slider bar value as what the alpha is
-    m_ui->skinTransparentButton->setValue(alpha);
     m_ui->listTransparentButton->setValue(listAlpha);
-    setSkinTransToolText(alpha);
     setListTransToolText(listAlpha);
+
+    bool s = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toBool();
+    m_ui->skinTransparentButton->setValue(s ? alpha : 100);
+    setSkinTransToolText(s ? alpha : 100);
+    if(s)
+    {
+        m_ui->skinTransparentLabelBox->click();
+    }
 }
 
 int MusicBackgroundSkinDialog::getBackgroundListAlpha() const
 {
     return m_ui->listTransparentButton->value();
+}
+
+bool MusicBackgroundSkinDialog::getBackgroundTransparentEnable() const
+{
+    return m_ui->skinTransparentLabelBox->isChecked();
 }
 
 void MusicBackgroundSkinDialog::setSkinTransToolText(int value)
@@ -303,6 +314,16 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
     }
     M_BACKGROUND_PTR->setMBackground(path);
     emit M_BACKGROUND_PTR->backgroundHasChanged();
+}
+
+void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
+{
+    m_ui->skinTransparentButton->setEnabled(state);
+    if(!state)
+    {
+        m_ui->skinTransparentButton->setValue(100);
+        MusicTopAreaWidget::instance()->musicBgTransparentChanged(100);
+    }
 }
 
 int MusicBackgroundSkinDialog::exec()

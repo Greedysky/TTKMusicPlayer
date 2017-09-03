@@ -39,6 +39,10 @@ public:
     /*!
      * Clear All Items.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 Q_SIGNALS:
     void addSongToPlay(const QStringList &list);

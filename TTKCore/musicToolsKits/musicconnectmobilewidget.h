@@ -31,6 +31,10 @@ public:
     /*!
      * Get class object name.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 private Q_SLOTS:
     void changeStatckedWidgetFirst();
@@ -73,6 +77,7 @@ protected:
      * Init connect to wire widget.
      */
 
+    int m_backgroundAlpha;
     MusicAnimationStackedWidget *m_stackedWidget;
 
 };

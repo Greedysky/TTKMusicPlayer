@@ -92,8 +92,9 @@ void MusicXMLConfigManager::writeXMLConfig()
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
-    QString bgTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toString();
-    QString bgListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toString();
+    int bgTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
+    int bgListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
+    int bgTransparentEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int hotkeyEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toInt();
@@ -215,6 +216,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     writeDomElement(backgroundSettingDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
     writeDomElement(backgroundSettingDom, "bgTransparent", MusicXmlAttribute("value", bgTransparentChoiced));
     writeDomElement(backgroundSettingDom, "bgListTransparent", MusicXmlAttribute("value", bgListTransparentChoiced));
+    writeDomElement(backgroundSettingDom, "bgTransparentEnable", MusicXmlAttribute("value", bgTransparentEnableChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(hotkeySettingDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnableChoiced));
@@ -385,6 +387,8 @@ void MusicXMLConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("bgTheme"));
     M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced,
                      readXmlAttributeByTagNameValue("bgTransparent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced,
+                     readXmlAttributeByTagNameValue("bgTransparentEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced,
                      readXmlAttributeByTagNameValue("bgListTransparent").toInt());
 

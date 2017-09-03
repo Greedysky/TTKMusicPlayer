@@ -27,6 +27,7 @@
     <backgroundSetting>
         <bgTheme value="theme-15"/>
         <bgTransparent value="100"/>
+        <bgTransparentEnable value="1"/>
         <bgListTransparent value="33"/>
     </backgroundSetting>
     <hotkeySetting>

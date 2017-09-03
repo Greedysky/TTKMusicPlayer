@@ -124,12 +124,12 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedI
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setIcon(QIcon(":/tiny/lb_server_type"));
     item->setToolTip(songItem.m_type);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_audition")));
+    item->setIcon(QIcon(":/contextMenu/btn_audition"));
     setItem(count, 4, item);
 }
 

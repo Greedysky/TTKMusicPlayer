@@ -142,11 +142,11 @@ QString MusicQueryItemTableWidget::randToGetStrength() const
 {
     switch(qrand()%5)
     {
-        case 0: return QString::fromUtf8(":/video/lb_video_1");
-        case 1: return QString::fromUtf8(":/video/lb_video_2");
-        case 2: return QString::fromUtf8(":/video/lb_video_3");
-        case 3: return QString::fromUtf8(":/video/lb_video_4");
-        case 4: return QString::fromUtf8(":/video/lb_video_5");
-        default:return QString::fromUtf8(":/video/lb_video_5");
+        case 0: return QString(":/video/lb_video_1");
+        case 1: return QString(":/video/lb_video_2");
+        case 2: return QString(":/video/lb_video_3");
+        case 3: return QString(":/video/lb_video_4");
+        case 4: return QString(":/video/lb_video_5");
+        default:return QString(":/video/lb_video_5");
     }
 }

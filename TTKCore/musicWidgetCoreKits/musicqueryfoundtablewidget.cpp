@@ -161,20 +161,20 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/tiny/lb_server_type")));
+    item->setIcon(QIcon(":/tiny/lb_server_type"));
     item->setToolTip(songItem.m_type);
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_play")));
+    item->setIcon(QIcon(":/contextMenu/btn_play"));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_add")));
+    item->setIcon(QIcon(":/contextMenu/btn_add"));
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(QString::fromUtf8(":/contextMenu/btn_download")));
+    item->setIcon(QIcon(":/contextMenu/btn_download"));
     setItem(count, 6, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
