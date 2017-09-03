@@ -2,14 +2,15 @@
 #include "musicsongstoolitemrenamedwidget.h"
 #include "musicsonglistsharingwidget.h"
 #include "musicsonglistenhancelosslesswidget.h"
+#include "musicsettingmanager.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsong.h"
 #include "musicwidgetutils.h"
 #include "musicapplication.h"
-#include "musictopareawidget.h"
 #include "musicotherdefine.h"
+#include "musictopareawidget.h"
 
 #include <QMenu>
 #include <QPainter>
@@ -372,6 +373,8 @@ QString MusicSongsToolBoxMaskWidget::getClassName()
 
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
+    int alpha = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
+    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 
@@ -387,8 +390,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 
     QPixmap pix(MusicTopAreaWidget::instance()->getRendererPixmap());
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(51, 51, width(), height() - 3));
-    painter.fillRect(QRect(0, 0, width(), height() - 3),
-                     QColor(255, 255, 255, 2.55*MusicTopAreaWidget::instance()->getBackgroundListAlpha()));
+    painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(255, 255, 255, alpha));
 }
 
 
@@ -693,13 +695,14 @@ void MusicSongsToolBoxWidget::mousePressAt(int index)
 
 void MusicSongsToolBoxWidget::setTransparent(int alpha)
 {
-    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(2.55*alpha);
+    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
+    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
 
     m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01 +
-                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha*2.55) + "\
+                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
                                 QScrollBar::handle:vertical{ background:#888888;} \
                                 QScrollBar::handle:vertical:hover{ background:#666666;}");
 }

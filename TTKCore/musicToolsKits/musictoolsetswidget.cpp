@@ -36,8 +36,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
     setFrameShape(QFrame::NoFrame);
-    setStyleSheet(MusicUIObject::MScrollBarStyle03 + \
-                  MusicUIObject::MScrollBarStyle05.arg(50));
+
     setIconSize(QSize(60, 60));
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
@@ -49,7 +48,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     setSpacing(16);
     QTimer::singleShot(MT_MS, this, SLOT(addListWidgetItem()));
 #endif
-    MusicUtils::Widget::setTransparent(this, 50);
+
     connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }
 
@@ -61,6 +60,20 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
 QString MusicToolSetsWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicToolSetsWidget::setTransparent(int alpha)
+{
+    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
+    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
+    QWidget *view = this->viewport();
+    view->setObjectName("viewport");
+    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
+
+    setStyleSheet(MusicUIObject::MScrollBarStyle01 +
+                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
+                                QScrollBar::handle:vertical{ background:#888888;} \
+                                QScrollBar::handle:vertical:hover{ background:#666666;}");
 }
 
 void MusicToolSetsWidget::addListWidgetItem()

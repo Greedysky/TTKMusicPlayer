@@ -59,7 +59,11 @@ public:
      */
     int getBackgroundListAlpha() const;
     /*!
-     * Get kist bg skin alpha.
+     * Get list bg skin alpha.
+     */
+    bool getBackgroundTransparentEnable() const;
+    /*!
+     * Get bg window skin enable.
      */
 
     void setSkinTransToolText(int value);
@@ -109,6 +113,10 @@ public Q_SLOTS:
     void currentColorChanged(const QString &path);
     /*!
      * Update app bg when user change the current bg emit.
+     */
+    void windowTransparentChanged(bool state);
+    /*!
+     * Window transparent changed.
      */
     virtual int exec();
     /*!

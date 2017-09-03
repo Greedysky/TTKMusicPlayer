@@ -37,6 +37,10 @@ public:
     /*!
      * To init list items.
      */
+    void setTransparent(int alpha);
+    /*!
+     * Set background transparent.
+     */
 
 public Q_SLOTS:
     void itemHasClicked(QListWidgetItem *item);

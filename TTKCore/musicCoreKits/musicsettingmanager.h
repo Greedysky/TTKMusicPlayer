@@ -47,6 +47,7 @@ public:
         BgThemeChoiced,                 ///*Bg Theme Parameter*/
         BgTransparentChoiced,           ///*Bg Transparent Parameter*/
         BgListTransparentChoiced,       ///*Bg List Transparent Parameter*/
+        BgTransparentEnableChoiced,     ///*Bg Transparent Enable Parameter*/
 
         OtherBgLosslessChoiced,         ///*Other Bg Lossless Parameter*/
         OtherUpdateChoiced,             ///*Other Update Check Parameter*/

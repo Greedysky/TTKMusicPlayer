@@ -413,6 +413,7 @@ MusicCloudSharedSongWidget::MusicCloudSharedSongWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
+    m_backgroundAlpha = 0;
     m_tableWidget = new MusicCloudSharedSongTableWidget(this);
 
     QWidget *bottomWidget = new QWidget(this);
@@ -465,11 +466,17 @@ void MusicCloudSharedSongWidget::getKey()
     }
 }
 
+void MusicCloudSharedSongWidget::setTransparent(int alpha)
+{
+    m_backgroundAlpha = alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
+    update();
+}
+
 void MusicCloudSharedSongWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, 50));
+    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, m_backgroundAlpha));
     painter.end();
 }
 

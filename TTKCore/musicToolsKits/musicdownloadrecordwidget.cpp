@@ -18,8 +18,6 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
-
     m_delegate = new MusicProgressBarDelegate(this);
     setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -70,6 +68,20 @@ void MusicDownloadRecordWidget::clearAllItems()
     //Remove all the original item
     MusicSongsListAbstractTableWidget::clear();
     setColumnCount(4);
+}
+
+void MusicDownloadRecordWidget::setTransparent(int alpha)
+{
+    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
+    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
+    QWidget *view = this->viewport();
+    view->setObjectName("viewport");
+    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
+
+    setStyleSheet(MusicUIObject::MScrollBarStyle01 +
+                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
+                                QScrollBar::handle:vertical{ background:#888888;} \
+                                QScrollBar::handle:vertical:hover{ background:#666666;}");
 }
 
 void MusicDownloadRecordWidget::musicPlay()
