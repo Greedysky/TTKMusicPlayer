@@ -24,6 +24,7 @@
 #include "musicplaylistmanager.h"
 #include "musicotherdefine.h"
 #include "musictinyuiobject.h"
+#include "musicdispatchmanager.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -882,9 +883,9 @@ void MusicApplication::setDeleteItemAt(const MusicObject::MIntList &index, bool 
         musicStatePlay();
         m_playControl = false;
 
-        if(remove)
+        if(remove && !QFile::remove(prePlayName))
         {
-            QFile::remove(prePlayName);
+            M_DISPATCH_PTR->dispatch(1, prePlayName);
         }
     }
 }

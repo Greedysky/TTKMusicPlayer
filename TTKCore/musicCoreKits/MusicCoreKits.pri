@@ -38,7 +38,8 @@ HEADERS  += \
     $$PWD/musiclicensecore.h \
     $$PWD/musicplaylistmanager.h \
     $$PWD/musichotkeymanager.h \
-    $$PWD/musicruntimemanager.h
+    $$PWD/musicruntimemanager.h \
+    $$PWD/musicdispatchmanager.h
 
 }
 
@@ -64,6 +65,7 @@ SOURCES += \
     $$PWD/musiclicensecore.cpp \
     $$PWD/musicplaylistmanager.cpp \
     $$PWD/musichotkeymanager.cpp \
-    $$PWD/musicruntimemanager.cpp
+    $$PWD/musicruntimemanager.cpp \
+    $$PWD/musicdispatchmanager.cpp
 
 }
