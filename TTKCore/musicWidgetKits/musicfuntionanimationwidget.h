@@ -47,6 +47,39 @@ protected:
 };
 
 
+/*! @brief The class of the line background widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicLineBackgroundWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicLineBackgroundWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+    void transparent(bool state);
+    /*!
+     * Set backgrgound transparent.
+     */
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+    bool m_transparent;
+
+};
+
+
 /*! @brief The class of the animation base widget.
  * @author Greedysky <greedysky@163.com>
  */

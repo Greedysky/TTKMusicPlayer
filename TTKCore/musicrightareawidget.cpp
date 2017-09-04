@@ -266,12 +266,12 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     if(key == LrcWidget) ///lrc option
     {
         m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(false);
-        m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
+        m_ui->stackedFunctionWidget->transparent(true);
     }
     else
     {
         m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(true);
-        m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
+        m_ui->stackedFunctionWidget->transparent(false);
     }
 
     deleteStackedFuncWidget();

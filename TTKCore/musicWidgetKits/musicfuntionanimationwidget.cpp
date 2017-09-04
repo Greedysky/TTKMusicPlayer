@@ -30,10 +30,44 @@ void MusicBackgroundWidget::setTransparent(int alpha)
 void MusicBackgroundWidget::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, m_backgroundAlpha));
+    painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundAlpha));
     painter.end();
 
     QWidget::paintEvent(event);
+}
+
+
+
+MusicLineBackgroundWidget::MusicLineBackgroundWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    m_transparent = false;
+}
+
+QString MusicLineBackgroundWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicLineBackgroundWidget::transparent(bool state)
+{
+    m_transparent = state;
+    update();
+}
+
+void MusicLineBackgroundWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+
+    QPainter painter(this);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
+
+    if(!m_transparent)
+    {
+        painter.fillRect(rect(), Qt::white);
+        painter.drawLine(0, height(), width(), height());
+    }
 }
 
 

@@ -555,7 +555,7 @@
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>35</height>
+                <height>40</height>
                </size>
               </property>
              </widget>
@@ -601,7 +601,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QWidget" name="stackedFunctionWidget" native="true">
+             <widget class="MusicLineBackgroundWidget" name="stackedFunctionWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -1406,6 +1406,12 @@
   </customwidget>
   <customwidget>
    <class>MusicOptionAnimationWidget</class>
+   <extends>QWidget</extends>
+   <header>musicfuntionanimationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicLineBackgroundWidget</class>
    <extends>QWidget</extends>
    <header>musicfuntionanimationwidget.h</header>
    <container>1</container>
