@@ -9,15 +9,18 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QListWidget>
 #include "musicobject.h"
-#include "musicuiobject.h"
-#include "musicglobaldefine.h"
+#include "musicabstractmovewidget.h"
+
+class QListWidgetItem;
+namespace Ui {
+class MusicToolSetsWidget;
+}
 
 /*! @brief The class of the tool sets widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public QListWidget
+class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
@@ -25,15 +28,11 @@ public:
     /*!
      * Object contsructor.
      */
-    ~MusicToolSetsWidget();
+    virtual ~MusicToolSetsWidget();
 
     static QString getClassName();
     /*!
      * Get class object name.
-     */
-    void setTransparent(int alpha);
-    /*!
-     * Set background transparent.
      */
 
 public Q_SLOTS:
@@ -49,6 +48,10 @@ public Q_SLOTS:
     /*!
      * Reset window open flag.
      */
+    void show();
+    /*!
+     * Override show function.
+     */
 
 protected:
     void clearAllItems();
@@ -60,6 +63,7 @@ protected:
      * Override the widget event.
      */
 
+    Ui::MusicToolSetsWidget *m_ui;
     MusicObject::ToolsTypes m_toolsFlags;
 
 };

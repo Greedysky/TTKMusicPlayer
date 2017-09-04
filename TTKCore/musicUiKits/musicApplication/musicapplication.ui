@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1033</width>
-    <height>660</height>
+    <width>1000</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1033</width>
-    <height>660</height>
+    <width>1000</width>
+    <height>690</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -94,13 +94,13 @@
           <widget class="QWidget" name="topLeftWidget" native="true">
            <property name="minimumSize">
             <size>
-             <width>370</width>
+             <width>320</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>370</width>
+             <width>320</width>
              <height>16777215</height>
             </size>
            </property>
@@ -137,17 +137,48 @@
              <number>12</number>
             </property>
             <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
+             <widget class="QToolButton" name="musicBackButton">
+              <property name="minimumSize">
                <size>
-                <width>40</width>
+                <width>20</width>
                 <height>20</height>
                </size>
               </property>
-             </spacer>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="musicRefreshButton">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QWidget" name="searchWidget" native="true">
@@ -243,17 +274,90 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowChangeSkin">
+             <widget class="QToolButton" name="musicWindowIdentify">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QToolButton" name="musicWindowTools">
+              <property name="minimumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="musicWindowChangeSkin">
+              <property name="minimumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="musicWindowSetting">
+              <property name="minimumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="cursor">
@@ -296,17 +400,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowSetting">
+             <widget class="QToolButton" name="musicWindowRemote">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="cursor">
@@ -340,39 +444,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="musicWindowRemote">
-              <property name="minimumSize">
-               <size>
-                <width>14</width>
-                <height>14</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>14</width>
-                <height>14</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QToolButton" name="minimization">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="cursor">
@@ -387,14 +469,14 @@
              <widget class="QToolButton" name="windowClose">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>18</width>
+                <height>18</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>18</width>
+                <height>18</height>
                </size>
               </property>
               <property name="cursor">
@@ -416,7 +498,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QHBoxLayout" name="hcenterWidgetLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -433,23 +515,20 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="centerLeftWidget" native="true">
+          <widget class="MusicBackgroundWidget" name="centerLeftWidget" native="true">
            <property name="minimumSize">
             <size>
-             <width>50</width>
+             <width>320</width>
              <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
-             <width>50</width>
+             <width>320</width>
              <height>16777215</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <layout class="QVBoxLayout" name="centerLeftWidgetLayout">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
             <property name="spacing">
              <number>0</number>
             </property>
@@ -466,152 +545,38 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QToolButton" name="musicButton_playlist">
+             <widget class="MusicFuntionAnimationWidget" name="functionAnimationWidget" native="true">
               <property name="minimumSize">
                <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicButton_cloud">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicButton_radio">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicButton_mobile">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicButton_mydownl">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="musicButton_tools">
-              <property name="minimumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>50</width>
-                <height>60</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
+                <width>320</width>
                 <height>40</height>
                </size>
               </property>
-             </spacer>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>35</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="MusicAnimationStackedWidget" name="songsContainer">
+              <property name="minimumSize">
+               <size>
+                <width>320</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>320</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="MusicAnimationStackedWidget" name="songsContainer">
-           <property name="minimumSize">
-            <size>
-             <width>320</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>320</width>
-             <height>16777215</height>
-            </size>
-           </property>
           </widget>
          </item>
          <item>
@@ -640,13 +605,13 @@
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>35</height>
+                <height>40</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>35</height>
+                <height>40</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -665,50 +630,6 @@
                <property name="bottomMargin">
                 <number>0</number>
                </property>
-               <item>
-                <widget class="QToolButton" name="musicBackButton">
-                 <property name="minimumSize">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="musicRefreshButton">
-                 <property name="minimumSize">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <spacer name="horizontalSpacer_2">
                  <property name="orientation">
@@ -908,8 +829,8 @@
              <widget class="QStackedWidget" name="surfaceStackedWidget">
               <property name="minimumSize">
                <size>
-                <width>661</width>
-                <height>503</height>
+                <width>678</width>
+                <height>533</height>
                </size>
               </property>
               <property name="currentIndex">
@@ -924,7 +845,7 @@
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>180</y>
+                  <y>198</y>
                   <width>13</width>
                   <height>55</height>
                  </rect>
@@ -956,13 +877,13 @@
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>70</height>
+          <height>65</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>70</height>
+          <height>65</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -1126,32 +1047,6 @@
             <property name="verticalSpacing">
              <number>0</number>
             </property>
-            <item row="1" column="5">
-             <widget class="QLabel" name="rightMargin">
-              <property name="minimumSize">
-               <size>
-                <width>10</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>10</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <layout class="QVBoxLayout" name="musicQualityWindow">
-              <property name="spacing">
-               <number>6</number>
-              </property>
-             </layout>
-            </item>
             <item row="3" column="0" colspan="6">
              <widget class="MusicTimerSliderWidget" name="musicTimeWidget" native="true">
               <property name="minimumSize">
@@ -1233,22 +1128,31 @@
               </layout>
              </widget>
             </item>
-            <item row="1" column="2" colspan="2">
-             <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
-              <property name="styleSheet">
-               <string notr="true">color:#FFFFFF;font-weight:bold;font-size:15px;</string>
+            <item row="1" column="5">
+             <widget class="QLabel" name="rightMargin">
+              <property name="minimumSize">
+               <size>
+                <width>10</width>
+                <height>0</height>
+               </size>
               </property>
-              <property name="text" stdset="0">
-               <string>当前无正在播放的歌曲</string>
+              <property name="maximumSize">
+               <size>
+                <width>10</width>
+                <height>16777215</height>
+               </size>
               </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="6">
-             <widget class="QLabel" name="topMargin">
               <property name="text">
                <string/>
               </property>
              </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QVBoxLayout" name="musicQualityWindow">
+              <property name="spacing">
+               <number>6</number>
+              </property>
+             </layout>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="leftMargin">
@@ -1262,6 +1166,29 @@
                <size>
                 <width>10</width>
                 <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" colspan="2">
+             <widget class="MusicMarqueeWidget" name="showCurrentSong" native="true">
+              <property name="styleSheet">
+               <string notr="true">color:#FFFFFF;font-weight:bold;font-size:15px;</string>
+              </property>
+              <property name="text" stdset="0">
+               <string>当前无正在播放的歌曲</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="6">
+             <widget class="QLabel" name="topMargin">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>10</height>
                </size>
               </property>
               <property name="text">
@@ -1413,13 +1340,13 @@
              <widget class="MusicEnhancedPopWidget" name="musicEnhancedButton" native="true">
               <property name="minimumSize">
                <size>
-                <width>40</width>
+                <width>48</width>
                 <height>20</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>40</width>
+                <width>48</width>
                 <height>20</height>
                </size>
               </property>
@@ -1615,6 +1542,21 @@
    <extends>QLabel</extends>
    <header>musictransitionanimationlabel.h</header>
   </customwidget>
+  <customwidget>
+   <class>MusicFuntionAnimationWidget</class>
+   <extends>QWidget</extends>
+   <header>musicfuntionanimationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicBackgroundWidget</class>
+   <extends>QWidget</extends>
+   <header>musicfuntionanimationwidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
+ <resources>
+  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
+ </resources>
  <connections/>
 </ui>

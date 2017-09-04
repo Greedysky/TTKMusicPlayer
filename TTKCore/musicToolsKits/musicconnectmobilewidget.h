@@ -31,10 +31,6 @@ public:
     /*!
      * Get class object name.
      */
-    void setTransparent(int alpha);
-    /*!
-     * Set background transparent.
-     */
 
 private Q_SLOTS:
     void changeStatckedWidgetFirst();
@@ -59,7 +55,6 @@ private Q_SLOTS:
      */
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
@@ -77,7 +72,6 @@ protected:
      * Init connect to wire widget.
      */
 
-    int m_backgroundAlpha;
     MusicAnimationStackedWidget *m_stackedWidget;
 
 };

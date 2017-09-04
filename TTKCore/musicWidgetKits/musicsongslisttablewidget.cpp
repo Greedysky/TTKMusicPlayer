@@ -44,7 +44,6 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_leftButtonPressed = false;
     m_listHasSearched = false;
     m_mouseMoved = false;
-    m_transparent = 0;
     m_parentToolIndex = index;
     m_musicSort = nullptr;
 
@@ -688,16 +687,6 @@ void MusicSongsListTableWidget::leaveEvent(QEvent *event)
     delete m_musicSongsInfoWidget;
     m_musicSongsInfoWidget = nullptr;
     closeRenameItem();
-}
-
-void MusicSongsListTableWidget::paintEvent(QPaintEvent *event)
-{
-    QWidget *w = viewport();
-    QPainter painter(w);
-    painter.fillRect(w->rect(), QColor(255, 255, 255, m_transparent));
-    painter.end();
-
-    MusicSongsListAbstractTableWidget::paintEvent(event);
 }
 
 void MusicSongsListTableWidget::wheelEvent(QWheelEvent *event)

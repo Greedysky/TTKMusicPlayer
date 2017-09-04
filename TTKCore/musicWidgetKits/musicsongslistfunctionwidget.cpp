@@ -71,7 +71,7 @@ void MusicSongsListFunctionWidget::setGeometry()
     QWidget *parent = MusicApplication::instance();
     QPoint global(0, parent->size().height());
     global = parent->mapToGlobal( global );
-    move(global.x() + 5.5*width(), global.y() - 5*height());
+    move(global.x() + 4.5*width(), global.y() - 5*height());
 }
 
 void MusicSongsListFunctionWidget::start(bool play, int end)

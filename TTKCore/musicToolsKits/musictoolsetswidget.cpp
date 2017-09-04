@@ -1,4 +1,5 @@
 #include "musictoolsetswidget.h"
+#include "ui_musictoolsetswidget.h"
 #include "musicaudiorecorderwidget.h"
 #include "musictimerwidget.h"
 #include "musiclocalsongsmanagerwidget.h"
@@ -30,31 +31,43 @@
         w->show(); \
     }
 
-
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
-    : QListWidget(parent)
+    : MusicAbstractMoveWidget(parent),
+      m_ui(new Ui::MusicToolSetsWidget)
 {
-    setAttribute(Qt::WA_TranslucentBackground);
-    setFrameShape(QFrame::NoFrame);
+    m_ui->setupUi(this);
 
-    setIconSize(QSize(60, 60));
-    setViewMode(QListView::IconMode);
-    setMovement(QListView::Static);
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, true);
+
+    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
+    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
+    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+
+    m_ui->listItemWidget->setFrameShape(QFrame::NoFrame);
+    setStyleSheet(MusicUIObject::MScrollBarStyle03);
+
+    m_ui->listItemWidget->setIconSize(QSize(60, 60));
+    m_ui->listItemWidget->setViewMode(QListView::IconMode);
+    m_ui->listItemWidget->setMovement(QListView::Static);
 
 #ifdef Q_OS_WIN
-    setSpacing(17);
+    m_ui->listItemWidget->setSpacing(11);
     addListWidgetItem();
 #else
-    setSpacing(16);
+    m_ui->listItemWidget->setSpacing(10);
     QTimer::singleShot(MT_MS, this, SLOT(addListWidgetItem()));
 #endif
 
-    connect(this, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
+    connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
     clearAllItems();
+    delete m_ui;
 }
 
 QString MusicToolSetsWidget::getClassName()
@@ -62,72 +75,58 @@ QString MusicToolSetsWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicToolSetsWidget::setTransparent(int alpha)
-{
-    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
-    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
-    QWidget *view = this->viewport();
-    view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
-
-    setStyleSheet(MusicUIObject::MScrollBarStyle01 +
-                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
-                                QScrollBar::handle:vertical{ background:#888888;} \
-                                QScrollBar::handle:vertical:hover{ background:#666666;}");
-}
-
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("localmanager"), this);
+    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("localmanager"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_recorder") ,tr("recorder"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_recorder") ,tr("recorder"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_bell") ,tr("bell"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_bell") ,tr("bell"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_timer") ,tr("timer"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_timer") ,tr("timer"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_transform") ,tr("transform"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_transform") ,tr("transform"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_spectrum") ,tr("spectrum"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_spectrum") ,tr("spectrum"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_wallpaper") ,tr("wallpaper"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_wallpaper") ,tr("wallpaper"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_phone") ,tr("phone"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_phone") ,tr("phone"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_speed") ,tr("speed"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_speed") ,tr("speed"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_connections") ,tr("connections"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_connections") ,tr("connections"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_gain") ,tr("gain"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_gain") ,tr("gain"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_detect") ,tr("detect"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_detect") ,tr("detect"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_soundtouch") ,tr("soundtouch"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_soundtouch") ,tr("soundtouch"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow") ,tr("grabwindow"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow") ,tr("grabwindow"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_ktv") ,tr("kmicro"), this);
+    m_ui->listItemWidget->addItem(item);
+                     item = new QListWidgetItem(QIcon(":/tools/lb_ktv") ,tr("kmicro"), m_ui->listItemWidget);
     item->setSizeHint(QSize(80, 90));
-    addItem(item);
+    m_ui->listItemWidget->addItem(item);
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 {
-    switch( row(item) )
+    switch( m_ui->listItemWidget->row(item) )
     {
         case 0:
             {
@@ -224,9 +223,15 @@ void MusicToolSetsWidget::resetFlag(MusicObject::ToolsType flag)
     m_toolsFlags &= ~flag;
 }
 
+void MusicToolSetsWidget::show()
+{
+    setBackgroundPixmap(m_ui->background, size());
+    MusicAbstractMoveWidget::show();
+}
+
 void MusicToolSetsWidget::clearAllItems()
 {
-    clear();
+    m_ui->listItemWidget->clear();
 }
 
 void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -22,8 +22,6 @@ MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     vBox->addWidget(m_stackedWidget);
     setLayout(vBox);
 
-    m_backgroundAlpha = 0;
-
     initFirstWidget();
     initSecondWidget();
     initThirdWidget();
@@ -39,21 +37,6 @@ MusicConnectMobileWidget::~MusicConnectMobileWidget()
 QString MusicConnectMobileWidget::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicConnectMobileWidget::setTransparent(int alpha)
-{
-    m_backgroundAlpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);;
-    update();
-}
-
-void MusicConnectMobileWidget::paintEvent(QPaintEvent *event)
-{
-    QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), QColor(255, 255, 255, m_backgroundAlpha));
-    painter.end();
-
-    QWidget::paintEvent(event);
 }
 
 void MusicConnectMobileWidget::contextMenuEvent(QContextMenuEvent *event)

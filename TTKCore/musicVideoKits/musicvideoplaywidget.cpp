@@ -21,8 +21,8 @@
 #include <QDesktopWidget>
 #endif
 
-#define WINDOW_HEIGHT   503
-#define WINDOW_WIDTH    661
+#define WINDOW_HEIGHT   533
+#define WINDOW_WIDTH    678
 
 MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(false, parent), m_windowPopup(false)

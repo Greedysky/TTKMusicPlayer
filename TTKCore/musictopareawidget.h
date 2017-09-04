@@ -207,6 +207,10 @@ public Q_SLOTS:
     /*!
      * Switch to diff remote type.
      */
+    void musicStackedToolsWidgetChanged();
+    /*!
+     * Change to tool sets widget.
+     */
 
 protected:
     void createRemoteWidget();

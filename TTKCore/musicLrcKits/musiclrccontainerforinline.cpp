@@ -227,7 +227,8 @@ void MusicLrcContainerForInline::resizeWindow()
     }
     if(MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen())
     {
-        width += (m_lrcDisplayAll ? 50 : (320 + 50));
+        width += (m_lrcDisplayAll ? 0 : 320);
+        height += 320/2;
     }
 
     resizeWidth(width - WINDOW_WIDTH_MIN, height - WINDOW_HEIGHT_MIN);

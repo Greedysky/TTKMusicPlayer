@@ -63,15 +63,6 @@ namespace MusicUIObject
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_download_clicked);}";
 
-    const QString MKGItemMore = " \
-            QToolButton{ border:none; \
-            background-image: url(:/appTools/item_more_normal);} \
-            QToolButton:hover{ background-image: url(:/appTools/item_more_hover);}";
-
-    const QString MKGItemMoreClicked = " \
-            QToolButton{ border:none; \
-            background-image: url(:/appTools/item_more_clicked);}";
-
 }
 
 #endif // MUSICLEFTITEMLISTUIOBJECT_H

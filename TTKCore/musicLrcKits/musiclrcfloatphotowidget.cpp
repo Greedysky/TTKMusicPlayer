@@ -117,35 +117,35 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
 
     m_filmBGWidget = new QWidget(this);
     m_filmBGWidget->setObjectName("FilmBGWidget");
-    m_filmBGWidget->setGeometry(0, 0, 662, 125);
+    m_filmBGWidget->setGeometry(0, 0, 680, 125);
     m_filmBGWidget->setStyleSheet("#FilmBGWidget{background-image:url(':/lrc/lb_film_bg');}");
 
     MusicLrcFloatPhotoItem *item;
     item = new MusicLrcFloatPhotoItem(0, m_filmBGWidget);
-    item->move(100, 30);
+    item->move(109, 30);
     m_planes << item;
     item = new MusicLrcFloatPhotoItem(1, m_filmBGWidget);
-    item->move(280, 30);
+    item->move(289, 30);
     m_planes << item;
     item = new MusicLrcFloatPhotoItem(2, m_filmBGWidget);
-    item->move(460, 30);
+    item->move(469, 30);
     m_planes << item;
 
     m_checkBox = new QCheckBox(tr("All"), this);
-    m_checkBox->setGeometry(20, 130, 100, 20);
+    m_checkBox->setGeometry(29, 130, 100, 20);
     m_checkBox->setChecked(true);
     m_checkBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_confirmButton = new QPushButton(tr("Confirm"), this);
-    m_confirmButton->setGeometry(580, 130, 60, 22);
+    m_confirmButton->setGeometry(589, 130, 60, 22);
     m_confirmButton->setStyleSheet(MusicUIObject::MKGInlineFloatSetting + \
                                    MusicUIObject::MPushButtonStyle08);
     m_confirmButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_previous = new QPushButton("<", m_filmBGWidget);
-    m_previous->setGeometry(20, 38, 15, 50);
+    m_previous->setGeometry(29, 38, 15, 50);
     m_next = new QPushButton(">", m_filmBGWidget);
-    m_next->setGeometry(625, 38, 15, 50);
+    m_next->setGeometry(634, 38, 15, 50);
     m_previous->setCursor(QCursor(Qt::PointingHandCursor));
     m_next->setCursor(QCursor(Qt::PointingHandCursor));
 
@@ -191,8 +191,8 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
     bool f = MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen();
-    m_rectIn = QRect(0, (f ? 680 : 530) + height, 115 + width, 105);
-    m_rectOut = QRect(0, (f ? 480 : 330) + height, 662 + width, 180);
+    m_rectIn = QRect(0, (f ? 705 : 555) + height, 133 + width, 105);
+    m_rectOut = QRect(0, (f ? 505 : 355) + height, 680 + width, 180);
 
     m_filmBGWidget->move(width/2, 0);
     m_checkBox->move(width/2 + 20, 130);

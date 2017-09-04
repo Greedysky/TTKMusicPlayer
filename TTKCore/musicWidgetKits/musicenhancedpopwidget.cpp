@@ -125,11 +125,11 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     QString style = MusicUIObject::MKGBtnMagic;
     switch(type)
     {
-        case 0: style += "#EnhancedWidget{ margin-left: -2px; }"; break;
-        case 1: style += "#EnhancedWidget{ margin-left: -46px; }"; break;
-        case 2: style += "#EnhancedWidget{ margin-left: -178px; }"; break;
-        case 3: style += "#EnhancedWidget{ margin-left: -90px; }"; break;
-        case 4: style += "#EnhancedWidget{ margin-left: -134px; }"; break;
+        case 0: style += "#EnhancedWidget{ margin-left: 0px; }"; break;
+        case 1: style += "#EnhancedWidget{ margin-left: -48px; }"; break;
+        case 2: style += "#EnhancedWidget{ margin-left: -192px; }"; break;
+        case 3: style += "#EnhancedWidget{ margin-left: -96px; }"; break;
+        case 4: style += "#EnhancedWidget{ margin-left: -144px; }"; break;
     }
     setStyleSheet( style );
 

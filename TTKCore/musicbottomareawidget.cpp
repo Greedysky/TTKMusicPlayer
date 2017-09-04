@@ -129,7 +129,7 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_ui->centerRightWidget->setVisible(!con);
     m_ui->bottomCenterWidget->setVisible(!con);
     m_ui->bottomRightWidget->setVisible(!con);
-    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? 370 : 220);
+    m_ui->bottomLeftContainWidget->setMinimumWidth(con ? 322 : 220);
 
     m_ui->musicWindowConcise->setParent(con ? m_ui->background : m_ui->topRightWidget);
     m_ui->musicWindowConcise->setStyleSheet(con ? MusicUIObject::MKGBtnConciseOut : MusicUIObject::MKGBtnConciseIn);
@@ -147,14 +147,14 @@ void MusicBottomAreaWidget::setWindowConcise()
     if(con)
     {
         MusicApplication *app = MusicApplication::instance();
-        app->setMinimumSize(370, WINDOW_HEIGHT_MIN);
-        app->setMaximumSize(370, WINDOW_HEIGHT_MIN);
+        app->setMinimumSize(322, WINDOW_HEIGHT_MIN);
+        app->setMaximumSize(322, WINDOW_HEIGHT_MIN);
 
-        m_ui->musicWindowConcise->move(295, 20);
+        m_ui->musicWindowConcise->move(245, 20);
         m_ui->musicWindowConcise->show();
-        m_ui->minimization->move(320, 20);
+        m_ui->minimization->move(270, 20);
         m_ui->minimization->show();
-        m_ui->windowClose->move(345, 20);
+        m_ui->windowClose->move(295, 20);
         m_ui->windowClose->show();
 
         m_ui->musicPrevious->setStyleSheet(MusicUIObject::MKGTinyBtnPrevious);
@@ -186,7 +186,7 @@ void MusicBottomAreaWidget::setWindowConcise()
         m_ui->musicKey->setFixedSize(44, 44);
         m_ui->musicNext->setFixedSize(44, 44);
 
-        m_ui->topRightWidgetLayout->insertWidget(6, m_ui->musicWindowConcise);
+        m_ui->topRightWidgetLayout->insertWidget(11, m_ui->musicWindowConcise);
         m_ui->topRightWidgetLayout->addWidget(m_ui->minimization);
         m_ui->topRightWidgetLayout->addWidget(m_ui->windowClose);
 
@@ -212,7 +212,7 @@ void MusicBottomAreaWidget::resizeWindow()
     int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
     if(m_musicSongSearchWidget)
     {
-        m_musicSongSearchWidget->move(51, 554 + h);
+        m_musicSongSearchWidget->move(1, 589 + h);
     }
     m_ui->musicSongSearchLine->resizeWindow();
 

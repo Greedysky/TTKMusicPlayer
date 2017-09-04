@@ -11,9 +11,12 @@ MusicWebMusicRadioListView::MusicWebMusicRadioListView(QWidget *parent)
 {
     setAttribute(Qt::WA_TranslucentBackground);
     setFrameShape(QFrame::NoFrame);
+    setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     setViewMode(QListView::IconMode);
     setMovement(QListView::Static);
+
+    MusicUtils::Widget::setTransparent(this, 0);
 
     m_cookJar = new QNetworkCookieJar(this);
 #ifdef Q_OS_WIN
@@ -45,20 +48,6 @@ void MusicWebMusicRadioListView::initListItems()
         connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
         m_getChannelThread->startToDownload(QString());
     }
-}
-
-void MusicWebMusicRadioListView::setTransparent(int alpha)
-{
-    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
-    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
-    QWidget *view = this->viewport();
-    view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
-
-    setStyleSheet(MusicUIObject::MScrollBarStyle01 +
-                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
-                                QScrollBar::handle:vertical{ background:#888888;} \
-                                QScrollBar::handle:vertical:hover{ background:#666666;}");
 }
 
 void MusicWebMusicRadioListView::addListWidgetItem()

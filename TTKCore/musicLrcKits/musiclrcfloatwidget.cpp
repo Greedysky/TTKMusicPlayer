@@ -86,8 +86,9 @@ QString MusicLrcFloatWidget::getClassName()
 
 void MusicLrcFloatWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(548 + width, 120 + height/2, 115, 210);
-    m_rectOut = QRect(658 + width, 171 + height/2, 115, 105);
+    m_rectIn = QRect(566 + width, 138 + height/2, 115, 210);
+    m_rectOut = QRect(676 + width, 189 + height/2, 115, 105);
+
     setGeometry( m_rectOut );
 
     m_floatSettingWidget->resizeWindow(width, height);

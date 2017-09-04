@@ -150,6 +150,7 @@
         <file alias="btn_ring">../TTKResource/contextMenu/btn_ring.png</file>
         <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
         <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
+        <file alias="btn_lrc_label">../TTKResource/contextMenu/btn_lrc_label.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>
@@ -298,9 +299,6 @@
         <file alias="item_download_normal">../TTKResource/appTools/item_download_normal.png</file>
         <file alias="item_download_hover">../TTKResource/appTools/item_download_hover.png</file>
         <file alias="item_download_clicked">../TTKResource/appTools/item_download_clicked.png</file>
-        <file alias="item_more_normal">../TTKResource/appTools/item_more_normal.png</file>
-        <file alias="item_more_hover">../TTKResource/appTools/item_more_hover.png</file>
-        <file alias="item_more_clicked">../TTKResource/appTools/item_more_clicked.png</file>
     </qresource>
     <qresource prefix="/funcTools">
         <file alias="song_fore_normal">../TTKResource/funcTools/song_fore_normal.png</file>
@@ -414,6 +412,7 @@
         <file alias="btn_record_finish_hover">../TTKResource/toolSets/btn_record_finish_hover.png</file>
         <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
+        <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
     </qresource>
     <qresource prefix="/tiny">
         <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>
@@ -587,6 +586,10 @@
         <file alias="btn_artist_normal">../TTKResource/functions/btn_artist_normal.png</file>
         <file alias="btn_playlist_hover">../TTKResource/functions/btn_playlist_hover.png</file>
         <file alias="btn_playlist_normal">../TTKResource/functions/btn_playlist_normal.png</file>
+        <file alias="btn_identify_normal">../TTKResource/functions/btn_identify_normal.png</file>
+        <file alias="btn_identify_hover">../TTKResource/functions/btn_identify_hover.png</file>
+        <file alias="btn_tools_normal">../TTKResource/functions/btn_tools_normal.png</file>
+        <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>

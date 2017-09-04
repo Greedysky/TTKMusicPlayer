@@ -53,6 +53,7 @@ FORMS    += \
     $$PWD/musicToolsKits/musicwebmusicradiowidget.ui \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfilemanagerdialog.ui \
+    $$PWD/musicToolsKits/musictoolsetswidget.ui \
     $$PWD/musicUserKits/musicuserdialog.ui \
     $$PWD/musicUserKits/musicusermanagerdialog.ui \
     $$PWD/musicUserKits/musicuserrecordwidget.ui \

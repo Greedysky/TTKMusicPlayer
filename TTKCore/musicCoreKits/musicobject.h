@@ -135,8 +135,8 @@
 #endif
 
 ///////////////////////////////////////
-#define WINDOW_WIDTH_MIN        1033
-#define WINDOW_HEIGHT_MIN       660
+#define WINDOW_WIDTH_MIN        1000
+#define WINDOW_HEIGHT_MIN       690
 ///////////////////////////////////////
 #define DEFAULT_INDEX_LEVEL0    -1
 #define DEFAULT_INDEX_LEVEL1    -999

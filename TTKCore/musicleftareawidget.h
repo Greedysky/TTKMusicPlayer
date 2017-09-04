@@ -82,13 +82,23 @@ public Q_SLOTS:
     /*!
      * To download music data from net finished.
      */
+    void cloudSharedSongUploadAllDone();
+    /*!
+     * All files upload finsihed.
+     */
+    void lrcWidgetShowFullScreen();
+    /*!
+     * Show full container or not.
+     */
+    void switchToSelectedItemStyle(int index);
+    /*!
+     * Switch to selected item style.
+     */
+
+protected:
     void musicStackedSongListWidgetChanged();
     /*!
      * Change to song list widget.
-     */
-    void musicStackedToolsWidgetChanged();
-    /*!
-     * Change to tool sets widget.
      */
     void musicStackedRadioWidgetChanged();
     /*!
@@ -105,20 +115,6 @@ public Q_SLOTS:
     void musicStackedCloudWidgetChanged();
     /*!
      * Change to shared cloud widget.
-     */
-    void cloudSharedSongUploadAllDone();
-    /*!
-     * All files upload finsihed.
-     */
-    void lrcWidgetShowFullScreen();
-    /*!
-     * Show full container or not.
-     */
-
-protected:
-    void switchToSelectedItemStyle(int index);
-    /*!
-     * Switch to selected item style.
      */
 
     Ui::MusicApplication *m_ui;

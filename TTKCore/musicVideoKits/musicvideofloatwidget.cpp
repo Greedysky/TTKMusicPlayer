@@ -65,8 +65,8 @@ QString MusicVideoFloatWidget::getClassName()
 
 void MusicVideoFloatWidget::resizeWindow(int width, int height)
 {
-    m_rectIn = QRect(548 + width, 120 + height/2, 125, 210);
-    m_rectOut = QRect(658 + width, 171 + height/2, 125, 105);
+    m_rectIn = QRect(566 + width, 138 + height/2, 125, 210);
+    m_rectOut = QRect(676 + width, 189 + height/2, 125, 105);
     setGeometry( m_rectOut );
 }
 

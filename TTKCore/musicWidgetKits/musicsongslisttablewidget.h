@@ -60,14 +60,6 @@ public:
     /*!
      * Get the current play row.
      */
-    inline int getTransparent() const { return m_transparent;}
-    /*!
-     * Get item transparent.
-     */
-    inline void setTransparent(int transparent) { m_transparent = transparent;}
-    /*!
-     * Set item transparent.
-     */
     inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
     /*!
      * Set music sort.
@@ -203,7 +195,6 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
@@ -222,7 +213,7 @@ protected:
      * Create context menu.
      */
 
-    int m_transparent, m_dragStartIndex;
+    int m_dragStartIndex;
     QPoint m_dragStartPoint;
     bool m_mouseMoved;
 

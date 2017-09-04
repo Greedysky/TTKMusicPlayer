@@ -62,18 +62,28 @@ namespace MusicUIObject
 
     const QString MKGBtnTClose = " \
             QToolButton{ border:none; \
-            background-image: url(:/functions/btn_close_normal);} \
+            background-image: url(:/functions/btn_close_hover);} \
             QToolButton:hover{ background-image: url(:/functions/btn_close_hover);}";
 
     const QString MKGBtnPClose = " \
             QPushButton{ border:none; \
-            background-image: url(:/functions/btn_close_normal);} \
+            background-image: url(:/functions/btn_close_hover);} \
             QPushButton:hover{ background-image: url(:/functions/btn_close_hover);}";
 
     const QString MKGBtnSkin = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_skin_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_skin_hover);}";
+
+    const QString MKGBtnIdentify = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_identify_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_identify_hover);}";
+
+    const QString MKGBtnTools = " \
+            QToolButton{ border:none; \
+            background-image: url(:/functions/btn_tools_normal);} \
+            QToolButton:hover{ background-image: url(:/functions/btn_tools_hover);}";
 
     const QString MKGBtnSetting = " \
             QToolButton{ border:none; \
@@ -145,20 +155,10 @@ namespace MusicUIObject
             background-image: url(:/enhance/btn_magic_normal);} \
             QToolButton:hover{ background-image: url(:/enhance/btn_magic_hover);}";
 
-    const QString MKGBtnForeBack = " \
-            QToolButton{ border:none; \
-            background-image: url(:/functions/btn_back_fore_normal);} \
-            QToolButton:hover{ background-image: url(:/functions/btn_back_fore_hover);}";
-
     const QString MKGBtnBackBack = " \
             QToolButton{ border:none; \
             background-image: url(:/functions/btn_back_back_normal);} \
             QToolButton:hover{ background-image: url(:/functions/btn_back_back_hover);}";
-
-    const QString MKGBtnForeFresh = " \
-            QToolButton{ border:none; \
-            background-image: url(:/functions/btn_fresh_fore_normal);} \
-            QToolButton:hover{ background-image: url(:/functions/btn_fresh_fore_hover);}";
 
     const QString MKGBtnBackFresh = " \
             QToolButton{ border:none; \

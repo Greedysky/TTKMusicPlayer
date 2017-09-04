@@ -125,9 +125,6 @@ void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)
         item->m_itemIndex = ++m_itemIndexRaise;
         checkCurrentNameExist(item->m_itemName);
         createWidgetItem(item);
-
-        int transparent = m_songItems.first().m_itemObject->getTransparent();
-        item->m_itemObject->setTransparent(transparent);
     }
 }
 
@@ -835,18 +832,9 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     }
 }
 
-void MusicSongsSummariziedWidget::setTransparent(int alpha)
-{
-    MusicSongsToolBoxWidget::setTransparent(alpha);
-    if(m_listMaskWidget)
-    {
-        m_listMaskWidget->update();
-    }
-}
-
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 {
-    if(value >= 35*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
+    if(value >= 40*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
     {
         MusicSongItem *songItem = &m_songItems[m_currentIndex];
         m_listMaskWidget->setItemIndex(songItem->m_itemIndex);
@@ -897,9 +885,6 @@ void MusicSongsSummariziedWidget::addNewRowItem(const QString &name)
     item.m_itemName = name;
     m_songItems << item;
     createWidgetItem(&m_songItems.last());
-
-    int transparent = m_songItems.first().m_itemObject->getTransparent();
-    m_songItems.last().m_itemObject->setTransparent(transparent);
 }
 
 void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)

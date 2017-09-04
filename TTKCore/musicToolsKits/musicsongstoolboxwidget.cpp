@@ -34,7 +34,7 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     m_musicSort = nullptr;
 
     setAcceptDrops(true);
-    setFixedHeight(35);
+    setFixedHeight(40);
 
     QHBoxLayout *topLayout = new QHBoxLayout(this);
     topLayout->setContentsMargins(3, 0, 0, 0);
@@ -49,21 +49,21 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     enhanceButton->setToolTip(tr("enhanceLossless"));
     enhanceButton->setStyleSheet(MusicUIObject::MKGTinyBtnEnhanceLossless);
     enhanceButton->setCursor(QCursor(Qt::PointingHandCursor));
-    enhanceButton->setGeometry(240, 10, 16, 16);
+    enhanceButton->setGeometry(240, 12, 16, 16);
     connect(enhanceButton, SIGNAL(clicked()), SLOT(showEnhanceLosslessDialog()));
 
     QPushButton *shareListButton = new QPushButton(this);
     shareListButton->setToolTip(tr("shareList"));
     shareListButton->setStyleSheet(MusicUIObject::MKGTinyBtnShare);
     shareListButton->setCursor(QCursor(Qt::PointingHandCursor));
-    shareListButton->setGeometry(265, 10, 16, 16);
+    shareListButton->setGeometry(265, 12, 16, 16);
     connect(shareListButton, SIGNAL(clicked()), SLOT(showShareListDialog()));
 
     QPushButton *menuButton = new QPushButton(this);
     menuButton->setToolTip(tr("listMenu"));
     menuButton->setStyleSheet(MusicUIObject::MKGTinyBtnListMenu);
     menuButton->setCursor(QCursor(Qt::PointingHandCursor));
-    menuButton->setGeometry(290, 10, 16, 16);
+    menuButton->setGeometry(290, 12, 16, 16);
     connect(menuButton, SIGNAL(clicked()), SLOT(showMenu()));
 
 #ifdef Q_OS_UNIX
@@ -331,7 +331,6 @@ void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
-    painter.drawLine(0, 0, width(), 0);
     painter.drawLine(0, height(), width(), height());
 
     if(m_isDrawMoveState)
@@ -389,7 +388,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(0, 32, width(), height());
 
     QPixmap pix(MusicTopAreaWidget::instance()->getRendererPixmap());
-    painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(51, 51, width(), height() - 3));
+    painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(1, 91, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(255, 255, 255, alpha));
 }
 
@@ -523,6 +522,8 @@ MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
     m_scrollArea->setFrameShadow(QFrame::Plain);
     m_scrollArea->setAlignment(Qt::AlignLeft);
     m_scrollArea->setWidget(m_contentsWidget);
+
+    setTransparent(0);
 
     mainLayout->addWidget(m_scrollArea);
     setLayout(mainLayout);
@@ -695,16 +696,12 @@ void MusicSongsToolBoxWidget::mousePressAt(int index)
 
 void MusicSongsToolBoxWidget::setTransparent(int alpha)
 {
-    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
     QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
 
-    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01 +
-                                QString("QScrollBar{ background:rgba(255, 255, 255, %1);}").arg(alpha) + "\
-                                QScrollBar::handle:vertical{ background:#888888;} \
-                                QScrollBar::handle:vertical:hover{ background:#666666;}");
+    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 }
 
 void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)

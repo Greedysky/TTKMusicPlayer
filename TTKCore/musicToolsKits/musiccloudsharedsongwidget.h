@@ -171,20 +171,14 @@ public:
     /*!
      * Get query cloud id keys.
      */
-    void setTransparent(int alpha);
-    /*!
-     * Set background transparent.
-     */
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
 
     QLabel *m_statusLabel;
-    int m_backgroundAlpha;
     MusicCloudSharedSongTableWidget *m_tableWidget;
 
 };

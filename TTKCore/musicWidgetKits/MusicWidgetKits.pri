@@ -49,7 +49,8 @@ HEADERS  += \
     $$PWD/musicplaybackmodepopwidget.h \
     $$PWD/musicqualitychoicepopwidget.h \
     $$PWD/musicplayedlistpopwidget.h \
-    $$PWD/musicplaylistfoundcategorypopwidget.h
+    $$PWD/musicplaylistfoundcategorypopwidget.h \
+    $$PWD/musicfuntionanimationwidget.h
 
 }
 
@@ -94,6 +95,7 @@ SOURCES += \
     $$PWD/musicplaybackmodepopwidget.cpp \
     $$PWD/musicqualitychoicepopwidget.cpp \
     $$PWD/musicplayedlistpopwidget.cpp \
-    $$PWD/musicplaylistfoundcategorypopwidget.cpp
+    $$PWD/musicplaylistfoundcategorypopwidget.cpp \
+    $$PWD/musicfuntionanimationwidget.cpp
 
 }

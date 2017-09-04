@@ -65,6 +65,9 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     m_ui = ui;
     ui->musiclrccontainerforinline->resize(ui->surfaceStackedWidget->size());
 
+    ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
+    ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
+
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
@@ -78,6 +81,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     group->addButton(ui->musicLiveWidgetButton, 4);
     group->addButton(ui->musicLrcWidgetButton, 5);
     group->addButton(ui->musicSearchButton, 6);
+    group->addButton(ui->musicWindowIdentify, 11);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
 
     ///////////////////////////////////////////////////////
@@ -268,16 +272,12 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     {
         musicButtonStyleClear(false);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
-        m_ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
-        m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
         m_ui->line->hide();
     }
     else
     {
         musicButtonStyleClear(true);
         m_ui->stackedFunctionWidget->setStyleSheet(QString("#stackedFunctionWidget{%1}").arg(MusicUIObject::MBackgroundStyle17));
-        m_ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnForeBack);
-        m_ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnForeFresh);
         m_ui->line->show();
     }
 
@@ -646,12 +646,12 @@ void MusicRightAreaWidget::musicLrcDisplayAllButtonClicked()
 {
     bool lrcDisplayAll = !m_ui->musiclrccontainerforinline->lrcDisplayExpand();
     m_ui->musiclrccontainerforinline->setLrcDisplayExpand(lrcDisplayAll);
-    m_ui->songsContainer->setHidden(lrcDisplayAll);
+    m_ui->centerLeftWidget->setHidden(lrcDisplayAll);
 
     int height = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     QPropertyAnimation *lrcDisplayAllAnimation = new QPropertyAnimation(m_ui->lrcDisplayAllButton, "pos", this);
     lrcDisplayAllAnimation->setDuration(100);
-    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 350 : -370, height/2));
+    lrcDisplayAllAnimation->setStartValue(QPoint(lrcDisplayAll ? 300 : -320, height/2));
     lrcDisplayAllAnimation->setEndValue(QPoint(0, height/2));
     lrcDisplayAllAnimation->start();
 

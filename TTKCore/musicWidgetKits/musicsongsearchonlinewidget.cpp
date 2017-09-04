@@ -24,8 +24,8 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     setColumnCount(8);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 293);
-    headerview->resizeSection(2, 193);
+    headerview->resizeSection(1, 303);
+    headerview->resizeSection(2, 203);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 23);
     headerview->resizeSection(5, 26);
@@ -163,8 +163,8 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 293);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 173);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 303);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 183);
     headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 55);
 
     for(int i=0; i<rowCount(); ++i)
@@ -225,14 +225,14 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedIt
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 285));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 295));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_songname);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 165));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 175));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     item->setToolTip(songItem.m_artistname);
@@ -565,8 +565,8 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(m_resizeLabels.count() == 3)
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 295);
-        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 285);
+        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 305);
+        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 295);
         m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.2 + 150);
     }
 

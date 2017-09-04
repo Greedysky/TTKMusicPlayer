@@ -19,6 +19,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadcounterpvthread.h"
 #include "musicotherdefine.h"
+#include "musictoolsetswidget.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -72,6 +73,15 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 
     ui->musicSearchButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicSearchButton->setStyleSheet(MusicUIObject::MKGTinyBtnMainSearch);
+
+    ui->musicWindowIdentify->setToolTip(tr("identify"));
+    ui->musicWindowIdentify->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicWindowIdentify->setStyleSheet(MusicUIObject::MKGBtnIdentify);
+
+    ui->musicWindowTools->setToolTip(tr("tools"));
+    ui->musicWindowTools->setCursor(QCursor(Qt::PointingHandCursor));
+    ui->musicWindowTools->setStyleSheet(MusicUIObject::MKGBtnTools);
+    connect(ui->musicWindowTools, SIGNAL(clicked()), SLOT(musicStackedToolsWidgetChanged()));
 
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
@@ -433,6 +443,11 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
         case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
     }
+}
+
+void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
+{
+    (new MusicToolSetsWidget(this))->show();
 }
 
 void MusicTopAreaWidget::createRemoteWidget()
