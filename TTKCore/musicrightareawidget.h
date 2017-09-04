@@ -228,10 +228,6 @@ public Q_SLOTS:
      */
 
 protected:
-    void musicButtonStyleClear(bool fore);
-    /*!
-     * Function button style clear.
-     */
 
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;

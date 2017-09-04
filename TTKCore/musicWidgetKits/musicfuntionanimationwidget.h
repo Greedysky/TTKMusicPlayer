@@ -12,6 +12,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
+class QButtonGroup;
 class QPropertyAnimation;
 
 /*! @brief The class of the background widget.
@@ -46,18 +47,18 @@ protected:
 };
 
 
-/*! @brief The class of the function animation widget.
+/*! @brief The class of the animation base widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicFuntionAnimationWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicBaseAnimationWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicFuntionAnimationWidget(QWidget *parent = 0);
+    explicit MusicBaseAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicFuntionAnimationWidget();
+    ~MusicBaseAnimationWidget();
 
     static QString getClassName();
     /*!
@@ -71,12 +72,18 @@ signals:
      */
 
 public Q_SLOTS:
-    void switchToSelectedItemStyle(int index);
+    virtual void switchToSelectedItemStyle(int index);
     /*!
      * Switch to selected item style.
      */
     void animationChanged(const QVariant &value);
+    /*!
+     * Animation state changed.
+     */
     void finished();
+    /*!
+     * Animation finished.
+     */
 
 protected:
     virtual void paintEvent(QPaintEvent *event) override;
@@ -86,11 +93,84 @@ protected:
 
     QPixmap m_pix;
     int m_curIndex, m_preIndex, m_x;
-    float m_perWidth;
-    bool m_isAnimation;
+    float m_perWidth, m_totalWidth;
+    bool m_isAnimation, m_showState;
 
     QPropertyAnimation *m_animation;
     QList<QWidget*> m_container;
+    QButtonGroup *m_group;
+
+};
+
+
+/*! @brief The class of the function animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicFuntionAnimationWidget : public MusicBaseAnimationWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicFuntionAnimationWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+public Q_SLOTS:
+    virtual void switchToSelectedItemStyle(int index) override;
+    /*!
+     * Switch to selected item style.
+     */
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+};
+
+
+/*! @brief The class of the function option animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicOptionAnimationWidget : public MusicBaseAnimationWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicOptionAnimationWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+    void musicButtonStyleClear(bool fore);
+    /*!
+     * Function button style clear.
+     */
+    void musicButtonStyle(int index);
+    /*!
+     * Function button style choice.
+     */
+
+public Q_SLOTS:
+    virtual void switchToSelectedItemStyle(int index) override;
+    /*!
+     * Switch to selected item style.
+     */
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
 
 };
 

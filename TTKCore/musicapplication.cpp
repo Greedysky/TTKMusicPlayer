@@ -9,7 +9,6 @@
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
 #include "musicversion.h"
-#include "musicfunctionuiobject.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicbottomareawidget.h"
