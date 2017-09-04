@@ -19,8 +19,6 @@
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
 
-#include <QTimer>
-
 #define NEW_OPERATOR(flag, type)  \
     if((m_toolsFlags & flag) != flag) \
     { \
@@ -53,13 +51,8 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     m_ui->listItemWidget->setViewMode(QListView::IconMode);
     m_ui->listItemWidget->setMovement(QListView::Static);
 
-#ifdef Q_OS_WIN
     m_ui->listItemWidget->setSpacing(11);
     addListWidgetItem();
-#else
-    m_ui->listItemWidget->setSpacing(10);
-    QTimer::singleShot(MT_MS, this, SLOT(addListWidgetItem()));
-#endif
 
     connect(m_ui->listItemWidget, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(itemHasClicked(QListWidgetItem*)));
 }

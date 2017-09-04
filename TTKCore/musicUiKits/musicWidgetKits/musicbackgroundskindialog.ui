@@ -164,7 +164,7 @@
   <widget class="MusicBackgroundPopWidget" name="skinTransparentButton" native="true">
    <property name="geometry">
     <rect>
-     <x>259</x>
+     <x>269</x>
      <y>369</y>
      <width>70</width>
      <height>25</height>
@@ -236,7 +236,7 @@
     <rect>
      <x>184</x>
      <y>369</y>
-     <width>70</width>
+     <width>80</width>
      <height>25</height>
     </rect>
    </property>
