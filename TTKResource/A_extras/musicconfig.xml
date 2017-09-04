@@ -60,7 +60,7 @@
     </desktopLrcSetting>
     <equalizerSetting>
         <enhancedMusic value="3"/>
-        <equalizerEnale value="0"/>
+        <equalizerEnable value="0"/>
         <equalizerIndex value="5"/>
         <equalizerValue value="0,-6,6,6,3,2,-2,-5,-6,-8,-8"/>
         <enhancedBalance value="-3"/>

@@ -9,9 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QProcess>
 #include <QDebug>
-#include "musicobject.h"
 #include "musicprivate.h"
 #include "musicrunglobaldefine.h"
 
@@ -37,6 +35,7 @@ public:
     /*!
      * To run main window.
      */
+
 private Q_SLOTS:
     void finished(int code);
     /*!
@@ -44,19 +43,6 @@ private Q_SLOTS:
      */
 
 private:
-    void dirIsExist(const QString &name);
-    /*!
-     * Check current dir is exist, no, just create it.
-     */
-    void checkTheDirectoryExist();
-    /*!
-     * Check the related dir is exist.
-     */
-    void checkTheFileNeededExist();
-    /*!
-     * Check the related file is exist.
-     */
-
     TTK_DECLARE_PRIVATE(MusicRunObject)
 
 };

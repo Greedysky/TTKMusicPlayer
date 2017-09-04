@@ -62,7 +62,7 @@ void MusicLocalSongSearchPopTableWidget::listCellClicked(int row, int)
 MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
 {
-    move(545, 45);
+    move(370, 45);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);

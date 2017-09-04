@@ -34,7 +34,7 @@ void MusicLocalSongSearchInlineEdit::resizeWindow()
         return;
     }
     int w = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    m_popWidget->move(545 + w - WINDOW_WIDTH_MIN, 45);
+    m_popWidget->move(370 + w - WINDOW_WIDTH_MIN, 45);
 }
 
 void MusicLocalSongSearchInlineEdit::focusInEvent(QFocusEvent *event)

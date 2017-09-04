@@ -9,11 +9,11 @@
 QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-include(../TTKVersion.pri)
+include(../../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer
 
-win32:TARGET = ../../bin/TTKMusicPlayer
-unix:TARGET = ../lib/TTKMusicPlayer
+win32:TARGET = ../../../bin/TTKMusicPlayer
+unix:TARGET = ../../lib/TTKMusicPlayer
 
 TEMPLATE = app
 
@@ -23,23 +23,30 @@ win32:msvc{
     QMAKE_CXXFLAGS += -std=c++11
 }
 
-INCLUDEPATH += ../ \
-    ../TTKCore/musicCoreKits
+INCLUDEPATH += \
+    ../ \
+    ../TTKInit \
+    ../../ \
+    ../../TTKCore/musicCoreKits
 
 SOURCES += \
     musicrunmain.cpp \
     musiclocalpeer.cpp \
     musicrunapplication.cpp \
-    musicrunobject.cpp
+    musicrunobject.cpp \
+    ../TTKInit/musicinitobject.cpp
+
 
 HEADERS += \
-    musicrunglobaldefine.h \
+    ../musicrunglobaldefine.h \
     musicrunobject.h \
     musiclocalpeer.h \
-    musicrunapplication.h
+    musicrunapplication.h \
+    ../TTKInit/musicinitobject.h
+
 
 RESOURCES += \
-    ../TTKQrc/MusicApp.qrc
+    ../../TTKQrc/MusicApp.qrc
 
 win32{
     RC_FILE = TTKApp.rc
