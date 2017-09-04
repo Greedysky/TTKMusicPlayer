@@ -90,7 +90,7 @@ void MusicDispatchManager::activeFunctions()
     }
 
     MusicDispatchItem *item = m_observer.takeLast();
-    bool state;
+    bool state = true;
     switch(item->m_type)
     {
         case 0: break;
