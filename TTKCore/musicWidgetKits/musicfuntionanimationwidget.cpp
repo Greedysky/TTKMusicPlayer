@@ -82,6 +82,8 @@ MusicBaseAnimationWidget::MusicBaseAnimationWidget(QWidget *parent)
     m_totalWidth = 0.0f;
     m_isAnimation = true;
     m_showState = true;
+    m_showLine = true;
+
     m_animation = new QPropertyAnimation(this, "");
     m_animation->setDuration(100);
 
@@ -121,21 +123,14 @@ void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
         painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
         painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
 
-        int offset = 0;
-        if(m_isAnimation)
+        int offset =  m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
+        offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
+        if(m_showLine)
         {
-            offset = m_x + m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
             painter.drawLine(0, height(), offset, height());
             painter.drawLine(offset + m_pix.width(), height(), m_totalWidth, height());
-            painter.drawPixmap(offset, height() - m_pix.height(), m_pix);
         }
-        else
-        {
-            offset = m_curIndex * m_perWidth + m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
-            painter.drawLine(0, height(), offset, height());
-            painter.drawLine(offset + m_pix.width(), height(), m_totalWidth, height());
-            painter.drawPixmap(offset, height() - m_pix.height(), m_pix);
-        }
+        painter.drawPixmap(offset, height() - m_pix.height(), m_pix);
     }
 }
 
@@ -226,6 +221,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
 {
     m_pix = QPixmap(54, 2);
     m_pix.fill(QColor(0x80, 0xB7, 0xF1));
+    m_showLine = false;
 
     QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
 

@@ -34,10 +34,6 @@ public:
     /*!
      * Create all widget in layout.
      */
-    void resizeWindow();
-    /*!
-     * Resize window bound by widgte resize called.
-     */
 
 protected:
     virtual void focusInEvent(QFocusEvent *event) override;

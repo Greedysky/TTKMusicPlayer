@@ -1,6 +1,5 @@
 #include "musiclocalsongsearchinlineedit.h"
 #include "musiclocalsongsearchpopwidget.h"
-#include "musicsettingmanager.h"
 
 MusicLocalSongSearchInlineEdit::MusicLocalSongSearchInlineEdit(QWidget *parent)
     : MusicLocalSongSearchEdit(parent)
@@ -25,16 +24,6 @@ void MusicLocalSongSearchInlineEdit::initWidget(QWidget *parent)
     m_popWidget = new MusicLocalSongSearchPopWidget(parent);
     connect(m_popWidget, SIGNAL(setText(QString)), SLOT(setText(QString)));
     m_popWidget->hide();
-}
-
-void MusicLocalSongSearchInlineEdit::resizeWindow()
-{
-    if(!m_popWidget)
-    {
-        return;
-    }
-    int w = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    m_popWidget->move(370 + w - WINDOW_WIDTH_MIN, 45);
 }
 
 void MusicLocalSongSearchInlineEdit::focusInEvent(QFocusEvent *event)

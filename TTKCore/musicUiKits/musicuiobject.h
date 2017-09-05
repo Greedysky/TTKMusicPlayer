@@ -337,7 +337,7 @@ namespace MusicUIObject
             QLineEdit{ border-image:url(:/tiny/lb_transparent);}";
 
     const QString MLineEditStyle03 = MLineEditStyle02 + " \
-            QLineEdit{ font-size:15px; color:#333333;}";
+            QLineEdit{ font-size:13px; color:#333333;}";
 
     const QString MLineEditStyle04 = MLineEditStyle02 + " \
             QLineEdit{ color:#6495ED;}";

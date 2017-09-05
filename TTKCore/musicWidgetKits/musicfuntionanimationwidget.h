@@ -127,7 +127,7 @@ protected:
     QPixmap m_pix;
     int m_curIndex, m_preIndex, m_x;
     float m_perWidth, m_totalWidth;
-    bool m_isAnimation, m_showState;
+    bool m_isAnimation, m_showState, m_showLine;
 
     QPropertyAnimation *m_animation;
     QList<QWidget*> m_container;
