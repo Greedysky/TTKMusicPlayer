@@ -9,5 +9,9 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
+include_directories(.)
+include_directories(TTKApp)
+include_directories(TTKInit)
+
 add_subdirectory(TTKInit)
 add_subdirectory(TTKApp)

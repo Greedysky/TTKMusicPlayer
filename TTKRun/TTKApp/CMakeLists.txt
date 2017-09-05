@@ -16,13 +16,15 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
 
 set(MUSIC_HEADERS
+    ../musicrunglobaldefine.h
+    ../TTKInit/musicinitobject.h
     musiclocalpeer.h
     musicrunapplication.h
-    musicrunglobaldefine.h
     musicrunobject.h
   )
 
 set(MUSIC_SOURCES
+    ../TTKInit/musicinitobject.cpp
     musiclocalpeer.cpp
     musicrunapplication.cpp
     musicrunobject.cpp

@@ -16,17 +16,13 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin) 
 
 set(MUSIC_HEADERS
-    musiclocalpeer.h
-    musicrunapplication.h
-    musicrunglobaldefine.h
-    musicrunobject.h
+    ../musicrunglobaldefine.h
+    musicinitobject.h
   )
 
 set(MUSIC_SOURCES
-    musiclocalpeer.cpp
-    musicrunapplication.cpp
-    musicrunobject.cpp
-    musicrunmain.cpp
+    musicinitobject.cpp
+    musicinitmain.cpp
   )
   
 SET(MUSIC_QRC
@@ -34,7 +30,7 @@ SET(MUSIC_QRC
 )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES TTKApp.rc)
+    list(APPEND MUSIC_SOURCES ${TARGET_NAME}.rc)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -42,13 +38,11 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   QT5_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
   add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT5_LIBS Qt5::Core Qt5::Network Qt5::Gui Qt5::Widgets)
-  target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
+  target_link_libraries(${TARGET_NAME} Qt5::Core)
 else()
   QT4_WRAP_CPP(MUSIC_MOC_H ${MUSIC_HEADERS})
   QT4_ADD_RESOURCES(MUSIC_RCC_SRCS ${MUSIC_QRC})
   
   add_executable(${TARGET_NAME} ${MUSIC_RCC_SRCS} ${MUSIC_SOURCES} ${MUSIC_MOC_H} ${MUSIC_HEADERS})
-  list(APPEND QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${QT_QTCORE_LIBRARY})
-  target_link_libraries(${TARGET_NAME} ${QT4_LIBS})
+  target_link_libraries(${TARGET_NAME} ${QT_QTCORE_LIBRARY})
 endif()

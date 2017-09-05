@@ -44,6 +44,7 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_UI_DIR}/musicToolsKits/musiccloudfilemanagerdialog.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicconnecttransferwidget.ui
     ${MUSIC_UI_DIR}/musicToolsKits/musicwebmusicradiowidget.ui
+    ${MUSIC_UI_DIR}/musicToolsKits/musictoolsetswidget.ui
     ${MUSIC_UI_DIR}/musicUserKits/musicuserdialog.ui
     ${MUSIC_UI_DIR}/musicUserKits/musicusermanagerdialog.ui
     ${MUSIC_UI_DIR}/musicUserKits/musicuserrecordwidget.ui
