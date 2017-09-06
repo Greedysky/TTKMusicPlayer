@@ -99,7 +99,8 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
         buffer = buffer.split(",").front().remove("'").trimmed();
         m_pageTotal = buffer.toInt();
 
-        bytes = QString(bytes).split("global.special = ").back().split("];").front().toUtf8() + "]";
+        bytes = QString(bytes).split("global.special = [").back().split("];").front().toUtf8();
+        bytes = "[" + bytes + "]";
 
         QJson::Parser parser;
         bool ok;
