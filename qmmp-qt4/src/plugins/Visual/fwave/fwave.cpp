@@ -2,7 +2,6 @@
 #include <QSettings>
 #include <QPainter>
 #include <QMenu>
-#include <QActionGroup>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -39,7 +38,6 @@ FWave::FWave (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(3, 2);
 
     clear();
-    createMenu();
     readSettings();
 }
 
@@ -144,10 +142,14 @@ void FWave::paintEvent (QPaintEvent * e)
     draw(&painter);
 }
 
-void FWave::mousePressEvent(QMouseEvent *e)
+void FWave::contextMenuEvent(QContextMenuEvent *)
 {
-    if (e->button() == Qt::RightButton)
-        m_menu->exec(e->globalPos());
+    QMenu menu(this);
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+
+    menu.addAction("Color", this, SLOT(changeColor()));
+    menu.exec(QCursor::pos());
 }
 
 void FWave::process (float *left, float *right)
@@ -261,15 +263,4 @@ void FWave::draw (QPainter *p)
         int hh = m_intern_vis_data[j] * l * m_cell_size.height();
         p->drawLine(QPoint(x, height()/2 - hh), QPoint(x, height()/2 + hh));
     }
-}
-
-void FWave::createMenu()
-{
-    m_menu = new QMenu (this);
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
-
-    m_menu->addAction("Color", this, SLOT(changeColor()));
-
-    update();
 }

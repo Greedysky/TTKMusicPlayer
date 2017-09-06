@@ -34,6 +34,7 @@ private:
     virtual void hideEvent (QHideEvent *);
     virtual void showEvent (QShowEvent *);
     void paintEvent(QPaintEvent *);
+
     void process(float *buffer);
     void draw(QPainter *p);
 
@@ -42,9 +43,9 @@ private:
     int *m_x_scale, m_buffer_at, m_cols, m_rows;
     double m_analyzer_falloff;
     float *m_buffer;
+
     QSize m_cell_size;
 
 };
-
 
 #endif

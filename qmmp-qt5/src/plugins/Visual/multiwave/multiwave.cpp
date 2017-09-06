@@ -152,7 +152,7 @@ void MultiWave::process (float *buffer)
     m_intern_vis_data -= m_analyzer_falloff * m_rows / 15;
     m_intern_vis_data = magnitude > m_intern_vis_data ? magnitude : m_intern_vis_data;
 }
-#include <QDebug>
+
 void MultiWave::draw (QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);

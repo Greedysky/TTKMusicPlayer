@@ -12,19 +12,14 @@
 #include <qmmp/visual.h>
 
 class QTimer;
-class QMenu;
-class QAction;
-class QActionGroup;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-
 class EWave : public Visual
 {
     Q_OBJECT
-
 public:
     EWave( QWidget *parent = 0);
     virtual ~EWave();
@@ -42,13 +37,12 @@ private:
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
-    void mousePressEvent(QMouseEvent *e);
+    void contextMenuEvent(QContextMenuEvent *e);
+
     void process(float *l, float *r);
     void draw(QPainter *p);
-    void createMenu();
 
     QList<QColor> m_colors;
-    QMenu *m_menu;
     QTimer *m_timer;
     double *m_intern_vis_data, *m_peaks;
     int *m_x_scale;
@@ -59,6 +53,5 @@ private:
     QSize m_cell_size;
 
 };
-
 
 #endif

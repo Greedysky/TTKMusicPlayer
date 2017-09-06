@@ -77,6 +77,11 @@ QHash<QString, QString> FFmpegMetaDataModel::audioProperties()
 
 QPixmap FFmpegMetaDataModel::cover()
 {
+    if(!m_in)
+    {
+        return QPixmap();
+    }
+
 #if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
     AVCodecParameters *c = 0;
 #else

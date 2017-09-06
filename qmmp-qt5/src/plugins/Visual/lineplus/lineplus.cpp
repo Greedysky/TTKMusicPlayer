@@ -2,7 +2,6 @@
 #include <QSettings>
 #include <QPainter>
 #include <QMenu>
-#include <QActionGroup>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -39,7 +38,6 @@ LinePlus::LinePlus (QWidget *parent) : Visual (parent)
     m_cell_size = QSize(3, 2);
 
     clear();
-    createMenu();
     readSettings();
 }
 
@@ -145,10 +143,14 @@ void LinePlus::paintEvent (QPaintEvent * e)
     draw(&painter);
 }
 
-void LinePlus::mousePressEvent(QMouseEvent *e)
+void LinePlus::contextMenuEvent(QContextMenuEvent *)
 {
-    if (e->button() == Qt::RightButton)
-        m_menu->exec(e->globalPos());
+    QMenu menu(this);
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+
+    menu.addAction("Color", this, SLOT(changeColor()));
+    menu.exec(QCursor::pos());
 }
 
 void LinePlus::process (float *left, float *right)
@@ -264,15 +266,4 @@ void LinePlus::draw (QPainter *p)
         p->fillRect (x, height() - int(m_peaks[j] * l) * m_cell_size.height(),
                      m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
-}
-
-void LinePlus::createMenu()
-{
-    m_menu = new QMenu (this);
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
-
-    m_menu->addAction("Color", this, SLOT(changeColor()));
-
-    update();
 }

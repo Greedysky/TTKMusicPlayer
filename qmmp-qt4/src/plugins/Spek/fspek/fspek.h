@@ -73,12 +73,10 @@ protected:
     void process(float *buffer);
     void draw(QPainter *p);
 
-    int m_pixPos;
     QImage m_backgroundImage;
     FSpekThead *m_fspekThread;
-    double m_intern_vis_data;
-    int *m_x_scale, m_buffer_at, m_cols, m_rows;
-    double m_analyzer_falloff;
+    double m_intern_vis_data, m_analyzer_falloff;
+    int *m_x_scale, m_buffer_at, m_cols, m_rows, m_pixPos;
     float *m_buffer;
     QMutex m_mutex;
 

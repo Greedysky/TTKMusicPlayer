@@ -20,11 +20,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-
 class Analyzer : public Visual
 {
     Q_OBJECT
-
 public:
     Analyzer( QWidget *parent = 0);
     virtual ~Analyzer();
@@ -43,31 +41,26 @@ private:
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *e);
+
     void process(float *l, float *r);
     void draw(QPainter *p);
     void createMenu();
     
     QTimer *m_timer;
-    double *m_intern_vis_data;
-    double *m_peaks;
-    int *m_x_scale;
-    double m_peaks_falloff;
-    double m_analyzer_falloff;
-    bool m_show_peaks;
-    float *m_left_buffer;
-    float *m_right_buffer;
-    int m_buffer_at;
-    int m_cols, m_rows;
-    bool m_update;
+    double *m_intern_vis_data, *m_peaks;
+    double m_peaks_falloff, m_analyzer_falloff;
+    bool m_show_peaks, m_update;
+    float *m_left_buffer, *m_right_buffer;
+    int *m_x_scale, m_buffer_at, m_cols, m_rows;
+
     //colors
     QList<QColor> m_colors;
     QSize m_cell_size;
     QMenu *m_menu;
     QAction *m_peaksAction;
     QActionGroup *m_fpsGroup;
-    QActionGroup *m_analyzerFalloffGroup;
-    QActionGroup *m_peaksFalloffGroup;
-};
+    QActionGroup *m_analyzerFalloffGroup, *m_peaksFalloffGroup;
 
+};
 
 #endif

@@ -2,7 +2,6 @@
 #include <QSettings>
 #include <QPainter>
 #include <QMenu>
-#include <QActionGroup>
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
@@ -32,7 +31,6 @@ XRays::XRays (QWidget *parent) : Visual (parent)
     m_timer->setInterval(10);
 
     clear();
-    createMenu();
     readSettings();
 }
 
@@ -126,10 +124,14 @@ void XRays::paintEvent (QPaintEvent * e)
     draw(&painter);
 }
 
-void XRays::mousePressEvent(QMouseEvent *e)
+void XRays::contextMenuEvent(QContextMenuEvent *)
 {
-    if (e->button() == Qt::RightButton)
-        m_menu->exec(e->globalPos());
+    QMenu menu(this);
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+
+    menu.addAction("Color", this, SLOT(changeColor()));
+    menu.exec(QCursor::pos());
 }
 
 void XRays::process (float *buffer)
@@ -177,15 +179,4 @@ void XRays::draw (QPainter *p)
             qSwap(h1, h2);
         p->drawLine(i, h1, (i+1), h2);
     }
-}
-
-void XRays::createMenu()
-{
-    m_menu = new QMenu (this);
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
-
-    m_menu->addAction("Color", this, SLOT(changeColor()));
-
-    update();
 }

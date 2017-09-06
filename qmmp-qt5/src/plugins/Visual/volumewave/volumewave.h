@@ -17,11 +17,9 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-
 class VolumeWave : public Visual
 {
     Q_OBJECT
-
 public:
     VolumeWave( QWidget *parent = 0);
     virtual ~VolumeWave();
@@ -48,6 +46,5 @@ private:
     int m_buffer_at, m_cols, m_rows;
 
 };
-
 
 #endif

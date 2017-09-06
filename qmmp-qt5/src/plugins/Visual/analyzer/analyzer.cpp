@@ -110,7 +110,6 @@ void Analyzer::readSettings()
     m_timer->setInterval(1000 / settings.value("refresh_rate", 25).toInt());
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
 
-
     if(!m_update)
     {
         m_update = true;

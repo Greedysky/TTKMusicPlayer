@@ -12,7 +12,6 @@
 #include <qmmp/visual.h>
 
 class QTimer;
-class QMenu;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
@@ -38,21 +37,20 @@ private:
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
-    void mousePressEvent(QMouseEvent *e);
+    void contextMenuEvent(QContextMenuEvent *e);
+
     void process(float *buffer);
     void draw(QPainter *p);
-    void createMenu();
 
     QList<QColor> m_colors;
-    QMenu *m_menu;
     QTimer *m_timer;
     double *m_intern_vis_data;
     int *m_x_scale, m_buffer_at, m_cols, m_rows;
     double m_analyzer_falloff;
     float *m_buffer;
+
     QSize m_cell_size;
 
 };
-
 
 #endif

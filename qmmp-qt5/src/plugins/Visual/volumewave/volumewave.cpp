@@ -1,4 +1,3 @@
-#include <QDebug>
 #include <QTimer>
 #include <QPainter>
 #include <QPaintEvent>

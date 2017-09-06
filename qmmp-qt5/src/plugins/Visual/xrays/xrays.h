@@ -12,14 +12,10 @@
 #include <qmmp/visual.h>
 
 class QTimer;
-class QMenu;
-class QAction;
-class QActionGroup;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
-
 
 class XRays : public Visual
 {
@@ -41,13 +37,12 @@ private:
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
-    void mousePressEvent(QMouseEvent *e);
+    void contextMenuEvent(QContextMenuEvent *e);
+
     void process(float *buffer);
     void draw(QPainter *p);
-    void createMenu();
 
     QList<QColor> m_colors;
-    QMenu *m_menu;
     QTimer *m_timer;
     int *m_intern_vis_data;
     float *m_buffer;

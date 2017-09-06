@@ -12,7 +12,6 @@
 #include <qmmp/visual.h>
 
 class QTimer;
-class QMenu;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
@@ -48,6 +47,5 @@ private:
     float *m_buffer;
 
 };
-
 
 #endif
