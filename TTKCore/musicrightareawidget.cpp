@@ -277,7 +277,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
     deleteStackedFuncWidget();
     m_ui->songSearchWidget->auditionStop();
     m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand() && key != LrcWidget)
     {
         musicLrcDisplayAllButtonClicked();
     }
