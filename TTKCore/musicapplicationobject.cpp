@@ -138,8 +138,6 @@ void MusicApplicationObject::sideAnimationByOn()
         return;
     }
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
-
     QPoint pt = w->mapToGlobal(w->rect().topLeft());
     if(-MARGIN_SIDE <= pt.x() && pt.x() <= MARGIN_SIDE)
     {
@@ -148,6 +146,7 @@ void MusicApplicationObject::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(-w->width() + MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
     }
 
     QWidget *widget = QApplication::desktop();
@@ -159,6 +158,7 @@ void MusicApplicationObject::sideAnimationByOn()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(widget->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, true);
     }
 }
 
@@ -169,8 +169,6 @@ void MusicApplicationObject::sideAnimationByOff()
         return;
     }
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
-
     MusicApplication *w = MusicApplication::instance();
     if(m_leftSideByOn)
     {
@@ -179,6 +177,7 @@ void MusicApplicationObject::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
     }
     else if(m_rightSideByOn)
     {
@@ -188,6 +187,7 @@ void MusicApplicationObject::sideAnimationByOff()
         m_sideAnimation->setStartValue(w->geometry());
         m_sideAnimation->setEndValue(QRect(widget->width() - w->width() - MARGIN_SIDE_BY, w->y(), w->width(), w->height()));
         m_sideAnimation->start();
+        M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
     }
 }
 
