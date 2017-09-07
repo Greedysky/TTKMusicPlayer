@@ -10,6 +10,7 @@
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QToolButton>
+#include <QScrollArea>
 
 #define MAX_SIZE    3
 
@@ -179,6 +180,7 @@ void MusicPlayedListPopWidget::setCurrentIndex(const QString &path)
             break;
         }
     }
+
     m_playedListWidget->selectRow(index);
 }
 
@@ -243,23 +245,43 @@ void MusicPlayedListPopWidget::initWidget()
     setLayout(layout);
 
     m_containWidget->setFixedSize(320, 400);
-    QHBoxLayout *containLayout = new QHBoxLayout(m_containWidget);
+    QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
     containLayout->setContentsMargins(0, 0, 0, 0);
     containLayout->setSpacing(0);
     containLayout->addWidget( createContainerWidget() );
+
+    m_scrollArea = new QScrollArea(this);
+    m_scrollArea->setWidgetResizable(true);
+    m_scrollArea->setFrameShape(QFrame::NoFrame);
+    m_scrollArea->setFrameShadow(QFrame::Plain);
+    m_scrollArea->setAlignment(Qt::AlignLeft);
+
+    QString alphaStr = MusicUIObject::MBackgroundStyle17;
+    QWidget *view = m_scrollArea->viewport();
+    view->setObjectName("viewport");
+    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
+    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
+    m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
+    m_playedListWidget->setSongsFileName(&m_songLists);
+    connect(m_playedListWidget, SIGNAL(updateCountLabel()), SLOT(setDeleteItemAt()));
+
+    QWidget *playedListContainer = new QWidget(m_scrollArea);
+    QVBoxLayout *playedListLayout = new QVBoxLayout(playedListContainer);
+    playedListLayout->setContentsMargins(0, 0, 0, 0);
+    playedListLayout->setSpacing(0);
+    playedListLayout->addWidget(m_playedListWidget);
+    playedListContainer->setLayout(playedListLayout);
+
+    m_scrollArea->setWidget(playedListContainer);
+    m_playedListWidget->setMovedScrollBar(m_scrollArea->verticalScrollBar());
+
+    containLayout->addWidget(m_scrollArea);
     m_containWidget->setLayout(containLayout);
 }
 
 QWidget *MusicPlayedListPopWidget::createContainerWidget()
 {
-    QWidget *containWidget = new QWidget(this);
-    containWidget->setObjectName("containWidget");
-    containWidget->setStyleSheet(QString("#%1{%2}").arg(containWidget->objectName())
-                                 .arg(MusicUIObject::MBackgroundStyle17));
-    QVBoxLayout *layout = new QVBoxLayout(containWidget);
-    layout->setContentsMargins(0, 0, 0, 0);
-    layout->setSpacing(0);
-
     QWidget *topWidget = new QWidget(this);
     topWidget->setFixedHeight(35);
     topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle20);
@@ -267,7 +289,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);
     QLabel *label = new QLabel(tr("playedList"), topWidget);
-    label->setStyleSheet(MusicUIObject::MColorStyle02 + MusicUIObject::MFontStyle01 +
+    label->setStyleSheet(MusicUIObject::MColorStyle11 + MusicUIObject::MFontStyle01 +
                          MusicUIObject::MFontStyle03);
 
     QPushButton *shareButton = new QPushButton(this);
@@ -302,15 +324,7 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
     topWidgetLayout->addWidget(closeButton);
     topWidget->setLayout(topWidgetLayout);
 
-    m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
-    m_playedListWidget->setSongsFileName(&m_songLists);
-    connect(m_playedListWidget, SIGNAL(updateCountLabel()), SLOT(setDeleteItemAt()));
-
-    layout->addWidget(topWidget);
-    layout->addWidget(m_playedListWidget);
-
-    containWidget->setLayout(layout);
-    return containWidget;
+    return topWidget;
 }
 
 void MusicPlayedListPopWidget::updateSongsFileName()

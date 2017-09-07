@@ -48,10 +48,6 @@ public:
      * Set current searched file indexs.
      */
 
-    int allRowsHeight() const;
-    /*!
-     * Get all rows height.
-     */
     virtual void selectRow(int index) override;
     /*!
      * Select the current play row.

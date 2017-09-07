@@ -24,10 +24,10 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     headerview->resizeSection(3, 25);
     headerview->resizeSection(4, 45);
 
-    setMovedScrollBar( verticalScrollBar() );
-
     m_playRowIndex = -1;
     m_hasParentToolIndex = false;
+
+     MusicUtils::Widget::setTransparent(this, 0xff);
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
@@ -62,6 +62,8 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }
+
+    setFixedHeight( allRowsHeight() );
 }
 
 void MusicSongsListPlayedTableWidget::selectRow(int index)
@@ -78,9 +80,15 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
 
     MusicSongsListAbstractTableWidget::selectRow(index);
     m_playRowIndex = index;
-    verticalScrollBar()->setSliderPosition( ceil(height()*1.0/rowCount())*index );
 
     item(m_playRowIndex, 1)->setForeground(QColor(0, 191, 255));
+
+    setFixedHeight( allRowsHeight() );
+
+    if(m_scrollBar)
+    {
+        m_scrollBar->setSliderPosition(index*30);
+    }
 }
 
 void MusicSongsListPlayedTableWidget::selectPlayedRow()
@@ -131,6 +139,7 @@ void MusicSongsListPlayedTableWidget::listCellEntered(int row, int column)
     {
         unsetCursor();
     }
+
     MusicSongsListAbstractTableWidget::listCellEntered(row, column);
 }
 
@@ -167,6 +176,9 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 
     removeRow( index );
     m_musicSongs->removeAt( index );
+
+    setFixedHeight( allRowsHeight() );
+
     emit updateCountLabel();
 }
 

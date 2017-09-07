@@ -47,7 +47,6 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_parentToolIndex = index;
     m_musicSort = nullptr;
 
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setColumnCount(6);
@@ -165,16 +164,6 @@ void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs,
     {
         setFixedHeight( allRowsHeight() );
     }
-}
-
-int MusicSongsListTableWidget::allRowsHeight() const
-{
-    int height = 0;
-    for(int i=0; i<rowCount(); ++i)
-    {
-        height += rowHeight(i);
-    }
-    return height;
 }
 
 void MusicSongsListTableWidget::selectRow(int index)

@@ -13,6 +13,7 @@
 #include "musictoolmenuwidget.h"
 
 class QLabel;
+class QScrollArea;
 class MusicSongsListPlayedTableWidget;
 
 /*! @brief The class of the played list pop widget.
@@ -119,6 +120,7 @@ protected:
 
     QList<QLabel*> m_labels;
     MusicSongs m_songLists;
+    QScrollArea *m_scrollArea;
     MusicSongsListPlayedTableWidget *m_playedListWidget;
 
     static MusicPlayedListPopWidget *m_instance;
