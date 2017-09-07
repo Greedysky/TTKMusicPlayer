@@ -216,3 +216,40 @@ void MusicUtils::Core::midTransferFile()
     }
     file.close();
 }
+
+bool MusicUtils::Core::musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
+{
+    if(depth >= ol.count())
+    {
+        return false;
+    }
+
+    if(dl[depth].toInt() >= ol[depth].toInt())
+    {
+        if(dl[depth].toInt() == ol[depth].toInt())
+        {
+            return musicVersionCheck(ol, dl, depth + 1);
+        }
+        else
+        {
+            return true;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool MusicUtils::Core::musicVersionCheck(const QString &o, const QString &d)
+{
+    QStringList ol = o.split(".");
+    QStringList dl = d.split(".");
+
+    if(ol.isEmpty() || dl.isEmpty() || ol.count() != dl.count())
+    {
+        return false;
+    }
+
+    return musicVersionCheck(ol, dl, 0);
+}

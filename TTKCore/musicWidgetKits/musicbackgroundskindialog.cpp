@@ -152,7 +152,7 @@ void MusicBackgroundSkinDialog::updateArtFileTheme(const QString &theme)
     m_myBackgroundList->createItem(theme, des, true);
     m_myBackgroundList->updateLastedItem();
 }
-#include <QDebug>
+
 void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int listAlpha)
 {
     m_backgroundList->setCurrentItemName(theme);
