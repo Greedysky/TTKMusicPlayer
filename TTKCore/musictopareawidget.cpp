@@ -106,7 +106,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->minimization->setStyleSheet(MusicUIObject::MKGBtnMinimum);
     ui->minimization->setCursor(QCursor(Qt::PointingHandCursor));
     ui->minimization->setToolTip(tr("Minimization"));
-    connect(ui->minimization, SIGNAL(clicked()), MusicApplication::instance(), SLOT(hide()));
+    connect(ui->minimization, SIGNAL(clicked()), MusicApplication::instance(), SLOT(showMinimized()));
 
     ui->windowClose->setToolTip(tr("Close"));
     ui->windowClose->setCursor(QCursor(Qt::PointingHandCursor));

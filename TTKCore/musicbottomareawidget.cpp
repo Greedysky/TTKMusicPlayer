@@ -54,9 +54,9 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
         case QSystemTrayIcon::DoubleClick:
             break;
         case QSystemTrayIcon::Trigger:
-            if(!MusicApplication::instance()->isVisible())
+            if(MusicApplication::instance()->isMinimized())
             {
-                MusicApplication::instance()->show();
+                MusicApplication::instance()->showNormal();
                 MusicApplication::instance()->activateWindow();
             }
             break;

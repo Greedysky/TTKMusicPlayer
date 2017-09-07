@@ -425,14 +425,14 @@
              <widget class="QToolButton" name="musicWindowConcise">
               <property name="minimumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>14</width>
-                <height>14</height>
+                <width>16</width>
+                <height>16</height>
                </size>
               </property>
               <property name="cursor">
