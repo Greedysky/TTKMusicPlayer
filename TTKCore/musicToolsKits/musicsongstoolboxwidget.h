@@ -191,6 +191,7 @@ public:
     /*!
      * Object contsructor.
      */
+    virtual ~MusicSongsToolBoxMaskWidget();
 
     static QString getClassName();
     /*!
@@ -202,6 +203,8 @@ protected:
     /*!
      * Override the widget event.
      */
+
+    QTimer *m_updateTiemr;
 
 };
 
