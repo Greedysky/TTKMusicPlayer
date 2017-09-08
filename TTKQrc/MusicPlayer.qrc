@@ -455,7 +455,6 @@
         <file alias="btn_next_hover">../TTKResource/tiny/btn_next_normal.png</file>
         <file alias="btn_close_normal">../TTKResource/tiny/btn_close_normal.png</file>
         <file alias="btn_close_hover">../TTKResource/tiny/btn_close_hover.png</file>
-        <file alias="btn_search_line_normal">../TTKResource/tiny/btn_search_line_normal.png</file>
         <file alias="btn_search_main_normal">../TTKResource/tiny/btn_search_main_normal.png</file>
         <file alias="btn_search_main_hover">../TTKResource/tiny/btn_search_main_hover.png</file>
         <file alias="btn_collapse_hover">../TTKResource/tiny/btn_collapse_hover.png</file>

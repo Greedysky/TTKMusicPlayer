@@ -28,7 +28,7 @@ MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     QLabel *showIcon = new QLabel(searchPair);
     showIcon->setFixedSize(16, 16);
     showIcon->setStyleSheet(MusicUIObject::MBackgroundStyle01 +
-                            "border-image: url(:/tiny/btn_search_line_normal);");
+                            "border-image: url(:/tiny/btn_search_main_hover);");
     m_searchLine = new MusicLocalSongSearchEdit(searchPair);
     searchPairLayout->addWidget(showIcon);
     searchPairLayout->addWidget(m_searchLine);
