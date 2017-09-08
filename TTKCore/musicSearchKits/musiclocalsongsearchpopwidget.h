@@ -89,6 +89,7 @@ public Q_SLOTS:
      */
 
 protected:
+    virtual void paintEvent(QPaintEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.

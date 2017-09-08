@@ -2,7 +2,8 @@
 #include "musiclocalsongsearchrecordconfigmanager.h"
 #include "musictime.h"
 
-#include <QVBoxLayout>
+#include <QPainter>
+#include <QBoxLayout>
 #include <QPushButton>
 
 #define ROW_HEIGHT 30
@@ -65,10 +66,11 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     move(405, 45);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(0);
 
     m_popTableWidget = new MusicLocalSongSearchPopTableWidget(this);
+    m_popTableWidget->setFixedWidth(285);
     m_clearButton = new QPushButton("   " + tr("clear"), this);
     m_clearButton->setCursor(Qt::PointingHandCursor);
     m_clearButton->setFixedHeight(35);
@@ -116,7 +118,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     MusicSearchRecords records;
     search.readSearchConfig( records );
     int count = records.count();
-    resize(285, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 36 : 7*ROW_HEIGHT + 6) );
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 45 : 7*ROW_HEIGHT + 8) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
@@ -140,6 +142,15 @@ void MusicLocalSongSearchPopWidget::clearButtonClicked()
     }
     search.writeSearchConfig( MusicSearchRecords() );
     close();
+}
+
+void MusicLocalSongSearchPopWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+
+    QPainter painter(this);
+    painter.setPen(Qt::gray);
+    painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
 }
 
 void MusicLocalSongSearchPopWidget::leaveEvent(QEvent *event)
