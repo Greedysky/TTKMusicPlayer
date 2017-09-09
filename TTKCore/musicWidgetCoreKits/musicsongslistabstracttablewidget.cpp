@@ -17,6 +17,7 @@ MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *pa
     m_hasParentToolIndex = true;
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 MusicSongsListAbstractTableWidget::~MusicSongsListAbstractTableWidget()
@@ -43,6 +44,16 @@ void MusicSongsListAbstractTableWidget::updateSongsFileName(const MusicSongs &so
 void MusicSongsListAbstractTableWidget::selectRow(int index)
 {
     MusicSlowMovingTableWidget::selectRow(index);
+}
+
+int MusicSongsListAbstractTableWidget::allRowsHeight() const
+{
+    int height = 0;
+    for(int i=0; i<rowCount(); ++i)
+    {
+        height += rowHeight(i);
+    }
+    return height;
 }
 
 void MusicSongsListAbstractTableWidget::setParentToolIndex(int index)

@@ -44,6 +44,10 @@ public:
      * Select the current play row by given index.
      */
 
+    int allRowsHeight() const;
+    /*!
+     * Get all rows height.
+     */
     void setParentToolIndex(int index);
     /*!
      * Set parent tool index.

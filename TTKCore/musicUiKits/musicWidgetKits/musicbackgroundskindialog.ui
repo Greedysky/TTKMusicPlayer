@@ -58,25 +58,6 @@
     <string>...</string>
    </property>
   </widget>
-  <widget class="MusicClickedLabel" name="recommendSkin">
-   <property name="geometry">
-    <rect>
-     <x>24</x>
-     <y>40</y>
-     <width>80</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>推荐</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QPushButton" name="customSkin">
    <property name="geometry">
     <rect>
@@ -91,22 +72,6 @@
    </property>
    <property name="text">
     <string>自定义皮肤</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="paletteButton">
-   <property name="geometry">
-    <rect>
-     <x>449</x>
-     <y>369</y>
-     <width>70</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>调色板</string>
    </property>
   </widget>
   <widget class="QWidget" name="backgroundMask" native="true">
@@ -133,6 +98,22 @@
     <widget class="QScrollArea" name="recommandScrollArea"/>
     <widget class="QScrollArea" name="userScrollArea"/>
     <widget class="QScrollArea" name="remoteScrollArea"/>
+   </widget>
+   <widget class="QPushButton" name="paletteButton">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>340</y>
+      <width>70</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>调色板</string>
+    </property>
    </widget>
   </widget>
   <widget class="MusicBackgroundPopWidget" name="listTransparentButton" native="true">
@@ -181,7 +162,7 @@
    <property name="geometry">
     <rect>
      <x>484</x>
-     <y>47</y>
+     <y>43</y>
      <width>118</width>
      <height>13</height>
     </rect>
@@ -191,44 +172,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-  </widget>
-  <widget class="MusicClickedLabel" name="mySkin">
-   <property name="geometry">
-    <rect>
-     <x>105</x>
-     <y>40</y>
-     <width>80</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>我的</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="MusicClickedLabel" name="remoteSkin">
-   <property name="geometry">
-    <rect>
-     <x>187</x>
-     <y>40</y>
-     <width>80</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>PointingHandCursor</cursorShape>
-   </property>
-   <property name="text">
-    <string>在线</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QCheckBox" name="skinTransparentLabelBox">
@@ -244,32 +187,33 @@
     <string>皮肤透明</string>
    </property>
   </widget>
+  <widget class="MusicSkinAnimationWidget" name="skinAnimationSiwidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>36</y>
+     <width>620</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
-  <zorder>recommendSkin</zorder>
   <zorder>customSkin</zorder>
-  <zorder>paletteButton</zorder>
   <zorder>listTransparentLabel</zorder>
   <zorder>listTransparentButton</zorder>
   <zorder>skinTransparentButton</zorder>
-  <zorder>resetWindowButton</zorder>
-  <zorder>mySkin</zorder>
-  <zorder>remoteSkin</zorder>
   <zorder>skinTransparentLabelBox</zorder>
+  <zorder>skinAnimationSiwidget</zorder>
+  <zorder>resetWindowButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>MusicTransitionAnimationLabel</class>
    <extends>QLabel</extends>
    <header>musictransitionanimationlabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>MusicClickedLabel</class>
-   <extends>QLabel</extends>
-   <header>musicclickedlabel.h</header>
-   <container>1</container>
   </customwidget>
   <customwidget>
    <class>MusicBackgroundPopWidget</class>
@@ -281,6 +225,12 @@
    <class>MusicAnimationStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header>musicanimationstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSkinAnimationWidget</class>
+   <extends>QWidget</extends>
+   <header>musicfuntionanimationwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

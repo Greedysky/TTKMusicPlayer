@@ -103,7 +103,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     readXMLConfigFromText();
 
-    QTimer::singleShot(MT_S*50, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
+    QTimer::singleShot(MT_S, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 
 MusicApplication::~MusicApplication()
@@ -367,6 +367,7 @@ void MusicApplication::showCurrentSong(int index)
         positionChanged(0);
         m_rightAreaWidget->loadCurrentSongLrc(name, name);
     }
+    m_ui->musicPlayedList->setCurrentIndex(getCurrentFilePath());
     m_musicSongTreeWidget->setRecentMusicSongs(index);
     m_musicSongTreeWidget->setMusicPlayCount(index);
     m_ui->showCurrentSong->setText(name);
@@ -612,7 +613,6 @@ void MusicApplication::musicPlayIndex(int row, int)
     }
 
     m_musicPlayList->setCurrentIndex(row);
-    m_ui->musicPlayedList->setCurrentIndex(m_musicPlayList->currentMediaString());
 
     m_playControl = true;
     musicStatePlay();
@@ -631,7 +631,6 @@ void MusicApplication::musicPlayIndexClicked(int row, int col)
         {
             MusicSongs songs(items[index].m_songs);
             m_ui->musicPlayedList->append(index, songs);
-            m_ui->musicPlayedList->setCurrentIndex(songs[row].getMusicPath());
         }
     }
 }
@@ -1103,6 +1102,7 @@ void MusicApplication::readXMLConfigFromText()
     }
 
     //musicSetting
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByInChoiced, false);
     //Just always set fade false, because it is not finished yet.
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced, false);
 #ifdef Q_OS_UNIX

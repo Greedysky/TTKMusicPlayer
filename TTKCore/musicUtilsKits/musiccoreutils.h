@@ -85,6 +85,15 @@ namespace MusicUtils
         /*!
          * Mid config file transfer operator.
          */
+        MUSIC_UTILS_EXPORT bool musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
+        /*!
+         * Music version check.
+         */
+        MUSIC_UTILS_EXPORT bool musicVersionCheck(const QString &o, const QString &d);
+        /*!
+         * Music version check.
+         */
+
     }
 }
 

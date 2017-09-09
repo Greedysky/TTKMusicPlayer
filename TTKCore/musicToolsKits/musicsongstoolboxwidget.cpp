@@ -363,6 +363,17 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     m_isBlockMoveExpand = true;
 
     hide();
+
+    m_updateTiemr = new QTimer(this);
+    m_updateTiemr->setInterval(MT_S*200);
+    connect(m_updateTiemr, SIGNAL(timeout()), SLOT(update()));
+    m_updateTiemr->start();
+}
+
+MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
+{
+    m_updateTiemr->stop();
+    delete m_updateTiemr;
 }
 
 QString MusicSongsToolBoxMaskWidget::getClassName()
