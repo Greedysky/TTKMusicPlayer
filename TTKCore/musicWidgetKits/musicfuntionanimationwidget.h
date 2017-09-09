@@ -207,4 +207,36 @@ protected:
 
 };
 
+
+/*! @brief The class of the function skin animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicSkinAnimationWidget : public MusicBaseAnimationWidget
+{
+    Q_OBJECT
+public:
+    explicit MusicSkinAnimationWidget(QWidget *parent = 0);
+    /*!
+     * Object contsructor.
+     */
+
+    static QString getClassName();
+    /*!
+     * Get class object name.
+     */
+
+public Q_SLOTS:
+    virtual void switchToSelectedItemStyle(int index) override;
+    /*!
+     * Switch to selected item style.
+     */
+
+protected:
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Override the widget event.
+     */
+
+};
+
 #endif // MUSICFUNTIONANIMATIONWIDGET_H

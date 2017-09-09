@@ -12,7 +12,6 @@
 #include "musicsettingmanager.h"
 
 #include <QScrollBar>
-#include <QSignalMapper>
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -24,9 +23,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
-    m_ui->recommendSkin->setStyleSheet(MusicUIObject::MColorStyle08);
-    m_ui->mySkin->setStyleSheet(MusicUIObject::MColorStyle03);
-    m_ui->remoteSkin->setStyleSheet(MusicUIObject::MColorStyle03);
+
     m_ui->paletteButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->customSkin->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->stackedWidget->setLength(m_ui->stackedWidget->width(), MusicAnimationStackedWidget::RightToLeft);
@@ -36,15 +33,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->resetWindowButton->setFocusPolicy(Qt::NoFocus);
     m_ui->skinTransparentLabelBox->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    QSignalMapper *group = new QSignalMapper(this);
-    group->setMapping(m_ui->recommendSkin, 0);
-    group->setMapping(m_ui->mySkin, 1);
-    group->setMapping(m_ui->remoteSkin, 2);
-    connect(m_ui->recommendSkin, SIGNAL(clicked()), group, SLOT(map()));
-    connect(m_ui->mySkin, SIGNAL(clicked()), group, SLOT(map()));
-    connect(m_ui->remoteSkin, SIGNAL(clicked()), group, SLOT(map()));
-    connect(group, SIGNAL(mapped(int)), SLOT(backgroundListWidgetChanged(int)));
+    connect(m_ui->skinAnimationSiwidget, SIGNAL(buttonClicked(int)), SLOT(backgroundListWidgetChanged(int)));
 
     //////////////////////////////////////////////////////
     m_backgroundList = new MusicBackgroundListWidget(this);
@@ -233,24 +222,9 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     }
 
     m_remoteBackgroundList->abort();
-    if(index == 0)
-    {
-        m_ui->recommendSkin->setStyleSheet(MusicUIObject::MColorStyle08);
-        m_ui->mySkin->setStyleSheet(MusicUIObject::MColorStyle03);
-        m_ui->remoteSkin->setStyleSheet(MusicUIObject::MColorStyle03);
-    }
-    else if(index == 1)
-    {
-        m_ui->recommendSkin->setStyleSheet(MusicUIObject::MColorStyle03);
-        m_ui->mySkin->setStyleSheet(MusicUIObject::MColorStyle08);
-        m_ui->remoteSkin->setStyleSheet(MusicUIObject::MColorStyle03);
-    }
-    else if(index == 2)
+    if(index == 2)
     {
         m_remoteBackgroundList->init();
-        m_ui->recommendSkin->setStyleSheet(MusicUIObject::MColorStyle03);
-        m_ui->mySkin->setStyleSheet(MusicUIObject::MColorStyle03);
-        m_ui->remoteSkin->setStyleSheet(MusicUIObject::MColorStyle08);
     }
 
     m_ui->stackedWidget->setIndex(0, 0);

@@ -2,6 +2,8 @@
 #include "musicleftitemlistuiobject.h"
 #include "musicfunctionlistuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicuiobject.h"
+
 #include "qmath.h"
 
 #include <QPainter>
@@ -75,6 +77,8 @@ void MusicLineBackgroundWidget::paintEvent(QPaintEvent *event)
 MusicBaseAnimationWidget::MusicBaseAnimationWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_pix = QPixmap(":/toolSets/btn_arrow_normal");
+
     m_curIndex = 0;
     m_preIndex = 0;
     m_x = 0;
@@ -162,8 +166,6 @@ void MusicBaseAnimationWidget::finished()
 MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     : MusicBaseAnimationWidget(parent)
 {
-    m_pix = QPixmap(":/toolSets/btn_arrow_normal");
-
     QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
@@ -277,4 +279,55 @@ void MusicOptionAnimationWidget::switchToSelectedItemStyle(int index)
     MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
     m_showState = (index != 5);
     update();
+}
+
+
+
+MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
+    : MusicBaseAnimationWidget(parent)
+{
+    QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
+
+    QStringList names;
+    names << tr("Re") << tr("My") << tr("Online");
+    for(int i=0; i<names.count(); ++i)
+    {
+        QToolButton *btn = new QToolButton(this);
+        btn->setText(names[i]);
+        btn->setFixedSize(80, 30);
+        ly->addWidget(btn);
+        m_group->addButton(btn, i);
+        m_container << btn;
+    }
+    ly->addStretch(1);
+
+    switchToSelectedItemStyle(0);
+}
+
+QString MusicSkinAnimationWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicSkinAnimationWidget::paintEvent(QPaintEvent *event)
+{
+    m_totalWidth = width();
+    MusicBaseAnimationWidget::paintEvent(event);
+}
+
+void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
+{
+    m_container[0]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
+    m_container[1]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
+    m_container[2]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
+
+    switch(index)
+    {
+        case 0: m_container[0]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
+        case 1: m_container[1]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
+        case 2: m_container[2]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
+        default: break;
+    }
+
+    MusicBaseAnimationWidget::switchToSelectedItemStyle(index);
 }

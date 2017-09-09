@@ -80,7 +80,7 @@ void MusicBackgroundListItem::mousePressEvent(QMouseEvent *event)
 {
     QLabel::mousePressEvent(event);
 
-    if(m_closeSet && QRect(width() - 14 - 6, 6, 14, 14).contains(event->pos()))
+    if(m_closeSet && QRect(width() - 16 - 6, 6, 16, 16).contains(event->pos()))
     {
         emit closeClicked(this);
     }
@@ -141,7 +141,7 @@ void MusicBackgroundListItem::paintEvent(QPaintEvent *event)
     if(m_closeSet && m_closeMask)
     {
         QPainter painter(this);
-        painter.drawPixmap(width() - 14 - 6, 6, 14, 14, QPixmap(":/functions/btn_close_hover"));
+        painter.drawPixmap(width() - 16 - 6, 6, 16, 16, QPixmap(":/functions/btn_close_hover"));
     }
 }
 
