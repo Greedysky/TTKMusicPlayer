@@ -34,8 +34,6 @@ MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)
     addAction(m_showLrcAction);
     addAction(m_lockLrcAction);
     addSeparator();
-    addAction(tr("showMainWindow"), parent, SLOT(showNormal()));
-    addSeparator();
     addAction(QIcon(":/contextMenu/btn_setting"), tr("showSetting"), parent, SLOT(musicSetting()));
     addSeparator();
 #ifndef Q_OS_UNIX

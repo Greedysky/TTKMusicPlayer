@@ -31,6 +31,10 @@ public:
     /*!
      * Get class object name.
      */
+    bool read();
+    /*!
+     * Read music file to anaylsis.
+     */
     bool read(const QString &file);
     /*!
      * Read music file to anaylsis.

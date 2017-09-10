@@ -22,12 +22,22 @@ MusicSongTag::MusicSongTag()
 MusicSongTag::MusicSongTag(const QString &file)
     : MusicSongTag()
 {
-    read(file);
+    m_filePath = file;
 }
 
 QString MusicSongTag::getClassName()
 {
     return "MusicSongTag";
+}
+
+bool MusicSongTag::read()
+{
+    if(m_filePath.isEmpty())
+    {
+        return false;
+    }
+
+    return read(m_filePath);
 }
 
 bool MusicSongTag::read(const QString &file)
@@ -234,7 +244,7 @@ bool MusicSongTag::readOtherTaglib()
 
     QObject *obj = loader.instance();
     DecoderFactory *decoderfac = nullptr;
-    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)) )
+    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)))
     {
         int length = 0;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath);
@@ -309,7 +319,7 @@ bool MusicSongTag::saveOtherTaglib()
     bool status = false;
     QObject *obj = loader.instance();
     DecoderFactory *decoderfac = nullptr;
-    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)) )
+    if(obj && (decoderfac = MObject_cast(DecoderFactory*, obj)))
     {
         status = true;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath);
