@@ -2,6 +2,7 @@
 #ifndef MUSIC_MOBILE
 #include "musiclrcfromkrc.h"
 #endif
+#include <qmath.h>
 #include "musictime.h"
 #include "musictranslationthread.h"
 

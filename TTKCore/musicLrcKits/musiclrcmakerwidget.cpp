@@ -611,11 +611,7 @@ void MusicLrcMakerWidget::createSecondWidget()
     m_ui->makeTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_ui->makeTextEdit->setStyleSheet(MusicUIObject::MTextEditStyle01 + MusicUIObject::MScrollBarStyle01);
     m_ui->makeTextEdit->setAcceptRichText(false);
-#ifdef MUSIC_GREATER_NEW
-    m_ui->makeTextEdit->setAutoFormatting(false);
-#else
     m_ui->makeTextEdit->setAutoFormatting(QTextEdit::AutoNone);
-#endif
     m_ui->makeTextEdit->setEnabled(false);
 
     QFont font = m_ui->makeTextEdit->font();

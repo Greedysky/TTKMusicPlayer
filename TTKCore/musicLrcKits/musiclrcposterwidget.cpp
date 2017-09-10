@@ -9,6 +9,7 @@
 #include "qimagewrap.h"
 #include "qhz2py/chinesehelper.h"
 
+#include <qmath.h>
 #include <QPainter>
 #include <QScrollBar>
 
