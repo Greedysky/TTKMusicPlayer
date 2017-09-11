@@ -25,8 +25,8 @@ TEMPLATE = app
 DEFINES += MUSIC_LIBRARY
 
 INCLUDEPATH += $$PWD/../ \
-               $$PWD/../TTKCore/musicCoreKits \
-               $$PWD/../TTKCore/musicUtilsKits
+               $$PWD/../TTKModule/TTKCore/musicCoreKits \
+               $$PWD/../TTKModule/TTKCore/musicUtilsKits
 
 win32{
     LIBS += -L../bin/$$TTKMusicPlayer -lTTKCore

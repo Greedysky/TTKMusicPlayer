@@ -84,21 +84,6 @@ DEFINES += MUSIC_LIBRARY
 HEADERS += $$PWD/musicglobal.h
 INCLUDEPATH += $$PWD
 #########################################
-contains(CONFIG, TTK_BUILD_LIB){
-    include(TTKCore/musicUiKits/MusicUiKits.pri)
-}
-#########################################
 include(TTKThirdParty/TTKThirdParty.pri)
 #########################################
-include(TTKCore/musicCoreKits/MusicCoreKits.pri)
-include(TTKCore/musicNetworkKits/MusicNetworkKits.pri)
-include(TTKCore/musicWidgetKits/MusicWidgetKits.pri)
-include(TTKCore/musicWidgetCoreKits/MusicWidgetCoreKits.pri)
-include(TTKCore/musicSearchKits/MusicSearchKits.pri)
-include(TTKCore/musicLrcKits/MusicLrcKits.pri)
-include(TTKCore/musicRemoteKits/MusicRemoteKits.pri)
-include(TTKCore/musicToolsSetsKits/MusicToolsSetsKits.pri)
-include(TTKCore/musicToolsKits/MusicToolsKits.pri)
-include(TTKCore/musicUserKits/MusicUserKits.pri)
-include(TTKCore/musicUtilsKits/MusicUtilsKits.pri)
-include(TTKCore/musicVideoKits/MusicVideoKits.pri)
+include(TTKModule/TTKModule.pri)

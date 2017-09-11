@@ -18,7 +18,7 @@ unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKDumper
 CONFIG       += warn_off
 unix:VERSION += 1.0.0
 
-INCLUDEPATH += $$PWD/../../TTKCore/musicCoreKits
+INCLUDEPATH += $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 win32{
     LIBS += -lpsapi

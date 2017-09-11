@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 2.8.11)
+
+if(COMMAND cmake_policy)
+    cmake_policy(SET CMP0003 OLD)
+    cmake_policy(SET CMP0005 OLD)
+    cmake_policy(SET CMP0028 OLD)
+endif(COMMAND cmake_policy)
+
+add_definitions(-DQT_NO_DEBUG)
+add_definitions(-DQT_THREAD)
+
+add_subdirectory(musicLrcKits)
+add_subdirectory(musicRemoteKits)
+add_subdirectory(musicSearchKits)
+add_subdirectory(musicToolsKits)
+add_subdirectory(musicToolsSetsKits)
+add_subdirectory(musicUiKits)
+add_subdirectory(musicUserKits)
+add_subdirectory(musicVideokits)
+add_subdirectory(musicWidgetCoreKits)
+add_subdirectory(musicWidgetKits)

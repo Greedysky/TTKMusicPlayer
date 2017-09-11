@@ -23,7 +23,7 @@ win32:msvc{
 INCLUDEPATH += \
     ../ \
     ../../ \
-    ../../TTKCore/musicCoreKits
+    ../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \
     musicinitmain.cpp \

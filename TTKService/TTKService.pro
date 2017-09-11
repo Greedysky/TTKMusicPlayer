@@ -31,16 +31,16 @@ unix{
 }
 
 
-INCLUDEPATH += ../TTKCore
+INCLUDEPATH += ../TTKModule
 
 !contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    ../TTKCore/musicapplication.h \
-    ../TTKCore/musicleftareawidget.h \
-    ../TTKCore/musictopareawidget.h \
-    ../TTKCore/musicrightareawidget.h \
-    ../TTKCore/musicbottomareawidget.h \
-    ../TTKCore/musicapplicationobject.h
+    ../TTKModule/musicapplication.h \
+    ../TTKModule/musicleftareawidget.h \
+    ../TTKModule/musictopareawidget.h \
+    ../TTKModule/musicrightareawidget.h \
+    ../TTKModule/musicbottomareawidget.h \
+    ../TTKModule/musicapplicationobject.h
 
 }
 

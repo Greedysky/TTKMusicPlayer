@@ -27,7 +27,7 @@ INCLUDEPATH += \
     ../ \
     ../TTKInit \
     ../../ \
-    ../../TTKCore/musicCoreKits
+    ../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \
     musicrunmain.cpp \
