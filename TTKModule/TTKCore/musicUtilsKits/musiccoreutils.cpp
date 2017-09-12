@@ -13,17 +13,6 @@
 ///qmmp incldue
 #include "qmmp.h"
 
-QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
-{
-    QString path = MusicObject::getAppDir();
-#ifdef Q_OS_WIN
-    path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
-#elif defined Q_OS_UNIX
-    path = path + QString("qmmp/%1/lib%2.so").arg(module).arg(format);
-#endif
-    return path;
-}
-
 QString MusicUtils::Core::lrcPrefix()
 {
     QString path = M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString();
@@ -191,6 +180,17 @@ const char* MusicUtils::Core::toLocal8Bit(const QString &str)
 const char* MusicUtils::Core::toUtf8(const QString &str)
 {
     return str.toUtf8().constData();
+}
+
+QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
+{
+    QString path = MusicObject::getAppDir();
+#ifdef Q_OS_WIN
+    path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
+#elif defined Q_OS_UNIX
+    path = path + QString("qmmp/%1/lib%2.so").arg(module).arg(format);
+#endif
+    return path;
 }
 
 void MusicUtils::Core::midTransferFile()

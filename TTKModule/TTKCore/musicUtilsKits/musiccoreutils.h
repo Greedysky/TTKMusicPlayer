@@ -20,10 +20,6 @@ namespace MusicUtils
 {
     namespace Core
     {
-        MUSIC_UTILS_EXPORT QString pluginPath(const QString &module, const QString &format);
-        /*!
-         * Get qmmp plugin dir path.
-         */
         MUSIC_UTILS_EXPORT QString lrcPrefix();
         /*!
          * Get lrc dir prefix path.
@@ -81,6 +77,10 @@ namespace MusicUtils
          * Trasform string to utf8 char.
          */
 
+        MUSIC_UTILS_EXPORT QString pluginPath(const QString &module, const QString &format);
+        /*!
+         * Get qmmp plugin dir path.
+         */
         MUSIC_UTILS_EXPORT void midTransferFile();
         /*!
          * Mid config file transfer operator.

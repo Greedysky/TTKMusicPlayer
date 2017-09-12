@@ -27,6 +27,7 @@ namespace MusicUtils
         /*!
          * Get split string value.
          */
+
         MUSIC_UTILS_EXPORT QString artistName(const QString &value, const QString &key = "-");
         /*!
          * Get song artist name.
