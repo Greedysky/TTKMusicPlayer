@@ -19,7 +19,7 @@ void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecor
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
+    QDomElement musicPlayer = createRoot(APPNAME);
     QDomElement download = writeDom(musicPlayer, "barrageRecord");
 
     foreach(const MusicBarrageRecord &record, records)

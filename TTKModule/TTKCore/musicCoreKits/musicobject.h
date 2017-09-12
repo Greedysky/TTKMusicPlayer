@@ -17,10 +17,13 @@
 #endif
 #include "musicglobal.h"
 
-#define APPNAME                 "TTKMusicPlayer"
-///////////////////////////////////////
-
 #define DOT                     "."
+
+///////////////////////////////////////
+#define APPNAME                 "TTKMusicPlayer"
+#define APPDOT                  "TTKMusicPlayer."
+#define APPCOME                 "TTKMusicPlayer.com"
+///////////////////////////////////////
 
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"

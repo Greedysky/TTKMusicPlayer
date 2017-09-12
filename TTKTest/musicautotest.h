@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QtTest/QTest>
 #include <QSharedPointer>
+#include "musicobject.h"
 
 namespace MusicAutoTest
 {
@@ -83,9 +84,9 @@ public:
     int main(int argc, char *argv[]) \
     { \
         QApplication app(argc, argv); \
-        QCoreApplication::setOrganizationName("TTKMusicPlayer"); \
-        QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com"); \
-        QCoreApplication::setApplicationName("TTKMusicPlayer"); \
+        QCoreApplication::setOrganizationName(APPNAME); \
+        QCoreApplication::setOrganizationDomain(APPCOME); \
+        QCoreApplication::setApplicationName(APPNAME); \
         return MusicAutoTest::run(argc, argv); \
     }
 

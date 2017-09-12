@@ -414,7 +414,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
 {
     MusicObject::MIntStringMapIterator it(m_lrcContainer);
     QByteArray data;
-    data.append(QString("[by: TTKMusicPlayer]\n[offset:0]\n"));
+    data.append(QString("[by: %1]\n[offset:0]\n").arg(APPNAME));
     while(it.hasNext())
     {
         it.next();

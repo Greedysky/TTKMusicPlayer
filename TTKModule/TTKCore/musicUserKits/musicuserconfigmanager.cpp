@@ -19,7 +19,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
+    QDomElement musicPlayer = createRoot(APPNAME);
 
     foreach(const MusicUserRecord &record, records)
     {

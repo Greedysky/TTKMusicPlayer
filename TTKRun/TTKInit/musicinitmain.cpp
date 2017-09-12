@@ -5,9 +5,9 @@ int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    QCoreApplication::setOrganizationName("TTKMusicPlayer");
-    QCoreApplication::setOrganizationDomain("TTKMusicPlayer.com");
-    QCoreApplication::setApplicationName("TTKMusicPlayer");
+    QCoreApplication::setOrganizationName(APPNAME);
+    QCoreApplication::setOrganizationDomain(APPCOME);
+    QCoreApplication::setApplicationName(APPNAME);
 
     MusicInitObject object;
     object.init();

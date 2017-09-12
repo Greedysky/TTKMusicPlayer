@@ -24,7 +24,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
+    QDomElement musicPlayer = createRoot(APPNAME);
     for(int i=0; i<musics.count(); ++i)
     {
         const MusicSongItem item = musics[i];
@@ -174,7 +174,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayerDom = createRoot("TTKMusicPlayer");
+    QDomElement musicPlayerDom = createRoot(APPNAME);
     //Class A
     QDomElement musicSettingDom = writeDom(musicPlayerDom, "musicSetting");
     QDomElement plusSettingDom = writeDom(musicPlayerDom, "plusSetting");

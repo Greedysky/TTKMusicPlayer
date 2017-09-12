@@ -19,7 +19,7 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRe
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot("TTKMusicPlayer");
+    QDomElement musicPlayer = createRoot(APPNAME);
     QDomElement download = writeDom(musicPlayer, "download");
 
     foreach(const MusicDownloadRecord &record, records)
