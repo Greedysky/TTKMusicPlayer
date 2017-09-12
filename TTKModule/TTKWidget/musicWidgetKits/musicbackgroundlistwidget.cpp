@@ -192,6 +192,7 @@ void MusicBackgroundListWidget::clearSelectState()
 void MusicBackgroundListWidget::clearAllItems()
 {
     qDeleteAll(m_items);
+    m_items.clear();
 }
 
 void MusicBackgroundListWidget::createItem(const QString &name, const QString &path, bool state)

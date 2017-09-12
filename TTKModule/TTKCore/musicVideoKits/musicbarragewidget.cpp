@@ -142,6 +142,8 @@ void MusicBarrageWidget::deleteItems()
 {
     qDeleteAll(m_labels);
     qDeleteAll(m_animations);
+    m_labels.clear();
+    m_animations.clear();
 }
 
 void MusicBarrageWidget::createLabel()

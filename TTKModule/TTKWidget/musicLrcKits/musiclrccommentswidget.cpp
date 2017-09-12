@@ -364,6 +364,7 @@ void MusicLrcCommentsWidget::initLabel(const QString &name, int total)
 void MusicLrcCommentsWidget::deleteCommentsItems()
 {
     qDeleteAll(m_commentsItems);
+    m_commentsItems.clear();
 }
 
 void MusicLrcCommentsWidget::createPagingWidget()

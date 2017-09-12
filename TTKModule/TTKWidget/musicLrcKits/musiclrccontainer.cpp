@@ -128,6 +128,7 @@ void MusicLrcContainer::showLrcErrorWidget()
 void MusicLrcContainer::clearAllMusicLRCManager()
 {
     qDeleteAll(m_musicLrcContainer);
+    m_musicLrcContainer.clear();
 }
 
 void MusicLrcContainer::setSettingParameter(const QString &t)
