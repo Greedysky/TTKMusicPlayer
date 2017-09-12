@@ -28,6 +28,7 @@ public:
     /*!
      * Transfer file to image data.
      */
+
     static bool outputSkin(MusicBackgroundImage *image, const QString &path);
     /*!
      * Transfer file to image data.
@@ -35,6 +36,15 @@ public:
     static bool inputSkin(MusicBackgroundImage *image, const QString &path);
     /*!
      * Transfer image data to file.
+     */
+
+    static bool outputText(QByteArray &data, const QString &path);
+    /*!
+     * Transfer file to data.
+     */
+    static bool inputText(const QByteArray &data, const QString &path);
+    /*!
+     * Transfer data to file.
      */
 
 };
