@@ -1,4 +1,5 @@
-#include "musicbackgroundimage.h"
+#include "musicextractwrap.h"
+#include "musicbackgroundconfigmanager.h"
 #include "musicnumberdefine.h"
 #include "musicotherdefine.h"
 #include "musicwidgetutils.h"
@@ -13,52 +14,12 @@
 #  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
 
-MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
-    : MusicAbstractXml(parent)
+QString MusicExtractWrap::getClassName()
 {
-
+    return "MusicExtractWrap";
 }
 
-QString MusicSkinConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
-void MusicSkinConfigManager::writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path)
-{
-    //Open wirte file
-    if( !writeConfig( path ) )
-    {
-        return;
-    }
-    ///////////////////////////////////////////////////////
-    createProcessingInstruction();
-    ///////////////////////////////////////////////////////
-    QDomElement musicPlayerDom = createRoot("TTKSkin");
-    //Class A
-    writeDomElement(musicPlayerDom, "creator", MusicXmlAttribute("value", APPNAME));
-    writeDomElement(musicPlayerDom, "name", MusicXmlAttribute("value", item.m_name));
-    writeDomElement(musicPlayerDom, "useCount", MusicXmlAttribute("value", item.m_useCount));
-
-    //Write to file
-    QTextStream out(m_file);
-    m_ddom->save(out, 4);
-}
-
-void MusicSkinConfigManager::readSkinXMLConfig(MusicSkinConfigItem &item)
-{
-    item.m_name = readXmlAttributeByTagNameValue("name");
-    item.m_useCount = readXmlAttributeByTagNameValue("useCount").toInt();
-}
-
-
-
-QString MusicBackgroundImageWrap::getClassName()
-{
-    return "MusicBackgroundImageWrap";
-}
-
-bool MusicBackgroundImageWrap::outputSkin(QPixmap &image, const QString &path)
+bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
 {
     unzFile zFile = unzOpen64(path.toLocal8Bit().constData());
     if(NULL == zFile)
@@ -119,7 +80,7 @@ bool MusicBackgroundImageWrap::outputSkin(QPixmap &image, const QString &path)
     return true;
 }
 
-bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QString &path)
+bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &path)
 {
     unzFile zFile = unzOpen64(path.toLocal8Bit().constData());
     if(NULL == zFile)
@@ -168,7 +129,7 @@ bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QSt
 
             QPixmap pix;
             pix.loadFromData(arrayData);
-            image.m_pix = pix;
+            image->m_pix = pix;
         }
         else if(QString(file).toLower().contains(XML_FILE))
         {
@@ -187,7 +148,7 @@ bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QSt
             if(manager.fromByteArray(arrayData))
             {
                 manager.readSkinXMLConfig(item);
-                image.m_item = item;
+                image->m_item = item;
             }
         }
 
@@ -203,7 +164,7 @@ bool MusicBackgroundImageWrap::outputSkin(MusicBackgroundImage &image, const QSt
     return true;
 }
 
-bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, const QString &path)
+bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &path)
 {
     zipFile zFile = zipOpen64(path.toLocal8Bit().constData(), 0);
     if(NULL == zFile)
@@ -218,12 +179,12 @@ bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, cons
     memset(&fileInfo, 0, sizeof(fileInfo));
 
     zipOpenNewFileInZip(zFile, (nPrefix + SKN_FILE).toLocal8Bit().constData(), &fileInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, level);
-    QByteArray data = MusicUtils::Widget::getPixmapData(image.m_pix);
+    QByteArray data = MusicUtils::Widget::getPixmapData(image->m_pix);
     zipWriteInFileInZip(zFile, data.constData(), data.size());
     zipCloseFileInZip(zFile);
 
     MusicSkinConfigManager manager;
-    manager.writeSkinXMLConfig(image.m_item, MUSIC_IMAGE_FILE);
+    manager.writeSkinXMLConfig(image->m_item, MUSIC_IMAGE_FILE);
     data = manager.toByteArray();
 
     zipOpenNewFileInZip(zFile, (nPrefix + XML_FILE).toLocal8Bit().constData(), &fileInfo, NULL, 0, NULL, 0, NULL, Z_DEFLATED, level);
@@ -235,3 +196,4 @@ bool MusicBackgroundImageWrap::inputSkin(const MusicBackgroundImage &image, cons
 
     return true;
 }
+

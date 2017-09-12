@@ -12,7 +12,7 @@
 #include <QLabel>
 #include <QGridLayout>
 #include "musicuiobject.h"
-#include "musicbackgroundimage.h"
+#include "musicbackgroundconfigmanager.h"
 
 #define CURRENT_ITEMS_COUNT         47
 

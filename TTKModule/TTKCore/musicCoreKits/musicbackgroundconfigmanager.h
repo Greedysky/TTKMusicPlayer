@@ -1,5 +1,5 @@
-#ifndef MUSICBACKGROUNDIMAGE_H
-#define MUSICBACKGROUNDIMAGE_H
+#ifndef MUSICBACKGROUNDCONFIGMANAGER_H
+#define MUSICBACKGROUNDCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -79,31 +79,4 @@ public:
 
 };
 
-
-/*! @brief The class of the background image wrap.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicBackgroundImageWrap
-{
-public:
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
-
-    static bool outputSkin(QPixmap &image, const QString &path);
-    /*!
-     * Transfer file to image data.
-     */
-    static bool outputSkin(MusicBackgroundImage &image, const QString &path);
-    /*!
-     * Transfer file to image data.
-     */
-    static bool inputSkin(const MusicBackgroundImage &image, const QString &path);
-    /*!
-     * Transfer image data to file.
-     */
-
-};
-
-#endif // MUSICBACKGROUNDIMAGE_H
+#endif // MUSICBACKGROUNDCONFIGMANAGER_H

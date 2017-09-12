@@ -1,6 +1,7 @@
 #include "musicprogresswidget.h"
 #include "musicbackgroundmanager.h"
-#include "musicbackgroundimage.h"
+#include "musicbackgroundconfigmanager.h"
+#include "musicextractwrap.h"
 #include "musicuiobject.h"
 
 #include <QPainter>
@@ -100,7 +101,7 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 void MusicProgressWidget::show()
 {
     MusicBackgroundImage image;
-    if(MusicBackgroundImageWrap::outputSkin(image, M_BACKGROUND_PTR->getMBackground()))
+    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground()))
     {
         m_background->setPixmap(image.m_pix.scaled(size()));
     }

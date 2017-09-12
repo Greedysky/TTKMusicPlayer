@@ -4,7 +4,8 @@
 #include "musicbackgroundmanager.h"
 #include "musicstringutils.h"
 #include "musicuiobject.h"
-#include "musicbackgroundimage.h"
+#include "musicextractwrap.h"
+#include "musicbackgroundconfigmanager.h"
 
 #include "qimagewrap.h"
 #include "qhz2py/chinesehelper.h"
@@ -27,7 +28,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicBackgroundImageWrap::outputSkin(image, M_BACKGROUND_PTR->getMBackground());
+        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground());
         m_pixmap = image.m_pix;
     }
 }

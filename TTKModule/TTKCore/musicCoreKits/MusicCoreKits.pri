@@ -31,7 +31,6 @@ HEADERS  += \
     $$PWD/musicsongtag.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
-    $$PWD/musicbackgroundimage.h \
     $$PWD/musicsystemenvironment.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
@@ -39,7 +38,9 @@ HEADERS  += \
     $$PWD/musicplaylistmanager.h \
     $$PWD/musichotkeymanager.h \
     $$PWD/musicruntimemanager.h \
-    $$PWD/musicdispatchmanager.h
+    $$PWD/musicdispatchmanager.h \
+    $$PWD/musicextractwrap.h \
+    $$PWD/musicbackgroundconfigmanager.h
 
 }
 
@@ -58,7 +59,6 @@ SOURCES += \
     $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
-    $$PWD/musicbackgroundimage.cpp \
     $$PWD/musicsystemenvironment.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
@@ -66,6 +66,8 @@ SOURCES += \
     $$PWD/musicplaylistmanager.cpp \
     $$PWD/musichotkeymanager.cpp \
     $$PWD/musicruntimemanager.cpp \
-    $$PWD/musicdispatchmanager.cpp
+    $$PWD/musicdispatchmanager.cpp \
+    $$PWD/musicextractwrap.cpp \
+    $$PWD/musicbackgroundconfigmanager.cpp
 
 }

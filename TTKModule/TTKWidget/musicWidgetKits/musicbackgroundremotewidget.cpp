@@ -1,5 +1,6 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicdownloadqueuecache.h"
+#include "musicextractwrap.h"
 
 #include <QDir>
 #include <QPushButton>
@@ -129,7 +130,7 @@ void MusicBackgroundRemoteWidget::outputRemoteSkin(MusicBackgroundImage &image, 
         MusicSkinRemoteItem *item = &(*items)[index];
         image.m_item.m_name = item->m_name;
         image.m_item.m_useCount = item->m_useCount;
-        MusicBackgroundImageWrap::outputSkin(image.m_pix, data);
+        MusicExtractWrap::outputThunderSkin(image.m_pix, data);
     }
 }
 

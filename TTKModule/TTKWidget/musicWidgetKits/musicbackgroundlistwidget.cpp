@@ -1,4 +1,5 @@
 #include "musicbackgroundlistwidget.h"
+#include "musicextractwrap.h"
 #include "musicmessagebox.h"
 
 #include <QPainter>
@@ -30,7 +31,7 @@ void MusicBackgroundListItem::updatePixImage()
     if(!m_path.isEmpty())
     {
         MusicBackgroundImage image;
-        if(MusicBackgroundImageWrap::outputSkin(image, m_path))
+        if(MusicExtractWrap::outputSkin(&image, m_path))
         {
             updatePixImage(image);
         }
