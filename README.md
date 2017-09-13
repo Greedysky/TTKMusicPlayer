@@ -32,6 +32,10 @@ License
 ---
 TTKMusicPlayer is free software licensed under the term of [Licence GPL v2](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must add here to the terms of the license in question.
 
+API Document
+---
+You Can See Here: **<u>https://greedysky.github.io/ttkdocs/html/index.html</u>**
+
 Download
 ---
 Github: **<u>https://github.com/Greedysky/TTKMusicplayer</u>**
