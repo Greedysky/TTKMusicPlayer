@@ -72,8 +72,9 @@ void MusicTransitionAnimationLabel::animationFinished()
 {
     m_currentValue = 0;
     m_isAnimating = false;
+    m_rendererPixmap = m_currentPixmap;
 
-    QLabel::setPixmap(m_currentPixmap);
+    QLabel::setPixmap(m_rendererPixmap);
 }
 
 void MusicTransitionAnimationLabel::paintEvent(QPaintEvent *event)
