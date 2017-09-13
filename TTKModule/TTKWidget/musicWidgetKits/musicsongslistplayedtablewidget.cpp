@@ -51,7 +51,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
                           item = new QTableWidgetItem;
         item->setToolTip(songs[i].getMusicName());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 182));
-        item->setTextColor(QColor(50, 50, 50));
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
                           item = new QTableWidgetItem;
@@ -59,6 +59,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
                           item = new QTableWidgetItem(songs[i].getMusicTime());
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
     }

@@ -57,6 +57,7 @@ void MusicWebMusicRadioListView::addListWidgetItem()
     foreach(const MusicRadioChannelInfo &channel, channels)
     {
         QListWidgetItem *item = new QListWidgetItem(channel.m_name, this);
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setSizeHint(QSize(80, 30));
         addItem(item);
     }

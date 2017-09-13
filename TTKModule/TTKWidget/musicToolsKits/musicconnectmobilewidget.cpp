@@ -49,17 +49,17 @@ void MusicConnectMobileWidget::initFirstWidget()
     QWidget *firstWidget = new QWidget(this);
     QVBoxLayout *vBox = new QVBoxLayout(firstWidget);
     QLabel *textLabel = new QLabel(tr("Please choose the way"), firstWidget);
-    textLabel->setStyleSheet(MusicUIObject::MFontStyle05);
+    textLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MColorStyle12);
 
     QPushButton *firButton = new QPushButton(tr("Wired Mode"), firstWidget);
-    firButton->setStyleSheet(MusicUIObject::MPushButtonStyle11);
+    firButton->setStyleSheet(MusicUIObject::MPushButtonStyle11 + MusicUIObject::MColorStyle12);
     firButton->setIcon(QIcon(":/toolSets/lb_wired"));
     firButton->setIconSize(QSize(50, 50));
     firButton->setFixedSize(200, 90);
     connect(firButton, SIGNAL(clicked(bool)), SLOT(changeStatckedWidgetSecond()));
 
     QPushButton *secButton = new QPushButton(tr("Wirel Mode"), firstWidget);
-    secButton->setStyleSheet(MusicUIObject::MPushButtonStyle11);
+    secButton->setStyleSheet(MusicUIObject::MPushButtonStyle11 + MusicUIObject::MColorStyle12);
     secButton->setIcon(QIcon(":/toolSets/lb_wireless"));
     secButton->setIconSize(QSize(50, 50));
     secButton->setFixedSize(200, 90);

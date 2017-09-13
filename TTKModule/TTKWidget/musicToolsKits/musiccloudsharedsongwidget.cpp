@@ -126,6 +126,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
 
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), dataItem.m_name, Qt::ElideRight, 250));
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setToolTip(dataItem.m_name);
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -134,6 +135,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         item->setText(MusicUtils::Widget::elidedText(font(), MusicUtils::Number::size2Label(dataItem.m_size),
                                                               Qt::ElideRight, 40));
         item->setToolTip(item->text());
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 

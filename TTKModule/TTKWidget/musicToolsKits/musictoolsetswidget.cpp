@@ -70,51 +70,37 @@ QString MusicToolSetsWidget::getClassName()
 
 void MusicToolSetsWidget::addListWidgetItem()
 {
-    QListWidgetItem *item = new QListWidgetItem(QIcon(":/tools/lb_localmanager") ,tr("localmanager"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_recorder") ,tr("recorder"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_bell") ,tr("bell"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_timer") ,tr("timer"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_transform") ,tr("transform"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_spectrum") ,tr("spectrum"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_wallpaper") ,tr("wallpaper"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_phone") ,tr("phone"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_speed") ,tr("speed"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_connections") ,tr("connections"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_gain") ,tr("gain"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_detect") ,tr("detect"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_soundtouch") ,tr("soundtouch"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_grabwindow") ,tr("grabwindow"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
-                     item = new QListWidgetItem(QIcon(":/tools/lb_ktv") ,tr("kmicro"), m_ui->listItemWidget);
-    item->setSizeHint(QSize(80, 90));
-    m_ui->listItemWidget->addItem(item);
+    typedef struct ItemPair
+    {
+        QString m_icon;
+        QString m_name;
+    }ItemPair;
+    TTK_DECLARE_LISTS(ItemPair);
+
+    ItemPairs pairs;
+    pairs << ItemPair{":/tools/lb_localmanager", tr("localmanager")}
+          << ItemPair{":/tools/lb_recorder", tr("recorder")}
+          << ItemPair{":/tools/lb_bell", tr("bell")}
+          << ItemPair{":/tools/lb_timer", tr("timer")}
+          << ItemPair{":/tools/lb_transform", tr("transform")}
+          << ItemPair{":/tools/lb_spectrum", tr("spectrum")}
+          << ItemPair{":/tools/lb_wallpaper", tr("wallpaper")}
+          << ItemPair{":/tools/lb_phone", tr("phone")}
+          << ItemPair{":/tools/lb_speed", tr("speed")}
+          << ItemPair{":/tools/lb_connections" ,tr("connections")}
+          << ItemPair{":/tools/lb_gain", tr("gain")}
+          << ItemPair{":/tools/lb_detect", tr("detect")}
+          << ItemPair{":/tools/lb_soundtouch", tr("soundtouch")}
+          << ItemPair{":/tools/lb_grabwindow", tr("grabwindow")}
+          << ItemPair{":/tools/lb_ktv", tr("kmicro")};
+
+    foreach(const ItemPair &pair, pairs)
+    {
+        QListWidgetItem *item = new QListWidgetItem(QIcon(pair.m_icon), pair.m_name, m_ui->listItemWidget);
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+        item->setSizeHint(QSize(80, 90));
+        m_ui->listItemWidget->addItem(item);
+    }
 }
 
 void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)

@@ -98,7 +98,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
         item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
-        item->setTextColor(QColor(50, 50, 50));
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
                           item = new QTableWidgetItem;
@@ -108,6 +108,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
                           item = new QTableWidgetItem;
         setItem(i, 4, item);
                           item = new QTableWidgetItem(songs[i].getMusicTime());
+        item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
     }
@@ -228,14 +229,14 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
     item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 180));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 1, item);
     setItem(m_playRowIndex, 2, new QTableWidgetItem);
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
     item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
 

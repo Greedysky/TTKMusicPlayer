@@ -190,7 +190,7 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
 
                       item = new QTableWidgetItem;
     item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 160));
-    item->setTextColor(QColor(50, 50, 50));
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( record.m_name );
     setItem(index, 1, item);
@@ -200,6 +200,7 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem( record.m_size );
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignCenter);
     item->setData(MUSIC_TIMES_ROLE, time);
     setItem(index, 3, item);
