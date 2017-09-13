@@ -12,6 +12,9 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+/*! @brief The class of the music formats.
+ * @author Greedysky <greedysky@163.com>
+ */
 class MUSIC_CORE_EXPORT MusicFormats
 {
 public:

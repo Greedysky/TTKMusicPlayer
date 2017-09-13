@@ -23,6 +23,9 @@ class MUSIC_SUPER_EXPORT MusicAudioRecorderCore : public QObject
 {
     Q_OBJECT
 public:
+    /*! @brief The class of the audio file tag header.
+     * @author Greedysky <greedysky@163.com>
+     */
     typedef struct MUSIC_SUPER_EXPORT HEADER
     {
         char RIFFNAME[4];

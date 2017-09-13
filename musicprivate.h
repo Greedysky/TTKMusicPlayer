@@ -24,6 +24,9 @@
 #define TTK_Q(Class) Class *const q = ttk_q()
 
 template <typename PUB>
+/*! @brief The class of the ttk private base.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTKPrivate
 {
 public:
@@ -39,6 +42,9 @@ private:
 };
 
 template <typename PUB, typename PVT>
+/*! @brief The class of the ttk private interface.
+ * @author Greedysky <greedysky@163.com>
+ */
 class TTKPrivateInterface
 {
     friend class TTKPrivate<PUB>;
