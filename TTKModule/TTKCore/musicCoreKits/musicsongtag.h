@@ -18,18 +18,22 @@
 class MUSIC_CORE_EXPORT MusicSongTag
 {
 public:
+    /*!
+     * Object contsructor.
+     */
     MusicSongTag();
     /*!
      * Object contsructor.
      */
     explicit MusicSongTag(const QString &file);
-    /*!
-     * Object contsructor.
-     */
 
-    static QString getClassName();
     /*!
      * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Read music file to anaylsis.
      */
     bool read();
     /*!
@@ -37,144 +41,141 @@ public:
      */
     bool read(const QString &file);
     /*!
-     * Read music file to anaylsis.
-     */
-    bool save();
-    /*!
      * Save music tags to music file.
      */
+    bool save();
 
-    QString getDecoder() const;
     /*!
      * Read music decoder name.
      */
-    QString getFilePath() const;
+    QString getDecoder() const;
     /*!
      * Read music file path.
      */
+    QString getFilePath() const;
     /////////////////////////////////////////////
-    QString getArtist() const;
     /*!
      * Get artist name.
      */
-    QString getTitle() const;
+    QString getArtist() const;
     /*!
      * Get song title.
      */
-    QString getAlbum() const;
+    QString getTitle() const;
     /*!
      * Get song album.
      */
-    QString getComment() const;
+    QString getAlbum() const;
     /*!
      * Get song comment.
      */
-    QString getYear() const;
+    QString getComment() const;
     /*!
      * Get song year.
      */
-    QString getTrackNum() const;
+    QString getYear() const;
     /*!
      * Get song track number.
      */
-    QString getGenre() const;
+    QString getTrackNum() const;
     /*!
      * Get song genre.
      */
-    QString getAlbumArtist() const;
+    QString getGenre() const;
     /*!
      * Get song album artist.
      */
-    QString getComposer() const;
+    QString getAlbumArtist() const;
     /*!
      * Get song composer.
      */
-    QString getChannel() const;
+    QString getComposer() const;
     /*!
      * Get song channel.
      */
-    QString getURL() const;
+    QString getChannel() const;
     /*!
      * Get song file path.
      */
+    QString getURL() const;
     /////////////////////////////////////////////
-    void setArtist(const QString &artist);
     /*!
      * Set artist name.
      */
-    void setTitle(const QString &title);
+    void setArtist(const QString &artist);
     /*!
      * Set song title.
      */
-    void setAlbum(const QString &album);
+    void setTitle(const QString &title);
     /*!
      * Set song album.
      */
-    void setComment(const QString &comment);
+    void setAlbum(const QString &album);
     /*!
      * Set song comment.
      */
-    void setYear(const QString &year);
+    void setComment(const QString &comment);
     /*!
      * Set song year.
      */
-    void setTrackNum(const QString &track);
+    void setYear(const QString &year);
     /*!
      * Set song track number.
      */
-    void setGenre(const QString &genre);
+    void setTrackNum(const QString &track);
     /*!
      * Set song genre.
      */
+    void setGenre(const QString &genre);
     /////////////////////////////////////////////
+    /*!
+     * Set song image cover art.
+     */
     void setCover(const QPixmap &pix);
     /*!
      * Set song image cover art.
      */
     void setCover(const QByteArray &data);
     /*!
-     * Set song image cover art.
-     */
-    QPixmap getCover() const;
-    /*!
      * Get song image cover art.
      */
+    QPixmap getCover() const;
     /////////////////////////////////////////////
-    QString getSamplingRate() const;
     /*!
      * Get song sample rate.
      */
-    QString getFormat() const;
+    QString getSamplingRate() const;
     /*!
      * Get song format.
      */
-    QString getMode() const;
+    QString getFormat() const;
     /*!
      * Get song mode.
      */
-    QString getBitrate() const;
+    QString getMode() const;
     /*!
      * Get song bitrate.
      */
-    QString getLengthString() const;
+    QString getBitrate() const;
     /*!
      * Get song time length.
      */
+    QString getLengthString() const;
     /////////////////////////////////////////////
 
 protected:
-    QString findPluginPath() const;
     /*!
      * Find current pluin store path.
      */
-    bool readOtherTaglib();
+    QString findPluginPath() const;
     /*!
      * Read other taglib not by plugin.
      */
-    bool saveOtherTaglib();
+    bool readOtherTaglib();
     /*!
      * Save other taglib not by plugin.
      */
+    bool saveOtherTaglib();
 
     QString m_filePath;
     QMap<TagReadAndWrite::MusicTag, QVariant> m_parameters;

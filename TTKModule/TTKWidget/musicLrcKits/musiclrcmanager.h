@@ -23,152 +23,157 @@
 /*! @brief The class of the lrc color.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCColor
+class MUSIC_LRC_EXPORT MusicLrcColor
 {
 public:
     enum LrcColorType
     {
-        Null = -1,   ///*color null*/
-        IYellow,     ///*color yellow*/
-        IBlue,       ///*color blue*/
-        IGray,       ///*color gray*/
-        IPink,       ///*color pink*/
-        IGreen,      ///*color green*/
-        IRed,        ///*color red*/
-        IPurple,     ///*color purple*/
-        IOrange,     ///*color orange*/
-        IIndigo,     ///*color indigo*/
+        Null = -1,   /*!< color null */
+        IYellow,     /*!< color yellow */
+        IBlue,       /*!< color blue */
+        IGray,       /*!< color gray */
+        IPink,       /*!< color pink */
+        IGreen,      /*!< color green */
+        IRed,        /*!< color red */
+        IPurple,     /*!< color purple */
+        IOrange,     /*!< color orange */
+        IIndigo,     /*!< color indigo */
 
-        DWhite,      ///*color white*/
-        DBlue,       ///*color blue*/
-        DRed,        ///*color red*/
-        DBlack,      ///*color black*/
-        DYellow,     ///*color yellow*/
-        DPurple,     ///*color purple*/
-        DGreen,      ///*color green*/
+        DWhite,      /*!< color white */
+        DBlue,       /*!< color blue */
+        DRed,        /*!< color red */
+        DBlack,      /*!< color black */
+        DYellow,     /*!< color yellow */
+        DPurple,     /*!< color purple */
+        DGreen,      /*!< color green */
 
     };
 
-    MusicLRCColor();
-    MusicLRCColor(const QList<QColor> &fg, const QList<QColor> &bg,
-                  MusicLRCColor::LrcColorType index = MusicLRCColor::Null);
     /*!
      * Object contsructor.
      */
+    MusicLrcColor();
 
-    static MusicLRCColor mapIndexToColor(MusicLRCColor::LrcColorType index);
+    /*!
+     * Object contsructor.
+     */
+    MusicLrcColor(const QList<QColor> &fg, const QList<QColor> &bg,
+                  MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
+
     /*!
      * Map index to color.
      */
+    static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
 
-    bool isCustum() const;
     /*!
      * Current lrc color is man custum.
      */
+    bool isCustum() const;
 
     QList<QColor> m_fgColor;
     QList<QColor> m_bgColor;
-    MusicLRCColor::LrcColorType m_index;
+    MusicLrcColor::LrcColorType m_index;
 
 };
 
 /*! @brief The class of the lrc manager base.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCManager : public QLabel
+class MUSIC_LRC_EXPORT MusicLrcManager : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLRCManager(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    virtual ~MusicLRCManager();
+    explicit MusicLrcManager(QWidget *parent = 0);
 
-    static QString getClassName();
+    virtual ~MusicLrcManager();
+
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void startTimerClock();
     /*!
      * Start timer clock to draw lrc.
      */
-    void startLrcMask(qint64 intervaltime);
+    void startTimerClock();
     /*!
      * Start timer clock to draw lrc mask.
      */
-    void stopLrcMask();
+    void startLrcMask(qint64 intervaltime);
     /*!
      * Stop timer clock to draw lrc mask.
      */
-    void setLinearGradientColor(const MusicLRCColor &color);
+    void stopLrcMask();
     /*!
      * Set linear gradient color.
      */
-    void setFontFamily(int index);
+    void setLinearGradientColor(const MusicLrcColor &color);
     /*!
      * Set lrc font family by given type.
      */
-    void setFontType(int type);
+    void setFontFamily(int index);
     /*!
      * Set lrc font type by given type.
      */
-    inline void setFontTransparent(int t) { m_transparent = t;}
+    void setFontType(int type);
     /*!
      * Set lrc font transparent by given value.
      */
-    inline void setSpeedLevel(int l) { m_speedLevel = l;}
+    inline void setFontTransparent(int t) { m_transparent = t;}
     /*!
      * Set lrc font speed level by given value.
      */
+    inline void setSpeedLevel(int l) { m_speedLevel = l;}
 
-    void setSelfGeometry(const QPoint &point);
     /*!
      * Set self geometry by point.
      */
-    void setSelfGeometry(int x, int y);
+    void setSelfGeometry(const QPoint &point);
     /*!
      * Set self geometry by x and y.
      */
-    int x() const;
+    void setSelfGeometry(int x, int y);
     /*!
      * Get self geometry x.
      */
-    int y() const;
+    int x() const;
     /*!
      * Get self geometry y.
      */
-    void setX(int x);
+    int y() const;
     /*!
      * Set self geometry x.
      */
-    void setY(int y);
+    void setX(int x);
     /*!
      * Set self geometry y.
      */
-    void reset();
+    void setY(int y);
     /*!
      * Reset to origin state.
      */
-    void setLrcFontSize(int size);
+    void reset();
     /*!
      * Set adjust font szie by value.
      */
-    inline int getFirstFontSize() const { return m_font.pointSize(); }
+    void setLrcFontSize(int size);
     /*!
      * Get current font szie.
      */
+    inline int getFirstFontSize() const { return m_font.pointSize(); }
 
 public Q_SLOTS:
-    void setUpdateMask();
     /*!
      * Time out to calculate lrc mask line length.
      */
-    void setText(const QString &str);
+    void setUpdateMask();
     /*!
      * Override the setTtext function.
      */
+    void setText(const QString &str);
 
 protected:
     QLinearGradient m_linearGradient, m_maskLinearGradient;

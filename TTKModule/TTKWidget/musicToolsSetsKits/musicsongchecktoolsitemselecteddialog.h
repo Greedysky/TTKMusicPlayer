@@ -12,30 +12,30 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsItemSelectedTableWidget : public M
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(MusicSongItems *items);
     /*!
      * Create all items.
      */
-    MusicObject::MIntList getSelectedItems() const;
+    void createAllItems(MusicSongItems *items);
     /*!
      * Get selected items.
      */
+    MusicObject::MIntList getSelectedItems() const;
 
 public Q_SLOTS:
-    void selectedAllItems(bool check);
     /*!
      * Select all items.
      */
+    void selectedAllItems(bool check);
 
 };
 
@@ -51,37 +51,38 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsItemSelectedDialog : public MusicA
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsItemSelectedDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsItemSelectedDialog(QWidget *parent = 0);
+
     virtual ~MusicSongCheckToolsItemSelectedDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(MusicSongItems *items);
     /*!
      * Create all items.
      */
+    void createAllItems(MusicSongItems *items);
 
 Q_SIGNALS:
-    void itemListsChanged(const MusicObject::MIntList &items);
     /*!
      * Item lists changed.
      */
+    void itemListsChanged(const MusicObject::MIntList &items);
 
 public Q_SLOTS:
-    void confirmButtonClicked();
     /*!
      * Confirm button clicked.
      */
-    virtual int exec();
+    void confirmButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicSongCheckToolsItemSelectedDialog *m_ui;

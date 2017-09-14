@@ -22,34 +22,35 @@ class MUSIC_LRC_EXPORT MusicLrcErrorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcErrorWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcErrorWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcErrorWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Differ radio button clicked by index.
      */
-    void textAreaChanged();
+    void buttonClicked(int index);
     /*!
      * Text area text value changed.
      */
-    void confirmButtonClicked();
+    void textAreaChanged();
     /*!
      * Confirm button clicked.
      */
-    virtual int exec();
+    void confirmButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicLrcErrorWidget *m_ui;

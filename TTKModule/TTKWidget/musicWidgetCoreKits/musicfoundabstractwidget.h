@@ -19,35 +19,36 @@ class MUSIC_WIDGET_EXPORT MusicFoundAbstractWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicFoundAbstractWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFoundAbstractWidget(QWidget *parent = 0);
+
     ~MusicFoundAbstractWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongName(const QString &name);
     /*!
      * Set current name to search founds.
      */
+    virtual void setSongName(const QString &name);
 
-    virtual void resizeWindow() = 0;
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow() = 0;
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     QString m_songNameFull;
     QWidget *m_mainWindow;

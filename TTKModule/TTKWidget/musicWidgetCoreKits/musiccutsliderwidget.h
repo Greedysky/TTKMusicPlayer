@@ -19,33 +19,33 @@ class MUSIC_WIDGET_EXPORT MusicMoveButton : public QPushButton
 {
     Q_OBJECT
 public:
-    explicit MusicMoveButton(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicMoveButton(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void moveChanged();
     /*!
      * Moving button pos updated.
      */
-    void buttonRelease();
+    void moveChanged();
     /*!
      * Moving button released.
      */
+    void buttonRelease();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void mouseReleaseEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     QPoint m_pressAt;
     bool m_leftButtonPress;
@@ -60,61 +60,62 @@ class MUSIC_WIDGET_EXPORT MusicCutSliderWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicCutSliderWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCutSliderWidget(QWidget *parent = 0);
+
     ~MusicCutSliderWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setPosition(qint64 position);
+    static QString getClassName();
     /*!
      * Set current position.
      */
-    void setDuration(qint64 duration);
+    void setPosition(qint64 position);
     /*!
      * Set current duration.
      */
-    void resizeWindow(int width, int height);
+    void setDuration(qint64 duration);
     /*!
      * Resize window bound by given width and height.
      */
+    void resizeWindow(int width, int height);
 
 Q_SIGNALS:
-    void posChanged(qint64 start, qint64 end);
     /*!
      * Moving button pos changed.
      */
-    void buttonReleaseChanged(qint64 pos);
+    void posChanged(qint64 start, qint64 end);
     /*!
      * Moving button pos release changed.
      */
+    void buttonReleaseChanged(qint64 pos);
 
 public Q_SLOTS:
-    void buttonMoveUpdate();
     /*!
      * Moving button pos updated.
+     */
+    void buttonMoveUpdate();
+    /*!
+     * Left moving button released.
      */
     void buttonReleaseLeft();
     /*!
      * Left moving button released.
      */
     void buttonReleaseRight();
-    /*!
-     * Left moving button released.
-     */
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *) override {}
     virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
-    /*!
-     * Override the widget event.
-     */
 
     MusicMoveButton *m_leftControl, *m_rightControl;
     int m_width, m_height;

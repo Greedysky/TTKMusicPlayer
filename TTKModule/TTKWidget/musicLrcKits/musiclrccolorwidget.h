@@ -22,50 +22,51 @@ class MUSIC_LRC_EXPORT MusicLrcColorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcColorWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcColorWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcColorWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setColors(const QList<QColor> &colors);
+    static QString getClassName();
     /*!
      * Set current colors.
      */
-    QList<QColor> getColors() const;
+    void setColors(const QList<QColor> &colors);
     /*!
      * Get selected colors.
      */
+    QList<QColor> getColors() const;
 
 public Q_SLOTS:
-    void addButtonClicked();
     /*!
      * Add button clicked.
      */
-    void deleteButtonClicked();
+    void addButtonClicked();
     /*!
      * Delete button clicked.
      */
-    void modifyButtonClicked();
+    void deleteButtonClicked();
     /*!
      * Modify button clicked.
      */
-    void upButtonClicked();
+    void modifyButtonClicked();
     /*!
      * Up button clicked.
      */
-    void downButtonClicked();
+    void upButtonClicked();
     /*!
      * Down button clicked.
      */
-    virtual int exec();
+    void downButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicLrcColorWidget *m_ui;

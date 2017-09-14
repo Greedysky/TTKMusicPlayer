@@ -28,30 +28,31 @@ class MUSIC_NETWORK_EXPORT MusicRadioChannelThread : public MusicRadioThreadAbst
 {
     Q_OBJECT
 public:
-    explicit MusicRadioChannelThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRadioChannelThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+
     virtual ~MusicRadioChannelThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToDownload(const QString &id) override;
+    static QString getClassName();
     /*!
      * Start to download data.
      */
-    MusicRadioChannelInfos getMusicChannel();
+    virtual void startToDownload(const QString &id) override;
     /*!
      * Get music channel.
      */
+    MusicRadioChannelInfos getMusicChannel();
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
     MusicRadioChannelInfos m_channels;

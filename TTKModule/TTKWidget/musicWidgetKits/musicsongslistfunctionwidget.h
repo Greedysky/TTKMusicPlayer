@@ -22,52 +22,53 @@ class MUSIC_TOOL_EXPORT MusicSongsListFunctionWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListFunctionWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsListFunctionWidget(QWidget *parent = 0);
+
     virtual ~MusicSongsListFunctionWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void active();
     /*!
      * Set current animation active.
      */
-    void setGeometry();
+    void active();
     /*!
      * Set current geometry position.
      */
+    void setGeometry();
 
 Q_SIGNALS:
-    void deleteObject();
     /*!
      * Delete self object.
      */
+    void deleteObject();
 
 private Q_SLOTS:
-    void leaveTimeout();
     /*!
      * Leave Time out.
      */
-    void animationFinished();
+    void leaveTimeout();
     /*!
      * Animation finished.
      */
+    void animationFinished();
 
 protected:
-    void start(bool play, int end);
     /*!
      * Start to turn on animation.
      */
-    virtual void enterEvent(QEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
+    void start(bool play, int end);
     /*!
      * Override the widget event.
      */
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
 
     QTimer m_timer;
     QWidget *m_mainWidget;

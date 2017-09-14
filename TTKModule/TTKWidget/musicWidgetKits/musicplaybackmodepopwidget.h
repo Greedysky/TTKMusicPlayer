@@ -19,25 +19,25 @@ class MUSIC_WIDGET_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidge
 {
     Q_OBJECT
 public:
-    explicit MusicPlayBackModePopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlayBackModePopWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
-    void setPlaybackMode(MusicObject::PlayMode mode);
     /*!
      * Set current play mode.
      */
+    void setPlaybackMode(MusicObject::PlayMode mode);
 
 };
 

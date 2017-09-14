@@ -22,69 +22,69 @@ class MUSIC_CORE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void connectParentObject(QObject *object);
     /*!
      * To connect parent slot object.
      */
+    void connectParentObject(QObject *object);
 
-    void setHotKeys(const QStringList &keys);
     /*!
      * Set hotKey by given string list keys.
      */
-    void setHotKey(int index, const QString &key);
+    void setHotKeys(const QStringList &keys);
     /*!
      * Set hotKey by given index and string key.
      */
-    void setHotKey(int index, int key);
+    void setHotKey(int index, const QString &key);
     /*!
      * Set hotKey by given index and virtual key.
      */
-    QString hotKey(int index);
+    void setHotKey(int index, int key);
     /*!
      * Get the string key by given hotKey index.
      */
+    QString hotKey(int index);
 
-    void setEnabled(int index, bool enabled);
     /*!
      * Enable or disable the hotkey by index.
      */
-    bool enabled(int index);
+    void setEnabled(int index, bool enabled);
     /*!
      * check the given hotkey is enabled or not.
      */
-    void enabledAll(bool enabled);
+    bool enabled(int index);
     /*!
      * Enable or disable all hotkeys.
      */
+    void enabledAll(bool enabled);
 
-    QString toString(int key, int modifiers);
     /*!
      * Mapping the virtual key to string key.
      */
-    int count() const;
+    QString toString(int key, int modifiers);
     /*!
      * Get hotkey count.
      */
+    int count() const;
 
-    QStringList getDefaultKeys() const;
     /*!
      * Get default key string.
      */
-    QStringList getKeys() const;
+    QStringList getDefaultKeys() const;
     /*!
      * Get key string.
      */
+    QStringList getKeys() const;
 
 protected:
-    void setDefaultKey();
     /*!
      * Set default key.
      */
+    void setDefaultKey();
 
     QList<QxtGlobalShortcut*> m_hotkeys;
 

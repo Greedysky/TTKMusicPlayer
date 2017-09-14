@@ -21,31 +21,31 @@ class QNMacPrivate;
 class MUSIC_EXTRAS_EXPORT QNMac
 {
 public:
-    QNMac(const QString &accessKey, const QByteArray &secretKey);
     /*!
      * Object contsructor.
      */
+    QNMac(const QString &accessKey, const QByteArray &secretKey);
 
-    QString sign(const QByteArray &data) const;
     /*!
      * Qiniu to sign.
      */
-    QString signWithData(const QByteArray &data) const;
+    QString sign(const QByteArray &data) const;
     /*!
      * Qiniu to sign with data.
      */
-    QString signWithData2(const QByteArray &data) const;
+    QString signWithData(const QByteArray &data) const;
     /*!
      * Qiniu to sign with data2.
+     */
+    QString signWithData2(const QByteArray &data) const;
+    /*!
+     * Qiniu to sign request.
      */
     QString signRequest(const QUrl &reqestUrl, const QByteArray &bodyData = 0) const;
     /*!
      * Qiniu to sign request.
      */
     QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = 0) const;
-    /*!
-     * Qiniu to sign request.
-     */
 
 private:
     TTK_DECLARE_PRIVATE(QNMac)

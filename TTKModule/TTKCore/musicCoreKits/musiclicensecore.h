@@ -19,41 +19,41 @@ class MUSIC_CORE_EXPORT MusicLicenseCore : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicLicenseCore(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLicenseCore(QObject *parent = 0);
 
-    bool checkLicense(const QString &str);
     /*!
      * Check license string.
      */
-    QString getCharacteristicString();
+    bool checkLicense(const QString &str);
     /*!
      * Get characteristic string.
      */
-    QString getCharacteristicStringNormal();
+    QString getCharacteristicString();
     /*!
      * Get characteristic normal string.
      */
-    QString getEncodeKey(const QString &key);
+    QString getCharacteristicStringNormal();
     /*!
      * Get encode key.
      */
+    QString getEncodeKey(const QString &key);
 
 private:
-    QStringList getCharacteristicStrings();
     /*!
      * Get characteristic strings.
      */
-    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
+    QStringList getCharacteristicStrings();
     /*!
      * Get hmac in sha1.
      */
-    QString splitString(const QByteArray &data, const QByteArray &key);
+    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
     /*!
      * Split hmac string.
      */
+    QString splitString(const QByteArray &data, const QByteArray &key);
 
 };
 

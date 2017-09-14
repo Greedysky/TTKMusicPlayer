@@ -19,30 +19,31 @@ class MUSIC_WIDGET_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTa
 {
     Q_OBJECT
 public:
-    explicit MusicQualityChoiceTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQualityChoiceTableWidget(QWidget *parent = 0);
+
     virtual ~MusicQualityChoiceTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column);
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column);
     /*!
      * Table widget list cell click.
      */
-    void createItems();
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Create Table widget item.
      */
+    void createItems();
 
 };
 
@@ -54,33 +55,33 @@ class MUSIC_WIDGET_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidg
 {
     Q_OBJECT
 public:
-    explicit MusicQualityChoicePopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQualityChoicePopWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
     * Get class object name.
     */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void researchQueryByQuality(const QString &quality);
     /*!
      * Research query by quality it changed.
      */
+    void researchQueryByQuality(const QString &quality);
 
 public Q_SLOTS:
-    void listCellClicked(int row);
     /*!
      * Current Table item clicked by index.
      */
+    void listCellClicked(int row);
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     QString m_currentQuality;
 

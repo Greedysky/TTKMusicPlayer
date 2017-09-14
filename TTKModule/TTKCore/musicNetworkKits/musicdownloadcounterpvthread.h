@@ -23,26 +23,28 @@ class MUSIC_NETWORK_EXPORT MusicDownloadCounterPVThread : public MusicNetworkAbs
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadCounterPVThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadCounterPVThread(QObject *parent = 0);
+
     virtual ~MusicDownloadCounterPVThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void startToDownload();
+    static QString getClassName();
     /*!
      * Start to download counter pv from net.
      */
+    void startToDownload();
 
 public Q_SLOTS:
-    virtual void downLoadFinished();
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished();
+
 };
 
 #endif // MUSICDOWNLOADCOUNTERPVTHREAD_H

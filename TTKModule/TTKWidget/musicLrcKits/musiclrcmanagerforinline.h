@@ -16,41 +16,41 @@
 /*! @brief The class of the inline lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCManagerForInline : public MusicLRCManager
+class MUSIC_LRC_EXPORT MusicLrcManagerForInline : public MusicLrcManager
 {
     Q_OBJECT
 public:
-    explicit MusicLRCManagerForInline(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcManagerForInline(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline void setLrcPerWidth(int width) { m_lrcPerWidth = width + LRC_PER_WIDTH;}
+    static QString getClassName();
     /*!
      * Set lrc per width.
      */
-    inline void setFontSize(int size) { m_gradientFontSize = size;}
+    inline void setLrcPerWidth(int width) { m_lrcPerWidth = width + LRC_PER_WIDTH;}
     /*!
      * Set adjust font size.
      */
-    inline void setTransparent(int tran) { m_gradientTransparent = tran;}
+    inline void setFontSize(int size) { m_gradientFontSize = size;}
     /*!
      * Set adjust transparent by value.
      */
-    inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
+    inline void setTransparent(int tran) { m_gradientTransparent = tran;}
     /*!
      * Set center current lrc on or not.
      */
+    inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     int m_gradientFontSize;
     int m_gradientTransparent;

@@ -21,37 +21,39 @@ class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedSuspensionWidget : public MusicAbstr
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkSpeedSuspensionWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkSpeedSuspensionWidget(QWidget *parent = 0);
+
     virtual ~MusicNetworkSpeedSuspensionWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setAvailableNewtworkNames(const QStringList &names);
+    static QString getClassName();
+
     /*!
      * Set available newtwork names.
      */
+    void setAvailableNewtworkNames(const QStringList &names);
 
 private Q_SLOTS:
-    void networkData(ulong upload, ulong download);
     /*!
      * Send current upload and download speed data.
      */
-    void actionTriggered(QAction *action);
+    void networkData(ulong upload, ulong download);
     /*!
      * Select diff network interface action.
      */
+    void actionTriggered(QAction *action);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void paintEvent(QPaintEvent *event) override;
 
     MusicNetworkSpeedTestThread *m_thread;
     QString m_upload, m_download;

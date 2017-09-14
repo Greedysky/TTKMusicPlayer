@@ -72,7 +72,7 @@ void MusicLrcContainerForWallpaper::setSettingParameter()
     int width = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize().width() - LRC_PER_WIDTH;
     for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
     {
-        MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i]);
+        MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[i]);
         w->setLrcPerWidth(width);
         w->setLrcFontSize(36);
         w->setY(35 + 36);
@@ -96,7 +96,7 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     m_layoutWidget->addStretch(1);
     for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
     {
-       MusicLRCManager *w = new MusicLRCManagerForInline(this);
+       MusicLrcManager *w = new MusicLrcManagerForInline(this);
        m_layoutWidget->addWidget(w);
        m_musicLrcContainer.append(w);
     }
@@ -149,7 +149,7 @@ void MusicLrcContainerForWallpaper::initCurrentLrc(const QString &str)
 
 void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[index]);
+    MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[index]);
     w->setCenterOnLrc(false);
     w->setFontSize(size);
 
@@ -159,12 +159,12 @@ void MusicLrcContainerForWallpaper::setItemStyleSheet(int index, int size, int t
 
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
+        MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
                          MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
         setLinearGradientColor(cl);
     }

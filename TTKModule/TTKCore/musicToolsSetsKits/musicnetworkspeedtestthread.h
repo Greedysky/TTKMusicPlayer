@@ -22,54 +22,56 @@ class MUSIC_SUPER_EXPORT MusicNetworkSpeedTestThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkSpeedTestThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkSpeedTestThread(QObject *parent = 0);
+
     ~MusicNetworkSpeedTestThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void stopAndQuitThread();
+    static QString getClassName();
+
     /*!
      * Stop and quit current thread.
      */
-    void setAvailableNewtworkNames(const QStringList &names);
+    void stopAndQuitThread();
     /*!
      * Set available newtwork names.
      */
-    QStringList getAvailableNewtworkNames() const;
+    void setAvailableNewtworkNames(const QStringList &names);
     /*!
      * Get available newtwork names.
      */
-    QStringList getNewtworkNames() const;
+    QStringList getAvailableNewtworkNames() const;
     /*!
      * Get newtwork names.
      */
+    QStringList getNewtworkNames() const;
 
 Q_SIGNALS:
-    void networkData(ulong upload, ulong download);
     /*!
      * Send current upload and download speed data.
      */
+    void networkData(ulong upload, ulong download);
 
 public Q_SLOTS:
-    void start();
     /*!
      * Strat thread now.
      */
-    virtual void run() override;
+    void start();
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 private Q_SLOTS:
-    void outputRecieved();
     /*!
      * Get output recieved data on linux network.
      */
+    void outputRecieved();
 
 protected:
     bool m_run;

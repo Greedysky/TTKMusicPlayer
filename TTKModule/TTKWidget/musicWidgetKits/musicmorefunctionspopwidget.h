@@ -18,32 +18,32 @@ class MUSIC_WIDGET_EXPORT MusicMoreFunctionsPopWidget : public MusicToolMenuWidg
 {
     Q_OBJECT
 public:
-    explicit MusicMoreFunctionsPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicMoreFunctionsPopWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setCurrentSongName(const QString &name);
     /*!
      * Set current song name.
      */
+    void setCurrentSongName(const QString &name);
 
 private Q_SLOTS:
-    void musicFunctionClicked(QAction *index);
     /*!
      * Music function button clicked.
      */
+    void musicFunctionClicked(QAction *index);
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     QString m_currentSongName;
 

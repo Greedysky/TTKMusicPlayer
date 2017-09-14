@@ -27,28 +27,32 @@ class MUSIC_VIDEO_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoPlayWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoPlayWidget(QWidget *parent = 0);
+
     ~MusicVideoPlayWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void popup(bool popup);
     /*!
      * Set the window is popup or not.
      */
-    bool isPopup() const;
+    void popup(bool popup);
     /*!
      * Get the window is popup or not.
      */
-    void resizeWindow();
+    bool isPopup() const;
     /*!
      * Resize window bound by widgte resize called.
+     */
+    void resizeWindow();
+    /*!
+     * Resize widget size or not.
      */
     void resizeWindow(bool resize);
     /*!
@@ -56,80 +60,77 @@ public:
      */
     void resizeWindow(int width, int height);
     /*!
-     * Resize widget size or not.
-     */
-    QString getSearchText() const;
-    /*!
      * Get search text in search line.
      */
+    QString getSearchText() const;
 
 Q_SIGNALS:
-    void freshButtonClicked(bool popup);
     /*!
      * Fresh button state changed.
      */
-    void fullscreenButtonClicked(bool popup);
+    void freshButtonClicked(bool popup);
     /*!
      * Fullscreen button clicked.
      */
+    void fullscreenButtonClicked(bool popup);
 
 public Q_SLOTS:
-    void switchToSearchTable();
     /*!
      * Switch to search table.
      */
-    void switchToPlayView();
+    void switchToSearchTable();
     /*!
      * Switch to play view.
      */
-    void searchButtonClicked();
+    void switchToPlayView();
     /*!
      * Search button clicked.
      */
-    void windowTopStateChanged();
+    void searchButtonClicked();
     /*!
      * Window top state changed.
      */
-    void videoResearchButtonSearched(const QString &name);
+    void windowTopStateChanged();
     /*!
      * Video research button searched by name.
      */
-    void mvURLChanged(const QString &data);
+    void videoResearchButtonSearched(const QString &name);
     /*!
      * Set current media url by selected quality.
      */
-    void mvURLNameChanged(const QString &name, const QString &data);
+    void mvURLChanged(const QString &data);
     /*!
      * Set current media name and url to play.
      */
+    void mvURLNameChanged(const QString &name, const QString &data);
 
-    void freshButtonClicked();
     /*!
      * Fresh button clicked.
      */
-    void fullscreenButtonClicked();
+    void freshButtonClicked();
     /*!
      * Fullscreen button clicked.
      */
-    void downloadButtonClicked();
+    void fullscreenButtonClicked();
     /*!
      * Download button clicked.
      */
-    void shareButtonClicked();
+    void downloadButtonClicked();
     /*!
      * Share button clicked.
      */
+    void shareButtonClicked();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void setTitleText(const QString &text);
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Set current title text(song name).
      */
+    void setTitleText(const QString &text);
 
     bool m_windowPopup;
     QWidget *m_topWidget;

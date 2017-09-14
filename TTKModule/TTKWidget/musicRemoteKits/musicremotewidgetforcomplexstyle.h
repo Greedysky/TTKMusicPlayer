@@ -18,26 +18,27 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForComplexStyle : public MusicRemoteW
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidgetForComplexStyle();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void setLabelText(const QString &value) override;
+    static QString getClassName();
     /*!
      * Set current song text.
      */
+    virtual void setLabelText(const QString &value) override;
 
 protected:
-    bool showArtPicture(const QString &name);
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
+    bool showArtPicture(const QString &name);
 
     QLabel *m_iconLabel, *m_songName, *m_songArtist;
 

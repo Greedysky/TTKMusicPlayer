@@ -23,44 +23,44 @@ class MUSIC_NETWORK_EXPORT MusicSourceUpdateThread : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicSourceUpdateThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSourceUpdateThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void startToDownload();
+    static QString getClassName();
     /*!
      * Start to download data.
      */
+    void startToDownload();
 
-    QString getLastedVersion() const;
     /*!
      * Get lasted version.
      */
-    bool isLastedVersion() const;
+    QString getLastedVersion() const;
     /*!
      * Is lasted version.
      */
-    QString getLastedVersionDes() const;
+    bool isLastedVersion() const;
     /*!
      * Get lasted version description.
      */
+    QString getLastedVersionDes() const;
 
 Q_SIGNALS:
-    void downLoadDataChanged(const QVariant &data);
     /*!
      * Send download data from net.
      */
+    void downLoadDataChanged(const QVariant &data);
 
 public Q_SLOTS:
-    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from kuwo net finished.
      */
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     QVariantMap m_rawData;

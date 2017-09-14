@@ -25,82 +25,83 @@ class MUSIC_USER_EXPORT MusicUserRecordWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicUserRecordWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserRecordWidget(QWidget *parent = 0);
+
     ~MusicUserRecordWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setUserModel(MusicUserModel *model, const QString &uid);
+    static QString getClassName();
     /*!
      * Set user model.
      */
+    void setUserModel(MusicUserModel *model, const QString &uid);
 
 Q_SIGNALS:
-    void resetUserName(const QString &name);
     /*!
      * Reset current user name.
      */
-    void userIconChanged(const QString &uid, const QString &icon);
+    void resetUserName(const QString &name);
     /*!
      * Reset current user icon.
      */
+    void userIconChanged(const QString &uid, const QString &icon);
 
 public Q_SLOTS:
-    void cityComboBoxIndexChanged(const QString &city);
     /*!
      * City index has changed.
      */
-    void confirmButtonClickedF();
+    void cityComboBoxIndexChanged(const QString &city);
     /*!
      * Save first information button clicked.
      */
-    void openFileButtonClickedS();
+    void confirmButtonClickedF();
     /*!
      * Open selected new pic button clicked.
      */
-    void saveFileButtonClickedS();
+    void openFileButtonClickedS();
     /*!
      * Save selected new pic button clicked.
      */
-    void intersectedPixmap(const QPixmap &pix);
+    void saveFileButtonClickedS();
     /*!
      * Send intersected pixmap if intersected flag set.
      */
-    void changeVerificationCodeT();
+    void intersectedPixmap(const QPixmap &pix);
     /*!
      * Change verfication button clicked.
      */
-    void confirmButtonClickedT();
+    void changeVerificationCodeT();
     /*!
      * Modify third password button clicked.
      */
-    void checkPwdStrength(int code);
+    void confirmButtonClickedT();
     /*!
      * Check the new password strength.
      */
-    virtual int exec();
+    void checkPwdStrength(int code);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void initTabF();
     /*!
      * init first infomation widget.
      */
-    void initTabS();
+    void initTabF();
     /*!
      * init second change icon widget.
      */
-    void initTabT();
+    void initTabS();
     /*!
      * init third security widget.
      */
+    void initTabT();
 
     Ui::MusicUserRecordWidget *m_ui;
     MusicUserModel *m_userModel;

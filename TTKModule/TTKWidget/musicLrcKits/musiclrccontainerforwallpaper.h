@@ -21,63 +21,65 @@ class MUSIC_LRC_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
 {
     Q_OBJECT
 public:
-    explicit MusicLrcContainerForWallpaper(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcContainerForWallpaper(QWidget *parent = 0);
+
     virtual ~MusicLrcContainerForWallpaper();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startTimerClock() override;
+    static QString getClassName();
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void stopLrcMask() override;
+    virtual void startTimerClock() override;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setSettingParameter() override;
+    virtual void stopLrcMask() override;
     /*!
      * Set setting parameter.
      */
+    virtual void setSettingParameter() override;
 
-    void setLrcAnalysisModel(MusicLrcAnalysis *analysis);
     /*!
      * Set lrc analysis model.
      */
-    void updateCurrentLrc(qint64 time);
+    void setLrcAnalysisModel(MusicLrcAnalysis *analysis);
     /*!
      * Update current lrc by given time.
      */
+    void updateCurrentLrc(qint64 time);
 
 public Q_SLOTS:
-    void changeCurrentLrcColor();
     /*!
      * Change current lrc linear color.
      */
+    void changeCurrentLrcColor();
 
 private Q_SLOTS:
-    void updateAnimationLrc();
     /*!
      * Animation finished.
      */
+    void updateAnimationLrc();
 
 protected:
-    void initCurrentLrc(const QString &str);
     /*!
      * Init current lrc when the first show.
      */
-    void setItemStyleSheet(int index, int size, int transparent);
+    void initCurrentLrc(const QString &str);
     /*!
      * Set per lrc line style sheet by index and size and transparent.
      */
+    void setItemStyleSheet(int index, int size, int transparent);
 
     int m_animationFreshTime;
     MusicLayoutAnimationWidget *m_layoutWidget;
     MusicDesktopWallpaperThread *m_wallThread;
+
 };
 
 #endif // MUSICLRCCONTAINERFORWALLPAPER_H

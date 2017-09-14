@@ -200,60 +200,63 @@ namespace MusicObject
 
     enum PlayState
     {
-        PS_StoppedState,      ///*stop state*/
-        PS_PlayingState,      ///*play state*/
-        PS_PausedState        ///*pause state*/
+        PS_StoppedState,      /*!< stop state*/
+        PS_PlayingState,      /*!< play state*/
+        PS_PausedState        /*!< pause state*/
     };
 
     enum PlayMode
     {
-        PM_PlayOrder = 1,   ///*play order*/
-        PM_PlayRandom,      ///*play random*/
-        PM_PlayListLoop,    ///*play list loop*/
-        PM_PlayOneLoop,     ///*play single loop*/
-        PM_PlayOnce         ///*play just once*/
+        PM_PlayOrder = 1,   /*!< play order*/
+        PM_PlayRandom,      /*!< play random*/
+        PM_PlayListLoop,    /*!< play list loop*/
+        PM_PlayOneLoop,     /*!< play single loop*/
+        PM_PlayOnce         /*!< play just once*/
     };
 
     enum DownLoadMode
     {
-        DW_Null,           ///*network null*/
-        DW_DisConnection,  ///*network disable*/
-        DW_DownLoading,    ///*network download*/
-        DW_Buffing,        ///*network buffing*/
-        DW_Waiting         ///*network waiting*/
+        DW_Null,           /*!< network null*/
+        DW_DisConnection,  /*!< network disable*/
+        DW_DownLoading,    /*!< network download*/
+        DW_Buffing,        /*!< network buffing*/
+        DW_Waiting         /*!< network waiting*/
     };
 
     enum FontStyleMode
     {
-        FT_Bold =       0x00001,   ///*font bold*/
-        FT_Italic =     0x00002,   ///*font italic*/
-        FT_Underline =  0x00004,   ///*font underline*/
-        FT_Overline =   0x00008,   ///*font overline*/
-        FT_StrikeOut =  0x00010,   ///*font strikeOut*/
-        FT_FixedPitch = 0x00020,   ///*font fixedPitch*/
-        FT_Kerningt =   0x00040    ///*font kerningt*/
+        FT_Bold =       0x00001,   /*!< font bold*/
+        FT_Italic =     0x00002,   /*!< font italic*/
+        FT_Underline =  0x00004,   /*!< font underline*/
+        FT_Overline =   0x00008,   /*!< font overline*/
+        FT_StrikeOut =  0x00010,   /*!< font strikeOut*/
+        FT_FixedPitch = 0x00020,   /*!< font fixedPitch*/
+        FT_Kerningt =   0x00040    /*!< font kerningt*/
     };
 
     enum ToolsType
     {
-        TT_LocalManager =   0x00001,   ///*Local Manager*/
-        TT_AudioRecord =    0x00002,   ///*Audio Record*/
-        TT_RingTone =       0x00004,   ///*Ring Tone*/
-        TT_Timer =          0x00008,   ///*Timer*/
-        TT_Transform =      0x00010,   ///*Transform*/
-        TT_Spectrum =       0x00020,   ///*Spectrum*/
-        TT_Wallpaper =      0x00040,   ///*Wallpaper*/
-        TT_Mobile =         0x00080,   ///*Mobile*/
-        TT_SpeedTest =      0x00100,   ///*Speed Test*/
-        TT_ConnectionTest = 0x00200,   ///*Connection Test*/
-        TT_SoundGain =      0x00400,   ///*Sound Gain*/
-        TT_Identify =       0x00800,   ///*Identify*/
-        TT_SoundTouch =     0x01000,   ///*Sound Touch*/
-        TT_GrabWindow =     0x02000,   ///*Grab Window*/
-        TT_SoundKMicro =    0x04000    ///*Sound KMicro*/
+        TT_LocalManager =   0x00001,   /*!< Local Manager*/
+        TT_AudioRecord =    0x00002,   /*!< Audio Record*/
+        TT_RingTone =       0x00004,   /*!< Ring Tone*/
+        TT_Timer =          0x00008,   /*!< Timer*/
+        TT_Transform =      0x00010,   /*!< Transform*/
+        TT_Spectrum =       0x00020,   /*!< Spectrum*/
+        TT_Wallpaper =      0x00040,   /*!< Wallpaper*/
+        TT_Mobile =         0x00080,   /*!< Mobile*/
+        TT_SpeedTest =      0x00100,   /*!< Speed Test*/
+        TT_ConnectionTest = 0x00200,   /*!< Connection Test*/
+        TT_SoundGain =      0x00400,   /*!< Sound Gain*/
+        TT_Identify =       0x00800,   /*!< Identify*/
+        TT_SoundTouch =     0x01000,   /*!< Sound Touch*/
+        TT_GrabWindow =     0x02000,   /*!< Grab Window*/
+        TT_SoundKMicro =    0x04000    /*!< Sound KMicro*/
     };
     TTK_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
+    /*!
+     * Get application dir.
+     */
     static QString getAppDir()
     {
 #if defined (Q_OS_ANDROID)
@@ -271,9 +274,6 @@ namespace MusicObject
         return QCoreApplication::applicationDirPath() + "/";
 #endif
     }
-    /*!
-     * Get application dir.
-     */
 
 }
 

@@ -18,59 +18,59 @@ class MUSIC_WIDGET_EXPORT MusicCodeAreaWidget : public MusicClickedLabel
 {
     Q_OBJECT
 public:
-    explicit MusicCodeAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCodeAreaWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void renderPicture();
+    static QString getClassName();
     /*!
      * Render the verify code picture.
      */
-    inline QString getCheckCode() const { return m_sCode; }
+    void renderPicture();
     /*!
      * Get the verify code string.
      */
+    inline QString getCheckCode() const { return m_sCode; }
 
-    void setCodeCount(int nCount);
     /*!
      * Set the verify code count length.
      */
-    inline int getCodeCount() const { return m_nCodeCount; }
+    void setCodeCount(int nCount);
     /*!
      * Get the verify code count length.
      */
+    inline int getCodeCount() const { return m_nCodeCount; }
 
-    void setNoisyPointCount(int nCount);
     /*!
      * Set the noisy point count.
      */
-    inline int getNoisyPointCount() const { return m_nNoisyPointCount; }
+    void setNoisyPointCount(int nCount);
     /*!
      * Get the noisy point count.
      */
+    inline int getNoisyPointCount() const { return m_nNoisyPointCount; }
 
 protected:
-    void drawOutline(QPainter &painter);
     /*!
      * Draw outline pie.
      */
-    void drawNoisyPoint(QPainter &painter);
+    void drawOutline(QPainter &painter);
     /*!
      * Draw noisy point.
      */
-    void drawConversion(QPainter &painter);
+    void drawNoisyPoint(QPainter &painter);
     /*!
      * Draw conversion.
      */
-    virtual void paintEvent(QPaintEvent *event) override;
+    void drawConversion(QPainter &painter);
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     int m_nNoisyPointCount, m_nConverseRotate;
     int m_nConverseScale, m_nCodeCount;

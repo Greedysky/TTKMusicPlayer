@@ -22,78 +22,77 @@ class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {
     Q_OBJECT
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
+     */
+    static QString getClassName();
+    /*!
+     * Set connection object and type name.
      */
     inline void setValue(const QString &type, QObject *object)
     {
         m_para[type] = object;
     }
     /*!
-     * Set connection object and type name.
+     * Get connection object by type name.
      */
     inline QObject* value(const QString &type) const
     {
         return m_para[type];
     }
     /*!
-     * Get connection object by type name.
+     * Get connection object by type name in operator[].
      */
     inline const QObject* operator[](const QString &type) const
     {
         return value(type);
     }
     /*!
-     * Get connection object by type name in operator[].
+     * Set connection object and type name in operator[].
      */
     inline QObject* &operator[](const QString &type)
     {
         return m_para[type];
     }
-    /*!
-     * Set connection object and type name in operator[].
-     */
 
-    void setNetworkMultiValue(QObject *object);
     /*!
      * Set mutiple network connection object.
      */
-    void removeNetworkMultiValue(QObject *object);
+    void setNetworkMultiValue(QObject *object);
     /*!
      * Remove mutiple network connection object.
      */
-    void connectMusicDownload(QObject *object);
+    void removeNetworkMultiValue(QObject *object);
     /*!
      * Set music data network connection object.
      */
+    void connectMusicDownload(QObject *object);
 
-    void poolConnect(const QObject *from, const QObject *to);
     /*!
      * Set connection by two object.
      */
-    void poolConnect(const QString &from, const QString &to);
+    void poolConnect(const QObject *from, const QObject *to);
     /*!
      * Set connection by two object type name.
      */
-    void removeValue(const QObject *object);
+    void poolConnect(const QString &from, const QString &to);
     /*!
      * Remove connection object by object.
      */
-    void removeValue(const QString &name);
+    void removeValue(const QObject *object);
     /*!
      * Remove connection object by object name.
      */
+    void removeValue(const QString &name);
 
 protected:
     QMap<QString, QObject*> m_para;
     QList<QObject*> m_queueList;
 
-    MusicConnectionPool();
     /*!
      * Object contsructor.
      */
-    ~MusicConnectionPool() = default;
+    MusicConnectionPool();
 
     DECLARE_SINGLETON_CLASS(MusicConnectionPool)
 

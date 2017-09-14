@@ -20,36 +20,37 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstr
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = 0);
+
     virtual ~MusicLocalSongSearchPopTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void clearAllItems();
+    static QString getClassName();
     /*!
      * Clear All Items.
      */
-    void createItems(int index, const QString &name, const QString &time);
+    void clearAllItems();
     /*!
      * Create popup table item by index and name and time.
      */
+    void createItems(int index, const QString &name, const QString &time);
 
 Q_SIGNALS:
-    void setText(const QString &text);
     /*!
      * User click the current item, emit the current text.
      */
+    void setText(const QString &text);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 };
 
@@ -61,43 +62,44 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchPopWidget(QWidget *parent = 0);
+
     ~MusicLocalSongSearchPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void createItems();
+    static QString getClassName();
     /*!
      * Create popup search history table items.
      */
+    void createItems();
 
 Q_SIGNALS:
-    void setText(const QString &text);
     /*!
      * User click the current item, emit the current text.
      */
+    void setText(const QString &text);
 
 public Q_SLOTS:
-    void clearButtonClicked();
     /*!
      * Clear the search history.
      */
+    void clearButtonClicked();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
-    QString utcTimeToLocal(const QString &time) const;
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Transform utc time to local time before.
      */
+    QString utcTimeToLocal(const QString &time) const;
 
     QPushButton *m_clearButton;
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;

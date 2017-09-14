@@ -11,40 +11,41 @@ class MUSIC_SUPER_EXPORT MusicNetworkTestThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkTestThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkTestThread(QObject *parent = 0);
+
     ~MusicNetworkTestThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void stopAndQuitThread();
+    static QString getClassName();
     /*!
      * Stop and quit current thread.
      */
-    void setUrl(const QString &url);
+    void stopAndQuitThread();
     /*!
      * Set current test url.
      */
+    void setUrl(const QString &url);
 
 Q_SIGNALS:
-    void networkConnectionTestChanged(bool state);
     /*!
      * Network connection test changed.
      */
+    void networkConnectionTestChanged(bool state);
 
 public Q_SLOTS:
-    void start();
     /*!
      * Strat thread now.
      */
-    virtual void run() override;
+    void start();
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 protected:
     QString m_currentUrl;

@@ -25,241 +25,242 @@ class MUSIC_TOOL_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWi
 {
     Q_OBJECT
 public:
-    explicit MusicSongsSummariziedWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsSummariziedWidget(QWidget *parent = 0);
+
     virtual ~MusicSongsSummariziedWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    bool addMusicLists(const MusicSongItems &names);
+    static QString getClassName();
     /*!
      * Add music datas into container.
      */
-    void appendMusicLists(const MusicSongItems &names);
+    bool addMusicLists(const MusicSongItems &names);
     /*!
      * Append music datas into container.
      */
-    inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
+    void appendMusicLists(const MusicSongItems &names);
     /*!
      * Get music datas from container.
      */
-    void importOtherMusicSongs(QStringList &filelist);
+    inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
     /*!
      * Input orther imported music datas into container.
      */
-    QStringList getMusicSongsFileName(int index) const;
+    void importOtherMusicSongs(QStringList &filelist);
     /*!
      * Get music songs file name by index.
      */
-    QStringList getMusicSongsFilePath(int index) const;
+    QStringList getMusicSongsFileName(int index) const;
     /*!
      * Get music songs file path by index.
      */
+    QStringList getMusicSongsFilePath(int index) const;
 
-    void searchFileListCache(int index, const QString &text);
     /*!
      * Set current name to searched file names to list.
      */
-    bool searchFileListEmpty() const;
+    void searchFileListCache(int index, const QString &text);
     /*!
      * Check current search file is empty or not.
      */
-    int getSearchFileListIndex(int row);
+    bool searchFileListEmpty() const;
     /*!
      * Get search file index from list by given row.
      */
-    int getSearchFileListIndexAndClear(int row);
+    int getSearchFileListIndex(int row);
     /*!
      * Get search file index from list by given row and clear cache.
      */
+    int getSearchFileListIndexAndClear(int row);
 
-    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex;}
     /*!
      * Get current played tool index.
      */
-    void setCurrentMusicSongTreeIndex(int index);
+    inline int getCurrentPlayToolIndex() const { return m_currentPlayToolIndex;}
     /*!
      * Set current music song tree index.
      */
-    void playLocation(int index);
+    void setCurrentMusicSongTreeIndex(int index);
     /*!
      * Show current play index.
      */
-    void selectRow(int index);
+    void playLocation(int index);
     /*!
      * Select the current play row.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    void selectRow(int index);
     /*!
      * Update item time label time.
      */
+    void setTimerLabel(const QString &time, const QString &total) const;
 
 Q_SIGNALS:
-    void updatePlayLists(const QString &list);
     /*!
      * Update music song to lovest if in current stack widget.
      */
-    void updateMediaLists(const QStringList &list, int index);
+    void updatePlayLists(const QString &list);
     /*!
      * Update swap the current play index if in current stack widget.
      */
-    void clearSearchText();
+    void updateMediaLists(const QStringList &list, int index);
     /*!
      * Clear current search lineedit text.
      */
+    void clearSearchText();
 
 public Q_SLOTS:
-    void addNewRowItem();
     /*!
      * Add new play list item.
      */
-    void deleteRowItem(int index);
+    void addNewRowItem();
     /*!
      * Delete selected play list item.
      */
-    void deleteRowItems();
+    void deleteRowItem(int index);
     /*!
      * Delete all other item, left than three item.
      */
-    void deleteRowItemAll(int index);
+    void deleteRowItems();
     /*!
      * Delete all items in play list item.
      */
-    void changRowItemName(int index, const QString &name);
+    void deleteRowItemAll(int index);
     /*!
      * Open rename selected play list item widget.
      */
-    void addNewFiles(int index);
+    void changRowItemName(int index, const QString &name);
     /*!
      * Add new music file or files to list.
      */
-    void addNewDir(int index);
+    void addNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void swapDragItemIndex(int before, int after);
+    void addNewDir(int index);
     /*!
      * Swap the item index by drag adn drop.
      */
-    void musicImportSongsOnlyFile();
+    void swapDragItemIndex(int before, int after);
     /*!
      * Import music songs by file.
      */
-    void musicImportSongsOnlyDir();
+    void musicImportSongsOnlyFile();
     /*!
      * Import music songs by dir.
      */
-    void musicSongsCheckTestTools();
+    void musicImportSongsOnlyDir();
     /*!
      * Open music songs check test tools.
      */
+    void musicSongsCheckTestTools();
 
-    void setCurrentIndex();
     /*!
      * Set current play index from config file.
      */
-    void musicListSongToLovestListAt(bool oper, int row);
+    void setCurrentIndex();
     /*!
      * Add or remove music list song to lovest list by row.
      */
-    void musicSongToLovestListAt(bool oper, int row);
+    void musicListSongToLovestListAt(bool oper, int row);
     /*!
      * Add or remove music song to lovest list by row.
+     */
+    void musicSongToLovestListAt(bool oper, int row);
+    /*!
+     * Add current network music to download to local.
      */
     void addNetMusicSongToList(const QString &name, const QString &time,
                                const QString &format, bool play);
     /*!
-     * Add current network music to download to local.
+     * Add current selected song to play lists.
      */
     void addSongToPlayList(const QStringList &items);
     /*!
-     * Add current selected song to play lists.
+     * Delete items from indexs and check remove file or not.
      */
     void setDeleteItemAt(const MusicObject::MIntList &del, bool fileRemove);
     /*!
-     * Delete items from indexs and check remove file or not.
+     * Swap the current play index when user drag and drop.
      */
     void setMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
     /*!
-     * Swap the current play index when user drag and drop.
+     * Check is current play stack widget.
      */
     void isCurrentIndexs(bool &state);
     /*!
-     * Check is current play stack widget.
+     * Check current list is searched or not.
      */
     void isSearchFileListEmpty(bool &empty);
     /*!
-     * Check current list is searched or not.
+     * Set current music song play count by given song index.
      */
     void setMusicPlayCount(int index);
     /*!
-     * Set current music song play count by given song index.
+     * Input recent imported music datas into container.
      */
     void setRecentMusicSongs(int index);
     /*!
-     * Input recent imported music datas into container.
+     * Get music datas from container.
      */
     void getMusicLists(MusicSongItems &songs);
     /*!
-     * Get music datas from container.
+     * Update current artist when it download finished.
      */
     void updateCurrentArtist();
     /*!
-     * Update current artist when it download finished.
+     * Show the float function widget.
      */
     void showFloatWidget();
     /*!
-     * Show the float function widget.
-     */
-    void musicListSongSortBy(int index);
-    /*!
      * Music list songs sort by type.
      */
+    void musicListSongSortBy(int index);
 
 private Q_SLOTS:
-    void sliderValueChanaged(int value);
     /*!
      * Current vertical slider value chanaged.
      */
-    void deleteFloatWidget();
+    void sliderValueChanaged(int value);
     /*!
      * Delete the float function widget.
      */
+    void deleteFloatWidget();
 
 protected:
-    void checkCurrentNameExist(QString &name);
     /*!
      * Check current name exist.
      */
-    void addNewRowItem(const QString &name);
+    void checkCurrentNameExist(QString &name);
     /*!
      * Add new play list item by name.
      */
-    void createWidgetItem(MusicSongItem *item);
+    void addNewRowItem(const QString &name);
     /*!
      * Create widget item.
      */
-    void clearAllLists();
+    void createWidgetItem(MusicSongItem *item);
     /*!
      * Delete all objects.
      */
-    void setItemTitle(MusicSongItem *item);
+    void clearAllLists();
     /*!
      * Set item title.
      */
-    void connectMusicToolBoxWidgetItem(QObject *object);
+    void setItemTitle(MusicSongItem *item);
     /*!
      * Connect music toolBox widget item.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    void connectMusicToolBoxWidgetItem(QObject *object);
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_currentPlayToolIndex, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;

@@ -20,58 +20,58 @@ class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicFloatAbstractWid
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void resizeWindow(int width, int height) override;
+    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */
+    virtual void resizeWindow(int width, int height) override;
 
 Q_SIGNALS:
-    void widgetClose();
     /*!
      * Widget close it emit.
      */
+    void widgetClose();
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
-    void lrcSizeUpChanged();
+    void show();
     /*!
      * Change current lrc size up.
      */
-    void lrcSizeLowChanged();
+    void lrcSizeUpChanged();
     /*!
      * Change current lrc size down.
      */
-    void lrcMusicBackgroundChanged();
+    void lrcSizeLowChanged();
     /*!
      * Change current background to default.
      */
-    void lrcArtBackgroundChanged();
+    void lrcMusicBackgroundChanged();
     /*!
      * Change current background to artist.
      */
+    void lrcArtBackgroundChanged();
 
 protected:
-    virtual void enterEvent(QEvent *) override {}
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
-    QPushButton *createPushButton(int index);
+    virtual void enterEvent(QEvent *) override {}
+    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Create pushButton by given index.
      */
+    QPushButton *createPushButton(int index);
 
 };
 

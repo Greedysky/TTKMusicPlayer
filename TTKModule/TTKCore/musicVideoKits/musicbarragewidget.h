@@ -23,36 +23,34 @@ class MUSIC_SUPER_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
 public:
-    explicit MusicBarrageAnimation(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
+    explicit MusicBarrageAnimation(QObject *parent = 0);
     /*!
      * Object contsructor by tagrget and propertyName.
      */
-    ~MusicBarrageAnimation() = default;
+    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSize(const QSize &size);
+    static QString getClassName();
     /*!
      * Set animation region size.
      */
+    void setSize(const QSize &size);
 
 public Q_SLOTS:
-    void animationFinished();
     /*!
      * Current animation is finished.
-     */
+     */   void animationFinished();
 
 protected:
-    void init();
     /*!
      * Init parameters.
      */
+    void init();
 
     QSize m_parentSize;
 
@@ -66,71 +64,73 @@ class MUSIC_SUPER_EXPORT MusicBarrageWidget : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicBarrageWidget(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBarrageWidget(QObject *parent = 0);
+
     ~MusicBarrageWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void start();
+    static QString getClassName();
+
     /*!
      * Start barrage animation.
      */
-    void pause();
+    void start();
     /*!
      * Pause barrage animation.
      */
-    void stop();
+    void pause();
     /*!
      * Stop barrage animation.
      */
+    void stop();
 
-    void setSize(const QSize &size);
     /*!
      * Set animation region size.
      */
-    void barrageStateChanged(bool on);
+    void setSize(const QSize &size);
     /*!
      * Set current barrage animation on or not.
      */
-    void addBarrage(const MusicBarrageRecord &record);
+    void barrageStateChanged(bool on);
     /*!
      * Add barrage record.
      */
+    void addBarrage(const MusicBarrageRecord &record);
 
 protected:
-    void deleteItems();
     /*!
      * Clear all items.
      */
-    void createLabel();
+    void deleteItems();
     /*!
      * Create barrage item label.
      */
-    QLabel *createLabel(const MusicBarrageRecord &record);
+    void createLabel();
     /*!
      * Create barrage item label by object.
      */
-    void createAnimation();
+    QLabel *createLabel(const MusicBarrageRecord &record);
     /*!
      * Create barrage animation.
      */
-    void createAnimation(QLabel *label);
+    void createAnimation();
     /*!
      * Create barrage animation by object.
      */
-    void readBarrage();
+    void createAnimation(QLabel *label);
     /*!
      * Read barrage text from local file.
      */
-    void writeBarrage();
+    void readBarrage();
     /*!
      * Write barrage text to local file.
      */
+    void writeBarrage();
 
     bool m_barrageState;
     QSize m_parentSize;

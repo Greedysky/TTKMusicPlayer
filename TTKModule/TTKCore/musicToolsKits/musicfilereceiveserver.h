@@ -18,26 +18,27 @@ class MUSIC_SUPER_EXPORT MusicFileReceiveServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileReceiveServer(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFileReceiveServer(QObject *parent = 0);
+
     ~MusicFileReceiveServer();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSavePathDir(const QString &dir);
+    static QString getClassName();
     /*!
      * Set save file dir.
      */
+    void setSavePathDir(const QString &dir);
 
 private Q_SLOTS:
-    void readPendingDatagrams();
     /*!
      * Read pending datagrams.
      */
+    void readPendingDatagrams();
 
 protected:
     QFile *m_file;

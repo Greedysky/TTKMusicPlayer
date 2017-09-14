@@ -18,69 +18,70 @@ class MUSIC_WIDGET_EXPORT MusicQueryFoundTableWidget : public MusicQueryTableWid
 {
     Q_OBJECT
 public:
-    explicit MusicQueryFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQueryFoundTableWidget(QWidget *parent = 0);
+
     virtual ~MusicQueryFoundTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Start search query by text.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Data download to local file.
      */
-    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
+    virtual void musicDownloadLocal(int row) override;
     /*!
      * Return the current song container.
      */
-    void downloadDataFrom(bool play);
+    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
     /*!
      * Download data from net and just play or not.
      */
-    void resizeWindow();
+    void downloadDataFrom(bool play);
     /*!
      * Resize window bound by widgte resize called.
      */
+    void resizeWindow();
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Subclass should implement this function.
      */
-    virtual void clearAllItems() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void clearAllItems() override;
     /*!
      * Create searched items.
      */
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void addSearchMusicToPlayList(int row, bool play);
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Add search music to play list by index.
      */
-    bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
+    void addSearchMusicToPlayList(int row, bool play);
     /*!
      * Download data from net and just play or not.
      */
+    bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
 
 };
 

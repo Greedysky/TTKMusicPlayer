@@ -32,27 +32,27 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadCommentsThread : public MusicDownLoadPag
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadCommentsThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startToSearch(const QString &name) = 0;
     /*!
      * Start to Search data from name.
      * Subclass should implement this function.
      */
+    virtual void startToSearch(const QString &name) = 0;
 
 Q_SIGNALS:
-    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */
+    void createSearchedItems(const MusicSongCommentItem &comments);
 
 };
 

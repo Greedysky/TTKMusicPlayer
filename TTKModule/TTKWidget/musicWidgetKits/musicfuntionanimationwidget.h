@@ -22,25 +22,25 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setTransparent(int alpha);
+    static QString getClassName();
     /*!
      * Set background transparent.
      */
+    void setTransparent(int alpha);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     int m_backgroundAlpha;
 
@@ -54,26 +54,26 @@ class MUSIC_WIDGET_EXPORT MusicLineBackgroundWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLineBackgroundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLineBackgroundWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void transparent(bool state);
     /*!
      * Set backgrgound transparent.
      */
+    void transparent(bool state);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     bool m_transparent;
 
@@ -87,42 +87,43 @@ class MUSIC_WIDGET_EXPORT MusicBaseAnimationWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBaseAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBaseAnimationWidget(QWidget *parent = 0);
+
     ~MusicBaseAnimationWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-signals:
-    void buttonClicked(int index);
+Q_SIGNALS:
     /*!
      * Switch to selected item style.
      */
+    void buttonClicked(int index);
 
 public Q_SLOTS:
-    virtual void switchToSelectedItemStyle(int index);
     /*!
      * Switch to selected item style.
      */
-    void animationChanged(const QVariant &value);
+    virtual void switchToSelectedItemStyle(int index);
     /*!
      * Animation state changed.
      */
-    void finished();
+    void animationChanged(const QVariant &value);
     /*!
      * Animation finished.
      */
+    void finished();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QPixmap m_pix;
     int m_curIndex, m_preIndex, m_x;
@@ -143,27 +144,27 @@ class MUSIC_WIDGET_EXPORT MusicFuntionAnimationWidget : public MusicBaseAnimatio
 {
     Q_OBJECT
 public:
-    explicit MusicFuntionAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFuntionAnimationWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void switchToSelectedItemStyle(int index) override;
     /*!
      * Switch to selected item style.
      */
+    virtual void switchToSelectedItemStyle(int index) override;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 
@@ -175,35 +176,35 @@ class MUSIC_WIDGET_EXPORT MusicOptionAnimationWidget : public MusicBaseAnimation
 {
     Q_OBJECT
 public:
-    explicit MusicOptionAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicOptionAnimationWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void musicButtonStyleClear(bool fore);
+    static QString getClassName();
     /*!
      * Function button style clear.
      */
-    void musicButtonStyle(int index);
+    void musicButtonStyleClear(bool fore);
     /*!
      * Function button style choice.
      */
+    void musicButtonStyle(int index);
 
 public Q_SLOTS:
-    virtual void switchToSelectedItemStyle(int index) override;
     /*!
      * Switch to selected item style.
      */
+    virtual void switchToSelectedItemStyle(int index) override;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 
@@ -215,27 +216,27 @@ class MUSIC_WIDGET_EXPORT MusicSkinAnimationWidget : public MusicBaseAnimationWi
 {
     Q_OBJECT
 public:
-    explicit MusicSkinAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSkinAnimationWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void switchToSelectedItemStyle(int index) override;
     /*!
      * Switch to selected item style.
      */
+    virtual void switchToSelectedItemStyle(int index) override;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 

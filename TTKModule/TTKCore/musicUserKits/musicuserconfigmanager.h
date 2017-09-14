@@ -30,27 +30,27 @@ class MUSIC_SUPER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicUserConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
+    static QString getClassName();
     /*!
      * Read user datas from xml file by given name.
      */
-    void writeUserXMLConfig(const MusicUserRecords &records);
+    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
     /*!
      * Write user datas into xml file.
      */
-    void readUserConfig(MusicUserRecords &records);
+    void writeUserXMLConfig(const MusicUserRecords &records);
     /*!
      * Read user datas into xml file.
      */
+    void readUserConfig(MusicUserRecords &records);
 
 };
 

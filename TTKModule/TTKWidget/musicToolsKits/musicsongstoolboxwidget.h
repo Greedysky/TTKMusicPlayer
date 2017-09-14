@@ -23,137 +23,141 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
+
     ~MusicSongsToolBoxTopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    inline void setItemIndex(int index) { m_index = index; }
     /*!
      * Set Item index.
      */
-    inline int getItemIndex() const { return m_index; }
+    inline void setItemIndex(int index) { m_index = index; }
     /*!
      * Get Item index.
      */
+    inline int getItemIndex() const { return m_index; }
 
-    void setItemExpand(bool expand);
     /*!
      * Set Item expand.
      */
-    bool isItemExpand() const;
+    void setItemExpand(bool expand);
     /*!
      * Get Item expand.
      */
+    bool isItemExpand() const;
 
-    void setTitle(const QString &text);
     /*!
      * Set top label title.
      */
-    QString getTitle(bool suffix = false);
+    void setTitle(const QString &text);
     /*!
      * Get top label title.
      */
+    QString getTitle(bool suffix = false);
 
-    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
     /*!
      * Set music sort.
      */
+    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
 
 Q_SIGNALS:
-    void addNewRowItem();
     /*!
      * Add new play list item.
      */
-    void mousePressAt(int index);
+    void addNewRowItem();
     /*!
      * Current top widget is pressed.
      */
-    void deleteRowItem(int index);
+    void mousePressAt(int index);
     /*!
      * Delete selected play list item.
+     */
+    void deleteRowItem(int index);
+    /*!
+     * Delete all items in play list item.
      */
     void deleteRowItemAll(int index);
     /*!
-     * Delete all items in play list item.
+     * Open rename selected play list item widget.
      */
     void changRowItemName(int index, const QString &name);
     /*!
-     * Open rename selected play list item widget.
+     * Add new music file or files to list.
      */
     void addNewFiles(int index);
     /*!
-     * Add new music file or files to list.
+     * Add new music dir to list.
      */
     void addNewDir(int index);
     /*!
-     * Add new music dir to list.
+     * Music list songs sort by type.
      */
     void musicListSongSortBy(int index);
     /*!
-     * Music list songs sort by type.
-     */
-    void swapDragItemIndex(int before, int after);
-    /*!
      * Swap the item index by drag adn drop.
      */
+    void swapDragItemIndex(int before, int after);
 
 public Q_SLOTS:
-    void deleteRowItem();
     /*!
      * Delete selected play list item.
      */
-    void deleteRowItemAll();
+    void deleteRowItem();
     /*!
      * Delete all items in play list item.
      */
-    void changRowItemName();
+    void deleteRowItemAll();
     /*!
      * Open rename selected play list item widget.
      */
-    void setChangItemName(const QString &name);
+    void changRowItemName();
     /*!
      * Rename item artist label is finised.
      */
-    void addNewFiles();
+    void setChangItemName(const QString &name);
     /*!
      * Add new music file or files to list.
      */
-    void addNewDir();
+    void addNewFiles();
     /*!
      * Add new music dir to list.
      */
-    void exportSongsItemList();
+    void addNewDir();
     /*!
      * Export music songs by item list.
      */
-    void showMenu();
+    void exportSongsItemList();
     /*!
      * Show menu items.
      */
-    void musicListSongSortBy(QAction *action);
+    void showMenu();
     /*!
      * Music list songs sort by type.
      */
-    void showShareListDialog();
+    void musicListSongSortBy(QAction *action);
     /*!
      * Show share list dialog.
      */
-    void showEnhanceLosslessDialog();
+    void showShareListDialog();
     /*!
      * Show enhance lossless dialog.
      */
+    void showEnhanceLosslessDialog();
 
 protected:
-    bool isItemEnable() const;
     /*!
      * Check the item is enable or not.
+     */
+    bool isItemEnable() const;
+    /*!
+     * Override the widget event.
      */
     virtual void dragLeaveEvent(QDragLeaveEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
@@ -163,9 +167,6 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     int m_index;
     QString m_suffixString;
@@ -187,22 +188,23 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTo
 {
     Q_OBJECT
 public:
-    explicit MusicSongsToolBoxMaskWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsToolBoxMaskWidget(QWidget *parent = 0);
+
     virtual ~MusicSongsToolBoxMaskWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QTimer *m_updateTiemr;
 
@@ -216,98 +218,99 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidgetItem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+
     ~MusicSongsToolBoxWidgetItem();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    QWidget *item(int index);
     /*!
      * Get widget item.
      */
-    void addItem(QWidget *item);
+    QWidget *item(int index);
     /*!
      * Add widget item.
      */
-    void removeItem(QWidget *item);
+    void addItem(QWidget *item);
     /*!
      * Remove widget item.
      */
+    void removeItem(QWidget *item);
 
-    void setTitle(const QString &text);
     /*!
      * Set title text.
      */
-    QString getTitle() const;
+    void setTitle(const QString &text);
     /*!
      * Get title text.
      */
+    QString getTitle() const;
 
-    void setMusicSort(MusicSort *sort);
     /*!
      * Set music sort.
      */
+    void setMusicSort(MusicSort *sort);
 
-    void setItemExpand(bool expand);
     /*!
      * Set item widget to hide or not.
      */
-    bool itemExpand() const;
+    void setItemExpand(bool expand);
     /*!
      * Get item widget expand state.
      */
+    bool itemExpand() const;
 
-    int count() const;
     /*!
      * Get item's count.
      */
+    int count() const;
 
 Q_SIGNALS:
-    void addNewRowItem();
     /*!
      * Add new play list item.
      */
-    void deleteRowItem(int index);
+    void addNewRowItem();
     /*!
      * Delete selected play list item.
      */
-    void deleteRowItemAll(int index);
+    void deleteRowItem(int index);
     /*!
      * Delete all items in play list item.
      */
-    void changRowItemName(int index, const QString &name);
+    void deleteRowItemAll(int index);
     /*!
      * Open rename selected play list item widget.
      */
-    void addNewFiles(int index);
+    void changRowItemName(int index, const QString &name);
     /*!
      * Add new music file or files to list.
      */
-    void addNewDir(int index);
+    void addNewFiles(int index);
     /*!
      * Add new music dir to list.
      */
-    void musicListSongSortBy(int index);
+    void addNewDir(int index);
     /*!
      * Music list songs sort by type.
      */
-    void swapDragItemIndex(int before, int after);
+    void musicListSongSortBy(int index);
     /*!
      * Swap the item index by drag adn drop.
      */
+    void swapDragItemIndex(int before, int after);
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QVBoxLayout *m_layout;
     QList<QWidget*> m_itemList;
@@ -340,81 +343,82 @@ class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
+
     ~MusicSongsToolBoxWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void addItem(QWidget *item, const QString &text);
     /*!
      * Add widget item.
      */
-    void removeItem(QWidget *item);
+    void addItem(QWidget *item, const QString &text);
     /*!
      * Remove widget item.
      */
-    void swapItem(int before, int after);
+    void removeItem(QWidget *item);
     /*!
      * Swap widget item.
      */
+    void swapItem(int before, int after);
 
-    void setTitle(QWidget *item, const QString &text);
     /*!
      * Set title text.
      */
-    QString getTitle(QWidget *item) const;
+    void setTitle(QWidget *item, const QString &text);
     /*!
      * Get title text.
      */
+    QString getTitle(QWidget *item) const;
 
-    void setMusicSort(QWidget *item, MusicSort *sort);
     /*!
      * Set music sort.
      */
+    void setMusicSort(QWidget *item, MusicSort *sort);
 
-    void resizeScrollIndex(int index) const;
     /*!
      * Reset scroll index by given position.
      */
-    int currentIndex() const;
+    void resizeScrollIndex(int index) const;
     /*!
      * Get current index.
      */
-    int count() const;
+    int currentIndex() const;
     /*!
      * Get item's count.
      */
+    int count() const;
 
 public Q_SLOTS:
-    void setCurrentIndex(int index);
     /*!
      * Set current index.
      */
-    void mousePressAt(int index);
+    void setCurrentIndex(int index);
     /*!
      * Current top widget is pressed.
      */
-    void setTransparent(int alpha);
+    void mousePressAt(int index);
     /*!
      * Set background transparent.
      */
+    void setTransparent(int alpha);
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    int foundMappingIndex(int index);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Found mapped index in container.
      */
+    int foundMappingIndex(int index);
 
     int m_currentIndex, m_itemIndexRaise;
     QVBoxLayout *m_layout;

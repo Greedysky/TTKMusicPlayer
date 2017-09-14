@@ -24,64 +24,65 @@ class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidge
 {
     Q_OBJECT
 public:
-    explicit MusicQueryTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQueryTableWidget(QWidget *parent = 0);
+
     virtual ~MusicQueryTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set network query input.
      */
-    virtual void startSearchQuery(const QString &text) = 0;
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Start search query by text.
      * Subclass should implement this function.
      */
-    virtual void musicDownloadLocal(int row) = 0;
+    virtual void startSearchQuery(const QString &text) = 0;
     /*!
      * Data download to local file.
      * Subclass should implement this function.
      */
+    virtual void musicDownloadLocal(int row) = 0;
 
 Q_SIGNALS:
-    void muiscSongToPlayListChanged(const QString &name, const QString &time,
-                                    const QString &format, bool play);
     /*!
      * Add current network music to download to local.
      */
-    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
+    void muiscSongToPlayListChanged(const QString &name, const QString &time,
+                                    const QString &format, bool play);
     /*!
      * Show download state type.
      */
-    void restartSearchQuery(const QString &name);
+    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
     /*!
      * Restart search query by name.
      */
+    void restartSearchQuery(const QString &name);
 
 public Q_SLOTS:
-    virtual void clearAllItems() = 0;
     /*!
      * Clear All Items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) = 0;
+    virtual void clearAllItems() = 0;
     /*!
      * Create searched items.
      * Subclass should implement this function.
      */
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) = 0;
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     MusicDownLoadQueryThreadAbstract *m_downLoadManager;
 
@@ -96,53 +97,54 @@ class MUSIC_WIDGET_EXPORT MusicQueryItemTableWidget : public MusicQueryTableWidg
 {
     Q_OBJECT
 public:
-    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
+
     virtual ~MusicQueryItemTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startSearchQuery(const QString &text);
+    static QString getClassName();
     /*!
      * Start search query by text.
      */
+    virtual void startSearchQuery(const QString &text);
 
 public Q_SLOTS:
-    virtual void clearAllItems() override;
     /*!
      * Clear All Items.
      */
-    virtual void actionGroupClick(QAction *action);
+    virtual void clearAllItems() override;
     /*!
      * Left context menu action group click by action.
      */
-    virtual void itemDoubleClicked(int row, int column) = 0;
+    virtual void actionGroupClick(QAction *action);
     /*!
      * Item has double clicked.
      * Subclass should implement this function.
      */
-    void createFinishedItem();
+    virtual void itemDoubleClicked(int row, int column) = 0;
     /*!
      * Create the search finished item.
      */
+    void createFinishedItem();
 
 protected:
-    void createContextMenu(QMenu &menu);
     /*!
      * Create context menu.
      */
-    virtual void resizeEvent(QResizeEvent *event) override;
+    void createContextMenu(QMenu &menu);
     /*!
      * Override the widget event.
      */
-    QString randToGetStrength() const;
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Get current random video hotter(simulate).
      */
+    QString randToGetStrength() const;
 
     MusicGifLabelWidget *m_loadingLabel;
     QActionGroup *m_actionGroup;

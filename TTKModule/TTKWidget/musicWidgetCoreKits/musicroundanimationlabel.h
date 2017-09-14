@@ -20,40 +20,41 @@ class MUSIC_WIDGET_EXPORT MusicRoundAnimationLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicRoundAnimationLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRoundAnimationLabel(QWidget *parent = 0);
+
     ~MusicRoundAnimationLabel();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setPixmap(const QPixmap &pix);
+    static QString getClassName();
     /*!
      * Set rotating widget background pixmap.
      */
-    void setInterval(int value);
+    void setPixmap(const QPixmap &pix);
     /*!
      * Set rotating widget interval.
      */
+    void setInterval(int value);
 
 public Q_SLOTS:
-    void start();
     /*!
      * Start to rotating widget.
      */
-    void stop();
+    void start();
     /*!
      * Stop to rotating widget.
      */
+    void stop();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QPixmap m_pixmap;
     QTimer m_timer;

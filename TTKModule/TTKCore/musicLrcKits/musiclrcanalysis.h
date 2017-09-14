@@ -25,167 +25,168 @@ class MUSIC_LRC_EXPORT MusicLrcAnalysis : public QObject
 public:
     enum State
     {
-        Null,               ///*no any operator*/
-        OpenFileSuccess,    ///*open file success*/
-        OpenFileFail,       ///*open file failed*/
-        LrcEmpty            ///*current lrc empty*/
+        Null,               /*!< no any operator*/
+        OpenFileSuccess,    /*!< open file success*/
+        OpenFileFail,       /*!< open file failed*/
+        LrcEmpty            /*!< current lrc empty*/
     };
 
     enum LrcFormat
     {
-        Type01, ///*[xx:xx.xxx]*/
-        Type02, ///*[xx:xx.xx]*/
-        Type03, ///*[xx:xx.x]*/
-        Type04, ///*[xx:xx:xxx]*/
-        Type05, ///*[xx:xx:xx]*/
-        Type06, ///*[xx:xx:x]*/
-        Type07, ///*[xx:xx]*/
-        Type08, ///*[xx.xx.xxx]*/
-        Type09, ///*[xx.xx.xx]*/
-        Type10, ///*[xx.xx.x]*/
-        Type11, ///*[xx.xx:xxx]*/
-        Type12, ///*[xx.xx:xx]*/
-        Type13, ///*[xx.xx:x]*/
-        Type14  ///*[xx.xx]*/
+        Type01, /*!< [xx:xx.xxx]*/
+        Type02, /*!< [xx:xx.xx]*/
+        Type03, /*!< [xx:xx.x]*/
+        Type04, /*!< [xx:xx:xxx]*/
+        Type05, /*!< [xx:xx:xx]*/
+        Type06, /*!< [xx:xx:x]*/
+        Type07, /*!< [xx:xx]*/
+        Type08, /*!< [xx.xx.xxx]*/
+        Type09, /*!< [xx.xx.xx]*/
+        Type10, /*!< [xx.xx.x]*/
+        Type11, /*!< [xx.xx:xxx]*/
+        Type12, /*!< [xx.xx:xx]*/
+        Type13, /*!< [xx.xx:x]*/
+        Type14  /*!< [xx.xx]*/
     };
 
-    explicit MusicLrcAnalysis(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcAnalysis(QObject *parent = 0);
+
     ~MusicLrcAnalysis();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    inline void setLineMax(int max) { m_lineMax = max;}
     /*!
      * Set current line maximum value.
      */
-    inline int getLineMax() const { return m_lineMax;}
+    inline void setLineMax(int max) { m_lineMax = max;}
     /*!
      * Get current line maximum value.
      */
-    inline int getMiddle() const { return m_lineMax/2;}
+    inline int getLineMax() const { return m_lineMax;}
     /*!
      * Get current line middle number.
      */
+    inline int getMiddle() const { return m_lineMax/2;}
 
+    /*!
+     * Set lrc container data from other raw data.
+     */
     State setLrcData(const QByteArray &data);
     /*!
      * Set lrc container data from other raw data.
      */
     State setLrcData(const MusicObject::MIntStringMap &data);
     /*!
-     * Set lrc container data from other raw data.
+     * Analysis lrc file to map return the state.
      */
     State transLrcFileToTime(const QString &lrcFileName);
     /*!
-     * Analysis lrc file to map return the state.
-     */
-    State transKrcFileToTime(const QString &krcFileName);
-    /*!
      * Analysis krc file to map return the state.
      */
+    State transKrcFileToTime(const QString &krcFileName);
 
-    qint64 setSongSpeedAndSlow(qint64 time);
     /*!
      * Set song speed and slow by given time, return new time.
      */
-    void revertLrcTime(qint64 pos);
+    qint64 setSongSpeedAndSlow(qint64 time);
     /*!
      * Revert lrc time by pos, both + or - the same pos.
      */
-    void saveLrcTimeChanged();
+    void revertLrcTime(qint64 pos);
     /*!
      * Save lrc time changed to current lrc file.
      */
+    void saveLrcTimeChanged();
 
-    void setCurrentIndex(int index) { m_currentLrcIndex = index;}
     /*!
      * Set current middle index.
      */
-    int getCurrentIndex() const { return m_currentLrcIndex;}
+    void setCurrentIndex(int index) { m_currentLrcIndex = index;}
     /*!
      * Get current middle index.
      */
-    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name;}
+    int getCurrentIndex() const { return m_currentLrcIndex;}
     /*!
      * Set current file name.
      */
-    inline QString getCurrentFileName() const { return m_currentLrcFileName;}
+    inline void setCurrentFileName(const QString &name) { m_currentLrcFileName = name;}
     /*!
      * Get current file name.
      */
+    inline QString getCurrentFileName() const { return m_currentLrcFileName;}
 
-    bool isValid() const;
     /*!
      * Check current index is valid or not.
      */
-    bool isEmpty() const;
+    bool isValid() const;
     /*!
      * Check current container is empty or not.
      */
-    int count() const;
+    bool isEmpty() const;
     /*!
      * Check current container count.
      */
-    QString getText(int index) const;
+    int count() const;
     /*!
      * Get current lrc text by index.
+     */
+    QString getText(int index) const;
+    /*!
+     * Get current lrc and next lrc in container by current time.
      */
     bool findText(qint64 current, qint64 total,
                   QString &pre, QString &last, qint64 &interval) const;
     /*!
-     * Get current lrc and next lrc in container by current time.
+     * Get current time by index.
      */
     qint64 findTime(int index) const;
     /*!
-     * Get current time by index.
-     */
-    qint64 findTime(const QStringList &ts) const;
-    /*!
      * Get current time by texts.
      */
+    qint64 findTime(const QStringList &ts) const;
 
+    /*!
+     * Get all lrcs from container.
+     */
     QStringList getAllLrcList() const;
     /*!
      * Get all lrcs from container.
      */
     QString getAllLrcString() const;
-    /*!
-     * Get all lrcs from container.
-     */
 
 public Q_SLOTS:
-    void getTranslatedLrc();
     /*!
      * Get all lrcs from tr container.
      */
+    void getTranslatedLrc();
 
 protected:
-    void matchLrcLine(const QString &oneLine);
     /*!
      * Lrc analysis by match lrc line base.
+     */
+    void matchLrcLine(const QString &oneLine);
+    /*!
+     * Lrc analysis by match lrc line two[xx.(:)xx].
      */
     void matchLrcLine(const QString &oneLine, const QString &cap,
                       const QString &first, const QString &second);
     /*!
-     * Lrc analysis by match lrc line two[xx.(:)xx].
+     * Lrc analysis by match lrc line three[xx.xx.x(xx)]\[xx:xx:x(xx)].
      */
     void matchLrcLine(const QString &oneLine, QString cap,
                       const QString &splite);
     /*!
-     * Lrc analysis by match lrc line three[xx.xx.x(xx)]\[xx:xx:x(xx)].
+     * Lrc analysis by match lrc line three[xx.(:)xx.(:)x(xx)].
      */
     void matchLrcLine(const QString &oneLine, const QString &cap,
                       const QString &first, const QString &second,
                       const QString &third);
-    /*!
-     * Lrc analysis by match lrc line three[xx.(:)xx.(:)x(xx)].
-     */
 
     int m_lineMax, m_currentLrcIndex;
     QString m_currentLrcFileName;

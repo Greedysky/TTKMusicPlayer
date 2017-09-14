@@ -19,27 +19,27 @@ class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundThread : public MusicNetworkAb
 {
     Q_OBJECT
 public:
-    MusicDownloadBackgroundThread(const QString &name, const QString &save,
-                                  QObject *parent = 0);
     /*!
      * Object contsructor provide artist name and save local path.
      */
+    MusicDownloadBackgroundThread(const QString &name, const QString &save,
+                                  QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToDownload() = 0;
+    static QString getClassName();
     /*!
      * Start to download artist picture from net.
      * Subclass should implement this function.
      */
+    virtual void startToDownload() = 0;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
     QString m_artName, m_savePath;

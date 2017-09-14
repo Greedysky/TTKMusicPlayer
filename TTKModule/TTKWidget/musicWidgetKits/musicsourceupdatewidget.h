@@ -26,31 +26,32 @@ class MUSIC_WIDGET_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMo
 {
     Q_OBJECT
 public:
-    explicit MusicSourceUpdateNotifyWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSourceUpdateNotifyWidget(QWidget *parent = 0);
+
     ~MusicSourceUpdateNotifyWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void start();
     /*!
      * Start update.
      */
+    void start();
 
 public Q_SLOTS:
-    void updateSourceClicked();
     /*!
      * Update source clicked.
      */
-    void downLoadFinished(const QVariant &data);
+    void updateSourceClicked();
     /*!
      * Download data from kuwo net finished.
      */
+    void downLoadFinished(const QVariant &data);
 
 protected:
     QLabel *m_textLabel;
@@ -65,51 +66,52 @@ class MUSIC_WIDGET_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDial
 {
     Q_OBJECT
 public:
-    explicit MusicSourceUpdateWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSourceUpdateWidget(QWidget *parent = 0);
+
     virtual ~MusicSourceUpdateWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void start();
     /*!
      * Start update.
      */
+    void start();
 
 public Q_SLOTS:
-    void upgradeButtonClicked();
     /*!
      * Upgrade button clicked.
      */
-    void upgradeFailedClicked();
+    void upgradeButtonClicked();
     /*!
      * Upgrade failed clicked.
      */
-    void downLoadFinished(const QVariant &data);
+    void upgradeFailedClicked();
     /*!
      * Download data from kuwo net finished.
      */
-    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
+    void downLoadFinished(const QVariant &data);
     /*!
      * Update download speed label.
      */
-    void downloadProgressChanged(float percent, const QString &total);
+    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
     /*!
      * Update download percent\ total size progress.
      */
-    void downloadProgressFinished();
+    void downloadProgressChanged(float percent, const QString &total);
     /*!
      * Update download progress finished.
      */
-    virtual int exec();
+    void downloadProgressFinished();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicSourceUpdateWidget *m_ui;

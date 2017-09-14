@@ -26,62 +26,63 @@ class MUSIC_USER_EXPORT MusicUserManagerDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MusicUserManagerDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserManagerDialog(QWidget *parent = 0);
+
     ~MusicUserManagerDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setUserUID(const QString &uid);
+    static QString getClassName();
     /*!
      * Set current user's uid.
      */
-    void setUserModel(MusicUserModel *model);
+    void setUserUID(const QString &uid);
     /*!
      * Set user model.
      */
+    void setUserModel(MusicUserModel *model);
 
 Q_SIGNALS:
-    void userStateChanged(const QString &uid, const QString &icon);
     /*!
      * User login state changed.
      */
+    void userStateChanged(const QString &uid, const QString &icon);
 
 public Q_SLOTS:
-    void musicUserLogoff();
     /*!
      * User logout clicked.
      */
-    void popupUserRecordWidget();
+    void musicUserLogoff();
     /*!
      * Popup user record widget clicked.
      */
-    void resetUserName(const QString &name);
+    void popupUserRecordWidget();
     /*!
      * Reset current user name.
      */
-    virtual int exec();
+    void resetUserName(const QString &name);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createUserTime() const;
+    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Create current user all login time to show.
      */
-    void createButtonPopMenu();
+    void createUserTime() const;
     /*!
      * Create functions menu popup initialized.
      */
+    void createButtonPopMenu();
 
     Ui::MusicUserManagerDialog *m_ui;
     MusicUserModel* m_userModel;

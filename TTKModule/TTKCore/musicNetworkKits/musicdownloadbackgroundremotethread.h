@@ -58,20 +58,20 @@ class MUSIC_NETWORK_EXPORT MusicSkinRemoteConfigManager : public MusicAbstractXm
 {
     Q_OBJECT
 public:
-    explicit MusicSkinRemoteConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSkinRemoteConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items);
     /*!
      * Read datas into xml file.
      */
+    void readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items);
 
 };
 
@@ -83,32 +83,32 @@ class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundRemoteThread : public QObject
 {
     Q_OBJECT
 public:
-    MusicDownloadBackgroundRemoteThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadBackgroundRemoteThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void startToDownload();
     /*!
      * Start to download data from net.
      */
+    void startToDownload();
 
 Q_SIGNALS:
-    void downLoadDataChanged(const MusicSkinRemoteGroups &data);
     /*!
      * Send download data from net.
      */
+    void downLoadDataChanged(const MusicSkinRemoteGroups &data);
 
 public Q_SLOTS:
-    void downLoadDataFinished(const QByteArray &bytes);
     /*!
      * Download data from net finished.
      */
+    void downLoadDataFinished(const QByteArray &bytes);
 
 };
 

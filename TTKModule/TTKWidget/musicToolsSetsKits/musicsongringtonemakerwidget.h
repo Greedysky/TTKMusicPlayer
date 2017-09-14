@@ -24,64 +24,65 @@ class MUSIC_TOOLSET_EXPORT MusicSongRingtoneMaker : public MusicAbstractMoveDial
 {
     Q_OBJECT
 public:
-    explicit MusicSongRingtoneMaker(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongRingtoneMaker(QWidget *parent = 0);
+
     virtual ~MusicSongRingtoneMaker();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void initInputPath();
     /*!
      * Selected input path.
      */
-    void initOutputPath();
+    void initInputPath();
     /*!
      * Selected save path.
      */
-    void playInputSong();
+    void initOutputPath();
     /*!
      * Start to play input song.
      */
-    void playRingtone();
+    void playInputSong();
     /*!
      * Start to play ringtone.
      */
-    void positionChanged(qint64 position);
+    void playRingtone();
     /*!
      * Current position changed.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Current duration changed.
      */
-    void posChanged(qint64 start, qint64 end);
+    void durationChanged(qint64 duration);
     /*!
      * Moving button pos changed.
      */
-    void buttonReleaseChanged(qint64 pos);
+    void posChanged(qint64 start, qint64 end);
     /*!
      * Moving button pos release changed.
      */
-    virtual int exec();
+    void buttonReleaseChanged(qint64 pos);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void initControlParameter() const;
     /*!
      * Init control parameter.
      */
-    void playButtonStateChanged();
+    void initControlParameter() const;
     /*!
      * Play button state changed.
      */
+    void playButtonStateChanged();
 
     Ui::MusicSongRingtoneMaker *m_ui;
     bool m_playRingtone;

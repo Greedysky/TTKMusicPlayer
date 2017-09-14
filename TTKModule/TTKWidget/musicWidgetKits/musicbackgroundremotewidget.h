@@ -24,64 +24,65 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundRemoteWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundRemoteWidget(QWidget *parent = 0);
+
     ~MusicBackgroundRemoteWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void init();
     /*!
      * Init the current download object.
      */
-    void abort();
+    void init();
     /*!
      * Abort the current download thread.
      */
+    void abort();
 
-    QWidget* createFunctionsWidget(bool revert, QWidget *object = 0);
     /*!
      * Create functions widget.
      */
-    void outputRemoteSkin(MusicBackgroundImage &image, const QString &data);
+    QWidget* createFunctionsWidget(bool revert, QWidget *object = 0);
     /*!
      * Output remote skin.
      */
+    void outputRemoteSkin(MusicBackgroundImage &image, const QString &data);
 
 Q_SIGNALS:
-    void showCustomSkin(const QString &path);
     /*!
      * Reset the current bg when user click remote bg emit.
      */
+    void showCustomSkin(const QString &path);
 
 public Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Remote bg type selected by index.
+     */
+    void buttonClicked(int index);
+    /*!
+     * Send download data from net.
      */
     void downLoadDataChanged(const QString &data);
     /*!
      * Send download data from net.
      */
     void downLoadDataChanged(const MusicSkinRemoteGroups &data);
-    /*!
-     * Send download data from net.
-     */
 
 protected:
-    QPushButton *createButton(const QString &name);
     /*!
      * Create button.
      */
-    void buttonStyleChanged();
+    QPushButton *createButton(const QString &name);
     /*!
      * Button style changed.
      */
+    void buttonStyleChanged();
 
     int m_currentIndex;
     QWidget *m_functionsWidget;

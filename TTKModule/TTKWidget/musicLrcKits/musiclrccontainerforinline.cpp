@@ -47,7 +47,7 @@ MusicLrcContainerForInline::MusicLrcContainerForInline(QWidget *parent)
     m_layoutWidget->connectTo(this);
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-       MusicLRCManager *w = new MusicLRCManagerForInline(this);
+       MusicLrcManager *w = new MusicLrcManagerForInline(this);
        m_layoutWidget->addWidget(w);
        m_musicLrcContainer.append(w);
     }
@@ -833,7 +833,7 @@ void MusicLrcContainerForInline::setItemStyleSheet()
 
 void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLRCManagerForInline *w = MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[index]);
+    MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[index]);
     w->setCenterOnLrc(false);
     w->setFontSize(size);
 
@@ -845,12 +845,12 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
 
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
+        MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
                          MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
         setLinearGradientColor(cl);
     }
@@ -908,7 +908,7 @@ void MusicLrcContainerForInline::resizeWidth(int w, int h)
 {
     for(int i=0; i<m_lrcAnalysis->getLineMax(); ++i)
     {
-        MStatic_cast(MusicLRCManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(w);
+        MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[i])->setLrcPerWidth(w);
     }
 
     m_lrcFloatWidget->resizeWindow(w, h);

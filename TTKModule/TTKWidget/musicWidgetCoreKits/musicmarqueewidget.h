@@ -19,42 +19,42 @@ class MUSIC_WIDGET_EXPORT MusicMarqueeWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicMarqueeWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicMarqueeWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setEffectOnResize(bool on) { m_effectOnResize = on; }
     /*!
      * Set effect on resize.
      */
-    void setText(const QString &newText);
+    void setEffectOnResize(bool on) { m_effectOnResize = on; }
     /*!
      * Set marquee text.
      */
-    inline QString text() const { return m_myText.trimmed(); }
+    void setText(const QString &newText);
     /*!
      * Get marquee text.
      */
-    QSize sizeHint() const;
+    inline QString text() const { return m_myText.trimmed(); }
     /*!
      * Override size hint.
      */
+    QSize sizeHint() const;
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
     virtual void hideEvent(QHideEvent *event) override;
     virtual void timerEvent(QTimerEvent *event) override;
     virtual void resizeEvent(QResizeEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
 private:
     QString m_myText;

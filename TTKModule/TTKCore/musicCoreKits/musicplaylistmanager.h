@@ -19,30 +19,30 @@ class MUSIC_CORE_EXPORT MusicWPLConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicWPLConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicWPLConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void writeWPLXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Write datas into xml file.
      */
-    void readWPLXMLConfig(MusicSongItems &musics);
+    void writeWPLXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Read datas into xml file.
      */
+    void readWPLXMLConfig(MusicSongItems &musics);
 
 protected:
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
     /*!
      * Read Music File Path.
      */
+    MusicSongs readMusicFilePath(const QDomNode &node) const;
 
 };
 
@@ -54,30 +54,30 @@ class MUSIC_CORE_EXPORT MusicXSPFConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicXSPFConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicXSPFConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Write datas into xml file.
      */
-    void readXSPFXMLConfig(MusicSongItems &musics);
+    void writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Read datas into xml file.
      */
+    void readXSPFXMLConfig(MusicSongItems &musics);
 
 protected:
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
     /*!
      * Read Music File Path.
      */
+    MusicSongs readMusicFilePath(const QDomNode &node) const;
 
 };
 
@@ -89,24 +89,24 @@ class MUSIC_CORE_EXPORT MusicASXConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicASXConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicASXConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void writeASXXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Write datas into xml file.
      */
-    void readASXXMLConfig(MusicSongItems &musics);
+    void writeASXXMLConfig(const MusicSongItems &musics, const QString &path);
     /*!
      * Read datas into xml file.
      */
+    void readASXXMLConfig(MusicSongItems &musics);
 
 };
 
@@ -117,72 +117,73 @@ public:
 class MUSIC_CORE_EXPORT MusicPlayListManager
 {
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static void messageAlert();
+    static QString getClassName();
+
     /*!
      * Import error message alert.
      */
-    void setMusicSongItems(const QString &save, const MusicSongItem &item);
+    static void messageAlert();
     /*!
      * Write music playlist data to file.
      */
-    void getMusicSongItems(const QStringList &open, MusicSongItems &items);
+    void setMusicSongItems(const QString &save, const MusicSongItem &item);
     /*!
      * Read music playlist data from file.
      */
+    void getMusicSongItems(const QStringList &open, MusicSongItems &items);
 
 protected:
-    void readLisList(const QString &path, MusicSongItems &items);
     /*!
      * Read ttk music playlist data from file.
      */
-    void writeLisList(const QString &path, const MusicSongItem &item);
+    void readLisList(const QString &path, MusicSongItems &items);
     /*!
      * Write ttk music playlist data to file.
      */
-    void readM3UList(const QString &path, MusicSongItems &items);
+    void writeLisList(const QString &path, const MusicSongItem &item);
     /*!
      * Read m3u music playlist data from file.
      */
-    void writeM3UList(const QString &path, const MusicSongItem &item);
+    void readM3UList(const QString &path, MusicSongItems &items);
     /*!
      * Write m3u music playlist data to file.
      */
-    void readPLSList(const QString &path, MusicSongItems &items);
+    void writeM3UList(const QString &path, const MusicSongItem &item);
     /*!
      * Read pls music playlist data from file.
      */
-    void writePLSList(const QString &path, const MusicSongItem &item);
+    void readPLSList(const QString &path, MusicSongItems &items);
     /*!
      * Write pls music playlist data to file.
      */
-    void readWPLList(const QString &path, MusicSongItems &items);
+    void writePLSList(const QString &path, const MusicSongItem &item);
     /*!
      * Read wpl music playlist data from file.
      */
-    void writeWPLList(const QString &path, const MusicSongItem &item);
+    void readWPLList(const QString &path, MusicSongItems &items);
     /*!
      * Write wpl music playlist data to file.
      */
-    void readXSPFList(const QString &path, MusicSongItems &items);
+    void writeWPLList(const QString &path, const MusicSongItem &item);
     /*!
      * Read xspf music playlist data from file.
      */
-    void writeXSPFList(const QString &path, const MusicSongItem &item);
+    void readXSPFList(const QString &path, MusicSongItems &items);
     /*!
      * Write xspf music playlist data to file.
      */
-    void readASXList(const QString &path, MusicSongItems &items);
+    void writeXSPFList(const QString &path, const MusicSongItem &item);
     /*!
      * Read asx music playlist data from file.
      */
-    void writeASXList(const QString &path, const MusicSongItem &item);
+    void readASXList(const QString &path, MusicSongItems &items);
     /*!
      * Write asx music playlist data to file.
      */
+    void writeASXList(const QString &path, const MusicSongItem &item);
 
 };
 

@@ -20,72 +20,72 @@ class MUSIC_WIDGET_EXPORT MusicToastLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicToastLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    explicit MusicToastLabel(const QString &text, QWidget *parent = 0);
+    explicit MusicToastLabel(QWidget *parent = 0);
     /*!
      * Object contsructor by context text.
      */
+    explicit MusicToastLabel(const QString &text, QWidget *parent = 0);
+
     ~MusicToastLabel();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setFontMargin(int height, int width);
     /*!
      * Set text margin in the body.
      */
-    void setTimerInterval(int msecond);
+    void setFontMargin(int height, int width);
     /*!
      * Set timer interval to hide.
      */
-    int getTimerInterval() const;
+    void setTimerInterval(int msecond);
     /*!
      * Get timer interval.
      */
-    void setFontSize(int size);
+    int getTimerInterval() const;
     /*!
      * Set context font size.
      */
-    int getFontSize() const;
+    void setFontSize(int size);
     /*!
      * Get context font size.
      */
-    void setBold(bool bold);
+    int getFontSize() const;
     /*!
      * Set context font bold.
      */
-    bool bold() const;
+    void setBold(bool bold);
     /*!
      * Get context font bold.
      */
-
-    void popup(QWidget *parent);
+    bool bold() const;
     /*!
      * Popup the toast widget in parent widget.
      */
+    void popup(QWidget *parent);
 
 public Q_SLOTS:
-    void setText(const QString &text);
     /*!
      * Set context text.
      */
+    void setText(const QString &text);
 
 private Q_SLOTS:
-    void closeAnimation();
     /*!
      * Close animation when tiem out.
      */
+    void closeAnimation();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QTimer m_timer;
     QFont m_font;

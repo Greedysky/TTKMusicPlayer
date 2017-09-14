@@ -17,7 +17,7 @@ class MusicSoundKMicroWidget;
 }
 class MusicCoreMPlayer;
 class MusicLrcAnalysis;
-class MusicLRCManagerForInline;
+class MusicLrcManagerForInline;
 class MusicSoundKMicroSearchWidget;
 class MusicAudioRecorderCore;
 
@@ -28,104 +28,105 @@ class MUSIC_TOOLSET_EXPORT MusicSoundKMicroWidget : public MusicAbstractMoveWidg
 {
     Q_OBJECT
 public:
-    explicit MusicSoundKMicroWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundKMicroWidget(QWidget *parent = 0);
+
     virtual ~MusicSoundKMicroWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setButtonStyle(bool style) const;
+    static QString getClassName();
     /*!
      * Set current button style.
      */
-    void setStateButtonStyle(bool style) const;
+    void setButtonStyle(bool style) const;
     /*!
      * Set current state button style.
      */
-    void startSeachKMicro(const QString &name);
+    void setStateButtonStyle(bool style) const;
     /*!
      * Start seach KMicro.
      */
+    void startSeachKMicro(const QString &name);
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void volumeChanged(int volume);
     /*!
      * Current volume changed.
      */
-    void positionChanged(qint64 position);
+    void volumeChanged(int volume);
     /*!
      * Current position changed.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Set current video duration.
      */
-    void playFinished();
+    void durationChanged(qint64 duration);
     /*!
      * Play finished.
      */
-    void setPosition(int position);
+    void playFinished();
     /*!
      * Set current play pos.
      */
-    void playButtonChanged();
+    void setPosition(int position);
     /*!
      * Play button changed.
      */
-    void stateButtonChanged();
+    void playButtonChanged();
     /*!
      * State button changed.
      */
-    void tipsButtonChanged();
+    void stateButtonChanged();
     /*!
      * Tips button changed.
      */
-    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
+    void tipsButtonChanged();
     /*!
      * Set current media url.
      */
-    void downLoadFinished(const QByteArray &data);
+    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Receive download byte data from net.
      */
-    void updateAnimationLrc();
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Animation finished.
      */
-    void recordButtonClicked();
+    void updateAnimationLrc();
     /*!
      * Record button clicked.
      */
+    void recordButtonClicked();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void closeEvent(QCloseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     /*!
-     * Override the widget event.
+     * Multi media changed.
      */
     void multiMediaChanged();
     /*!
-     * Multi media changed.
+     * Set per lrc line style sheet.
      */
     void setItemStyleSheet(int index, int size, int transparent);
     /*!
-     * Set per lrc line style sheet.
-     */
-    void recordStateChanged(bool state);
-    /*!
      * Record state changed.
      */
+    void recordStateChanged(bool state);
 
     Ui::MusicSoundKMicroWidget *m_ui;
     qint64 m_intervalTime;
@@ -133,7 +134,7 @@ protected:
     MusicCoreMPlayer *m_mediaPlayer;
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLRCManagerForInline*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInline*> m_musicLrcContainer;
     MusicAudioRecorderCore *m_recordCore;
 
 };

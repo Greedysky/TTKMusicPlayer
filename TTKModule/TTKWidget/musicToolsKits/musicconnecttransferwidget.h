@@ -26,82 +26,83 @@ class MUSIC_TOOL_EXPORT MusicConnectTransferWidget : public MusicAbstractMoveDia
 {
     Q_OBJECT
 public:
-    explicit MusicConnectTransferWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicConnectTransferWidget(QWidget *parent = 0);
+
     virtual ~MusicConnectTransferWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void openTransferFiles(int mode);
+    static QString getClassName();
     /*!
      * Open transfer files by mode.
      */
-    void redirectToCurrentSong(int toolIndex, int songIndex);
+    void openTransferFiles(int mode);
     /*!
      * Redirect to current song.
      */
+    void redirectToCurrentSong(int toolIndex, int songIndex);
 
 Q_SIGNALS:
-    void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.
      */
+    void getMusicLists(MusicSongItems &songs);
 
 public Q_SLOTS:
-    void currentPlayListSelected(int index);
     /*!
      * Current playList selected.
      */
-    void selectedAllItems(bool check);
+    void currentPlayListSelected(int index);
     /*!
      * Select all items.
      */
-    void startToTransferUSBFiles();
+    void selectedAllItems(bool check);
     /*!
      * Start to transfer usb files.
      */
-    void startToTransferWIFIFiles();
+    void startToTransferUSBFiles();
     /*!
      * Start to transfer wifi files.
      */
-    void reflashRemovableDir();
+    void startToTransferWIFIFiles();
     /*!
      * Reflash removable dir.
      */
-    void switchDiffDevice();
+    void reflashRemovableDir();
     /*!
      * Switch to different device.
      */
-    void musicSearchIndexChanged(int row, int col);
+    void switchDiffDevice();
     /*!
      * Search file from list.
      */
-    void initColumns();
+    void musicSearchIndexChanged(int row, int col);
     /*!
      * Create the left button column
      */
-    virtual int exec();
+    void initColumns();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void createAllItems(const MusicSongs &songs);
     /*!
      * Create all items.
      */
-    QStringList getSelectedFiles();
+    void createAllItems(const MusicSongs &songs);
     /*!
      * Get selected files.
      */
-    QString getRemovableDrive();
+    QStringList getSelectedFiles();
     /*!
      * Get removable drive name.
      */
+    QString getRemovableDrive();
 
     Ui::MusicConnectTransferWidget *m_ui;
     int m_currentIndex;

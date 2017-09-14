@@ -21,44 +21,46 @@ class MUSIC_SUPER_EXPORT MusicLocalSongsManagerThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongsManagerThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongsManagerThread(QObject *parent = 0);
+
     ~MusicLocalSongsManagerThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setFindFilePath(const QString &path);
+    static QString getClassName();
+
     /*!
      * Set find file path by given path.
      */
-    void setFindFilePath(const QStringList &path);
+    void setFindFilePath(const QString &path);
     /*!
      * Set find file path by given path lists.
      */
-    void stopAndQuitThread();
+    void setFindFilePath(const QStringList &path);
     /*!
      * Stop and quit current thread.
      */
+    void stopAndQuitThread();
 
 Q_SIGNALS:
-    void setSongNamePath(const QFileInfoList &name);
     /*!
      * Send the searched file or path.
      */
+    void setSongNamePath(const QFileInfoList &name);
 
 public Q_SLOTS:
-    void start();
     /*!
      * Strat thread now.
      */
-    virtual void run() override;
+    void start();
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 protected:
     bool m_run;

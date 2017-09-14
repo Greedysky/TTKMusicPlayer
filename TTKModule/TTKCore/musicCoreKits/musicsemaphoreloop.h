@@ -20,21 +20,22 @@ class MUSIC_CORE_EXPORT MusicSemaphoreLoop : public QEventLoop
 {
     Q_OBJECT
 public:
-    explicit MusicSemaphoreLoop(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSemaphoreLoop(QObject *parent = 0);
+
     ~MusicSemaphoreLoop();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    int exec(ProcessEventsFlags flags = AllEvents);
     /*!
      * Event loop start.
      */
+    int exec(ProcessEventsFlags flags = AllEvents);
 
 protected:
     QTimer m_timer;

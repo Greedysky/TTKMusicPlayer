@@ -19,24 +19,24 @@ class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTa
 {
     Q_OBJECT
 public:
-    explicit MusicConnectTransferTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicConnectTransferTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(const MusicSongs &songs);
     /*!
      * Create all items.
      */
-    void selectedAllItems(bool check);
+    void createAllItems(const MusicSongs &songs);
     /*!
      * Select all items.
      */
+    void selectedAllItems(bool check);
 
 };
 

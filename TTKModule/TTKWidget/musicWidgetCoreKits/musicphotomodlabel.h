@@ -22,39 +22,39 @@ class MUSIC_LRC_EXPORT MusicPhotoModLabel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPhotoModLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPhotoModLabel(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setImagePath(const QString &path);
+    static QString getClassName();
     /*!
      * Set song image path.
      */
-    void saveImagePath(const QString &path) const;
+    void setImagePath(const QString &path);
     /*!
      * Set save song image path.
      */
+    void saveImagePath(const QString &path) const;
 
 Q_SIGNALS:
-    void deltaValueChanged(float v);
     /*!
      * Delta value changed.
      */
+    void deltaValueChanged(float v);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     QString m_path;
     QPixmap m_showPix;

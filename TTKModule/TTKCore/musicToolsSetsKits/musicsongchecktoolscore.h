@@ -12,54 +12,55 @@ class MUSIC_SUPER_EXPORT MusicSongCheckToolsRenameCore : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsRenameCore(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsRenameCore(QObject *parent = 0);
+
     ~MusicSongCheckToolsRenameCore();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
     /*!
      * Set music song check tool mode.
      */
-    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
+    inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
     /*!
      * Get music song check tool mode.
      */
-    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
+    inline MusicObject::MusicSongCheckToolsMode getMode() const { return m_operateMode; }
     /*!
      * Set item lists.
      */
+    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
 
-    void setRenameSongs(MusicSongs *songs);
     /*!
      * Set find file path by given path.
      */
-    void stopAndQuitThread();
+    void setRenameSongs(MusicSongs *songs);
     /*!
      * Stop and quit current thread.
      */
+    void stopAndQuitThread();
 
 Q_SIGNALS:
-    void finished(const MusicSongCheckToolsRenames &items);
     /*!
      * Rename check finished.
      */
+    void finished(const MusicSongCheckToolsRenames &items);
 
 public Q_SLOTS:
-    void start();
     /*!
      * Strat thread now.
      */
-    virtual void run() override;
+    void start();
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 protected:
     bool m_run;

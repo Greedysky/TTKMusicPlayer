@@ -21,38 +21,39 @@ class MUSIC_WIDGET_EXPORT MusicEMOJILabelWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicEMOJILabelWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicEMOJILabelWidget(QWidget *parent = 0);
+
     ~MusicEMOJILabelWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void dataChanged(const QString &data);
     /*!
      * Get current label emoji.
      */
+    void dataChanged(const QString &data);
 
 private Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Paging button changed.
      */
-    void labelClicked(int index);
+    void buttonClicked(int index);
     /*!
      * Label selected state changed.
      */
+    void labelClicked(int index);
 
 protected:
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void leaveEvent(QEvent *event) override;
 
     int m_currentPage;
     QList<QLabel*> m_labelItems;

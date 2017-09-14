@@ -19,21 +19,22 @@ class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicQueryFoundTab
 {
     Q_OBJECT
 public:
-    explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
+
     virtual ~MusicAlbumFoundTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set network query input.
      */
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
 
 };
 
@@ -45,66 +46,67 @@ class MUSIC_WIDGET_EXPORT MusicAlbumFoundWidget : public MusicFoundAbstractWidge
 {
     Q_OBJECT
 public:
-    explicit MusicAlbumFoundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAlbumFoundWidget(QWidget *parent = 0);
+
     virtual ~MusicAlbumFoundWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
+    virtual void setSongName(const QString &name) override;
 
-    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow() override;
 
 public Q_SLOTS:
-    void queryAllFinished();
     /*!
      * Query all quality musics is finished.
      */
-    void queryAlbumFinished();
+    void queryAllFinished();
     /*!
      * Query album musics is finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void queryAlbumFinished();
     /*!
      * Send recieved data from net.
      */
-    void playAllButtonClicked();
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Play all button clicked now.
      */
-    void shareButtonClicked();
+    void playAllButtonClicked();
     /*!
      * Share button clicked now.
      */
-    void playButtonClicked();
+    void shareButtonClicked();
     /*!
      * Play button clicked now.
      */
-    void downloadButtonClicked();
+    void playButtonClicked();
     /*!
      * Download button clicked now.
      */
-    void addButtonClicked();
+    void downloadButtonClicked();
     /*!
      * Add button clicked now.
      */
+    void addButtonClicked();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
 
     QLabel *m_iconLabel;
     MusicAlbumFoundTableWidget *m_albumTableWidget;

@@ -21,33 +21,33 @@ class QNPutRetPrivate;
 class MUSIC_EXTRAS_EXPORT QNPutRet
 {
 public:
-    QNPutRet();
     /*!
      * Object contsructor.
      */
+    QNPutRet();
 
-    static QNPutRet* fromJSON(const QByteArray &json);
     /*!
      * Transfer data from json.
      */
+    static QNPutRet* fromJSON(const QByteArray &json);
 
-    QString getHash() const;
     /*!
      * Get hash.
      */
-    void setHash(const QString &value);
+    QString getHash() const;
     /*!
      * Set hash.
      */
+    void setHash(const QString &value);
 
-    QString getKey() const;
     /*!
      * Get key.
      */
-    void setKey(const QString &value);
+    QString getKey() const;
     /*!
      * Set key.
      */
+    void setKey(const QString &value);
 
 private:
     TTK_DECLARE_PRIVATE(QNPutRet)

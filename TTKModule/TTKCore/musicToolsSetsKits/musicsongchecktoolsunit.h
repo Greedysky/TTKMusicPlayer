@@ -8,8 +8,8 @@ namespace MusicObject
 {
     enum MusicSongCheckToolsMode
     {
-        Check,      ///Song Check Mode
-        Apply       ///Song Apply Mode
+        Check,      /*!< Song Check Mode*/
+        Apply       /*!< Song Apply Mode*/
     };
 }
 
@@ -31,6 +31,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
 }MusicSongCheckToolsRename;
 TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
 
+
 /*! @brief The class of the song check tools duplicate.
  * @author Greedysky <greedysky@163.com>
  */
@@ -46,6 +47,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
     }
 }MusicSongCheckToolsDuplicate;
 TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
+
 
 /*! @brief The class of the song check tools quality.
  * @author Greedysky <greedysky@163.com>

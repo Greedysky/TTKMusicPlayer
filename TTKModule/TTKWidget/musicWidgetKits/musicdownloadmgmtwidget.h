@@ -23,44 +23,45 @@ class MUSIC_WIDGET_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWid
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadResetWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadResetWidget(QWidget *parent = 0);
+
     ~MusicDownloadResetWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongName(const QString &name);
+    static QString getClassName();
     /*!
      * Set current name to search and download musics.
      */
+    void setSongName(const QString &name);
 
 Q_SIGNALS:
-    void openStackedDownloadWidget();
     /*!
      * To open stacked download widget once.
      */
+    void openStackedDownloadWidget();
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
-    void restartToDownload();
+    void show();
     /*!
      * Restart to dwonload music data.
      */
-    void openDetailInfo();
+    void restartToDownload();
     /*!
      * Open file details information by song.
      */
-    void openFileLocation();
+    void openDetailInfo();
     /*!
      * Open file location in dir.
      */
+    void openFileLocation();
 
 protected:
     Ui::MusicDownloadResetWidget* m_ui;
@@ -78,19 +79,19 @@ class MUSIC_WIDGET_EXPORT MusicDownloadMgmtWidget : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadMgmtWidget(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadMgmtWidget(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
+    static QString getClassName();
     /*!
      * Set current name to search and download musics.
      */
+    void setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type);
 
 protected:
     QWidget *m_parentClass;

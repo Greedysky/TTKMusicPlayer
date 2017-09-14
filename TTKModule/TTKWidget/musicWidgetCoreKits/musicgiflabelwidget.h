@@ -23,79 +23,80 @@ class MUSIC_WIDGET_EXPORT MusicGifLabelWidget : public QLabel
 public:
     enum Type
     {
-        Gif_Ballon_White,           ///gif ballon white
-        Gif_Cicle_Blue,             ///gif cicle blue
-        Gif_Rice_Font_White,        ///gif rice font white
-        Gif_Rice_Font_Black,        ///gif rice font black
-        Gif_Rice_Font_Black_Big,    ///gif rice font black big
-        Gif_Hourglass_White,        ///gif hourglass white
-        Gif_Radio_Blue,             ///gif radio blue
-        Gif_Check_Blue,             ///gif check blue
-        Gif_Record_red,             ///gif record red
-        Gif_Close_White             ///gif close white
+        Gif_Ballon_White,           /*!< gif ballon white*/
+        Gif_Cicle_Blue,             /*!< gif cicle blue*/
+        Gif_Rice_Font_White,        /*!< gif rice font white*/
+        Gif_Rice_Font_Black,        /*!< gif rice font black*/
+        Gif_Rice_Font_Black_Big,    /*!< gif rice font black big*/
+        Gif_Hourglass_White,        /*!< gif hourglass white*/
+        Gif_Radio_Blue,             /*!< gif radio blue*/
+        Gif_Check_Blue,             /*!< gif check blue*/
+        Gif_Record_red,             /*!< gif record red*/
+        Gif_Close_White             /*!< gif close white*/
     };
 
+    /*!
+     * Object contsructor.
+     */
     explicit MusicGifLabelWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
     explicit MusicGifLabelWidget(Type type, QWidget *parent = 0);
-    /*!
-     * Object contsructor.
-     */
+
     ~MusicGifLabelWidget();
 
-    void setType(Type type);
     /*!
      * Set the gif type.
      */
-    Type getType() const;
+    void setType(Type type);
     /*!
      * Get the gif type.
      */
+    Type getType() const;
 
-    void setInterval(int value);
     /*!
      * Set the gif interval.
      */
-    int getInterval() const;
+    void setInterval(int value);
+
     /*!
      * Get the gif interval.
      */
-
-    void setInfinited(bool s);
+    int getInterval() const;
     /*!
      * Set the gif infinited mode.
      */
-    bool getInfinited() const;
+    void setInfinited(bool s);
     /*!
      * Get the gif infinited mode.
      */
+    bool getInfinited() const;
 
-    void start();
     /*!
      * Start the gif.
      */
-    void stop();
+    void start();
     /*!
      * Stop the gif.
      */
-    inline bool isRunning() const { return m_isRunning; }
+    void stop();
     /*!
      * Get current running state.
      */
+    inline bool isRunning() const { return m_isRunning; }
 
 public Q_SLOTS:
-    void timeout();
     /*!
      * Change the current gif index.
      */
+    void timeout();
 
 protected:
-    bool infinitedModeCheck();
     /*!
      * Infinited mode check.
      */
+    bool infinitedModeCheck();
 
     int m_index;
     Type m_type;

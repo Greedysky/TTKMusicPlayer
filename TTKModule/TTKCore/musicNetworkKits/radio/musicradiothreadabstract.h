@@ -24,21 +24,22 @@ class MUSIC_NETWORK_EXPORT MusicRadioThreadAbstract : public MusicNetworkAbstrac
 {
     Q_OBJECT
 public:
-    explicit MusicRadioThreadAbstract(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRadioThreadAbstract(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+
     virtual ~MusicRadioThreadAbstract();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToDownload(const QString &data) = 0;
+    static QString getClassName();
     /*!
      * Start to download data.
      * Subclass should implement this function.
      */
+    virtual void startToDownload(const QString &data) = 0;
 
 protected:
     QNetworkCookieJar *m_cookJar;

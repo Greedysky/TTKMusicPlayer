@@ -22,22 +22,23 @@ class MUSIC_TOOLSET_EXPORT MusicMobileDevicesWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicMobileDevicesWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicMobileDevicesWidget(QWidget *parent = 0);
+
     ~MusicMobileDevicesWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void showMobileManager();
     /*!
      * Show mobile manager widget.
      */
+    void showMobileManager();
 
 protected:
     QToolButton *m_closeButton;

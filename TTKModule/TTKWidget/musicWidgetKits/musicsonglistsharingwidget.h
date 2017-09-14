@@ -22,40 +22,41 @@ class MUSIC_WIDGET_EXPORT MusicSongListSharingWidget : public MusicAbstractMoveD
 {
     Q_OBJECT
 public:
-    explicit MusicSongListSharingWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongListSharingWidget(QWidget *parent = 0);
+
     virtual ~MusicSongListSharingWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual int exec();
     /*!
      * Override exec function.
      */
-    void switchToDiffWidget(int index);
+    virtual int exec();
     /*!
      * Switch to diff widget.
      */
-    void writeMainCopyButtonClicked();
+    void switchToDiffWidget(int index);
     /*!
      * Write copy button clicked.
      */
-    void readMainButtonClicked();
+    void writeMainCopyButtonClicked();
     /*!
      * Read button clicked.
      */
+    void readMainButtonClicked();
 
 protected:
-    void createWriteKey();
     /*!
      * Create write key.
      */
+    void createWriteKey();
 
     Ui::MusicSongListSharingWidget *m_ui;
 

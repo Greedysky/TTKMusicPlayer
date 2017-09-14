@@ -61,89 +61,90 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicDownLo
 public:
     enum QueryType
     {
-        MusicQuery, ///*query music*/
-        MovieQuery, ///*query movie*/
-        LrcQuery,   ///*query lrc*/
-        OtherQuery, ///*query external*/
+        MusicQuery, /*!< query music*/
+        MovieQuery, /*!< query movie*/
+        LrcQuery,   /*!< query lrc*/
+        OtherQuery, /*!< query external*/
     };
 
-    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
+
     virtual ~MusicDownLoadQueryThreadAbstract();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startToSearch(QueryType type, const QString &text) = 0;
     /*!
      * Start to search data from name and type.
      * Subclass should implement this function.
      */
+    virtual void startToSearch(QueryType type, const QString &text) = 0;
 
-    inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     /*!
      * Set search data quality.
      */
-    inline QString getSearchQuality() const { return m_searchQuality;}
+    inline void setSearchQuality(const QString &qual) { m_searchQuality = qual;}
     /*!
      * Get search data quality.
      */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    inline QString getSearchQuality() const { return m_searchQuality;}
     /*!
      * Set wheather query all quality of records.
      */
-    inline bool getQueryAllRecords() const { return m_queryAllRecords;}
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
     /*!
      * Get query all records flag.
      */
-    inline void setQuerySimplify(bool state) { m_querySimplify = state;}
+    inline bool getQueryAllRecords() const { return m_queryAllRecords;}
     /*!
      * Set query simplify mode.
      */
-    inline bool getQuerySimplify() const { return m_querySimplify;}
+    inline void setQuerySimplify(bool state) { m_querySimplify = state;}
     /*!
      * Get query simplify flag.
      */
-    inline void setQueryExtraMovie(bool state) { m_queryExtraMovie = state;}
+    inline bool getQuerySimplify() const { return m_querySimplify;}
     /*!
      * Set query extra movie flag.
      */
-    inline QueryType getQueryType() const { return m_currentType;}
+    inline void setQueryExtraMovie(bool state) { m_queryExtraMovie = state;}
     /*!
      * Return the current song query type.
      */
-    inline QString getQueryServer() const { return m_queryServer;}
+    inline QueryType getQueryType() const { return m_currentType;}
     /*!
      * Return the current song query server.
      */
-    inline QString getSearchedText() const { return m_searchText;}
+    inline QString getQueryServer() const { return m_queryServer;}
     /*!
      * Return the current song name.
      */
-    inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
+    inline QString getSearchedText() const { return m_searchText;}
     /*!
      * Return the current song container.
      */
+    inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
 
 Q_SIGNALS:
-    void clearAllItems();
     /*!
      * Clear all items before the new query start.
      */
-    void createSearchedItems(const MusicSearchedItem &songItem);
+    void clearAllItems();
     /*!
      * Create the current items by song name\ artist name and time.
      */
+    void createSearchedItems(const MusicSearchedItem &songItem);
 
 protected:
-    QString mapQueryServerString() const;
     /*!
      * Map query server string.
      */
+    QString mapQueryServerString() const;
 
     MusicObject::MusicSongInformations m_musicSongInfos;
     QString m_searchText, m_searchQuality;

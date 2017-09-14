@@ -56,40 +56,40 @@ class MUSIC_RUN_EXPORT MusicInitObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicInitObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicInitObject(QObject *parent = 0);
 
-    void checkValid();
     /*!
      * Check current setting file's validation.
      */
-    void init();
+    void checkValid();
+
     /*!
      * Init all parameter.
      */
-
-    void dirIsExist(const QString &name);
+    void init();
     /*!
      * Check current dir is exist, no, just create it.
      */
-    void checkTheDirectoryExist();
+    void dirIsExist(const QString &name);
     /*!
      * Check the related dir is exist.
      */
-    void checkTheFileNeededExist();
+    void checkTheDirectoryExist();
     /*!
      * Check the related file is exist.
      */
-    void copyFileOverwrite(const QString &origin, const QString &des);
+    void checkTheFileNeededExist();
     /*!
      * Copy file by overwrite.
      */
-    void copyFile(const QString &origin, const QString &des);
+    void copyFileOverwrite(const QString &origin, const QString &des);
     /*!
      * Copy file.
      */
+    void copyFile(const QString &origin, const QString &des);
 
 };
 

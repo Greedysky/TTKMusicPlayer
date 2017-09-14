@@ -36,78 +36,79 @@ class MUSIC_TOOLSET_EXPORT MusicSpectrumWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSpectrumWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSpectrumWidget(QWidget *parent = 0);
+
     virtual ~MusicSpectrumWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void tabIndexChanged(int index);
     /*!
      * Tab Index Changed.
      */
-    void spectrumTypeChanged(int index);
+    void tabIndexChanged(int index);
     /*!
      * Spectrum Type Changed.
      */
-    void spectrumPlusTypeChanged(int index);
+    void spectrumTypeChanged(int index);
     /*!
      * Spectrum Plus Type Changed.
      */
-    void show();
+    void spectrumPlusTypeChanged(int index);
     /*!
      * Override show function.
      */
-    void localFileButtonClicked();
+    void show();
     /*!
      * Local file button clicked.
      */
-    void openFileButtonClicked();
+    void localFileButtonClicked();
     /*!
      * Open file button clicked.
      */
+    void openFileButtonClicked();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * New spectrum widget.
      */
-    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    void newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout);
     /*!
      * New spek widget.
      */
-    void adjustWidgetLayout(int offset);
+    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout);
     /*!
      * Adjust widget layout.
      */
-    void showSpectrum(const QString &name, bool state);
+    void adjustWidgetLayout(int offset);
     /*!
      * Show spectrum by name and state.
      */
-    int findSpectrumWidget(const QString &name);
+    void showSpectrum(const QString &name, bool state);
     /*!
      * Find spectrum widget index by name.
      */
-    void fspekStateChanged();
+    int findSpectrumWidget(const QString &name);
     /*!
      * FSpek state button clicked.
      */
+    void fspekStateChanged();
 
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;

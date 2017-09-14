@@ -23,70 +23,70 @@ class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 public:
     enum LabelType
     {
-        User,       ///*label type is user*/
-        Passwd,     ///*label type is password*/
-        PasswdNew,  ///*label type is new password*/
-        PwdConfirm, ///*label type is confirm password*/
-        Mail        ///*label type is mail*/
+        User,       /*!< label type is user*/
+        Passwd,     /*!< label type is password*/
+        PasswdNew,  /*!< label type is new password*/
+        PwdConfirm, /*!< label type is confirm password*/
+        Mail        /*!< label type is mail*/
     };
 
-    explicit MusicUserLineEdit(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserLineEdit(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setLabel(LabelType ty, QLabel *t, QLabel *s);
+    static QString getClassName();
     /*!
      * Set label and label type.
      */
-    inline bool getMailStatus() const { return m_mailContains;}
+    void setLabel(LabelType ty, QLabel *t, QLabel *s);
     /*!
      * Check the mail type valid.
      */
-    inline bool getStrStatus() const { return m_strContains;}
+    inline bool getMailStatus() const { return m_mailContains;}
     /*!
      * Check the string type valid.
      */
+    inline bool getStrStatus() const { return m_strContains;}
 
 Q_SIGNALS:
-    void checkPwdStrength(int code);
     /*!
      * Check the new password strength.
      * -1 empty string, 0 weak, 1 middle, 2 strong
      */
+    void checkPwdStrength(int code);
 
 protected Q_SLOTS:
-    void checkPwdStrength();
     /*!
      * Check the new password strength.
      */
+    void checkPwdStrength();
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event) override;
-    virtual void focusOutEvent(QFocusEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void checkTheInput();
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void focusOutEvent(QFocusEvent *event) override;
     /*!
      * Check the input valied when focus out.
      */
-    void showLabel();
+    void checkTheInput();
     /*!
      * Show mail label.
      */
-    void showLabel(int s, int e);
+    void showLabel();
     /*!
      * Show string label.
      */
-    void labelCheck(bool check);
+    void showLabel(int s, int e);
     /*!
      * Show label info that means you input is valid or not.
      */
+    void labelCheck(bool check);
 
     QLabel *m_tipsLabel;
     QLabel *m_statusLabel;

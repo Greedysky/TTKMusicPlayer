@@ -29,175 +29,178 @@ class MUSIC_GUI_EXPORT MusicTopAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicTopAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTopAreaWidget(QWidget *parent = 0);
+
     ~MusicTopAreaWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicTopAreaWidget *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    static MusicTopAreaWidget *instance();
     /*!
      * Set up app ui.
      */
+    void setupUi(Ui::MusicApplication* ui);
 
-    void setParameters(const QString &skin, int alpha, int list);
     /*!
      * Set background skin and alpha and list alpha parameter.
      */
-    inline QString getBackgroundPath() const { return m_backgroundImagePath; }
+    void setParameters(const QString &skin, int alpha, int list);
     /*!
      * Get background skin name.
      */
-    inline int getBackgroundAlpha() const { return m_backgroundAlpha; }
+    inline QString getBackgroundPath() const { return m_backgroundImagePath; }
     /*!
      * Get background skin alpha.
      */
-    int getBackgroundListAlpha();
+    inline int getBackgroundAlpha() const { return m_backgroundAlpha; }
     /*!
      * Get list background skin alpha.
      */
-    bool getBackgroundTransparentEnable() const;
+    int getBackgroundListAlpha();
     /*!
      * Get bg window skin enable.
      */
-    QPixmap getRendererPixmap() const;
+    bool getBackgroundTransparentEnable() const;
     /*!
      * Get background skin pixmap.
      */
+    QPixmap getRendererPixmap() const;
 
-    bool getUserLoginState() const;
     /*!
      * Check if the user is login now.
      */
+    bool getUserLoginState() const;
 
-    void setTimerStop();
     /*!
      * Stop background skin change tiemr.
      */
-    void showPlayStatus(bool status);
+    void setTimerStop();
     /*!
      * Set current play state button.
      */
-    void setLabelText(const QString &name) const;
+    void showPlayStatus(bool status);
     /*!
      * Set current song text.
      */
-    void setVolumeValue(int value) const;
+    void setLabelText(const QString &name) const;
     /*!
      * Set current volume value by index.
      */
+    void setVolumeValue(int value) const;
 
 Q_SIGNALS:
-    void setTransparent(int index);
     /*!
      * Set list background skin transparent emit.
      */
-    void musicSearchButtonClicked();
+    void setTransparent(int index);
     /*!
      * Search current music song from net.
      */
+    void musicSearchButtonClicked();
 
 public Q_SLOTS:
-    void musicSearchTopListInfoFinished(const QString &data);
     /*!
      * Search top list information finished.
      */
-    void musicShowSkinChangedWindow();
+    void musicSearchTopListInfoFinished(const QString &data);
     /*!
      * Show change background skin dailog.
      */
-    void musicUserContextLogin();
+    void musicShowSkinChangedWindow();
     /*!
      * Send user to login.
      */
-    void musicSetAsArtBackground();
+    void musicUserContextLogin();
     /*!
      * Set background as art big picture.
      */
-    void musicBgTransparentChanged();
+    void musicSetAsArtBackground();
     /*!
      * Current background transparent changed.
      */
-    void musicBgTransparentChanged(int index);
+    void musicBgTransparentChanged();
     /*!
      * Current background transparent changed by index.
      */
-    void musicBgTransparentChanged(const QString &fileName);
+    void musicBgTransparentChanged(int index);
     /*!
      * Current background transparent changed by string.
      */
-    void musicBackgroundSkinChanged(const QString &fileName);
+    void musicBgTransparentChanged(const QString &fileName);
     /*!
      * Current background skin changed by new path.
      */
-    void musicBackgroundSkinCustumChanged(const QString &fileName);
+    void musicBackgroundSkinChanged(const QString &fileName);
     /*!
      * Current background skin custum changed by new path.
      */
-    void musicBackgroundChanged();
+    void musicBackgroundSkinCustumChanged(const QString &fileName);
     /*!
      * Changed current background skin.
      */
-    void musicBackgroundSliderStateChanged(bool state);
+    void musicBackgroundChanged();
     /*!
      * Current slider state changed.
      */
-    void musicBgThemeDownloadFinished();
+    void musicBackgroundSliderStateChanged(bool state);
     /*!
      * Current background skin download is finished.
      */
-    void musicBgThemeChangedByResize();
+    void musicBgThemeDownloadFinished();
     /*!
      * Resize current background skin when geometry changed.
      */
-    void musicPlayListTransparent(int index);
+    void musicBgThemeChangedByResize();
     /*!
      * Current list background transparent changed.
      */
-    ///This is a slot by MusicRemoteWidget's signal emit
-    void musicCircleRemote();
+    void musicPlayListTransparent(int index);
     /*!
      * Changed current remote to circle mode.
      */
-    void musicDiamondRemote();
+    void musicCircleRemote();
     /*!
      * Changed current remote to diamond mode.
      */
-    void musicSquareRemote();
+    void musicDiamondRemote();
     /*!
      * Changed current remote to square mode.
      */
-    void musicRectangleRemote();
+    void musicSquareRemote();
     /*!
      * Changed current remote to rectangle mode.
      */
-    void musicSimpleStyleRemote();
+    void musicRectangleRemote();
     /*!
      * Changed current remote to simple style mode.
      */
-    void musicComplexStyleRemote();
+    void musicSimpleStyleRemote();
     /*!
      * Changed current remote to complex style mode.
      */
-    void musicWallpaperRemote(bool create);
+    void musicComplexStyleRemote();
     /*!
      * Changed current remote to wallpaper mode.
      */
-    void musicRipplesRemote();
+    void musicWallpaperRemote(bool create);
     /*!
      * Changed current remote to ripples mode.
      */
-    void musicDeleteRemote();
+    void musicRipplesRemote();
     /*!
      * Delete current remote.
+     */
+    void musicDeleteRemote();
+    /*!
+     * Switch to diff remote type.
      */
     void musicRemoteTypeChanged(QAction *type);
     /*!
@@ -205,17 +208,17 @@ public Q_SLOTS:
      */
     void musicRemoteTypeChanged(int type);
     /*!
-     * Switch to diff remote type.
-     */
-    void musicStackedToolsWidgetChanged();
-    /*!
      * Change to tool sets widget.
      */
+    void musicStackedToolsWidgetChanged();
 
 protected:
-    void createRemoteWidget();
     /*!
      * Create remote widget.
+     */
+    void createRemoteWidget();
+    /*!
+     * Draw window background rect.
      */
     void drawWindowBackgroundRect();
     /*!
@@ -223,16 +226,13 @@ protected:
      */
     void drawWindowBackgroundRect(const QImage &image);
     /*!
-     * Draw window background rect.
+     * Draw window background rect by qimage.
      */
     void drawWindowBackgroundRectString();
     /*!
-     * Draw window background rect by qimage.
-     */
-    void drawWindowBackgroundRectString(const QString &path);
-    /*!
      * Draw window background rect by picture.
      */
+    void drawWindowBackgroundRectString(const QString &path);
 
     Ui::MusicApplication *m_ui;
     MusicUserWindow *m_musicUserWindow;

@@ -27,48 +27,49 @@ class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
 {
     Q_OBJECT
 public:
-    explicit MusicUserWindow(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserWindow(QWidget *parent = 0);
+
     ~MusicUserWindow();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    bool isUserLogin() const;
+    static QString getClassName();
     /*!
      * Check if the user is login now.
      */
+    bool isUserLogin() const;
 
 public Q_SLOTS:
-    void musicUserLogin();
     /*!
      * User widget button clicked.
      */
-    void userStateChanged(const QString &uid, const QString &icon);
+    void musicUserLogin();
     /*!
      * User login state changed.
      */
-    void musicUserContextLogin();
+    void userStateChanged(const QString &uid, const QString &icon);
     /*!
      * Send user to login.
      */
-    void checkToAutoLogin();
+    void musicUserContextLogin();
     /*!
      * Check current user to login auto automatic.
      */
+    void checkToAutoLogin();
 
 protected:
-    bool connectDatabase();
     /*!
      * Connect to database.
      */
-    bool disConnectDatabase();
+    bool connectDatabase();
     /*!
      * Disconnect to database.
      */
+    bool disConnectDatabase();
 
     Ui::MusicUserWindow *m_ui;
     MusicUserModel* m_userModel;

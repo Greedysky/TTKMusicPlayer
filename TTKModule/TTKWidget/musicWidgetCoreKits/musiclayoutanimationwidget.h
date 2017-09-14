@@ -22,58 +22,59 @@ class MUSIC_WIDGET_EXPORT MusicLayoutAnimationWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLayoutAnimationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLayoutAnimationWidget(QWidget *parent = 0);
+
     ~MusicLayoutAnimationWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void start();
     /*!
      * Start to anmiation.
      */
-    void stop();
+    void start();
     /*!
      * Stop to anmiation.
      */
+    void stop();
 
-    void connectTo(QObject *parent);
     /*!
      * Connect to parent.
      */
-    void addStretch(int stretch = 0);
+    void connectTo(QObject *parent);
     /*!
      * Add widget layout stretch.
      */
-    void addWidget(QWidget *widget, int stretch = 0, Qt::Alignment alignment = 0);
+    void addStretch(int stretch = 0);
     /*!
      * Add widget to container.
      */
-    void removeWidget(QWidget *widget);
+    void addWidget(QWidget *widget, int stretch = 0, Qt::Alignment alignment = 0);
     /*!
      * Remove widget to container.
      */
+    void removeWidget(QWidget *widget);
 
 private Q_SLOTS:
-    void valueChanged(const QVariant &value);
     /*!
      * Animation value changed.
      */
-    void animationFinished();
+    void valueChanged(const QVariant &value);
     /*!
      * Animation finished.
      */
+    void animationFinished();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     bool m_isAnimating;
     float m_currentValue;

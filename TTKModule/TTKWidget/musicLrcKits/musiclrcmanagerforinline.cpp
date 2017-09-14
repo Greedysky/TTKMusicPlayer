@@ -1,7 +1,7 @@
 #include "musiclrcmanagerforinline.h"
 
-MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent)
-    : MusicLRCManager(parent)
+MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
+    : MusicLrcManager(parent)
 {
     setAlignment(Qt::AlignCenter);
     m_geometry.setX(m_lrcPerWidth = LRC_PER_WIDTH);
@@ -13,12 +13,12 @@ MusicLRCManagerForInline::MusicLRCManagerForInline(QWidget *parent)
     m_centerOnLrc = false;
 }
 
-QString MusicLRCManagerForInline::getClassName()
+QString MusicLrcManagerForInline::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLRCManagerForInline::paintEvent(QPaintEvent *)
+void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);

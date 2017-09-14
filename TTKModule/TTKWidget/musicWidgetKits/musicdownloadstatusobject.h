@@ -20,45 +20,47 @@ class MUSIC_WIDGET_EXPORT MusicDownloadStatusObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadStatusObject(QObject *w);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadStatusObject(QObject *w);
+
     ~MusicDownloadStatusObject();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void musicCheckHasLrcAlready();
+    static QString getClassName();
+
     /*!
      * Check the current song already has lrc or not,
      * if not just download it.
      */
-    bool checkSettingParameterValue() const;
+    void musicCheckHasLrcAlready();
     /*!
      * Check the setting has open inline or desktop lrc on or not.
      */
+    bool checkSettingParameterValue() const;
 
 public Q_SLOTS:
-    void musicHaveNoLrcAlready();
     /*!
      * Download current music lrc from net.
      */
-    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
+    void musicHaveNoLrcAlready();
     /*!
      * Show download state type.
      * This is a slot by MusicSongSearchOnlineWidget's emit
      */
-    void showDownLoadInfoFinished(const QString &type);
+    void showDownLoadInfoFor(MusicObject::DownLoadMode type);
     /*!
      * Show download state string type.
      * This is a slot by MusicSongSearchOnlineWidget's emit
      */
-    void networkConnectionStateChanged(bool state);
+    void showDownLoadInfoFinished(const QString &type);
     /*!
      * Show current net connect state changed by net thread.
      */
+    void networkConnectionStateChanged(bool state);
 
 protected:
     bool m_previousState;

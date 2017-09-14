@@ -18,56 +18,57 @@ class MUSIC_WIDGET_EXPORT MusicSongsListPlayedTableWidget : public MusicSongsLis
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListPlayedTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsListPlayedTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSongsListPlayedTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
     /*!
      * Update songs file names in table.
      */
+    virtual void updateSongsFileName(const MusicSongs &songs) override;
 
-    virtual void selectRow(int index) override;
     /*!
      * Select the current play row by given index.
      */
-    void selectPlayedRow();
+    virtual void selectRow(int index) override;
     /*!
      * Select the current played row.
      */
+    void selectPlayedRow();
 
 Q_SIGNALS:
-    void updateCountLabel();
     /*!
      * Update count label.
      */
+    void updateCountLabel();
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Delete item from list at current row.
      */
+    virtual void setDeleteItemAt() override;
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

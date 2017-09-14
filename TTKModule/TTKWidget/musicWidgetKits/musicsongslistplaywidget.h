@@ -24,88 +24,89 @@ class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
     /*!
      * Object contsructor by index.
      */
+    explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
+
     virtual ~MusicSongsListPlayWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void insertTimerLabel(const QString &time, const QString &total);
     /*!
      * Update item time label time.
      */
-    void updateCurrentArtist();
+    void insertTimerLabel(const QString &time, const QString &total);
     /*!
      * Update current artist when it download finished.
      */
-    void setParameter(const QString &name, const QString &path);
+    void updateCurrentArtist();
     /*!
      * Update item artist label by name.
      */
-    void setItemRename();
+    void setParameter(const QString &name, const QString &path);
     /*!
      * Rename item artist label name.
      */
-    bool getItemRenameState() { return m_renameLine != nullptr;}
+    void setItemRename();
     /*!
      * Get rename item artist label state.
      */
+    bool getItemRenameState() { return m_renameLine != nullptr;}
 
-    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
     /*!
      * Set current play index.
      */
-    inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
+    inline void setCurrentPlayIndex(int index) { m_currentPlayIndex = index;}
     /*!
      * Get current play index.
      */
+    inline int getCurrentPlayIndex() const { return m_currentPlayIndex;}
 
 Q_SIGNALS:
-    void renameFinished(const QString &text);
     /*!
      * Rename item artist label is finised it emit.
      */
-    void enterChanged(int row, int column);
+    void renameFinished(const QString &text);
     /*!
      * Mouse is the item geometry, emit row and column.
      */
+    void enterChanged(int row, int column);
 
 public Q_SLOTS:
-    void deleteRenameItem();
     /*!
      * Delete rename item.
      */
-    void setChangItemName(const QString &name);
+    void deleteRenameItem();
     /*!
      * Rename item artist label is finised.
      */
-    void currentLoveStateClicked();
+    void setChangItemName(const QString &name);
     /*!
      * Reset current music love icon state.
      */
-    void currentDownloadStateClicked();
+    void currentLoveStateClicked();
     /*!
      * Reset current music download icon state.
      */
+    void currentDownloadStateClicked();
 
 protected:
-    virtual void enterEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createMoreMenu(QMenu *menu);
+    virtual void enterEvent(QEvent *event) override;
     /*!
      * Create more menu information.
      */
-    bool showArtPicture(const QString &name) const;
+    void createMoreMenu(QMenu *menu);
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
+    bool showArtPicture(const QString &name) const;
 
     bool m_noCover;
     int m_currentPlayIndex;

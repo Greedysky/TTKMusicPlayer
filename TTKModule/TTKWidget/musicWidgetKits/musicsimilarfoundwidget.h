@@ -19,26 +19,27 @@ class MUSIC_WIDGET_EXPORT MusicSimilarFoundTableWidget : public MusicQueryFoundT
 {
     Q_OBJECT
 public:
-    explicit MusicSimilarFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSimilarFoundTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSimilarFoundTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    static QString getClassName();
     /*!
      * Set network query input.
      */
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
 
 public Q_SLOTS:
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Create searched items.
      */
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
 
 };
 
@@ -51,58 +52,59 @@ class MUSIC_WIDGET_EXPORT MusicSimilarFoundWidget : public MusicFoundAbstractWid
 {
     Q_OBJECT
 public:
-    explicit MusicSimilarFoundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSimilarFoundWidget(QWidget *parent = 0);
+
     virtual ~MusicSimilarFoundWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
+    virtual void setSongName(const QString &name) override;
 
-    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow() override;
 
 public Q_SLOTS:
-    void queryAllFinished();
     /*!
      * Query all quality musics is finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void queryAllFinished();
     /*!
      * Send recieved data from net.
      */
-    void downloadUrlChanged(const QString &imageUrl);
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Data download finished and send to shared on web.
      */
-    void playButtonClicked();
+    void downloadUrlChanged(const QString &imageUrl);
     /*!
      * Play button clicked now.
      */
-    void downloadButtonClicked();
+    void playButtonClicked();
     /*!
      * Download button clicked now.
      */
-    void addButtonClicked();
+    void downloadButtonClicked();
     /*!
      * Add button clicked now.
      */
+    void addButtonClicked();
 
 protected:
-    void createLabels();
     /*!
      * Create init interface lables.
      */
+    void createLabels();
 
     MusicSimilarFoundTableWidget *m_similarTableWidget;
 

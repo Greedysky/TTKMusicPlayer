@@ -22,42 +22,43 @@ class MUSIC_LRC_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcSearchWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcSearchWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcSearchWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void lrcSearchFinished() const;
     /*!
      * Set lrc search finished.
      */
-    void lrcSearchButtonClicked() const;
+    void lrcSearchFinished() const;
     /*!
      * Lrc search button clicked.
      */
-    void lrcSearchDownloadClicked();
+    void lrcSearchButtonClicked() const;
     /*!
      * Lrc search download clicked.
      */
-    void lrcDownloadStateChanged(const QString &string);
+    void lrcSearchDownloadClicked();
     /*!
      * Lrc download state is finished.
      */
-    void setCurrentSongName(const QString &name) const;
+    void lrcDownloadStateChanged(const QString &string);
     /*!
      * Set current song name.
      */
-    virtual int exec();
+    void setCurrentSongName(const QString &name) const;
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicLrcSearchWidget *m_ui;

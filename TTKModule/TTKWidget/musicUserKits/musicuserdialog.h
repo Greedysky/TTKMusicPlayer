@@ -26,118 +26,119 @@ class MUSIC_USER_EXPORT MusicUserDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicUserDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicUserDialog(QWidget *parent = 0);
+
     ~MusicUserDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void checkToAutoLogin(QString &name, QString &icon);
+    static QString getClassName();
     /*!
      * Check current user to login auto automatic.
      */
-    void setUserModel(MusicUserModel *model);
+    void checkToAutoLogin(QString &name, QString &icon);
     /*!
      * Set user model.
      */
+    void setUserModel(MusicUserModel *model);
 
 Q_SIGNALS:
-    void userLoginSuccess(const QString &uid, const QString &icon);
     /*!
      * User login success emit.
      */
+    void userLoginSuccess(const QString &uid, const QString &icon);
 
 public Q_SLOTS:
-    void userLogin();
     /*!
      * Change to user login widget.
      */
-    void checkUserLogin();
+    void userLogin();
     /*!
      * Check the current user login state.
      */
-    void registerUser();
+    void checkUserLogin();
     /*!
      * Change to user register widget.
      */
-    void checkRegisterUser();
+    void registerUser();
     /*!
      * Check user register mod.
      */
-    void userForgotPasswd();
+    void checkRegisterUser();
     /*!
      * Change to user forgot pwd widget.
      */
-    void checkUserForgotPasswd();
+    void userForgotPasswd();
     /*!
      * Check user forgot password mod.
      */
-    void changeVerificationCode();
+    void checkUserForgotPasswd();
     /*!
      * Set current verification code.
      */
-    void userComboBoxChanged(const QString &name);
+    void changeVerificationCode();
     /*!
      * Selected new user to login.
      */
-    void userEditTextChanged(const QString &name);
+    void userComboBoxChanged(const QString &name);
     /*!
      * Input a new user to login.
      */
-    void buttonClicked(int index);
+    void userEditTextChanged(const QString &name);
     /*!
      * Other login way, but now there is no supported.
      */
-    virtual int exec();
+    void buttonClicked(int index);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void firstStatckWidget();
     /*!
      * Init user login widget.
      */
-    void secondStatckWidget();
+    void firstStatckWidget();
     /*!
      * Init user register widget.
      */
-    void thirdStatckWidget();
+    void secondStatckWidget();
     /*!
      * Init user forgot pwd widget.
      */
-    void clearOriginData();
+    void thirdStatckWidget();
     /*!
      * Clear origin data in need.
      */
-    void readFromUserConfig();
+    void clearOriginData();
     /*!
      * Read user setting to config file.
      */
-    int findUserNameIndex(const QString &name);
+    void readFromUserConfig();
     /*!
      * To find current username in the record list.
      */
-    void readFromUserSettings();
+    int findUserNameIndex(const QString &name);
     /*!
      * Read user info from setting.
      */
-    void writeToUserConfig();
+    void readFromUserSettings();
     /*!
      * Write user setting to config file.
      */
-    void writeToUserSettings();
+    void writeToUserConfig();
     /*!
      * Write user info to setting.
      */
-    void windowRectChanged(int index, int height);
+    void writeToUserSettings();
     /*!
      * Reset window rect by diff index and geometry.
      */
+    void windowRectChanged(int index, int height);
 
     Ui::MusicUserDialog *m_ui;
     MusicUserModel *m_userModel;

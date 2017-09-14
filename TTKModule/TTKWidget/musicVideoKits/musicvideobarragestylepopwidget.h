@@ -18,41 +18,42 @@ class MUSIC_VIDEO_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuW
 {
     Q_OBJECT
 public:
-    explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = 0);
+
     virtual ~MusicVideoBarrageStylePopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    int getBarrageSize() const;
     /*!
      * Get barrage size.
      */
-    QColor getBarrageColor() const;
+    int getBarrageSize() const;
     /*!
      * Get barrage color.
      */
+    QColor getBarrageColor() const;
 
 public Q_SLOTS:
-    void barrageSizeButtonClicked(int index);
     /*!
      * Barrage size button clicked by index.
      */
-    void barrageColorButtonClicked(int index);
+    void barrageSizeButtonClicked(int index);
     /*!
      * Barrage color button clicked by index.
      */
+    void barrageColorButtonClicked(int index);
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     int m_barrageSize;
     QColor m_barrageColor;

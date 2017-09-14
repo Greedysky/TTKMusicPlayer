@@ -24,72 +24,72 @@ class MUSIC_EXTRAS_EXPORT KugouWindow : public QWidget
 public:
     enum KuGouType
     {
-        KuGouSong,      ///*KuGou Song*/
-        KuGouRadio,     ///*KuGou Radio*/
-        KuGouList,      ///*KuGou List*/
-        KugouMv,        ///*Kugou Mv*/
-        KuGouLive,      ///*KuGou Live*/
-        KuGouLrc,       ///*KuGou Lrc*/
-        KuGouSingle     ///*KuGou Single*/
+        KuGouSong,      /*!< KuGou Song*/
+        KuGouRadio,     /*!< KuGou Radio*/
+        KuGouList,      /*!< KuGou List*/
+        KugouMv,        /*!< Kugou Mv*/
+        KuGouLive,      /*!< KuGou Live*/
+        KuGouLrc,       /*!< KuGou Lrc*/
+        KuGouSingle     /*!< KuGou Single*/
     };
 
-    explicit KugouWindow(KuGouType type, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit KugouWindow(KuGouType type, QWidget *parent = 0);
 
-    void setUrl(const QString &url);
     /*!
      * Set current web viewer url to show.
      */
+    void setUrl(const QString &url);
 
 public Q_SLOTS:
-    void goBack();
     /*!
      * Set web index go back.
      */
-    void kugouSongIndexChanged(int index);
+    void goBack();
     /*!
      * Kugou song index changed.
      */
-    void kugouRadioIndexChanged(int index);
+    void kugouSongIndexChanged(int index);
     /*!
      * Kugou radio index changed.
      */
-    void kugouMVIndexChanged(int index);
+    void kugouRadioIndexChanged(int index);
     /*!
      * Kugou MV index changed.
      */
+    void kugouMVIndexChanged(int index);
 
 protected:
-    void createWebViewer();
     /*!
      * Create web view widget.
      */
-    void createKugouSongWidget();
+    void createWebViewer();
     /*!
      * Create kugou song widget.
      */
-    void createKugouRadioWidget();
+    void createKugouSongWidget();
     /*!
      * Create kugou radio widget.
      */
-    void createKugouListWidget();
+    void createKugouRadioWidget();
     /*!
      * Create kugou list widget.
      */
-    void createKugouMVWidget();
+    void createKugouListWidget();
     /*!
      * Create kugou mv widget.
      */
-    void createKugouSingleWidget();
+    void createKugouMVWidget();
     /*!
      * Create kugou single widget.
      */
-    void changeClickedButtonStyle(int index);
+    void createKugouSingleWidget();
     /*!
      * Change clicked button style by index.
      */
+    void changeClickedButtonStyle(int index);
 
 private:
     TTK_DECLARE_PRIVATE(KugouWindow)

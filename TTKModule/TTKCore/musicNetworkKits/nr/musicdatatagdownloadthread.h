@@ -18,41 +18,41 @@ class MUSIC_NETWORK_EXPORT MusicDataTagDownloadThread : public MusicDataDownload
 {
     Q_OBJECT
 public:
-    MusicDataTagDownloadThread(const QString &url, const QString &save,
-                               Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
+    MusicDataTagDownloadThread(const QString &url, const QString &save,
+                               Download_Type type, QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setTags(const QString &smlUrl, const QString &title, const QString &artist);
     /*!
      * Set custom tags.
      */
-    virtual void startToDownload() override;
+    void setTags(const QString &smlUrl, const QString &title, const QString &artist);
     /*!
      * Start to download data.
      */
+    virtual void startToDownload() override;
 
 Q_SIGNALS:
-    void finished();
     /*!
      * Modify tag finished.
      */
+    void finished();
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    virtual void downLoadFinished() override;
     /*!
      * Send download byte data from net.
      */
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     QString m_smallPicUrl;

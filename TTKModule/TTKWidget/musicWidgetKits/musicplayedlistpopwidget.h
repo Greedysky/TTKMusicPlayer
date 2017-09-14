@@ -23,100 +23,101 @@ class MUSIC_WIDGET_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPlayedListPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlayedListPopWidget(QWidget *parent = 0);
+
     virtual ~MusicPlayedListPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicPlayedListPopWidget *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
+    static MusicPlayedListPopWidget *instance();
 
-    void clear();
     /*!
      * Clear music data list.
      */
+    void clear();
+    /*!
+     * Get current played list.
+     */
     void resetToolIndex(const QList< std::pair<int, int> > &indexs);
+
     /*!
      * Get current played list.
      */
-
     QStringList getPlayedList() const;
-    /*!
-     * Get current played list.
-     */
 
-    void remove(int toolIndex, const MusicSong &song);
     /*!
      * Remove music from data list.
      */
-    void remove(int toolIndex, const MusicSongs &songs);
+    void remove(int toolIndex, const MusicSong &song);
     /*!
      * Remove given music list from data list.
      */
-    void append(int toolIndex, const MusicSong &song);
+    void remove(int toolIndex, const MusicSongs &songs);
     /*!
      * Append music to data list.
      */
-    void append(int toolIndex, const MusicSongs &songs);
+    void append(int toolIndex, const MusicSong &song);
     /*!
      * Append music list to data list.
      */
-    void insert(int toolIndex, const MusicSong &song);
+    void append(int toolIndex, const MusicSongs &songs);
     /*!
      * Insert music after played music index.
      */
-    void insert(int toolIndex, int index, const MusicSong &song);
+    void insert(int toolIndex, const MusicSong &song);
     /*!
      * Insert music by given index.
      */
+    void insert(int toolIndex, int index, const MusicSong &song);
 
-    void setCurrentIndex(const QString &path);
     /*!
      * Set current select played music index.
      */
-    void resizeWindow();
+    void setCurrentIndex(const QString &path);
     /*!
      * Resize window bound by widgte resize called.
      */
+    void resizeWindow();
 
 public Q_SLOTS:
-    void popupMenu();
     /*!
      * To popup menu.
      */
-    void setDeleteItemAt();
+    void popupMenu();
     /*!
      * Delete item from list at current row.
      */
-    void setDeleteItemAll();
+    void setDeleteItemAt();
     /*!
      * Delete all items from list.
      */
+    void setDeleteItemAll();
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
-    QWidget *createContainerWidget();
+    void initWidget();
     /*!
      * Create container widget.
      */
-    void updateSongsFileName();
+    QWidget *createContainerWidget();
     /*!
      * Update songs file names.
      */
-    void setPlayListCount(int count);
+    void updateSongsFileName();
     /*!
      * Set play list count.
      */
+    void setPlayListCount(int count);
 
     QList<QLabel*> m_labels;
     MusicSongs m_songLists;

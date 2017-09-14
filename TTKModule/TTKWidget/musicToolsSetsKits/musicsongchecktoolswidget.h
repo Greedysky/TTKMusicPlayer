@@ -27,106 +27,107 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsWidget : public MusicAbstractMoveW
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsWidget(QWidget *parent = 0);
+
     virtual ~MusicSongCheckToolsWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void getMusicLists(MusicSongItems &songs);
     /*!
      * Get music datas from container.
      */
+    void getMusicLists(MusicSongItems &songs);
 
 public Q_SLOTS:
-    void modifiedItemButtonClicked();
     /*!
      * Modified item button clicked.
      */
-    void itemListsChanged(const MusicObject::MIntList &items);
+    void modifiedItemButtonClicked();
     /*!
      * Item lists changed.
      */
-    void renameButtonClicked();
+    void itemListsChanged(const MusicObject::MIntList &items);
     /*!
      * Rename button clicked.
      */
-    void renameButtonCheckClicked();
+    void renameButtonClicked();
     /*!
      * Rename button check clicked.
      */
-    void renameReCheckButtonClicked();
+    void renameButtonCheckClicked();
     /*!
      * Rename reCheck button clicked.
      */
-    void renameCheckFinished(const MusicSongCheckToolsRenames &items);
+    void renameReCheckButtonClicked();
     /*!
      * Rename check finished.
      */
-    void qualityButtonClicked();
+    void renameCheckFinished(const MusicSongCheckToolsRenames &items);
     /*!
      * Quality button clicked.
      */
-    void qualityButtonCheckClicked();
+    void qualityButtonClicked();
     /*!
      * Quality button check clicked.
      */
-    void qualityReCheckButtonClicked();
+    void qualityButtonCheckClicked();
     /*!
      * Quality reCheck button clicked.
      */
-    void qualityCheckFinished(const MusicSongCheckToolsQualitys &items);
+    void qualityReCheckButtonClicked();
     /*!
      * Quality check finished.
      */
-    void duplicateButtonClicked();
+    void qualityCheckFinished(const MusicSongCheckToolsQualitys &items);
     /*!
      * Duplicate button clicked.
      */
-    void duplicateButtonCheckClicked();
+    void duplicateButtonClicked();
     /*!
      * Duplicate button check clicked.
      */
-    void duplicateReCheckButtonClicked();
+    void duplicateButtonCheckClicked();
     /*!
      * Duplicate reCheck button clicked.
      */
-    void duplicateCheckFinished(const MusicSongCheckToolsDuplicates &items);
+    void duplicateReCheckButtonClicked();
     /*!
      * Duplicate check finished.
      */
-    void show();
+    void duplicateCheckFinished(const MusicSongCheckToolsDuplicates &items);
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    void getSelectedSongItems();
     /*!
      * Get selected song items.
      */
-    void renameWidgetInit();
+    void getSelectedSongItems();
     /*!
      * Rename widget init.
      */
-    void qualityWidgetInit();
+    void renameWidgetInit();
     /*!
      * Quality widget init.
      */
-    void duplicateWidgetInit();
+    void qualityWidgetInit();
     /*!
      * Duplicate widget init.
      */
-    void switchToSelectedItemStyle(int index);
+    void duplicateWidgetInit();
     /*!
      * Switch to selected item style.
      */
+    void switchToSelectedItemStyle(int index);
 
     Ui::MusicSongCheckToolsWidget *m_ui;
 

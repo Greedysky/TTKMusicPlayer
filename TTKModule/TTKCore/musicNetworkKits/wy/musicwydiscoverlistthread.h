@@ -18,35 +18,35 @@ class MUSIC_NETWORK_EXPORT MusicWYDiscoverListThread : public MusicDownLoadDisco
 {
     Q_OBJECT
 public:
-    explicit MusicWYDiscoverListThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicWYDiscoverListThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToSearch() override;
+    static QString getClassName();
     /*!
      * Start to Search data from toplist.
      */
+    virtual void startToSearch() override;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void searchTopListInfoFinished();
+    virtual void downLoadFinished() override;
     /*!
      * Search top list information finished.
      */
+    void searchTopListInfoFinished();
 
 protected:
-    void searchTopListInformation(const QString &id);
     /*!
      * Search top list information.
      */
+    void searchTopListInformation(const QString &id);
 
 };
 

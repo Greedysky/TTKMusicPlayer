@@ -971,7 +971,7 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
 
     if(key == Inline)
     {
-        MusicLRCColor cl = MusicLRCColor::mapIndexToColor(MStatic_cast(MusicLRCColor::LrcColorType, index));
+        MusicLrcColor cl = MusicLrcColor::mapIndexToColor(MStatic_cast(MusicLrcColor::LrcColorType, index));
         m_lrcSelectedFg = cl.m_fgColor;
         m_lrcSelectedBg = cl.m_bgColor;
         m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFg);
@@ -980,7 +980,7 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     }
     else
     {
-        MusicLRCColor cl = MusicLRCColor::mapIndexToColor(MStatic_cast(MusicLRCColor::LrcColorType, index + LRC_COLOR_OFFSET));
+        MusicLrcColor cl = MusicLrcColor::mapIndexToColor(MStatic_cast(MusicLrcColor::LrcColorType, index + LRC_COLOR_OFFSET));
         m_DlrcSelectedFg = cl.m_fgColor;
         m_DlrcSelectedBg = cl.m_bgColor;
         m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFg);

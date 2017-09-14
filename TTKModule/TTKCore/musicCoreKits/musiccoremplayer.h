@@ -24,143 +24,144 @@ class MUSIC_CORE_EXPORT MusicCoreMPlayer : public QObject
 public:
     enum Category
     {
-        NullCategory,   ///*no category*/
-        MusicCategory,  ///*music category*/
-        RadioCategory,  ///*radio category*/
-        VideoCategory   ///*video category*/
+        NullCategory,   /*!< no category*/
+        MusicCategory,  /*!< music category*/
+        RadioCategory,  /*!< radio category*/
+        VideoCategory   /*!< video category*/
     };
 
-    explicit MusicCoreMPlayer(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCoreMPlayer(QObject *parent = 0);
+
     ~MusicCoreMPlayer();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setMedia(Category type, const QString &data, int winId = -1);
+    static QString getClassName();
     /*!
      * Set media by type and data path.
      */
-    void setPosition(qint64 pos);
+    void setMedia(Category type, const QString &data, int winId = -1);
     /*!
      * Set current play pos.
      */
-    void setLeftVolume();
+    void setPosition(qint64 pos);
     /*!
      * Set left player volume mode.
      */
-    void setRightVolume();
+    void setLeftVolume();
     /*!
      * Set right player volume mode.
      */
-    void setMultiVoice(int number);
+    void setRightVolume();
     /*!
      * Set single voice from multi voice by id.
      */
+    void setMultiVoice(int number);
 
-    void setMute(bool mute);
     /*!
      * Set current player mute or not.
      */
-    void setVolume(int value);
+    void setMute(bool mute);
     /*!
      * Set current player volume.
      */
-    bool isPlaying() const;
+    void setVolume(int value);
     /*!
      * Get current player is playing or not.
      */
-    inline MusicObject::PlayState state() const { return m_playState; }
+    bool isPlaying() const;
     /*!
      * Get current player state.
      */
-    inline Category category() const { return m_category; }
+    inline MusicObject::PlayState state() const { return m_playState; }
     /*!
      * Get current player category.
      */
+    inline Category category() const { return m_category; }
 
 Q_SIGNALS:
-    void positionChanged(qint64 position);
     /*!
      * Current position changed.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Current duration changed.
      */
-    void volumeChanged(int volume);
+    void durationChanged(qint64 duration);
     /*!
      * Current volume changed.
      */
-    void mediaChanged(const QString &data);
+    void volumeChanged(int volume);
     /*!
      * Current media data path changed.
      */
-    void stateChanged(MusicObject::PlayState state);
+    void mediaChanged(const QString &data);
     /*!
      * Current state changed.
+     */
+    void stateChanged(MusicObject::PlayState state);
+    /*!
+     * Current media is radio changed.
      */
     void radioChanged();
     /*!
      * Current media is radio changed.
      */
     void finished();
-    /*!
-     * Current media is radio changed.
-     */
 
 public Q_SLOTS:
-    void play();
     /*!
      * Player to play.
      */
-    void stop();
+    void play();
     /*!
      * Player to stop.
      */
+    void stop();
 
 private Q_SLOTS:
-    void dataRecieve();
     /*!
      * Player data has recieved.
      */
-    void positionRecieve();
+    void dataRecieve();
     /*!
      * Player position data has recieved.
      */
-    void durationRecieve();
+    void positionRecieve();
     /*!
      * Player duration data has recieved.
      */
-    void radioStandardRecieve();
+    void durationRecieve();
     /*!
      * Player radio data has recieved.
      */
-    void musicStandardRecieve();
+    void radioStandardRecieve();
     /*!
      * Player music data has recieved.
      */
-    void timeout();
+    void musicStandardRecieve();
     /*!
      * Player one second time out.
      */
+    void timeout();
 
 protected:
-    void setVideoMedia(const QString &data, int winId);
     /*!
      * Set player to video media data.
      */
-    void setMusicMedia(const QString &data);
+    void setVideoMedia(const QString &data, int winId);
     /*!
      * Set player to music media data.
      */
-    void setRadioMedia(const QString &data);
+    void setMusicMedia(const QString &data);
     /*!
      * Set player to radio media data.
      */
+    void setRadioMedia(const QString &data);
 
     QProcess *m_process;
     MusicObject::PlayState m_playState;

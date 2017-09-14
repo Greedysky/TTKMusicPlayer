@@ -21,57 +21,58 @@ class MUSIC_WIDGET_EXPORT MusicTransitionAnimationLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicTransitionAnimationLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTransitionAnimationLabel(QWidget *parent = 0);
+
     ~MusicTransitionAnimationLabel();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    inline void setNoAnimation(bool on) { m_noAnimationSet = on; }
     /*!
      * Set no animation to start.
      */
-    inline bool getNoAnimation() const { return m_noAnimationSet; }
+    inline void setNoAnimation(bool on) { m_noAnimationSet = on; }
     /*!
      * Get no animation state.
      */
+    inline bool getNoAnimation() const { return m_noAnimationSet; }
 
-    QPixmap getRendererPixmap() const;
     /*!
      * Get renderer pixmap image.
      */
+    QPixmap getRendererPixmap() const;
 
-    void stop();
     /*!
      * Stop renderer pixmap animation.
      */
+    void stop();
 
 public Q_SLOTS:
-    void setPixmap(const QPixmap &pix);
     /*!
      * Override the setPixmap function.
      */
+    void setPixmap(const QPixmap &pix);
 
 private Q_SLOTS:
-    void valueChanged(const QVariant &value);
     /*!
      * Animation value changed.
      */
-    void animationFinished();
+    void valueChanged(const QVariant &value);
     /*!
      * Animation finished.
      */
+    void animationFinished();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     bool m_isAnimating;
     int m_currentValue;

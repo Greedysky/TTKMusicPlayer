@@ -26,54 +26,55 @@ class MUSIC_SUPER_EXPORT MusicFileSenderServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicFileSenderServer(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFileSenderServer(QObject *parent = 0);
+
     ~MusicFileSenderServer();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void start();
+    static QString getClassName();
     /*!
      * Start to transfer file.
      */
-    void setSendFile(const QString &file);
+    void start();
     /*!
      * Set send file.
      */
-    void setSendFiles(const QStringList &files);
+    void setSendFile(const QString &file);
     /*!
      * Set send file list.
      */
-    void setReceiveAddress(const QString &ip);
+    void setSendFiles(const QStringList &files);
     /*!
      * Set receive address.
      */
-    QString getReceiveAddress() const;
+    void setReceiveAddress(const QString &ip);
     /*!
      * Get receive address.
      */
+    QString getReceiveAddress() const;
 
 Q_SIGNALS:
-    void fileSendFinished();
     /*!
      * Send file just has finished.
      */
+    void fileSendFinished();
 
 private Q_SLOTS:
-    void readPendingDatagrams();
     /*!
      * Read pending datagrams.
      */
+    void readPendingDatagrams();
 
 protected:
-    void sendData();
     /*!
      * Send file data.
      */
+    void sendData();
 
     bool m_nextFile;
     QUdpSocket *m_sendSocket;

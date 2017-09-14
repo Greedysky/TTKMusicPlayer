@@ -28,75 +28,76 @@ class MUSIC_VIDEO_EXPORT MusicVideoControlWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoControlWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoControlWidget(QWidget *parent = 0);
+
     ~MusicVideoControlWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setValue(qint64 position) const;
+    static QString getClassName();
     /*!
      * Set current video play value.
      */
-    void durationChanged(qint64 duration) const;
+    void setValue(qint64 position) const;
     /*!
      * Set current video duration.
      */
-    void setButtonStyle(bool style) const;
+    void durationChanged(qint64 duration) const;
     /*!
      * Set current button style.
      */
-    void mediaChanged(const QString &url);
+    void setButtonStyle(bool style) const;
     /*!
      * Set current media url.
      */
-    void setFixedSize(int w, int h);
+    void mediaChanged(const QString &url);
     /*!
      * Resize width bound by given width and height.
      */
-    void setQualityActionState();
+    void setFixedSize(int w, int h);
     /*!
      * Set quality action state enable or disable.
      */
+    void setQualityActionState();
 
 Q_SIGNALS:
-    void mvURLChanged(const QString &data);
     /*!
      * Set current media url by selected quality.
      */
-    void sliderValueChanged(int value);
+    void mvURLChanged(const QString &data);
     /*!
      * Slider value changed at value.
      */
+    void sliderValueChanged(int value);
 
-    void pushBarrageChanged(bool on);
     /*!
      * Open barrage on or not.
      */
-    void addBarrageChanged(const MusicBarrageRecord &record);
+    void pushBarrageChanged(bool on);
     /*!
      * Add barrage text to mv.
      */
+    void addBarrageChanged(const MusicBarrageRecord &record);
 
 public Q_SLOTS:
-    void pushBarrageClicked();
     /*!
      * Push barrage clicked.
      */
-    void sendBarrageClicked();
+    void pushBarrageClicked();
     /*!
      * Send barrage clicked.
      */
+    void sendBarrageClicked();
 
 protected:
-    QWidget *createVideoBarrageWidget();
     /*!
      * Create video barrage widget.
      */
+    QWidget *createVideoBarrageWidget();
 
     QLabel *m_timeLabel;
     QPushButton *m_playButton;

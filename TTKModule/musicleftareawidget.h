@@ -27,95 +27,94 @@ class MUSIC_GUI_EXPORT MusicLeftAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLeftAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    ~MusicLeftAreaWidget();
+    explicit MusicLeftAreaWidget(QWidget *parent = 0);
 
-    static QString getClassName();
+    ~MusicLeftAreaWidget();
     /*!
      * Get class object name.
      */
-    static MusicLeftAreaWidget *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    static MusicLeftAreaWidget *instance();
     /*!
      * Set up app ui.
      */
-    void musictLoveStateClicked(bool state);
+    void setupUi(Ui::MusicApplication* ui);
     /*!
      * Reset current music love icon state.
      */
-    void createSoundKMicroWidget(const QString &name);
+    void musictLoveStateClicked(bool state);
     /*!
      * Create sound KMicro widget.
      */
-
-    bool isLrcWidgetShowFullScreen() const;
+    void createSoundKMicroWidget(const QString &name);
     /*!
      * Current is show full container.
      */
+    bool isLrcWidgetShowFullScreen() const;
 
 Q_SIGNALS:
-    void currentLoveStateChanged();
     /*!
      * Current music love icon state changed.
      */
-    void currentDownloadStateChanged();
+    void currentLoveStateChanged();
     /*!
      * Current music download icon state changed.
      */
+    void currentDownloadStateChanged();
 
 public Q_SLOTS:
-    void setTransparent(int index);
     /*!
      * Set list background skin transparent.
      */
-    void musicDownloadSongToLocal();
+    void setTransparent(int index);
     /*!
      * To download music data from net to load.
      */
-    void musicDownloadSongFinished();
+    void musicDownloadSongToLocal();
     /*!
      * To download music data from net finished.
      */
-    void cloudSharedSongUploadAllDone();
+    void musicDownloadSongFinished();
     /*!
      * All files upload finsihed.
      */
-    void lrcWidgetShowFullScreen();
+    void cloudSharedSongUploadAllDone();
     /*!
      * Show full container or not.
      */
-    void switchToSelectedItemStyle(int index);
+    void lrcWidgetShowFullScreen();
     /*!
      * Switch to selected item style.
      */
+    void switchToSelectedItemStyle(int index);
 
 protected:
-    void musicStackedSongListWidgetChanged();
     /*!
      * Change to song list widget.
      */
-    void musicStackedRadioWidgetChanged();
+    void musicStackedSongListWidgetChanged();
     /*!
      * Change to radio widget.
      */
-    void musicStackedMyDownWidgetChanged();
+    void musicStackedRadioWidgetChanged();
     /*!
      * Change to my download widget.
      */
-    void musicStackedMobileWidgetChanged();
+    void musicStackedMyDownWidgetChanged();
     /*!
      * Change to mobile widget.
      */
-    void musicStackedCloudWidgetChanged();
+    void musicStackedMobileWidgetChanged();
     /*!
      * Change to shared cloud widget.
      */
+    void musicStackedCloudWidgetChanged();
 
     Ui::MusicApplication *m_ui;
 

@@ -30,136 +30,137 @@ class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMo
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
+
     virtual ~MusicLocalSongsManagerWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void findExtraDevicePath(const QString &dir);
     /*!
      * Find extra device path.
      */
+    void findExtraDevicePath(const QString &dir);
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
-    void addSongToPlay(const QStringList &names);
+    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Add current selected song to play lists.
      */
+    void addSongToPlay(const QStringList &names);
 
 public Q_SLOTS:
-    void selectedAllItems(bool check);
     /*!
      * Select all items.
      */
-    void watchDirEnable(bool enable);
+    void selectedAllItems(bool check);
     /*!
      * Watch dir enable or not.
      */
-    void watchDirSelected();
+    void watchDirEnable(bool enable);
     /*!
      * Watch dir selected.
      */
-    void watchDirChanged(const QString &path);
+    void watchDirSelected();
     /*!
      * Watch dir path changed.
      */
-    void auditionButtonClick();
+    void watchDirChanged(const QString &path);
     /*!
      * Music song audition play.
      */
-    void addButtonClick();
+    void auditionButtonClick();
     /*!
      * Add music song to play list.
      */
-    void itemCellOnClick(int row, int col);
+    void addButtonClick();
     /*!
      * Item cell on click by row and col.
      */
-    void itemDoubleClicked(int row, int col);
+    void itemCellOnClick(int row, int col);
     /*!
      * Item cell on double click by row and col.
      */
-    void setSongNamePath(const QFileInfoList &name);
+    void itemDoubleClicked(int row, int col);
     /*!
      * Send the searched file or path.
      */
-    void filterScanChanged(int index);
+    void setSongNamePath(const QFileInfoList &name);
     /*!
      * Start to fetch file or files.
      */
-    void musicSearchIndexChanged(int row, int col);
+    void filterScanChanged(int index);
     /*!
      * Search file from list.
      */
-    void updateFileLists(const QFileInfoList &list);
+    void musicSearchIndexChanged(int row, int col);
     /*!
      * Update file lists.
      */
+    void updateFileLists(const QFileInfoList &list);
 
-    void setShowlistButton();
     /*!
      * Select to show list mode.
      */
-    void setShowArtButton();
+    void setShowlistButton();
     /*!
      * Select to show art mode.
      */
-    void setShowAlbumButton();
+    void setShowArtButton();
     /*!
      * Select to show album mode.
      */
-    void show();
+    void setShowAlbumButton();
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void clearAllItems();
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Clear All Items.
      */
-    void addAllItems(const QFileInfoList &name);
+    void clearAllItems();
     /*!
      * Add all file items into list.
      */
-    void addDrivesList();
+    void addAllItems(const QFileInfoList &name);
     /*!
      * Add current system all supported drives list.
      */
-    void itemsSelected();
+    void addDrivesList();
     /*!
      * Set current item or items selected.
      */
-    bool filterIndexChanged();
+    void itemsSelected();
     /*!
      * Current drive index changed.
      */
-    bool filterIndexCustChanged();
+    bool filterIndexChanged();
     /*!
      * Current custom dir path changed.
      */
-    void controlEnable(bool state);
+    bool filterIndexCustChanged();
     /*!
      * Control enable or disable.
      */
-    void loadingLabelState(bool state);
+    void controlEnable(bool state);
     /*!
      * Loading label disable.
      */
+    void loadingLabelState(bool state);
 
     Ui::MusicLocalSongsManagerWidget *m_ui;
     QFileInfoList m_fileNames;

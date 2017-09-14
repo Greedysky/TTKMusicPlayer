@@ -18,66 +18,66 @@
 class MUSIC_LRC_EXPORT MusicLrcDefines
 {
 public:
-    MusicLrcDefines();
     /*!
      * Object contsructor.
      */
+    MusicLrcDefines();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    QStringList getInlineLrcSize() const;
     /*!
      * Get inline lrc size.
      */
-    QStringList getDesktopLrcSize() const;
+    QStringList getInlineLrcSize() const;
     /*!
      * Get desktop lrc size.
      */
+    QStringList getDesktopLrcSize() const;
 
-    int findInlineLrcIndex(int size) const;
     /*!
      * Find inline lrc index.
      */
-    int findInlinePreSize(int index) const;
+    int findInlineLrcIndex(int size) const;
     /*!
      * Find inline pre size.
      */
-    int findInlineNextSize(int index) const;
+    int findInlinePreSize(int index) const;
     /*!
      * Find inline next size.
      */
-    int findInlineFirstSize() const;
+    int findInlineNextSize(int index) const;
     /*!
      * Find inline first size.
      */
-    int findInlineLastSize() const;
+    int findInlineFirstSize() const;
     /*!
      * Find inline last size.
      */
+    int findInlineLastSize() const;
 
-    int findDesktopLrcIndex(int size) const;
     /*!
      * Find desktop lrc index.
      */
-    int findDesktopPreSize(int index) const;
+    int findDesktopLrcIndex(int size) const;
     /*!
      * Find desktop pre size.
      */
-    int findDesktopNextSize(int index) const;
+    int findDesktopPreSize(int index) const;
     /*!
      * Find desktop next size.
      */
-    int findDesktopFirstSize() const;
+    int findDesktopNextSize(int index) const;
     /*!
      * Find desktop first size.
      */
-    int findDesktopLastSize() const;
+    int findDesktopFirstSize() const;
     /*!
      * Find desktop last size.
      */
+    int findDesktopLastSize() const;
 
 protected:
     QStringList m_inlineLrcSize, m_desktopLrcSize;

@@ -29,160 +29,161 @@ class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 public:
     enum Enhanced
     {
-        EnhancedOff,    ///*enhanced off, no any effect*/
-        Music3D,        ///*3d music effect*/
-        MusicNICAM,     ///*nicam music effect*/
-        MusicSubwoofer, ///*subwoofer music effect*/
-        MusicVocal      ///*vocal music effect*/
+        EnhancedOff,    /*!< enhanced off, no any effect*/
+        Music3D,        /*!< 3d music effect*/
+        MusicNICAM,     /*!< nicam music effect*/
+        MusicSubwoofer, /*!< subwoofer music effect*/
+        MusicVocal      /*!< vocal music effect*/
     };
 
-    explicit MusicPlayer(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlayer(QObject *parent = 0);
+
     ~MusicPlayer();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    bool isPlaying() const;
     /*!
      * Get current player is playing or not.
      */
-    MusicObject::PlayState state() const;
+    bool isPlaying() const;
     /*!
      * Get current player state.
      */
-    void setPlaylist(MusicPlaylist *playlist);
+    MusicObject::PlayState state() const;
     /*!
      * Set current play list.
      */
-    MusicPlaylist *playlist() const;
+    void setPlaylist(MusicPlaylist *playlist);
     /*!
      * Get current play list.
      */
+    MusicPlaylist *playlist() const;
 
-    qint64 duration() const;
     /*!
      * Get current player duration.
      */
-    qint64 position() const;
+    qint64 duration() const;
     /*!
      * Get current player postion.
      */
+    qint64 position() const;
 
-    void playNext();
     /*!
      * Set current player to next music.
      */
-    void playPrevious();
+    void playNext();
     /*!
      * Set current player to previous music.
      */
+    void playPrevious();
 
-    int volume() const;
     /*!
      * Get current player volume.
      */
-    void setVolume(int volume);
+    int volume() const;
     /*!
      * Set current player volume.
      */
-    bool isMuted() const;
+    void setVolume(int volume);
     /*!
      * Get current player mute state.
      */
-    void setMuted(bool muted);
+    bool isMuted() const;
     /*!
      * Set current player mute or not.
      */
-    void setPosition(qint64 position);
+    void setMuted(bool muted);
     /*!
      * Set current play pos.
      */
+    void setPosition(qint64 position);
 
-    void setMusicEnhanced(Enhanced type);
     /*!
      * Set current music enhanced effect.
      */
-    Enhanced getMusicEnhanced() const;
+    void setMusicEnhanced(Enhanced type);
     /*!
      * Get current music enhanced effect.
      */
+    Enhanced getMusicEnhanced() const;
 
 Q_SIGNALS:
-    void stateChanged(MusicObject::PlayState newState);
     /*!
      * Current state changed.
      */
-    void durationChanged(qint64 duration);
+    void stateChanged(MusicObject::PlayState newState);
     /*!
      * Current duration changed.
      */
-    void positionChanged(qint64 position);
+    void durationChanged(qint64 duration);
     /*!
      * Current position changed.
      */
-    void volumeChanged(int volume);
+    void positionChanged(qint64 position);
     /*!
      * Current volume changed.
      */
-    void mutedChanged(bool muted);
+    void volumeChanged(int volume);
     /*!
      * Current mute state changed.
      */
+    void mutedChanged(bool muted);
 
 public Q_SLOTS:
-    void play();
     /*!
      * Player to play.
      */
-    void pause();
+    void play();
     /*!
      * Player to pause.
      */
-    void stop();
+    void pause();
     /*!
      * Player to stop.
      */
-    void setEqEffect(const MusicObject::MIntList &hz);
+    void stop();
     /*!
      * Set current equalizer effect.
      */
-    void setEnaleEffect(bool enable);
+    void setEqEffect(const MusicObject::MIntList &hz);
     /*!
      * Set enable to set current equalizer effect.
      */
-    void setEqInformation();
+    void setEnaleEffect(bool enable);
     /*!
      * Read equalizer effect from config file.
      */
-    void setSoundEffectVolume(int value);
+    void setEqInformation();
     /*!
      * Set current player volume.
      */
-    void removeCurrentMedia();
+    void setSoundEffectVolume(int value);
     /*!
      * Remove current music media data.
      */
+    void removeCurrentMedia();
 
 private Q_SLOTS:
-    void update();
     /*!
      * Player one second time out.
      */
-    void getCurrentDuration();
+    void update();
     /*!
      * Get current duration by time out.
      */
+    void getCurrentDuration();
 
 protected:
-    void setMusicEnhancedCase();
     /*!
      * Set current music enhanced effect option.
      */
+    void setMusicEnhancedCase();
 
     MusicPlaylist *m_playlist;
     MusicObject::PlayState m_state;

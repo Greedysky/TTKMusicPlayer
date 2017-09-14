@@ -28,7 +28,11 @@ class MUSIC_NETWORK_EXPORT MusicDownloadQueueCache : public MusicDownLoadThreadA
 {
     Q_OBJECT
 public:
+    /*!
+     * Object contsructor.
+     */
     explicit MusicDownloadQueueCache(Download_Type type, QObject *parent = 0);
+
     /*!
      * Object contsructor.
      */
@@ -39,54 +43,52 @@ public:
      */
     MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas,
                             Download_Type type, QObject *parent = 0);
-    /*!
-     * Object contsructor.
-     */
+
     ~MusicDownloadQueueCache();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void addImageQueue(const MusicDownloadQueueDatas &datas);
+    static QString getClassName();
+
     /*!
      * Add image download url and save path to download queue.
      */
-    virtual void startToDownload() override;
+    void addImageQueue(const MusicDownloadQueueDatas &datas);
     /*!
      * Start to download data.
      */
-    void abort();
+    virtual void startToDownload() override;
     /*!
      * Abort current download thread.
      */
+    void abort();
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void readyReadSlot();
+    virtual void downLoadFinished() override;
     /*!
      * Download received data ready.
      */
-    void errorSlot(QNetworkReply::NetworkError code);
+    void readyReadSlot();
     /*!
      * Download reply error.
      */
+    void errorSlot(QNetworkReply::NetworkError code);
 
 protected:
-    void startDownload(const QString &url);
     /*!
      * Start to download data from url.
      */
-    void startOrderImageQueue();
+    void startDownload(const QString &url);
     /*!
      * Start to download data in order.
      */
+    void startOrderImageQueue();
 
-    bool m_isDownload;
-    bool m_isAbort;
+    bool m_isDownload, m_isAbort;
     QList<MusicDownloadQueueData> m_imageQueue;
     QNetworkRequest *m_request;
 

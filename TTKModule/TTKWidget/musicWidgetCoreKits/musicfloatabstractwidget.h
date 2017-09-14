@@ -22,27 +22,31 @@ class MUSIC_WIDGET_EXPORT MusicFloatAbstractWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicFloatAbstractWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFloatAbstractWidget(QWidget *parent = 0);
+
     virtual ~MusicFloatAbstractWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline void setBlockAnimation(bool b) { m_blockAnimation = b;}
+    static QString getClassName();
     /*!
      * Set block animation state or not.
      */
-    virtual void resizeWindow(int width, int height) = 0;
+    inline void setBlockAnimation(bool b) { m_blockAnimation = b;}
     /*!
      * Resize window bound by given width and height.
      * Subclass should implement this function.
      */
+    virtual void resizeWindow(int width, int height) = 0;
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *) override {}
@@ -50,16 +54,13 @@ protected:
     virtual void mousePressEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
-     * Override the widget event.
+     * Show animation in case.
      */
     void animationIn();
     /*!
-     * Show animation in case.
-     */
-    void animationOut();
-    /*!
      * Show animation out case.
      */
+    void animationOut();
 
     QPropertyAnimation *m_animation;
     QRect m_rectIn, m_rectOut;

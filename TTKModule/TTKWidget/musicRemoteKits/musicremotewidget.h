@@ -29,96 +29,97 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 public:
     enum RemoteType
     {
-        Null = 0,
-        Circle,
-        Square,
-        Rectangle,
-        SimpleStyle,
-        ComplexStyle,
-        Diamond,
-        Ripples
+        Null = 0,       /*!< Romote Null type*/
+        Circle,         /*!< Romote Circle type*/
+        Square,         /*!< Romote Square type*/
+        Rectangle,      /*!< Romote Rectangle type*/
+        SimpleStyle,    /*!< Romote SimpleStyle type*/
+        ComplexStyle,   /*!< Romote ComplexStyle type*/
+        Diamond,        /*!< Romote Diamond type*/
+        Ripples         /*!< Romote Ripples type*/
     };
 
-    explicit MusicRemoteWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidget(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void showPlayStatus(bool status) const;
+    static QString getClassName();
     /*!
      * Set current play state button.
      */
-    void setVolumeValue(int index);
+    void showPlayStatus(bool status) const;
     /*!
      * Set current volume value by index.
      */
-    virtual void setLabelText(const QString &text);
+    void setVolumeValue(int index);
     /*!
      * Set current song text.
      */
-    int mapRemoteTypeIndex();
+    virtual void setLabelText(const QString &text);
     /*!
      * Map remote type to index.
      */
+    int mapRemoteTypeIndex();
 
 Q_SIGNALS:
-    void musicWindowSignal();
     /*!
      * Set show application normal.
      */
-    void musicKeySignal();
+    void musicWindowSignal();
     /*!
      * Set current play state.
      */
-    void musicPlayPreviousSignal();
+    void musicKeySignal();
     /*!
      * Set current play to previous.
      */
-    void musicPlayNextSignal();
+    void musicPlayPreviousSignal();
     /*!
      * Set current play to next.
      */
-    void musicVolumeSignal(int value);
+    void musicPlayNextSignal();
     /*!
      * Set current play volume by value.
      */
-    void musicSettingSignal();
+    void musicVolumeSignal(int value);
     /*!
      * Show current setting widget.
      */
-    void musicRemoteTypeChanged(QAction *type);
+    void musicSettingSignal();
     /*!
      * Change diff remote style by type.
      */
+    void musicRemoteTypeChanged(QAction *type);
 
 public Q_SLOTS:
-    void musicVolumeChanged(int value);
     /*!
      * Set current play volume change by value.
      */
-    void show();
+    void musicVolumeChanged(int value);
     /*!
      * Override show function.
      */
-    bool close();
+    void show();
     /*!
      * Override close function.
      */
+    bool close();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void adjustPostion(QWidget *w);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Adjust the widget postion.
      */
+    void adjustPostion(QWidget *w);
 
     QPushButton *m_showMainWindow, *m_PreSongButton;
     QPushButton *m_NextSongButton, *m_PlayButton;

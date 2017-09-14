@@ -21,56 +21,57 @@ class MUSIC_TOOL_EXPORT MusicConnectMobileWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicConnectMobileWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicConnectMobileWidget(QWidget *parent = 0);
+
     ~MusicConnectMobileWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 private Q_SLOTS:
-    void changeStatckedWidgetFirst();
     /*!
      * Change to main widget.
      */
-    void changeStatckedWidgetSecond();
+    void changeStatckedWidgetFirst();
     /*!
      * Change to wireless widget.
      */
-    void changeStatckedWidgetThird();
+    void changeStatckedWidgetSecond();
     /*!
      * Change to wire widget.
      */
-    void openTransferFiles2Mobile();
+    void changeStatckedWidgetThird();
     /*!
      * Open transfer files to mobile widget.
      */
-    void openTransferFiles2Wifi();
+    void openTransferFiles2Mobile();
     /*!
      * Open transfer files to wifi widget.
      */
+    void openTransferFiles2Wifi();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void initFirstWidget();
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Init main widget.
      */
-    void initSecondWidget();
+    void initFirstWidget();
     /*!
      * Init connect to wireless widget.
      */
-    void initThirdWidget();
+    void initSecondWidget();
     /*!
      * Init connect to wire widget.
      */
+    void initThirdWidget();
 
     MusicAnimationStackedWidget *m_stackedWidget;
 

@@ -18,36 +18,36 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryBDLearnThread : public MusicDownLoa
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryBDLearnThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadQueryBDLearnThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startToSearch(QueryType type, const QString &text) override;
     /*!
      * Start to Search data from name and type.
      */
+    virtual void startToSearch(QueryType type, const QString &text) override;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read lrc tag from query results.
      */
+    void readFromMusicLrcAttribute(MusicObject::MusicSongInformation *info);
 
 };
 

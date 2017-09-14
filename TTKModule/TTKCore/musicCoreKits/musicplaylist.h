@@ -20,102 +20,104 @@ class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylist(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylist(QObject *parent = 0);
+
     ~MusicPlaylist() = default;
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    MusicObject::PlayMode playbackMode() const;
+    static QString getClassName();
+
     /*!
      * Get current play mode.
      */
-    void setPlaybackMode(MusicObject::PlayMode mode);
+    MusicObject::PlayMode playbackMode() const;
     /*!
      * Set current play mode.
      */
+    void setPlaybackMode(MusicObject::PlayMode mode);
 
-    int currentIndex() const;
     /*!
      * Get current play index.
      */
-    QString currentMediaString() const;
+    int currentIndex() const;
     /*!
      * Get current play music media path.
      */
-    QStringList mediaList() const;
+    QString currentMediaString() const;
     /*!
      * Get all music media path.
      */
-    int mediaCount() const;
+    QStringList mediaList() const;
     /*!
      * Get current medias count.
      */
-    bool isEmpty() const;
+    int mediaCount() const;
     /*!
      * Check current medias is empty.
      */
-    bool clear();
+    bool isEmpty() const;
     /*!
      * Clear current medias.
      */
+    bool clear();
 
-    void addMedia(const QString &content);
     /*!
      * Add music media, not append remember.
      */
-    void addMedia(const QStringList &items);
+    void addMedia(const QString &content);
     /*!
      * Add music media list, not append remember.
      */
-    bool insertMedia(int index, const QString &content);
+    void addMedia(const QStringList &items);
     /*!
      * Insert music media into current medias by index.
      */
-    bool insertMedia(int index, const QStringList &items);
+    bool insertMedia(int index, const QString &content);
     /*!
      * Insert music medias into current medias by index.
      */
-    bool removeMedia(int pos);
+    bool insertMedia(int index, const QStringList &items);
     /*!
      * Remove music media from current medias by index.
      */
-    bool removeMedia(int start, int end);
+    bool removeMedia(int pos);
     /*!
      * Remove music media from current medias by index between start and end.
      */
+    bool removeMedia(int start, int end);
 
 Q_SIGNALS:
-    void currentIndexChanged(int index);
     /*!
      * Current play index changed emit.
      */
-    void playbackModeChanged(MusicObject::PlayMode mode);
+    void currentIndexChanged(int index);
     /*!
      * Current play mode changed emit.
      */
+    void playbackModeChanged(MusicObject::PlayMode mode);
 
 public Q_SLOTS:
-    void setCurrentIndex(int index = DEFAULT_INDEX_LEVEL1);
     /*!
      * Set current play index.
      */
-    void appendMedia(const QString &content);
+    void setCurrentIndex(int index = DEFAULT_INDEX_LEVEL1);
     /*!
      * Append music media.
      */
-    void appendMedia(const QStringList &items);
+    void appendMedia(const QString &content);
     /*!
      * Append music medias.
      */
-    void updateMediaLists(const QStringList &list, int index);
+    void appendMedia(const QStringList &items);
     /*!
      * Update music medias into current medias by index.
      */
+    void updateMediaLists(const QStringList &list, int index);
 
 protected:
     int m_currentIndex;

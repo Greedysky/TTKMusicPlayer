@@ -31,60 +31,61 @@ class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestWidget : public MusicAbstractMov
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkSpeedTestWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkSpeedTestWidget(QWidget *parent = 0);
+
     virtual ~MusicNetworkSpeedTestWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
+    void show();
 
 private Q_SLOTS:
-    void networkData(ulong upload, ulong download);
     /*!
      * Get current upload and download speed data.
      */
-    void suspensionOpen();
+    void networkData(ulong upload, ulong download);
     /*!
      * Open suspension widget.
      */
-    void networkTestStart();
+    void suspensionOpen();
     /*!
      * Network test start.
      */
-    void networkTestStop();
+    void networkTestStart();
     /*!
      * Network test stop.
      */
-    void actionTriggered(QAction *action);
+    void networkTestStop();
     /*!
      * Select diff network interface action.
      */
+    void actionTriggered(QAction *action);
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void settingButton();
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Set button popup menu.
      */
+    void settingButton();
 
     Ui::MusicNetworkSpeedTestWidget *m_ui;
     QTimer m_testTimer;

@@ -18,62 +18,63 @@ class MUSIC_LRC_EXPORT MusicLrcSearchTableWidget : public MusicQueryItemTableWid
 {
     Q_OBJECT
 public:
-    explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcSearchTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    static QString getClassName();
     /*!
      * Start search query by text.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Data download to local file.
      */
+    virtual void musicDownloadLocal(int row) override;
 
 Q_SIGNALS:
-    void resolvedSuccess();
     /*!
      * Lrc search state is finished.
      */
-    void lrcDownloadStateChanged(const QString &name);
+    void resolvedSuccess();
     /*!
      * Lrc download state is finished.
      */
+    void lrcDownloadStateChanged(const QString &name);
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void clearAllItems() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void clearAllItems() override;
     /*!
      * Create searched items.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Item has double clicked.
      */
+    virtual void itemDoubleClicked(int row, int column) override;
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

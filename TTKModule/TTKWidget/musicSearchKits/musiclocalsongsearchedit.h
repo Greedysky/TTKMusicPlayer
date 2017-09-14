@@ -19,29 +19,29 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void enterFinished(const QString &text);
     /*!
      * User input the enter key emit.
      */
+    void enterFinished(const QString &text);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
 
 };
 

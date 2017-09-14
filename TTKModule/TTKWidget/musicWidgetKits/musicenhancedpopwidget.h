@@ -21,41 +21,42 @@ class MUSIC_WIDGET_EXPORT MusicEnhancedToolButton : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit MusicEnhancedToolButton(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicEnhancedToolButton(QWidget *parent = 0);
+
     virtual ~MusicEnhancedToolButton();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &styleSheet, bool state = false);
     /*!
      * Set object style sheet.
      */
-    void start();
+    void setStyleSheet(const QString &styleSheet, bool state = false);
     /*!
      * Start label animation .
      */
-    void stop();
+    void start();
     /*!
      * Stop label animation.
      */
+    void stop();
 
 private Q_SLOTS:
-    void finished();
     /*!
      * Label animation just finished.
      */
+    void finished();
 
 protected:
-    virtual void enterEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void enterEvent(QEvent *event) override;
 
     bool m_state;
     QLabel *m_foreLabel, *m_animationLabel;
@@ -70,47 +71,47 @@ class MUSIC_WIDGET_EXPORT MusicEnhancedPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicEnhancedPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicEnhancedPopWidget(QWidget *parent = 0);
+
     virtual ~MusicEnhancedPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void enhancedMusicChanged(int type);
     /*!
      * Set enhanced music config changed return selected index.
      */
+    void enhancedMusicChanged(int type);
 
 public Q_SLOTS:
-    void setEnhancedMusicConfig(int type);
     /*!
      * Set enhanced music config.
      */
-    void caseButtonOnAndOff();
+    void setEnhancedMusicConfig(int type);
     /*!
      * Case button on and off.
      */
-    void buttonAnimationChanged(bool state);
+    void caseButtonOnAndOff();
     /*!
      * Button animation state changed.
      */
-
-    void helpButtonClicked();
+    void buttonAnimationChanged(bool state);
     /*!
      * Help button clicked.
      */
+    void helpButtonClicked();
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     int m_lastSelectedIndex;
     QToolButton *m_caseButton;

@@ -22,56 +22,57 @@ class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicMessageBox(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
-    explicit MusicMessageBox(const QString &text, QWidget *parent = 0);
+    explicit MusicMessageBox(QWidget *parent = 0);
     /*!
      * Object contsructor by context text.
      */
-    MusicMessageBox(const QString &title, const QString &text,
-                    QWidget *parent = 0);
+    explicit MusicMessageBox(const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor by context text and title.
      */
+    MusicMessageBox(const QString &title, const QString &text,
+                    QWidget *parent = 0);
+
     virtual ~MusicMessageBox();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setTitle(const QString &text) const;
+    static QString getClassName();
+
     /*!
      * Set box title.
      */
-    QString title() const;
+    void setTitle(const QString &text) const;
     /*!
      * Get box title.
      */
-
-    void setText(const QString &text) const;
+    QString title() const;
     /*!
      * Set context text.
      */
-    QString text() const;
+    void setText(const QString &text) const;
     /*!
      * Get context text.
      */
+    QString text() const;
 
 public Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Confirm or cancal button clicked, set the state.
      */
-    virtual int exec();
+    void buttonClicked(int index);
     /*!
      * Override exec function.
      */
-    void show();
+    virtual int exec();
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
     Ui::MusicMessageBox *m_ui;

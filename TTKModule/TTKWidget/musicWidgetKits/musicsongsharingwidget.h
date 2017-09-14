@@ -32,46 +32,47 @@ class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialo
 {
     Q_OBJECT
 public:
-    explicit MusicSongSharingWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongSharingWidget(QWidget *parent = 0);
+
     virtual ~MusicSongSharingWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongName(const QString &name);
+    static QString getClassName();
     /*!
      * Set current name to share.
      */
+    void setSongName(const QString &name);
 
 public Q_SLOTS:
-    virtual int exec();
     /*!
      * Override exec function.
      */
-    void textAreaChanged();
+    virtual int exec();
     /*!
      * User custom the current share text.
      */
-    void confirmButtonClicked();
+    void textAreaChanged();
     /*!
      * Confirm button clicked.
      */
-    void downLoadDataChanged(const QString &playUrl, const QString &imageUrl);
+    void confirmButtonClicked();
     /*!
      * Data download finished and send to shared on web.
      */
-    void queryUrlTimeout();
+    void downLoadDataChanged(const QString &playUrl, const QString &imageUrl);
     /*!
      * Query url time out, that means share failed.
      */
-    void close();
+    void queryUrlTimeout();
     /*!
      * Override close function.
      */
+    void close();
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;

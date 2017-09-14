@@ -28,68 +28,69 @@ class MUSIC_TOOLSET_EXPORT MusicIdentifySongsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicIdentifySongsWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicIdentifySongsWidget(QWidget *parent = 0);
+
     ~MusicIdentifySongsWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void getKey();
+    static QString getClassName();
     /*!
      * Get query song id keys.
      */
+    void getKey();
 
 public Q_SLOTS:
-    void detectedButtonClicked();
     /*!
      * Detected the song button clicked.
      */
-    void reDetectButtonClicked();
+    void detectedButtonClicked();
     /*!
      * Retected the song button clicked.
      */
-    void detectedTimeOut();
+    void reDetectButtonClicked();
     /*!
      * Detected the song finished.
      */
-    void musicSongPlay();
+    void detectedTimeOut();
     /*!
      * Set music song to play.
      */
-    void musicSongDownload();
+    void musicSongPlay();
     /*!
      * Set music song to download.
      */
-    void musicSongShare();
+    void musicSongDownload();
     /*!
      * Set music song to share.
      */
-    void positionChanged(qint64 position);
+    void musicSongShare();
     /*!
      * Current position changed.
      */
+    void positionChanged(qint64 position);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createDetectedWidget();
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create the detected widget.
      */
-    void createDetectedSuccessedWidget();
+    void createDetectedWidget();
     /*!
      * Create the detected successed widget.
      */
-    void createDetectedFailedWidget();
+    void createDetectedSuccessedWidget();
     /*!
      * Create the detected failed widget.
      */
+    void createDetectedFailedWidget();
 
     QTimer *m_timer;
     QStackedWidget *m_mainWindow;

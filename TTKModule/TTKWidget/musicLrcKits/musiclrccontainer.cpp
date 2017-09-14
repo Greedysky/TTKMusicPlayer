@@ -26,15 +26,15 @@ QString MusicLrcContainer::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicLrcContainer::setLinearGradientColor(MusicLRCColor::LrcColorType lrcColorType)
+void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
 {
-    MusicLRCColor cl = MusicLRCColor::mapIndexToColor(lrcColorType);
+    MusicLrcColor cl = MusicLrcColor::mapIndexToColor(lrcColorType);
     setLinearGradientColor(cl);
 }
 
-void MusicLrcContainer::setLinearGradientColor(const MusicLRCColor &color)
+void MusicLrcContainer::setLinearGradientColor(const MusicLrcColor &color)
 {
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->setLinearGradientColor(color);
     }
@@ -70,29 +70,29 @@ void MusicLrcContainer::changeCurrentLrcColor(QAction *action)
 {
     switch(action->data().toInt())
     {
-        case 0:  setLinearGradientColor(MusicLRCColor::IYellow); break;
-        case 1:  setLinearGradientColor(MusicLRCColor::IBlue); break;
-        case 2:  setLinearGradientColor(MusicLRCColor::IGray); break;
-        case 3:  setLinearGradientColor(MusicLRCColor::IPink); break;
-        case 4:  setLinearGradientColor(MusicLRCColor::IGreen); break;
-        case 5:  setLinearGradientColor(MusicLRCColor::IRed); break;
-        case 6:  setLinearGradientColor(MusicLRCColor::IPurple); break;
-        case 7:  setLinearGradientColor(MusicLRCColor::IOrange); break;
-        case 8:  setLinearGradientColor(MusicLRCColor::IIndigo); break;
-        case 9:  setLinearGradientColor(MusicLRCColor::DWhite); break;
-        case 10: setLinearGradientColor(MusicLRCColor::DBlue); break;
-        case 11: setLinearGradientColor(MusicLRCColor::DRed); break;
-        case 12: setLinearGradientColor(MusicLRCColor::DBlack); break;
-        case 13: setLinearGradientColor(MusicLRCColor::DYellow); break;
-        case 14: setLinearGradientColor(MusicLRCColor::DPurple); break;
-        case 15: setLinearGradientColor(MusicLRCColor::DGreen); break;
+        case 0:  setLinearGradientColor(MusicLrcColor::IYellow); break;
+        case 1:  setLinearGradientColor(MusicLrcColor::IBlue); break;
+        case 2:  setLinearGradientColor(MusicLrcColor::IGray); break;
+        case 3:  setLinearGradientColor(MusicLrcColor::IPink); break;
+        case 4:  setLinearGradientColor(MusicLrcColor::IGreen); break;
+        case 5:  setLinearGradientColor(MusicLrcColor::IRed); break;
+        case 6:  setLinearGradientColor(MusicLrcColor::IPurple); break;
+        case 7:  setLinearGradientColor(MusicLrcColor::IOrange); break;
+        case 8:  setLinearGradientColor(MusicLrcColor::IIndigo); break;
+        case 9:  setLinearGradientColor(MusicLrcColor::DWhite); break;
+        case 10: setLinearGradientColor(MusicLrcColor::DBlue); break;
+        case 11: setLinearGradientColor(MusicLrcColor::DRed); break;
+        case 12: setLinearGradientColor(MusicLrcColor::DBlack); break;
+        case 13: setLinearGradientColor(MusicLrcColor::DYellow); break;
+        case 14: setLinearGradientColor(MusicLrcColor::DPurple); break;
+        case 15: setLinearGradientColor(MusicLrcColor::DGreen); break;
         default: break;
     }
 }
 
 void MusicLrcContainer::changeCurrentLrcColor(int index)
 {
-    setLinearGradientColor(MStatic_cast(MusicLRCColor::LrcColorType, index));
+    setLinearGradientColor(MStatic_cast(MusicLrcColor::LrcColorType, index));
 }
 
 void MusicLrcContainer::searchMusicLrcs()
@@ -114,7 +114,7 @@ void MusicLrcContainer::showLrcMakedWidget()
 void MusicLrcContainer::linkLrcStateChanged()
 {
     m_linkLocalLrc = !m_linkLocalLrc;
-    foreach(MusicLRCManager *w, m_musicLrcContainer)
+    foreach(MusicLrcManager *w, m_musicLrcContainer)
     {
         w->setVisible( m_linkLocalLrc );
     }
@@ -133,7 +133,7 @@ void MusicLrcContainer::clearAllMusicLRCManager()
 
 void MusicLrcContainer::setSettingParameter(const QString &t)
 {
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->setFontFamily(M_SETTING_PTR->value(t + "LrcFamilyChoiced").toInt());
         manager->setFontType(M_SETTING_PTR->value(t + "LrcTypeChoiced").toInt());
@@ -142,12 +142,12 @@ void MusicLrcContainer::setSettingParameter(const QString &t)
     }
     if(M_SETTING_PTR->value(t + "LrcColorChoiced").toInt() != -1)
     {
-        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColorChoiced").toInt());
+        MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value(t + "LrcColorChoiced").toInt());
         setLinearGradientColor(index);
     }
     else
     {
-        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()),
+        MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()),
                          MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
         setLinearGradientColor(cl);
     }

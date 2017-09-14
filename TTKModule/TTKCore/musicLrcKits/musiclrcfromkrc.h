@@ -17,42 +17,44 @@
 class MUSIC_LRC_EXPORT MusicLrcFromKrc
 {
 public:
-    MusicLrcFromKrc();
     /*!
      * Object contsructor.
      */
+    MusicLrcFromKrc();
+
     ~MusicLrcFromKrc();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    bool decode(const QString &input, const QString &output = QString());
+    static QString getClassName();
+
     /*!
      * Decode krc file to lrc by input file and output file.
      */
-    QByteArray getDecodeString() const;
+    bool decode(const QString &input, const QString &output = QString());
     /*!
      * Get decode string.
      */
+    QByteArray getDecodeString() const;
 
 protected:
-    int sncasecmp(char *s1, char *s2, size_t n);
     /*!
      * Sncasecmp by input and size n.
      */
-    int decompression(unsigned char *src, size_t srcsize, size_t *dstsize);
+    int sncasecmp(char *s1, char *s2, size_t n);
     /*!
      * Decompress the krc file data to normal data.
      */
-    int isfilter(char *tok);
+    int decompression(unsigned char *src, size_t srcsize, size_t *dstsize);
     /*!
      * Check the input string is filtered or not.
      */
-    void createLrc(unsigned char *lrc, int lrclen);
+    int isfilter(char *tok);
     /*!
      * Create lrc by input data and length.
      */
+    void createLrc(unsigned char *lrc, int lrclen);
 
     uchar *m_resultBytes;
     QByteArray m_data;

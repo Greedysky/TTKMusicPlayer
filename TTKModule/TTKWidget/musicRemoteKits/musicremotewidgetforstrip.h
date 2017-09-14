@@ -20,40 +20,42 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForStrip : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForStrip(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForStrip(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidgetForStrip();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void setLabelText(const QString &value) override;
+    static QString getClassName();
     /*!
      * Set current song text.
      */
+    virtual void setLabelText(const QString &value) override;
 
 private Q_SLOTS:
-    void windowStateChanged();
     /*!
      * Window statec hanged.
      */
-    void show();
+    void windowStateChanged();
     /*!
      * Override show function.
      */
-    bool close();
+    void show();
     /*!
      * Override close function.
      */
+    bool close();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
 
     QPushButton *m_lrcButton, *m_wallPaperButton, *m_listButton;
     QPushButton *m_windowStateButton;

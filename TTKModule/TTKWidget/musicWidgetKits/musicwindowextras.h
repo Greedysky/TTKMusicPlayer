@@ -28,51 +28,52 @@ class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicWindowExtras(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicWindowExtras(QObject *parent = 0);
+
     ~MusicWindowExtras();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void showPlayStatus(bool status) const;
+    static QString getClassName();
     /*!
      * Set current play state button.
      */
-    void setValue(int value) const;
+    void showPlayStatus(bool status) const;
     /*!
      * Set current value.
      */
-    void setRange(int start, int end) const;
+    void setValue(int value) const;
     /*!
      * Set current range from start to end.
      */
-    void disableBlurBehindWindow(bool enable);
+    void setRange(int start, int end) const;
     /*!
      * Enable or disable blur behind window.
      */
-    inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
+    void disableBlurBehindWindow(bool enable);
     /*!
      * Get blur behind window state.
      */
+    inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
 
 protected:
 #if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
-    void createJumpList() const;
     /*!
      * Create jump list.
      */
-    void createTaskbar();
+    void createJumpList() const;
     /*!
      * Create taskbar.
      */
-    void createThumbnailToolBar();
+    void createTaskbar();
     /*!
      * Create thumbnail toolBar.
      */
+    void createThumbnailToolBar();
 
     MusicApplication *m_superClass;
     QWinTaskbarButton *m_taskbarButton;

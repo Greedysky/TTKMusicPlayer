@@ -43,60 +43,62 @@ public:
         unsigned long   nDataLength;
     }HEADER;
 
-    explicit MusicAudioRecorderCore(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAudioRecorderCore(QObject *parent = 0);
+
     ~MusicAudioRecorderCore();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    int addWavHeader(const char *filename);
+    static QString getClassName();
+
     /*!
      * Add the header of wav.
      */
+    int addWavHeader(const char *filename);
 
-    void setVolume(int volume);
     /*!
      * Set volume by value.
      */
-    int volume() const;
+    void setVolume(int volume);
     /*!
      * Get volume by value.
      */
+    int volume() const;
 
-    void setFileName(const QString &name);
     /*!
      * Set output file name.
      */
-    QString getFileName() const;
+    void setFileName(const QString &name);
     /*!
      * Get output file name.
      */
-    bool error() const;
+    QString getFileName() const;
     /*!
      * Current input device error or not.
      */
+    bool error() const;
 
 public Q_SLOTS:
-    void onRecordStart();
     /*!
      * Recorder play start.
      */
-    void onRecordStop();
+    void onRecordStart();
     /*!
      * Recorder play stop.
      */
-    void onRecordPlay();
+    void onRecordStop();
     /*!
      * Recorder play play.
      */
-    void onStateChange(QAudio::State state);
+    void onRecordPlay();
     /*!
      * Recorder play state changed.
      */
+    void onStateChange(QAudio::State state);
 
 protected:
     int m_inputVolume;

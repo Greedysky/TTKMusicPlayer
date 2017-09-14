@@ -24,76 +24,77 @@ class MUSIC_TOOLSET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicTimerWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTimerWidget(QWidget *parent = 0);
+
     virtual ~MusicTimerWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSongStringList(const QStringList &list);
+    static QString getClassName();
     /*!
      * Set current songs path list.
      */
+    void setSongStringList(const QStringList &list);
 
 public Q_SLOTS:
-    void changeWidgetIndex(int index);
     /*!
      * Change to index widget.
      */
-    void commitTheResults();
+    void changeWidgetIndex(int index);
     /*!
      * Save the change results.
      */
-    void buttonClicked(int index);
+    void commitTheResults();
     /*!
      * Widget interface control enable or not.
      */
-    virtual int exec();
+    void buttonClicked(int index);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void initFirstWidget();
     /*!
      * Init time to play widget.
      */
-    void initSecondWidget();
+    void initFirstWidget();
     /*!
      * Init time to stop widget.
      */
-    void initThreeWidget();
+    void initSecondWidget();
     /*!
      * Init time to shutdown widget.
      */
-    void setEnabledFirstControl(bool enable);
+    void initThreeWidget();
     /*!
      * Init play widget control enable or not.
      */
-    void setEnabledSecondControl(bool enable);
+    void setEnabledFirstControl(bool enable);
     /*!
      * Init stop widget control enable or not..
      */
-    void setEnabledThreeControl(bool enable);
+    void setEnabledSecondControl(bool enable);
     /*!
      * Init shutdown widget control enable or not..
      */
-    void initComboParameter();
+    void setEnabledThreeControl(bool enable);
     /*!
      * Init combobox parameter.
+     */
+    void initComboParameter();
+    /*!
+     * Init widget interface parameter.
      */
     void initParemeter();
     /*!
      * Init widget interface parameter.
      */
     void writeParemeter() const;
-    /*!
-     * Init widget interface parameter.
-     */
 
     Ui::MusicTimerWidget *m_ui;
     QStringList m_hour;

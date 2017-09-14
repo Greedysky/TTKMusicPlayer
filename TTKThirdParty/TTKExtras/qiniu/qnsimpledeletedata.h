@@ -22,32 +22,31 @@ class MUSIC_EXTRAS_EXPORT QNSimpleDeleteData : public QObject
 {
     Q_OBJECT
 public:
-    explicit QNSimpleDeleteData(QNetworkAccessManager *networkManager,
-                                QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-
-    void deleteDataToServer(const QString &bucket, const QString &key);
+    explicit QNSimpleDeleteData(QNetworkAccessManager *networkManager,
+                                QObject *parent = 0);
     /*!
      * Delete data to server.
      */
+    void deleteDataToServer(const QString &bucket, const QString &key);
 
 Q_SIGNALS:
-    void deleteFileFinished(bool state);
     /*!
      * Delete file finished.
      */
+    void deleteFileFinished(bool state);
 
 private Q_SLOTS:
-    void receiveDataFromServer();
     /*!
      * Receive data from server.
      */
-    void handleError(QNetworkReply::NetworkError error);
+    void receiveDataFromServer();
     /*!
      * Get handle error.
      */
+    void handleError(QNetworkReply::NetworkError error);
 
 private:
     TTK_DECLARE_PRIVATE(QNSimpleDeleteData)

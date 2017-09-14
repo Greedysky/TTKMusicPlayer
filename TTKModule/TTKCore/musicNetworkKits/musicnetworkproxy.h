@@ -19,81 +19,82 @@ class MUSIC_NETWORK_EXPORT MusicNetworkProxy : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkProxy(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkProxy(QObject *parent = 0);
+
     ~MusicNetworkProxy();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setHostName(const QString &name);
+    static QString getClassName();
     /*!
      * Set proxy hostName.
      */
-    QString hostName() const;
+    void setHostName(const QString &name);
     /*!
      * Get proxy hostName.
      */
+    QString hostName() const;
 
-    void setPort(int port);
     /*!
      * Set proxy port.
      */
-    int port() const;
+    void setPort(int port);
     /*!
      * Get proxy port.
      */
+    int port() const;
 
-    void setType(int type);
     /*!
      * Set proxy type.
      */
-    int type() const;
+    void setType(int type);
     /*!
      * Get proxy type.
      */
+    int type() const;
 
-    void setUser(const QString &user);
     /*!
      * Set proxy username.
      */
-    QString user() const;
+    void setUser(const QString &user);
     /*!
      * Get proxy username.
      */
+    QString user() const;
 
-    void setPassword(const QString &pwd);
     /*!
      * Set proxy password.
      */
-    QString password() const;
+    void setPassword(const QString &pwd);
     /*!
      * Get proxy password.
      */
+    QString password() const;
 
-    void testProxy();
     /*!
      * Test current proxy available.
      */
-    void applyProxy();
+    void testProxy();
     /*!
      * Apply current proxy.
      */
+    void applyProxy();
 
 Q_SIGNALS:
-    void testProxyStateChanged(bool state);
     /*!
      * Test current proxy available changed.
      */
+    void testProxyStateChanged(bool state);
 
 private Q_SLOTS:
-    void testProxyChanged(QAbstractSocket::SocketState state);
     /*!
      * Test current proxy available changed.
      */
+    void testProxyChanged(QAbstractSocket::SocketState state);
 
 protected:
     int m_port, m_type;

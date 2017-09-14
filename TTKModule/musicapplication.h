@@ -31,153 +31,158 @@ class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
 {
     Q_OBJECT
 public:
-    explicit MusicApplication(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicApplication(QWidget *parent = 0);
+
     virtual ~MusicApplication();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicApplication *instance();
+    static QString getClassName();
+
     /*!
      * Get class object instance.
      */
+    static MusicApplication *instance();
 
-    QString getCurrentFileName() const;
     /*!
      * Get current file name.
      */
-    QString getCurrentFilePath() const;
+    QString getCurrentFileName() const;
     /*!
      * Get current file path.
      */
+    QString getCurrentFilePath() const;
 
-    bool checkMusicListCurrentIndex() const;
     /*!
      * Check current list index is -1 or not.
      */
-    void musicLoadCurrentSongLrc();
+    bool checkMusicListCurrentIndex() const;
     /*!
      * Load current song lrc.
      */
-    void musicImportSongsSettingPath(const QStringList &path);
+    void musicLoadCurrentSongLrc();
     /*!
      * Import music datas into container.
      */
 
-    QString musicDownloadContains(bool &contains) const;
+    void musicImportSongsSettingPath(const QStringList &path);
     /*!
      * Get music current song download contains.
      */
-    bool musicLovestContains() const;
+    QString musicDownloadContains(bool &contains) const;
     /*!
      * Get music current song lovest contains.
      */
-    bool musicListLovestContains(int index) const;
+    bool musicLovestContains() const;
     /*!
      * Get music list current song lovest contains.
      */
-    void updateCurrentArtist();
+    bool musicListLovestContains(int index) const;
     /*!
      * Update current artist when it download finished.
      */
+    void updateCurrentArtist();
 
-    bool isPlaying() const;
     /*!
      * Get current play state.
      */
-    MusicObject::PlayMode getPlayMode() const;
+    bool isPlaying() const;
     /*!
      * Get current play mode.
      */
+    MusicObject::PlayMode getPlayMode() const;
 
 public Q_SLOTS:
-    void quitWindowClose();
     /*!
      * Application window close.
      */
-    void positionChanged(qint64 position);
+    void quitWindowClose();
     /*!
      * Set current player position.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Set current player duration.
      */
-    void stateChanged();
+    void durationChanged(qint64 duration);
     /*!
      * Current state changed.
      */
-    void showCurrentSong(int index);
+    void stateChanged();
     /*!
      * Show current song some information.
      */
-    void musicStatePlay();
+    void showCurrentSong(int index);
     /*!
      * Set current player to play or not.
      */
-    void musicPlayPrevious();
+    void musicStatePlay();
     /*!
      * Set current player to play previous.
      */
-    void musicPlayNext();
+    void musicPlayPrevious();
     /*!
      * Set current player to play next.
      */
-    void musicPlayOrder();
+    void musicPlayNext();
     /*!
      * Set current play mdoe to order.
      */
-    void musicPlayRandom();
+    void musicPlayOrder();
     /*!
      * Set current play mdoe to random.
      */
-    void musicPlayListLoop();
+    void musicPlayRandom();
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlayOneLoop();
+    void musicPlayListLoop();
     /*!
      * Set current play mdoe to single loop.
      */
-    void musicPlayItemOnce();
+    void musicPlayOneLoop();
     /*!
      * Set current play mdoe to just once.
      */
-    void musicVolumeMute();
+    void musicPlayItemOnce();
     /*!
      * Set current play volume to 0.
      */
-    void musicVolumeChanged(int volume);
+    void musicVolumeMute();
     /*!
      * Current play volume changed.
      */
-    void musicImportSongs();
+    void musicVolumeChanged(int volume);
     /*!
      * Import music songs.
      */
-    void musicImportSongsOnlyFile();
+    void musicImportSongs();
     /*!
      * Import music songs by file.
      */
-    void musicImportSongsOnlyDir();
+    void musicImportSongsOnlyFile();
     /*!
      * Import music songs by dir.
      */
-    void musicImportSongsItemList();
+    void musicImportSongsOnlyDir();
     /*!
      * Import music songs by item list.
      */
-    void musicExportSongsItemList(int index);
+    void musicImportSongsItemList();
     /*!
      * Export music songs by item list.
      */
-    void musicPlaySort(int row);
+    void musicExportSongsItemList(int index);
     /*!
      * Set current music play list sort.
+     */
+    void musicPlaySort(int row);
+    /*!
+     * Set current row index music to play.
      */
     void musicPlayIndex(int row);
     /*!
@@ -189,27 +194,27 @@ public Q_SLOTS:
      */
     void musicPlayIndexClicked(int row, int col);
     /*!
-     * Set current row index music to play.
+     * Set song speed and slow by given pos.
      */
     void musicPlayAnyTimeAt(int posValue);
     /*!
-     * Set song speed and slow by given pos.
+     * Set current player volume down.
      */
     void musicActionVolumeSub();
     /*!
-     * Set current player volume down.
+     * Set current player volume up.
      */
     void musicActionVolumePlus();
     /*!
-     * Set current player volume up.
+     * Show setting widget.
      */
     void musicSetting();
     /*!
-     * Show setting widget.
+     * Show current play index.
      */
     void musicCurrentPlayLocation();
     /*!
-     * Show current play index.
+     * Add music song to lovest list by row.
      */
     void musicAddSongToLovestListAt();
     /*!
@@ -217,67 +222,57 @@ public Q_SLOTS:
      */
     void musicAddSongToLovestListAt(bool state);
     /*!
-     * Add music song to lovest list by row.
+     * Set window concise.
      */
     void musicWindowConciseChanged();
     /*!
-     * Set window concise.
+     * Set current music enhanced effect by type.
      */
     void musicEnhancedMusicChanged(int type);
     /*!
-     * Set current music enhanced effect by type.
+     * Import outside song to play list and play.
      */
     void musicImportPlay();
     /*!
-     * Import outside song to play list and play.
-     */
-    void musicCreateRightMenu();
-    /*!
      * Create right menu.
      */
+    void musicCreateRightMenu();
     /////////////////////////////////////////////
-    ///This is a slot by MusicLocalSongSearch's signal emit
-    void musicSearchIndexChanged(int row, int col);
     /*!
      * Search file from list.
      */
+    void musicSearchIndexChanged(int row, int col);
     /////////////////////////////////////////////
-    ///This is a slot by MusicSettingWidget's signal emit
-    void getParameterSetting();
     /*!
      * Get settings parameters.
      */
+    void getParameterSetting();
     /////////////////////////////////////////////
-    ///This is a slot by MusicSongsSummariziedWidget's signal emit
-    void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);
     /*!
      * Delete items from indexs.
      */
+    void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);
     /////////////////////////////////////////////
-    ///This is a slot by MusicInlineLrcContainer's signal emit
-    void musicCurrentLrcUpdated();
     /*!
      * The current lrc should update, emit it.
      */
-    void updateCurrentTime(qint64 pos);
+    void musicCurrentLrcUpdated();
     /*!
      * Update current play time when user adjust the progress.
      */
-    ///This is a slot by MusicTimerAutoObject's signal emit
-    void setPlaySongChanged(int index);
+    void updateCurrentTime(qint64 pos);
     /*!
      * Set current song to play in play list.
      */
-    void setStopSongChanged();
+    void setPlaySongChanged(int index);
     /*!
      * Set current song to stop in play list.
      */
-    /////////////////////////////////////////////
-    ///This is a slot by MusicLeftAreaWidget's signal emit
-    void getCurrentPlayList(QStringList &list);
+    void setStopSongChanged();
     /*!
      * Get current play lists.
      */
+    void getCurrentPlayList(QStringList &list);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -291,18 +286,18 @@ protected:
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
 
-    void setMusicPlayIndex();
     /*!
      * Set music current play index.
      */
-    void readXMLConfigFromText();
+    void setMusicPlayIndex();
     /*!
      * Read XML config from text.
      */
-    void writeXMLConfigToText();
+    void readXMLConfigFromText();
     /*!
      * Write XML config to text.
      */
+    void writeXMLConfigToText();
 
 private:
     Ui::MusicApplication *m_ui;

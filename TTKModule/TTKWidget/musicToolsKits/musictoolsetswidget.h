@@ -24,44 +24,46 @@ class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicToolSetsWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicToolSetsWidget(QWidget *parent = 0);
+
     virtual ~MusicToolSetsWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
+
 
 public Q_SLOTS:
-    void itemHasClicked(QListWidgetItem *item);
     /*!
      * Tool sets list item has clicked.
      */
-    void addListWidgetItem();
+    void itemHasClicked(QListWidgetItem *item);
     /*!
      * Add tool sets list into list widget.
      */
-    void resetFlag(MusicObject::ToolsType flag);
+    void addListWidgetItem();
     /*!
      * Reset window open flag.
      */
-    void show();
+    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    void clearAllItems();
     /*!
      * Clear All Items.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    void clearAllItems();
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     Ui::MusicToolSetsWidget *m_ui;
     MusicObject::ToolsTypes m_toolsFlags;

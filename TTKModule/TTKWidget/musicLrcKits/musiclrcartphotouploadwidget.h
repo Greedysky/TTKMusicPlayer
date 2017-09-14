@@ -22,34 +22,35 @@ class MUSIC_LRC_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDi
 {
     Q_OBJECT
 public:
-    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcArtPhotoUploadWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void deltaValueChanged(float v);
     /*!
      * Delta value changed.
      */
-    void selectButtonClicked();
+    void deltaValueChanged(float v);
     /*!
      * Select button clicked.
      */
-    void uploadButtonClicked();
+    void selectButtonClicked();
     /*!
      * Upload button clicked.
      */
-    virtual int exec();
+    void uploadButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicLrcArtPhotoUploadWidget *m_ui;

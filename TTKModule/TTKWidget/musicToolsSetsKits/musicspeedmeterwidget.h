@@ -26,101 +26,101 @@ class MUSIC_TOOLSET_EXPORT MusicSpeedMeterWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSpeedMeterWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSpeedMeterWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setValue(qreal value);
+    static QString getClassName();
     /*!
      * Set meter value.
      */
-    qreal value() const { return m_value;}
+    void setValue(qreal value);
     /*!
      * Get meter value.
      */
-    void setRatio(qreal value);
+    qreal value() const { return m_value;}
     /*!
      * Set meter ratio.
      */
-    qreal ratio() const { return m_ratio;}
+    void setRatio(qreal value);
     /*!
      * Get meter ratio.
      */
-    void setAnimating(bool enable);
+    qreal ratio() const { return m_ratio;}
     /*!
      * Set meter animation.
      */
-    bool isAnimating() const { return m_bAnimating;}
+    void setAnimating(bool enable);
     /*!
      * Get meter animation.
      */
+    bool isAnimating() const { return m_bAnimating;}
 
 private Q_SLOTS:
-    void updateGraph();
     /*!
      * Update graph path.
      */
+    void updateGraph();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event);
     /*!
      * Override the widget event.
      */
-    QSize sizeHint() const;
+    virtual void paintEvent(QPaintEvent *event);
     /*!
      * Override the sizeHint function.
      */
-    QSize minimumSizeHint() const;
+    QSize sizeHint() const;
     /*!
      * Override the minimumSizeHint function.
      */
+    QSize minimumSizeHint() const;
 
 private:
-    void initVariables();
     /*!
      * Init variablesn.
      */
-    void resetVariables();
+    void initVariables();
     /*!
      * Reset variables.
      */
-    void drawOuterCircle(QPainter* painter);
+    void resetVariables();
     /*!
      * Draw outer circle.
      */
-    void drawInnerCircle(QPainter* painter);
+    void drawOuterCircle(QPainter* painter);
     /*!
      * Draw inner circle.
      */
-    void drawMark(QPainter* painter);
+    void drawInnerCircle(QPainter* painter);
     /*!
      * Draw mark.
      */
-    void drawCoverCircle(QPainter* painter);
+    void drawMark(QPainter* painter);
     /*!
      * Draw cover circle.
      */
-    void drawColorPie(QPainter* painter);
+    void drawCoverCircle(QPainter* painter);
     /*!
      * Draw color pie.
      */
-    void drawIndicator(QPainter* painter);
+    void drawColorPie(QPainter* painter);
     /*!
      * Draw indicator.
      */
-    void drawCoverBall(QPainter* painter);
+    void drawIndicator(QPainter* painter);
     /*!
      * Draw cover ball.
      */
-    void drawTextRect(QPainter* painter);
+    void drawCoverBall(QPainter* painter);
     /*!
      * Draw text rect.
      */
+    void drawTextRect(QPainter* painter);
 
     qreal m_outerRadius, m_innerRadius;
     qreal m_coverCircleRadius, m_colorCircleRadius;

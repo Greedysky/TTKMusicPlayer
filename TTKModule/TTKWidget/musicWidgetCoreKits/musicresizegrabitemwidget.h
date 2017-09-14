@@ -21,71 +21,71 @@ class MUSIC_WIDGET_EXPORT MusicResizeGrabItemWidget : public QWidget
 public:
     enum Direction
     {
-        Direction_No = 0,                                           ///*no direction*/
-        Direction_Left = 1,                                         ///*left direction*/
-        Direction_Top = 2,                                          ///*top direction*/
-        Direction_Right = 4,                                        ///*right direction*/
-        Direction_Bottom = 8,                                       ///*bottom direction*/
-        Direction_LeftTop = Direction_Left + Direction_Top,         ///*left top direction*/
-        Direction_LeftBottom = Direction_Left + Direction_Bottom,   ///*left bottom direction*/
-        Direction_RightTop = Direction_Right + Direction_Top,       ///*right top direction*/
-        Direction_RightBottom = Direction_Right + Direction_Bottom  ///*right bottom direction*/
+        Direction_No = 0,                                           /*!< no direction*/
+        Direction_Left = 1,                                         /*!< left direction*/
+        Direction_Top = 2,                                          /*!< top direction*/
+        Direction_Right = 4,                                        /*!< right direction*/
+        Direction_Bottom = 8,                                       /*!< bottom direction*/
+        Direction_LeftTop = Direction_Left + Direction_Top,         /*!< left top direction*/
+        Direction_LeftBottom = Direction_Left + Direction_Bottom,   /*!< left bottom direction*/
+        Direction_RightTop = Direction_Right + Direction_Top,       /*!< right top direction*/
+        Direction_RightBottom = Direction_Right + Direction_Bottom  /*!< right bottom direction*/
     };
-    explicit MusicResizeGrabItemWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicResizeGrabItemWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void setBorderRect(const QRect &rect);
+    static QString getClassName();
     /*!
      * Set border rect.
      */
-    inline void setGeometricStretch(bool g) { m_geometricStretch = g;}
+    virtual void setBorderRect(const QRect &rect);
     /*!
      * Set Geometric Stretch.
      */
-    inline bool getGeometricStretch() const { return m_geometricStretch;}
+    inline void setGeometricStretch(bool g) { m_geometricStretch = g;}
     /*!
      * Get Geometric Stretch.
      */
-    inline void setCrossStretch(bool c) { m_crossStretch = c;}
+    inline bool getGeometricStretch() const { return m_geometricStretch;}
     /*!
      * Set Cross Stretch.
      */
-    inline bool gettCrossStretch() const { return m_crossStretch;}
+    inline void setCrossStretch(bool c) { m_crossStretch = c;}
     /*!
      * Get Cross Stretch.
      */
+    inline bool gettCrossStretch() const { return m_crossStretch;}
 
 Q_SIGNALS:
-    void rectChanged();
     /*!
      * Current rect changed.
      */
+    void rectChanged();
 
 private Q_SLOTS:
-    void onMouseChange(int x,int y);
     /*!
      * On mouse changed.
      */
+    void onMouseChange(int x,int y);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void resizeEvent(QResizeEvent *event);
     virtual void paintEvent(QPaintEvent *event);
     /*!
-     * Override the widget event.
-     */
-    Direction getRegion(const QPoint &cursor);
-    /*!
      * Get region rect.
      */
+    Direction getRegion(const QPoint &cursor);
 
     bool m_isPressed;
     bool m_crossStretch, m_geometricStretch;

@@ -50,101 +50,103 @@ class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicQueryIt
 {
     Q_OBJECT
 public:
-    explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSongSearchOnlineTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
+    static QString getClassName();
+
     /*!
      * Set wheather query all quality of records.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    inline void setQueryAllRecords(bool state) { m_queryAllRecords = state;}
     /*!
      * Start search query by text.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Data download to local file.
      */
+    virtual void musicDownloadLocal(int row) override;
 
-    void auditionStop();
     /*!
      * Stop current audtion.
      */
-    void auditionToMusic(int row);
+    void auditionStop();
     /*!
      * Start play audition to music by row.
      */
-    void auditionToMusicStop(int row);
+    void auditionToMusic(int row);
     /*!
      * Stop play audition to music by row.
      */
-    void setSearchQuality(const QString &quality);
+    void auditionToMusicStop(int row);
     /*!
      * Set search data quality.
      */
+    void setSearchQuality(const QString &quality);
 
-    void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
      */
+    void resizeWindow();
 
 Q_SIGNALS:
-    void auditionIsPlaying(bool play);
     /*!
      * Check current audtion is playing or not.
      */
+    void auditionIsPlaying(bool play);
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void clearAllItems() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void clearAllItems() override;
     /*!
      * Create searched items.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Item has double clicked.
      */
-    virtual void actionGroupClick(QAction *action) override;
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Left context menu action group click by action.
      */
-    void searchDataDwonloadFinished();
+    virtual void actionGroupClick(QAction *action) override;
     /*!
      * Search data dwonload finished.
      */
-    void musicSongDownload(int row);
+    void searchDataDwonloadFinished();
     /*!
      * Open music song download widget.
      */
+    void musicSongDownload(int row);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void addSearchMusicToPlayList(int row);
+    virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Add search music to play list by index.
      */
+    void addSearchMusicToPlayList(int row);
 
     bool m_queryAllRecords;
     int m_previousAuditionRow;
@@ -162,60 +164,61 @@ class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
+
     ~MusicSongSearchOnlineWidget();
 
-    static QString getClassName();
     /*!
     * Get class object name.
     */
+    static QString getClassName();
+    /*!
+     * Start search query by text.
+     */
     void startSearchQuery(const QString &name);
     /*!
      * Start search query by text.
      */
     void startSearchQuery(const QString &name, bool all);
     /*!
-     * Start search query by text.
+     * Research query by quality it changed.
      */
     void researchQueryByQuality(const QString &name, const QString &quality);
     /*!
-     * Research query by quality it changed.
+     * Resize window bound by widgte resize called.
      */
     void resizeWindow();
     /*!
-     * Resize window bound by widgte resize called.
-     */
-    void auditionStop();
-    /*!
      * Stop current audtion.
      */
+    void auditionStop();
 
 public Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Set diff button clicked by index.
      */
-    void auditionIsPlaying(bool play);
+    void buttonClicked(int index);
     /*!
      * Check current audtion is playing or not.
      */
+    void auditionIsPlaying(bool play);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createToolWidget(QWidget *widget);
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Create tool widget.
      */
-    void setResizeLabelText(const QString &name);
+    void createToolWidget(QWidget *widget);
     /*!
      * Set resize labelt ext.
      */
+    void setResizeLabelText(const QString &name);
 
     QLabel *m_textLabel;
     QPushButton *m_playButton;

@@ -24,37 +24,38 @@ class MUSIC_WIDGET_EXPORT MusicAbstractTableWidget : public QTableWidget
 {
     Q_OBJECT
 public:
-    explicit MusicAbstractTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAbstractTableWidget(QWidget *parent = 0);
+
     virtual ~MusicAbstractTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void clear();
+    static QString getClassName();
     /*!
      * Clear current items.
      */
+    void clear();
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column);
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) = 0;
+    virtual void listCellEntered(int row, int column);
     /*!
      * Table widget list cell click.
      * Subclass should implement this function.
      */
+    virtual void listCellClicked(int row, int column) = 0;
 
 protected:
-    void setRowColor(int row, const QColor &color) const;
     /*!
      * Set selected item row color.
      */
+    void setRowColor(int row, const QColor &color) const;
 
     QColor m_defaultBkColor;
     int m_previousColorRow;

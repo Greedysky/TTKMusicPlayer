@@ -18,62 +18,62 @@ class MUSIC_NETWORK_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadA
 {
     Q_OBJECT
 public:
-    MusicDataDownloadThread(const QString &url, const QString &save,
-                            Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
+    MusicDataDownloadThread(const QString &url, const QString &save,
+                            Download_Type type, QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToDownload() override;
+    static QString getClassName();
     /*!
      * Start to download data.
      */
+    virtual void startToDownload() override;
 
 Q_SIGNALS:
-    void downloadUrlChanged(const QString &url);
     /*!
      * Update download url finished.
      */
-    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
+    void downloadUrlChanged(const QString &url);
     /*!
      * Update download speed label.
      */
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
+    void downloadSpeedLabelChanged(const QString &speed, qint64 timeLeft);
     /*!
      * Update download percent\ total time and current time progress.
      */
-    void createDownloadItem(const QString &name, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
      * Create download item from download name and total time.
      */
+    void createDownloadItem(const QString &name, qint64 time);
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
+    virtual void downLoadFinished() override;
     /*!
      * Get download received and total data.
      */
-    virtual void updateDownloadSpeed() override;
+    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal) override;
     /*!
      * Updata download speed due the user mod the net speed limited.
      */
-    void downLoadReadyRead();
+    virtual void updateDownloadSpeed() override;
     /*!
      * Download received data ready.
      */
+    void downLoadReadyRead();
 
 protected:
-    void startRequest(const QUrl &url);
     /*!
      * Start to download data from url.
      */
+    void startRequest(const QUrl &url);
 
     qint64 m_createItemTime;
     bool m_redirection, m_needUpdate;

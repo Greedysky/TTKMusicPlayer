@@ -21,89 +21,92 @@ class MUSIC_CORE_EXPORT MusicTime
 public:
     enum Type
     {
-        All_Msec,   ///*Current time entity is msec*/
-        All_Sec     ///*Current time entity is sec*/
+        All_Msec,   /*!< Current time entity is msec*/
+        All_Sec     /*!< Current time entity is sec*/
     };
 
+    /*!
+     * Object contsructor.
+     */
     MusicTime();
     /*!
      * Object contsructor.
      */
     MusicTime(const MusicTime &other);
     /*!
-     * Object contsructor.
+     * Object contsructor by value and type.
      */
     MusicTime(qint64 value, Type type);
     /*!
-     * Object contsructor by value and type.
-     */
-    MusicTime(int day, int hour, int min, int sec, int msec);
-    /*!
      * Object contsructor by day and hour and min and sec and msec.
      */
+    MusicTime(int day, int hour, int min, int sec, int msec);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setHMSM(int day, int hour, int min, int sec, int msec = 0);
+    static QString getClassName();
     /*!
      * Set current day and hour and min and sec and msec.
      */
-    bool isNull() const;
+    void setHMSM(int day, int hour, int min, int sec, int msec = 0);
     /*!
      * Check current time is null.
      */
-    bool isValid() const;
+    bool isNull() const;
     /*!
      * Check current time is valid.
      */
+    bool isValid() const;
 
-    inline void setType(Type type) { m_defaultType = type; }
     /*!
      * Set current time type, see Type.
      */
-    inline Type getType() const { return m_defaultType; }
+    inline void setType(Type type) { m_defaultType = type; }
     /*!
      * Get current time type, see Type.
      */
+    inline Type getType() const { return m_defaultType; }
 
-    inline void setGreedy(bool mode) { m_greedyMode = mode; }
     /*!
      * Set current greedy mode.
      */
-    inline bool getGreedy() const { return m_greedyMode; }
+    inline void setGreedy(bool mode) { m_greedyMode = mode; }
     /*!
      * Get current greedy mode.
      */
+    inline bool getGreedy() const { return m_greedyMode; }
 
-    inline void setDay(int day) { m_day = day; }
     /*!
      * Set current day.
      */
-    inline void setHour(int hour) { m_hour = hour; }
+    inline void setDay(int day) { m_day = day; }
     /*!
      * Set current hour.
      */
-    inline void setMinute(int min) { m_min = min; }
+    inline void setHour(int hour) { m_hour = hour; }
     /*!
      * Set current minute.
      */
-    inline void setSecond(int sec) { m_sec = sec; }
+    inline void setMinute(int min) { m_min = min; }
     /*!
      * Set current second.
      */
-    inline void setMillionSecond(int msec) { m_msec = msec; }
+    inline void setSecond(int sec) { m_sec = sec; }
     /*!
      * Set current millionSecond.
      */
-    inline int getDay() const { return m_day; }
+    inline void setMillionSecond(int msec) { m_msec = msec; }
     /*!
      * Get current day.
      */
-    inline int getHour() const { return m_hour; }
+    inline int getDay() const { return m_day; }
     /*!
      * Get current hour.
+     */
+    inline int getHour() const { return m_hour; }
+    /*!
+     * Get current second.
      */
     inline int getMinute() const { return m_min; }
     /*!
@@ -111,25 +114,23 @@ public:
      */
     inline int getSecond() const { return m_sec; }
     /*!
-     * Get current second.
-     */
-    inline int getMillionSecond() const { return m_msec; }
-    /*!
      * Get current millionSecond.
      */
+    inline int getMillionSecond() const { return m_msec; }
 
-    static MusicTime fromString(const QString &s, const QString &format);
     /*!
      * Transform time from string by time format.
      */
-    static QString toString(qint64 value, Type type, const QString &format);
+    static MusicTime fromString(const QString &s, const QString &format);
     /*!
      * Transform time from value to string time format.
      */
-    QString toString(const QString &format);
+    static QString toString(qint64 value, Type type, const QString &format);
+
     /*!
      * Transform time to string time format.
      */
+    QString toString(const QString &format);
 //    h	the hour without a leading zero (0 to 23 or 1 to 12 if AM/PM display)
 //    hh	the hour with a leading zero (00 to 23 or 01 to 12 if AM/PM display)
 //    H	the hour without a leading zero (0 to 23, even with AM/PM display)
@@ -144,37 +145,36 @@ public:
 //    ap or a	use am/pm display. a/ap will be replaced by either "am" or "pm".
 //    t	the timezone (for example "CEST")
     //////////////////////////////////////////////
-    qint64 getTimeStamp(Type type) const;
     /*!
      * Get all time value by type.
      */
-
+    qint64 getTimeStamp(Type type) const;
     //////////////////////////////////////////////
-    static qint64 timeStamp(bool ms = true);
     /*!
      * Transform ms time from utc since epoch.
      */
-    static void timeSRand();
+    static qint64 timeStamp(bool ms = true);
     /*!
      * Init random time seed.
      */
+    static void timeSRand();
     //////////////////////////////////////////////
+    /*!
+     * Transform msec time to string format(mm:ss).
+     */
     QString msecTime2LabelJustified();
     /*!
      * Transform msec time to string format(mm:ss).
      */
     static QString msecTime2LabelJustified(qint64 time, bool greedy = true);
     /*!
-     * Transform msec time to string format(mm:ss).
+     * Transform msec time to string format(/ ss / mm / hh / dd).
      */
     QString normalTime2Label() const;
     /*!
      * Transform msec time to string format(/ ss / mm / hh / dd).
      */
     static QString normalTime2Label(qint64 time);
-    /*!
-     * Transform msec time to string format(/ ss / mm / hh / dd).
-     */
     //////////////////////////////////////////////
 
     MusicTime& operator=  (const MusicTime &other);
@@ -211,18 +211,18 @@ public:
     }
 
 protected:
-    void init();
     /*!
      * Init parameters;
      */
-    void copyToThis(const MusicTime &other);
+    void init();
     /*!
      * Copy other time data to this obejct;
      */
-    void fromTimeStamp(qint64 value, int delta);
+    void copyToThis(const MusicTime &other);
     /*!
      * Transform time value by different time type;
      */
+    void fromTimeStamp(qint64 value, int delta);
 
     bool m_greedyMode;
     Type m_defaultType;

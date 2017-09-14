@@ -19,28 +19,28 @@ class MUSIC_WIDGET_EXPORT MusicClickedLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicClickedLabel(QWidget *parent = 0);
-    explicit MusicClickedLabel(const QString &text, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicClickedLabel(QWidget *parent = 0);
+    explicit MusicClickedLabel(const QString &text, QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void clicked();
     /*!
      * Click the label emit.
      */
+    void clicked();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void mousePressEvent(QMouseEvent *event) override;
 
 };
 

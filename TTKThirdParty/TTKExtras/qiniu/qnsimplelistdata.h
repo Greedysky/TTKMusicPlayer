@@ -32,32 +32,31 @@ class MUSIC_EXTRAS_EXPORT QNSimpleListData : public QObject
 {
     Q_OBJECT
 public:
-    explicit QNSimpleListData(QNetworkAccessManager *networkManager,
-                              QObject *parent = 0);
     /*!
      * Object contsructor.
      */
-
-    void listDataToServer(const QString &bucket);
+    explicit QNSimpleListData(QNetworkAccessManager *networkManager,
+                              QObject *parent = 0);
     /*!
      * List data to server.
      */
+    void listDataToServer(const QString &bucket);
 
 Q_SIGNALS:
-    void receiveFinshed(const QNDataItems &items);
     /*!
      * Receive data finshed.
      */
+    void receiveFinshed(const QNDataItems &items);
 
 private Q_SLOTS:
-    void receiveDataFromServer();
     /*!
      * Receive data from server finshed.
      */
-    void handleError(QNetworkReply::NetworkError error);
+    void receiveDataFromServer();
     /*!
      * Get handle error.
      */
+    void handleError(QNetworkReply::NetworkError error);
 
 private:
     TTK_DECLARE_PRIVATE(QNSimpleListData)

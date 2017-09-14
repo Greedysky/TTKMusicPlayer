@@ -29,103 +29,107 @@ class MUSIC_LRC_EXPORT MusicLrcContainerForDesktop : public MusicLrcContainer
 {
     Q_OBJECT
 public:
-    explicit MusicLrcContainerForDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcContainerForDesktop(QWidget *parent = 0);
+
     virtual ~MusicLrcContainerForDesktop();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startTimerClock() override;
+    static QString getClassName();
     /*!
      * Start timer clock to draw lrc.
      */
-    virtual void stopLrcMask() override;
+    virtual void startTimerClock() override;
     /*!
      * Stop timer clock to draw lrc.
      */
-    virtual void setSettingParameter() override;
+    virtual void stopLrcMask() override;
     /*!
      * Set setting parameter.
      */
+    virtual void setSettingParameter() override;
 
-    virtual void initCurrentLrc() const;
     /*!
      * Init current lrc when the first show.
      */
-    void showPlayStatus(bool status) const;
+    virtual void initCurrentLrc() const;
     /*!
      * Set current play state button.
      */
-    bool getPlayStatus() const;
+    void showPlayStatus(bool status) const;
     /*!
      * Get current play state button.
      */
-    void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
+    bool getPlayStatus() const;
     /*!
      * Update current lrc by first and second and time.
      */
-    bool getWindowType() const { return m_verticalWindow;}
+    void updateCurrentLrc(const QString &first, const QString &second, qint64 time);
     /*!
      * Get current desktop lrc window type.
      */
+    bool getWindowType() const { return m_verticalWindow;}
 
 Q_SIGNALS:
-    void setWindowLockedChanged(bool lock);
     /*!
      * Lock current desktop lrc state changed emit.
      */
-    void setWindowLrcTypeChanged();
+    void setWindowLockedChanged(bool lock);
     /*!
      * Set current desktop lrc window type changed.
      */
+    void setWindowLrcTypeChanged();
 
 public Q_SLOTS:
-    void setWindowLockedChanged();
     /*!
      * Lock current desktop lrc state changed.
      */
-    void setLrcBiggerChanged();
+    void setWindowLockedChanged();
     /*!
      * Set lrc bigger changed.
      */
-    void setLrcSmallerChanged();
+    void setLrcBiggerChanged();
     /*!
      * Set lrc smaller changed.
      */
-    void toolStyleChanged();
+    void setLrcSmallerChanged();
     /*!
      * Set current color style changed.
      */
-    virtual void setSingleLineTypeChanged();
+    void toolStyleChanged();
     /*!
      * Set single line type changed.
      */
+    virtual void setSingleLineTypeChanged();
 
 protected:
-    void createColorMenu(QMenu &menu);
     /*!
      * Create color menu.
      */
-    void setSelfGeometry() const;
+    void createColorMenu(QMenu &menu);
     /*!
      * Set self geometry.
      */
-    void creatToolBarWidget();
+    void setSelfGeometry() const;
     /*!
      * Creat toolBar widget.
      */
-    virtual void resizeLrcSizeArea() = 0;
+    void creatToolBarWidget();
     /*!
      * Resize lrc size area by change size.
      * Subclass should implement this function.
      */
-    void resizeLrcSizeArea(bool resize);
+    virtual void resizeLrcSizeArea() = 0;
     /*!
      * Resize lrc size area to bigger or smaller.
+     */
+    void resizeLrcSizeArea(bool resize);
+    /*!
+     * Override the widget event.
      */
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
@@ -133,9 +137,6 @@ protected:
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void closeEvent(QCloseEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     bool m_verticalWindow, m_singleLineType;
     bool m_windowLocked, m_reverse;
@@ -156,31 +157,31 @@ class MUSIC_LRC_EXPORT MusicLrcContainerHorizontalDesktop : public MusicLrcConta
 {
     Q_OBJECT
 public:
-    explicit MusicLrcContainerHorizontalDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcContainerHorizontalDesktop(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void initCurrentLrc() const override;
+    static QString getClassName();
     /*!
      * Init current lrc when the first show.
      */
+    virtual void initCurrentLrc() const override;
 
 public Q_SLOTS:
-    virtual void setSingleLineTypeChanged() override;
     /*!
      * Set single line type changed.
      */
+    virtual void setSingleLineTypeChanged() override;
 
 protected:
-    virtual void resizeLrcSizeArea() override;
     /*!
      * Resize lrc size area by change size.
      */
+    virtual void resizeLrcSizeArea() override;
 
 };
 
@@ -192,31 +193,32 @@ class MUSIC_LRC_EXPORT MusicLrcContainerVerticalDesktop : public MusicLrcContain
 {
     Q_OBJECT
 public:
-    explicit MusicLrcContainerVerticalDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcContainerVerticalDesktop(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void initCurrentLrc() const override;
+    static QString getClassName();
+
     /*!
      * Init current lrc when the first show.
      */
+    virtual void initCurrentLrc() const override;
 
 public Q_SLOTS:
-    virtual void setSingleLineTypeChanged() override;
     /*!
      * Set single line type changed.
      */
+    virtual void setSingleLineTypeChanged() override;
 
 protected:
-    virtual void resizeLrcSizeArea() override;
     /*!
      * Resize lrc size area by change size.
      */
+    virtual void resizeLrcSizeArea() override;
 
 };
 

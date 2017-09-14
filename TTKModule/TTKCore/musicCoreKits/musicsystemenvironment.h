@@ -17,50 +17,49 @@
 class MUSIC_CORE_EXPORT MusicSystemEnvironment
 {
 public:
-    MusicSystemEnvironment() = default;
-    /*!
-     * Object contsructor.
-     */
-
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static QString getData(const QString &data);
+    static QString getClassName();
+
     /*!
      * Get variant data from system environment.
      */
-    static QString getSystemDrive();
+    static QString getData(const QString &data);
     /*!
      * Get system drive path.
      */
-    static QString getSystemRoot();
+    static QString getSystemDrive();
     /*!
      * Get system root path.
      */
-    static QString getProgramData();
+    static QString getSystemRoot();
     /*!
      * Get program data.
      */
-    static QString getWinDir();
+    static QString getProgramData();
     /*!
      * Get win dir path.
      */
-    static QString getUserName();
+    static QString getWinDir();
     /*!
      * Get user name.
      */
-    static QString getPublic();
+    static QString getUserName();
     /*!
      * Get public path.
      */
-    static QString getLocalAppData();
+    static QString getPublic();
     /*!
      * Get app data local path.
      */
-    static QString getAppData();
+    static QString getLocalAppData();
     /*!
      * Get app data roming path.
+     */
+    static QString getAppData();
+    /*!
+     * Get temp path.
      */
     static QString getTMP();
     /*!
@@ -68,20 +67,17 @@ public:
      */
     static QString getTEMP();
     /*!
-     * Get temp path.
+     * Get common program files path.
      */
     static QString getCommonProgramFiles();
     /*!
-     * Get common program files path.
+     * Get common program w64 path.
      */
     static QString getCommonProgramW64();
     /*!
-     * Get common program w64 path.
-     */
-    static QString getOS();
-    /*!
      * Get operator system name.
      */
+    static QString getOS();
 
 };
 

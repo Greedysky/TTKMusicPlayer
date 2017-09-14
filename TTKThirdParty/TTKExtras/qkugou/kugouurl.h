@@ -18,90 +18,94 @@
 class MUSIC_EXTRAS_EXPORT KugouUrl
 {
 public:
-    KugouUrl();
     /*!
      * Object contsructor.
      */
+    KugouUrl();
 
-    //kugou song
-    static QString getSongYuekuUrl();
     /*!
      * Get Song Yueku Url.
      */
-    static QString getSongRecommendUrl();
+    static QString getSongYuekuUrl();
     /*!
      * Get Song Recommend Url.
      */
-    static QString getSongRankUrl();
+    static QString getSongRecommendUrl();
     /*!
      * Get Song Rank Url.
      */
-    static QString getSongSingerUrl();
+    static QString getSongRankUrl();
     /*!
      * Get Song Singer Url.
      */
-    static QString getSongCategoryUrl();
+    static QString getSongSingerUrl();
     /*!
      * Get Song Category Url.
      */
-    static QString getSongShowUrl();
+    static QString getSongCategoryUrl();
     /*!
      * Get Song Show Url.
      */
-    static QString getSongHeroesUrl();
+    static QString getSongShowUrl();
     /*!
      * Get Song Heroes Url.
      */
+    static QString getSongHeroesUrl();
 
-    //kugou radio
-    static QString getRadioPublicUrl();
+
+
     /*!
      * Get Radio Public Url.
      */
-    static QString getRadioHighFmUrl();
+    static QString getRadioPublicUrl();
     /*!
      * Get Radio High Fm Url.
      */
-    static QString getRadioFxUrl();
+    static QString getRadioHighFmUrl();
     /*!
      * Get Radio Fx Url.
      */
-    static QString getRadioHomeUrl();
+    static QString getRadioFxUrl();
     /*!
      * Get Radio Home Url.
      */
+    static QString getRadioHomeUrl();
 
-    //kugou list
-    static QString getListUrl();
+
+
     /*!
      * Get List Url.
      */
+    static QString getListUrl();
 
-    //kugou mv
-    static QString getMVRadioUrl();
+
+
     /*!
      * Get MV Radio Url.
      */
-    static QString getMVRecommendUrl();
+    static QString getMVRadioUrl();
     /*!
      * Get MV Recommend Url.
      */
-    static QString getMVFanxingUrl();
+    static QString getMVRecommendUrl();
     /*!
      * Get MV Fanxing Url.
      */
+    static QString getMVFanxingUrl();
 
-    //kugou web
-    static QString getWebPlayerUrl();
+
+
     /*!
      * Get Web Player Url.
      */
+    static QString getWebPlayerUrl();
 
-    //kuishe web
-    static QString getKuiSheUrl();
+
+
     /*!
      * Get KuiShe Url.
      */
+    static QString getKuiSheUrl();
 
 };
 

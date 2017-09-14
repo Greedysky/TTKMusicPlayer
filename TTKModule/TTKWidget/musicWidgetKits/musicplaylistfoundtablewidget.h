@@ -18,25 +18,26 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundTableWidget : public MusicQueryFound
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundTableWidget(QWidget *parent = 0);
+
     virtual ~MusicPlaylistFoundTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set network query input.
      */
-    void setConnectObject(QObject *obj);
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set connect object.
      */
+    void setConnectObject(QObject *obj);
 
 };
 

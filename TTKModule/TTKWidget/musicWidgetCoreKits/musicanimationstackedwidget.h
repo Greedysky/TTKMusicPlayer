@@ -23,76 +23,77 @@ class MUSIC_WIDGET_EXPORT MusicAnimationStackedWidget : public QStackedWidget
 public:
     enum AnimationType
     {
-        TopToBottom,    ///Animation from top to bottom
-        BottomToTop,    ///Animation from bottom to top
-        LeftToRight,    ///Animation from left to right
-        RightToLeft     ///Animation from right to left
+        TopToBottom,    /*!< Animation from top to bottom*/
+        BottomToTop,    /*!< Animation from bottom to top*/
+        LeftToRight,    /*!< Animation from left to right*/
+        RightToLeft     /*!< Animation from right to left*/
     };
 
-    explicit MusicAnimationStackedWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAnimationStackedWidget(QWidget *parent = 0);
+
     virtual ~MusicAnimationStackedWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void start(int index);
     /*!
      * Start to anmiation by index.
      */
-    void setIndex(int previous, int current);
+    void start(int index);
     /*!
      * Set previoud and current index.
      */
-    void setLength(int length, AnimationType type);
+    void setIndex(int previous, int current);
     /*!
      * Set animation start and end pos distance and animation type.
      */
-    int getPreviousIndex() const;
+    void setLength(int length, AnimationType type);
     /*!
      * Get previoud index.
      */
-    int getCurrentIndex() const;
+    int getPreviousIndex() const;
     /*!
      * Get current index.
      */
+    int getCurrentIndex() const;
 
-    void setDuration(int duration);
     /*!
      * Set animation duration.
      */
-    int getDuration() const;
+    void setDuration(int duration);
     /*!
      * Get animation duration.
      */
+    int getDuration() const;
 
 private Q_SLOTS:
-    void valueChanged(const QVariant &value);
     /*!
      * Animation value changed.
      */
-    void animationFinished();
+    void valueChanged(const QVariant &value);
     /*!
      * Animation finished.
      */
+    void animationFinished();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void renderPreviousWidget(QPainter &painter);
+    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Render previous widget.
      */
-    void renderCurrentWidget(QPainter &painter);
+    void renderPreviousWidget(QPainter &painter);
     /*!
      * Render current widget.
      */
+    void renderCurrentWidget(QPainter &painter);
 
     bool m_isAnimating;
     float m_currentValue;

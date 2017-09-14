@@ -20,39 +20,40 @@ class MUSIC_WIDGET_EXPORT MusicPagingWidgetObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicPagingWidgetObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPagingWidgetObject(QObject *parent = 0);
+
     virtual ~MusicPagingWidgetObject();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    QWidget* createPagingWidget(QWidget *parent, int total);
     /*!
      * Create paging items.
      */
-    void reset(int total);
+    QWidget* createPagingWidget(QWidget *parent, int total);
     /*!
      * Reset page to origin.
      */
-    void paging(int index, int total);
+    void reset(int total);
     /*!
      * Start to page by given index and total.
      */
-    int currentIndex() const;
+    void paging(int index, int total);
     /*!
      * Get current page index.
      */
+    int currentIndex() const;
 
 Q_SIGNALS:
-    void mapped(int index);
     /*!
      * Mapped the clicked page index.
      */
+    void mapped(int index);
 
 protected:
     int m_currentPage;

@@ -11,36 +11,36 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameTableWidget : public MusicFi
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsRenameTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(const MusicSongCheckToolsRenames &items);
     /*!
      * Create all items.
      */
+    void createAllItems(const MusicSongCheckToolsRenames &items);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void selectedAllItems(bool check);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Select all items.
      */
+    void selectedAllItems(bool check);
 
 protected:
-    void deleteCurrentRow();
     /*!
      * Delete current selected row.
      */
+    void deleteCurrentRow();
 
 };
 
@@ -53,47 +53,48 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateTableWidget : public Musi
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsDuplicateTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSongCheckToolsDuplicateTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(const MusicSongCheckToolsDuplicates &songs);
     /*!
      * Create all items.
      */
+    void createAllItems(const MusicSongCheckToolsDuplicates &songs);
 
 Q_SIGNALS:
-    void addSongToPlay(const QStringList &list);
     /*!
      * Add current selected song to play lists.
      */
+    void addSongToPlay(const QStringList &list);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void selectedAllItems(bool check);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Select all items.
      */
+    void selectedAllItems(bool check);
 
 protected:
-    void musicPlay();
     /*!
      * Add selected music song path to list.
      */
-    void deleteCurrentRow();
+    void musicPlay();
     /*!
      * Delete current selected row.
      */
+    void deleteCurrentRow();
 
 };
 
@@ -106,51 +107,52 @@ class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityTableWidget : public MusicF
 {
     Q_OBJECT
 public:
-    explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongCheckToolsQualityTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSongCheckToolsQualityTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createAllItems(const MusicSongCheckToolsQualitys &songs);
     /*!
      * Create all items.
      */
-    void transfromBitrateToQuality(int bitrate, QString &bitString, QColor &color) const;
+    void createAllItems(const MusicSongCheckToolsQualitys &songs);
     /*!
      * Transfrom bitrate to quality.
      */
+    void transfromBitrateToQuality(int bitrate, QString &bitString, QColor &color) const;
 
 Q_SIGNALS:
-    void addSongToPlay(const QStringList &list);
     /*!
      * Add current selected song to play lists.
      */
+    void addSongToPlay(const QStringList &list);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void selectedAllItems(bool check);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Select all items.
      */
+    void selectedAllItems(bool check);
 
 protected:
-    void musicPlay();
     /*!
      * Add selected music song path to list.
      */
-    void deleteCurrentRow();
+    void musicPlay();
     /*!
      * Delete current selected row.
      */
+    void deleteCurrentRow();
 
 };
 

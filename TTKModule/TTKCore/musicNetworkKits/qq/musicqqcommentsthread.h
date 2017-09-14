@@ -10,30 +10,30 @@ class MUSIC_NETWORK_EXPORT MusicQQCommentsThread : public MusicDownLoadCommentsT
 {
     Q_OBJECT
 public:
-    explicit MusicQQCommentsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQQCommentsThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startToSearch(const QString &name) override;
     /*!
      * Start to Search data from name.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToSearch(const QString &name) override;
     /*!
      * Start to search data from name and type bt paging.
      */
+    virtual void startToPage(int offset) override;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 };
 

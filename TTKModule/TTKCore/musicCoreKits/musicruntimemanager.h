@@ -17,24 +17,25 @@
 class MUSIC_CORE_EXPORT MusicRunTimeManager
 {
 public:
-    MusicRunTimeManager();
     /*!
      * Object contsructor.
      */
+    MusicRunTimeManager();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void run() const;
     /*!
      * Run.
      */
-    QString translator() const;
+    void run() const;
+
     /*!
      * Get translator path.
      */
+    QString translator() const;
 
 };
 

@@ -25,73 +25,74 @@ class MUSIC_NETWORK_EXPORT MusicVoiceTtsThread : public QObject
 public:
     enum TranslationType
     {
-        Type_Uk,    ///English
-        Type_En,    ///American English
-        Type_Zh     ///Chinese
+        Type_Uk,    /*!< English*/
+        Type_En,    /*!< American English*/
+        Type_Zh     /*!< Chinese*/
     };
 
-    explicit MusicVoiceTtsThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVoiceTtsThread(QObject *parent = 0);
+
     ~MusicVoiceTtsThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setSpeed(int speed);
+    static QString getClassName();
     /*!
      * Set speed.
      */
-    int getSpeed() const;
+    void setSpeed(int speed);
     /*!
      * Get speed.
      */
+    int getSpeed() const;
 
-    void setPitch(int pitch);
     /*!
      * Set pitch.
      */
-    int getPitch() const;
+    void setPitch(int pitch);
     /*!
      * Get pitch.
      */
+    int getPitch() const;
 
-    void setVolume(int volume);
     /*!
      * Set volume.
      */
-    int getVolume() const;
+    void setVolume(int volume);
     /*!
      * Get volume.
      */
+    int getVolume() const;
 
-    void setPerson(int person);
     /*!
      * Set person.
      */
-    int getPerson() const;
+    void setPerson(int person);
     /*!
      * Get person.
      */
+    int getPerson() const;
 
-    void startToDownload(TranslationType type, const QString &data);
     /*!
      * Start to translation data.
      */
+    void startToDownload(TranslationType type, const QString &data);
 
 Q_SIGNALS:
-    void downLoadDataChanged(const QByteArray &data);
     /*!
      * Send translated data from net.
      */
+    void downLoadDataChanged(const QByteArray &data);
 
 protected:
-    QString mapTypeFromEnumToString(TranslationType type);
     /*!
      * Map type from enum to string.
      */
+    QString mapTypeFromEnumToString(TranslationType type);
 
     int m_speed, m_pitch, m_volume, m_person;
     MusicDownloadSourceThread *m_parser;

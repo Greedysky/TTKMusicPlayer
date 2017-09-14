@@ -20,51 +20,52 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundPopWidget(QWidget *parent = 0);
+
     virtual ~MusicBackgroundPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setValue(int value);
     /*!
      * Set slider value.
      */
-    int value() const;
+    void setValue(int value);
     /*!
      * Get slider value.
      */
+    int value() const;
 
 Q_SIGNALS:
-    void valueChanged(int value);
     /*!
      * Current play transparent changed.
      */
-    void sliderStateChanged(bool state);
+    void valueChanged(int value);
     /*!
      * Current slider state changed.
      */
+    void sliderStateChanged(bool state);
 
 private Q_SLOTS:
-    void sliderPressed();
     /*!
      * Current slider pressed changed.
      */
-    void sliderReleased();
+    void sliderPressed();
     /*!
      * Current slider released changed.
      */
+    void sliderReleased();
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     MusicClickedSlider *m_slider;
 

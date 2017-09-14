@@ -22,52 +22,53 @@ class MUSIC_NETWORK_EXPORT MusicNetworkAbstract : public QObject
 public:
     typedef enum StateCode
     {
-        Init = 0xFFFFF00,   ///Network state init
-        Success = 0,        ///Network state success
-        Error = -1,         ///Network state error
-        UnKnow = 2,         ///Network state unknow
+        Init = 0xFFFFF00,   /*!< Network state init*/
+        Success = 0,        /*!< Network state success*/
+        Error = -1,         /*!< Network state error*/
+        UnKnow = 2,         /*!< Network state unknow*/
     }StateCode;
 
-    explicit MusicNetworkAbstract(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkAbstract(QObject *parent = 0);
+
     virtual ~MusicNetworkAbstract();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void deleteAll();
+    static QString getClassName();
     /*!
      * Release the network object.
      */
+    virtual void deleteAll();
 
 Q_SIGNALS:
-    void downLoadDataChanged(const QString &data);
     /*!
      * Send download data from net.
      */
+    void downLoadDataChanged(const QString &data);
 
 public Q_SLOTS:
-    virtual void downLoadFinished() = 0;
     /*!
      * Download data from net finished.
      * Subclass should implement this function.
      */
-    virtual void replyError(QNetworkReply::NetworkError error);
+    virtual void downLoadFinished() = 0;
     /*!
      * Download reply error.
      */
+    virtual void replyError(QNetworkReply::NetworkError error);
 #ifndef QT_NO_SSL
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
     /*!
      * Download ssl reply error.
      */
-    void sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors);
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
     /*!
      * Download ssl reply error strings.
      */
+    void sslErrorsString(QNetworkReply *reply, const QList<QSslError> &errors);
 #endif
 
 protected:

@@ -48,37 +48,40 @@
 class MUSIC_CORE_EXPORT MusicLogger
 {
 public:
+    /*!
+     * Get object instance ptr.
+     */
     static inline MusicLogger* createInstance()
     {
         static MusicLogger obj;
         return &obj;
     }
-    /*!
-     * Get object instance ptr.
-     */
 
+    /*!
+     * Get class object name.
+     */
     static QString getClassName()
     {
         return "MusicLogger";
     }
     /*!
-     * Get class object name.
+     * Set logger level.
      */
     inline void setLevel(const QString &level)
     {
         m_levelType = level;
     }
     /*!
-     * Set logger level.
+     * Get logger level.
      */
     inline QString level() const
     {
         return m_levelType;
     }
-    /*!
-     * Get logger level.
-     */
 
+    /*!
+     * Operator << override.
+     */
     inline MusicLogger &operator <<(bool t)
     {
 #ifdef MUSIC_DEBUG
@@ -120,11 +123,11 @@ public:
     inline MusicLogger &operator<<(const QStringRef &t) { return debugData<QString>(t.toString()); }
     inline MusicLogger &operator<<(const QLatin1String &t) { return debugData<QLatin1String>(t); }
     inline MusicLogger &operator<<(const QByteArray &t) { return debugData<QString>(QString(t)); }
-    /*!
-     * Operator << override.
-     */
 
 private:
+    /*!
+     * Object contsructor.
+     */
     MusicLogger()
     {
 #ifdef MUSIC_DEBUG
@@ -135,9 +138,6 @@ private:
         m_levelType = "[Info]";
 #endif
     }
-    /*!
-     * Object contsructor.
-     */
 
     ~MusicLogger()
     {
@@ -146,6 +146,9 @@ private:
 #endif
     }
 
+    /*!
+     * Output debug data into local file.
+     */
     template <class T>
     MusicLogger &debugData(const T &data)
     {
@@ -156,9 +159,6 @@ private:
 #endif
         return *this;
     }
-    /*!
-     * Output debug data into local file.
-     */
 
     QTextStream m_stream;
     QString m_streamString;

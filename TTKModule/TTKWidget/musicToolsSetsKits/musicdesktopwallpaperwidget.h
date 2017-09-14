@@ -25,78 +25,79 @@ class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperWidget : public MusicAbstractMov
 {
     Q_OBJECT
 public:
-    explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
+
     ~MusicDesktopWallpaperWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void netRadioButtonPressed();
     /*!
      * Net button clicked.
      */
-    void localRadioButtonPressed();
+    void netRadioButtonPressed();
     /*!
      * Local button clicked.
      */
-    void playRadioButtonPressed();
+    void localRadioButtonPressed();
     /*!
      * Play button clicked.
      */
-    void viewButtonPressed();
+    void playRadioButtonPressed();
     /*!
      * Find local file button clicked.
      */
-    void confirmButtonPressed();
+    void viewButtonPressed();
     /*!
      * Confirm button clicked to start show wallpaper.
      */
-    void stopButtonPressed();
+    void confirmButtonPressed();
     /*!
      * Stop show wallpaper.
      */
-    void cancelButtonPressed();
+    void stopButtonPressed();
     /*!
      * Close current widget.
      */
-    void parameterFinished();
+    void cancelButtonPressed();
     /*!
      * Set parameters.
      */
-    void show();
+    void parameterFinished();
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void initWidgetStyle() const;
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Create all widget style in layout.
      */
-    void initParameters() const;
+    void initWidgetStyle() const;
     /*!
      * Init parameters.
      */
-    void setAutoStart(bool autoStart) const;
+    void initParameters() const;
     /*!
      * Set auto thread to show wallpaper.
      */
+    void setAutoStart(bool autoStart) const;
 
     Ui::MusicDesktopWallpaperWidget *m_ui;
     int m_currentMode;

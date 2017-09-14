@@ -31,45 +31,45 @@ class MUSIC_SUPER_EXPORT MusicDownloadRecordConfigManager : public MusicAbstract
 public:
     enum Type
     {
-        Normal,         ///Local File Config
-        Cloud           ///Cloud File Config
+        Normal,         /*!< Local File Config*/
+        Cloud           /*!< Cloud File Config*/
     };
 
-    explicit MusicDownloadRecordConfigManager(Type type, QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadRecordConfigManager(Type type, QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline void setType(Type type) { m_type = type; }
+    static QString getClassName();
     /*!
      * Set config type.
      */
-    inline Type getType() const { return m_type; }
+    inline void setType(Type type) { m_type = type; }
     /*!
      * Get config type.
      */
-    inline bool readDownloadXMLConfig() { return readConfig( mappingFilePathFromEnum() ); }
+    inline Type getType() const { return m_type; }
     /*!
      * Read history download datas from xml file by given name.
      */
-    void writeDownloadConfig(const MusicDownloadRecords &records);
+    inline bool readDownloadXMLConfig() { return readConfig( mappingFilePathFromEnum() ); }
     /*!
      * Write history download datas into xml file.
      */
-    void readDownloadConfig(MusicDownloadRecords &records);
+    void writeDownloadConfig(const MusicDownloadRecords &records);
     /*!
      * Read history download datas into xml file.
      */
+    void readDownloadConfig(MusicDownloadRecords &records);
 
 protected:
-    QString mappingFilePathFromEnum() const;
     /*!
      * Mapping file path from enum type.
      */
+    QString mappingFilePathFromEnum() const;
 
     Type m_type;
 

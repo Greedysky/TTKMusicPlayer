@@ -19,22 +19,24 @@ class MUSIC_WIDGET_EXPORT MusicVolumeGainTableWidget : public MusicAbstractTable
 {
     Q_OBJECT
 public:
-    explicit MusicVolumeGainTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVolumeGainTableWidget(QWidget *parent = 0);
+
     virtual ~MusicVolumeGainTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
+
 };
 
 
@@ -49,80 +51,81 @@ class MUSIC_TOOLSET_EXPORT MusicVolumeGainWidget : public MusicAbstractMoveWidge
 {
     Q_OBJECT
 public:
-    explicit MusicVolumeGainWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVolumeGainWidget(QWidget *parent = 0);
+
     virtual ~MusicVolumeGainWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
+    void show();
 
 private Q_SLOTS:
-    void addFileButtonClicked();
     /*!
      * Add input file button clicked.
      */
-    void addFilesButtonClicked();
+    void addFileButtonClicked();
     /*!
      * Add input files button clicked.
      */
-    void rmFileButtonClicked();
+    void addFilesButtonClicked();
     /*!
      * Remove input file button clicked.
      */
-    void rmFilesButtonClicked();
+    void rmFileButtonClicked();
     /*!
      * Remove input files button clicked.
      */
-    void analysisButtonClicked();
+    void rmFilesButtonClicked();
     /*!
      * Analysis input files button clicked.
      */
-    void applyButtonClicked();
+    void analysisButtonClicked();
     /*!
      * Apply input files button clicked.
      */
-    void volumeLineTextChanged(const QString &text);
+    void applyButtonClicked();
     /*!
      * Music gain volume input value changed.
      */
-    void analysisOutput();
+    void volumeLineTextChanged(const QString &text);
     /*!
      * Analysis output by process.
      */
-    void applyOutput();
+    void analysisOutput();
     /*!
      * Apply output by process.
      */
+    void applyOutput();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createItemFinished(const QString &track, const QString &album);
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Create table item finished.
      */
-    void setControlEnable(bool enable);
+    void createItemFinished(const QString &track, const QString &album);
     /*!
      * Enable or disable control state.
      */
+    void setControlEnable(bool enable);
 
     Ui::MusicVolumeGainWidget *m_ui;
     QProcess *m_process;

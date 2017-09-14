@@ -24,26 +24,27 @@ class MUSIC_WIDGET_EXPORT MusicSongsListItemInfoWidget : public MusicAbstractMov
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListItemInfoWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsListItemInfoWidget(QWidget *parent = 0);
+
     ~MusicSongsListItemInfoWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setMusicSongInformation(const MusicSong &info);
+    static QString getClassName();
     /*!
      * Set music song information.
      */
+    void setMusicSongInformation(const MusicSong &info);
 
 protected:
-    bool showArtPicture(const QString &name);
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
+    bool showArtPicture(const QString &name);
 
     Ui::MusicSongsListItemInfoWidget *m_ui;
 

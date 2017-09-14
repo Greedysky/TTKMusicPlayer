@@ -18,34 +18,34 @@
 class MUSIC_CORE_EXPORT MusicFormats
 {
 public:
+    /*!
+     * Get player supported formats.
+     */
     static QStringList supportFormatsString();
     /*!
      * Get player supported formats.
      */
     static MusicObject::MStringsListMap supportFormatsStringMap();
     /*!
-     * Get player supported formats.
+     * Get player supported formats filter.
      */
     static QStringList supportFormatsFilterString();
     /*!
-     * Get player supported formats filter.
+     * Get player supported formats filter dialog.
      */
     static QStringList supportFormatsFilterDialogString();
     /*!
-     * Get player supported formats filter dialog.
+     * Get spek supported formats filter dialog.
      */
     static QStringList supportFormatsSpekString();
     /*!
-     * Get spek supported formats filter dialog.
+     * Get playlist supported formats filter dialog.
      */
     static QStringList supportFormatsPlaylistDialogString();
     /*!
-     * Get playlist supported formats filter dialog.
-     */
-    static QString supportFormatsPlaylistString();
-    /*!
      * Get playlist supported formats dialog.
      */
+    static QString supportFormatsPlaylistString();
 
 };
 

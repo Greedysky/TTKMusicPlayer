@@ -19,32 +19,32 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryItem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundCategoryItem(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundCategoryItem(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setCategory(const MusicPlaylistCategory &category);
     /*!
      * Set current category.
      */
+    void setCategory(const MusicPlaylistCategory &category);
 
 Q_SIGNALS:
-    void categoryChanged(const MusicPlaylistCategoryItem &category);
     /*!
      * Current category changed.
      */
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
 
 public Q_SLOTS:
-    void buttonClicked(int index);
     /*!
      * Current category item clicked.
      */
+    void buttonClicked(int index);
 
 protected:
     MusicPlaylistCategory m_category;
@@ -60,35 +60,35 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicTool
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setCategory(const QString &server, QObject *obj);
+    static QString getClassName();
     /*!
      * Set current category by input server.
      */
-    void closeMenu();
+    void setCategory(const QString &server, QObject *obj);
     /*!
      * Close the menu dialog.
      */
+    void closeMenu();
 
 public Q_SLOTS:
-    void popupMenu();
     /*!
      * To popup menu.
      */
+    void popupMenu();
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
 };
 

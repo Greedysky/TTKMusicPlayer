@@ -19,9 +19,9 @@ typedef struct MUSIC_TOOL_EXPORT MusicUploadData
 {
     enum State
     {
-        Waited = 0,     ///0 waited
-        Successed,      ///1 successed
-        Errored         ///2 error
+        Waited = 0,     /*!< 0 waited*/
+        Successed,      /*!< 1 successed*/
+        Errored         /*!< 2 error*/
     };
 
     QString m_path;
@@ -52,53 +52,54 @@ class MUSIC_TOOL_EXPORT MusicCloudFileManagerDialog : public MusicAbstractMoveDi
 {
     Q_OBJECT
 public:
-    explicit MusicCloudFileManagerDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCloudFileManagerDialog(QWidget *parent = 0);
+
     virtual ~MusicCloudFileManagerDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setReuploadState(bool state);
     /*!
      * Set reupload state.
      */
-    void creatFileManager(const MusicUploadData &data);
+    void setReuploadState(bool state);
     /*!
      * Creat file manager item.
      */
-    void creatFilesManager(const MusicUploadDatas &datas);
+    void creatFileManager(const MusicUploadData &data);
     /*!
      * Creat file manager items.
      */
-    void updateItemProgress(int percent, const MusicUploadData &data);
+    void creatFilesManager(const MusicUploadDatas &datas);
     /*!
      * Update item progress.
      */
+    void updateItemProgress(int percent, const MusicUploadData &data);
 
 public Q_SLOTS:
-    void downloadStateChanged();
     /*!
      * Download button state changed.
+     */
+    void downloadStateChanged();
+    /*!
+     * Override exec function.
      */
     virtual int exec();
     /*!
      * Override exec function.
      */
     void show();
-    /*!
-     * Override exec function.
-     */
 
 protected:
-    QIcon getIconByDataState(MusicUploadData::State state);
     /*!
      * Get icon by data state.
      */
+    QIcon getIconByDataState(MusicUploadData::State state);
 
     Ui::MusicCloudFileManagerDialog *m_ui;
 

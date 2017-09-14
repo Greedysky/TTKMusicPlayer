@@ -28,27 +28,27 @@ class MUSIC_SUPER_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicA
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_FULL); }
+    static QString getClassName();
     /*!
      * Read history search datas from xml file by given name.
      */
-    void writeSearchConfig(const MusicSearchRecords &records);
+    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_FULL); }
     /*!
      * Write history search datas into xml file.
      */
-    void readSearchConfig(MusicSearchRecords &records);
+    void writeSearchConfig(const MusicSearchRecords &records);
     /*!
      * Read history search datas into xml file.
      */
+    void readSearchConfig(MusicSearchRecords &records);
 
 };
 

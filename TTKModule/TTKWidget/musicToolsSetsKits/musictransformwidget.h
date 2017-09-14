@@ -30,75 +30,76 @@ class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 public:
     enum TransformType
     {
-        Music,  ///*Music category*/
-        Lrc,    ///*Lrc category*/
+        Music,  /*!< Music category*/
+        Lrc,    /*!< Lrc category*/
     };
-    explicit MusicTransformWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTransformWidget(QWidget *parent = 0);
+
     virtual ~MusicTransformWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void initInputPath();
     /*!
      * Selected input path.
      */
-    void initOutputPath();
+    void initInputPath();
     /*!
      * Selected out path.
      */
-    void startTransform();
+    void initOutputPath();
     /*!
      * Start to transform.
      */
-    void transformFinish();
+    void startTransform();
     /*!
      * Transform finished.
      */
-    void folderBoxChecked();
+    void transformFinish();
     /*!
      * Input is dir not file.
      */
-    void krc2lrcBoxChecked(bool check);
+    void folderBoxChecked();
     /*!
      * Transform krc file to lrc file.
      */
-    virtual int exec();
+    void krc2lrcBoxChecked(bool check);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    QString getTransformSongName() const;
     /*!
      * Get transform song name.
      */
-    QFileInfoList getFileList(const QString &path);
+    QString getTransformSongName() const;
     /*!
      * If input is dir just get all files in this dir.
      */
-    void initControlParameter() const;
+    QFileInfoList getFileList(const QString &path);
     /*!
      * Init control parameter.
      */
-    bool processTransform(const QString &para) const;
+    void initControlParameter() const;
     /*!
      * Start a process to transform.
      */
-    void setMusicCheckedControl(bool enable);
+    bool processTransform(const QString &para) const;
     /*!
      * Set music control enable or false when trans lrc.
      */
-    void setCheckedControl(bool enable);
+    void setMusicCheckedControl(bool enable);
     /*!
      * Set control enable false when it begin.
      */
+    void setCheckedControl(bool enable);
 
     Ui::MusicTransformWidget *m_ui;
     QProcess *m_process;

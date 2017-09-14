@@ -25,125 +25,126 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundSkinDialog : public MusicAbstractMoveDi
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
+
     virtual ~MusicBackgroundSkinDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    static QPixmap setMBackground(QString &name);
     /*!
      * Set artist background picture by name.
      */
-    static bool themeValidCheck(QString &name, QString &path);
+    static QPixmap setMBackground(QString &name);
     /*!
      * Theme valid check.
      */
-    static QString cpoyArtFileToLocal(const QString &path);
+    static bool themeValidCheck(QString &name, QString &path);
     /*!
      * Copy art file to local themes dir path.
      */
-    void updateArtFileTheme(const QString &theme);
+    static QString cpoyArtFileToLocal(const QString &path);
     /*!
      * Update art file theme.
      */
+    void updateArtFileTheme(const QString &theme);
 
-    void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
-    int getBackgroundListAlpha() const;
+    void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
     /*!
      * Get list bg skin alpha.
      */
-    bool getBackgroundTransparentEnable() const;
+    int getBackgroundListAlpha() const;
     /*!
      * Get bg window skin enable.
      */
+    bool getBackgroundTransparentEnable() const;
 
-    void setSkinTransToolText(int value);
     /*!
      * Set skin transparent tool text.
      */
-    void setListTransToolText(int value);
+    void setSkinTransToolText(int value);
     /*!
      * Set list transparent tool text.
      */
+    void setListTransToolText(int value);
 
 Q_SIGNALS:
-    void currentTextChanged(const QString &text);
     /*!
      * Update app bg when user change the current bg emit.
      */
+    void currentTextChanged(const QString &text);
 
 public Q_SLOTS:
+    /*!
+     * Change index to palette dialog.
+     */
     void showPaletteDialog();
     /*!
      * Change index to palette dialog.
      */
     void showPaletteDialog(const QString &path);
     /*!
-     * Change index to palette dialog.
+     * Change index to custom skin dialog.
      */
     void showCustomSkinDialog();
     /*!
-     * Change index to custom skin dialog.
+     * Background list widget changed.
      */
     void backgroundListWidgetChanged(int index);
     /*!
-     * Background list widget changed.
+     * Background list widget item has clicked.
      */
     void backgroundListWidgetItemClicked(const QString &name);
     /*!
-     * Background list widget item has clicked.
+     * My background list widget item has clicked.
      */
     void myBackgroundListWidgetItemClicked(const QString &name);
     /*!
-     * My background list widget item has clicked.
+     * Remote background list widget item has clicked.
      */
     void remoteBackgroundListWidgetItemClicked(const QString &name);
     /*!
-     * Remote background list widget item has clicked.
+     * Update app bg when user change the current bg emit.
      */
     void currentColorChanged(const QString &path);
     /*!
-     * Update app bg when user change the current bg emit.
+     * Window transparent changed.
      */
     void windowTransparentChanged(bool state);
     /*!
-     * Window transparent changed.
-     */
-    virtual int exec();
-    /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name);
     /*!
      * Background list widget item has clicked changed.
      */
-    void addThemeListWidgetItem();
+    void listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name);
     /*!
      * Add all theme into list.
      */
-    void cpoyFileFromLocal(const QString &path);
+    void addThemeListWidgetItem();
     /*!
      * Copy custom file to local themes dir path.
      */
-    static int cpoyFileToLocalIndex();
+    void cpoyFileFromLocal(const QString &path);
     /*!
      * Copy custom file index.
      */
-    static int cpoyFileToLocal(const QString &path);
+    static int cpoyFileToLocalIndex();
     /*!
      * Copy custom file .
      */
+    static int cpoyFileToLocal(const QString &path);
 
     int m_myThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;

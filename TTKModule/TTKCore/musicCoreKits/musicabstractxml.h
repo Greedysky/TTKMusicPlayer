@@ -40,108 +40,109 @@ class MUSIC_CORE_EXPORT MusicAbstractXml : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicAbstractXml(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAbstractXml(QObject *parent = 0);
+
     ~MusicAbstractXml();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    bool readConfig(const QString &name);
     /*!
      * Read datas from xml file by given name.
      */
-    bool writeConfig(const QString &name);
+    bool readConfig(const QString &name);
     /*!
      * Write datas into xml file by given name.
      */
-    bool fromString(const QString &data);
+    bool writeConfig(const QString &name);
     /*!
      * Xml stream data from string.
      */
-    bool fromByteArray(const QByteArray &data);
+    bool fromString(const QString &data);
     /*!
      * Xml stream data from byteArray.
      */
+    bool fromByteArray(const QByteArray &data);
 
-    QString toString() const;
     /*!
      * Xml stream data to string.
      */
-    QByteArray toByteArray() const;
+    QString toString() const;
     /*!
      * Xml stream data to byteArray.
      */
+    QByteArray toByteArray() const;
 
-    QString readXmlAttributeByTagNameValue(const QString &tagName) const;
     /*!
      * Read xml attribute by tagName and default name "value".
+     */
+    QString readXmlAttributeByTagNameValue(const QString &tagName) const;
+    /*!
+     * Read xml attribute by tagName and attribute name.
      */
     QString readXmlAttributeByTagName(const QString &tagName,
                                       const QString &attrName) const;
     /*!
-     * Read xml attribute by tagName and attribute name.
+     * Read xml attribute's text by tagName.
      */
     QString readXmlTextByTagName(const QString &tagName) const;
     /*!
-     * Read xml attribute's text by tagName.
+     * Read xml attributes by tagName and default name "value".
      */
     MusicObject::MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
-     * Read xml attributes by tagName and default name "value".
+     * Create processing instruction in header.
      */
     void createProcessingInstruction();
     /*!
-     * Create processing instruction in header.
+     * Create xml node nodes by node name.
      */
     QDomElement createRoot(const QString &node);
     /*!
-     * Create xml node nodes by node name.
+     * Create xml node nodes by node atrr.
      */
     QDomElement createRoot(const QString &node, const MusicXmlAttribute &attr);
     /*!
-     * Create xml node nodes by node atrr.
+     * Create xml node nodes by node atrrs.
      */
     QDomElement createRoot(const QString &node, const MusicXmlAttributes &attrs);
     /*!
-     * Create xml node nodes by node atrrs.
+     * Append xml element nodes by node name.
      */
     QDomElement writeDom(QDomElement &element, const QString &node);
     /*!
-     * Append xml element nodes by node name.
+     * Append xml element nodes by node name\ key name and value.
      */
     QDomElement writeDomElement(QDomElement &element, const QString &node,
                                 const MusicXmlAttribute &attr);
     /*!
-     * Append xml element nodes by node name\ key name and value.
+     * Append xml elements nodes by node name\ keys name and values.
      */
     QDomElement writeDomElementMutil(QDomElement &element, const QString &node,
                                      const MusicXmlAttributes &attrs);
     /*!
-     * Append xml elements nodes by node name\ keys name and values.
+     * Append xml element nodes by node name\ key name \ value and attribute's text.
      */
     QDomElement writeDomElementText(QDomElement &element, const QString &node,
                                     const MusicXmlAttribute &attr, const QString &text);
     /*!
-     * Append xml element nodes by node name\ key name \ value and attribute's text.
+     * Append xml elements nodes by node name\ keys name \ values and attribute's text.
      */
     QDomElement writeDomElementMutilText(QDomElement &element, const QString &node,
                                          const MusicXmlAttributes &attrs, const QString &text);
     /*!
-     * Append xml elements nodes by node name\ keys name \ values and attribute's text.
+     * Append xml element nodes by node name and attribute's text.
      */
     QDomElement writeDomText(QDomElement &element, const QString &node, const QString &text);
     /*!
-     * Append xml element nodes by node name and attribute's text.
-     */
-    void writeAttribute(QDomElement &element, const MusicXmlAttribute &attr);
-    /*!
      * Append xml element nodes key name and value.
      */
+    void writeAttribute(QDomElement &element, const MusicXmlAttribute &attr);
 
 protected:
     QFile *m_file;

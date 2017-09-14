@@ -34,100 +34,99 @@ class MUSIC_TOOLSET_EXPORT MusicAudioRecorderWidget : public MusicAbstractMoveWi
 {
     Q_OBJECT
 public:
-    explicit MusicAudioRecorderWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicAudioRecorderWidget(QWidget *parent = 0);
+
     virtual ~MusicAudioRecorderWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void onRecordStart();
     /*!
      * Recorder play start.
      */
-    void onRecordStop();
+    void onRecordStart();
     /*!
      * Recorder play stop.
      */
-    void onRecordPlay();
+    void onRecordStop();
     /*!
      * Recorder play play.
      */
-    void onRecordSave();
+    void onRecordPlay();
     /*!
      * Recorder play save.
      */
-    void onStateChange(QAudio::State state);
+    void onRecordSave();
     /*!
      * Recorder play state changed.
      */
-    void onReadMore();
+    void onStateChange(QAudio::State state);
     /*!
      * Recorder to read more data.
      */
-    void onSliderValueChanged(int value);
+    void onReadMore();
     /*!
      * Change current volume to set to recorder.
      */
-    void onTimeOut();
+    void onSliderValueChanged(int value);
     /*!
      * To detect current record state value.
      */
-    void onTimerout();
+    void onTimeOut();
     /*!
      * Change current to label show.
      */
-    void show();
+    void onTimerout();
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    int applyVolumeToSample(short iSample);
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Apply volume to sample.
      */
-    void initMonitor();
+    int applyVolumeToSample(short iSample);
     /*!
      * Init parameter monitor.
      */
-    void createAudioInput();
+    void initMonitor();
     /*!
      * Create audio input.
      */
-    void createAudioOutput();
+    void createAudioInput();
     /*!
      * Create audio output.
      */
+    void createAudioOutput();
 
     Ui::MusicAudioRecorderWidget *m_ui;
     QTimer m_timer;
     qint64 m_time;
     QMovie *m_movie;
 
-    int m_miVolume;
-    int m_miMaxValue;
+    int m_miVolume, m_miMaxValue;
     MusicAudioRecorderCore *m_recordCore;
     QAudioFormat m_mFormatSound;
     QAudioInput *m_mpAudioInputSound;
     QAudioOutput *m_mpAudioOutputSound;
-    QIODevice *m_mpInputDevSound;
-    QIODevice *m_mpOutputDevSound;
+    QIODevice *m_mpInputDevSound, *m_mpOutputDevSound;
     QByteArray m_mBuffer;
 
 };

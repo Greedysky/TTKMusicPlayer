@@ -24,115 +24,116 @@ class MUSIC_GUI_EXPORT MusicApplicationObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicApplicationObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicApplicationObject(QObject *parent = 0);
+
     ~MusicApplicationObject();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicApplicationObject *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
-    bool getWindowToTop() const {return m_setWindowToTop;}
+    static MusicApplicationObject *instance();
     /*!
      * Get current window is to top.
      */
-    void getParameterSetting();
+    bool getWindowToTop() const {return m_setWindowToTop;}
     /*!
      * Get settings parameters.
      */
-    void windowCloseAnimation();
+    void getParameterSetting();
     /*!
      * Window close animation.
      */
-    void soureUpdateCheck();
+    void windowCloseAnimation();
     /*!
      * Soure update check.
      */
+    void soureUpdateCheck();
 
-    void sideAnimationByOn();
     /*!
      * Side animation by on.
      */
-    void sideAnimationByOff();
+    void sideAnimationByOn();
     /*!
      * Side animation by off.
      */
-    void sideAnimationReset();
+    void sideAnimationByOff();
     /*!
      * Side animation reset.
      */
+    void sideAnimationReset();
 
 Q_SIGNALS:
-    void enhancedMusicChanged(int type);
     /*!
      * Set enhanced music config changed.
      */
+    void enhancedMusicChanged(int type);
 
 public Q_SLOTS:
-    void windowCloseAnimationFinished();
     /*!
      * Window close animation finished.
      */
-    void musicAboutUs();
+    void windowCloseAnimationFinished();
     /*!
      * Show about us widget.
      */
-    void musicVersionUpdate();
+    void musicAboutUs();
     /*!
      * Show version update widget.
      */
-    void musicTimerWidget();
+    void musicVersionUpdate();
     /*!
      * Show timer widget.
      */
-    void musicSetWindowToTop();
+    void musicTimerWidget();
     /*!
      * Set current window to top.
      */
-    void musicResetWindow();
+    void musicSetWindowToTop();
     /*!
      * Reset current window geometry.
      */
-    void musicToolSetsParameter();
+    void musicResetWindow();
     /*!
      * Tools sets parameter changed.
      */
-    void musicDeviceNameChanged(const QString &name);
+    void musicToolSetsParameter();
     /*!
      * Detect mobile devices name changed.
      */
-    void musicDeviceChanged(bool state);
+    void musicDeviceNameChanged(const QString &name);
     /*!
      * Detect mobile devices changed.
      */
-    void musicSetEqualizer();
+    void musicDeviceChanged(bool state);
     /*!
      * Show set equalizer widget.
      */
-    void musicSetSoundEffect();
+    void musicSetEqualizer();
     /*!
      * Show set sound effect widget.
      */
-    void musicEffectChanged();
+    void musicSetSoundEffect();
     /*!
      * Sound effect changed.
      */
+    void musicEffectChanged();
 
 protected:
-    bool closeCurrentEqualizer();
     /*!
      * Close current equalizer.
      */
-    void cleanUp();
+    bool closeCurrentEqualizer();
     /*!
      * Something temp clean up.
      */
+    void cleanUp();
 
     bool m_setWindowToTop;
     bool m_leftSideByOn, m_rightSideByOn;

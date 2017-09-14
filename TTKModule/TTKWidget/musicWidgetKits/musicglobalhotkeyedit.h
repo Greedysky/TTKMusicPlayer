@@ -19,22 +19,23 @@ class MUSIC_WIDGET_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
 {
     Q_OBJECT
 public:
-    explicit MusicGlobalHotKeyEdit(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicGlobalHotKeyEdit(QWidget *parent = 0);
+
     ~MusicGlobalHotKeyEdit();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
-    void keyPressEvent(QKeyEvent *event);
     /*!
      * Override the widget event.
      */
+    void keyPressEvent(QKeyEvent *event);
 
 };
 

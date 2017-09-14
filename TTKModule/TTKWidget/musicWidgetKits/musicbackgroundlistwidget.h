@@ -23,100 +23,100 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundListItem : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundListItem(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundListItem(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    inline void setFileName(const QString &name) { m_name = name; }
     /*!
      * Set item file name.
+     */
+    inline void setFileName(const QString &name) { m_name = name; }
+    /*!
+     * Get item file name.
      */
     inline QString getFileName() const { return m_name; }
     /*!
-     * Get item file name.
+     * Set item file name.
      */
     inline void setFilePath(const QString &path) { m_path = path; }
     /*!
-     * Set item file name.
-     */
-    inline QString getFilePath() const { return m_path; }
-    /*!
      * Get item file name.
      */
+    inline QString getFilePath() const { return m_path; }
 
+    /*!
+     * Update pix image.
+     */
     void updatePixImage();
     /*!
      * Update pix image.
      */
     void updatePixImage(const MusicBackgroundImage &image);
     /*!
-     * Update pix image.
-     */
-    bool contains(const MusicSkinConfigItem &item) const;
-    /*!
      * Current item contains or not.
      */
+    bool contains(const MusicSkinConfigItem &item) const;
 
-    void setSelect(bool s);
     /*!
      * Select the current item.
      */
-    inline bool isSelect() const { return m_isSelected; }
+    void setSelect(bool s);
     /*!
      * Get current selected item state.
      */
+    inline bool isSelect() const { return m_isSelected; }
 
-    void setSelectEnable(bool s);
     /*!
      * Select the current item enable or not.
      */
-    inline bool isSelectEnable() const { return m_selectedMask; }
+    void setSelectEnable(bool s);
     /*!
      * Get current selected item state.
      */
+    inline bool isSelectEnable() const { return m_selectedMask; }
 
-    void setCloseEnable(bool s);
     /*!
      * Close option set the current item.
      */
-    inline bool isCloseEnable() const { return m_closeSet; }
+    void setCloseEnable(bool s);
     /*!
      * Get close option set the current item.
      */
+    inline bool isCloseEnable() const { return m_closeSet; }
 
-    void setShowNameEnable(bool s);
     /*!
      * Show title name set the current item.
      */
-    inline bool isShowNameEnable() const { return m_showNameMask; }
+    void setShowNameEnable(bool s);
     /*!
      * Get show title name set the current item.
      */
+    inline bool isShowNameEnable() const { return m_showNameMask; }
 
 Q_SIGNALS:
-    void closeClicked(MusicBackgroundListItem *item);
     /*!
      * Current item close clicked.
      */
-    void itemClicked(MusicBackgroundListItem *item);
+    void closeClicked(MusicBackgroundListItem *item);
     /*!
      * Current item clicked.
      */
+    void itemClicked(MusicBackgroundListItem *item);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void enterEvent(QEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     bool m_printMask, m_isSelected, m_selectedMask;
     bool m_closeMask, m_closeSet, m_showNameMask;
@@ -133,91 +133,92 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundListWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundListWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundListWidget(QWidget *parent = 0);
+
     ~MusicBackgroundListWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setCurrentItemName(const QString &name);
     /*!
      * Select current item by name when the widget show.
      */
+    void setCurrentItemName(const QString &name);
 
-    void clearSelectState();
     /*!
      * Clear select state.
      */
-    void clearAllItems();
+    void clearSelectState();
     /*!
      * Clear All Items.
      */
+    void clearAllItems();
 
-    void createItem(const QString &name, const QString &path, bool state);
     /*!
      * Create item by name and path.
      */
-    void createItem(const QString &icon, bool state);
+    void createItem(const QString &name, const QString &path, bool state);
     /*!
      * Create item by icon.
      */
-    void updateItem(const MusicBackgroundImage &image, const QString &path);
+    void createItem(const QString &icon, bool state);
     /*!
      * Update item by backgroud image.
      */
+    void updateItem(const MusicBackgroundImage &image, const QString &path);
 
+    /*!
+     * Current item contains or not.
+     */
     bool contains(const QString &name) const;
     /*!
      * Current item contains or not.
      */
     bool contains(const MusicBackgroundImage &image) const;
-    /*!
-     * Current item contains or not.
-     */
 
-    int find(MusicBackgroundListItem *item) const;
     /*!
      * Current item index at container.
      */
-    MusicBackgroundListItem* find(const QString &name) const;
+    int find(MusicBackgroundListItem *item) const;
     /*!
      * Find item by name.
      */
-    MusicBackgroundListItem* find(const MusicBackgroundImage &image) const;
+    MusicBackgroundListItem* find(const QString &name) const;
     /*!
      * Find item by image.
      */
+    MusicBackgroundListItem* find(const MusicBackgroundImage &image) const;
 
-    void updateLastedItem();
     /*!
      * Update lasted item state.
      */
+    void updateLastedItem();
 
-    inline int count() const { return m_items.count(); }
     /*!
      * Item count.
      */
+    inline int count() const { return m_items.count(); }
 
 Q_SIGNALS:
-    void itemClicked(const QString &name);
     /*!
      * Current item clicked.
      */
+    void itemClicked(const QString &name);
 
 private Q_SLOTS:
-    void itemCloseClicked(MusicBackgroundListItem *item);
     /*!
      * Current item close clicked.
      */
-    void itemHasClicked(MusicBackgroundListItem *item);
+    void itemCloseClicked(MusicBackgroundListItem *item);
     /*!
      * Current item has clicked.
      */
+    void itemHasClicked(MusicBackgroundListItem *item);
 
 protected:
     QGridLayout *m_layout;

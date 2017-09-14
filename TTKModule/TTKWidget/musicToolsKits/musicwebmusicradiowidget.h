@@ -29,80 +29,82 @@ class MUSIC_TOOL_EXPORT MusicWebMusicRadioWidget : public MusicAbstractMoveWidge
 {
     Q_OBJECT
 public:
-    explicit MusicWebMusicRadioWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicWebMusicRadioWidget(QWidget *parent = 0);
+
     virtual ~MusicWebMusicRadioWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setNetworkCookie(QNetworkCookieJar *jar);
+    static QString getClassName();
+
     /*!
      * Set network cookie.
      */
-    void updateRadioList(const QString &category);
+    void setNetworkCookie(QNetworkCookieJar *jar);
     /*!
      * Update radio list by given category.
      */
+    void updateRadioList(const QString &category);
 
 public Q_SLOTS:
-    void radioPlay();
     /*!
      * Set radio to play.
      */
-    void radioPrevious();
+    void radioPlay();
     /*!
      * Set radio to previous.
      */
-    void radioNext();
+    void radioPrevious();
     /*!
      * Set radio to next.
      */
-    void radioVolume(int num);
+    void radioNext();
     /*!
      * Set radio volume.
      */
-    void getPlayListFinished();
+    void radioVolume(int num);
     /*!
      * Get playList finished.
      */
-    void getSongInfoFinished();
+    void getPlayListFinished();
     /*!
      * Get song information finished.
      */
-    void lrcDownloadStateChanged();
+    void getSongInfoFinished();
     /*!
      * Lrc download state changed.
      */
-    void picDownloadStateChanged();
+    void lrcDownloadStateChanged();
     /*!
      * Small pic download state changed.
      */
-    void positionChanged(qint64 position);
+    void picDownloadStateChanged();
     /*!
      * Current position changed.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Current duration changed.
      */
-    void show();
+    void durationChanged(qint64 duration);
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void startToPlay();
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Start to play music radio.
      */
+    void startToPlay();
 
     Ui::MusicWebMusicRadioWidget *m_ui;
     int m_currentPlayListIndex;

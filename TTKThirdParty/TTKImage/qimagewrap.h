@@ -17,10 +17,10 @@
 class MUSIC_EXTRAS_EXPORT QImageWrap
 {
 public:
-    QImage GaussFilter(const QImage &image, int radius = 10);
     /*!
      * Image gauss filter.
      */
+    QImage GaussFilter(const QImage &image, int radius = 10);
 
 };
 

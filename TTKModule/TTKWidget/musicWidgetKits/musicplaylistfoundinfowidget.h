@@ -23,74 +23,75 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundInfoWidget : public MusicFoundAbstra
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundInfoWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundInfoWidget(QWidget *parent = 0);
+
     virtual ~MusicPlaylistFoundInfoWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow();
 
-    void setMusicPlaylistItem(const MusicPlaylistItem &item, QObject *obj);
     /*!
      * Set music playlist item.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    void setMusicPlaylistItem(const MusicPlaylistItem &item, QObject *obj);
     /*!
      * Set network query input.
      */
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
 
 public Q_SLOTS:
+    /*!
+     * Query all quality musics is finished.
+     */
     void queryAllFinished();
     /*!
      * Query all quality musics is finished.
      */
     void downLoadFinished(const QByteArray &data);
     /*!
-     * Send recieved data from net.
+     * Play all button clicked now.
      */
     void playAllButtonClicked();
     /*!
-     * Play all button clicked now.
+     * Share button clicked now.
      */
     void shareButtonClicked();
     /*!
-     * Share button clicked now.
+     * Play button clicked now.
      */
     void playButtonClicked();
     /*!
-     * Play button clicked now.
+     * Download button clicked now.
      */
     void downloadButtonClicked();
     /*!
-     * Download button clicked now.
-     */
-    void addButtonClicked();
-    /*!
      * Add button clicked now.
      */
+    void addButtonClicked();
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void initFirstWidget();
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Init the first widget.
      */
-    void initSecondWidget();
+    void initFirstWidget();
     /*!
      * Init the second widget.
      */
+    void initSecondWidget();
 
     QLabel *m_iconLabel, *m_infoLabel;
     QStackedWidget *m_container;

@@ -28,78 +28,79 @@ class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicEqualizerDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicEqualizerDialog(QWidget *parent = 0);
+
     virtual ~MusicEqualizerDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void setEqEffect(const MusicObject::MIntList &effect);
     /*!
      * Current equlizer parameters changed emit.
      */
-    void setEnaleEffect(bool enable);
+    void setEqEffect(const MusicObject::MIntList &effect);
     /*!
      * Set equlizer enable state changed emit.
      */
+    void setEnaleEffect(bool enable);
 
 public Q_SLOTS:
-    void setEqEnable();
     /*!
      * Set equlizer enable.
      */
-    void resetEq();
+    void setEqEnable();
     /*!
      * Reset equlizer parameters.
      */
-    void verticalSliderChanged(int index);
+    void resetEq();
     /*!
      * Current equlizer parameters has changed by changed index.
      */
-    void eqChoiceIndexChanged(int index);
+    void verticalSliderChanged(int index);
     /*!
      * Equlizer presets index changed by change index.
      */
-    virtual int exec();
+    void eqChoiceIndexChanged(int index);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void init();
     /*!
      * Init widget and parameters.
      */
-    void initSlider(QSlider *slider, int index);
+    void init();
     /*!
      * Init and create slider.
      */
-    void setControlEnable(bool enable) const;
+    void initSlider(QSlider *slider, int index);
     /*!
      * Enable or disable control state.
      */
-    void readEqInformation();
+    void setControlEnable(bool enable) const;
     /*!
      * Read equalizer info from config.
      */
-    void writeEqInformation() const;
+    void readEqInformation();
     /*!
      * Write equalizer info from config.
      */
-    void initEqualizeValue();
+    void writeEqInformation() const;
     /*!
      * Init equalizer parameters value.
      */
-    void emitParameter();
+    void initEqualizeValue();
     /*!
      * Emit current equalizer parameters value.
      */
+    void emitParameter();
 
     Ui::MusicEqualizerDialog *m_ui;
     bool m_eable;

@@ -99,54 +99,13 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = . \
-                         TTKModule \
-                         TTKModule/TTKCore/musicCoreKits \
-                         TTKModule/TTKCore/musicLrcKits \
-                         TTKModule/TTKCore/musicNetworkKits \
-                         TTKModule/TTKCore/musicNetworkKits/bd \
-                         TTKModule/TTKCore/musicNetworkKits/kg \
-                         TTKModule/TTKCore/musicNetworkKits/kw \
-                         TTKModule/TTKCore/musicNetworkKits/nr \
-                         TTKModule/TTKCore/musicNetworkKits/qq \
-                         TTKModule/TTKCore/musicNetworkKits/radio \
-                         TTKModule/TTKCore/musicNetworkKits/wy \
-                         TTKModule/TTKCore/musicNetworkKits/xm \
-                         TTKModule/TTKCore/musicNetworkKits/yyt \
-                         TTKModule/TTKCore/musicToolsKits \
-                         TTKModule/TTKCore/musicToolsSetsKits \
-                         TTKModule/TTKCore/musicUserKits \
-                         TTKModule/TTKCore/musicUtilsKits \
-                         TTKModule/TTKCore/musicVideoKits \
-                         TTKModule/TTKWidget/musicWidgetKits \
-                         TTKModule/TTKWidget/musicWidgetCoreKits \
-                         TTKModule/TTKWidget/musicLrcKits \
-                         TTKModule/TTKWidget/musicRemoteKits \
-                         TTKModule/TTKWidget/musicSearchKits \
-                         TTKModule/TTKWidget/musicToolsKits \
-                         TTKModule/TTKWidget/musicToolsSetsKits \
-                         TTKModule/TTKWidget/musicUiKits \
-                         TTKModule/TTKWidget/musicUserKits \
-                         TTKModule/TTKWidget/musicVideoKits \
-                         TTKThirdParty \
-                         TTKThirdParty/TTKExtras/qaes \
-                         TTKThirdParty/TTKExtras/qhz2py \
-                         TTKThirdParty/TTKExtras/qiniu \
-                         TTKThirdParty/TTKExtras/qjson \
-                         TTKThirdParty/TTKExtras/qkugou \
-                         TTKThirdParty/TTKExtras/qrencode \
-                         TTKThirdParty/TTKExtras/qshortcut \
-                         TTKThirdParty/TTKDumper \
-                         TTKThirdParty/TTKImage \
-                         TTKThirdParty/Zlib/ttkzip \
-                         TTKThirdParty/Zlib/zlib \
-                         TTKRun \
-                         TTKRun/TTKApp \
-                         TTKRun/TTKInit \
+INPUT                  = .
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h \
-                         *.cpp
-RECURSIVE              = NO
+                         *.cpp \
+                         *.c \
+                         *.hpp
+RECURSIVE              = YES
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =

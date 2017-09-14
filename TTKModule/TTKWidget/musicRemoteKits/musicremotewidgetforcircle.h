@@ -18,21 +18,21 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForCircle : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForCircle(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForCircle(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 

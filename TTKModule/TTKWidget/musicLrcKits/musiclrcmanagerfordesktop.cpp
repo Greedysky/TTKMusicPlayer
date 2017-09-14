@@ -1,32 +1,32 @@
 #include "musiclrcmanagerfordesktop.h"
 #include "musicnumberdefine.h"
 
-MusicLRCManagerForDesktop::MusicLRCManagerForDesktop(QWidget *parent)
-    : MusicLRCManager(parent)
+MusicLrcManagerForDesktop::MusicLrcManagerForDesktop(QWidget *parent)
+    : MusicLrcManager(parent)
 {
     m_font.setPointSize(30);
     m_speedLevel = 50;
 }
 
-QString MusicLRCManagerForDesktop::getClassName()
+QString MusicLrcManagerForDesktop::getClassName()
 {
     return staticMetaObject.className();
 }
 
 
 
-MusicLRCManagerHorizontalDesktop::MusicLRCManagerHorizontalDesktop(QWidget *parent)
-    : MusicLRCManagerForDesktop(parent)
+MusicLrcManagerHorizontalDesktop::MusicLrcManagerHorizontalDesktop(QWidget *parent)
+    : MusicLrcManagerForDesktop(parent)
 {
 
 }
 
-QString MusicLRCManagerHorizontalDesktop::getClassName()
+QString MusicLrcManagerHorizontalDesktop::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLRCManagerHorizontalDesktop::paintEvent(QPaintEvent *)
+void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setFont(m_font);
@@ -58,18 +58,18 @@ void MusicLRCManagerHorizontalDesktop::paintEvent(QPaintEvent *)
 }
 
 
-MusicLRCManagerVerticalDesktop::MusicLRCManagerVerticalDesktop(QWidget *parent)
-    : MusicLRCManagerForDesktop(parent)
+MusicLrcManagerVerticalDesktop::MusicLrcManagerVerticalDesktop(QWidget *parent)
+    : MusicLrcManagerForDesktop(parent)
 {
 
 }
 
-QString MusicLRCManagerVerticalDesktop::getClassName()
+QString MusicLrcManagerVerticalDesktop::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicLRCManagerVerticalDesktop::paintEvent(QPaintEvent *)
+void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setFont(m_font);

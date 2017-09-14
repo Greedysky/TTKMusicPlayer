@@ -19,30 +19,30 @@ class MUSIC_WIDGET_EXPORT MusicOpenFileWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicOpenFileWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicOpenFileWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void adjustRect(int w, int h);
     /*!
      * Adjust the widget rect in the parent widget.
      */
+    void adjustRect(int w, int h);
 
 Q_SIGNALS:
-    void uploadFileClicked();
     /*!
      * Upload file button clicked.
      */
-    void uploadFilesClicked();
+    void uploadFileClicked();
     /*!
      * Upload files(dir) button clicked.
      */
+    void uploadFilesClicked();
 
 };
 

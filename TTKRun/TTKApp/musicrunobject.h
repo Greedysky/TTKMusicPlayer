@@ -22,25 +22,25 @@ class MUSIC_RUN_EXPORT MusicRunObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicRunObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRunObject(QObject *parent = 0);
 
-    void checkValid();
     /*!
      * Check current setting file's validation.
      */
-    void run(int argc, char **argv);
+    void checkValid();
     /*!
      * To run main window.
      */
+    void run(int argc, char **argv);
 
 private Q_SLOTS:
-    void finished(int code);
     /*!
      * Run finished.
      */
+    void finished(int code);
 
 private:
     TTK_DECLARE_PRIVATE(MusicRunObject)

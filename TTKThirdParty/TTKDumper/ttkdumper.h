@@ -19,16 +19,16 @@ class MiniDumper;
 class MUSIC_EXTRAS_EXPORT TTKDumper
 {
 public:
-    TTKDumper();
     /*!
      * Object contsructor.
      */
+    TTKDumper();
     ~TTKDumper();
 
-    void run();
     /*!
      * Run.
      */
+    void run();
 
 protected:
     MiniDumper *m_winDump;

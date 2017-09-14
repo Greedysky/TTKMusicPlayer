@@ -29,27 +29,27 @@ class MUSIC_SUPER_EXPORT MusicBarrageRecordConfigManager : public MusicAbstractX
 {
     Q_OBJECT
 public:
-    explicit MusicBarrageRecordConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBarrageRecordConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline bool readBarrageXMLConfig(){ return readConfig(BARRAGEPATH_FULL); }
+    static QString getClassName();
     /*!
      * Read barrage datas from xml file by given name.
      */
-    void writeBarrageConfig(const MusicBarrageRecords &records);
+    inline bool readBarrageXMLConfig(){ return readConfig(BARRAGEPATH_FULL); }
     /*!
      * Write barrage datas into xml file.
      */
-    void readBarrageConfig(MusicBarrageRecords &records);
+    void writeBarrageConfig(const MusicBarrageRecords &records);
     /*!
      * Read barrage datas into xml file.
      */
+    void readBarrageConfig(MusicBarrageRecords &records);
 
 };
 

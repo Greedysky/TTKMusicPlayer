@@ -22,58 +22,58 @@ class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicNetworkAbstract
 public:
     enum TranslationType
     {
-        Type_Auto,  ///automatic detection
-        Type_Ara,   ///Arabic
-        Type_De,    ///German
-        Type_Ru,    ///Russian
-        Type_Fra,   ///French
-        Type_Kor,   ///Korean
-        Type_Nl,    ///Dutch
-        Type_Pt,    ///Portuguese
-        Type_Jp,    ///Japanese
-        Type_Th,    ///Thai
-        Type_Wyw,   ///Classical
-        Type_Spa,   ///Spanish
-        Type_El,    ///Greek
-        Type_It,    ///Italian
-        Type_En,    ///English
-        Type_Yue,   ///Cantonese
-        Type_Zh     ///Chinese
+        Type_Auto,  /*!< automatic detection*/
+        Type_Ara,   /*!< Arabic*/
+        Type_De,    /*!< German*/
+        Type_Ru,    /*!< Russian*/
+        Type_Fra,   /*!< French*/
+        Type_Kor,   /*!< Korean*/
+        Type_Nl,    /*!< Dutch*/
+        Type_Pt,    /*!< Portuguese*/
+        Type_Jp,    /*!< Japanese*/
+        Type_Th,    /*!< Thai*/
+        Type_Wyw,   /*!< Classical*/
+        Type_Spa,   /*!< Spanish*/
+        Type_El,    /*!< Greek*/
+        Type_It,    /*!< Italian*/
+        Type_En,    /*!< English*/
+        Type_Yue,   /*!< Cantonese*/
+        Type_Zh     /*!< Chinese*/
     };
 
-    explicit MusicTranslationThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTranslationThread(QObject *parent = 0);
 
     virtual ~MusicTranslationThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void startToDownload(TranslationType from, TranslationType to, const QString &data);
+    static QString getClassName();
     /*!
      * Start to translation data.
      */
+    void startToDownload(TranslationType from, TranslationType to, const QString &data);
 
 Q_SIGNALS:
-    void downLoadDataChanged(const QString &data);
     /*!
      * Send translated data from net.
      */
+    void downLoadDataChanged(const QString &data);
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
-    QString mapTypeFromEnumToString(TranslationType type);
     /*!
      * Map type from enum to string.
      */
+    QString mapTypeFromEnumToString(TranslationType type);
 
 };
 

@@ -58,24 +58,24 @@ class MUSIC_CORE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicSkinConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSkinConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path);
     /*!
      * Write datas into xml file.
      */
-    void readSkinXMLConfig(MusicSkinConfigItem &item);
+    void writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path);
     /*!
      * Read datas into xml file.
      */
+    void readSkinXMLConfig(MusicSkinConfigItem &item);
 
 };
 

@@ -20,26 +20,27 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRipples : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForRipples(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForRipples(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidgetForRipples();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void setLabelText(const QString &value) override;
+    static QString getClassName();
     /*!
      * Set current song text.
      */
+    virtual void setLabelText(const QString &value) override;
 
 protected:
-    void enableRipples(bool enable);
     /*!
      * Enable ripples control.
      */
+    void enableRipples(bool enable);
 
     MusicMarqueeWidget *m_songNameLabel;
 

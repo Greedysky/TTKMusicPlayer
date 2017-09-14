@@ -24,169 +24,173 @@ class MUSIC_WIDGET_EXPORT MusicSongsListTableWidget : public MusicSongsListAbstr
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListTableWidget(int index, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsListTableWidget(int index, QWidget *parent = 0);
+
     virtual ~MusicSongsListTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void updateSongsFileName(const MusicSongs &songs) override;
     /*!
      * Update songs file names in table.
      */
-    void clearAllItems();
+    virtual void updateSongsFileName(const MusicSongs &songs) override;
     /*!
      * Clear All Items.
      */
-    void setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs);
+    void clearAllItems();
     /*!
      * Set current searched file indexs.
      */
+    void setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs);
 
-    virtual void selectRow(int index) override;
     /*!
      * Select the current play row.
      */
-    inline int getPlayRowIndex() const { return m_playRowIndex; }
+    virtual void selectRow(int index) override;
     /*!
      * Get the current play row.
      */
-    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
+    inline int getPlayRowIndex() const { return m_playRowIndex; }
     /*!
      * Set music sort.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    inline void setMusicSort(MusicSort *sort) { m_musicSort = sort;}
     /*!
      * Update item time label time.
      */
-    void updateCurrentArtist();
+    void setTimerLabel(const QString &time, const QString &total) const;
     /*!
      * Update current artist when it download finished.
      */
-    void replacePlayWidgetRow();
+    void updateCurrentArtist();
     /*!
      * Replace current play widget row.
      */
-    bool createUploadFileWidget();
+    void replacePlayWidgetRow();
     /*!
      * Create upload file widget.
      */
+    bool createUploadFileWidget();
 
 Q_SIGNALS:
-    void musicAddNewFiles();
     /*!
      * Add new music file or files to list.
      */
-    void musicAddNewDir();
+    void musicAddNewFiles();
     /*!
      * Add new music dir to list.
      */
+    void musicAddNewDir();
 
-    void isSearchFileListEmpty(bool &empty);
     /*!
      * Check current list is searched or not.
      */
-    void deleteItemAt(const MusicObject::MIntList &index, bool fileRemove);
+    void isSearchFileListEmpty(bool &empty);
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void getMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
+    void deleteItemAt(const MusicObject::MIntList &index, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */
-    void musicListSongToLovestListAt(bool oper, int row);
+    void getMusicIndexSwaped(int before, int after, int play, MusicSongs &songs);
     /*!
      * Add or remove music list song to lovest list by row.
      */
-    void showFloatWidget();
+    void musicListSongToLovestListAt(bool oper, int row);
     /*!
      * Show the float function widget.
      */
-    void musicListSongSortBy(int index);
+    void showFloatWidget();
     /*!
      * Music list songs sort by type.
      */
+    void musicListSongSortBy(int index);
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Delete item from list at current row.
      */
-    void setDeleteItemWithFile();
+    virtual void setDeleteItemAt() override;
     /*!
      * Delete item or items from list with file.
      */
-    void showTimeOut();
+    void setDeleteItemWithFile();
     /*!
      * Show play item information widget.
      */
-    void stayTimeOut();
+    void showTimeOut();
     /*!
      * Hide play item information widget.
      */
-    void setChangSongName();
+    void stayTimeOut();
     /*!
      * Reset item name by current row.
      */
-    void musicMakeRingWidget();
+    void setChangSongName();
     /*!
      * Open music make ring widget.
      */
-    void musicTransformWidget();
+    void musicMakeRingWidget();
     /*!
      * Open music transform widget.
      */
-    void musicSongMovieFoundPy();
+    void musicTransformWidget();
     /*!
      * To search song mv by song name in play widget.
      */
-    void musicSimilarFoundWidgetPy();
+    void musicSongMovieFoundPy();
     /*!
      * Open music similar found widget in play widget.
      */
-    void musicSongSharedWidgetPy();
+    void musicSimilarFoundWidgetPy();
     /*!
      * Open music song shared widget in play widget.
      */
-    void musicSongKMicroWidgetPy();
+    void musicSongSharedWidgetPy();
     /*!
      * Open music song KMicro widget in play widget.
      */
-    void musicSearchQuery(QAction *action);
+    void musicSongKMicroWidgetPy();
     /*!
      * Open music song search query.
      */
-    void musicAddToPlayLater();
+    void musicSearchQuery(QAction *action);
     /*!
      * Add music to played list and play later.
      */
-    void musicAddToPlayedList();
+    void musicAddToPlayLater();
     /*!
      * Add music to played list.
      */
-    void setItemRenameFinished(const QString &name);
+    void musicAddToPlayedList();
     /*!
      * Rename item artist label is finised.
      */
-    void musicListSongSortBy(QAction *action);
+    void setItemRenameFinished(const QString &name);
     /*!
      * Music list songs sort by type.
      */
+    void musicListSongSortBy(QAction *action);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
@@ -194,20 +198,17 @@ protected:
     virtual void wheelEvent(QWheelEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
-     * Override the widget event.
+     * Close rename item.
      */
     void closeRenameItem();
     /*!
-     * Close rename item.
+     * Start to drag to play list.
      */
     void startToDrag();
     /*!
-     * Start to drag to play list.
-     */
-    void createContextMenu(QMenu &menu);
-    /*!
      * Create context menu.
      */
+    void createContextMenu(QMenu &menu);
 
     int m_dragStartIndex;
     QPoint m_dragStartPoint;

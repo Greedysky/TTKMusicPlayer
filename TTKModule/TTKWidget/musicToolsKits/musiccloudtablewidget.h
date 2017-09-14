@@ -21,22 +21,23 @@ class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicAbstractTableW
 {
     Q_OBJECT
 public:
-    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
+
     virtual ~MusicCloudUploadTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 protected:
     MusicProgressBarDelegate *m_progressBarDelegate;
@@ -51,48 +52,49 @@ class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicSongsListAbs
 {
     Q_OBJECT
 public:
-    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
+
     virtual ~MusicCloudDownloadTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void setDeleteItemAt() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Delete item from list at current row.
      */
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
+    virtual void setDeleteItemAt() override;
     /*!
      * Update download percent\ total time and current time progress.
      */
-    void createDownloadItem(const QString &name, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
      * Create download item from download name and total time.
      */
+    void createDownloadItem(const QString &name, qint64 time);
 
 protected:
-    void musicSongsFileName();
     /*!
      * Read all config from file and insert items.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    void musicSongsFileName();
     /*!
      * Override the widget event.
      */
-    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create item by index and name and size and time.
      */
+    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
 
     MusicProgressBarDelegate *m_progressBarDelegate;
     MusicDownloadRecords m_musicRecords;

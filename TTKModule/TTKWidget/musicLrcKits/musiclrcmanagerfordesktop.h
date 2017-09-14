@@ -14,19 +14,19 @@
 /*! @brief The class of the desktop lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCManagerForDesktop : public MusicLRCManager
+class MUSIC_LRC_EXPORT MusicLrcManagerForDesktop : public MusicLrcManager
 {
     Q_OBJECT
 public:
-    explicit MusicLRCManagerForDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcManagerForDesktop(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 };
 
@@ -34,25 +34,25 @@ public:
 /*! @brief The class of the desktop horizontal lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCManagerHorizontalDesktop : public MusicLRCManagerForDesktop
+class MUSIC_LRC_EXPORT MusicLrcManagerHorizontalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
 public:
-    explicit MusicLRCManagerHorizontalDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 
@@ -60,25 +60,25 @@ protected:
 /*! @brief The class of the desktop vertical lrc manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLRCManagerVerticalDesktop : public MusicLRCManagerForDesktop
+class MUSIC_LRC_EXPORT MusicLrcManagerVerticalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
 public:
-    explicit MusicLRCManagerVerticalDesktop(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcManagerVerticalDesktop(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 

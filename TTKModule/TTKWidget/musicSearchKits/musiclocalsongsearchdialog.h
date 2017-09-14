@@ -21,30 +21,31 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchDialog(QWidget *parent = 0);
+
     ~MusicLocalSongSearchDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    QString getSearchedText() const;
+    static QString getClassName();
     /*!
      * Get the search text that the user searched.
      */
-    void clearSearchedText() const;
+    QString getSearchedText() const;
     /*!
      * Clear the search text.
      */
+    void clearSearchedText() const;
 
 public Q_SLOTS:
-    bool close();
     /*!
      * Override the close function.
      */
+    bool close();
 
 private:
     MusicLocalSongSearchEdit *m_searchLine;

@@ -23,37 +23,38 @@ class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicViewWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicViewWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void setFullScreen();
     /*!
      * Widget double clicked.
      */
-    void setClick();
+    void setFullScreen();
     /*!
      * Widget clicked.
      */
-    void mediaIsPlaying(bool &play);
+    void setClick();
     /*!
      * Current media is playing.
      */
+    void mediaIsPlaying(bool &play);
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
 };
 
 /*! @brief The class of the video view widget.
@@ -63,75 +64,77 @@ class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit MusicVideoView(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoView(QWidget *parent = 0);
+
     ~MusicVideoView();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setMedia(const QString &data);
+    static QString getClassName();
     /*!
      * Set video play data.
      */
-    void resizeWindow(int width, int height);
+    void setMedia(const QString &data);
     /*!
      * Resize widget size or not.
      */
+    void resizeWindow(int width, int height);
 
 public Q_SLOTS:
-    void play();
     /*!
      * Player to play.
      */
+    void play();
 
 private Q_SLOTS:
-    void stop();
     /*!
      * Player to stop.
      */
-    void positionChanged(qint64 position);
+    void stop();
     /*!
      * Current position changed.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Current duration changed.
      */
-    void setPosition(int position);
+    void durationChanged(qint64 duration);
     /*!
      * Set current play pos.
      */
-    void volumeChanged(int volume);
+    void setPosition(int position);
     /*!
      * Current volume changed.
      */
-    void mediaChanged(const QString &data);
+    void volumeChanged(int volume);
     /*!
      * Current media changed.
      */
-    void mediaIsPlaying(bool &play);
+    void mediaChanged(const QString &data);
     /*!
      * Current media is playing.
      */
+    void mediaIsPlaying(bool &play);
 
-    void addBarrageChanged(const MusicBarrageRecord &record);
     /*!
      * Add barrage text to mv.
      */
-    void pushBarrageChanged(bool on);
+    void addBarrageChanged(const MusicBarrageRecord &record);
     /*!
      * Open barrage on or not.
      */
+    void pushBarrageChanged(bool on);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
 
     bool m_positionChanged;
     MusicViewWidget *m_videoWidget;

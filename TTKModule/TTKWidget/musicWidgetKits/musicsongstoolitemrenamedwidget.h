@@ -19,37 +19,37 @@ class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
 public:
-    MusicSongsToolItemRenamedWidget(const QString &originText, QWidget *parent = 0);
     /*!
      * Object contsructor by index and origin name.
      */
+    explicit MusicSongsToolItemRenamedWidget(const QString &originText, QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void renameFinished(const QString &text);
     /*!
      * Tool rename is finished it emit.
      */
+    void renameFinished(const QString &text);
 
 public Q_SLOTS:
+    /*!
+     * Tool rename is finished.
+     */
     void renameFinished()
     {
         emit renameFinished(text());
     }
-    /*!
-     * Tool rename is finished.
-     */
 
 protected:
-    virtual void focusOutEvent(QFocusEvent *event) override;
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void focusOutEvent(QFocusEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

@@ -23,41 +23,42 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundPalette : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundPalette(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundPalette(QWidget *parent = 0);
+
     ~MusicBackgroundPalette();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setPixmap(const QColor &color);
+    static QString getClassName();
     /*!
      * Set current label background by color.
      */
+    void setPixmap(const QColor &color);
 
 Q_SIGNALS:
-    void currentColorToFileChanged(const QColor &color);
     /*!
      * Current color confirm changed.
      */
-    void currentColorToMemoryChanged(const QString &path);
+    void currentColorToFileChanged(const QColor &color);
     /*!
      * Current color memory confirm changed.
      */
+    void currentColorToMemoryChanged(const QString &path);
 
 protected:
-    virtual void enterEvent(QEvent *event) override;
-    virtual void mousePressEvent(QMouseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void copyColorToMemory(const QColor &color);
+    virtual void enterEvent(QEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
     /*!
      * Copy color to memory.
      */
+    void copyColorToMemory(const QColor &color);
 
     QColor m_color;
 
@@ -71,52 +72,53 @@ class MUSIC_WIDGET_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMov
 {
     Q_OBJECT
 public:
-    explicit MusicBackgroundPaletteWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBackgroundPaletteWidget(QWidget *parent = 0);
+
     ~MusicBackgroundPaletteWidget();
 
-    static QString getClassName();
     /*!
     * Get class object name.
     */
-    void updateBackground(const QString &text);
+    static QString getClassName();
     /*!
      * Update this bg when user change the current bg.
      */
+    void updateBackground(const QString &text);
 
 Q_SIGNALS:
-    void currentColorToFileChanged(const QString &path);
     /*!
      * Current color path confirm changed.
      */
-    void currentColorToMemoryChanged(const QString &path);
+    void currentColorToFileChanged(const QString &path);
     /*!
      * Current color memory confirm changed.
      */
+    void currentColorToMemoryChanged(const QString &path);
 
 public Q_SLOTS:
-    void paletteColorClicked();
     /*!
      * Palette color confirm.
      */
-    void showPaletteDialog();
+    void paletteColorClicked();
     /*!
      * Change index to palette dialog.
      */
-    void currentColorToFile(const QColor &color);
+    void showPaletteDialog();
     /*!
      * Current color confirm.
      */
-    void currentColorToMemory(const QString &color);
+    void currentColorToFile(const QColor &color);
     /*!
      * Current color memory confirm.
      */
-    virtual int exec();
+    void currentColorToMemory(const QString &color);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicBackgroundPaletteWidget *m_ui;

@@ -19,25 +19,25 @@ class MUSIC_WIDGET_EXPORT MusicClickedSlider : public QSlider
 {
     Q_OBJECT
 public:
-    explicit MusicClickedSlider(QWidget *parent = 0);
-    explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicClickedSlider(QWidget *parent = 0);
+    explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual bool event(QEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
 protected:
     int m_value;

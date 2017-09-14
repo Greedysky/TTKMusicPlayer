@@ -23,97 +23,98 @@ class MUSIC_EXTRAS_EXPORT QRCodeQWidget : public QWidget
 {
     Q_OBJECT
 public:
-    QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = 0);
 
-    void setMargin(const int margin);
     /*!
      * Set qr margin.
      */
-    int getMargin() const;
+    void setMargin(const int margin);
     /*!
      * Get qr margin.
      */
+    int getMargin() const;
 
-    void setIcon(const QString &path, qreal percent);
     /*!
      * Set qr icon.
      */
-    QString getIcon() const;
+    void setIcon(const QString &path, qreal percent);
     /*!
      * Get qr icon.
      */
+    QString getIcon() const;
 
-    void setIconPercent(qreal percent);
     /*!
      * Set qr icon percent.
      */
-    qreal getIconPercent() const;
+    void setIconPercent(qreal percent);
     /*!
      * Get qr icon percent.
      */
+    qreal getIconPercent() const;
 
-    void setCaseSensitive(bool flag);
     /*!
      * Set case sensitive.
      */
-    bool caseSensitive() const;
+    void setCaseSensitive(bool flag);
     /*!
      * Get case sensitive.
      */
+    bool caseSensitive() const;
 
-    void setText(const QByteArray &text);
     /*!
      * Set qr text.
      */
-    QByteArray getText() const;
+    void setText(const QByteArray &text);
     /*!
      * Get qr text.
      */
+    QByteArray getText() const;
 
-    void setForegroundColor(const QColor &color);
     /*!
      * Set qr foreground color.
      */
-    QColor getForegroundColor() const;
+    void setForegroundColor(const QColor &color);
     /*!
      * Get qr foreground color.
      */
+    QColor getForegroundColor() const;
 
-    void setBackgroundColor(const QColor &color);
     /*!
      * Set qr background color.
      */
-    QColor getBackgroundColor() const;
+    void setBackgroundColor(const QColor &color);
     /*!
      * Get qr background color.
      */
+    QColor getBackgroundColor() const;
 
-    void setMode(QRencodeMode mode);
     /*!
      * Set qr mode.
      */
-    QRencodeMode getMode() const;
+    void setMode(QRencodeMode mode);
     /*!
      * Get qr mode.
      */
+    QRencodeMode getMode() const;
 
-    void setLevel(QRecLevel level);
     /*!
      * Set qr level.
      */
-    QRecLevel getLevel() const;
+    void setLevel(QRecLevel level);
     /*!
      * Get qr level.
      */
+    QRecLevel getLevel() const;
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
+
 
 private:
     TTK_DECLARE_PRIVATE(QRCodeQWidget)

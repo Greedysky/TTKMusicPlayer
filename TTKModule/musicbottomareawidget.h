@@ -29,110 +29,111 @@ class MUSIC_GUI_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicBottomAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicBottomAreaWidget(QWidget *parent = 0);
+
     ~MusicBottomAreaWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicBottomAreaWidget *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    static MusicBottomAreaWidget *instance();
     /*!
      * Set up app ui.
      */
-    void setDestopLrcVisible(bool status) const;
+    void setupUi(Ui::MusicApplication* ui);
     /*!
      * Set destop lrc visible by string.
      */
-    void showPlayStatus(bool status) const;
+    void setDestopLrcVisible(bool status) const;
     /*!
      * Set current play state button.
      */
-    void setVolumeValue(int value) const;
+    void showPlayStatus(bool status) const;
     /*!
      * Set current play volume.
      */
-    void setLabelText(const QString &name) const;
+    void setVolumeValue(int value) const;
     /*!
      * Set current song text.
      */
+    void setLabelText(const QString &name) const;
 
-    void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
     /*!
      * Set system close config or not.
      */
-    bool getSystemCloseConfig() { return m_systemCloseConfig;}
+    void setSystemCloseConfig(bool status) { m_systemCloseConfig = status;}
     /*!
      * Get system close config state.
      */
-    bool systemTrayIsVisible() { return m_systemTray->isVisible();}
+    bool getSystemCloseConfig() { return m_systemCloseConfig;}
     /*!
      * Get system tray visible state.
      */
-    void showMessage(const QString &title, const QString &text);
+    bool systemTrayIsVisible() { return m_systemTray->isVisible();}
     /*!
      * Set system tray message show title and context.
      */
+    void showMessage(const QString &title, const QString &text);
 
 #if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_GREATER_NEW
-    void setValue(int value) const;
     /*!
      * Set current value.
      */
-    void setRange(int min, int max) const;
+    void setValue(int value) const;
     /*!
      * Set current range from start to end.
      */
+    void setRange(int min, int max) const;
 #endif
-    void setWindowConcise();
     /*!
      * Set window concise.
      */
+    void setWindowConcise();
 
-    QString getSearchedText() const;
     /*!
      * Get the search text that the user searched.
      */
+    QString getSearchedText() const;
 
-    void resizeWindow();
     /*!
      * Resize window bound by widgte resize called.
      */
+    void resizeWindow();
 
 public Q_SLOTS:
-    void musicSearchWidget();
     /*!
      * Show searched text widget.
      */
-    void clearSearchedText();
+    void musicSearchWidget();
     /*!
      * Clear current search lineedit text.
      */
-    void lockDesktopLrc(bool lock);
+    void clearSearchedText();
     /*!
      * Lock or not current desktop lrc.
      */
-    void desktopLrcClosed();
+    void lockDesktopLrc(bool lock);
     /*!
      * Set desktop lrc close state.
      */
-    void iconActivated(QSystemTrayIcon::ActivationReason);
+    void desktopLrcClosed();
     /*!
      * System tray icon activate.
      */
+    void iconActivated(QSystemTrayIcon::ActivationReason);
 
 protected:
-    void createSystemTrayIcon();
     /*!
      * Create system tray icon.
      */
+    void createSystemTrayIcon();
 
     Ui::MusicApplication *m_ui;
     bool m_systemCloseConfig;

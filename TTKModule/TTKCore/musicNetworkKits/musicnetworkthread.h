@@ -23,46 +23,47 @@ class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void start();
     /*!
      * Strat thread now.
      */
-    void setBlockNetWork(int block);
+    void start();
     /*!
      * Set flag wheather to block current network.
      */
-    inline void setNetWorkState(bool state) { m_networkState = state; }
+    void setBlockNetWork(int block);
     /*!
      * Set current network state.
      */
-    inline bool isOnline() const { return m_networkState; }
+    inline void setNetWorkState(bool state) { m_networkState = state; }
     /*!
      * Check current network is on.
      */
+    inline bool isOnline() const { return m_networkState; }
 
 Q_SIGNALS:
-    void networkConnectionStateChanged(bool state);
     /*!
      * Network connection state changed.
      * default status is true, means connected network.
      */
+    void networkConnectionStateChanged(bool state);
 
 public Q_SLOTS:
-    void networkStateChanged();
     /*!
      * Network connection state changed.
      */
+    void networkStateChanged();
 
 private:
-    MusicNetworkThread();
     /*!
      * Object contsructor.
      */
+    MusicNetworkThread();
+
     ~MusicNetworkThread();
 
     QTimer m_timer;

@@ -20,52 +20,52 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryBDPlaylistThread : public MusicDown
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryBDPlaylistThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadQueryBDPlaylistThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void startToSearch(QueryType type, const QString &playlist) override;
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToSearch(QueryType type, const QString &playlist) override;
     /*!
      * Start to search data from name and type bt paging.
      */
-    void startToSearchAll(const QSet<QString> &ids);
+    virtual void startToPage(int offset) override;
     /*!
      * Start to search all data.
      */
-    void startToSearch(const QString &playlist);
+    void startToSearchAll(const QSet<QString> &ids);
     /*!
      * Start to Search data.
      */
+    void startToSearch(const QString &playlist);
 
 Q_SIGNALS:
-    void createPlaylistItems(const MusicPlaylistItem &item);
     /*!
      * Create the current playlist item.
      */
+    void createPlaylistItems(const MusicPlaylistItem &item);
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void getSongAllFinished();
+    virtual void downLoadFinished() override;
     /*!
      * Download song all finished.
      */
-    void getDetailsFinished();
+    void getSongAllFinished();
     /*!
      * Download details data from net finished.
      */
+    void getDetailsFinished();
 
 };
 

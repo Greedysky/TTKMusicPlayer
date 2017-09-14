@@ -23,30 +23,31 @@ class MUSIC_TOOL_EXPORT MusicWebMusicRadioListView : public QListWidget
 {
     Q_OBJECT
 public:
-    explicit MusicWebMusicRadioListView(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicWebMusicRadioListView(QWidget *parent = 0);
+
     ~MusicWebMusicRadioListView();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void initListItems();
+    static QString getClassName();
     /*!
      * To init list items.
      */
+    void initListItems();
 
 public Q_SLOTS:
-    void itemHasClicked(QListWidgetItem *item);
     /*!
      * Radio list item has clicked.
      */
-    void addListWidgetItem();
+    void itemHasClicked(QListWidgetItem *item);
     /*!
      * Add radio list into list widget.
      */
+    void addListWidgetItem();
 
 protected:
     QNetworkCookieJar *m_cookJar;

@@ -18,26 +18,26 @@ class MUSIC_NETWORK_EXPORT MusicKWTextDownLoadThread : public MusicDownLoadThrea
 {
     Q_OBJECT
 public:
-    MusicKWTextDownLoadThread(const QString &url, const QString &save,
-                              Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
-
-    static QString getClassName();
+    MusicKWTextDownLoadThread(const QString &url, const QString &save,
+                              Download_Type type, QObject *parent = 0);
     /*!
      * Get class object name.
      */
-    virtual void startToDownload() override;
+    static QString getClassName();
+
     /*!
      * Start to download data.
      */
+    virtual void startToDownload() override;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 };
 

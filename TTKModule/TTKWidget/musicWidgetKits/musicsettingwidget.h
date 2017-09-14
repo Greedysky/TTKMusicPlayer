@@ -44,37 +44,37 @@ class MUSIC_WIDGET_EXPORT MusicFunctionTableWidget : public MusicAbstractTableWi
 {
     Q_OBJECT
 public:
-    explicit MusicFunctionTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFunctionTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void addFunctionItems(int index, const MusicFunctionItems &items);
+    static QString getClassName();
     /*!
      * Add table list items by index and icons and paths.
      */
+    void addFunctionItems(int index, const MusicFunctionItems &items);
 
 Q_SIGNALS:
-    void currentIndexChanged(int index);
     /*!
      * Current list index changed.
      */
+    void currentIndexChanged(int index);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 protected:
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void leaveEvent(QEvent *event) override;
 
     int m_listIndex;
 };
@@ -89,214 +89,215 @@ class MUSIC_WIDGET_EXPORT MusicSettingWidget : public MusicAbstractMoveDialog
 public:
     enum Type
     {
-        Inline, ///*lrc inline type*/
-        Desktop ///*lrc desktop type*/
+        Inline, /*!< lrc inline type*/
+        Desktop /*!< lrc desktop type*/
     };
 
-    explicit MusicSettingWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSettingWidget(QWidget *parent = 0);
+
     virtual ~MusicSettingWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void initControllerParameter();
     /*!
      * Init controller parameter to widget.
      */
+    void initControllerParameter();
 
 Q_SIGNALS:
-    void parameterSettingChanged();
     /*!
      * Parameters setting changed emit.
      */
+    void parameterSettingChanged();
 
 public Q_SLOTS:
-    void clearFunctionTableSelection();
     /*!
      * Clear all function tables selection.
      */
-    void globalHotkeyBoxChanged(bool state);
+    void clearFunctionTableSelection();
     /*!
      * Set global hotkey box changed.
      */
+    void globalHotkeyBoxChanged(bool state);
 
-    void downloadGroupCached(int index);
     /*!
      * Set enable or disable download cache.
      */
-    void downloadGroupSpeedLimit(int index);
+    void downloadGroupCached(int index);
     /*!
      * Set enable or disable download speed limit.
      */
-    void downloadDirSelected(int index);
+    void downloadGroupSpeedLimit(int index);
     /*!
      * Set select download dir or lrc dir.
      */
+    void downloadDirSelected(int index);
 
-    void changeDesktopLrcWidget();
     /*!
      * Change to desktop lrc widget.
      */
-    void changeInlineLrcWidget();
+    void changeDesktopLrcWidget();
     /*!
      * Change to inline lrc widget.
      */
-    void changeDownloadWidget();
+    void changeInlineLrcWidget();
     /*!
      * Change to download widget.
      */
+    void changeDownloadWidget();
 
-    void inlineLrcFgChanged();
     /*!
      * Inline lrc foreground change.
      */
-    void inlineLrcBgChanged();
+    void inlineLrcFgChanged();
     /*!
      * Inline lrc background change.
      */
-    void defaultLrcColorChanged(int index);
+    void inlineLrcBgChanged();
     /*!
      * Default lrc color change by index.
      */
-    void inlineLrcTransChanged(int index);
+    void defaultLrcColorChanged(int index);
     /*!
      * Inline lrc transparent changed by index.
      */
-    void showInlineLrcDemo();
+    void inlineLrcTransChanged(int index);
     /*!
      * Show inline lrc preview.
      */
-    void resetInlineParameter();
+    void showInlineLrcDemo();
     /*!
      * Reset inline parameter.
      */
+    void resetInlineParameter();
 
-    void desktopFgChanged();
     /*!
      * Desktop lrc foreground change.
      */
-    void desktopBgChanged();
+    void desktopFgChanged();
     /*!
      * Desktop lrc background change.
      */
-    void defaultDesktopLrcColorChanged(int index);
+    void desktopBgChanged();
     /*!
      * Default desktop lrc color change by index.
      */
-    void desktopLrcTransChanged(int index);
+    void defaultDesktopLrcColorChanged(int index);
     /*!
      * Desktop lrc transparent changed by index.
      */
-    void showDesktopLrcDemo();
+    void desktopLrcTransChanged(int index);
     /*!
      * Show desktop lrc preview.
      */
-    void resetDesktopParameter();
+    void showDesktopLrcDemo();
     /*!
      * Reset desktop parameter.
      */
+    void resetDesktopParameter();
 
-    void setNetworkProxyControl(int enable);
     /*!
      * Set network proxy control enabled or not.
      */
-    void testNetworkProxy();
+    void setNetworkProxyControl(int enable);
     /*!
      * Test current proxy available.
      */
-    void testProxyStateChanged(bool state);
+    void testNetworkProxy();
     /*!
      * Test current proxy available changed.
      */
-    void testNetworkConnection();
+    void testProxyStateChanged(bool state);
     /*!
      * Test current network connection available.
      */
-    void checkNetworkConnection();
+    void testNetworkConnection();
     /*!
      * Check current network connection available.
      */
-    void testNetworkConnectionStateChanged(const QString &name);
+    void checkNetworkConnection();
     /*!
      * Test current network connection available changed.
      */
+    void testNetworkConnectionStateChanged(const QString &name);
 
-    void musicFadeInAndOutClicked(bool state);
     /*!
      * Music fade in and out changed.
      */
+    void musicFadeInAndOutClicked(bool state);
 
-    void commitTheResults();
     /*!
      * Save the change results.
      */
-    virtual int exec();
+    void commitTheResults();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void selectFunctionTableIndex(int row, int col);
     /*!
      * Select function table index.
      */
-    void initNormalSettingWidget();
+    void selectFunctionTableIndex(int row, int col);
     /*!
      * Init normal setting stack widget.
      */
-    void initOtherSettingWidget();
+    void initNormalSettingWidget();
     /*!
      * Init other setting stack widget.
      */
-    void initDownloadWidget();
+    void initOtherSettingWidget();
     /*!
      * Init download stack widget.
      */
-    void initDesktopLrcWidget();
+    void initDownloadWidget();
     /*!
      * Init desktop lrc stack widget.
      */
-    void initInlineLrcWidget();
+    void initDesktopLrcWidget();
     /*!
      * Init inline lrc stack widget.
      */
-    void initSoundEffectWidget();
+    void initInlineLrcWidget();
     /*!
      * Init sound effect stack widget.
      */
-    void initAudioSettingWidget();
+    void initSoundEffectWidget();
     /*!
      * Init audio setting stack widget.
      */
-    void initNetworkWidget();
+    void initAudioSettingWidget();
     /*!
      * Init network stack widget.
      */
-    void lcrColorValue(Type key, const QString &type, QLabel *obj);
+    void initNetworkWidget();
     /*!
      * Set lrc color value by type and value type.
      */
-    void lrcColorByDefault(Type key, int index);
+    void lcrColorValue(Type key, const QString &type, QLabel *obj);
     /*!
      * Set lrc default color by type and index.
      */
-    void lrcTransparentValue(Type key, int value) const;
+    void lrcColorByDefault(Type key, int index);
     /*!
      * Set lrc transparent by type and value.
      */
-    bool applyNetworkProxy();
+    void lrcTransparentValue(Type key, int value) const;
     /*!
      * Apply current proxy available.
      */
-    bool setNetworkProxyByType(int type);
+    bool applyNetworkProxy();
     /*!
      * Set network proxy by type.
      */
+    bool setNetworkProxyByType(int type);
 
     Ui::MusicSettingWidget *m_ui;
     QList<QColor> m_lrcSelectedFg, m_lrcSelectedBg;

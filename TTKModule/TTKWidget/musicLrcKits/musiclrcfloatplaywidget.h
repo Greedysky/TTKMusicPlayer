@@ -20,39 +20,40 @@ class MUSIC_LRC_EXPORT MusicLrcFloatPlayWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatPlayWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcFloatPlayWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcFloatPlayWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void resizeWindow(int width, int height) override;
+    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */
+    virtual void resizeWindow(int width, int height) override;
 
 public Q_SLOTS:
-    void musicStatePlay();
     /*!
      * Set current player to play or not.
      */
+    void musicStatePlay();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void enterEvent(QEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *) override {}
     virtual void mousePressEvent(QMouseEvent *) override {}
     virtual void mouseReleaseEvent(QMouseEvent *) override {}
     /*!
-     * Override the widget event.
-     */
-    void setCurrentPlayState();
-    /*!
      * Set current play state icon.
      */
+    void setCurrentPlayState();
 
     QToolButton *m_musicPrevious, *m_musicNext, *m_musicKey;
 

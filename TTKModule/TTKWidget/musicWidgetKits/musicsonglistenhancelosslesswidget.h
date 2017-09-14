@@ -22,22 +22,23 @@ class MUSIC_WIDGET_EXPORT MusicSongListEnhanceLosslessWidget : public MusicAbstr
 {
     Q_OBJECT
 public:
-    explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = 0);
+
     virtual ~MusicSongListEnhanceLosslessWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    virtual int exec();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicSongListEnhanceLosslessWidget *m_ui;

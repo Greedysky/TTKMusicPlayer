@@ -20,20 +20,21 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidg
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidgetForRectangle();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void setLabelText(const QString &value) override;
+    static QString getClassName();
     /*!
      * Set current song text.
      */
+    virtual void setLabelText(const QString &value) override;
 
 protected:
     MusicMarqueeWidget *m_songNameLabel;

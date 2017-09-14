@@ -19,25 +19,25 @@ class MUSIC_WIDGET_EXPORT MusicSplitItemClickedLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicSplitItemClickedLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSplitItemClickedLabel(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 private:
+    /*!
+     * Override the widget event.
+     */
     virtual void enterEvent(QEvent *event) override;
     virtual void leaveEvent(QEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
-    /*!
-     * Override the widget event.
-     */
 
     QRectF m_lineGeometry;
     QString m_currentString;

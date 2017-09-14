@@ -75,7 +75,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->musicPage->connectTo(this);
     for(int i=0; i<m_analysis->getLineMax(); ++i)
     {
-        MusicLRCManagerForInline *w = new MusicLRCManagerForInline(this);
+        MusicLrcManagerForInline *w = new MusicLrcManagerForInline(this);
         w->setLrcPerWidth(-10);
         m_ui->musicPage->addWidget(w);
         m_musicLrcContainer.append(w);
@@ -358,7 +358,7 @@ void MusicSoundKMicroWidget::multiMediaChanged()
 
 void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transparent)
 {
-    MusicLRCManagerForInline *w = m_musicLrcContainer[index];
+    MusicLrcManagerForInline *w = m_musicLrcContainer[index];
     w->setCenterOnLrc(false);
     w->setFontSize(size);
 
@@ -370,13 +370,13 @@ void MusicSoundKMicroWidget::setItemStyleSheet(int index, int size, int transpar
 
     if(M_SETTING_PTR->value("LrcColorChoiced").toInt() != -1)
     {
-        MusicLRCColor::LrcColorType index = MStatic_cast(MusicLRCColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
-        MusicLRCColor cl = MusicLRCColor::mapIndexToColor(index);
+        MusicLrcColor::LrcColorType index = MStatic_cast(MusicLrcColor::LrcColorType, M_SETTING_PTR->value("LrcColorChoiced").toInt());
+        MusicLrcColor cl = MusicLrcColor::mapIndexToColor(index);
         w->setLinearGradientColor(cl);
     }
     else
     {
-        MusicLRCColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
+        MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
                          MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
         w->setLinearGradientColor(cl);
     }

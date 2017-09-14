@@ -18,37 +18,38 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadPagingThread : public MusicNetworkAbstra
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadPagingThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadPagingThread(QObject *parent = 0);
+
     virtual ~MusicDownLoadPagingThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void deleteAll() override;
+    static QString getClassName();
     /*!
      * Release the network object.
      */
-    virtual void startToPage(int offset);
+    virtual void deleteAll() override;
     /*!
      * Start to search data from name and type bt paging.
      */
+    virtual void startToPage(int offset);
 
-    inline QVariantMap getRawData() const { return m_rawData; }
     /*!
      * Return the current raw data.
      */
-    inline int getPageSize() const { return m_pageSize; }
+    inline QVariantMap getRawData() const { return m_rawData; }
     /*!
      * Return the each page max size.
      */
-    inline int getPageTotal() const { return m_pageTotal; }
+    inline int getPageSize() const { return m_pageSize; }
     /*!
      * Return the page total number.
      */
+    inline int getPageTotal() const { return m_pageTotal; }
 
 protected:
     QVariantMap m_rawData;

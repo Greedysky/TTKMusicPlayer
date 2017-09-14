@@ -19,59 +19,60 @@ class MUSIC_VIDEO_EXPORT MusicVideoQualityPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVideoQualityPopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoQualityPopWidget(QWidget *parent = 0);
+
     virtual ~MusicVideoQualityPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setQualityActionState();
     /*!
      * Set quality action state enable or disable.
      */
-    void setQualityText(const QString &url);
+    void setQualityActionState();
     /*!
      * Set current media quality text.
      */
+    void setQualityText(const QString &url);
 
 Q_SIGNALS:
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Get music mv information data.
      */
-    void mvURLChanged(const QString &data);
+    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Set current media url by selected quality.
      */
+    void mvURLChanged(const QString &data);
 
 public Q_SLOTS:
-    void movieQualityChoiced(QAction *action);
     /*!
      * Movie quality choiced by index.
      */
+    void movieQualityChoiced(QAction *action);
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
-    QString findMVUrlByBitrate(int bitrate);
+    void initWidget();
     /*!
      * Find mv url by given bitrate.
      */
-    int findMVBitrateByUrl(const QString &url);
+    QString findMVUrlByBitrate(int bitrate);
     /*!
      * Find mv bitrate by given url.
      */
-    bool findExistByBitrate(int bitrate);
+    int findMVBitrateByUrl(const QString &url);
     /*!
      * Check given bitrate is exist or not.
      */
+    bool findExistByBitrate(int bitrate);
 
     QActionGroup *m_actionGroup;
 

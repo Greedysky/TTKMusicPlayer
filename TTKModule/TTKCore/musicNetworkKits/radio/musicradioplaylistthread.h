@@ -19,30 +19,31 @@ class MUSIC_NETWORK_EXPORT MusicRadioPlayListThread : public MusicRadioThreadAbs
 {
     Q_OBJECT
 public:
-    explicit MusicRadioPlayListThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRadioPlayListThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+
     virtual ~MusicRadioPlayListThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToDownload(const QString &id) override;
+    static QString getClassName();
     /*!
      * Start to download data.
      */
-    QStringList getMusicPlayList();
+    virtual void startToDownload(const QString &id) override;
     /*!
      * Get music playlist.
      */
+    QStringList getMusicPlayList();
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
     QStringList m_playList;

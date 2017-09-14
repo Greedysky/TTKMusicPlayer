@@ -22,176 +22,177 @@ class QNPutPolicyPrivate;
 class MUSIC_EXTRAS_EXPORT QNPutPolicy
 {
 public:
-    QNPutPolicy(const QString &scope);
     /*!
      * Object contsructor.
      */
+    QNPutPolicy(const QString &scope);
 
-    QByteArray toJSON(bool compact = true);
     /*!
      * Transfer data to json.
      */
-    QString makeUploadToken(const QNMac *mac = 0);
+    QByteArray toJSON(bool compact = true);
     /*!
      * Make uplaod token.
      */
-    QString makeDownloadToken(const QNMac *mac = 0);
+    QString makeUploadToken(const QNMac *mac = 0);
     /*!
      * Make download token.
      */
+    QString makeDownloadToken(const QNMac *mac = 0);
 
-    QString getScope() const;
     /*!
      * Get scope.
      */
-    void setScope(const QString &value);
+    QString getScope() const;
     /*!
      * Set scope.
      */
+    void setScope(const QString &value);
 
-    qint32 getDeadline() const;
     /*!
      * Get deadline.
      */
-    void setDeadline(qint32 value);
+    qint32 getDeadline() const;
     /*!
      * Set deadline.
      */
+    void setDeadline(qint32 value);
 
-    quint16 getInsertOnly() const;
     /*!
      * Get insert only.
      */
-    void setInsertOnly(quint16 value);
+    quint16 getInsertOnly() const;
     /*!
      * Set insert only.
      */
+    void setInsertOnly(quint16 value);
 
-    QString getSaveKey() const;
     /*!
      * Get save key.
      */
-    void setSaveKey(const QString &value);
+    QString getSaveKey() const;
     /*!
      * Set save key.
      */
+    void setSaveKey(const QString &value);
 
-    QString getEndUser() const;
     /*!
      * Get end user.
      */
-    void setEndUser(const QString &value);
+    QString getEndUser() const;
     /*!
      * Set end user.
      */
+    void setEndUser(const QString &value);
 
-    qint32 getFSizeLimit() const;
     /*!
      * Get file size limit.
      */
-    void setFSizeLimit(qint32 value);
+    qint32 getFSizeLimit() const;
     /*!
      * Set file size limit.
      */
+    void setFSizeLimit(qint32 value);
 
-    qint16 getDetectMime() const;
     /*!
      * Get detect mime.
      */
-    void setDetectMime(qint16 value);
+    qint16 getDetectMime() const;
     /*!
      * Set detect mime.
      */
+    void setDetectMime(qint16 value);
 
-    QString getMimeLimit() const;
     /*!
      * Get mime limit.
      */
-    void setMimeLimit(const QString &value);
+    QString getMimeLimit() const;
     /*!
      * Set mime limit.
      */
+    void setMimeLimit(const QString &value);
 
-    QString getCallbackUrl() const;
     /*!
      * Get call back url.
      */
-    void setCallbackUrl(const QString &value);
+    QString getCallbackUrl() const;
     /*!
      * Set call back url.
      */
+    void setCallbackUrl(const QString &value);
 
-    QString getCallbackHost() const;
     /*!
      * Get call back host.
      */
-    void setCallbackHost(const QString &value);
+    QString getCallbackHost() const;
     /*!
      * Set call back host.
      */
+    void setCallbackHost(const QString &value);
 
-    QString getCallbackBody() const;
     /*!
      * Get call back body.
      */
-    void setCallbackBody(const QString &value);
+    QString getCallbackBody() const;
     /*!
      * Set call back body.
      */
+    void setCallbackBody(const QString &value);
 
-    qint16 getCallbackFetchKey() const;
     /*!
      * Get call back fetch key.
      */
-    void setCallbackFetchKey(qint16 value);
+    qint16 getCallbackFetchKey() const;
     /*!
      * Set call back fetch key.
      */
+    void setCallbackFetchKey(qint16 value);
 
-    QString getReturnUrl() const;
     /*!
      * Get return url.
      */
-    void setReturnUrl(const QString &value);
+    QString getReturnUrl() const;
     /*!
      * Set return url.
      */
+    void setReturnUrl(const QString &value);
 
-    QString getReturnBody() const;
     /*!
      * Get return body.
      */
-    void setReturnBody(const QString &value);
+    QString getReturnBody() const;
     /*!
      * Set return body.
      */
+    void setReturnBody(const QString &value);
 
-    QString getPersistentOps() const;
     /*!
      * Get persistent ops.
      */
-    void setPersistentOps(const QString &value);
+    QString getPersistentOps() const;
     /*!
      * Set persistent ops.
      */
+    void setPersistentOps(const QString &value);
 
-    QString getPersistentNotifyUrl() const;
     /*!
      * Get persistent notify url.
      */
-    void setPersistentNotifyUrl(const QString &value);
+    QString getPersistentNotifyUrl() const;
     /*!
      * Set persistent notify url.
      */
+    void setPersistentNotifyUrl(const QString &value);
 
-    QString getPersistentPipeline() const;
     /*!
      * Get persistent pipe line.
      */
-    void setPersistentPipeline(const QString &value);
+    QString getPersistentPipeline() const;
     /*!
      * Set persistent pipe line.
      */
+    void setPersistentPipeline(const QString &value);
+
 
 private:
     TTK_DECLARE_PRIVATE(QNPutPolicy)

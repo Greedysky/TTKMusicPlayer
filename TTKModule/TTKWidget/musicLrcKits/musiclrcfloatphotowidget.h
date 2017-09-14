@@ -22,63 +22,63 @@ class MUSIC_LRC_EXPORT MusicLrcFloatPhotoItem : public MusicClickedLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = 0);
+
     virtual ~MusicLrcFloatPhotoItem();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-
-    void setPhoto(const QString &path);
+    static QString getClassName();
     /*!
      * Set photo path and pix.
      */
-    void setBoxChecked(bool check);
+    void setPhoto(const QString &path);
     /*!
      * Set check box checked state.
      */
-    bool boxChecked();
+    void setBoxChecked(bool check);
     /*!
      * Get check box checked state.
      */
-    void setBoxVisible(bool v);
+    bool boxChecked();
     /*!
      * Set check box vidible.
      */
+    void setBoxVisible(bool v);
 
 Q_SIGNALS:
-    void itemClicked(int index);
     /*!
      * Current plane item clicked.
      */
-    void boxClicked(int index);
+    void itemClicked(int index);
     /*!
      * Current check box clicked.
      */
+    void boxClicked(int index);
 
 public Q_SLOTS:
-    void sendUserBoxClicked();
     /*!
      * User selected the check box state.
      */
-    void sendUserSelectArt();
+    void sendUserBoxClicked();
     /*!
      * User selected the plane pic.
      */
-    void exportArtPixmap();
+    void sendUserSelectArt();
     /*!
      * Export art pixmap.
      */
+    void exportArtPixmap();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     int m_index;
     QString m_pixPath;
@@ -94,73 +94,75 @@ class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicFloatAbstractWidge
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcFloatPhotoWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void resizeWindow(int width, int height) override;
+    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */
+    virtual void resizeWindow(int width, int height) override;
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
-    void close();
+    void show();
     /*!
      * Override close function.
      */
-    void parentClose() { QLabel::close(); }
+    void close();
     /*!
      * Close current widget.
      */
-    void confirmButtonClicked();
+    void parentClose() { QLabel::close(); }
     /*!
      * Confirm button clicked that show selected artist pics.
      */
-    void photoPrevious();
+    void confirmButtonClicked();
     /*!
      * To selected previous artist pic.
      */
-    void photoNext();
+    void photoPrevious();
     /*!
      * To selected next artist pic.
      */
-    void artHasChanged();
+    void photoNext();
     /*!
      * Update current artist pic.
      */
-    void sendUserSelectArtBg(int index);
+    void artHasChanged();
     /*!
      * User selected the plane pic.
      */
-    void userSelectCheckBoxChecked(int index);
+    void sendUserSelectArtBg(int index);
     /*!
      * User select check box checked by index.
      */
-    void selectAllStateChanged(bool state);
+    void userSelectCheckBoxChecked(int index);
     /*!
      * User select check box checked by state.
      */
+    void selectAllStateChanged(bool state);
+
 
 protected:
-    virtual void enterEvent(QEvent *) override {}
-    virtual void leaveEvent(QEvent *) override {}
     /*!
      * Override the widget event.
      */
-    void showPhoto() const;
+    virtual void enterEvent(QEvent *) override {}
+    virtual void leaveEvent(QEvent *) override {}
     /*!
      * Show all artist pics in displaying.
      */
+    void showPhoto() const;
 
     int m_currentIndex;
     MusicObject::MIntSet m_selectNum;

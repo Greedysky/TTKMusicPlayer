@@ -20,124 +20,125 @@ class MUSIC_WIDGET_EXPORT MusicSongsListAbstractTableWidget : public MusicSlowMo
 {
     Q_OBJECT
 public:
-    explicit MusicSongsListAbstractTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSongsListAbstractTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSongsListAbstractTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongsFileName(MusicSongs *songs);
     /*!
      * Set songs file names.
      */
-    virtual void updateSongsFileName(const MusicSongs &songs);
+    virtual void setSongsFileName(MusicSongs *songs);
     /*!
      * Update songs file names in table.
      */
-    virtual void selectRow(int index);
+    virtual void updateSongsFileName(const MusicSongs &songs);
     /*!
      * Select the current play row by given index.
      */
+    virtual void selectRow(int index);
 
-    int allRowsHeight() const;
     /*!
      * Get all rows height.
      */
-    void setParentToolIndex(int index);
+    int allRowsHeight() const;
     /*!
      * Set parent tool index.
+     */
+    void setParentToolIndex(int index);
+    /*!
+     * Get the current play row.
      */
     inline void setPlayRowIndex(int index) { m_playRowIndex = index; }
     /*!
      * Get the current play row.
      */
     inline int getPlayRowIndex() const { return m_playRowIndex; }
-    /*!
-     * Get the current play row.
-     */
 
 Q_SIGNALS:
-    void isCurrentIndexs(bool &state);
     /*!
      * Check is current play stack widget.
      */
+    void isCurrentIndexs(bool &state);
 
 public Q_SLOTS:
-    void musicPlayClicked();
     /*!
      * Music item has double been clicked.
      */
-    virtual void setDeleteItemAt();
+    void musicPlayClicked();
     /*!
      * Delete item from list at current row.
      */
-    void setDeleteItemAll();
+    virtual void setDeleteItemAt();
     /*!
      * Delete all items from list.
      */
-    void musicOpenFileDir();
+    void setDeleteItemAll();
     /*!
      * Open the music at local path.
      */
-    void musicFileInformation();
+    void musicOpenFileDir();
     /*!
      * Open music file information widget.
      */
-    void musicSongMovieFound();
+    void musicFileInformation();
     /*!
      * To search song mv by song name.
      */
-    void musicAlbumFoundWidget();
+    void musicSongMovieFound();
     /*!
      * Open music album found widget.
      */
-    void musicSimilarFoundWidget();
+    void musicAlbumFoundWidget();
     /*!
      * Open music similar found widget.
      */
-    void musicSongSharedWidget();
+    void musicSimilarFoundWidget();
     /*!
      * Open music song shared widget.
      */
-    void musicSongKMicroWidget();
+    void musicSongSharedWidget();
     /*!
      * Open music song KMicro widget.
      */
-    void musicSongTransferWidget();
+    void musicSongKMicroWidget();
     /*!
      * Open music song transfer widget.
      */
-    void musicSongDownload();
+    void musicSongTransferWidget();
     /*!
      * Open music song download widget.
      */
+    void musicSongDownload();
 
 protected:
-    void createMoreMenu(QMenu *menu);
     /*!
      * Create more menu information.
      */
-    QString getCurrentSongPath() const;
+    void createMoreMenu(QMenu *menu);
     /*!
      * Get current song path.
      */
-    QString getSongPath(int index) const;
+    QString getCurrentSongPath() const;
     /*!
      * Get song path.
      */
-    QString getCurrentSongName() const;
+    QString getSongPath(int index) const;
     /*!
      * Get current song name.
      */
-    QString getSongName(int index) const;
+    QString getCurrentSongName() const;
     /*!
      * Get song name.
      */
+    QString getSongName(int index) const;
 
     int m_playRowIndex, m_parentToolIndex;
     MusicSongs *m_musicSongs;

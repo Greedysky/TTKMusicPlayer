@@ -20,37 +20,38 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGThread : public MusicDownLoadQuer
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override;
+    static QString getClassName();
+
     /*!
      * Start to search data from name and type.
      */
+    virtual void startToSearch(QueryType type, const QString &text) override;
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
+    virtual void downLoadFinished() override;
 
 protected:
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &hash);
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                      const QVariantMap &key);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
+                                  const QString &hash);
     /*!
      * Read mv info attribute from query results.
      */
+    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
+                                      const QVariantMap &key);
 
 };
 

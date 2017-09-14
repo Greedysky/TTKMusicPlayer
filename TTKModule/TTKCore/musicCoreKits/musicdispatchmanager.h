@@ -50,11 +50,14 @@ class MUSIC_CORE_EXPORT MusicDispatchManager : public QObject
 {
     Q_OBJECT
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
+    /*!
+     * Set dispatch.
+     */
     void dispatch(int type);
     void dispatch(int type, const QVariant &arg1);
     void dispatch(int type, const QVariant &arg1, const QVariant &arg2);
@@ -64,21 +67,20 @@ public:
                   const QVariant &arg3, const QVariant &arg4);
     void dispatch(int type, const QList<QVariant> &args);
     void dispatch(int type, void *funcs);
-    /*!
-     * Set dispatch.
-     */
+
 
 private Q_SLOTS:
-    void activeFunctions();
     /*!
      * Active functions.
      */
+    void activeFunctions();
 
 protected:
-    MusicDispatchManager();
     /*!
      * Object contsructor.
      */
+    MusicDispatchManager();
+
     ~MusicDispatchManager();
 
     QMutex m_mutex;

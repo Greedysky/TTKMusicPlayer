@@ -23,26 +23,27 @@ class MUSIC_WIDGET_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDial
 {
     Q_OBJECT
 public:
-    explicit MusicMessageAboutDialog(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicMessageAboutDialog(QWidget *parent = 0);
+
     virtual ~MusicMessageAboutDialog();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void musicGetCounterFinished(const QString &data);
     /*!
      * Get counter pv finished.
      */
-    virtual int exec();
+    void musicGetCounterFinished(const QString &data);
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicMessageAboutDialog *m_ui;

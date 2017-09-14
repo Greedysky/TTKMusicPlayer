@@ -22,58 +22,59 @@ class MUSIC_VIDEO_EXPORT MusicVideoFloatWidget : public MusicFloatAbstractWidget
 public:
     enum Type
     {
-        SearchType,     ///*search text type*/
-        FreshType,      ///*fresh text type*/
-        FullscreenType, ///*fullscreen text type*/
-        DownloadType,   ///*download text type*/
-        ShareType       ///*share text type*/
+        SearchType,     /*!< search text type*/
+        FreshType,      /*!< fresh text type*/
+        FullscreenType, /*!< fullscreen text type*/
+        DownloadType,   /*!< download text type*/
+        ShareType       /*!< share text type*/
     };
 
-    explicit MusicVideoFloatWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoFloatWidget(QWidget *parent = 0);
+
     virtual ~MusicVideoFloatWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void resizeWindow(int width, int height) override;
+    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */
+    virtual void resizeWindow(int width, int height) override;
 
-    void setText(Type type, const QString &text);
     /*!
      * Set tool button text by type.
      */
-    QString getText(Type type) const;
+    void setText(Type type, const QString &text);
     /*!
      * Get tool button text by type.
      */
+    QString getText(Type type) const;
 
 Q_SIGNALS:
-    void searchButtonClicked();
     /*!
      * Search button clicked.
      */
-    void freshButtonClicked();
+    void searchButtonClicked();
     /*!
      * Fresh button clicked.
      */
-    void fullscreenButtonClicked();
+    void freshButtonClicked();
     /*!
      * Fullscreen button clicked.
      */
-    void downloadButtonClicked();
+    void fullscreenButtonClicked();
     /*!
      * Download button clicked.
      */
-    void shareButtonClicked();
+    void downloadButtonClicked();
     /*!
      * Share button clicked.
      */
+    void shareButtonClicked();
 
 protected:
     QPushButton *m_search, *m_fresh, *m_fullscreen;

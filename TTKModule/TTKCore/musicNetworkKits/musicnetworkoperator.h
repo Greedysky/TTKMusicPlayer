@@ -19,32 +19,34 @@ class MUSIC_NETWORK_EXPORT MusicNetworkOperator : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkOperator(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkOperator(QObject *parent = 0);
+
     ~MusicNetworkOperator();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void startToDownload();
+    static QString getClassName();
+
     /*!
      * Start to get current ip operator from net.
      */
+    void startToDownload();
 
 Q_SIGNALS:
-    void getNetworkOperatorFinished(const QString &name);
     /*!
      * Get network operator is finished.
      */
+    void getNetworkOperatorFinished(const QString &name);
 
 public Q_SLOTS:
-    void downLoadFinished(const QByteArray &data);
     /*!
      * Download data from ip net finished.
      */
+    void downLoadFinished(const QByteArray &data);
 
 };
 

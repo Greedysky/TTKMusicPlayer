@@ -24,118 +24,119 @@ class MUSIC_TOOL_EXPORT MusicCloudSharedSongTableWidget : public MusicAbstractTa
 {
     Q_OBJECT
 public:
-    explicit MusicCloudSharedSongTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCloudSharedSongTableWidget(QWidget *parent = 0);
+
     virtual ~MusicCloudSharedSongTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    bool getKey();
     /*!
      * Get query cloud id keys.
      */
-    inline const MusicUploadDatas& getUploadDatas() const { return m_waitedFiles;}
+    bool getKey();
     /*!
      * Get upload datas.
      */
+    inline const MusicUploadDatas& getUploadDatas() const { return m_waitedFiles;}
 
 Q_SIGNALS:
-    void updateLabelMessage(const QString &text);
     /*!
      * To update message label text.
      */
-    void getKeyFinished();
+    void updateLabelMessage(const QString &text);
     /*!
      * Get key data from net finished.
      */
+    void getKeyFinished();
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void keyDownLoadFinished(const QByteArray &data);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Download key data from net finished.
      */
-    void receiveDataFinshed(const QNDataItems &items);
+    void keyDownLoadFinished(const QByteArray &data);
     /*!
      * Receive data from qiniu finshed.
      */
-    void uploadFileFinished(const QString &name);
+    void receiveDataFinshed(const QNDataItems &items);
     /*!
      * Upload data to qiniu finshed.
      */
-    void deleteFileFinished(bool state);
+    void uploadFileFinished(const QString &name);
     /*!
      * Delete data to qiniu finshed.
      */
+    void deleteFileFinished(bool state);
 
-    void updateListToServer();
     /*!
      * Update list to server.
      */
-    void deleteFileToServer();
+    void updateListToServer();
     /*!
      * Delete file to server.
      */
-    void deleteFilesToServer();
+    void deleteFileToServer();
     /*!
      * Delete files to server.
      */
-    void downloadFileToServer();
+    void deleteFilesToServer();
     /*!
      * Download file to server.
      */
+    void downloadFileToServer();
 
-    void uploadFileToServer();
     /*!
      * Upload file to server.
      */
-    void uploadFilesToServer();
+    void uploadFileToServer();
     /*!
      * Upload files to server.
      */
-    void reuploadFileToServer();
+    void uploadFilesToServer();
     /*!
      * Reupload files to server.
      */
+    void reuploadFileToServer();
 
-    void openFileManagerDialog();
     /*!
      * Open file manager dialog.
      */
-    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
+    void openFileManagerDialog();
     /*!
      * Show upload progress.
      */
-    void uploadDone();
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
     /*!
      * All files upload finsihed.
      */
+    void uploadDone();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createUploadFileWidget();
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create upload file widget.
      */
-    void startToUploadFile();
+    void createUploadFileWidget();
     /*!
      * Start to upload files to server.
      */
-    bool uploadHasFailed();
+    void startToUploadFile();
     /*!
      * Check upload has failed.
      */
+    bool uploadHasFailed();
 
     bool m_uploading;
     int m_currentUploadIndex;
@@ -157,26 +158,28 @@ class MUSIC_TOOL_EXPORT MusicCloudSharedSongWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
+
     ~MusicCloudSharedSongWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void getKey();
+    static QString getClassName();
+
     /*!
      * Get query cloud id keys.
      */
+    void getKey();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QLabel *m_statusLabel;
     MusicCloudSharedSongTableWidget *m_tableWidget;

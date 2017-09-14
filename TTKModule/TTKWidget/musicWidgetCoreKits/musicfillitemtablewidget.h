@@ -20,30 +20,32 @@ class MUSIC_WIDGET_EXPORT MusicFillItemTableWidget : public MusicAbstractTableWi
 {
     Q_OBJECT
 public:
-    explicit MusicFillItemTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFillItemTableWidget(QWidget *parent = 0);
+
     virtual ~MusicFillItemTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    MusicObject::MIntList getSelectedItems() const;
+    static QString getClassName();
+
     /*!
      * Get selected items.
      */
+    MusicObject::MIntList getSelectedItems() const;
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void setSelectedAllItems(bool all);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Set select all items.
      */
+    void setSelectedAllItems(bool all);
 
 protected:
     MusicQueryTableDelegate *m_checkBoxDelegate;

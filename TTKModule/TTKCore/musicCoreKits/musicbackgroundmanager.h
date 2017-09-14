@@ -23,112 +23,112 @@ class MUSIC_CORE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setArtName(const QString &name);
+    static QString getClassName();
     /*!
      * Set current artist name.
      */
-    void clearArtName();
+    void setArtName(const QString &name);
     /*!
      * Remove current artist name.
      */
+    void clearArtName();
 
-    inline int getCurrentIndex() const { return m_currentIndex; }
     /*!
      * Get artist photo current index.
      */
-    inline void setCurrentIndex(int index) { m_currentIndex = index; }
+    inline int getCurrentIndex() const { return m_currentIndex; }
     /*!
      * Set artist photo current index.
      */
-    inline int count() const { return m_photos.count(); }
+    inline void setCurrentIndex(int index) { m_currentIndex = index; }
     /*!
      * Get artist photo count.
      */
-    inline bool isEmpty() const { return m_photos.isEmpty(); }
+    inline int count() const { return m_photos.count(); }
     /*!
      * Get artist photo count is 0.
      */
+    inline bool isEmpty() const { return m_photos.isEmpty(); }
 
-    void indexIncrease();
     /*!
      * Set artist photo current index + 1.
      */
-    void indexDecrease();
+    void indexIncrease();
     /*!
      * Set artist photo current index - 1.
      */
+    void indexDecrease();
 
-    QString getArtPhotoPath();
     /*!
      * Get artist photo path.
      */
-    QString getArtPhotoPathNoIndex();
+    QString getArtPhotoPath();
     /*!
      * Get artist photo path no index.
      */
-    QString getArtPhotoPathByIndex(int index = -1) const;
+    QString getArtPhotoPathNoIndex();
     /*!
      * Get artist photo path by given index.
      */
+    QString getArtPhotoPathByIndex(int index = -1) const;
 
-    QStringList getArtPhotoPathList() const;
     /*!
      * Get artist photo path list.
      */
-    void setArtPhotoPathList(const QStringList &list);
+    QStringList getArtPhotoPathList() const;
     /*!
      * Set artist photo path by given path list.
      */
-    void setUserSelectArtIndex(int index);
+    void setArtPhotoPathList(const QStringList &list);
     /*!
      * Set user select current index.
      */
+    void setUserSelectArtIndex(int index);
 
-    void addObserver(QObject *object);
     /*!
      * Add observer.
      */
-    void removeObserver(QObject *object);
+    void addObserver(QObject *object);
     /*!
      * Remove observer.
      */
-    void setMBackground(const QString &path);
+    void removeObserver(QObject *object);
     /*!
      * Set artist background picture by path.
      */
+    void setMBackground(const QString &path);
+    /*!
+     * Get artist background picture path.
+     */
     QString getMBackground() const;
-    /*!
-     * Get artist background picture path.
-     */
 
-    void backgroundHasChanged();
     /*!
      * Get artist background picture path.
      */
+    void backgroundHasChanged();
 
 Q_SIGNALS:
-    void backgroundChanged();
     /*!
      * Background image changed.
      */
-    void artHasChanged();
+    void backgroundChanged();
     /*!
      * New art has been set emit.
      */
-    void userSelectIndexChanged();
+    void artHasChanged();
     /*!
      * User selected index changed emit.
      */
+    void userSelectIndexChanged();
 
 protected:
-    MusicBackgroundManager();
     /*!
      * Object contsructor.
      */
+    MusicBackgroundManager();
 
     int m_currentIndex;
     QStringList m_photos;

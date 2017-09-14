@@ -21,20 +21,21 @@ template <typename T>
 class MUSIC_CORE_EXPORT MusicSingleton
 {
 public:
-    static T* createInstance();
     /*!
      * Get object instance ptr.
      */
-    static QString getClassName();
+    static T* createInstance();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 private:
-    MusicSingleton(){}   
     /*!
      * Object contsructor.
      */
+    MusicSingleton(){}   
+
     ~MusicSingleton(){}
 
     static QMutex m_mutex;

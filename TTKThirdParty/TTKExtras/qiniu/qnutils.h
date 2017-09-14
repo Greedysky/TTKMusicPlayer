@@ -18,46 +18,46 @@
 class MUSIC_EXTRAS_EXPORT QNUtils
 {
 public:
-    static QString urlSafeBase64Encode(const QByteArray &data);
     /*!
      * Url safe base64 encode.
      */
-    static QByteArray urlSafeBase64Decode(const QString &data);
+    static QString urlSafeBase64Encode(const QByteArray &data);
     /*!
      * Url safe base64 decode.
      */
-    static QByteArray sha1(const QByteArray &data);
+    static QByteArray urlSafeBase64Decode(const QString &data);
     /*!
      * Sha1 Encode.
      */
-    static QByteArray hmacSha1(const QByteArray &data, const QByteArray &secretKey);
+    static QByteArray sha1(const QByteArray &data);
     /*!
      * Get hmac in sha1.
      */
-    static QString escapeKey(const QString &key);
+    static QByteArray hmacSha1(const QByteArray &data, const QByteArray &secretKey);
     /*!
      * Get escape key.
      */
-    static bool isParamValid(const QString &param);
+    static QString escapeKey(const QString &key);
     /*!
      * Current parameter is valid or not.
      */
-    static uint expireInSeconds(const uint seconds);
+    static bool isParamValid(const QString &param);
     /*!
      * Get expire in seconds.
      */
-    static uint crc32(const QByteArray &data);
+    static uint expireInSeconds(const uint seconds);
     /*!
      * Crc32 Encode.
      */
-    static QString randomFileName();
+    static uint crc32(const QByteArray &data);
     /*!
      * Get random file name.
      */
-    static QString urlQuery(const QString &url);
+    static QString randomFileName();
     /*!
      * Get url query string.
      */
+    static QString urlQuery(const QString &url);
 
     static const char KEY_ESCAPE_RESERVE_BYTES[];
     static const char KEY_ESCAPE_UNRESERVE_BYTES[];

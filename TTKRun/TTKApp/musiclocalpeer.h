@@ -22,35 +22,37 @@ class MUSIC_RUN_EXPORT MusicLocalPeer : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicLocalPeer(QObject *parent = 0, const QString &appId = QString());
     /*!
      * Object contsructor.
     */
+    explicit MusicLocalPeer(QObject *parent = 0, const QString &appId = QString());
 
-    bool isClient();
     /*!
      * Current client is running or not.
     */
-    bool sendMessage(const QString &message, int timeout);
+    bool isClient();
+
     /*!
      * Send current message when the client in.
     */
-    QString applicationId() const;
+    bool sendMessage(const QString &message, int timeout);
+
     /*!
      * Get current server id.
     */
+    QString applicationId() const;
 
 Q_SIGNALS:
-    void messageReceived(const QString &message);
     /*!
      * Emit when the current message received.
     */
+    void messageReceived(const QString &message);
 
 protected Q_SLOTS:
-    void receiveConnection();
     /*!
      * Current message received.
     */
+    void receiveConnection();
 
 private:
     TTK_DECLARE_PRIVATE(MusicLocalPeer)

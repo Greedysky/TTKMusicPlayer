@@ -18,41 +18,42 @@ class MUSIC_NETWORK_EXPORT MusicDownloadSourceThread : public MusicNetworkAbstra
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadSourceThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadSourceThread(QObject *parent = 0);
+
     ~MusicDownloadSourceThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void startToDownload(const QString &url);
+    static QString getClassName();
     /*!
      * Start to download data.
      */
+    void startToDownload(const QString &url);
 
 Q_SIGNALS:
-    void downLoadByteDataChanged(const QByteArray &data);
     /*!
      * Send download byte data from net.
      */
+    void downLoadByteDataChanged(const QByteArray &data);
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    virtual void replyError(QNetworkReply::NetworkError error) override;
+    virtual void downLoadFinished() override;
     /*!
      * Download reply error.
      */
+    virtual void replyError(QNetworkReply::NetworkError error) override;
 #ifndef QT_NO_SSL
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
     /*!
      * Download ssl reply error.
      */
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
 #endif
 
 };

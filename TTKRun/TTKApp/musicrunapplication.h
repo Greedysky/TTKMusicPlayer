@@ -22,20 +22,24 @@ class MUSIC_RUN_EXPORT MusicRunApplication : public QApplication
 {
     Q_OBJECT
 public:
+    /*!
+     * Object contsructor.
+    */
     MusicRunApplication(int &argc, char **argv, bool GUIenabled = true);
     /*!
      * Object contsructor.
     */
     MusicRunApplication(const QString &id, int &argc, char **argv);
-    /*!
-     * Object contsructor.
-    */
+
 #if QT_VERSION < 0x050000
-    MusicRunApplication(int &argc, char **argv, Type type);
     /*!
      * Object contsructor.
     */
+    MusicRunApplication(int &argc, char **argv, Type type);
 #  if defined(Q_WS_X11)
+    /*!
+     * Object contsructor.
+    */
     MusicRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
     /*!
      * Object contsructor.
@@ -45,55 +49,53 @@ public:
      * Object contsructor.
     */
     MusicRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
-    /*!
-     * Object contsructor.
-    */
 #  endif
 #endif
 
-    void initialize(bool dummy = true);
     /*!
      * Initialize the current server.
     */
-    bool isRunning() const;
+    void initialize(bool dummy = true);
     /*!
      * Check the current server is running or not.
     */
-    QString id() const;
+    bool isRunning() const;
     /*!
      * Get current server id.
     */
+    QString id() const;
 
-    void setActivationWindow(QWidget *aw, bool activateOnMessage = true);
     /*!
      * Set current active window.
     */
-    QWidget *activationWindow() const;
+    void setActivationWindow(QWidget *aw, bool activateOnMessage = true);
     /*!
      * Get current active window.
     */
+    QWidget *activationWindow() const;
 
 Q_SIGNALS:
-    void messageReceived(const QString &message);
     /*!
      * Emit when the current message received.
     */
+    void messageReceived(const QString &message);
 
 public Q_SLOTS:
-    bool sendMessage(const QString &message, int timeout = 5000);
     /*!
      * Emit when the current message received.
     */
-    void activateWindow();
+    bool sendMessage(const QString &message, int timeout = 5000);
     /*!
      * Selected current active window.
     */
+    void activateWindow();
 
 private:
-    void sysInit(const QString &appId = QString());
     /*!
      * Init the system parameter.
     */
+    void sysInit(const QString &appId = QString());
+
     TTK_DECLARE_PRIVATE(MusicRunApplication)
 
 };

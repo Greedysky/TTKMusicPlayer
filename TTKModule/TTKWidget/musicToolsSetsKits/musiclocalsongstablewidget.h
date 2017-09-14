@@ -18,43 +18,44 @@ class MUSIC_TOOLSET_EXPORT MusicLocalSongsTableWidget : public MusicSongsListAbs
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongsTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongsTableWidget(QWidget *parent = 0);
+
     virtual ~MusicLocalSongsTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void clear();
     /*!
      * Clear current items.
      */
-    void addItems(const QFileInfoList &path);
+    void clear();
     /*!
      * Add show list items.
      */
-    inline void setFiles(const QFileInfoList &path) { m_fileNames = path; }
+    void addItems(const QFileInfoList &path);
     /*!
      * Set files container.
      */
-    inline const QFileInfoList &getFiles() const { return m_fileNames; }
+    inline void setFiles(const QFileInfoList &path) { m_fileNames = path; }
     /*!
      * Get files container.
      */
+    inline const QFileInfoList &getFiles() const { return m_fileNames; }
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Override the widget event.
      */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 protected:
     QFileInfoList m_fileNames;
@@ -71,40 +72,41 @@ class MUSIC_TOOLSET_EXPORT MusicLocalSongsInfoTableWidget : public MusicAbstract
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongsInfoTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongsInfoTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void clear();
     /*!
      * Clear current items.
      */
-    void addItems(const MusicInfoData &data);
+    void clear();
     /*!
      * Add show list item.
      */
+    void addItems(const MusicInfoData &data);
 
 Q_SIGNALS:
-    void updateFileLists(const QFileInfoList &list);
     /*!
      * Update file lists.
      */
+    void updateFileLists(const QFileInfoList &list);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    void listCellDoubleClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list double cell click.
      */
+    void listCellDoubleClicked(int row, int column);
+
 };
 
 #endif // MUSICLOCALSONGSTABLEWIDGET_H

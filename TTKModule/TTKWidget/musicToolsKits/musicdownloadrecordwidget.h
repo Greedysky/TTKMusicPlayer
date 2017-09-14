@@ -21,66 +21,67 @@ class MUSIC_TOOL_EXPORT MusicDownloadRecordWidget : public MusicSongsListAbstrac
 {
     Q_OBJECT
 public:
-    explicit MusicDownloadRecordWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownloadRecordWidget(QWidget *parent = 0);
+
     virtual ~MusicDownloadRecordWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void musicSongsFileName();
+    static QString getClassName();
     /*!
      * Read all config from file and insert items.
      */
-    void clearAllItems();
+    void musicSongsFileName();
     /*!
      * Clear All Items.
      */
+    void clearAllItems();
 
 Q_SIGNALS:
-    void addSongToPlay(const QStringList &list);
     /*!
      * Add current selected song to play lists.
      */
+    void addSongToPlay(const QStringList &list);
 
 public Q_SLOTS:
-    void musicPlay();
     /*!
      * Add selected music song path to list.
      */
-    virtual void setDeleteItemAt() override;
+    void musicPlay();
     /*!
      * Delete item from list at current row.
      */
-    void listCellClicked(int row, int column);
+    virtual void setDeleteItemAt() override;
     /*!
      * Table widget list cell click.
      */
-    void listCellDoubleClicked(int row, int column);
+    void listCellClicked(int row, int column);
     /*!
      * Table widget list cell double click.
      */
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
+    void listCellDoubleClicked(int row, int column);
     /*!
      * Update download percent\ total time and current time progress.
      */
-    void createDownloadItem(const QString &name, qint64 time);
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
     /*!
      * Create download item from download name and total time.
      */
+    void createDownloadItem(const QString &name, qint64 time);
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create item by index and name and size and time.
      */
+    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
 
     MusicProgressBarDelegate *m_delegate;
     MusicDownloadRecords m_musicRecords;

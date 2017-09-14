@@ -31,204 +31,203 @@ class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 public:
     enum MusicFunction
     {
-        KugGouSongWidget = 0,   ///*insert kugou song widget*/
-        KugGouRadioWidget,      ///*insert kugou radio widget*/
-        kugouListWidget,        ///*insert kugou list widget*/
-        VideoWidget,            ///*insert video widget*/
-        kugouLiveWidget,        ///*insert kugou live widget*/
-        LrcWidget,              ///*insert lrc display widget*/
-        SearchWidget,           ///*insert search display widget*/
-        SimilarWidget,          ///*insert similar found widget*/
-        AlbumWidget,            ///*insert album found widget*/
-        ArtistWidget,           ///*insert artist found widget*/
-        PlaylistWidget,         ///*insert playlist found widget*/
-        IndentifyWidget,        ///*insert indentify songs widget*/
-        KuiSheWidget            ///*insert kugou kuishe widget*/
+        KugGouSongWidget = 0,   /*!< insert kugou song widget*/
+        KugGouRadioWidget,      /*!< insert kugou radio widget*/
+        kugouListWidget,        /*!< insert kugou list widget*/
+        VideoWidget,            /*!< insert video widget*/
+        kugouLiveWidget,        /*!< insert kugou live widget*/
+        LrcWidget,              /*!< insert lrc display widget*/
+        SearchWidget,           /*!< insert search display widget*/
+        SimilarWidget,          /*!< insert similar found widget*/
+        AlbumWidget,            /*!< insert album found widget*/
+        ArtistWidget,           /*!< insert artist found widget*/
+        PlaylistWidget,         /*!< insert playlist found widget*/
+        IndentifyWidget,        /*!< insert indentify songs widget*/
+        KuiSheWidget            /*!< insert kugou kuishe widget*/
     };
 
-    explicit MusicRightAreaWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRightAreaWidget(QWidget *parent = 0);
+
     ~MusicRightAreaWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    static MusicRightAreaWidget *instance();
+    static QString getClassName();
     /*!
      * Get class object instance.
      */
-    void setupUi(Ui::MusicApplication* ui);
+    static MusicRightAreaWidget *instance();
     /*!
      * Set up app ui.
      */
-    void stopLrcMask() const;
+    void setupUi(Ui::MusicApplication* ui);
     /*!
      * Stop timer clock to draw lrc.
      */
-    void startTimerClock() const;
+    void stopLrcMask() const;
     /*!
      * Start timer clock to draw lrc.
      */
-    void showPlayStatus(bool status) const;
+    void startTimerClock() const;
     /*!
      * Set current play state button.
      */
-    bool getDestopLrcVisible() const;
+    void showPlayStatus(bool status) const;
     /*!
      * Get destop lrc visible state.
      */
-    void setInlineLrcVisible(bool status) const;
+    bool getDestopLrcVisible() const;
     /*!
      * Set inline lrc visible by string.
      */
-    bool getInlineLrcVisible() const;
+    void setInlineLrcVisible(bool status) const;
     /*!
      * Get inline lrc visible state.
      */
-    void setSettingParameter() const;
+    bool getInlineLrcVisible() const;
     /*!
      * Set setting parameter.
      */
-    void getParameterSetting() const;
+    void setSettingParameter() const;
     /*!
      * Get setting parameter.
      */
-    bool checkSettingParameterValue() const;
+    void getParameterSetting() const;
     /*!
      * Check the setting has open inline or desktop lrc on or not.
      */
-    void updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const;
+    bool checkSettingParameterValue() const;
     /*!
      * Update current lrc by current time\total time and play state.
      */
-    void loadCurrentSongLrc(const QString &name, const QString &path) const;
+    void updateCurrentLrc(qint64 current, qint64 total, bool playStatus) const;
     /*!
      * Load current song lrc by name and path.
      */
-    void setSongSpeedAndSlow(qint64 time) const;
+    void loadCurrentSongLrc(const QString &name, const QString &path) const;
     /*!
      * Set song speed and slow by given time.
      */
-    void musicCheckHasLrcAlready() const;
+    void setSongSpeedAndSlow(qint64 time) const;
     /*!
      * Check the current song already has lrc or not,
      * if not just download it.
      */
-    void showSettingWidget() const;
+    void musicCheckHasLrcAlready() const;
     /*!
      * Show setting widget.
      */
-
-    void resizeWindow();
+    void showSettingWidget() const;
     /*!
      * Resize window bound by widgte resize called.
      */
+    void resizeWindow();
 
 Q_SIGNALS:
-    void updateBgThemeDownload();
     /*!
      * Current background skin download.
      */
-    void updateBackgroundTheme();
+    void updateBgThemeDownload();
     /*!
      * Current background transparent changed.
      */
+    void updateBackgroundTheme();
 
 public Q_SLOTS:
-    void musicFunctionClicked(int index);
     /*!
      * Music function button clicked.
      */
-    void musicSongCommentsWidget();
+    void musicFunctionClicked(int index);
     /*!
      * Music song comments widget.
      */
-    void musicSimilarFound(const QString &text);
+    void musicSongCommentsWidget();
     /*!
      * Music similar function that by string.
      */
-    void musicAlbumFound(const QString &text);
+    void musicSimilarFound(const QString &text);
     /*!
      * Music album function that by string.
      */
-    void musicArtistFound(const QString &text);
+    void musicAlbumFound(const QString &text);
     /*!
      * Music artist function that by string.
      */
-    void musicPlaylistFound();
+    void musicArtistFound(const QString &text);
     /*!
      * Music playlist function that by string.
      */
-    void musicLoadSongIndexWidget();
+    void musicPlaylistFound();
     /*!
      * Music load song index widget.
      */
-    void deleteStackedFuncWidget();
+    void musicLoadSongIndexWidget();
     /*!
      * Delete current stacked widget.
      */
-    void setDestopLrcVisible(bool visible) const;
+    void deleteStackedFuncWidget();
     /*!
      * Set destop lrc visible or invisible.
      */
-    void setWindowLockedChanged();
+    void setDestopLrcVisible(bool visible) const;
     /*!
      * Lock current desktop lrc state changed.
      */
-    void setWindowLrcTypeChanged();
+    void setWindowLockedChanged();
     /*!
      * Set current desktop lrc window type changed.
      */
-    void songResearchButtonSearched(const QString &name);
+    void setWindowLrcTypeChanged();
     /*!
      * Music song research button searched by name.
      */
-    void researchQueryByQuality(const QString &quality);
+    void songResearchButtonSearched(const QString &name);
     /*!
      * Research query by quality it changed.
      */
-    void musicVideoButtonSearched(const QString &name);
+    void researchQueryByQuality(const QString &quality);
     /*!
      * Video button clicked by name to search.
      */
-    void musicVideoSetPopup(bool popup);
+    void musicVideoButtonSearched(const QString &name);
     /*!
      * Set video widget popop or not.
      */
-    void musicVideoActiveWindow();
+    void musicVideoSetPopup(bool popup);
     /*!
      * Set video widget actived window.
      */
-    void musicVideoClosed();
+    void musicVideoActiveWindow();
     /*!
      * Set video widget close and delete.
      */
-    void musicVideoFullscreen(bool full);
+    void musicVideoClosed();
     /*!
      * Set video widget fullScreen or not.
      */
-    void musicLrcDisplayAllButtonClicked();
+    void musicVideoFullscreen(bool full);
     /*!
      * Lrc display all button clicked.
      */
-    void musicContainerForWallpaperClicked();
+    void musicLrcDisplayAllButtonClicked();
     /*!
      * Lrc desktop wallpaper button clicked.
      */
-    void musicChangeDownloadFulllyWidget();
+    void musicContainerForWallpaperClicked();
     /*!
      * Change to download fully widget.
      */
-    void musicChangeDownloadCustumWidget();
+    void musicChangeDownloadFulllyWidget();
     /*!
      * Change to download custum widget.
      */
+    void musicChangeDownloadCustumWidget();
 
 protected:
-
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;

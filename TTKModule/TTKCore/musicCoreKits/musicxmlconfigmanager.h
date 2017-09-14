@@ -19,61 +19,61 @@ class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicXMLConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicXMLConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
+    static QString getClassName();
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
+    inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
     /*!
      * Read music datas from xml file by given name.
      */
+    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
 
-    void writeXMLConfig();
     /*!
      * Write datas into xml file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics,
-                               const QString &path = MUSICPATH_FULL);
+    void writeXMLConfig();
     /*!
      * Write music datas into xml file.
      */
+    void writeMusicSongsConfig(const MusicSongItems &musics,
+                               const QString &path = MUSICPATH_FULL);
 
-    void readMusicSongsConfig(MusicSongItems &musics);
     /*!
      * Read music datas into xml file.
      */
+    void readMusicSongsConfig(MusicSongItems &musics);
 
-    void readSystemLastPlayIndexConfig(QStringList &key) const;
     /*!
      * Read System Last Play Index Config.
      */
-    QRect readWindowGeometry() const;
+    void readSystemLastPlayIndexConfig(QStringList &key) const;
     /*!
      * Read window widget Geometry Config.
      */
-    QPoint readShowDLrcGeometry() const;
+    QRect readWindowGeometry() const;
     /*!
      * Read Show Desktop Lrc Geometry Config.
      */
-    void readSysLoadConfig() const;
+    QPoint readShowDLrcGeometry() const;
     /*!
      * Read Sys Load Config.
      */
+    void readSysLoadConfig() const;
 
 protected:
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
     /*!
      * Read Music File Path.
      */
+    MusicSongs readMusicFilePath(const QDomNode &node) const;
 
 };
 

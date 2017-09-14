@@ -21,42 +21,42 @@ class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSettingPopWidget : public MusicToolMe
 {
     Q_OBJECT
 public:
-    explicit MusicSoundKMicroSettingPopWidget(QWidget *parent = 0);
-
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundKMicroSettingPopWidget(QWidget *parent = 0);
+
     virtual ~MusicSoundKMicroSettingPopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setAudioCore(MusicAudioRecorderCore *core);
     /*!
      * Set audio core.
      */
-    int audioInputIndex() const;
+    void setAudioCore(MusicAudioRecorderCore *core);
     /*!
      * Audio input index.
      */
-    int audioOutputIndex() const;
+    int audioInputIndex() const;
     /*!
      * Audio output index.
      */
+    int audioOutputIndex() const;
 
 public Q_SLOTS:
-    void volumeChanged(int value);
     /*!
      * Volume changed.
      */
+    void volumeChanged(int value);
 
 protected:
-    void initWidget();
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     QComboBox *m_inputComboBox, *m_outputComboBox;
     MusicAudioRecorderCore *m_recordCore;

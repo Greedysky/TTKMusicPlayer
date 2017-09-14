@@ -19,21 +19,22 @@ class MUSIC_WIDGET_EXPORT MusicArtistFoundTableWidget : public MusicQueryFoundTa
 {
     Q_OBJECT
 public:
-    explicit MusicArtistFoundTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicArtistFoundTableWidget(QWidget *parent = 0);
+
     virtual ~MusicArtistFoundTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
     /*!
      * Set network query input.
      */
+    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
 
 };
 
@@ -45,52 +46,53 @@ class MUSIC_WIDGET_EXPORT MusicArtistFoundWidget : public MusicFoundAbstractWidg
 {
     Q_OBJECT
 public:
-    explicit MusicArtistFoundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicArtistFoundWidget(QWidget *parent = 0);
+
     virtual ~MusicArtistFoundWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
+    virtual void setSongName(const QString &name) override;
 
-    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow() override;
 
 public Q_SLOTS:
-    void queryAllFinished();
     /*!
      * Query all quality musics is finished.
      */
-    void queryArtistFinished();
+    void queryAllFinished();
     /*!
      * Query artist musics is finished.
      */
-    void downLoadFinished(const QByteArray &data);
+    void queryArtistFinished();
     /*!
      * Send recieved data from net.
      */
-    void playButtonClicked();
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Play button clicked now.
      */
-    void downloadButtonClicked();
+    void playButtonClicked();
     /*!
      * Download button clicked now.
      */
-    void addButtonClicked();
+    void downloadButtonClicked();
     /*!
      * Add button clicked now.
      */
+    void addButtonClicked();
 
 protected:
     QLabel *m_iconLabel;

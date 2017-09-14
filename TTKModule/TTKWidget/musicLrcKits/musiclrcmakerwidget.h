@@ -16,7 +16,7 @@ namespace Ui {
 class MusicLrcMakerWidget;
 }
 class MusicLrcAnalysis;
-class MusicLRCManagerForInline;
+class MusicLrcManagerForInline;
 
 /*! @brief The class of the lrc maker widget item.
  * @author Greedysky <greedysky@163.com>
@@ -25,56 +25,55 @@ class MUSIC_LRC_EXPORT MusicLrcMakerWidgetItem : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-
-    bool biggerThan(int value) const;
+    static QString getClassName();
     /*!
      * Check the last index.
      */
-    bool done() const;
+    bool biggerThan(int value) const;
     /*!
      * Current text line make done.
      */
-    void reset();
+    bool done() const;
     /*!
      * Item move reset.
      */
-    void moveUp();
+    void reset();
     /*!
      * Item move up.
      */
-    void moveDown();
+    void moveUp();
     /*!
      * Item move down.
      */
-    void moveLeft();
+    void moveDown();
     /*!
      * Item move left.
      */
-    void moveRight();
+    void moveLeft();
     /*!
      * Item move right.
      */
+    void moveRight();
 
 public Q_SLOTS:
-    void setText(const QString &string);
     /*!
      * Override the setText.
      */
+    void setText(const QString &string);
 
 private:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QObject *m_parentObject;
     bool m_leftDirection, m_painetLineDone;
@@ -91,144 +90,145 @@ class MUSIC_LRC_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcMakerWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcMakerWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcMakerWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setCurrentSongName(const QString &name);
+    static QString getClassName();
     /*!
      * Set current song name.
      */
+    void setCurrentSongName(const QString &name);
 
 public Q_SLOTS:
-    void positionChanged(qint64 position);
     /*!
      * Set current player position.
      */
-    void durationChanged(qint64 duration);
+    void positionChanged(qint64 position);
     /*!
      * Set current player duration.
      */
-    void currentLineFinished();
+    void durationChanged(qint64 duration);
     /*!
      * Create current line finished.
      */
-    void show();
+    void currentLineFinished();
     /*!
      * Override show function.
      */
+    void show();
 
 private Q_SLOTS:
-    void timeSliderValueChanged(int value);
     /*!
      * Time slider value changed.
      */
-    void saveButtonClicked();
+    void timeSliderValueChanged(int value);
     /*!
      * Save lrc button clicked.
      */
-    void reMakeButtonClicked();
+    void saveButtonClicked();
     /*!
      * Remake lrc button clicked.
      */
-    void backToMakeLrcWidget();
+    void reMakeButtonClicked();
     /*!
      * Back to make lrc widget.
      */
-    void firstWidgetStateButtonClicked();
+    void backToMakeLrcWidget();
     /*!
      * First widget state changed.
      */
-    void thirdWidgetStateButtonClicked();
+    void firstWidgetStateButtonClicked();
     /*!
      * Third widget state changed.
      */
-    void setCurrentMainWidget();
+    void thirdWidgetStateButtonClicked();
     /*!
      * Change current widget to main widget.
      */
-    void setCurrentFirstWidget();
+    void setCurrentMainWidget();
     /*!
      * Change current widget to first widget.
      */
-    void setCurrentSecondWidget();
+    void setCurrentFirstWidget();
     /*!
      * Change current widget to second widget.
      */
-    void setCurrentThirdWidget();
+    void setCurrentSecondWidget();
     /*!
      * Change current widget to third widget.
      */
-    void updateAnimationLrc();
+    void setCurrentThirdWidget();
     /*!
      * Animation finished.
      */
-    void lrcSpeedSlower();
+    void updateAnimationLrc();
     /*!
      * Set lrc time speed changed slower.
      */
-    void lrcSpeedFaster();
+    void lrcSpeedSlower();
     /*!
      * Set lrc time speed changed faster.
      */
+    void lrcSpeedFaster();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createCurrentLine(int key);
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
     /*!
      * Create current line.
      */
-    void createMainWidget();
+    void createCurrentLine(int key);
     /*!
      * Create current main widget.
      */
-    void createFirstWidget();
+    void createMainWidget();
     /*!
      * Create current first widget.
      */
-    void createSecondWidget();
+    void createFirstWidget();
     /*!
      * Create current second widget.
      */
-    void createThirdWidget();
+    void createSecondWidget();
     /*!
      * Create current third widget.
+     */
+    void createThirdWidget();
+    /*!
+     * Check input valid or not.
      */
 
     bool checkInputValid();
     /*!
-     * Check input valid or not.
+     * Set controller enable or disable.
      */
     void setControlEnable(bool enable) const;
     /*!
-     * Set controller enable or disable.
+     * Translate current long time to string.
      */
     QString translateTimeString(qint64 time);
     /*!
-     * Translate current long time to string.
+     * Reset to origin play mode.
      */
     void resetToOriginPlayMode();
     /*!
-     * Reset to origin play mode.
+     * Update current lrc by given time.
      */
     void updateCurrentLrc(qint64 time);
     /*!
-     * Update current lrc by given time.
-     */
-    void setItemStyleSheet(int index, int size, int transparent);
-    /*!
      * Set per lrc line style sheet.
      */
+    void setItemStyleSheet(int index, int size, int transparent);
 
     Ui::MusicLrcMakerWidget *m_ui;
     QStringList m_plainText;
@@ -239,7 +239,7 @@ protected:
     qint64 m_intervalTime;
     MusicLrcMakerWidgetItem *m_lineItem;
     MusicLrcAnalysis *m_analysis;
-    QList<MusicLRCManagerForInline*> m_musicLrcContainer;
+    QList<MusicLrcManagerForInline*> m_musicLrcContainer;
 
 };
 

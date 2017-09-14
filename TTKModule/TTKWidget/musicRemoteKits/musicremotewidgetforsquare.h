@@ -18,33 +18,34 @@ class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
 public:
-    explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
+
     virtual ~MusicRemoteWidgetForSquare();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void enterTimeout();
     /*!
      * Mouse enter the geometry time out.
      */
-    void leaveTimeout();
+    void enterTimeout();
     /*!
      * Mouse leave the geometry time out.
      */
+    void leaveTimeout();
 
 protected:
-    virtual void enterEvent(QEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
 
     QGraphicsOpacityEffect *m_effect[4];
     QTimer m_enterTimer;

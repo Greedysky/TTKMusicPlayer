@@ -24,66 +24,67 @@ class MUSIC_WIDGET_EXPORT MusicSoundEffectsItemWidget : public QWidget
 public:
     enum Type
     {
-        Null,       /// sound null effect
-        BS2B,       /// sound BS2B effect
-        Crossfade,  /// sound Crossfade effect
-        Stereo,     /// sound Stereo effect
-        LADSPA,     /// sound LADSPA effect
-        SoX         /// sound SoX Resampler effect
+        Null,       /*!< sound null effect*/
+        BS2B,       /*!< sound BS2B effect*/
+        Crossfade,  /*!< sound Crossfade effect*/
+        Stereo,     /*!< sound Stereo effect*/
+        LADSPA,     /*!< sound LADSPA effect*/
+        SoX         /*!< sound SoX Resampler effect*/
     };
-    explicit MusicSoundEffectsItemWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundEffectsItemWidget(QWidget *parent = 0);
+
     ~MusicSoundEffectsItemWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setText(const QString &text);
     /*!
      * Set sound effect plugin name.
      */
-    void setType(Type type);
+    void setText(const QString &text);
     /*!
      * Set sound effect plugin type.
      */
+    void setType(Type type);
 
-    void setPluginEnable(bool enable);
     /*!
      * Set plugin enable or not.
      */
-    bool pluginEnable() const;
+    void setPluginEnable(bool enable);
     /*!
      * Get plugin enable or not.
      */
+    bool pluginEnable() const;
 
-    static void soundEffectChanged(Type type, bool enable);
     /*!
      * Sound effect changed.
      */
+    static void soundEffectChanged(Type type, bool enable);
 
 public Q_SLOTS:
-    void setPluginEnable();
     /*!
      * Set plugin enable or not.
      */
-    void soundEffectCheckBoxChanged(bool state);
+    void setPluginEnable();
     /*!
      * Sound effect checkBox changed.
      */
-    void soundEffectValueChanged();
+    void soundEffectCheckBoxChanged(bool state);
     /*!
      * Sound effect button value changed.
      */
+    void soundEffectValueChanged();
 
 protected:
-    static QString transformQStringFromEnum(Type type);
     /*!
      * Transform string from enum.
      */
+    static QString transformQStringFromEnum(Type type);
 
     Type m_type;
     bool m_enable;
@@ -100,63 +101,63 @@ class MUSIC_WIDGET_EXPORT MusicSoundEffectsWidget : public MusicAbstractMoveDial
 {
     Q_OBJECT
 public:
-    explicit MusicSoundEffectsWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundEffectsWidget(QWidget *parent = 0);
 
     virtual ~MusicSoundEffectsWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setParentConnect(QObject *object);
+    static QString getClassName();
     /*!
      * Set parent connection.
      */
+    void setParentConnect(QObject *object);
 
 Q_SIGNALS:
-    void volumeChanged(int value);
     /*!
      * Set current player volume.
      */
-    void setEqInformation();
+    void volumeChanged(int value);
     /*!
      * Read equalizer effect from config file.
      */
+    void setEqInformation();
 
 public Q_SLOTS:
+    /*!
+     * Equalizer button state changed.
+     */
     void equalizerButtonChanged(bool state);
     /*!
      * Equalizer button state changed.
      */
     void equalizerButtonChanged();
     /*!
-     * Equalizer button state changed.
+     * State combobox index changed.
      */
     void stateComboBoxChanged(int index);
     /*!
-     * State combobox index changed.
+     * Volume slider changed.
      */
     void volumeSliderChanged(int value);
     /*!
-     * Volume slider changed.
-     */
-    virtual int exec();
-    /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void readSoundEffect();
     /*!
      * Read sound effect function.
      */
-    void writeSoundEffect();
+    void readSoundEffect();
     /*!
      * Write sound effect function.
      */
+    void writeSoundEffect();
 
     Ui::MusicSoundEffectsWidget *m_ui;
 

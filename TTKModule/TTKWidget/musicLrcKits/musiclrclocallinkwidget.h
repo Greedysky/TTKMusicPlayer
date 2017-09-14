@@ -29,29 +29,30 @@ class MUSIC_LRC_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableW
 {
     Q_OBJECT
 public:
-    explicit MusicLrcLocalLinkTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcLocalLinkTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    bool contains(const QString &string);
+    static QString getClassName();
+
     /*!
      * Check if current item has in.
      */
-    void createAllItems(const MusicLocalDataItems &items);
+    bool contains(const QString &string);
     /*!
      * Create all items.
      */
+    void createAllItems(const MusicLocalDataItems &items);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 };
 
@@ -67,54 +68,55 @@ class MUSIC_LRC_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcLocalLinkWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcLocalLinkWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcLocalLinkWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setCurrentSongName(const QString &name);
+    static QString getClassName();
     /*!
      * Set current song name.
      */
+    void setCurrentSongName(const QString &name);
 
 Q_SIGNALS:
-    void currentLrcChanged(const QString &data);
     /*!
      * Current lrc changed by user, and emit Lrc flag.
      */
+    void currentLrcChanged(const QString &data);
 
 public Q_SLOTS:
-    void fuzzyStateChanged();
     /*!
      * Search fuzzy state changed.
      */
-    void findInLocalFile();
+    void fuzzyStateChanged();
     /*!
      * Find in local file button clicked.
      */
-    void deleteFoundLrc();
+    void findInLocalFile();
     /*!
      * Delete found lrc button clicked.
      */
-    void confirmButtonClicked();
+    void deleteFoundLrc();
     /*!
      * Confirm button clicked.
      */
-    virtual int exec();
+    void confirmButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void searchInLocalMLrc();
     /*!
      * Search local lrc in MLrc dir.
      */
+    void searchInLocalMLrc();
 
     Ui::MusicLrcLocalLinkWidget *m_ui;
 

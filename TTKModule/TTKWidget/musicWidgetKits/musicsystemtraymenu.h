@@ -24,60 +24,61 @@ class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit MusicSystemTrayMenu(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSystemTrayMenu(QWidget *parent = 0);
+
     ~MusicSystemTrayMenu();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setLabelText(const QString &text) const;
+    static QString getClassName();
     /*!
      * Set tray menu song text.
      */
-    void showDesktopLrc(bool show) const;
+    void setLabelText(const QString &text) const;
     /*!
      * Set show or not desktop lrc.
      */
-    void showPlayStatus(bool status) const;
+    void showDesktopLrc(bool show) const;
     /*!
      * Set current play state button.
      */
-    void setVolumeValue(int value) const;
+    void showPlayStatus(bool status) const;
     /*!
      * Set current play volume.
      */
+    void setVolumeValue(int value) const;
 
 public Q_SLOTS:
-    void showDesktopLrc();
     /*!
      * Set show desktop lrc.
      */
-    void lockDesktopLrc(bool lock);
+    void showDesktopLrc();
     /*!
      * Lock current desktop lrc or not.
      */
-    void setWindowLockedChanged();
+    void lockDesktopLrc(bool lock);
     /*!
      * Lock current desktop lrc state changed.
      */
+    void setWindowLockedChanged();
 
 protected:
-    virtual void showEvent(QShowEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void createPlayWidgetActions();
+    virtual void showEvent(QShowEvent *event) override;
     /*!
      * Create play widget actions.
      */
-    void createVolumeWidgetActions();
+    void createPlayWidgetActions();
     /*!
      * Create volume widget actions.
      */
+    void createVolumeWidgetActions();
 
     QLabel *m_showText;
     QToolButton *m_PlayOrStop, *m_volumeButton;

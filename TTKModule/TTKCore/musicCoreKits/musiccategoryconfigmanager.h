@@ -32,6 +32,7 @@ typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
 }MusicPlaylistCategoryItem;
 TTK_DECLARE_LISTS(MusicPlaylistCategoryItem)
 
+
 /*! @brief The class of the playlist category core.
  * @author Greedysky <greedysky@163.com>
  */
@@ -42,6 +43,7 @@ typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategory
 }MusicPlaylistCategory;
 TTK_DECLARE_LISTS(MusicPlaylistCategory)
 
+
 /*! @brief The class of the category Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
@@ -49,23 +51,23 @@ class MUSIC_CORE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
-    explicit MusicCategoryConfigManager(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCategoryConfigManager(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    inline bool readCategoryConfig() { return readConfig(":/data/playlist"); }
+    static QString getClassName();
     /*!
      * Read user datas from xml file by given name.
      */
-    void readCategoryConfig(MusicPlaylistCategorys &records, const QString &key);
+    inline bool readCategoryConfig() { return readConfig(":/data/playlist"); }
     /*!
      * Read user datas into xml file.
      */
+    void readCategoryConfig(MusicPlaylistCategorys &records, const QString &key);
 
 };
 

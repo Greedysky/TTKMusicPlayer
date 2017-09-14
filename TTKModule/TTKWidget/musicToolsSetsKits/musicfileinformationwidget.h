@@ -23,52 +23,53 @@ class MUSIC_TOOLSET_EXPORT MusicFileInformationWidget : public MusicAbstractMove
 {
     Q_OBJECT
 public:
-    explicit MusicFileInformationWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicFileInformationWidget(QWidget *parent = 0);
+
     virtual ~MusicFileInformationWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setFileInformation(const QString &name);
+    static QString getClassName();
     /*!
      * Set music file song path name.
      */
+    void setFileInformation(const QString &name);
 
 public Q_SLOTS:
-    void musicOpenFileDir();
     /*!
      * Open the music at local path.
      */
-    void musicOpenImageFileDir();
+    void musicOpenFileDir();
     /*!
      * Open the selected user pixmap.
      */
-    void musicAdvanceClicked();
+    void musicOpenImageFileDir();
     /*!
      * Music advance clicked.
      */
-    void musicEditTag();
+    void musicAdvanceClicked();
     /*!
      * Music modify tag start.
      */
-    void musicSaveTag();
+    void musicEditTag();
     /*!
      * Music modify tag save.
      */
-    virtual int exec();
+    void musicSaveTag();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
-    void setEditLineEnable(bool enable);
     /*!
      * Eet editLine enable.
      */
+    void setEditLineEnable(bool enable);
 
     Ui::MusicFileInformationWidget *m_ui;
     QString m_path, m_imagePath;

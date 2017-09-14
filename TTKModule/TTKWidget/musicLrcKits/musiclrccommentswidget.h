@@ -22,28 +22,28 @@ class MUSIC_LRC_EXPORT MusicLrcCommentsItem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcCommentsItem(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcCommentsItem(QWidget *parent = 0);
 
     ~MusicLrcCommentsItem();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */
+    void createSearchedItems(const MusicSongCommentItem &comments);
 
 private Q_SLOTS:
-    void iconDataDownloadFinished(const QByteArray &data);
     /*!
      * Icon data download finished.
      */
+    void iconDataDownloadFinished(const QByteArray &data);
 
 protected:
     QTextEdit *m_userCommit;
@@ -59,61 +59,62 @@ class MUSIC_LRC_EXPORT MusicLrcCommentsWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcCommentsWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcCommentsWidget(QWidget *parent = 0);
+
     ~MusicLrcCommentsWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setCurrentSongName(const QString &name);
     /*!
      * Set current song name.
      */
+    void setCurrentSongName(const QString &name);
 
 public Q_SLOTS:
-    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Create the current song comment.
      */
-    void buttonClicked(int index);
+    void createSearchedItems(const MusicSongCommentItem &comments);
     /*!
      * Paging widget button has changed.
      */
-    void createEMOJILabelWidget();
+    void buttonClicked(int index);
     /*!
      * Create emoji label widget.
      */
-    void currentEMOJIchanged(const QString &data);
+    void createEMOJILabelWidget();
     /*!
      * Current EMOJI changed.
      */
+    void currentEMOJIchanged(const QString &data);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void wheelEvent(QWheelEvent *event) override;
     /*!
-     * Override the widget event.
+     * Int current comment label text.
      */
     void initLabel(const QString &name, int total);
     /*!
-     * Int current comment label text.
+     * Delete comments items.
      */
     void deleteCommentsItems();
     /*!
-     * Delete comments items.
-     */
-    void createPagingWidget();
-    /*!
      * Create paging items.
      */
+    void createPagingWidget();
 
     QTextEdit *m_messageEdit;
     QLabel *m_topLabel, *m_commentsLabel;

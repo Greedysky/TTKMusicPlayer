@@ -24,60 +24,62 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public MusicNetworkAbst
 public:
     enum Download_Type
     {
-        Download_Music, ///*type of dwonlaod music*/
-        Download_Lrc,   ///*type of dwonlaod lrc*/
-        Download_SmlBG, ///*type of dwonlaod small background*/
-        Download_BigBG, ///*type of dwonlaod big background*/
-        Download_Video, ///*type of dwonlaod video*/
-        Download_Other  ///*type of dwonlaod other user mod*/
+        Download_Music, /*!< type of dwonlaod music*/
+        Download_Lrc,   /*!< type of dwonlaod lrc*/
+        Download_SmlBG, /*!< type of dwonlaod small background*/
+        Download_BigBG, /*!< type of dwonlaod big background*/
+        Download_Video, /*!< type of dwonlaod video*/
+        Download_Other  /*!< type of dwonlaod other user mod*/
     };
 
-    MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                Download_Type type, QObject *parent = 0);
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
+    MusicDownLoadThreadAbstract(const QString &url, const QString &save,
+                                Download_Type type, QObject *parent = 0);
+
     virtual ~MusicDownLoadThreadAbstract();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void deleteAll() override;
+    static QString getClassName();
     /*!
      * Release the network object.
      */
-    virtual void startToDownload() = 0;
+    virtual void deleteAll() override;
+
     /*!
      * Start to download data.
      * Subclass should implement this function.
      */
+    virtual void startToDownload() = 0;
 
 public Q_SLOTS:
-    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     /*!
      * Get download received and total data.
      */
-    virtual void replyError(QNetworkReply::NetworkError error) override;
+    virtual void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     /*!
      * Download reply error.
      */
+    virtual void replyError(QNetworkReply::NetworkError error) override;
 #ifndef QT_NO_SSL
-    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
     /*!
      * Download ssl reply error.
      */
+    virtual void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors) override;
 #endif
-    virtual void updateDownloadSpeed();
     /*!
      * Updata download speed due the user mod the net speed limited.
      */
+    virtual void updateDownloadSpeed();
 
 protected:
-    QString transferData() const;
     /*!
      * Transfer the enum type to string.
      */
+    QString transferData() const;
 
     QFile *m_file;
     QString m_url, m_savePathName;

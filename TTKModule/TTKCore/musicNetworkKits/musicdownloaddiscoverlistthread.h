@@ -18,25 +18,26 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadDiscoverListThread : public MusicDownLoa
 {
     Q_OBJECT
 public:
-    explicit MusicDownLoadDiscoverListThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDownLoadDiscoverListThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startToSearch() = 0;
+    static QString getClassName();
+
     /*!
      * Start to Search data from toplist.
      * Subclass should implement this function.
      */
+    virtual void startToSearch() = 0;
 
-    inline QString getTopListInfo() const { return m_topListInfo; }
     /*!
      * Get top list info.
      */
+    inline QString getTopListInfo() const { return m_topListInfo; }
 
 protected:
     QString m_topListInfo;

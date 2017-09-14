@@ -22,37 +22,37 @@ class MUSIC_EXTRAS_EXPORT QNSimpleUploadData : public QObject
 {
     Q_OBJECT
 public:
-    explicit QNSimpleUploadData(QNetworkAccessManager *networkManager,
-                                QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit QNSimpleUploadData(QNetworkAccessManager *networkManager,
+                                QObject *parent = 0);
 
-    void uploadDataToServer(const QByteArray &data, const QString &bucket,
-                            const QString &key, const QString &name);
     /*!
      * Get uplaod data to server request.
      */
-    QString getDownloadUrl(const QString &domain, const QString &key);
+    void uploadDataToServer(const QByteArray &data, const QString &bucket,
+                            const QString &key, const QString &name);
     /*!
      * Get download url request.
      */
+    QString getDownloadUrl(const QString &domain, const QString &key);
 
 Q_SIGNALS:
-    void uploadFileFinished(const QString &name);
     /*!
      * Uplaod file finshed.
      */
+    void uploadFileFinished(const QString &name);
 
 private Q_SLOTS:
-    void receiveDataFromServer();
     /*!
      * Receive data from server finshed.
      */
-    void handleError(QNetworkReply::NetworkError error);
+    void receiveDataFromServer();
     /*!
      * Get handle error.
      */
+    void handleError(QNetworkReply::NetworkError error);
 
 private:
     TTK_DECLARE_PRIVATE(QNSimpleUploadData)

@@ -19,33 +19,33 @@ class MusicBackgroundImage;
 class MUSIC_CORE_EXPORT MusicExtractWrap
 {
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
+    /*!
+     * Transfer file to image data.
+     */
     static bool outputThunderSkin(QPixmap &image, const QString &path);
-    /*!
-     * Transfer file to image data.
-     */
 
-    static bool outputSkin(MusicBackgroundImage *image, const QString &path);
     /*!
      * Transfer file to image data.
      */
-    static bool inputSkin(MusicBackgroundImage *image, const QString &path);
+    static bool outputSkin(MusicBackgroundImage *image, const QString &path);
     /*!
      * Transfer image data to file.
      */
+    static bool inputSkin(MusicBackgroundImage *image, const QString &path);
 
-    static bool outputText(QByteArray &data, const QString &path);
     /*!
      * Transfer file to data.
      */
-    static bool inputText(const QByteArray &data, const QString &path);
+    static bool outputText(QByteArray &data, const QString &path);
     /*!
      * Transfer data to file.
      */
+    static bool inputText(const QByteArray &data, const QString &path);
 
 };
 

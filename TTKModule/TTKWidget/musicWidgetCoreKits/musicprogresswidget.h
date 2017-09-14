@@ -21,37 +21,38 @@ class MUSIC_WIDGET_EXPORT MusicProgressWidget : public QProgressDialog
 {
     Q_OBJECT
 public:
-    explicit MusicProgressWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicProgressWidget(QWidget *parent = 0);
+
     ~MusicProgressWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setTitle(const QString &name);
+    static QString getClassName();
     /*!
      * Set widget title.
      */
+    void setTitle(const QString &name);
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
+    void show();
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void initWidget();
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     QLabel *m_background, *m_textLabel;
     QProgressBar *m_progressBar;

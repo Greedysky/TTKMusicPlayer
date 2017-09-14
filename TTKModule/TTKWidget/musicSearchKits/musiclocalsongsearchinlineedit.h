@@ -20,27 +20,28 @@ class MUSIC_SEARCH_EXPORT MusicLocalSongSearchInlineEdit : public MusicLocalSong
 {
     Q_OBJECT
 public:
-    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
+
     virtual ~MusicLocalSongSearchInlineEdit();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void initWidget(QWidget *parent);
+    static QString getClassName();
     /*!
      * Create all widget in layout.
      */
+    void initWidget(QWidget *parent);
 
 protected:
-    virtual void focusInEvent(QFocusEvent *event) override;
-    virtual void leaveEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void focusInEvent(QFocusEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
 
     MusicLocalSongSearchPopWidget *m_popWidget;
 

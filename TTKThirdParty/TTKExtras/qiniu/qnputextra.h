@@ -21,46 +21,46 @@ class QNPutExtraPrivate;
 class MUSIC_EXTRAS_EXPORT QNPutExtra
 {
 public:
-    QNPutExtra();
     /*!
      * Object contsructor.
      */
+    QNPutExtra();
 
-    void addExtraParam(const QString &key, const QString &value);
     /*!
      * Add extra parameter.
      */
-    QString removeExtraParam(const QString &key);
+    void addExtraParam(const QString &key, const QString &value);
     /*!
      * Reomove extra parameter.
      */
+    QString removeExtraParam(const QString &key);
 
-    QString getMimeType() const;
     /*!
      * Get mime type.
      */
-    void setMimeType(const QString &value);
+    QString getMimeType() const;
     /*!
      * Set mime type.
      */
+    void setMimeType(const QString &value);
 
-    qint32 getCrc32() const;
     /*!
      * Get crc32.
      */
-    void setCrc32(qint32 value);
+    qint32 getCrc32() const;
     /*!
      * Set crc32.
      */
+    void setCrc32(qint32 value);
 
-    qint32 getCheckCrc32() const;
     /*!
      * Get check crc32.
      */
-    void setCheckCrc32(qint32 value);
+    qint32 getCheckCrc32() const;
     /*!
      * Set check crc32.
      */
+    void setCheckCrc32(qint32 value);
 
 private:
     TTK_DECLARE_PRIVATE(QNPutExtra)

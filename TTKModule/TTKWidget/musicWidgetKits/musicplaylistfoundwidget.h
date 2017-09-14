@@ -27,37 +27,38 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundItemWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundItemWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundItemWidget(QWidget *parent = 0);
+
     virtual ~MusicPlaylistFoundItemWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setMusicPlaylistItem(const MusicPlaylistItem &item);
     /*!
      * Set music playlist item.
      */
+    void setMusicPlaylistItem(const MusicPlaylistItem &item);
 
 Q_SIGNALS:
-    void currentPlayListClicked(const MusicPlaylistItem &item);
     /*!
      * Current play list clicked.
      */
+    void currentPlayListClicked(const MusicPlaylistItem &item);
 
 public Q_SLOTS:
-    void downLoadFinished(const QByteArray &data);
     /*!
      * Send recieved data from net.
      */
-    void currentPlayListClicked();
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Current play list clicked.
      */
+    void currentPlayListClicked();
 
 protected:
     MusicPlaylistItem m_itemData;
@@ -75,54 +76,55 @@ class MUSIC_WIDGET_EXPORT MusicPlaylistFoundWidget : public MusicFoundAbstractWi
 {
     Q_OBJECT
 public:
-    explicit MusicPlaylistFoundWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPlaylistFoundWidget(QWidget *parent = 0);
+
     virtual ~MusicPlaylistFoundWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void setSongName(const QString &name) override;
     /*!
      * Set current name to search founds.
      */
+    virtual void setSongName(const QString &name) override;
 
-    virtual void resizeWindow() override;
     /*!
      * Resize window bound by widgte resize called.
      */
+    virtual void resizeWindow() override;
 
 public Q_SLOTS:
-    void queryAllFinished(const MusicPlaylistItem &item);
     /*!
      * Query all quality musics is finished.
      */
-    void currentPlayListClicked(const MusicPlaylistItem &item);
+    void queryAllFinished(const MusicPlaylistItem &item);
     /*!
      * Current play list clicked.
      */
-    void backToPlayListMenu();
+    void currentPlayListClicked(const MusicPlaylistItem &item);
     /*!
      * Set current index to playlist menu page.
      */
-    void categoryChanged(const MusicPlaylistCategoryItem &category);
+    void backToPlayListMenu();
     /*!
      * Current category changed.
      */
-    void buttonClicked(int index);
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
     /*!
      * Paging widget button has changed.
      */
+    void buttonClicked(int index);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
 
     bool m_firstInit, m_categoryChanged;
     QStackedWidget *m_container;

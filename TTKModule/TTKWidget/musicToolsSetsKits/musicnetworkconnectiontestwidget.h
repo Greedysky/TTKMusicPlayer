@@ -21,46 +21,47 @@ class MUSIC_TOOLSET_EXPORT MusicNetworkConnectionItem : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkConnectionItem(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkConnectionItem(QWidget *parent = 0);
+
     ~MusicNetworkConnectionItem();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setText(const QString &text);
     /*!
      * Set label text name.
      */
-    void setUrl(const QString &url);
+    void setText(const QString &text);
     /*!
      * Set current test url.
      */
+    void setUrl(const QString &url);
 
-    void start();
     /*!
      * Start to test network.
      */
-    void stop();
+    void start();
     /*!
      * Stop to test network.
      */
+    void stop();
 
 Q_SIGNALS:
-    void networkConnectionTestChanged();
     /*!
      * Network connection test changed.
      */
+    void networkConnectionTestChanged();
 
 private Q_SLOTS:
-    void testFinshed(bool state);
     /*!
      * Test network finished.
      */
+    void testFinshed(bool state);
 
 protected:
     MusicNetworkTestThread *m_testThread;
@@ -80,42 +81,44 @@ class MUSIC_TOOLSET_EXPORT MusicNetworkConnectionTestWidget : public MusicAbstra
 {
     Q_OBJECT
 public:
-    explicit MusicNetworkConnectionTestWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicNetworkConnectionTestWidget(QWidget *parent = 0);
+
     virtual ~MusicNetworkConnectionTestWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
+
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
-    void buttonStateChanged();
+    void show();
     /*!
      * Button state changed.
      */
-    void testFinshed();
+    void buttonStateChanged();
     /*!
      * Test network finished.
      */
+    void testFinshed();
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void closeEvent(QCloseEvent *event) override;
 
     int m_countIndex;
     Ui::MusicNetworkConnectionTestWidget *m_ui;

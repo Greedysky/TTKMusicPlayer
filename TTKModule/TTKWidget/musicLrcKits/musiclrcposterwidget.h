@@ -26,62 +26,65 @@ class MUSIC_LRC_EXPORT MusicLrcPosterItemWidget : public QWidget
 public:
     enum Type
     {
-        Type_01,    ///thmeme 1
-        Type_02,    ///thmeme 2
-        Type_03,    ///thmeme 3
-        Type_04,    ///thmeme 4
-        Type_05,    ///thmeme 5
-        Type_06,    ///thmeme 6
-        Type_07,    ///thmeme 7
-        Type_08,    ///thmeme 8
-        Type_09,    ///thmeme 9
-        Type_10,    ///thmeme 10
-        Type_11,    ///thmeme 11
-        Type_12,    ///thmeme 12
-        Type_13,    ///thmeme 13
-        Type_14,    ///thmeme 14
-        Type_15,    ///thmeme 15
-        Type_16,    ///thmeme 16
-        Type_17     ///thmeme 17
+        Type_01,    /*!< thmeme 1*/
+        Type_02,    /*!< thmeme 2*/
+        Type_03,    /*!< thmeme 3*/
+        Type_04,    /*!< thmeme 4*/
+        Type_05,    /*!< thmeme 5*/
+        Type_06,    /*!< thmeme 6*/
+        Type_07,    /*!< thmeme 7*/
+        Type_08,    /*!< thmeme 8*/
+        Type_09,    /*!< thmeme 9*/
+        Type_10,    /*!< thmeme 10*/
+        Type_11,    /*!< thmeme 11*/
+        Type_12,    /*!< thmeme 12*/
+        Type_13,    /*!< thmeme 13*/
+        Type_14,    /*!< thmeme 14*/
+        Type_15,    /*!< thmeme 15*/
+        Type_16,    /*!< thmeme 16*/
+        Type_17     /*!< thmeme 17*/
     };
 
-    explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    bool hasScroll() const;
     /*!
      * Check widget has scroll or not.
      */
-    void setImagePath(const QString &path);
+    bool hasScroll() const;
     /*!
      * Set image path.
      */
-    void setCurrentSongName(const QString &name);
+    void setImagePath(const QString &path);
     /*!
      * Set current song name.
      */
+    void setCurrentSongName(const QString &name);
 
 public Q_SLOTS:
-    void textChanged(const QStringList &data);
     /*!
      * Lrc text changed.
      */
-    void currentTypeChanged(int type);
+    void textChanged(const QStringList &data);
     /*!
      * Theme type changed.
      */
+    void currentTypeChanged(int type);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
+     * Draw theme.
      */
     void drawTheme1(QPainter *painter);
     /*!
@@ -148,9 +151,6 @@ protected:
      * Draw theme.
      */
     void drawTheme17(QPainter *painter);
-    /*!
-     * Draw theme.
-     */
 
     Type m_type;
     QStringList m_data;
@@ -167,32 +167,31 @@ class MUSIC_LRC_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWidg
 {
     Q_OBJECT
 public:
-    explicit MusicLrcPosterTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcPosterTableWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-
-    void createAllItems(const QStringList &lrcs);
+    static QString getClassName();
     /*!
      * Create all items.
      */
+    void createAllItems(const QStringList &lrcs);
 
 Q_SIGNALS:
-    void textChanged(const QStringList &data);
     /*!
      * Lrc text changed.
      */
+    void textChanged(const QStringList &data);
 
 public Q_SLOTS:
-    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 };
 
@@ -204,21 +203,21 @@ class MUSIC_LRC_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcPosterThemeListWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcPosterThemeListWidget(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 public Q_SLOTS:
-    void addListWidgetItem();
     /*!
      * Add tool sets list into list widget.
      */
+    void addListWidgetItem();
 
 };
 
@@ -230,35 +229,37 @@ class MUSIC_LRC_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:
-    explicit MusicLrcPosterWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcPosterWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcPosterWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setCurrentLrcs(const QStringList &lrcs, const QString &name);
     /*!
      * Set current lrc and song name.
      */
+    void setCurrentLrcs(const QStringList &lrcs, const QString &name);
+
 
 public Q_SLOTS:
-    void openButtonClicked();
     /*!
      * Open button clicked.
      */
-    void saveButtonClicked();
+    void openButtonClicked();
     /*!
      * Save button clicked.
      */
-    virtual int exec();
+    void saveButtonClicked();
     /*!
      * Override exec function.
      */
+    virtual int exec();
 
 protected:
     Ui::MusicLrcPosterWidget *m_ui;

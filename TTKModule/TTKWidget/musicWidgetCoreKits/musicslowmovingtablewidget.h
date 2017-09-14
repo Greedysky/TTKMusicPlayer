@@ -20,37 +20,38 @@ class MUSIC_WIDGET_EXPORT MusicSlowMovingTableWidget : public MusicAbstractTable
 {
     Q_OBJECT
 public:
-    explicit MusicSlowMovingTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSlowMovingTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSlowMovingTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setMovedScrollBar(QScrollBar *bar);
     /*!
      * Set current moved scroll bar.
      */
+    void setMovedScrollBar(QScrollBar *bar);
 
 public Q_SLOTS:
-    void timeToAnimation();
     /*!
      * Time out to start animation.
      */
-    void valueChanged(int value);
+    void timeToAnimation();
     /*!
      * Current scroll bar value changed.
      */
+    void valueChanged(int value);
 
 protected:
-    virtual void wheelEvent(QWheelEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void wheelEvent(QWheelEvent *event) override;
 
     bool m_isFirstInit;
     int m_previousValue, m_deltaValue;

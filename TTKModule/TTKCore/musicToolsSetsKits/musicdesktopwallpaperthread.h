@@ -20,40 +20,41 @@ class MUSIC_SUPER_EXPORT MusicDesktopWallpaperThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit MusicDesktopWallpaperThread(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicDesktopWallpaperThread(QObject *parent = 0);
+
     ~MusicDesktopWallpaperThread();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setParamters(const MusicObject::MStriantMap &p);
+    static QString getClassName();
     /*!
      * Set paramters(Time\Type\Func\Close).
      */
-    void stopAndQuitThread();
+    void setParamters(const MusicObject::MStriantMap &p);
     /*!
      * Stop and quit current thread.
      */
+    void stopAndQuitThread();
 
 public Q_SLOTS:
-    void start();
     /*!
      * Strat thread now.
      */
-    virtual void run() override;
+    void start();
     /*!
      * Thread run now.
      */
+    virtual void run() override;
 
 protected:
-    void setWallpaper(const QString &path, int type) const;
     /*!
      * Set desktop wallpaper.
      */
+    void setWallpaper(const QString &path, int type) const;
 
     bool m_run, m_returnToOrigin;
     int m_currentImageIndex, m_originType;

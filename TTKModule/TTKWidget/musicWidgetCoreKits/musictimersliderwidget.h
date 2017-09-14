@@ -24,48 +24,49 @@ class MUSIC_WIDGET_EXPORT MusicTimerSliderWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MusicTimerSliderWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTimerSliderWidget(QWidget *parent = 0);
+
     ~MusicTimerSliderWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setPlayState(bool state);
+    static QString getClassName();
     /*!
      * Set current play state.
      */
-    void setValue(qint64 value) const;
+    void setPlayState(bool state);
     /*!
      * Set current play index value.
      */
-    void setRange(int min, int max);
+    void setValue(qint64 value) const;
     /*!
      * Set current play range from min and max.
      */
-    void setObject(QObject *object) const;
+    void setRange(int min, int max);
     /*!
      * Set connect current object.
      */
+    void setObject(QObject *object) const;
 
 public Q_SLOTS:
-    void sliderMovedAt(int pos) const;
     /*!
      * Current slider move at pos.
      */
-    void setSliderStyleByType(int type);
+    void sliderMovedAt(int pos) const;
     /*!
      * Set slider style diff by diff enhanced effect.
      */
+    void setSliderStyleByType(int type);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void resizeEvent(QResizeEvent *event) override;
 
     MusicGifLabelWidget *m_label;
     MusicMovingLabelSlider *m_slider;

@@ -19,52 +19,53 @@ class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicQuery
 {
     Q_OBJECT
 public:
-    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = 0);
+
     virtual ~MusicSoundKMicroSearchTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    static QString getClassName();
     /*!
      * Start search query by text.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Data download to local file.
      */
-    void setQueryMVFlag(bool flag);
+    virtual void musicDownloadLocal(int row) override;
     /*!
      * Set query MV flag.
      */
+    void setQueryMVFlag(bool flag);
 
 Q_SIGNALS:
-    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Set current media url.
      */
+    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
 
 public Q_SLOTS:
-    virtual void clearAllItems() override;
     /*!
      * Clear All Items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void clearAllItems() override;
     /*!
      * Create searched items.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Item has double clicked.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
+    virtual void listCellClicked(int row, int column) override;
 
 protected:
     bool m_queryMv;
@@ -81,34 +82,35 @@ class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public MusicAbstractMo
 {
     Q_OBJECT
 public:
-    explicit MusicSoundKMicroSearchWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundKMicroSearchWidget(QWidget *parent = 0);
+
     ~MusicSoundKMicroSearchWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void connectTo(QObject *obj);
+    static QString getClassName();
     /*!
      * Connect to parent.
      */
-    void startSeachKMicro(const QString &name);
+    void connectTo(QObject *obj);
     /*!
      * Start seach KMicro.
      */
+    void startSeachKMicro(const QString &name);
 
 public Q_SLOTS:
-    void startToSearch();
     /*!
      * Start to search.
      */
-    void setQueryMVFlag(int flag);
+    void startToSearch();
     /*!
      * Set query MV flag.
      */
+    void setQueryMVFlag(int flag);
 
 protected:
     bool m_queryMv;

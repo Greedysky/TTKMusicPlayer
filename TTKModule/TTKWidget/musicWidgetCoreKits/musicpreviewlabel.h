@@ -18,25 +18,26 @@ class MUSIC_WIDGET_EXPORT MusicColorPreviewLabel : public MusicClickedLabel
 {
     Q_OBJECT
 public:
-    explicit MusicColorPreviewLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicColorPreviewLabel(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setLinearGradient(const QList<QColor> &colors);
+    static QString getClassName();
     /*!
      * Set linear gradient and fg and bg.
      */
+    void setLinearGradient(const QList<QColor> &colors);
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
+
     QLinearGradient m_linearGradient;
 
 };
@@ -60,33 +61,33 @@ class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicPreviewLabel(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPreviewLabel(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void setLinearGradient(const MusicPreviewLabelItem &item);
+    static QString getClassName();
     /*!
      * Set linear gradient item.
      */
-    void setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg);
+    void setLinearGradient(const MusicPreviewLabelItem &item);
     /*!
      * Set linear gradient and fg and bg.
      */
-    void setTransparent(int trans) { m_transparent = trans;}
+    void setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg);
     /*!
      * Set current transparent.
      */
+    void setTransparent(int trans) { m_transparent = trans;}
 
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
 
     QFont m_font;
     QLinearGradient m_linearGradient;

@@ -18,40 +18,40 @@ class MUSIC_NETWORK_EXPORT MusicQQBackgroundThread : public MusicDownloadBackgro
 {
     Q_OBJECT
 public:
-    MusicQQBackgroundThread(const QString &name, const QString &save,
-                            QObject *parent = 0);
     /*!
      * Object contsructor provide artist name and save local path.
      */
+    MusicQQBackgroundThread(const QString &name, const QString &save,
+                            QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void deleteAll() override;
+    static QString getClassName();
     /*!
      * Release the network object.
      */
-    virtual void startToDownload() override;
+    virtual void deleteAll() override;
     /*!
      * Start to download artist picture from net.
      */
+    virtual void startToDownload() override;
 
 public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
     void downLoadDataFinished();
     /*!
      * Download data from net finished.
      */
     void downLoadUrlFinished();
-    /*!
-     * Download data from net finished.
-     */
 
 protected:
-    void downLoadUrl(const QString &id);
     /*!
      * Download data from net.
      */
+    void downLoadUrl(const QString &id);
 
 };
 

@@ -33,32 +33,33 @@ class MUSIC_WIDGET_EXPORT MusicRadioButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicRadioButtonDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicRadioButtonDelegate(QObject* parent = 0);
+
     virtual ~MusicRadioButtonDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &style);
     /*!
      * Set delegate item style.
+     */
+    void setStyleSheet(const QString &style);
+    /*!
+     * Override size hint.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
-     * Override size hint.
+     * Override paint.
      */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    /*!
-     * Override paint.
-     */
 
 protected:
     QRadioButton *m_radioButton;
@@ -73,32 +74,33 @@ class MUSIC_WIDGET_EXPORT MusicCheckBoxDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicCheckBoxDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicCheckBoxDelegate(QObject* parent = 0);
+
     virtual ~MusicCheckBoxDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &style);
     /*!
      * Set delegate item style.
+     */
+    void setStyleSheet(const QString &style);
+    /*!
+     * Override size hint.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
-     * Override size hint.
+     * Override paint.
      */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    /*!
-     * Override paint.
-     */
 
 protected:
     QCheckBox *m_checkBox;
@@ -113,23 +115,24 @@ class MUSIC_WIDGET_EXPORT MusicQueryTableDelegate : public MusicCheckBoxDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicQueryTableDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicQueryTableDelegate(QObject* parent = 0);
+
     virtual ~MusicQueryTableDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
     /*!
      * Override paint.
      */
+    void paint(QPainter *painter,
+               const QStyleOptionViewItem &option,
+               const QModelIndex &index) const;
 
 };
 
@@ -141,32 +144,33 @@ class MUSIC_WIDGET_EXPORT MusicProgressBarDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicProgressBarDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicProgressBarDelegate(QObject* parent = 0);
+
     ~MusicProgressBarDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &style);
     /*!
      * Set delegate item style.
+     */
+    void setStyleSheet(const QString &style);
+    /*!
+     * Override size hint.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
-     * Override size hint.
+     * Override paint.
      */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    /*!
-     * Override paint.
-     */
 
 private:
     QProgressBar *m_progress;
@@ -181,32 +185,33 @@ class MUSIC_WIDGET_EXPORT MusicLabelDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicLabelDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLabelDelegate(QObject* parent = 0);
+
     virtual ~MusicLabelDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &style);
     /*!
      * Set delegate item style.
+     */
+    void setStyleSheet(const QString &style);
+    /*!
+     * Override size hint.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
-     * Override size hint.
+     * Override paint.
      */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    /*!
-     * Override paint.
-     */
 
 protected:
     QLabel *m_label;
@@ -221,32 +226,33 @@ class MUSIC_WIDGET_EXPORT MusicPushButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit MusicPushButtonDelegate(QObject* parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicPushButtonDelegate(QObject* parent = 0);
+
     virtual ~MusicPushButtonDelegate();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setStyleSheet(const QString &style);
     /*!
      * Set delegate item style.
+     */
+    void setStyleSheet(const QString &style);
+    /*!
+     * Override size hint.
      */
     QSize sizeHint(const QStyleOptionViewItem &option,
                    const QModelIndex &) const;
     /*!
-     * Override size hint.
+     * Override paint.
      */
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    /*!
-     * Override paint.
-     */
 
 protected:
     QPushButton *m_pushButton;

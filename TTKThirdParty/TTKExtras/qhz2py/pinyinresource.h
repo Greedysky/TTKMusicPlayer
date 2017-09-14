@@ -20,20 +20,21 @@
 class MUSIC_EXTRAS_EXPORT PinyinResource
 {
 public:
+
     static QMap<QString, QString> getPinyinResource();
-    /*!
-     * Get pinyin resource.
-     */
-    static QMap<QString, QString> getMutilPinyinResource();
     /*!
      * Get mutil pinyin resource.
      */
-    static QMap<QString, QString> getChineseResource();
+    static QMap<QString, QString> getMutilPinyinResource();
     /*!
      * Get chinese resource.
      */
+    static QMap<QString, QString> getChineseResource();
 
 private:
+    /*!
+     * Get resource.
+     */
     static QMap<QString, QString> getResource(const QString &resourceName);
 
 };

@@ -19,74 +19,75 @@ class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryItemTableWidge
 {
     Q_OBJECT
 public:
-    explicit MusicVideoTableWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVideoTableWidget(QWidget *parent = 0);
+
     virtual ~MusicVideoTableWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void startSearchQuery(const QString &text) override;
+    static QString getClassName();
     /*!
      * Start search query by text.
      */
-    virtual void musicDownloadLocal(int row) override;
+    virtual void startSearchQuery(const QString &text) override;
     /*!
      * Data download to local file.
      */
-    void resizeWindow(int delta);
+    virtual void musicDownloadLocal(int row) override;
     /*!
      * Resize widget size by delta.
      */
+    void resizeWindow(int delta);
 
 Q_SIGNALS:
-    void mvURLNameChanged(const QString &name, const QString &data);
     /*!
      * Set current media name and url to play.
      */
+    void mvURLNameChanged(const QString &name, const QString &data);
 
 public Q_SLOTS:
-    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell enter.
      */
-    virtual void listCellClicked(int row, int column) override;
+    virtual void listCellEntered(int row, int column) override;
     /*!
      * Table widget list cell click.
      */
-    virtual void clearAllItems() override;
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Clear All Items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void clearAllItems() override;
     /*!
      * Create searched items.
      */
-    virtual void itemDoubleClicked(int row, int column) override;
+    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
      * Item has double clicked.
      */
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
+    virtual void itemDoubleClicked(int row, int column) override;
     /*!
      * Get music mv information data.
      */
-    void downloadLocalFromControl();
+    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Download current mv by controller.
      */
+    void downloadLocalFromControl();
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void downloadLocalMovie(int row);
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Download movie to local file by index.
      */
+    void downloadLocalMovie(int row);
 
     QString m_currentSongName;
 

@@ -19,23 +19,27 @@ class MUSIC_LRC_EXPORT MusicLrcTranslatedWidget : public QLabel
 {
     Q_OBJECT
 public:
-    explicit MusicLrcTranslatedWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcTranslatedWidget(QWidget *parent = 0);
+
     ~MusicLrcTranslatedWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setPlainText(const QString &name, const QString &text);
     /*!
      * Set current translated string.
      */
+    void setPlainText(const QString &name, const QString &text);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;

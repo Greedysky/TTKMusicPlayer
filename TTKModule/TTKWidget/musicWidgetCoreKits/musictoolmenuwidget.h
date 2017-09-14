@@ -20,28 +20,28 @@ class MUSIC_WIDGET_EXPORT MusicToolMenu : public QMenu
 {
     Q_OBJECT
 public:
-    explicit MusicToolMenu(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicToolMenu(QWidget *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void windowStateChanged(bool state);
     /*!
      * Window state changed.
      */
+    void windowStateChanged(bool state);
 
 protected:
-    virtual void showEvent(QShowEvent *event) override;
-    virtual void hideEvent(QHideEvent *event) override;
     /*!
      * Override the widget event.
      */
+    virtual void showEvent(QShowEvent *event) override;
+    virtual void hideEvent(QHideEvent *event) override;
 
 };
 
@@ -53,27 +53,28 @@ class MUSIC_WIDGET_EXPORT MusicToolMenuWidget : public QToolButton
 {
     Q_OBJECT
 public:
-    explicit MusicToolMenuWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicToolMenuWidget(QWidget *parent = 0);
+
     ~MusicToolMenuWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setTranslucentBackground();
     /*!
      * Set background translucent.
      */
+    void setTranslucentBackground();
 
 public Q_SLOTS:
-    void popupMenu();
     /*!
      * To popup menu.
      */
+    void popupMenu();
 
 protected:
     MusicToolMenu *m_menu;

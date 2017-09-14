@@ -45,7 +45,7 @@ void MusicLrcContainerForDesktop::startTimerClock()
 
 void MusicLrcContainerForDesktop::stopLrcMask()
 {
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->stopLrcMask();
     }
@@ -54,7 +54,7 @@ void MusicLrcContainerForDesktop::stopLrcMask()
 void MusicLrcContainerForDesktop::setSettingParameter()
 {
     MusicLrcContainer::setSettingParameter();
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         m_currentLrcFontSize = M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt();
         manager->setLrcFontSize(m_currentLrcFontSize);
@@ -192,7 +192,7 @@ void MusicLrcContainerForDesktop::createColorMenu(QMenu &menu)
 
 void MusicLrcContainerForDesktop::setSelfGeometry() const
 {
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->setSelfGeometry(m_geometry.x(), m_geometry.y());
     }
@@ -344,7 +344,7 @@ void MusicLrcContainerForDesktop::resizeLrcSizeArea(bool resize)
     setSelfGeometry();
 
     int size = resize ? ++m_currentLrcFontSize : --m_currentLrcFontSize;
-    foreach(MusicLRCManager *manager, m_musicLrcContainer)
+    foreach(MusicLrcManager *manager, m_musicLrcContainer)
     {
         manager->setLrcFontSize(size);
     }
@@ -450,8 +450,8 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
 
     QWidget *desktopWidget = new QWidget(this);
     desktopWidget->setObjectName("desktopWidget");
-    m_musicLrcContainer << new MusicLRCManagerHorizontalDesktop(desktopWidget)
-                        << new MusicLRCManagerHorizontalDesktop(desktopWidget);
+    m_musicLrcContainer << new MusicLrcManagerHorizontalDesktop(desktopWidget)
+                        << new MusicLrcManagerHorizontalDesktop(desktopWidget);
     setGeometry(200,  windowSize.height() - height() - 200, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT);
     desktopWidget->setGeometry(0, TOOLBAR_MAIN_HEIGHT, m_geometry.x(), 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT);
 
@@ -534,8 +534,8 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
 
     QWidget *desktopWidget = new QWidget(this);
     desktopWidget->setObjectName("desktopWidget");
-    m_musicLrcContainer << new MusicLRCManagerVerticalDesktop(desktopWidget)
-                        << new MusicLRCManagerVerticalDesktop(desktopWidget);
+    m_musicLrcContainer << new MusicLrcManagerVerticalDesktop(desktopWidget)
+                        << new MusicLrcManagerVerticalDesktop(desktopWidget);
     setGeometry(200,  75, 2*m_geometry.y() + TOOLBAR_HEIGHT + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
     desktopWidget->setGeometry(TOOLBAR_MAIN_HEIGHT, 0, 2*m_geometry.y() + TOOLBAR_MAIN_HEIGHT, m_geometry.x());
 

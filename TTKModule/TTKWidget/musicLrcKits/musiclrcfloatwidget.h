@@ -22,34 +22,35 @@ class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
 public:
-    explicit MusicLrcFloatWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicLrcFloatWidget(QWidget *parent = 0);
+
     virtual ~MusicLrcFloatWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    virtual void resizeWindow(int width, int height) override;
+    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */
+    virtual void resizeWindow(int width, int height) override;
 
 public Q_SLOTS:
-    void showFloatSettingWidget();
     /*!
      * Show float setting widget.
      */
-    void closeFloatSettingWidget();
+    void showFloatSettingWidget();
     /*!
      * Close float setting widget.
      */
-    void musicContainerForWallpaperClicked();
+    void closeFloatSettingWidget();
     /*!
      * Lrc desktop wallpaper button clicked.
      */
+    void musicContainerForWallpaperClicked();
 
 protected:
     QPushButton *m_more, *m_update, *m_search;

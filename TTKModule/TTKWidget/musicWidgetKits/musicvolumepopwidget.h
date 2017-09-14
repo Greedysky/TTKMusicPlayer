@@ -20,49 +20,49 @@ class MUSIC_WIDGET_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
 public:
-    explicit MusicVolumePopWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicVolumePopWidget(QWidget *parent = 0);
+
     virtual ~MusicVolumePopWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    void setValue(int value);
     /*!
      * Set slider value.
      */
-    int value() const;
+    void setValue(int value);
     /*!
      * Get slider value.
      */
+    int value() const;
 
 Q_SIGNALS:
-    void musicVolumeChanged(int volume);
     /*!
      * Current play volume changed.
      */
+    void musicVolumeChanged(int volume);
 
 public Q_SLOTS:
-    void timeToResetFlag();
     /*!
      * Timer ot reset show slider flag.
      */
+    void timeToResetFlag();
 
 protected:
-    virtual void leaveEvent(QEvent *event) override;
-    virtual void enterEvent(QEvent *event) override;
     /*!
      * Override the widget event.
      */
-
-    void initWidget();
+    virtual void leaveEvent(QEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
     /*!
      * Create all widget in layout.
      */
+    void initWidget();
 
     bool m_menuShown;
     MusicClickedSlider *m_volumeSlider;

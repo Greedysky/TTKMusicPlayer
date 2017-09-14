@@ -25,56 +25,57 @@ class MusicDownloadBackgroundThread;
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory
 {
 public:
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
     /*!
      * Get query thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
     /*!
      * Get album thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);
     /*!
      * Get artist thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
+    MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = 0);
     /*!
      * Get playlist thread object by type.
      */
+    MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
 
-    MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
     /*!
      * Get comment thread object by type.
      */
+    MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
 
-    MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
     /*!
      * Get discover list thread object by type.
      */
+    MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
 
+    /*!
+     * Get download small picture object by type.
+     */
     MusicDownLoadThreadAbstract *getDownloadSmallPicThread(const QString &url, const QString &save,
                                                            MusicDownLoadThreadAbstract::Download_Type type,
                                                            QObject *parent = 0);
     /*!
-     * Get download small picture object by type.
+     * Get download lrc object by type.
      */
     MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
                                                       MusicDownLoadThreadAbstract::Download_Type type,
                                                       QObject *parent = 0);
+
     /*!
-     * Get download lrc object by type.
+     * Get download big picture object by type.
      */
 
     MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
                                                            QObject *parent = 0);
-    /*!
-     * Get download big picture object by type.
-     */
 
 protected:
     DECLARE_SINGLETON_CLASS(MusicDownLoadQueryFactory)

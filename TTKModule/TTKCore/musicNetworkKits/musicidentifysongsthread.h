@@ -29,51 +29,54 @@ class MUSIC_NETWORK_EXPORT MusicIdentifySongsThread : public MusicNetworkAbstrac
 {
     Q_OBJECT
 public:
+    /*!
+     * Object contsructor.
+     */
     explicit MusicIdentifySongsThread(QObject *parent = 0);
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
-    virtual void deleteAll() override;
     /*!
      * Release the network object.
      */
-    bool getKey();
+    virtual void deleteAll() override;
     /*!
      * Get query song id keys.
      */
-    void startToDownload(const QString &path);
+    bool getKey();
     /*!
      * To query song by input path.
      */
-    const MusicSongIdentifys& getIdentifySongs() const;
+    void startToDownload(const QString &path);
     /*!
      * Get identify songs.
      */
+    const MusicSongIdentifys& getIdentifySongs() const;
 
 Q_SIGNALS:
-    void getKeyFinished();
     /*!
      * Get key data from net finished.
      */
+    void getKeyFinished();
 
 public Q_SLOTS:
-    virtual void downLoadFinished() override;
     /*!
      * Download data from net finished.
      */
-    void keyDownLoadFinished(const QByteArray &data);
+    virtual void downLoadFinished() override;
     /*!
      * Download key data from net finished.
      */
+    void keyDownLoadFinished(const QByteArray &data);
 
 protected:
-    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
     /*!
      * Encode the data into sha1.
      */
+    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
 
     MusicSongIdentifys m_songIdentifys;
     QString m_accessKey, m_accessSecret;

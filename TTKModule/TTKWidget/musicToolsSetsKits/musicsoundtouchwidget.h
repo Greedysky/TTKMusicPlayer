@@ -25,81 +25,82 @@ class MUSIC_TOOLSET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveWidge
 {
     Q_OBJECT
 public:
-    explicit MusicSoundTouchWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicSoundTouchWidget(QWidget *parent = 0);
+
     virtual ~MusicSoundTouchWidget();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
+    static QString getClassName();
 
 Q_SIGNALS:
-    void resetFlag(MusicObject::ToolsType flag);
     /*!
      * Reset window open flag.
      */
+    void resetFlag(MusicObject::ToolsType flag);
 
 public Q_SLOTS:
-    void show();
     /*!
      * Override show function.
      */
+    void show();
 
 private Q_SLOTS:
-    void analysisOutput();
     /*!
      * Analysis output by process.
      */
-    void onRecordStart();
+    void analysisOutput();
     /*!
      * Recorder play start.
      */
-    void onRecordStop();
+    void onRecordStart();
     /*!
      * Recorder play stop.
      */
-    void onRecordPlay();
+    void onRecordStop();
     /*!
      * Recorder play play.
      */
+    void onRecordPlay();
 
-    void tempoSliderValueChanged(int value);
     /*!
      * Set tempo slider value.
      */
-    void pitchSliderValueChanged(int value);
+    void tempoSliderValueChanged(int value);
     /*!
      * Set pitch slider value.
      */
-    void rateSliderValueChanged(int value);
+    void pitchSliderValueChanged(int value);
     /*!
      * Set rate slider value.
      */
-    void openWavButtonClicked();
+    void rateSliderValueChanged(int value);
     /*!
      * Load wav file button clicked.
      */
-    void transformButtonClicked();
+    void openWavButtonClicked();
     /*!
      * Transform button clicked.
      */
-    void finished(int code);
+    void transformButtonClicked();
     /*!
      * Transform finished.
      */
+    void finished(int code);
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Override the widget event.
      */
-    void setText(const QString &text);
+    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Set label text.
      */
+    void setText(const QString &text);
 
     Ui::MusicSoundTouchWidget *m_ui;
     QProcess *m_process;

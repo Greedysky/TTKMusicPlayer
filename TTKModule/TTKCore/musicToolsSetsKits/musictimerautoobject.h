@@ -35,6 +35,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicTimeObject
 }MusicTimeObject;
 TTK_DECLARE_LISTS(MusicTimeObject)
 
+
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
@@ -42,32 +43,33 @@ class MUSIC_SUPER_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
 public:
-    explicit MusicTimerAutoObject(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit MusicTimerAutoObject(QObject *parent = 0);
+
     ~MusicTimerAutoObject();
 
-    static QString getClassName();
     /*!
      * Get class object name.
      */
-    void runTimerAutoConfig();
+    static QString getClassName();
     /*!
      * Run time auto from local file config.
      */
+    void runTimerAutoConfig();
 
 public Q_SLOTS:
-    void timeout();
     /*!
      * Check current state by one minute.
      */
+    void timeout();
 
 protected:
-    void setShutdown();
     /*!
      * Set current system to shutdown.
      */
+    void setShutdown();
 
     QTimer m_timer;
     MusicTimeObjects m_timeObjects;
