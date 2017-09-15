@@ -20,7 +20,7 @@
    <string>天天酷音</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../TTKQrc/MusicPlayer.qrc">
+   <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
     <normaloff>:/image/lb_player_logo</normaloff>:/image/lb_player_logo</iconset>
   </property>
   <layout class="QHBoxLayout" name="mainLayout">
@@ -1319,6 +1319,17 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>MusicTransitionAnimationLabel</class>
+   <extends>QLabel</extends>
+   <header>musictransitionanimationlabel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicAnimationStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header>musicanimationstackedwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>MusicMarqueeWidget</class>
    <extends>QWidget</extends>
    <header>musicmarqueewidget.h</header>
@@ -1355,12 +1366,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicAnimationStackedWidget</class>
-   <extends>QStackedWidget</extends>
-   <header>musicanimationstackedwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MusicPlayBackModePopWidget</class>
    <extends>QWidget</extends>
    <header>musicplaybackmodepopwidget.h</header>
@@ -1383,11 +1388,6 @@
    <extends>QWidget</extends>
    <header>musicplayedlistpopwidget.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MusicTransitionAnimationLabel</class>
-   <extends>QLabel</extends>
-   <header>musictransitionanimationlabel.h</header>
   </customwidget>
   <customwidget>
    <class>MusicFuntionAnimationWidget</class>
@@ -1415,7 +1415,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../../TTKQrc/MusicPlayer.qrc"/>
+  <include location="../../../../TTKQrc/MusicPlayer.qrc"/>
  </resources>
  <connections/>
 </ui>

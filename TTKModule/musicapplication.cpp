@@ -2,7 +2,7 @@
 #include "ui_musicapplication.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicxmlconfigmanager.h"
+#include "musicsysconfigmanager.h"
 #include "musicplayer.h"
 #include "musicformats.h"
 #include "musicplaylist.h"
@@ -1038,7 +1038,7 @@ void MusicApplication::setMusicPlayIndex()
 
 void MusicApplication::readXMLConfigFromText()
 {
-    MusicXMLConfigManager xml;
+    MusicSysConfigManager xml;
     int value = DEFAULT_INDEX_LEVEL0;
 
     //Path configuration song
@@ -1185,7 +1185,7 @@ void MusicApplication::readXMLConfigFromText()
 
 void MusicApplication::writeXMLConfigToText()
 {
-    MusicXMLConfigManager xml;
+    MusicSysConfigManager xml;
 
     m_applicationObject->sideAnimationReset();
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());

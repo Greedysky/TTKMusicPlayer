@@ -64,6 +64,7 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicdownloadresetwidget.ui \
     $$PWD/musicWidgetKits/musicequalizerdialog.ui \
     $$PWD/musicWidgetKits/musicmessagebox.ui \
+    $$PWD/musicWidgetKits/musiccolordialog.ui \
     $$PWD/musicWidgetKits/musicsettingwidget.ui \
     $$PWD/musicWidgetKits/musicsongsharingwidget.ui \
     $$PWD/musicWidgetKits/musicsonglistsharingwidget.ui \

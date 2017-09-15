@@ -1,5 +1,5 @@
-#ifndef MUSICXMLCONFIGMANAGER_H
-#define MUSICXMLCONFIGMANAGER_H
+#ifndef MUSICSYSCONFIGMANAGER_H
+#define MUSICSYSCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,17 +12,17 @@
 #include <QColor>
 #include "musicabstractxml.h"
 
-/*! @brief The class of the XML Config Manager.
+/*! @brief The class of the sys xml config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicXMLConfigManager : public MusicAbstractXml
+class MUSIC_CORE_EXPORT MusicSysConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXMLConfigManager(QObject *parent = 0);
+    explicit MusicSysConfigManager(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -77,4 +77,4 @@ protected:
 
 };
 
-#endif // MUSICXMLCONFIGMANAGER_H
+#endif // MUSICSYSCONFIGMANAGER_H

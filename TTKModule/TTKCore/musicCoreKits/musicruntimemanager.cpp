@@ -1,5 +1,5 @@
 #include "musicruntimemanager.h"
-#include "musicxmlconfigmanager.h"
+#include "musicsysconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
 #include "musiccoreutils.h"
@@ -38,7 +38,7 @@ void MusicRunTimeManager::run() const
     M_NETWORK_PTR->start();
 
     M_LOGGER_INFO("Load Translation");
-    MusicXMLConfigManager *xml = new MusicXMLConfigManager;
+    MusicSysConfigManager *xml = new MusicSysConfigManager;
     xml->readXMLConfig();
     xml->readSysLoadConfig();
 

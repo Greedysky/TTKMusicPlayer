@@ -1,21 +1,21 @@
-#include "musicxmlconfigmanager.h"
+#include "musicsysconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musiccoreutils.h"
 
 #include <QRect>
 
-MusicXMLConfigManager::MusicXMLConfigManager(QObject *parent)
+MusicSysConfigManager::MusicSysConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-QString MusicXMLConfigManager::getClassName()
+QString MusicSysConfigManager::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
+void MusicSysConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if( musics.isEmpty() || !writeConfig( path ) )
@@ -45,7 +45,7 @@ void MusicXMLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, 
     m_ddom->save(out, 4);
 }
 
-void MusicXMLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
+void MusicSysConfigManager::readMusicSongsConfig(MusicSongItems &musics)
 {
     QDomNodeList nodes = m_ddom->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -64,7 +64,7 @@ void MusicXMLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
     }
 }
 
-void MusicXMLConfigManager::writeXMLConfig()
+void MusicSysConfigManager::writeXMLConfig()
 {
     int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
     int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
@@ -293,7 +293,7 @@ void MusicXMLConfigManager::writeXMLConfig()
     m_ddom->save(out, 4);
 }
 
-void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
+void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
     if(nodelist.isEmpty())
@@ -311,7 +311,7 @@ void MusicXMLConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
     }
 }
 
-QRect MusicXMLConfigManager::readWindowGeometry() const
+QRect MusicSysConfigManager::readWindowGeometry() const
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("geometry");
     if(nodelist.isEmpty())
@@ -333,7 +333,7 @@ QRect MusicXMLConfigManager::readWindowGeometry() const
     }
 }
 
-QPoint MusicXMLConfigManager::readShowDLrcGeometry() const
+QPoint MusicSysConfigManager::readShowDLrcGeometry() const
 {
     QStringList point = readXmlAttributeByTagNameValue("lrcDGeometry").split(',');
     if(point.count() != 2)
@@ -343,7 +343,7 @@ QPoint MusicXMLConfigManager::readShowDLrcGeometry() const
     return QPoint(point[0].toInt(), point[1].toInt());
 }
 
-void MusicXMLConfigManager::readSysLoadConfig() const
+void MusicSysConfigManager::readSysLoadConfig() const
 {
     M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced,
                      readXmlAttributeByTagNameValue("playMode").toInt());
@@ -522,7 +522,7 @@ void MusicXMLConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("downloadULoadLimit"));
 }
 
-MusicSongs MusicXMLConfigManager::readMusicFilePath(const QDomNode &node) const
+MusicSongs MusicSysConfigManager::readMusicFilePath(const QDomNode &node) const
 {
     QDomNodeList nodelist = node.childNodes();
 

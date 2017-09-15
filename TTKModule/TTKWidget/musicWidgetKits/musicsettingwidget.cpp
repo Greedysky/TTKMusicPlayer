@@ -18,7 +18,6 @@
 
 #include <QFileDialog>
 #include <QFontDatabase>
-#include <QColorDialog>
 #include <QButtonGroup>
 #include <QAudioDeviceInfo>
 #include <QStyledItemDelegate>

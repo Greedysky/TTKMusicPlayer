@@ -4,10 +4,10 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrap.h"
 #include "musicotherdefine.h"
+#include "musiccolordialog.h"
 #include "musicuiobject.h"
 
 #include <QGridLayout>
-#include <QColorDialog>
 #include <QMouseEvent>
 
 #define COLOR_COL  10
@@ -219,7 +219,7 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
 
 void MusicBackgroundPaletteWidget::showPaletteDialog()
 {
-    QColor paletteColor = QColorDialog::getColor(Qt::white, this);
+    QColor paletteColor = MusicColorDialog::getColor(this);
     if(!paletteColor.isValid())
     {
         return;

@@ -18,7 +18,6 @@ HEADERS  += \
     $$PWD/musicglobaldefine.h \
     $$PWD/musicotherdefine.h \
     $$PWD/musictime.h \
-    $$PWD/musicxmlconfigmanager.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
     $$PWD/musicabstractxml.h \
@@ -40,7 +39,8 @@ HEADERS  += \
     $$PWD/musicruntimemanager.h \
     $$PWD/musicdispatchmanager.h \
     $$PWD/musicextractwrap.h \
-    $$PWD/musicbackgroundconfigmanager.h
+    $$PWD/musicbackgroundconfigmanager.h \
+    $$PWD/musicsysconfigmanager.h
 
 }
 
@@ -51,7 +51,6 @@ SOURCES += \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
     $$PWD/musicabstractxml.cpp \
-    $$PWD/musicxmlconfigmanager.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
     $$PWD/musiccoremplayer.cpp \
@@ -68,6 +67,7 @@ SOURCES += \
     $$PWD/musicruntimemanager.cpp \
     $$PWD/musicdispatchmanager.cpp \
     $$PWD/musicextractwrap.cpp \
-    $$PWD/musicbackgroundconfigmanager.cpp
+    $$PWD/musicbackgroundconfigmanager.cpp \
+    $$PWD/musicsysconfigmanager.cpp
 
 }

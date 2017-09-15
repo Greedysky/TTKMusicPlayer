@@ -1,5 +1,5 @@
 #include "musicplaylistmanager.h"
-#include "musicxmlconfigmanager.h"
+#include "musicsysconfigmanager.h"
 #include "musictime.h"
 #include "musicversion.h"
 #include "musicmessagebox.h"
@@ -410,7 +410,7 @@ void MusicPlayListManager::getMusicSongItems(const QStringList &open, MusicSongI
 
 void MusicPlayListManager::readLisList(const QString &path, MusicSongItems &items)
 {
-    MusicXMLConfigManager manager;
+    MusicSysConfigManager manager;
     if(manager.readConfig(path))
     {
         manager.readMusicSongsConfig(items);
@@ -419,7 +419,7 @@ void MusicPlayListManager::readLisList(const QString &path, MusicSongItems &item
 
 void MusicPlayListManager::writeLisList(const QString &path, const MusicSongItem &item)
 {
-    MusicXMLConfigManager manager;
+    MusicSysConfigManager manager;
     manager.writeMusicSongsConfig(MusicSongItems() << item, path);
 }
 

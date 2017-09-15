@@ -20,6 +20,7 @@ HEADERS  += \
     $$PWD/musicqueryfoundtablewidget.h \
     $$PWD/musicslowmovingtablewidget.h \
     $$PWD/musicitemdelegate.h \
+    $$PWD/musiccolordialog.h \
     $$PWD/musicmarqueewidget.h \
     $$PWD/musicpreviewlabel.h \
     $$PWD/musicmessagebox.h \
@@ -60,6 +61,7 @@ SOURCES += \
     $$PWD/musicqueryfoundtablewidget.cpp \
     $$PWD/musicslowmovingtablewidget.cpp \
     $$PWD/musicitemdelegate.cpp \
+    $$PWD/musiccolordialog.cpp \
     $$PWD/musicmarqueewidget.cpp \
     $$PWD/musicpreviewlabel.cpp \
     $$PWD/musicmessagebox.cpp \
