@@ -176,7 +176,7 @@ namespace MusicObject
             return m_bitrate == other.m_bitrate;
         }
     }MusicSongAttribute;
-    TTK_DECLARE_LISTS(MusicSongAttribute)
+    MUSIC_DECLARE_LISTS(MusicSongAttribute)
 
     ///////////////////////////////////////
 
@@ -195,7 +195,7 @@ namespace MusicObject
         QString m_songName;
         QString m_timeLength;
     }MusicSongInformation;
-    TTK_DECLARE_LISTS(MusicSongInformation)
+    MUSIC_DECLARE_LISTS(MusicSongInformation)
     ///////////////////////////////////////
 
     enum PlayState
@@ -252,7 +252,7 @@ namespace MusicObject
         TT_GrabWindow =     0x02000,   /*!< Grab Window*/
         TT_SoundKMicro =    0x04000    /*!< Sound KMicro*/
     };
-    TTK_DECLARE_FLAGS(ToolsTypes, ToolsType)
+    MUSIC_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
     /*!
      * Get application dir.

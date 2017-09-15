@@ -152,7 +152,7 @@ protected:
     QString m_musicName, m_musicPath, m_musicType, m_musicTime;
 
 };
-TTK_DECLARE_LISTS(MusicSong)
+MUSIC_DECLARE_LISTS(MusicSong)
 
 ////////////////////////////////////////////////////////
 class MusicSongsListTableWidget;
@@ -194,6 +194,6 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
         return m_itemIndex < other.m_itemIndex;
     }
 }MusicSongItem;
-TTK_DECLARE_LISTS(MusicSongItem)
+MUSIC_DECLARE_LISTS(MusicSongItem)
 
 #endif // MUSICSONG_H

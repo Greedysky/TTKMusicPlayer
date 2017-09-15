@@ -37,7 +37,7 @@ typedef struct MUSIC_WIDGET_EXPORT MusicDownloadData
     }
 
 }MusicDownloadData;
-TTK_DECLARE_LISTS(MusicDownloadData)
+MUSIC_DECLARE_LISTS(MusicDownloadData)
 
 class QLabel;
 class QPushButton;

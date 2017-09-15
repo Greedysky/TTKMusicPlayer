@@ -139,7 +139,7 @@ namespace QJson {
 
     private:
       class QObjectHelperPrivate;
-      TTK_DECLARE_PRIVATE(QObjectHelper)
+      MUSIC_DECLARE_PRIVATE(QObjectHelper)
 
   };
 }

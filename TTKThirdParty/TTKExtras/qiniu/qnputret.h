@@ -50,7 +50,7 @@ public:
     void setKey(const QString &value);
 
 private:
-    TTK_DECLARE_PRIVATE(QNPutRet)
+    MUSIC_DECLARE_PRIVATE(QNPutRet)
 
 };
 

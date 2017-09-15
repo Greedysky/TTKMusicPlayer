@@ -49,7 +49,7 @@ private Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 private:
-    TTK_DECLARE_PRIVATE(QNSimpleDeleteData)
+    MUSIC_DECLARE_PRIVATE(QNSimpleDeleteData)
 
 };
 

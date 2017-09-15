@@ -117,7 +117,7 @@ protected:
 
 
 private:
-    TTK_DECLARE_PRIVATE(QRCodeQWidget)
+    MUSIC_DECLARE_PRIVATE(QRCodeQWidget)
 
 };
 

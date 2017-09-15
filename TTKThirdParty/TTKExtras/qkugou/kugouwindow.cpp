@@ -20,7 +20,7 @@
 #include <QPushButton>
 #include <QButtonGroup>
 
-class KugouWindowPrivate : public TTKPrivate<KugouWindow>
+class KugouWindowPrivate : public MusicPrivate<KugouWindow>
 {
 public:
     KugouWindowPrivate();
@@ -51,7 +51,7 @@ KugouWindowPrivate::~KugouWindowPrivate()
 KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
     : QWidget(parent)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
 
 #if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
     QWebSettings *settings = QWebSettings::globalSettings();
@@ -85,7 +85,7 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 
 void KugouWindow::setUrl(const QString &url)
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
 #ifdef Q_OS_WIN
     QAxWidget *w = MObject_cast(QAxWidget*, d->m_webView);
     if(w)
@@ -109,7 +109,7 @@ void KugouWindow::setUrl(const QString &url)
 void KugouWindow::goBack()
 {
 #if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
     {
@@ -120,7 +120,7 @@ void KugouWindow::goBack()
 
 void KugouWindow::kugouSongIndexChanged(int index)
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     changeClickedButtonStyle(index);
     QString url = KugouUrl::getSongRecommendUrl();
     switch(index)
@@ -155,7 +155,7 @@ void KugouWindow::kugouSongIndexChanged(int index)
 
 void KugouWindow::kugouRadioIndexChanged(int index)
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     changeClickedButtonStyle(index);
     QString url = KugouUrl::getRadioPublicUrl();
     switch(index)
@@ -188,7 +188,7 @@ void KugouWindow::kugouRadioIndexChanged(int index)
 
 void KugouWindow::kugouMVIndexChanged(int index)
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     changeClickedButtonStyle(index);
     QString url = KugouUrl::getMVRadioUrl();
     switch(index)
@@ -220,7 +220,7 @@ void KugouWindow::kugouMVIndexChanged(int index)
 
 void KugouWindow::createWebViewer()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     if(d->m_webView)
     {
         delete d->m_webView;
@@ -248,7 +248,7 @@ void KugouWindow::createWebViewer()
 
 void KugouWindow::createKugouSongWidget()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -313,7 +313,7 @@ void KugouWindow::createKugouSongWidget()
 
 void KugouWindow::createKugouRadioWidget()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -363,7 +363,7 @@ void KugouWindow::createKugouRadioWidget()
 
 void KugouWindow::createKugouListWidget()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -387,7 +387,7 @@ void KugouWindow::createKugouListWidget()
 
 void KugouWindow::createKugouMVWidget()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -433,7 +433,7 @@ void KugouWindow::createKugouMVWidget()
 
 void KugouWindow::createKugouSingleWidget()
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
@@ -452,7 +452,7 @@ void KugouWindow::createKugouSingleWidget()
 
 void KugouWindow::changeClickedButtonStyle(int index)
 {
-    TTK_D(KugouWindow);
+    MUSIC_D(KugouWindow);
     for(int i=0; i<d->m_buttonGroup->buttons().count(); ++i)
     {
         d->m_buttonGroup->button(i)->setStyleSheet(MusicUIObject::MPushButtonStyle01);

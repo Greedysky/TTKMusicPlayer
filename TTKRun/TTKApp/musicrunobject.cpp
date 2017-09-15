@@ -4,7 +4,7 @@
 #include <QProcess>
 #include <QApplication>
 
-class MusicRunObjectPrivate : public TTKPrivate<MusicRunObject>
+class MusicRunObjectPrivate : public MusicPrivate<MusicRunObject>
 {
 public:
     MusicRunObjectPrivate();
@@ -31,8 +31,8 @@ MusicRunObjectPrivate::~MusicRunObjectPrivate()
 MusicRunObject::MusicRunObject(QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
-    TTK_D(MusicRunObject);
+    MUSIC_INIT_PRIVATE;
+    MUSIC_D(MusicRunObject);
 
     d->m_process = new QProcess(this);
     connect(d->m_process, SIGNAL(finished(int)),SLOT(finished(int)));
@@ -46,7 +46,7 @@ void MusicRunObject::checkValid()
 
 void MusicRunObject::run(int argc, char **argv)
 {
-    TTK_D(MusicRunObject);
+    MUSIC_D(MusicRunObject);
     QStringList list(APPNAME);
     if(argc == 3)
     {

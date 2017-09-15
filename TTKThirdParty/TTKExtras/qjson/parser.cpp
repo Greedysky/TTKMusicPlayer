@@ -63,12 +63,12 @@ void ParserPrivate::reset()
 
 Parser::Parser()
 {
-  TTK_INIT_PRIVATE;
+  MUSIC_INIT_PRIVATE;
 }
 
 QVariant Parser::parse (QIODevice* io, bool* ok)
 {
-  TTK_D(Parser);
+  MUSIC_D(Parser);
   d->reset();
 
   if (!io->isOpen()) {
@@ -121,24 +121,24 @@ QVariant Parser::parse(const QByteArray& jsonString, bool* ok) {
 
 QString Parser::errorString() const
 {
-  TTK_D(Parser);
+  MUSIC_D(Parser);
   return d->m_errorMsg;
 }
 
 int Parser::errorLine() const
 {
-  TTK_D(Parser);
+  MUSIC_D(Parser);
   return d->m_errorLine;
 }
 
 void QJson::Parser::allowSpecialNumbers(bool allowSpecialNumbers)
 {
-  TTK_D(Parser);
+  MUSIC_D(Parser);
   d->m_specialNumbersAllowed = allowSpecialNumbers;
 }
 
 bool Parser::specialNumbersAllowed() const
 {
-  TTK_D(Parser);
+  MUSIC_D(Parser);
   return d->m_specialNumbersAllowed;
 }

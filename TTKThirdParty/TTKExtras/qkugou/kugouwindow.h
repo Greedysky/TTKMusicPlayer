@@ -92,7 +92,7 @@ protected:
     void changeClickedButtonStyle(int index);
 
 private:
-    TTK_DECLARE_PRIVATE(KugouWindow)
+    MUSIC_DECLARE_PRIVATE(KugouWindow)
 
 };
 

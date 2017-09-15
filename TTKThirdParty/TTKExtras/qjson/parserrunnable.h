@@ -56,7 +56,7 @@ namespace QJson {
 
     private:
       class ParserRunnablePrivate;
-      TTK_DECLARE_PRIVATE(ParserRunnable)
+      MUSIC_DECLARE_PRIVATE(ParserRunnable)
 
   };
 }

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class MusicRunApplicationPrivate : public TTKPrivate<MusicRunApplication>
+class MusicRunApplicationPrivate : public MusicPrivate<MusicRunApplication>
 {
 public:
     MusicRunApplicationPrivate();
@@ -32,14 +32,14 @@ MusicRunApplicationPrivate::~MusicRunApplicationPrivate()
 MusicRunApplication::MusicRunApplication(int &argc, char **argv, bool GUIenabled)
     : QApplication(argc, argv, GUIenabled)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit();
 }
 
 MusicRunApplication::MusicRunApplication(const QString &appId, int &argc, char **argv)
     : QApplication(argc, argv)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit(appId);
 }
 
@@ -47,7 +47,7 @@ MusicRunApplication::MusicRunApplication(const QString &appId, int &argc, char *
 MusicRunApplication::MusicRunApplication(int &argc, char **argv, Type type)
     : QApplication(argc, argv, type)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit();
 }
 
@@ -55,21 +55,21 @@ MusicRunApplication::MusicRunApplication(int &argc, char **argv, Type type)
 MusicRunApplication::MusicRunApplication(Display* dpy, Qt::HANDLE visual, Qt::HANDLE cmap)
     : QApplication(dpy, visual, cmap)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit();
 }
 
 MusicRunApplication::MusicRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
     : QApplication(dpy, argc, argv, visual, cmap)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit();
 }
 
 MusicRunApplication::MusicRunApplication(Display* dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual, Qt::HANDLE cmap)
     : QApplication(dpy, argc, argv, visual, cmap)
 {
-    TTK_INIT_PRIVATE;
+    MUSIC_INIT_PRIVATE;
     sysInit(appId);
 }
 #  endif
@@ -83,19 +83,19 @@ void MusicRunApplication::initialize(bool dummy)
 
 bool MusicRunApplication::isRunning() const
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     return d->m_peer->isClient();
 }
 
 QString MusicRunApplication::id() const
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     return d->m_peer->applicationId();
 }
 
 void MusicRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessage)
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     d->m_activeWindow = aw;
 
     if(activateOnMessage)
@@ -110,19 +110,19 @@ void MusicRunApplication::setActivationWindow(QWidget* aw, bool activateOnMessag
 
 QWidget* MusicRunApplication::activationWindow() const
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     return d->m_activeWindow;
 }
 
 bool MusicRunApplication::sendMessage(const QString &message, int timeout)
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     return d->m_peer->sendMessage(message, timeout);
 }
 
 void MusicRunApplication::activateWindow()
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     if(d->m_activeWindow)
     {
         d->m_activeWindow->setWindowState(d->m_activeWindow->windowState() & ~Qt::WindowMinimized);
@@ -133,7 +133,7 @@ void MusicRunApplication::activateWindow()
 
 void MusicRunApplication::sysInit(const QString &appId)
 {
-    TTK_D(MusicRunApplication);
+    MUSIC_D(MusicRunApplication);
     d->m_peer = new MusicLocalPeer(this, appId);
     connect(d->m_peer, SIGNAL(messageReceived(QString)), SIGNAL(messageReceived(QString)));
 }

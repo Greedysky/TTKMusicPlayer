@@ -22,7 +22,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
     QString m_time;
     QString m_type;
 }MusicSearchedItem;
-TTK_DECLARE_LISTS(MusicSearchedItem)
+MUSIC_DECLARE_LISTS(MusicSearchedItem)
 
 /*! @brief The class of the playlist data item.
  * @author Greedysky <greedysky@163.com>
@@ -50,7 +50,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
         m_tags = "-";
     }
 }MusicPlaylistItem;
-TTK_DECLARE_LISTS(MusicPlaylistItem)
+MUSIC_DECLARE_LISTS(MusicPlaylistItem)
 
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>

@@ -6,7 +6,7 @@
 # * works are strictly forbiden.
 # =================================================
 
-contains(CONFIG, TTK_BUILD_LIB){
+contains(CONFIG, MUSIC_BUILD_LIB){
     include($$PWD/musicUiKits/MusicUiKits.pri)
 }
 include($$PWD/musicLrcKits/MusicLrcKits.pri)

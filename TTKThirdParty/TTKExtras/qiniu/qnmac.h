@@ -48,7 +48,7 @@ public:
     QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = 0) const;
 
 private:
-    TTK_DECLARE_PRIVATE(QNMac)
+    MUSIC_DECLARE_PRIVATE(QNMac)
 
 };
 

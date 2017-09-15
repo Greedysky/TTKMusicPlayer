@@ -30,7 +30,7 @@ typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
         m_name = name;
     }
 }MusicPlaylistCategoryItem;
-TTK_DECLARE_LISTS(MusicPlaylistCategoryItem)
+MUSIC_DECLARE_LISTS(MusicPlaylistCategoryItem)
 
 
 /*! @brief The class of the playlist category core.
@@ -41,7 +41,7 @@ typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategory
     QString m_category;
     MusicPlaylistCategoryItems m_items;
 }MusicPlaylistCategory;
-TTK_DECLARE_LISTS(MusicPlaylistCategory)
+MUSIC_DECLARE_LISTS(MusicPlaylistCategory)
 
 
 /*! @brief The class of the category Config Manager.

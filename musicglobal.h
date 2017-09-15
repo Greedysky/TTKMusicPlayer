@@ -24,12 +24,9 @@
 #    define MUSIC_WINEXTRAS
 #  else
 #    define MUSIC_NO_WINEXTRAS
-#    if QT_VERSION >= QT_VERSION_CHECK(5,1,0)
-#      define MUSIC_GREATER_FIVE_ONE
-#    else
-#      define MUSIC_GREATER_FIVE_ZERO
-#    endif
 #  endif
+#else
+#  define MUSIC_NO_WINEXTRAS
 #endif
 
 #ifdef QT_DEBUG
@@ -86,13 +83,34 @@
   #endif
 #endif
 
-#define TTK_DECLARE_LISTS(Class) \
+#define MUSIC_DECLARE_LISTS(Class) \
     typedef QList<Class> Class##s;
 
-#define TTK_DECLARE_FLAGS(Flags, Enum) \
+#define MUSIC_DECLARE_FLAGS(Flags, Enum) \
     typedef QFlags<Enum> Flags;
 
 //////////////////////////////////////
+
+#ifndef MUSIC_NAMESPACE
+#define MUSIC_NAMESPACE MUSIC
+#endif //MUSIC_NAMESPACE
+
+#if QT_VERSION <= QT_VERSION_CHECK(4,6,0)
+#define MUSIC_NO_NAMESPACE_SUPPORT
+#endif
+
+#ifndef MUSIC_NO_NAMESPACE_SUPPORT
+#define MUSIC_BEGIN_NAMESPACE namespace MUSIC_NAMESPACE {
+#define MUSIC_END_NAMESPACE }
+#define MUSIC_USE_NAMESPACE using namespace ::MUSIC_NAMESPACE;
+#else
+#define MUSIC_BEGIN_NAMESPACE
+#define MUSIC_END_NAMESPACE
+#define MUSIC_USE_NAMESPACE
+#endif //MUSIC_NAMESPACE_SUPPORT
+//////////////////////////////////////
+
+
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */

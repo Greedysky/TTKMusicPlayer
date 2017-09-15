@@ -63,7 +63,7 @@ public:
     void setCheckCrc32(qint32 value);
 
 private:
-    TTK_DECLARE_PRIVATE(QNPutExtra)
+    MUSIC_DECLARE_PRIVATE(QNPutExtra)
 
 };
 

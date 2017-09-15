@@ -19,7 +19,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownloadQueueData
     QString m_url;        ///*download url*/
     QString m_savePath;   ///*save local path*/
 }MusicDownloadQueueData;
-TTK_DECLARE_LISTS(MusicDownloadQueueData)
+MUSIC_DECLARE_LISTS(MusicDownloadQueueData)
 
 /*! @brief The class to download data from cache queue.
  * @author Greedysky <greedysky@163.com>

@@ -29,7 +29,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
         m_filePath = path;
     }
 }MusicSongCheckToolsRename;
-TTK_DECLARE_LISTS(MusicSongCheckToolsRename)
+MUSIC_DECLARE_LISTS(MusicSongCheckToolsRename)
 
 
 /*! @brief The class of the song check tools duplicate.
@@ -46,7 +46,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
         m_bitRate = bitRate;
     }
 }MusicSongCheckToolsDuplicate;
-TTK_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
+MUSIC_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 
 
 /*! @brief The class of the song check tools quality.
@@ -65,6 +65,6 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsQuality
         m_quality = quality;
     }
 }MusicSongCheckToolsQuality;
-TTK_DECLARE_LISTS(MusicSongCheckToolsQuality)
+MUSIC_DECLARE_LISTS(MusicSongCheckToolsQuality)
 
 #endif // MUSICSONGCHECKTOOLSUNIT_H

@@ -31,7 +31,7 @@ typedef struct MUSIC_CORE_EXPORT MusicXmlAttribute
         m_value = value;
     }
 }MusicXmlAttribute;
-TTK_DECLARE_LISTS(MusicXmlAttribute)
+MUSIC_DECLARE_LISTS(MusicXmlAttribute)
 
 /*! @brief The class of the base class of xml interface.
  * @author Greedysky <greedysky@163.com>

@@ -195,7 +195,7 @@ public:
 
 
 private:
-    TTK_DECLARE_PRIVATE(QNPutPolicy)
+    MUSIC_DECLARE_PRIVATE(QNPutPolicy)
 
 };
 

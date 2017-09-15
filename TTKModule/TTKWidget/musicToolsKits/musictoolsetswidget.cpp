@@ -75,7 +75,7 @@ void MusicToolSetsWidget::addListWidgetItem()
         QString m_icon;
         QString m_name;
     }ItemPair;
-    TTK_DECLARE_LISTS(ItemPair);
+    MUSIC_DECLARE_LISTS(ItemPair);
 
     ItemPairs pairs;
     pairs << ItemPair{":/tools/lb_localmanager", tr("localmanager")}

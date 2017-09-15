@@ -222,7 +222,7 @@ namespace QJson {
 
   private:
     class SerializerPrivate;
-    TTK_DECLARE_PRIVATE(Serializer)
+    MUSIC_DECLARE_PRIVATE(Serializer)
 
   };
 }

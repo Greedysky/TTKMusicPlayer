@@ -33,7 +33,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicTimeObject
         m_state = false;
     }
 }MusicTimeObject;
-TTK_DECLARE_LISTS(MusicTimeObject)
+MUSIC_DECLARE_LISTS(MusicTimeObject)
 
 
 /*! @brief The class of the time auto run.

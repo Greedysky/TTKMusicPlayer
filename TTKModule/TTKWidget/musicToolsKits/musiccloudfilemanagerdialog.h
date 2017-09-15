@@ -38,7 +38,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicUploadData
         return !(*this < other || other < *this);
     }
 }MusicUploadData;
-TTK_DECLARE_LISTS(MusicUploadData)
+MUSIC_DECLARE_LISTS(MusicUploadData)
 
 namespace Ui {
 class MusicCloudFileManagerDialog;

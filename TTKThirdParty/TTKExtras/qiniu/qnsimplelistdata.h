@@ -23,7 +23,7 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
     int m_size;
     int m_putTime;
 }QNDataItem;
-TTK_DECLARE_LISTS(QNDataItem)
+MUSIC_DECLARE_LISTS(QNDataItem)
 
 /*! @brief The namespace of the qiniu simple list data.
  * @author Jemy Graw <jemygraw@gmail.com>
@@ -59,7 +59,7 @@ private Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 private:
-    TTK_DECLARE_PRIVATE(QNSimpleListData)
+    MUSIC_DECLARE_PRIVATE(QNSimpleListData)
 
 };
 

@@ -29,7 +29,7 @@ namespace MusicLockedPrivate {
 #endif
 }
 
-class MusicLocalPeerPrivate : public TTKPrivate<MusicLocalPeer>
+class MusicLocalPeerPrivate : public MusicPrivate<MusicLocalPeer>
 {
 public:
     MusicLocalPeerPrivate();
@@ -61,8 +61,8 @@ MusicLocalPeerPrivate::~MusicLocalPeerPrivate()
 MusicLocalPeer::MusicLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
-    TTK_D(MusicLocalPeer);
+    MUSIC_INIT_PRIVATE;
+    MUSIC_D(MusicLocalPeer);
 
     QString prefix = d->m_id = appId;
     if(prefix.isEmpty())
@@ -107,7 +107,7 @@ MusicLocalPeer::MusicLocalPeer(QObject *parent, const QString &appId)
 
 bool MusicLocalPeer::isClient()
 {
-    TTK_D(MusicLocalPeer);
+    MUSIC_D(MusicLocalPeer);
     if(d->m_lockFile.isLocked())
     {
         return false;
@@ -138,7 +138,7 @@ bool MusicLocalPeer::isClient()
 
 bool MusicLocalPeer::sendMessage(const QString &message, int timeout)
 {
-    TTK_D(MusicLocalPeer);
+    MUSIC_D(MusicLocalPeer);
     if(!isClient())
     {
         return false;
@@ -186,13 +186,13 @@ bool MusicLocalPeer::sendMessage(const QString &message, int timeout)
 
 QString MusicLocalPeer::applicationId() const
 {
-    TTK_D(MusicLocalPeer);
+    MUSIC_D(MusicLocalPeer);
     return d->m_id;
 }
 
 void MusicLocalPeer::receiveConnection()
 {
-    TTK_D(MusicLocalPeer);
+    MUSIC_D(MusicLocalPeer);
     QLocalSocket *socket = d->m_server->nextPendingConnection();
     if(!socket)
     {

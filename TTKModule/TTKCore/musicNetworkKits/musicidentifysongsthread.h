@@ -20,7 +20,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongIdentify
     QString m_singerName;
     QString m_songName;
 }MusicSongIdentify;
-TTK_DECLARE_LISTS(MusicSongIdentify)
+MUSIC_DECLARE_LISTS(MusicSongIdentify)
 
 /*! @brief The class of the song identify query thread.
  * @author Greedysky <greedysky@163.com>

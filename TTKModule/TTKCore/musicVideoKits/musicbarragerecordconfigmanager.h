@@ -20,7 +20,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicBarrageRecord
     QString m_color;
     QString m_value;
 }MusicBarrageRecord;
-TTK_DECLARE_LISTS(MusicBarrageRecord)
+MUSIC_DECLARE_LISTS(MusicBarrageRecord)
 
 /*! @brief The class of the barrage record manager.
  * @author Greedysky <greedysky@163.com>

@@ -10,7 +10,7 @@
 #include <QDebug>
 #include <QStringList>
 
-class QNSimpleUploadDataPrivate : public TTKPrivate<QNSimpleUploadData>
+class QNSimpleUploadDataPrivate : public MusicPrivate<QNSimpleUploadData>
 {
 public:
     QNSimpleUploadDataPrivate();
@@ -30,15 +30,15 @@ QNSimpleUploadDataPrivate::QNSimpleUploadDataPrivate()
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {
-    TTK_INIT_PRIVATE;
-    TTK_D(QNSimpleUploadData);
+    MUSIC_INIT_PRIVATE;
+    MUSIC_D(QNSimpleUploadData);
     d->m_networkManager = networkManager;
 }
 
 void QNSimpleUploadData::uploadDataToServer(const QByteArray &data, const QString &bucket,
                                             const QString &key, const QString &name)
 {
-    TTK_D(QNSimpleUploadData);
+    MUSIC_D(QNSimpleUploadData);
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNPutPolicy policy(bucket);
     QString uploadToken = policy.makeUploadToken(&mac);

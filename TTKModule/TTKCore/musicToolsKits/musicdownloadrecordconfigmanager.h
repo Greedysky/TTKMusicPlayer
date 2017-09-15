@@ -20,7 +20,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicDownloadRecord
     QString m_path;
     QString m_size;
 }MusicDownloadRecord;
-TTK_DECLARE_LISTS(MusicDownloadRecord)
+MUSIC_DECLARE_LISTS(MusicDownloadRecord)
 
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>

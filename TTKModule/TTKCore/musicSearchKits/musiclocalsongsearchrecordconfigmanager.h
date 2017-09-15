@@ -19,7 +19,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicSearchRecord
     QString m_name;
     QString m_time;
 }MusicSearchRecord;
-TTK_DECLARE_LISTS(MusicSearchRecord)
+MUSIC_DECLARE_LISTS(MusicSearchRecord)
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>

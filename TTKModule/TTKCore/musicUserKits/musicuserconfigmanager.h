@@ -21,7 +21,7 @@ typedef struct MUSIC_SUPER_EXPORT MusicUserRecord
     QString m_rememberPWD;
     QString m_autoLogin;
 }MusicUserRecord;
-TTK_DECLARE_LISTS(MusicUserRecord)
+MUSIC_DECLARE_LISTS(MusicUserRecord)
 
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>

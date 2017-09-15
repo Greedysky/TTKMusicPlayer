@@ -96,7 +96,7 @@ private:
     */
     void sysInit(const QString &appId = QString());
 
-    TTK_DECLARE_PRIVATE(MusicRunApplication)
+    MUSIC_DECLARE_PRIVATE(MusicRunApplication)
 
 };
 

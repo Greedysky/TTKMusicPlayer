@@ -45,7 +45,7 @@
 
 using namespace QJson;
 
-class Serializer::SerializerPrivate : public TTKPrivate<Serializer>
+class Serializer::SerializerPrivate : public MusicPrivate<Serializer>
 {
   public:
     SerializerPrivate() :
@@ -391,13 +391,13 @@ QByteArray Serializer::SerializerPrivate::escapeString( const QString& str )
 
 Serializer::Serializer()
 {
-  TTK_INIT_PRIVATE;
+  MUSIC_INIT_PRIVATE;
 }
 
 void Serializer::serialize( const QVariant& v, QIODevice* io, bool* ok)
 {
   Q_ASSERT( io );
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
 
   *ok = true;
 
@@ -432,7 +432,7 @@ QByteArray Serializer::serialize( const QVariant &v)
 
 QByteArray Serializer::serialize( const QVariant &v, bool *ok)
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   bool _ok = true;
   d->errorMessage.clear();
 
@@ -447,36 +447,36 @@ QByteArray Serializer::serialize( const QVariant &v, bool *ok)
 
 void QJson::Serializer::allowSpecialNumbers(bool allow)
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   d->specialNumbersAllowed = allow;
 }
 
 bool QJson::Serializer::specialNumbersAllowed() const
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   return d->specialNumbersAllowed;
 }
 
 void QJson::Serializer::setIndentMode(IndentMode mode)
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   d->indentMode = mode;
 }
 
 void QJson::Serializer::setDoublePrecision(int precision)
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   d->doublePrecision = precision;
 }
 
 IndentMode QJson::Serializer::indentMode() const
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   return d->indentMode;
 }
 
 QString QJson::Serializer::errorMessage() const
 {
-  TTK_D(Serializer);
+  MUSIC_D(Serializer);
   return d->errorMessage;
 }

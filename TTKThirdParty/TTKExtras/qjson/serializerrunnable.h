@@ -63,7 +63,7 @@ namespace QJson {
 
     private:
       class SerializerRunnablePrivate;
-      TTK_DECLARE_PRIVATE(SerializerRunnable)
+      MUSIC_DECLARE_PRIVATE(SerializerRunnable)
 
   };
 }

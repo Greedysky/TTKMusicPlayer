@@ -23,7 +23,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongCommentItem
     QString m_content;
     QString m_likedCount;
 }MusicSongCommentItem;
-TTK_DECLARE_LISTS(MusicSongCommentItem)
+MUSIC_DECLARE_LISTS(MusicSongCommentItem)
 
 /*! @brief The class to query song comments download data from net.
  * @author Greedysky <greedysky@163.com>

@@ -27,7 +27,7 @@
 
 using namespace QJson;
 
-class QJson::ParserRunnable::ParserRunnablePrivate : public TTKPrivate<ParserRunnable>
+class QJson::ParserRunnable::ParserRunnablePrivate : public MusicPrivate<ParserRunnable>
 {
   public:
     QByteArray m_data;
@@ -37,20 +37,20 @@ ParserRunnable::ParserRunnable(QObject* parent)
     : QObject(parent),
       QRunnable()
 {
-  TTK_INIT_PRIVATE;
+  MUSIC_INIT_PRIVATE;
   qRegisterMetaType<QVariant>("QVariant");
 }
 
 void ParserRunnable::setData( const QByteArray& data )
 {
-  TTK_D(ParserRunnable);
+  MUSIC_D(ParserRunnable);
   d->m_data = data;
 }
 
 void ParserRunnable::run()
 {
   qDebug() << Q_FUNC_INFO;
-  TTK_D(ParserRunnable);
+  MUSIC_D(ParserRunnable);
 
   bool ok;
   Parser parser;

@@ -55,7 +55,7 @@ protected Q_SLOTS:
     void receiveConnection();
 
 private:
-    TTK_DECLARE_PRIVATE(MusicLocalPeer)
+    MUSIC_DECLARE_PRIVATE(MusicLocalPeer)
 
 };
 

@@ -91,7 +91,7 @@ namespace QJson {
       bool specialNumbersAllowed() const;
 
     private:
-      TTK_DECLARE_PRIVATE(Parser)
+      MUSIC_DECLARE_PRIVATE(Parser)
 
   };
 }

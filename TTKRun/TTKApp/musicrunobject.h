@@ -43,7 +43,7 @@ private Q_SLOTS:
     void finished(int code);
 
 private:
-    TTK_DECLARE_PRIVATE(MusicRunObject)
+    MUSIC_DECLARE_PRIVATE(MusicRunObject)
 
 };
 

@@ -8,7 +8,7 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
+!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicremotewidget.h \
     $$PWD/musicremotewidgetforsquare.h \
@@ -22,7 +22,7 @@ HEADERS  += \
 
 }
 
-contains(CONFIG, TTK_BUILD_LIB){
+contains(CONFIG, MUSIC_BUILD_LIB){
 SOURCES += \
     $$PWD/musicremotewidget.cpp \
     $$PWD/musicremotewidgetforsquare.cpp \

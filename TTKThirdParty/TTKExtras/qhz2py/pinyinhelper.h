@@ -86,7 +86,7 @@ private:
     QStringList convertToPinyinArray(const QChar &c, Format pinyinFormat);
 
 
-    TTK_DECLARE_PRIVATE(PinyinHelper)
+    MUSIC_DECLARE_PRIVATE(PinyinHelper)
 
 };
 

@@ -29,13 +29,13 @@
 
 using namespace QJson;
 
-class QObjectHelper::QObjectHelperPrivate : public TTKPrivate<QObjectHelper>
+class QObjectHelper::QObjectHelperPrivate : public MusicPrivate<QObjectHelper>
 {
 };
 
 QObjectHelper::QObjectHelper()
 {
-  TTK_INIT_PRIVATE;
+  MUSIC_INIT_PRIVATE;
 }
 
 QVariantMap QObjectHelper::qobject2qvariant( const QObject* object,

@@ -27,7 +27,7 @@ typedef struct MUSIC_TOOLSET_EXPORT MusicSpectrum
     QString m_name;
     QWidget *m_obj;
 }MusicSpectrum;
-TTK_DECLARE_LISTS(MusicSpectrum)
+MUSIC_DECLARE_LISTS(MusicSpectrum)
 
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>

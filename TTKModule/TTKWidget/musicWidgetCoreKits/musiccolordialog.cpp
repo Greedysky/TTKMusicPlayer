@@ -116,7 +116,6 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-
 void MusicHlPalette::calculateColor()
 {
     m_ptfVernierPercentPos.setX(m_ptVernierPos.x()/double(rect().right()));

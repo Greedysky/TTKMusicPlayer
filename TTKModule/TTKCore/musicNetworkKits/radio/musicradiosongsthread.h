@@ -23,7 +23,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicRadioSongInfo
     QString m_albumName;
     QString m_lrcUrl;
 }MusicRadioSongInfo;
-TTK_DECLARE_LISTS(MusicRadioSongInfo)
+MUSIC_DECLARE_LISTS(MusicRadioSongInfo)
 
 /*! @brief The class of music radio thread of song info.
  * @author Greedysky <greedysky@163.com>

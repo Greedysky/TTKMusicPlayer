@@ -17,7 +17,7 @@ INCLUDEPATH += $$PWD \
                $$PWD/qq \
                $$PWD/yyt
 
-!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
+!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/radio/musicradiochannelthread.h \
     $$PWD/radio/musicradioplaylistthread.h \
@@ -98,7 +98,7 @@ HEADERS  += \
 
 }
 
-contains(CONFIG, TTK_BUILD_LIB){
+contains(CONFIG, MUSIC_BUILD_LIB){
 SOURCES += \
     $$PWD/radio/musicradiochannelthread.cpp \
     $$PWD/radio/musicradioplaylistthread.cpp \

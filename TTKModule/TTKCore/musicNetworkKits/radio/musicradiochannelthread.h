@@ -19,7 +19,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
     QString m_id;
     QString m_name;
 }MusicRadioChannelInfo;
-TTK_DECLARE_LISTS(MusicRadioChannelInfo)
+MUSIC_DECLARE_LISTS(MusicRadioChannelInfo)
 
 /*! @brief The class of music radio thread of song channel.
  * @author Greedysky <greedysky@163.com>
