@@ -111,7 +111,7 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
         if(path.contains(event->pos()))
         {
             QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
-                               QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)), 10000);
+                               QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }
@@ -201,7 +201,7 @@ void MusicHlSaturationPalette::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton)
     {
-        m_dblVernierX = event->pos().rx();
+        m_dblVernierX = event->pos().x();
         calculateSuration();
         update();
     }
@@ -211,7 +211,7 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
 {
     if(event->buttons() & Qt::LeftButton && !(event->buttons() & Qt::RightButton))
     {
-        m_dblVernierX = event->pos().rx();
+        m_dblVernierX = event->pos().x();
         if(rect().contains(event->pos()))
         {
             calculateSuration();
@@ -226,7 +226,7 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
         if(path.contains(event->pos()))
         {
             QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
-                               QRect(event->pos() - QPoint(8, 8), QSize(16, 16)), 10000);
+                               QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }
