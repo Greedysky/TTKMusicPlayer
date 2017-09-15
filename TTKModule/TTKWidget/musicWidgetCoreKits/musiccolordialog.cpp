@@ -290,8 +290,7 @@ QString MusicColorDialog::getClassName()
 QColor MusicColorDialog::getColor(QWidget *parent)
 {
     MusicColorDialog dialog(parent);
-    dialog.exec();
-    return dialog.color();
+    return dialog.exec() ? dialog.color() : QColor();
 }
 
 QColor MusicColorDialog::color() const
