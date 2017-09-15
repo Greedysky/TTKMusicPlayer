@@ -2,16 +2,9 @@
 #include "ui_musiccolordialog.h"
 #include "musicuiobject.h"
 
-#include <QPaintEvent>
-#include <QResizeEvent>
-#include <QMouseEvent>
 #include <QPainter>
-#include <QPainterPath>
-#include <QLinearGradient>
 #include <QToolTip>
-
-#include <QBoxLayout>
-#include <QDebug>
+#include <QMouseEvent>
 
 MusicHlPalette::MusicHlPalette(QWidget *parent)
     : QWidget(parent)
@@ -117,7 +110,7 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
         path.addEllipse(m_ptVernierPos, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("调节色调和亮度"), this,
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
                                QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)), 10000);
         }
     }
@@ -232,7 +225,7 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
         path.addEllipse(ptfCenter, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("调节色调和亮度"), this,
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
                                QRect(event->pos() - QPoint(8, 8), QSize(16, 16)), 10000);
         }
     }
@@ -270,13 +263,12 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    m_status = 0;
-    m_ui->wgtPalette->init();
-
     connect(m_ui->wgtPalette, SIGNAL(colorChanged(QColor)), m_ui->wgtSaturationIndicator, SLOT(setBaseColor(QColor)));
     connect(m_ui->wgtPalette, SIGNAL(colorChanged(QColor)), SLOT(colorChanged(QColor)));
     connect(m_ui->wgtSaturationIndicator, SIGNAL(saturationChanged(double)), m_ui->wgtPalette, SLOT(setSaturation(double)));
+
+    m_status = 0;
+    m_ui->wgtPalette->init();
 
     QButtonGroup *groupButton = new QButtonGroup(this);
     groupButton->addButton(m_ui->topTitleCloseButton, 0);
@@ -312,8 +304,8 @@ void MusicColorDialog::buttonClicked(int index)
     switch(index)
     {
         case 0:
-        case 2: m_status = 1; break;
-        case 1: m_status = 0; break;
+        case 2: m_status = 0; break;
+        case 1: m_status = 1; break;
     }
     close();
 }

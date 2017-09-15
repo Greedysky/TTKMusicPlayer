@@ -368,7 +368,7 @@ bool MusicApplicationObject::closeCurrentEqualizer()
     {
         MusicMessageBox message;
         message.setText(tr("we are opening the magic sound, if you want to close?"));
-        if(message.exec())
+        if(!message.exec())
         {
             return false;
         }

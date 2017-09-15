@@ -197,7 +197,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     QString localDwonload = "v" + m_newVersionStr + EXE_FILE;
     MusicMessageBox message(this);
     message.setText(tr("Download Finish, Install Or Not"));
-    if(message.exec() == 0)
+    if(message.exec())
     {
         QProcess::startDetached(UPDATE_DIR_FULL+ localDwonload, QStringList());
         MStatic_cast(QWidget*, parent())->close();

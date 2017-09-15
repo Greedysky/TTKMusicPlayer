@@ -409,7 +409,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
-    if(message.exec() || rowCount() == 0 || currentRow() < 0)
+    if(!message.exec() || rowCount() == 0 || currentRow() < 0)
     {
         clearSelection();
         return;

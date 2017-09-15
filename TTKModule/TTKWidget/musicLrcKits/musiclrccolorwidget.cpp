@@ -1,8 +1,7 @@
 #include "musiclrccolorwidget.h"
-#include "musicuiobject.h"
 #include "ui_musiclrccolorwidget.h"
-
-#include <QColorDialog>
+#include "musiccolordialog.h"
+#include "musicuiobject.h"
 
 MusicLrcColorWidget::MusicLrcColorWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
@@ -78,10 +77,10 @@ QList<QColor> MusicLrcColorWidget::getColors() const
 
 void MusicLrcColorWidget::addButtonClicked()
 {
-    QColorDialog getColor(Qt::white, this);
+    MusicColorDialog getColor(this);
     if(getColor.exec())
     {
-        QColor color = getColor.selectedColor();
+        QColor color = getColor.color();
         QListWidgetItem *it = new QListWidgetItem(m_ui->listWidget);
         it->setBackgroundColor(color);
         m_ui->listWidget->addItem(it);
@@ -99,10 +98,10 @@ void MusicLrcColorWidget::deleteButtonClicked()
 
 void MusicLrcColorWidget::modifyButtonClicked()
 {
-    QColorDialog getColor(Qt::white, this);
+    MusicColorDialog getColor(this);
     if(getColor.exec())
     {
-        QColor color = getColor.selectedColor();
+        QColor color = getColor.color();
         QListWidgetItem *it = m_ui->listWidget->currentItem();
         if(it)
         {

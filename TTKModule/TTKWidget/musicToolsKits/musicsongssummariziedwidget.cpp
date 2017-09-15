@@ -310,7 +310,7 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
 
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
-    if(message.exec())
+    if(!message.exec())
     {
         return;
     }
@@ -348,7 +348,7 @@ void MusicSongsSummariziedWidget::deleteRowItems()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure to delete?"));
-    if(message.exec())
+    if(!message.exec())
     {
         return;
     }

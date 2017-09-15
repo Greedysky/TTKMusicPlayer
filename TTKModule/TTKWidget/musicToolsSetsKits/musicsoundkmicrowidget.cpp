@@ -297,7 +297,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
     {
         MusicMessageBox message;
         message.setText(tr("Recording Now, Stop It?"));
-        if(message.exec() == 0)
+        if(message.exec())
         {
             recordStateChanged(false);
         }

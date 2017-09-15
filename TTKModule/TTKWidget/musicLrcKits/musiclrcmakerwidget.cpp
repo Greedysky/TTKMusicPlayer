@@ -281,7 +281,7 @@ void MusicLrcMakerWidget::reMakeButtonClicked()
 {
     MusicMessageBox message;
     message.setText(tr("Are you sure you want to remake lyrics?"));
-    if(message.exec() == 0)
+    if(message.exec())
     {
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
         setCurrentFirstWidget();
@@ -292,7 +292,7 @@ void MusicLrcMakerWidget::backToMakeLrcWidget()
 {
     MusicMessageBox message;
     message.setText(tr("Go back and lyrics will be lost!"));
-    if(message.exec() == 0)
+    if(message.exec())
     {
         MusicApplication::instance()->musicPlayAnyTimeAt(0);
         setCurrentSecondWidget();

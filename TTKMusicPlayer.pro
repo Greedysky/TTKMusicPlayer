@@ -52,6 +52,3 @@ win32:{
     system(for /r TTKLanguage %i in (*.qm) do ren %i *.ln)
     system(for /r TTKLanguage %i in (*.ln) do move /y %i $$output)
 }
-
-RESOURCES += \
-    TTKModule/TTKQrc/MusicPlayer.qrc
