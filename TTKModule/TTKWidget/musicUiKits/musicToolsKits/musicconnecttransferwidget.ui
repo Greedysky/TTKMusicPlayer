@@ -103,10 +103,10 @@ QLabel{background:transparent;}</string>
     <widget class="QPushButton" name="searchLineLabel">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>5</y>
-       <width>25</width>
-       <height>25</height>
+       <x>305</x>
+       <y>10</y>
+       <width>16</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="cursor">

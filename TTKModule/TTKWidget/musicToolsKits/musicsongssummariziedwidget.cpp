@@ -133,6 +133,11 @@ void MusicSongsSummariziedWidget::appendMusicLists(const MusicSongItems &names)
 
 void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
 {
+    if(!searchFileListEmpty() && m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->close();
+    }
+
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Import File Mode"));
@@ -230,6 +235,10 @@ void MusicSongsSummariziedWidget::searchFileListCache(int index)
 
     if(index == 0)
     {
+        if(songItem->m_songs.isEmpty())
+        {
+            songItem->m_itemObject->updateSongsFileName(songItem->m_songs);
+        }
         m_searchfileListCache.clear();
     }
 }
@@ -289,6 +298,11 @@ void MusicSongsSummariziedWidget::selectRow(int index)
     if(m_currentPlayToolIndex < 0)
     {
         return;
+    }
+
+    if(!searchFileListEmpty() && m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->close();
     }
     m_songItems[m_currentPlayToolIndex].m_itemObject->selectRow(index);
 }
@@ -387,6 +401,11 @@ void MusicSongsSummariziedWidget::deleteRowItemAll(int index)
     if(id == -1)
     {
         return;
+    }
+
+    if(!searchFileListEmpty() && m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->close();
     }
 
     m_currentDeleteIndex = id;
@@ -808,6 +827,11 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     if(id == -1)
     {
         return;
+    }
+
+    if(!searchFileListEmpty() && m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->close();
     }
 
     MusicSongsListTableWidget *w = m_songItems[id].m_itemObject;
