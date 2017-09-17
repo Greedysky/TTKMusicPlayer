@@ -65,13 +65,13 @@ void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)
 
     float delta = event->delta() / 100.0;
     float dv = m_width*1.0/m_originWidth;
-    if(dv >= 5 && delta > 0)
+    if(dv >= 5 && delta >= 0)
     {
         return;
     }
 
-    m_width = delta > 0 ?  m_width * delta : m_width * (1 / -delta);
-    m_height = delta > 0 ?  m_height * delta : m_height * (1 / -delta);
+    m_width = delta >= 0 ?  m_width * delta : m_width * (1 / -delta);
+    m_height = delta >= 0 ?  m_height * delta : m_height * (1 / -delta);
 
     if(m_width < m_height && m_width < 10)
     {

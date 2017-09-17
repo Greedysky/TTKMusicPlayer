@@ -154,6 +154,10 @@ void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *o
 uint MusicUtils::Widget::colorBurnTransform(int c, int delta)
 {
     Q_ASSERT(0 <= delta && delta < 0xFF);
+    if(0 <= delta || delta >= 0xFF)
+    {
+        return c;
+    }
 
     int result = (c - (uint)(c*delta)/(0xFF - delta));
     if(result > 0xFF)

@@ -121,14 +121,15 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
     if(m_downloadType == Download_Music || m_downloadType == Download_Other)
     {
         QString total = MusicUtils::Number::size2Label(bytesTotal);
-        emit downloadProgressChanged(bytesReceived*100.0/ bytesTotal, total, m_createItemTime);
+        emit downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);
     }
 }
 
 void MusicDataDownloadThread::updateDownloadSpeed()
 {
-    QString label = MusicUtils::Number::speed2Label(m_currentReceived - m_hasReceived);
-    qint64 time = (m_totalSize - m_currentReceived)/(m_currentReceived - m_hasReceived);
+    qint64 speed = m_currentReceived - m_hasReceived;
+    QString label = MusicUtils::Number::speed2Label(speed);
+    qint64 time = (speed != 0) ? (m_totalSize - m_currentReceived)/speed : 0;
     emit downloadSpeedLabelChanged(label, time);
     MusicDownLoadThreadAbstract::updateDownloadSpeed();
 }
