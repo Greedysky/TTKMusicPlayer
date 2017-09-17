@@ -848,7 +848,7 @@ void MusicSongsSummariziedWidget::musicSearchWidget()
 {
     if(m_musicSongSearchWidget == nullptr)
     {
-        m_musicSongSearchWidget = new MusicLocalSongSearchDialog(MusicApplication::instance());
+        m_musicSongSearchWidget = new MusicLocalSongSearchDialog(this);
         resizeWindow();
     }
     m_musicSongSearchWidget->setVisible(!m_musicSongSearchWidget->isVisible());
@@ -978,7 +978,7 @@ void MusicSongsSummariziedWidget::resizeWindow()
 
     if(m_musicSongSearchWidget)
     {
-        m_musicSongSearchWidget->move(1, height() + 90 - m_musicSongSearchWidget->height() + 1);
+        m_musicSongSearchWidget->move(0, height() - m_musicSongSearchWidget->height());
     }
 }
 

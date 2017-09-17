@@ -16,7 +16,6 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
-class MusicLocalSongSearchDialog;
 
 namespace Ui {
     class MusicApplication;
