@@ -17,6 +17,7 @@ class QTableWidgetItem;
 class MusicSongsListWidget;
 class MusicSongCheckToolsWidget;
 class MusicSongsListFunctionWidget;
+class MusicLocalSongSearchDialog;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -64,7 +65,7 @@ public:
     /*!
      * Set current name to searched file names to list.
      */
-    void searchFileListCache(int index, const QString &text);
+    void searchFileListCache(int index);
     /*!
      * Check current search file is empty or not.
      */
@@ -108,10 +109,6 @@ Q_SIGNALS:
      * Update swap the current play index if in current stack widget.
      */
     void updateMediaLists(const QStringList &list, int index);
-    /*!
-     * Clear current search lineedit text.
-     */
-    void clearSearchText();
 
 public Q_SLOTS:
     /*!
@@ -223,6 +220,10 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     /*!
+     * Show searched text widget.
+     */
+    void musicSearchWidget();
+    /*!
      * Current vertical slider value chanaged.
      */
     void sliderValueChanaged(int value);
@@ -257,6 +258,10 @@ protected:
      */
     void connectMusicToolBoxWidgetItem(QObject *object);
     /*!
+     * Resize window bound by widgte resize called.
+     */
+    void resizeWindow();
+    /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -269,7 +274,8 @@ protected:
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MusicObject::MIntsListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
-    MusicSongsListFunctionWidget *m_floatWidget;
+    MusicSongsListFunctionWidget *m_listFunctionWidget;
+    MusicLocalSongSearchDialog *m_musicSongSearchWidget;
 
 };
 

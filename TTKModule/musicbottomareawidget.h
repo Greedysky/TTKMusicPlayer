@@ -96,26 +96,12 @@ public:
      * Set window concise.
      */
     void setWindowConcise();
-
-    /*!
-     * Get the search text that the user searched.
-     */
-    QString getSearchedText() const;
-
     /*!
      * Resize window bound by widgte resize called.
      */
     void resizeWindow();
 
 public Q_SLOTS:
-    /*!
-     * Show searched text widget.
-     */
-    void musicSearchWidget();
-    /*!
-     * Clear current search lineedit text.
-     */
-    void clearSearchedText();
     /*!
      * Lock or not current desktop lrc.
      */
@@ -141,7 +127,6 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
-    MusicLocalSongSearchDialog *m_musicSongSearchWidget;
 
     static MusicBottomAreaWidget *m_instance;
 };

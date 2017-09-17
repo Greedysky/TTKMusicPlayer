@@ -84,7 +84,6 @@ MusicApplication::MusicApplication(QWidget *parent)
     connect(m_musicPlayer, SIGNAL(stateChanged(MusicObject::PlayState)), SLOT(stateChanged()));
     connect(m_musicPlayList, SIGNAL(currentIndexChanged(int)), SLOT(showCurrentSong(int)));
 
-    connect(m_musicSongTreeWidget, SIGNAL(clearSearchText()), m_bottomAreaWidget, SLOT(clearSearchedText()));
     connect(m_musicSongTreeWidget, SIGNAL(updatePlayLists(QString)), m_musicPlayList, SLOT(appendMedia(QString)));
     connect(m_musicSongTreeWidget, SIGNAL(updateMediaLists(QStringList, int)), m_musicPlayList, SLOT(updateMediaLists(QStringList, int)));
 
@@ -825,7 +824,7 @@ void MusicApplication::musicCreateRightMenu()
 
 void MusicApplication::musicSearchIndexChanged(int, int index)
 {
-    m_musicSongTreeWidget->searchFileListCache(index, m_bottomAreaWidget->getSearchedText());
+    m_musicSongTreeWidget->searchFileListCache(index);
 }
 
 void MusicApplication::getParameterSetting()

@@ -1,6 +1,5 @@
 #include "musicsongslistfunctionwidget.h"
 #include "musicnumberdefine.h"
-#include "musicbottomareawidget.h"
 #include "musicapplication.h"
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
@@ -13,7 +12,7 @@
 MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
+    setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
@@ -36,7 +35,7 @@ MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)
     searchButton->setCursor(QCursor(Qt::PointingHandCursor));
     searchButton->setGeometry(29, 1, 24, 24);
     connect(locationButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicCurrentPlayLocation()));
-    connect(searchButton, SIGNAL(clicked()), MusicBottomAreaWidget::instance(), SLOT(musicSearchWidget()));
+    connect(searchButton, SIGNAL(clicked()), parent, SLOT(musicSearchWidget()));
 
     m_currentAnimationValue = 1;
     m_timer.setInterval(3*MT_S2MS);
@@ -64,14 +63,6 @@ void MusicSongsListFunctionWidget::active()
 {
     m_timer.stop();
     m_timer.start();
-}
-
-void MusicSongsListFunctionWidget::setGeometry()
-{
-    QWidget *parent = MusicApplication::instance();
-    QPoint global(0, parent->size().height());
-    global = parent->mapToGlobal( global );
-    move(global.x() + 4.5*width(), global.y() - 5*height());
 }
 
 void MusicSongsListFunctionWidget::start(bool play, int end)

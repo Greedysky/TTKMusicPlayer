@@ -1,6 +1,7 @@
 #include "musicsongssummariziedwidget.h"
 #include "musicsongslistfunctionwidget.h"
 #include "musicsongslisttablewidget.h"
+#include "musiclocalsongsearchdialog.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
@@ -36,7 +37,8 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     connect(m_scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(sliderValueChanaged(int)));
 
     m_songCheckToolsWidget = nullptr;
-    m_floatWidget = nullptr;
+    m_listFunctionWidget = nullptr;
+    m_musicSongSearchWidget = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
@@ -46,7 +48,8 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 {
     delete m_listMaskWidget;
     delete m_songCheckToolsWidget;
-    delete m_floatWidget;
+    delete m_listFunctionWidget;
+    delete m_musicSongSearchWidget;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
@@ -202,10 +205,16 @@ QStringList MusicSongsSummariziedWidget::getMusicSongsFilePath(int index) const
     return list;
 }
 
-void MusicSongsSummariziedWidget::searchFileListCache(int index, const QString &text)
+void MusicSongsSummariziedWidget::searchFileListCache(int index)
 {
     MusicObject::MIntList searchResult;
     QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
+    QString text;
+    if(m_musicSongSearchWidget)
+    {
+        text = m_musicSongSearchWidget->getSearchedText();
+    }
+
     for(int j=0; j<searchedSongs.count(); ++j)
     {
         if(searchedSongs[j].contains(text, Qt::CaseInsensitive))
@@ -244,7 +253,10 @@ int MusicSongsSummariziedWidget::getSearchFileListIndexAndClear(int row)
 {
     row = getSearchFileListIndex(row);
     m_searchfileListCache.clear();
-    emit clearSearchText();
+    if(m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->close();
+    }
     return row;
 }
 
@@ -776,17 +788,17 @@ void MusicSongsSummariziedWidget::updateCurrentArtist()
 
 void MusicSongsSummariziedWidget::showFloatWidget()
 {
-    if(m_floatWidget == nullptr)
+    if(m_listFunctionWidget == nullptr)
     {
-        m_floatWidget = new MusicSongsListFunctionWidget(this);
-        connect(m_floatWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
-        m_floatWidget->setGeometry();
-        m_floatWidget->show();
+        m_listFunctionWidget = new MusicSongsListFunctionWidget(this);
+        connect(m_listFunctionWidget, SIGNAL(deleteObject()), SLOT(deleteFloatWidget()));
+        resizeWindow();
+        m_listFunctionWidget->show();
     }
     else
     {
-        m_floatWidget->setGeometry();
-        m_floatWidget->active();
+        resizeWindow();
+        m_listFunctionWidget->active();
     }
 }
 
@@ -832,6 +844,16 @@ void MusicSongsSummariziedWidget::musicListSongSortBy(int index)
     }
 }
 
+void MusicSongsSummariziedWidget::musicSearchWidget()
+{
+    if(m_musicSongSearchWidget == nullptr)
+    {
+        m_musicSongSearchWidget = new MusicLocalSongSearchDialog(MusicApplication::instance());
+        resizeWindow();
+    }
+    m_musicSongSearchWidget->setVisible(!m_musicSongSearchWidget->isVisible());
+}
+
 void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 {
     if(value >= 40*(m_currentIndex + 1) && m_currentIndex > -1 && m_currentIndex < m_songItems.count())
@@ -852,8 +874,8 @@ void MusicSongsSummariziedWidget::sliderValueChanaged(int value)
 
 void MusicSongsSummariziedWidget::deleteFloatWidget()
 {
-    delete m_floatWidget;
-    m_floatWidget = nullptr;
+    delete m_listFunctionWidget;
+    m_listFunctionWidget = nullptr;
 }
 
 void MusicSongsSummariziedWidget::checkCurrentNameExist(QString &name)
@@ -947,13 +969,23 @@ void MusicSongsSummariziedWidget::connectMusicToolBoxWidgetItem(QObject *object)
     connect(object, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
 }
 
+void MusicSongsSummariziedWidget::resizeWindow()
+{
+    if(m_listFunctionWidget)
+    {
+        m_listFunctionWidget->move(width() - m_listFunctionWidget->width() - 15, height() - 40 - m_listFunctionWidget->height());
+    }
+
+    if(m_musicSongSearchWidget)
+    {
+        m_musicSongSearchWidget->move(1, height() + 90 - m_musicSongSearchWidget->height() + 1);
+    }
+}
+
 void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)
 {
     MusicSongsToolBoxWidget::resizeEvent(event);
-    if(m_floatWidget)
-    {
-        m_floatWidget->setGeometry();
-    }
+    resizeWindow();
 }
 
 void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)

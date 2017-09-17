@@ -4,14 +4,13 @@
 #include "musicuiobject.h"
 #include "musicsystemtraymenu.h"
 #include "musicwindowextras.h"
-#include "musiclocalsongsearchdialog.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
 MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicSongSearchWidget(nullptr)
+    : QWidget(parent)
 {
     m_instance = this;
     m_systemCloseConfig = false;
@@ -26,7 +25,6 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
-    delete m_musicSongSearchWidget;
 }
 
 QString MusicBottomAreaWidget::getClassName()
@@ -202,36 +200,10 @@ void MusicBottomAreaWidget::setWindowConcise()
     m_musicWindowExtras->disableBlurBehindWindow( !con );
 }
 
-QString MusicBottomAreaWidget::getSearchedText() const
-{
-    return m_musicSongSearchWidget->getSearchedText();
-}
-
 void MusicBottomAreaWidget::resizeWindow()
 {
-    int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - WINDOW_HEIGHT_MIN;
-    if(m_musicSongSearchWidget)
-    {
-        m_musicSongSearchWidget->move(1, 589 + h);
-    }
-
-    h = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
+    int h = m_ui->musiclrccontainerforinline->size().height() - m_ui->lrcDisplayAllButton->height() - 40;
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
-}
-
-void MusicBottomAreaWidget::clearSearchedText()
-{
-    m_musicSongSearchWidget->close();
-}
-
-void MusicBottomAreaWidget::musicSearchWidget()
-{
-    if(m_musicSongSearchWidget == nullptr)
-    {
-        m_musicSongSearchWidget = new MusicLocalSongSearchDialog(MusicApplication::instance());
-        resizeWindow();
-    }
-    m_musicSongSearchWidget->setVisible(!m_musicSongSearchWidget->isVisible());
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

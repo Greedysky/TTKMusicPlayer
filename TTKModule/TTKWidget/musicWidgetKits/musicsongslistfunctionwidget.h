@@ -38,10 +38,6 @@ public:
      * Set current animation active.
      */
     void active();
-    /*!
-     * Set current geometry position.
-     */
-    void setGeometry();
 
 Q_SIGNALS:
     /*!
