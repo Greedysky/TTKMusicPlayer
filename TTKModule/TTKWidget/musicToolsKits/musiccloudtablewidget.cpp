@@ -108,6 +108,7 @@ void MusicCloudDownloadTableWidget::setDeleteItemAt()
         int index = deleteList[i];
         removeRow(index); //Delete the current row
         m_musicRecords.removeAt(index);
+        m_musicSongs->removeAt(index);
     }
 }
 
