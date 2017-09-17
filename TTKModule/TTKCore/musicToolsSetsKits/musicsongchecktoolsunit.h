@@ -56,13 +56,11 @@ typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
     QString m_bitRate;
-    int m_quality;
 
-    MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitRate, int quality)
+    MusicSongCheckToolsQuality(const MusicSong &song, const QString &bitRate)
     {
         m_song = song;
         m_bitRate = bitRate;
-        m_quality = quality;
     }
 }MusicSongCheckToolsQuality;
 MUSIC_DECLARE_LISTS(MusicSongCheckToolsQuality)

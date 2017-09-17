@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>482</width>
-    <height>535</height>
+    <height>570</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -512,7 +512,7 @@
      <x>4</x>
      <y>29</y>
      <width>475</width>
-     <height>502</height>
+     <height>537</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -522,7 +522,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>470</y>
+      <y>505</y>
       <width>61</width>
       <height>23</height>
      </rect>
@@ -538,7 +538,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>470</y>
+      <y>505</y>
       <width>61</width>
       <height>23</height>
      </rect>
@@ -550,12 +550,16 @@
      <string>保存</string>
     </property>
    </widget>
+   <zorder>editButton</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>label_16</zorder>
+   <zorder>TrackNumEdit_2</zorder>
   </widget>
   <widget class="MusicClickedLabel" name="advanceLabel">
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>500</y>
+     <y>535</y>
      <width>45</width>
      <height>20</height>
     </rect>
@@ -571,7 +575,7 @@
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>370</y>
+     <y>405</y>
      <width>110</width>
      <height>110</height>
     </rect>
@@ -587,7 +591,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>375</y>
+     <y>410</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -600,7 +604,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>455</y>
+     <y>490</y>
      <width>61</width>
      <height>23</height>
     </rect>
@@ -616,7 +620,7 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>410</y>
+     <y>445</y>
      <width>54</width>
      <height>12</height>
     </rect>
@@ -629,7 +633,7 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>410</y>
+     <y>445</y>
      <width>120</width>
      <height>16</height>
     </rect>
@@ -642,13 +646,42 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>373</y>
+     <y>410</y>
      <width>120</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>29</x>
+     <y>333</y>
+     <width>54</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>音质:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="qualityEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>89</x>
+     <y>328</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>background</zorder>
@@ -693,6 +726,8 @@
   <zorder>label_18</zorder>
   <zorder>pixmapSizeLabel</zorder>
   <zorder>decoderLabel</zorder>
+  <zorder>label_16</zorder>
+  <zorder>qualityEdit</zorder>
  </widget>
  <customwidgets>
   <customwidget>

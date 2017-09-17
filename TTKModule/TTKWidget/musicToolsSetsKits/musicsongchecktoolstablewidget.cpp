@@ -302,7 +302,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
                 item = new QTableWidgetItem;
         QString bitrate;
         QColor color;
-        transfromBitrateToQuality(song.m_quality, bitrate, color);
+        MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(song.m_bitRate), bitrate, color);
         item->setText(bitrate);
         item->setTextAlignment(Qt::AlignCenter);
         item->setTextColor(color);
@@ -316,36 +316,6 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
                 item = new QTableWidgetItem;
         item->setData(MUSIC_TEXTS_ROLE, tr("Delete"));
         setItem(i, 7, item);
-    }
-}
-
-void MusicSongCheckToolsQualityTableWidget::transfromBitrateToQuality(int bitrate, QString &bitString,
-                                                                      QColor &color) const
-{
-    bitString = tr("UnKnow");
-    color = QColor(131, 131, 131);
-    switch(bitrate)
-    {
-        case -1:
-            bitString = tr("UnKnow");
-            color = QColor(131, 131, 131);
-            break;
-        case 0:
-            bitString = tr("Low");
-            color = QColor(211, 0, 70);
-            break;
-        case 1:
-            bitString = tr("Normal");
-            color = QColor(0, 134, 211);
-            break;
-        case 2:
-            bitString = tr("High");
-            color = QColor(236, 138, 48);
-            break;
-        case 3:
-            bitString = tr("LLess");
-            color = QColor(117, 0, 206);
-            break;
     }
 }
 

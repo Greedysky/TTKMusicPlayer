@@ -232,43 +232,8 @@ void MusicSongCheckToolsQualityCore::run()
                 continue;
             }
 
-            items << MusicSongCheckToolsQuality(song, tag.getBitrate(), transfromBitrateToQuality(tag.getBitrate()));
+            items << MusicSongCheckToolsQuality(song, tag.getBitrate());
         }
     }
     emit finished(items);
-}
-
-int MusicSongCheckToolsQualityCore::transfromBitrateToQuality(const QString &bitrate) const
-{
-    if(bitrate.isEmpty())
-    {
-        return -1;
-    }
-
-    QStringList data(bitrate.split(" "));
-    if(data.count() >= 2)
-    {
-        int bit = data.front().trimmed().toInt();
-        if(bit <= 0)
-        {
-            return -1;
-        }
-        else if(bit > 0 && bit <= 96)
-        {
-            return 0;
-        }
-        else if(bit > 96 && bit <= 196)
-        {
-            return 1;
-        }
-        else if(bit > 196 && bit <= 320)
-        {
-            return 2;
-        }
-        else
-        {
-            return 3;
-        }
-    }
-    return -1;
 }

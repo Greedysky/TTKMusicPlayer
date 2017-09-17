@@ -123,10 +123,6 @@ public:
      * Create all items.
      */
     void createAllItems(const MusicSongCheckToolsQualitys &songs);
-    /*!
-     * Transfrom bitrate to quality.
-     */
-    void transfromBitrateToQuality(int bitrate, QString &bitString, QColor &color) const;
 
 Q_SIGNALS:
     /*!

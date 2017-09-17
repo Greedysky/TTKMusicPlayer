@@ -182,11 +182,6 @@ public Q_SLOTS:
      */
 
 protected:
-    int transfromBitrateToQuality(const QString &bitrate) const;
-    /*!
-     * Transfrom bitrate to quality.
-     */
-
     bool m_run;
     MusicSongs *m_songItems;
 

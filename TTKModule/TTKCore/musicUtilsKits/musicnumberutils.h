@@ -58,6 +58,23 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QString speed2LabelFromLabel(qint64 size, const QString &label);
 
+        /*!
+         * Transfrom bitrate to quality.
+         */
+        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitString, QColor &color);
+        /*!
+         * Transfrom bitrate to quality.
+         */
+        MUSIC_UTILS_EXPORT void transfromBitrateToQuality(int level, QString &bitString);
+        /*!
+         * Transfrom bitrate to quality.
+         */
+        MUSIC_UTILS_EXPORT QString transfromBitrateToQuality(int level);
+        /*!
+         * Transfrom bitrate to quality.
+         */
+        MUSIC_UTILS_EXPORT int transfromBitrateToLevel(const QString &bitrate);
+
     }
 }
 

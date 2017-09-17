@@ -87,12 +87,12 @@ void MusicFileInformationWidget::musicAdvanceClicked()
 {
     if(m_advanceOn)
     {
-        setFixedHeight(385 + ADVANCE_OFFSET);
-        m_ui->background->setFixedHeight(377 + ADVANCE_OFFSET);
-        m_ui->backgroundMask->setFixedHeight(352 + ADVANCE_OFFSET);
-        m_ui->advanceLabel->move(29, 350 + ADVANCE_OFFSET);
-        m_ui->editButton->move(310, 320 + ADVANCE_OFFSET);
-        m_ui->saveButton->move(390, 320 + ADVANCE_OFFSET);
+        setFixedHeight(420 + ADVANCE_OFFSET);
+        m_ui->background->setFixedHeight(412 + ADVANCE_OFFSET);
+        m_ui->backgroundMask->setFixedHeight(387 + ADVANCE_OFFSET);
+        m_ui->advanceLabel->move(29, 385 + ADVANCE_OFFSET);
+        m_ui->editButton->move(310, 355 + ADVANCE_OFFSET);
+        m_ui->saveButton->move(390, 355 + ADVANCE_OFFSET);
         m_ui->pixmapLabel->setVisible(true);
         m_ui->label_17->setVisible(true);
         m_ui->decoderLabel->setVisible(true);
@@ -114,12 +114,12 @@ void MusicFileInformationWidget::musicAdvanceClicked()
     }
     else
     {
-        setFixedHeight(385);
-        m_ui->background->setFixedHeight(377);
-        m_ui->backgroundMask->setFixedHeight(352);
-        m_ui->advanceLabel->move(29, 350);
-        m_ui->editButton->move(310, 320);
-        m_ui->saveButton->move(390, 320);
+        setFixedHeight(420);
+        m_ui->background->setFixedHeight(412);
+        m_ui->backgroundMask->setFixedHeight(387);
+        m_ui->advanceLabel->move(29, 385);
+        m_ui->editButton->move(310, 355);
+        m_ui->saveButton->move(390, 355);
         m_ui->pixmapLabel->setVisible(false);
         m_ui->label_17->setVisible(false);
         m_ui->decoderLabel->setVisible(false);
@@ -198,8 +198,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     QString check;
     m_ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     m_ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
-    m_ui->fileSizeEdit->setText( (check = MusicUtils::Number::size2Label(fin.size()) )
-                                .isEmpty() ? "-" : check );
+    m_ui->fileSizeEdit->setText( (check = MusicUtils::Number::size2Label(fin.size()) ).isEmpty() ? "-" : check );
 
     m_ui->fileAlbumEdit->setText( state ? ((check = tag.getAlbum()).isEmpty() ? "-" : check) : "-" );
     m_ui->fileArtistEdit->setText( state ? ((check = tag.getArtist()).isEmpty() ? "-" : check) : "-" );
@@ -212,8 +211,9 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->ChannelEdit->setText( state ? ((check = tag.getChannel()).isEmpty() ? "-" : check) : "-" );
     m_ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate()).isEmpty() ? "-" : check) : "-" );
     m_ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
-    m_ui->decoderLabel->setText(state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-" );
-
+    m_ui->decoderLabel->setText( state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-" );
+    m_ui->qualityEdit->setText(MusicUtils::Number::transfromBitrateToQuality(
+                               MusicUtils::Number::transfromBitrateToLevel( m_ui->BitrateEdit->text() ) ));
 }
 
 void MusicFileInformationWidget::setEditLineEnable(bool enable)

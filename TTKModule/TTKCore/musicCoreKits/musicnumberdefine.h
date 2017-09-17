@@ -75,6 +75,7 @@
 #define MB_0            0
 #define MB_32           32
 #define MB_64           64
+#define MB_96           96
 #define MB_128          128
 #define MB_192          192
 #define MB_320          320

@@ -1,6 +1,7 @@
 #include "musicnumberutils.h"
 #include "musicnumberdefine.h"
 
+#include <QColor>
 #include <QStringList>
 
 QString MusicUtils::Number::size2Number(qint64 size)
@@ -109,4 +110,79 @@ QString MusicUtils::Number::speed2LabelFromLabel(qint64 size, const QString &lab
     {
         return QString("%1T/s").arg(label);
     }
+}
+
+void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitString, QColor &color)
+{
+    bitString = QObject::tr("UnKnow");
+    color = QColor(131, 131, 131);
+    switch(level)
+    {
+        case 0:
+            bitString = QObject::tr("Low");
+            color = QColor(211, 0, 70);
+            break;
+        case 1:
+            bitString = QObject::tr("Normal");
+            color = QColor(0, 134, 211);
+            break;
+        case 2:
+            bitString = QObject::tr("High");
+            color = QColor(236, 138, 48);
+            break;
+        case 3:
+            bitString = QObject::tr("LLess");
+            color = QColor(117, 0, 206);
+            break;
+        default: break;
+    }
+}
+
+void MusicUtils::Number::transfromBitrateToQuality(int level, QString &bitString)
+{
+    QColor color;
+    transfromBitrateToQuality(level, bitString, color);
+}
+
+QString MusicUtils::Number::transfromBitrateToQuality(int level)
+{
+    QColor color;
+    QString bitString;
+    transfromBitrateToQuality(level, bitString, color);
+    return bitString;
+}
+
+int MusicUtils::Number::transfromBitrateToLevel(const QString &bitrate)
+{
+    if(bitrate.isEmpty())
+    {
+        return -1;
+    }
+
+    QStringList data(bitrate.split(" "));
+    if(data.count() >= 2)
+    {
+        int bit = data.front().trimmed().toInt();
+        if(bit <= 0)
+        {
+            return -1;
+        }
+        else if(bit > 0 && bit <= MB_96)
+        {
+            return 0;
+        }
+        else if(bit > MB_96 && bit < MB_192)
+        {
+            return 1;
+        }
+        else if(bit >= MB_192 && bit <= MB_320)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+    return -1;
 }
