@@ -77,12 +77,14 @@ int MusicPlayedlist::find(int toolIndex, const QString &content, int from)
 void MusicPlayedlist::addMedia(int toolIndex, const QString &content)
 {
     m_mediaList.clear();
+    m_laterMediaList.clear();
     m_mediaList << MusicPlayedItem(toolIndex, content);
 }
 
 void MusicPlayedlist::addMedia(int toolIndex, const QStringList &items)
 {
     m_mediaList.clear();
+    m_laterMediaList.clear();
     foreach(const QString &path, items)
     {
         m_mediaList << MusicPlayedItem(toolIndex, path);
@@ -92,11 +94,13 @@ void MusicPlayedlist::addMedia(int toolIndex, const QStringList &items)
 void MusicPlayedlist::addMedia(const MusicPlayedItem &item)
 {
     m_mediaList.clear();
+    m_laterMediaList.clear();
     m_mediaList << item;
 }
 
 void MusicPlayedlist::addMedia(const MusicPlayedItems &items)
 {
+    m_laterMediaList.clear();
     m_mediaList = items;
 }
 
@@ -123,12 +127,25 @@ void MusicPlayedlist::appendMedia(const MusicPlayedItems &items)
     m_mediaList << items;
 }
 
+MusicPlayedItems MusicPlayedlist::laterListConst() const
+{
+    return m_laterMediaList;
+}
+
 void MusicPlayedlist::insertLaterMedia(int toolIndex, const QString &content)
 {
-    if(m_currentIndex != 0)
+    if(m_currentIndex != -1)
     {
-        m_mediaList.insert(m_currentIndex, MusicPlayedItem(toolIndex, content));
+        int index = m_currentIndex + 1;
+        (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayedItem(toolIndex, content))
+                                       : m_mediaList.append(MusicPlayedItem(toolIndex, content));
+        m_laterMediaList << MusicPlayedItem(index + m_laterMediaList.count(), content);
     }
+}
+
+void MusicPlayedlist::laterListClear()
+{
+    m_laterMediaList.clear();
 }
 
 bool MusicPlayedlist::removeMedia(int pos)
@@ -138,19 +155,6 @@ bool MusicPlayedlist::removeMedia(int pos)
         return false;
     }
     m_mediaList.removeAt(pos);
-    return true;
-}
-
-bool MusicPlayedlist::removeMedia(int start, int end)
-{
-    if( start > end || (start < 0 || end >= m_mediaList.count()) )
-    {
-        return false;
-    }
-    for(int i=0; i<end - start; ++i)
-    {
-        m_mediaList.removeAt(start);
-    }
     return true;
 }
 
@@ -194,6 +198,16 @@ void MusicPlayedlist::setCurrentIndex(int index)
     else
     {
         m_currentIndex = index;
+    }
+
+    if(!m_laterMediaList.isEmpty())
+    {
+        MusicPlayedItem item = m_laterMediaList.takeFirst();
+        m_currentIndex = item.m_toolIndex;
+        if(m_currentIndex < 0 || m_currentIndex >= m_mediaList.count())
+        {
+            m_currentIndex = -1;
+        }
     }
 
     emit currentIndexChanged(m_currentIndex);

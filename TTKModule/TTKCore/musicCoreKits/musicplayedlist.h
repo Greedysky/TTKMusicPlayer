@@ -140,18 +140,22 @@ public:
     void appendMedia(const MusicPlayedItems &items);
 
     /*!
+     * Get later music media path.
+     */
+    MusicPlayedItems laterListConst() const;
+    /*!
      * Insert music media by index and content.
      */
     void insertLaterMedia(int toolIndex, const QString &content);
+    /*!
+     * Remove music all media.
+     */
+    void laterListClear();
 
     /*!
      * Remove music media from current medias by index pos.
      */
     bool removeMedia(int pos);
-    /*!
-     * Remove music media from current medias by index between start and end.
-     */
-    bool removeMedia(int start, int end);
     /*!
      * Remove music media from current medias by index pos.
      */
@@ -180,6 +184,7 @@ public Q_SLOTS:
 protected:
     int m_currentIndex;
     MusicPlayedItems m_mediaList;
+    MusicPlayedItems m_laterMediaList;
     MusicObject::PlayMode m_playbackMode;
 
 };

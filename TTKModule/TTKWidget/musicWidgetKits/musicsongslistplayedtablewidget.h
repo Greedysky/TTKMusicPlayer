@@ -31,6 +31,14 @@ public:
     static QString getClassName();
 
     /*!
+     * Clear play later state.
+     */
+    void clearPlayLaterState();
+    /*!
+     * Set play later state.
+     */
+    void setPlayLaterState(int row);
+    /*!
      * Update songs file names in table.
      */
     virtual void updateSongsFileName(const MusicSongs &songs) override;

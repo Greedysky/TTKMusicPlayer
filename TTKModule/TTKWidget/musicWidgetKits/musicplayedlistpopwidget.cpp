@@ -141,16 +141,21 @@ void MusicPlayedListPopWidget::insert(int toolIndex, const MusicSong &song)
 
 void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong &song)
 {
-    if(index < 0 || index >= m_songLists.count())
+    if(index < 0 || index > m_songLists.count())
     {
         return;
     }
 
-    m_songLists.insert(index, song);
+    (index != m_songLists.count()) ? m_songLists.insert(index, song) : m_songLists.append(song);
     m_playlist->insertLaterMedia(toolIndex, song.getMusicPath());
 
     m_playedListWidget->clear();
     updateSongsFileName();
+
+    foreach(const MusicPlayedItem &item, m_playlist->laterListConst())
+    {
+        m_playedListWidget->setPlayLaterState(item.m_toolIndex);
+    }
 }
 
 void MusicPlayedListPopWidget::setCurrentIndex()
@@ -183,7 +188,10 @@ void MusicPlayedListPopWidget::popupMenu()
 
 void MusicPlayedListPopWidget::setDeleteItemAt(int index)
 {
+    m_playlist->laterListClear();
+    m_playedListWidget->clearPlayLaterState();
     m_playlist->removeMedia(index);
+
     if(m_playlist->currentIndex() == index)
     {
         MusicApplication *w = MusicApplication::instance();
@@ -201,6 +209,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(int index)
             setPlayEmpty();
         }
     }
+
     setPlayListCount(m_songLists.count());
 }
 
@@ -218,6 +227,13 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
     }
 
     setPlayEmpty();
+}
+
+void MusicPlayedListPopWidget::cellDoubleClicked(int row, int)
+{
+    m_playlist->laterListClear();
+    m_playedListWidget->clearPlayLaterState();
+    MusicApplication::instance()->musicPlayedIndex(row);
 }
 
 void MusicPlayedListPopWidget::initWidget()
@@ -260,7 +276,7 @@ void MusicPlayedListPopWidget::initWidget()
     m_playedListWidget = new MusicSongsListPlayedTableWidget(this);
     m_playedListWidget->setSongsFileName(&m_songLists);
     connect(m_playedListWidget, SIGNAL(setDeleteItemAt(int)), SLOT(setDeleteItemAt(int)));
-    connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayedIndex(int)));
+    connect(m_playedListWidget, SIGNAL(cellDoubleClicked(int,int)), SLOT(cellDoubleClicked(int,int)));
 
     QWidget *playedListContainer = new QWidget(m_scrollArea);
     QVBoxLayout *playedListLayout = new QVBoxLayout(playedListContainer);

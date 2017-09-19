@@ -40,10 +40,36 @@ QString MusicSongsListPlayedTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicSongsListPlayedTableWidget::clearPlayLaterState()
+{
+    for(int i=0; i<rowCount(); ++i)
+    {
+        QTableWidgetItem *it = item(i, 0);
+        if(it)
+        {
+            it->setIcon(QIcon());
+        }
+    }
+}
+
+void MusicSongsListPlayedTableWidget::setPlayLaterState(int row)
+{
+    if(row < 0 || row >= rowCount())
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        it->setIcon(QIcon(":/tiny/lb_playlater"));
+    }
+}
+
 void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
     int count = rowCount();
-    setRowCount(songs.count());    //reset row count
+    setRowCount(songs.count());
     for(int i=count; i<songs.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
@@ -82,6 +108,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
     MusicSongsListAbstractTableWidget::selectRow(index);
     m_playRowIndex = index;
 
+    item(m_playRowIndex, 0)->setIcon(QIcon());
     item(m_playRowIndex, 1)->setForeground(QColor(0, 191, 255));
 
     setFixedHeight( qMax(365, allRowsHeight()) );

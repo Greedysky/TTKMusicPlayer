@@ -253,9 +253,17 @@ public Q_SLOTS:
     void getParameterSetting();
     /////////////////////////////////////////////
     /*!
+     * Delete love item from indexs.
+     */
+    void setLoveDeleteItemAt(const QString &path, bool current);
+    /*!
      * Delete items from indexs.
      */
     void setDeleteItemAt(const QStringList &path, bool remove, bool current);
+    /*!
+     * Delete items from indexs.
+     */
+    void setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
     /////////////////////////////////////////////
     /*!
      * The current lrc should update, emit it.

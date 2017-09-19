@@ -467,6 +467,10 @@ void MusicSongsListTableWidget::showTimeOut()
     m_timerShow.stop();
     if(m_musicSongsInfoWidget)
     {
+        if(m_previousColorRow < 0 || m_previousColorRow >= m_musicSongs->count())
+        {
+            return;
+        }
         MusicSong song = (*m_musicSongs)[m_previousColorRow];
         m_musicSongsInfoWidget->setMusicSongInformation( song );
         m_musicSongsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());

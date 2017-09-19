@@ -118,6 +118,10 @@ public Q_SLOTS:
      * Delete all items from list.
      */
     void setDeleteItemAll();
+    /*!
+     * List cell double clicked.
+     */
+    void cellDoubleClicked(int row, int column);
 
 protected:
     /*!

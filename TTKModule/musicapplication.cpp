@@ -133,7 +133,14 @@ QString MusicApplication::getCurrentFileName() const
         return QString();
     }
 
-    return MusicSong(m_musicPlayList->currentMediaString()).getMusicName();
+    MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+    if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
+    {
+        MusicSongs songs = items[m_currentMusicSongTreeIndex].m_songs;
+        int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlayList->currentMediaString());
+        return index != -1 ?songs[index].getMusicName() : QString();
+    }
+    return QString();
 }
 
 QString MusicApplication::getCurrentFilePath() const
@@ -143,7 +150,14 @@ QString MusicApplication::getCurrentFilePath() const
         return QString();
     }
 
-    return m_musicPlayList->currentMediaString();
+    MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
+    if(0 <= m_currentMusicSongTreeIndex && m_currentMusicSongTreeIndex < items.count())
+    {
+        MusicSongs songs = items[m_currentMusicSongTreeIndex].m_songs;
+        int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlayList->currentMediaString());
+        return index != -1 ?songs[index].getMusicPath() : QString();
+    }
+    return QString();
 }
 
 bool MusicApplication::checkMusicListCurrentIndex() const
@@ -326,7 +340,6 @@ void MusicApplication::showCurrentSong(int index)
 {
     QString name;
     MusicPlayedItem item = m_musicPlayList->currentItem();
-    qDebug() << item.m_toolIndex << item.m_path;
     index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
 
@@ -724,11 +737,6 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
             m_musicSongTreeWidget->musicSongToLovestListAt(true, index);
             m_leftAreaWidget->musictLoveStateClicked(true);
         }
-
-//        if(m_currentMusicSongTreeIndex == MUSIC_LOVEST_LIST)
-//        {
-//            setDeleteItemAt(QStringList() << item.m_path, false);
-//        }
     }
     else
     {
@@ -848,16 +856,26 @@ void MusicApplication::musicSearchIndexChanged(int, int index)
 
 void MusicApplication::getParameterSetting()
 {
+    //This attribute is effective immediately.
     m_applicationObject->getParameterSetting();
     m_rightAreaWidget->getParameterSetting();
     bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
     m_bottomAreaWidget->setSystemCloseConfig(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     m_bottomAreaWidget->setDestopLrcVisible(config);
-    //This attribute is effective immediately.
+}
+
+void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)
+{
+    setDeleteItemAt(QStringList() << path, false, current, MUSIC_LOVEST_LIST);
 }
 
 void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current)
+{
+    setDeleteItemAt(path, remove, current, m_musicSongTreeWidget->currentIndex());
+}
+
+void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex)
 {
     if(path.isEmpty())
     {
@@ -932,7 +950,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
     {
         foreach(const QString &p, path)
         {
-            m_ui->musicPlayedList->remove(m_musicSongTreeWidget->currentIndex(), p);
+            m_ui->musicPlayedList->remove(toolIndex, p);
         }
     }
 }

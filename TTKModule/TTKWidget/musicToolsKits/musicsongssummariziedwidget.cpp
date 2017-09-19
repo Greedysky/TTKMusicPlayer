@@ -594,6 +594,7 @@ void MusicSongsSummariziedWidget::musicListSongToLovestListAt(bool oper, int row
             item->m_itemObject->clearAllItems();
             item->m_itemObject->updateSongsFileName(item->m_songs);
             setItemTitle(item);
+            MusicApplication::instance()->setLoveDeleteItemAt(song.getMusicPath(), m_currentPlayToolIndex == MUSIC_LOVEST_LIST);
         }
     }
 }
@@ -620,6 +621,7 @@ void MusicSongsSummariziedWidget::musicSongToLovestListAt(bool oper, int row)
             item->m_itemObject->clearAllItems();
             item->m_itemObject->updateSongsFileName(item->m_songs);
             setItemTitle(item);
+            MusicApplication::instance()->setLoveDeleteItemAt(song.getMusicPath(), m_currentPlayToolIndex == MUSIC_LOVEST_LIST);
         }
     }
 }
@@ -638,7 +640,7 @@ void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, con
     {
         ///when download finished just play it at once
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NETWORK_LIST);
-        MusicApplication::instance()->musicPlayIndex(item->m_songs.count() - 1, 0);
+        MusicApplication::instance()->musicPlayIndexClicked(item->m_songs.count() - 1, 0);
     }
 }
 
@@ -664,7 +666,7 @@ void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
 
     /// just play it at once
     MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
-    MusicApplication::instance()->musicPlayIndex(index, 0);
+    MusicApplication::instance()->musicPlayIndexClicked(index, 0);
 }
 
 void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
