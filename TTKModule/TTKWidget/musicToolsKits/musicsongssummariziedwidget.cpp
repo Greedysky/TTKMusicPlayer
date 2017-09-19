@@ -372,6 +372,12 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
         return;
     }
 
+    MusicSongItem item = m_songItems[id];
+    foreach(const MusicSong &song, item.m_songs)
+    {
+        MusicPlayedListPopWidget::instance()->remove(item.m_itemIndex, song);
+    }
+
     if(m_currentPlayToolIndex == id)
     {
         MusicSongsToolBoxWidget::setCurrentIndex(MUSIC_NORMAL_LIST);
@@ -383,22 +389,11 @@ void MusicSongsSummariziedWidget::deleteRowItem(int index)
         MusicSongsToolBoxWidget::setCurrentIndex(--m_currentPlayToolIndex);
     }
 
-    MusicSongItem item = m_songItems.takeAt(id);
+    item = m_songItems.takeAt(id);
     removeItem(item.m_itemObject);
     delete item.m_itemObject;
-    foreach(const MusicSong &song, item.m_songs)
-    {
-        MusicPlayedListPopWidget::instance()->remove(item.m_itemIndex, song);
-    }
 
-    PairList pairs;
-    foreach(const MusicSongItem &item, m_songItems)
-    {
-        int mappedIndex = foundMappingIndex(item.m_itemIndex);
-        item.m_itemObject->setParentToolIndex(mappedIndex);
-        pairs << PairItem(item.m_itemIndex, mappedIndex);
-    }
-    MusicPlayedListPopWidget::instance()->resetToolIndex(pairs);
+    resetToolIndex();
 }
 
 void MusicSongsSummariziedWidget::deleteRowItems()
@@ -530,6 +525,8 @@ void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
     swapItem(before, after);
     MusicSongItem item = m_songItems.takeAt(before);
     m_songItems.insert(after, item);
+
+    resetToolIndex();
 }
 
 void MusicSongsSummariziedWidget::musicImportSongsOnlyFile()
@@ -701,10 +698,9 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &i
             QFile::remove(song.getMusicPath());
         }
     }
-    if(cIndex == m_currentPlayToolIndex)
-    {
-        MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove);
-    }
+
+    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, cIndex == m_currentPlayToolIndex);
+
     setItemTitle(item);
 
     //create upload file widget if current items is all been deleted
@@ -1018,6 +1014,21 @@ void MusicSongsSummariziedWidget::resizeWindow()
     {
         m_musicSongSearchWidget->move(0, height() - m_musicSongSearchWidget->height());
     }
+}
+
+void MusicSongsSummariziedWidget::resetToolIndex()
+{
+    PairList pairs;
+    foreach(const MusicSongItem &item, m_songItems)
+    {
+        int mappedIndex = foundMappingIndex(item.m_itemIndex);
+        item.m_itemObject->setParentToolIndex(mappedIndex);
+        if(item.m_itemIndex != mappedIndex)
+        {
+            pairs << PairItem(item.m_itemIndex, mappedIndex);
+        }
+    }
+    MusicPlayedListPopWidget::instance()->resetToolIndex(pairs);
 }
 
 void MusicSongsSummariziedWidget::resizeEvent(QResizeEvent *event)

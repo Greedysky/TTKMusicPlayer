@@ -255,7 +255,7 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs.
      */
-    void setDeleteItemAt(const QStringList &path, bool remove);
+    void setDeleteItemAt(const QStringList &path, bool remove, bool current);
     /////////////////////////////////////////////
     /*!
      * The current lrc should update, emit it.

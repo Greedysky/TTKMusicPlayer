@@ -43,6 +43,7 @@ typedef struct MUSIC_CORE_EXPORT MusicPlayedItem
 }MusicPlayedItem;
 MUSIC_DECLARE_LISTS(MusicPlayedItem)
 
+
 /*! @brief The class of the music playedlist.
  * @author Greedysky <greedysky@163.com>
  */
@@ -78,10 +79,10 @@ public:
      * Get current play music media path.
      */
     QString currentMediaString() const;
+
     /*!
      * Get all music media path.
      */
-
     MusicPlayedItems mediaListConst() const;
     /*!
      * Get all music media path.

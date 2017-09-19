@@ -73,6 +73,7 @@ public:
      * Remove music from data list.
      */
     void remove(int toolIndex, const MusicSong &song);
+
     /*!
      * Append music to data list.
      */

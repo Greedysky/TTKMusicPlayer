@@ -68,15 +68,16 @@ void MusicPlayedListPopWidget::clear()
 
 void MusicPlayedListPopWidget::resetToolIndex(const PairList &indexs)
 {
-    for(int i=indexs.count()-1; i>=0; --i)
+    MusicPlayedItems *items = m_playlist->mediaList();
+    for(int s=0; s<items->count(); ++s)
     {
-        const std::pair<int, int> &index = indexs[i];
-        MusicPlayedItems *items = m_playlist->mediaList();
-        for(int s=0; s<items->count(); ++s)
+        for(int i=0; i<indexs.count(); ++i)
         {
+            const std::pair<int, int> &index = indexs[i];
             if(items->at(s).m_toolIndex == index.first)
             {
-                (*items)[i].m_toolIndex = index.second;
+                (*items)[s].m_toolIndex = index.second;
+                break;
             }
         }
     }
@@ -92,6 +93,7 @@ void MusicPlayedListPopWidget::remove(int index)
     m_playlist->removeMedia(index);
     m_songLists.removeAt(index);
     m_playedListWidget->removeRow(index);
+    m_playedListWidget->setPlayRowIndex(-1);
 
     updateSongsFileName();
 }
@@ -108,24 +110,14 @@ void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
             m_playedListWidget->removeRow(index);
         }
     }while(index != -1);
+    m_playedListWidget->setPlayRowIndex(-1);
 
     updateSongsFileName();
 }
 
 void MusicPlayedListPopWidget::remove(int toolIndex, const MusicSong &song)
 {
-    int index = -1;
-    do
-    {
-        index = m_playlist->removeMedia(toolIndex, song.getMusicPath());
-        if(index != -1)
-        {
-            m_songLists.removeAt(index);
-            m_playedListWidget->removeRow(index);
-        }
-    }while(index != -1);
-
-    updateSongsFileName();
+    remove(toolIndex, song.getMusicPath());
 }
 
 void MusicPlayedListPopWidget::append(int toolIndex, const MusicSong &song)

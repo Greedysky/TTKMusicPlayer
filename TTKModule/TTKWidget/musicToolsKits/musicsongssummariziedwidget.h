@@ -260,6 +260,10 @@ protected:
      */
     void resizeWindow();
     /*!
+     * Get current played list.
+     */
+    void resetToolIndex();
+    /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;

@@ -326,6 +326,7 @@ void MusicApplication::showCurrentSong(int index)
 {
     QString name;
     MusicPlayedItem item = m_musicPlayList->currentItem();
+    qDebug() << item.m_toolIndex << item.m_path;
     index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
 
@@ -592,9 +593,18 @@ void MusicApplication::musicPlayedIndex(int row)
 void MusicApplication::musicPlayIndex(int row)
 {
     m_musicPlayer->stop();
-    setMusicPlayIndex();
-    m_currentMusicSongTreeIndex = row;
-    m_musicPlayList->setCurrentIndex(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->mapFilePathBySongIndex(m_currentMusicSongTreeIndex, row));
+    if(row != -1)
+    {
+        setMusicPlayIndex();
+        m_currentMusicSongTreeIndex = row;
+        m_musicPlayList->setCurrentIndex(m_currentMusicSongTreeIndex, m_musicSongTreeWidget->mapFilePathBySongIndex(m_currentMusicSongTreeIndex, row));
+    }
+    else
+    {
+        m_musicPlayList->clear();
+        m_currentMusicSongTreeIndex = row;
+        m_musicPlayList->setCurrentIndex(row);
+    }
 }
 
 void MusicApplication::musicPlayIndex(int row, int)
@@ -847,72 +857,82 @@ void MusicApplication::getParameterSetting()
     //This attribute is effective immediately.
 }
 
-void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove)
+void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current)
 {
     if(path.isEmpty())
     {
         return;
     }
 
-    MusicPlayedItem item = m_musicPlayList->currentItem();
-    MusicObject::MIntList index;
-    foreach(const QString &p, path)
+    if(current)
     {
-        int idx = -1;
-        do
+        MusicPlayedItem item = m_musicPlayList->currentItem();
+        MusicObject::MIntList index;
+        foreach(const QString &p, path)
         {
-            idx = m_musicPlayList->find(item.m_toolIndex, p, idx + 1);
-            if(idx != -1)
+            int idx = -1;
+            do
             {
-                index << idx;
-            }
-        }while(idx != -1);
-    }
+                idx = m_musicPlayList->find(item.m_toolIndex, p, idx + 1);
+                if(idx != -1)
+                {
+                    index << idx;
+                }
+            }while(idx != -1);
+        }
 
-    if(index.isEmpty())
-    {
-        return;
-    }
-    qSort(index);
-
-    bool contains = false; ///the play one is delete list
-    int oldIndex = m_musicPlayList->currentIndex();
-    ///check if delete one that the play one
-    if(index.count() == 1 && index.first() == oldIndex)
-    {
-        contains = true;
-    }
-    ///other ways
-    for(int i=index.count() - 1; i>=0; --i)
-    {
-        m_ui->musicPlayedList->remove(index[i]);
-        if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])
+        if(index.isEmpty())
         {
-            oldIndex -= i;
+            return;
+        }
+        qSort(index);
+
+        bool contains = false; ///the play one is delete list
+        int oldIndex = m_musicPlayList->currentIndex();
+        ///check if delete one that the play one
+        if(index.count() == 1 && index.first() == oldIndex)
+        {
             contains = true;
         }
-    }
-
-    if(!contains && m_musicPlayList->currentIndex() > index[0])
-    {
-        oldIndex -= index.count();
-    }
-    if( oldIndex == m_musicPlayList->mediaCount()) ///Play index error correction
-    {
-        --oldIndex;
-    }
-    m_musicPlayList->setCurrentIndex(oldIndex);
-
-    if(contains)
-    {
-        //The corresponding item is deleted from the Playlist
-        m_playControl = true;
-        musicStatePlay();
-        m_playControl = false;
-
-        if(remove && !QFile::remove(item.m_path))
+        ///other ways
+        for(int i=index.count() - 1; i>=0; --i)
         {
-            M_DISPATCH_PTR->dispatch(1, item.m_path);
+            m_ui->musicPlayedList->remove(index[i]);
+            if(i != 0 && !contains && oldIndex <= index[i] && oldIndex >= index[i - 1])
+            {
+                oldIndex -= i;
+                contains = true;
+            }
+        }
+
+        if(!contains && m_musicPlayList->currentIndex() > index[0])
+        {
+            oldIndex -= index.count();
+        }
+        if( oldIndex == m_musicPlayList->mediaCount()) ///Play index error correction
+        {
+            --oldIndex;
+        }
+        m_musicPlayList->setCurrentIndex(oldIndex);
+
+        if(contains)
+        {
+            //The corresponding item is deleted from the Playlist
+            m_playControl = true;
+            musicStatePlay();
+            m_playControl = false;
+
+            if(remove && !QFile::remove(item.m_path))
+            {
+                M_DISPATCH_PTR->dispatch(1, item.m_path);
+            }
+        }
+    }
+    else
+    {
+        foreach(const QString &p, path)
+        {
+            m_ui->musicPlayedList->remove(m_musicSongTreeWidget->currentIndex(), p);
         }
     }
 }
