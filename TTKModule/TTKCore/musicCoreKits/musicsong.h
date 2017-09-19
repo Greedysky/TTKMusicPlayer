@@ -121,14 +121,6 @@ public:
      */
     inline int getMusicPlayCount() const { return m_musicPlayCount;}
     /*!
-     * Set music tool count.
-     */
-    inline void setMusicToolIndex(const int c) { m_toolIndex = c;}
-    /*!
-     * Get music tool count.
-     */
-    inline int getMusicToolIndex() const { return m_toolIndex;}
-    /*!
      * Set music sort type.
      */
     inline void setMusicSort(const Sort s) { m_sortType = s;}
@@ -148,7 +140,7 @@ public:
 protected:
     Sort m_sortType;
     qint64  m_musicSize, m_musicAddTime;
-    int m_musicPlayCount, m_toolIndex;
+    int m_musicPlayCount;
     QString m_musicName, m_musicPath, m_musicType, m_musicTime;
 
 };

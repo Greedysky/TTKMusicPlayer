@@ -20,6 +20,7 @@ HEADERS  += \
     $$PWD/musictime.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
+    $$PWD/musicplayedlist.h \
     $$PWD/musicabstractxml.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
@@ -50,6 +51,7 @@ SOURCES += \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
+    $$PWD/musicplayedlist.cpp \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \

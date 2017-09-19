@@ -12,7 +12,7 @@
 #include "musicabstractmoveresizewidget.h"
 
 class MusicPlayer;
-class MusicPlaylist;
+class MusicPlayedlist;
 class MusicSongsSummariziedWidget;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
@@ -182,6 +182,10 @@ public Q_SLOTS:
      */
     void musicPlaySort(int row);
     /*!
+     * Set played list row index music to play.
+     */
+    void musicPlayedIndex(int row);
+    /*!
      * Set current row index music to play.
      */
     void musicPlayIndex(int row);
@@ -251,7 +255,7 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs.
      */
-    void setDeleteItemAt(const MusicObject::MIntList &index, bool remove);
+    void setDeleteItemAt(const QStringList &path, bool remove);
     /////////////////////////////////////////////
     /*!
      * The current lrc should update, emit it.
@@ -305,7 +309,7 @@ private:
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;
-    MusicPlaylist* m_musicPlayList;
+    MusicPlayedlist* m_musicPlayList;
     MusicSongsSummariziedWidget *m_musicSongTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;

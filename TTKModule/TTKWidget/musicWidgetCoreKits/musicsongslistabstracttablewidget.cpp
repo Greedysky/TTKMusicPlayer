@@ -67,6 +67,7 @@ void MusicSongsListAbstractTableWidget::musicPlayClicked()
     {
         return;
     }
+
     emit cellDoubleClicked(currentRow(), 0);
 }
 
@@ -177,14 +178,13 @@ void MusicSongsListAbstractTableWidget::musicSongKMicroWidget()
 
 void MusicSongsListAbstractTableWidget::musicSongTransferWidget()
 {
-    if(m_musicSongs->isEmpty())
+    if(m_musicSongs->isEmpty() || !m_hasParentToolIndex)
     {
         return;
     }
 
-    int index = m_hasParentToolIndex ? m_parentToolIndex : m_musicSongs->first().getMusicToolIndex();
     MusicConnectTransferWidget transferWidget;
-    transferWidget.redirectToCurrentSong(index, currentRow());
+    transferWidget.redirectToCurrentSong(m_parentToolIndex, currentRow());
     transferWidget.exec();
 }
 

@@ -1,5 +1,5 @@
 #include "musicplayer.h"
-#include "musicplaylist.h"
+#include "musicplayedlist.h"
 #include "musicsettingmanager.h"
 #include "musicconnectionpool.h"
 #include "musicnumberdefine.h"
@@ -47,13 +47,13 @@ MusicObject::PlayState MusicPlayer::state() const
     return m_state;
 }
 
-void MusicPlayer::setPlaylist(MusicPlaylist *playlist)
+void MusicPlayer::setPlaylist(MusicPlayedlist *playlist)
 {
     delete m_playlist;
     m_playlist = playlist;
 }
 
-MusicPlaylist *MusicPlayer::playlist() const
+MusicPlayedlist *MusicPlayer::playlist() const
 {
     return m_playlist;
 }

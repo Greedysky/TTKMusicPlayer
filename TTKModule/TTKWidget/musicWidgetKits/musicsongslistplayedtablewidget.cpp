@@ -64,7 +64,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
         setItem(i, 4, item);
     }
 
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight( qMax(365, allRowsHeight()) );
 }
 
 void MusicSongsListPlayedTableWidget::selectRow(int index)
@@ -84,7 +84,7 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
 
     item(m_playRowIndex, 1)->setForeground(QColor(0, 191, 255));
 
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight( qMax(365, allRowsHeight()) );
 
     if(m_scrollBar)
     {
@@ -177,10 +177,11 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 
     removeRow( index );
     m_musicSongs->removeAt( index );
+    m_playRowIndex = -1;
 
-    setFixedHeight( allRowsHeight() );
+    setFixedHeight( qMax(365, allRowsHeight()) );
 
-    emit updateCountLabel();
+    emit setDeleteItemAt(index);
 }
 
 void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)

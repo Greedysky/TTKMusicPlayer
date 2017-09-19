@@ -14,7 +14,11 @@
 
 class QLabel;
 class QScrollArea;
+class MusicPlayedlist;
 class MusicSongsListPlayedTableWidget;
+
+#define PairItem(a, b) std::pair<int, int>(a, b);
+typedef QList< std::pair<int, int> > PairList;
 
 /*! @brief The class of the played list pop widget.
  * @author Greedysky <greedysky@163.com>
@@ -40,35 +44,44 @@ public:
     static MusicPlayedListPopWidget *instance();
 
     /*!
+     * Set current play list.
+     */
+    void setPlaylist(MusicPlayedlist *playlist);
+    /*!
+     * Get current play list.
+     */
+    MusicPlayedlist *playlist() const;
+
+    /*!
      * Clear music data list.
      */
     void clear();
     /*!
      * Get current played list.
      */
-    void resetToolIndex(const QList< std::pair<int, int> > &indexs);
+    void resetToolIndex(const PairList &indexs);
 
     /*!
-     * Get current played list.
+     * Remove music from data list.
      */
-    QStringList getPlayedList() const;
-
+    void remove(int index);
+    /*!
+     * Remove music from data list.
+     */
+    void remove(int toolIndex, const QString &path);
     /*!
      * Remove music from data list.
      */
     void remove(int toolIndex, const MusicSong &song);
     /*!
-     * Remove given music list from data list.
-     */
-    void remove(int toolIndex, const MusicSongs &songs);
-    /*!
      * Append music to data list.
      */
     void append(int toolIndex, const MusicSong &song);
     /*!
-     * Append music list to data list.
+     * Append music to data list.
      */
-    void append(int toolIndex, const MusicSongs &songs);
+    void append(const MusicSongs &song);
+
     /*!
      * Insert music after played music index.
      */
@@ -81,7 +94,11 @@ public:
     /*!
      * Set current select played music index.
      */
-    void setCurrentIndex(const QString &path);
+    void setCurrentIndex();
+    /*!
+     * Set current select played music index.
+     */
+    void setCurrentIndex(int toolIndex, const MusicSong &song);
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -95,7 +112,7 @@ public Q_SLOTS:
     /*!
      * Delete item from list at current row.
      */
-    void setDeleteItemAt();
+    void setDeleteItemAt(int index);
     /*!
      * Delete all items from list.
      */
@@ -118,8 +135,13 @@ protected:
      * Set play list count.
      */
     void setPlayListCount(int count);
+    /*!
+     * Set play state to pause or stop.
+     */
+    void setPlayEmpty();
 
     QList<QLabel*> m_labels;
+    MusicPlayedlist *m_playlist;
     MusicSongs m_songLists;
     QScrollArea *m_scrollArea;
     MusicSongsListPlayedTableWidget *m_playedListWidget;

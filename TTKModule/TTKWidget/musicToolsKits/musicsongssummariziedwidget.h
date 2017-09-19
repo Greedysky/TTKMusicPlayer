@@ -61,6 +61,14 @@ public:
      * Get music songs file path by index.
      */
     QStringList getMusicSongsFilePath(int index) const;
+    /*!
+     * Map music song index by file path.
+     */
+    int mapSongIndexByFilePath(int toolIndex, const QString &path) const;
+    /*!
+     * Map music file path by song index.
+     */
+    QString mapFilePathBySongIndex(int toolIndex, int index) const;
 
     /*!
      * Set current name to searched file names to list.
@@ -99,16 +107,6 @@ public:
      * Update item time label time.
      */
     void setTimerLabel(const QString &time, const QString &total) const;
-
-Q_SIGNALS:
-    /*!
-     * Update music song to lovest if in current stack widget.
-     */
-    void updatePlayLists(const QString &list);
-    /*!
-     * Update swap the current play index if in current stack widget.
-     */
-    void updateMediaLists(const QStringList &list, int index);
 
 public Q_SLOTS:
     /*!

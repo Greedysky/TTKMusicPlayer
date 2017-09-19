@@ -446,7 +446,6 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     {
         int index = deleteList[i];
         removeRow(index);           //Delete the current row
-        MusicPlayedListPopWidget::instance()->remove(m_parentToolIndex, (*m_musicSongs)[index]);
         progress.setValue(deleteList.count()*2 - i);
     }
 

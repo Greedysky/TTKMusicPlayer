@@ -18,7 +18,7 @@
 #endif
 
 class SoundCore;
-class MusicPlaylist;
+class MusicPlayedlist;
 
 /*! @brief The class of the music player.
  * @author Greedysky <greedysky@163.com>
@@ -59,11 +59,11 @@ public:
     /*!
      * Set current play list.
      */
-    void setPlaylist(MusicPlaylist *playlist);
+    void setPlaylist(MusicPlayedlist *playlist);
     /*!
      * Get current play list.
      */
-    MusicPlaylist *playlist() const;
+    MusicPlayedlist *playlist() const;
 
     /*!
      * Get current player duration.
@@ -185,7 +185,7 @@ protected:
      */
     void setMusicEnhancedCase();
 
-    MusicPlaylist *m_playlist;
+    MusicPlayedlist *m_playlist;
     MusicObject::PlayState m_state;
     SoundCore *m_music;
     QTimer m_timer;

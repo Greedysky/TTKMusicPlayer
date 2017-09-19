@@ -46,9 +46,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Update count label.
+     * Delete item from list at current row.
      */
-    void updateCountLabel();
+    void setDeleteItemAt(int index);
 
 public Q_SLOTS:
     /*!
