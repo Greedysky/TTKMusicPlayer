@@ -188,7 +188,6 @@ void MusicPlayedListPopWidget::popupMenu()
 
 void MusicPlayedListPopWidget::setDeleteItemAt(int index)
 {
-    m_playlist->laterListClear();
     m_playedListWidget->clearPlayLaterState();
     m_playlist->removeMedia(index);
 

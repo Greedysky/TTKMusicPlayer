@@ -155,6 +155,7 @@ bool MusicPlayedlist::removeMedia(int pos)
         return false;
     }
     m_mediaList.removeAt(pos);
+    laterListClear();
     return true;
 }
 
@@ -164,6 +165,7 @@ int MusicPlayedlist::removeMedia(int toolIndex, const QString &content)
     if(index != -1)
     {
         m_mediaList.takeAt(index);
+        laterListClear();
     }
 
     return index;
