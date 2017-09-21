@@ -26,9 +26,9 @@
 #define ROW_HIGHT   30
 #define SEARCH_ITEM_DEFINE(index, names) \
     case index: \
-    if(names.count() >= index + 1) \
+    if(names.count() >= index) \
     { \
-        MusicRightAreaWidget::instance()->songResearchButtonSearched(names[index]); \
+        MusicRightAreaWidget::instance()->songResearchButtonSearched(names[index - 1]); \
     } \
     break;
 
@@ -544,12 +544,11 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
     QStringList names(MusicUtils::String::splitString(songName));
     switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
     {
-        SEARCH_ITEM_DEFINE(0, names);
+        case 0 : MusicRightAreaWidget::instance()->songResearchButtonSearched(songName); break;
         SEARCH_ITEM_DEFINE(1, names);
         SEARCH_ITEM_DEFINE(2, names);
-        default:
-            MusicRightAreaWidget::instance()->songResearchButtonSearched(songName);
-            break;
+        SEARCH_ITEM_DEFINE(3, names);
+        default: break;
     }
 }
 
@@ -582,10 +581,15 @@ void MusicSongsListTableWidget::setItemRenameFinished(const QString &name)
 
 void MusicSongsListTableWidget::musicListSongSortBy(QAction *action)
 {
+    int newIndex = action->data().toInt();
+    if(newIndex < 0 || newIndex > 5)
+    {
+        return;
+    }
+
     if(m_musicSort)
     {
         int bIndex = m_musicSort->m_index;
-        int newIndex = action->data().toInt();
         m_musicSort->m_index = newIndex;
         if(bIndex == newIndex)
         {
@@ -605,7 +609,7 @@ void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
     MusicSongsListAbstractTableWidget::mousePressEvent(event);
     closeRenameItem();
 
-    if( event->button() == Qt::LeftButton )//Press the left key
+    if( event->button() == Qt::LeftButton )
     {
         m_leftButtonPressed = true;
         m_dragStartIndex = currentRow();
@@ -820,10 +824,10 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
 {
     QString songName = getCurrentSongName();
     QStringList names(MusicUtils::String::splitString(songName));
-    for(int i=0; i<names.count(); ++i)
+    for(int i=1; i<=names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(names[i].trimmed()))->setData(i + DEFAULT_INDEX_LEVEL1);
+        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_INDEX_LEVEL1);
     }
-    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_INDEX_LEVEL5);
+    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_INDEX_LEVEL1);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }
