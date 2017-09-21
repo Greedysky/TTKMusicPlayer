@@ -109,7 +109,7 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     foreach(const QVariant &song, key.toList())
     {
         QVariantMap data = song.toMap();
-        int bitrate = map2NormalBitrate(data["quality"].toString());
+        int bitrate = MusicUtils::Number::transfromBitrateToNormal(data["quality"].toString());
 
         if(all)
         {
@@ -139,20 +139,4 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
             }
         }
     }
-}
-
-int MusicDownLoadXMInterface::map2NormalBitrate(const QString &bitrate)
-{
-    if(bitrate == "e")
-        return MB_32;
-    else if(bitrate == "f")
-        return MB_128;
-    else if(bitrate == "l")
-        return MB_192;
-    else if(bitrate == "h")
-        return MB_320;
-    else if(bitrate == "s")
-        return MB_500;
-    else
-        return MB_128;
 }

@@ -53,10 +53,6 @@ public:
      * Read tags(lrc\smallpic) from query results.
      */
     void readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info, const QString &hash);
-    /*!
-     * Map json bitrate to normal bitrate.
-     */
-    int map2NormalBitrate(int bitrate);
 
 };
 

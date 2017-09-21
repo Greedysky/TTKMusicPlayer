@@ -75,7 +75,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                         attr.m_duration = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
                         attr.m_size = MusicUtils::Number::size2Label(value["file_size"].toInt());
                         attr.m_format = value["file_extension"].toString();
-                        attr.m_bitrate = map2NormalBitrate(bitrate);
+                        attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitrate);
                         info->m_songAttrs.append(attr);
                     }
                 }
@@ -105,7 +105,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             if(f != "flac")
             {
-                int bit = map2NormalBitrate(f.toInt());
+                int bit = MusicUtils::Number::transfromBitrateToNormal(f.toInt());
                 if(quality == QObject::tr("ST") && bit <= MB_64)
                 {
                     readFromMusicSongAttribute(info, f);
@@ -176,7 +176,7 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
                     attr.m_url = value["songLink"].toString();
                     attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                     attr.m_format = value["format"].toString();
-                    attr.m_bitrate = map2NormalBitrate(value["rate"].toInt());
+                    attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());
                     info->m_songAttrs.append(attr);
                 }
             }
@@ -227,25 +227,9 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
                                    MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));
                 attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                 attr.m_format = value["format"].toString();
-                attr.m_bitrate = map2NormalBitrate(value["rate"].toInt());
+                attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());
                 info->m_songAttrs.append(attr);
             }
         }
     }
-}
-
-int MusicDownLoadBDInterface::map2NormalBitrate(int bitrate)
-{
-    if(bitrate > MB_0 && bitrate <= MB_64)
-        return MB_32;
-    else if(bitrate > MB_64 && bitrate < MB_128)
-        return MB_128;
-    else if(bitrate > MB_128 && bitrate < MB_192)
-        return MB_192;
-    else if(bitrate > MB_192 && bitrate < MB_320)
-        return MB_320;
-    else if(bitrate > MB_320)
-        return MB_500;
-    else
-        return bitrate;
 }

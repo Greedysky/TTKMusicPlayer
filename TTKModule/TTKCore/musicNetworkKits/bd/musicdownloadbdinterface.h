@@ -65,10 +65,6 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicPayAttribute(MusicObject::MusicSongInformation *info);
-    /*!
-     * Map json bitrate to normal bitrate.
-     */
-    int map2NormalBitrate(int bitrate);
 
 };
 

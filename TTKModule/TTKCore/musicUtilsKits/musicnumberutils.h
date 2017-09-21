@@ -71,9 +71,17 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QString transfromBitrateToQuality(int level);
         /*!
-         * Transfrom bitrate to quality.
+         * Transfrom bitrate to level.
          */
         MUSIC_UTILS_EXPORT int transfromBitrateToLevel(const QString &bitrate);
+        /*!
+         * Transfrom bitrate to normal.
+         */
+        MUSIC_UTILS_EXPORT int transfromBitrateToNormal(int bitrate);
+        /*!
+         * Transfrom bitrate to normal.
+         */
+        MUSIC_UTILS_EXPORT int transfromBitrateToNormal(const QString &bitrate);
 
     }
 }

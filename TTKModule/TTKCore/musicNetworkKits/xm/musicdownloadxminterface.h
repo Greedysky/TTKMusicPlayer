@@ -72,10 +72,6 @@ public:
      * Read tags(lrc) from query results.
      */
     void readFromMusicSongLrc(MusicObject::MusicSongInformation *info, const QString &songID);
-    /*!
-     * Map json bitrate to normal bitrate.
-     */
-    int map2NormalBitrate(const QString &bitrate);
 
 };
 
