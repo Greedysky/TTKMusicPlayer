@@ -68,6 +68,10 @@ public:
     void setPlaybackMode(MusicObject::PlayMode mode);
 
     /*!
+     * Map item index at container.
+     */
+    int mapItemIndex(const MusicPlayedItem &item) const;
+    /*!
      * Get current play index.
      */
     int currentIndex() const;

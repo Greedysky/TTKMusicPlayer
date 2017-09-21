@@ -14,12 +14,13 @@
 
 #include <QMenu>
 #include <QTimer>
+#include <QPushButton>
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_renameLine(nullptr)
 {
     QPalette pal = palette();
-    pal.setBrush(QPalette::Base,QBrush(QColor(0, 0, 0, 40)));
+    pal.setBrush(QPalette::Base, QBrush(QColor(0, 0, 0, 40)));
     setPalette(pal);
     setAutoFillBackground(true);
 

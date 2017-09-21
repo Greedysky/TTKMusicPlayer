@@ -24,6 +24,22 @@ void MusicPlayedlist::setPlaybackMode(MusicObject::PlayMode mode)
     m_playbackMode = mode;
 }
 
+int MusicPlayedlist::mapItemIndex(const MusicPlayedItem &item) const
+{
+    int playIndex = -1;
+    for(int i=0; i<m_mediaList.count(); ++i)
+    {
+        const MusicPlayedItem &it = m_mediaList[i];
+        if(item == it)
+        {
+            playIndex = i;
+            break;
+        }
+    }
+
+    return playIndex;
+}
+
 int MusicPlayedlist::currentIndex() const
 {
     return m_currentIndex;
@@ -164,7 +180,7 @@ int MusicPlayedlist::removeMedia(int toolIndex, const QString &content)
     int index = find(toolIndex, content);
     if(index != -1)
     {
-        m_mediaList.takeAt(index);
+        m_mediaList.removeAt(index);
         laterListClear();
     }
 
@@ -217,16 +233,6 @@ void MusicPlayedlist::setCurrentIndex(int index)
 
 void MusicPlayedlist::setCurrentIndex(int toolIndex, const QString &path)
 {
-    int playIndex = -1;
-    for(int i=0; i<m_mediaList.count(); ++i)
-    {
-        const MusicPlayedItem &item = m_mediaList[i];
-        if(item.m_toolIndex == toolIndex && item.m_path == path)
-        {
-            playIndex = i;
-            break;
-        }
-    }
-
+    int playIndex = mapItemIndex(MusicPlayedItem(toolIndex, path));
     setCurrentIndex(playIndex);
 }

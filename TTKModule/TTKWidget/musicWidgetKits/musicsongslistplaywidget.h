@@ -10,10 +10,10 @@
    =================================================*/
 
 #include <QLabel>
-#include <QPushButton>
-#include <QToolButton>
 #include "musicglobaldefine.h"
 
+class QMenu;
+class QPushButton;
 class MusicSplitItemClickedLabel;
 class MusicSongsToolItemRenamedWidget;
 

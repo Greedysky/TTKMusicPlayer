@@ -151,22 +151,6 @@ public Q_SLOTS:
      */
     void musicTransformWidget();
     /*!
-     * To search song mv by song name in play widget.
-     */
-    void musicSongMovieFoundPy();
-    /*!
-     * Open music similar found widget in play widget.
-     */
-    void musicSimilarFoundWidgetPy();
-    /*!
-     * Open music song shared widget in play widget.
-     */
-    void musicSongSharedWidgetPy();
-    /*!
-     * Open music song KMicro widget in play widget.
-     */
-    void musicSongKMicroWidgetPy();
-    /*!
      * Open music song search query.
      */
     void musicSearchQuery(QAction *action);

@@ -200,6 +200,48 @@ void MusicSongsListAbstractTableWidget::musicSongDownload()
     download->show();
 }
 
+void MusicSongsListAbstractTableWidget::musicSongMovieFoundPy()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getSongName(m_playRowIndex) );
+}
+
+void MusicSongsListAbstractTableWidget::musicSimilarFoundWidgetPy()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicRightAreaWidget::instance()->musicSimilarFound( getSongName(m_playRowIndex) );
+}
+
+void MusicSongsListAbstractTableWidget::musicSongSharedWidgetPy()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicSongSharingWidget shareWidget(this);
+    shareWidget.setSongName( getSongName(m_playRowIndex) );
+    shareWidget.exec();
+}
+
+void MusicSongsListAbstractTableWidget::musicSongKMicroWidgetPy()
+{
+    if(rowCount() == 0 || currentRow() < 0)
+    {
+        return;
+    }
+
+    MusicLeftAreaWidget::instance()->createSoundKMicroWidget( getSongName(m_playRowIndex) );
+}
+
 void MusicSongsListAbstractTableWidget::createMoreMenu(QMenu *menu)
 {
     menu->setStyleSheet(MusicUIObject::MMenuStyle02);

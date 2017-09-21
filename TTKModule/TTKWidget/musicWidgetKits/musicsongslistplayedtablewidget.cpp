@@ -2,6 +2,7 @@
 #include "musicfileinformationwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicconnecttransferwidget.h"
+#include "musicsongslistplayedwidget.h"
 #include "musicrightareawidget.h"
 #include "musicdownloadwidget.h"
 #include "musiccoreutils.h"
@@ -26,13 +27,15 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
 
     m_playRowIndex = -1;
     m_hasParentToolIndex = false;
+    m_musicSongsPlayWidget = nullptr;
 
     MusicUtils::Widget::setTransparent(this, 0xff);
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
 {
-
+    clearAllItems();
+    delete m_musicSongsPlayWidget;
 }
 
 QString MusicSongsListPlayedTableWidget::getClassName()
@@ -93,23 +96,47 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
     setFixedHeight( qMax(365, allRowsHeight()) );
 }
 
+void MusicSongsListPlayedTableWidget::clearAllItems()
+{
+    if(m_playRowIndex < 0)
+    {
+        return;
+    }
+
+    //Remove play widget
+    removeCellWidget(m_playRowIndex, 0);
+
+    delete m_musicSongsPlayWidget;
+    m_musicSongsPlayWidget = nullptr;
+
+    m_playRowIndex = -1;
+    //Remove all the original item
+    MusicSongsListAbstractTableWidget::clear();
+    setColumnCount(6);
+}
+
 void MusicSongsListPlayedTableWidget::selectRow(int index)
 {
     if(index < 0 || rowCount() < 0)
     {
         return;
     }
+    MusicSongsListAbstractTableWidget::selectRow(index);
 
-    if(-1 < m_playRowIndex && m_playRowIndex < rowCount())
+    replacePlayWidgetRow();
+    for(int i=0; i<columnCount(); ++i)
     {
-        item(m_playRowIndex, 1)->setForeground(QColor(0, 0, 0));
+        delete takeItem(index, i);
     }
 
-    MusicSongsListAbstractTableWidget::selectRow(index);
-    m_playRowIndex = index;
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
 
-    item(m_playRowIndex, 0)->setIcon(QIcon());
-    item(m_playRowIndex, 1)->setForeground(QColor(0, 191, 255));
+    m_musicSongsPlayWidget = new MusicSongsListPlayedWidget(index, this);
+    m_musicSongsPlayWidget->setParameter(name);
+
+    setSpan(index, 0, 1, 5);
+    setCellWidget(index, 0, m_musicSongsPlayWidget);
+    m_playRowIndex = index;
 
     setFixedHeight( qMax(365, allRowsHeight()) );
 
@@ -122,6 +149,39 @@ void MusicSongsListPlayedTableWidget::selectRow(int index)
 void MusicSongsListPlayedTableWidget::selectPlayedRow()
 {
     selectRow(m_playRowIndex);
+}
+
+void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
+{
+    if(m_playRowIndex >= rowCount() || m_playRowIndex < 0)
+    {
+        return;
+    }
+
+    QString name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
+
+    removeCellWidget(m_playRowIndex, 0);
+    delete takeItem(m_playRowIndex, 0);
+    clearSpans();
+
+    QTableWidgetItem *item = new QTableWidgetItem;
+    setItem(m_playRowIndex, 0, item);
+    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 182));
+    item->setToolTip(name);
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(m_playRowIndex, 1, item);
+    setItem(m_playRowIndex, 2, new QTableWidgetItem);
+    setItem(m_playRowIndex, 3, new QTableWidgetItem);
+    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
+    item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    setItem(m_playRowIndex, 4, item);
+
+    delete m_musicSongsPlayWidget;
+    m_musicSongsPlayWidget = nullptr;
+
+    setFixedHeight( qMax(365, allRowsHeight()) );
 }
 
 void MusicSongsListPlayedTableWidget::listCellEntered(int row, int column)
@@ -173,7 +233,11 @@ void MusicSongsListPlayedTableWidget::listCellEntered(int row, int column)
 
 void MusicSongsListPlayedTableWidget::listCellClicked(int row, int column)
 {
-    Q_UNUSED(row);
+    if(row == m_playRowIndex)
+    {
+        return;
+    }
+
     switch(column)
     {
         case 2:
@@ -197,14 +261,20 @@ void MusicSongsListPlayedTableWidget::listCellClicked(int row, int column)
 void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 {
     int index = currentRow();
-    if(rowCount() == 0 || currentRow() < 0)
+    if(rowCount() == 0 || index < 0)
     {
         return;
     }
 
+    replacePlayWidgetRow();
+
+    if(index < m_playRowIndex)
+    {
+        --m_playRowIndex;
+    }
+
     removeRow( index );
     m_musicSongs->removeAt( index );
-    m_playRowIndex = -1;
 
     setFixedHeight( qMax(365, allRowsHeight()) );
 

@@ -11,6 +11,8 @@
 
 #include "musicsongslistabstracttablewidget.h"
 
+class MusicSongsListPlayedWidget;
+
 /*! @brief The class of the songs played queue list table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -44,6 +46,10 @@ public:
     virtual void updateSongsFileName(const MusicSongs &songs) override;
 
     /*!
+     * Clear All Items.
+     */
+    void clearAllItems();
+    /*!
      * Select the current play row by given index.
      */
     virtual void selectRow(int index) override;
@@ -51,6 +57,10 @@ public:
      * Select the current played row.
      */
     void selectPlayedRow();
+    /*!
+     * Replace current play widget row.
+     */
+    void replacePlayWidgetRow();
 
 Q_SIGNALS:
     /*!
@@ -77,6 +87,8 @@ protected:
      * Override the widget event.
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    MusicSongsListPlayedWidget *m_musicSongsPlayWidget;
 
 };
 

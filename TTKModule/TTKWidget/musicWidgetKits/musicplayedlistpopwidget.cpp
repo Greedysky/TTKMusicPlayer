@@ -62,7 +62,7 @@ MusicPlayedlist *MusicPlayedListPopWidget::playlist() const
 void MusicPlayedListPopWidget::clear()
 {
     m_songLists.clear();
-    m_playedListWidget->clear();
+    m_playedListWidget->clearAllItems();
     setPlayListCount(0);
 }
 
@@ -149,8 +149,11 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     (index != m_songLists.count()) ? m_songLists.insert(index, song) : m_songLists.append(song);
     m_playlist->insertLaterMedia(toolIndex, song.getMusicPath());
 
-    m_playedListWidget->clear();
+    int row = m_playedListWidget->getPlayRowIndex();
+    m_playedListWidget->clearAllItems();
     updateSongsFileName();
+    m_playedListWidget->setPlayRowIndex(row);
+    m_playedListWidget->selectPlayedRow();
 
     foreach(const MusicPlayedItem &item, m_playlist->laterListConst())
     {
@@ -191,7 +194,10 @@ void MusicPlayedListPopWidget::setDeleteItemAt(int index)
     m_playedListWidget->clearPlayLaterState();
     m_playlist->removeMedia(index);
 
-    if(m_playlist->currentIndex() == index)
+    int id = m_playedListWidget->getPlayRowIndex();
+    m_playedListWidget->setPlayRowIndex(-1);
+
+    if(id == index)
     {
         MusicApplication *w = MusicApplication::instance();
         if(w->isPlaying())
@@ -207,6 +213,10 @@ void MusicPlayedListPopWidget::setDeleteItemAt(int index)
         {
             setPlayEmpty();
         }
+    }
+    else
+    {
+        m_playedListWidget->selectRow(id);
     }
 
     setPlayListCount(m_songLists.count());
