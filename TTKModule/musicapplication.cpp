@@ -138,7 +138,7 @@ QString MusicApplication::getCurrentFileName() const
     {
         MusicSongs songs = items[m_currentMusicSongTreeIndex].m_songs;
         int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlayList->currentMediaString());
-        return index != -1 ?songs[index].getMusicName() : QString();
+        return (index != -1) ?songs[index].getMusicName() : QString();
     }
     return QString();
 }
@@ -155,7 +155,7 @@ QString MusicApplication::getCurrentFilePath() const
     {
         MusicSongs songs = items[m_currentMusicSongTreeIndex].m_songs;
         int index = m_musicSongTreeWidget->mapSongIndexByFilePath(m_currentMusicSongTreeIndex, m_musicPlayList->currentMediaString());
-        return index != -1 ?songs[index].getMusicPath() : QString();
+        return (index != -1) ?songs[index].getMusicPath() : QString();
     }
     return QString();
 }
@@ -341,6 +341,7 @@ void MusicApplication::showCurrentSong(int index)
     QString name;
     MusicPlayedItem item = m_musicPlayList->currentItem();
     index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
+    m_currentMusicSongTreeIndex = item.m_toolIndex;
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
 
     if(index > DEFAULT_INDEX_LEVEL0) //The list to end
