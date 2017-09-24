@@ -77,9 +77,9 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
 {
     QStringList names;
 #ifdef Q_OS_WIN
-    PMIB_IFTABLE m_pTable = nullptr;
-    DWORD m_dwAdapters = 0;
-    ULONG uRetCode = GetIfTable(m_pTable, &m_dwAdapters, TRUE);
+    PMIB_IFTABLE pTable = nullptr;
+    DWORD dwAdapters = 0;
+    ULONG uRetCode = GetIfTable(pTable, &dwAdapters, TRUE);
     if(uRetCode == ERROR_NOT_SUPPORTED)
     {
         return names;
@@ -87,13 +87,13 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
 
     if(uRetCode == ERROR_INSUFFICIENT_BUFFER)
     {
-        m_pTable = (PMIB_IFTABLE)new BYTE[65535];
+        pTable = (PMIB_IFTABLE)new BYTE[65535];
     }
 
-    GetIfTable(m_pTable, &m_dwAdapters, TRUE);
-    for(UINT i = 0; i < m_pTable->dwNumEntries; i++)
+    GetIfTable(pTable, &dwAdapters, TRUE);
+    for(UINT i = 0; i < pTable->dwNumEntries; i++)
     {
-        MIB_IFROW Row = m_pTable->table[i];
+        MIB_IFROW Row = pTable->table[i];
         std::string s(MReinterpret_cast(char const*, Row.bDescr));
         QString qs = QString::fromStdString(s);
         if((Row.dwType == 71 || Row.dwType == 6) && !names.contains(qs))
@@ -101,7 +101,7 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
             names << qs;
         }
     }
-    delete[] m_pTable;
+    delete[] pTable;
 #elif defined Q_OS_UNIX
     struct ifaddrs *ifa = nullptr, *ifList;
     if(getifaddrs(&ifList) < 0)
@@ -123,11 +123,12 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
 
 void MusicNetworkSpeedTestThread::outputRecieved()
 {
+#ifdef Q_OS_UNIX
     while(m_process->canReadLine())
     {
         QByteArray datas = m_process->readLine();
         QStringList lists = QString(datas).split("|");
-        ulong upload = 0,  download = 0;
+        ulong upload = 0, download = 0;
 
         if(lists.count() == 3)
         {
@@ -136,6 +137,7 @@ void MusicNetworkSpeedTestThread::outputRecieved()
         }
         emit networkData(upload, download);
     }
+#endif
 }
 
 void MusicNetworkSpeedTestThread::start()
@@ -147,9 +149,10 @@ void MusicNetworkSpeedTestThread::start()
 void MusicNetworkSpeedTestThread::run()
 {
 #ifdef Q_OS_WIN
-    PMIB_IFTABLE m_pTable = nullptr;
-    DWORD m_dwAdapters = 0;
-    ULONG uRetCode = GetIfTable(m_pTable, &m_dwAdapters, TRUE);
+    PMIB_IFTABLE pTable = nullptr;
+    DWORD dwAdapters = 0;
+    ULONG uRetCode = GetIfTable(pTable, &dwAdapters, TRUE);
+
     if(uRetCode == ERROR_NOT_SUPPORTED)
     {
         return;
@@ -157,25 +160,23 @@ void MusicNetworkSpeedTestThread::run()
 
     if(uRetCode == ERROR_INSUFFICIENT_BUFFER)
     {
-        m_pTable = (PMIB_IFTABLE)new BYTE[65535];
+        pTable = (PMIB_IFTABLE)new BYTE[65535];
     }
 
-    DWORD dwLastIn = 0;
-    DWORD dwLastOut = 0;
-    DWORD dwBandIn = 0;
-    DWORD dwBandOut = 0;
+    DWORD dwLastIn = 0, dwLastOut = 0;
+    DWORD dwBandIn = 0, dwBandOut = 0;
+
     while(m_run)
     {
-        GetIfTable(m_pTable, &m_dwAdapters, TRUE);
-        DWORD dwInOctets = 0;
-        DWORD dwOutOctets = 0;
+        GetIfTable(pTable, &dwAdapters, TRUE);
+        DWORD dwInOctets = 0, dwOutOctets = 0;
 
-        for(UINT i = 0; i < m_pTable->dwNumEntries; i++)
+        for(UINT i = 0; i < pTable->dwNumEntries; i++)
         {
-            MIB_IFROW Row = m_pTable->table[i];
+            MIB_IFROW Row = pTable->table[i];
             std::string s(MReinterpret_cast(char const*, Row.bDescr));
-            if( (Row.dwType == 71 || Row.dwType == 6) &&
-                m_names.contains(QString::fromStdString(s)))
+            if((Row.dwType == 71 || Row.dwType == 6) &&
+               m_names.contains(QString::fromStdString(s)))
             {
                 dwInOctets += Row.dwInOctets;
                 dwOutOctets += Row.dwOutOctets;
@@ -184,6 +185,7 @@ void MusicNetworkSpeedTestThread::run()
 
         dwBandIn = dwInOctets - dwLastIn;
         dwBandOut = dwOutOctets - dwLastOut;
+
         if(dwLastIn <= 0)
         {
             dwBandIn = 0;
@@ -193,12 +195,13 @@ void MusicNetworkSpeedTestThread::run()
         {
             dwBandOut = 0;
         }
+
         dwLastIn = dwInOctets;
         dwLastOut = dwOutOctets;
 
         emit networkData(dwBandOut, dwBandIn);
         sleep(1);
     }
-    delete[] m_pTable;
+    delete[] pTable;
 #endif
 }
