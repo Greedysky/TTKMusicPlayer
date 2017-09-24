@@ -86,7 +86,7 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->musicWindowChangeSkin->setToolTip(tr("changeskin"));
     ui->musicWindowChangeSkin->setCursor(QCursor(Qt::PointingHandCursor));
     ui->musicWindowChangeSkin->setStyleSheet(MusicUIObject::MKGBtnSkin);
-    connect(ui->musicWindowChangeSkin, SIGNAL(clicked()) , SLOT(musicShowSkinChangedWindow()));
+    connect(ui->musicWindowChangeSkin, SIGNAL(clicked()), SLOT(musicShowSkinChangedWindow()));
 
     ui->musicWindowSetting->setToolTip(tr("setting"));
     ui->musicWindowSetting->setCursor(QCursor(Qt::PointingHandCursor));
@@ -477,6 +477,11 @@ void MusicTopAreaWidget::drawWindowBackgroundRect()
 
 void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
 {
+    if(image.isNull())
+    {
+        return;
+    }
+
     QImage origin(image);
     if(!origin.colorTable().isEmpty())
     {
