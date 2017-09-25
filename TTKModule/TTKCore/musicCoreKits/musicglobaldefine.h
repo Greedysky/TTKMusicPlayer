@@ -13,7 +13,6 @@
 
 //////////////////////////////////////
 #ifdef MUSIC_LIBRARY
-#  define MUSIC_SUPER
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
 #  define MUSIC_WIDGET
@@ -34,13 +33,6 @@
 ///
 #define MUSIC_EXPORT
 
-#ifdef MUSIC_SUPER
-#  ifdef MUSIC_EXPORT
-#    define MUSIC_SUPER_EXPORT Q_DECL_EXPORT
-#  else
-#    define MUSIC_SUPER_IMPORT Q_DECL_IMPORT
-#  endif
-#endif
 
 #ifdef MUSIC_NETWORK
 #  ifdef MUSIC_EXPORT

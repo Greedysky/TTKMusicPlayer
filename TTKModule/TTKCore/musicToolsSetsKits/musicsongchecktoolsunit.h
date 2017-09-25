@@ -16,7 +16,7 @@ namespace MusicObject
 /*! @brief The class of the song check tools rename.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsRename
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRename
 {
     QString m_locaName;
     QString m_RecommendName;
@@ -35,7 +35,7 @@ MUSIC_DECLARE_LISTS(MusicSongCheckToolsRename)
 /*! @brief The class of the song check tools duplicate.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsDuplicate
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicate
 {
     MusicSong m_song;
     QString m_bitRate;
@@ -52,7 +52,7 @@ MUSIC_DECLARE_LISTS(MusicSongCheckToolsDuplicate)
 /*! @brief The class of the song check tools quality.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicSongCheckToolsQuality
+typedef struct MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQuality
 {
     MusicSong m_song;
     QString m_bitRate;

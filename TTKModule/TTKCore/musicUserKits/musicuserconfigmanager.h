@@ -14,7 +14,7 @@
 /*! @brief The class of the user record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicUserRecord
+typedef struct MUSIC_USER_EXPORT MusicUserRecord
 {
     QString m_userName;
     QString m_password;
@@ -26,7 +26,7 @@ MUSIC_DECLARE_LISTS(MusicUserRecord)
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicUserConfigManager : public MusicAbstractXml
+class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:

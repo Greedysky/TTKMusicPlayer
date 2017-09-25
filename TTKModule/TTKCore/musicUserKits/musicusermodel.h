@@ -8,6 +8,7 @@
  * Redistribution and use of the source code or any derivative
  * works are strictly forbiden.
    =================================================*/
+
 #include <QtSql/QSqlTableModel>
 #include <QtSql/QSqlQuery>
 
@@ -17,7 +18,7 @@
 /*! @brief The class of the user data model.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicUserModel : public QSqlTableModel
+class MUSIC_USER_EXPORT MusicUserModel : public QSqlTableModel
 {
     Q_OBJECT
 public:

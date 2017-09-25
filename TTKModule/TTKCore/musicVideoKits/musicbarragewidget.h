@@ -19,7 +19,7 @@
 /*! @brief The class of the barrage animation.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicBarrageAnimation : public QPropertyAnimation
+class MUSIC_VIDEO_EXPORT MusicBarrageAnimation : public QPropertyAnimation
 {
     Q_OBJECT
 public:
@@ -60,7 +60,7 @@ protected:
 /*! @brief The class of the barrage widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicBarrageWidget : public QObject
+class MUSIC_VIDEO_EXPORT MusicBarrageWidget : public QObject
 {
     Q_OBJECT
 public:

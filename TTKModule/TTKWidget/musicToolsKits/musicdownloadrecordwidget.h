@@ -59,7 +59,7 @@ public Q_SLOTS:
     /*!
      * Table widget list cell click.
      */
-    void listCellClicked(int row, int column);
+    virtual void listCellClicked(int row, int column) override;
     /*!
      * Table widget list cell double click.
      */

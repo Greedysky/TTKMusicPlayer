@@ -18,7 +18,7 @@
 /*! @brief The class of the time check object.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicTimeObject
+typedef struct MUSIC_TOOLSET_EXPORT MusicTimeObject
 {
     int m_index;
     int m_hour;
@@ -39,7 +39,7 @@ MUSIC_DECLARE_LISTS(MusicTimeObject)
 /*! @brief The class of the time auto run.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicTimerAutoObject : public QObject
+class MUSIC_TOOLSET_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
 public:

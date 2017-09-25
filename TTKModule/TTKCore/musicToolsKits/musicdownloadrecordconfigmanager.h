@@ -14,7 +14,7 @@
 /*! @brief The class of the local download record item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_SUPER_EXPORT MusicDownloadRecord
+typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
 {
     QString m_name;
     QString m_path;
@@ -25,7 +25,7 @@ MUSIC_DECLARE_LISTS(MusicDownloadRecord)
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
+class MUSIC_TOOL_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:

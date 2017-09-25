@@ -7,7 +7,7 @@
 /*! @brief The class of thread to test input url network.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SUPER_EXPORT MusicNetworkTestThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicNetworkTestThread : public QThread
 {
     Q_OBJECT
 public:
