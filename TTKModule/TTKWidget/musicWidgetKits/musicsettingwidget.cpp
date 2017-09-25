@@ -337,6 +337,7 @@ void MusicSettingWidget::downloadDirSelected(int index)
         }
     }
 }
+
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
