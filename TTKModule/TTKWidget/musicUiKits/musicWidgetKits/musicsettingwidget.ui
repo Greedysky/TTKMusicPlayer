@@ -2603,7 +2603,7 @@ font-weight:bold;;</string>
   <customwidget>
    <class>MusicFunctionTableWidget</class>
    <extends>QTableWidget</extends>
-   <header location="global">DownloadSettingWidget.h</header>
+   <header>musicsettingwidget.h</header>
   </customwidget>
   <customwidget>
    <class>MusicGlobalHotKeyEdit</class>
