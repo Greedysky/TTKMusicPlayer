@@ -53,7 +53,7 @@ void MusicCloudFileManagerDialog::creatFileManager(const MusicUploadData &data)
     m_ui->uploadedTableWidget->setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), data.m_name, Qt::ElideRight, 260));
+    item->setText(MusicUtils::Widget::elidedText(font(), data.m_name, Qt::ElideRight, 255));
     item->setToolTip(data.m_name);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->uploadedTableWidget->setItem(index, 1, item);

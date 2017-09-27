@@ -71,7 +71,6 @@ void MusicSongsListAbstractTableWidget::musicPlayClicked()
     emit cellDoubleClicked(currentRow(), 0);
 }
 
-
 void MusicSongsListAbstractTableWidget::setDeleteItemAt()
 {
 

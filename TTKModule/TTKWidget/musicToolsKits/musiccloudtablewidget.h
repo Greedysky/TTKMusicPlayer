@@ -64,11 +64,21 @@ public:
      */
     static QString getClassName();
 
+Q_SIGNALS:
+    /*!
+     * Add current selected song to play lists.
+     */
+    void addSongToPlay(const QStringList &names);
+
 public Q_SLOTS:
     /*!
      * Table widget list cell click.
      */
     virtual void listCellClicked(int row, int column) override;
+    /*!
+     * List cell double clicked.
+     */
+    void listCellDoubleClicked(int row, int column);
     /*!
      * Delete item from list at current row.
      */

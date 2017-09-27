@@ -3,6 +3,7 @@
 #include "musicitemdelegate.h"
 #include "musiccoreutils.h"
 #include "musicmessagebox.h"
+#include "musicsongssummariziedwidget.h"
 
 #include <QScrollBar>
 #include <QContextMenuEvent>
@@ -62,6 +63,9 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     musicSongsFileName();
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
+
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
 }
 
 MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
@@ -84,6 +88,19 @@ void MusicCloudDownloadTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
     Q_UNUSED(column);
+}
+
+void MusicCloudDownloadTableWidget::listCellDoubleClicked(int row, int column)
+{
+    Q_UNUSED(column);
+    if(row > -1 && row < m_musicRecords.count())
+    {
+        QString path = m_musicRecords[row].m_path;
+        if(QFile::exists(path))
+        {
+            emit addSongToPlay(QStringList(path));
+        }
+    }
 }
 
 void MusicCloudDownloadTableWidget::setDeleteItemAt()
