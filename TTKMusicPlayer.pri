@@ -23,7 +23,19 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-#check Qt version
+##openssl lib check
+SSL_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer
+win32:{
+    SSL_DEPANDS = $$SSL_DEPANDS/ssleay32.dll
+    SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
+    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
+}
+unix:!mac{
+    SSL_DEPANDS = $$SSL_DEPANDS/libssleay32.so
+    exists($$SSL_DEPANDS):LIBS += -L../lib/$$TTKMusicPlayer -lssl
+}
+
+##check Qt version
 QT_VER_STRING = $$[QT_VERSION];
 QT_VER_STRING = $$split(QT_VER_STRING, ".")
 QT_VER_MAJOR = $$member(QT_VER_STRING, 0)
