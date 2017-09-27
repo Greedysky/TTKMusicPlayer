@@ -54,6 +54,8 @@ Executable Download URL: **<u>http://download.csdn.net/album/detail/3094</u>**
 
 Executable Download URL(extra): **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
 
+Skin Download URL: **<u>http://pan.baidu.com/s/1mh7AeG4</u>**
+
 KuGou Resource Download URL: **<u>https://github.com/Greedysky/KugouResource</u>**
 
 Features
