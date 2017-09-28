@@ -65,6 +65,6 @@ win32:{
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
 }
 unix:!mac{
-    QMMP_DEPANDS = $$$$OUT_PWD/lib/$$TTKMusicPlayer/libqmmp.so
+    QMMP_DEPANDS = $$OUT_PWD/lib/$$TTKMusicPlayer/libqmmp.so
 }
 !exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
