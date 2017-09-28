@@ -552,8 +552,6 @@
    </widget>
    <zorder>editButton</zorder>
    <zorder>saveButton</zorder>
-   <zorder>label_16</zorder>
-   <zorder>TrackNumEdit_2</zorder>
   </widget>
   <widget class="MusicClickedLabel" name="advanceLabel">
    <property name="geometry">

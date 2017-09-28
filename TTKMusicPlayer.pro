@@ -55,8 +55,8 @@ win32:{
 }
 
 ##qmmp lib check
-QMMP_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer
 win32:{
+    QMMP_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer
     equals(QT_MAJOR_VERSION, 4){
         QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp0.dll
     }else{
@@ -65,6 +65,6 @@ win32:{
     QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
 }
 unix:!mac{
-    QMMP_DEPANDS = $$QMMP_DEPANDS/libqmmp.so
+    QMMP_DEPANDS = $$$$OUT_PWD/lib/$$TTKMusicPlayer/libqmmp.so
 }
 !exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
