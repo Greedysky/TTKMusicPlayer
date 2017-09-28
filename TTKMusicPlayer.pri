@@ -24,14 +24,13 @@ OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
 ##openssl lib check
-SSL_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer
 win32:{
-    SSL_DEPANDS = $$SSL_DEPANDS/ssleay32.dll
+    SSL_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer/ssleay32.dll
     SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
     exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
 }
 unix:!mac{
-    SSL_DEPANDS = $$SSL_DEPANDS/libssleay32.so
+    SSL_DEPANDS = $$OUT_PWD/lib/$$TTKMusicPlayer/libssleay32.so
     exists($$SSL_DEPANDS):LIBS += -L../lib/$$TTKMusicPlayer -lssl
 }
 
