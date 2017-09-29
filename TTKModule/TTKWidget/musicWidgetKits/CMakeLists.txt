@@ -42,6 +42,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.h
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.h
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.h
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -86,5 +87,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicpagingwidgetobject.cpp
     ${MUSIC_WIDGET_DIR}/musicbackgroundremotewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
   )
   

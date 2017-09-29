@@ -6,9 +6,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
     ${MUSIC_CORE_DIR}/musichotkeymanager.h
     ${MUSIC_CORE_DIR}/musictime.h
-    ${MUSIC_CORE_DIR}/musicxmlconfigmanager.h
+    ${MUSIC_CORE_DIR}/musicsysconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplayer.h
     ${MUSIC_CORE_DIR}/musicplaylist.h
+    ${MUSIC_CORE_DIR}/musicplayedlist.h
     ${MUSIC_CORE_DIR}/musicabstractxml.h
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.h
     ${MUSIC_CORE_DIR}/musicsettingmanager.h
@@ -23,9 +24,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musiclicensecore.h
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplaylistmanager.h
-    ${MUSIC_CORE_DIR}/musicbackgroundimage.h
+    ${MUSIC_CORE_DIR}/musicextractwrap.h
     ${MUSIC_CORE_DIR}/musicruntimemanager.h
     ${MUSIC_CORE_DIR}/musicdispatchmanager.h
+    ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
@@ -34,8 +36,9 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
     ${MUSIC_CORE_DIR}/musicplaylist.cpp
+    ${MUSIC_CORE_DIR}/musicplayedlist.cpp
     ${MUSIC_CORE_DIR}/musicabstractxml.cpp
-    ${MUSIC_CORE_DIR}/musicxmlconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/musicsysconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.cpp
     ${MUSIC_CORE_DIR}/musicconnectionpool.cpp
     ${MUSIC_CORE_DIR}/musicregeditmanager.cpp
@@ -47,8 +50,9 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musiclicensecore.cpp
     ${MUSIC_CORE_DIR}/musiccategoryconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicplaylistmanager.cpp
-    ${MUSIC_CORE_DIR}/musicbackgroundimage.cpp
+    ${MUSIC_CORE_DIR}/musicextractwrap.cpp
     ${MUSIC_CORE_DIR}/musicruntimemanager.cpp
     ${MUSIC_CORE_DIR}/musicdispatchmanager.cpp
+    ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.cpp
   )
   

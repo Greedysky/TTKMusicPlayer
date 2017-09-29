@@ -36,7 +36,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicphotomodlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicphotograblabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.h
-    
+    ${MUSIC_WIDGET_CORE_DIR}/musiccolordialog.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -75,6 +75,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicphotomodlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicphotograblabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.cpp
-    
+    ${MUSIC_WIDGET_CORE_DIR}/musiccolordialog.cpp
   )
   

@@ -63,4 +63,5 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsonglistsharingwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsonglistenhancelosslesswidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicmessageaboutdialog.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musiccolordialog.ui
 )
