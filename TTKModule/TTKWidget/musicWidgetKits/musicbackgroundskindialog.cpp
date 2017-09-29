@@ -72,6 +72,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
 
+    m_ui->skinTransparentButton->setEnabled(false);
     m_ui->skinTransparentLabelBox->setStyleSheet(MusicUIObject::MCheckBoxStyle04);
     m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
 
@@ -151,13 +152,11 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     m_ui->listTransparentButton->setValue(listAlpha);
     setListTransToolText(listAlpha);
 
-    bool s = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toBool();
-    m_ui->skinTransparentButton->setValue(s ? alpha : 100);
-    setSkinTransToolText(s ? alpha : 100);
-    if(s)
-    {
-        m_ui->skinTransparentLabelBox->click();
-    }
+    bool state = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toBool();
+    m_ui->skinTransparentButton->setValue(state ? alpha : 100);
+    m_ui->skinTransparentButton->setEnabled(state);
+    setSkinTransToolText(state ? alpha : 100);
+    m_ui->skinTransparentLabelBox->setChecked(state);
 }
 
 int MusicBackgroundSkinDialog::getBackgroundListAlpha() const
@@ -294,6 +293,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
 {
     m_ui->skinTransparentButton->setEnabled(state);
+    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced, state);
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(100);
