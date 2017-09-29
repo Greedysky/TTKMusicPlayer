@@ -93,8 +93,6 @@ public Q_SLOTS:
      * Switch to selected item style.
      */
     void switchToSelectedItemStyle(int index);
-
-protected:
     /*!
      * Change to song list widget.
      */
@@ -116,6 +114,7 @@ protected:
      */
     void musicStackedCloudWidgetChanged();
 
+protected:
     Ui::MusicApplication *m_ui;
 
     int m_currentIndex;
