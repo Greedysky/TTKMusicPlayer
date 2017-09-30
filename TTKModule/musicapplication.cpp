@@ -24,6 +24,7 @@
 #include "musicotherdefine.h"
 #include "musictinyuiobject.h"
 #include "musicdispatchmanager.h"
+#include "musiclistconfigmanager.h"
 
 #include <QMimeData>
 #include <QFileDialog>
@@ -1105,17 +1106,18 @@ void MusicApplication::setMusicPlayIndex()
 
 void MusicApplication::readXMLConfigFromText()
 {
-    MusicSysConfigManager xml;
     int value = DEFAULT_INDEX_LEVEL0;
 
     //Path configuration song
     MusicSongItems songs;
-    if(xml.readMusicXMLConfig())//open music file
+    MusicListConfigManager listXml;
+    if(listXml.readMusicXMLConfig())//open music file
     {
-        xml.readMusicSongsConfig(songs);
+        listXml.readMusicSongsConfig(songs);
     }
     bool success = m_musicSongTreeWidget->addMusicLists(songs);
     //////////////////////////////////////////////////////////////
+    MusicSysConfigManager xml;
     if(!xml.readXMLConfig())//open file
     {
         return;
@@ -1254,7 +1256,6 @@ void MusicApplication::readXMLConfigFromText()
 void MusicApplication::writeXMLConfigToText()
 {
     MusicSysConfigManager xml;
-
     m_applicationObject->sideAnimationReset();
     M_SETTING_PTR->setValue(MusicSettingManager::WidgetPosition, pos());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, m_musicPlayer->getMusicEnhanced());
@@ -1278,5 +1279,7 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced, m_topAreaWidget->getBackgroundTransparentEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
-    xml.writeMusicSongsConfig( m_musicSongTreeWidget->getMusicLists() );
+
+    MusicListConfigManager listXml;
+    listXml.writeMusicSongsConfig( m_musicSongTreeWidget->getMusicLists() );
 }

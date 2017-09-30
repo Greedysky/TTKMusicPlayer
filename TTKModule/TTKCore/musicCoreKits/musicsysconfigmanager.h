@@ -33,24 +33,9 @@ public:
      */
     inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
     /*!
-     * Read music datas from xml file by given name.
-     */
-    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
-
-    /*!
      * Write datas into xml file.
      */
     void writeXMLConfig();
-    /*!
-     * Write music datas into xml file.
-     */
-    void writeMusicSongsConfig(const MusicSongItems &musics,
-                               const QString &path = MUSICPATH_FULL);
-
-    /*!
-     * Read music datas into xml file.
-     */
-    void readMusicSongsConfig(MusicSongItems &musics);
 
     /*!
      * Read System Last Play Index Config.
@@ -68,12 +53,6 @@ public:
      * Read Sys Load Config.
      */
     void readSysLoadConfig() const;
-
-protected:
-    /*!
-     * Read Music File Path.
-     */
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
 
 };
 

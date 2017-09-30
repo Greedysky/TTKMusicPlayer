@@ -41,7 +41,8 @@ HEADERS  += \
     $$PWD/musicdispatchmanager.h \
     $$PWD/musicextractwrap.h \
     $$PWD/musicbackgroundconfigmanager.h \
-    $$PWD/musicsysconfigmanager.h
+    $$PWD/musicsysconfigmanager.h \
+    $$PWD/musiclistconfigmanager.h
 
 }
 
@@ -70,6 +71,7 @@ SOURCES += \
     $$PWD/musicdispatchmanager.cpp \
     $$PWD/musicextractwrap.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
-    $$PWD/musicsysconfigmanager.cpp
+    $$PWD/musicsysconfigmanager.cpp \
+    $$PWD/musiclistconfigmanager.cpp
 
 }
