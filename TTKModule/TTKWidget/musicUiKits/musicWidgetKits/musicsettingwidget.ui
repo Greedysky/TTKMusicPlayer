@@ -1019,7 +1019,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>170</y>
+       <y>200</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1032,7 +1032,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>200</y>
+       <y>230</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1071,7 +1071,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>145</y>
+       <y>175</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1089,13 +1089,36 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>230</y>
+       <y>260</y>
        <width>271</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
       <string>开启搜索词优化</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherSongFormatLabel">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>145</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>音乐格式</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="otherSongFormatComboBox">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>142</y>
+       <width>170</width>
+       <height>22</height>
+      </rect>
      </property>
     </widget>
    </widget>

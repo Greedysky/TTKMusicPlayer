@@ -195,6 +195,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherAlbumCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool());
     m_ui->otherInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool());
+    m_ui->otherSongFormatComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt());
 
     ////////////////////////////////////////////////
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
@@ -526,6 +527,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced, m_ui->otherAlbumCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, m_ui->otherInfoCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, m_ui->otherSideByCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, m_ui->otherSongFormatComboBox->currentIndex());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
@@ -671,6 +673,11 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
+
+    m_ui->otherSongFormatComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->otherSongFormatComboBox));
+    m_ui->otherSongFormatComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
+    m_ui->otherSongFormatComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+    m_ui->otherSongFormatComboBox->addItems(QStringList() << tr("Singer - Song") << tr("Song - Singer"));
 
     m_ui->otherNorImgRadioBox->click();
 }

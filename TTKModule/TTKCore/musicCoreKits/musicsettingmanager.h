@@ -54,6 +54,7 @@ public:
         OtherSearchChoiced,             /*!< Other Search Optimzied Parameter*/
         OtherAlbumChoiced,              /*!< Other Use File Album Parameter*/
         OtherInfoChoiced,               /*!< Other Use File Info Parameter*/
+        OtherSongFormat,                /*!< Other Song Format Parameter*/
         OtherSideByChoiced,             /*!< Other App Side By Mode Parameter*/
         OtherSideByInChoiced,           /*!< Other App Side By In Mode Parameter*/
 

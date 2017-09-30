@@ -23,6 +23,7 @@
         <otherAlbum value="0"/>
         <otherInfo value="0"/>
         <otherSideBy value="0"/>
+        <otherSongFormat value="0"/>
     </otherSetting>
     <backgroundSetting>
         <bgTheme value="theme-15"/>

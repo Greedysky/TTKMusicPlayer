@@ -1,4 +1,5 @@
 #include "musicstringutils.h"
+#include "musicsettingmanager.h"
 
 #include <QColor>
 
@@ -28,10 +29,17 @@ QString MusicUtils::String::artistName(const QString &value, const QString &key)
     QStringList s = splitString(value);
     if(s.count() >= 2)
     {
-        int index = value.indexOf(key);
-        return value.left(index).trimmed();
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)
+        {
+            int index = value.indexOf(key);
+            return value.left(index).trimmed();
+        }
+        else
+        {
+            int index = value.indexOf(key) + 1;
+            return value.right(value.length() - index).trimmed();
+        }
     }
-
     return value;
 }
 
@@ -40,10 +48,17 @@ QString MusicUtils::String::songName(const QString &value, const QString &key)
     QStringList s = splitString(value);
     if(s.count() >= 2)
     {
-        int index = value.indexOf(key) + 1;
-        return value.right(value.length() - index).trimmed();
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt() == 0)
+        {
+            int index = value.indexOf(key) + 1;
+            return value.right(value.length() - index).trimmed();
+        }
+        else
+        {
+            int index = value.indexOf(key);
+            return value.left(index).trimmed();
+        }
     }
-
     return value;
 }
 
