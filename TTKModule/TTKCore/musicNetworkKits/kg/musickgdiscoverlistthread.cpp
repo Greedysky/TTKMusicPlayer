@@ -72,6 +72,7 @@ void MusicKGDiscoverListThread::downLoadFinished()
 
                 QVariantMap value = var.toMap();
                 m_topListInfo = value["FileName"].toString();
+                break;
             }
         }
     }

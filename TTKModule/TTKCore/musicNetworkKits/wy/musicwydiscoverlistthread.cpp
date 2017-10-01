@@ -116,6 +116,7 @@ void MusicWYDiscoverListThread::searchTopListInfoFinished()
                     }
 
                     m_topListInfo += " - " + value["name"].toString();
+                    break;
                 }
             }
         }

@@ -83,6 +83,7 @@ void MusicXMDiscoverListThread::downLoadFinished()
                     value = var.toMap();
                     m_topListInfo = QString("%1 %2").arg(value["artistName"].toString())
                                                     .arg(value["songName"].toString());
+                    break;
                 }
             }
         }

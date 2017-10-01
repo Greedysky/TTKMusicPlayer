@@ -9,7 +9,7 @@
  * works are strictly forbiden.
    =================================================*/
 
-#include <QMenu>
+#include <QWidget>
 #include <QSystemTrayIcon>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
@@ -122,7 +122,6 @@ protected:
 
     Ui::MusicApplication *m_ui;
     bool m_systemCloseConfig;
-    QMenu m_toolPopupMenu;
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;

@@ -87,6 +87,7 @@ void MusicQQDiscoverListThread::downLoadFinished()
                     }
 
                     m_topListInfo += " - " + value["songname"].toString();
+                    break;
                 }
             }
         }
