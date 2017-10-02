@@ -163,7 +163,8 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
                     musicInfo.m_albumId = value["albumid"].toString();
 
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-//                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId, m_manager);
+                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(musicInfo.m_songId);
                     ///music normal songs urls
                     readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);

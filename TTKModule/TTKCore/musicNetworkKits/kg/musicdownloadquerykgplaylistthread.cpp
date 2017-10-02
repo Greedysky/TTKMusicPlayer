@@ -51,8 +51,7 @@ void MusicDownLoadQueryKGPlaylistThread::startToPage(int offset)
 #endif
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
@@ -179,8 +178,7 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
 
                     musicInfo.m_songId = value["hash"].toString();
 
-//                    readFromMusicSongAlbumInfo(&musicInfo);
-//                    readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString(), m_manager);
+                    readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

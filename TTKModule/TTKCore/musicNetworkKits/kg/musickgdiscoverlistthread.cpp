@@ -23,7 +23,7 @@ void MusicKGDiscoverListThread::startToSearch()
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     m_topListInfo.clear();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(6666);
     deleteAll();
 
     QNetworkRequest request;
@@ -51,28 +51,32 @@ void MusicKGDiscoverListThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-        bytes = QString(bytes).split("global.features = ").back().split("];").front().toUtf8() + "]";
 
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
         if(ok)
         {
-            QVariantList datas = data.toList();
-            int where = datas.count();
-            where = (where > 0) ? qrand()%where : 0;
-
-            int counter = 0;
-            foreach(const QVariant &var, datas)
+            QVariantMap value = data.toMap();
+            if(value.contains("songs"))
             {
-                if((where != counter++) || var.isNull())
-                {
-                    continue;
-                }
+                value = value["songs"].toMap();
+                QVariantList datas = value["list"].toList();
+                int where = datas.count();
+                where = (where > 0) ? qrand()%where : 0;
 
-                QVariantMap value = var.toMap();
-                m_topListInfo = value["FileName"].toString();
-                break;
+                int counter = 0;
+                foreach(const QVariant &var, datas)
+                {
+                    if((where != counter++) || var.isNull())
+                    {
+                        continue;
+                    }
+
+                    QVariantMap value = var.toMap();
+                    m_topListInfo = value["filename"].toString();
+                    break;
+                }
             }
         }
     }

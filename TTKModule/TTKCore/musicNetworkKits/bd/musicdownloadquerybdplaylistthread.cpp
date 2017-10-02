@@ -23,7 +23,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(QueryType type, const QSt
     }
     else
     {
-        m_searchText = playlist;
+        m_searchText = playlist.isEmpty() ? "%E5%8D%8E%E8%AF%AD" : playlist;;
         startToPage(0);
     }
 }
@@ -39,7 +39,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
     deleteAll();
     m_pageTotal = 0;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false)
-                    .arg(m_searchText).arg(m_pageSize*offset);
+                    .arg(m_searchText).arg(offset).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -52,31 +52,6 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-}
-
-void MusicDownLoadQueryBDPlaylistThread::startToSearchAll(const QSet<QString> &ids)
-{
-    foreach(const QString &id, ids)
-    {
-        if(!m_manager)
-        {
-            return;
-        }
-
-        QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(id);
-
-        QNetworkRequest request;
-        request.setUrl(musicUrl);
-        request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    #ifndef QT_NO_SSL
-        QSslConfiguration sslConfig = request.sslConfiguration();
-        sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-        request.setSslConfiguration(sslConfig);
-    #endif
-        QNetworkReply *reply = m_manager->get(request);
-        connect(reply, SIGNAL(finished()), SLOT(getSongAllFinished()));
-        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-    }
 }
 
 void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
@@ -116,46 +91,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QSet<QString> songIds;
-        while(m_reply->canReadLine())
-        {
-            QString text = m_reply->readLine();
-            QRegExp regx(QString("/songlist/(\\d+)"));
-            int pos = QString(text).indexOf(regx);
-            while(pos != -1)
-            {
-                songIds << regx.cap(1);
-                pos += regx.matchedLength();
-                pos = regx.indexIn(text, pos);
-            }
-
-            ///Get the total playlist number
-            if(text.contains("pageNavigator:{"))
-            {
-                text = text.split(",").front();
-                text = text.split(":").back();
-                m_pageTotal = text.toInt();
-            }
-        }
-        startToSearchAll(songIds);
-    }
-
-//    emit downLoadDataChanged(QString());
-    deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
-}
-
-void MusicDownLoadQueryBDPlaylistThread::getSongAllFinished()
-{
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
-
-    M_LOGGER_INFO(QString("%1 getSongAllFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
-
-    if(reply && reply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = reply->readAll();
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -165,23 +101,35 @@ void MusicDownLoadQueryBDPlaylistThread::getSongAllFinished()
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000)
             {
-                MusicPlaylistItem item;
-                item.m_coverUrl = value["pic_300"].toString();
-                item.m_id = value["listid"].toString();
-                item.m_name = value["title"].toString();
-                item.m_playCount = value["listenum"].toString();
-                item.m_description = value["desc"].toString();
-                item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                item.m_nickname = "Greedysky";
-                item.m_tags = value["tag"].toString().replace(",", "|");
+                m_pageTotal = value["total"].toLongLong();
+                QVariantList datas = value["content"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
 
-                emit createPlaylistItems(item);
+                    value = var.toMap();
+                    MusicPlaylistItem item;
+                    item.m_coverUrl = value["pic_300"].toString();
+                    item.m_id = value["listid"].toString();
+                    item.m_name = value["title"].toString();
+                    item.m_playCount = value["listenum"].toString();
+                    item.m_description = value["desc"].toString();
+                    item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+                    item.m_nickname = "Greedysky";
+                    item.m_tags = value["tag"].toString().replace(",", "|");
+
+                    emit createPlaylistItems(item);
+                }
             }
         }
     }
 
 //    emit downLoadDataChanged(QString());
-    M_LOGGER_INFO(QString("%1 getSongAllFinished deleteAll").arg(getClassName()));
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
@@ -222,8 +170,8 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
                     musicInfo.m_artistId = value["ting_uid"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
-//                    musicInfo.m_lrcUrl = value["lrclink"].toString();
-//                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
+                    musicInfo.m_lrcUrl = value["lrclink"].toString();
+                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);

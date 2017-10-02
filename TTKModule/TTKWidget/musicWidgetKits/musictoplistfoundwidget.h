@@ -1,5 +1,5 @@
-#ifndef MUSICALBUMFOUNDWIDGET_H
-#define MUSICALBUMFOUNDWIDGET_H
+#ifndef MUSICTOPLISTFOUNDWIDGET_H
+#define MUSICTOPLISTFOUNDWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -12,25 +12,24 @@
 #include "musicfoundabstractwidget.h"
 #include "musicqueryfoundtablewidget.h"
 
-/*! @brief The class of the album music found table widget.
+/*! @brief The class of the toplist music found table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicQueryFoundTableWidget
+class MUSIC_WIDGET_EXPORT MusicTopListFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
+    explicit MusicTopListFoundTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicAlbumFoundTableWidget();
+    virtual ~MusicTopListFoundTableWidget();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
      * Set network query input.
      */
@@ -39,19 +38,19 @@ public:
 };
 
 
-/*! @brief The class of album music found widget.
+/*! @brief The class of toplist music found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicAlbumFoundWidget : public MusicFoundAbstractWidget
+class MUSIC_WIDGET_EXPORT MusicTopListFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAlbumFoundWidget(QWidget *parent = 0);
+    explicit MusicTopListFoundWidget(QWidget *parent = 0);
 
-    virtual ~MusicAlbumFoundWidget();
+    virtual ~MusicTopListFoundWidget();
 
     /*!
      * Get class object name.
@@ -74,21 +73,13 @@ public Q_SLOTS:
      */
     void queryAllFinished();
     /*!
-     * Query album musics is finished.
+     * Create the current toplist info item.
      */
-    void queryAlbumFinished();
+    void createToplistInfoItem(const MusicPlaylistItem &item);
     /*!
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play all button clicked now.
-     */
-    void playAllButtonClicked();
-    /*!
-     * Share button clicked now.
-     */
-    void shareButtonClicked();
     /*!
      * Play button clicked now.
      */
@@ -103,10 +94,16 @@ public Q_SLOTS:
     void addButtonClicked();
 
 protected:
-    QLabel *m_iconLabel;
-    MusicAlbumFoundTableWidget *m_albumTableWidget;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
+    /*!
+     * Create init interface lables.
+     */
+    void createLabels();
+
+    QLabel *m_iconLabel, *m_nameLabel, *m_playCountLabel;
+    QLabel *m_updateTimeLabel, *m_descriptionLabel, *m_songItemsLabel;
+
+    MusicTopListFoundTableWidget *m_toplistTableWidget;
 
 };
 
-#endif // MUSICALBUMFOUNDWIDGET_H
+#endif // MUSICTOPLISTFOUNDWIDGET_H

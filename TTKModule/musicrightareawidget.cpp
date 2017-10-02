@@ -12,6 +12,7 @@
 #include "musicartistfoundwidget.h"
 #include "musicsimilarfoundwidget.h"
 #include "musicplaylistfoundwidget.h"
+#include "musictoplistfoundwidget.h"
 #include "musicsongsearchonlinewidget.h"
 #include "musicidentifysongswidget.h"
 #include "musicfunctionuiobject.h"
@@ -234,6 +235,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
+    else if(MObject_cast(MusicTopListFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicTopListFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
     else if(MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget))
     {
         MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
@@ -403,6 +408,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case ToplistWidget: //insert toplist found widget
+            {
+                MusicTopListFoundWidget *toplistFoundWidget = new MusicTopListFoundWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(toplistFoundWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(toplistFoundWidget);
+                m_stackedFuncWidget = toplistFoundWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
         case PlaylistWidget: //insert playlist found widget
             {
                 MusicPlaylistFoundWidget *playlistFoundWidget = new MusicPlaylistFoundWidget(this);
@@ -466,6 +480,12 @@ void MusicRightAreaWidget::musicArtistFound(const QString &text)
 {
     musicFunctionClicked(MusicRightAreaWidget::ArtistWidget);
     MStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+}
+
+void MusicRightAreaWidget::musicToplistFound()
+{
+    musicFunctionClicked(MusicRightAreaWidget::ToplistWidget);
+    MStatic_cast(MusicTopListFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicPlaylistFound()

@@ -39,10 +39,6 @@ public:
      */
     virtual void startToPage(int offset) override;
     /*!
-     * Start to search all data.
-     */
-    void startToSearchAll(const QSet<QString> &ids);
-    /*!
      * Start to Search data.
      */
     void startToSearch(const QString &playlist);
@@ -58,10 +54,6 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
-    /*!
-     * Download song all finished.
-     */
-    void getSongAllFinished();
     /*!
      * Download details data from net finished.
      */

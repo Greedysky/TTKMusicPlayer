@@ -1,54 +1,54 @@
-#include "musicdownloadqueryxmartistthread.h"
+#include "musicdownloadqueryxmtoplistthread.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryXMArtistThread::MusicDownLoadQueryXMArtistThread(QObject *parent)
+MusicDownLoadQueryXMToplistThread::MusicDownLoadQueryXMToplistThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMArtistThread::getClassName()
+QString MusicDownLoadQueryXMToplistThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryXMArtistThread::startToSearch(QueryType type, const QString &artist)
+void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
     Q_UNUSED(type);
-    startToSearch(artist);
+    startToSearch(toplist);
 }
 
-void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
+void MusicDownLoadQueryXMToplistThread::startToSearch(const QString &toplist)
 {
+    Q_UNUSED(toplist);
     if(!m_manager)
     {
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    m_searchText = artist;
+    M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     deleteAll();
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_ARTIST_DATA_URL, false).arg(artist).arg(1).arg(30),
-                      MusicUtils::Algorithm::mdII(XM_ARTIST_URL, false));
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false),
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryXMArtistThread::downLoadFinished()
+void MusicDownLoadQueryXMToplistThread::downLoadFinished()
 {
     if(!m_reply || !m_manager)
     {
@@ -77,6 +77,14 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
+                MusicPlaylistItem info;
+                info.m_name = value["title"].toString();
+                info.m_coverUrl = value["logo"].toString();
+                info.m_playCount = "-";
+                info.m_description = value["cont"].toString();
+                info.m_updateTime = value["time"].toString();
+                emit createToplistInfoItem(info);
+                ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {

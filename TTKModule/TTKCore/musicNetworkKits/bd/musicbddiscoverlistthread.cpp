@@ -6,7 +6,7 @@
 MusicBDDiscoverListThread::MusicBDDiscoverListThread(QObject *parent)
     : MusicDownLoadDiscoverListThread(parent)
 {
-
+    m_pageSize = 100;
 }
 
 QString MusicBDDiscoverListThread::getClassName()
@@ -23,7 +23,7 @@ void MusicBDDiscoverListThread::startToSearch()
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     m_topListInfo.clear();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(2).arg(m_pageSize).arg(0);
     deleteAll();
 
     QNetworkRequest request;
@@ -41,7 +41,7 @@ void MusicBDDiscoverListThread::startToSearch()
 
 void MusicBDDiscoverListThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -50,40 +50,7 @@ void MusicBDDiscoverListThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        MusicObject::MIntSet ids;
-        while(m_reply->canReadLine())
-        {
-            QString text = m_reply->readLine();
-            QRegExp regx(QString("/song/(\\d+)"));
-            int pos = QString(text).indexOf(regx);
-            while(pos != -1)
-            {
-                ids << regx.cap(1).toInt();
-                pos += regx.matchedLength();
-                pos = regx.indexIn(text, pos);
-            }
-        }
-
-        if(!ids.isEmpty())
-        {
-            int id = ids.toList()[qrand()%ids.count()];
-            searchTopListInformation(QString::number(id));
-            return;
-        }
-    }
-
-    emit downLoadDataChanged(m_topListInfo);
-    deleteAll();
-    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
-}
-
-void MusicBDDiscoverListThread::searchTopListInfoFinished()
-{
-    M_LOGGER_INFO(QString("%1 searchTopListInfoFinished").arg(getClassName()));
-    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
-    if(reply && reply->error() == QNetworkReply::NoError)
-    {
-        QByteArray bytes = reply->readAll();
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -91,20 +58,23 @@ void MusicBDDiscoverListThread::searchTopListInfoFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["errorCode"].toInt() == 22000 && value.contains("data"))
+            if(value["error_code"].toInt() == 22000 && value.contains("song_list"))
             {
-                value = value["data"].toMap();
-                QVariantList datas = value["songList"].toList();
+                QVariantList datas = value["song_list"].toList();
+                int where = datas.count();
+                where = (where > 0) ? qrand()%where : 0;
+
+                int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
-                    if(var.isNull())
+                    if((where != counter++) || var.isNull())
                     {
                         continue;
                     }
 
                     value = var.toMap();
-                    m_topListInfo = QString("%1 - %2").arg(value["artistName"].toString())
-                                                      .arg(value["songName"].toString());
+                    m_topListInfo = QString("%1 - %2").arg(value["author"].toString())
+                                                      .arg(value["title"].toString());
                     break;
                 }
             }
@@ -113,26 +83,5 @@ void MusicBDDiscoverListThread::searchTopListInfoFinished()
 
     emit downLoadDataChanged(m_topListInfo);
     deleteAll();
-    M_LOGGER_INFO(QString("%1 searchTopListInfoFinished deleteAll").arg(getClassName()));
-}
-
-void MusicBDDiscoverListThread::searchTopListInformation(const QString &id)
-{
-    if(!m_manager)
-    {
-        return;
-    }
-
-    M_LOGGER_INFO(QString("%1 searchTopListInformation %2").arg(getClassName()).arg(id));
-    QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(BD_SONG_FMINFO_URL, false).arg(id)));
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
-    QNetworkReply *reply = m_manager->get(request);
-    connect(reply, SIGNAL(finished()), SLOT(searchTopListInfoFinished()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+    M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

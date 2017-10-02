@@ -121,11 +121,6 @@ public Q_SLOTS:
     void buttonClicked(int index);
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override;
-
     bool m_firstInit, m_categoryChanged;
     QStackedWidget *m_container;
     QGridLayout *m_gridLayout;

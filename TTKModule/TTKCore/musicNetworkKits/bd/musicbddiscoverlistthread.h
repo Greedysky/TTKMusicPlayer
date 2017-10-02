@@ -37,16 +37,7 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
-    /*!
-     * Search top list information finished.
-     */
-    void searchTopListInfoFinished();
 
-protected:
-    /*!
-     * Search top list information.
-     */
-    void searchTopListInformation(const QString &id);
 
 };
 

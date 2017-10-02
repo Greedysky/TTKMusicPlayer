@@ -22,6 +22,13 @@
 #include "musicdownloadquerybdartistthread.h"
 #include "musicdownloadqueryqqartistthread.h"
 
+#include "musicdownloadquerywytoplistthread.h"
+#include "musicdownloadqueryqqtoplistthread.h"
+#include "musicdownloadqueryxmtoplistthread.h"
+#include "musicdownloadquerybdtoplistthread.h"
+#include "musicdownloadquerykgtoplistthread.h"
+#include "musicdownloadquerykwtoplistthread.h"
+
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicdownloadqueryqqplaylistthread.h"
 #include "musicdownloadquerybdplaylistthread.h"
@@ -110,6 +117,24 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
         default: thread = new MusicDownLoadQueryWYArtistThread(parent);
     }
     M_LOGGER_INFO(QString("getArtistThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getToplistThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicDownLoadQueryWYToplistThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQToplistThread(parent); break;
+        case 2:  thread = new MusicDownLoadQueryXMToplistThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryBDToplistThread(parent); break;
+        case 4:  thread = new MusicDownLoadQueryKWToplistThread(parent); break;
+        case 5:  thread = new MusicDownLoadQueryKGToplistThread(parent); break;
+        default: thread = new MusicDownLoadQueryWYToplistThread(parent);
+    }
+    M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

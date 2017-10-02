@@ -81,10 +81,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Override the widget event.
-     */
-    virtual void resizeEvent(QResizeEvent *event) override;
-    /*!
      * Init the first widget.
      */
     void initFirstWidget();

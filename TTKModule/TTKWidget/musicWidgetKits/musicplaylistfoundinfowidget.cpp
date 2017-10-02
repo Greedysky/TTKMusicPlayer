@@ -291,12 +291,6 @@ void MusicPlaylistFoundInfoWidget::addButtonClicked()
     m_playlistTableWidget->downloadDataFrom(false);
 }
 
-void MusicPlaylistFoundInfoWidget::resizeEvent(QResizeEvent *event)
-{
-    QWidget::resizeEvent(event);
-    resizeWindow();
-}
-
 void MusicPlaylistFoundInfoWidget::initFirstWidget()
 {
     QWidget *songWidget = new QWidget(this);

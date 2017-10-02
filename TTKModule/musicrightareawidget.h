@@ -41,6 +41,7 @@ public:
         SimilarWidget,          /*!< insert similar found widget*/
         AlbumWidget,            /*!< insert album found widget*/
         ArtistWidget,           /*!< insert artist found widget*/
+        ToplistWidget,          /*!< insert toplist found widget*/
         PlaylistWidget,         /*!< insert playlist found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget            /*!< insert kugou kuishe widget*/
@@ -159,7 +160,11 @@ public Q_SLOTS:
      */
     void musicArtistFound(const QString &text);
     /*!
-     * Music playlist function that by string.
+     * Music toplist function.
+     */
+    void musicToplistFound();
+    /*!
+     * Music playlist function.
      */
     void musicPlaylistFound();
     /*!

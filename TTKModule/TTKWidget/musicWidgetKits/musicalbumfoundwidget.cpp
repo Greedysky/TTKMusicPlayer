@@ -381,9 +381,3 @@ void MusicAlbumFoundWidget::addButtonClicked()
 {
     m_albumTableWidget->downloadDataFrom(false);
 }
-
-void MusicAlbumFoundWidget::resizeEvent(QResizeEvent *event)
-{
-    QWidget::resizeEvent(event);
-    resizeWindow();
-}

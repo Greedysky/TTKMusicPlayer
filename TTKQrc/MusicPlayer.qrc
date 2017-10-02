@@ -590,6 +590,7 @@
         <file alias="btn_identify_hover">../TTKResource/functions/btn_identify_hover.png</file>
         <file alias="btn_tools_normal">../TTKResource/functions/btn_tools_normal.png</file>
         <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
+        <file alias="btn_toplist_hover">../TTKResource/functions/btn_toplist_hover.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>

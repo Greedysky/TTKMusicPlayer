@@ -98,14 +98,14 @@ void CodeLinesTest::codeLines()
 void CodeLinesTest::stringEncode()
 {
 #ifdef Q_OS_WIN
-    qDebug() << MusicUtils::Algorithm::mdII("TEST_STRING", false);
+    qDebug() << MusicUtils::Algorithm::mdII("Test", true);
 #endif
 }
 
 void CodeLinesTest::stringDecode()
 {
 #ifdef Q_OS_WIN
-    qDebug() << MusicUtils::Algorithm::mdII("TEST_STRING", true);
+    qDebug() << MusicUtils::Algorithm::mdII("Test", false);
 #endif
 }
 

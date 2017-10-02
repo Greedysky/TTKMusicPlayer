@@ -45,17 +45,22 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 4:
             {
-                MusicRightAreaWidget::instance()->musicPlaylistFound();
+                MusicRightAreaWidget::instance()->musicToplistFound();
                 break;
             }
         case 5:
+            {
+                MusicRightAreaWidget::instance()->musicPlaylistFound();
+                break;
+            }
+        case 6:
             {
                 MusicSongSharingWidget shareWidget;
                 shareWidget.setSongName(m_currentSongName);
                 shareWidget.exec();
                 break;
             }
-        case 6:
+        case 7:
             {
                 MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
                 break;
@@ -67,7 +72,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
 void MusicMoreFunctionsPopWidget::initWidget()
 {
     setTranslucentBackground();
-    m_containWidget->setFixedSize(140, 220);
+    m_containWidget->setFixedSize(140, 255);
     m_menu->removeAction(m_menu->actions().first());
 
     QActionGroup *group = new QActionGroup(this);
@@ -75,8 +80,9 @@ void MusicMoreFunctionsPopWidget::initWidget()
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_similar_hover"), tr("similar")))->setData(1);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_ablum_hover"), tr("ablum")))->setData(2);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("artist")))->setData(3);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("playlist")))->setData(4);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_share_hover"), tr("share")))->setData(5);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_mv_hover"), tr("showMv")))->setData(6);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_toplist_hover"), tr("toplist")))->setData(4);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("playlist")))->setData(5);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_share_hover"), tr("share")))->setData(6);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_mv_hover"), tr("showMv")))->setData(7);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(musicFunctionClicked(QAction*)));
 }
