@@ -25,7 +25,7 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
     headerview->resizeSection(1, 302);
-    headerview->resizeSection(2, 203);
+    headerview->resizeSection(2, 201);
     headerview->resizeSection(3, 55);
     headerview->resizeSection(4, 23);
     headerview->resizeSection(5, 26);
@@ -163,9 +163,8 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.4 + 302);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.4 + 183);
-    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)*0.2 + 55);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.5 + 302);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.5 + 181);
 
     for(int i=0; i<rowCount(); ++i)
     {
@@ -565,9 +564,9 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     if(m_resizeLabels.count() == 3)
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 305);
-        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.4 + 295);
-        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.2 + 150);
+        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.5 + 305);
+        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.5 + 295);
+        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0 + 150);
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;

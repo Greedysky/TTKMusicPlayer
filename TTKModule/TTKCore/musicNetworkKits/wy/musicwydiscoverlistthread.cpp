@@ -62,9 +62,13 @@ void MusicWYDiscoverListThread::downLoadFinished()
             {
                 value = value["result"].toMap();
                 QVariantList datas = value["tracks"].toList();
+                int where = datas.count();
+                where = (where > 0) ? qrand()%where : 0;
+
+                int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
-                    if(var.isNull())
+                    if((where != counter++) || var.isNull())
                     {
                         continue;
                     }

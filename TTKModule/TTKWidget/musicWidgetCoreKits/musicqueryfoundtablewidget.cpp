@@ -17,7 +17,7 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 456);
+    headerview->resizeSection(1, 452);
     headerview->resizeSection(2, 47);
     headerview->resizeSection(3, 26);
     headerview->resizeSection(4, 26);
@@ -87,8 +87,7 @@ void MusicQueryFoundTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.9 + 456);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.1 + 47);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 452);
 
     for(int i=0; i<rowCount(); ++i)
     {
