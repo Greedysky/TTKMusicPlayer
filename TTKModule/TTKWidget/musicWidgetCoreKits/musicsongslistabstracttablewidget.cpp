@@ -17,7 +17,6 @@ MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *pa
     m_hasParentToolIndex = true;
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 MusicSongsListAbstractTableWidget::~MusicSongsListAbstractTableWidget()

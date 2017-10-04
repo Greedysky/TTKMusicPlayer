@@ -101,10 +101,11 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                                 continue;
                             }
 
+                            musicInfo.m_timeLength = findTimeStringByAttrs(musicInfo.m_songAttrs);
                             MusicSearchedItem item;
                             item.m_songname = musicInfo.m_songName;
                             item.m_artistname = musicInfo.m_singerName;
-                            item.m_time = musicInfo.m_songAttrs.first().m_duration;
+                            item.m_time = musicInfo.m_timeLength;
                             item.m_type = mapQueryServerString();
                             emit createSearchedItems(item);
                         }
@@ -129,7 +130,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                         MusicSearchedItem item;
                         item.m_songname = musicInfo.m_songName;
                         item.m_artistname = musicInfo.m_singerName;
-                        item.m_time = musicInfo.m_songAttrs.first().m_duration;
+                        item.m_time = findTimeStringByAttrs(musicInfo.m_songAttrs);
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);
                         m_musicSongInfos << musicInfo;

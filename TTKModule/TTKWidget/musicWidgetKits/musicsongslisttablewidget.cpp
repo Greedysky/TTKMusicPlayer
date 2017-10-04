@@ -48,6 +48,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_musicSort = nullptr;
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     setColumnCount(6);
 

@@ -182,10 +182,11 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
                         continue;
                     }
 
+                    musicInfo.m_timeLength = findTimeStringByAttrs(musicInfo.m_songAttrs);
                     MusicSearchedItem item;
                     item.m_songname = musicInfo.m_songName;
                     item.m_artistname = musicInfo.m_singerName;
-                    item.m_time = musicInfo.m_songAttrs.first().m_duration;
+                    item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
                     emit createSearchedItems(item);
 

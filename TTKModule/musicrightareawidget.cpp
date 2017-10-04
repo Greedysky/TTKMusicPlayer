@@ -75,11 +75,10 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ///////////////////////////////////////////////////////
 
     QButtonGroup *group = new QButtonGroup(this);
-    group->addButton(ui->musicSearchButton, 6);
-    group->addButton(ui->musicWindowIdentify, 11);
+    group->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
+    group->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
-
     ///////////////////////////////////////////////////////
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget,
                  SLOT(changeInlineLrcWidget()));

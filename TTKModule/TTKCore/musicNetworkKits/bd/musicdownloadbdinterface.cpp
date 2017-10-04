@@ -177,6 +177,7 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
                     attr.m_size = MusicUtils::Number::size2Label(value["size"].toInt());
                     attr.m_format = value["format"].toString();
                     attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["rate"].toInt());
+                    attr.m_duration = MusicTime::msecTime2LabelJustified(value["time"].toInt()*1000);
                     info->m_songAttrs.append(attr);
                 }
             }
@@ -232,4 +233,17 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
             }
         }
     }
+}
+
+QString MusicDownLoadBDInterface::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
+{
+    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    {
+        if(!attr.m_duration.isEmpty())
+        {
+            return attr.m_duration;
+        }
+    }
+
+    return QString("-");
 }

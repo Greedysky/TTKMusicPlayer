@@ -49,6 +49,10 @@ protected:
      */
     void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QString &url,
                                       const QString &size, const QString &duration);
+    /*!
+     * Find time string by attrs.
+     */
+    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
 
 };
 

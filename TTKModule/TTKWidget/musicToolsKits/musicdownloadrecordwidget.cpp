@@ -14,7 +14,7 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 170);
+    headerview->resizeSection(1, 168);
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
@@ -190,7 +190,7 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 160));
+    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 158));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip( record.m_name );

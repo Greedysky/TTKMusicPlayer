@@ -109,7 +109,8 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                     {
                         continue;
                     }
-                    musicInfo.m_timeLength = musicInfo.m_songAttrs.first().m_duration;
+
+                    musicInfo.m_timeLength = findTimeStringByAttrs(musicInfo.m_songAttrs);
                     MusicSearchedItem item;
                     item.m_songname = musicInfo.m_songName;
                     item.m_artistname = musicInfo.m_singerName;
@@ -221,3 +222,17 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVInfoAttribute(MusicObject::Musi
         info->m_songAttrs.append(attr);
     }
 }
+
+QString MusicDownLoadQueryYYTThread::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
+{
+    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    {
+        if(!attr.m_duration.isEmpty())
+        {
+            return attr.m_duration;
+        }
+    }
+
+    return QString("-");
+}
+
