@@ -31,6 +31,10 @@ namespace MusicUtils
          * Get sha1 algorithm.
          */
         MUSIC_UTILS_EXPORT QByteArray sha1(const QByteArray &data);
+        /*!
+         * Encode the data into sha1.
+         */
+        MUSIC_UTILS_EXPORT QByteArray hmackSha1(const QByteArray &data, const QByteArray &key);
 
         /*!
          * Get mdII(greedysky) algorithm.

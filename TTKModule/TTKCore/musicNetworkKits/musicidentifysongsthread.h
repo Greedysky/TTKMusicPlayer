@@ -73,11 +73,6 @@ public Q_SLOTS:
     void keyDownLoadFinished(const QByteArray &data);
 
 protected:
-    /*!
-     * Encode the data into sha1.
-     */
-    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
-
     MusicSongIdentifys m_songIdentifys;
     QString m_accessKey, m_accessSecret;
 

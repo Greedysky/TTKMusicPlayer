@@ -47,7 +47,7 @@ QString MusicLicenseCore::getCharacteristicStringNormal()
     if(!nets.isEmpty())
     {
         QString adds = nets.first().hardwareAddress();
-        return hmacSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
+        return MusicUtils::Algorithm::hmackSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
     }
     return QString();
 }
@@ -62,34 +62,9 @@ QStringList MusicLicenseCore::getCharacteristicStrings()
     return data;
 }
 
-QByteArray MusicLicenseCore::hmacSha1(const QByteArray &data, const QByteArray &key)
-{
-    int blockSize = 64;
-    QByteArray newSecretKey = key;
-    if(newSecretKey.length() > blockSize)
-    {
-        newSecretKey = MusicUtils::Algorithm::sha1(newSecretKey);
-    }
-
-    QByteArray innerPadding(blockSize, char(0x36));
-    QByteArray outerPadding(blockSize, char(0x5c));
-
-    for(int i = 0; i < key.length(); i++)
-    {
-        innerPadding[i] = innerPadding[i] ^ key.at(i);
-        outerPadding[i] = outerPadding[i] ^ key.at(i);
-    }
-
-    QByteArray total = outerPadding;
-    QByteArray part = innerPadding;
-    part.append(data);
-    total.append(MusicUtils::Algorithm::sha1(part));
-    return MusicUtils::Algorithm::sha1(total);
-}
-
 QString MusicLicenseCore::splitString(const QByteArray &data, const QByteArray &key)
 {
-    QString value = hmacSha1(data, key).toHex().mid(10, 20);
+    QString value = MusicUtils::Algorithm::hmackSha1(data, key).toHex().mid(10, 20);
     int count = value.count();
     for(int i=1; i<count/5; ++i)
     {

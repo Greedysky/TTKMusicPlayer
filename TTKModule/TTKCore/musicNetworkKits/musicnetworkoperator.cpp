@@ -4,7 +4,7 @@
 
 #include <QStringList>
 
-const QString IP_CHECK_URL = "eEw0OUdIU0pDSWJnODRGZndnWjZNQmRneGxjb1hEWERLVXI0U0RMdWdIaz0=";
+const QString IP_CHECK_URL = "cU5VdTY0anp2dDIyU1ZwVCtyRHlnN3ppdVMraDk2enhyMmdxaU4vOTFMQT0=";
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)

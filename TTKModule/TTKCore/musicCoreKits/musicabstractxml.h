@@ -60,6 +60,7 @@ public:
      * Write datas into xml file by given name.
      */
     bool writeConfig(const QString &name);
+
     /*!
      * Xml stream data from string.
      */
@@ -68,7 +69,6 @@ public:
      * Xml stream data from byteArray.
      */
     bool fromByteArray(const QByteArray &data);
-
     /*!
      * Xml stream data to string.
      */

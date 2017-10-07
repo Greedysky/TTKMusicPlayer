@@ -63,7 +63,7 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     QString timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
 
     httpMethod = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
-    QByteArray content = hmacSha1(httpMethod.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    QByteArray content = MusicUtils::Algorithm::hmackSha1(httpMethod.toUtf8(), m_accessSecret.toUtf8()).toBase64();
 
     QString value;
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";
@@ -157,30 +157,4 @@ void MusicIdentifySongsThread::keyDownLoadFinished(const QByteArray &data)
         }
     }
     emit getKeyFinished();
-}
-
-QByteArray MusicIdentifySongsThread::hmacSha1(const QByteArray &data, const QByteArray &secretKey)
-{
-    int blockSize = 64;
-    QByteArray newSecretKey = secretKey;
-    if(newSecretKey.length() > blockSize)
-    {
-        newSecretKey = MusicUtils::Algorithm::sha1(newSecretKey);
-    }
-
-    QByteArray innerPadding(blockSize, char(0x36));
-    QByteArray outerPadding(blockSize, char(0x5c));
-
-    for(int i = 0; i < secretKey.length(); i++)
-    {
-        innerPadding[i] = innerPadding[i] ^ secretKey.at(i);
-        outerPadding[i] = outerPadding[i] ^ secretKey.at(i);
-    }
-
-    QByteArray total = outerPadding;
-    QByteArray part = innerPadding;
-    part.append(data);
-    total.append(MusicUtils::Algorithm::sha1(part));
-    QByteArray hashed = MusicUtils::Algorithm::sha1(total);
-    return hashed;
 }

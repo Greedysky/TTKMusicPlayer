@@ -47,10 +47,6 @@ private:
      */
     QStringList getCharacteristicStrings();
     /*!
-     * Get hmac in sha1.
-     */
-    QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
-    /*!
      * Split hmac string.
      */
     QString splitString(const QByteArray &data, const QByteArray &key);
