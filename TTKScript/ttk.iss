@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ÃÏÃÏø·“Ù"
-#define MyAppVersion "2.6.0.0"
+#define MyAppVersion "2.6.1.0"
 #define MyAppPublisher "Copyright (c) 2015 - 2017 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName "TTKMusicPlayer.exe"
@@ -48,4 +48,4 @@ Filename: "{sys}\cmd.exe"; Parameters:" /c takeown /f ""{app}"" /r /d y & icacls
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [PostCompile]
-Name: "D:\Qt\Workspace\TTKMusicplayer\TTKScript\make_cert.bat";Parameters:"D:\Qt\v2.6.0.0.exe" ;Flags: cmdprompt redirectoutput
+Name: "D:\Qt\Workspace\TTKMusicplayer\TTKScript\make_cert.bat";Parameters:"D:\Qt\v2.6.1.0.exe" ;Flags: cmdprompt redirectoutput
