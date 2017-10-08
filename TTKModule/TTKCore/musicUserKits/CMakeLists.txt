@@ -7,7 +7,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_USER_KITS_HEADERS
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_USER_KITS_SOURCES
     ${MUSIC_CORE_USERMANAGER_DIR}/musicusermodel.cpp
-    ${MUSIC_CORE_USERMANAGER_DIR}/musicusermodel.cpp
     ${MUSIC_CORE_USERMANAGER_DIR}/musicuserconfigmanager.cpp
   )
   

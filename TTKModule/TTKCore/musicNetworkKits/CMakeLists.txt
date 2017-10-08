@@ -16,6 +16,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.h
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyplaylistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywytoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadxminterface.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmalbumthread.h
@@ -24,6 +25,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicxmcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicxmdiscoverlistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.h
@@ -31,6 +33,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kg/musickgcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kg/musickgdiscoverlistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.h
@@ -40,6 +43,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwdiscoverlistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwbackgroundthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdthread.h
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.h
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.h
@@ -48,6 +52,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicbdcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.h
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicbddiscoverlistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.h
@@ -57,6 +62,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqdiscoverlistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqbackgroundthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.h
@@ -96,6 +102,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyalbumthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyartistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywyplaylistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/wy/musicdownloadquerywytoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadxminterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmalbumthread.cpp
@@ -104,6 +111,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmplaylistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicxmcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicxmdiscoverlistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgalbumthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgartistthread.cpp
@@ -111,6 +119,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgplaylistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kg/musickgcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kg/musickgdiscoverlistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/kg/musicdownloadquerykgtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwalbumthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwartistthread.cpp
@@ -120,6 +129,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwdiscoverlistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/kw/musickwbackgroundthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/kw/musicdownloadquerykwtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdalbumthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdartistthread.cpp
@@ -128,6 +138,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicbdcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdlearnthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/bd/musicbddiscoverlistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/bd/musicdownloadquerybdtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqalbumthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqartistthread.cpp
@@ -137,6 +148,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqdiscoverlistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqbackgroundthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.cpp
