@@ -194,15 +194,30 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
     cpoyFileFromLocal( path );
     m_myBackgroundList->updateLastedItem();
 }
-
+#include <QDebug>
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
-    QString customSkinPath = MusicUtils::Widget::getOpenFileDialog(this);
+    QString customSkinPath = MusicUtils::Widget::getOpenFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
     if(customSkinPath.isEmpty())
     {
         return;
     }
-    cpoyFileFromLocal( customSkinPath );
+
+    if(QFileInfo(customSkinPath).suffix().toLower() == TTS_FILE_PREFIX)
+    {
+        int index = cpoyFileToLocalIndex();
+        if(index != -1)
+        {
+            m_myThemeIndex = index;
+            QString des = QString("%1theme-%2%3").arg(USER_THEME_DIR_FULL).arg(index + 1).arg(TTS_FILE);
+            QFile::copy(customSkinPath, des);
+            m_myBackgroundList->createItem(QString("theme-%1").arg(index + 1), des, true);
+        }
+    }
+    else
+    {
+        cpoyFileFromLocal( customSkinPath );
+    }
     m_myBackgroundList->updateLastedItem();
 }
 

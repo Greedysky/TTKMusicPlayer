@@ -14,6 +14,10 @@ ToolsSkin::ToolsSkin(QWidget *parent)
     m_ui->setupUi(this);
     setFixedSize(630, 400);
 
+    m_pixmap = QPixmap(1, 1);
+    m_pixmap.fill(Qt::white);
+    m_ui->pixLabel->setPixmap(m_pixmap.scaled(m_ui->pixLabel->size()));
+
     connect(m_ui->localButton, SIGNAL(clicked()), SLOT(imageClicked()));
     connect(m_ui->paletteButton, SIGNAL(clicked()), SLOT(paletteClicked()));
     connect(m_ui->readButton, SIGNAL(clicked()), SLOT(readClicked()));
