@@ -7,4 +7,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = TTKTools TTKTest
+SUBDIRS = url skin

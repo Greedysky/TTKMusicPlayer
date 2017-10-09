@@ -1,6 +1,4 @@
 #include "tst_codelines.h"
-#include "musicglobal.h"
-#include "musicalgorithmutils.h"
 
 #include <QDir>
 #include <QMap>
@@ -93,20 +91,6 @@ void CodeLinesTest::codeLines()
     {
         qDebug() << QString(".%1 Type  All count %2").arg(key).arg(categorys[key]);
     }
-}
-
-void CodeLinesTest::stringEncode()
-{
-#ifdef Q_OS_WIN
-    qDebug() << MusicUtils::Algorithm::mdII("Test", true);
-#endif
-}
-
-void CodeLinesTest::stringDecode()
-{
-#ifdef Q_OS_WIN
-    qDebug() << MusicUtils::Algorithm::mdII("Test", false);
-#endif
 }
 
 void CodeLinesTest::cleanupTestCase()
