@@ -134,6 +134,10 @@ protected:
      */
     void addThemeListWidgetItem();
     /*!
+     * Add all theme into list.
+     */
+    void addThemeListWidgetItem(MusicBackgroundListWidget *item, const QString &dir, bool state);
+    /*!
      * Copy custom file to local themes dir path.
      */
     void cpoyFileFromLocal(const QString &path);

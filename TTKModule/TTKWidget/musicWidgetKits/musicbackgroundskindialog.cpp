@@ -182,10 +182,8 @@ void MusicBackgroundSkinDialog::setListTransToolText(int value)
 void MusicBackgroundSkinDialog::showPaletteDialog()
 {
     MusicBackgroundPaletteWidget paletteWidget(this);
-    connect(&paletteWidget, SIGNAL(currentColorToFileChanged(QString)),
-                            SLOT(showPaletteDialog(QString)));
-    connect(&paletteWidget, SIGNAL(currentColorToMemoryChanged(QString)),
-                            SLOT(currentColorChanged(QString)));
+    connect(&paletteWidget, SIGNAL(currentColorToFileChanged(QString)), SLOT(showPaletteDialog(QString)));
+    connect(&paletteWidget, SIGNAL(currentColorToMemoryChanged(QString)), SLOT(currentColorChanged(QString)));
     paletteWidget.exec();
 }
 
@@ -194,7 +192,7 @@ void MusicBackgroundSkinDialog::showPaletteDialog(const QString &path)
     cpoyFileFromLocal( path );
     m_myBackgroundList->updateLastedItem();
 }
-#include <QDebug>
+
 void MusicBackgroundSkinDialog::showCustomSkinDialog()
 {
     QString customSkinPath = MusicUtils::Widget::getOpenFileDialog(this, "Images (*.png *.bmp *.jpg);;TTKS Files(*.ttks)");
@@ -338,18 +336,26 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
 
 void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 {
-    QList<QFileInfo> files(QDir(THEME_DIR_FULL)
-                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
-    foreach(const QFileInfo &info, files)
-    {
-        m_backgroundList->createItem(info.baseName(), info.filePath(), false);
-    }
+    addThemeListWidgetItem(m_backgroundList, THEME_DIR_FULL, false);
+    addThemeListWidgetItem(m_myBackgroundList, USER_THEME_DIR_FULL, true);
+}
 
-    files = QDir(USER_THEME_DIR_FULL)
-                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
-    foreach(const QFileInfo &info, files)
+void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget *item, const QString &dir, bool state)
+{
+    QStringList files(QDir(dir).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
+    MusicObject::MIntList data;
+    foreach(const QString &path, files)
     {
-        m_myBackgroundList->createItem(info.baseName(), info.filePath(), true);
+        QString fileName = QFileInfo(path).baseName();
+        fileName = fileName.split("-").last();
+        data << fileName.trimmed().toInt();
+    }
+    qSort(data.begin(), data.end(), qLess<int>());
+
+    foreach(const int index, data)
+    {
+        QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TTS_FILE));
+        item->createItem(info.baseName(), info.filePath(), state);
     }
 }
 
@@ -366,8 +372,7 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
 
 int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
-    QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL)
-                         .entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
+    QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
     MusicObject::MIntList data;
     foreach(const QFileInfo &info, files)
     {
