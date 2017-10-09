@@ -7,4 +7,7 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = TTKTools TTKTest
+win32{
+    SUBDIRS = TTKTools
+}
+SUBDIRS += TTKTest

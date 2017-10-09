@@ -31,9 +31,6 @@ INCLUDEPATH += $$PWD/../../../ \
 win32{
     LIBS += -L../../../bin/$$TTKMusicPlayer -lTTKCore
 }
-unix{
-    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKCore
-}
 
 SOURCES += mainskin.cpp\
            toolsskin.cpp

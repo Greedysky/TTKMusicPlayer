@@ -9,5 +9,7 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
-add_subdirectory(TTKTools)
+if(WIN32)
+  add_subdirectory(TTKTools)
+endif()
 add_subdirectory(TTKTest)
