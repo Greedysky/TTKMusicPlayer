@@ -92,6 +92,7 @@ void MusicPlayedListPopWidget::remove(int index)
 
     m_playlist->removeMedia(index);
     m_songLists.removeAt(index);
+    m_playedListWidget->replacePlayWidgetRow();
     m_playedListWidget->removeRow(index);
     m_playedListWidget->setPlayRowIndex(-1);
 
@@ -101,6 +102,7 @@ void MusicPlayedListPopWidget::remove(int index)
 void MusicPlayedListPopWidget::remove(int toolIndex, const QString &path)
 {
     int index = -1;
+    m_playedListWidget->replacePlayWidgetRow();
     do
     {
         index = m_playlist->removeMedia(toolIndex, path);
@@ -229,6 +231,7 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
         return;
     }
 
+    m_playedListWidget->replacePlayWidgetRow();
     int count = m_playedListWidget->rowCount();
     for(int i=0; i<count; ++i)
     {
