@@ -10,7 +10,7 @@
 #define OutputPath "D:\Qt"
 #define SourceMain "D:\Qt\TTKMusicPlayer\TTKMusicPlayer.exe"
 #define SourceFolder "D:\Qt\TTKMusicPlayer\*"
-#define SetupIconFilePath "D:\Qt\Workspace\TTKMusicplayer\TTKResource\lb_player_logo.ico"
+#define SetupIconFilePath "resource\lb_player_logo.ico"
 #define ResourcesPath "resource\*"
 
 [setup]
@@ -158,6 +158,7 @@ function InitializeUninstall(): Boolean;
 
 var
   BGimg:longint;
+  systemVersion:Integer;
   btnShowLicense,CancelBtn,btnBrowser,btnSetup,customSetup,btnBack:HWND;
   isWelcomePage:boolean;
   pathEdit:tedit;
@@ -320,10 +321,36 @@ procedure checkboxLicenseClick(hBtn:HWND);
       BtnSetEnabled(customSetup,false)
     end
   end;
+  
+// 安装系统检测
+function MyGetWindowsVersion(); // 获取 Windows 版本
+  var ProductName:String;//系统名称
+  begin
+    RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows NT\CurrentVersion', 'ProductName', ProductName);
+    
+    //Windows 7 系统检测
+    if (Pos('Windows 7', ProductName) > 0)then
+    begin
+        systemVersion = 1;
+        Exit;
+    end
+    
+    //Windows 8 系统检测
+    if (Pos('Windows 7', ProductName) > 0)then
+    begin
+        systemVersion = 2;
+        Exit;
+    end
+    
+    systemVersion = 0;
+  end;
 
 // 该过程在开始的时候改变向导或者向导页，不要指望使用InitializeSetup函数实现改变向导页的功能，因为InitializeSetup函数触发时向导窗口并不存在。
 procedure InitializeWizard();
   begin
+    // 安装系统检测
+    MyGetWindowsVersion();
+    
     // 设置欢迎向导页的尺寸大小
     WizardForm.OuterNotebook.hide;
     WizardForm.Bevel.Hide;
@@ -357,7 +384,8 @@ procedure InitializeWizard();
     ExtractTemporaryFile('btn_custom.png');
     ExtractTemporaryFile('label_shellLink.png');
     ExtractTemporaryFile('label_taskbarpin.png');
-    
+    ExtractTemporaryFile('lb_player_logo.ico');
+
     // 关闭按钮样式
     CancelBtn:=BtnCreate(WizardForm.Handle,627,8,12,12,ExpandConstant('{tmp}\btn_close.png'),1,False)
     BtnSetEvent(CancelBtn,BtnClickEventID,WrapBtnCallback(@CancelBtnOnClick,1));
@@ -417,7 +445,7 @@ procedure InitializeWizard();
       Lines.LoadFromFile(ExpandConstant('{tmp}\license.txt'));
       TabStop:=false;
     end;
-    
+
     ImgApplyChanges(WizardForm.Handle)
   end;
 
@@ -500,7 +528,7 @@ procedure CurPageChanged(CurPageID: Integer);
             DeleteFile('{commondesktop}\{#MyAppNameZh}.lnk');
           end
           CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),
-            '快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{#SetupIconFilePath}'),0,SW_SHOWNORMAL);
+            '快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\lb_player_logo.ico'),0,SW_SHOWNORMAL);
         end
 
         if BtngetChecked(checkboxTaskbarpin)=true then
