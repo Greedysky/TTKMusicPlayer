@@ -323,7 +323,7 @@ procedure checkboxLicenseClick(hBtn:HWND);
   end;
   
 // 安装系统检测
-function MyGetWindowsVersion(); // 获取 Windows 版本
+procedure MyGetWindowsVersion(); // 获取 Windows 版本
   var ProductName:String;//系统名称
   begin
     RegQueryStringValue(HKLM, 'SOFTWARE\Microsoft\Windows NT\CurrentVersion', 'ProductName', ProductName);
@@ -331,18 +331,18 @@ function MyGetWindowsVersion(); // 获取 Windows 版本
     //Windows 7 系统检测
     if (Pos('Windows 7', ProductName) > 0)then
     begin
-        systemVersion = 1;
+        systemVersion := 1;
         Exit;
     end
     
     //Windows 8 系统检测
     if (Pos('Windows 7', ProductName) > 0)then
     begin
-        systemVersion = 2;
+        systemVersion := 2;
         Exit;
     end
     
-    systemVersion = 0;
+    systemVersion := 0;
   end;
 
 // 该过程在开始的时候改变向导或者向导页，不要指望使用InitializeSetup函数实现改变向导页的功能，因为InitializeSetup函数触发时向导窗口并不存在。
@@ -533,7 +533,10 @@ procedure CurPageChanged(CurPageID: Integer);
 
         if BtngetChecked(checkboxTaskbarpin)=true then
         begin
-          ShellExec(ExpandConstant('taskbarpin'), ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'), '', '', SW_SHOWNORMAL, ewNoWait, ResultCode);
+          if systemVersion>0 then
+          begin
+            ShellExec(ExpandConstant('taskbarpin'), ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'), '', '', SW_SHOWNORMAL, ewNoWait, ResultCode);
+          end
         end
         
       end
