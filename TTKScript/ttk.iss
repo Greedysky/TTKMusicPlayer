@@ -8,11 +8,10 @@
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName "TTKMusicPlayer.exe"
 #define OutputPath "D:\Qt"
-#define OutputFileName "v2.6.1.0"
 #define SourceMain "D:\Qt\TTKMusicPlayer\TTKMusicPlayer.exe"
 #define SourceFolder "D:\Qt\TTKMusicPlayer\*"
 #define SetupIconFilePath "D:\Qt\Workspace\TTKMusicplayer\TTKResource\lb_player_logo.ico"
-#define ResourcesPath "C:\Users\Greedysky\Desktop\vue-nw-seed-win-beautiful-setup\vue-nw-seed-win-beautiful-setup\build\setup_resources\*"
+#define ResourcesPath "resource\*"
 
 [setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -28,7 +27,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppNameZh}
 OutputDir={#OutputPath}
-OutputBaseFilename={#OutputFileName}
+OutputBaseFilename=v{#MyAppVersion}
 SetupIconFile={#SetupIconFilePath}
 Compression=lzma
 SolidCompression=yes
@@ -63,7 +62,7 @@ Name: "{group}\п╤ть{#MyAppNameZh}"; Filename: "{uninstallexe}"
 ; Name: "chinese"; MessagesFile: "_resourcesPath_\ChineseSimp.isl"
 
 [PostCompile]
-Name: "D:\Qt\Workspace\TTKMusicplayer\TTKScript\make_cert.bat";Parameters:"D:\Qt\v2.6.1.0.exe" ;Flags: cmdprompt redirectoutput
+Name: "make_cert.bat";Parameters:"D:\Qt\v2.6.1.0.exe" ;Flags: cmdprompt redirectoutput
 
 [Code]
 // for dll
