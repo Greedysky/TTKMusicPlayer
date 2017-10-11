@@ -6,9 +6,7 @@
 # * works are strictly forbiden.
 # =================================================
 
-contains(CONFIG, MUSIC_BUILD_LIB){
-    include($$PWD/musicUiKits/MusicUiKits.pri)
-}
+include($$PWD/musicUiKits/MusicUiKits.pri)
 include($$PWD/musicLrcKits/MusicLrcKits.pri)
 include($$PWD/musicRemoteKits/MusicRemoteKits.pri)
 include($$PWD/musicSearchKits/MusicSearchKits.pri)

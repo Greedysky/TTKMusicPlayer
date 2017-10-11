@@ -26,6 +26,7 @@ HEADERS  += \
     $$PWD/musicvideouiobject.h
 }
 
+contains(CONFIG, MUSIC_BUILD_LIB){
 FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcKits/musiclrcartphotouploadwidget.ui \
@@ -73,3 +74,4 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsoundeffectswidget.ui \
     $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
     $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui
+}

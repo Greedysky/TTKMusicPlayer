@@ -74,25 +74,32 @@ void MusicToolSetsWidget::addListWidgetItem()
     {
         QString m_icon;
         QString m_name;
+
+        ItemPair() { }
+        ItemPair(const QString &icon, const QString &name)
+        {
+            m_icon = icon;
+            m_name = name;
+        }
     }ItemPair;
     MUSIC_DECLARE_LISTS(ItemPair);
 
     ItemPairs pairs;
-    pairs << ItemPair{":/tools/lb_localmanager", tr("localmanager")}
-          << ItemPair{":/tools/lb_recorder", tr("recorder")}
-          << ItemPair{":/tools/lb_bell", tr("bell")}
-          << ItemPair{":/tools/lb_timer", tr("timer")}
-          << ItemPair{":/tools/lb_transform", tr("transform")}
-          << ItemPair{":/tools/lb_spectrum", tr("spectrum")}
-          << ItemPair{":/tools/lb_wallpaper", tr("wallpaper")}
-          << ItemPair{":/tools/lb_phone", tr("phone")}
-          << ItemPair{":/tools/lb_speed", tr("speed")}
-          << ItemPair{":/tools/lb_connections" ,tr("connections")}
-          << ItemPair{":/tools/lb_gain", tr("gain")}
-          << ItemPair{":/tools/lb_detect", tr("detect")}
-          << ItemPair{":/tools/lb_soundtouch", tr("soundtouch")}
-          << ItemPair{":/tools/lb_grabwindow", tr("grabwindow")}
-          << ItemPair{":/tools/lb_ktv", tr("kmicro")};
+    pairs << ItemPair(":/tools/lb_localmanager", tr("localmanager"))
+          << ItemPair(":/tools/lb_recorder", tr("recorder"))
+          << ItemPair(":/tools/lb_bell", tr("bell"))
+          << ItemPair(":/tools/lb_timer", tr("timer"))
+          << ItemPair(":/tools/lb_transform", tr("transform"))
+          << ItemPair(":/tools/lb_spectrum", tr("spectrum"))
+          << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
+          << ItemPair(":/tools/lb_phone", tr("phone"))
+          << ItemPair(":/tools/lb_speed", tr("speed"))
+          << ItemPair(":/tools/lb_connections" ,tr("connections"))
+          << ItemPair(":/tools/lb_gain", tr("gain"))
+          << ItemPair(":/tools/lb_detect", tr("detect"))
+          << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
+          << ItemPair(":/tools/lb_grabwindow", tr("grabwindow"))
+          << ItemPair(":/tools/lb_ktv", tr("kmicro"));
 
     foreach(const ItemPair &pair, pairs)
     {

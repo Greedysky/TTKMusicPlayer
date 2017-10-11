@@ -7,6 +7,9 @@
 # =================================================
 
 TEMPLATE = lib
+msvc{
+    CONFIG += staticlib
+}
 
 include(../TTKVersion.pri)
 unix:VERSION += $$TTKMusicPlayer

@@ -524,7 +524,7 @@ qint64 MusicLrcAnalysis::findTime(int index) const
     }
 }
 
-qint64 MusicLrcAnalysis::MusicLrcAnalysis::findTime(const QStringList &ts) const
+qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
 {
     if(ts.isEmpty())
     {

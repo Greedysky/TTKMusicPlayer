@@ -10,8 +10,10 @@
 /* Define to 1 if you have the <inttypes.h> header file. */
 // #define HAVE_INTTYPES_H 1
 
+#ifndef _MSC_VER
 /* Define to 1 if using pthread is enabled. */
 #define HAVE_LIBPTHREAD 1
+#endif
 
 /* Define to 1 if you have the <memory.h> header file. */
 // #define HAVE_MEMORY_H 1

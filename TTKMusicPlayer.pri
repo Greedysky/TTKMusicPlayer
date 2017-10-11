@@ -48,7 +48,7 @@ win32{
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip -luser32
             CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
