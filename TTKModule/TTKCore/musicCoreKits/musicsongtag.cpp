@@ -168,7 +168,12 @@ void MusicSongTag::setGenre(const QString &genre)
 void MusicSongTag::setCover(const QPixmap &pix)
 {
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
-    m_parameters[TagReadAndWrite::TAG_COVER] = pix;
+    QPixmap p(pix);
+    if(p.width() > 500 || p.height() > 500)
+    {
+        p = p.scaled(500, 500, Qt::KeepAspectRatio);
+    }
+    m_parameters[TagReadAndWrite::TAG_COVER] = p;
 #else
     Q_UNUSED(data);
 #endif
@@ -179,6 +184,10 @@ void MusicSongTag::setCover(const QByteArray &data)
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
     QPixmap pix;
     pix.loadFromData(data);
+    if(pix.width() > 500 || pix.height() > 500)
+    {
+        pix = pix.scaled(500, 500, Qt::KeepAspectRatio);
+    }
     m_parameters[TagReadAndWrite::TAG_COVER] = pix;
 #else
     Q_UNUSED(data);
