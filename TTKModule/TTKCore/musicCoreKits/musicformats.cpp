@@ -87,10 +87,10 @@ QStringList MusicFormats::supportFormatsSpekString()
 
 QStringList MusicFormats::supportFormatsPlaylistDialogString()
 {
-    return QStringList()<< "File(*.lis *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx)"
+    return QStringList()<< "File(*.lis *.m3u *.m3u8 *.pls *.wpl *.xspf *.asx *.kwl *.kgl)"
                         << "TTKlist File(*.lis)" << "M3U File(*.m3u)" << "M3U8 File(*.m3u8)" << "Playlist File(*.pls)"
                         << "Windows Playlist File(*.wpl)" << "XML Shareable Playlist File(*.xspf)"
-                        << "Windows Media Playlist File(*.asx)";
+                        << "Windows Media Playlist File(*.asx)" << "KuWo Playlist File(*.kwl)" << "KuGou Playlist File(*.kgl)";
 }
 
 QString MusicFormats::supportFormatsPlaylistString()

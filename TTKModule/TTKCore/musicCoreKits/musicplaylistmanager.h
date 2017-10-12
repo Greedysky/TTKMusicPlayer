@@ -111,6 +111,60 @@ public:
 };
 
 
+/*! @brief The class of the kuwo XML Config Manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_CORE_EXPORT MusicKWLConfigManager : public MusicAbstractXml
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicKWLConfigManager(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Read datas from xml file by given name.
+     */
+    bool readConfig(const QString &name);
+    /*!
+     * Read datas into xml file.
+     */
+    void readKWLXMLConfig(MusicSongItems &musics);
+
+};
+
+
+/*! @brief The class of the kugou XML Config Manager.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_CORE_EXPORT MusicKGLConfigManager : public MusicAbstractXml
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicKGLConfigManager(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Read datas into xml file.
+     */
+    void readKGLXMLConfig(MusicSongItems &musics);
+
+};
+
+
 /*! @brief The class of the playlist manager.
  * @author Greedysky <greedysky@163.com>
  */
@@ -184,6 +238,14 @@ protected:
      * Write asx music playlist data to file.
      */
     void writeASXList(const QString &path, const MusicSongItem &item);
+    /*!
+     * Read kuwo music playlist data from file.
+     */
+    void readKWLList(const QString &path, MusicSongItems &items);
+    /*!
+     * Read kugou music playlist data from file.
+     */
+    void readKGLList(const QString &path, MusicSongItems &items);
 
 };
 

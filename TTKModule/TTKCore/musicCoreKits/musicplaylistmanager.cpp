@@ -4,6 +4,8 @@
 #include "musicversion.h"
 #include "musicmessagebox.h"
 
+#include <QTextCodec>
+
 MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
@@ -333,6 +335,146 @@ void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
 
 
 
+MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
+{
+
+}
+
+QString MusicKWLConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+bool MusicKWLConfigManager::readConfig(const QString &name)
+{
+    delete m_file;
+    m_file = new QFile( name );
+    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        return false;
+    }
+
+    QByteArray data(m_file->readAll());
+    data.insert(0, "<?xml version=\"1.0\" encoding=\"gb2312\"?>\r\n");
+    m_file->close();
+
+    if( !m_file->open(QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        return false;
+    }
+    m_file->write(data);
+    m_file->close();
+
+    return MusicAbstractXml::readConfig(name);
+}
+
+void MusicKWLConfigManager::readKWLXMLConfig(MusicSongItems &musics)
+{
+    MusicSongItem item;
+    item.m_itemName = QFileInfo(m_file->fileName()).baseName();
+
+    QDomNodeList nodes = m_ddom->elementsByTagName("so");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        if(i == 0) //Skip root node
+        {
+            continue;
+        }
+
+        QDomElement element = nodes.at(i).toElement();
+        QDomNodeList reslist = nodes.at(i).childNodes();
+        for(int i=0; i<reslist.count(); i++)
+        {
+            QDomElement resElement = reslist.at(i).toElement();
+            item.m_songs << MusicSong(resElement.attribute("p2pcachepath"),
+                               element.attribute("playedtimes").toInt(), "00:00",
+                               element.attribute("artist") + " - " +
+                               element.attribute("name"));
+            break;
+        }
+    }
+
+    if(!item.m_songs.isEmpty())
+    {
+        musics << item;
+    }
+}
+
+
+
+MusicKGLConfigManager::MusicKGLConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
+{
+
+}
+
+QString MusicKGLConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicKGLConfigManager::readKGLXMLConfig(MusicSongItems &musics)
+{
+    MusicSongItem item;
+    item.m_itemName = QFileInfo(m_file->fileName()).baseName();
+
+    QTextCodec *codec = QTextCodec::codecForName("windows-1252");
+    QDomNodeList nodes = m_ddom->elementsByTagName("File");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        MusicSong song;
+        QDomNodeList cNodes = nodes.at(i).childNodes();
+        for(int i=0; i<cNodes.count(); ++i)
+        {
+            QDomNode cNode = cNodes.at(i);
+            if(cNode.nodeName() == "Duration")
+            {
+                song.setMusicTime(MusicTime::msecTime2LabelJustified(cNode.toElement().text().toULongLong()));
+            }
+            else if(cNode.nodeName() == "FileName")
+            {
+                QFileInfo info(codec->fromUnicode(cNode.toElement().text()));
+                song.setMusicName(info.baseName());
+                song.setMusicType(info.suffix());
+
+                if(song.getMusicPath().isEmpty())
+                {
+                    song.setMusicPath(info.fileName());
+                }
+                else
+                {
+                    song.setMusicPath(song.getMusicPath() + info.fileName());
+                }
+            }
+            else if(cNode.nodeName() == "FilePath")
+            {
+                QString path = codec->fromUnicode(cNode.toElement().text());
+                if(song.getMusicName().isEmpty())
+                {
+                    song.setMusicPath(path);
+                }
+                else
+                {
+                    song.setMusicPath(path + song.getMusicName() + '.' + song.getMusicType());
+                }
+            }
+            else if(cNode.nodeName() == "FileSize")
+            {
+                song.setMusicSize(cNode.toElement().text().toULongLong());
+            }
+        }
+        item.m_songs << song;
+    }
+
+    if(!item.m_songs.isEmpty())
+    {
+        musics << item;
+    }
+}
+
+
+
 QString MusicPlayListManager::getClassName()
 {
     return "MusicPlayListManager";
@@ -404,6 +546,14 @@ void MusicPlayListManager::getMusicSongItems(const QStringList &open, MusicSongI
         else if(suffix == "asx")
         {
             readASXList(path, items);
+        }
+        else if(suffix == "kwl")
+        {
+            readKWLList(path, items);
+        }
+        else if(suffix == "kgl")
+        {
+            readKGLList(path, items);
         }
     }
 }
@@ -646,4 +796,22 @@ void MusicPlayListManager::writeASXList(const QString &path, const MusicSongItem
 {
     MusicASXConfigManager manager;
     manager.writeASXXMLConfig(MusicSongItems() << item, path);
+}
+
+void MusicPlayListManager::readKWLList(const QString &path, MusicSongItems &items)
+{
+    MusicKWLConfigManager manager;
+    if(manager.readConfig(path))
+    {
+        manager.readKWLXMLConfig(items);
+    }
+}
+
+void MusicPlayListManager::readKGLList(const QString &path, MusicSongItems &items)
+{
+    MusicKGLConfigManager manager;
+    if(manager.readConfig(path))
+    {
+        manager.readKGLXMLConfig(items);
+    }
 }
