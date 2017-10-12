@@ -45,11 +45,17 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         QVariantMap value = data.toMap();
         if(!value.isEmpty() && !value.contains("error"))
         {
+            int bitRate = value["bitRate"].toInt();
+            if(bitRate == 0)
+            {
+                return;
+            }
+
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["url"].toString();
             attr.m_size = MusicUtils::Number::size2Label(value["fileSize"].toInt());
             attr.m_format = value["extName"].toString();
-            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(value["bitRate"].toInt()/1000);
+            attr.m_bitrate = MusicUtils::Number::transfromBitrateToNormal(bitRate/1000);
             info->m_songAttrs.append(attr);
         }
     }
