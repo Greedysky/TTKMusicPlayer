@@ -1,6 +1,6 @@
 # TTKMusicPlayer
 ![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
-![License](https://img.shields.io/badge/license-GPL%20V2-yellowgreen.svg?style=flat-square)
+![License](https://img.shields.io/badge/license-GPL%20V3-yellowgreen.svg?style=flat-square)
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
@@ -13,24 +13,27 @@ Usage
 Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Greedysky/TTKMusicplayer/wiki</u> )**
 
 ### Attention: This software is only for learning and communication, the songs' and playlists' copyright belongs to each music platform.
+### 本项目代码不用于商用，仅限研究和学习使用，资源版权归个平台音乐所有。
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
  * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
  * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.x for windows-msvc
  
 | Platform | Qt & Compiler       | Status                                                                                      |
 | :---:    | :---:               | :---:                                                                                       |
 | Linux    | 4.8.7 GCC & 5.x GCC    | ![Linux](https://img.shields.io/wercker/ci/wercker/docs.svg)                            |
 | Windows  | 4.8.7 GCC & 5.x GCC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
+| Windows  | 5.x MSVC       | ![Windows](https://img.shields.io/wercker/ci/wercker/docs.svg) |
 | OS X     | 5.x Clang     | ![OSX](https://img.shields.io/badge/build-unknown-lightgrey.svg?style=flat-square)                           |
  
 # For Developers
 
 License
 ---
-TTKMusicPlayer is free software licensed under the term of [Licence GPL v2](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must add here to the terms of the license in question.
+TTKMusicPlayer is free software licensed under the term of [Licence GPL v3](https://github.com/Greedysky/TTKMusicplayer/blob/master/LICENSE). If you use TTKMusicPlayer or its constituent libraries, you must add here to the terms of the license in question.
 
 API Document
 ---
@@ -138,9 +141,6 @@ Copyright
 -------
  * This file is part of the TTK Music Player project.
  * Copyright (c) 2015 - 2017 Greedysky Studio.
- * All rights reserved!
- * Redistribution and use of the source code or any derivative.
- * Works are strictly forbiden.
  * Mail: greedysky@163.com.
  
 How To Contribute
