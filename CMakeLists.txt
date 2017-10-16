@@ -26,8 +26,10 @@ set(MUSIC_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/TTKModule")
 set(MUSIC_LIB_CORE_DIR "${MUSIC_LIB_DIR}/TTKCore")
 set(MUSIC_LIB_WIDGET_DIR "${MUSIC_LIB_DIR}/TTKWidget")
 
-include_directories(${MUSIC_DIR})
-include_directories(${MUSIC_LIB_DIR})
+include_directories(
+    ${MUSIC_DIR}
+    ${MUSIC_LIB_DIR}
+)
 
 
 set(MUSIC_CORE_DIR "${MUSIC_LIB_CORE_DIR}/musicCoreKits")
@@ -40,24 +42,26 @@ set(MUSIC_CORE_USERMANAGER_DIR "${MUSIC_LIB_CORE_DIR}/musicUserKits")
 set(MUSIC_CORE_UTILS_DIR "${MUSIC_LIB_CORE_DIR}/musicUtilsKits")
 set(MUSIC_CORE_VIDEOKITS_DIR "${MUSIC_LIB_CORE_DIR}/musicVideoKits")
 
-include_directories(${MUSIC_CORE_DIR})
-include_directories(${MUSIC_CORE_LRCMANAGER_DIR})
-include_directories(${MUSIC_CORE_NETWORK_DIR})
-include_directories(${MUSIC_CORE_NETWORK_DIR}/bd)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/kg)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/kw)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/nr)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/qq)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/radio)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/wy)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/xm)
-include_directories(${MUSIC_CORE_NETWORK_DIR}/yyt)
-include_directories(${MUSIC_CORE_LOCALSEARCH_DIR})
-include_directories(${MUSIC_CORE_TOOLSWIDGET_DIR})
-include_directories(${MUSIC_CORE_TOOLSETSWIDGET_DIR})
-include_directories(${MUSIC_CORE_USERMANAGER_DIR})
-include_directories(${MUSIC_CORE_UTILS_DIR})
-include_directories(${MUSIC_CORE_VIDEOKITS_DIR})
+include_directories(
+    ${MUSIC_CORE_DIR}
+    ${MUSIC_CORE_LRCMANAGER_DIR}
+    ${MUSIC_CORE_NETWORK_DIR}
+    ${MUSIC_CORE_NETWORK_DIR}/bd
+    ${MUSIC_CORE_NETWORK_DIR}/kg
+    ${MUSIC_CORE_NETWORK_DIR}/kw
+    ${MUSIC_CORE_NETWORK_DIR}/nr
+    ${MUSIC_CORE_NETWORK_DIR}/qq
+    ${MUSIC_CORE_NETWORK_DIR}/radio
+    ${MUSIC_CORE_NETWORK_DIR}/wy
+    ${MUSIC_CORE_NETWORK_DIR}/xm
+    ${MUSIC_CORE_NETWORK_DIR}/yyt
+    ${MUSIC_CORE_LOCALSEARCH_DIR}
+    ${MUSIC_CORE_TOOLSWIDGET_DIR}
+    ${MUSIC_CORE_TOOLSETSWIDGET_DIR}
+    ${MUSIC_CORE_USERMANAGER_DIR}
+    ${MUSIC_CORE_UTILS_DIR}
+    ${MUSIC_CORE_VIDEOKITS_DIR}
+)
 
 
 set(MUSIC_WIDGET_DIR "${MUSIC_LIB_WIDGET_DIR}/musicWidgetKits")
@@ -71,16 +75,18 @@ set(MUSIC_WIDGET_UI_DIR "${MUSIC_LIB_WIDGET_DIR}/musicUiKits")
 set(MUSIC_WIDGET_USERMANAGER_DIR "${MUSIC_LIB_WIDGET_DIR}/musicUserKits")
 set(MUSIC_WIDGET_VIDEOKITS_DIR "${MUSIC_LIB_WIDGET_DIR}/musicVideoKits")
 
-include_directories(${MUSIC_WIDGET_DIR})
-include_directories(${MUSIC_WIDGET_CORE_DIR})
-include_directories(${MUSIC_WIDGET_LRCMANAGER_DIR})
-include_directories(${MUSIC_WIDGET_REMOTEWIDGET_DIR})
-include_directories(${MUSIC_WIDGET_LOCALSEARCH_DIR})
-include_directories(${MUSIC_WIDGET_TOOLSWIDGET_DIR})
-include_directories(${MUSIC_WIDGET_TOOLSETSWIDGET_DIR})
-include_directories(${MUSIC_WIDGET_UI_DIR})
-include_directories(${MUSIC_WIDGET_USERMANAGER_DIR})
-include_directories(${MUSIC_WIDGET_VIDEOKITS_DIR})
+include_directories(
+    ${MUSIC_WIDGET_DIR}
+    ${MUSIC_WIDGET_CORE_DIR}
+    ${MUSIC_WIDGET_LRCMANAGER_DIR}
+    ${MUSIC_WIDGET_REMOTEWIDGET_DIR}
+    ${MUSIC_WIDGET_LOCALSEARCH_DIR}
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}
+    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}
+    ${MUSIC_WIDGET_UI_DIR}
+    ${MUSIC_WIDGET_USERMANAGER_DIR}
+    ${MUSIC_WIDGET_VIDEOKITS_DIR}
+)
 
 
 set(MUSIC_SCRIPT_DIR "${MUSIC_DIR}/TTKScript")
@@ -90,12 +96,14 @@ set(MUSIC_RESOURCE_DIR "${MUSIC_DIR}/TTKResource")
 set(MUSIC_THIRDPARTY_DIR "${MUSIC_DIR}/TTKThirdParty")
 set(MUSIC_TTKSERVICE_DIR "${MUSIC_DIR}/TTKService")
 
-include_directories(${MUSIC_THIRDPARTY_DIR})
-include_directories(${MUSIC_THIRDPARTY_DIR}/Zlib)
-include_directories(${MUSIC_THIRDPARTY_DIR}/TTKWatcher)
-include_directories(${MUSIC_THIRDPARTY_DIR}/TTKDumper)
-include_directories(${MUSIC_THIRDPARTY_DIR}/TTKExtras)
-include_directories(${MUSIC_THIRDPARTY_DIR}/TTKImage)
+include_directories(
+    ${MUSIC_THIRDPARTY_DIR}
+    ${MUSIC_THIRDPARTY_DIR}/Zlib
+    ${MUSIC_THIRDPARTY_DIR}/TTKWatcher
+    ${MUSIC_THIRDPARTY_DIR}/TTKDumper
+    ${MUSIC_THIRDPARTY_DIR}/TTKExtras
+    ${MUSIC_THIRDPARTY_DIR}/TTKImage
+)
 
 
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION})
@@ -187,8 +195,10 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
 else()
   include_directories(${MUSIC_DIR}/TTKExtra/Qt4)
   if(UNIX)
-    include_directories(/usr/include/QtMultimediaKit)
-    include_directories(/usr/include/QtMobility)
+    include_directories(
+        /usr/include/QtMultimediaKit
+        /usr/include/QtMobility
+    )
   endif()
 endif()
 
