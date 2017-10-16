@@ -109,8 +109,7 @@ protected:
      */
     void createLabels();
 
-    QLabel *m_iconLabel, *m_nameLabel, *m_playCountLabel;
-    QLabel *m_updateTimeLabel, *m_descriptionLabel, *m_songItemsLabel;
+    QLabel *m_iconLabel, *m_songItemsLabel;
 
     MusicTopListFoundTableWidget *m_toplistTableWidget;
 

@@ -64,9 +64,10 @@ QString MusicSimilarFoundWidget::getClassName()
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_similarTableWidget->hide();
     m_similarTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
     m_similarTableWidget->startSearchQuery(MusicUtils::String::songName(name));
+
+    createLabels();
 }
 
 void MusicSimilarFoundWidget::resizeWindow()
@@ -77,23 +78,28 @@ void MusicSimilarFoundWidget::resizeWindow()
 void MusicSimilarFoundWidget::queryAllFinished()
 {
     MusicObject::MusicSongInformations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
-    if(musicSongInfos.isEmpty())
+    QString artName = MusicUtils::String::artistName(m_songNameFull);
+    int downloadCounter = 0;
+    foreach(const MusicObject::MusicSongInformation &data, musicSongInfos)
     {
-        m_statusLabel->setPixmap(QPixmap(":/image/lb_noSimilar"));
-    }
-    else
-    {
-        delete m_statusLabel;
-        m_statusLabel = nullptr;
-
-        createLabels();
+        if(data.m_singerName.contains(artName) && downloadCounter < 3)
+        {
+            downloadCounter++;
+            MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+            connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+            if(!data.m_smallPicUrl.isEmpty() && data.m_smallPicUrl != "null")
+            {
+                download->startToDownload(data.m_smallPicUrl);
+            }
+        }
     }
 }
 
 void MusicSimilarFoundWidget::createLabels()
 {
+    delete m_statusLabel;
+    m_statusLabel = nullptr;
     layout()->removeWidget(m_mainWindow);
-    m_similarTableWidget->show();
 
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle01);
@@ -103,7 +109,6 @@ void MusicSimilarFoundWidget::createLabels()
     scrollArea->setWidget(m_mainWindow);
     layout()->addWidget(scrollArea);
 
-    MusicObject::MusicSongInformations musicSongInfos(m_similarTableWidget->getMusicSongInfos());
     QWidget *function = new QWidget(m_mainWindow);
     function->setStyleSheet(MusicUIObject::MCheckBoxStyle01 + MusicUIObject::MPushButtonStyle03);
     QGridLayout *grid = new QGridLayout(function);
@@ -176,16 +181,6 @@ void MusicSimilarFoundWidget::createLabels()
     grid->addWidget(new QLabel(artLimitString, function), 5, 3, 1, 2, Qt::AlignCenter);
     grid->addWidget(new QLabel(artLimitString, function), 5, 6, 1, 2, Qt::AlignCenter);
 
-    int downloadCounter = 0;
-    foreach(const MusicObject::MusicSongInformation &data, musicSongInfos)
-    {
-        if(data.m_singerName.contains(artName) && downloadCounter < 3)
-        {
-            downloadCounter++;
-            downloadUrlChanged(data.m_smallPicUrl);
-        }
-    }
-
     m_mainWindow->layout()->addWidget(function);
 }
 
@@ -202,13 +197,6 @@ void MusicSimilarFoundWidget::downLoadFinished(const QByteArray &data)
             return;
         }
     }
-}
-
-void MusicSimilarFoundWidget::downloadUrlChanged(const QString &imageUrl)
-{
-    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(imageUrl);
 }
 
 void MusicSimilarFoundWidget::playButtonClicked()

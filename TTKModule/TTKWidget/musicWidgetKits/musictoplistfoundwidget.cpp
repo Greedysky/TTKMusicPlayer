@@ -59,22 +59,33 @@ QString MusicTopListFoundWidget::getClassName()
 
 void MusicTopListFoundWidget::setSongName(const QString &name)
 {
-    createLabels();
-
     MusicFoundAbstractWidget::setSongName(name);
     m_toplistTableWidget->startSearchQuery(QString());
+
+    createLabels();
 }
 
 void MusicTopListFoundWidget::resizeWindow()
 {
     m_toplistTableWidget->resizeWindow();
 
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    width = width - WINDOW_WIDTH_MIN;
+    if(!m_resizeWidget.isEmpty())
+    {
+        int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+        width = width - WINDOW_WIDTH_MIN;
 
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, 410 + width));
-    m_playCountLabel->setText(MusicUtils::Widget::elidedText(m_playCountLabel->font(), m_playCountLabel->toolTip(), Qt::ElideRight, 410 + width));
-    m_updateTimeLabel->setText(MusicUtils::Widget::elidedText(m_updateTimeLabel->font(), m_updateTimeLabel->toolTip(), Qt::ElideRight, 410 + width));
+        QLabel *label = m_resizeWidget[0];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
+
+        label = m_resizeWidget[1];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
+
+        label = m_resizeWidget[2];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
+
+        label = m_resizeWidget[3];
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
+    }
 }
 
 void MusicTopListFoundWidget::queryAllFinished()
@@ -116,23 +127,23 @@ void MusicTopListFoundWidget::createLabels()
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
-    m_nameLabel = new QLabel(topLineWidget);
-    QFont toplistFont = m_nameLabel->font();
+    QLabel *nameLabel = new QLabel(topLineWidget);
+    QFont toplistFont = nameLabel->font();
     toplistFont.setPixelSize(20);
-    m_nameLabel->setFont(toplistFont);
-    m_nameLabel->setStyleSheet(MusicUIObject::MFontStyle01);
-    m_playCountLabel = new QLabel(topLineWidget);
-    m_playCountLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    m_updateTimeLabel = new QLabel(topLineWidget);
-    m_updateTimeLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    m_descriptionLabel = new QLabel(topLineWidget);
-    m_descriptionLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    m_descriptionLabel->setWordWrap(true);
+    nameLabel->setFont(toplistFont);
+    nameLabel->setStyleSheet(MusicUIObject::MFontStyle01);
+    QLabel *playCountLabel = new QLabel(topLineWidget);
+    playCountLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    QLabel *updateTimeLabel = new QLabel(topLineWidget);
+    updateTimeLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    QLabel *descriptionLabel = new QLabel(topLineWidget);
+    descriptionLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    descriptionLabel->setWordWrap(true);
 
-    topLineLayout->addWidget(m_nameLabel);
-    topLineLayout->addWidget(m_playCountLabel);
-    topLineLayout->addWidget(m_updateTimeLabel);
-    topLineLayout->addWidget(m_descriptionLabel);
+    topLineLayout->addWidget(nameLabel);
+    topLineLayout->addWidget(playCountLabel);
+    topLineLayout->addWidget(updateTimeLabel);
+    topLineLayout->addWidget(descriptionLabel);
     topLineWidget->setLayout(topLineLayout);
 
     ////////////////////////////////////////////////////////////////////////////
@@ -189,21 +200,29 @@ void MusicTopListFoundWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
+    m_resizeWidget << nameLabel << playCountLabel << updateTimeLabel << descriptionLabel;
 }
 
 void MusicTopListFoundWidget::createToplistInfoItem(const MusicPlaylistItem &item)
 {
-    m_nameLabel->setToolTip(item.m_name);
-    m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(), Qt::ElideRight, 410));
+    if(!m_resizeWidget.isEmpty())
+    {
+        QLabel *label = m_resizeWidget[0];
+        label->setToolTip(item.m_name);
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-    m_playCountLabel->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
-    m_playCountLabel->setText(MusicUtils::Widget::elidedText(m_playCountLabel->font(), m_playCountLabel->toolTip(), Qt::ElideRight, 410));
+        label = m_resizeWidget[1];
+        label->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-    m_updateTimeLabel->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
-    m_updateTimeLabel->setText(MusicUtils::Widget::elidedText(m_updateTimeLabel->font(), m_updateTimeLabel->toolTip(), Qt::ElideRight, 410));
+        label = m_resizeWidget[2];
+        label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-    m_descriptionLabel->setToolTip(tr("Description: %1").arg(item.m_description));
-    m_descriptionLabel->setText(m_descriptionLabel->toolTip());
+        label = m_resizeWidget[3];
+        label->setToolTip(tr("Description: %1").arg(item.m_description));
+        label->setText(label->toolTip());
+    }
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

@@ -94,7 +94,10 @@ void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem 
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(item.m_coverUrl);
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != "null")
+    {
+        download->startToDownload(item.m_coverUrl);
+    }
 }
 
 void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)

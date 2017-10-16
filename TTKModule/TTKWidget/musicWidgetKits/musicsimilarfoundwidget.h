@@ -94,10 +94,6 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &data);
     /*!
-     * Data download finished and send to shared on web.
-     */
-    void downloadUrlChanged(const QString &imageUrl);
-    /*!
      * Play button clicked now.
      */
     void playButtonClicked();
