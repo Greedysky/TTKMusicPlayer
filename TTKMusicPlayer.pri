@@ -33,16 +33,33 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
+include(TTKVersion.pri)
+
 ##openssl lib check
 win32:{
-    SSL_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer/ssleay32.dll
+    SSL_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer/ssleay32.dll
     SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
     exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
 }
 unix:!mac{
-    SSL_DEPANDS = $$OUT_PWD/lib/$$TTKMusicPlayer/libssleay32.so
+    SSL_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libssleay32.so
     exists($$SSL_DEPANDS):LIBS += -L../lib/$$TTKMusicPlayer -lssl
 }
+
+##qmmp lib check
+win32:{
+    QMMP_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer
+    equals(QT_MAJOR_VERSION, 4){
+        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp0.dll
+    }else{
+        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp1.dll
+    }
+    QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
+}
+unix:!mac{
+    QMMP_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libqmmp.so
+}
+!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
 
 ##check Qt version
 QT_VER_STRING = $$[QT_VERSION];
@@ -50,8 +67,6 @@ QT_VER_STRING = $$split(QT_VER_STRING, ".")
 QT_VER_MAJOR = $$member(QT_VER_STRING, 0)
 QT_VER_MINOR = $$member(QT_VER_STRING, 1)
 QT_VER_PATCH = $$member(QT_VER_STRING, 2)
-
-include(TTKVersion.pri)
 
 win32{
     LIBS += -lIphlpapi -lVersion

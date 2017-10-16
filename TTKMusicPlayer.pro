@@ -63,18 +63,3 @@ win32:{
     system(for /r TTKLanguage %i in (*.qm) do ren %i *.ln)
     system(for /r TTKLanguage %i in (*.ln) do move /y %i $$output)
 }
-
-##qmmp lib check
-win32:{
-    QMMP_DEPANDS = $$OUT_PWD/bin/$$TTKMusicPlayer
-    equals(QT_MAJOR_VERSION, 4){
-        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp0.dll
-    }else{
-        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp1.dll
-    }
-    QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
-}
-unix:!mac{
-    QMMP_DEPANDS = $$OUT_PWD/lib/$$TTKMusicPlayer/libqmmp.so
-}
-!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
