@@ -70,7 +70,11 @@ namespace MusicUIObject
 ///Background
 //////////////////////////////////////////////////////
     const QString MBackgroundStyle01 = " \
-            background-color:transparent;";
+            background-color:transparent;"
+#ifdef Q_OS_UNIX
+            + QString(" border-style:falt;")
+#endif
+            ;
 
     const QString MBackgroundStyle02 = " \
             background-color:black;";
@@ -210,7 +214,11 @@ namespace MusicUIObject
 ///PushButton
 //////////////////////////////////////////////////////
     const QString MPushButtonStyle01 = " \
-            QPushButton{ background-color:transparent;}";
+            QPushButton{ background-color:transparent;  " +
+#ifdef Q_OS_UNIX
+            QString("border-style:falt;") +
+ #endif
+            QString("}");
 
     const QString MPushButtonStyle02 = MPushButtonStyle01 + " \
             QPushButton{ border-none;}";
@@ -240,8 +248,7 @@ namespace MusicUIObject
     const QString MPushButtonStyle09 = MPushButtonStyle08 + " \
             QPushButton{ text-align:right;}";
 
-    const QString MPushButtonStyle10 = " \
-            QPushButton{ background:transparent;} \
+    const QString MPushButtonStyle10 = MPushButtonStyle01 + " \
             QPushButton::hover{ border:1px solid #000000;}";
 
     const QString MPushButtonStyle11 = " \

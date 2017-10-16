@@ -33,7 +33,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     funcLayout->setSpacing(0);
 
     m_settingButton = new QPushButton(func);
-    m_settingButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MBackgroundStyle01);
+    m_settingButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     m_settingButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_settingButton->setFixedWidth(40);
     m_settingButton->setText(tr("Sets"));
@@ -41,7 +41,7 @@ MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)
     connect(m_settingButton, SIGNAL(clicked()), SLOT(soundEffectValueChanged()));
 
     m_openButton = new QPushButton(func);
-    m_openButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
+    m_openButton->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     m_openButton->setIcon(QIcon(":/tiny/btn_effect_on"));
     m_openButton->setToolTip(tr("On"));
     m_openButton->setCursor(QCursor(Qt::PointingHandCursor));
