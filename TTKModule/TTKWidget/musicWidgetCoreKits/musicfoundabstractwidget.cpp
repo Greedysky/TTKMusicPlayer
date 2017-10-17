@@ -10,18 +10,10 @@ MusicFoundAbstractWidget::MusicFoundAbstractWidget(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_mainWindow = new QWidget(this);
-    m_mainWindow->setObjectName("MainWindow");
-    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
+    initWidget();
+
     layout->addWidget(m_mainWindow);
     setLayout(layout);
-
-    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
-    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
-
-    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
-    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
-    m_mainWindow->setLayout(mLayout);
 }
 
 MusicFoundAbstractWidget::~MusicFoundAbstractWidget()
@@ -39,6 +31,20 @@ QString MusicFoundAbstractWidget::getClassName()
 void MusicFoundAbstractWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;
+}
+
+void MusicFoundAbstractWidget::initWidget()
+{
+    m_mainWindow = new QWidget(this);
+    m_mainWindow->setObjectName("MainWindow");
+    m_mainWindow->setStyleSheet(QString("#MainWindow{%1}").arg(MusicUIObject::MBackgroundStyle17));
+
+    m_statusLabel = new QLabel(tr("Loading Now ... "), m_mainWindow);
+    m_statusLabel->setStyleSheet(MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
+
+    QVBoxLayout *mLayout = new QVBoxLayout(m_mainWindow);
+    mLayout->addWidget(m_statusLabel, 0, Qt::AlignCenter);
+    m_mainWindow->setLayout(mLayout);
 }
 
 void MusicFoundAbstractWidget::contextMenuEvent(QContextMenuEvent *event)

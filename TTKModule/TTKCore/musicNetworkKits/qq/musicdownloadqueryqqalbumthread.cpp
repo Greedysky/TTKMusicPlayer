@@ -69,11 +69,14 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
+                bool albumFlag = false;
                 value = value["data"].toMap();
-                QString albumId = "<>" +
-                                  value["lan"].toString() + "<>" +
-                                  value["company_new"].toMap()["name"].toString() + "<>" +
-                                  value["aDate"].toString();
+                MusicPlaylistItem info;
+                info.m_description = "<>" +
+                                     value["lan"].toString() + "<>" +
+                                     value["company_new"].toMap()["name"].toString() + "<>" +
+                                     value["aDate"].toString();
+                ////////////////////////////////////////////////////////////
                 QVariantList datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -105,7 +108,6 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                     .arg(musicInfo.m_albumId.right(2).left(1))
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
-                        musicInfo.m_albumId = value["albumname"].toString() + albumId;
                         musicInfo.m_albumName = value["albumname"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -116,7 +118,15 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         {
                             continue;
                         }
-
+                        ////////////////////////////////////////////////////////////
+                        if(!albumFlag)
+                        {
+                            albumFlag = true;
+                            info.m_description = musicInfo.m_albumName + info.m_description;
+                            info.m_coverUrl = musicInfo.m_smallPicUrl;
+                            emit createAlbumInfoItem(info);
+                        }
+                        ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;

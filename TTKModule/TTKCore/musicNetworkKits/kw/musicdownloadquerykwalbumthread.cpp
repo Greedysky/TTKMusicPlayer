@@ -31,6 +31,7 @@ void MusicDownLoadQueryKWAlbumThread::startToSearch(const QString &album)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_URL, false).arg(album);
     deleteAll();
 
+    qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -69,12 +70,19 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(!value.isEmpty() && value.contains("musiclist"))
             {
+                bool albumFlag = false;
                 QString albumName = value["name"].toString();
-                QString albumId = albumName + "<>" +
-                                  value["lang"].toString() + "<>" +
-                                  value["company"].toString() + "<>" +
-                                  value["pub"].toString();
-
+                MusicPlaylistItem info;
+                info.m_coverUrl = value["pic"].toString();
+                if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))
+                {
+                    info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
+                }
+                info.m_description = albumName + "<>" +
+                                     value["lang"].toString() + "<>" +
+                                     value["company"].toString() + "<>" +
+                                     value["pub"].toString();
+                ////////////////////////////////////////////////////////////
                 QVariantList datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -93,7 +101,6 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["id"].toString();
                         musicInfo.m_artistId = value["artistid"].toString();
-                        musicInfo.m_albumId = albumId;
                         musicInfo.m_albumName = albumName;
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -108,7 +115,13 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                         {
                             continue;
                         }
-
+                        ////////////////////////////////////////////////////////////
+                        if(!albumFlag)
+                        {
+                            albumFlag = true;
+                            emit createAlbumInfoItem(info);
+                        }
+                        ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;

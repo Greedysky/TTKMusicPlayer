@@ -51,6 +51,11 @@ public:
      */
     virtual void resizeWindow() = 0;
 
+    /*!
+     * Init widget interface.
+     */
+    void initWidget();
+
 protected:
     /*!
      * Override the widget event.

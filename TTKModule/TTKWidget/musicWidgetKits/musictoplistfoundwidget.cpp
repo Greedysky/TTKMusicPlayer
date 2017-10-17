@@ -49,6 +49,8 @@ MusicTopListFoundWidget::MusicTopListFoundWidget(QWidget *parent)
 
 MusicTopListFoundWidget::~MusicTopListFoundWidget()
 {
+    delete m_iconLabel;
+    delete m_songItemsLabel;
     delete m_toplistTableWidget;
 }
 
@@ -152,7 +154,7 @@ void MusicTopListFoundWidget::createLabels()
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     ////////////////////////////////////////////////////////////////////////////
-    m_songItemsLabel = new QLabel("|" + tr("songItems") + QString("(-)"), function);
+    m_songItemsLabel = new QLabel(function);
     m_songItemsLabel->setFixedHeight(50);
     m_songItemsLabel->setStyleSheet(MusicUIObject::MFontStyle04);
     grid->addWidget(m_songItemsLabel);

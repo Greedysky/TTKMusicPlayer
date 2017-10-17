@@ -68,6 +68,11 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
         bytes = bytes.replace("callback(", "");
         bytes.chop(1);
 
+        QFile file("1");
+        file.open(QFile::ReadWrite);
+        file.write(bytes);
+        file.close();
+
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -79,12 +84,14 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 value = value["albumDetail"].toMap();
-                QString albumInfo = value["albumName"].toString() + "<>" +
-                                    value["language"].toString() + "<>" +
-                                    value["company"].toString() + "<>" +
-                        QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong())
-                                     .toString("yyyy-MM-dd");
-
+                bool albumFlag = false;
+                MusicPlaylistItem info;
+                info.m_coverUrl = value["albumLogo"].toString();
+                info.m_description = value["albumName"].toString() + "<>" +
+                                     value["language"].toString() + "<>" +
+                                     value["company"].toString() + "<>" +
+                                     QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy-MM-dd");
+                ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -101,7 +108,6 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 
                     if(m_currentType != MovieQuery)
                     {
-                        musicInfo.m_albumId = albumInfo;
                         musicInfo.m_albumName = value["albumName"].toString();
 
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
@@ -114,7 +120,13 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                         {
                             continue;
                         }
-
+                        ////////////////////////////////////////////////////////////
+                        if(!albumFlag)
+                        {
+                            albumFlag = true;
+                            emit createAlbumInfoItem(info);
+                        }
+                        ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;

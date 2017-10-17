@@ -68,11 +68,15 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("albumInfo") && value.contains("songlist"))
             {
+                bool albumFlag = false;
                 QVariantMap albumInfo = value["albumInfo"].toMap();
-                QString albumId = albumInfo["title"].toString() + "<>" +
-                                  albumInfo["language"].toString() + "<>" +
-                                  albumInfo["publishcompany"].toString() + "<>" +
-                                  albumInfo["publishtime"].toString();
+                MusicPlaylistItem info;
+                info.m_coverUrl = albumInfo["pic_small"].toString().replace(",w_90", ",w_500");
+                info.m_description = albumInfo["title"].toString() + "<>" +
+                                     albumInfo["language"].toString() + "<>" +
+                                     albumInfo["publishcompany"].toString() + "<>" +
+                                     albumInfo["publishtime"].toString();
+                ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songlist"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -90,7 +94,6 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                     if(m_currentType != MovieQuery)
                     {
                         musicInfo.m_songId = value["song_id"].toString();
-                        musicInfo.m_albumId = albumId;
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
                         musicInfo.m_albumName = value["album_title"].toString();
@@ -103,7 +106,13 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                         {
                             continue;
                         }
-
+                        ////////////////////////////////////////////////////////////
+                        if(!albumFlag)
+                        {
+                            albumFlag = true;
+                            emit createAlbumInfoItem(info);
+                        }
+                        ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
