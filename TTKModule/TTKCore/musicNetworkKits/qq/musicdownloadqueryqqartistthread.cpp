@@ -69,6 +69,8 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data"))
             {
+                bool artistFlag = false;
+                ////////////////////////////////////////////////////////////
                 value = value["data"].toMap();
                 QVariantList datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
@@ -112,7 +114,16 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                         {
                             continue;
                         }
-
+                        ////////////////////////////////////////////////////////////
+                        if(!artistFlag)
+                        {
+                            artistFlag = true;
+                            MusicPlaylistItem info;
+                            info.m_name = musicInfo.m_singerName;
+                            info.m_coverUrl = musicInfo.m_smallPicUrl;
+                            emit createArtistInfoItem(info);
+                        }
+                        ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;

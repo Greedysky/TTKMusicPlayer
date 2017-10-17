@@ -88,6 +88,10 @@ public Q_SLOTS:
      */
     void queryArtistFinished();
     /*!
+     * Create the current artist info item.
+     */
+    void createArtistInfoItem(const MusicPlaylistItem &item);
+    /*!
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &data);
@@ -105,6 +109,11 @@ public Q_SLOTS:
     void addButtonClicked();
 
 protected:
+    /*!
+     * Create init interface lables.
+     */
+    void createLabels();
+
     QLabel *m_iconLabel;
     MusicArtistFoundTableWidget *m_artistTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;

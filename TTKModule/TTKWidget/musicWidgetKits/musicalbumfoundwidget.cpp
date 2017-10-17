@@ -179,7 +179,7 @@ void MusicAlbumFoundWidget::createAlbumInfoItem(const MusicPlaylistItem &item)
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
 
         label = m_resizeWidget[2];
-        label->setToolTip(tr("Singer: %1").arg(lists[0]));
+        label->setToolTip(tr("Singer: %1").arg(item.m_name));
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
 
         label = m_resizeWidget[3];

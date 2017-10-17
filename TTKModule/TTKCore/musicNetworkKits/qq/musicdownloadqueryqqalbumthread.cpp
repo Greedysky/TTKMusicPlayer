@@ -122,6 +122,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         if(!albumFlag)
                         {
                             albumFlag = true;
+                            info.m_name = musicInfo.m_singerName;
                             info.m_description = musicInfo.m_albumName + info.m_description;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createAlbumInfoItem(info);

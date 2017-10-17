@@ -49,6 +49,12 @@ public:
      */
     void startToSearch(const QString &artist);
 
+Q_SIGNALS:
+    /*!
+     * Create the current artist info item.
+     */
+    void createArtistInfoItem(const MusicPlaylistItem &item);
+
 public Q_SLOTS:
     /*!
      * Download data from net finished.

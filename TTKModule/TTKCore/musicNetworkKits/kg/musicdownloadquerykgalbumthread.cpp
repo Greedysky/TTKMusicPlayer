@@ -115,6 +115,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                         {
                             MusicPlaylistItem info;
                             albumFlag = true;
+                            info.m_name = musicInfo.m_singerName;
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             readFromMusicSongAlbumInfo(&info);
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

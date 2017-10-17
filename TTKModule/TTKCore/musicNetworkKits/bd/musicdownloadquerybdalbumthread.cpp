@@ -110,6 +110,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                         if(!albumFlag)
                         {
                             albumFlag = true;
+                            info.m_name = musicInfo.m_singerName;
                             emit createAlbumInfoItem(info);
                         }
                         ////////////////////////////////////////////////////////////

@@ -71,6 +71,8 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("hotSongs"))
             {
+                bool artistFlag = false;
+                ////////////////////////////////////////////////////////////
                 QVariantMap artistObject = value["artist"].toMap();
                 QString smallPicUrl = artistObject["picUrl"].toString();
                 QString singerName = artistObject["name"].toString();
@@ -102,7 +104,16 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     {
                         continue;
                     }
-
+                    ////////////////////////////////////////////////////////////
+                    if(!artistFlag)
+                    {
+                        artistFlag = true;
+                        MusicPlaylistItem info;
+                        info.m_name = musicInfo.m_singerName;
+                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        emit createArtistInfoItem(info);
+                    }
+                    ////////////////////////////////////////////////////////////
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
