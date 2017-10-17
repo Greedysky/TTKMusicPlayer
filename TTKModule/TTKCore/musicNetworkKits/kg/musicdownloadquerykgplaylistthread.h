@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadkginterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadqueryplaylistthread.h"
 
 /*! @brief The class to kugou query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGPlaylistThread : public MusicDownLoadQueryThreadAbstract,
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGPlaylistThread : public MusicDownLoadQueryPlaylistThread,
                                                                 private MusicDownLoadKGInterface
 {
     Q_OBJECT
@@ -51,13 +51,7 @@ public:
     /*!
      * Start to Search data.
      */
-    void startToSearch(const QString &playlist);
-
-Q_SIGNALS:
-    /*!
-     * Create the current playlist item.
-     */
-    void createPlaylistItems(const MusicPlaylistItem &item);
+    virtual void startToSearch(const QString &playlist) override;
 
 public Q_SLOTS:
     /*!

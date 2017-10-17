@@ -6,7 +6,7 @@
 #define D_URL   "cmw5eWcwaXhCSDYvU1RoR3U5ZFV2NVppeDlyVkwxbFZtYnJZK3g5SzViaHFXc3FYQ09RblRYVHhORGVFVmFnN0RRUm5jZz09"
 
 MusicDownLoadQueryQQPlaylistThread::MusicDownLoadQueryQQPlaylistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryPlaylistThread(parent)
 {
     m_pageSize = 30;
     m_queryServer = "QQ";

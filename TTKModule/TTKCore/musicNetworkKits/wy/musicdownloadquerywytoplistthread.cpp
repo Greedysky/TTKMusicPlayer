@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryWYToplistThread::MusicDownLoadQueryWYToplistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryToplistThread(parent)
 {
     m_queryServer = "WangYi";
 }

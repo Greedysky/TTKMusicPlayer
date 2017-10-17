@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadwyinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadqueryplaylistthread.h"
 
 /*! @brief The class to wangyi query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYPlaylistThread : public MusicDownLoadQueryThreadAbstract,
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYPlaylistThread : public MusicDownLoadQueryPlaylistThread,
                                                                 private MusicDownLoadWYInterface
 {
     Q_OBJECT
@@ -51,13 +51,7 @@ public:
     /*!
      * Start to Search data.
      */
-    void startToSearch(const QString &playlist);
-
-Q_SIGNALS:
-    /*!
-     * Create the current playlist item.
-     */
-    void createPlaylistItems(const MusicPlaylistItem &item);
+    virtual void startToSearch(const QString &playlist) override;
 
 public Q_SLOTS:
     /*!

@@ -18,13 +18,14 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
+
 #include "musicdownloadkwinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadqueryalbumthread.h"
 
 /*! @brief The class to kuwo query album download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKWAlbumThread : public MusicDownLoadQueryThreadAbstract,
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKWAlbumThread : public MusicDownLoadQueryAlbumThread,
                                                              private MusicDownLoadKWInterface
 {
     Q_OBJECT
@@ -42,17 +43,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &album) override;
-    /*!
-     * Start to Search data from name and type.
-     */
-    void startToSearch(const QString &album);
-
-Q_SIGNALS:
-    /*!
-     * Create the current album info item.
-     */
-    void createAlbumInfoItem(const MusicPlaylistItem &item);
+    virtual void startToSearch(const QString &album) override;
 
 public Q_SLOTS:
     /*!

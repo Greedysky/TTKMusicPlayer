@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryXMToplistThread::MusicDownLoadQueryXMToplistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryToplistThread(parent)
 {
     m_queryServer = "XiaMi";
 }

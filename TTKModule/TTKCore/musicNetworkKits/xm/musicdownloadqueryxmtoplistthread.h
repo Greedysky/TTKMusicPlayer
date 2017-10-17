@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadxminterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadquerytoplistthread.h"
 
 /*! @brief The class to xiami query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMToplistThread : public MusicDownLoadQueryThreadAbstract,
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMToplistThread : public MusicDownLoadQueryToplistThread,
                                                                private MusicDownLoadXMInterface
 {
     Q_OBJECT
@@ -47,13 +47,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    void startToSearch(const QString &toplist);
-
-Q_SIGNALS:
-    /*!
-     * Create the current toplist info item.
-     */
-    void createToplistInfoItem(const MusicPlaylistItem &item);
+    virtual void startToSearch(const QString &toplist) override;
 
 public Q_SLOTS:
     /*!

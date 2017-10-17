@@ -110,7 +110,11 @@ HEADERS  += \
     $$PWD/musicdownloadsourcethread.h \
     $$PWD/musicdownloadcounterpvthread.h \
     $$PWD/musicdownloadbackgroundthread.h \
-    $$PWD/musicdownloadbackgroundremotethread.h
+    $$PWD/musicdownloadbackgroundremotethread.h \
+    $$PWD/musicdownloadqueryalbumthread.h \
+    $$PWD/musicdownloadqueryartistthread.h \
+    $$PWD/musicdownloadqueryplaylistthread.h \
+    $$PWD/musicdownloadquerytoplistthread.h
 
 }
 
@@ -197,6 +201,10 @@ SOURCES += \
     $$PWD/musicdownloadsourcethread.cpp \
     $$PWD/musicdownloadcounterpvthread.cpp \
     $$PWD/musicdownloadbackgroundthread.cpp \
-    $$PWD/musicdownloadbackgroundremotethread.cpp
+    $$PWD/musicdownloadbackgroundremotethread.cpp \
+    $$PWD/musicdownloadqueryalbumthread.cpp \
+    $$PWD/musicdownloadqueryartistthread.cpp \
+    $$PWD/musicdownloadqueryplaylistthread.cpp \
+    $$PWD/musicdownloadquerytoplistthread.cpp
 
 }

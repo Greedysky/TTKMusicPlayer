@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYQQALBUMTHREAD_H
-#define MUSICDOWNLOADQUERYQQALBUMTHREAD_H
+#ifndef MUSICDOWNLOADQUERYPLAYLISTTHREAD_H
+#define MUSICDOWNLOADQUERYPLAYLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,21 +19,19 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadqqinterface.h"
-#include "musicdownloadqueryalbumthread.h"
+#include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to qq query album download data from net.
+/*! @brief The class to query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQAlbumThread : public MusicDownLoadQueryAlbumThread,
-                                                             private MusicDownLoadQQInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryPlaylistThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryQQAlbumThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryPlaylistThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -41,16 +39,16 @@ public:
     static QString getClassName();
 
     /*!
-     * Start to Search data from name and type.
+     * Start to Search data.
      */
-    virtual void startToSearch(const QString &album) override;
+    virtual void startToSearch(const QString &playlist) = 0;
 
-public Q_SLOTS:
+Q_SIGNALS:
     /*!
-     * Download data from net finished.
+     * Create the current playlist item.
      */
-    virtual void downLoadFinished() override;
+    void createPlaylistItems(const MusicPlaylistItem &item);
 
 };
 
-#endif // MUSICDOWNLOADQUERYQQALBUMTHREAD_H
+#endif // MUSICDOWNLOADQUERYPLAYLISTTHREAD_H

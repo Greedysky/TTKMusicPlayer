@@ -6,7 +6,7 @@
 #include <QDateTime>
 
 MusicDownLoadQueryWYAlbumThread::MusicDownLoadQueryWYAlbumThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryAlbumThread(parent)
 {
     m_queryServer = "WangYi";
 }
@@ -14,12 +14,6 @@ MusicDownLoadQueryWYAlbumThread::MusicDownLoadQueryWYAlbumThread(QObject *parent
 QString MusicDownLoadQueryWYAlbumThread::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicDownLoadQueryWYAlbumThread::startToSearch(QueryType type, const QString &album)
-{
-    Q_UNUSED(type);
-    startToSearch(album);
 }
 
 void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)

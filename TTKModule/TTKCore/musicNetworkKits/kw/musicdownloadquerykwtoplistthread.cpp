@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryKWToplistThread::MusicDownLoadQueryKWToplistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryToplistThread(parent)
 {
     m_queryServer = "Kuwo";
 }

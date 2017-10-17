@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryQQArtistThread::MusicDownLoadQueryQQArtistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryArtistThread(parent)
 {
     m_queryServer = "QQ";
 }
@@ -12,12 +12,6 @@ MusicDownLoadQueryQQArtistThread::MusicDownLoadQueryQQArtistThread(QObject *pare
 QString MusicDownLoadQueryQQArtistThread::getClassName()
 {
     return staticMetaObject.className();
-}
-
-void MusicDownLoadQueryQQArtistThread::startToSearch(QueryType type, const QString &artist)
-{
-    Q_UNUSED(type);
-    startToSearch(artist);
 }
 
 void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)

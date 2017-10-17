@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryBDToplistThread::MusicDownLoadQueryBDToplistThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryToplistThread(parent)
 {
     m_queryServer = "Baidu";
     m_pageSize = 100;
