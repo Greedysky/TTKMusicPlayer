@@ -13,16 +13,17 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
 {
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setColumnCount(7);
+    setColumnCount(8);
 
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 452);
-    headerview->resizeSection(2, 47);
-    headerview->resizeSection(3, 26);
+    headerview->resizeSection(1, 342);
+    headerview->resizeSection(2, 110);
+    headerview->resizeSection(3, 47);
     headerview->resizeSection(4, 26);
     headerview->resizeSection(5, 26);
     headerview->resizeSection(6, 26);
+    headerview->resizeSection(7, 26);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
@@ -87,12 +88,16 @@ void MusicQueryFoundTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN) + 452);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.5 + 342);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.5 + 110);
 
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
         it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
+
+        it = item(i, 2);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     }
 }
 
@@ -105,7 +110,7 @@ void MusicQueryFoundTableWidget::resizeEvent(QResizeEvent *event)
 void MusicQueryFoundTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryTableWidget::listCellEntered(row, column);
-    if(column == 4 || column == 5 || column == 6)
+    if(column == 5 || column == 6 || column == 7)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
     }
@@ -120,13 +125,13 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
     MusicQueryTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 4:
+        case 5:
             addSearchMusicToPlayList(row, true);
             break;
-        case 5:
+        case 6:
             addSearchMusicToPlayList(row, false);
             break;
-        case 6:
+        case 7:
             musicDownloadLocal(row);
             break;
         default:
@@ -137,7 +142,7 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
 void MusicQueryFoundTableWidget::clearAllItems()
 {
     MusicQueryTableWidget::clear();
-    setColumnCount(7);
+    setColumnCount(8);
 }
 
 void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
@@ -151,30 +156,36 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip(songItem.m_artistname + " - " + songItem.m_songname);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 440));
+    item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 310));
     setItem(count, 1, item);
+
+                      item = new QTableWidgetItem;
+    item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setToolTip(songItem.m_albumName);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 84));
+    setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    setItem(count, 2, item);
+    setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/tiny/lb_server_type"));
     item->setToolTip(songItem.m_type);
-    setItem(count, 3, item);
-
-                      item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_play"));
     setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_add"));
+    item->setIcon(QIcon(":/contextMenu/btn_play"));
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_download"));
+    item->setIcon(QIcon(":/contextMenu/btn_add"));
     setItem(count, 6, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/contextMenu/btn_download"));
+    setItem(count, 7, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
 }

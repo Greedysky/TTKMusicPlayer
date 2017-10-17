@@ -21,16 +21,17 @@
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent), m_audition(nullptr)
 {
-    setColumnCount(8);
+    setColumnCount(9);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 30);
-    headerview->resizeSection(1, 302);
-    headerview->resizeSection(2, 201);
-    headerview->resizeSection(3, 55);
-    headerview->resizeSection(4, 23);
-    headerview->resizeSection(5, 26);
+    headerview->resizeSection(1, 273);
+    headerview->resizeSection(2, 105);
+    headerview->resizeSection(3, 105);
+    headerview->resizeSection(4, 55);
+    headerview->resizeSection(5, 23);
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
+    headerview->resizeSection(8, 26);
 
     m_previousAuditionRow = -1;
     m_queryAllRecords = true;
@@ -163,23 +164,27 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
-    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.5 + 302);
-    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.5 + 181);
+    headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)/3.0 + 273);
+    headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
+    headerview->resizeSection(3, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
 
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 1);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 290));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
 
         it = item(i, 2);
-        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, width - WINDOW_WIDTH_MIN + 170));
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
+
+        it = item(i, 3);
+        it->setText(MusicUtils::Widget::elidedText(font(), it->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 31));
     }
 }
 
 void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryItemTableWidget::listCellEntered(row, column);
-    if(column == 6 || column == 7)
+    if(column == 7 || column == 8)
     {
         setCursor(QCursor(Qt::PointingHandCursor));
     }
@@ -194,10 +199,10 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
     MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
     {
-        case 6:
+        case 7:
             addSearchMusicToPlayList(row);
             break;
-        case 7:
+        case 8:
             musicDownloadLocal(row);
             break;
         default:
@@ -210,7 +215,7 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
 void MusicSongSearchOnlineTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
-    setColumnCount(8);
+    setColumnCount(9);
 }
 
 void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
@@ -224,40 +229,47 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedIt
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songname, Qt::ElideRight, 295));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songName, Qt::ElideRight, 257));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songItem.m_songname);
+    item->setToolTip(songItem.m_songName);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_artistname, Qt::ElideRight, 175));
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_singerName, Qt::ElideRight, 74));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songItem.m_artistname);
+    item->setToolTip(songItem.m_singerName);
     setItem(count, 2, item);
+
+                      item = new QTableWidgetItem;
+    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_albumName, Qt::ElideRight, 74));
+    item->setTextColor(QColor(100, 100, 100));
+    item->setTextAlignment(Qt::AlignCenter);
+    item->setToolTip(songItem.m_albumName);
+    setItem(count, 3, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
-    setItem(count, 3, item);
+    setItem(count, 4, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(randToGetStrength()));
-    setItem(count, 4, item);
+    setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
     item->setIcon(QIcon(":/tiny/lb_server_type"));
     item->setToolTip(songItem.m_type);
-    setItem(count, 5, item);
-
-                      item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_add"));
     setItem(count, 6, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_download"));
+    item->setIcon(QIcon(":/contextMenu/btn_add"));
     setItem(count, 7, item);
+
+                      item = new QTableWidgetItem;
+    item->setIcon(QIcon(":/contextMenu/btn_download"));
+    setItem(count, 8, item);
 }
 
 void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
@@ -357,7 +369,7 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 
     m_downloadData.clear();
     m_downloadData.m_songName = musicEnSong;
-    m_downloadData.m_time =  item(row, 3)->text();
+    m_downloadData.m_time =  item(row, 4)->text();
     m_downloadData.m_format = musicSongAttr.m_format;
 }
 
@@ -390,6 +402,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
 {
+    qDeleteAll(m_resizeLabels);
     delete m_playButton;
     delete m_textLabel;
     delete m_searchTableWidget;
@@ -450,10 +463,10 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
                                                    : m_searchTableWidget->auditionToMusicStop(row);
                 break;
             case 1:
-                m_searchTableWidget->listCellClicked(row, 5);
+                m_searchTableWidget->listCellClicked(row, 7);
                 break;
             case 2:
-                m_searchTableWidget->listCellClicked(row, 6);
+                m_searchTableWidget->listCellClicked(row, 8);
                 break;
             default:
                 break;
@@ -549,11 +562,17 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     labelLayout->addWidget(label2, 1);
     m_resizeLabels << label2;
 
-    QLabel *label3 = new QLabel(tr("Operator"), this);
+    QLabel *label3 = new QLabel(tr("Album"), this);
     label3->setAlignment(Qt::AlignCenter);
     label3->setStyleSheet(MusicUIObject::MFontStyle01);
     labelLayout->addWidget(label3, 3);
     m_resizeLabels << label3;
+
+    QLabel *label4 = new QLabel(tr("Operator"), this);
+    label4->setAlignment(Qt::AlignCenter);
+    label4->setStyleSheet(MusicUIObject::MFontStyle01);
+    labelLayout->addWidget(label4, 4);
+    m_resizeLabels << label4;
 
     labelWidget->setLayout(labelLayout);
     wLayout->addWidget(labelWidget);
@@ -562,11 +581,12 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    if(m_resizeLabels.count() == 3)
+    if(m_resizeLabels.count() == 4)
     {
-        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.5 + 305);
-        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0.5 + 295);
-        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0 + 150);
+        m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 270);
+        m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 255);
+        m_resizeLabels[2]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 90);
+        m_resizeLabels[3]->setFixedWidth((width - WINDOW_WIDTH_MIN)*0 + 150);
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;

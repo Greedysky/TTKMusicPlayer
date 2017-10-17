@@ -87,6 +87,7 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
                         QVariantMap albumObject = value["album"].toMap();
                         musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
                         musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
+                        musicInfo.m_albumName = albumObject["name"].toString();
 
                         QVariantList artistsArray = value["artists"].toList();
                         foreach(const QVariant &artistValue, artistsArray)
@@ -112,8 +113,9 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
                             }
 
                             MusicSearchedItem item;
-                            item.m_songname = musicInfo.m_songName;
-                            item.m_artistname = musicInfo.m_singerName;
+                            item.m_songName = musicInfo.m_songName;
+                            item.m_singerName = musicInfo.m_singerName;
+                            item.m_albumName = musicInfo.m_albumName;
                             item.m_time = musicInfo.m_timeLength;
                             item.m_type = mapQueryServerString();
                             emit createSearchedItems(item);
@@ -212,8 +214,8 @@ void MusicDownLoadQueryWYThread::startMVListQuery(int id)
             }
 
             MusicSearchedItem item;
-            item.m_songname = musicInfo.m_songName;
-            item.m_artistname = musicInfo.m_singerName;
+            item.m_songName = musicInfo.m_songName;
+            item.m_singerName = musicInfo.m_singerName;
             item.m_time = musicInfo.m_timeLength;
             item.m_type = mapQueryServerString();
             emit createSearchedItems(item);

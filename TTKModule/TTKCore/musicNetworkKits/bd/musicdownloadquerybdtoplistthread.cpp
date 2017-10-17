@@ -99,6 +99,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                         musicInfo.m_albumId = value["album_id"].toString();;
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
+                        musicInfo.m_albumName = value["album_title"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
@@ -110,8 +111,9 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                         }
 
                         MusicSearchedItem item;
-                        item.m_songname = musicInfo.m_songName;
-                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
+                        item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);

@@ -98,12 +98,14 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["songid"].toString();
                         musicInfo.m_albumId = value["albummid"].toString();
+
                         if(!m_querySimplify)
                         {
                             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                             musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                         .arg(musicInfo.m_albumId.right(2).left(1))
                                         .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+                            musicInfo.m_albumName = value["albumname"].toString();
 
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
@@ -115,8 +117,9 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                             }
 
                             MusicSearchedItem item;
-                            item.m_songname = musicInfo.m_songName;
-                            item.m_artistname = musicInfo.m_singerName;
+                            item.m_songName = musicInfo.m_songName;
+                            item.m_singerName = musicInfo.m_singerName;
+                            item.m_albumName = musicInfo.m_albumName;
                             item.m_time = musicInfo.m_timeLength;
                             item.m_type = mapQueryServerString();
                             emit createSearchedItems(item);
@@ -137,8 +140,8 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         }
 
                         MusicSearchedItem item;
-                        item.m_songname = musicInfo.m_songName;
-                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);

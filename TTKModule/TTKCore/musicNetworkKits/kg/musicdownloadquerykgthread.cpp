@@ -86,6 +86,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["hash"].toString();
                         musicInfo.m_albumId = value["album_id"].toString();
+                        musicInfo.m_albumName = value["album_name"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
@@ -101,9 +102,11 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                             {
                                 continue;
                             }
+
                             MusicSearchedItem item;
-                            item.m_songname = musicInfo.m_songName;
-                            item.m_artistname = musicInfo.m_singerName;
+                            item.m_songName = musicInfo.m_songName;
+                            item.m_singerName = musicInfo.m_singerName;
+                            item.m_albumName = musicInfo.m_albumName;
                             item.m_time = musicInfo.m_timeLength;
                             item.m_type = mapQueryServerString();
                             emit createSearchedItems(item);
@@ -124,8 +127,8 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                         }
 
                         MusicSearchedItem item;
-                        item.m_songname = musicInfo.m_songName;
-                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);

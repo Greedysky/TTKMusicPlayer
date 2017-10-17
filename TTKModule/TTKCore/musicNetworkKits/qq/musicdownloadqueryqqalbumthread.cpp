@@ -106,6 +106,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                                     .arg(musicInfo.m_albumId.right(2).left(1))
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                         musicInfo.m_albumId = value["albumname"].toString() + albumId;
+                        musicInfo.m_albumName = value["albumname"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
@@ -117,8 +118,9 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         }
 
                         MusicSearchedItem item;
-                        item.m_songname = musicInfo.m_songName;
-                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
+                        item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);

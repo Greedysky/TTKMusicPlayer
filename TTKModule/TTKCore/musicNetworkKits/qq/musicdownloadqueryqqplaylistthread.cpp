@@ -209,6 +209,7 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
 
                         musicInfo.m_songId = value["songid"].toString();
                         musicInfo.m_albumId = value["albummid"].toString();
+                        musicInfo.m_albumName = value["albumname"].toString();
 
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
@@ -225,8 +226,9 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
                         }
 
                         MusicSearchedItem item;
-                        item.m_songname = musicInfo.m_songName;
-                        item.m_artistname = musicInfo.m_singerName;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
+                        item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
                         emit createSearchedItems(item);

@@ -113,7 +113,7 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedI
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip(songItem.m_artistname + " - " + songItem.m_songname);
+    item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 275));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);

@@ -202,6 +202,7 @@ namespace MusicObject
         QString m_lrcUrl;
         QString m_smallPicUrl;
         QString m_singerName;
+        QString m_albumName;
         QString m_songName;
         QString m_timeLength;
     }MusicSongInformation;

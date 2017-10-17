@@ -94,8 +94,8 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
                     }
 
                     MusicSearchedItem item;
-                    item.m_songname = musicInfo.m_songName;
-                    item.m_artistname = musicInfo.m_singerName;
+                    item.m_songName = musicInfo.m_songName;
+                    item.m_singerName = musicInfo.m_singerName;
                     item.m_type = mapQueryServerString();
                     emit createSearchedItems(item);
                     m_musicSongInfos << musicInfo;

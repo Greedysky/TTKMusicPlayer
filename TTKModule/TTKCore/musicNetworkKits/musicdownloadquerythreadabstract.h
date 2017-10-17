@@ -27,10 +27,20 @@
  */
 typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 {
-    QString m_songname;
-    QString m_artistname;
+    QString m_songName;
+    QString m_singerName;
+    QString m_albumName;
     QString m_time;
     QString m_type;
+
+    MusicSearchedItem()
+    {
+        m_songName = "-";
+        m_singerName = "-";
+        m_albumName = "-";
+        m_time = "-";
+        m_type = "-";
+    }
 }MusicSearchedItem;
 MUSIC_DECLARE_LISTS(MusicSearchedItem)
 
