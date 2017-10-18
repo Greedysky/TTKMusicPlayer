@@ -4,13 +4,33 @@
 #include "ttkdumper.h"
 
 #include <QTimer>
+#include <QScreen>
 #include <QTranslator>
 #include <QApplication>
 
 #define MUSIC_DEBUG
 
+void loadDXcbPlugin(int argc, char *argv[])
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+    #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+      Q_UNUSED(argc);
+      Q_UNUSED(argv);
+      QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    #else
+      QApplication a(argc, argv);
+      qputenv("QT_DEVICE_PIXEL_RATIO", "auto");
+      QScreen *screen = QApplication::primaryScreen();
+      qreal dpi = screen->logicalDotsPerInch()/96;
+      qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi));
+      Q_UNUSED(a);
+    #endif
+#endif
+}
+
 int main(int argc, char *argv[])
 {
+    loadDXcbPlugin(argc, argv);
     QApplication a(argc, argv);
 #if !defined MUSIC_DEBUG && !defined Q_OS_UNIX
     if(argc <= 1 || QString(argv[1]) != APPNAME)
