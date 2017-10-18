@@ -158,6 +158,11 @@ void MusicPlaylistFoundWidget::setSongName(const QString &name)
     m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, QString());
 }
 
+void MusicPlaylistFoundWidget::setSongNameById(const QString &id)
+{
+    Q_UNUSED(id);
+}
+
 void MusicPlaylistFoundWidget::resizeWindow()
 {
     if(m_infoWidget)

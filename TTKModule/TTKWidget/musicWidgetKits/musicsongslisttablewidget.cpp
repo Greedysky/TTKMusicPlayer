@@ -28,7 +28,7 @@
     case index: \
     if(names.count() >= index) \
     { \
-        MusicRightAreaWidget::instance()->songResearchButtonSearched(names[index - 1]); \
+        MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]); \
     } \
     break;
 
@@ -545,7 +545,7 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
     QStringList names(MusicUtils::String::splitString(songName));
     switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
     {
-        case 0 : MusicRightAreaWidget::instance()->songResearchButtonSearched(songName); break;
+        case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
         SEARCH_ITEM_DEFINE(1, names);
         SEARCH_ITEM_DEFINE(2, names);
         SEARCH_ITEM_DEFINE(3, names);

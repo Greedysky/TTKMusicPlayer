@@ -78,12 +78,18 @@ public Q_SLOTS:
      * Create searched items.
      */
     virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    /*!
+     * Search menu type changed.
+     */
+    void searchChanged(QAction *action);
 
 protected:
     /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
     /*!
      * Add search music to play list by index.
      */

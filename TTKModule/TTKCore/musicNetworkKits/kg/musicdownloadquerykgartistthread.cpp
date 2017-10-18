@@ -89,9 +89,14 @@ void MusicDownLoadQueryKGArtistThread::downLoadFinished()
                     if(m_currentType != MovieQuery)
                     {
                         musicInfo.m_songId = value["hash"].toString();
-                        musicInfo.m_albumName = value["album_name"].toString();
+                        musicInfo.m_albumId = value["album_id"].toString();
 
+                        MusicPlaylistItem albumInfo;
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
+                        musicInfo.m_albumName = albumInfo.m_nickname;
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                         readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);

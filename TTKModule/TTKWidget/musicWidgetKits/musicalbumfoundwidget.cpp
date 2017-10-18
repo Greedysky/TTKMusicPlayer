@@ -73,6 +73,15 @@ void MusicAlbumFoundWidget::setSongName(const QString &name)
     m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, MusicUtils::String::artistName(name));
 }
 
+void MusicAlbumFoundWidget::setSongNameById(const QString &id)
+{
+    m_albumTableWidget->hide();
+    MusicDownLoadQueryThreadAbstract *v = M_DOWNLOAD_QUERY_PTR->getAlbumThread(this);
+    m_albumTableWidget->setQueryInput(v);
+    m_albumTableWidget->startSearchQuery(id);
+    connect(v, SIGNAL(createAlbumInfoItem(MusicPlaylistItem)), SLOT(createAlbumInfoItem(MusicPlaylistItem)));
+}
+
 void MusicAlbumFoundWidget::resizeWindow()
 {
     m_albumTableWidget->resizeWindow();
@@ -113,11 +122,7 @@ void MusicAlbumFoundWidget::queryAllFinished()
             if(m_songNameFull.contains(info.m_songName))
             {
                 hasItem = true;
-                m_albumTableWidget->hide();
-                MusicDownLoadQueryThreadAbstract *v = M_DOWNLOAD_QUERY_PTR->getAlbumThread(this);
-                m_albumTableWidget->setQueryInput(v);
-                m_albumTableWidget->startSearchQuery(info.m_albumId);
-                connect(v, SIGNAL(createAlbumInfoItem(MusicPlaylistItem)), SLOT(createAlbumInfoItem(MusicPlaylistItem)));
+                setSongNameById(info.m_albumId);
                 break;
             }
         }

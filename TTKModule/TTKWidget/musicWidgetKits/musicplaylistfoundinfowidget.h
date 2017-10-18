@@ -51,6 +51,11 @@ public:
     virtual void resizeWindow();
 
     /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+
+    /*!
      * Set music playlist item.
      */
     void setMusicPlaylistItem(const MusicPlaylistItem &item, QObject *obj);

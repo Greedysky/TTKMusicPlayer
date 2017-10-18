@@ -25,7 +25,6 @@ void MusicDownLoadQueryKWAlbumThread::startToSearch(const QString &album)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_URL, false).arg(album);
     deleteAll();
 
-    qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -67,6 +66,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                 bool albumFlag = false;
                 QString albumName = value["name"].toString();
                 MusicPlaylistItem info;
+                info.m_nickname = value["albumid"].toString();
                 info.m_coverUrl = value["pic"].toString();
                 if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))
                 {
@@ -95,6 +95,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                     {
                         musicInfo.m_songId = value["id"].toString();
                         musicInfo.m_artistId = value["artistid"].toString();
+                        musicInfo.m_albumId = info.m_nickname;
                         musicInfo.m_albumName = albumName;
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

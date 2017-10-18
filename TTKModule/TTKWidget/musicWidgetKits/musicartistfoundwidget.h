@@ -72,6 +72,10 @@ public:
      * Set current name to search founds.
      */
     virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
 
     /*!
      * Resize window bound by widgte resize called.

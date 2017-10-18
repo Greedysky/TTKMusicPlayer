@@ -88,7 +88,19 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(value["id"].toInt());
 
                     QVariantMap albumObject = value["album"].toMap();
+                    musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
                     musicInfo.m_albumName = albumObject["name"].toString();
+
+                    QVariantList artistsArray = value["artists"].toList();
+                    foreach(const QVariant &artistValue, artistsArray)
+                    {
+                        if(artistValue.isNull())
+                        {
+                            continue;
+                        }
+                        QVariantMap artistMap = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
+                    }
 
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);

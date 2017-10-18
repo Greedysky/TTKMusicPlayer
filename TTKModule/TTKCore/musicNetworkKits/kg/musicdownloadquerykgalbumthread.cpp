@@ -67,6 +67,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
             if(value.contains("data"))
             {
                 bool albumFlag = false;
+                MusicPlaylistItem info;
                 ////////////////////////////////////////////////////////////
                 value = value["data"].toMap();
                 QVariantList datas = value["info"].toList();
@@ -92,9 +93,13 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                     if(m_currentType != MovieQuery)
                     {
                         musicInfo.m_songId = value["hash"].toString();
-                        musicInfo.m_albumName = value["album_name"].toString();
+                        musicInfo.m_albumId = value["album_id"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAlbumInfo(&info, m_searchText);
+                        musicInfo.m_albumName = info.m_nickname;
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                         readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
@@ -107,12 +112,8 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                         ////////////////////////////////////////////////////////////
                         if(!albumFlag)
                         {
-                            MusicPlaylistItem info;
                             albumFlag = true;
                             info.m_name = musicInfo.m_singerName;
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            readFromMusicSongAlbumInfo(&info);
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createAlbumInfoItem(info);
                         }
@@ -134,45 +135,4 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
-}
-
-void MusicDownLoadQueryKGAlbumThread::readFromMusicSongAlbumInfo(MusicPlaylistItem *info)
-{
-    if(!m_manager)
-    {
-        return;
-    }
-
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(m_searchText);
-
-    QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
-    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-    loop.exec();
-
-    QJson::Parser parser;
-    bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
-    if(ok)
-    {
-        QVariantMap value = data.toMap();
-        if(value.contains("data"))
-        {
-            value = value["data"].toMap();
-            info->m_description = value["albumname"].toString() + "<>" +
-                                  value["language"].toString() + "<>" +
-                                  value["company"].toString() + "<>" +
-                                  value["publishtime"].toString().left(10);
-//            info->m_coverUrl = value["imgurl"].toString();
-        }
-    }
 }

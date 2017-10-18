@@ -91,7 +91,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(),
                  SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)),
-                 SLOT(songResearchButtonSearched(QString)));
+                 SLOT(musicSongSearchedFound(QString)));
 }
 
 void MusicRightAreaWidget::stopLrcMask() const
@@ -469,16 +469,18 @@ void MusicRightAreaWidget::musicSimilarFound(const QString &text)
     MStatic_cast(MusicSimilarFoundWidget*, m_stackedFuncWidget)->setSongName(text);
 }
 
-void MusicRightAreaWidget::musicAlbumFound(const QString &text)
+void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::AlbumWidget);
-    MStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+    MusicAlbumFoundWidget *w = MStatic_cast(MusicAlbumFoundWidget*, m_stackedFuncWidget);
+    id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
-void MusicRightAreaWidget::musicArtistFound(const QString &text)
+void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::ArtistWidget);
-    MStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget)->setSongName(text);
+    MusicArtistFoundWidget *w = MStatic_cast(MusicArtistFoundWidget*, m_stackedFuncWidget);
+    id.isEmpty() ? w->setSongName(text) : w->setSongNameById(id);
 }
 
 void MusicRightAreaWidget::musicToplistFound()
@@ -491,6 +493,12 @@ void MusicRightAreaWidget::musicPlaylistFound()
 {
     musicFunctionClicked(MusicRightAreaWidget::PlaylistWidget);
     MStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
+}
+
+void MusicRightAreaWidget::musicSongSearchedFound(const QString &text)
+{
+    m_ui->musicSongSearchLine->setText(text.trimmed());
+    musicFunctionClicked(MusicRightAreaWidget::SearchWidget);
 }
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()
@@ -556,12 +564,6 @@ void MusicRightAreaWidget::setWindowLrcTypeChanged()
 
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced, type);
     deskLrc->deleteLater();
-}
-
-void MusicRightAreaWidget::songResearchButtonSearched(const QString &name)
-{
-    m_ui->musicSongSearchLine->setText(name.trimmed());
-    musicFunctionClicked(MusicRightAreaWidget::SearchWidget);
 }
 
 void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)

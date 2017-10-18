@@ -35,12 +35,12 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 2:
             {
-                MusicRightAreaWidget::instance()->musicAlbumFound(m_currentSongName);
+                MusicRightAreaWidget::instance()->musicAlbumFound(m_currentSongName, QString());
                 break;
             }
         case 3:
             {
-                MusicRightAreaWidget::instance()->musicArtistFound(m_currentSongName);
+                MusicRightAreaWidget::instance()->musicArtistFound(m_currentSongName, QString());
                 break;
             }
         case 4:

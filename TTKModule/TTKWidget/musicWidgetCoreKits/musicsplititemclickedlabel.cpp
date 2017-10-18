@@ -38,7 +38,7 @@ void MusicSplitItemClickedLabel::mousePressEvent(QMouseEvent *event)
     QLabel::mousePressEvent(event);
     if(event->button() == Qt::LeftButton && !m_currentString.isEmpty())
     {
-        MusicRightAreaWidget::instance()->songResearchButtonSearched(m_currentString);
+        MusicRightAreaWidget::instance()->musicSongSearchedFound(m_currentString);
     }
 }
 

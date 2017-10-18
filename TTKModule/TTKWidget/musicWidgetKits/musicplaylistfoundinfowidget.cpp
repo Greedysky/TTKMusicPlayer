@@ -65,6 +65,11 @@ void MusicPlaylistFoundInfoWidget::resizeWindow()
     }
 }
 
+void MusicPlaylistFoundInfoWidget::setSongNameById(const QString &id)
+{
+    Q_UNUSED(id);
+}
+
 void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem &item, QObject *obj)
 {
     delete m_statusLabel;

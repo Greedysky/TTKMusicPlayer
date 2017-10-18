@@ -2,6 +2,7 @@
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
+#include "musicdownloadquerykgthread.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -125,6 +126,44 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
             info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
                                                     .arg(value["songName"].toString()).arg(hash)
                                                     .arg(value["timeLength"].toInt()*1000);
+        }
+    }
+}
+
+void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *info, const QString &album)
+{
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkAccessManager manager;
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = manager.get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            value = value["data"].toMap();
+            info->m_nickname = value["albumname"].toString();
+            info->m_description = info->m_nickname + "<>" +
+                                  value["language"].toString() + "<>" +
+                                  value["company"].toString() + "<>" +
+                                  value["publishtime"].toString().left(10);
+//            info->m_coverUrl = value["imgurl"].toString();
         }
     }
 }

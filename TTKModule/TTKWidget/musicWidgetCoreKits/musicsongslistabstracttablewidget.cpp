@@ -139,7 +139,7 @@ void MusicSongsListAbstractTableWidget::musicAlbumFoundWidget()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicAlbumFound( getCurrentSongName(), QString() );
 }
 
 void MusicSongsListAbstractTableWidget::musicSimilarFoundWidget()

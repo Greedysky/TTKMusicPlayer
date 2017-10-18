@@ -67,6 +67,11 @@ void MusicTopListFoundWidget::setSongName(const QString &name)
     createLabels();
 }
 
+void MusicTopListFoundWidget::setSongNameById(const QString &id)
+{
+    Q_UNUSED(id);
+}
+
 void MusicTopListFoundWidget::resizeWindow()
 {
     m_toplistTableWidget->resizeWindow();

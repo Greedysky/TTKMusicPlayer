@@ -62,11 +62,6 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
         bytes = bytes.replace("callback(", "");
         bytes.chop(1);
 
-        QFile file("1");
-        file.open(QFile::ReadWrite);
-        file.write(bytes);
-        file.close();
-
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
@@ -102,8 +97,10 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 
                     if(m_currentType != MovieQuery)
                     {
+                        musicInfo.m_songId = value["songId"].toString();
+                        musicInfo.m_albumId = value["albumId"].toString();
+                        musicInfo.m_artistId = value["artistId"].toString();
                         musicInfo.m_albumName = value["albumName"].toString();
-
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
 
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

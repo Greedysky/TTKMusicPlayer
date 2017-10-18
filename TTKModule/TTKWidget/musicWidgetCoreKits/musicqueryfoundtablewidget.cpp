@@ -7,6 +7,7 @@
 #include "musicconnectionpool.h"
 #include "musicsettingmanager.h"
 #include "musicsongssummariziedwidget.h"
+#include "musicrightareawidget.h"
 
 MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -101,10 +102,53 @@ void MusicQueryFoundTableWidget::resizeWindow()
     }
 }
 
+void MusicQueryFoundTableWidget::searchChanged(QAction *action)
+{
+    int row = currentRow();
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+    switch( action->data().toInt() )
+    {
+        case 0: MusicRightAreaWidget::instance()->musicArtistFound(info->m_singerName, info->m_artistId); break;
+        case 1: MusicRightAreaWidget::instance()->musicSongSearchedFound(info->m_songName); break;
+        case 2: MusicRightAreaWidget::instance()->musicSongSearchedFound(item(row, 1)->toolTip()); break;
+        case 3: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
+    }
+}
+
 void MusicQueryFoundTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryTableWidget::resizeEvent(event);
     resizeWindow();
+}
+
+void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryTableWidget::contextMenuEvent(event);
+
+    QMenu menu;
+    menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    int row = currentRow();
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+    menu.addAction(tr("search '%1'").arg(info->m_singerName))->setData(0);
+    menu.addAction(tr("search '%1'").arg(info->m_songName))->setData(1);
+    menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName))->setData(2);
+    menu.addAction(tr("search '%1'").arg(info->m_albumName))->setData(3);
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchChanged(QAction*)));
+
+    menu.exec(QCursor::pos());
 }
 
 void MusicQueryFoundTableWidget::listCellEntered(int row, int column)

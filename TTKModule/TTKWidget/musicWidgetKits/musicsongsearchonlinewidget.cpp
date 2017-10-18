@@ -290,6 +290,19 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
         case 6: musicSongDownload(row); break;
+        case 7:
+            {
+                if(row < 0)
+                {
+                    break;
+                }
+
+                MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+                MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+                MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId);
+                break;
+            }
+        default: break;
     }
 }
 
@@ -330,7 +343,11 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     m_actionGroup->addAction( rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")) )->setData(4);
     m_actionGroup->addAction( rightClickMenu.addAction(tr("musicAdd")) )->setData(5);
     m_actionGroup->addAction( rightClickMenu.addAction(tr("downloadMore...")) )->setData(6);
+
     createContextMenu(rightClickMenu);
+    QString albumName = currentRow() != -1 && rowCount() > 0 ?
+                   item(currentRow(), 3)->toolTip() : QString();
+    m_actionGroup->addAction( rightClickMenu.addAction(tr("search '%1'").arg(albumName)))->setData(7);
 
     rightClickMenu.exec(QCursor::pos());
 }
@@ -397,7 +414,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     createToolWidget(toolWidget);
     connect(m_searchTableWidget, SIGNAL(auditionIsPlaying(bool)), SLOT(auditionIsPlaying(bool)));
     connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(),
-                                 SLOT(songResearchButtonSearched(QString)));
+                                 SLOT(musicSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()

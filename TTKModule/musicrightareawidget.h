@@ -164,11 +164,11 @@ public Q_SLOTS:
     /*!
      * Music album function that by string.
      */
-    void musicAlbumFound(const QString &text);
+    void musicAlbumFound(const QString &text, const QString &id);
     /*!
      * Music artist function that by string.
      */
-    void musicArtistFound(const QString &text);
+    void musicArtistFound(const QString &text, const QString &id);
     /*!
      * Music toplist function.
      */
@@ -177,6 +177,10 @@ public Q_SLOTS:
      * Music playlist function.
      */
     void musicPlaylistFound();
+    /*!
+     * Music song research button searched by name.
+     */
+    void musicSongSearchedFound(const QString &text);
     /*!
      * Music load song index widget.
      */
@@ -197,10 +201,6 @@ public Q_SLOTS:
      * Set current desktop lrc window type changed.
      */
     void setWindowLrcTypeChanged();
-    /*!
-     * Music song research button searched by name.
-     */
-    void songResearchButtonSearched(const QString &name);
     /*!
      * Research query by quality it changed.
      */

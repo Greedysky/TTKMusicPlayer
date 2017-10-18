@@ -50,12 +50,6 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
 
-protected:
-    /*!
-     * Read tags(album info) from query results.
-     */
-    void readFromMusicSongAlbumInfo(MusicPlaylistItem *info);
-
 };
 
 #endif // MUSICDOWNLOADQUERYKGALBUMTHREAD_H

@@ -70,6 +70,11 @@ void MusicSimilarFoundWidget::setSongName(const QString &name)
     createLabels();
 }
 
+void MusicSimilarFoundWidget::setSongNameById(const QString &id)
+{
+    Q_UNUSED(id);
+}
+
 void MusicSimilarFoundWidget::resizeWindow()
 {
     m_similarTableWidget->resizeWindow();

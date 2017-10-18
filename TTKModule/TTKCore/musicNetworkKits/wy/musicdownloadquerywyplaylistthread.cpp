@@ -186,6 +186,7 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
 
                     QVariantMap albumObject = value["album"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
+                    musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
                     musicInfo.m_albumName = albumObject["name"].toString();
 
                     QVariantList artistsArray = value["artists"].toList();
@@ -196,6 +197,7 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
                             continue;
                         }
                         QVariantMap artistMap = artistValue.toMap();
+                        musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                         musicInfo.m_singerName = artistMap["name"].toString();
                     }
 
