@@ -269,10 +269,6 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs.
      */
-    void setDeleteItemAt(const QStringList &path, bool remove, bool current);
-    /*!
-     * Delete items from indexs.
-     */
     void setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
     /////////////////////////////////////////////
     /*!

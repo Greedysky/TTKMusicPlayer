@@ -872,11 +872,6 @@ void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)
     setDeleteItemAt(QStringList() << path, false, current, MUSIC_LOVEST_LIST);
 }
 
-void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current)
-{
-    setDeleteItemAt(path, remove, current, m_musicSongTreeWidget->currentIndex());
-}
-
 void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex)
 {
     if(path.isEmpty())

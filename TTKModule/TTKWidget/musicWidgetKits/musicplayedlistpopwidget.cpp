@@ -90,11 +90,12 @@ void MusicPlayedListPopWidget::remove(int index)
         return;
     }
 
-    m_playlist->removeMedia(index);
-    m_songLists.removeAt(index);
     m_playedListWidget->replacePlayWidgetRow();
     m_playedListWidget->removeRow(index);
     m_playedListWidget->setPlayRowIndex(-1);
+
+    m_playlist->removeMedia(index);
+    m_songLists.removeAt(index);
 
     updateSongsFileName();
 }

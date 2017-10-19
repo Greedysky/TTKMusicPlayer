@@ -701,7 +701,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &i
         }
     }
 
-    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, cIndex == m_currentPlayToolIndex);
+    MusicApplication::instance()->setDeleteItemAt(deleteFiles, fileRemove, cIndex == m_currentPlayToolIndex, cIndex);
 
     setItemTitle(item);
 
@@ -736,7 +736,8 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int
 
 void MusicSongsSummariziedWidget::isCurrentIndexs(bool &state)
 {
-    state = ( m_currentIndex == m_currentPlayToolIndex );
+    int cIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
+    state = ( cIndex == m_currentPlayToolIndex );
 }
 
 void MusicSongsSummariziedWidget::isSearchFileListEmpty(bool &empty)
