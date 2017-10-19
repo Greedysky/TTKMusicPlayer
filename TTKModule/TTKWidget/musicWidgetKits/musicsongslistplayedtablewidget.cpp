@@ -16,7 +16,6 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     : MusicSongsListAbstractTableWidget(parent)
 {
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::SingleSelection);
     setColumnCount(5);
 
@@ -114,7 +113,7 @@ void MusicSongsListPlayedTableWidget::clearAllItems()
     m_playRowIndex = -1;
     //Remove all the original item
     MusicSongsListAbstractTableWidget::clear();
-    setColumnCount(6);
+    setColumnCount(5);
 }
 
 void MusicSongsListPlayedTableWidget::selectRow(int index)

@@ -179,7 +179,7 @@ void MusicPlayedListPopWidget::setCurrentIndex(int toolIndex, const MusicSong &s
 void MusicPlayedListPopWidget::resizeWindow()
 {
 //    int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height();
-//    m_containWidget->setFixedSize(300, 500 + h - WINDOW_HEIGHT_MIN);
+//    m_containWidget->setFixedSize(320, 500 + h - WINDOW_HEIGHT_MIN);
 }
 
 void MusicPlayedListPopWidget::popupMenu()
