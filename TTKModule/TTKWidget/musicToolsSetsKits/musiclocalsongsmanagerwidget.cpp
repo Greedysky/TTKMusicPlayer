@@ -7,7 +7,11 @@
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicotherdefine.h"
-
+#ifdef MUSIC_GREATER_NEW
+#  include <QtConcurrent/QtConcurrent>
+#else
+#  include <QtConcurrentRun>
+#endif
 #include <QFileDialog>
 #include <QButtonGroup>
 #include <QFileSystemWatcher>
@@ -102,6 +106,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->searchLineLabel->setFocusPolicy(Qt::NoFocus);
 #endif
 
+    m_runTypeChanged = false;
     addDrivesList();
     watchDirEnable(false);
     m_ui->filterComboBox->setCurrentIndex(-1);
@@ -118,6 +123,7 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
+    m_runTypeChanged = false;
     M_CONNECTION_PTR->removeValue(getClassName() );
     clearAllItems();
     m_thread->stopAndQuitThread();
@@ -323,6 +329,7 @@ void MusicLocalSongsManagerWidget::updateFileLists(const QFileInfoList &list)
 
 void MusicLocalSongsManagerWidget::setShowlistButton()
 {
+    m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_0);
     controlEnable(true);
@@ -332,72 +339,92 @@ void MusicLocalSongsManagerWidget::setShowlistButton()
 
 void MusicLocalSongsManagerWidget::setShowArtButton()
 {
+    m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
     controlEnable(false);
+    m_runTypeChanged = true;
 
-    MusicInfoData arts;
-    MusicSongTag tag;
-    foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
+    QtConcurrent::run([&]
     {
-        if(tag.read(info.absoluteFilePath()))
+        MusicInfoData arts;
+        MusicSongTag tag;
+        foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
         {
-            QString artString = tag.getArtist().trimmed();
-            if(artString.isEmpty())
+            if(!m_runTypeChanged)
             {
-                artString = "Various Artists";
+                break;
             }
 
-            if(!arts.contains(artString))
+            if(tag.read(info.absoluteFilePath()))
             {
-                arts.insert(artString, QFileInfoList() << info);
-            }
-            else
-            {
-                arts.insert(artString, arts[artString] << info);
+                QString artString = tag.getArtist().trimmed();
+                if(artString.isEmpty())
+                {
+                    artString = "Various Artists";
+                }
+
+                if(!arts.contains(artString))
+                {
+                    arts.insert(artString, QFileInfoList() << info);
+                }
+                else
+                {
+                    arts.insert(artString, arts[artString] << info);
+                }
             }
         }
-    }
 
-    m_ui->songInfoTable->setRowCount(arts.count());
-    m_ui->songInfoTable->addItems(arts);
+        m_ui->songInfoTable->setRowCount(arts.count());
+        m_ui->songInfoTable->addItems(arts);
 
-    loadingLabelState(false);
+        loadingLabelState(false);
+    });
 }
 
 void MusicLocalSongsManagerWidget::setShowAlbumButton()
 {
+    m_runTypeChanged = false;
     loadingLabelState(true);
     m_ui->stackedWidget->setCurrentIndex(LOCAL_MANAGER_INDEX_1);
     controlEnable(false);
+    m_runTypeChanged = true;
 
-    MusicInfoData albums;
-    MusicSongTag tag;
-    foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
+    QtConcurrent::run([&]
     {
-        if(tag.read(info.absoluteFilePath()))
+        MusicInfoData albums;
+        MusicSongTag tag;
+        foreach(const QFileInfo &info, m_ui->songlistsTable->getFiles())
         {
-            QString albumString = tag.getAlbum().trimmed();
-            if(albumString.isEmpty())
+            if(!m_runTypeChanged)
             {
-                albumString = "Various Album";
+                break;
             }
 
-            if(!albums.contains(albumString))
+            if(tag.read(info.absoluteFilePath()))
             {
-                albums.insert(albumString, QFileInfoList() << info);
-            }
-            else
-            {
-                albums.insert(albumString, albums[albumString] << info);
+                QString albumString = tag.getAlbum().trimmed();
+                if(albumString.isEmpty())
+                {
+                    albumString = "Various Album";
+                }
+
+                if(!albums.contains(albumString))
+                {
+                    albums.insert(albumString, QFileInfoList() << info);
+                }
+                else
+                {
+                    albums.insert(albumString, albums[albumString] << info);
+                }
             }
         }
-    }
 
-    m_ui->songInfoTable->setRowCount(albums.count());
-    m_ui->songInfoTable->addItems(albums);
+        m_ui->songInfoTable->setRowCount(albums.count());
+        m_ui->songInfoTable->addItems(albums);
 
-    loadingLabelState(false);
+        loadingLabelState(false);
+    });
 }
 
 void MusicLocalSongsManagerWidget::show()

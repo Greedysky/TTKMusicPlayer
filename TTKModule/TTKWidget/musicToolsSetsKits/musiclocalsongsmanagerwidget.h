@@ -172,6 +172,7 @@ protected:
      */
     void loadingLabelState(bool state);
 
+    bool m_runTypeChanged;
     Ui::MusicLocalSongsManagerWidget *m_ui;
     QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
