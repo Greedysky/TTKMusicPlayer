@@ -269,7 +269,7 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
             loader.setFileName(MusicUtils::Core::pluginPath("Spek", name));
             QObject *obj = loader.instance();
             SpekFactory *decoderfac = nullptr;
-            if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)) )
+            if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)))
             {
                 Spek *spekWidget = decoderfac->create(this);
                 MusicSpectrum sp;

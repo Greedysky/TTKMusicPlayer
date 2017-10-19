@@ -215,10 +215,10 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 260));
+    item->setToolTip( record.m_name );
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 260));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( record.m_name );
     setItem(index, 2, item);
 
                       item = new QTableWidgetItem;

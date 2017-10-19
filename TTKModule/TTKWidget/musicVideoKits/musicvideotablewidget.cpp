@@ -125,19 +125,19 @@ void MusicVideoTableWidget::createSearchedItems(const MusicSearchedItem &songIte
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_songName, Qt::ElideRight,
+    item->setToolTip(songItem.m_songName);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight,
                                                  headerview->sectionSize(1) - 5));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songItem.m_songName);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), songItem.m_singerName, Qt::ElideRight,
+    item->setToolTip(songItem.m_singerName);
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight,
                                                  headerview->sectionSize(2) - 5));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
-    item->setToolTip(songItem.m_singerName);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);

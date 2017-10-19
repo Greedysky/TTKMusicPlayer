@@ -14,7 +14,7 @@
 #include "musicregeditmanager.h"
 #include "musicotherdefine.h"
 //qmmp
-#include <qmmpsettings.h>
+#include "qmmpsettings.h"
 
 #include <QFileDialog>
 #include <QFontDatabase>

@@ -190,10 +190,10 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setText(MusicUtils::Widget::elidedText(font(), record.m_name, Qt::ElideRight, 158));
+    item->setToolTip( record.m_name );
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 158));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    item->setToolTip( record.m_name );
     setItem(index, 1, item);
 
                       item = new QTableWidgetItem;
