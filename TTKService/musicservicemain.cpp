@@ -25,6 +25,9 @@ void loadDXcbPlugin(int argc, char *argv[])
       qputenv("QT_SCALE_FACTOR", QByteArray::number(dpi));
       Q_UNUSED(a);
     #endif
+#else
+    Q_UNUSED(argc);
+    Q_UNUSED(argv);
 #endif
 }
 

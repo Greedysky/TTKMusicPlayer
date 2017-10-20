@@ -64,26 +64,29 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqbackgroundthread.h
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqtoplistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadsourcethread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkproxy.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkoperator.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadqueuecache.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicvoicettsthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicidentifysongsthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicsourceupdatethread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadcounterpvthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsourcethread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkproxy.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkoperator.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkoperator.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueuecache.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadquerythreadabstract.h
-    ${MUSIC_CORE_NETWORK_DIR}/musictranslationthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicvoicettsthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicidentifysongsthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicsourceupdatethread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadcounterpvthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadcommentsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloaddiscoverlistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadpagingthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundremotethread.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryalbumthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryartistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryplaylistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadquerytoplistthread.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
@@ -150,24 +153,28 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicqqbackgroundthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/qq/musicdownloadqueryqqtoplistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadsourcethread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkproxy.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkoperator.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadqueuecache.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicvoicettsthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicidentifysongsthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicsourceupdatethread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadcounterpvthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsourcethread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkproxy.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicnetworkoperator.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueuecache.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadquerythreadabstract.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musictranslationthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicvoicettsthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicidentifysongsthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicsourceupdatethread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadcounterpvthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadcommentsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloaddiscoverlistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadpagingthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadbackgroundremotethread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryalbumthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryartistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryplaylistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadquerytoplistthread.cpp
   )
   
