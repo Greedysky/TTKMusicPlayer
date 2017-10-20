@@ -194,6 +194,7 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
     int count = rowCount();
     setRowCount(count + 1);
 
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count, 0, item);
@@ -201,13 +202,13 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 310));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_albumName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 84));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);

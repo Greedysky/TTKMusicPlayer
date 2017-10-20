@@ -74,20 +74,24 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
 {
     int count = rowCount();
     setRowCount(songs.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=count; i<songs.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
+
                           item = new QTableWidgetItem;
         item->setToolTip(songs[i].getMusicName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 182));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+
         setItem(i, 1, item);
                           item = new QTableWidgetItem;
         setItem(i, 2, item);
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
+
                           item = new QTableWidgetItem(songs[i].getMusicTime());
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -165,12 +169,13 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     clearSpans();
 
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
 
     item = new QTableWidgetItem;
     item->setToolTip(name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 182));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 

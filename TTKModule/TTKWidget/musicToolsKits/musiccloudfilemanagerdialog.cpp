@@ -49,12 +49,14 @@ void MusicCloudFileManagerDialog::creatFileManager(const MusicUploadData &data)
 {
     int index = m_ui->uploadedTableWidget->rowCount();
     m_ui->uploadedTableWidget->setRowCount(index + 1);
+
     QTableWidgetItem *item = new QTableWidgetItem;
     m_ui->uploadedTableWidget->setItem(index, 0, item);
+    QHeaderView *headerview = m_ui->uploadedTableWidget->horizontalHeader();
 
                       item = new QTableWidgetItem;
     item->setToolTip(data.m_name);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 255));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 50));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->uploadedTableWidget->setItem(index, 1, item);
 

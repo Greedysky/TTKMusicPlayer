@@ -223,6 +223,7 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedIt
     int count = rowCount();
     setRowCount(count + 1);
 
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
     item->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
@@ -230,21 +231,21 @@ void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedIt
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 257));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 74));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 30));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_albumName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 74));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(3) - 30));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 3, item);

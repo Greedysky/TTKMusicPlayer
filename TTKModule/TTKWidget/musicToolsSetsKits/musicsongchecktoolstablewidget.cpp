@@ -32,6 +32,7 @@ QString MusicSongCheckToolsRenameTableWidget::getClassName()
 void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckToolsRenames &items)
 {
     setRowCount(items.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongCheckToolsRename song = items[i];
@@ -41,13 +42,13 @@ void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckTo
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_locaName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 280));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
         item->setToolTip(song.m_RecommendName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 280));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);
 
@@ -136,6 +137,7 @@ QString MusicSongCheckToolsDuplicateTableWidget::getClassName()
 void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongCheckToolsDuplicates &songs)
 {
     setRowCount(songs.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<songs.count(); ++i)
     {
         const MusicSongCheckToolsDuplicate song = songs[i];
@@ -145,7 +147,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_song.getMusicName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 245));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 45));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -271,6 +273,7 @@ QString MusicSongCheckToolsQualityTableWidget::getClassName()
 void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckToolsQualitys &songs)
 {
     setRowCount(songs.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<songs.count(); ++i)
     {
         const MusicSongCheckToolsQuality song = songs[i];
@@ -280,7 +283,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_song.getMusicName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 210));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 

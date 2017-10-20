@@ -92,13 +92,14 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
     ////////////////////////////////////////////////////////////////
 
     int count = rowCount();
-    setRowCount(songs.count());    //reset row count
+    setRowCount(songs.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=count; i<songs.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(i, 0, item);
                           item = new QTableWidgetItem;
-        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
+        item->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
@@ -227,10 +228,11 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
     delete takeItem(m_playRowIndex, 0);
     clearSpans();
 
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(m_playRowIndex, 0, item);
 
-    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 180));
+    item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, headerview->sectionSize(1) - 10));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -765,8 +767,9 @@ void MusicSongsListTableWidget::closeRenameItem()
     //the two if function to deal with
     if(m_renameActived)
     {
+        QHeaderView *headerview = horizontalHeader();
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
-        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, 180));
+        m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
         m_renameActived = false;
         m_renameItem = nullptr;
     }
@@ -811,7 +814,8 @@ void MusicSongsListTableWidget::startToDrag()
                 continue; //skip the current play item index, because the play widget just has one item
             }
 
-            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, 180));
+            QHeaderView *headerview = horizontalHeader();
+            item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
             item(i, 5)->setText(songs[i].getMusicTime());
         }
 

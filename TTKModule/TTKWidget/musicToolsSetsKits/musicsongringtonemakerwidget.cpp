@@ -83,7 +83,7 @@ QString MusicSongRingtoneMaker::getClassName()
 void MusicSongRingtoneMaker::initInputPath()
 {
     QStringList supportedFormat;
-    supportedFormat << "mp3" <<"wav" <<"wma" << "ogg" << "flac" << "ac3" << "aac";
+    supportedFormat << "mp3" << "wav" << "wma" << "ogg" << "flac" << "ac3" << "aac";
 
     QString filter = "Files (";
     for(int i=0; i<supportedFormat.count(); ++i)

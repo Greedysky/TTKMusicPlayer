@@ -65,8 +65,7 @@ QString MusicRemoteWidgetForRipples::getClassName()
 
 void MusicRemoteWidgetForRipples::setLabelText(const QString &value)
 {
-    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value,
-                             Qt::ElideRight, 350));
+    m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
 }
 
 void MusicRemoteWidgetForRipples::enableRipples(bool enable)

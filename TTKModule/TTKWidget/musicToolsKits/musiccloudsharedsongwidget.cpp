@@ -118,6 +118,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
     m_openFileWidget = nullptr;
 
     setRowCount(count);
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<count; ++i)
     {
         QNDataItem dataItem = items[i];
@@ -126,14 +127,14 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
 
                           item = new QTableWidgetItem;
         item->setToolTip(dataItem.m_name);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 250));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip(MusicUtils::Number::size2Label(dataItem.m_size));
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 40));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);

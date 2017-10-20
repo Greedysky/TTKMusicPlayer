@@ -38,17 +38,18 @@ void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItems &ite
 {
     int count = rowCount();
     setRowCount(count + items.count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items.count(); ++i)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip( items[i].m_name );
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 128));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 0, item);
 
                           item = new QTableWidgetItem;
         item->setToolTip( items[i].m_path );
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 195));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(count + i, 1, item);
     }

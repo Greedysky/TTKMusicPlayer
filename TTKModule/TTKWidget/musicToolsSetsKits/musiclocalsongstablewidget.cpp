@@ -42,17 +42,18 @@ void MusicLocalSongsTableWidget::clear()
 
 void MusicLocalSongsTableWidget::addItems(const QFileInfoList &path)
 {
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<path.count(); i++)
     {
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setToolTip(path[i].fileName());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 350));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 20));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 0, item);
 
                          item = new QTableWidgetItem;
         item->setToolTip(MusicUtils::Number::size2Label(path[i].size()));
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 50));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
         item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 1, item);
 
@@ -130,6 +131,7 @@ void MusicLocalSongsInfoTableWidget::clear()
 
 void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
 {
+    QHeaderView *headerview = horizontalHeader();
     MusicInfoDataIterator it(data);
     int i=0;
     while(it.hasNext())
@@ -149,7 +151,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
 
                          item = new QTableWidgetItem;
         item->setToolTip(it.key());
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 300));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
 

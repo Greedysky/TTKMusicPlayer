@@ -134,10 +134,11 @@ void MusicVolumeGainWidget::createItemFinished(const QString &track, const QStri
 
     int row = m_ui->tableWidget->rowCount();
     m_ui->tableWidget->setRowCount(row + 1);
+    QHeaderView *headerview = m_ui->tableWidget->horizontalHeader();
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setToolTip(m_paths[m_currentIndex]);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 320));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(0) - 15));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     m_ui->tableWidget->setItem(row, 0, item);
 

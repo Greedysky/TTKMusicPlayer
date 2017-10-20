@@ -207,6 +207,7 @@ void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record, qint64 time)
 {
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
 
@@ -216,7 +217,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
 
                       item = new QTableWidgetItem;
     item->setToolTip( record.m_name );
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 260));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 20));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 2, item);

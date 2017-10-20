@@ -108,13 +108,14 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedI
     int count = rowCount();
     setRowCount(count + 1);
 
+    QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
-    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 275));
+    item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 15));
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(count, 1, item);

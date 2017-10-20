@@ -39,6 +39,7 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
     }
 
     setRowCount(items->count());
+    QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items->count(); ++i)
     {
         const MusicSongItem song = (*items)[i];
@@ -49,7 +50,7 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
 
                           item = new QTableWidgetItem;
         item->setToolTip(song.m_itemName);
-        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, 280));
+        item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 30));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 1, item);
     }
