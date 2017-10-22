@@ -20,10 +20,10 @@ The TTKMusicplayer plugin for run
   * |__MCached
   * |__MLrc
   * |__Movie
+  * |__MUpdate
   * |__Music
 * |__当前版本号
   * |__MLanguage
   * |__MTheme
   * |__MPlugins
   * |__plugins
-  * |__projectM
