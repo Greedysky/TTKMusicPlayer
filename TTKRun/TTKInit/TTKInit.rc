@@ -1,0 +1,42 @@
+#if defined(UNDER_CE)
+    include <winbase.h>
+#else
+    #include <winver.h>
+#endif
+
+IDI_ICON1                ICON     DISCARDABLE     "../../TTKResource/lb_player_logo.ico"
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION 1,0,0,0
+    PRODUCTVERSION 1,0,0,0
+    FILEFLAGSMASK 0x3fL
+
+#ifdef _DEBUG
+    FILEFLAGS VS_FF_DEBUG
+#else
+    FILEFLAGS 0x0L
+#endif
+
+    FILEOS VOS__WINDOWS32
+    FILETYPE VFT_DLL
+    FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+            BEGIN
+                VALUE "CompanyName", "Greedysky studio, Ltd."
+                VALUE "FileDescription", "初始化"
+                VALUE "FileVersion", "1.0.0.0"
+                VALUE "InternalName", "初始化.exe"
+                VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2017"
+                VALUE "OriginalFilename", "初始化.exe"
+                VALUE "ProductName", "初始化"
+                VALUE "ProductVersion", "1.0.0.0"
+            END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MusicLocalSongsManagerWidget</class>
+ <widget class="QWidget" name="MusicLocalSongsManagerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>588</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>本地歌曲管理</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLabel" name="background">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>4</y>
+     <width>760</width>
+     <height>580</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="topTitleName">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>4</y>
+     <width>181</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:&quot;#FFFFFF&quot;;font-weight:bold</string>
+   </property>
+   <property name="text">
+    <string>本地歌曲管理</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="topTitleCloseButton">
+   <property name="geometry">
+    <rect>
+     <x>743</x>
+     <y>6</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>...</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="backgroundMask1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>29</y>
+     <width>125</width>
+     <height>555</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(255,255,255,200)</string>
+   </property>
+   <widget class="QPushButton" name="showlistButton">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>60</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>按列表显示</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showArtButton">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>95</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>按艺术家显示</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="songCountLabel">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>10</y>
+      <width>115</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> 本地音乐文件（-）</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>45</y>
+      <width>110</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="showAlbumButton">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>130</y>
+      <width>100</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>按专辑显示</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="watchDirCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>110</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>监视文件夹</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="watchDirButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>527</y>
+      <width>45</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>路径</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="watchDirFrequenceEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>527</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#6495ED;border: 1px solid #555;</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="toolWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>129</x>
+     <y>29</y>
+     <width>635</width>
+     <height>555</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white;</string>
+   </property>
+   <widget class="QCheckBox" name="allSelectedcheckBox">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>10</y>
+      <width>75</width>
+      <height>16</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="auditionButton">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>5</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>5</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="searchLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>186</x>
+      <y>5</y>
+      <width>165</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#6495ED;border: 1px solid #555;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scanButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>5</y>
+      <width>60</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>扫描</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchLineLabel">
+    <property name="geometry">
+     <rect>
+      <x>355</x>
+      <y>10</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/tiny/btn_search_main_hover);
+background:rgba(255,255,255,50)</string>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="filterComboBox">
+    <property name="geometry">
+     <rect>
+      <x>525</x>
+      <y>6</y>
+      <width>105</width>
+      <height>23</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="backgroundMask2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>636</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgba(255,255,255,150)</string>
+    </property>
+    <widget class="QPushButton" name="scanCustButton">
+     <property name="geometry">
+      <rect>
+       <x>455</x>
+       <y>5</y>
+       <width>60</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>自扫</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>635</width>
+      <height>480</height>
+     </rect>
+    </property>
+    <widget class="MusicLocalSongsTableWidget" name="songlistsTable"/>
+    <widget class="MusicLocalSongsInfoTableWidget" name="songInfoTable"/>
+   </widget>
+   <widget class="QLabel" name="watchPathLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>525</y>
+      <width>635</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:#EEEEEE</string>
+    </property>
+   </widget>
+   <zorder>backgroundMask2</zorder>
+   <zorder>allSelectedcheckBox</zorder>
+   <zorder>auditionButton</zorder>
+   <zorder>addButton</zorder>
+   <zorder>searchLineEdit</zorder>
+   <zorder>scanButton</zorder>
+   <zorder>searchLineLabel</zorder>
+   <zorder>filterComboBox</zorder>
+   <zorder>stackedWidget</zorder>
+   <zorder>watchPathLabel</zorder>
+  </widget>
+  <widget class="MusicGifLabelWidget" name="loadingLabel">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>270</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QLabel</extends>
+   <header>musicgiflabelwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicLocalSongsTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclocalsongstablewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MusicLocalSongsInfoTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>musiclocalsongstablewidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

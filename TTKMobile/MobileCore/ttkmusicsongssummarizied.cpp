@@ -1,5 +1,6 @@
 #include "ttkmusicsongssummarizied.h"
 #include "musicalgorithmutils.h"
+#include "musicotherdefine.h"
 
 TTKMusicSongsSummarizied::TTKMusicSongsSummarizied(QObject *parent)
     : QObject(parent)

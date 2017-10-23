@@ -150,6 +150,7 @@
         <file alias="btn_ring">../TTKResource/contextMenu/btn_ring.png</file>
         <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
         <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
+        <file alias="btn_lrc_label">../TTKResource/contextMenu/btn_lrc_label.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>
@@ -161,6 +162,7 @@
         <file alias="lb_rice_font_white">../TTKResource/gif/lb_rice_font_white.png</file>
         <file alias="lb_check_blue">../TTKResource/gif/lb_check_blue.png</file>
         <file alias="lb_record_red">../TTKResource/gif/lb_record_red.png</file>
+        <file alias="lb_close_white">../TTKResource/gif/lb_close_white.png</file>
     </qresource>
     <qresource prefix="/lrc">
         <file alias="btn_star_clicked">../TTKResource/lrc/btn_star_clicked.png</file>
@@ -215,6 +217,29 @@
         <file alias="lb_make_up_hover">../TTKResource/lrc/lb_make_up_hover.png</file>
         <file alias="lb_make_down_normal">../TTKResource/lrc/lb_make_down_normal.png</file>
         <file alias="lb_make_down_hover">../TTKResource/lrc/lb_make_down_hover.png</file>
+        <file alias="lb_poster_letter_line">../TTKResource/lrc/lb_poster_letter_line.png</file>
+        <file alias="lb_poster_letter_background">../TTKResource/lrc/lb_poster_letter_background.png</file>
+        <file alias="lb_poster_spring">../TTKResource/lrc/lb_poster_spring.png</file>
+        <file alias="lb_poster_summer">../TTKResource/lrc/lb_poster_summer.png</file>
+        <file alias="lb_poster_autumn">../TTKResource/lrc/lb_poster_autumn.png</file>
+        <file alias="lb_poster_winter">../TTKResource/lrc/lb_poster_winter.png</file>
+        <file alias="lb_poster_thumb1">../TTKResource/lrc/lb_poster_thumb1.png</file>
+        <file alias="lb_poster_thumb2">../TTKResource/lrc/lb_poster_thumb2.png</file>
+        <file alias="lb_poster_thumb3">../TTKResource/lrc/lb_poster_thumb3.png</file>
+        <file alias="lb_poster_thumb4">../TTKResource/lrc/lb_poster_thumb4.png</file>
+        <file alias="lb_poster_thumb5">../TTKResource/lrc/lb_poster_thumb5.png</file>
+        <file alias="lb_poster_thumb6">../TTKResource/lrc/lb_poster_thumb6.png</file>
+        <file alias="lb_poster_thumb7">../TTKResource/lrc/lb_poster_thumb7.png</file>
+        <file alias="lb_poster_thumb8">../TTKResource/lrc/lb_poster_thumb8.png</file>
+        <file alias="lb_poster_thumb9">../TTKResource/lrc/lb_poster_thumb9.png</file>
+        <file alias="lb_poster_thumb10">../TTKResource/lrc/lb_poster_thumb10.png</file>
+        <file alias="lb_poster_thumb11">../TTKResource/lrc/lb_poster_thumb11.png</file>
+        <file alias="lb_poster_thumb12">../TTKResource/lrc/lb_poster_thumb12.png</file>
+        <file alias="lb_poster_thumb13">../TTKResource/lrc/lb_poster_thumb13.png</file>
+        <file alias="lb_poster_thumb14">../TTKResource/lrc/lb_poster_thumb14.png</file>
+        <file alias="lb_poster_thumb15">../TTKResource/lrc/lb_poster_thumb15.png</file>
+        <file alias="lb_poster_thumb16">../TTKResource/lrc/lb_poster_thumb16.png</file>
+        <file alias="lb_poster_thumb17">../TTKResource/lrc/lb_poster_thumb17.png</file>
     </qresource>
     <qresource prefix="/shadow">
         <file alias="lb_bottom">../TTKResource/borderShadow/lb_bottom.png</file>
@@ -274,9 +299,6 @@
         <file alias="item_download_normal">../TTKResource/appTools/item_download_normal.png</file>
         <file alias="item_download_hover">../TTKResource/appTools/item_download_hover.png</file>
         <file alias="item_download_clicked">../TTKResource/appTools/item_download_clicked.png</file>
-        <file alias="item_more_normal">../TTKResource/appTools/item_more_normal.png</file>
-        <file alias="item_more_hover">../TTKResource/appTools/item_more_hover.png</file>
-        <file alias="item_more_clicked">../TTKResource/appTools/item_more_clicked.png</file>
     </qresource>
     <qresource prefix="/funcTools">
         <file alias="song_fore_normal">../TTKResource/funcTools/song_fore_normal.png</file>
@@ -319,8 +341,14 @@
     <qresource prefix="/toolSets">
         <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>
         <file alias="btn_timer_play">../TTKResource/toolSets/btn_timer_play.png</file>
+        <file alias="btn_timer_play_hover">../TTKResource/toolSets/btn_timer_play_hover.png</file>
+        <file alias="btn_timer_play_clicked">../TTKResource/toolSets/btn_timer_play_clicked.png</file>
         <file alias="btn_timer_down">../TTKResource/toolSets/btn_timer_down.png</file>
+        <file alias="btn_timer_down_hover">../TTKResource/toolSets/btn_timer_down_hover.png</file>
+        <file alias="btn_timer_down_clicked">../TTKResource/toolSets/btn_timer_down_clicked.png</file>
         <file alias="btn_timer_stop">../TTKResource/toolSets/btn_timer_stop.png</file>
+        <file alias="btn_timer_stop_hover">../TTKResource/toolSets/btn_timer_stop_hover.png</file>
+        <file alias="btn_timer_stop_clicked">../TTKResource/toolSets/btn_timer_stop_clicked.png</file>
         <file alias="btn_tool_on">../TTKResource/toolSets/btn_tool_on.png</file>
         <file alias="btn_tool_off">../TTKResource/toolSets/btn_tool_off.png</file>
         <file alias="lb_mobile_devices">../TTKResource/toolSets/lb_mobile_devices.png</file>
@@ -384,8 +412,10 @@
         <file alias="btn_record_finish_hover">../TTKResource/toolSets/btn_record_finish_hover.png</file>
         <file alias="lb_record_off">../TTKResource/toolSets/lb_record_off.png</file>
         <file alias="lb_record_on">../TTKResource/toolSets/lb_record_on.png</file>
+        <file alias="btn_arrow_normal">../TTKResource/toolSets/btn_arrow_normal.png</file>
     </qresource>
     <qresource prefix="/tiny">
+        <file alias="lb_resize_normal">../TTKResource/tiny/lb_resize_normal.png</file>
         <file alias="lb_arrow_up_normal">../TTKResource/tiny/lb_arrow_up_normal.png</file>
         <file alias="lb_arrow_down_normal">../TTKResource/tiny/lb_arrow_down_normal.png</file>
         <file alias="lb_star">../TTKResource/tiny/lb_star.png</file>
@@ -425,7 +455,6 @@
         <file alias="btn_next_hover">../TTKResource/tiny/btn_next_normal.png</file>
         <file alias="btn_close_normal">../TTKResource/tiny/btn_close_normal.png</file>
         <file alias="btn_close_hover">../TTKResource/tiny/btn_close_hover.png</file>
-        <file alias="btn_search_line_normal">../TTKResource/tiny/btn_search_line_normal.png</file>
         <file alias="btn_search_main_normal">../TTKResource/tiny/btn_search_main_normal.png</file>
         <file alias="btn_search_main_hover">../TTKResource/tiny/btn_search_main_hover.png</file>
         <file alias="btn_collapse_hover">../TTKResource/tiny/btn_collapse_hover.png</file>
@@ -483,6 +512,7 @@
         <file alias="btn_collapse_w_hover">../TTKResource/tiny/btn_collapse_w_hover.png</file>
         <file alias="btn_expand_w_normal">../TTKResource/tiny/btn_expand_w_normal.png</file>
         <file alias="btn_expand_w_hover">../TTKResource/tiny/btn_expand_w_hover.png</file>
+        <file alias="lb_playlater">../TTKResource/tiny/lb_playlater.png</file>
     </qresource>
     <qresource prefix="/functions">
         <file alias="lb_drag_cursor">../TTKResource/functions/lb_drag_cursor.png</file>
@@ -556,6 +586,11 @@
         <file alias="btn_artist_normal">../TTKResource/functions/btn_artist_normal.png</file>
         <file alias="btn_playlist_hover">../TTKResource/functions/btn_playlist_hover.png</file>
         <file alias="btn_playlist_normal">../TTKResource/functions/btn_playlist_normal.png</file>
+        <file alias="btn_identify_normal">../TTKResource/functions/btn_identify_normal.png</file>
+        <file alias="btn_identify_hover">../TTKResource/functions/btn_identify_hover.png</file>
+        <file alias="btn_tools_normal">../TTKResource/functions/btn_tools_normal.png</file>
+        <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
+        <file alias="btn_toplist_hover">../TTKResource/functions/btn_toplist_hover.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>

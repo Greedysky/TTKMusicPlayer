@@ -125,7 +125,7 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
 
 QString TTKNetworkHelper::getSearchedAttributes(int index)
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return QString();
@@ -189,13 +189,13 @@ void TTKNetworkHelper::downLoadDataChanged()
 
 void TTKNetworkHelper::searchDataDwonloadFinished()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(m_currentIndex < 0 || m_currentIndex >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[m_currentIndex];
+    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[m_currentIndex];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
@@ -205,7 +205,7 @@ void TTKNetworkHelper::searchDataDwonloadFinished()
 
 void TTKNetworkHelper::createSearchedItems(const MusicSearchedItem &songItem)
 {
-    emit createSearchedItems(songItem.m_songname, songItem.m_artistname);
+    emit createSearchedItems(songItem.m_songName, songItem.m_singerName);
 }
 
 void TTKNetworkHelper::downloadProgressChanged(float percent, const QString &total, qint64 time)
@@ -229,10 +229,10 @@ void TTKNetworkHelper::closeWindowNotify()
 
 void TTKNetworkHelper::dataForDownloadSong()
 {
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos.first());
+        MusicObject::MusicSongInformation musicSongInfo(musicSongInfos.first());
         MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
         foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
         {
@@ -248,13 +248,13 @@ void TTKNetworkHelper::dataForDownloadSong()
 void TTKNetworkHelper::downForSearchSong(int index)
 {
     m_currentIndex = -1;
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
+    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[index];
     MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfo.m_songAttrs)
     {
@@ -277,13 +277,13 @@ void TTKNetworkHelper::downForSearchSong(int index)
 void TTKNetworkHelper::downForSearchMovie(int index)
 {
     m_currentIndex = -1;
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
+    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[index];
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicSongInfo.m_songAttrs)
     {
         emit downForSearchMovieFinished(musicAttr.m_url);
@@ -295,13 +295,13 @@ void TTKNetworkHelper::downForSearchMovie(int index)
 void TTKNetworkHelper::downForSearchLrc(int index)
 {
     m_currentIndex = -1;
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo = musicSongInfos[index];
+    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[index];
     QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
     musicSong = QString("%1%2.%3").arg(MusicUtils::Core::lrcPrefix()).arg(musicSong).arg(LRC_FILE);
 
@@ -323,13 +323,13 @@ void TTKNetworkHelper::downForDownloadSong(int bitrate)
 void TTKNetworkHelper::downForDownloadSong(int index, int bitrate)
 {
     m_currentIndex = -1;
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos[index]);
+    MusicObject::MusicSongInformation musicSongInfo(musicSongInfos[index]);
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
@@ -356,13 +356,13 @@ void TTKNetworkHelper::downForDownloadSong(int index, int bitrate)
 void TTKNetworkHelper::downForDownloadMovie(int index, int bitrate)
 {
     m_currentIndex = -1;
-    MusicObject::MusicSongInfomations musicSongInfos(m_queryThread->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_queryThread->getMusicSongInfos());
     if(index < 0 || index >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInfomation musicSongInfo(musicSongInfos[index]);
+    MusicObject::MusicSongInformation musicSongInfo(musicSongInfos[index]);
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {

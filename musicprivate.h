@@ -3,56 +3,72 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (c) 2015 - 2017 Greedysky Studio
- * All rights reserved!
- * Redistribution and use of the source code or any derivative
- * works are strictly forbiden.
-   =================================================*/
+ * Copyright (C) 2015 - 2017 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ================================================= */
 
 
-#define TTK_DECLARE_PRIVATE(Class) \
+#define MUSIC_DECLARE_PRIVATE(Class) \
     friend class Class##Private; \
-    TTKPrivateInterface<Class, Class##Private> ttk_d;
+    MusicPrivateInterface<Class, Class##Private> music_d;
 
-#define TTK_DECLARE_PUBLIC(Class) \
+#define MUSIC_DECLARE_PUBLIC(Class) \
     friend class Class;
 
-#define TTK_INIT_PRIVATE \
-    ttk_d.setPublic(this);
+#define MUSIC_INIT_PRIVATE \
+    music_d.setPublic(this);
 
-#define TTK_D(Class) Class##Private *const d = ttk_d()
-#define TTK_Q(Class) Class *const q = ttk_q()
+#define MUSIC_D(Class) Class##Private *const d = music_d()
+#define MUSIC_Q(Class) Class *const q = music_q()
 
 template <typename PUB>
-class TTKPrivate
+/*! @brief The class of the music private base.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MusicPrivate
 {
 public:
-    virtual ~TTKPrivate() { }
-    inline void setPublic(PUB* pub) { ttk_q_ptr = pub; }
+    virtual ~MusicPrivate() { }
+    inline void setPublic(PUB* pub) { music_q_ptr = pub; }
 
 protected:
-    inline PUB *ttk_q() const { return ttk_q_ptr; }
+    inline PUB *music_q() const { return music_q_ptr; }
 
 private:
-    PUB* ttk_q_ptr;
+    PUB* music_q_ptr;
 
 };
 
 template <typename PUB, typename PVT>
-class TTKPrivateInterface
+/*! @brief The class of the ttk private interface.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MusicPrivateInterface
 {
-    friend class TTKPrivate<PUB>;
+    friend class MusicPrivate<PUB>;
 public:
-    TTKPrivateInterface() { pvt = new PVT; }
-    ~TTKPrivateInterface() { delete pvt; }
+    MusicPrivateInterface() { pvt = new PVT; }
+    ~MusicPrivateInterface() { delete pvt; }
 
     inline void setPublic(PUB* pub) { pvt->setPublic(pub); }
     inline PVT *operator()() const { return static_cast<PVT*>(pvt); }
 
 private:
-    TTKPrivateInterface(const TTKPrivateInterface&) { }
-    TTKPrivateInterface& operator=(const TTKPrivateInterface&) { }
-    TTKPrivate<PUB>* pvt;
+    MusicPrivateInterface(const MusicPrivateInterface&) { }
+    MusicPrivateInterface& operator=(const MusicPrivateInterface&) { }
+    MusicPrivate<PUB>* pvt;
 
 };
 

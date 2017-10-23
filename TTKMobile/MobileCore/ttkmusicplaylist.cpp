@@ -6,7 +6,7 @@ TTKMusicPlaylist::TTKMusicPlaylist(QObject *parent)
 {
     MusicTime::timeSRand();
     m_currentIndex = -1;
-    m_playbackMode = MusicObject::MC_PlayRandom;
+    m_playbackMode = MusicObject::PM_PlayRandom;
 }
 
 int TTKMusicPlaylist::playbackMode() const
@@ -80,7 +80,7 @@ void TTKMusicPlaylist::playNext()
     {
         return;
     }
-    if(playbackMode() == MusicObject::MC_PlayRandom)
+    if(playbackMode() == MusicObject::PM_PlayRandom)
     {
         setCurrentIndex();
     }
@@ -97,7 +97,7 @@ void TTKMusicPlaylist::playPrevious()
     {
         return;
     }
-    if(playbackMode() == MusicObject::MC_PlayRandom)
+    if(playbackMode() == MusicObject::PM_PlayRandom)
     {
         setCurrentIndex();
     }
@@ -114,23 +114,23 @@ void TTKMusicPlaylist::setCurrentIndex(int index)
     {
         switch(m_playbackMode)
         {
-            case MusicObject::MC_PlayOneLoop: break;
-            case MusicObject::MC_PlayOrder:
+            case MusicObject::PM_PlayOneLoop: break;
+            case MusicObject::PM_PlayOrder:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = -1;
                 }
                 break;
-            case MusicObject::MC_PlayListLoop:
+            case MusicObject::PM_PlayListLoop:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = 0;
                 }
                 break;
-            case MusicObject::MC_PlayRandom:
+            case MusicObject::PM_PlayRandom:
                 m_currentIndex = rand() % m_mediaList.count();
                 break;
-            case MusicObject::MC_PlayOnce :
+            case MusicObject::PM_PlayOnce :
                 break;
         }
     }

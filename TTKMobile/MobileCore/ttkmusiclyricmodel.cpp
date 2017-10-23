@@ -57,7 +57,7 @@ void TTKMusicLyricModel::loadCurrentSongLrc(const QString &path)
 {
     if(m_lrcAnalysis->transLrcFileToTime(path) == MusicLrcAnalysis::OpenFileSuccess)
     {
-        QStringList d = m_lrcAnalysis->getAllLrcs().split("\n");
+        QStringList d = m_lrcAnalysis->getAllLrcList();
         beginInsertRows(QModelIndex(), 0, d.count());
         m_datas.clear();
         m_datas << QString() << d;

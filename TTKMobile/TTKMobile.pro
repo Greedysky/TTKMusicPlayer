@@ -1,9 +1,19 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (c) 2015 - 2017 Greedysky Studio
-# * All rights reserved!
-# * Redistribution and use of the source code or any derivative
-# * works are strictly forbiden.
+# * Copyright (C) 2015 - 2017 Greedysky Studio
+#
+# * This program is free software; you can redistribute it and/or modify
+# * it under the terms of the GNU General Public License as published by
+# * the Free Software Foundation; either version 3 of the License, or
+# * (at your option) any later version.
+#
+# * This program is distributed in the hope that it will be useful,
+# * but WITHOUT ANY WARRANTY; without even the implied warranty of
+# * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# * GNU General Public License for more details.
+#
+# * You should have received a copy of the GNU General Public License along
+# * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
 include(../TTKVersion.pri)
@@ -66,34 +76,35 @@ DEFINES += \
 INCLUDEPATH += \
     MobileCore \
     ../ \
-    ../TTKCore/musicCoreKits \
-    ../TTKCore/musicCoreKits/utils \
-    ../TTKCore/musicLrcKits \
-    ../TTKCore/musicNetworkKits \
-    ../TTKCore/musicWidgetKits \
-    ../TTKThirdParty/MusicExtras \
+    ../TTKModule/TTKCore/musicCoreKits \
+    ../TTKModule/TTKCore/musicUtilsKits \
+    ../TTKModule/TTKCore/musicLrcKits \
+    ../TTKModule/TTKCore/musicNetworkKits \
+    ../TTKModule/TTKWidget/musicWidgetKits \
+    ../TTKThirdParty/TTKExtras \
     ../TTKThirdParty
 
 
 HEADERS += \
     musicapplication.h \
     musicmobileglobaldefine.h \
-    ../TTKCore/musicCoreKits/utils/musiccoreutils.h \
-    ../TTKCore/musicCoreKits/utils/musicnumberutils.h \
-    ../TTKCore/musicCoreKits/utils/musicstringutils.h \
-    ../TTKCore/musicCoreKits/utils/musicalgorithmutils.h \
-    ../TTKCore/musicCoreKits/musicsong.h \
-    ../TTKCore/musicCoreKits/musictime.h \
-    ../TTKCore/musicCoreKits/musicformats.h \
-    ../TTKCore/musicCoreKits/musicsettingmanager.h \
-    ../TTKCore/musicCoreKits/musicabstractxml.h \
-    ../TTKCore/musicCoreKits/musiccryptographichash.h \
-    ../TTKCore/musicCoreKits/musicconnectionpool.h \
-    ../TTKCore/musicCoreKits/musicbackgroundmanager.h \
-    ../TTKCore/musicCoreKits/musicsongtag.h \
-    ../TTKCore/musicCoreKits/musicsemaphoreloop.h \
-    ../TTKCore/musicLrcKits/musiclrcanalysis.h \
-    ../TTKCore/musicWidgetKits/musicdownloadstatusobject.h \
+    ../TTKModule/TTKCore/musicUtilsKits/musiccoreutils.h \
+    ../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.h \
+    ../TTKModule/TTKCore/musicUtilsKits/musicstringutils.h \
+    ../TTKModule/TTKCore/musicUtilsKits/musicalgorithmutils.h \
+    ../TTKModule/TTKCore/musicUtilsKits/musicwidgetutils.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicsong.h \
+    ../TTKModule/TTKCore/musicCoreKits/musictime.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicformats.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicsettingmanager.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicabstractxml.h \
+    ../TTKModule/TTKCore/musicCoreKits/musiccryptographichash.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicconnectionpool.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicbackgroundmanager.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicsongtag.h \
+    ../TTKModule/TTKCore/musicCoreKits/musicsemaphoreloop.h \
+    ../TTKModule/TTKCore/musicLrcKits/musiclrcanalysis.h \
+    ../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.h \
     MobileCore/ttkfilesearchcore.h \
     MobileCore/ttkmusicplaylist.h \
     MobileCore/ttkmusicplayer.h \
@@ -109,21 +120,22 @@ HEADERS += \
 SOURCES += \
     musicmobilemain.cpp \
     musicapplication.cpp \
-    ../TTKCore/musicCoreKits/utils/musiccoreutils.cpp \
-    ../TTKCore/musicCoreKits/utils/musicnumberutils.cpp \
-    ../TTKCore/musicCoreKits/utils/musicstringutils.cpp \
-    ../TTKCore/musicCoreKits/utils/musicalgorithmutils.cpp \
-    ../TTKCore/musicCoreKits/musicsong.cpp \
-    ../TTKCore/musicCoreKits/musictime.cpp \
-    ../TTKCore/musicCoreKits/musicformats.cpp \
-    ../TTKCore/musicCoreKits/musicabstractxml.cpp \
-    ../TTKCore/musicCoreKits/musiccryptographichash.cpp \
-    ../TTKCore/musicCoreKits/musicconnectionpool.cpp \
-    ../TTKCore/musicCoreKits/musicbackgroundmanager.cpp \
-    ../TTKCore/musicCoreKits/musicsongtag.cpp \
-    ../TTKCore/musicCoreKits/musicsemaphoreloop.cpp \
-    ../TTKCore/musicLrcKits/musiclrcanalysis.cpp \
-    ../TTKCore/musicWidgetKits/musicdownloadstatusobject.cpp \
+    ../TTKModule/TTKCore/musicUtilsKits/musiccoreutils.cpp \
+    ../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.cpp \
+    ../TTKModule/TTKCore/musicUtilsKits/musicstringutils.cpp \
+    ../TTKModule/TTKCore/musicUtilsKits/musicalgorithmutils.cpp \
+    ../TTKModule/TTKCore/musicUtilsKits/musicwidgetutils.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicsong.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musictime.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicformats.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicabstractxml.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musiccryptographichash.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicconnectionpool.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicbackgroundmanager.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicsongtag.cpp \
+    ../TTKModule/TTKCore/musicCoreKits/musicsemaphoreloop.cpp \
+    ../TTKModule/TTKCore/musicLrcKits/musiclrcanalysis.cpp \
+    ../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp \
     MobileCore/ttkfilesearchcore.cpp \
     MobileCore/ttkmusicplaylist.cpp \
     MobileCore/ttkmusicplayer.cpp \
@@ -136,11 +148,11 @@ SOURCES += \
     MobileCore/ttkradiohelper.cpp
 
 
-CONFIG += TTK_BUILD_LIB
+CONFIG += MUSIC_BUILD_LIB
 
-include(../TTKCore/musicNetworkKits/MusicNetworkKits.pri)
-include(../TTKThirdParty/MusicExtras/qjson/QJson.pri)
-include(../TTKThirdParty/MusicExtras/qaes/QAes.pri)
+include(../TTKModule/TTKCore/musicNetworkKits/MusicNetworkKits.pri)
+include(../TTKThirdParty/TTKExtras/qjson/QJson.pri)
+include(../TTKThirdParty/TTKExtras/qaes/QAes.pri)
 
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.

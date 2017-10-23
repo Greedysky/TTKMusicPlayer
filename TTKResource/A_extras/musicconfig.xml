@@ -14,6 +14,7 @@
         <fileAssociation value="0"/>
         <windowConcise value="0"/>
         <remoteWidgetMode value="0"/>
+        <windowQuitMode value="0"/>
     </plusSetting>
     <otherSetting>
         <otherBgLossless value="0"/>
@@ -21,10 +22,13 @@
         <otherSearch value="0"/>
         <otherAlbum value="0"/>
         <otherInfo value="0"/>
+        <otherSideBy value="0"/>
+        <otherSongFormat value="0"/>
     </otherSetting>
     <backgroundSetting>
         <bgTheme value="theme-15"/>
         <bgTransparent value="100"/>
+        <bgTransparentEnable value="1"/>
         <bgListTransparent value="33"/>
     </backgroundSetting>
     <hotkeySetting>
@@ -57,7 +61,7 @@
     </desktopLrcSetting>
     <equalizerSetting>
         <enhancedMusic value="3"/>
-        <equalizerEnale value="0"/>
+        <equalizerEnable value="0"/>
         <equalizerIndex value="5"/>
         <equalizerValue value="0,-6,6,6,3,2,-2,-5,-6,-8,-8"/>
         <enhancedBalance value="-3"/>

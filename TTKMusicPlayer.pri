@@ -1,9 +1,19 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (c) 2015 - 2017 Greedysky Studio
-# * All rights reserved!
-# * Redistribution and use of the source code or any derivative
-# * works are strictly forbiden.
+# * Copyright (C) 2015 - 2017 Greedysky Studio
+#
+# * This program is free software; you can redistribute it and/or modify
+# * it under the terms of the GNU General Public License as published by
+# * the Free Software Foundation; either version 3 of the License, or
+# * (at your option) any later version.
+#
+# * This program is distributed in the hope that it will be useful,
+# * but WITHOUT ANY WARRANTY; without even the implied warranty of
+# * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# * GNU General Public License for more details.
+#
+# * You should have received a copy of the GNU General Public License along
+# * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
 QT       += core gui xml sql
@@ -23,21 +33,47 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-#check Qt version
+include(TTKVersion.pri)
+
+##openssl lib check
+win32:{
+    SSL_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer/ssleay32.dll
+    SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
+    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
+}
+unix:!mac{
+    SSL_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libssleay32.so
+    exists($$SSL_DEPANDS):LIBS += -L../lib/$$TTKMusicPlayer -lssl
+}
+
+##qmmp lib check
+win32:{
+    QMMP_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer
+    equals(QT_MAJOR_VERSION, 4){
+        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp0.dll
+    }else{
+        QMMP_DEPANDS = $$QMMP_DEPANDS/qmmp1.dll
+    }
+    QMMP_DEPANDS = $$replace(QMMP_DEPANDS, /, \\)
+}
+unix:!mac{
+    QMMP_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libqmmp.so
+}
+!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
+
+##check Qt version
 QT_VER_STRING = $$[QT_VERSION];
 QT_VER_STRING = $$split(QT_VER_STRING, ".")
 QT_VER_MAJOR = $$member(QT_VER_STRING, 0)
 QT_VER_MINOR = $$member(QT_VER_STRING, 1)
 QT_VER_PATCH = $$member(QT_VER_STRING, 2)
 
-include(TTKVersion.pri)
-
 win32{
-    LIBS += -lIphlpapi -luser32
+    LIBS += -lIphlpapi -lVersion
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_VER_MINOR, 1):QT  += winextras
         msvc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip -luser32
             CONFIG +=c++11
             !contains(QMAKE_TARGET.arch, x86_64){
                  #support on windows XP
@@ -47,7 +83,7 @@ win32{
         }
 
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -57,7 +93,7 @@ win32{
     equals(QT_MAJOR_VERSION, 4){
         QT  += multimedia
         gcc{
-            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
+            LIBS += -L../bin/$$TTKMusicPlayer -lqmmp0 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
             QMAKE_CXXFLAGS += -std=c++11
             QMAKE_CXXFLAGS += -Wunused-function
             QMAKE_CXXFLAGS += -Wswitch
@@ -75,7 +111,7 @@ unix:!mac{
     QMAKE_CXXFLAGS += -std=c++11
     QMAKE_CXXFLAGS += -Wunused-function
     QMAKE_CXXFLAGS += -Wswitch
-    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib
+    LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 }
 
 DEFINES += MUSIC_LIBRARY
@@ -84,20 +120,6 @@ DEFINES += MUSIC_LIBRARY
 HEADERS += $$PWD/musicglobal.h
 INCLUDEPATH += $$PWD
 #########################################
-contains(CONFIG, TTK_BUILD_LIB){
-    include(TTKCore/musicUiKits/MusicUiKits.pri)
-}
-#########################################
 include(TTKThirdParty/TTKThirdParty.pri)
 #########################################
-include(TTKCore/musicCoreKits/MusicCoreKits.pri)
-include(TTKCore/musicNetworkKits/MusicNetworkKits.pri)
-include(TTKCore/musicWidgetKits/MusicWidgetKits.pri)
-include(TTKCore/musicWidgetCoreKits/MusicWidgetCoreKits.pri)
-include(TTKCore/musicSearchKits/MusicSearchKits.pri)
-include(TTKCore/musicLrcKits/MusicLrcKits.pri)
-include(TTKCore/musicRemoteKits/MusicRemoteKits.pri)
-include(TTKCore/musicToolsSetsKits/MusicToolsSetsKits.pri)
-include(TTKCore/musicToolsKits/MusicToolsKits.pri)
-include(TTKCore/musicUserKits/MusicUserKits.pri)
-include(TTKCore/musicVideoKits/MusicVideoKits.pri)
+include(TTKModule/TTKModule.pri)

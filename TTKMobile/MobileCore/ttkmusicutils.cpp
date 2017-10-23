@@ -157,7 +157,7 @@ bool TTKMusicUtils::readTagFromFile(const QString &path)
 {
     delete m_songTag;
     m_songTag = new MusicSongTag;
-    return m_songTag->readFile(path);
+    return m_songTag->read(path);
 }
 
 QString TTKMusicUtils::getTag(int index)

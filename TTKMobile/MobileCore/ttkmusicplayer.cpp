@@ -239,7 +239,7 @@ void TTKMusicPlayer::update()
     if(state != Qmmp::Playing && state != Qmmp::Paused)
     {
         m_timer.stop();
-        if(m_playlist->playbackMode() == MusicObject::MC_PlayOnce)
+        if(m_playlist->playbackMode() == MusicObject::PM_PlayOnce)
         {
             m_music->stop();
             emit positionChanged(0);
@@ -247,7 +247,7 @@ void TTKMusicPlayer::update()
             return;
         }
         m_playlist->setCurrentIndex();
-        if(m_playlist->playbackMode() == MusicObject::MC_PlayOrder &&
+        if(m_playlist->playbackMode() == MusicObject::PM_PlayOrder &&
            m_playlist->currentIndex() == -1)
         {
             m_music->stop();

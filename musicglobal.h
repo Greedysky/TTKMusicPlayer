@@ -3,11 +3,21 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (c) 2015 - 2017 Greedysky Studio
- * All rights reserved!
- * Redistribution and use of the source code or any derivative
- * works are strictly forbiden.
-   =================================================*/
+ * Copyright (C) 2015 - 2017 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ================================================= */
 
 #include <QMap>
 #include <QSet>
@@ -24,12 +34,9 @@
 #    define MUSIC_WINEXTRAS
 #  else
 #    define MUSIC_NO_WINEXTRAS
-#    if QT_VERSION >= QT_VERSION_CHECK(5,1,0)
-#      define MUSIC_GREATER_FIVE_ONE
-#    else
-#      define MUSIC_GREATER_FIVE_ZERO
-#    endif
 #  endif
+#else
+#  define MUSIC_NO_WINEXTRAS
 #endif
 
 #ifdef QT_DEBUG
@@ -75,13 +82,47 @@
 #  define MObject_cast(x,y) (qobject_cast< x >(y))
 #endif
 
-#define TTK_DECLARE_LISTS(Class) \
+//////////////////////////////////////
+
+#ifndef _MSC_VER
+  //gcc version less than 3.4.0
+  #if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
+    #define STRCAT(a, b)    a##b
+  #else
+    #define STRCAT(a, b)    a b
+  #endif
+#else
+#define STRCAT(a, b)    a b
+#endif
+
+#define MUSIC_DECLARE_LISTS(Class) \
     typedef QList<Class> Class##s;
 
-#define TTK_DECLARE_FLAGS(Flags, Enum) \
+#define MUSIC_DECLARE_FLAGS(Flags, Enum) \
     typedef QFlags<Enum> Flags;
 
 //////////////////////////////////////
+
+#ifndef MUSIC_NAMESPACE
+#define MUSIC_NAMESPACE MUSIC
+#endif //MUSIC_NAMESPACE
+
+#if QT_VERSION <= QT_VERSION_CHECK(4,6,0)
+#define MUSIC_NO_NAMESPACE_SUPPORT
+#endif
+
+#ifndef MUSIC_NO_NAMESPACE_SUPPORT
+#define MUSIC_BEGIN_NAMESPACE namespace MUSIC_NAMESPACE {
+#define MUSIC_END_NAMESPACE }
+#define MUSIC_USE_NAMESPACE using namespace ::MUSIC_NAMESPACE;
+#else
+#define MUSIC_BEGIN_NAMESPACE
+#define MUSIC_END_NAMESPACE
+#define MUSIC_USE_NAMESPACE
+#endif //MUSIC_NAMESPACE_SUPPORT
+//////////////////////////////////////
+
+
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
  */

@@ -4,6 +4,7 @@
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 #include "musicbackgroundmanager.h"
+#include "musicotherdefine.h"
 
 #include <QTimer>
 #include <QQuickWindow>
