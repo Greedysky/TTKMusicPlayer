@@ -47,6 +47,11 @@ QString MusicUtils::Core::musicPrefix()
     return path;
 }
 
+QString MusicUtils::Core::fileSuffix(const QString &name)
+{
+    return name.right(name.length() - name.lastIndexOf(".") - 1);
+}
+
 quint64 MusicUtils::Core::dirSize(const QString &dirName)
 {
     quint64 size = 0;

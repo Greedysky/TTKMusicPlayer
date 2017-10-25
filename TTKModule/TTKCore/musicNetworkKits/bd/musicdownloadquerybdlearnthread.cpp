@@ -138,6 +138,11 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
@@ -176,6 +181,11 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicLrcAttribute(MusicObject::Mus
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
 
     QJson::Parser parser;
     bool ok;

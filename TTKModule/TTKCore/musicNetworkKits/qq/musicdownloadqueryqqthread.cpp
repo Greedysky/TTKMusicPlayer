@@ -193,6 +193,11 @@ void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSong
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QByteArray bytes = reply->readAll();
     bytes.replace("QZOutputJson=", "");
     bytes.chop(1);
@@ -279,6 +284,11 @@ QString MusicDownLoadQueryQQThread::getMovieKey(int id, const QString &videoId)
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return QString();
+    }
 
     QByteArray bytes = reply->readAll();
     bytes.replace("QZOutputJson=", "");

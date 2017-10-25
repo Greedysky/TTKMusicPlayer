@@ -1,4 +1,5 @@
 #include "musicdownloadquerythreadabstract.h"
+#include "musicsemaphoreloop.h"
 
 MusicDownLoadQueryThreadAbstract::MusicDownLoadQueryThreadAbstract(QObject *parent)
     : MusicDownLoadPagingThread(parent)
@@ -41,4 +42,32 @@ QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
         return v.arg(tr("YYT"));
     else
         return QString();
+}
+
+qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
+{
+    qint64 size = -1;
+
+    QNetworkAccessManager manager;
+    QNetworkRequest request;
+    request.setUrl(url);
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = manager.head(request);
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return size;
+    }
+
+    size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    reply->deleteLater();
+
+    return size;
 }

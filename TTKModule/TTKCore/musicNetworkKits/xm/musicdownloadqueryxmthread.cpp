@@ -191,6 +191,11 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     while(reply->canReadLine())
     {
         QString data = QString(reply->readLine());

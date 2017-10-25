@@ -165,6 +165,10 @@ protected:
      * Map query server string.
      */
     QString mapQueryServerString() const;
+    /*!
+     * Get download file size.
+     */
+    qint64 getUrlFileSize(const QString &url);
 
     MusicObject::MusicSongInformations m_musicSongInfos;
     QString m_searchText, m_searchQuality;

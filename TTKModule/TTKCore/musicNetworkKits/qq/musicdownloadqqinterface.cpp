@@ -156,6 +156,11 @@ QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return QString();
+    }
+
     QByteArray bytes = reply->readAll();
     bytes.replace("jsonCallback(", "");
     bytes.chop(2);

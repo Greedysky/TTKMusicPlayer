@@ -1,6 +1,7 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musiccoreutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -156,6 +157,11 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
@@ -201,7 +207,7 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVInfoAttribute(MusicObject::Musi
         MusicObject::MusicSongAttribute attr;
         attr.m_url = url;
         attr.m_size = size;
-        attr.m_format = v.right(v.length() - v.lastIndexOf(".") - 1);
+        attr.m_format = MusicUtils::Core::fileSuffix(v);
         attr.m_duration = duration;
         v = datas.back();
         foreach(QString var, v.split("&"))

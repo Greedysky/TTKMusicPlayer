@@ -2,6 +2,7 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musiccoreutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -181,6 +182,11 @@ void MusicDownLoadQueryKGThread::readFromMusicMVAttribute(MusicObject::MusicSong
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
@@ -220,7 +226,7 @@ void MusicDownLoadQueryKGThread::readFromMusicMVInfoAttribute(MusicObject::Music
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["downurl"].toString();
     attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
-    attr.m_format = attr.m_url.right(attr.m_url.length() - attr.m_url.lastIndexOf(".") - 1);
+    attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
 
     int bitRate = key["bitrate"].toInt()/1000;
     if(bitRate > 375 && bitRate <= 625)

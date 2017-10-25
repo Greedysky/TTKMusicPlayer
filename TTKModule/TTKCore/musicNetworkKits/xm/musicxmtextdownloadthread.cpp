@@ -1,4 +1,5 @@
 #include "musicxmtextdownloadthread.h"
+#include "musiccoreutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -23,7 +24,7 @@ void MusicXMTextDownLoadThread::startToDownload()
             m_timer.start(MT_S2MS);
             m_manager = new QNetworkAccessManager(this);
 
-            m_lrcType = m_url.right(3);
+            m_lrcType = MusicUtils::Core::fileSuffix(m_url);
 
             QNetworkRequest request;
             request.setUrl(m_url);

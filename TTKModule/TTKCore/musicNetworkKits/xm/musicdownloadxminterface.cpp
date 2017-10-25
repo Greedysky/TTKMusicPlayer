@@ -24,6 +24,11 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
     QString tk = cookies[0].value();
     QString tk_enc = cookies[1].value();
@@ -57,6 +62,11 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
 
     QByteArray bytes = reply->readAll();
     bytes = bytes.replace("xiami(", "");
