@@ -67,6 +67,12 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     }
 
     size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+    QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    if(!redirection.isNull())
+    {
+        size = getUrlFileSize(redirection.toString());
+    }
+
     reply->deleteLater();
 
     return size;

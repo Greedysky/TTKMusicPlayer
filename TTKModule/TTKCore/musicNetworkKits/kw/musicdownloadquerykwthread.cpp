@@ -1,6 +1,7 @@
 #include "musicdownloadquerykwthread.h"
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -102,7 +103,15 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                             {
                                 continue;
                             }
-
+                            ////////////////////////////////////////////////////////////
+                            for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
+                            {
+                                MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
+                                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                                attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+                                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            }
+                            ////////////////////////////////////////////////////////////
                             MusicSearchedItem item;
                             item.m_songName = musicInfo.m_songName;
                             item.m_singerName = musicInfo.m_singerName;
@@ -169,7 +178,9 @@ void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::Music
     MusicObject::MusicSongAttribute attr;
     attr.m_bitrate = bitrate;
     attr.m_format = format;
-    attr.m_size = "-";
     attr.m_url = MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(id).arg(format);
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     info->m_songAttrs.append(attr);
 }

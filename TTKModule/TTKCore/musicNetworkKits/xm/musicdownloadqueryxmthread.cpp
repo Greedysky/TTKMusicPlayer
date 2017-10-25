@@ -1,6 +1,7 @@
 #include "musicdownloadqueryxmthread.h"
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -173,8 +174,10 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
     MusicObject::MusicSongAttribute attr;
     attr.m_bitrate = 1000;
     attr.m_format = format;
-    attr.m_size = "-";
     attr.m_url = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(id);
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QUrl musicUrl = attr.m_url;
 
     QNetworkRequest request;

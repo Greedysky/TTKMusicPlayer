@@ -2,6 +2,7 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -210,7 +211,9 @@ void MusicDownLoadQueryWYThread::startMVListQuery(int id)
 
                 attr.m_url = value[key].toString();
                 attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
-                attr.m_size = QString();
+                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
+                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 musicInfo.m_songAttrs.append(attr);
             }
 

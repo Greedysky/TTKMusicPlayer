@@ -1,4 +1,5 @@
 #include "musicdownloadquerykwalbumthread.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -109,6 +110,14 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
                             continue;
+                        }
+                        ////////////////////////////////////////////////////////////
+                        for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
+                        {
+                            MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         }
                         ////////////////////////////////////////////////////////////
                         if(!albumFlag)
