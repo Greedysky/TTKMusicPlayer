@@ -1,5 +1,5 @@
-#ifndef MUSICLRCCOMMENTSWIDGET_H
-#define MUSICLRCCOMMENTSWIDGET_H
+#ifndef MUSICPLAYLISTFOUNDCOMMENTSWIDGET_H
+#define MUSICPLAYLISTFOUNDCOMMENTSWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,17 +21,17 @@
 
 #include "musiccommentswidget.h"
 
-/*! @brief The class of the lrc song comment widget.
+/*! @brief The class of the playlist comment widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_LRC_EXPORT MusicLrcCommentsWidget : public MusicCommentsWidget
+class MUSIC_LRC_EXPORT MusicPlaylistFoundCommentsWidget : public MusicCommentsWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcCommentsWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundCommentsWidget(QWidget *parent = 0);
 
     /*!
      * Get class object name.
@@ -42,12 +42,6 @@ public:
      */
     virtual void initWidget(bool isPain) override;
 
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void wheelEvent(QWheelEvent *event) override;
-
 };
 
-#endif // MUSICLRCCOMMENTSWIDGET_H
+#endif // MUSICPLAYLISTFOUNDCOMMENTSWIDGET_H

@@ -45,6 +45,7 @@ const QString WY_SG_COMMIT_URL     = "UjF0OUhmdnIxdXFWNEEwam5ZT0t6Q2EraGdGQzZqT0
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_SONG_TOPLIST_URL  = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
 ///////////////////////////////////////////////////////////////////////////
+const QString WY_PL_COMMIT_URL     = "ZXRML1piRWJpcS9NN2xRQXg2K2J3dGNUVnAxL3NSbkEwMG9Ta2VmZ2ZWYVI3MmNEL1gyYXJ6eXpld2Z0Rmp6S3ZwaHY0NVF6TjBLTVpNdjk0aFRuRmRSWVpNNm16Qy93ZHJkbjRFeGI0SmU0WUhod2tKU3lsVk0wNmZHeEV1c3ZZUDA1Y0pxZWd3UHZGUVA3";
 const QString WY_PLAYLIST_URL      = "aDd0V0k1Y1lWcXBqZ3VMQWhaWmp6eFlUYXJmZmRyanFwcVFINmo2Qk1KNDVETW9TWE4zellMREllOG1NZ1YvWkZRM1drcE9PbmVpblRBOVcwZUhaRDA3WVoxYW9XK3lPckptL0VjaTd3UDd4ajlGUEhlZE5FK2x5Q3g0PQ==";
 const QString WY_PLAYLIST_ATTR_URL = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
 ///////////////////////////////////////////////////////////////////////////

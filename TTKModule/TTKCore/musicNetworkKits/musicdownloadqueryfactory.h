@@ -62,9 +62,13 @@ public:
     MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
 
     /*!
-     * Get comment thread object by type.
+     * Get song comment thread object by type.
      */
-    MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
+    MusicDownLoadCommentsThread *getSongCommentThread(QObject *parent = 0);
+    /*!
+     * Get playlist comment thread object by type.
+     */
+    MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = 0);
 
     /*!
      * Get discover list thread object by type.

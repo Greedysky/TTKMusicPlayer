@@ -1,6 +1,7 @@
 #include "musicplaylistfoundinfowidget.h"
 #include "musicplaylistfoundtablewidget.h"
 #include "musicdownloadsourcethread.h"
+#include "musicplaylistfoundcommentswidget.h"
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
@@ -22,11 +23,13 @@ MusicPlaylistFoundInfoWidget::MusicPlaylistFoundInfoWidget(QWidget *parent)
 {
     m_iconLabel = nullptr;
     m_songButton = nullptr;
+    m_commentsWidget = nullptr;
     m_container = new QStackedWidget(this);
     m_playlistTableWidget = new MusicPlaylistFoundTableWidget(this);
 
     initFirstWidget();
     initSecondWidget();
+//    initThirdWidget();
 }
 
 MusicPlaylistFoundInfoWidget::~MusicPlaylistFoundInfoWidget()
@@ -34,6 +37,7 @@ MusicPlaylistFoundInfoWidget::~MusicPlaylistFoundInfoWidget()
     delete m_iconLabel;
     delete m_infoLabel;
     delete m_songButton;
+    delete m_commentsWidget;
 //    delete m_container;
     delete m_playlistTableWidget;
 }
@@ -74,6 +78,8 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
+
+    setSongName(item.m_id);
 
     m_infoLabel->setText(item.m_description);
     m_playlistTableWidget->startSearchQuery(item.m_id);
@@ -223,12 +229,19 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(infoButton);
+    functionWidget->setLayout(hlayout);
+    QPushButton *commentsButton = new QPushButton(functionWidget);
+    commentsButton->setText(tr("Comments"));
+    commentsButton->setFixedSize(100, 25);
+    commentsButton->setCursor(QCursor(Qt::PointingHandCursor));
+    hlayout->addWidget(commentsButton);
     hlayout->addStretch(1);
     functionWidget->setLayout(hlayout);
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(m_songButton, 0);
     group->addButton(infoButton, 1);
-    connect(group, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
+    group->addButton(commentsButton, 2);
+    connect(group, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
 
     grid->addWidget(functionWidget);
     ////////////////////////////////////////////////////////////////////////////
@@ -252,6 +265,19 @@ void MusicPlaylistFoundInfoWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 {
     m_playlistTableWidget->setQueryInput(query);
     m_playlistTableWidget->setConnectObject(this);
+}
+
+void MusicPlaylistFoundInfoWidget::setCurrentIndex(int index)
+{
+    delete m_commentsWidget;
+    m_commentsWidget = nullptr;
+
+    if(index == 2)
+    {
+        initThirdWidget();
+    }
+
+    m_container->setCurrentIndex(index);
 }
 
 void MusicPlaylistFoundInfoWidget::queryAllFinished()
@@ -345,6 +371,7 @@ void MusicPlaylistFoundInfoWidget::initFirstWidget()
     vlayout->addWidget(middleFuncWidget);
     //////////////////////////////////////////////////////////////////////
     vlayout->addWidget(m_playlistTableWidget);
+    vlayout->addStretch(1);
     songWidget->setLayout(vlayout);
 
     m_container->addWidget(songWidget);
@@ -362,4 +389,12 @@ void MusicPlaylistFoundInfoWidget::initSecondWidget()
     vlayout->addWidget(m_infoLabel);
     songWidget->setLayout(vlayout);
     m_container->addWidget(songWidget);
+}
+
+void MusicPlaylistFoundInfoWidget::initThirdWidget()
+{
+    m_commentsWidget = new MusicPlaylistFoundCommentsWidget(this);
+    m_commentsWidget->initWidget(false);
+    m_container->addWidget(m_commentsWidget);
+    m_commentsWidget->setCurrentSongName(m_songNameFull);
 }

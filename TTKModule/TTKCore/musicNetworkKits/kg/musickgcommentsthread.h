@@ -24,14 +24,49 @@
 /*! @brief The class to kugou query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicKGCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicKGSongCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGCommentsThread(QObject *parent = 0);
+    explicit MusicKGSongCommentsThread(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to Search data from name.
+     */
+    virtual void startToSearch(const QString &name) override;
+    /*!
+     * Start to search data from name and type bt paging.
+     */
+    virtual void startToPage(int offset) override;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override;
+
+};
+
+
+/*! @brief The class to kugou query playlist comments download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicKGPlaylistCommentsThread : public MusicDownLoadCommentsThread
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicKGPlaylistCommentsThread(QObject *parent = 0);
 
     /*!
      * Get class object name.

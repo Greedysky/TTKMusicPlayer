@@ -59,6 +59,7 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.head(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
     if(!reply || reply->error() != QNetworkReply::NoError)

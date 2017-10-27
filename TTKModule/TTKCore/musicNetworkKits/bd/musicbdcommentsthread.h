@@ -24,14 +24,49 @@
 /*! @brief The class to baidu query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicBDSongCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDCommentsThread(QObject *parent = 0);
+    explicit MusicBDSongCommentsThread(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to Search data from name.
+     */
+    virtual void startToSearch(const QString &name) override;
+    /*!
+     * Start to search data from name and type bt paging.
+     */
+    virtual void startToPage(int offset) override;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override;
+
+};
+
+
+/*! @brief The class to baidu query playlist comments download data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicBDPlaylistCommentsThread : public MusicDownLoadCommentsThread
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicBDPlaylistCommentsThread(QObject *parent = 0);
 
     /*!
      * Get class object name.

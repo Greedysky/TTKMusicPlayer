@@ -156,19 +156,36 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
     return thread;
 }
 
-MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getCommentThread(QObject *parent)
+MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getSongCommentThread(QObject *parent)
 {
     MusicDownLoadCommentsThread *thread = nullptr;
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
-        case 0:  thread = new MusicWYCommentsThread(parent); break;
-        case 1:  thread = new MusicQQCommentsThread(parent); break;
-        case 2:  thread = new MusicXMCommentsThread(parent); break;
-        case 3:  thread = new MusicBDCommentsThread(parent); break;
-        case 4:  thread = new MusicKWCommentsThread(parent); break;
-        case 5:  thread = new MusicKGCommentsThread(parent); break;
-        default: thread = new MusicWYCommentsThread(parent);
+        case 0:  thread = new MusicWYSongCommentsThread(parent); break;
+        case 1:  thread = new MusicQQSongCommentsThread(parent); break;
+        case 2:  thread = new MusicXMSongCommentsThread(parent); break;
+        case 3:  thread = new MusicBDSongCommentsThread(parent); break;
+        case 4:  thread = new MusicKWSongCommentsThread(parent); break;
+        case 5:  thread = new MusicKGSongCommentsThread(parent); break;
+        default: thread = new MusicWYSongCommentsThread(parent);
+    }
+    return thread;
+}
+
+MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getPlaylistCommentThread(QObject *parent)
+{
+    MusicDownLoadCommentsThread *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicWYPlaylistCommentsThread(parent); break;
+        case 1:  thread = new MusicQQPlaylistCommentsThread(parent); break;
+        case 2:  thread = new MusicXMPlaylistCommentsThread(parent); break;
+        case 3:  thread = new MusicBDPlaylistCommentsThread(parent); break;
+        case 4:  thread = new MusicKWPlaylistCommentsThread(parent); break;
+        case 5:  thread = new MusicKGPlaylistCommentsThread(parent); break;
+        default: thread = new MusicWYPlaylistCommentsThread(parent);
     }
     return thread;
 }

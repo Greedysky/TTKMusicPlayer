@@ -25,6 +25,7 @@
 class QPushButton;
 class QStackedWidget;
 class MusicPlaylistFoundTableWidget;
+class MusicPlaylistFoundCommentsWidget;
 
 /*! @brief The class of the playlist music found info widget.
  * @author Greedysky <greedysky@163.com>
@@ -66,6 +67,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Set current container index.
+     */
+    void setCurrentIndex(int index);
+    /*!
      * Query all quality musics is finished.
      */
     void queryAllFinished();
@@ -103,11 +108,16 @@ protected:
      * Init the second widget.
      */
     void initSecondWidget();
+    /*!
+     * Init the third widget.
+     */
+    void initThirdWidget();
 
     QLabel *m_iconLabel, *m_infoLabel;
     QStackedWidget *m_container;
     QPushButton *m_songButton;
     MusicPlaylistFoundTableWidget *m_playlistTableWidget;
+    MusicPlaylistFoundCommentsWidget *m_commentsWidget;
 
 };
 

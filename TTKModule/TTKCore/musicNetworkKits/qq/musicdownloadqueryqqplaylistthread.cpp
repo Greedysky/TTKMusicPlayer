@@ -64,6 +64,7 @@ void MusicDownLoadQueryQQPlaylistThread::startToSearch(const QString &playlist)
     {
         return;
     }
+
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_PLAYLIST_ATTR_URL, false).arg(playlist);
 
