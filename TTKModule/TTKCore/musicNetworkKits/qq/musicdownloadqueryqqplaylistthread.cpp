@@ -1,4 +1,5 @@
 #include "musicdownloadqueryqqplaylistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -127,6 +128,10 @@ void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
                     item.m_description = value["introduction"].toString();
                     item.m_updateTime = value["commit_time"].toString();
 
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    getMoreDetails(&item);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                     value = value["creator"].toMap();
                     item.m_nickname = value["name"].toString();
 
@@ -170,19 +175,6 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
                     {
                         continue;
                     }
-
-                    QVariantList tags = value["tags"].toList();
-                    QString tagsString;
-                    foreach(const QVariant &tag, tags)
-                    {
-                        if(tag.isNull())
-                        {
-                            continue;
-                        }
-
-                        tagsString.append(tag.toMap()["name"].toString() + "|");
-                    }
-                    m_rawData["tags"] = tagsString;
 
                     value = var.toMap();
                     QVariantList songLists = value["songlist"].toList();
@@ -242,4 +234,74 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
 
     emit downLoadDataChanged(QString());
     M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 getMoreDetails %2").arg(getClassName()).arg(item->m_id));
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_PLAYLIST_ATTR_URL, false).arg(item->m_id);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QByteArray bytes = reply->readAll();
+    bytes = bytes.replace("jsonCallback(", "");
+    bytes.chop(1);
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["code"].toInt() == 0 && value.contains("cdlist"))
+        {
+            QVariantList datas = value["cdlist"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                QVariantList tags = value["tags"].toList();
+                QString tagsString;
+                foreach(const QVariant &tag, tags)
+                {
+                    if(tag.isNull())
+                    {
+                        continue;
+                    }
+
+                    tagsString.append(tag.toMap()["name"].toString() + "|");
+                }
+                item->m_tags = tagsString;
+                item->m_description = value["desc"].toString();
+            }
+        }
+    }
+
 }

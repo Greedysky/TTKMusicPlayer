@@ -63,6 +63,12 @@ public Q_SLOTS:
      */
     void getDetailsFinished();
 
+protected:
+    /*!
+     * Get more download details data.
+     */
+    void getMoreDetails(MusicPlaylistItem *item);
+
 };
 
 #endif // MUSICDOWNLOADQUERYQQPLAYLISTTHREAD_H
