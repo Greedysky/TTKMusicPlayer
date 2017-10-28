@@ -21,9 +21,9 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_qulity->setStyleSheet(MusicUIObject::MComboBoxStyle02 + MusicUIObject::MItemView01);
     m_qulity->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    m_songName->setGeometry(0, 0, 180, ROW_HEIGHT);
+    m_songName->setGeometry(0, 0, 190, ROW_HEIGHT);
     m_singer->setGeometry(180, 0, 120, ROW_HEIGHT);
-    m_qulity->setGeometry(300, 0, 80, ROW_HEIGHT);
+    m_qulity->setGeometry(300, 0, 70, ROW_HEIGHT);
     m_information->setGeometry(380, 0, 150, ROW_HEIGHT);
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
@@ -45,10 +45,10 @@ QString MusicDownloadBatchTableItem::getClassName()
 void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInformation &info)
 {
     m_songName->setToolTip(info.m_songName);
-    m_songName->setText(m_songName->toolTip());
+    m_songName->setText(MusicUtils::Widget::elidedText(m_songName->font(), m_songName->toolTip(), Qt::ElideRight, m_songName->width() - 10));
 
     m_singer->setToolTip(info.m_singerName);
-    m_singer->setText(m_singer->toolTip());
+    m_singer->setText(MusicUtils::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
     foreach(const MusicObject::MusicSongAttribute &attr, info.m_songAttrs)
     {
