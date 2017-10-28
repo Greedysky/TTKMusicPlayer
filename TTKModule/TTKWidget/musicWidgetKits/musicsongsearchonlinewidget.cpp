@@ -440,6 +440,10 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name)
 void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all)
 {
     setResizeLabelText(name);
+    if(m_resizeLabels.count() == 5)
+    {
+        MStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+    }
     m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
 }
@@ -610,6 +614,8 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     labelLayout->addWidget(label4, 4);
     m_resizeLabels << label4;
 
+    m_resizeLabels << labelCheckBox;
+
     labelWidget->setLayout(labelLayout);
     wLayout->addWidget(labelWidget);
 }
@@ -617,7 +623,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
 void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-    if(m_resizeLabels.count() == 4)
+    if(m_resizeLabels.count() == 5)
     {
         m_resizeLabels[0]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 270);
         m_resizeLabels[1]->setFixedWidth((width - WINDOW_WIDTH_MIN)/3.0 + 255);

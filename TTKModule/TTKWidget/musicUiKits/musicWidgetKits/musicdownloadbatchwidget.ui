@@ -148,6 +148,9 @@ QLabel{background:transparent;}</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">font-weight:bold;</string>
+    </property>
     <property name="text">
      <string/>
     </property>

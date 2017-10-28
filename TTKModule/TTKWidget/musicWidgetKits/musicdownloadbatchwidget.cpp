@@ -29,8 +29,8 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
 
     m_songName->setGeometry(0, 0, 190, ROW_HEIGHT);
     m_singer->setGeometry(180, 0, 120, ROW_HEIGHT);
-    m_qulity->setGeometry(300, 0, 70, ROW_HEIGHT);
-    m_information->setGeometry(380, 0, 150, ROW_HEIGHT);
+    m_qulity->setGeometry(300, 0, 75, ROW_HEIGHT);
+    m_information->setGeometry(375, 0, 150, ROW_HEIGHT);
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
 }

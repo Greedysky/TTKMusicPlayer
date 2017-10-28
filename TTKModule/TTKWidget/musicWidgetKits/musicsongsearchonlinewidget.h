@@ -232,7 +232,7 @@ protected:
 
     QLabel *m_textLabel;
     QPushButton *m_playButton;
-    QList<QLabel*> m_resizeLabels;
+    QList<QWidget*> m_resizeLabels;
     MusicSongSearchOnlineTableWidget *m_searchTableWidget;
 
 };
