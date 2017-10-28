@@ -483,6 +483,13 @@ namespace MusicUIObject
             border-left-color:darkgray; border-left-style:solid;} \
             QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow);}";
 
+    const QString MComboBoxStyle02 = " \
+            QComboBox{ border:none;} \
+            QComboBox::hover{ border:none;} \
+            QComboBox::drop-down{ subcontrol-origin:padding; \
+            subcontrol-position:top right; width:20px; border-left:none;} \
+            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow);}";
+
 
 ///TableWidget
 //////////////////////////////////////////////////////

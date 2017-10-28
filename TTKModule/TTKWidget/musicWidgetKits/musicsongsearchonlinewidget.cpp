@@ -11,6 +11,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicrightareawidget.h"
 #include "musicgiflabelwidget.h"
+#include "musicdownloadbatchwidget.h"
 #include "musictime.h"
 
 #include <QBoxLayout>
@@ -483,12 +484,29 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
             case 1:
                 m_searchTableWidget->listCellClicked(row, 7);
                 break;
-            case 2:
-                m_searchTableWidget->listCellClicked(row, 8);
-                break;
+//            case 2:
+//                m_searchTableWidget->listCellClicked(row, 8);
+//                break;
             default:
                 break;
         }
+    }
+
+    if(index == 2)
+    {
+        MusicObject::MusicSongInformations selectedItems, musicSongInfos(m_searchTableWidget->getMusicSongInfos());
+        foreach(int index, list)
+        {
+            if(index < 0 || index >= musicSongInfos.count())
+            {
+                continue;
+            }
+
+            selectedItems << musicSongInfos[index];
+        }
+        MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
+        w->setSongName(selectedItems);
+        w->show();
     }
 }
 

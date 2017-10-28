@@ -314,10 +314,7 @@ void MusicPlaylistFoundInfoWidget::playButtonClicked()
 
 void MusicPlaylistFoundInfoWidget::downloadButtonClicked()
 {
-    foreach(int index, m_playlistTableWidget->getSelectedItems())
-    {
-        m_playlistTableWidget->musicDownloadLocal(index);
-    }
+    m_playlistTableWidget->downloadBatchData();
 }
 
 void MusicPlaylistFoundInfoWidget::addButtonClicked()

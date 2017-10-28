@@ -63,7 +63,8 @@ HEADERS  += \
     $$PWD/musicplaylistfoundcategorypopwidget.h \
     $$PWD/musicplaylistfoundcommentswidget.h \
     $$PWD/musicfuntionanimationwidget.h \
-    $$PWD/musictoplistfoundwidget.h
+    $$PWD/musictoplistfoundwidget.h \
+    $$PWD/musicdownloadbatchwidget.h
 
 }
 
@@ -112,6 +113,7 @@ SOURCES += \
     $$PWD/musicplaylistfoundcategorypopwidget.cpp \
     $$PWD/musicplaylistfoundcommentswidget.cpp \
     $$PWD/musicfuntionanimationwidget.cpp \
-    $$PWD/musictoplistfoundwidget.cpp
+    $$PWD/musictoplistfoundwidget.cpp \
+    $$PWD/musicdownloadbatchwidget.cpp
 
 }

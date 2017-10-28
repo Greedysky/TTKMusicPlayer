@@ -256,10 +256,7 @@ void MusicTopListFoundWidget::playButtonClicked()
 
 void MusicTopListFoundWidget::downloadButtonClicked()
 {
-    foreach(int index, m_toplistTableWidget->getSelectedItems())
-    {
-        m_toplistTableWidget->musicDownloadLocal(index);
-    }
+    m_toplistTableWidget->downloadBatchData();
 }
 
 void MusicTopListFoundWidget::addButtonClicked()

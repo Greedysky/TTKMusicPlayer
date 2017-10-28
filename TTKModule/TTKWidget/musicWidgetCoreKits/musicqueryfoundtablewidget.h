@@ -49,13 +49,13 @@ public:
      */
     virtual void musicDownloadLocal(int row) override;
     /*!
-     * Return the current song container.
-     */
-    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
-    /*!
      * Download data from net and just play or not.
      */
     void downloadDataFrom(bool play);
+    /*!
+     * Download batch data from net.
+     */
+    void downloadBatchData();
     /*!
      * Resize window bound by widgte resize called.
      */

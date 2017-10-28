@@ -8,6 +8,7 @@
 #include "musicsettingmanager.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
+#include "musicdownloadbatchwidget.h"
 
 MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -66,16 +67,18 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
-const MusicObject::MusicSongInformations& MusicQueryFoundTableWidget::getMusicSongInfos() const
-{
-    Q_ASSERT(m_downLoadManager);
-    return m_downLoadManager->getMusicSongInfos();
-}
-
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MIntList list = getSelectedItems();
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
     for(int i=0; i<list.count(); ++i)
     {
         if(downloadDataFrom(musicSongInfos[ list[i] ], play && (i == 0)))
@@ -83,6 +86,33 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
             continue;
         }
     }
+}
+
+void MusicQueryFoundTableWidget::downloadBatchData()
+{
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MIntList list = getSelectedItems();
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    MusicObject::MusicSongInformations selectedItems;
+    foreach(int index, list)
+    {
+        if(index < 0 || index >= musicSongInfos.count())
+        {
+            continue;
+        }
+
+        selectedItems << musicSongInfos[index];
+    }
+    MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
+    w->setSongName(selectedItems);
+    w->show();
 }
 
 void MusicQueryFoundTableWidget::resizeWindow()

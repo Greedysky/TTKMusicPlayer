@@ -229,10 +229,7 @@ void MusicAlbumFoundWidget::playButtonClicked()
 
 void MusicAlbumFoundWidget::downloadButtonClicked()
 {
-    foreach(int index, m_albumTableWidget->getSelectedItems())
-    {
-        m_albumTableWidget->musicDownloadLocal(index);
-    }
+    m_albumTableWidget->downloadBatchData();
 }
 
 void MusicAlbumFoundWidget::addButtonClicked()

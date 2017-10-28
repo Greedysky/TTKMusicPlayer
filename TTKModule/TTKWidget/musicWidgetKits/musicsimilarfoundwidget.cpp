@@ -211,10 +211,7 @@ void MusicSimilarFoundWidget::playButtonClicked()
 
 void MusicSimilarFoundWidget::downloadButtonClicked()
 {
-    foreach(int index, m_similarTableWidget->getSelectedItems())
-    {
-        m_similarTableWidget->musicDownloadLocal(index);
-    }
+    m_similarTableWidget->downloadBatchData();
 }
 
 void MusicSimilarFoundWidget::addButtonClicked()

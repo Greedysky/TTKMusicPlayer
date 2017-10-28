@@ -156,10 +156,7 @@ void MusicArtistFoundWidget::playButtonClicked()
 
 void MusicArtistFoundWidget::downloadButtonClicked()
 {
-    foreach(int index, m_artistTableWidget->getSelectedItems())
-    {
-        m_artistTableWidget->musicDownloadLocal(index);
-    }
+    m_artistTableWidget->downloadBatchData();
 }
 
 void MusicArtistFoundWidget::addButtonClicked()
