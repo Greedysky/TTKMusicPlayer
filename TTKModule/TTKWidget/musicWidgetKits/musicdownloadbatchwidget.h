@@ -48,6 +48,10 @@ public:
      * Create current item by song info.
      */
     void createItem(const MusicObject::MusicSongInformation &info);
+    /*!
+     * Start to download music data.
+     */
+    void startToDownload();
 
 public Q_SLOTS:
     /*!
@@ -56,7 +60,9 @@ public Q_SLOTS:
     void currentQualityChanged(int index);
 
 protected:
+    QObject *m_supperClass;
     QComboBox *m_qulity;
+    QString m_smallPicUrl;
     QLabel *m_songName, *m_singer, *m_information;
 
 };
@@ -81,6 +87,10 @@ public:
      */
     static QString getClassName();
     /*!
+     * Set parent object.
+     */
+    void setParentObject(QWidget *parent);
+    /*!
      * Clear All Items.
      */
     void clearAllItems();
@@ -88,15 +98,25 @@ public:
      * Create current item by song info.
      */
     void createItem(const MusicObject::MusicSongInformation &info);
+    /*!
+     * Start to download music data.
+     */
+    void startToDownload();
 
 public Q_SLOTS:
     /*!
      * Table widget list cell click.
      */
     virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Data download is finished.
+     */
+    void dataDownloadFinished();
 
 protected:
-    QList<QObject*> m_items;
+    QObject *m_supperClass;
+    int m_downloadOffset;
+    QList<MusicDownloadBatchTableItem*> m_items;
 
 };
 
