@@ -21,6 +21,9 @@
 
 #include "musicfoundabstractwidget.h"
 #include "musicqueryfoundtablewidget.h"
+#include "musiccategoryconfigmanager.h"
+
+class MusicToplistFoundCategoryPopWidget;
 
 /*! @brief The class of the toplist music found table widget.
  * @author Greedysky <greedysky@163.com>
@@ -106,6 +109,10 @@ public Q_SLOTS:
      * Add button clicked now.
      */
     void addButtonClicked();
+    /*!
+     * Current category changed.
+     */
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
 
 protected:
     /*!
@@ -115,7 +122,9 @@ protected:
 
     QLabel *m_iconLabel, *m_songItemsLabel;
 
+    MusicToplistFoundCategoryPopWidget *m_categoryButton;
     MusicTopListFoundTableWidget *m_toplistTableWidget;
+    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 

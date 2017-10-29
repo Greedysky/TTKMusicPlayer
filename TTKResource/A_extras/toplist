@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TTKMusicPlayer>
+    <WangYi>
+        <tag value="云音乐特色榜">
+            <value key="19723756" value="云音乐飙升榜"/>
+            <value key="3779629" value="云音乐新歌榜"/>
+            <value key="2884035" value="网易原创歌曲榜"/>
+            <value key="3778678" value="云音乐热歌榜"/>
+        </tag>
+        <tag value="全球媒体榜">
+            <value key="180106" value="UK排行榜周榜"/>
+            <value key="60198" value="美国Billboard周榜"/>
+            <value key="27135204" value="法国 NRJ Vos Hits 周榜"/>
+            <value key="11641012" value="iTunes榜"/>
+            <value key="71385702" value="云音乐ACG音乐榜"/>
+            <value key="10520166" value="云音乐电音榜"/>
+            <value key="3812895" value="Beatport全球电子舞曲榜"/>
+            <value key="60131" value="日本Oricon周榜"/>
+            <value key="71384707" value="云音乐古典音乐榜"/>
+            <value key="120001" value="Hit FM Top榜"/>
+            <value key="21845217" value="KTV唛榜"/>
+            <value key="112463" value="台湾Hito排行榜"/>
+            <value key="112504" value="中国TOP排行榜（港台榜）"/>
+            <value key="64016" value="中国TOP排行榜（内地榜）"/>
+            <value key="10169002" value="香港电台中文歌曲龙虎榜"/>
+            <value key="1899724" value="中国嘻哈榜"/>
+        </tag>
+    </WangYi>
+    <QQ>
+        <tag value="QQ音乐巅峰榜">
+            <value key="4" value="广汽传祺·巅峰榜·流行指数"/>
+            <value key="26" value="巅峰榜·热歌"/>
+            <value key="27" value="巅峰榜·新歌"/>
+            <value key="30" value="巅峰榜·梦想的声音"/>
+            <value key="28" value="巅峰榜·网络歌曲"/>
+            <value key="5" value="巅峰榜·内地"/>
+            <value key="6" value="巅峰榜·港台"/>
+            <value key="3" value="巅峰榜·欧美"/>
+            <value key="16" value="巅峰榜·韩国"/>
+            <value key="17" value="巅峰榜·日本"/>
+            <value key="52" value="巅峰榜·腾讯音乐人原创榜"/>
+            <value key="36" value="巅峰榜·K歌金曲"/>
+        </tag>
+        <tag value="全球榜">
+            <value key="169" value="vivo 手机 高品质音乐榜"/>
+            <value key="108" value="美国公告牌榜"/>
+            <value key="123" value="美国iTunes榜"/>
+            <value key="106" value="韩国Mnet榜"/>
+            <value key="107" value="英国UK榜"/>
+            <value key="105" value="日本公信榜"/>
+            <value key="113" value="香港电台榜"/>
+            <value key="114" value="香港商台榜"/>
+            <value key="117" value="台湾幽浮榜"/>
+        </tag>
+    </QQ>
+    <Kugou>
+        <tag value="热门榜单">
+            <value key="6666" value="酷狗飙升榜"/>
+            <value key="8888" value="酷狗TOP500"/>
+            <value key="23784" value="网络红歌榜"/>
+            <value key="24971" value="DJ热歌榜"/>
+            <value key="27" value="华语新歌榜"/>
+            <value key="28" value="欧美新歌榜"/>
+            <value key="24045" value="韩国新歌榜"/>
+            <value key="24047" value="日本新歌榜"/>
+            <value key="30906" value="蒙面唱将榜"/>
+            <value key="31127" value="天籁之战榜"/>
+            <value key="31195" value="梦想的声音2"/>
+            <value key="30972" value="原创榜"/>
+            <value key="22050" value="粤语新歌榜"/>
+            <value key="21101" value="酷狗分享榜"/>
+            <value key="22603" value="5sing音乐榜"/>
+            <value key="21335" value="繁星音乐榜"/>
+        </tag>
+        <tag value="特色音乐榜">
+            <value key="28061" value="校园歌曲榜"/>
+            <value key="70" value="中文DJ"/>
+            <value key="24574" value="洗脑神曲"/>
+            <value key="24306" value="百大DJ"/>
+            <value key="28542" value="伤感网络情歌"/>
+            <value key="88" value="车载音乐"/>
+            <value key="24307" value="KTV"/>
+            <value key="22096" value="影视金曲"/>
+            <value key="28475" value="纯音乐"/>
+            <value key="30997" value="觅乐行动排行榜"/>
+        </tag>
+        <tag value="全球榜">
+            <value key="4681" value="美国BillBoard榜"/>
+            <value key="4680" value="英国单曲榜"/>
+            <value key="4673" value="日本公信榜"/>
+            <value key="4672" value="韩国M-net音乐榜"/>
+            <value key="22163" value="中国TOP排行榜"/>
+        </tag>
+    </Kugou>
+    <Baidu>
+        <tag value="主打榜单">
+            <value key="1" value="新歌榜"/>
+            <value key="2" value="热歌榜"/>
+        </tag>
+        <tag value="分类榜单">
+            <value key="20" value="华语金曲榜"/>
+            <value key="21" value="欧美金曲榜"/>
+            <value key="24" value="影视金曲榜"/>
+            <value key="23" value="情歌对唱榜"/>
+            <value key="25" value="网络歌曲榜"/>
+            <value key="22" value="经典老歌榜"/>
+            <value key="11" value="摇滚榜"/>
+        </tag>
+        <tag value="媒体榜单">
+            <value key="6" value="KTV热歌榜"/>
+            <value key="8" value="Billboard"/>
+            <value key="18" value="Hito中文榜"/>
+            <value key="7" value="叱咤歌曲榜"/>
+            <value key="9" value="雪碧音碰音榜"/>
+        </tag>
+    </Baidu>
+    <Kuwo>
+        <tag value="全球榜">
+            <value key="12" value="Billboard榜"/>
+            <value key="14" value="韩国M-net榜"/>
+            <value key="13" value="英国UK榜"/>
+            <value key="49" value="iTunes音乐榜"/>
+            <value key="117" value="全球电子舞曲榜"/>
+            <value key="15" value="日本公信榜"/>
+            <value key="4" value="台湾Hito"/>
+            <value key="8" value="香港音乐榜"/>
+        </tag>
+        <tag value="分类榜">
+            <value key="17" value="酷我新歌榜"/>
+            <value key="16" value="酷我热歌榜"/>
+            <value key="93" value="酷我飙升榜"/>
+            <value key="130" value="酷音乐流行榜"/>
+            <value key="145" value="酷我畅销榜"/>
+            <value key="147" value="中国嘻哈榜"/>
+            <value key="62" value="酷我华语榜"/>
+            <value key="63" value="网络神曲榜"/>
+            <value key="76" value="夜店舞曲榜"/>
+            <value key="64" value="热门影视榜"/>
+            <value key="112" value="K歌翻唱榜"/>
+            <value key="106" value="酷我真声音"/>
+        </tag>
+    </Kuwo>
+    <XiaMi>
+        <tag value="虾米官方榜">
+            <value key="alimusic_week_billboard" value="阿里音乐周榜"/>
+        </tag>
+        <tag value="全球媒体榜">
+            <value key="billboard" value="美国Billboard单曲榜"/>
+            <value key="hito" value="Hito 中文排行榜"/>
+            <value key="jingge" value="劲歌金榜"/>
+            <value key="uk" value="英国UK单曲榜"/>
+            <value key="oricon" value="oricon公信单曲榜"/>
+            <value key="mnet" value="韩国MNET音乐排行榜"/>
+        </tag>
+        <tag value="虾米特色榜">
+            <value key="xiami_daxia" value="大虾试听榜"/>
+            <value key="xiami_collect" value="歌单收录榜"/>
+            <value key="xiami_ktv" value="KTV嗨歌榜"/>
+            <value key="xiami_wechat" value="微信分享榜"/>
+            <value key="xiami_weibo" value="微博分享榜"/>
+        </tag>
+    </XiaMi>
+<TTKMusicPlayer>

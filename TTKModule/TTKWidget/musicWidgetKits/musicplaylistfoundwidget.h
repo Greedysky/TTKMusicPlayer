@@ -116,7 +116,7 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void queryAllFinished(const MusicPlaylistItem &item);
+    void createPlaylistItems(const MusicPlaylistItem &item);
     /*!
      * Current play list clicked.
      */

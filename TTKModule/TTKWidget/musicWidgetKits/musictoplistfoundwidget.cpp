@@ -4,6 +4,7 @@
 #include "musicstringutils.h"
 #include "musicdownloadsourcethread.h"
 #include "musicsettingmanager.h"
+#include "musictoplistfoundcategorypopwidget.h"
 
 #include <QCheckBox>
 #include <QBoxLayout>
@@ -40,11 +41,12 @@ void MusicTopListFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 MusicTopListFoundWidget::MusicTopListFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
+    m_categoryButton = nullptr;
     m_toplistTableWidget = new MusicTopListFoundTableWidget(this);
 
-    MusicDownLoadQueryThreadAbstract *thread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
-    m_toplistTableWidget->setQueryInput(thread);
-    connect(thread, SIGNAL(createToplistInfoItem(MusicPlaylistItem)), SLOT(createToplistInfoItem(MusicPlaylistItem)));
+    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
+    m_toplistTableWidget->setQueryInput(m_downloadThread);
+    connect(m_downloadThread, SIGNAL(createToplistInfoItem(MusicPlaylistItem)), SLOT(createToplistInfoItem(MusicPlaylistItem)));
 }
 
 MusicTopListFoundWidget::~MusicTopListFoundWidget()
@@ -52,6 +54,7 @@ MusicTopListFoundWidget::~MusicTopListFoundWidget()
     delete m_iconLabel;
     delete m_songItemsLabel;
     delete m_toplistTableWidget;
+    delete m_categoryButton;
 }
 
 QString MusicTopListFoundWidget::getClassName()
@@ -62,7 +65,9 @@ QString MusicTopListFoundWidget::getClassName()
 void MusicTopListFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_toplistTableWidget->startSearchQuery(QString());
+
+    m_downloadThread->setQueryAllRecords(true);
+    m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, QString());
 
     createLabels();
 }
@@ -122,6 +127,10 @@ void MusicTopListFoundWidget::createLabels()
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#169AF3> Rank </font>"));
     grid->addWidget(firstLabel);
+    ////////////////////////////////////////////////////////////////////////////
+    m_categoryButton = new MusicToplistFoundCategoryPopWidget(function);
+    m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
+    grid->addWidget(m_categoryButton);
     ////////////////////////////////////////////////////////////////////////////
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
@@ -262,4 +271,17 @@ void MusicTopListFoundWidget::downloadButtonClicked()
 void MusicTopListFoundWidget::addButtonClicked()
 {
     m_toplistTableWidget->downloadDataFrom(false);
+}
+
+void MusicTopListFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)
+{
+    if(m_categoryButton)
+    {
+        m_categoryButton->setText(category.m_name);
+        m_categoryButton->closeMenu();
+
+        m_songItemsLabel->clear();
+        m_downloadThread->setQueryAllRecords(true);
+        m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, category.m_id);
+    }
 }

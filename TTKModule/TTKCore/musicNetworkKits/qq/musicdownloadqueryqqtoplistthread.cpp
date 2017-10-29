@@ -16,9 +16,14 @@ QString MusicDownLoadQueryQQToplistThread::getClassName()
 
 void MusicDownLoadQueryQQToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
-    Q_UNUSED(type);
-    Q_UNUSED(toplist);
-    startToSearch("4");
+    if(type == MusicQuery)
+    {
+        startToSearch(toplist);
+    }
+    else
+    {
+        startToSearch(toplist.isEmpty() ? "4" : toplist);
+    }
 }
 
 void MusicDownLoadQueryQQToplistThread::startToSearch(const QString &toplist)

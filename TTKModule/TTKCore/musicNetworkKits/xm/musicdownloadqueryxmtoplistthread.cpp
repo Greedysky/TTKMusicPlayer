@@ -16,13 +16,18 @@ QString MusicDownLoadQueryXMToplistThread::getClassName()
 
 void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
-    Q_UNUSED(type);
-    startToSearch(toplist);
+    if(type == MusicQuery)
+    {
+        startToSearch(toplist);
+    }
+    else
+    {
+        startToSearch(toplist.isEmpty() ? "alimusic_week_billboard" : toplist);
+    }
 }
 
 void MusicDownLoadQueryXMToplistThread::startToSearch(const QString &toplist)
 {
-    Q_UNUSED(toplist);
     if(!m_manager)
     {
         return;
@@ -34,7 +39,7 @@ void MusicDownLoadQueryXMToplistThread::startToSearch(const QString &toplist)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false),
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg(toplist),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
