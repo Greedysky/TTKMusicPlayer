@@ -23,6 +23,7 @@
 #include "musicqueryfoundtablewidget.h"
 #include "musiccategoryconfigmanager.h"
 
+class QCheckBox;
 class MusicToplistFoundCategoryPopWidget;
 
 /*! @brief The class of the toplist music found table widget.
@@ -120,6 +121,7 @@ protected:
      */
     void createLabels();
 
+    QCheckBox *m_allCheckBox;
     QLabel *m_iconLabel, *m_songItemsLabel;
 
     MusicToplistFoundCategoryPopWidget *m_categoryButton;

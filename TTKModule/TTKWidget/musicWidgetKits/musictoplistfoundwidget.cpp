@@ -128,9 +128,14 @@ void MusicTopListFoundWidget::createLabels()
     firstLabel->setText(tr("<font color=#169AF3> Rank </font>"));
     grid->addWidget(firstLabel);
     ////////////////////////////////////////////////////////////////////////////
-    m_categoryButton = new MusicToplistFoundCategoryPopWidget(function);
+    QWidget *categoryWidget = new QWidget(function);
+    QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
+    m_categoryButton = new MusicToplistFoundCategoryPopWidget(categoryWidget);
     m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
-    grid->addWidget(m_categoryButton);
+    categoryWidgetLayout->addStretch(1);
+    categoryWidgetLayout->addWidget(m_categoryButton);
+    categoryWidget->setLayout(categoryWidgetLayout);
+    grid->addWidget(categoryWidget);
     ////////////////////////////////////////////////////////////////////////////
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
@@ -178,7 +183,7 @@ void MusicTopListFoundWidget::createLabels()
     middleFuncLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *marginLabel = new QLabel(middleFuncWidget);
     marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
+    m_allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
     QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
     playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
     playButton->setIconSize(QSize(14, 14));
@@ -192,19 +197,19 @@ void MusicTopListFoundWidget::createLabels()
     downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
 
 #ifdef Q_OS_UNIX
-    allCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_allCheckBox->setFocusPolicy(Qt::NoFocus);
     playButton->setFocusPolicy(Qt::NoFocus);
     addButton->setFocusPolicy(Qt::NoFocus);
     downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     middleFuncLayout->addWidget(marginLabel);
-    middleFuncLayout->addWidget(allCheckBox);
+    middleFuncLayout->addWidget(m_allCheckBox);
     middleFuncLayout->addStretch(1);
     middleFuncLayout->addWidget(playButton);
     middleFuncLayout->addWidget(addButton);
     middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_toplistTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(m_allCheckBox, SIGNAL(clicked(bool)), m_toplistTableWidget, SLOT(setSelectedAllItems(bool)));
     connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
     connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
@@ -277,6 +282,8 @@ void MusicTopListFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &c
 {
     if(m_categoryButton)
     {
+        m_allCheckBox->setChecked(false);
+
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();
 
