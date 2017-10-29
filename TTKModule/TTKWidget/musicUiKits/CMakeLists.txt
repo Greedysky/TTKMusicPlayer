@@ -53,6 +53,7 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicbackgroundpalettewidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadresetwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadwidget.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicdownloadbatchwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicequalizerdialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicmessagebox.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsettingwidget.ui

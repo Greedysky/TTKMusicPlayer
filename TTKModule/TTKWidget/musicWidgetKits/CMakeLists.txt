@@ -21,6 +21,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.h
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.h
+    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.h
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.h
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.h
@@ -36,6 +37,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.h
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.h
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.h
@@ -44,6 +46,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.h
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
     ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -67,6 +70,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicenhancedpopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicdownloadmgmtwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicdownloadbatchwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongsharingwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsourceupdatewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicglobalhotkeyedit.cpp
@@ -82,6 +86,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsonglistenhancelosslesswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundcategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicplaylistfoundcommentswidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundinfowidget.cpp
     ${MUSIC_WIDGET_DIR}/musicplaylistfoundtablewidget.cpp
     ${MUSIC_WIDGET_DIR}/musicmessageaboutdialog.cpp
@@ -90,5 +95,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicfuntionanimationwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.cpp
   )
   
