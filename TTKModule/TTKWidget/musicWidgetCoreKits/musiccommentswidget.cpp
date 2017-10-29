@@ -259,7 +259,6 @@ void MusicCommentsWidget::initWidget(bool isPain)
     messageMiddleLayout->addWidget(sendButton);
     messageMiddle->setLayout(messageMiddleLayout);
 #ifdef Q_OS_UNIX
-    closeButton->setFocusPolicy(Qt::NoFocus);
     emojiButton->setFocusPolicy(Qt::NoFocus);
     sendButton->setFocusPolicy(Qt::NoFocus);
 #endif

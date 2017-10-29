@@ -29,8 +29,8 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
 
     m_songName->setGeometry(0, 0, 190, ROW_HEIGHT);
     m_singer->setGeometry(180, 0, 120, ROW_HEIGHT);
-    m_qulity->setGeometry(300, 0, 75, ROW_HEIGHT);
-    m_information->setGeometry(375, 0, 150, ROW_HEIGHT);
+    m_qulity->setGeometry(300, 0, 80, ROW_HEIGHT);
+    m_information->setGeometry(380, 0, 150, ROW_HEIGHT);
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
 }
@@ -102,7 +102,7 @@ void MusicDownloadBatchTableItem::startToDownload()
         return;
     }
 
-    MusicObject::MusicSongAttribute musicAttr = m_qulity->currentData().value<MusicObject::MusicSongAttribute>();
+    MusicObject::MusicSongAttribute musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     QString downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
