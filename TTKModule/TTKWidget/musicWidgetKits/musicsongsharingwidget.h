@@ -23,6 +23,20 @@
 
 #define WEB_PLAYER     "UnA2T0FHR3dMb2tnQ1JrcWZ4RHY3U1VIdW45RmlOTUNiY1dPd0owSlQxS2NSbEpK"
 
+#define WY_PL_SHARE    "Mm5CQXF6WFlZVmNKbHpsejFDZ2ZVZ0ZrSEQwSDRMRVJPQUdxcmdVaUMyQ3hJR2huMGhMSk04dkQxN3c9"
+#define QQ_PL_SHARE    "dXBEejZlTGhhTmJvNGtlczdOSDJYNzVRZkVGM09CbmIzUGlwWGx3N28xOXB1MkpoT2c5WWVCTG9ISnRFd21YdW9JUkFKS2pqQW4xeFhEenpibG9GK0dtb1ptMFhBNnVBTEc5MUx3PT0="
+#define KG_PL_SHARE    "blVpLzRYVFdhaXQzZjJhNzBMbWFPVWlRbm5qZTBqWFJ6Nmk4dDN3VGg1dkI4dmZZYWdNeXIxblFNVDFmUk10YjVzMEpkZz09"
+#define BD_PL_SHARE    "YllZN3c4SmJkZ2xSZUdPWmRyWWRRRVhnbkVJQkNSZzN2L25IbVJjTVFFbXlBYmVXZm9FQy9BPT0="
+#define KW_PL_SHARE    "OVJtRFhtWnZ3azB2RmhFM0ZCYlZmSVdCVFVVcDc0OHlocTRYKzdSL3NlWmd4UzcwWEVWZkYxK2J4N009"
+#define XM_PL_SHARE    "N1JBdVpuUGJaVXZpK04wYVdEVHJiZkJhOHdPYzdHdkxTTGN6UEtMUUxmbkc1amFu"
+
+#define WY_AL_SHARE    "REVSbCsrUjd2MXlmOWs3SjZqb2JSZzBZUWpwVWtweWRwK0dvREI5WFV6endQMUhOUDQrdThBPT0="
+#define QQ_AL_SHARE    "QW9aQTJQTndxUENQSVVsV2xSbjkvdkxXVi9uVjlPanVoTFRVVS9EU3lKVGxIcFdUaUNRUTdrOHMxeW5JOFRsLyt1Nm5BcGc2VHM4K2xWVE5XSkZUZ0R0aThMOGl3WFdP"
+#define KG_AL_SHARE    "NWdaK2VCeEtRSE1FMVoxbzVYVjdRR3NuSGlqaW9MZzREVlcybUR0STF5Y29ZMjhuVmIrcFdkb3lRbjlOSlFmKw=="
+#define BD_AL_SHARE    "MWxsUFEvbENzRUQvM2E3OU5VMDBWK0F6NzVKTDZnTzJ4encvNGZpUDJIektTcFNK"
+#define KW_AL_SHARE    "aWlVRVpnb2J3cXhPaVhrbkM5OHVRWmJiM1FuNW5aa3AyVU9GL2N5VmdZdz0="
+#define XM_AL_SHARE    "RjcwU05kTXFsOG8xVW1hQVE3UGVZVFlHT1YrbmxqRzJsWG1vU25Md1Bub2UzUUhD"
+
 #define QQ_SHARE       "UlBic0d5OXhCUThoTWlLU3NGZlRUby9MVGhzdmZ2WGdva3ZzT3FzYXRpWXRjaS9MaXpiaG1GTmd6RzFTMG1BNlRaU3JNTEkySkJmd08vYVJ3c3hlNFczT2xUUnAvTWVrbE8yMzA4SkxGdFgvWUNqUUtWWXJydk9Jb1gyTUVYMDI="
 #define RENREN_SHARE   "MXNzTTYvK3FOUGExUVBMdi9BOS9tMDlWNUJxSW9pbHpBQW9ucisxUWtNZG51UjhPSXBWa3R6Z3VsSXNaNjZ3TmVydml1NmpEanBuam1nTTlGWHh4NnNlZEFHQmtrUFRT"
 #define QQ_SPACE_SHARE "WlA2UFBRQVJ2djExYlBwaTFzUVV6MlBLUDJxR0k0TzRudWZWbWdpb3pPL0JCb0dOdXRYcktvUVlFMFVmYnpCT3RVZVZ2VDZiSUNNKzMzYlpBVnZ0UEQxalc0S1ZlV2hjZFZONHVmczN2bmtVZFBuTXUxWXhDQzdveXFuSVByWFpDc1hyZEE9PQ=="
@@ -42,6 +56,15 @@ class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialo
 {
     Q_OBJECT
 public:
+    enum Type
+    {
+        Song,       /*!< song type*/
+        Artist,     /*!< artist type*/
+        Album,      /*!< album type*/
+        Playlist,   /*!< playlist type*/
+        Null        /*!< null type*/
+    };
+
     /*!
      * Object contsructor.
      */
@@ -54,9 +77,9 @@ public:
      */
     static QString getClassName();
     /*!
-     * Set current name to share.
+     * Set current data to share.
      */
-    void setSongName(const QString &name);
+    void setData(Type type, const QVariantMap &data);
 
 public Q_SLOTS:
     /*!
@@ -83,9 +106,16 @@ public Q_SLOTS:
      * Override close function.
      */
     void close();
+    /*!
+     * Download pixmap data finished.
+     */
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;
+
+    Type m_type;
+    QVariantMap m_data;
     QRCodeQWidget *m_qrCodeWidget;
 
 };

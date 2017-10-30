@@ -159,8 +159,11 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
         return;
     }
 
+    QVariantMap data;
+    data["songName"] = getCurrentSongName();
+
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName( getCurrentSongName() );
+    shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
 
@@ -225,8 +228,11 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidgetPy()
         return;
     }
 
+    QVariantMap data;
+    data["songName"] = getSongName(m_playRowIndex);
+
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName( getSongName(m_playRowIndex) );
+    shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
 

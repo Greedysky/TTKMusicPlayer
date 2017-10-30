@@ -43,7 +43,7 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 public Q_SLOTS:
     /*!
@@ -66,8 +66,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSimilarFoundWidget(QWidget *parent = 0);
-
-    virtual ~MusicSimilarFoundWidget();
 
     /*!
      * Get class object name.
@@ -93,30 +91,12 @@ public Q_SLOTS:
      * Query all quality musics is finished.
      */
     void queryAllFinished();
-    /*!
-     * Send recieved data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
 
 protected:
     /*!
      * Create init interface lables.
      */
     void createLabels();
-
-    MusicSimilarFoundTableWidget *m_similarTableWidget;
 
 };
 

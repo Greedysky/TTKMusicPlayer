@@ -20,7 +20,14 @@
  ================================================= */
 
 #include <QLabel>
-#include "musicglobaldefine.h"
+#include <QCheckBox>
+#include <QBoxLayout>
+#include <QPushButton>
+#include <QButtonGroup>
+#include <QScrollArea>
+#include <QStackedWidget>
+#include "musicsongsharingwidget.h"
+#include "musicqueryfoundtablewidget.h"
 
 /*! @brief The class of the found query widget base.
  * @author Greedysky <greedysky@163.com>
@@ -60,6 +67,32 @@ public:
      */
     void initWidget();
 
+public Q_SLOTS:
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Play all button clicked now.
+     */
+    void playAllButtonClicked();
+    /*!
+     * Share button clicked now.
+     */
+    void shareButtonClicked();
+    /*!
+     * Play button clicked now.
+     */
+    void playButtonClicked();
+    /*!
+     * Download button clicked now.
+     */
+    void downloadButtonClicked();
+    /*!
+     * Add button clicked now.
+     */
+    void addButtonClicked();
+
 protected:
     /*!
      * Override the widget event.
@@ -68,11 +101,29 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseReleaseEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
+    /*!
+     * Init the first widget.
+     */
+    void initFirstWidget();
+    /*!
+     * Init the second widget.
+     */
+    void initSecondWidget();
+    /*!
+     * Set song label count text.
+     */
+    void setSongCountText();
 
     QString m_songNameFull;
     QWidget *m_mainWindow;
-    QLabel *m_statusLabel;
+    QPushButton *m_songButton;
+    QLabel *m_iconLabel, *m_statusLabel, *m_infoLabel;
+    QStackedWidget *m_container;
+    MusicPlaylistItem m_currentPlaylistItem;
+    MusicQueryFoundTableWidget *m_foundTableWidget;
+    MusicDownLoadQueryThreadAbstract *m_downloadThread;
     QList<QLabel*> m_resizeWidget;
+    MusicSongSharingWidget::Type m_shareType;
 
 };
 

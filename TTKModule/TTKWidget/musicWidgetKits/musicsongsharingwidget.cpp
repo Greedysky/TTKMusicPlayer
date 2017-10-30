@@ -8,6 +8,7 @@
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
+#include "musicdownloadsourcethread.h"
 
 #include "qrencode/qrcodewidget.h"
 
@@ -20,6 +21,8 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
+
+    m_type = Null;
 
     m_ui->qqButton->setChecked(true);
     m_ui->textEdit->setStyleSheet(MusicUIObject::MTextEditStyle01);
@@ -57,8 +60,31 @@ QString MusicSongSharingWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicSongSharingWidget::setSongName(const QString &name)
+void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
 {
+    m_type = type;
+    m_data = data;
+
+    QString name = data["songName"].toString();
+
+    switch(m_type)
+    {
+        case Song: break;
+        case Album:
+        case Playlist:
+            {
+                QString smallUrl = data["smallUrl"].toString();
+                MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+                connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
+                if(!smallUrl.isEmpty() && smallUrl != "null")
+                {
+                    download->startToDownload(smallUrl);
+                }
+                break;
+            }
+        default: break;
+    }
+
     m_ui->sharedName->setToolTip(name);
     m_ui->sharedName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
@@ -78,21 +104,67 @@ int MusicSongSharingWidget::exec()
 
 void MusicSongSharingWidget::confirmButtonClicked()
 {
-    MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
-    down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
-
-    MusicSemaphoreLoop loop;
-    connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    loop.exec();
-
-    if(!down->getMusicSongInfos().isEmpty())
+    switch(m_type)
     {
-        MusicObject::MusicSongInformation info(down->getMusicSongInfos().first());
-        downLoadDataChanged(MusicUtils::Algorithm::mdII(WEB_PLAYER, false) + info.m_songId, info.m_smallPicUrl);
-    }
-    else
-    {
-        QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
+        case Song:
+            {
+                MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
+                down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
+
+                MusicSemaphoreLoop loop;
+                connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+                loop.exec();
+
+                if(!down->getMusicSongInfos().isEmpty())
+                {
+                    MusicObject::MusicSongInformation info(down->getMusicSongInfos().first());
+                    downLoadDataChanged(MusicUtils::Algorithm::mdII(WEB_PLAYER, false) + info.m_songId, info.m_smallPicUrl);
+                }
+                else
+                {
+                    QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
+                }
+                break;
+            }
+        case Album:
+            {
+                QString server = m_data["queryServer"].toString();
+                if(server == "WangYi")
+                    server = MusicUtils::Algorithm::mdII(WY_AL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "QQ")
+                    server = MusicUtils::Algorithm::mdII(QQ_AL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kugou")
+                    server = MusicUtils::Algorithm::mdII(KG_AL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Baidu")
+                    server = MusicUtils::Algorithm::mdII(BD_AL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kuwo")
+                    server = MusicUtils::Algorithm::mdII(KW_AL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "XiaMi")
+                    server = MusicUtils::Algorithm::mdII(XM_AL_SHARE, false).arg(m_data["id"].toString());
+
+                downLoadDataChanged(server, m_data["smallUrl"].toString());
+                break;
+            }
+        case Playlist:
+            {
+                QString server = m_data["queryServer"].toString();
+                if(server == "WangYi")
+                    server = MusicUtils::Algorithm::mdII(WY_PL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "QQ")
+                    server = MusicUtils::Algorithm::mdII(QQ_PL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kugou")
+                    server = MusicUtils::Algorithm::mdII(KG_PL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Baidu")
+                    server = MusicUtils::Algorithm::mdII(BD_PL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kuwo")
+                    server = MusicUtils::Algorithm::mdII(KW_PL_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "XiaMi")
+                    server = MusicUtils::Algorithm::mdII(XM_PL_SHARE, false).arg(m_data["id"].toString());
+
+                downLoadDataChanged(server, m_data["smallUrl"].toString());
+                break;
+            }
+        default: break;
     }
 }
 
@@ -135,7 +207,8 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
         return;
     }
 
-    url.replace("song?id=", "song%3Fid%3D");
+    url.replace("?id=", "%3Fid%3D");
+    url.replace("?pid=", "%3Fpid%3D");
     url.replace('#', "%23");
 
     MusicUtils::Core::openUrl(url, false);
@@ -166,5 +239,15 @@ void MusicSongSharingWidget::textAreaChanged()
     else
     {
         m_ui->textEditArea->setText(tr("You can enter %1 characters").arg(max - length));
+    }
+}
+
+void MusicSongSharingWidget::downLoadFinished(const QByteArray &data)
+{
+    if(m_ui->sharedNameIcon)
+    {
+        QPixmap pix;
+        pix.loadFromData(data);
+        m_ui->sharedNameIcon->setPixmap(pix.scaled(m_ui->sharedNameIcon->size()));
     }
 }

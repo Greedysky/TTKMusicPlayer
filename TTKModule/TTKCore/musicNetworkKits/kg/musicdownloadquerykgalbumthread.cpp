@@ -113,6 +113,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                         if(!albumFlag)
                         {
                             albumFlag = true;
+                            info.m_id = musicInfo.m_albumId;
                             info.m_name = musicInfo.m_singerName;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createAlbumInfoItem(info);

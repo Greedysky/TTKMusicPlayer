@@ -20,10 +20,8 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
-#include "musicqueryfoundtablewidget.h"
 #include "musiccategoryconfigmanager.h"
 
-class QCheckBox;
 class MusicToplistFoundCategoryPopWidget;
 
 /*! @brief The class of the toplist music found table widget.
@@ -47,7 +45,7 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 };
 
@@ -95,22 +93,6 @@ public Q_SLOTS:
      */
     void createToplistInfoItem(const MusicPlaylistItem &item);
     /*!
-     * Send recieved data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
-    /*!
      * Current category changed.
      */
     void categoryChanged(const MusicPlaylistCategoryItem &category);
@@ -121,12 +103,7 @@ protected:
      */
     void createLabels();
 
-    QCheckBox *m_allCheckBox;
-    QLabel *m_iconLabel, *m_songItemsLabel;
-
     MusicToplistFoundCategoryPopWidget *m_categoryButton;
-    MusicTopListFoundTableWidget *m_toplistTableWidget;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 

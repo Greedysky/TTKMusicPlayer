@@ -55,8 +55,11 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 6:
             {
-                MusicSongSharingWidget shareWidget;
-                shareWidget.setSongName(m_currentSongName);
+                QVariantMap data;
+                data["songName"] = m_currentSongName;
+
+                MusicSongSharingWidget shareWidget(this);
+                shareWidget.setData(MusicSongSharingWidget::Song, data);
                 shareWidget.exec();
                 break;
             }

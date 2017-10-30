@@ -74,49 +74,13 @@ public Q_SLOTS:
      * Query all quality musics is finished.
      */
     void queryAllFinished();
-    /*!
-     * Query all quality musics is finished.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play all button clicked now.
-     */
-    void playAllButtonClicked();
-    /*!
-     * Share button clicked now.
-     */
-    void shareButtonClicked();
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
 
 protected:
-    /*!
-     * Init the first widget.
-     */
-    void initFirstWidget();
-    /*!
-     * Init the second widget.
-     */
-    void initSecondWidget();
     /*!
      * Init the third widget.
      */
     void initThirdWidget();
 
-    QLabel *m_iconLabel, *m_infoLabel;
-    QStackedWidget *m_container;
-    QPushButton *m_songButton;
-    MusicPlaylistFoundTableWidget *m_playlistTableWidget;
     MusicPlaylistFoundCommentsWidget *m_commentsWidget;
 
 };

@@ -8,10 +8,6 @@
 #include "qrencode/qrcodewidget.h"
 
 #include <qmath.h>
-#include <QCheckBox>
-#include <QPushButton>
-#include <QBoxLayout>
-#include <QScrollArea>
 
 MusicArtistFoundTableWidget::MusicArtistFoundTableWidget(QWidget *parent)
     : MusicQueryFoundTableWidget(parent)
@@ -43,18 +39,10 @@ void MusicArtistFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract
 MusicArtistFoundWidget::MusicArtistFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
-    m_iconLabel = nullptr;
-
-    m_artistTableWidget = new MusicArtistFoundTableWidget(this);
+    m_shareType = MusicSongSharingWidget::Artist;
+    m_foundTableWidget = new MusicArtistFoundTableWidget(this);
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-}
-
-MusicArtistFoundWidget::~MusicArtistFoundWidget()
-{
-    delete m_artistTableWidget;
-    delete m_downloadThread;
-    delete m_iconLabel;
 }
 
 QString MusicArtistFoundWidget::getClassName()
@@ -73,16 +61,15 @@ void MusicArtistFoundWidget::setSongName(const QString &name)
 
 void MusicArtistFoundWidget::setSongNameById(const QString &id)
 {
-    m_artistTableWidget->hide();
     MusicDownLoadQueryThreadAbstract *v = M_DOWNLOAD_QUERY_PTR->getArtistThread(this);
-    m_artistTableWidget->setQueryInput(v);
-    m_artistTableWidget->startSearchQuery(id);
+    m_foundTableWidget->setQueryInput(v);
+    m_foundTableWidget->startSearchQuery(id);
     connect(v, SIGNAL(createArtistInfoItem(MusicPlaylistItem)), SLOT(createArtistInfoItem(MusicPlaylistItem)));
 }
 
 void MusicArtistFoundWidget::resizeWindow()
 {
-    m_artistTableWidget->resizeWindow();
+    m_foundTableWidget->resizeWindow();
 }
 
 void MusicArtistFoundWidget::queryAllFinished()
@@ -114,15 +101,21 @@ void MusicArtistFoundWidget::queryAllFinished()
 
 void MusicArtistFoundWidget::queryArtistFinished()
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_artistTableWidget->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(m_foundTableWidget->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));
+    }
+    else
+    {
+        setSongCountText();
     }
 }
 
 void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
 {
+    m_currentPlaylistItem = item;
+
     createLabels();
 
     if(!m_resizeWidget.isEmpty())
@@ -139,37 +132,14 @@ void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
     }
 }
 
-void MusicArtistFoundWidget::downLoadFinished(const QByteArray &data)
-{
-    if(m_iconLabel)
-    {
-        QPixmap pix;
-        pix.loadFromData(data);
-        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
-    }
-}
-
-void MusicArtistFoundWidget::playButtonClicked()
-{
-    m_artistTableWidget->downloadDataFrom(true);
-}
-
-void MusicArtistFoundWidget::downloadButtonClicked()
-{
-    m_artistTableWidget->downloadBatchData();
-}
-
-void MusicArtistFoundWidget::addButtonClicked()
-{
-    m_artistTableWidget->downloadDataFrom(false);
-}
-
 void MusicArtistFoundWidget::createLabels()
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
 
-    m_artistTableWidget->show();
+    initFirstWidget();
+    initSecondWidget();
+    m_container->show();
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
@@ -194,6 +164,56 @@ void MusicArtistFoundWidget::createLabels()
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(180, 180);
 
+    ////////////////////////////////////////////////////////////////////////////
+
+    QWidget *topLineWidget = new QWidget(topFuncWidget);
+    QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
+    topLineLayout->setContentsMargins(10, 5, 5, 0);
+    QLabel *playlistLabel = new QLabel(topLineWidget);
+    QFont playlistFont = playlistLabel->font();
+    playlistFont.setPixelSize(20);
+    playlistLabel->setFont(playlistFont);
+    playlistLabel->setStyleSheet(MusicUIObject::MFontStyle01);
+    playlistLabel->setToolTip("dddsaaaaa");
+    playlistLabel->setText(MusicUtils::Widget::elidedText(playlistFont, playlistLabel->toolTip(), Qt::ElideRight, 220));
+    QLabel *creatorLabel = new QLabel(topLineWidget);
+    creatorLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    creatorLabel->setToolTip(tr("Creator: %1").arg("dddsaaaaa"));
+    creatorLabel->setText(MusicUtils::Widget::elidedText(creatorLabel->font(), creatorLabel->toolTip(), Qt::ElideRight, 220));
+    QLabel *tagsLabel = new QLabel(topLineWidget);
+    tagsLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    tagsLabel->setToolTip(tr("Tags: %1").arg("dddsaaaaa"));
+    tagsLabel->setText(MusicUtils::Widget::elidedText(tagsLabel->font(), tagsLabel->toolTip(), Qt::ElideRight, 220));
+    QLabel *updateLabel = new QLabel(topLineWidget);
+    updateLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    updateLabel->setToolTip(tr("Update: %1").arg("dddsaaaaa"));
+    updateLabel->setText(MusicUtils::Widget::elidedText(updateLabel->font(), updateLabel->toolTip(), Qt::ElideRight, 220));
+
+    topLineLayout->addWidget(playlistLabel);
+    topLineLayout->addWidget(creatorLabel);
+    topLineLayout->addWidget(tagsLabel);
+    topLineLayout->addWidget(updateLabel);
+    topLineWidget->setLayout(topLineLayout);
+
+    QWidget *topButtonWidget = new QWidget(topFuncWidget);
+    topButtonWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    QHBoxLayout *topButtonLayout = new QHBoxLayout(topButtonWidget);
+    topButtonLayout->setContentsMargins(0, 0, 0, 0);
+    QPushButton *playAllButton = new QPushButton(tr("playAll"), topButtonWidget);
+    QPushButton *shareButton = new QPushButton(tr("share"), topButtonWidget);
+    playAllButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
+    playAllButton->setIconSize(QSize(14, 14));
+    playAllButton->setCursor(QCursor(Qt::PointingHandCursor));
+    shareButton->setCursor(QCursor(Qt::PointingHandCursor));
+    playAllButton->setFixedSize(90, 30);
+    shareButton->setFixedSize(55, 30);
+    topButtonLayout->addWidget(playAllButton);
+    topButtonLayout->addWidget(shareButton);
+    topButtonLayout->addStretch(1);
+    topButtonWidget->setLayout(topButtonLayout);
+    topLineLayout->addWidget(topButtonWidget);
+    connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
+    connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
     ////////////////////////////////////////////////////////////////////////////
 
     QWidget *topRightWidget = new QWidget(topFuncWidget);
@@ -237,50 +257,41 @@ void MusicArtistFoundWidget::createLabels()
     topRightLayout->addWidget(code, 3, 2, 1, 6);
 
     topFuncLayout->addWidget(m_iconLabel);
-    topFuncLayout->addStretch(1);
+    topFuncLayout->addWidget(topLineWidget);
     topFuncLayout->addWidget(topRightWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     ////////////////////////////////////////////////////////////////////////////
 
-    QWidget *middleFuncWidget = new QWidget(function);
-    QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
-    middleFuncLayout->setContentsMargins(0, 0, 0, 0);
-    QLabel *marginLabel = new QLabel(middleFuncWidget);
-    marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
-    QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
-    playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
-    playButton->setIconSize(QSize(14, 14));
-    playButton->setFixedSize(55, 25);
-    playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *addButton = new QPushButton(tr("add"), middleFuncWidget);
-    addButton->setFixedSize(55, 25);
-    addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
-    downloadButton->setFixedSize(55, 25);
-    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QWidget *functionWidget = new QWidget(this);
+    functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    m_songButton = new QPushButton(functionWidget);
+    m_songButton->setText(tr("songItems"));
+    m_songButton->setFixedSize(100, 25);
+    m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
+    hlayout->addWidget(m_songButton);
+    QPushButton *infoButton = new QPushButton(functionWidget);
+    infoButton->setText(tr("Info"));
+    infoButton->setFixedSize(100, 25);
+    infoButton->setCursor(QCursor(Qt::PointingHandCursor));
+    hlayout->addWidget(infoButton);
+    hlayout->addStretch(1);
+    functionWidget->setLayout(hlayout);
+    QButtonGroup *group = new QButtonGroup(this);
+    group->addButton(m_songButton, 0);
+    group->addButton(infoButton, 1);
+    connect(group, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
 
 #ifdef Q_OS_UNIX
-    allCheckBox->setFocusPolicy(Qt::NoFocus);
-    playButton->setFocusPolicy(Qt::NoFocus);
-    addButton->setFocusPolicy(Qt::NoFocus);
-    downloadButton->setFocusPolicy(Qt::NoFocus);
+    playAllButton->setFocusPolicy(Qt::NoFocus);
+    shareButton->setFocusPolicy(Qt::NoFocus);
+    m_songButton->setFocusPolicy(Qt::NoFocus);
+    infoButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    middleFuncLayout->addWidget(marginLabel);
-    middleFuncLayout->addWidget(allCheckBox);
-    middleFuncLayout->addStretch(1);
-    middleFuncLayout->addWidget(playButton);
-    middleFuncLayout->addWidget(addButton);
-    middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_artistTableWidget, SLOT(setSelectedAllItems(bool)));
-    connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
-    connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
-    connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
-    grid->addWidget(middleFuncWidget);
+    grid->addWidget(functionWidget);
     //////////////////////////////////////////////////////////////////////
-    grid->addWidget(m_artistTableWidget);
+    grid->addWidget(m_container);
     grid->addStretch(1);
 
     function->setLayout(grid);

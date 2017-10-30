@@ -9,10 +9,7 @@
 #include "musicotherdefine.h"
 
 #include <qmath.h>
-#include <QPushButton>
 #include <QGridLayout>
-#include <QScrollArea>
-#include <QStackedWidget>
 
 #define MIN_LABEL_SIZE  150
 #define MAX_LABEL_SIZE  200
@@ -122,7 +119,7 @@ void MusicPlaylistFoundItemWidget::currentPlayListClicked()
 MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
-    m_container = new QStackedWidget(this);
+    m_container->show();
     layout()->removeWidget(m_mainWindow);
     layout()->addWidget(m_container);
     m_container->addWidget(m_mainWindow);
@@ -141,7 +138,6 @@ MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
 {
     delete m_infoWidget;
     delete m_gridLayout;
-//    delete m_container;
     delete m_categoryButton;
     delete m_downloadThread;
     delete m_pagingWidgetObject;

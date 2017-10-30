@@ -20,7 +20,6 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
-#include "musicqueryfoundtablewidget.h"
 
 /*! @brief The class of the artist music found table widget.
  * @author Greedysky <greedysky@163.com>
@@ -44,7 +43,7 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 };
 
@@ -60,8 +59,6 @@ public:
      * Object contsructor.
      */
     explicit MusicArtistFoundWidget(QWidget *parent = 0);
-
-    virtual ~MusicArtistFoundWidget();
 
     /*!
      * Get class object name.
@@ -95,32 +92,12 @@ public Q_SLOTS:
      * Create the current artist info item.
      */
     void createArtistInfoItem(const MusicPlaylistItem &item);
-    /*!
-     * Send recieved data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
 
 protected:
     /*!
      * Create init interface lables.
      */
     void createLabels();
-
-    QLabel *m_iconLabel;
-    MusicArtistFoundTableWidget *m_artistTableWidget;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 

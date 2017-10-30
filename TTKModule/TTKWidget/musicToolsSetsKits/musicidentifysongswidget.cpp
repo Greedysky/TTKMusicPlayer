@@ -170,8 +170,11 @@ void MusicIdentifySongsWidget::musicSongShare()
 {
     if(!m_currentSong.m_singerName.isEmpty())
     {
+        QVariantMap data;
+        data["songName"] = m_currentSong.m_songName;
+
         MusicSongSharingWidget shareWidget(this);
-        shareWidget.setSongName( m_currentSong.m_songName );
+        shareWidget.setData(MusicSongSharingWidget::Song, data);
         shareWidget.exec();
     }
 }

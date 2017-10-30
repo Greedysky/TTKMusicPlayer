@@ -49,7 +49,11 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    /*!
+     * Get network query input.
+     */
+    MusicDownLoadQueryThreadAbstract *getQueryInput();
     /*!
      * Return the current song container.
      */

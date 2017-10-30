@@ -330,8 +330,11 @@ void MusicVideoPlayWidget::shareButtonClicked()
         return;
     }
 
+    QVariantMap data;
+    data["songName"] = text;
+
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName(text);
+    shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
 

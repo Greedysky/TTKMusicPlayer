@@ -20,12 +20,9 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
-#include "musicqueryfoundtablewidget.h"
 #include "musiccategoryconfigmanager.h"
 
 class QGridLayout;
-class QPushButton;
-class QStackedWidget;
 class MusicPagingWidgetObject;
 class MusicPlaylistFoundInfoWidget;
 class MusicPlaylistFoundCategoryPopWidget;
@@ -136,12 +133,10 @@ public Q_SLOTS:
 
 protected:
     bool m_firstInit, m_categoryChanged;
-    QStackedWidget *m_container;
     QGridLayout *m_gridLayout;
     MusicPagingWidgetObject *m_pagingWidgetObject;
     MusicPlaylistFoundInfoWidget *m_infoWidget;
     MusicPlaylistFoundCategoryPopWidget *m_categoryButton;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 
