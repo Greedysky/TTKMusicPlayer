@@ -70,6 +70,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
     switch(m_type)
     {
         case Song: break;
+        case Artist:
         case Album:
         case Playlist:
             {
@@ -124,6 +125,25 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 {
                     QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
                 }
+                break;
+            }
+        case Artist:
+            {
+                QString server = m_data["queryServer"].toString();
+                if(server == "WangYi")
+                    server = MusicUtils::Algorithm::mdII(WY_AR_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "QQ")
+                    server = MusicUtils::Algorithm::mdII(QQ_AR_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kugou")
+                    server = MusicUtils::Algorithm::mdII(KG_AR_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Baidu")
+                    server = MusicUtils::Algorithm::mdII(BD_AR_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "Kuwo")
+                    server = MusicUtils::Algorithm::mdII(KW_AR_SHARE, false).arg(m_data["id"].toString());
+                else if(server == "XiaMi")
+                    server = MusicUtils::Algorithm::mdII(XM_AR_SHARE, false).arg(m_data["id"].toString());
+
+                downLoadDataChanged(server, m_data["smallUrl"].toString());
                 break;
             }
         case Album:
@@ -207,6 +227,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
         return;
     }
 
+    url.replace("?name=", "%3Fname%3D");
     url.replace("?id=", "%3Fid%3D");
     url.replace("?pid=", "%3Fpid%3D");
     url.replace('#', "%23");

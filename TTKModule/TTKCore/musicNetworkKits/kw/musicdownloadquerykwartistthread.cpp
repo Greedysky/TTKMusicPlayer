@@ -117,7 +117,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             getDownLoadIntro(&info);
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            info.m_id = m_searchText;
+                            info.m_id = musicInfo.m_singerName;
                             info.m_name = musicInfo.m_singerName;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createArtistInfoItem(info);

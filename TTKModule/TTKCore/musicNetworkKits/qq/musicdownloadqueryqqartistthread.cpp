@@ -147,6 +147,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                     value = var.toMap();
                     value = value["musicData"].toMap();
                     MusicObject::MusicSongInformation musicInfo;
+                    QString artistMid;
                     foreach(const QVariant &var, value["singer"].toList())
                     {
                         if(var.isNull())
@@ -156,6 +157,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                         QVariantMap name = var.toMap();
                         musicInfo.m_singerName = name["name"].toString();
                         musicInfo.m_artistId = QString::number(name["id"].toULongLong());
+                        artistMid = name["mid"].toString();
                     }
                     musicInfo.m_songName = value["songname"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);;
@@ -186,7 +188,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                             getDownLoadIntro(&info);
                             if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            info.m_id = m_searchText;
+                            info.m_id = artistMid;
                             info.m_name = musicInfo.m_singerName;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createArtistInfoItem(info);
