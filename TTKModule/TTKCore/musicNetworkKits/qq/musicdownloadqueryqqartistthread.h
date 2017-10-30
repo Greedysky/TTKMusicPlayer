@@ -19,8 +19,34 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicabstractxml.h"
 #include "musicdownloadqqinterface.h"
 #include "musicdownloadqueryartistthread.h"
+
+/*! @brief The class to qq query artist info xml data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_CORE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicQQArtistInfoConfigManager(QObject *parent = nullptr);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Read artist info datas into xml file.
+     */
+    void readArtistInfoConfig(MusicPlaylistItem *item);
+
+};
+
 
 /*! @brief The class to qq query artist download data from net.
  * @author Greedysky <greedysky@163.com>
@@ -50,6 +76,12 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+
+protected:
+    /*!
+     * Get Download introduction data from net.
+     */
+    void getDownLoadIntro(MusicPlaylistItem *item);
 
 };
 

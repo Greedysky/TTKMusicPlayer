@@ -51,6 +51,12 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
 
+protected:
+    /*!
+     * Get Download introduction data from net.
+     */
+    void getDownLoadIntro(MusicPlaylistItem *item);
+
 };
 
 #endif // MUSICDOWNLOADQUERYBDARTISTTHREAD_H

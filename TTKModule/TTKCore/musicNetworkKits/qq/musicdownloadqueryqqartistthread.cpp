@@ -1,7 +1,76 @@
 #include "musicdownloadqueryqqartistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
+
+#define D_URL   "a2tQNGw2RlJyeC9sZjc5RXpsM2hZRXZUeWd0UVJycE1oTzI5MkRQbVRQemN3WUhtOHJiV3FzcS95ZVU9"
+
+MusicQQArtistInfoConfigManager::MusicQQArtistInfoConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
+{
+
+}
+
+QString MusicQQArtistInfoConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicPlaylistItem *item)
+{
+    QDomNodeList resultlist = m_ddom->elementsByTagName("info");
+    for(int i=0; i<resultlist.count(); ++i)
+    {
+        QDomNodeList infolist = resultlist.at(i).childNodes();
+        for(int j=0; j<infolist.count(); ++j)
+        {
+            QDomNode node = infolist.at(j);
+            if(node.nodeName() == "desc")
+            {
+                item->m_description = node.toElement().text();
+            }
+            else if(node.nodeName() == "basic")
+            {
+                QDomNodeList basiclist = node.childNodes();
+                for(int k=0; k<basiclist.count(); ++k)
+                {
+                    QDomNodeList itemlist = basiclist.at(k).childNodes();
+                    if(itemlist.count() != 2)
+                    {
+                        continue;
+                    }
+
+                    QString key = itemlist.at(0).toElement().text();
+                    QString value = itemlist.at(1).toElement().text();
+                    if(key.contains("\u4e2d\u6587\u540d"))
+                        item->m_nickname = value;
+                    else if(key.contains("\u51fa\u751f\u65e5\u671f"))
+                        item->m_updateTime = value;
+                    else if(key.contains("\u56fd\u7c4d"))
+                        item->m_tags = value;
+                }
+            }
+            else if(node.nodeName() == "other")
+            {
+                QDomNodeList otherlist = node.childNodes();
+                for(int k=0; k<otherlist.count(); ++k)
+                {
+                    QDomNodeList itemlist = otherlist.at(k).childNodes();
+                    if(itemlist.count() != 2)
+                    {
+                        continue;
+                    }
+
+                    item->m_description += ("\r\n" + itemlist.at(1).toElement().text());
+                }
+            }
+        }
+    }
+
+}
+
+
 
 MusicDownLoadQueryQQArtistThread::MusicDownLoadQueryQQArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
@@ -24,6 +93,7 @@ void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
+    m_searchText = artist;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -113,6 +183,10 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                         {
                             artistFlag = true;
                             MusicPlaylistItem info;
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            getDownLoadIntro(&info);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            info.m_id = m_searchText;
                             info.m_name = musicInfo.m_singerName;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createArtistInfoItem(info);
@@ -135,4 +209,39 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    QNetworkRequest request;
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_searchText);
+
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    MusicQQArtistInfoConfigManager xml;
+    xml.fromByteArray(reply->readAll());
+    xml.readArtistInfoConfig(item);
+
 }

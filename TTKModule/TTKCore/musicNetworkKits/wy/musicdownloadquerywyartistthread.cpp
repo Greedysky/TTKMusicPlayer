@@ -119,6 +119,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_nickname = artistObject["trans"].toString();
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
@@ -145,8 +146,13 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 
 void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
 {
+    if(!m_manager)
+    {
+        return;
+    }
+
     QNetworkRequest request;
-    request.setUrl(QUrl(QString("http://music.163.com/api/artist/introduction")));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(WY_ARTIST_INFO_URL, false)));
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());

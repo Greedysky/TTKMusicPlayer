@@ -129,6 +129,24 @@ void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
         {
             download->startToDownload(item.m_coverUrl);
         }
+
+        label = m_resizeWidget[1];
+        label->setToolTip(item.m_name);
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
+
+        label = m_resizeWidget[2];
+        label->setToolTip(tr("NickName: %1").arg(item.m_nickname));
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
+
+        label = m_resizeWidget[3];
+        label->setToolTip(tr("Country: %1").arg(item.m_tags));
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
+
+        label = m_resizeWidget[4];
+        label->setToolTip(tr("Birth: %1").arg(item.m_updateTime));
+        label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220));
+
+        m_infoLabel->setText(item.m_description);
     }
 }
 
@@ -169,30 +187,26 @@ void MusicArtistFoundWidget::createLabels()
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
-    QLabel *playlistLabel = new QLabel(topLineWidget);
-    QFont playlistFont = playlistLabel->font();
-    playlistFont.setPixelSize(20);
-    playlistLabel->setFont(playlistFont);
-    playlistLabel->setStyleSheet(MusicUIObject::MFontStyle01);
-    playlistLabel->setToolTip("dddsaaaaa");
-    playlistLabel->setText(MusicUtils::Widget::elidedText(playlistFont, playlistLabel->toolTip(), Qt::ElideRight, 220));
-    QLabel *creatorLabel = new QLabel(topLineWidget);
-    creatorLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    creatorLabel->setToolTip(tr("Creator: %1").arg("dddsaaaaa"));
-    creatorLabel->setText(MusicUtils::Widget::elidedText(creatorLabel->font(), creatorLabel->toolTip(), Qt::ElideRight, 220));
-    QLabel *tagsLabel = new QLabel(topLineWidget);
-    tagsLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    tagsLabel->setToolTip(tr("Tags: %1").arg("dddsaaaaa"));
-    tagsLabel->setText(MusicUtils::Widget::elidedText(tagsLabel->font(), tagsLabel->toolTip(), Qt::ElideRight, 220));
-    QLabel *updateLabel = new QLabel(topLineWidget);
-    updateLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    updateLabel->setToolTip(tr("Update: %1").arg("dddsaaaaa"));
-    updateLabel->setText(MusicUtils::Widget::elidedText(updateLabel->font(), updateLabel->toolTip(), Qt::ElideRight, 220));
+    QLabel *artistLabel = new QLabel(topLineWidget);
+    QFont artistFont = artistLabel->font();
+    artistFont.setPixelSize(20);
+    artistLabel->setFont(artistFont);
+    artistLabel->setStyleSheet(MusicUIObject::MFontStyle01);
+    artistLabel->setText("-");
+    QLabel *nickNameLabel = new QLabel(topLineWidget);
+    nickNameLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    nickNameLabel->setText("-");
+    QLabel *countryLabel = new QLabel(topLineWidget);
+    countryLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    countryLabel->setText("-");
+    QLabel *birthLabel = new QLabel(topLineWidget);
+    birthLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
+    birthLabel->setText("-");
 
-    topLineLayout->addWidget(playlistLabel);
-    topLineLayout->addWidget(creatorLabel);
-    topLineLayout->addWidget(tagsLabel);
-    topLineLayout->addWidget(updateLabel);
+    topLineLayout->addWidget(artistLabel);
+    topLineLayout->addWidget(nickNameLabel);
+    topLineLayout->addWidget(countryLabel);
+    topLineLayout->addWidget(birthLabel);
     topLineWidget->setLayout(topLineLayout);
 
     QWidget *topButtonWidget = new QWidget(topFuncWidget);
@@ -297,5 +311,5 @@ void MusicArtistFoundWidget::createLabels()
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidget << firstLabel;
+    m_resizeWidget << firstLabel << artistLabel << nickNameLabel << countryLabel << birthLabel;
 }

@@ -40,6 +40,7 @@ const QString WY_SONG_DETAIL_URL   = "L3pCVjhOLzB5TUxpNS84czdTRTFndnZvMFkyTjhyKz
 const QString WY_SONG_INFO_URL     = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_ARTIST_URL        = "VURUWGM0c0NHamdldHFWcGwvZWlxS24rZ3Fpc1o0TEZmUDRDUDl3aWQvdklQN0VCeVpicmxRPT0=";
+const QString WY_ARTIST_INFO_URL   = "MHIveFMyd0xJQ055R281bDA3UXFYcXZjVVI2ZkgrNkFmamhXeFl2VUlOcGxneEg5Q1gvc2sxRWFuOEhuTEh5WQ==";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_SG_COMMIT_URL     = "UjF0OUhmdnIxdXFWNEEwam5ZT0t6Q2EraGdGQzZqT01aYzN1bG1HQUdoOWxDbFhWTVpVWUk2NUdpSEFHcUo4UUlLL3BvWXJZSXJsTlU3M3JiN05sMUFldit5bzRXMFJNYjNjQ3pTOFp3TnBJSERSQjA3VDlycFRXaVpHV3BZOXFSU3NyVUFrZzRWeXRQY0lJ";
 ///////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,5 @@
 #include "musicdownloadqueryxmartistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -22,8 +23,8 @@ void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    m_searchText = artist;
     deleteAll();
+    m_searchText = artist;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -107,6 +108,10 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
                     {
                         artistFlag = true;
                         MusicPlaylistItem info;
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        getDownLoadIntro(&info);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
@@ -129,3 +134,58 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
+
+void MusicDownLoadQueryXMArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    QNetworkRequest request;
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_DATA_INFO_URL, false).arg(m_searchText),
+                      MusicUtils::Algorithm::mdII(XM_ARTIST_INFO_URL, false));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QByteArray bytes = reply->readAll();
+    bytes = bytes.replace("xiami(", "");
+    bytes = bytes.replace("callback(", "");
+    bytes.chop(1);
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data"))
+        {
+            value = value["data"].toMap();
+            value = value["data"].toMap();
+            value = value["artistDetailVO"].toMap();
+
+            item->m_tags = value["area"].toString();
+            item->m_nickname = value["alias"].toString();
+            item->m_description = value["description"].toString();
+        }
+    }
+
+}
+

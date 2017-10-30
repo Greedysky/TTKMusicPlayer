@@ -1,4 +1,5 @@
 #include "musicdownloadquerykgartistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -24,6 +25,7 @@ void MusicDownLoadQueryKGArtistThread::startToSearch(const QString &artist)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
+    m_searchText = artist;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -111,6 +113,10 @@ void MusicDownLoadQueryKGArtistThread::downLoadFinished()
                         {
                             artistFlag = true;
                             MusicPlaylistItem info;
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            getDownLoadIntro(&info);
+                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                            info.m_id = m_searchText;
                             info.m_name = musicInfo.m_singerName;
                             info.m_coverUrl = musicInfo.m_smallPicUrl;
                             emit createArtistInfoItem(info);
@@ -133,4 +139,47 @@ void MusicDownLoadQueryKGArtistThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryKGArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    QNetworkRequest request;
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ARTIST_INFO_URL, false).arg(m_searchText);
+
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["errcode"].toInt() == 0)
+        {
+            value = value["data"].toMap();
+            item->m_description = value["intro"].toString();
+        }
+    }
+
 }
