@@ -184,10 +184,7 @@ void MusicTopListFoundWidget::createLabels()
     connect(group, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
 
 #ifdef Q_OS_UNIX
-    playAllButton->setFocusPolicy(Qt::NoFocus);
-    shareButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);
-    infoButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
     //////////////////////////////////////////////////////////////////////

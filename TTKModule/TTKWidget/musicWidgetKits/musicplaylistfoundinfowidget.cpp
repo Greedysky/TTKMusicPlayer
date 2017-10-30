@@ -241,8 +241,10 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);
     playAllButton->setFocusPolicy(Qt::NoFocus);
+    shareButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);
     infoButton->setFocusPolicy(Qt::NoFocus);
+    commentsButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
     grid->addWidget(m_container);
