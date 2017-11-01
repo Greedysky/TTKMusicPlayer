@@ -191,6 +191,11 @@ void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
                 value = var.toMap();
                 item->m_description = value["txt"].toString();
             }
+
+            if(item->m_description == "-")
+            {
+                item->m_description = value["briefDesc"].toString();
+            }
         }
     }
 

@@ -233,7 +233,7 @@ void MusicTopListFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &c
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();
 
-        m_songButton->setText(QString());
+        m_songButton->setText(tr("songItems"));
         m_downloadThread->setQueryAllRecords(true);
         m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, category.m_id);
     }
