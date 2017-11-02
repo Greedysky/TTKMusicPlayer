@@ -41,6 +41,7 @@ void MusicSysConfigManager::writeXMLConfig()
     int otherInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toInt();
     int otherSideByChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toInt();
     int otherSongFormatChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
+    int otherLrcKTVModeChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
@@ -164,6 +165,7 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(otherSettingDom, "otherInfo", MusicXmlAttribute("value", otherInfoChoiced));
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideByChoiced));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormatChoiced));
+    writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(backgroundSettingDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
@@ -336,6 +338,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("otherSideBy").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
                      readXmlAttributeByTagNameValue("otherSongFormat").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced,
+                     readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced,

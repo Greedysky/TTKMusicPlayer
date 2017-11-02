@@ -67,6 +67,7 @@ public:
         OtherSongFormat,                /*!< Other Song Format Parameter*/
         OtherSideByChoiced,             /*!< Other App Side By Mode Parameter*/
         OtherSideByInChoiced,           /*!< Other App Side By In Mode Parameter*/
+        OtherLrcKTVModeChoiced,         /*!< Other Lrc KTV Mode Mode Parameter*/
 
         ShowInlineLrcChoiced,           /*!< Show Inline Lrc Parameter*/
         LrcColorChoiced,                /*!< Lrc Color Parameter*/

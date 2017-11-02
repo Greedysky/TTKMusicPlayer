@@ -1,4 +1,5 @@
 #include "musiclrcmanagerfordesktop.h"
+#include "musicsettingmanager.h"
 #include "musicnumberdefine.h"
 
 MusicLrcManagerForDesktop::MusicLrcManagerForDesktop(QWidget *parent)
@@ -36,8 +37,7 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     m_linearGradient.setFinalStop(0, QFontMetrics(m_font).height());
     m_maskLinearGradient.setFinalStop(0, QFontMetrics(m_font).height());
 
-    if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth &&
-       m_lrcMaskWidth >= m_lrcPerWidth / 2)
+    if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth && m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {
         m_intervalCount -= m_lrcMaskWidthInterval;
     }
@@ -51,9 +51,18 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_linearGradient, 0));
     painter.drawText(m_intervalCount, begin, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
+    int offsetValue = 0;
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
+    {
+        offsetValue = m_lrcMaskWidth;
+    }
+    else
+    {
+        offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
+    }
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
-    painter.drawText(m_intervalCount, begin, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    painter.drawText(m_intervalCount, begin, offsetValue, 60, Qt::AlignLeft, text());
     painter.end();
 }
 
@@ -77,8 +86,7 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     m_linearGradient.setFinalStop(0, QFontMetrics(m_font).height());
     m_maskLinearGradient.setFinalStop(0, QFontMetrics(m_font).height());
 
-    if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth &&
-       m_lrcMaskWidth >= m_lrcPerWidth / 2)
+    if(m_geometry.x() + m_intervalCount >= m_lrcPerWidth && m_lrcMaskWidth >= m_lrcPerWidth / 2)
     {
         m_intervalCount -= m_lrcMaskWidthInterval;
     }
@@ -94,9 +102,18 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_linearGradient, 0));
     painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
+    int offsetValue = 0;
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
+    {
+        offsetValue = m_lrcMaskWidth;
+    }
+    else
+    {
+        offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
+    }
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
-    painter.drawText(m_intervalCount, 0, m_lrcMaskWidth, 60, Qt::AlignLeft, text());
+    painter.drawText(m_intervalCount, 0, offsetValue, 60, Qt::AlignLeft, text());
     painter.translate(-m_geometry.y(), 0);
     painter.end();
 }

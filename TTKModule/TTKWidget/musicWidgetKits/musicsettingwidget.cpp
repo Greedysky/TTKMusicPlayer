@@ -195,6 +195,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherAlbumCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool());
     m_ui->otherInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool());
+    m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool());
     m_ui->otherSongFormatComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt());
 
     ////////////////////////////////////////////////
@@ -528,6 +529,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced, m_ui->otherInfoCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, m_ui->otherSongFormatComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced, m_ui->otherLrcKTVCheckBox->isChecked());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
@@ -664,6 +666,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherAlbumCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 #ifdef Q_OS_UNIX
     m_ui->otherNorImgRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHerImgRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -672,6 +675,7 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherAlbumCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
 #endif
 
     m_ui->otherSongFormatComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->otherSongFormatComboBox));
