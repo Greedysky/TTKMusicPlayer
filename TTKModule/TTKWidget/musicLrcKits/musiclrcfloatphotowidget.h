@@ -162,11 +162,11 @@ public Q_SLOTS:
      */
     void selectAllStateChanged(bool state);
 
-
 protected:
     /*!
      * Override the widget event.
      */
+    virtual void paintEvent(QPaintEvent *event) override;
     virtual void enterEvent(QEvent *) override {}
     virtual void leaveEvent(QEvent *) override {}
     /*!

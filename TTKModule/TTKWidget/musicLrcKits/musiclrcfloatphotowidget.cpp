@@ -1,18 +1,19 @@
 #include "musiclrcfloatphotowidget.h"
 #include "musicbackgroundmanager.h"
 #include "musicinlinefloatuiobject.h"
-#include "musicleftareawidget.h"
 #include "musicwidgetutils.h"
 
 #include <qmath.h>
 #include <QMenu>
 #include <QTimer>
+#include <QPainter>
 #include <QCheckBox>
 #include <QPushButton>
 
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65
 #define PHOTO_PERLINE   3
+#define PHOTO_BG_WIDTH  44
 
 MusicLrcFloatPhotoItem::MusicLrcFloatPhotoItem(int index, QWidget *parent)
     : MusicClickedLabel(parent)
@@ -116,9 +117,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     setStyleSheet(QString("#MusicLrcFloatPhotoWidget{%1}").arg(MusicUIObject::MBackgroundStyle08));
 
     m_filmBGWidget = new QWidget(this);
-    m_filmBGWidget->setObjectName("FilmBGWidget");
     m_filmBGWidget->setGeometry(0, 0, 680, 125);
-    m_filmBGWidget->setStyleSheet("#FilmBGWidget{background-image:url(':/lrc/lb_film_bg');}");
 
     MusicLrcFloatPhotoItem *item;
     item = new MusicLrcFloatPhotoItem(0, m_filmBGWidget);
@@ -190,9 +189,8 @@ QString MusicLrcFloatPhotoWidget::getClassName()
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)
 {
-    bool f = MusicLeftAreaWidget::instance()->isLrcWidgetShowFullScreen();
-    m_rectIn = QRect(0, (f ? 705 : 555) + height, 133 + width, 105);
-    m_rectOut = QRect(0, (f ? 505 : 355) + height, 680 + width, 180);
+    m_rectIn = QRect(0, 555 + height, 133 + width, 105);
+    m_rectOut = QRect(0, 355 + height, 680 + width, 180);
 
     m_filmBGWidget->move(width/2, 0);
     m_checkBox->move(width/2 + 20, 130);
@@ -263,7 +261,7 @@ void MusicLrcFloatPhotoWidget::artHasChanged()
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    if( ++m_currentIndex > (page = page < 0 ? 0 : page) )
+    if( ++m_currentIndex > (page = (page < 0) ? 0 : page) )
     {
         m_currentIndex = page;
     }
@@ -313,5 +311,16 @@ void MusicLrcFloatPhotoWidget::selectAllStateChanged(bool state)
             item->setBoxChecked(false);
         }
         m_selectNum.clear();
+    }
+}
+
+void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
+{
+    MusicFloatAbstractWidget::paintEvent(event);
+
+    QPainter painter(this);
+    for(int i=0; i<=ceil(width()/PHOTO_BG_WIDTH); ++i)
+    {
+        painter.drawPixmap(PHOTO_BG_WIDTH*i, 0, QPixmap(":/lrc/lb_film_bg"));
     }
 }
