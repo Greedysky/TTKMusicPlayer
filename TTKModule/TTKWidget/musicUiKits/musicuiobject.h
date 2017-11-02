@@ -50,7 +50,7 @@ namespace MusicUIObject
             color:rgb(160, 99, 11);";
 
     const QString MColorStyle08 = " \
-            color:#80B7F1;";
+            color:#158FE1;";
 
     const QString MColorStyle09 = " \
             color:#666666;";
@@ -113,7 +113,7 @@ namespace MusicUIObject
             background:rgba(255, 255, 255, 200);";
 
     const QString MBackgroundStyle14 = " \
-            background:#80B7F1;";
+            background:#158FE1;";
 
     const QString MBackgroundStyle15 = " \
             background:#BFBFBF;";
@@ -222,9 +222,9 @@ namespace MusicUIObject
 
     const QString MPushButtonStyle02 = MPushButtonStyle01 + " \
             QPushButton{ border-none;}";
-            
+
     const QString MPushButtonStyle03 = " \
-            QPushButton{ border-radius:3px; background-color:#80B7F1; color:white;}";
+            QPushButton{ border-radius:3px; background-color:#158FE1; color:white;}";
 
     const QString MPushButtonStyle04 = " \
             QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777;} \

@@ -75,7 +75,7 @@ void MusicGrabWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
-    QPen pen(QColor("#80B7F1"), 1);
+    QPen pen(QColor("#158FE1"), 1);
     painter.setPen(pen);
 
     painter.drawPixmap(0, 0, width(), height(), m_originPixmap);

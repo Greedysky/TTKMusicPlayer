@@ -632,7 +632,7 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;
-    m_textLabel->setText(tr("&nbsp;find <font color=#80B7F1> %1 </font> result")
+    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result")
                          .arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
     m_textLabel->setToolTip(name);
 }

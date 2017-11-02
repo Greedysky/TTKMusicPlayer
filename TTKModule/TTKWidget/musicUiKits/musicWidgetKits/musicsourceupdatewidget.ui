@@ -153,7 +153,7 @@
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton{border-radius:5px;background-color:#80B7F1;color:white;font-size:13px;font-weight:bold;}</string>
+       <string notr="true">QPushButton{border-radius:5px;background-color:#158FE1;color:white;font-size:13px;font-weight:bold;}</string>
       </property>
       <property name="text">
        <string>更新</string>
