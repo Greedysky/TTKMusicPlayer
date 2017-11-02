@@ -54,7 +54,7 @@ void QRCodeQWidget::setMargin(const int margin)
 {
     MUSIC_D(QRCodeQWidget);
     d->m_margin = margin;
-    repaint();
+    update();
 }
 
 int QRCodeQWidget::getMargin() const
@@ -68,7 +68,7 @@ void QRCodeQWidget::setIcon(const QString &path, qreal percent)
     MUSIC_D(QRCodeQWidget);
     setIconPercent(percent);
     d->m_iconPath = path;
-    repaint();
+    update();
 }
 
 QString QRCodeQWidget::getIcon() const
@@ -93,7 +93,7 @@ void QRCodeQWidget::setCaseSensitive(bool flag)
 {
     MUSIC_D(QRCodeQWidget);
     d->m_casesen = flag;
-    repaint();
+    update();
 }
 
 bool QRCodeQWidget::caseSensitive() const
