@@ -1,6 +1,7 @@
 #include "musicsongsharingwidget.h"
 #include "ui_musicsongsharingwidget.h"
-#include "musicdownloadquerywythread.h"
+#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
@@ -109,7 +110,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Song:
             {
-                MusicDownLoadQueryWYThread *down = new MusicDownLoadQueryWYThread(this);
+                MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);;
                 down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
 
                 MusicSemaphoreLoop loop;
@@ -119,7 +120,21 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 if(!down->getMusicSongInfos().isEmpty())
                 {
                     MusicObject::MusicSongInformation info(down->getMusicSongInfos().first());
-                    downLoadDataChanged(MusicUtils::Algorithm::mdII(WEB_PLAYER, false) + info.m_songId, info.m_smallPicUrl);
+                    QString server = down->getQueryServer();
+                    if(server == "WangYi")
+                        server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+                    else if(server == "QQ")
+                        server = MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+                    else if(server == "Kugou")
+                        server = MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+                    else if(server == "Baidu")
+                        server = MusicUtils::Algorithm::mdII(BD_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+                    else if(server == "Kuwo")
+                        server = MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+                    else if(server == "XiaMi")
+                        server = MusicUtils::Algorithm::mdII(XM_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
+
+                    downLoadDataChanged(server, info.m_smallPicUrl);
                 }
                 else
                 {
@@ -131,17 +146,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
             {
                 QString server = m_data["queryServer"].toString();
                 if(server == "WangYi")
-                    server = MusicUtils::Algorithm::mdII(WY_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "QQ")
-                    server = MusicUtils::Algorithm::mdII(QQ_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kugou")
-                    server = MusicUtils::Algorithm::mdII(KG_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Baidu")
-                    server = MusicUtils::Algorithm::mdII(BD_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(BD_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kuwo")
-                    server = MusicUtils::Algorithm::mdII(KW_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "XiaMi")
-                    server = MusicUtils::Algorithm::mdII(XM_AR_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(XM_AR_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
 
                 downLoadDataChanged(server, m_data["smallUrl"].toString());
                 break;
@@ -150,17 +165,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
             {
                 QString server = m_data["queryServer"].toString();
                 if(server == "WangYi")
-                    server = MusicUtils::Algorithm::mdII(WY_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "QQ")
-                    server = MusicUtils::Algorithm::mdII(QQ_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kugou")
-                    server = MusicUtils::Algorithm::mdII(KG_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Baidu")
-                    server = MusicUtils::Algorithm::mdII(BD_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(BD_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kuwo")
-                    server = MusicUtils::Algorithm::mdII(KW_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "XiaMi")
-                    server = MusicUtils::Algorithm::mdII(XM_AL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(XM_AL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
 
                 downLoadDataChanged(server, m_data["smallUrl"].toString());
                 break;
@@ -169,17 +184,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
             {
                 QString server = m_data["queryServer"].toString();
                 if(server == "WangYi")
-                    server = MusicUtils::Algorithm::mdII(WY_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "QQ")
-                    server = MusicUtils::Algorithm::mdII(QQ_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kugou")
-                    server = MusicUtils::Algorithm::mdII(KG_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Baidu")
-                    server = MusicUtils::Algorithm::mdII(BD_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(BD_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "Kuwo")
-                    server = MusicUtils::Algorithm::mdII(KW_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
                 else if(server == "XiaMi")
-                    server = MusicUtils::Algorithm::mdII(XM_PL_SHARE, false).arg(m_data["id"].toString());
+                    server = MusicUtils::Algorithm::mdII(XM_PL_SHARE, ALG_LOW_KEY, false).arg(m_data["id"].toString());
 
                 downLoadDataChanged(server, m_data["smallUrl"].toString());
                 break;
@@ -200,25 +215,25 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl)
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl)
                                .arg(m_ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(m_ui->renrenButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(RENREN_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicUtils::Algorithm::mdII(RENREN_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
                                      .arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->qqblogButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_MICBG_SHARE, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
+        url = QString(MusicUtils::Algorithm::mdII(QQ_MICBG_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl);
     }
     else if(m_ui->sinaButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(SINA_SHARE, false)).arg(playUrl).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(SINA_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->weixingButton->isChecked())
     {
@@ -230,6 +245,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     url.replace("?name=", "%3Fname%3D");
     url.replace("?id=", "%3Fid%3D");
     url.replace("?pid=", "%3Fpid%3D");
+    url.replace("#hash=", "%23hash%3D");
     url.replace('#', "%23");
 
     MusicUtils::Core::openUrl(url, false);
