@@ -192,6 +192,7 @@ void MusicFoundAbstractWidget::initSecondWidget()
     m_infoLabel = new QLabel(this);
     m_infoLabel->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     m_infoLabel->setWordWrap(true);
+    m_infoLabel->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle03);
     vlayout->addWidget(m_infoLabel);
     songWidget->setLayout(vlayout);
     m_container->addWidget(songWidget);

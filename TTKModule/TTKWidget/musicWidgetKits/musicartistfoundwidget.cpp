@@ -121,7 +121,7 @@ void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
     if(!m_resizeWidget.isEmpty())
     {
         QLabel *label = m_resizeWidget[0];
-        label->setText(tr("<font color=#169AF3> Artist > %1 </font>").arg(item.m_name));
+        label->setText(tr("<font color=#158FE1> Artist > %1 </font>").arg(item.m_name));
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));

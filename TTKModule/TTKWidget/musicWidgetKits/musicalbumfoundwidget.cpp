@@ -162,7 +162,7 @@ void MusicAlbumFoundWidget::createAlbumInfoItem(const MusicPlaylistItem &item)
         }
 
         QLabel *label = m_resizeWidget[0];
-        label->setText(tr("<font color=#169AF3> Alubm > %1 </font>").arg(lists[0]));
+        label->setText(tr("<font color=#158FE1> Alubm > %1 </font>").arg(lists[0]));
 
         label = m_resizeWidget[1];
         label->setToolTip(lists[0]);

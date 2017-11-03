@@ -120,7 +120,7 @@ void MusicTopListFoundWidget::createLabels()
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
-    firstLabel->setText(tr("<font color=#169AF3> Rank </font>"));
+    firstLabel->setText(tr("<font color=#158FE1> Rank </font>"));
     grid->addWidget(firstLabel);
     ////////////////////////////////////////////////////////////////////////////
     QWidget *categoryWidget = new QWidget(function);

@@ -201,7 +201,7 @@
   <widget class="QLabel" name="label_time">
    <property name="geometry">
     <rect>
-     <x>475</x>
+     <x>465</x>
      <y>114</y>
      <width>31</width>
      <height>20</height>

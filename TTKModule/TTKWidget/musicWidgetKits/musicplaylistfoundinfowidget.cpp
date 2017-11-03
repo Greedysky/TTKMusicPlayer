@@ -89,7 +89,7 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     QWidget *firstTopFuncWidget = new QWidget(function);
     QHBoxLayout *firstTopFuncLayout = new QHBoxLayout(firstTopFuncWidget);
     QLabel *firstLabel = new QLabel(function);
-    firstLabel->setText(tr("<font color=#169AF3> Playlist > %1 </font>").arg(item.m_name));
+    firstLabel->setText(tr("<font color=#158FE1> Playlist > %1 </font>").arg(item.m_name));
     QPushButton *backButton = new QPushButton(tr("Back"));
     backButton->setFixedSize(90, 30);
     backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);

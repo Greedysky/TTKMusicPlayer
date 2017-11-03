@@ -13,6 +13,7 @@
 #include "musicgiflabelwidget.h"
 #include "musicdownloadbatchwidget.h"
 #include "musictime.h"
+#include "musicapplication.h"
 
 #include <QBoxLayout>
 #include <QPushButton>
@@ -122,6 +123,14 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
         message.exec();
         return;
     }
+
+    MusicApplication *w = MusicApplication::instance();
+    if(w->isPlaying())
+    {
+        w->musicStatePlay();
+    }
+    ///stop current media play while audition starts.
+
     if(m_audition == nullptr)
     {
         m_audition = new MusicCoreMPlayer(this);
