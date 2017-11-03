@@ -2,9 +2,60 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musiccoreutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
+
+MusicXMMVInfoConfigManager::MusicXMMVInfoConfigManager(QObject *parent)
+    : MusicAbstractXml(parent)
+{
+
+}
+
+QString MusicXMMVInfoConfigManager::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformation *info)
+{
+    QDomNodeList resultlist = m_ddom->elementsByTagName("video");
+    for(int i=0; i<resultlist.count(); ++i)
+    {
+        QDomNodeList infolist = resultlist.at(i).childNodes();
+        MusicObject::MusicSongAttribute attr;
+        for(int j=0; j<infolist.count(); ++j)
+        {
+            QDomNode node = infolist.at(j);
+            if(node.nodeName() == "bitrate")
+            {
+                int bit = node.toElement().text().toInt();
+                if(bit <= 625)
+                    attr.m_bitrate = MB_500;
+                else if(bit > 625 && bit <= 875)
+                    attr.m_bitrate = MB_750;
+                else if(bit > 875)
+                    attr.m_bitrate = MB_1000;
+            }
+            else if(node.nodeName() == "length")
+            {
+                attr.m_size = node.toElement().text();
+            }
+            else if(node.nodeName() == "video_url")
+            {
+                attr.m_url = node.toElement().text();
+            }
+        }
+
+        if(!attr.m_url.isEmpty())
+        {
+            info->m_songAttrs.append(attr);
+        }
+    }
+}
+
+
 
 MusicDownLoadQueryXMThread::MusicDownLoadQueryXMThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
@@ -125,7 +176,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         //MV
                         musicInfo.m_songId = value["mvId"].toString();
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicMVInfoAttribute(&musicInfo, musicInfo.m_songId, "mp4");
+                        readFromMusicMVInfoAttribute(&musicInfo);
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
@@ -163,22 +214,14 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                                              const QString &id, const QString &format)
+void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info)
 {
-    if(id.isEmpty() || !m_manager)
+    if(info->m_songId.isEmpty() || !m_manager)
     {
         return;
     }
 
-    MusicObject::MusicSongAttribute attr;
-    attr.m_bitrate = 1000;
-    attr.m_format = format;
-    attr.m_url = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(id);
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    QUrl musicUrl = attr.m_url;
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -199,16 +242,76 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
         return;
     }
 
-    while(reply->canReadLine())
+    QString text(reply->readAll());
+    QRegExp regx(QString("vid:\"(\\d+)\",uid:\"(\\d+)\""));
+    int pos = text.indexOf(regx);
+    QString uid, vid;
+    while(pos != -1)
     {
-        QString data = QString(reply->readLine());
-        if(data.contains("<video src="))
-        {
-            data = data.replace("\t", "");
-            data = data.split("poster=").first();
-            attr.m_url = data.replace("<video src=", "").trimmed();
-            break;
-        }
+        vid = regx.cap(1);
+        uid = regx.cap(2);
+        pos += regx.matchedLength();
+        pos = regx.indexIn(text, pos);
+        break;
     }
-    info->m_songAttrs.append(attr);
+
+    readFromMusicMVInfoAttribute(info, vid, uid);
+}
+
+void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QString &vid,
+                                                              const QString &uid)
+{
+    if(vid.isEmpty() || uid.isEmpty() || !m_manager)
+    {
+        return;
+    }
+
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_MV_QUERY_URL, false).arg(vid).arg(uid);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get( request );
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    MusicXMMVInfoConfigManager xml;
+    xml.fromByteArray(reply->readAll());
+    xml.readMVInfoConfig(info);
+
+    for(int i=0; i<info->m_songAttrs.count(); ++i)
+    {
+        MusicObject::MusicSongAttribute *attr = &info->m_songAttrs[i];
+        QString urlPrefix = attr->m_url;
+        QStringList urls;
+        int round = attr->m_size.toLongLong()/20000000 + 1;
+        int start = 0, end = 0;
+        while(round > 0)
+        {
+            end = start + 20000000;
+            if(end >= attr->m_size.toLongLong())
+            {
+                end = attr->m_size.toLongLong() - 1;
+            }
+            urls << (urlPrefix + QString("/start_%1/end_%2/1.flv").arg(start).arg(end));
+            start = end + 1;
+            --round;
+        }
+
+        attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
+        attr->m_url = urls.join(STRING_SPLITER);
+        attr->m_format = MusicUtils::Core::fileSuffix(attr->m_url);
+    }
 }

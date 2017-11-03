@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQQArtistInfoConfigManager(QObject *parent = nullptr);
+    explicit MusicQQArtistInfoConfigManager(QObject *parent = 0);
 
     /*!
      * Get class object name.

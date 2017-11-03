@@ -31,7 +31,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicListConfigManager(QObject *parent = nullptr);
+    explicit MusicListConfigManager(QObject *parent = 0);
 
     /*!
      * Get class object name.
