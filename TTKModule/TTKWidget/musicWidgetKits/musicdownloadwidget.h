@@ -228,6 +228,7 @@ protected:
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
+    int m_downloadOffset, m_downloadTotal;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
     MusicObject::MusicSongInformation m_singleSongInfo;

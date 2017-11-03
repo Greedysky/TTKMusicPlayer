@@ -172,15 +172,23 @@ namespace MusicObject
     typedef struct MusicSongAttribute
     {
         int m_bitrate;
+        bool m_multiParts;
         QString m_format;
         QString m_url;
         QString m_size;
         QString m_duration;
 
+        MusicSongAttribute()
+        {
+            m_bitrate = -1;
+            m_multiParts = false;
+        }
+
         bool operator< (const MusicSongAttribute &other) const
         {
             return m_bitrate < other.m_bitrate;
         }
+
         bool operator== (const MusicSongAttribute &other) const
         {
             return m_bitrate == other.m_bitrate;

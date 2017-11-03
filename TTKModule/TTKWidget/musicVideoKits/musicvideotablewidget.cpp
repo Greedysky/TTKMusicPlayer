@@ -178,8 +178,9 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     MusicObject::MusicSongAttributes attrs = musicSongInfos[row].m_songAttrs;
     if(!attrs.isEmpty())
     {
-        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(),
-                              attrs.first().m_url);
+        MusicObject::MusicSongAttribute attr = attrs.first();
+        QString url = attr.m_multiParts ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), url);
     }
 }
 
@@ -191,7 +192,7 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
     }
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
-            musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
+             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
 void MusicVideoTableWidget::downloadLocalFromControl()

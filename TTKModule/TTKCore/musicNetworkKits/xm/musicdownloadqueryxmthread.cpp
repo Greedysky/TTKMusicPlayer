@@ -310,6 +310,10 @@ void MusicDownLoadQueryXMThread::readFromMusicMVInfoAttribute(MusicObject::Music
             --round;
         }
 
+        if(urls.count() > 1)
+        {
+            attr->m_multiParts = true;
+        }
         attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
         attr->m_url = urls.join(STRING_SPLITER);
         attr->m_format = MusicUtils::Core::fileSuffix(attr->m_url);
