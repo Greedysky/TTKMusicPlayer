@@ -54,8 +54,7 @@ protected:
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, int bitrate,
-                                      const QString &id, const QString &format);
+    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info);
 
 };
 

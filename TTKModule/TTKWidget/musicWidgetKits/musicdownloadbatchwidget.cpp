@@ -139,7 +139,6 @@ void MusicDownloadBatchTableItem::startToDownload()
             downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
         }
     }
-
     ////////////////////////////////////////////////
     MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                            MusicDownLoadThreadAbstract::Download_Music, this);

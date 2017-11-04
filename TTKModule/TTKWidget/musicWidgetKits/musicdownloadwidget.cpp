@@ -545,7 +545,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             {
                 ////////////////////////////////////////////////
                 QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
-                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul).arg(musicAttr.m_format);
+                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
                 QFile file(downloadName);
                 if(file.exists())
                 {
@@ -561,7 +561,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                         }
                         musicSong += QString("(%1)").arg(i);
                         downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
-                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul).arg(musicAttr.m_format);
+                                          : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
                     }
                 }
                 ////////////////////////////////////////////////

@@ -2,6 +2,7 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musiccoreutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -125,11 +126,9 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     else
                     {
                         //mv
-                        musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
+                        musicInfo.m_songId = value["MUSICRID"].toString();
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicMVInfoAttribute(&musicInfo, MB_750, musicInfo.m_songId, "mp4");
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicMVInfoAttribute(&musicInfo, MB_1000, musicInfo.m_songId, "mkv");
+                        readFromMusicMVInfoAttribute(&musicInfo);
                         if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
@@ -167,20 +166,44 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, int bitrate,
-                                                              const QString &id, const QString &format)
+void MusicDownLoadQueryKWThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info)
 {
-    if(id.isEmpty())
+    if(info->m_songId.isEmpty() || !m_manager)
     {
         return;
     }
 
-    MusicObject::MusicSongAttribute attr;
-    attr.m_bitrate = bitrate;
-    attr.m_format = format;
-    attr.m_url = MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(id).arg(format);
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    info->m_songAttrs.append(attr);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get( request );
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QByteArray data = reply->readAll();
+    if(!data.contains("res not found"))
+    {
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = data;
+        attr.m_bitrate = MB_500;
+        attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
+        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
+        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        info->m_songAttrs.append(attr);
+    }
 }
