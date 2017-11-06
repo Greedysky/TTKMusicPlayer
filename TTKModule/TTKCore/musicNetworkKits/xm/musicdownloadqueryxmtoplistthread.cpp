@@ -22,7 +22,7 @@ void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QStr
     }
     else
     {
-        startToSearch(toplist.isEmpty() ? "alimusic_week_billboard" : toplist);
+        startToSearch(toplist.isEmpty() ? "xiami_daxia" : toplist);
     }
 }
 

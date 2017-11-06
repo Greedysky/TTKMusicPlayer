@@ -141,9 +141,6 @@
         </tag>
     </Kuwo>
     <XiaMi>
-        <tag value="虾米官方榜">
-            <value key="alimusic_week_billboard" value="阿里音乐周榜"/>
-        </tag>
         <tag value="全球媒体榜">
             <value key="billboard" value="美国Billboard单曲榜"/>
             <value key="hito" value="Hito 中文排行榜"/>
