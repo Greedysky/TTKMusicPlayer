@@ -200,14 +200,12 @@ void MusicDownLoadQueryWYThread::startMVListQuery(int id)
             {
                 int bit = key.toInt();
                 MusicObject::MusicSongAttribute attr;
-                if(bit > 375 && bit <= 625)
+                if(bit <= 625)
                     attr.m_bitrate = MB_500;
                 else if(bit > 625 && bit <= 875)
                     attr.m_bitrate = MB_750;
                 else if(bit > 875)
                     attr.m_bitrate = MB_1000;
-                else
-                    attr.m_bitrate = bit;
 
                 attr.m_url = value[key].toString();
                 attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
