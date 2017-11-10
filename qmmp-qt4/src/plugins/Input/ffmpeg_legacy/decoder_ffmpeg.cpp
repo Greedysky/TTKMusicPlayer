@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -48,7 +48,7 @@ static int64_t ffmpeg_seek(void *data, int64_t offset, int whence)
         break;
     case SEEK_END:
         absolute_pos = d->input()->size() - offset;
-		break;
+        break;
     default:
         return -1;
     }

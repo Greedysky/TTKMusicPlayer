@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -66,6 +66,7 @@ CUEParser::CUEParser(const QByteArray &array, const QString &fileName)
             info.setMetaData(Qmmp::YEAR, date);
             info.setMetaData(Qmmp::COMMENT, comment);
             info.setMetaData(Qmmp::ARTIST, artist);
+            info.setMetaData(Qmmp::ALBUMARTIST, artist);
 
             m_tracks << new CUETrack;
             m_tracks.last()->info = info;

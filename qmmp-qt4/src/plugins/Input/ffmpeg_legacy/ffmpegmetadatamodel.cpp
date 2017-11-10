@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
  *   forkotov02@hotmail.ru                                                 *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -46,7 +46,7 @@ QHash<QString, QString> FFmpegMetaDataModel::audioProperties()
     QString text = QString("%1").arg(int(m_in->duration/AV_TIME_BASE)/60);
     text +=":"+QString("%1").arg(int(m_in->duration/AV_TIME_BASE)%60,2,10,QChar('0'));
     ap.insert(tr("Length"), text);
-    ap.insert(tr("File size"),  QString("%1 ").arg(m_in->file_size/1024)+" "+tr("KB"));
+    ap.insert(tr("File size"),  QString("%1 ").arg(m_in->file_size/1000)+" "+tr("KB"));
     ap.insert(tr("Bitrate"), QString("%1 "+tr("kbps")).arg(m_in->bit_rate/1000));
 
     AVCodecContext *c = 0;

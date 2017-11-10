@@ -101,6 +101,7 @@ QList <FileInfo*> GmeHelper::createPlayList(bool meta)
             track_info->length += m_fade_length;
         if(meta)
         {
+            info->setMetaData(Qmmp::ALBUM, track_info->game);
             info->setMetaData(Qmmp::TITLE, track_info->song);
             info->setMetaData(Qmmp::ARTIST, track_info->author);
             info->setMetaData(Qmmp::COMMENT, track_info->comment);

@@ -128,7 +128,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
     if (res > 0)
     {
         *bytes = res;
-		dflac->data()->read_bytes += res;
+        dflac->data()->read_bytes += res;
         return FLAC__STREAM_DECODER_READ_STATUS_CONTINUE;
     }
     if (res == 0)
@@ -154,7 +154,7 @@ static FLAC__StreamDecoderWriteStatus flac_callback_write (const FLAC__StreamDec
 
     //bitrate calculation
     FLAC__uint64 decode_position = 0;
- 	if(FLAC__stream_decoder_get_decode_position(d, &decode_position))
+    if(FLAC__stream_decoder_get_decode_position(d, &decode_position))
     {
         if(decode_position > dflac->data()->last_decode_position)
         {
@@ -400,7 +400,7 @@ bool DecoderFLAC::initialize()
         {
             return false;
         }
-		qDebug("DecoderFLAC: Ogg FLAC stream found");
+        qDebug("DecoderFLAC: Ogg FLAC stream found");
     }
     else if (!memcmp(buf, "fLaC", 4))
     {

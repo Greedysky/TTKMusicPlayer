@@ -53,7 +53,7 @@ OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
     m_format_converter = 0;
     m_channel_converter = 0;
     m_output_buf = 0;
-	m_output_size = 0;
+    m_output_size = 0;
 }
 
 OutputWriter::~OutputWriter()
@@ -275,7 +275,7 @@ void OutputWriter::run()
     quint64 l;
     qint64 m = 0;
     size_t output_at = 0;
-	unsigned char *tmp = 0;
+    unsigned char *tmp = 0;
 
     dispatch(Qmmp::Playing);
 

@@ -128,7 +128,7 @@ static FLAC__StreamDecoderReadStatus flac_callback_read (const FLAC__StreamDecod
     if (res > 0)
     {
         *bytes = res;
-		dflac->data()->read_bytes += res;
+        dflac->data()->read_bytes += res;
         return FLAC__STREAM_DECODER_READ_STATUS_CONTINUE;
     }
     if (res == 0)
@@ -400,7 +400,7 @@ bool DecoderFLAC::initialize()
         {
             return false;
         }
-		qDebug("DecoderFLAC: Ogg FLAC stream found");
+        qDebug("DecoderFLAC: Ogg FLAC stream found");
     }
     else if (!memcmp(buf, "fLaC", 4))
     {
@@ -418,7 +418,7 @@ bool DecoderFLAC::initialize()
         {
             return false;
         }
-		qDebug("DecoderFLAC: native FLAC stream found");
+        qDebug("DecoderFLAC: native FLAC stream found");
     }
     else
     {

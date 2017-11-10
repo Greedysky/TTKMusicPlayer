@@ -64,6 +64,7 @@ bool DecoderGme::initialize()
         gme_set_fade(m_emu, track_info->length - m_helper.fadeLength());
     }
     QMap<Qmmp::MetaData, QString> metadata;
+    metadata.insert(Qmmp::ALBUM, track_info->game);
     metadata.insert(Qmmp::TITLE, track_info->song);
     metadata.insert(Qmmp::ARTIST, track_info->author);
     metadata.insert(Qmmp::COMMENT, track_info->comment);

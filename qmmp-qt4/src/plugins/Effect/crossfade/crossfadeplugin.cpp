@@ -85,7 +85,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
         }
         else
             m_state = WAITING;
-		break;
+        break;
     default:
         ;
     }

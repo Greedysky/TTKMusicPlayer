@@ -316,6 +316,9 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
     {
         if(m_codec->name().contains("UTF") && !m_using_rusxmms) //utf is unsupported
             return;
+
+        if(m_using_rusxmms)
+            type = TagLib::String::UTF8;
     }
     else if (m_tagType == TagLib::MPEG::File::ID3v2)
     {
