@@ -215,14 +215,12 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVInfoAttribute(MusicObject::Musi
             if(var.contains("br="))
             {
                 int bitRate = var.remove("br=").toInt();
-                if(bitRate > 0 && bitRate <= 1000)
+                if(bitRate <= 1000)
                     attr.m_bitrate = MB_500;
                 else if(bitRate > 1000 && bitRate <= 2000)
                     attr.m_bitrate = MB_750;
                 else if(bitRate > 2000)
                     attr.m_bitrate = MB_1000;
-                else
-                    attr.m_bitrate = bitRate;
             }
         }
         info->m_songAttrs.append(attr);

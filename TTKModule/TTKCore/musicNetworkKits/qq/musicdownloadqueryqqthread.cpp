@@ -236,15 +236,13 @@ void MusicDownLoadQueryQQThread::readFromMusicMVAttribute(MusicObject::MusicSong
                 attr.m_size = MusicUtils::Number::size2Label(flValue["fs"].toInt());
                 attr.m_format = "mp4";
 
-                int bitRate = flValue["br"].toInt();
-                if(bitRate > 375 && bitRate <= 625)
+                int bitRate = flValue["br"].toInt()*10;
+                if(bitRate <= 625)
                     attr.m_bitrate = MB_500;
                 else if(bitRate > 625 && bitRate <= 875)
                     attr.m_bitrate = MB_750;
                 else if(bitRate > 875)
                     attr.m_bitrate = MB_1000;
-                else
-                    attr.m_bitrate = bitRate;
 
                 bitRate = flValue["id"].toULongLong();
                 if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

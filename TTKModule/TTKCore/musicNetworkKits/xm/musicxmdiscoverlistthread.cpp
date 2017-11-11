@@ -28,7 +28,7 @@ void MusicXMDiscoverListThread::startToSearch()
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg("alimusic_week_billboard"),
+                      MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg("xiami_daxia"),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
