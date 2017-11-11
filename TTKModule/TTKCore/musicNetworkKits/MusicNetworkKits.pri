@@ -25,6 +25,7 @@ INCLUDEPATH += $$PWD \
                $$PWD/kw \
                $$PWD/bd \
                $$PWD/qq \
+               $$PWD/ws \
                $$PWD/yyt \
                $$PWD/ztl
                
@@ -92,6 +93,14 @@ HEADERS  += \
     $$PWD/qq/musicqqdiscoverlistthread.h \
     $$PWD/qq/musicqqcommentsthread.h \
     $$PWD/qq/musicqqbackgroundthread.h \
+    $$PWD/ws/musicdownloadquerywsthread.h \
+    $$PWD/ws/musicdownloadwsinterface.h \
+    $$PWD/ws/musicdownloadquerywsartistthread.h \
+    $$PWD/ws/musicdownloadquerywsalbumthread.h \
+    $$PWD/ws/musicdownloadquerywstoplistthread.h \
+    $$PWD/ws/musicdownloadquerywsplaylistthread.h \
+    $$PWD/ws/musicwscommentsthread.h \
+    $$PWD/ws/musicwsdiscoverlistthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/ztl/musicdownloadsourcethread.h \
     $$PWD/ztl/musicnetworkthread.h \
@@ -183,6 +192,14 @@ SOURCES += \
     $$PWD/qq/musicqqdiscoverlistthread.cpp \
     $$PWD/qq/musicqqcommentsthread.cpp \
     $$PWD/qq/musicqqbackgroundthread.cpp \
+    $$PWD/ws/musicdownloadquerywsthread.cpp \
+    $$PWD/ws/musicdownloadwsinterface.cpp \
+    $$PWD/ws/musicdownloadquerywsartistthread.cpp \
+    $$PWD/ws/musicdownloadquerywsalbumthread.cpp \
+    $$PWD/ws/musicdownloadquerywstoplistthread.cpp \
+    $$PWD/ws/musicdownloadquerywsplaylistthread.cpp \
+    $$PWD/ws/musicwscommentsthread.cpp \
+    $$PWD/ws/musicwsdiscoverlistthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/ztl/musicdownloadsourcethread.cpp \
     $$PWD/ztl/musicnetworkthread.cpp \

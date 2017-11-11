@@ -733,7 +733,10 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_xiami"), tr("xiamiMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_baidu"), tr("baiduMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kuhouMusic"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_5sing"), tr("5singMusic(yc)"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_5sing"), tr("5singMusic(fc)"));
+    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_5sing"), tr("5singMusic(bz)"));
 
     /////////////////////////////////////////////////////////////
     QButtonGroup *buttonGroup = new QButtonGroup(this);

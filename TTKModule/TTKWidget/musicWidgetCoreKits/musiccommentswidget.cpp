@@ -312,8 +312,8 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     deleteCommentsItems();
 
     MusicSemaphoreLoop loop;
-    m_commentsThread->startToSearch(name);
     connect(m_commentsThread, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    m_commentsThread->startToSearch(name);
     loop.exec();
 
     MStatic_cast(QVBoxLayout*, m_messageComments->layout())->addStretch(1);

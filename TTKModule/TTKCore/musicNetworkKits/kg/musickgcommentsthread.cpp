@@ -88,6 +88,11 @@ void MusicKGSongCommentsThread::downLoadFinished()
                 QVariantList comments = value["list"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
 
@@ -184,6 +189,11 @@ void MusicKGPlaylistCommentsThread::downLoadFinished()
                 QVariantList comments = value["list"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
 

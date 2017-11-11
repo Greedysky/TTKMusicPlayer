@@ -89,6 +89,11 @@ void MusicQQSongCommentsThread::downLoadFinished()
                 QVariantList comments = value["comment"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_likedCount = QString::number(value["praisenum"].toInt());
@@ -184,6 +189,11 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
                 QVariantList comments = value["comment"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_likedCount = QString::number(value["praisenum"].toInt());

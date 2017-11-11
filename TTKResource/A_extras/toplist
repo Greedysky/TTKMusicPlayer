@@ -157,4 +157,12 @@
             <value key="xiami_weibo" value="微博分享榜"/>
         </tag>
     </XiaMi>
+    <WuSing>
+        <tag value="排行榜">
+            <value key="yc" value="原创音乐榜"/>
+            <value key="fc" value="翻唱音乐榜"/>
+            <value key="list23" value="新歌top50"/>
+            <value key="list25" value="支持榜"/>
+        </tag>
+    </WuSing>
 <TTKMusicPlayer>

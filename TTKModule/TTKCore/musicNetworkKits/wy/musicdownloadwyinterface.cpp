@@ -89,27 +89,27 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     if(all)
     {
         readFromMusicSongAttribute(info, key["bMusic"].toMap(), id, MB_128);
-        readFromMusicSongAttribute(info, key["mMusic"].toMap(), id,  MB_192);
-        readFromMusicSongAttribute(info, key["hMusic"].toMap(), id,  MB_320);
+        readFromMusicSongAttribute(info, key["mMusic"].toMap(), id, MB_192);
+        readFromMusicSongAttribute(info, key["hMusic"].toMap(), id, MB_320);
 //        readFromMusicSongAttribute(info, QVariantMap(), id,  MB_999);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, key["bMusic"].toMap(), id,  MB_128);
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), id, MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongAttribute(info, key["mMusic"].toMap(), id,  MB_192);
+            readFromMusicSongAttribute(info, key["mMusic"].toMap(), id, MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, key["hMusic"].toMap(), id,  MB_320);
+            readFromMusicSongAttribute(info, key["hMusic"].toMap(), id, MB_320);
         }
 //        else if(quality == QObject::tr("CD"))
 //        {
-//            readFromMusicSongAttribute(info, QVariantMap(), id,  MB_999);
+//            readFromMusicSongAttribute(info, QVariantMap(), id, MB_999);
 //        }
     }
 }

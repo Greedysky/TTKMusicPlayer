@@ -98,6 +98,11 @@ void MusicXMSongCommentsThread::downLoadFinished()
                 QVariantList comments = value["commentVOList"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
@@ -207,6 +212,11 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                 QVariantList comments = value["commentVOList"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();

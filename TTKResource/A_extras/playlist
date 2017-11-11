@@ -624,4 +624,73 @@
             <value key="器乐" value="器乐"/>
         </tag>
     </Baidu>
+    <WuSing>
+        <tag value="默认">
+            <value key="流行" value="全部"/>
+        </tag>
+        <tag value="风格">
+            <value key="流行" value="流行"/>
+            <value key="爵士" value="爵士"/>
+            <value key="小清新" value="小清新"/>
+            <value key="轻音乐" value="轻音乐"/>
+            <value key="中国风" value="中国风"/>
+            <value key="摇滚" value="摇滚"/>
+            <value key="DJ" value="DJ"/>
+            <value key="古风" value="古风"/>
+            <value key="武侠" value="武侠"/>
+            <value key="钢琴曲" value="钢琴曲"/>
+            <value key="广场舞" value="广场舞"/>
+            <value key="民谣" value="民谣"/>
+        </tag>
+        <tag value="情感">
+            <value key="感动" value="感动"/>
+            <value key="寂寞" value="寂寞"/>
+            <value key="安静" value="安静"/>
+            <value key="温暖" value="温暖"/>
+            <value key="浪漫" value="浪漫"/>
+            <value key="治愈" value="治愈"/>
+            <value key="伤感" value="伤感"/>
+            <value key="想念" value="想念"/>
+            <value key="激情" value="激情"/>
+            <value key="喜悦" value="喜悦"/>
+            <value key="失恋" value="失恋"/>
+            <value key="怀念" value="怀念"/>
+        </tag>
+        <tag value="场景">
+            <value key="夜晚" value="夜晚"/>
+            <value key="咖啡厅" value="咖啡厅"/>
+            <value key="夜店" value="夜店"/>
+            <value key="旅行" value="旅行"/>
+            <value key="车载" value="车载"/>
+            <value key="阅读" value="阅读"/>
+            <value key="一个人" value="一个人"/>
+            <value key="KTV" value="KTV"/>
+        </tag>
+        <tag value="语种">
+            <value key="国语" value="国语"/>
+            <value key="英文" value="英文"/>
+            <value key="韩文" value="韩文"/>
+            <value key="日文" value="日文"/>
+            <value key="粤语" value="粤语"/>
+            <value key="德语" value="德语"/>
+            <value key="西班牙语" value="西班牙语"/>
+            <value key="闽南语" value="闽南语"/>
+            <value key="法语" value="法语"/>
+        </tag>
+        <tag value="其他">
+            <value key="原创" value="原创"/>
+            <value key="翻唱" value="翻唱"/>
+            <value key="毕业" value="毕业"/>
+            <value key="情歌" value="情歌"/>
+            <value key="经典" value="经典"/>
+            <value key="怀旧" value="怀旧"/>
+            <value key="爱情" value="爱情"/>
+            <value key="励志" value="励志"/>
+            <value key="儿歌" value="儿歌"/>
+            <value key="影视" value="影视"/>
+            <value key="男女对唱" value="男女对唱"/>
+            <value key="歌词控" value="歌词控"/>
+            <value key="动漫" value="动漫"/>
+        </tag>
+    </WuSing>
 <TTKMusicPlayer>

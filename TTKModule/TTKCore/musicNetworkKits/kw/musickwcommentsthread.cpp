@@ -88,6 +88,11 @@ void MusicKWSongCommentsThread::downLoadFinished()
                 QVariantList comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_likedCount = value["like_num"].toString();
@@ -184,6 +189,11 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
                 QVariantList comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     comment.m_likedCount = value["like_num"].toString();

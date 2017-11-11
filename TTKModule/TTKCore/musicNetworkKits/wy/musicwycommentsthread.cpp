@@ -87,6 +87,11 @@ void MusicWYSongCommentsThread::downLoadFinished()
                 QVariantList comments = value["comments"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
@@ -181,6 +186,11 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
                 QVariantList comments = value["comments"].toList();
                 foreach(const QVariant &comm, comments)
                 {
+                    if(comm.isNull())
+                    {
+                        continue;
+                    }
+
                     MusicSongCommentItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
