@@ -13,7 +13,6 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QProcess>
 #include <QBoxLayout>
 
 MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
@@ -199,7 +198,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     message.setText(tr("Download Finish, Install Or Not"));
     if(message.exec())
     {
-        QProcess::startDetached(UPDATE_DIR_FULL+ localDwonload, QStringList());
+        MusicUtils::Core::openUrl("open", UPDATE_DIR_FULL+ localDwonload);
         MStatic_cast(QWidget*, parent())->close();
     }
 }

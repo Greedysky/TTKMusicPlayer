@@ -64,6 +64,11 @@ namespace MusicUtils
         /*!
          * Open file from local by path or net url.
          */
+        MUSIC_UTILS_EXPORT bool openUrl(const QString &exe, const QString &path);
+
+        /*!
+         * Open file from local by path or net url.
+         */
         MUSIC_UTILS_EXPORT bool openUrl(const QString &path, bool local = true);
 
         /*!
