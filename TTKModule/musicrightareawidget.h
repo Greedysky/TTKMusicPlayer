@@ -53,6 +53,7 @@ public:
         ArtistWidget,           /*!< insert artist found widget*/
         ToplistWidget,          /*!< insert toplist found widget*/
         PlaylistWidget,         /*!< insert playlist found widget*/
+        AdvancedSearchWidget,   /*!< insert advanced search widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget            /*!< insert kugou kuishe widget*/
     };
@@ -176,7 +177,11 @@ public Q_SLOTS:
     /*!
      * Music playlist function.
      */
-    void musicPlaylistFound();
+    void musicPlaylistFound(const QString &id);
+    /*!
+     * Music advanced search function.
+     */
+    void musicAdvancedSearch();
     /*!
      * Music song research button searched by name.
      */

@@ -506,6 +506,14 @@ namespace MusicUIObject
             QTableWidget{ background:rgba(0, 0, 0, 255);}";
 
 
+///TableWidget
+//////////////////////////////////////////////////////
+    const QString MTabWidgetStyle01 = " \
+        QTabWidget{ border:none;} \
+        QTabBar::tab{ height:30px; width:125px; background-color:#BFBFBF; color:white;} \
+        QTabBar::tab:selected{ background-color:#158FE1; color:white}";
+
+
 ///TextEdit
 //////////////////////////////////////////////////////
     const QString MTextEditStyle01 = " \

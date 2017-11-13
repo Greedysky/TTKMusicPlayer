@@ -21,6 +21,7 @@
 #include "musicregeditmanager.h"
 #include "musictopareawidget.h"
 #include "musicotherdefine.h"
+#include "musicadvancedsearchedwidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -425,6 +426,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case AdvancedSearchWidget: //insert advanced search widget
+            {
+                MusicAdvancedSearchedWidget *advancedWidget = new MusicAdvancedSearchedWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(advancedWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(advancedWidget);
+                m_stackedFuncWidget = advancedWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
         case IndentifyWidget: //insert indentify songs widget
             {
                 MusicIdentifySongsWidget *songsIdentifyWidget = new MusicIdentifySongsWidget(this);
@@ -489,10 +499,16 @@ void MusicRightAreaWidget::musicToplistFound()
     MStatic_cast(MusicTopListFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
-void MusicRightAreaWidget::musicPlaylistFound()
+void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
 {
     musicFunctionClicked(MusicRightAreaWidget::PlaylistWidget);
-    MStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
+    MusicPlaylistFoundWidget *w = MStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget);
+    id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
+}
+
+void MusicRightAreaWidget::musicAdvancedSearch()
+{
+    musicFunctionClicked(MusicRightAreaWidget::AdvancedSearchWidget);
 }
 
 void MusicRightAreaWidget::musicSongSearchedFound(const QString &text)

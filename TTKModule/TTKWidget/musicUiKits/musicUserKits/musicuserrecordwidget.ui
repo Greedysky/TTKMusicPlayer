@@ -82,21 +82,6 @@
       <height>417</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QTabWidget{
-    border:none;
-}
-QTabBar::tab {
-	height:30px;
-	width:125px;
-    background-color: #BFBFBF;
-    color: white;
-}
-QTabBar::tab:selected {
-    background-color: #158FE1;
-    color: white
-}</string>
-    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
