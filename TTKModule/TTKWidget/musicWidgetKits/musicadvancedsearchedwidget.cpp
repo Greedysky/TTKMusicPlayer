@@ -3,6 +3,8 @@
 #include "musicsettingmanager.h"
 #include "musicuiobject.h"
 #include "musicrightareawidget.h"
+#include "musicsongsharingwidget.h"
+#include "musicalgorithmutils.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -107,37 +109,22 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
         case 0: break;
         case 1:
             {
-                QRegExp regx("id=(\\d+)");
-                int pos = m_albumEdit->text().indexOf(regx);
-                QString key;
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
+                key = getSearchedKeyWork(1, key);
                 MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
                 break;
             }
         case 2:
             {
-                QRegExp regx("id=(\\d+)");
-                int pos = m_albumEdit->text().indexOf(regx);
-                QString key;
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                QString key = !m_albumEdit->text().isEmpty() ? m_albumEdit->text() : m_albumEdit->placeholderText();
+                key = getSearchedKeyWork(2, key);
                 MusicRightAreaWidget::instance()->musicAlbumFound(QString(), key);
                 break;
             }
         case 3:
             {
-                QRegExp regx("id=(\\d+)");
-                int pos = m_playlistEdit->text().indexOf(regx);
-                QString key;
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                QString key = !m_playlistEdit->text().isEmpty() ? m_playlistEdit->text() : m_playlistEdit->placeholderText();
+                key = getSearchedKeyWork(3, key);
                 MusicRightAreaWidget::instance()->musicPlaylistFound(key);
                 break;
             }
@@ -166,5 +153,132 @@ QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearc
 
 void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
 {
-    int downloadServer = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt())
+    {
+        case 0:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg("482395261"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AR_SHARE, ALG_LOW_KEY, false).arg("12146142"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_AL_SHARE, ALG_LOW_KEY, false).arg("35579387"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(WY_PL_SHARE, ALG_LOW_KEY, false).arg("988604820"));
+                break;
+            }
+        case 1:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_LOW_KEY, false).arg("202658270"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_LOW_KEY, false).arg("0029gk1t3wpGWU"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_LOW_KEY, false).arg("003fk65m1ZaCG2"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_LOW_KEY, false).arg("889413740"));
+            }
+        case 2:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_SG_SHARE, ALG_LOW_KEY, false).arg("1796845157"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_AR_SHARE, ALG_LOW_KEY, false).arg("2110200690"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_AL_SHARE, ALG_LOW_KEY, false).arg("2102764975"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(XM_PL_SHARE, ALG_LOW_KEY, false).arg("358404263"));
+                break;
+            }
+        case 3:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_SG_SHARE, ALG_LOW_KEY, false).arg("2132406"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AR_SHARE, ALG_LOW_KEY, false).arg("1342"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AL_SHARE, ALG_LOW_KEY, false).arg("541808131"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_PL_SHARE, ALG_LOW_KEY, false).arg("7136"));
+                break;
+            }
+        case 4:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_LOW_KEY, false).arg("23983067"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_LOW_KEY, false).arg("S.H.E"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_LOW_KEY, false).arg("2698608"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_LOW_KEY, false).arg("236350390"));
+                break;
+            }
+        case 5:
+            {
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_SG_SHARE, ALG_LOW_KEY, false).arg("0624926cfbdf905ae97d4ef6e01fea95"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AR_SHARE, ALG_LOW_KEY, false).arg("1169"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_AL_SHARE, ALG_LOW_KEY, false).arg("2179324"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KG_PL_SHARE, ALG_LOW_KEY, false).arg("155318"));
+                break;
+            }
+        default: break;
+    }
+}
+
+QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
+{
+    QString key;
+    switch(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt())
+    {
+        case 0:
+            {
+                QRegExp regx("id=(\\d+)");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        case 1:
+            {
+                QRegExp regx(type == 0 ? "/(\\d+)" : "/(\\w+).html");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        case 2:
+            {
+                QRegExp regx("/(\\d+)");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        case 3:
+            {
+                QRegExp regx("/(\\d+)");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        case 4:
+            {
+                QRegExp regx;
+                if(type == 0)
+                    regx.setPattern("/(\\d+)");
+                else if(type == 0)
+                    regx.setPattern("pid=(\\d+)");
+                else
+                    regx.setPattern("name=(\\W+)");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        case 5:
+            {
+                QRegExp regx(type == 0 ? "hash=(\\w+)" : "/(\\d+)");
+                int pos = url.indexOf(regx);
+                if(pos != -1)
+                {
+                    key = regx.cap(1);
+                }
+                break;
+            }
+        default: break;
+    }
+
+    return key;
 }
