@@ -2,7 +2,8 @@
 
 #define MyAppNameZh "天天酷音"
 #define MyAppVersion "2.6.2.0"
-#define MyAppPublisher "Copyright (c) 2015 - 2017 Greedysky Studio"
+#define MyAppPublisher "Greedysky Studio"
+#define MyAppCopyright "Copyright (c) 2015 - 2017 Greedysky Studio"
 #define MyAppURL "http://download.csdn.net/album/detail/3094"
 #define MyAppExeName "TTKMusicPlayer.exe"
 #define OutputPath "D:\Qt"
@@ -32,7 +33,7 @@ UninstallDisplayName={#MyAppNameZh}
 DefaultGroupName={#MyAppNameZh}
 UninstallIconFile={#SetupIconFilePath}
 Versioninfodescription={#MyAppNameZh} 安装程序
-versioninfocopyright={#MyAppPublisher}
+versioninfocopyright={#MyAppCopyright}
 VersionInfoProductName={#MyAppNameZh}
 DisableReadyPage=yes
 DisableProgramGroupPage=yes
