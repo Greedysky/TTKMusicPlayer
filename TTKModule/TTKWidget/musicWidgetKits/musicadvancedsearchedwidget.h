@@ -24,7 +24,7 @@
 
 class MusicLocalSongSearchEdit;
 
-/*! @brief The class of the playlist music item widget.
+/*! @brief The class of the advance search widget.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_WIDGET_EXPORT MusicAdvancedSearchedWidget : public QWidget

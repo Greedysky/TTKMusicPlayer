@@ -30,8 +30,12 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
     }
 
     QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
-    QString tk = cookies[0].value();
-    QString tk_enc = cookies[1].value();
+    QString tk, tk_enc;
+    if(cookies.count() >= 2)
+    {
+        tk = cookies[0].value();
+        tk_enc = cookies[1].value();
+    }
 
     QString time = QString::number(MusicTime::timeStamp());
     QString appkey = "12574478";
@@ -41,6 +45,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
 
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
+    request->setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) XIAMI-MUSIC/3.0.5 Chrome/56.0.2924.87 Electron/1.6.6 Safari/537.36");
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info,
