@@ -112,9 +112,6 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
     }
 
     QByteArray bytes = reply->readAll();
-    bytes = bytes.replace("xiami(", "");
-    bytes = bytes.replace("callback(", "");
-    bytes.chop(1);
 
     QJson::Parser parser;
     bool ok;
@@ -164,9 +161,6 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
-        bytes = bytes.replace("xiami(", "");
-        bytes = bytes.replace("callback(", "");
-        bytes.chop(1);
 
         QJson::Parser parser;
         bool ok;
@@ -231,9 +225,6 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = reply->readAll();
-        bytes = bytes.replace("xiami(", "");
-        bytes = bytes.replace("callback(", "");
-        bytes.chop(1);
 
         QJson::Parser parser;
         bool ok;

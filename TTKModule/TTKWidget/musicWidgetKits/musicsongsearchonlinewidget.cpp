@@ -92,6 +92,32 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
+void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &text)
+{
+    if(!M_NETWORK_PTR->isOnline())
+    {   //no network connection
+        clearAllItems();
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        return;
+    }
+
+    if(!m_downLoadManager)
+    {
+        MusicQueryItemTableWidget::startSearchQuery(text);
+    }
+    else
+    {
+        QString quality = m_downLoadManager->getSearchQuality();
+        MusicQueryItemTableWidget::startSearchQuery(text);
+        m_downLoadManager->setSearchQuality(quality);
+    }
+    ////////////////////////////////////////////////
+    m_loadingLabel->show();
+    m_loadingLabel->start();
+    m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
+    m_downLoadManager->startToSingleSearch(text);
+}
+
 void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
@@ -455,6 +481,17 @@ void MusicSongSearchOnlineWidget::startSearchQuery(const QString &name, bool all
     }
     m_searchTableWidget->setQueryAllRecords(all);
     m_searchTableWidget->startSearchQuery(name);
+}
+
+void MusicSongSearchOnlineWidget::startSearchSingleQuery(const QString &name)
+{
+    setResizeLabelText(name);
+    if(m_resizeLabels.count() == 5)
+    {
+        MStatic_cast(QCheckBox*, m_resizeLabels[4])->setChecked(false);
+    }
+    m_searchTableWidget->setQueryAllRecords(true);
+    m_searchTableWidget->startSearchSingleQuery(name);
 }
 
 void MusicSongSearchOnlineWidget::researchQueryByQuality(const QString &name, const QString &quality)

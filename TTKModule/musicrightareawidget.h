@@ -48,6 +48,7 @@ public:
         kugouLiveWidget,        /*!< insert kugou live widget*/
         LrcWidget,              /*!< insert lrc display widget*/
         SearchWidget,           /*!< insert search display widget*/
+        SearchSingleWidget,     /*!< insert search single display widget*/
         SimilarWidget,          /*!< insert similar found widget*/
         AlbumWidget,            /*!< insert album found widget*/
         ArtistWidget,           /*!< insert artist found widget*/
@@ -186,6 +187,10 @@ public Q_SLOTS:
      * Music song research button searched by name.
      */
     void musicSongSearchedFound(const QString &text);
+    /*!
+     * Music song search by given id.
+     */
+    void musicSingleSearchedFound(const QString &id);
     /*!
      * Music load song index widget.
      */

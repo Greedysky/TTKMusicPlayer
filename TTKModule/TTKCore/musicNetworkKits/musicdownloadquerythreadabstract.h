@@ -109,6 +109,11 @@ public:
      * Subclass should implement this function.
      */
     virtual void startToSearch(QueryType type, const QString &text) = 0;
+    /*!
+     * Start to search single data from id.
+     * Subclass should implement this function.
+     */
+    virtual void startToSingleSearch(const QString &text);
 
     /*!
      * Set search data quality.

@@ -110,7 +110,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Song:
             {
-                MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);;
+                MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
                 down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
 
                 MusicSemaphoreLoop loop;

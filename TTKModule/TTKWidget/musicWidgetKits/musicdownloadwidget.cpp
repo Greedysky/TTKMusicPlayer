@@ -281,7 +281,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
-        if(attr.m_bitrate == MB_32)         ///st
+        if(attr.m_bitrate < MB_128)         ///st
         {
             m_ui->viewArea->createItem(MB_32, tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                      .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
@@ -336,7 +336,7 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
-        if(attr.m_bitrate == MB_500)       ///hd
+        if(attr.m_bitrate <= MB_500)       ///hd
         {
             m_ui->viewArea->createItem(MB_500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
                                      .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),

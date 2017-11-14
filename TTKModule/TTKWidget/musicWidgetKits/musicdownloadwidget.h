@@ -93,8 +93,7 @@ public:
     /*!
      * Create current itrm by given bitrate\type\icon\otherinfo.
      */
-    void createItem(int bitrate, const QString &type, const QString &info,
-                    const QString &icon);
+    void createItem(int bitrate, const QString &type, const QString &info, const QString &icon);
     /*!
      * Get current bitrate from item.
      */

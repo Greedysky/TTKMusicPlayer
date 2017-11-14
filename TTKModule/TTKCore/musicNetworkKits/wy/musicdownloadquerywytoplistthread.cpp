@@ -96,7 +96,8 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = value["name"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(value["id"].toInt());
+                    musicInfo.m_songId = QString::number(value["id"].toInt());
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
 
                     QVariantMap albumObject = value["album"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();

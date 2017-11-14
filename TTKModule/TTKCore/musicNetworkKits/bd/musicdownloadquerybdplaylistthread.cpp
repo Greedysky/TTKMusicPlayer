@@ -24,7 +24,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(QueryType type, const QSt
     }
     else
     {
-        m_searchText = playlist.isEmpty() ? "%E5%8D%8E%E8%AF%AD" : playlist;;
+        m_searchText = playlist.isEmpty() ? "%E5%8D%8E%E8%AF%AD" : playlist;
         startToPage(0);
     }
 }

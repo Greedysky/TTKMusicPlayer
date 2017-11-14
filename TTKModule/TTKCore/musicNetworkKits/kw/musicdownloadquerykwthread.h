@@ -19,8 +19,34 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicabstractxml.h"
 #include "musicdownloadkwinterface.h"
 #include "musicdownloadquerythreadabstract.h"
+
+/*! @brief The class to kuwo query music info xml data from net.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_CORE_EXPORT MusicKWMusicInfoConfigManager : public MusicAbstractXml
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicKWMusicInfoConfigManager(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Read music info datas into xml file.
+     */
+    void readMusicInfoConfig(MusicObject::MusicSongInformation *info);
+
+};
+
 
 /*! @brief The class to kuwo query download data from net.
  * @author Greedysky <greedysky@163.com>
@@ -43,12 +69,20 @@ public:
      * Start to search data from name and type.
      */
     virtual void startToSearch(QueryType type, const QString &text) override;
+    /*!
+     * Start to search data by given id.
+     */
+    virtual void startToSingleSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+    /*!
+     * Download single data from net finished.
+     */
+    void singleDownLoadFinished();
 
 protected:
     /*!

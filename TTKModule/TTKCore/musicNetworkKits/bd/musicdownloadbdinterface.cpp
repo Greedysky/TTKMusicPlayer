@@ -12,10 +12,9 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QString &bit)
+void MusicDownLoadBDInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &id)
 {
-    QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(info->m_songId)
+    QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     eKey.replace('+', "%2B");
@@ -23,14 +22,20 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     eKey.replace('=', "%3D");
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
 
-    QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request->setUrl(musicUrl);
+    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
+    QSslConfiguration sslConfig = request->sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
+    request->setSslConfiguration(sslConfig);
 #endif
+}
+
+void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &bit)
+{
+    QNetworkRequest request;
+    makeTokenQueryUrl(&request, info->m_songId);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);

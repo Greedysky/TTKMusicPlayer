@@ -200,7 +200,7 @@ void MusicEqualizerDialog::setControlEnable(bool enable) const
     m_ui->verticalSlider5->setEnabled(enable);
     m_ui->verticalSlider6->setEnabled(enable);
     m_ui->verticalSlider7->setEnabled(enable);
-    m_ui->verticalSlider8->setEnabled(enable);;
+    m_ui->verticalSlider8->setEnabled(enable);
     m_ui->verticalSlider9->setEnabled(enable);
     m_ui->verticalSlider10->setEnabled(enable);
     m_ui->eqChoice->setEnabled(enable);

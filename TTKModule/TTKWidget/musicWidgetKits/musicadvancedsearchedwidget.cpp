@@ -110,7 +110,7 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
             {
                 QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
                 key = getSearchedKeyWork(0, key);
-                MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
+                MusicRightAreaWidget::instance()->musicSingleSearchedFound(key);
                 break;
             }
         case 1:
@@ -243,7 +243,7 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
             }
         case 4:
             {
-                QRegExp regx(type == 0 ? "pid=(\\d+)" : "/(\\d+)");
+                QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }

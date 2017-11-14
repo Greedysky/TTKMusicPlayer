@@ -43,19 +43,26 @@ public:
      * Start to search data from name and type.
      */
     virtual void startToSearch(QueryType type, const QString &text) override;
+    /*!
+     * Start to search data by given id.
+     */
+    virtual void startToSingleSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+    /*!
+     * Download single data from net finished.
+     */
+    void singleDownLoadFinished();
 
 protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &id);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id);
     /*!
      * Read mv infos from query results.
      */

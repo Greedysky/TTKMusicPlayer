@@ -275,5 +275,5 @@ void MusicUserRecordWidget::checkPwdStrength(int code)
 int MusicUserRecordWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();;
+    return MusicAbstractMoveDialog::exec();
 }

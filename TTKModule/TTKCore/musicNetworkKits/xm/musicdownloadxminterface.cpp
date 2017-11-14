@@ -74,9 +74,6 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
     }
 
     QByteArray bytes = reply->readAll();
-    bytes = bytes.replace("xiami(", "");
-    bytes = bytes.replace("callback(", "");
-    bytes.chop(1);
 
     QJson::Parser parser;
     bool ok;

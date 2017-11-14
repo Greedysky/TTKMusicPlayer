@@ -137,6 +137,102 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
+void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info,
+                                                              const QVariantMap &key, int bitrate)
+{
+    MusicTime::timeSRand();
+    QString mid = key["media_mid"].toString();
+    if(key["size_128mp3"].toULongLong() != 0 && bitrate == MB_128)
+    {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_128_URL, false).arg(mid).arg(vkey).arg(randKey);
+        attr.m_size = MusicUtils::Number::size2Label(key["size_128mp3"].toULongLong());
+        attr.m_format = "mp3";
+        attr.m_bitrate = bitrate;
+        info->m_songAttrs.append(attr);
+    }
+    else if(key["size_192ogg"].toULongLong() != 0 && bitrate == MB_192)
+    {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_192_URL, false).arg(mid).arg(vkey).arg(randKey);
+        attr.m_size = MusicUtils::Number::size2Label(key["size_192ogg"].toULongLong());
+        attr.m_format = "ogg";
+        attr.m_bitrate = bitrate;
+        info->m_songAttrs.append(attr);
+    }
+    else if(key["size_320mp3"].toULongLong() != 0 && bitrate == MB_320)
+    {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_320_URL, false).arg(mid).arg(vkey).arg(randKey);
+        attr.m_size = MusicUtils::Number::size2Label(key["size_320mp3"].toULongLong());
+        attr.m_format = "mp3";
+        attr.m_bitrate = bitrate;
+        info->m_songAttrs.append(attr);
+    }
+    else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_500)
+    {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_APE_URL, false).arg(mid).arg(vkey).arg(randKey);
+        attr.m_size = MusicUtils::Number::size2Label(key["size_ape"].toULongLong());
+        attr.m_format = "ape";
+        attr.m_bitrate = bitrate;
+        info->m_songAttrs.append(attr);
+    }
+    else if(key["size_flac"].toULongLong() != 0 && bitrate == MB_1000)
+    {
+        QString randKey = QString::number(qrand());
+        QString vkey = getMusicKey(randKey);
+        if(vkey.isEmpty())
+        {
+            return;
+        }
+
+        MusicObject::MusicSongAttribute attr;
+        attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_FLAC_URL, false).arg(mid).arg(vkey).arg(randKey);
+        attr.m_size = MusicUtils::Number::size2Label(key["size_flac"].toULongLong());
+        attr.m_format = "flac";
+        attr.m_bitrate = bitrate;
+        info->m_songAttrs.append(attr);
+    }
+}
+
+void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+{
+    readFromMusicSongAttributeInfo(info, key, MB_128);
+    readFromMusicSongAttributeInfo(info, key, MB_192);
+    readFromMusicSongAttributeInfo(info, key, MB_320);
+    readFromMusicSongAttributeInfo(info, key, MB_500);
+    readFromMusicSongAttributeInfo(info, key, MB_1000);
+}
+
 QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
 {
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_KEY_URL, false).arg(time);

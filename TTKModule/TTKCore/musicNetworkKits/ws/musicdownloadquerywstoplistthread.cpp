@@ -80,7 +80,7 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["photo"].toString();
                 info.m_playCount = "-";
-                info.m_description = "-";;
+                info.m_description = "-";
                 info.m_updateTime = m_updateTime;
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////

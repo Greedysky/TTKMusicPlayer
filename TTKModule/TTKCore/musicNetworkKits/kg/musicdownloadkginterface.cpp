@@ -73,6 +73,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     if(all)
     {
         readFromMusicSongAttribute(info, key["hash"].toString());
+        readFromMusicSongAttribute(info, key["128hash"].toString());
         readFromMusicSongAttribute(info, key["320hash"].toString());
         readFromMusicSongAttribute(info, key["sqhash"].toString());
     }
@@ -81,6 +82,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         if(quality == QObject::tr("SD"))
         {
             readFromMusicSongAttribute(info, key["hash"].toString());
+            readFromMusicSongAttribute(info, key["128hash"].toString());
         }
         else if(quality == QObject::tr("SQ"))
         {
@@ -93,8 +95,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info,
-                                                          const QString &hash)
+void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info, const QString &hash)
 {
     if(hash.isEmpty())
     {
@@ -129,13 +130,14 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(!value.isEmpty() && value["error"].toString().isEmpty())
+        if(value["errcode"].toInt() == 0 && value.contains("data"))
         {
-            info->m_artistId = QString::number(value["singerId"].toULongLong());
-            info->m_smallPicUrl = value["imgUrl"].toString().replace("{size}", "480");
+            value = value["data"].toMap();
+            info->m_artistId = QString::number(value["singerid"].toULongLong());
+            info->m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                    .arg(value["songName"].toString()).arg(hash)
-                                                    .arg(value["timeLength"].toInt()*1000);
+                                                    .arg(value["songname"].toString()).arg(hash)
+                                                    .arg(value["duration"].toInt()*1000);
         }
     }
 }

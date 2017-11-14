@@ -43,12 +43,20 @@ public:
      * Start to search data from name and type.
      */
     virtual void startToSearch(QueryType type, const QString &text) override;
+    /*!
+     * Start to search data by given id.
+     */
+    virtual void startToSingleSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+    /*!
+     * Download single data from net finished.
+     */
+    void singleDownLoadFinished();
 
 protected:
     /*!

@@ -92,7 +92,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         musicInfo.m_artistId = name["mid"].toString();
                     }
                     musicInfo.m_songName = value["songname"].toString();
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);;
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
 
                     if(m_currentType != MovieQuery)
                     {

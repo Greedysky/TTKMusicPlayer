@@ -381,6 +381,12 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case SearchSingleWidget: //insert search display widget
+            {
+                m_ui->surfaceStackedWidget->setCurrentIndex(0);
+                emit updateBackgroundTheme();
+                break;
+            }
         case SimilarWidget: //insert similar found widget
             {
                 MusicSimilarFoundWidget *similarFoundWidget = new MusicSimilarFoundWidget(this);
@@ -515,6 +521,12 @@ void MusicRightAreaWidget::musicSongSearchedFound(const QString &text)
 {
     m_ui->musicSongSearchLine->setText(text.trimmed());
     musicFunctionClicked(MusicRightAreaWidget::SearchWidget);
+}
+
+void MusicRightAreaWidget::musicSingleSearchedFound(const QString &id)
+{
+    musicFunctionClicked(MusicRightAreaWidget::SearchSingleWidget);
+    m_ui->songSearchWidget->startSearchSingleQuery(id);
 }
 
 void MusicRightAreaWidget::musicLoadSongIndexWidget()

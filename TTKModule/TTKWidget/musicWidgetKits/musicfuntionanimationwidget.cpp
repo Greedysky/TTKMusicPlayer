@@ -25,7 +25,7 @@ QString MusicBackgroundWidget::getClassName()
 
 void MusicBackgroundWidget::setTransparent(int alpha)
 {
-    m_backgroundAlpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);;
+    m_backgroundAlpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
     update();
 }
 

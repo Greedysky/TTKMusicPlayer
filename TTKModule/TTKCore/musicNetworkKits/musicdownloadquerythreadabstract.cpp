@@ -21,6 +21,11 @@ QString MusicDownLoadQueryThreadAbstract::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicDownLoadQueryThreadAbstract::startToSingleSearch(const QString &text)
+{
+    Q_UNUSED(text);
+}
+
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
 {
     QString v = tr("Current Used Server Is %1");

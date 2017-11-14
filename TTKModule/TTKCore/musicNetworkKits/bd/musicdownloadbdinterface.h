@@ -22,6 +22,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+class QNetworkRequest;
+
 /////////////////////////////////////////////////////////////////////////////
 const QString BD_ALBUM_URL          = "aldnSzNmNHJBaFlGSTlXN3FUSDhzWjlhZ3U1SmN2eEJYWUE0WlM5RWhrQ09lK3MvTzRTcHlWNklhZk4xY0JMTFhVbVhWMzE2anYxT01IVjd1V2g2Rmx0S3dUaUpRUEtTZGsyUkIwbk1VeU8rSldaU2NsMGVPWkdmQWFQQUJZRnUvNnNGVXV6elZCa0tBUkorUTlkaVdTN3Baa0UvZDJqUG5hNis4OW1CZTFzcldWUmNqNnl6SjZVem1JdkVwYk9z";
 /////////////////////////////////////////////////////////////////////////////
@@ -60,6 +62,10 @@ const QString BD_PLAYLIST_ATTR_URL  = "NXJsZ3ArR0JHeXFJYmdWUi9sOVNTaHlxbEpuekJYS
 class MUSIC_NETWORK_EXPORT MusicDownLoadBDInterface
 {
 public:
+    /*!
+     * Make token query url string.
+     */
+    void makeTokenQueryUrl(QNetworkRequest *request, const QString &id);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
