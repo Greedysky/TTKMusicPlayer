@@ -66,8 +66,6 @@ void MusicQQBackgroundThread::downLoadDataFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
-        bytes = bytes.replace("callback(", "");
-        bytes.chop(1);
 
         QJson::Parser parser;
         bool ok;

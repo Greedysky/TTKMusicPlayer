@@ -30,7 +30,7 @@ void MusicQQSongCommentsThread::startToSearch(const QString &name)
     m_rawData["songID"].clear();
     if(!query->getMusicSongInfos().isEmpty())
     {
-        m_rawData["songID"] = query->getMusicSongInfos().first().m_songId;
+        m_rawData["songID"] = query->getRawData()["songID"];
         startToPage(0);
     }
 }
@@ -156,7 +156,7 @@ void MusicQQPlaylistCommentsThread::startToPage(int offset)
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->post( request, MusicUtils::Algorithm::mdII(QQ_PL_COMMIT_URL, false)
+    m_reply = m_manager->post( request, MusicUtils::Algorithm::mdII(QQ_PL_COMMIT_DATA_URL, false)
                                .arg(m_rawData["songID"].toString()).arg(offset).arg(m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),

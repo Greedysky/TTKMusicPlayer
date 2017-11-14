@@ -69,6 +69,11 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
         m_updateTime = "-";
         m_tags = "-";
     }
+
+    bool isEmpty() const
+    {
+        return m_name == "-" && m_nickname == "-" && m_coverUrl == "-" && m_description == "-";
+    }
 }MusicPlaylistItem;
 MUSIC_DECLARE_LISTS(MusicPlaylistItem)
 

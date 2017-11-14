@@ -26,6 +26,11 @@ QString MusicPagingWidgetObject::getClassName()
     return staticMetaObject.className();
 }
 
+QWidget* MusicPagingWidgetObject::getCreatePagingWidget()
+{
+    return m_pagingWidget;
+}
+
 QWidget* MusicPagingWidgetObject::createPagingWidget(QWidget *parent, int total)
 {
     m_pagingWidget = new QWidget(parent);

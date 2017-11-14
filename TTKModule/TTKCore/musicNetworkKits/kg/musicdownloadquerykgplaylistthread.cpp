@@ -1,4 +1,5 @@
 #include "musicdownloadquerykgplaylistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -75,6 +76,66 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_PLAYLIST_INFO_URL, false).arg(item.m_id);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["errcode"].toInt() == 0 && value.contains("data"))
+        {
+            value = value["data"].toMap();
+            item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+            item.m_name = value["specialname"].toString();
+            item.m_playCount = QString::number(value["playcount"].toLongLong());
+            item.m_description = value["intro"].toString();
+            item.m_updateTime = value["publishtime"].toString();
+            item.m_nickname = value["nickname"].toString();
+
+            QVariantList tags = value["tags"].toList();
+            foreach(const QVariant &var, tags)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                item.m_tags.append(value["tagname"].toString() + "|");
+            }
+        }
+    }
 }
 
 void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()

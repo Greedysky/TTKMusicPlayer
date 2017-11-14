@@ -77,6 +77,11 @@ void MusicDownLoadQueryWSPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
+void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+{
+
+}
+
 void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
 {
     if(m_reply == nullptr)

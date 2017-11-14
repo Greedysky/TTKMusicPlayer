@@ -77,7 +77,7 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                 QVariantMap topInfo = value["info"].toMap();
                 MusicPlaylistItem info;
                 info.m_name = topInfo["rankname"].toString();
-                info.m_coverUrl = topInfo["imgurl"].toString();
+                info.m_coverUrl = topInfo["imgurl"].toString().replace("{size}", "400");;
                 info.m_playCount = "-";
                 info.m_description = topInfo["intro"].toString();
 

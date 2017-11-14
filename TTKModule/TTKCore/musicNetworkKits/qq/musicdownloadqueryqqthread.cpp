@@ -58,8 +58,6 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
-        bytes = bytes.replace("callback(", "");
-        bytes.chop(1);
 
         QJson::Parser parser;
         bool ok;
@@ -89,14 +87,15 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                         }
                         QVariantMap name = var.toMap();
                         musicInfo.m_singerName = name["name"].toString();
-                        musicInfo.m_artistId = QString::number(name["id"].toULongLong());
+                        musicInfo.m_artistId = name["mid"].toString();
                     }
                     musicInfo.m_songName = value["songname"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);;
 
                     if(m_currentType != MovieQuery)
                     {
-                        musicInfo.m_songId = value["songid"].toString();
+                        m_rawData["songID"] = value["songid"].toString();
+                        musicInfo.m_songId = value["songmid"].toString();
                         musicInfo.m_albumId = value["albummid"].toString();
 
                         if(!m_querySimplify)

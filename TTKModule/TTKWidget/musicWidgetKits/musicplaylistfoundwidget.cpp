@@ -156,7 +156,10 @@ void MusicPlaylistFoundWidget::setSongName(const QString &name)
 
 void MusicPlaylistFoundWidget::setSongNameById(const QString &id)
 {
-    Q_UNUSED(id);
+    setSongName(id);
+    MusicPlaylistItem item;
+    item.m_id = id;
+    currentPlayListClicked(item);
 }
 
 void MusicPlaylistFoundWidget::resizeWindow()
@@ -262,8 +265,14 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &i
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
-    m_infoWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
-    m_infoWidget->setMusicPlaylistItem(item, this);
+    MusicDownLoadQueryPlaylistThread *pt = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
+    MusicPlaylistItem it(item);
+    if(it.isEmpty())
+    {
+        pt->getPlaylistInfo(it);
+    }
+    m_infoWidget->setQueryInput(pt);
+    m_infoWidget->setMusicPlaylistItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }
@@ -277,6 +286,7 @@ void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &
 {
     if(m_categoryButton)
     {
+        m_songNameFull.clear();
         m_categoryChanged = true;
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();

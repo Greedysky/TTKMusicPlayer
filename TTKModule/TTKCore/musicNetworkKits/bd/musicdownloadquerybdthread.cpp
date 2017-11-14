@@ -89,6 +89,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                         musicInfo.m_songId = value["song_id"].toString();
                         musicInfo.m_artistId = value["ting_uid"].toString();
                         musicInfo.m_albumId = value["album_id"].toString();
+
                         if(!m_querySimplify)
                         {
                             musicInfo.m_lrcUrl = value["lrclink"].toString();

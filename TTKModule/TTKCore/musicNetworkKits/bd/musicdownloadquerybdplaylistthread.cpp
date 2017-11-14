@@ -1,4 +1,5 @@
 #include "musicdownloadquerybdplaylistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -75,6 +76,54 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
+    QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["error_code"].toInt() == 22000)
+        {
+            item.m_coverUrl = value["pic_300"].toString();
+            item.m_name = value["title"].toString();
+            item.m_playCount = value["listenum"].toString();
+            item.m_description = value["desc"].toString();
+            item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+            item.m_nickname = "Greedysky";
+            item.m_tags = value["tag"].toString().replace(",", "|");
+        }
+    }
 }
 
 void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()

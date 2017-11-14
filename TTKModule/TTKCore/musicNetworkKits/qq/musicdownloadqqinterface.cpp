@@ -162,8 +162,6 @@ QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
     }
 
     QByteArray bytes = reply->readAll();
-    bytes.replace("jsonCallback(", "");
-    bytes.chop(2);
 
     QJson::Parser parser;
     bool ok;

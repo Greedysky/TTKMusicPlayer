@@ -52,6 +52,10 @@ public:
      * Start to Search data.
      */
     virtual void startToSearch(const QString &playlist) override;
+    /*!
+     * Get playlist info.
+     */
+    virtual void getPlaylistInfo(MusicPlaylistItem &item) override;
 
 public Q_SLOTS:
     /*!

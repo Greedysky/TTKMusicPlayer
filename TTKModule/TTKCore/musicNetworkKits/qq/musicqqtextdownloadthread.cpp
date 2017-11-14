@@ -68,7 +68,7 @@ void MusicQQTextDownLoadThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-        bytes.replace("jsonp1(", "");
+        bytes.replace("MusicJsonCallback(", "");
         bytes.chop(1);
 
         QJson::Parser parser;

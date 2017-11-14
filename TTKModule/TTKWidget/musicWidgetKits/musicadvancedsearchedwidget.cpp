@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QBoxLayout>
 #include <QPushButton>
-#include <QDebug>
+
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -106,7 +106,13 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
     switch(m_tabWidget->currentIndex())
     {
-        case 0: break;
+        case 0:
+            {
+                QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
+                key = getSearchedKeyWork(0, key);
+                MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
+                break;
+            }
         case 1:
             {
                 QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
@@ -141,8 +147,7 @@ QWidget *MusicAdvancedSearchedWidget::createSearchPairWidget(MusicLocalSongSearc
     searchPairLayout->setContentsMargins(5, 2, 5, 0);
     QLabel *showIcon = new QLabel(searchPair);
     showIcon->setFixedSize(16, 16);
-    showIcon->setStyleSheet(MusicUIObject::MBackgroundStyle01 +
-                            "border-image: url(:/tiny/btn_search_main_hover);");
+    showIcon->setStyleSheet(MusicUIObject::MBackgroundStyle01 + "border-image: url(:/tiny/btn_search_main_hover);");
     *input = new MusicLocalSongSearchEdit(searchPair);
     searchPairLayout->addWidget(showIcon);
     searchPairLayout->addWidget(*input);
@@ -165,10 +170,11 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             }
         case 1:
             {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_LOW_KEY, false).arg("202658270"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_SG_SHARE, ALG_LOW_KEY, false).arg("003fOZMP0ep9Fh"));
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AR_SHARE, ALG_LOW_KEY, false).arg("0029gk1t3wpGWU"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_AL_SHARE, ALG_LOW_KEY, false).arg("003fk65m1ZaCG2"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(QQ_PL_SHARE, ALG_LOW_KEY, false).arg("889413740"));
+                break;
             }
         case 2:
             {
@@ -189,7 +195,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
         case 4:
             {
                 m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_SG_SHARE, ALG_LOW_KEY, false).arg("23983067"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_LOW_KEY, false).arg("S.H.E"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AR_SHARE, ALG_LOW_KEY, false).arg("373"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_AL_SHARE, ALG_LOW_KEY, false).arg("2698608"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(KW_PL_SHARE, ALG_LOW_KEY, false).arg("236350390"));
                 break;
@@ -214,67 +220,37 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
         case 0:
             {
                 QRegExp regx("id=(\\d+)");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 1:
             {
-                QRegExp regx(type == 0 ? "/(\\d+)" : "/(\\w+).html");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                QRegExp regx("/(\\w+).html");
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 2:
             {
                 QRegExp regx("/(\\d+)");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 3:
             {
                 QRegExp regx("/(\\d+)");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 4:
             {
-                QRegExp regx;
-                if(type == 0)
-                    regx.setPattern("/(\\d+)");
-                else if(type == 0)
-                    regx.setPattern("pid=(\\d+)");
-                else
-                    regx.setPattern("name=(\\W+)");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                QRegExp regx(type == 0 ? "pid=(\\d+)" : "/(\\d+)");
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 5:
             {
                 QRegExp regx(type == 0 ? "hash=(\\w+)" : "/(\\d+)");
-                int pos = url.indexOf(regx);
-                if(pos != -1)
-                {
-                    key = regx.cap(1);
-                }
+                key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         default: break;
