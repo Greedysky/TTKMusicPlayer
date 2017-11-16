@@ -100,7 +100,7 @@ void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &tex
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-
+    ////////////////////////////////////////////////
     if(!m_downLoadManager)
     {
         MusicQueryItemTableWidget::startSearchQuery(text);

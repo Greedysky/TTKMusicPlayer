@@ -5,6 +5,7 @@
 #include "musicrightareawidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicalgorithmutils.h"
+#include "musicmessagebox.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -34,6 +35,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QWidget *songWidget = new QWidget(m_tabWidget);
     QVBoxLayout *songWidgetLayout = new QVBoxLayout(songWidget);
     QLabel *songLabel = new QLabel(tr("Input Song ID Or Url Link"), songWidget);
+    songLabel->setStyleSheet(MusicUIObject::MFontStyle05);
     songWidgetLayout->setSpacing(10);
     songWidgetLayout->addStretch(1);
     songWidgetLayout->addWidget(songLabel);
@@ -45,6 +47,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QWidget *artistWidget = new QWidget(m_tabWidget);
     QVBoxLayout *artistWidgetLayout = new QVBoxLayout(artistWidget);
     QLabel *artistLabel = new QLabel(tr("Input Artist ID Or Url Link"), artistWidget);
+    artistLabel->setStyleSheet(MusicUIObject::MFontStyle05);
     artistWidgetLayout->setSpacing(10);
     artistWidgetLayout->addStretch(1);
     artistWidgetLayout->addWidget(artistLabel);
@@ -56,6 +59,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QWidget *albumWidget = new QWidget(m_tabWidget);
     QVBoxLayout *albumWidgetLayout = new QVBoxLayout(albumWidget);
     QLabel *albumLabel = new QLabel(tr("Input Album ID Or Url Link"), albumWidget);
+    albumLabel->setStyleSheet(MusicUIObject::MFontStyle05);
     albumWidgetLayout->setSpacing(10);
     albumWidgetLayout->addStretch(1);
     albumWidgetLayout->addWidget(albumLabel);
@@ -67,6 +71,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     QWidget *playlistWidget = new QWidget(m_tabWidget);
     QVBoxLayout *playlistWidgetLayout = new QVBoxLayout(playlistWidget);
     QLabel *playlistLabel = new QLabel(tr("Input Playlist ID Or Url Link"), playlistWidget);
+    playlistLabel->setStyleSheet(MusicUIObject::MFontStyle05);
     playlistWidgetLayout->setSpacing(10);
     playlistWidgetLayout->addStretch(1);
     playlistWidgetLayout->addWidget(playlistLabel);
@@ -104,6 +109,15 @@ QString MusicAdvancedSearchedWidget::getClassName()
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
+    int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    if(server > 5 || server < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Current server not support search!"));
+        message.exec();
+        return;
+    }
+
     switch(m_tabWidget->currentIndex())
     {
         case 0:

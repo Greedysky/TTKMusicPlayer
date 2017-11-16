@@ -90,7 +90,7 @@ void MusicMoreFunctionsPopWidget::initWidget()
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_artist_hover"), tr("artist")))->setData(3);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_toplist_hover"), tr("toplist")))->setData(4);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("playlist")))->setData(5);
-    group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("search")))->setData(6);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("search")))->setData(6);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_share_hover"), tr("share")))->setData(7);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_mv_hover"), tr("showMv")))->setData(8);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(musicFunctionClicked(QAction*)));

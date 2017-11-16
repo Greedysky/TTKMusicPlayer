@@ -33,6 +33,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
+    m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01);
     m_ui->analyzerBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->analyzer2Box->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->ewaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
