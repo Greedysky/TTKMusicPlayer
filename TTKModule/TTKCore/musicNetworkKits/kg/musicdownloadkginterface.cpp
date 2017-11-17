@@ -12,8 +12,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QString &hash)
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &hash)
 {
     if(hash.isEmpty())
     {

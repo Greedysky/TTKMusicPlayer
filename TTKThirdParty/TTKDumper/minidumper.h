@@ -21,7 +21,7 @@ typedef BOOL (WINAPI *MINIDUMPWRITEDUMP)(HANDLE hProcess, DWORD dwPid, HANDLE hF
 class MUSIC_EXTRAS_EXPORT MiniDumper
 {
 public:
-    MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = NULL);
+    MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumber = nullptr);
 
     static void SetVersion(LPCWSTR szVersion);
     static void SetBuildNumber(LPCWSTR szBuildNumber);

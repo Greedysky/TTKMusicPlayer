@@ -29,17 +29,24 @@ CONFIG       += warn_off
 unix:VERSION += 2.1.0
 
 unix{
-  macx{
-    SOURCES += $$PWD/qdevicewatcher_mac.cpp
-    LIBS += -framework DiskArbitration -framework Foundation
-  }else{
-    SOURCES += $$PWD/qdevicewatcher_linux.cpp
-  }
+    macx{
+        SOURCES += $$PWD/qdevicewatcher_mac.cpp
+        LIBS += -framework DiskArbitration -framework Foundation
+    }else{
+        SOURCES += $$PWD/qdevicewatcher_linux.cpp
+    }
 }
+
 win32{
-  wince*: SOURCES += $$PWD/qdevicewatcher_wince.cpp
-  else: SOURCES += $$PWD/qdevicewatcher_win32.cpp
-  LIBS *= -luser32
+    wince*: SOURCES += $$PWD/qdevicewatcher_wince.cpp
+    else: SOURCES += $$PWD/qdevicewatcher_win32.cpp
+    LIBS *= -luser32
+}
+
+win32:msvc{
+    CONFIG +=c++11
+}else{
+    QMAKE_CXXFLAGS += -std=c++11
 }
 
 SOURCES += \

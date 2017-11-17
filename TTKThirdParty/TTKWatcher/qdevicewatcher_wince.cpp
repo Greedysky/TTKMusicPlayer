@@ -67,13 +67,13 @@ bool QDeviceWatcherPrivate::init()
 	//msgopts.dwShareMode = 0;
 	//msgopts.dwCreationDisposition = CREATE_NEW;
 
-	mQueueHandle = CreateMsgQueue(NULL, &msgopts);
-	if (mQueueHandle == NULL) {
+    mQueueHandle = CreateMsgQueue(nullptr, &msgopts);
+    if (mQueueHandle == nullptr) {
 		qWarning("CreateMsgQueue() error: %d", GetLastError());
 		return false;
 	}
 	mNotificationHandle = RequestDeviceNotifications(&BLOCK_DRIVER_GUID, mQueueHandle, TRUE);
-	if (mNotificationHandle == NULL) {
+    if (mNotificationHandle == nullptr) {
 		qWarning("RequestDeviceNotifications() error: %d", GetLastError());
 		return false;
 	}

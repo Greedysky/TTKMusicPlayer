@@ -34,6 +34,12 @@ win32{
     LIBS += -lpsapi
 }
 
+win32:msvc{
+    CONFIG +=c++11
+}else{
+    QMAKE_CXXFLAGS += -std=c++11
+}
+
 SOURCES += \
     $$PWD/minidumper.cpp \
     $$PWD/ttkdumper.cpp

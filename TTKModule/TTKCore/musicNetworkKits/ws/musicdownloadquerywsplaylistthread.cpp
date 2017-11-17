@@ -79,7 +79,7 @@ void MusicDownLoadQueryWSPlaylistThread::startToSearch(const QString &playlist)
 
 void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
 {
-
+    Q_UNUSED(item);
 }
 
 void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
