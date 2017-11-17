@@ -286,7 +286,6 @@ void MusicDownLoadQueryWYThread::startMVListQuery(int id)
         return;
     }
 
-    qDebug() << reply->readAll();
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
