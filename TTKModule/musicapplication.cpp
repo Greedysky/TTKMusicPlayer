@@ -286,6 +286,11 @@ bool MusicApplication::isPlaying() const
     return m_musicPlayer->isPlaying();
 }
 
+qint64 MusicApplication::duration() const
+{
+    return m_musicPlayer->duration();
+}
+
 MusicObject::PlayMode MusicApplication::getPlayMode() const
 {
     return m_musicPlayList->playbackMode();

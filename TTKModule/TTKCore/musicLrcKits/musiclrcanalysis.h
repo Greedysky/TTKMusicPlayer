@@ -199,6 +199,7 @@ protected:
                       const QString &first, const QString &second,
                       const QString &third);
 
+    int m_oringinDataLineCount;
     int m_lineMax, m_currentLrcIndex;
     QString m_currentLrcFileName;
     MusicObject::MIntStringMap m_lrcContainer;

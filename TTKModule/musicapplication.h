@@ -102,6 +102,10 @@ public:
      */
     bool isPlaying() const;
     /*!
+     * Get current player duration.
+     */
+    qint64 duration() const;
+    /*!
      * Get current play mode.
      */
     MusicObject::PlayMode getPlayMode() const;

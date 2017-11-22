@@ -5,6 +5,7 @@
 #include <qmath.h>
 #include "musictime.h"
 #include "musictranslationthread.h"
+#include "musicapplication.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -12,6 +13,7 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     m_lineMax = 0;
     m_currentLrcIndex = 0;
     m_translationThread = nullptr;
+    m_oringinDataLineCount = 0;
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()
@@ -30,8 +32,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 
-    QString getAllText = QString(data);
-    foreach(const QString &oneLine, getAllText.split("\n"))
+    QStringList getAllText = QString(data).split("\r\n");
+    m_oringinDataLineCount = getAllText.count();
+    foreach(const QString &oneLine, getAllText)
     {
         matchLrcLine(oneLine);
     }
@@ -74,6 +77,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const MusicObject::MIntStri
     m_lrcContainer = data;
     m_currentLrcIndex = 0;
     m_currentShowLrcContainer.clear();
+    m_oringinDataLineCount = m_lrcContainer.count();
 
     for(int i=0; i<getMiddle(); ++i)
     {
@@ -127,9 +131,10 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
         return OpenFileFail;
     }
 
-    QString getAllText = QString(krc.getDecodeString());
+    QStringList getAllText = QString(krc.getDecodeString()).split("\r\n");
+    m_oringinDataLineCount = getAllText.count();
     //The lyrics by line into the lyrics list
-    foreach(const QString &oneLine, getAllText.split("\r\n"))
+    foreach(const QString &oneLine, getAllText)
     {
         matchLrcLine(oneLine);
     }
@@ -264,8 +269,9 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
     /////////////////////////////////////////
     if(type == Type00)
     {
-        int randKey = m_lrcContainer.count()*MT_M2MS/3;
-        m_lrcContainer.insert(randKey, oneLine);
+        int perTime = m_oringinDataLineCount == 0 ? m_lrcContainer.count()*MT_M2MS/3 :
+                      MusicApplication::instance()->duration()/m_oringinDataLineCount;
+        m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
     }
     else
     {
