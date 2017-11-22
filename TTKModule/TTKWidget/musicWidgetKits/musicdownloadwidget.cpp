@@ -12,6 +12,8 @@
 #include <QLabel>
 #include <QFileDialog>
 
+Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
+
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
 {
@@ -80,34 +82,34 @@ void MusicDownloadTableWidget::clearAllItems()
     setColumnCount(1);
 }
 
-void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, const QString &info, const QString &icon)
+void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon)
 {
     int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ROW_HEIGHT);
     QTableWidgetItem *it = new QTableWidgetItem;
-    it->setData(BITRATE_ROLE, bitrate);
+    MusicDownloadTableItemRole role(attr.m_bitrate, attr.m_format, attr.m_size);
+    it->setData(TABLE_ITEM_ROLE, QVariant::fromValue<MusicDownloadTableItemRole>(role));
     setItem(index, 0,  it);
 
     MusicDownloadTableItem *item = new MusicDownloadTableItem(this);
     item->setIcon(icon);
-    item->setInformation(info);
+    item->setInformation(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
     item->setText(type);
     m_items << item;
 
     setCellWidget(index, 0, item);
 }
 
-int MusicDownloadTableWidget::getCurrentBitrate()
+MusicDownloadTableItemRole MusicDownloadTableWidget::getCurrentItemRole() const
 {
-   int bitrate = -1;
    int row = currentRow();
    if(row == -1)
    {
-       return bitrate;
+       return MusicDownloadTableItemRole();
    }
 
-   return item(row, 0)->data(BITRATE_ROLE).toInt();
+   return item(row, 0)->data(TABLE_ITEM_ROLE).value<MusicDownloadTableItemRole>();
 }
 
 void MusicDownloadTableWidget::listCellClicked(int row, int column)
@@ -283,33 +285,23 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
     {
         if(attr.m_bitrate < MB_128)         ///st
         {
-            m_ui->viewArea->createItem(MB_32, tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_st_quality"));
+            m_ui->viewArea->createItem(attr, tr("ST"), QString(":/quality/lb_st_quality"));
         }
         else if(attr.m_bitrate == MB_128)   ///sd
         {
-            m_ui->viewArea->createItem(MB_128, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if(attr.m_bitrate == MB_192)   ///hd
         {
-            m_ui->viewArea->createItem(MB_192, tr("HQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->createItem(attr, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
         else if(attr.m_bitrate == MB_320)   ///sq
         {
-            m_ui->viewArea->createItem(MB_320, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else if(attr.m_bitrate > MB_320)   ///cd
         {
-            m_ui->viewArea->createItem(attr.m_bitrate, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {
@@ -338,21 +330,15 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
     {
         if(attr.m_bitrate <= MB_500)       ///hd
         {
-            m_ui->viewArea->createItem(MB_500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if(attr.m_bitrate == MB_750)  ///sq
         {
-            m_ui->viewArea->createItem(MB_750, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->createItem(attr, tr("HD"), QString(":/quality/lb_hd_quality"));
         }
         else if(attr.m_bitrate == MB_1000) ///cd
         {
-            m_ui->viewArea->createItem(MB_1000, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else
         {
@@ -417,7 +403,7 @@ void MusicDownloadWidget::startToDownload()
     m_downloadTotal = 0;
 
     hide(); ///hide download widget
-    if(m_ui->viewArea->getCurrentBitrate() == -1)
+    if(m_ui->viewArea->getCurrentItemRole().isEmpty())
     {
         MusicMessageBox message(tr("Please Select One Item First!"));
         message.exec();
@@ -455,11 +441,11 @@ void MusicDownloadWidget::startToDownloadMusic()
 
 void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    int bitrate = m_ui->viewArea->getCurrentBitrate();
+    MusicDownloadTableItemRole role = m_ui->viewArea->getCurrentItemRole();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
-        if(musicAttr.m_bitrate == bitrate/* || musicAttr.m_bitrate > 321*/)
+        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {
             if(!M_NETWORK_PTR->isOnline())
             {
@@ -525,11 +511,11 @@ void MusicDownloadWidget::startToDownloadMovie()
 
 void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    int bitrate = m_ui->viewArea->getCurrentBitrate();
+    MusicDownloadTableItemRole role = m_ui->viewArea->getCurrentItemRole();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
-        if(musicAttr.m_bitrate == bitrate)
+        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {
             if(!M_NETWORK_PTR->isOnline())
             {
