@@ -43,6 +43,7 @@ public:
 
     enum LrcFormat
     {
+        Type00, /*!< NULL*/
         Type01, /*!< [xx:xx.xxx]*/
         Type02, /*!< [xx:xx.xx]*/
         Type03, /*!< [xx:xx.x]*/

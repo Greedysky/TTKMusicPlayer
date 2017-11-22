@@ -101,6 +101,7 @@ HEADERS  += \
     $$PWD/ws/musicdownloadquerywsplaylistthread.h \
     $$PWD/ws/musicwscommentsthread.h \
     $$PWD/ws/musicwsdiscoverlistthread.h \
+    $$PWD/ws/musicwstextdownloadthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/ztl/musicdownloadsourcethread.h \
     $$PWD/ztl/musicnetworkthread.h \
@@ -200,6 +201,7 @@ SOURCES += \
     $$PWD/ws/musicdownloadquerywsplaylistthread.cpp \
     $$PWD/ws/musicwscommentsthread.cpp \
     $$PWD/ws/musicwsdiscoverlistthread.cpp \
+    $$PWD/ws/musicwstextdownloadthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/ztl/musicdownloadsourcethread.cpp \
     $$PWD/ztl/musicnetworkthread.cpp \

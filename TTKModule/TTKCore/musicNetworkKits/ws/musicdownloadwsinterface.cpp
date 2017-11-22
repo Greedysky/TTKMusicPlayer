@@ -93,6 +93,7 @@ void MusicDownLoadWSInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 return;
             }
 
+            info->m_lrcUrl = value["SW"].toString();
             info->m_smallPicUrl = value["SI"].toString();
             attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
             info->m_songAttrs.append(attr);

@@ -64,6 +64,7 @@
 #include "musicxmtextdownloadthread.h"
 #include "musickwtextdownloadthread.h"
 #include "musicqqtextdownloadthread.h"
+#include "musicwstextdownloadthread.h"
 
 #include "musickwbackgroundthread.h"
 #include "musicqqbackgroundthread.h"
@@ -268,6 +269,9 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(con
         case 3: return (new MusicTextDownLoadThread(url, save, type, parent));
         case 4: return (new MusicKWTextDownLoadThread(url, save, type, parent));
         case 5: return (new MusicTextDownLoadThread(url, save, type, parent));
+        case 6: return (new MusicWSTextDownLoadThread(url, save, type, parent));
+        case 7: return (new MusicWSTextDownLoadThread(url, save, type, parent));
+        case 8: return (new MusicWSTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));
 }
