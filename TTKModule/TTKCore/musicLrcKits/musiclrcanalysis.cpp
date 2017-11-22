@@ -34,12 +34,17 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
     QStringList getAllText = QString(data).split("\r\n");
     m_oringinDataLineCount = getAllText.count();
+    if(getAllText.count() == 1 && getAllText.first().isEmpty())
+    {
+        return LrcEmpty;
+    }
+
     foreach(const QString &oneLine, getAllText)
     {
         matchLrcLine(oneLine);
     }
 
-    if (m_lrcContainer.isEmpty())
+    if(m_lrcContainer.isEmpty())
     {
         return LrcEmpty;
     }
@@ -133,6 +138,11 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     QStringList getAllText = QString(krc.getDecodeString()).split("\r\n");
     m_oringinDataLineCount = getAllText.count();
+    if(getAllText.count() == 1 && getAllText.first().isEmpty())
+    {
+        return LrcEmpty;
+    }
+
     //The lyrics by line into the lyrics list
     foreach(const QString &oneLine, getAllText)
     {
