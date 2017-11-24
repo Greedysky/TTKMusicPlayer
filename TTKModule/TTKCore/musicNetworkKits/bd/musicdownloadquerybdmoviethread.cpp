@@ -312,7 +312,9 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfoAttribute(MusicObject::
             if(var.contains("br="))
             {
                 int bitRate = var.remove("br=").toInt();
-                if(bitRate <= 625)
+                if(bitRate <= 375)
+                    attr.m_bitrate = MB_250;
+                else if(bitRate > 375 && bitRate <= 625)
                     attr.m_bitrate = MB_500;
                 else if(bitRate > 625 && bitRate <= 875)
                     attr.m_bitrate = MB_750;

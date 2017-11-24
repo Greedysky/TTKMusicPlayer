@@ -58,6 +58,11 @@ namespace MusicUIObject
             QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover);} \
             QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable);}";
 
+    const QString MKGVideoBtnSTMode  = " \
+            QToolButton{ border:none; \
+            background-image: url(:/video/btn_st_normal);} \
+            QToolButton:hover{ background-image: url(:/video/btn_st_hover);}";
+
     const QString MKGVideoBtnSDMode  = " \
             QToolButton{ border:none; \
             background-image: url(:/video/btn_sd_normal);} \

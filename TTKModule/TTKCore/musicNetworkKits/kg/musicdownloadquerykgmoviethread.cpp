@@ -284,7 +284,9 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVInfoAttribute(MusicObject::
     attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
 
     int bitRate = key["bitrate"].toInt()/1000;
-    if(bitRate <= 625)
+    if(bitRate <= 375)
+        attr.m_bitrate = MB_250;
+    else if(bitRate > 375 && bitRate <= 625)
         attr.m_bitrate = MB_500;
     else if(bitRate > 625 && bitRate <= 875)
         attr.m_bitrate = MB_750;

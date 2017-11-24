@@ -88,6 +88,7 @@
 #define MB_96           96
 #define MB_128          128
 #define MB_192          192
+#define MB_250          250
 #define MB_320          320
 #define MB_500          500
 #define MB_750          750

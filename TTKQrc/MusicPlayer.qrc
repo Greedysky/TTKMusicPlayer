@@ -650,6 +650,8 @@
         <file alias="lb_big_hover">../TTKResource/video/lb_big_hover.png</file>
         <file alias="lb_big_on_normal">../TTKResource/video/lb_big_on_normal.png</file>
         <file alias="lb_big_on_hover">../TTKResource/video/lb_big_on_hover.png</file>
+        <file alias="btn_st_normal">../TTKResource/video/btn_st_normal.png</file>
+        <file alias="btn_st_hover">../TTKResource/video/btn_st_hover.png</file>
         <file alias="btn_sd_normal">../TTKResource/video/btn_sd_normal.png</file>
         <file alias="btn_sd_hover">../TTKResource/video/btn_sd_hover.png</file>
         <file alias="btn_hd_normal">../TTKResource/video/btn_hd_normal.png</file>

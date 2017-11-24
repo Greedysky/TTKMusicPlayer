@@ -32,12 +32,14 @@ void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformat
             QDomNode node = infolist.at(j);
             if(node.nodeName() == "bitrate")
             {
-                int bit = node.toElement().text().toInt();
-                if(bit <= 625)
+                int bitRate = node.toElement().text().toInt();
+                if(bitRate <= 375)
+                    attr.m_bitrate = MB_250;
+                else if(bitRate > 375 && bitRate <= 625)
                     attr.m_bitrate = MB_500;
-                else if(bit > 625 && bit <= 875)
+                else if(bitRate > 625 && bitRate <= 875)
                     attr.m_bitrate = MB_750;
-                else if(bit > 875)
+                else if(bitRate > 875)
                     attr.m_bitrate = MB_1000;
             }
             else if(node.nodeName() == "length")

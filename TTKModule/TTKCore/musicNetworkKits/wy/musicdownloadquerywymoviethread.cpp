@@ -183,13 +183,15 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
             value = value["brs"].toMap();
             foreach(const QString &key, value.keys())
             {
-                int bit = key.toInt();
+                int bitRate = key.toInt();
                 MusicObject::MusicSongAttribute attr;
-                if(bit <= 625)
+                if(bitRate <= 375)
+                    attr.m_bitrate = MB_250;
+                else if(bitRate > 375 && bitRate <= 625)
                     attr.m_bitrate = MB_500;
-                else if(bit > 625 && bit <= 875)
+                else if(bitRate > 625 && bitRate <= 875)
                     attr.m_bitrate = MB_750;
-                else if(bit > 875)
+                else if(bitRate > 875)
                     attr.m_bitrate = MB_1000;
 
                 attr.m_url = value[key].toString();

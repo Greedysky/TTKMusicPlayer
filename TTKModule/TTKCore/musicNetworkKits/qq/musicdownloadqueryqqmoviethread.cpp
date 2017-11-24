@@ -249,7 +249,9 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                 attr.m_format = "mp4";
 
                 int bitRate = flValue["br"].toInt()*10;
-                if(bitRate <= 625)
+                if(bitRate <= 375)
+                    attr.m_bitrate = MB_250;
+                else if(bitRate > 375 && bitRate <= 625)
                     attr.m_bitrate = MB_500;
                 else if(bitRate > 625 && bitRate <= 875)
                     attr.m_bitrate = MB_750;
