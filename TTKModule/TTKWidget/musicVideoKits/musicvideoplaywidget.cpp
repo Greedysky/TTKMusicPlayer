@@ -276,6 +276,12 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
     m_videoTable->startSearchQuery(name);
 }
 
+void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
+{
+    switchToSearchTable();
+    m_videoTable->startSearchSingleQuery(name);
+}
+
 void MusicVideoPlayWidget::mvURLChanged(const QString &data)
 {
     MusicApplication *w = MusicApplication::instance();

@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYKGTHREAD_H
-#define MUSICDOWNLOADQUERYKGTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWYMOVIETHREAD_H
+#define MUSICDOWNLOADQUERYWYMOVIETHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,27 +19,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadkginterface.h"
+#include "musicdownloadwyinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to kugou query download data from net.
+/*! @brief The class to wangyi mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGThread : public MusicDownLoadQueryThreadAbstract,
-                                                        private MusicDownLoadKGInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYMovieThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYMovieThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
      * Start to search data from name and type.
      */
@@ -59,6 +57,12 @@ public Q_SLOTS:
      */
     void singleDownLoadFinished();
 
+protected:
+    /*!
+     * Start to search mv list by id.
+     */
+    void startMVListQuery(int id);
+
 };
 
-#endif // MUSICDOWNLOADQUERYKGTHREAD_H
+#endif // MUSICDOWNLOADQUERYWYMOVIETHREAD_H

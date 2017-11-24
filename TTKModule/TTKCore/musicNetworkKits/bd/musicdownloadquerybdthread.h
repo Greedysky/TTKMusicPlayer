@@ -58,21 +58,6 @@ public Q_SLOTS:
      */
     void singleDownLoadFinished();
 
-protected:
-    /*!
-     * Read mv tags(size\bitrate\url) from query results.
-     */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id);
-    /*!
-     * Read mv infos from query results.
-     */
-    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info, const QString &id);
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                      const QString &url, const QString &duration);
-
 };
 
 #endif // MUSICDOWNLOADQUERYBDTHREAD_H

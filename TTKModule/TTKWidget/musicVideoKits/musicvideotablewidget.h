@@ -45,6 +45,10 @@ public:
      */
     virtual void startSearchQuery(const QString &text) override;
     /*!
+     * Start search query by given id.
+     */
+    void startSearchSingleQuery(const QString &text);
+    /*!
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override;

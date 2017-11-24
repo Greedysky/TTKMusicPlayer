@@ -82,56 +82,53 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                     musicInfo.m_songName = value["SONGNAME"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toString().toInt()*1000);
 
-                    if(m_currentType != MovieQuery)
+                    musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
+                    musicInfo.m_artistId = value["ARTISTID"].toString();
+                    musicInfo.m_albumId = value["ALBUMID"].toString();
+                    musicInfo.m_albumName = value["ALBUM"].toString();
+
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    ///music normal songs urls
+                    readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
+                    if(musicInfo.m_songAttrs.isEmpty())
                     {
-                        musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
-                        musicInfo.m_artistId = value["ARTISTID"].toString();
-                        musicInfo.m_albumId = value["ALBUMID"].toString();
-                        musicInfo.m_albumName = value["ALBUM"].toString();
-
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                        ///music normal songs urls
-                        readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-
-                        if(musicInfo.m_songAttrs.isEmpty())
-                        {
-                            continue;
-                        }
-                        ////////////////////////////////////////////////////////////
-                        for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
-                        {
-                            MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        }
-                        ////////////////////////////////////////////////////////////
-                        if(!artistFlag)
-                        {
-                            artistFlag = true;
-                            MusicPlaylistItem info;
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            getDownLoadIntro(&info);
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            info.m_id = musicInfo.m_artistId;
-                            info.m_name = musicInfo.m_singerName;
-                            info.m_coverUrl = musicInfo.m_smallPicUrl;
-                            emit createArtistInfoItem(info);
-                        }
-                        ////////////////////////////////////////////////////////////
-                        MusicSearchedItem item;
-                        item.m_songName = musicInfo.m_songName;
-                        item.m_singerName = musicInfo.m_singerName;
-                        item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
-                        item.m_type = mapQueryServerString();
-                        emit createSearchedItems(item);
-                        m_musicSongInfos << musicInfo;
+                        continue;
                     }
+                    ////////////////////////////////////////////////////////////
+                    for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
+                    {
+                        MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    }
+                    ////////////////////////////////////////////////////////////
+                    if(!artistFlag)
+                    {
+                        artistFlag = true;
+                        MusicPlaylistItem info;
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        getDownLoadIntro(&info);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        info.m_id = musicInfo.m_artistId;
+                        info.m_name = musicInfo.m_singerName;
+                        info.m_coverUrl = musicInfo.m_smallPicUrl;
+                        emit createArtistInfoItem(info);
+                    }
+                    ////////////////////////////////////////////////////////////
+                    MusicSearchedItem item;
+                    item.m_songName = musicInfo.m_songName;
+                    item.m_singerName = musicInfo.m_singerName;
+                    item.m_albumName = musicInfo.m_albumName;
+                    item.m_time = musicInfo.m_timeLength;
+                    item.m_type = mapQueryServerString();
+                    emit createSearchedItems(item);
+                    m_musicSongInfos << musicInfo;
                 }
             }
         }

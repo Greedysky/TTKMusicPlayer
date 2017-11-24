@@ -58,12 +58,6 @@ public Q_SLOTS:
      */
     void singleDownLoadFinished();
 
-protected:
-    /*!
-     * Start to search mv list by id.
-     */
-    void startMVListQuery(int id);
-
 };
 
 #endif // MUSICDOWNLOADQUERYWYTHREAD_H

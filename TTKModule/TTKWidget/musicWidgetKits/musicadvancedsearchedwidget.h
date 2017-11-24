@@ -65,7 +65,7 @@ protected:
 
     QTabWidget *m_tabWidget;
     MusicLocalSongSearchEdit *m_songEdit, *m_artistEdit;
-    MusicLocalSongSearchEdit *m_albumEdit, *m_playlistEdit;
+    MusicLocalSongSearchEdit *m_albumEdit, *m_playlistEdit, *m_movieEdit;
 
 };
 

@@ -129,7 +129,7 @@ void MusicSongsListAbstractTableWidget::musicSongMovieFound()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getCurrentSongName(), QString());
 }
 
 void MusicSongsListAbstractTableWidget::musicAlbumFoundWidget()
@@ -208,7 +208,7 @@ void MusicSongsListAbstractTableWidget::musicSongMovieFoundPy()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getSongName(m_playRowIndex) );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getSongName(m_playRowIndex), QString());
 }
 
 void MusicSongsListAbstractTableWidget::musicSimilarFoundWidgetPy()

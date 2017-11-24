@@ -1,4 +1,5 @@
 #include "musicvideotablewidget.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
@@ -35,10 +36,33 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    MusicQueryItemTableWidget::startSearchQuery(text);
+    ////////////////////////////////////////////////////////////////////////////////////
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
+    ////////////////////////////////////////////////////////////////////////////////////
     m_loadingLabel->show();
     m_loadingLabel->start();
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+}
+
+void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
+{
+    if(!M_NETWORK_PTR->isOnline())
+    {   //no network connection
+        clearAllItems();
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        return;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
+    ////////////////////////////////////////////////////////////////////////////////////
+    m_loadingLabel->show();
+    m_loadingLabel->start();
+    m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
+    m_downLoadManager->startToSingleSearch(text);
 }
 
 void MusicVideoTableWidget::musicDownloadLocal(int row)

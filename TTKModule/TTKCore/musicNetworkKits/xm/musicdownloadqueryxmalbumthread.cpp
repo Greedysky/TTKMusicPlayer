@@ -92,40 +92,37 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                     musicInfo.m_songName = value["songName"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
-                    if(m_currentType != MovieQuery)
+                    musicInfo.m_songId = value["songId"].toString();
+                    musicInfo.m_albumId = value["albumId"].toString();
+                    musicInfo.m_artistId = value["artistId"].toString();
+                    musicInfo.m_albumName = value["albumName"].toString();
+                    musicInfo.m_smallPicUrl = value["albumLogo"].toString();
+
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
+                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
+                    if(musicInfo.m_songAttrs.isEmpty())
                     {
-                        musicInfo.m_songId = value["songId"].toString();
-                        musicInfo.m_albumId = value["albumId"].toString();
-                        musicInfo.m_artistId = value["artistId"].toString();
-                        musicInfo.m_albumName = value["albumName"].toString();
-                        musicInfo.m_smallPicUrl = value["albumLogo"].toString();
-
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-
-                        if(musicInfo.m_songAttrs.isEmpty())
-                        {
-                            continue;
-                        }
-                        ////////////////////////////////////////////////////////////
-                        if(!albumFlag)
-                        {
-                            albumFlag = true;
-                            info.m_id = musicInfo.m_albumId;
-                            info.m_name = musicInfo.m_singerName;
-                            emit createAlbumInfoItem(info);
-                        }
-                        ////////////////////////////////////////////////////////////
-                        MusicSearchedItem item;
-                        item.m_songName = musicInfo.m_songName;
-                        item.m_singerName = musicInfo.m_singerName;
-                        item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
-                        item.m_type = mapQueryServerString();
-                        emit createSearchedItems(item);
-                        m_musicSongInfos << musicInfo;
+                        continue;
                     }
+                    ////////////////////////////////////////////////////////////
+                    if(!albumFlag)
+                    {
+                        albumFlag = true;
+                        info.m_id = musicInfo.m_albumId;
+                        info.m_name = musicInfo.m_singerName;
+                        emit createAlbumInfoItem(info);
+                    }
+                    ////////////////////////////////////////////////////////////
+                    MusicSearchedItem item;
+                    item.m_songName = musicInfo.m_songName;
+                    item.m_singerName = musicInfo.m_singerName;
+                    item.m_albumName = musicInfo.m_albumName;
+                    item.m_time = musicInfo.m_timeLength;
+                    item.m_type = mapQueryServerString();
+                    emit createSearchedItems(item);
+                    m_musicSongInfos << musicInfo;
                 }
             }
         }

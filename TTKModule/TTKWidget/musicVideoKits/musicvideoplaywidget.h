@@ -106,6 +106,10 @@ public Q_SLOTS:
      */
     void videoResearchButtonSearched(const QString &name);
     /*!
+     * Video search query by given id.
+     */
+    void startSearchSingleQuery(const QString &name);
+    /*!
      * Set current media url by selected quality.
      */
     void mvURLChanged(const QString &data);

@@ -9,6 +9,14 @@
 #include "musicdownloadqueryqqthread.h"
 #include "musicdownloadquerywsthread.h"
 
+#include "musicdownloadquerywymoviethread.h"
+#include "musicdownloadqueryxmmoviethread.h"
+#include "musicdownloadquerykgmoviethread.h"
+#include "musicdownloadquerykwmoviethread.h"
+#include "musicdownloadquerybdmoviethread.h"
+#include "musicdownloadqueryqqmoviethread.h"
+#include "musicdownloadquerywsmoviethread.h"
+
 #include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
 #include "musicdownloadquerykgalbumthread.h"
@@ -92,6 +100,27 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
         default: thread = new MusicDownLoadQueryWYThread(parent);
     }
     M_LOGGER_INFO(QString("getQueryThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getMovieThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicDownLoadQueryWYMovieThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQMovieThread(parent); break;
+        case 2:  thread = new MusicDownLoadQueryXMMovieThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryBDMovieThread(parent); break;
+        case 4:  thread = new MusicDownLoadQueryKWMovieThread(parent); break;
+        case 5:  thread = new MusicDownLoadQueryKGMovieThread(parent); break;
+        case 6:  thread = new MusicDownLoadQueryWSMovieThread(parent); break;
+        case 7:  thread = new MusicDownLoadQueryWSMovieThread(parent); break;
+        case 8:  thread = new MusicDownLoadQueryWSMovieThread(parent); break;
+        default: thread = new MusicDownLoadQueryWYMovieThread(parent);
+    }
+    M_LOGGER_INFO(QString("getMovieThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

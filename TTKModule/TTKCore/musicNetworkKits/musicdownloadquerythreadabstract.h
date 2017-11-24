@@ -146,6 +146,10 @@ public:
     /*!
      * Return the current song query type.
      */
+    inline void setQueryType(QueryType type) { m_currentType = type;}
+    /*!
+     * Return the current song query type.
+     */
     inline QueryType getQueryType() const { return m_currentType;}
     /*!
      * Return the current song query server.

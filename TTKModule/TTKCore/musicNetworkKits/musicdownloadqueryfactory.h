@@ -45,6 +45,10 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
     /*!
+     * Get movie thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getMovieThread(QObject *parent = 0);
+    /*!
      * Get album thread object by type.
      */
     MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);

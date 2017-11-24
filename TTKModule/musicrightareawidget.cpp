@@ -607,7 +607,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
     emit updateBackgroundTheme();
 }
 
-void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
+void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name, const QString &id)
 {
     if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
     {
@@ -617,7 +617,8 @@ void MusicRightAreaWidget::musicVideoButtonSearched(const QString &name)
     {
         musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
     }
-    m_videoPlayerWidget->videoResearchButtonSearched(name);
+
+    id.isEmpty() ? m_videoPlayerWidget->videoResearchButtonSearched(name) : m_videoPlayerWidget->startSearchSingleQuery(id);
 }
 
 void MusicRightAreaWidget::musicVideoSetPopup(bool popup)

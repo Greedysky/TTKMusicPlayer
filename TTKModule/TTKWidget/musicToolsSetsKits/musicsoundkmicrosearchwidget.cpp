@@ -1,5 +1,5 @@
 #include "musicsoundkmicrosearchwidget.h"
-#include "musicdownloadquerykwthread.h"
+#include "musicdownloadquerykwmoviethread.h"
 #include "musicdownloadquerybdlearnthread.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicgiflabelwidget.h"
@@ -50,7 +50,7 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
     m_loadingLabel->start();
     if(m_queryMv)
     {
-        MusicDownLoadQueryKWThread *d = new MusicDownLoadQueryKWThread(this);
+        MusicDownLoadQueryKWMovieThread *d = new MusicDownLoadQueryKWMovieThread(this);
         d->setQueryExtraMovie(false);
         connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
         setQueryInput( d );

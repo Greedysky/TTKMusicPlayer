@@ -218,7 +218,7 @@ public Q_SLOTS:
     /*!
      * Video button clicked by name to search.
      */
-    void musicVideoButtonSearched(const QString &name);
+    void musicVideoButtonSearched(const QString &name, const QString &id);
     /*!
      * Set video widget popop or not.
      */

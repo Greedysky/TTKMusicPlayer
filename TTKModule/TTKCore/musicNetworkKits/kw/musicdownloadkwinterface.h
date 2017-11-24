@@ -35,6 +35,7 @@ const QString KW_SONG_INFO_URL     = "SW50ZXhadlpVQ1RHMjlkZ0ZLbjlYdnR5TEZmVENaM3
 const QString KW_ARTIST_URL        = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
 const QString KW_ARTIST_INFO_URL   = "QW1leS9malJmT2gvWE41OURPbUREVGE5M2Q5ZzlpdUFPWWdreFVaSm0va2p4QlcvblZwdVVJaElwMUZhN1VvbHAvMytVYW44NmNFczl1UjM=";
 /////////////////////////////////////////////////////////////////////////////
+const QString KW_MV_HOME_URL       = "a3gvOXZGUzF6Sko4TDlWcVRBMFMrdy8yMURLS0JFR0xFVEdJcVE9PQ==";
 const QString KW_MV_ATTR_URL       = "OUptM3B0M3I1SFNvWmZkaE1KNHVPRUhrUkVDa1BPOUpWdmxIcVBVeVhvcHNZR1FEbG1RdjhscjBnVjA9";
 ///////////////////////////////////////////////////////////////////////////
 const QString KW_SG_COMMIT_URL     = "R29Ob2xrOUcxbXhpMlF6YmRzZ2kxZVFrRmJPcEdzbk0weUNQazNGUEFXSjl4QXdhWU1kUXdNQ3ExOWxGRE5uOERTblpCNk9pZWdnVmRLTHJkK25GckxxbzhpYmh3UHVTbi9DK1RoYm5qaVdZV2o4MXo2cXBwL1ZLTFprY0dyZENDUDhiT0E9PQ==";

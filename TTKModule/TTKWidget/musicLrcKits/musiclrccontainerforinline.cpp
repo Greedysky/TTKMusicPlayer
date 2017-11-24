@@ -394,7 +394,7 @@ void MusicLrcContainerForInline::musicSongMovieClicked()
     {
         MusicLeftAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName, QString());
 }
 
 void MusicLrcContainerForInline::updateAnimationLrc()

@@ -84,12 +84,6 @@ public Q_SLOTS:
      */
     void singleDownLoadFinished();
 
-protected:
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info);
-
 };
 
 #endif // MUSICDOWNLOADQUERYKWTHREAD_H

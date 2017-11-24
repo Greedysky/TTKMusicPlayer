@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYKGTHREAD_H
-#define MUSICDOWNLOADQUERYKGTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWSMOVIETHREAD_H
+#define MUSICDOWNLOADQUERYWSMOVIETHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,46 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadkginterface.h"
+#include "musicdownloadwsinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to kugou query download data from net.
+/*! @brief The class to wusing mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGThread : public MusicDownLoadQueryThreadAbstract,
-                                                        private MusicDownLoadKGInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSMovieThread : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWSMovieThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
      * Start to search data from name and type.
      */
     virtual void startToSearch(QueryType type, const QString &text) override;
-    /*!
-     * Start to search data by given id.
-     */
-    virtual void startToSingleSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
-    /*!
-     * Download single data from net finished.
-     */
-    void singleDownLoadFinished();
 
 };
 
-#endif // MUSICDOWNLOADQUERYKGTHREAD_H
+#endif // MUSICDOWNLOADQUERYWSMOVIETHREAD_H

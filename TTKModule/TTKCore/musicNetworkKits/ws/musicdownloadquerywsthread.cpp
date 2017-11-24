@@ -1,6 +1,4 @@
 #include "musicdownloadquerywsthread.h"
-#include "musicdownloadqueryyytthread.h"
-#include "musicsemaphoreloop.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -79,57 +77,38 @@ void MusicDownLoadQueryWSThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    if(m_currentType != MovieQuery)
+                    MusicObject::MusicSongInformation musicInfo;
+                    musicInfo.m_songName = value["songName"].toString();
+                    musicInfo.m_songId = QString::number(value["songId"].toInt());
+                    musicInfo.m_lrcUrl = "-";
+                    musicInfo.m_timeLength = "-";
+
+                    musicInfo.m_artistId = QString::number(value["singerId"].toULongLong());
+                    musicInfo.m_singerName = value["singer"].toString();
+
+                    if(!m_querySimplify)
                     {
-                        MusicObject::MusicSongInformation musicInfo;
-                        musicInfo.m_songName = value["songName"].toString();
-                        musicInfo.m_songId = QString::number(value["songId"].toInt());
-                        musicInfo.m_lrcUrl = "-";
-                        musicInfo.m_timeLength = "-";
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        readFromMusicSongAttribute(&musicInfo, m_querySearchType, m_searchQuality, m_queryAllRecords);
+                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
-                        musicInfo.m_artistId = QString::number(value["singerId"].toULongLong());
-                        musicInfo.m_singerName = value["singer"].toString();
-
-                        if(!m_querySimplify)
+                        if(musicInfo.m_songAttrs.isEmpty())
                         {
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            readFromMusicSongAttribute(&musicInfo, m_querySearchType, m_searchQuality, m_queryAllRecords);
-                            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-
-                            if(musicInfo.m_songAttrs.isEmpty())
-                            {
-                                continue;
-                            }
-
-                            MusicSearchedItem item;
-                            item.m_songName = musicInfo.m_songName;
-                            item.m_singerName = musicInfo.m_singerName;
-                            item.m_albumName = musicInfo.m_albumName;
-                            item.m_time = musicInfo.m_timeLength;
-                            item.m_type = mapQueryServerString();
-                            emit createSearchedItems(item);
+                            continue;
                         }
-                        m_musicSongInfos << musicInfo;
+
+                        MusicSearchedItem item;
+                        item.m_songName = musicInfo.m_songName;
+                        item.m_singerName = musicInfo.m_singerName;
+                        item.m_albumName = musicInfo.m_albumName;
+                        item.m_time = musicInfo.m_timeLength;
+                        item.m_type = mapQueryServerString();
+                        emit createSearchedItems(item);
                     }
-                    else
-                    {
-                        //mv
-                    }
+                    m_musicSongInfos << musicInfo;
                 }
             }
         }
-    }
-
-    ///extra yyt movie
-    if(m_queryExtraMovie && m_currentType == MovieQuery)
-    {
-        MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(MusicSearchedItem)), SIGNAL(createSearchedItems(MusicSearchedItem)));
-        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        yyt->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
-        loop.exec();
-        m_musicSongInfos << yyt->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

@@ -19,34 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractxml.h"
 #include "musicdownloadxminterface.h"
 #include "musicdownloadquerythreadabstract.h"
-
-/*! @brief The class to xiami query mv info xml data from net.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicXMMVInfoConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicXMMVInfoConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
-    /*!
-     * Read mv info datas into xml file.
-     */
-    void readMVInfoConfig(MusicObject::MusicSongInformation *info);
-
-};
-
 
 /*! @brief The class to xiami query download data from net.
  * @author Greedysky <greedysky@163.com>
@@ -84,17 +58,6 @@ public Q_SLOTS:
      * Download single data from net finished.
      */
     void singleDownLoadFinished();
-
-protected:
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info);
-    /*!
-     * Read mv info attribute from query results.
-     */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                      const QString &vid, const QString &uid);
 
 };
 

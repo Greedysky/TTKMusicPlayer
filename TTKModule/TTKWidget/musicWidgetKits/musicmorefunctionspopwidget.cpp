@@ -70,7 +70,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
             }
         case 8:
             {
-                MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
+                MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName, QString());
                 break;
             }
         default: break;

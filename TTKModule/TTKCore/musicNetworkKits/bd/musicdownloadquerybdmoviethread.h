@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYKGTHREAD_H
-#define MUSICDOWNLOADQUERYKGTHREAD_H
+#ifndef MUSICDOWNLOADQUERYBDMOVIETHREAD_H
+#define MUSICDOWNLOADQUERYBDMOVIETHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,27 +19,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadkginterface.h"
+#include "musicdownloadbdinterface.h"
 #include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to kugou query download data from net.
+/*! @brief The class to baidu mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGThread : public MusicDownLoadQueryThreadAbstract,
-                                                        private MusicDownLoadKGInterface
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryBDMovieThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadBDInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryBDMovieThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
      * Start to search data from name and type.
      */
@@ -59,6 +58,21 @@ public Q_SLOTS:
      */
     void singleDownLoadFinished();
 
+protected:
+    /*!
+     * Read mv tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
+    /*!
+     * Read mv infos from query results.
+     */
+    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info, const QString &id);
+    /*!
+     * Read mv info attribute from query results.
+     */
+    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
+                                      const QString &url, const QString &duration);
+
 };
 
-#endif // MUSICDOWNLOADQUERYKGTHREAD_H
+#endif // MUSICDOWNLOADQUERYBDMOVIETHREAD_H
