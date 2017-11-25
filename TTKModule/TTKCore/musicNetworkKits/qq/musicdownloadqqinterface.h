@@ -22,6 +22,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+///////////////////////////////////////////////////////////////////////////
+const QString QQ_UA_URL_1           = "NW9YVlRXYnBnNlBFS3Ardi9VR295R0l2aW43U3JvRlpWc1AxMkI2K1MvN3RMVjdsOGhZMVlPRmIrais2ajBJUW1UbmxBRjlyS25WNHRyU0FYbFFMeWFpMUo5YWxFNnkweHd6RERnPT0=";
 ///////////////////////////////////////////////////////////////////////////////
 const QString QQ_ALBUM_URL          = "THpHd1YyR3FTL3RCQ2pLMFVwSTlrTEc1WUszYXBKNWFqTHRSMXMrSzJIdUJURWx3REoyOWZ0dmRxRXpmSGdaTlRGMTltYmdmZlU4RkFMbWRuTVhtZ0VBWmRVM3A1eVgxVVgzcUZwYkloQzdSNWJSL3VjTGZTNTRBbWJWekRxZ1NXYkdBR1NocW40cm9wRVYrU1EweVN1MHZFeVliM09zUmQ5eHI1RzBUZjU4by9MZVAyZnh1dXR1QkJhdE8zQnk5SlFCcm1MZHVabTRSTkFJSGhmNEgyQVlCc1o3UjR0VGQ=";
 ///////////////////////////////////////////////////////////////////////////////

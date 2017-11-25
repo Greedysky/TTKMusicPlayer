@@ -22,6 +22,8 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+///////////////////////////////////////////////////////////////////////////
+const QString KW_UA_URL_1          = "QTllV1FYb3p4ZmZVNDArOW1uSGQrUGp2clowek55RmxrV2kzK3djN2dpb3J4YUlCbHpHSU9FNkJMREtSWDdVdWlVeVRHTnpTQUZ5TjE2RDlLb3lIeFNsMWVHMXBkWEsxSVpIRU85Ui8wVzhEbm80dUdQdHUxc0EzL1VhRHh5WmtxWlpJR1BqR3kzYkMycXVhQWljSmE3K1B3ZFd5dEdWMlE1UGhtWjBzOXJDcVRsN0lrL0d4V2ExdFJjQWtxMy9IbUN4ZkZ1NWhsY0ZqY3ZGcg==";
 /////////////////////////////////////////////////////////////////////////////
 const QString KW_ALBUM_URL         = "T0RHWW1RYlRFWi9MdDNRSjh6UXhIUHFqYjR3ZDdHK3VLbTRxUnRXV1RpaG1VWWpYb0hmY2dxaWJ6aWlETThmN2ltYVNDSVRkOXNHZVRmNXJYcDRXM3UvckFEVXJLR3JQbmZmMjNDR1ZxT1ZPbjgzNXV4bWdyM0J2ZTNvNFViVGFTcDdOWjg1NytON3AzcU9Kbjc4YWJNRTFYaEdsMDJJa001eWFjS1ZhcC9oeVNEKzhRYnNkTmFiMml6VDc1ZXJ4bzNScVh5Z0dWR1E9";
 const QString KW_ALBUM_COVER_URL   = "bnkrUTZjQmxjcFVtVXZzR1M5c3hBN25MbWx3aHZpbE50aHNQVkRZQ0dKdXdLZUh1TTA5aWJnPT0=";

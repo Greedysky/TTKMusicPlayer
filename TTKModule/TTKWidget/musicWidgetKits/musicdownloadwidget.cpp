@@ -250,7 +250,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
         QString filename = m_downloadThread->getSearchedText();
         QString artistName = MusicUtils::String::artistName(filename);
         QString songName = MusicUtils::String::songName(filename);
-        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
+        MusicObject::MusicSongInformation musicSongInfo;
         foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
@@ -272,6 +272,12 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         queryAllFinishedMusic(musicSongInfo.m_songAttrs);
+    }
+    else
+    {
+        close();
+        MusicMessageBox message(tr("No Resource found!"));
+        message.exec();
     }
 }
 
@@ -317,6 +323,12 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     if(!musicSongInfo.m_songName.isEmpty() || !musicSongInfo.m_singerName.isEmpty())
     {
         queryAllFinishedMovie(musicSongInfo.m_songAttrs);
+    }
+    else
+    {
+        close();
+        MusicMessageBox message(tr("No Resource found!"));
+        message.exec();
     }
 }
 

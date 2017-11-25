@@ -45,7 +45,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
 
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
-    request->setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) XIAMI-MUSIC/3.0.5 Chrome/56.0.2924.87 Electron/1.6.6 Safari/537.36");
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info,
@@ -112,6 +112,16 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toInt());
     attr.m_format = key["format"].toString();
     attr.m_bitrate = bitrate;
+
+    if(attr.m_url.isEmpty())
+    {
+        attr.m_url = key["url"].toString();
+    }
+    if(key["fileSize"].toInt() == 0)
+    {
+        attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
+    }
+
     info->m_songAttrs.append(attr);
 }
 

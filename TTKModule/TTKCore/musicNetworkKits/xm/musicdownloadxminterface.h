@@ -23,6 +23,8 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
+const QString XM_UA_URL_1              = "TzVnZHRZRDZUWmxoeXA3aG5xai9Ib2JUZUdCTlhiZUVqWVR1QndjMU9WcGs0c3lUSGpoUHZZVzdnYWFpUUJ1NG1obktHQndrblVDUTdxNS9jcnZCY3kvNE9TRjlHai9mZHlLbU02VHdiOFpzZWZJa3hqcHpCaGpvUmJjTGJmelBjb3hmL2pzMmlVeEV3RFFoc2x3Szh4TFVXUnRkSlBQYlI3S3A1L3JJRkZFR1dYbTNDL1Z0aVRIVFZoU3pWVWtxMW5MSVhGbTFVemM9";
+///////////////////////////////////////////////////////////////////////////
 const QString XM_COOKIE_URL            = "UTZNdnlVUzlVcmd4U0xWRFZmRTNuRE5NM0NaallXZ2t6RTlpOXI4NGRyVHNSY1ZLNXBkVFFaNU5wZFdFL1pzTkdFUnFMSk54dTZwVnU4N0VTREdhbE5vU1ZWbkZ0WVRaU1E2enhtZkkyQlBwcVpwbCtNejJRUT09";
 const QString XM_QUERY_DATA_URL        = "c2VVR0g1YU44QkhlRnlHT3pkM1hvL0ZpMW0zMW40TGtCRWR1Ti9ta1lBL3AvU2hHcHFVMWlaK3FIaWhDY1JPVXhkL2pGc0ZFNEJQR2t6cFB5SXQ1VGw0V2JYR1hIcnNCdDhKQmxEeVU1V2lhclhHb0hDN3JPNTliNmRpU1crcVVIcHdyKzEyOHdqRWpMcThKOG8yeFNuWkVDMitaMEdSdVc5eC9sTG1le"
                                          "DdPZG42b0xYT1hsVFc0Wld1NzA0TERqRWk0L0R6cjJSd29iT3VwbC80bEhTajNUcTJrZGJ3bDIrV0NScGM2UzZ4U25LZUszZjk2ZjdzV3p0b3hUUkhVZzZCLzczNUdZNG05NGJ3NGVlRldQL3BnVnBGaExZZTc2VXRRSUNLMk0weHIrcTl2VWtjMWNmMWdWSXAyTVFMcEw5Q1JQV1BDM25aYVBCUnZtMT"

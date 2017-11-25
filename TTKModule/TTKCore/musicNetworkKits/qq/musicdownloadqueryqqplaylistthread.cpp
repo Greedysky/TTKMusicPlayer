@@ -48,6 +48,7 @@ void MusicDownLoadQueryQQPlaylistThread::startToPage(int offset)
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -73,6 +74,7 @@ void MusicDownLoadQueryQQPlaylistThread::startToSearch(const QString &playlist)
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -97,6 +99,7 @@ void MusicDownLoadQueryQQPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -320,6 +323,7 @@ void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -371,5 +375,4 @@ void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
             }
         }
     }
-
 }
