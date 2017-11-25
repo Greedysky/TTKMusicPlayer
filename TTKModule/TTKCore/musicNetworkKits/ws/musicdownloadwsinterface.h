@@ -23,6 +23,8 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
+const QString WS_UA_URL_1          = "SXZ3dittUUxJTXgzckhUMHR5ZWpLcHpsbzNRTHAvMkNVMTdLdmYwQUlrbEg2d2lXRWpYeGlzTzVvdW1SRGIwVjhnVFYxZFZHaFpWd1BzV3I4VVlNT0U0UDU3ZlVUeXRHTkMra0hWK0FWV3BiRlZrMFBrNlI0c0hzdXUwNXB1dTFWaktxVWdpVnh5TUVTZUNCV2dpZjVZRnA3NGlzeklOZVFHR21EMFhKV2R5dVBsOS9YRGJrL2hLeTVVZWNEaDVjVkZ0WjdBPT0=";
+///////////////////////////////////////////////////////////////////////////
 const QString WS_SONG_SEARCH_URL   = "Si9xUjY1aTFoejlNUjNwSUNlUkpjWkJSRGxOZFZFMDdMQVYzWjFTa2lHYTkzanJtWlcwOUNVY1pwOTkxUjhKMDdZU3RXYnVvN3dNd0xPaGExVzVYS2dtdTBrSnl3L3FHMnh3azRxMkNpaWFadlFDckMvdWl6WGRYN1ZQbmpjYW9uRG1vS3lWUGtrNXJwN0pN";
 const QString WS_SONG_URL          = "WnFBaUluSUhRL1FlTk1valhqMnZ6azhCUmNDano1MGk0WUNxU3AyU1JWMFZLZGpCVGtTeDlQVkxGVEczNk1TNlcrUWpzRzBNeFpyRnR5aW5RbmJIZ3N2dURkajVtdWhCU0k5Qk5IUm1YSG1hNVlhNVRWa0dEQTluL2hmd2ZOSzR6NFNSL2FRa1VLeFU3SlpvUGZRdDF0ZUhXVm0wSnZ5M1dXSUNvNUVTb3U1ZjNka3lRYWxZSDBTUU1Pdyt1RG03RGpGalcwdDVWcFMyV1pJWkVPb0ZGZXVZN2g5Zm50QWlwak5KVWkrNUFMZjA4aktWenl0RVVvWldsT05Yb1BjUTlPdjl1eDlaRFhicVVCQUlDN2Qxamc9PQ==";
 ///////////////////////////////////////////////////////////////////////////

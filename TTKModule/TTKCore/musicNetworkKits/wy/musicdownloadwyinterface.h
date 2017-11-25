@@ -23,8 +23,10 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
-const QByteArray WY_BASE_URL       = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
-const QByteArray WY_ENCRYPT_STRING = "3go8&$8*3*3h0k(2)2";
+const QString WY_UA_URL_1          = "dForTFc0SlJGQVdFQ2tqbUUydW0yeStRTXZLdTM3YjdCS0F5OVVFb2FQem5wTE5YRE1CNUpSSzlPSGxkKzNXVG0wNXo3aVphQnU1QmIxaElvOVV6djJkcmdmVjVjV2lHM21SYWM1b20zRTNuUHU2NXJ2ZWVYbUxYakRSSFprYWpDSTNOR0VESmtlMy96Skw3R0svU2RaQSt6YTQ9";
+///////////////////////////////////////////////////////////////////////////
+const QString WY_BASE_URL          = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
+const QString WY_ENCRYPT_STRING    = "3go8&$8*3*3h0k(2)2";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_ALBUM_URL         = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
 ///////////////////////////////////////////////////////////////////////////

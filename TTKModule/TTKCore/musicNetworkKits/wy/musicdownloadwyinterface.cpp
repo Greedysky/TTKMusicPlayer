@@ -17,6 +17,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -121,7 +122,7 @@ QString MusicDownLoadWYInterface::encryptedId(qlonglong id)
 
 QString MusicDownLoadWYInterface::encryptedId(const QString &string)
 {
-    QByteArray array1(WY_ENCRYPT_STRING);
+    QByteArray array1(WY_ENCRYPT_STRING.toUtf8());
     QByteArray array2 = string.toUtf8();
     int length = array1.length();
     for(int i=0; i<array2.length(); ++i)
