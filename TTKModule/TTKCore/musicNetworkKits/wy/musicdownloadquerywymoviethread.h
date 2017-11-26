@@ -25,7 +25,8 @@
 /*! @brief The class to wangyi mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYMovieThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYMovieThread : public MusicDownLoadQueryThreadAbstract,
+                                                             private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:

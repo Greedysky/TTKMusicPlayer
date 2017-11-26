@@ -19,12 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicdownloadwyinterface.h"
 #include "musicdownloaddiscoverlistthread.h"
 
 /*! @brief The class to wangyi discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicWYDiscoverListThread : public MusicDownLoadDiscoverListThread,
+                                                       private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:

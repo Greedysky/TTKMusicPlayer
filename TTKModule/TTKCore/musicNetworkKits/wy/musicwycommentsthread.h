@@ -19,12 +19,14 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicdownloadwyinterface.h"
 #include "musicdownloadcommentsthread.h"
 
 /*! @brief The class to wangyi query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYSongCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicWYSongCommentsThread : public MusicDownLoadCommentsThread,
+                                                       private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
@@ -59,7 +61,8 @@ public Q_SLOTS:
 /*! @brief The class to wangyi query playlist comments download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYPlaylistCommentsThread : public MusicDownLoadCommentsThread
+class MUSIC_NETWORK_EXPORT MusicWYPlaylistCommentsThread : public MusicDownLoadCommentsThread,
+                                                           private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:

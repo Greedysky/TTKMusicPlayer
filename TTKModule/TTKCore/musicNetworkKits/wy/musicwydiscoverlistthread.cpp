@@ -22,20 +22,19 @@ void MusicWYDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_TOPLIST_URL, false).arg(19723756);
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
-    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_N_URL, false),
+               MusicUtils::Algorithm::mdII(WY_SG_TOPLIST_NDT_URL, false).arg(19723756));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->get(request);
+    m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -59,9 +58,9 @@ void MusicWYDiscoverListThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value.contains("result") && value["code"].toInt() == 200)
+            if(value.contains("playlist") && value["code"].toInt() == 200)
             {
-                value = value["result"].toMap();
+                value = value["playlist"].toMap();
                 QVariantList datas = value["tracks"].toList();
                 int where = datas.count();
                 where = (where > 0) ? qrand()%where : 0;
@@ -75,7 +74,7 @@ void MusicWYDiscoverListThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    QVariantList artistsArray = value["artists"].toList();
+                    QVariantList artistsArray = value["ar"].toList();
                     foreach(const QVariant &artistValue, artistsArray)
                     {
                         if(artistValue.isNull())
