@@ -52,6 +52,10 @@ public:
      * Start to download music data.
      */
     void startToDownload();
+    /*!
+     * Set current quality.
+     */
+    void setCurrentQuality(int bitrate);
 
 public Q_SLOTS:
     /*!
@@ -112,6 +116,10 @@ public Q_SLOTS:
      * Data download is finished.
      */
     void dataDownloadFinished();
+    /*!
+     * Table widget list cell click.
+     */
+    void currentQualityChanged(int index);
 
 protected:
     QObject *m_supperClass;

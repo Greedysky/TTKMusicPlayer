@@ -155,6 +155,16 @@ QLabel{background:transparent;}</string>
      <string/>
     </property>
    </widget>
+   <widget class="QComboBox" name="qualityBox">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>7</y>
+      <width>80</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <customwidgets>
