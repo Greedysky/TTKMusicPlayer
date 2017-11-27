@@ -37,21 +37,19 @@ void MusicDownLoadQueryWYPlaylistThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_PL_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset);
     deleteAll();
     m_pageTotal = 0;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_PL_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_PL_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    request.setUrl(musicUrl);
+    makeTokenQueryQequest(&request);
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->post(request, parameter);
+    m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
