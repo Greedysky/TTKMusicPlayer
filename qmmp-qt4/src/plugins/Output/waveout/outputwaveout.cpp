@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -75,8 +75,8 @@ free_memory (void)
 
 OutputWaveOut::OutputWaveOut() : Output()
 {
-    //m_connection = 0;
-    //m_dev = 0;
+    m_totalWritten = 0;
+    m_frameSize = 0;
 }
 
 OutputWaveOut::~OutputWaveOut()
@@ -87,6 +87,7 @@ OutputWaveOut::~OutputWaveOut()
 bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
     Q_UNUSED(format);
+    m_totalWritten = 0;
     if (!waveOutGetNumDevs ())
     {
         qWarning("OutputWaveOut: no audio device found");
@@ -132,14 +133,20 @@ bool OutputWaveOut::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat f
     waveOutReset (dev);
     InitializeCriticalSection (&cs);
     configure(freq, map, Qmmp::PCM_S16LE);
-
+    m_frameSize = channels() * sampleSize();
     return true;
 }
 
 
 qint64 OutputWaveOut::latency()
 {
-    return 0;
+    MMTIME mmtime;
+    mmtime.wType = TIME_SAMPLES;
+
+    if(waveOutGetPosition(dev, &mmtime, sizeof(MMTIME)) != MMSYSERR_NOERROR)
+        return 0;
+
+    return (m_totalWritten / m_frameSize - mmtime.u.sample) * 1000 / sampleRate();
 }
 
 qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
@@ -194,6 +201,7 @@ qint64 OutputWaveOut::writeAudio(unsigned char *data, qint64 len)
     ScheduledBlocks++;
     LeaveCriticalSection (&cs);
 
+    m_totalWritten += len;
     return len;
 }
 
@@ -220,6 +228,7 @@ void OutputWaveOut::reset()
    while (PlayedWaveHeadersCount > 0)                        // free used blocks ...
       free_memory ();
    waveOutReset (dev);
+   m_totalWritten = 0;
 }
 
 void OutputWaveOut::uninitialize()
@@ -239,6 +248,7 @@ void OutputWaveOut::uninitialize()
     }
 
     DeleteCriticalSection (&cs);
+    m_totalWritten = 0;
     return;
 }
 

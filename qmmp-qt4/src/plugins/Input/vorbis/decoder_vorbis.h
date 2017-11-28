@@ -20,8 +20,8 @@ public:
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
 
 private:
     virtual qint64 read(unsigned char *data, qint64 maxSize);

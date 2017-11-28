@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,12 +25,58 @@
 #include <qmmp/output.h>
 #include "decoder_sndfile.h"
 
+// Callbacks
+
+sf_count_t sndfile_sf_vio_get_filelen(void *data)
+{
+    return ((QIODevice*) data)->size();
+}
+
+sf_count_t sndfile_sf_vio_seek(sf_count_t offset, int whence, void *data)
+{
+    QIODevice *input = (QIODevice *)data;
+    if(input->isSequential())
+        return -1;
+
+    qint64 start = 0;
+    switch (whence)
+    {
+    case SEEK_END:
+        start = input->size();
+        break;
+    case SEEK_CUR:
+        start = input->pos();
+        break;
+    case SEEK_SET:
+    default:
+        start = 0;
+    }
+
+    if(input->seek(start + offset))
+        return start + offset;
+    return -1;
+}
+
+sf_count_t sndfile_sf_vio_read(void *ptr, sf_count_t count, void *data)
+{
+    return ((QIODevice*) data)->read((char *)ptr, count);
+}
+
+sf_count_t sndfile_sf_vio_write(const void *, sf_count_t, void *)
+{
+    return -1;
+}
+
+sf_count_t sndfile_sf_vio_tell(void *data)
+{
+    return ((QIODevice*) data)->pos();
+}
+
 // Decoder class
 
-DecoderSndFile::DecoderSndFile(const QString &path)
-        : Decoder()
+DecoderSndFile::DecoderSndFile(QIODevice *input) : Decoder(input)
 {
-    m_path = path;
+    //m_path = input;
     m_bitrate = 0;
     m_totalTime = 0;
     m_sndfile = 0;
@@ -49,22 +95,27 @@ bool DecoderSndFile::initialize()
     SF_INFO snd_info;
 
     memset (&snd_info, 0, sizeof(snd_info));
-    snd_info.format=0;
-#ifdef Q_OS_WIN
-    m_sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(m_path.utf16()), SFM_READ, &snd_info);
-#else
-    m_sndfile = sf_open(m_path.toLocal8Bit().constData(), SFM_READ, &snd_info);
-#endif
+    snd_info.format = 0;
+
+    //setup callbacks
+    m_vio.get_filelen = sndfile_sf_vio_get_filelen;
+    m_vio.seek = sndfile_sf_vio_seek;
+    m_vio.read = sndfile_sf_vio_read;
+    m_vio.write = sndfile_sf_vio_write;
+    m_vio.tell = sndfile_sf_vio_tell;
+
+    m_sndfile = sf_open_virtual(&m_vio, SFM_READ, &snd_info, input());
+
     if (!m_sndfile)
     {
-        qWarning("DecoderSndFile: failed to open: %s", qPrintable(m_path));
+        qWarning("DecoderSndFile: unable to open");
         return false;
     }
 
     m_freq = snd_info.samplerate;
     int chan = snd_info.channels;
     m_totalTime = snd_info.frames * 1000 / m_freq;
-    m_bitrate =  QFileInfo(m_path).size () * 8.0 / m_totalTime + 0.5;
+    m_bitrate =  input()->size () * 8.0 / m_totalTime + 0.5;
 
     if((snd_info.format & SF_FORMAT_SUBMASK) == SF_FORMAT_FLOAT)
         sf_command (m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, NULL, SF_TRUE);
@@ -85,12 +136,12 @@ void DecoderSndFile::deinit()
     m_sndfile = 0;
 }
 
-qint64 DecoderSndFile::totalTime()
+qint64 DecoderSndFile::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderSndFile::bitrate()
+int DecoderSndFile::bitrate() const
 {
     return m_bitrate;
 }

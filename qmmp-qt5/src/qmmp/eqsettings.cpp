@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2010-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,6 +21,15 @@
 #include <QtGlobal>
 #include "eqsettings.h"
 
+EqSettings::EqSettings(const EqSettings &other)
+{
+    m_preamp = other.m_preamp;
+    m_is_enabled = other.m_is_enabled;
+    m_bands = other.m_bands;
+    for(int i = 0; i < 31; ++i)
+        m_gains[i] = other.m_gains[i];
+}
+
 EqSettings::EqSettings(int bands)
 {
     if(bands != 10 && bands != 15 && bands != 25 && bands != 31)
@@ -28,7 +37,7 @@ EqSettings::EqSettings(int bands)
         qWarning("EqSettings: invalid number of bands (%d), using 10 bands as fallback", bands);
         bands = 10;
     }
-    for(int i = 0; i < bands; ++i)
+    for(int i = 0; i < 31; ++i)
         m_gains[i] = 0;
     m_bands = bands;
     m_preamp = 0;
@@ -70,13 +79,14 @@ void EqSettings::setPreamp(double preamp)
     m_preamp = preamp;
 }
 
-void EqSettings::operator=(const EqSettings &s)
+EqSettings &EqSettings::operator=(const EqSettings &s)
 {
     for(int i = 0; i < m_bands; ++i)
         m_gains[i] = s.m_gains[i];
     m_preamp = s.m_preamp;
     m_is_enabled = s.m_is_enabled;
     m_bands = s.m_bands;
+    return *this;
 }
 
 bool EqSettings::operator==(const EqSettings &s) const

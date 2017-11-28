@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -42,8 +42,8 @@ public:
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
     qint64 read(unsigned char *audio, qint64 maxSize);
     void seek(qint64 time);
 
@@ -54,7 +54,7 @@ private:
     AVFormatContext *ic;
     AVCodecContext *c;
 
-    int m_bitrate, wma_idx;
+    int m_bitrate, audioIndex;
 
     QString m_path;
     qint64 m_totalTime;

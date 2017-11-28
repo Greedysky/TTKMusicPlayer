@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2016 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,7 +31,7 @@
 class VolumeWASAPI;
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class OutputWASAPI : public Output
 {
@@ -68,6 +68,7 @@ private:
 
     UINT32 m_bufferFrames;
     int m_frameSize;
+    QString m_id;
 
     typedef struct
     {
@@ -79,7 +80,7 @@ private:
 };
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class VolumeWASAPI : public Volume
 {

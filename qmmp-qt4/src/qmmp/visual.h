@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,13 +26,13 @@
 #include <QHash>
 #include <stddef.h>
 
-class Buffer;
-class Decoder;
-class Output;
+#define QMMP_VISUAL_NODE_SIZE 512 //samples
+
 class VisualFactory;
+class VisualBuffer;
 
 /*! @brief The Visual class provides the base interface class of visualizations.
- *  @author Ilya Kotov <forkotov02@hotmail.ru>
+ *  @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Visual : public QWidget
 {
@@ -48,23 +48,6 @@ public:
      * Destructor.
      */
     virtual ~Visual();
-    /*!
-     * Adds data for visualization.
-     * Subclass should reimplement this function.
-     * @param data Audio data.
-     * @param samples Number of samples.
-     * @param chan Number of channels.
-     */
-    virtual void add(float *data, size_t samples, int chan) = 0;
-    /*!
-     * Resets visual plugin buffers and widgets.
-     * Subclass should reimplement this function.
-     */
-    virtual void clear() = 0;
-    /*!
-     * Returns mutex pointer.
-     */
-    QMutex *mutex();
     /*!
     * Returns a list of visual factories.
     */
@@ -104,6 +87,29 @@ public:
      * Returns a pointer to a list of created visual objects.
      */
     static QList<Visual *> *visuals();
+    /*!
+     * Adds data for visualization.
+     * @param pcm Audio data.
+     * @param samples Number of samples.
+     * @param channels Number of channels.
+     * @param ts Elapsed time (in milliseconds).
+     * @param delay Audio output delay.
+     */
+    static void addAudio(float *pcm, int samples, int channels, qint64 ts, qint64 delay);
+    /*!
+     * Clears visualization buffer.
+     */
+    static void clearBuffer();
+
+public slots:
+    /*!
+     * Starts visualization.
+     */
+    virtual void start() = 0;
+    /*!
+     * Stops visualization.
+     */
+    virtual void stop() = 0;
 
 signals:
     /*!
@@ -117,12 +123,16 @@ protected:
      * @param event QCloseEvent insatance.
      */
     virtual void closeEvent (QCloseEvent *event);
+    /*!
+     * Takes visualization data. Caller should allocate \b QMMP_VISUAL_NODE_SIZE
+     * bytes for each channel. If buffer for right channel is not specified,
+     * this function will average data from left and right channels.
+     * @param left Left channel buffer.
+     * @param right Right channel buffer.
+     */
+    bool takeData(float *left, float *right = 0);
 
 private:
-    Decoder *m_decoder;
-    Output *m_output;
-    QMutex m_mutex;
-
     static QList<VisualFactory*> *m_factories;
     static QHash <VisualFactory*, QString> *m_files;
     static void checkFactories();
@@ -131,6 +141,7 @@ private:
     static QWidget *m_parentWidget;
     static QObject *m_receiver;
     static const char *m_member;
+    static VisualBuffer m_buffer;
 };
 
 #endif

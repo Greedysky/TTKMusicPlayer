@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -81,7 +81,8 @@ DecoderFFmpeg::DecoderFFmpeg(const QString &path, QIODevice *i)
     m_decoded_frame = 0;
     m_channels = 0;
     c = 0;
-    wma_idx = 0;
+    audioIndex = 0;
+    m_seekTime = -1;
     av_init_packet(&m_pkt);
     av_init_packet(&m_temp_pkt);
 }
@@ -213,7 +214,7 @@ bool DecoderFFmpeg::initialize()
 
     ic->flags |= AVFMT_FLAG_GENPTS;
     av_read_play(ic);
-    for (wma_idx = 0; wma_idx < (int)ic->nb_streams; wma_idx++)
+    for (int wma_idx = 0; wma_idx < (int)ic->nb_streams; wma_idx++)
     {
 #if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
         avcodec_parameters_to_context(c, ic->streams[wma_idx]->codecpar);
@@ -311,12 +312,12 @@ bool DecoderFFmpeg::initialize()
     return true;
 }
 
-qint64 DecoderFFmpeg::totalTime()
+qint64 DecoderFFmpeg::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderFFmpeg::bitrate()
+int DecoderFFmpeg::bitrate() const
 {
     return m_bitrate;
 }
@@ -362,7 +363,7 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
 {
     int out_size = 0;
     int got_frame = 0;
-    if(m_pkt.stream_index == wma_idx)
+    if(m_pkt.stream_index == audioIndex)
     {
 
 #if (LIBAVCODEC_VERSION_INT >= ((55<<16)+(34<<8)+0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
@@ -448,7 +449,7 @@ void DecoderFFmpeg::fillBuffer()
             m_temp_pkt.size = m_pkt.size;
             m_temp_pkt.data = m_pkt.data;
 
-            if(m_pkt.stream_index != wma_idx)
+            if(m_pkt.stream_index != audioIndex)
             {
                 if(m_pkt.data)
 #if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(24<<8)+102)) //ffmpeg-3.0

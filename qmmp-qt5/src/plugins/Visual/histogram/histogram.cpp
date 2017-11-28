@@ -13,14 +13,11 @@
 #include "histogram.h"
 #include "colorwidget.h"
 
-#define VISUAL_NODE_SIZE 512 //samples
-#define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
-
 Histogram::Histogram (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
     m_x_scale = 0;
-    m_buffer_at = 0;
+    m_running = false;
     m_rows = 0;
     m_cols = 0;
     m_analyzer_falloff = 2.2;
@@ -31,7 +28,6 @@ Histogram::Histogram (QWidget *parent) : Visual (parent)
     m_timer = new QTimer (this);
     m_timer->setInterval(40);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_buffer = new float[VISUAL_BUFFER_SIZE];
 
     clear();
     readSettings();
@@ -39,35 +35,28 @@ Histogram::Histogram (QWidget *parent) : Visual (parent)
 
 Histogram::~Histogram()
 {
-    delete [] m_buffer;
-
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
     if(m_x_scale)
         delete [] m_x_scale;
 }
 
-void Histogram::add (float *data, size_t samples, int chan)
+void Histogram::start()
 {
-    if (!m_timer->isActive ())
-        return;
+    m_running = true;
+    if(isVisible())
+        m_timer->start();
+}
 
-    if(VISUAL_BUFFER_SIZE == m_buffer_at)
-    {
-        m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        return;
-    }
-
-    int frames = qMin(int(samples/chan), VISUAL_BUFFER_SIZE - m_buffer_at);
-    mono_from_multichannel(m_buffer + m_buffer_at, data, frames, chan);
-
-    m_buffer_at += frames;
+void Histogram::stop()
+{
+    m_running = false;
+    m_timer->stop();
+    clear();
 }
 
 void Histogram::clear()
 {
-    m_buffer_at = 0;
     m_rows = 0;
     m_cols = 0;
     update();
@@ -75,18 +64,11 @@ void Histogram::clear()
 
 void Histogram::timeout()
 {
-    mutex()->lock();
-    if(m_buffer_at < VISUAL_NODE_SIZE)
+    if(takeData(m_left_buffer, m_right_buffer))
     {
-        mutex()->unlock ();
-        return;
+        process();
+        update();
     }
-
-    process (m_buffer);
-    m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    mutex()->unlock ();
-    update();
 }
 
 void Histogram::readSettings()
@@ -121,7 +103,8 @@ void Histogram::hideEvent (QHideEvent *)
 
 void Histogram::showEvent (QShowEvent *)
 {
-    m_timer->start();
+    if(m_running)
+        m_timer->start();
 }
 
 void Histogram::paintEvent (QPaintEvent * e)
@@ -142,8 +125,12 @@ void Histogram::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void Histogram::process (float *buffer)
+void Histogram::process ()
 {
+    static fft_state *state = 0;
+    if (!state)
+        state = fft_init();
+
     int rows = (height() - 2) / m_cell_size.height();
     int cols = (width() - 2) / m_cell_size.width();
 
@@ -170,7 +157,7 @@ void Histogram::process (float *buffer)
     short y;
     int k, magnitude;
 
-    calc_freq (dest, buffer);
+    calc_freq (dest, m_left_buffer);
 
     double y_scale = (double) 1.25 * m_rows / log(256);
 

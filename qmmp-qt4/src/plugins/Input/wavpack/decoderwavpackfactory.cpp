@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,12 +25,6 @@
 #include "cueparser.h"
 
 // DecoderWavPackFactory
-
-bool DecoderWavPackFactory::supports(const QString &source) const
-{
-    return source.endsWith(".wv", Qt::CaseInsensitive);
-}
-
 bool DecoderWavPackFactory::canDecode(QIODevice *input) const
 {
     char buf[4];
@@ -62,7 +56,6 @@ QList<FileInfo *> DecoderWavPackFactory::createPlayList(const QString &fileName,
     QList <FileInfo*> list;
     char err[80];
     int cue_len=0;
-    FileInfo *info;
     //extract metadata of one cue track
     if(fileName.contains("://"))
     {
@@ -94,21 +87,21 @@ QList<FileInfo *> DecoderWavPackFactory::createPlayList(const QString &fileName,
         qWarning("DecoderWavPackFactory: error: %s", err);
         return list;
     }
-    info = new FileInfo(fileName);
+    FileInfo *info = new FileInfo(fileName);
     if (useMetaData)
     {
         cue_len = WavpackGetTagItem (ctx, "cuesheet", NULL, 0);
-        char *value;
         if (cue_len)
         {
-            value = (char*)malloc (cue_len * 2 + 1);
+            char *value = (char*)malloc (cue_len * 2 + 1);
             WavpackGetTagItem (ctx, "cuesheet", value, cue_len + 1);
             CUEParser parser(value, fileName);
             list = parser.createPlayList();
+            delete info;
+            info = 0;
         }
         else
         {
-
             char value[200];
             memset(value,0,sizeof(value));
             WavpackGetTagItem (ctx, "Album", value, sizeof(value));
@@ -134,7 +127,7 @@ QList<FileInfo *> DecoderWavPackFactory::createPlayList(const QString &fileName,
         }
     }
 
-    if (cue_len==0)
+    if (info)
     {
         info->setLength((int) WavpackGetNumSamples(ctx)/WavpackGetSampleRate(ctx));
         list << info;

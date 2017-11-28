@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -30,7 +30,7 @@
 
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class CUEParser
 {

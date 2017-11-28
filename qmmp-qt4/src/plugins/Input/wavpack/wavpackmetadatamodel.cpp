@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -83,15 +83,9 @@ QList<TagModel* > WavPackMetaDataModel::tags()
     return m_tags;
 }
 
-QPixmap WavPackMetaDataModel::cover()
-{
-    QString cPath = coverPath();
-    return cPath.isEmpty() ? QPixmap() : QPixmap(cPath);
-}
-
 QString WavPackMetaDataModel::coverPath()
 {
-    return MetaDataManager::instance()->getCoverPath(m_path);
+    return MetaDataManager::instance()->findCoverFile(m_path);
 }
 
 WavPackFileTagModel::WavPackFileTagModel(WavpackContext *ctx) : TagModel(TagModel::Save)

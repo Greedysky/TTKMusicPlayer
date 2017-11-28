@@ -9,6 +9,7 @@
 #include <qmmp/output.h>
 #include <qmmp/fileinfo.h>
 #include <stdlib.h>
+#include <string.h>
 #include <QObject>
 #include <QIODevice>
 #include "decoder_vorbis.h"
@@ -76,7 +77,8 @@ DecoderVorbis::DecoderVorbis(const QString &url, QIODevice *i)
     m_last_section = -1;
     m_bitrate = 0;
     m_url = url;
-	len = 0;
+    len = 0;
+    memset(&oggfile, 0, sizeof(OggVorbis_File));
 }
 
 
@@ -136,14 +138,14 @@ bool DecoderVorbis::initialize()
 }
 
 
-qint64 DecoderVorbis::totalTime()
+qint64 DecoderVorbis::totalTime() const
 {
     if (!m_inited)
         return 0;
     return m_totalTime;
 }
 
-int DecoderVorbis::bitrate()
+int DecoderVorbis::bitrate() const
 {
     return m_bitrate;
 }

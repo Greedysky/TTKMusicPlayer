@@ -11,7 +11,7 @@
 #include <qmmp/spekfactory.h>
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class VisualQSpekFactory : public QObject, public SpekFactory
 {

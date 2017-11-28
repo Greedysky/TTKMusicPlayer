@@ -42,6 +42,7 @@ HEADERS += \
     channelconverter_p.h \
     audioconverter.h \
     dithering_p.h \
+    visualbuffer_p.h \
     spekfactory.h \
     tagreadandwrite.h
 
@@ -79,6 +80,7 @@ SOURCES += recycler.cpp \
     channelconverter.cpp \
     volume.cpp \
     dithering.cpp \
+    visualbuffer.cpp \
     tagreadandwrite.cpp
 
 

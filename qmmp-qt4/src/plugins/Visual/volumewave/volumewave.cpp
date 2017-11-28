@@ -10,14 +10,11 @@
 #include "inlines.h"
 #include "volumewave.h"
 
-#define VISUAL_NODE_SIZE 512 //samples
-#define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
-
 VolumeWave::VolumeWave (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
     m_x_scale = 0;
-    m_buffer_at = 0;
+    m_running = false;
     m_rows = 0;
     m_cols = 0;
 
@@ -25,8 +22,6 @@ VolumeWave::VolumeWave (QWidget *parent) : Visual (parent)
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_left_buffer = new float[VISUAL_BUFFER_SIZE];
-    m_right_buffer = new float[VISUAL_BUFFER_SIZE];
 
     m_analyzer_falloff = 1.2;
     m_timer->setInterval(40);
@@ -36,39 +31,28 @@ VolumeWave::VolumeWave (QWidget *parent) : Visual (parent)
 
 VolumeWave::~VolumeWave()
 {
-    delete [] m_left_buffer;
-    delete [] m_right_buffer;
-
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
     if(m_x_scale)
         delete [] m_x_scale;
 }
 
-void VolumeWave::add (float *data, size_t samples, int chan)
+void VolumeWave::start()
 {
-    if (!m_timer->isActive ())
-        return;
+    m_running = true;
+    if(isVisible())
+        m_timer->start();
+}
 
-    if(VISUAL_BUFFER_SIZE == m_buffer_at)
-    {
-        m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        return;
-    }
-
-    int frames = qMin(int(samples/chan), VISUAL_BUFFER_SIZE - m_buffer_at);
-
-    stereo_from_multichannel(m_left_buffer + m_buffer_at,
-                             m_right_buffer + m_buffer_at, data, frames, chan);
-
-    m_buffer_at += frames;
+void VolumeWave::stop()
+{
+    m_running = false;
+    m_timer->stop();
+    clear();
 }
 
 void VolumeWave::clear()
 {
-    m_buffer_at = 0;
     m_rows = 0;
     m_cols = 0;
     update();
@@ -76,19 +60,11 @@ void VolumeWave::clear()
 
 void VolumeWave::timeout()
 {
-    mutex()->lock();
-    if(m_buffer_at < VISUAL_NODE_SIZE)
+    if(takeData(m_left_buffer, m_right_buffer))
     {
-        mutex()->unlock ();
-        return;
+        process();
+        update();
     }
-
-    process (m_left_buffer, m_right_buffer);
-    m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    mutex()->unlock ();
-    update();
 }
 
 void VolumeWave::hideEvent (QHideEvent *)
@@ -98,7 +74,8 @@ void VolumeWave::hideEvent (QHideEvent *)
 
 void VolumeWave::showEvent (QShowEvent *)
 {
-    m_timer->start();
+    if(m_running)
+        m_timer->start();
 }
 
 void VolumeWave::paintEvent (QPaintEvent * e)
@@ -108,8 +85,12 @@ void VolumeWave::paintEvent (QPaintEvent * e)
     draw(&painter);
 }
 
-void VolumeWave::process (float *left, float *right)
+void VolumeWave::process ()
 {
+    static fft_state *state = 0;
+    if (!state)
+        state = fft_init();
+
     int rows = height();
     int cols = width();
 
@@ -137,8 +118,8 @@ void VolumeWave::process (float *left, float *right)
     short yl, yr;
     int k, magnitude_l, magnitude_r;
 
-    calc_freq (dest_l, left);
-    calc_freq (dest_r, right);
+    calc_freq (dest_l, m_left_buffer);
+    calc_freq (dest_r, m_right_buffer);
 
     double y_scale = (double) 1.25 * m_rows / log(256);
 

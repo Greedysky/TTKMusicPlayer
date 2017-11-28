@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
 #include <QIODevice>
 #include <QBuffer>
 #include <QTextCodec>
-
+#include <taglib/id3v2tag.h>
 #include <neaacdec.h>
 
 #include "aacfile.h"
@@ -31,36 +31,53 @@
 
 static int adts_sample_rates[] = {96000,88200,64000,48000,44100,32000,24000,22050,16000,12000,11025,8000,7350,0,0,0};
 
-AACFile::AACFile(QIODevice *i, bool metaData, bool adts)
+AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
 {
     m_isValid = false;
     m_length = 0;
     m_bitrate = 0;
     m_samplerate = 0;
-    m_input = i;
+    m_input = input;
     m_offset = 0;
-    uchar buf[AAC_BUFFER_SIZE];
-    qint64 buf_at = i->peek((char *) buf, AAC_BUFFER_SIZE);
+    char buf[AAC_BUFFER_SIZE];
+    qint64 buf_at = input->peek((char *) buf, AAC_BUFFER_SIZE);
 
-    int tag_size = 0;
-    if (!memcmp(buf, "ID3", 3)) //TODO parse id3 tag
+    //read id3v2 tag if possible
+    if(!memcmp(buf, "ID3", 3))
     {
-        /* high bit is not used */
-        tag_size = (buf[6] << 21) | (buf[7] << 14) |
-                   (buf[8] <<  7) | (buf[9] <<  0);
+        TagLib::ByteVector byteVector(buf, sizeof(buf));
+        TagLib::ID3v2::Header header(byteVector);
 
-        tag_size += 10;
-        if (buf_at - tag_size < 4)
+        if(input->isSequential())
         {
-            qWarning("AACFile: invalid tag size");
-            return;
-        }
-        memmove (buf, buf + tag_size, buf_at - tag_size);
-        buf_at -= tag_size;
-        m_offset = tag_size;
+            if(header.tagSize() >= buf_at)
+            {
+                qWarning("AACFile: unable to parse id3v2");
+                return;
+            }
 
-        if (metaData)
-            parseID3v2(); //parse id3v2 tags
+            if(metaData)
+                parseID3v2(QByteArray(buf, header.tagSize()));
+
+            buf_at = sizeof(buf) - header.tagSize();
+            memmove(buf, buf + header.tagSize() + header.tagSize(), sizeof(buf) - header.tagSize());
+        }
+        else
+        {
+            if(metaData)
+            {
+                if(header.tagSize() <= buf_at)
+                    parseID3v2(QByteArray(buf, header.tagSize()));
+                else
+                    parseID3v2(input->read(header.tagSize()));
+            }
+
+            input->seek(header.tagSize());
+            buf_at = input->read(buf, sizeof(buf));
+            input->seek(0); //restore inital position
+        }
+
+        m_offset += header.tagSize();
     }
 
     int adts_offset = 0;
@@ -68,10 +85,10 @@ AACFile::AACFile(QIODevice *i, bool metaData, bool adts)
     while(adts_offset < buf_at - 6)
     {
         //try to determnate header type;
-        if (buf[adts_offset] == 0xff && ((buf[adts_offset+1] & 0xf6) == 0xf0))
+        if ((uchar) buf[adts_offset] == 0xff && (((uchar)buf[adts_offset+1] & 0xf6) == 0xf0))
         {
-            int frame_length = ((((unsigned int)buf[adts_offset+3] & 0x3)) << 11)
-                    | (((unsigned int)buf[adts_offset+4]) << 3) | (buf[adts_offset+5] >> 5);
+            unsigned int frame_length = ((((unsigned int)buf[adts_offset+3] & 0x3)) << 11)
+                    | (((unsigned int)buf[adts_offset+4]) << 3) | ((unsigned int)buf[adts_offset+5] >> 5);
 
             if(frame_length == 0 || (adts_offset + frame_length > buf_at - 6))
             {
@@ -80,11 +97,11 @@ AACFile::AACFile(QIODevice *i, bool metaData, bool adts)
             }
 
             //check second sync word
-            if ((buf[adts_offset + frame_length] == 0xFF) &&
-                    ((buf[adts_offset + frame_length + 1] & 0xF6) == 0xF0))
+            if (((uchar)buf[adts_offset + frame_length] == 0xFF) &&
+                    (((uchar)buf[adts_offset + frame_length + 1] & 0xF6) == 0xF0))
             {
                 qDebug("AACFile: ADTS header found");
-                if (!i->isSequential() && adts)
+                if (!input->isSequential() && adts)
                     parseADTS();
                 m_isValid = true;
                 m_offset += adts_offset;
@@ -103,8 +120,8 @@ AACFile::AACFile(QIODevice *i, bool metaData, bool adts)
                 (buf[6 + skip_size]<<3) |
                 (buf[7 + skip_size] & 0xE0);
 
-        if (!i->isSequential ())
-            m_length = (qint64) (((float)i->size()*8.f)/((float)m_bitrate) + 0.5f);
+        if (!input->isSequential ())
+            m_length = (qint64) (((float)input->size()*8.f)/((float)m_bitrate) + 0.5f);
         else
             m_length = 0;
         m_bitrate = (int)((float)m_bitrate/1000.0f + 0.5f);
@@ -214,15 +231,13 @@ void AACFile::parseADTS()
         m_length = frames/frames_per_sec;
     else
         m_length = 1;
+
+     m_input->seek(0); //restore inital position
 }
 
-void AACFile::parseID3v2()
+void AACFile::parseID3v2(const QByteArray &data)
 {
-    QByteArray array = m_input->peek(2048);
-    int offset = array.indexOf("ID3");
-    if (offset < 0)
-        return;
-    ID3v2Tag taglib_tag(&array, offset);
+    ID3v2Tag taglib_tag(data);
     if (taglib_tag.isEmpty())
         return;
 
@@ -251,25 +266,22 @@ void AACFile::parseID3v2()
                       QString::number(taglib_tag.track()));
 }
 
-ID3v2Tag::ID3v2Tag(QByteArray *array, long offset) : TagLib::ID3v2::Tag()
+ID3v2Tag::ID3v2Tag(const QByteArray &array) : TagLib::ID3v2::Tag()
 {
-    m_buf = new QBuffer(array);
-    m_buf->open(QIODevice::ReadOnly);
-    m_offset = offset;
+    m_buf = array;
     read();
 }
 
 void ID3v2Tag::read ()
 {
-    m_buf->seek(m_offset);
-    uint to_read = TagLib::ID3v2::Header::size();
-    if (to_read > AAC_BUFFER_SIZE - uint(m_offset))
+    if(TagLib::ID3v2::Header::size() > (uint)m_buf.size())
         return;
-    header()->setData(TagLib::ByteVector(m_buf->read(to_read).data(), to_read));
-    to_read = header()->tagSize();
-    if (!to_read ||  AAC_BUFFER_SIZE < m_offset + TagLib::ID3v2::Header::size())
+
+    header()->setData(TagLib::ByteVector(m_buf.constData(), TagLib::ID3v2::Header::size()));
+
+    if(header()->tagSize() > (uint)m_buf.size())
         return;
-    QByteArray array = m_buf->read(to_read);
-    TagLib::ByteVector v(array.data(), array.size());
+
+    TagLib::ByteVector v(m_buf.constData() + header()->size(), header()->tagSize());
     parse(v);
 }

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -255,12 +255,12 @@ bool DecoderFFmpeg::initialize()
 }
 
 
-qint64 DecoderFFmpeg::totalTime()
+qint64 DecoderFFmpeg::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderFFmpeg::bitrate()
+int DecoderFFmpeg::bitrate() const
 {
     return m_bitrate;
 }

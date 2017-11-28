@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,17 +29,6 @@
 DecoderWildMidiFactory::DecoderWildMidiFactory()
 {
     new WildMidiHelper(qApp);
-}
-
-bool DecoderWildMidiFactory::supports(const QString &source) const
-{
-    foreach(QString filter, properties().filters)
-    {
-        QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
-        if (regexp.exactMatch(source))
-            return true;
-    }
-    return false;
 }
 
 bool DecoderWildMidiFactory::canDecode(QIODevice *input) const
@@ -86,7 +75,7 @@ QList<FileInfo *> DecoderWildMidiFactory::createPlayList(const QString &fileName
 
     if(WildMidiHelper::instance()->initialize() && WildMidiHelper::instance()->sampleRate())
     {
-        void *midi_ptr = WildMidi_Open (fileName.toLocal8Bit());
+        void *midi_ptr = WildMidi_Open (fileName.toLocal8Bit().constData());
         if(midi_ptr)
         {
             WildMidiHelper::instance()->addPtr(midi_ptr);

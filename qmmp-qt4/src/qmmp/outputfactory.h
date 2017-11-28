@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,7 +31,7 @@ class Decoder;
 class Output;
 
 /*! @brief Helper class to store output plugin properies.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class OutputProperties
 {
@@ -50,7 +50,7 @@ public:
     bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief %Output plugin interface (output factory).
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class OutputFactory
 {

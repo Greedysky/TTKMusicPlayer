@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,11 +27,6 @@
 
 // DecoderCUEFactory
 
-bool DecoderCUEFactory::supports(const QString &source) const
-{
-    return source.right(4).toLower() == ".cue";
-}
-
 bool DecoderCUEFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -49,7 +44,6 @@ const DecoderProperties DecoderCUEFactory::properties() const
     properties.hasAbout = true;
     properties.hasSettings = true;
     properties.noInput = true;
-    properties.noOutput = true;
     return properties;
 }
 

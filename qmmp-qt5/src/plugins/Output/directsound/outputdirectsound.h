@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2014-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -32,7 +32,7 @@
 class VolumeDirectSound;
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class OutputDirectSound : public Output
 {
@@ -74,10 +74,13 @@ private:
     } DSoundChannels;
 
     static DSoundChannels m_dsound_pos[10];
+    qint64 m_latency;
+    qint32 m_bytesPerSecond;
+    bool m_reset;
 };
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class VolumeDirectSound : public Volume
 {

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2009 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -35,8 +35,8 @@ public:
     static DecoderModPlug* instance();
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
     qint64 read(unsigned char *audio, qint64 maxSize);
     void seek(qint64 time);
 

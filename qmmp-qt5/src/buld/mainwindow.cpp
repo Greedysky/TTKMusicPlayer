@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     list->appendMedia("D:/Qt/Workspace/qmmp_all/flac.flac");
 #endif
     m_sound->setPlaylist(list);
+
 }
 
 MainWindow::~MainWindow()

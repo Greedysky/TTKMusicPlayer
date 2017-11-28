@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2012-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -190,22 +190,8 @@ void OutputWriter::dispatchVisual (Buffer *buffer)
     if(!buffer)
         return;
 
-    foreach (Visual *visual, *Visual::visuals())
-    {
-        visual->mutex()->lock ();
-        visual->add (buffer->data, buffer->samples, m_channels);
-        visual->mutex()->unlock();
-    }
-}
-
-void OutputWriter::clearVisuals()
-{
-    foreach (Visual *visual, *Visual::visuals())
-    {
-        visual->mutex()->lock ();
-        visual->clear();
-        visual->mutex()->unlock();
-    }
+    Visual::addAudio(buffer->data, buffer->samples, m_channels,
+                     m_totalWritten / m_bytesPerMillisecond, m_output->latency());
 }
 
 bool OutputWriter::prepareConverters()
@@ -241,22 +227,39 @@ bool OutputWriter::prepareConverters()
     return true;
 }
 
-void OutputWriter::dispatch(qint64 elapsed,
-                      int bitrate,
-                      int frequency,
-                      int precision,
-                      int channels)
+void OutputWriter::startVisualization()
+{
+    foreach (Visual *visual, *Visual::visuals())
+    {
+        QMetaObject::invokeMethod(visual, "start", Qt::QueuedConnection);
+    }
+}
+
+void OutputWriter::stopVisualization()
+{
+    Visual::clearBuffer();
+    foreach (Visual *visual, *Visual::visuals())
+    {
+        QMetaObject::invokeMethod(visual, "stop", Qt::QueuedConnection);
+    }
+}
+
+void OutputWriter::dispatch(qint64 elapsed, int bitrate)
 {
     if (m_handler)
-        m_handler->dispatch(elapsed, bitrate, frequency, precision, channels);
+        m_handler->dispatch(elapsed, bitrate);
 }
 
 void OutputWriter::dispatch(const Qmmp::State &state)
 {
     if (m_handler)
         m_handler->dispatch(state);
-    if (state == Qmmp::Stopped)
-        clearVisuals();
+}
+
+void OutputWriter::dispatch(const AudioParameters &p)
+{
+    if (m_handler)
+        m_handler->dispatch(p);
 }
 
 void OutputWriter::run()
@@ -278,6 +281,8 @@ void OutputWriter::run()
     unsigned char *tmp = 0;
 
     dispatch(Qmmp::Playing);
+    dispatch(m_output->audioParameters());
+    startVisualization();
 
     while (!done)
     {
@@ -286,6 +291,7 @@ void OutputWriter::run()
         {
             if(m_pause)
             {
+                Visual::clearBuffer();
                 m_output->suspend();
                 mutex()->unlock();
                 m_prev_pause = m_pause;
@@ -310,9 +316,13 @@ void OutputWriter::run()
         status();
         if (!b)
         {
-            b = recycler()->next();
-            if (b && b->rate)
-                m_kbps = b->rate;
+            if((b = recycler()->next()))
+            {
+                if(b->rate)
+                    m_kbps = b->rate;
+                if(b->metaData)
+                    m_output->setMetaData(*b->metaData);
+            }
         }
 
         recycler()->cond()->wakeOne();
@@ -361,6 +371,7 @@ void OutputWriter::run()
                 if(m_skip)
                 {
                     m_skip = false;
+                    Visual::clearBuffer();
                     m_output->reset();
                     mutex()->unlock();
                     break;
@@ -398,6 +409,7 @@ void OutputWriter::run()
 #endif
     }
     dispatch(Qmmp::Stopped);
+    stopVisualization();
     mutex()->unlock();
 }
 
@@ -411,8 +423,7 @@ void OutputWriter::status()
     if (ct > m_currentMilliseconds)
     {
         m_currentMilliseconds = ct;
-        dispatch(m_currentMilliseconds, m_kbps,
-                 m_frequency, AudioParameters::sampleSize(m_format)*8, m_channels);
+        dispatch(m_currentMilliseconds, m_kbps);
     }
 }
 

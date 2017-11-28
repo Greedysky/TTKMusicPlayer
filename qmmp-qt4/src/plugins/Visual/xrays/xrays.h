@@ -24,8 +24,9 @@ public:
     XRays( QWidget *parent = 0);
     virtual ~XRays();
 
-    void add(float *data, size_t samples, int chan);
-    void clear();
+public slots:
+    void start();
+    void stop();
 
 private slots:
     void timeout();
@@ -34,19 +35,21 @@ private slots:
     void changeColor();
 
 private:
+    void clear();
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
     void contextMenuEvent(QContextMenuEvent *e);
 
-    void process(float *buffer);
+    void process();
     void draw(QPainter *p);
 
     QList<QColor> m_colors;
     QTimer *m_timer;
-    int *m_intern_vis_data;
-    float *m_buffer;
-    int m_buffer_at, m_cols, m_rows;
+    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
+    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
+    bool m_running;
+    int *m_intern_vis_data, m_cols, m_rows;
 
 };
 

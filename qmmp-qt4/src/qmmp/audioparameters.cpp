@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,6 +26,7 @@ AudioParameters::AudioParameters()
     m_srate = 0;
     m_format = Qmmp::PCM_S16LE;
     m_sz = 2;
+    m_precision = 16;
 }
 
 AudioParameters::AudioParameters(const AudioParameters &other)
@@ -34,6 +35,7 @@ AudioParameters::AudioParameters(const AudioParameters &other)
     m_chan_map = other.channelMap();
     m_format = other.format();
     m_sz = other.sampleSize();
+    m_precision = other.validBitsPerSample();
 }
 
 AudioParameters::AudioParameters(quint32 srate, const ChannelMap &map, Qmmp::AudioFormat format)
@@ -42,19 +44,23 @@ AudioParameters::AudioParameters(quint32 srate, const ChannelMap &map, Qmmp::Aud
     m_chan_map = map;
     m_format = format;
     m_sz = sampleSize(format);
+    m_precision = validBitsPerSample(format);
 }
 
-void AudioParameters::operator=(const AudioParameters &p)
+AudioParameters &AudioParameters::operator=(const AudioParameters &p)
 {
     m_srate = p.sampleRate();
     m_chan_map = p.channelMap();
     m_format = p.format();
     m_sz = p.sampleSize();
+    m_precision = p.validBitsPerSample();
+    return *this;
 }
 
 bool AudioParameters::operator==(const AudioParameters &p) const
 {
-    return m_srate == p.sampleRate() && m_chan_map == p.channelMap() && m_format == p.format();
+    return m_srate == p.sampleRate() && m_chan_map == p.channelMap() && m_format == p.format()
+            && m_precision == p.validBitsPerSample();
 }
 
 bool AudioParameters::operator!=(const AudioParameters &p) const
@@ -85,6 +91,34 @@ Qmmp::AudioFormat AudioParameters::format() const
 int AudioParameters::sampleSize() const
 {
     return m_sz;
+}
+
+int AudioParameters::frameSize() const
+{
+    return m_sz * m_chan_map.count();
+}
+
+int AudioParameters::bitsPerSample() const
+{
+    return m_sz * 8;
+}
+
+int AudioParameters::validBitsPerSample() const
+{
+    return m_precision;
+}
+
+AudioParameters::ByteOrder AudioParameters::byteOrder() const
+{
+    switch(m_format)
+    {
+    case Qmmp::PCM_S16BE:
+    case Qmmp::PCM_S24BE:
+    case Qmmp::PCM_S32BE:
+        return BigEndian;
+    default:
+        return LittleEndian;
+    }
 }
 
 const QString AudioParameters::toString() const
@@ -135,7 +169,6 @@ int AudioParameters::sampleSize(Qmmp::AudioFormat format)
     case Qmmp::PCM_S8:
     case Qmmp::PCM_U8:
         return 1;
-    case Qmmp::PCM_UNKNOWM:
     case Qmmp::PCM_S16LE:
     case Qmmp::PCM_S16BE:
     case Qmmp::PCM_U16LE:
@@ -151,6 +184,57 @@ int AudioParameters::sampleSize(Qmmp::AudioFormat format)
     case Qmmp::PCM_U32BE:
     case Qmmp::PCM_FLOAT:
         return 4;
+    default:
+        return 0;
     }
-    return 2;
+}
+
+int AudioParameters::bitsPerSample(Qmmp::AudioFormat format)
+{
+    return sampleSize(format) * 8;
+}
+
+int AudioParameters::validBitsPerSample(Qmmp::AudioFormat format)
+{
+    switch(format)
+    {
+    case Qmmp::PCM_S8:
+    case Qmmp::PCM_U8:
+        return 8;
+    case Qmmp::PCM_S16LE:
+    case Qmmp::PCM_S16BE:
+    case Qmmp::PCM_U16LE:
+    case Qmmp::PCM_U16BE:
+        return 16;
+    case Qmmp::PCM_S24LE:
+    case Qmmp::PCM_S24BE:
+    case Qmmp::PCM_U24LE:
+    case Qmmp::PCM_U24BE:
+        return 24;
+    case Qmmp::PCM_S32LE:
+    case Qmmp::PCM_S32BE:
+    case Qmmp::PCM_U32LE:
+    case Qmmp::PCM_U32BE:
+    case Qmmp::PCM_FLOAT:
+        return 32;
+    default:
+        return 0;
+    }
+}
+
+Qmmp::AudioFormat AudioParameters::findAudioFormat(int bits, ByteOrder byteOrder)
+{
+    switch (bits)
+    {
+    case 8:
+        return Qmmp::PCM_U8;
+    case 16:
+        return (byteOrder == LittleEndian) ? Qmmp::PCM_U16LE : Qmmp::PCM_U16BE;
+    case 24:
+        return (byteOrder == LittleEndian) ? Qmmp::PCM_U24LE : Qmmp::PCM_U24BE;
+    case 32:
+        return (byteOrder == LittleEndian) ? Qmmp::PCM_U32LE : Qmmp::PCM_U32BE;
+    default:
+        return Qmmp::PCM_UNKNOWM;
+    }
 }

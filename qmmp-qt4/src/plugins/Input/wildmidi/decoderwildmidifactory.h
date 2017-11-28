@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,7 +36,6 @@ class DecoderWildMidiFactory : public QObject, DecoderFactory
 
 public:
     DecoderWildMidiFactory();
-    bool supports(const QString &source) const;
     bool canDecode(QIODevice *input) const;
     const DecoderProperties properties() const;
     Decoder *create(const QString &path, QIODevice *input);

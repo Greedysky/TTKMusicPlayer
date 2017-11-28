@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2013-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,7 +31,7 @@
 #include <qmmp/fileinfo.h>
 
 /**
-   @author Ilya Kotov <forkotov02@hotmail.ru>
+   @author Ilya Kotov <forkotov02@ya.ru>
 */
 class DecoderSIDFactory : public QObject, DecoderFactory
 {
@@ -41,7 +41,6 @@ class DecoderSIDFactory : public QObject, DecoderFactory
 public:
     DecoderSIDFactory();
 
-    bool supports(const QString &source) const;
     bool canDecode(QIODevice *input) const;
     const DecoderProperties properties() const;
     Decoder *create(const QString &path, QIODevice *input);

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2011-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,7 +33,7 @@
 #define EVENT_STREAM_INFO_CHANGED (QEvent::Type(QEvent::User + 4)) /*!< @internal */
 
 /*! @internal
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class StateChangedEvent : public QEvent
 {
@@ -51,7 +51,7 @@ private:
 };
 
 /*! @internal
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class MetaDataChangedEvent : public QEvent
 {
@@ -72,7 +72,7 @@ private:
 };
 
 /*! @internal
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class StreamInfoChangedEvent : public QEvent
 {

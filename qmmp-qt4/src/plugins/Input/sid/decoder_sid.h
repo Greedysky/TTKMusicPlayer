@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2013-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2013-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,9 +25,10 @@
 
 class sidplayfp;
 class SidDatabase;
+class SidTune;
 
 /**
-   @author Ilya Kotov <forkotov02@hotmail.ru>
+   @author Ilya Kotov <forkotov02@ya.ru>
 */
 class DecoderSID : public Decoder
 {
@@ -37,8 +38,8 @@ public:
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
     qint64 read(unsigned char *data, qint64 size);
     void seek(qint64);
 
@@ -49,6 +50,7 @@ private:
     int m_length;
     qint64 m_length_in_bytes;
     qint64 m_read_bytes;
+    SidTune m_tune;
 };
 
 #endif // DECODER_SID_H

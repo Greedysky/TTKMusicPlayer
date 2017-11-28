@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -38,12 +38,13 @@ OutputALSA::OutputALSA() : m_inited(false)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QString dev_name = settings.value("ALSA/device","default").toString();
     m_use_mmap = settings.value("ALSA/use_mmap", false).toBool();
-    pcm_name = strdup(dev_name.toAscii().data());
+    pcm_name = strdup(dev_name.toLatin1().data());
     pcm_handle = 0;
     m_prebuf = 0;
     m_prebuf_size = 0;
     m_prebuf_fill = 0;
     m_can_pause = false;
+    m_chunk_size = 0;
 #if (SND_LIB_VERSION >= 0x01001B)
     m_alsa_channels[SND_CHMAP_NA] =   Qmmp::CHAN_NULL;
     m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
@@ -243,7 +244,10 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
 
 qint64 OutputALSA::latency()
 {
-    return m_prebuf_fill * 1000 / sampleRate() / channels() / sampleSize();
+    snd_pcm_sframes_t delay = 0;
+    snd_pcm_delay(pcm_handle, &delay);
+    delay = qBound(3000L, delay, 30000L); //filter out possible invalid values
+    return m_prebuf_fill * 1000 / sampleRate() / channels() / sampleSize() + delay * 1000 / sampleRate();
 }
 
 void OutputALSA::drain()
@@ -449,7 +453,7 @@ int VolumeALSA::setupMixer(QString card, QString device)
     if ((err = getMixer(&m_mixer, card)) < 0)
         return err;
 
-    parseMixerName(device.toAscii().data(), &name, &index);
+    parseMixerName(device.toLatin1().data(), &name, &index);
 
     pcm_element = getMixerElem(m_mixer, name, index);
 
@@ -536,7 +540,7 @@ int VolumeALSA::getMixer(snd_mixer_t **mixer, QString card)
         return -1;
     }
 
-    if ((err = snd_mixer_attach(*mixer, card.toAscii().constData())) < 0)
+    if ((err = snd_mixer_attach(*mixer, card.toLatin1().constData())) < 0)
     {
         qWarning("OutputALSA: Attaching to mixer %s failed: %s",
                  qPrintable(card), snd_strerror(-err));

@@ -11,6 +11,10 @@ contains(CONFIG, MUSEPACK_PLUGIN){
     SUBDIRS += mpc
 }
 
+contains(CONFIG, FFAP_PLUGIN){
+    SUBDIRS += ffap
+}
+
 contains(CONFIG, MODPLUG_PLUGIN){
     SUBDIRS += modplug
 }
@@ -25,6 +29,10 @@ contains(CONFIG, FFMPEG_PLUGIN){
 
 contains(CONFIG, GME_PLUGIN){
   SUBDIRS += gme
+}
+
+contains(CONFIG, XMP_PLUGIN){
+    SUBDIRS += xmp
 }
 
 contains(CONFIG, OPUS_PLUGIN){

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -51,12 +51,7 @@ QHash<QString, QString> CUEMetaDataModel::audioProperties()
     return ap;
 }
 
-QPixmap CUEMetaDataModel::cover()
-{
-    return MetaDataManager::instance()->getCover(m_path);
-}
-
 QString CUEMetaDataModel::coverPath()
 {
-    return MetaDataManager::instance()->getCoverPath(m_path);
+    return MetaDataManager::instance()->findCoverFile(m_path);
 }

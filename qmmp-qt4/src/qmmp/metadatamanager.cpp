@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,6 +29,8 @@
 #include "qmmpsettings.h"
 #include "metadatamanager.h"
 
+#define COVER_CACHE_SIZE 10
+
 MetaDataManager* MetaDataManager::m_instance = 0;
 
 MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
@@ -41,12 +43,12 @@ MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 
 MetaDataManager::~MetaDataManager()
 {
+    clearCoverCache();
     m_instance = 0;
 }
 
 QList <FileInfo *> MetaDataManager::createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredPaths) const
 {
-    QMutexLocker locker(&m_mutex);
     QList <FileInfo *> list;
     DecoderFactory *fact = 0;
     EngineFactory *efact = 0;
@@ -58,9 +60,9 @@ QList <FileInfo *> MetaDataManager::createPlayList(const QString &fileName, bool
     {
         if(!QFile::exists(fileName))
             return list;
-        else if((fact = Decoder::findByPath(fileName, m_settings->determineFileTypeByContent())))
+        else if((fact = Decoder::findByFilePath(fileName, m_settings->determineFileTypeByContent())))
             return fact->createPlayList(fileName, useMetaData, ignoredPaths);
-        else if((efact = AbstractEngine::findByPath(fileName)))
+        else if((efact = AbstractEngine::findByFilePath(fileName)))
             return efact->createPlayList(fileName, useMetaData, ignoredPaths);
         return list;
     }
@@ -90,9 +92,9 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, QObject
     {
         if(!QFile::exists(path))
             return 0;
-        else if((fact = Decoder::findByPath(path, m_settings->determineFileTypeByContent())))
+        else if((fact = Decoder::findByFilePath(path, m_settings->determineFileTypeByContent())))
             return fact->createMetaDataModel(path, parent);
-        else if((efact = AbstractEngine::findByPath(path)))
+        else if((efact = AbstractEngine::findByFilePath(path)))
             return efact->createMetaDataModel(path, parent);
         return 0;
     }
@@ -168,74 +170,61 @@ bool MetaDataManager::supports(const QString &fileName) const
     {
         if (!QFile::exists(fileName))
             return false;
-        if((fact = Decoder::findByPath(fileName)))
+        if((fact = Decoder::findByFilePath(fileName)))
             return true;
-        else if((efact = AbstractEngine::findByPath(fileName)))
+        else if((efact = AbstractEngine::findByFilePath(fileName)))
             return true;
         return false;
     }
     return false;
 }
 
-QPixmap MetaDataManager::getCover(const QString &url)
+QPixmap MetaDataManager::getCover(const QString &url) const
 {
-    MetaDataModel *model = createMetaDataModel(url);
-    if(model)
+    QMutexLocker locker(&m_mutex);
+    for(int i = 0; i < m_cover_cache.size(); ++i)
     {
-        QPixmap pix = model->cover();
-        delete model;
-        if(!pix.isNull())
-            return pix;
+        if(m_cover_cache[i]->url == url)
+            return m_cover_cache[i]->coverPixmap;
     }
 
-    if(!url.contains("://") && m_settings->useCoverFiles())
-    {
-        QString p = getCoverPath(url);
-        if(!p.isEmpty())
-        {
-            if(m_cached_path == p)
-                return m_cached_cover;
-            QPixmap pix(p);
-            if(pix.width() > 1024 || pix.height() > 1024)
-                pix = pix.scaled(1024, 1024, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-            m_cached_path = p;
-            m_cached_cover = pix;
-            return pix;
-        }
-    }
+    m_cover_cache << createCoverCacheItem(url);
 
-    return QPixmap();
+    while(m_cover_cache.size() > COVER_CACHE_SIZE)
+        delete m_cover_cache.takeFirst();
+
+    return m_cover_cache.last()->coverPixmap;
 }
 
-QString MetaDataManager::getCoverPath(const QString &url)
+QString MetaDataManager::getCoverPath(const QString &url) const
+{
+    QMutexLocker locker(&m_mutex);
+    for(int i = 0; i < m_cover_cache.size(); ++i)
+    {
+        if(m_cover_cache[i]->url == url)
+            return m_cover_cache[i]->coverPath;
+    }
+
+    m_cover_cache << createCoverCacheItem(url);
+
+    while(m_cover_cache.size() > COVER_CACHE_SIZE)
+        delete m_cover_cache.takeFirst();
+
+    return m_cover_cache.last()->coverPath;
+}
+
+QString MetaDataManager::findCoverFile(const QString &fileName) const
 {
     if(!m_settings->useCoverFiles())
         return QString();
-    if(url.contains("://")) //url
-    {
-        MetaDataModel *model = createMetaDataModel(url);
-        if(model)
-        {
-            QString coverPath = model->coverPath();
-            model->deleteLater();
-            return coverPath;
-        }
-    }
-    else //local file
-    {
-        QString key = QFileInfo(url).absolutePath();
-        QString cover_path = m_cover_path_cache.value(key);
 
-        if(!cover_path.isEmpty() && QFile::exists(cover_path))
-            return cover_path;
-
-        m_cover_path_cache.remove(key); //remove invalid key
-        QFileInfoList l = findCoverFiles(key, m_settings->coverSearchDepth());
-        cover_path = l.isEmpty() ? QString() : l.at(0).filePath();
-        m_cover_path_cache.insert (key, cover_path);
-        return cover_path;
+    if(!QFile::exists(fileName))
+    {
+        return QString();
     }
-    return QString();
+
+    QFileInfoList l = findCoverFiles(QFileInfo(fileName).absoluteDir(), m_settings->coverSearchDepth());
+    return l.isEmpty() ? QString() : l.at(0).filePath();
 }
 
 QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
@@ -267,11 +256,37 @@ QFileInfoList MetaDataManager::findCoverFiles(QDir dir, int depth) const
     return file_list;
 }
 
-void MetaDataManager::clearCoverChache()
+MetaDataManager::CoverCacheItem *MetaDataManager::createCoverCacheItem(const QString &url) const
 {
-    m_cover_path_cache.clear();
-    m_cached_cover = QPixmap();
-    m_cached_path.clear();
+    CoverCacheItem *item = new CoverCacheItem;
+    item->url = url;
+    MetaDataModel *model = createMetaDataModel(url);
+    if(model)
+    {
+        item->coverPath = model->coverPath();
+        item->coverPixmap = model->cover();
+        delete model;
+    }
+
+    if(!m_settings->useCoverFiles())
+        return item;
+
+    if(!url.contains("://") && item->coverPath.isEmpty())
+        item->coverPath = findCoverFile(url);
+
+    if(!item->coverPath.isEmpty() && item->coverPixmap.isNull())
+        item->coverPixmap = QPixmap(item->coverPath);
+
+    if(item->coverPixmap.width() > 1024 || item->coverPixmap.height() > 1024)
+        item->coverPixmap = item->coverPixmap.scaled(1024, 1024, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    return item;
+}
+
+void MetaDataManager::clearCoverCache()
+{
+    qDeleteAll(m_cover_cache);
+    m_cover_cache.clear();
 }
 
 void MetaDataManager::prepareForAnotherThread()

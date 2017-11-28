@@ -43,8 +43,8 @@ bool FSpekThead::init(const QString &path)
     }
 
     DecoderFactory *factory = 0;
-    if(!factory && !m_source->url().contains("://"))
-        factory = Decoder::findByPath(m_source->url(), QmmpSettings::instance()->determineFileTypeByContent());
+    if(!m_source->url().contains("://"))
+        factory = Decoder::findByFilePath(m_source->url(), QmmpSettings::instance()->determineFileTypeByContent());
     if(!factory)
         factory = Decoder::findByMime(m_source->contentType());
     if(factory && !factory->properties().noInput && m_source->ioDevice() && m_source->url().contains("://"))
@@ -74,7 +74,7 @@ bool FSpekThead::init(const QString &path)
     m_decoder = decoder;
     AudioParameters ap = m_decoder->audioParameters();
     //output buffer for decoder
-    m_bks = QMMP_BLOCK_FRAMES * ap.channels() * ap.sampleSize(); //block size
+    m_bks = ap.frameSize() * QMMP_BLOCK_FRAMES; //block size
     m_output_size = m_bks * 4;
     m_sample_size = ap.sampleSize();
     m_output_buf = new unsigned char[m_output_size];

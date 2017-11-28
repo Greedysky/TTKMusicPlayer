@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -184,12 +184,12 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
     return size;
 }
 
-qint64 DecoderAAC::totalTime()
+qint64 DecoderAAC::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderAAC::bitrate()
+int DecoderAAC::bitrate() const
 {
     return m_bitrate;
 }

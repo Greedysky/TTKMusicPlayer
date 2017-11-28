@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,26 +26,20 @@
 #include <QMetaObject>
 #include <QDialog>
 #include <QPluginLoader>
+#include "statehandler.h"
 #include "visualfactory.h"
-#include "output.h"
+#include "visualbuffer_p.h"
 #include "visual.h"
 
 Visual::Visual(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     setAttribute(Qt::WA_QuitOnClose, false);
-    m_decoder = 0;
-    m_output = 0;
 }
 
 Visual::~Visual()
 {
     qDebug("Visual::~Visual()");
-}
-
-QMutex *Visual::mutex()
-{
-    return &m_mutex;
 }
 
 void Visual::closeEvent (QCloseEvent *event)
@@ -69,6 +63,27 @@ void Visual::closeEvent (QCloseEvent *event)
     QWidget::closeEvent(event);
 }
 
+bool Visual::takeData(float *left, float *right)
+{
+    m_buffer.mutex()->lock();
+    VisualNode *node = m_buffer.take();
+    if(node)
+    {
+        if(left && right)
+        {
+            memcpy(left, node->data[0], QMMP_VISUAL_NODE_SIZE * sizeof(float));
+            memcpy(right, node->data[1], QMMP_VISUAL_NODE_SIZE * sizeof(float));
+        }
+        else if(left && !right)
+        {
+            for(int i = 0; i < QMMP_VISUAL_NODE_SIZE; ++i)
+                left[i] = qBound(-1.0f, (node->data[0][i] + node->data[1][i]) / 2, 1.0f);
+        }
+    }
+    m_buffer.mutex()->unlock();
+    return node != 0;
+}
+
 //static members
 QList<VisualFactory*> *Visual::m_factories = 0;
 QHash <VisualFactory*, QString> *Visual::m_files = 0;
@@ -77,6 +92,7 @@ QHash<VisualFactory*, Visual*> Visual::m_vis_map;
 QWidget *Visual::m_parentWidget = 0;
 QObject *Visual::m_receiver = 0;
 const char *Visual::m_member = 0;
+VisualBuffer Visual::m_buffer;
 
 QList<VisualFactory *> Visual::factories()
 {
@@ -111,6 +127,9 @@ void Visual::setEnabled(VisualFactory* factory, bool enable)
                 connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
             visual->setWindowFlags(Qt::Window);
             m_vis_map.insert (factory, visual);
+            Qmmp::State st = StateHandler::instance()->state();
+            if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
+                visual->start();
             m_visuals.append(visual);
             visual->show();
         }
@@ -142,7 +161,12 @@ bool Visual::isEnabled(VisualFactory* factory)
 void Visual::add(Visual *visual)
 {
     if (!m_visuals.contains(visual))
+    {
+        Qmmp::State st = StateHandler::instance()->state();
+        if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
+            visual->start();
         m_visuals.append(visual);
+    }
 }
 
 void Visual::remove(Visual *visual)
@@ -174,6 +198,20 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
 QList<Visual*>* Visual::visuals()
 {
     return &m_visuals;
+}
+
+void Visual::addAudio(float *pcm, int samples, int channels, qint64 ts, qint64 delay)
+{
+    m_buffer.mutex()->lock();
+    m_buffer.add(pcm, samples, channels, ts, delay);
+    m_buffer.mutex()->unlock();
+}
+
+void Visual::clearBuffer()
+{
+    m_buffer.mutex()->lock();
+    m_buffer.clear();
+    m_buffer.mutex()->unlock();
 }
 
 void Visual::checkFactories()

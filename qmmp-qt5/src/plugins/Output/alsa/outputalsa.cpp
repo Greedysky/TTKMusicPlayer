@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -44,6 +44,7 @@ OutputALSA::OutputALSA() : m_inited(false)
     m_prebuf_size = 0;
     m_prebuf_fill = 0;
     m_can_pause = false;
+    m_chunk_size = 0;
 #if (SND_LIB_VERSION >= 0x01001B)
     m_alsa_channels[SND_CHMAP_NA] =   Qmmp::CHAN_NULL;
     m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
@@ -243,7 +244,10 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
 
 qint64 OutputALSA::latency()
 {
-    return m_prebuf_fill * 1000 / sampleRate() / channels() / sampleSize();
+    snd_pcm_sframes_t delay = 0;
+    snd_pcm_delay(pcm_handle, &delay);
+    delay = qBound(3000L, delay, 30000L); //filter out possible invalid values
+    return m_prebuf_fill * 1000 / sampleRate() / channels() / sampleSize() + delay * 1000 / sampleRate();
 }
 
 void OutputALSA::drain()

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2010 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -78,7 +78,7 @@ bool DecoderGme::initialize()
     return true;
 }
 
-qint64 DecoderGme::totalTime()
+qint64 DecoderGme::totalTime() const
 {
     return m_totalTime;
 }
@@ -88,7 +88,7 @@ void DecoderGme::seek(qint64 pos)
     gme_seek(m_emu, pos);
 }
 
-int DecoderGme::bitrate()
+int DecoderGme::bitrate() const
 {
     return 8;
 }

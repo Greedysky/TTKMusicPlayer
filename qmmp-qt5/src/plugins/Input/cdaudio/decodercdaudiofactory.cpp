@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -24,12 +24,8 @@
 #include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
 
-// DecoderCDAudioFactory
 
-bool DecoderCDAudioFactory::supports(const QString &source) const
-{
-    return source == "/" || source.startsWith("/dev");
-}
+// DecoderCDAudioFactory
 
 bool DecoderCDAudioFactory::canDecode(QIODevice *) const
 {

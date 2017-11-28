@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2006-2013 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -51,9 +51,7 @@ SoundCore::SoundCore(QObject *parent)
     m_volumeControl = new VolumeControl(this);
     connect(m_handler, SIGNAL(elapsedChanged(qint64)), SIGNAL(elapsedChanged(qint64)));
     connect(m_handler, SIGNAL(bitrateChanged(int)), SIGNAL(bitrateChanged(int)));
-    connect(m_handler, SIGNAL(frequencyChanged(quint32)), SIGNAL(frequencyChanged(quint32)));
-    connect(m_handler, SIGNAL(sampleSizeChanged(int)), SIGNAL(sampleSizeChanged(int)));
-    connect(m_handler, SIGNAL(channelsChanged(int)), SIGNAL(channelsChanged(int)));
+    connect(m_handler, SIGNAL(audioParametersChanged(AudioParameters)), SIGNAL(audioParametersChanged(AudioParameters)));
     connect(m_handler, SIGNAL(bufferingProgress(int)), SIGNAL(bufferingProgress(int)));
     connect(QmmpSettings::instance(), SIGNAL(eqSettingsChanged()), SIGNAL(eqSettingsChanged()));
     connect(QmmpSettings::instance(), SIGNAL(audioSettingsChanged()), m_volumeControl, SLOT(reload()));
@@ -100,6 +98,9 @@ void SoundCore::stop()
 {
     qApp->sendPostedEvents(this, 0);
     m_url.clear();
+    qDeleteAll(m_sources);
+    m_sources.clear();
+    m_nextState = NO_ENGINE;
     if(m_engine)
     {
         m_engine->stop();
@@ -107,9 +108,6 @@ void SoundCore::stop()
         //m_engine->deleteLater();
         //m_engine = 0;
     }
-    qDeleteAll(m_sources);
-    m_sources.clear();
-    m_nextState = NO_ENGINE;
     m_volumeControl->reload();
     if(state() == Qmmp::NormalError || state() == Qmmp::FatalError || state() == Qmmp::Buffering)
         StateHandler::instance()->dispatch(Qmmp::Stopped); //clear error and buffering state
@@ -222,29 +220,19 @@ bool SoundCore::isMuted() const
     return m_muted;
 }
 
-qint64 SoundCore::elapsed()
+qint64 SoundCore::elapsed() const
 {
     return m_handler->elapsed();
 }
 
-int SoundCore::bitrate()
+int SoundCore::bitrate() const
 {
     return m_handler->bitrate();
 }
 
-quint32 SoundCore::frequency()
+AudioParameters SoundCore::audioParameters() const
 {
-    return m_handler->frequency();
-}
-
-int SoundCore::sampleSize()
-{
-    return m_handler->sampleSize();
-}
-
-int SoundCore::channels()
-{
-    return m_handler->channels();
+    return m_handler->audioParameters();
 }
 
 Qmmp::State SoundCore::state() const

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -50,49 +50,55 @@ DecoderMADFactory::DecoderMADFactory()
     }
 }
 
-bool DecoderMADFactory::supports(const QString &source) const
-{
-    QString ext = source.right(4).toLower();
-    if (ext == ".mp1" || ext == ".mp2" || ext == ".mp3")
-        return true;
-    else if (ext == ".wav") //check for mp3 wav files
-    {
-        QFile file(source);
-        file.open(QIODevice::ReadOnly);
-        char buf[22];
-        file.peek(buf,sizeof(buf));
-        file.close();
-        if (!memcmp(buf + 8, "WAVE", 4) && !memcmp(buf + 20, "U" ,1))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
 bool DecoderMADFactory::canDecode(QIODevice *input) const
 {
-    char buf[16 * 512];
+    char buf[8192];
+    qint64 buf_at = sizeof(buf);
 
-    if (input->peek(buf,sizeof(buf)) == sizeof(buf))
-    {
-        if (!memcmp(buf, "FLV", 3)) //skip Macromedia Flash Video
-            return false;
+    if(input->peek(buf, sizeof(buf)) != sizeof(buf))
+        return false;
 
-        if (!memcmp(buf + 8, "WAVE", 4))
+    if (!memcmp(buf, "FLV", 3)) //skip Macromedia Flash Video
+        return false;
+
+    if (!memcmp(buf + 8, "WAVE", 4))
             return !memcmp(buf + 20, "U" ,1);
 
+    if(!memcmp(buf, "ID3", 3))
+    {
+        TagLib::ByteVector byteVector(buf, sizeof(buf));
+        TagLib::ID3v2::Header header(byteVector);
+
+        //skip id3v2tag if possible
+        if(input->isSequential())
+        {
+            if(header.tagSize() >= sizeof(buf))
+                return false;
+
+            buf_at = sizeof(buf) - header.tagSize();
+            memmove(buf, buf + header.tagSize() + header.tagSize(), sizeof(buf) - header.tagSize());
+        }
+        else
+        {
+            input->seek(header.tagSize());
+            buf_at = input->read(buf, sizeof(buf));
+            input->seek(0); //restore inital position
+        }
+    }
+
+    if(buf_at > 0)
+    {
         struct mad_stream stream;
         struct mad_header header;
         int dec_res;
 
         mad_stream_init (&stream);
         mad_header_init (&header);
-        mad_stream_buffer (&stream, (unsigned char *) buf, sizeof(buf));
+        mad_stream_buffer (&stream, (unsigned char *) buf, buf_at);
         stream.error = MAD_ERROR_NONE;
 
         while ((dec_res = mad_header_decode(&header, &stream)) == -1
-                && MAD_RECOVERABLE(stream.error))
+               && MAD_RECOVERABLE(stream.error))
             ;
         return dec_res != -1 ? true: false;
     }

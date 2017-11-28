@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,6 +23,7 @@
 
 #include <QQueue>
 #include <QHash>
+#include <QSharedPointer>
 #include "abstractengine.h"
 #include "audioparameters.h"
 
@@ -40,7 +41,7 @@ class AudioConverter;
 class Dithering;
 
 /*! @internal
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT QmmpAudioEngine : public AbstractEngine
 {
@@ -94,6 +95,7 @@ private:
     AudioParameters m_ap;
     bool m_next;
     bool m_muted;
+    QSharedPointer<QMap<Qmmp::MetaData, QString> > m_metaData;
     static QmmpAudioEngine *m_instance;
     ReplayGain *m_replayGain;
     QmmpSettings *m_settings;

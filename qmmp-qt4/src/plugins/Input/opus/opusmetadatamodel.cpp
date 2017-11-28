@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -84,7 +84,7 @@ QPixmap OpusMetaDataModel::cover()
     for(uint i = 0; i < list.size(); ++i)
     {
         TagLib::String value = list[i];
-        QByteArray block = QByteArray::fromBase64(TStringToQString_qt4(value).toAscii());
+        QByteArray block = QByteArray::fromBase64(TStringToQString_qt4(value).toLatin1());
         if(block.size() < 32)
             continue;
         qint64 pos = 0;

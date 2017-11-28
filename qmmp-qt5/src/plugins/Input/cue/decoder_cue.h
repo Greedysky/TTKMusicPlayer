@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,10 +36,10 @@ public:
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
+    qint64 totalTime() const;
     void seek(qint64);
     qint64 read(unsigned char *data, qint64 size);
-    int bitrate();
+    int bitrate() const;
     const QString nextURL() const;
     void next();
 

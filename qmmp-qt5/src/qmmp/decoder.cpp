@@ -43,6 +43,11 @@ void Decoder::configure(quint32 srate, int channels, Qmmp::AudioFormat f)
     m_parameters = AudioParameters(srate, ChannelMap(channels), f);
 }
 
+void Decoder::configure(const AudioParameters &p)
+{
+    m_parameters = p;
+}
+
 void Decoder::next()
 {}
 
@@ -85,7 +90,6 @@ QMap<Qmmp::MetaData, QString> Decoder::takeMetaData()
 
 // static methods
 QStringList Decoder::m_disabledNames;
-DecoderFactory *Decoder::m_lastFactory = 0;
 QList<QmmpPluginCache*> *Decoder::m_cache = 0;
 
 //sort cache items by priority
@@ -155,28 +159,18 @@ QStringList Decoder::protocols()
     return protocolsList;
 }
 
-DecoderFactory *Decoder::findByPath(const QString& source, bool useContent)
+DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
 {
     loadPlugins();
-    DecoderFactory *fact = m_lastFactory;
+    DecoderFactory *fact = 0;
+    //detect by content if enabled
     if(useContent)
     {
-        QFile file(source);
+        QFile file(path);
         if(!file.open(QIODevice::ReadOnly))
         {
             qWarning("Decoder: file open error: %s", qPrintable(file.errorString()));
             return 0;
-        }
-        QByteArray array = file.read(8192);
-        QBuffer buffer(&array);
-        buffer.open(QIODevice::ReadOnly);
-
-        //try last factory with stream based input or local files support
-        if (fact && isEnabled(fact) && (!fact->properties().noInput ||
-                                        fact->properties().protocols.contains("file")))
-        {
-            if(fact->canDecode(&buffer))
-                return fact;
         }
 
         foreach(QmmpPluginCache *item, *m_cache)
@@ -187,31 +181,41 @@ DecoderFactory *Decoder::findByPath(const QString& source, bool useContent)
             if(!(fact = item->decoderFactory()))
                 continue;
 
-            if(fact && fact->properties().noInput && !fact->properties().protocols.contains("file"))
+            if(fact->properties().noInput && !fact->properties().protocols.contains("file"))
                 continue;
 
-            if (fact->canDecode(&buffer))
-            {
-                m_lastFactory = fact;
+            if (fact->canDecode(&file))
                 return fact;
-            }
         }
         fact = 0;
     }
-    if (fact && isEnabled(fact) && fact->supports(source)) //try last factory
-        return fact;
 
-    foreach (QmmpPluginCache *item, *m_cache)
+    QList<DecoderFactory*> filtered = findByFileExtension(path);
+
+    if(filtered.isEmpty())
+        return 0;
+
+    if(filtered.size() == 1)
+        return filtered.at(0);
+
+    //more than one factories with same filters
+    //try to determine by content
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
     {
-        if(m_disabledNames.contains(item->shortName()))
-            continue;
-        DecoderFactory *fact = item->decoderFactory();
-        if(fact && fact->supports(source))
-        {
-            m_lastFactory = fact;
-            return fact;
-        }
+        qWarning("Decoder: file open error: %s", qPrintable(file.errorString()));
+        return 0;
     }
+
+    foreach (fact, filtered)
+    {
+        if(fact->canDecode(&file))
+            return fact;
+    }
+
+    if(!filtered.isEmpty() && !useContent) //fallback
+        return filtered.first();
+
     return 0;
 }
 
@@ -257,6 +261,32 @@ DecoderFactory *Decoder::findByProtocol(const QString &p)
             return item->decoderFactory();
     }
     return 0;
+}
+
+QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
+{
+    QList<DecoderFactory*> filtered;
+    DecoderFactory *fact = 0;
+    foreach (QmmpPluginCache *item, *m_cache)
+    {
+        if(m_disabledNames.contains(item->shortName()))
+            continue;
+
+        if(!(fact = item->decoderFactory()))
+            continue;
+
+        foreach(QString filter, fact->properties().filters)
+        {
+            QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
+            if (regexp.exactMatch(path))
+            {
+                filtered.append(fact);
+                break;
+            }
+        }
+    }
+
+    return filtered;
 }
 
 void Decoder::setEnabled(DecoderFactory* factory, bool enable)

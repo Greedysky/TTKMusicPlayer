@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -34,11 +34,12 @@ FileInfo::FileInfo(const FileInfo &other)
 FileInfo::~FileInfo()
 {}
 
-void FileInfo::operator=(const FileInfo &info)
+FileInfo &FileInfo::operator=(const FileInfo &info)
 {
     setLength(info.length());
     setMetaData(info.metaData());
     setPath(info.path());
+    return *this;
 }
 
 bool FileInfo::operator==(const FileInfo &info)

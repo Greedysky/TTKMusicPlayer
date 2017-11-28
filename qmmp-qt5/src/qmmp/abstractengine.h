@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,7 +33,7 @@ class QmmpPluginCache;
 
 
 /*! @brief The AbstractEngine class provides the base interface class of audio audio engines.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT AbstractEngine : public QThread
 {
@@ -97,7 +97,7 @@ public:
     /*!
      * Returns EngineFactory pointer which supports file \b path or 0 if file \b path is unsupported
      */
-    static EngineFactory *findByPath(const QString &path);
+    static EngineFactory *findByFilePath(const QString &path);
     /*!
      * Sets whether the engine is enabled.
      * @param factory Engine plugin factory.

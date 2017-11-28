@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -241,17 +241,17 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
             if (settings.value("cddb_http", false).toBool())
             {
                 cddb_http_enable (cddb_conn);
-                cddb_set_http_path_query (cddb_conn, settings.value("cddb_path").toByteArray());
+                cddb_set_http_path_query (cddb_conn, settings.value("cddb_path").toByteArray().constData());
                 if (QmmpSettings::instance()->isProxyEnabled())
                 {
                     QUrl proxy = QmmpSettings::instance()->proxy();
                     cddb_http_proxy_enable (cddb_conn);
-                    cddb_set_http_proxy_server_name (cddb_conn, proxy.host().toLatin1 ());
+                    cddb_set_http_proxy_server_name (cddb_conn, proxy.host().toLatin1().constData());
                     cddb_set_http_proxy_server_port (cddb_conn, proxy.port());
                     if(QmmpSettings::instance()->useProxyAuth())
                     {
-                        cddb_set_http_proxy_username (cddb_conn, proxy.userName().toLatin1());
-                        cddb_set_http_proxy_password (cddb_conn, proxy.password().toLatin1());
+                        cddb_set_http_proxy_username (cddb_conn, proxy.userName().toLatin1().constData());
+                        cddb_set_http_proxy_password (cddb_conn, proxy.password().toLatin1().constData());
                     }
                 }
             }
@@ -427,14 +427,13 @@ bool DecoderCDAudio::initialize()
                 return false;
             }
             qDebug("DecoderCDAudio: found cd audio capable drive \"%s\"", *cd_drives);
+            cdio_free_device_list(cd_drives);  //free device list
         }
         else
         {
             qWarning("DecoderCDAudio: unable to find cd audio drive.");
             return false;
         }
-        if (cd_drives && *cd_drives) //free device list
-            cdio_free_device_list(cd_drives);
     }
     else
     {
@@ -458,12 +457,12 @@ bool DecoderCDAudio::initialize()
 }
 
 
-qint64 DecoderCDAudio::totalTime()
+qint64 DecoderCDAudio::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderCDAudio::bitrate()
+int DecoderCDAudio::bitrate() const
 {
     return m_bitrate;
 }

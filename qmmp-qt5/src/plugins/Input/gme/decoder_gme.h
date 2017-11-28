@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2010 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,7 +27,7 @@
 class GmeHelper;
 
 /**
-   @author Ilya Kotov <forkotov02@hotmail.ru>
+   @author Ilya Kotov <forkotov02@ya.ru>
 */
 class DecoderGme : public Decoder
 {
@@ -37,8 +37,8 @@ public:
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
     qint64 read(unsigned char *data, qint64 size);
     void seek(qint64);
 

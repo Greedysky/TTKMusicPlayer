@@ -15,7 +15,7 @@
 #include <qmmp/visual.h>
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class VisualHistogramFactory : public QObject, public VisualFactory
 {

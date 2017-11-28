@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -32,17 +32,6 @@
 
 
 // DecoderModPlugFactory
-
-bool DecoderModPlugFactory::supports(const QString &source) const
-{
-    foreach(QString filter, properties().filters)
-    {
-        QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
-        if (regexp.exactMatch(source))
-            return true;
-    }
-    return false;
-}
 
 bool DecoderModPlugFactory::canDecode(QIODevice *) const
 {

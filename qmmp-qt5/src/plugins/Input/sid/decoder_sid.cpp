@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2013 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2013-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -32,7 +32,7 @@
 #include "decoder_sid.h"
 
 // Decoder class
-DecoderSID::DecoderSID(SidDatabase *db, const QString &url) : Decoder()
+DecoderSID::DecoderSID(SidDatabase *db, const QString &url) : Decoder(), m_tune(0)
 {
     m_db = db;
     m_url = url;
@@ -56,33 +56,30 @@ bool DecoderSID::initialize()
     path.remove(QRegExp("#\\d+$"));
     int track = m_url.section("#", -1).toInt();
 
-    SidTune *tune = new SidTune(0);
-    tune->load(qPrintable(path));
-    if(!tune->getInfo())
+    m_tune.load(qPrintable(path));
+    if(!m_tune.getInfo())
     {
-        qWarning("DecoderSID: unable to load tune, error: %s", tune->statusString());
-        delete tune;
+        qWarning("DecoderSID: unable to load tune, error: %s", m_tune.statusString());
         return false;
     }
-    int count = tune->getInfo()->songs();
+    int count = m_tune.getInfo()->songs();
 
     if(track > count || track < 1)
     {
         qWarning("DecoderSID: track number is out of range");
-        delete tune;
         return false;
     }
 
-    tune->selectSong(track);
+    m_tune.selectSong(track);
 
-    if(!tune->getStatus())
+    if(!m_tune.getStatus())
     {
-        qWarning("DecoderSID: error: %s", tune->statusString());
+        qWarning("DecoderSID: error: %s", m_tune.statusString());
         return false;
     }
 
     //send metadata for pseudo-protocol
-    const SidTuneInfo *tune_info = tune->getInfo();
+    const SidTuneInfo *tune_info = m_tune.getInfo();
     QMap<Qmmp::MetaData, QString> metadata;
     metadata.insert(Qmmp::TITLE,  tune_info->infoString(0));
     metadata.insert(Qmmp::ARTIST, tune_info->infoString(1));
@@ -97,7 +94,7 @@ bool DecoderSID::initialize()
     if(settings.value("use_hvsc", false).toBool())
     {
         char md5[SidTune::MD5_LENGTH+1];
-        tune->createMD5(md5);
+        m_tune.createMD5(md5);
         m_length = m_db->length(md5, track);
     }
 
@@ -134,7 +131,7 @@ bool DecoderSID::initialize()
         return false;
     }
 
-    if(!m_player->load(tune))
+    if(!m_player->load(&m_tune))
     {
         qWarning("DecoderSID: unable to load tune, error: %s", m_player->error());
         return false;
@@ -142,13 +139,12 @@ bool DecoderSID::initialize()
 
     configure(44100, 2);
     m_length_in_bytes = audioParameters().sampleRate() *
-            audioParameters().channels() *
-            audioParameters().sampleSize() * m_length;
+            audioParameters().frameSize() * m_length;
     qDebug("DecoderSID: initialize succes");
     return true;
 }
 
-qint64 DecoderSID::totalTime()
+qint64 DecoderSID::totalTime() const
 {
     return 0;
 }
@@ -158,7 +154,7 @@ void DecoderSID::seek(qint64 pos)
     Q_UNUSED(pos);
 }
 
-int DecoderSID::bitrate()
+int DecoderSID::bitrate() const
 {
     return 8;
 }
@@ -170,5 +166,5 @@ qint64 DecoderSID::read(unsigned char *data, qint64 size)
     if(size <= 0)
         return 0;
     m_read_bytes += size;
-    return m_player->play((short *)data,     size/2) * 2;
+    return m_player->play((short *)data, size/2) * 2;
 }

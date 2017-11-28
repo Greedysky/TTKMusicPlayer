@@ -2,7 +2,7 @@
  *   Copyright (C) 1999 by Johan Levin                                     *
  *                                                                         *
  *   Copyright (C) 2011-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2007-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,12 +25,12 @@
 #include "audioparameters.h"
 #include "channelmap.h"
 #include "buffer.h"
+#include "effectfactory.h"
 
-class EffectFactory;
 class QmmpPluginCache;
 
 /*! @brief The Effect class provides the base interface class of audio effects.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Effect
 {
@@ -104,6 +104,11 @@ public:
      * @param factory Effect plugin factory.
      */
     static bool isEnabled(EffectFactory* factory);
+    /*!
+     * Finds effect factory object by short name \b shortName. Returns effect factory pointer.
+     * If no match is found, 0 is returned. The search is case sensitive.
+     */
+    static EffectFactory *findFactory(const QString &shortName);
 
 private:
     EffectFactory *m_factory;

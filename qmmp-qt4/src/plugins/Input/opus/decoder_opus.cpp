@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -132,14 +132,14 @@ bool DecoderOpus::initialize()
     return true;
 }
 
-qint64 DecoderOpus::totalTime()
+qint64 DecoderOpus::totalTime() const
 {
     if (!m_opusfile)
         return 0;
     return m_totalTime;
 }
 
-int DecoderOpus::bitrate()
+int DecoderOpus::bitrate() const
 {
     return m_bitrate;
 }

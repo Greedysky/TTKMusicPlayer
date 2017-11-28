@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,11 +27,6 @@
 #include "decoderopusfactory.h"
 
 // DecoderOpusFactory
-bool DecoderOpusFactory::supports(const QString &source) const
-{
-    return source.right(5).toLower() == ".opus";
-}
-
 bool DecoderOpusFactory::canDecode(QIODevice *input) const
 {
     char buf[36];

@@ -21,7 +21,7 @@ class QmmpPluginCache;
 
 /*! @brief The Decoder class provides the base interface class of audio decoders.
  * @author Brad Hughes <bhughes@trolltech.com>
- * @author Ilya Kotov <forkotov@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT Decoder
 {
@@ -44,7 +44,7 @@ public:
      * Returns the total time in milliseconds.
      * Subclass should reimplement this function.
      */
-    virtual qint64 totalTime() = 0;
+    virtual qint64 totalTime() const = 0;
     /*!
      * Requests a seek to the time \b time indicated, specified in milliseconds.
      * Subclass should reimplement this function.
@@ -60,7 +60,7 @@ public:
      * Returns current bitrate (in kbps).
      * Subclass should reimplement this function.
      */
-    virtual int bitrate() = 0;
+    virtual int bitrate() const = 0;
     /*!
      * Tells decoder that it should play next track.
      * By default this function does nothing.
@@ -111,7 +111,7 @@ public:
      * @param path Full local file path.
      * @param useContent Content-based file type determination (\b true - enabled, \b false - disabled)
      */
-    static DecoderFactory *findByPath(const QString &path, bool useContent = false);
+    static DecoderFactory *findByFilePath(const QString &path, bool useContent = false);
     /*!
      * Returns DecoderFactory pointer which supports mime type \b mime or \b 0 if mime type \b mime is unsupported
      */
@@ -125,6 +125,11 @@ public:
      * Returns DecoderFactory pointer which supports protocol \b p or \b 0 if \b url is not supported.
      */
     static DecoderFactory *findByProtocol(const QString &p);
+    /*!
+     * Returns a list of DecoderFactory pointers which support extension of the required file
+     * @param path Full file path or url with correct extension.
+     */
+    static QList<DecoderFactory *> findByFileExtension(const QString &path);
     /*!
      * Returns a list of decoder factories.
      */
@@ -170,10 +175,14 @@ protected:
      * @param f Audio format.
      */
     void configure(quint32 srate, int channels, Qmmp::AudioFormat f = Qmmp::PCM_S16LE);
+    /*!
+     * Use this function inside initialize() reimplementation to tell other plugins about audio parameters.
+     * @param p Audio parameters.
+     */
+    void configure(const AudioParameters &p);
 
 private:
     static void loadPlugins();
-    static DecoderFactory *m_lastFactory;
     static QList<QmmpPluginCache*> *m_cache;
     static QStringList m_disabledNames;
     AudioParameters m_parameters;

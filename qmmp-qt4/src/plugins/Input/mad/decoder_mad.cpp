@@ -3,7 +3,7 @@
  *                                                                         *
  * Copyright (c) 2000-2001 Brad Hughes <bhughes@trolltech.com>             *
  * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2009-2017 Ilya Kotov forkotov02@hotmail.ru                *
+ * Copyright (C) 2009-2017 Ilya Kotov forkotov02@ya.ru                     *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -30,6 +30,7 @@
 
 #define XING_MAGIC (('X' << 24) | ('i' << 16) | ('n' << 8) | 'g')
 #define XING_MAGIC2 (('I' << 24) | ('n' << 16) | ('f' << 8) | 'o')
+#define LAME_MAGIC (('L' << 24) | ('A' << 16) | ('M' << 8) | 'E')
 #define INPUT_BUFFER_SIZE (32*1024)
 
 DecoderMAD::DecoderMAD(QIODevice *i) : Decoder(i)
@@ -44,6 +45,8 @@ DecoderMAD::DecoderMAD(QIODevice *i) : Decoder(i)
     m_input_bytes = 0;
     m_skip_frames = 0;
     m_eof = false;
+    m_skip_bytes = 0;
+    m_play_bytes = -1;
 }
 
 DecoderMAD::~DecoderMAD()
@@ -125,81 +128,104 @@ void DecoderMAD::deinit()
     m_input_bytes = 0;
     m_skip_frames = 0;
     m_eof = false;
+    if(m_xing.lame)
+    {
+        delete m_xing.lame;
+        m_xing.lame = 0;
+    }
 }
 
 bool DecoderMAD::findXingHeader(struct mad_bitptr ptr, unsigned int bitlen)
 {
-    quint32 xing_magic = 0;
     if (bitlen < 64)
-        goto fail;
+        return false;
 
-    xing_magic = mad_bit_read(&ptr, 32);
+    quint32 xing_magic = mad_bit_read(&ptr, 32);
     if(xing_magic != XING_MAGIC && xing_magic != XING_MAGIC2)
-        goto fail;
+        return false;
 
-    xing.flags = mad_bit_read(&ptr, 32);
+    m_xing.flags = mad_bit_read(&ptr, 32);
     bitlen -= 64;
 
-    if (xing.flags & XING_FRAMES)
+    if (m_xing.flags & XING_FRAMES)
     {
         if (bitlen < 32)
-            goto fail;
+            return false;
 
-        xing.frames = mad_bit_read(&ptr, 32);
+        m_xing.frames = mad_bit_read(&ptr, 32);
         bitlen -= 32;
-        
-        if(!xing.frames)
+
+        if(!m_xing.frames)
         {
             qDebug("DecoderMAD: invalid xing header (zero number of frames)");
-            goto fail;
+            return false;
         }
     }
 
-    if (xing.flags & XING_BYTES)
+    if (m_xing.flags & XING_BYTES)
     {
         if (bitlen < 32)
-            goto fail;
+            return false;
 
-        xing.bytes = mad_bit_read(&ptr, 32);
+        m_xing.bytes = mad_bit_read(&ptr, 32);
         bitlen -= 32;
-        
-        if(!xing.bytes)
+
+        if(!m_xing.bytes)
         {
             qDebug("DecoderMAD: invalid xing header (zero number of bytes)");
-            goto fail;
+            return false;
         }
     }
 
-    if (xing.flags & XING_TOC)
+    if (m_xing.flags & XING_TOC)
     {
-        int i;
-
         if (bitlen < 800)
-            goto fail;
+           return false;
 
-        for (i = 0; i < 100; ++i)
-            xing.toc[i] = mad_bit_read(&ptr, 8);
+        for (int i = 0; i < 100; ++i)
+            m_xing.toc[i] = mad_bit_read(&ptr, 8);
 
         bitlen -= 800;
     }
 
-    if (xing.flags & XING_SCALE)
+    if (m_xing.flags & XING_SCALE)
     {
         if (bitlen < 32)
-            goto fail;
+            return false;
 
-        xing.scale = mad_bit_read(&ptr, 32);
+        m_xing.scale = mad_bit_read(&ptr, 32);
         bitlen -= 32;
     }
 
+    m_xing.lame = findLameHeader(ptr, bitlen);
     return true;
+}
 
-fail:
-    xing.flags = 0;
-    xing.frames = 0;
-    xing.bytes = 0;
-    xing.scale = 0;
-    return false;
+DecoderMAD::LameHeader* DecoderMAD::findLameHeader(mad_bitptr ptr, unsigned int bitlen)
+{
+    if(bitlen < 272)
+        return 0;
+
+    if(mad_bit_read (&ptr, 32) != LAME_MAGIC)
+        return 0;
+
+    LameHeader header;
+    mad_bit_skip (&ptr, 40); //version
+
+    header.revision = mad_bit_read (&ptr, 4);
+    if (header.revision == 15)
+        return 0;
+
+    mad_bit_skip(&ptr, 12); //VBR,Lowpass filter value
+    header.peak = mad_bit_read(&ptr, 32) << 5; //Peak amplitude
+    mad_bit_skip(&ptr, 32); //Replay Gain
+    mad_bit_skip(&ptr, 16); //Encoding flags, ATH Type, bitrate
+    header.start_delay = mad_bit_read (&ptr, 12); //Start delay
+    header.end_padding = mad_bit_read (&ptr, 12); //End padding
+    mad_bit_skip (&ptr, 8); //Misc
+    header.gain = mad_bit_read (&ptr, 8); //MP3 Gain
+    mad_bit_skip (&ptr, 64); //Preset and surroud info, MusicLength, Music CRC
+    return new LameHeader(header);
 }
 
 bool DecoderMAD::findHeader()
@@ -271,12 +297,22 @@ bool DecoderMAD::findHeader()
             {
                 is_vbr = true;
 
-                qDebug ("DecoderMAD: Xing header detected");
+                qDebug("DecoderMAD: Xing header found");
 
-                if (xing.flags & XING_FRAMES)
+                if (m_xing.flags & XING_FRAMES)
                 {
                     has_xing = true;
-                    count = xing.frames;
+                    count = m_xing.frames;
+
+                    if(m_xing.lame)
+                    {
+                        qDebug("DecoderMAD: LAME header found");
+                        m_skip_bytes = m_xing.lame->start_delay * sizeof(float) * MAD_NCHANNELS(&header);
+                        m_play_bytes = (m_xing.frames * 1152 - m_xing.lame->start_delay - m_xing.lame->end_padding) *
+                                sizeof(float) * MAD_NCHANNELS(&header);
+                        qDebug("DecoderMAD: samples to skip: %d, padding: %d",
+                               m_xing.lame->start_delay, m_xing.lame->end_padding);
+                    }
                     break;
                 }
             }
@@ -326,23 +362,59 @@ bool DecoderMAD::findHeader()
     return true;
 }
 
-qint64 DecoderMAD::totalTime()
+qint64 DecoderMAD::totalTime() const
 {
     if (!m_inited)
         return 0;
     return m_totalTime;
 }
 
-int DecoderMAD::bitrate()
+int DecoderMAD::bitrate() const
 {
     return int(m_bitrate);
 }
 
 qint64 DecoderMAD::read(unsigned char *data, qint64 size)
 {
-    if(decodeFrame())
-        return madOutputFloat((float*)data, size / sizeof(float)) * sizeof(float);
-    return 0;
+    while(m_skip_bytes > 0)
+    {
+        if(!decodeFrame())
+            return 0;
+
+        qint64 l = madOutputFloat((float*)data, size / sizeof(float)) * sizeof(float);
+
+        if(m_skip_bytes > l)
+        {
+            m_skip_bytes -= l;
+            continue;
+        }
+        else if(m_skip_bytes < l)
+        {
+            l -= m_skip_bytes;
+            memmove(data, data + m_skip_bytes, l);
+            m_skip_bytes = 0;
+            m_play_bytes -= l;
+            return l;
+        }
+    }
+
+    if(!decodeFrame())
+        return 0;
+
+    qint64 l = madOutputFloat((float*)data, size / sizeof(float)) * sizeof(float);
+
+    if(m_play_bytes > 0)
+    {
+        if(m_play_bytes > l)
+            m_play_bytes -= l;
+        else
+        {
+            l -= m_play_bytes;
+            m_play_bytes = 0;
+        }
+
+    }
+    return l;
 }
 
 void DecoderMAD::seek(qint64 pos)
@@ -358,6 +430,8 @@ void DecoderMAD::seek(qint64 pos)
         m_input_bytes = 0;
         m_stream.next_frame = 0;
         m_skip_frames = 2;
+        m_skip_bytes = 0;
+        m_play_bytes = -1;
     }
 }
 

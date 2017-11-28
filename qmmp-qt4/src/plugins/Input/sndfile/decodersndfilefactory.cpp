@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,38 +27,53 @@
 #include "decoder_sndfile.h"
 #include "decodersndfilefactory.h"
 
+#define WAVE_FORMAT_PCM 0x0001
+#define WAVE_FORMAT_ADPCM 0x0002
+#define WAVE_FORMAT_IEEE_FLOAT 0x0003
+#define WAVE_FORMAT_ALAW 0x0006
+#define WAVE_FORMAT_MULAW 0x0007
 
 // DecoderSndFileFactory
-
-bool DecoderSndFileFactory::supports(const QString &source) const
+bool DecoderSndFileFactory::canDecode(QIODevice *input) const
 {
-    if (source.endsWith(".wav", Qt::CaseInsensitive))
-    {
-        //try top open the file
-        SF_INFO snd_info;
-#ifdef Q_OS_WIN
-        SNDFILE *sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(source.utf16()), SFM_READ, &snd_info);
-#else
-        SNDFILE *sndfile = sf_open(source.toLocal8Bit().constData(), SFM_READ, &snd_info);
-#endif
-        if (!sndfile)
-            return false;
+    char buf[36];
+    if(input->peek(buf, sizeof(buf)) != sizeof(buf))
+        return false;
 
-        sf_close (sndfile);
-        sndfile = 0;
-        return true;
-    }
-    foreach(QString filter, properties().filters)
+    if(!memcmp(buf + 8, "WAVE", 4) && (!memcmp(buf, "RIFF", 4) || !memcmp(buf, "RIFX", 4)))
     {
-        QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
-        if (regexp.exactMatch(source))
+        quint16 subformat = (quint16(buf[21]) << 8) + buf[20];
+
+        switch (subformat)
+        {
+        case WAVE_FORMAT_PCM:
+        case WAVE_FORMAT_ADPCM:
+        case WAVE_FORMAT_IEEE_FLOAT:
+        case WAVE_FORMAT_ALAW:
+        case WAVE_FORMAT_MULAW:
+            return true;
+        default:
+            return false;
+        }
+    }
+    else if(!memcmp(buf, "FORM", 4))
+    {
+        if(!memcmp(buf + 8, "AIFF", 4))
+            return true;
+        if(!memcmp(buf + 8, "8SVX", 4))
             return true;
     }
-    return false;
-}
+    else if(!memcmp(buf, ".snd", 4) || !memcmp(buf, "dns.", 4))
+        return true;
+    else if(!memcmp(buf, "fap ", 4) || !memcmp(buf, " paf", 4))
+        return true;
+    else if(!memcmp(buf, "NIST", 4))
+        return true;
+    else if(!memcmp(buf, "Crea", 4) && !memcmp(buf + 4, "tive", 4))
+        return true;
+    else if(!memcmp(buf, "riff", 4))
+        return true;
 
-bool DecoderSndFileFactory::canDecode(QIODevice *) const
-{
     return false;
 }
 
@@ -73,14 +88,13 @@ const DecoderProperties DecoderSndFileFactory::properties() const
     properties.shortName = "sndfile";
     properties.hasAbout = true;
     properties.hasSettings = false;
-    properties.noInput = true;
-    properties.protocols << "file";
+    properties.noInput = false;
     return properties;
 }
 
-Decoder *DecoderSndFileFactory::create(const QString &path, QIODevice *)
+Decoder *DecoderSndFileFactory::create(const QString &, QIODevice *input)
 {
-    return new DecoderSndFile(path);
+    return new DecoderSndFile(input);
 }
 
 QList<FileInfo *> DecoderSndFileFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)

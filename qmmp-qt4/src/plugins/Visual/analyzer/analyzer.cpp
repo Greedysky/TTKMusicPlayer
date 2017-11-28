@@ -14,25 +14,20 @@
 #include "analyzer.h"
 #include "colorwidget.h"
 
-#define VISUAL_NODE_SIZE 512 //samples
-#define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
-
 Analyzer::Analyzer (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
     m_peaks = 0;
     m_x_scale = 0;
-    m_buffer_at = 0;
     m_rows = 0;
     m_cols = 0;
     m_update = false;
+    m_running = false;
 
     setWindowTitle (tr("Analyzer"));
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_left_buffer = new float[VISUAL_BUFFER_SIZE];
-    m_right_buffer = new float[VISUAL_BUFFER_SIZE];
     m_cell_size = QSize(15, 6);
 
     clear();
@@ -42,9 +37,6 @@ Analyzer::Analyzer (QWidget *parent) : Visual (parent)
 
 Analyzer::~Analyzer()
 {
-    delete [] m_left_buffer;
-    delete [] m_right_buffer;
-
     if(m_peaks)
         delete [] m_peaks;
     if(m_intern_vis_data)
@@ -53,51 +45,34 @@ Analyzer::~Analyzer()
         delete [] m_x_scale;
 }
 
-void Analyzer::add (float *data, size_t samples, int chan)
+void Analyzer::start()
 {
-    if (!m_timer->isActive ())
-        return;
+    m_running = true;
+    if(isVisible())
+        m_timer->start();
+}
 
-    if(VISUAL_BUFFER_SIZE == m_buffer_at)
-    {
-        m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        return;
-    }
-
-    int frames = qMin(int(samples/chan), VISUAL_BUFFER_SIZE - m_buffer_at);
-
-    stereo_from_multichannel(m_left_buffer + m_buffer_at,
-                             m_right_buffer + m_buffer_at, data, frames, chan);
-
-    m_buffer_at += frames;
+void Analyzer::stop()
+{
+    m_running = false;
+    m_timer->stop();
+    clear();
 }
 
 void Analyzer::clear()
 {
-    m_buffer_at = 0;
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-
 void Analyzer::timeout()
 {
-    mutex()->lock();
-    if(m_buffer_at < VISUAL_NODE_SIZE)
+    if(takeData(m_left_buffer, m_right_buffer))
     {
-        mutex()->unlock ();
-        return;
+        process();
+        update();
     }
-
-    process (m_left_buffer, m_right_buffer);
-    m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_left_buffer, m_left_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    memmove(m_right_buffer, m_right_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    mutex()->unlock ();
-    update();
 }
 
 void Analyzer::readSettings()
@@ -147,8 +122,6 @@ void Analyzer::readSettings()
             m_peaksFalloffGroup->actions().at(1)->setChecked(2);
             m_analyzer_falloff = 2.2;
         }
-
-        restoreGeometry(settings.value("geometry").toByteArray());
     }
 }
 
@@ -184,7 +157,8 @@ void Analyzer::hideEvent (QHideEvent *)
 
 void Analyzer::showEvent (QShowEvent *)
 {
-    m_timer->start();
+    if(m_running)
+        m_timer->start();
 }
 
 void Analyzer::paintEvent (QPaintEvent * e)
@@ -200,8 +174,12 @@ void Analyzer::mousePressEvent(QMouseEvent *e)
         m_menu->exec(e->globalPos());
 }
 
-void Analyzer::process (float *left, float *right)
+void Analyzer::process ()
 {
+    static fft_state *state = 0;
+    if (!state)
+        state = fft_init();
+
     int rows = (height() - 2) / m_cell_size.height();
     int cols = (width() - 2) / m_cell_size.width() / 2;
 
@@ -233,8 +211,8 @@ void Analyzer::process (float *left, float *right)
     short yl, yr;
     int j, k, magnitude_l, magnitude_r;
 
-    calc_freq (dest_l, left);
-    calc_freq (dest_r, right);
+    calc_freq (dest_l, m_left_buffer);
+    calc_freq (dest_r, m_right_buffer);
 
     double y_scale = (double) 1.25 * m_rows / log(256);
 

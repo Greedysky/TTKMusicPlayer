@@ -65,6 +65,11 @@ void Output::suspend()
 void Output::resume()
 {}
 
+void Output::setMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
+{
+    Q_UNUSED(metaData);
+}
+
 Output::~Output()
 {}
 

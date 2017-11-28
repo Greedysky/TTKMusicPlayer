@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,7 +27,7 @@
 #include <qmmp/output.h>
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class OutputWaveOut : public Output
 {
@@ -49,6 +49,8 @@ private:
     // helper functions
     void status();
     void uninitialize();
+    qint64 m_totalWritten;
+    qint32 m_frameSize;
 };
 
 class VolumeWaveOut : public Volume

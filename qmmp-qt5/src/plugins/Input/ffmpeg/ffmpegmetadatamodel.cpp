@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -72,16 +72,15 @@ QHash<QString, QString> FFmpegMetaDataModel::audioProperties()
         ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(c->sample_rate));
         ap.insert(tr("Channels"), QString("%1").arg(c->channels));
     }
+
     return ap;
 }
 
 QPixmap FFmpegMetaDataModel::cover()
 {
     if(!m_in)
-    {
         return QPixmap();
-    }
-
+		
 #if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
     AVCodecParameters *c = 0;
 #else

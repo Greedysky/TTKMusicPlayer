@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -38,17 +38,6 @@ DecoderFFmpegFactory::DecoderFFmpegFactory()
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
-}
-
-bool DecoderFFmpegFactory::supports(const QString &source) const
-{
-    foreach(QString filter, properties().filters)
-    {
-        QRegExp regexp(filter, Qt::CaseInsensitive, QRegExp::Wildcard);
-        if (regexp.exactMatch(source))
-            return true;
-    }
-    return false;
 }
 
 bool DecoderFFmpegFactory::canDecode(QIODevice *i) const

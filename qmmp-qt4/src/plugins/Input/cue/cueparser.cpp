@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -308,7 +308,7 @@ qint64 CUEParser::getLength(const QString &str)
 
 QString CUEParser::getDirtyPath(const QString &cue_path, const QString &path)
 {
-    if((QFile::exists(path) && Decoder::findByPath(path)) || !m_dirty)
+    if((QFile::exists(path) && Decoder::findByFilePath(path)) || !m_dirty)
         return path;
 
     QStringList candidates;
@@ -317,7 +317,7 @@ QString CUEParser::getDirtyPath(const QString &cue_path, const QString &path)
     {
         it.next();
         QString f = it.filePath();
-        if ((f != cue_path) && Decoder::findByPath(f))
+        if ((f != cue_path) && Decoder::findByFilePath(f))
             candidates.push_back(f);
     }
 

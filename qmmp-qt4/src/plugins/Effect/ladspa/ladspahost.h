@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright (C) 2002,2003 Nick Lamb <njl195@zepler.org.uk>              *
  *   Copyright (C) 2005 Giacomo Lozito <city_hunter@users.sf.net>          *
- *   Copyright (C) 2009-2015 by Ilya Kotov <forkotov02@hotmail.ru>         *
+ *   Copyright (C) 2009-2015 by Ilya Kotov <forkotov02@ya.ru>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -34,7 +34,7 @@ class QWidget;
 #define MAX_KNOBS 64
 
 /**
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class LADSPAPlugin
 {

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -179,12 +179,12 @@ bool DecoderMPC::initialize()
     return true;
 }
 
-qint64 DecoderMPC::totalTime()
+qint64 DecoderMPC::totalTime() const
 {
     return m_totalTime;
 }
 
-int DecoderMPC::bitrate()
+int DecoderMPC::bitrate() const
 {
     return m_bitrate;
 }

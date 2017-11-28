@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -31,12 +31,6 @@
 #include "decodermpcfactory.h"
 
 // DecoderMPCFactory
-
-bool DecoderMPCFactory::supports(const QString &source) const
-{
-    return (source.right(4).toLower() == ".mpc");
-}
-
 bool DecoderMPCFactory::canDecode(QIODevice *input) const
 {
     char buf[36];

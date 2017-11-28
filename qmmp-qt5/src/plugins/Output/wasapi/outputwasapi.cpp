@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2016-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -23,18 +23,17 @@
 #include <string.h>
 #include <iostream>
 #include <unistd.h>
-#include <qmmp/buffer.h>
+#include <initguid.h>
+#include <audioclient.h>
+#include <endpointvolume.h>
+#include <mmdeviceapi.h>
+#include <mmreg.h>
+#include <functiondiscoverykeys.h>
 #include <math.h>
+#include <qmmp/buffer.h>
 #include "outputwasapi.h"
 
-const CLSID CLSID_MMDeviceEnumerator = __uuidof(MMDeviceEnumerator);
-const IID IID_IMMDeviceEnumerator = __uuidof(IMMDeviceEnumerator);
-const IID IID_IAudioClient = __uuidof(IAudioClient);
-const IID IID_IAudioRenderClient = __uuidof(IAudioRenderClient);
-const IID IID_IChannelAudioVolume = __uuidof(IChannelAudioVolume);
-const IID IID_ISimpleAudioVolume = __uuidof(ISimpleAudioVolume);
-
-#define WASAPI_BUFSIZE 10000000LL //2s
+#define WASAPI_BUFSIZE 10000000LL //1s
 
 #ifndef AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM
 #define AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM 0x80000000
@@ -63,6 +62,8 @@ OutputWASAPI::OutputWASAPI() : Output()
     m_pRenderClient = 0;
     m_pSimpleAudioVolume = 0;
     instance = this;
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    m_id = settings.value("WASAPI/device", "default").toString();
 }
 
 OutputWASAPI::~OutputWASAPI()
@@ -81,11 +82,29 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
         return false;
     }
 
-    if((result = m_pEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &m_pDevice)) != S_OK)
+    if(m_id != "default" && !m_id.isEmpty())
     {
-        qWarning("OutputWASAPI: IMMDeviceEnumerator::GetDefaultAudioEndpoint failed, error code = 0x%lx", result);
-        m_pDevice = 0;
-        return false;
+        WCHAR id[m_id.length() + 1];
+        m_id.toWCharArray(id);
+        id[m_id.length()] = 0;
+
+        if((result = m_pEnumerator->GetDevice(id, &m_pDevice)) != S_OK)
+        {
+            qWarning("OutputWASAPI: IMMDeviceEnumerator::GetDevice failed, error code = 0x%lx", result);
+            m_pDevice = 0;
+        }
+        else
+            qDebug("OutputWASAPI: using device id: %s", qPrintable(m_id));
+    }
+
+    if(!m_pDevice)
+    {
+        if((result = m_pEnumerator->GetDefaultAudioEndpoint(eRender, eConsole, &m_pDevice)) != S_OK)
+        {
+            qWarning("OutputWASAPI: IMMDeviceEnumerator::GetDefaultAudioEndpoint failed, error code = 0x%lx", result);
+            m_pDevice = 0;
+            return false;
+        }
     }
 
     if((result = m_pDevice->Activate(IID_IAudioClient, CLSCTX_ALL, NULL, (void**)&m_pAudioClient)) != S_OK)

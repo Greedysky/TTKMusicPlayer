@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2007-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2007-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -187,4 +187,15 @@ bool Effect::isEnabled(EffectFactory* factory)
 {
     loadPlugins();
     return m_enabledNames.contains(factory->properties().shortName);
+}
+
+EffectFactory *Effect::findFactory(const QString &shortName)
+{
+    loadPlugins();
+    foreach (EffectFactory *f, factories())
+    {
+        if(shortName == f->properties().shortName)
+            return f;
+    }
+    return 0;
 }

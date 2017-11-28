@@ -24,27 +24,31 @@ public:
     MultiWave( QWidget *parent = 0);
     virtual ~MultiWave();
 
-    void add(float *data, size_t samples, int chan);
-    void clear();
+public slots:
+    void start();
+    void stop();
 
 private slots:
     void timeout();
 
 private:
+    void clear();
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
 
-    void process(float *buffer);
+    void process();
     void draw(QPainter *p);
 
     QImage m_backgroundImage;
     int m_pixPos;
     QTimer *m_timer;
     double m_intern_vis_data;
-    int *m_x_scale, m_buffer_at, m_cols, m_rows;
+    int *m_x_scale, m_cols, m_rows;
     double m_analyzer_falloff;
-    float *m_buffer;
+    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
+    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
+    bool m_running;
 
 };
 

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -32,13 +32,13 @@
 class DecoderSndFile : public Decoder
 {
 public:
-    DecoderSndFile(const QString &path);
+    DecoderSndFile(QIODevice *input);
     virtual ~DecoderSndFile();
 
     // Standard Decoder API
     bool initialize();
-    qint64 totalTime();
-    int bitrate();
+    qint64 totalTime() const;
+    int bitrate() const;
     qint64 read(unsigned char *audio, qint64 maxSize);
     void seek(qint64 time);
 
@@ -51,7 +51,7 @@ private:
     int m_bitrate;
     quint32 m_freq;
     qint64 m_totalTime;
-    QString m_path;
+    SF_VIRTUAL_IO m_vio;
 };
 
 

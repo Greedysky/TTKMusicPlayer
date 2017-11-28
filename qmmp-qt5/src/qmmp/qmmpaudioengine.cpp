@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -131,8 +131,8 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
 
     DecoderFactory *factory = 0;
 
-    if(!factory && !source->url().contains("://"))
-        factory = Decoder::findByPath(source->url(), m_settings->determineFileTypeByContent());
+    if(!source->url().contains("://"))
+        factory = Decoder::findByFilePath(source->url(), m_settings->determineFileTypeByContent());
     if(!factory)
         factory = Decoder::findByMime(source->contentType());
     if(factory && !factory->properties().noInput && source->ioDevice() && source->url().contains("://"))
@@ -289,6 +289,8 @@ void QmmpAudioEngine::stop()
 qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 brate)
 {
     Buffer *b = m_output->recycler()->get();
+    b->metaData = m_metaData;
+    m_metaData.clear();
     size_t sz = size < m_bks ? size : m_bks;
     size_t samples = sz / m_sample_size;
 
@@ -351,6 +353,7 @@ void QmmpAudioEngine::run()
 {
     mutex()->lock ();
     m_next = false;
+    m_metaData.clear();
     qint64 len = 0;
     int delay = 0;
     if(m_decoders.isEmpty())
@@ -387,12 +390,14 @@ void QmmpAudioEngine::run()
             QMap<Qmmp::MetaData, QString> m = m_decoder->takeMetaData();
             m[Qmmp::URL] = m_inputs[m_decoder]->url();
             StateHandler::instance()->dispatch(m);
+            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
         }
         if(m_inputs[m_decoder]->hasMetaData())
         {
             QMap<Qmmp::MetaData, QString> m = m_inputs[m_decoder]->takeMetaData();
             m[Qmmp::URL] = m_inputs[m_decoder]->url();
             StateHandler::instance()->dispatch(m);
+            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
         }
         if(m_inputs[m_decoder]->hasStreamInfo())
             StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeStreamInfo());
@@ -614,6 +619,7 @@ void QmmpAudioEngine::sendMetaData()
         if (!list.isEmpty())
         {
             StateHandler::instance()->dispatch(list[0]->metaData());
+            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(list[0]->metaData()));
             while (!list.isEmpty())
                 delete list.takeFirst();
         }
@@ -639,7 +645,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     //output buffer for decoder
     if(m_output_buf)
         delete [] m_output_buf;
-    m_bks = QMMP_BLOCK_FRAMES * m_ap.channels() * m_ap.sampleSize(); //block size
+    m_bks = QMMP_BLOCK_FRAMES * m_ap.frameSize(); //block size
     m_output_size = m_bks * 4;
     m_sample_size = m_ap.sampleSize();
     m_output_buf = new unsigned char[m_output_size];

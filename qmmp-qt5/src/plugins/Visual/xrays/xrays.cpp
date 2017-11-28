@@ -13,13 +13,10 @@
 #include "xrays.h"
 #include "colorwidget.h"
 
-#define VISUAL_NODE_SIZE 512 //samples
-#define VISUAL_BUFFER_SIZE (5*VISUAL_NODE_SIZE)
-
 XRays::XRays (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
-    m_buffer_at = 0;
+    m_running = false;
     m_cols = 0;
     m_rows = 0;
 
@@ -27,7 +24,6 @@ XRays::XRays (QWidget *parent) : Visual (parent)
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_buffer = new float[VISUAL_BUFFER_SIZE];
     m_timer->setInterval(10);
 
     clear();
@@ -36,50 +32,38 @@ XRays::XRays (QWidget *parent) : Visual (parent)
 
 XRays::~XRays()
 {
-    delete [] m_buffer;
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
 }
 
-void XRays::add (float *data, size_t samples, int chan)
+void XRays::start()
 {
-    if (!m_timer->isActive ())
-        return;
+    m_running = true;
+    if(isVisible())
+        m_timer->start();
+}
 
-    if(VISUAL_BUFFER_SIZE == m_buffer_at)
-    {
-        m_buffer_at -= VISUAL_NODE_SIZE;
-        memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-        return;
-    }
-
-    int frames = qMin(int(samples/chan), VISUAL_BUFFER_SIZE - m_buffer_at);
-    mono_from_multichannel(m_buffer + m_buffer_at, data, frames, chan);
-
-    m_buffer_at += frames;
+void XRays::stop()
+{
+    m_running = false;
+    m_timer->stop();
+    clear();
 }
 
 void XRays::clear()
 {
-    m_buffer_at = 0;
+    m_rows = 0;
     m_cols = 0;
     update();
 }
 
 void XRays::timeout()
 {
-    mutex()->lock();
-    if(m_buffer_at < VISUAL_NODE_SIZE)
+    if(takeData(m_left_buffer, m_right_buffer))
     {
-        mutex()->unlock ();
-        return;
+        process();
+        update();
     }
-
-    process (m_buffer);
-    m_buffer_at -= VISUAL_NODE_SIZE;
-    memmove(m_buffer, m_buffer + VISUAL_NODE_SIZE, m_buffer_at * sizeof(float));
-    mutex()->unlock ();
-    update();
 }
 
 void XRays::readSettings()
@@ -114,7 +98,8 @@ void XRays::hideEvent (QHideEvent *)
 
 void XRays::showEvent (QShowEvent *)
 {
-    m_timer->start();
+    if(m_running)
+        m_timer->start();
 }
 
 void XRays::paintEvent (QPaintEvent * e)
@@ -134,8 +119,12 @@ void XRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void XRays::process (float *buffer)
+void XRays::process ()
 {
+    static fft_state *state = 0;
+    if (!state)
+        state = fft_init();
+
     m_cols = width();
     m_rows = height();
 
@@ -144,13 +133,13 @@ void XRays::process (float *buffer)
 
     m_intern_vis_data = new int[m_cols];
 
-    int step = (VISUAL_NODE_SIZE << 8)/m_cols;
+    int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
     int pos = 0;
 
     for (int i = 0; i < m_cols; ++i)
     {
         pos += step;
-        m_intern_vis_data[i] = int(buffer[pos >> 8] * m_rows* 1.0);
+        m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
         m_intern_vis_data[i] = qBound(-m_rows/2, m_intern_vis_data[i], m_rows/2);
     }
 }

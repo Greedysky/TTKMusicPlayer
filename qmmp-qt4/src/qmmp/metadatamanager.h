@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -36,7 +36,7 @@ class QmmpSettings;
 
 
 /*! @brief The MetaDataManager class is the base class for metadata access.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class MetaDataManager
 {
@@ -82,20 +82,30 @@ public:
      */
     bool supports(const QString &file) const;
     /*!
-     * Returns cover pixmap for the given file \b fileName,
+     * Returns the cover pixmap for the given file \b url,
      * or returns an empty pixmap if cover is not available.
+     * IMPORTANT: to avoid infinite recursion, do not use this function inside \b MetaDataModel reimplementation.
      */
-    QPixmap getCover(const QString &fileName);
+    QPixmap getCover(const QString &url) const;
     /*!
-     * Returns cover file path for the given file \b fileName, or returns
-     * an empty string if cover file is not available. This function does not work
+     * Returns the cover file path for the given file \b url, or returns
+     * an empty string if the cover file is not available. This function does not work
      * with embedded covers.
+     * IMPORTANT: to avoid infinite recursion, do not use this function inside \b MetaDataModel reimplementation.
      */
-    QString getCoverPath(const QString &fileName);
+    QString getCoverPath(const QString &url) const;
+    /*!
+     * Returns the cover file path for the given local audio file, or returns
+     * an empty string if the cover file is not available.
+     * Unlike \b getCover and \b getCoverPath this function provides simple file search (without cache) and
+     * should be used inside \b MetaDataModel reimplementation.
+     * @param fileName Path of the local audio file.
+     */
+    QString findCoverFile(const QString &fileName) const;
     /*!
      * Clears cover path cache.
      */
-    void clearCoverChache();
+    void clearCoverCache();
     /*!
      * Prepares object for usage by another thread to avoid warnings about parent from the different thread
      */
@@ -110,10 +120,16 @@ public:
     static void destroy();
 
 private:
+    struct CoverCacheItem
+    {
+        QString url;
+        QString coverPath;
+        QPixmap coverPixmap;
+    };
+
     QFileInfoList findCoverFiles(QDir dir, int depth) const;
-    QMap <QString, QString> m_cover_path_cache;
-    QPixmap m_cached_cover;
-    QString m_cached_path;
+    CoverCacheItem *createCoverCacheItem(const QString &url) const;
+    mutable QList <CoverCacheItem *> m_cover_cache;
     QmmpSettings *m_settings;
     mutable QMutex m_mutex;
 

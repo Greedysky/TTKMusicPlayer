@@ -15,12 +15,20 @@ contains(CONFIG, MUSEPACK_PLUGIN){
     SUBDIRS += mpc
 }
 
+contains(CONFIG, FFAP_PLUGIN){
+    SUBDIRS += ffap
+}
+
 contains(CONFIG, FFMPEG_PLUGIN){
     SUBDIRS += ffmpeg
 }
 
 contains(CONFIG, GME_PLUGIN){
     SUBDIRS += gme
+}
+
+contains(CONFIG, XMP_PLUGIN){
+    SUBDIRS += xmp
 }
 
 unix:!android{

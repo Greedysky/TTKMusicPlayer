@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -71,7 +71,7 @@ bool DecoderCUE::initialize()
         qWarning("DecoderCUE: file \"%s\" doesn't exist", qPrintable(m_path));
         return false;
     }
-    DecoderFactory *df = Decoder::findByPath(m_path);
+    DecoderFactory *df = Decoder::findByFilePath(m_path);
     if (!df)
     {
         qWarning("DecoderCUE: unsupported file format");
@@ -96,22 +96,19 @@ bool DecoderCUE::initialize()
     }
     m_decoder->seek(m_offset);
 
-    configure(m_decoder->audioParameters().sampleRate(),
-              m_decoder->audioParameters().channelMap(),
-              m_decoder->audioParameters().format());
+    configure(m_decoder->audioParameters());
     setReplayGainInfo(m_parser->replayGain(m_track));
     length_in_bytes = audioParameters().sampleRate() *
-                      audioParameters().channels() *
-                      audioParameters().sampleSize() * m_length/1000;
+                      audioParameters().frameSize() * m_length/1000;
     m_totalBytes = 0;
 
-    m_sz = audioParameters().sampleSize() * audioParameters().channels();
+    m_sz = audioParameters().frameSize();
 
     addMetaData(m_parser->info(m_track)->metaData());
     return true;
 }
 
-qint64 DecoderCUE::totalTime()
+qint64 DecoderCUE::totalTime() const
 {
     return m_decoder ? m_length : 0;
 }
@@ -120,8 +117,7 @@ void DecoderCUE::seek(qint64 pos)
 {
      m_decoder->seek(m_offset + pos);
      m_totalBytes = audioParameters().sampleRate() *
-                    audioParameters().channels() *
-                    audioParameters().sampleSize() * pos/1000;
+                    audioParameters().frameSize() * pos/1000;
 }
 
 qint64 DecoderCUE::read(unsigned char *data, qint64 size)
@@ -168,7 +164,7 @@ qint64 DecoderCUE::read(unsigned char *data, qint64 size)
     return len2;
 }
 
-int DecoderCUE::bitrate()
+int DecoderCUE::bitrate() const
 {
     return m_decoder->bitrate();
 }
@@ -189,8 +185,7 @@ void DecoderCUE::next()
         m_length = m_parser->length(m_track);
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
-                          audioParameters().channels() *
-                          audioParameters().sampleSize() * m_length/1000;
+                          audioParameters().frameSize() * m_length/1000;
         addMetaData(m_parser->info(m_track)->metaData());
         setReplayGainInfo(m_parser->replayGain(m_track));
         m_totalBytes = 0;

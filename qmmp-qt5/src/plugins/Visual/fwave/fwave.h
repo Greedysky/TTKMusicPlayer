@@ -24,8 +24,9 @@ public:
     FWave( QWidget *parent = 0);
     virtual ~FWave();
 
-    void add(float *data, size_t samples, int chan);
-    void clear();
+public slots:
+    void start();
+    void stop();
 
 private slots:
     void timeout();
@@ -34,21 +35,23 @@ private slots:
     void changeColor();
 
 private:
+    void clear();
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
     void contextMenuEvent(QContextMenuEvent *e);
 
-    void process(float *l, float *r);
+    void process();
     void draw(QPainter *p);
 
     QList<QColor> m_colors;
     QTimer *m_timer;
     double *m_intern_vis_data, *m_peaks;
-    int *m_x_scale;
     double m_peaks_falloff, m_analyzer_falloff;
-    float *m_left_buffer, *m_right_buffer;
-    int m_buffer_at, m_cols, m_rows;
+    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
+    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
+    int *m_x_scale, m_cols, m_rows;
+    bool m_running;
 
     QSize m_cell_size;
 

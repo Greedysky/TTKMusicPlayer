@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2014-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -50,6 +50,9 @@ OutputDirectSound::OutputDirectSound() : Output()
     m_primaryBuffer = 0;
     m_dsBuffer = 0;
     m_dsBufferAt = 0;
+    m_latency = 0;
+    m_bytesPerSecond = 0;
+    m_reset = false;
     instance = this;
 }
 
@@ -61,7 +64,9 @@ OutputDirectSound::~OutputDirectSound()
 
 bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat format)
 {
+    m_latency = 0;
     DSBUFFERDESC bufferDesc;
+
 
     HRESULT result = DirectSoundCreate8(0, &m_ds, 0);
     if(result != DS_OK)
@@ -178,21 +183,29 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     configure(freq, out_map, format);
     if(volumeControl)
         volumeControl->restore();
+    m_bytesPerSecond = (sampleRate() * sampleSize() * channels());
     return true;
 }
 
-
 qint64 OutputDirectSound::latency()
 {
-    return 0;
+    return m_latency;
 }
 
 qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
 {
     unsigned char *ptr = 0, *ptr2 = 0;
     DWORD size = 0, size2 = 0;
-
     DWORD available = bytesToWrite(); //available bytes
+    m_latency = (DS_BUFSIZE - available) * 1000 / m_bytesPerSecond;
+
+    if(m_reset)
+    {
+        available = DS_BUFSIZE;
+        m_dsBuffer->SetCurrentPosition(m_dsBufferAt);
+        m_reset = false;
+    }
+
     if(available < 128)
     {
         usleep(5000);
@@ -270,7 +283,7 @@ void OutputDirectSound::resume()
 
 void OutputDirectSound::reset()
 {
-    m_dsBuffer->SetCurrentPosition(m_dsBufferAt-128);
+    m_reset = true;
 }
 
 IDirectSoundBuffer8 *OutputDirectSound::secondaryBuffer()

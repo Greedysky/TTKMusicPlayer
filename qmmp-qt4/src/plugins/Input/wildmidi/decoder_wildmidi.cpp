@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -67,7 +67,7 @@ bool DecoderWildMidi::initialize()
     return true;
 }
 
-qint64 DecoderWildMidi::totalTime()
+qint64 DecoderWildMidi::totalTime() const
 {
     return m_totalTime;
 }
@@ -78,7 +78,7 @@ void DecoderWildMidi::seek(qint64 pos)
     WildMidi_FastSeek(midi_ptr, &sample);
 }
 
-int DecoderWildMidi::bitrate()
+int DecoderWildMidi::bitrate() const
 {
     return 8;
 }

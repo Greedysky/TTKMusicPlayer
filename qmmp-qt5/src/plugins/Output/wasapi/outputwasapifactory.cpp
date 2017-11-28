@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2016 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2016-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,7 +26,7 @@ const OutputProperties OutputWASAPIFactory::properties() const
     OutputProperties properties;
     properties.name = tr("WASAPI Plugin");
     properties.hasAbout = true;
-    properties.hasSettings = false;
+    properties.hasSettings = true;
     properties.shortName = "wasapi";
     return properties;
 }
