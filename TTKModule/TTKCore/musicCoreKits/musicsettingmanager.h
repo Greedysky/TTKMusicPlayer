@@ -104,6 +104,7 @@ public:
         EnhancedStereoChoiced,          /*!< Enhanced Stereo Parameter*/
         EnhancedLADSPAChoiced,          /*!< Enhanced LADSPA Parameter*/
         EnhancedSOXChoiced,             /*!< Enhanced SOX Parameter*/
+        EnhancedSRCChoiced,             /*!< Enhanced SRC Parameter*/
 
         TimerAutoIndexChoiced,          /*!< Timer Auto Index Parameter*/
         TimerAutoPlayChoiced,           /*!< Timer Auto Play Parameter*/

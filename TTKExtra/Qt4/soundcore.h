@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006-2013 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,6 +29,7 @@
 #include "visual.h"
 #include "qmmp.h"
 #include "qmmpsettings.h"
+#include "audioparameters.h"
 #include "eqsettings.h"
 
 class VolumeControl;
@@ -37,7 +38,7 @@ class InputSource;
 class StateHandler;
 
 /*! \brief The SoundCore class provides a simple interface for audio playback.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class SoundCore : public QObject
 {
@@ -87,23 +88,15 @@ public:
     /*!
      * Returns the current time (in milliseconds).
      */
-    qint64 elapsed();
+    qint64 elapsed() const;
     /*!
      * Returns current bitrate (in kbps)
      */
-    int bitrate();
+    int bitrate() const;
     /*!
-     * Returns current sample rate (in Hz).
+     * Returns output audio parameters.
      */
-    quint32 frequency();
-    /*!
-     * Returns sample size (in bits).
-     */
-    int sampleSize();
-    /*!
-     * Returns channels number.
-     */
-    int channels();
+    AudioParameters audioParameters() const;
     /*!
      * Returns the current state.
      */
@@ -204,20 +197,10 @@ signals:
      */
     void bitrateChanged(int bitrate);
     /*!
-     * Emitted when samplerate has changed.
-     * @param frequency New sample rate (in Hz)
+     * Emitted when audio parameters have changed.
+     * @param p New audio parameters for output.
      */
-    void frequencyChanged(quint32 frequency);
-    /*!
-     * Emitted when sample size has changed.
-     * @param size New sample size (in bits)
-     */
-    void sampleSizeChanged(int size);
-    /*!
-     * Emitted when channels number has changed.
-     * @param channels New channels number.
-     */
-    void channelsChanged(int channels);
+    void audioParametersChanged(const AudioParameters &p);
     /*!
      * Emitted when new metadata is available.
      */

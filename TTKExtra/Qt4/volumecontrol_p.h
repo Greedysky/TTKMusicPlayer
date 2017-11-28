@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -30,7 +30,7 @@ class SoftwareVolume;
 
 /*! @internal
  * @brief The VolumeControl class provides volume control access
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class VolumeControl : public QObject
 {
@@ -121,7 +121,7 @@ private:
 };
 /*! @internal
  * @brief The SoftwareVolume class provides access to the software volume control.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class SoftwareVolume : public Volume
 {

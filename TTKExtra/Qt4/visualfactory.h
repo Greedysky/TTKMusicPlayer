@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -28,7 +28,7 @@ class QDialog;
 class Visual;
 
 /*! @brief Helper class to store visual plugin properies.
- *  @author Ilya Kotov <forkotov02@hotmail.ru>
+ *  @author Ilya Kotov <forkotov02@ya.ru>
  */
 class VisualProperties
 {
@@ -47,7 +47,7 @@ public:
     bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief %Visual plugin interface (visual factory).
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class VisualFactory
 {

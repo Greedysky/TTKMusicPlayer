@@ -78,6 +78,10 @@ public Q_SLOTS:
      */
     void spectrumPlusTypeChanged(int index);
     /*!
+     * Spectrum Dazzle Type Changed.
+     */
+    void spectrumDazzleTypeChanged(int index);
+    /*!
      * Override show function.
      */
     void show();

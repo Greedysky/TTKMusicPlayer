@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2007-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -28,7 +28,7 @@ class QTranslator;
 class Effect;
 
 /*! @brief Helper class to store effect plugin properties.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class EffectProperties
 {
@@ -58,7 +58,7 @@ public:
     int priority;      /*!< Effect priority. Effecs with higher priority will be applied first */
 };
 /*! @brief Effect plugin interface (effect factory).
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class EffectFactory
 {

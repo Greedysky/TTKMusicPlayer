@@ -74,6 +74,7 @@
         <enhancedStereo value="0"/>
         <enhancedLADSPA value="0"/>
         <enhancedSOX value="0"/>
+        <enhancedSRC value="0"/>
     </equalizerSetting>
     <timeSetting>
         <timeAutoIndex value="2"/>

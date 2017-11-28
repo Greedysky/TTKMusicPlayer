@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013 by Ilya Kotov                                      *
+ *   Copyright (C) 2017 by Ilya Kotov                                      *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,52 +18,47 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#ifndef QMMPPLUGINCACHE_P_H
-#define QMMPPLUGINCACHE_P_H
+#ifndef VISUALBUFFER_P_H
+#define VISUALBUFFER_P_H
 
-#include <QString>
-#include <QObject>
-#include <QSettings>
+#include <QtGlobal>
+#include <QTime>
+#include <QMutex>
 
-class DecoderFactory;
-class OutputFactory;
-class EngineFactory;
-class EffectFactory;
-class InputSourceFactory;
+#define VISUAL_BUFFER_SIZE 128 //number of nodes
 
-/*! @internal
- * @author Ilya Kotov <forkotov02@ya.ru>
- */
-class Q_DECL_EXPORT QmmpPluginCache
+class VisualNode
 {
 public:
-    QmmpPluginCache(const QString &file, QSettings *settings);
+    float data[2][512];
+    bool used;
+    qint64 ts;
 
-    const QString shortName() const;
-    const QString file() const;
-    int priority() const;
-    bool hasError() const;
-
-    DecoderFactory *decoderFactory();
-    OutputFactory *outputFactory();
-    EngineFactory *engineFactory();
-    EffectFactory *effectFactory();
-    InputSourceFactory *inputSourceFactory();
-
-    static void cleanup(QSettings *settings);
-
-private:
-    QObject *instance();
-    QString m_path;
-    QString m_shortName;
-    bool m_error;
-    QObject *m_instance;
-    DecoderFactory *m_decoderFactory;
-    OutputFactory *m_outputFactory;
-    EngineFactory *m_engineFactory;
-    EffectFactory *m_effectFactory;
-    InputSourceFactory *m_inputSourceFactory;
-    int m_priority;
+    VisualNode()
+    {
+        used = false;
+        ts = 0;
+    }
 };
 
-#endif // QMMPPLUGINCACHE_P_H
+class VisualBuffer
+{
+public:
+    VisualBuffer();
+
+    void add(float *pcm, int samples, int channels, qint64 ts, qint64 delay);
+    VisualNode *take();
+    void clear();
+    QMutex *mutex();
+
+private:
+    VisualNode m_buffer[VISUAL_BUFFER_SIZE];
+    qint64 m_elapsed;
+    int m_take_index;
+    int m_add_index;
+    QTime m_time;
+    QMutex m_mutex;
+
+};
+
+#endif // VISUALBUFFER_P_H

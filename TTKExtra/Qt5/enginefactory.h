@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,7 +33,7 @@ class FileInfo;
 class AbstractEngine;
 
 /*! @brief Helper class to store custom audio engine properies.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT EngineProperties
 {
@@ -56,7 +56,7 @@ public:
     bool hasSettings;   /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief Engine plugin interface.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT EngineFactory
 {

@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -25,10 +25,11 @@
 #include <QHash>
 #include <QMutex>
 #include "abstractengine.h"
+#include "audioparameters.h"
 #include "qmmp.h"
 
 /*! @brief The StateHandler class allows one to track information about playback progress.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class StateHandler : public QObject
 {
@@ -47,11 +48,13 @@ public:
      * Sends information about playback progress.
      * @param elapsed Current time (in milliseconds).
      * @param bitrate Current bitrate (in kbps).
-     * @param frequency Current samplerate (in Hz).
-     * @param precision Sample size (in bits).
-     * @param channels Number of channels.
      */
-    void dispatch(qint64 elapsed, int bitrate, quint32 frequency, int precision, int channels);
+    void dispatch(qint64 elapsed, int bitrate);
+    /*!
+     * Sends information about audio parameters.
+     * @param p Output audio patameters.
+     */
+    void dispatch(const AudioParameters &p);
     /*!
      * Sends information about song length
      * @param length song length in milliseconds
@@ -77,31 +80,23 @@ public:
     /*!
      * Returns the current time (in milliseconds).
      */
-    qint64 elapsed();
+    qint64 elapsed() const;
     /*!
      * Returns length in milliseconds
      */
-    qint64 totalTime();
+    qint64 totalTime() const;
     /*!
      * Returns current bitrate (in kbps)
      */
-    int bitrate();
+    int bitrate() const;
     /*!
-     * Returns current sample rate (in Hz).
+     * Returns output audio parameters.
      */
-    int frequency();
-    /*!
-     * Returns sample size (in bits).
-     */
-    int sampleSize();
-    /*!
-     * Returns channels number.
-     */
-    int channels();
+    AudioParameters audioParameters() const;
     /*!
      * Returns the current state.
      */
-    Qmmp::State state();
+    Qmmp::State state() const;
     /*!
      * Sends next track request.
      */
@@ -127,20 +122,10 @@ signals:
      */
     void bitrateChanged(int bitrate);
     /*!
-     * Emitted when samplerate has changed.
-     * @param frequency New sample rate (in Hz)
+     * Emitted when audio parameters have changed.
+     * @param p New audio parameters for output.
      */
-    void frequencyChanged(quint32 frequency);
-    /*!
-     * Emitted when sample size has changed.
-     * @param size New sample size (in bits)
-     */
-    void sampleSizeChanged(int size);
-    /*!
-     * Emitted when channels number has changed.
-     * @param channels New channels number.
-     */
-    void channelsChanged(int channels);
+    void audioParametersChanged(const AudioParameters &p);
      /*!
      * This signal is emitted when the stream reader fills it's buffer.
      * The argument \b progress indicates the current percentage of buffering completed.
@@ -151,14 +136,14 @@ signals:
 private:
     qint64 m_elapsed;
     qint64 m_length;
-    quint32 m_frequency;
     bool m_sendAboutToFinish;
-    int m_bitrate, m_precision, m_channels;
+    int m_bitrate;
     static StateHandler* m_instance;
     QMap <Qmmp::MetaData, QString> m_metaData;
     QHash <QString, QString> m_streamInfo;
     Qmmp::State m_state;
-    QMutex m_mutex;
+    AudioParameters m_audioParameters;
+    mutable QMutex m_mutex;
 };
 
 #endif

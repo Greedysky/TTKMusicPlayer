@@ -2,7 +2,7 @@
  *  Based on madplay project                                               *
  *                                                                         *
  * Copyright (C) 2000-2004 Robert Leslie <rob@mars.org>                    *
- * Copyright (C) 2016 Ilya Kotov forkotov02@hotmail.ru                     *
+ * Copyright (C) 2016 Ilya Kotov forkotov02@ya.ru                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,7 +27,7 @@
 #include "effect.h"
 
 /** @internal
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class Dithering : public Effect
 {

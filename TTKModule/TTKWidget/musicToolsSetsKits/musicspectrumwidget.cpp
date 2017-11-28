@@ -46,6 +46,9 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->fspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->goomBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
     m_ui->spekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->spekBox->hide();
 
@@ -71,6 +74,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->volumeWaveBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->spekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->goomBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
@@ -94,6 +98,11 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group1->addButton(m_ui->volumeWaveBox, 3);
     group1->addButton(m_ui->fspekBox, 4);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
+
+    QButtonGroup *group2 = new QButtonGroup(this);
+    group2->setExclusive(false);
+    group2->addButton(m_ui->goomBox, 0);
+    connect(group2, SIGNAL(buttonClicked(int)), SLOT(spectrumDazzleTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
 }
@@ -123,9 +132,13 @@ void MusicSpectrumWidget::tabIndexChanged(int index)
             adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
             break;
         case 2:
+            adjustWidgetLayout(m_ui->dazzleLayout->count() - ITEM_DEFAULT_COUNT);
+            break;
+        case 3:
             adjustWidgetLayout(m_ui->spekLayout->count() - ITEM_DEFAULT_COUNT);
             break;
-        default: break;
+        default:
+            break;
     }
 }
 
@@ -151,7 +164,8 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
         case 5:
             newSpectrumWidget(m_ui->xrayBox, "xray", m_ui->spectrumAreaLayout);
             break;
-        default: break;
+        default:
+            break;
     }
 
     adjustWidgetLayout(m_ui->spectrumAreaLayout->count() - ITEM_DEFAULT_COUNT);
@@ -181,6 +195,19 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
     }
 
     adjustWidgetLayout(m_ui->spectrumPlusAreaLayout->count() - ITEM_DEFAULT_COUNT);
+}
+
+void MusicSpectrumWidget::spectrumDazzleTypeChanged(int index)
+{
+    switch(index)
+    {
+        case 0:
+            newSpectrumWidget(m_ui->goomBox, "goom", m_ui->dazzleAreaLayout);
+            break;
+        default: break;
+    }
+
+    adjustWidgetLayout(m_ui->dazzleAreaLayout->count() - ITEM_DEFAULT_COUNT);
 }
 
 void MusicSpectrumWidget::show()

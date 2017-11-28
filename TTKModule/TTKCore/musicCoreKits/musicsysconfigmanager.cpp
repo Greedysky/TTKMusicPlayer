@@ -91,6 +91,7 @@ void MusicSysConfigManager::writeXMLConfig()
     int enhancedStereoChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt();
     int enhancedLADSPAChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt();
     int enhancedSOXChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt();
+    int enhancedSRCChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int timeAutoIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
@@ -215,6 +216,7 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(equalizerSettingDom, "enhancedStereo", MusicXmlAttribute("value", enhancedStereoChoiced));
     writeDomElement(equalizerSettingDom, "enhancedLADSPA", MusicXmlAttribute("value", enhancedLADSPAChoiced));
     writeDomElement(equalizerSettingDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOXChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedSRC", MusicXmlAttribute("value", enhancedSRCChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(timeSettingDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndexChoiced));
@@ -427,6 +429,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("enhancedLADSPA").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced,
                      readXmlAttributeByTagNameValue("enhancedSOX").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced,
+                     readXmlAttributeByTagNameValue("enhancedSRC").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoIndexChoiced,

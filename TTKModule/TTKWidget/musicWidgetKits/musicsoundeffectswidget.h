@@ -39,7 +39,8 @@ public:
         Crossfade,  /*!< sound Crossfade effect*/
         Stereo,     /*!< sound Stereo effect*/
         LADSPA,     /*!< sound LADSPA effect*/
-        SoX         /*!< sound SoX Resampler effect*/
+        SoX,        /*!< sound SoX Resampler effect*/
+        SRC         /*!< sound srconverter effect*/
     };
     /*!
      * Object contsructor.
