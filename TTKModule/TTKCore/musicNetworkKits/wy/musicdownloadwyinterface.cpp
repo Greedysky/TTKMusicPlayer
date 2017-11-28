@@ -13,7 +13,7 @@
 
 void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
 {
-    request->setRawHeader("Content-Type", " application/x-www-form-urlencoded");
+    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request->setRawHeader("Cookie", "appver=2.0.3.131777;");
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
@@ -22,8 +22,11 @@ void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
 
 QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
 {
-    QByteArray parameter = QAesWrap::encrypt(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
-    parameter = QAesWrap::encrypt(parameter, "a44e542eaac91dce", "0102030405060708");
+    QByteArray parameter = QAesWrap("0CoJUm6Qyw8W8jud", "0102030405060708", QAesWrap::AES_128)
+                           .encrypt(type.toUtf8(), QAesWrap::AES_CBC, QAesWrap::PKCS7);
+
+    parameter = QAesWrap("a44e542eaac91dce", "0102030405060708", QAesWrap::AES_128)
+                           .encrypt(parameter, QAesWrap::AES_CBC, QAesWrap::PKCS7);
     parameter.replace('+', "%2B");
     parameter.replace('/', "%2F");
     parameter.replace('=', "%3D");

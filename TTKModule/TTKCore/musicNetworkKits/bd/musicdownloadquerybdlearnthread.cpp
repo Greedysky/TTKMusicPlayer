@@ -119,7 +119,8 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
 
     QString key = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_PA_URL, false).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
-    QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
+    QString eKey = QString(QAesWrap("4CC20A0C44FEB6FD", "2012061402992850", QAesWrap::AES_128)
+                  .encrypt(key.toUtf8(), QAesWrap::AES_CBC, QAesWrap::PKCS7));
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");
     eKey.replace('=', "%3D");
