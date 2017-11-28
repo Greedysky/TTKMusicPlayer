@@ -83,6 +83,7 @@ void MusicDownLoadQueryXMMovieThread::startToSearch(QueryType type, const QStrin
     m_searchText = text.trimmed();
     m_currentType = type;
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -111,6 +112,7 @@ void MusicDownLoadQueryXMMovieThread::startToSingleSearch(const QString &text)
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     deleteAll();
+    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -126,6 +128,7 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -156,9 +159,9 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
                     musicInfo.m_songId = value["mvId"].toString();
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicMVInfoAttribute(&musicInfo, false);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -200,12 +203,13 @@ void MusicDownLoadQueryXMMovieThread::singleDownLoadFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     readFromMusicMVInfoAttribute(&musicInfo, true);
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {

@@ -25,6 +25,7 @@ void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &te
     m_searchText = text.trimmed();
     m_currentType = type;
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -52,6 +53,7 @@ void MusicDownLoadQueryXMThread::startToSingleSearch(const QString &text)
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -81,6 +83,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -118,11 +121,11 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
                         musicInfo.m_albumName = value["albumName"].toString();
 
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongLrc(&musicInfo, musicInfo.m_songId);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -155,6 +158,7 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
@@ -184,11 +188,11 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
                 musicInfo.m_smallPicUrl = value["albumLogo"].toString();
                 musicInfo.m_albumName = value["albumName"].toString();
 
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongLrc(&musicInfo, musicInfo.m_songId);
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                 if(!musicInfo.m_songAttrs.isEmpty())
                 {

@@ -83,6 +83,7 @@ public Q_SLOTS:
 
 protected:
     StateCode m_stateCode;
+    volatile bool m_interrupt;
     QNetworkReply *m_reply;
     QNetworkAccessManager *m_manager;
 

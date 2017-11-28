@@ -40,6 +40,7 @@ void MusicDownLoadQueryWYPlaylistThread::startToPage(int offset)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_PL_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset);
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -63,6 +64,7 @@ void MusicDownLoadQueryWYPlaylistThread::startToSearch(const QString &playlist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -154,6 +156,7 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -175,6 +178,8 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     value = var.toMap();
                     MusicPlaylistItem item;
@@ -217,6 +222,7 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(reply && reply->error() == QNetworkReply::NoError)
     {
@@ -263,9 +269,9 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
                         musicInfo.m_singerName = artistMap["name"].toString();
                     }
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

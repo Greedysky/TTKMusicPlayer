@@ -94,6 +94,7 @@ void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
     m_searchText = artist;
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -121,6 +122,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -170,9 +172,9 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                     musicInfo.m_albumName = value["albumname"].toString();
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -183,9 +185,9 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                     {
                         artistFlag = true;
                         MusicPlaylistItem info;
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         info.m_id = musicInfo.m_artistId;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;

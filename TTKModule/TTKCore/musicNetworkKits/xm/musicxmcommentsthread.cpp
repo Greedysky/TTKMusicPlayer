@@ -45,6 +45,7 @@ void MusicXMSongCommentsThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -74,6 +75,8 @@ void MusicXMSongCommentsThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -99,6 +102,8 @@ void MusicXMSongCommentsThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     MusicSongCommentItem comment;
                     value = comm.toMap();
@@ -156,6 +161,7 @@ void MusicXMPlaylistCommentsThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -185,6 +191,8 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -210,6 +218,8 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     MusicSongCommentItem comment;
                     value = comm.toMap();

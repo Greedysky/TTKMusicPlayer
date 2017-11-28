@@ -24,6 +24,7 @@ void MusicDownLoadQueryWSThread::startToSearch(QueryType type, const QString &te
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     m_currentType = type;
+    m_interrupt = true;
 
     int ty = 1;
     if(m_querySearchType == "yc") ty = 1;
@@ -57,6 +58,7 @@ void MusicDownLoadQueryWSThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -89,9 +91,9 @@ void MusicDownLoadQueryWSThread::downLoadFinished()
 
                     if(!m_querySimplify)
                     {
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, m_querySearchType, m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {

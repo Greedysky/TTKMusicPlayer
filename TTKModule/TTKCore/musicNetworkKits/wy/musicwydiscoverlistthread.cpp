@@ -22,6 +22,7 @@ void MusicWYDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
+    m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -48,6 +49,8 @@ void MusicWYDiscoverListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -68,6 +71,8 @@ void MusicWYDiscoverListThread::downLoadFinished()
                 int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
+                    if(m_interrupt) return;
+
                     if((where != counter++) || var.isNull())
                     {
                         continue;

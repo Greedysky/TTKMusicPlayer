@@ -26,6 +26,7 @@ void MusicDownLoadQueryQQThread::startToSearch(QueryType type, const QString &te
     m_currentType = type;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -52,6 +53,7 @@ void MusicDownLoadQueryQQThread::startToSingleSearch(const QString &text)
 
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_INFO_URL, false).arg(text);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -78,6 +80,7 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -128,9 +131,9 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = value["albumname"].toString();
 
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -163,6 +166,7 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
@@ -211,9 +215,9 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                                 .arg(musicInfo.m_albumId.right(2).left(1))
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttributeInfo(&musicInfo, value["file"].toMap());
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(!musicInfo.m_songAttrs.isEmpty())
                     {

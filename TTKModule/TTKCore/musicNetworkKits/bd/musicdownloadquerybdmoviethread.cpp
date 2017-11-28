@@ -30,6 +30,7 @@ void MusicDownLoadQueryBDMovieThread::startToSearch(QueryType type, const QStrin
     m_currentType = type;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -55,6 +56,7 @@ void MusicDownLoadQueryBDMovieThread::startToSingleSearch(const QString &text)
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     deleteAll();
+    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -70,6 +72,7 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -102,9 +105,9 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
                     if(value["has_mv"].toInt() == 1)
                     {
                         musicInfo.m_songId = value["song_id"].toString();
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicMVAttribute(&musicInfo, false);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     }
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -147,12 +150,13 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     readFromMusicMVAttribute(&musicInfo, true);
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {
@@ -229,9 +233,9 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                 path = path.split("/").back().split("_").front();
             }
 
-            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             readFromMusicMVInfo(info, path);
-            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         }
     }
 }
@@ -304,9 +308,9 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfoAttribute(MusicObject::
         QString v = datas.front();
         MusicObject::MusicSongAttribute attr;
         attr.m_url = url;
-        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         attr.m_format = MusicUtils::Core::fileSuffix(v);
         attr.m_duration = duration;
         v = datas.back();

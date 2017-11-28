@@ -33,6 +33,7 @@ void MusicDownLoadQueryWSToplistThread::startToSearch(const QString &toplist)
         return;
     }
 
+    m_interrupt = true;
     getUpdateTime();
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(toplist));
@@ -63,6 +64,7 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -105,9 +107,9 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
                     musicInfo.m_singerName = artistsMap["NN"].toString();
                     musicInfo.m_smallPicUrl = artistsMap["I"].toString();
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["SK"].toString(), m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

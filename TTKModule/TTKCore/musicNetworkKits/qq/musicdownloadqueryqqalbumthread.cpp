@@ -24,6 +24,7 @@ void MusicDownLoadQueryQQAlbumThread::startToSearch(const QString &album)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_ALBUM_URL, false).arg(album);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -51,6 +52,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -104,9 +106,9 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                     musicInfo.m_albumName = value["albumname"].toString();
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

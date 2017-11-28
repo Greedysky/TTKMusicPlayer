@@ -30,6 +30,7 @@ void MusicDownLoadQueryWYMovieThread::startToSearch(QueryType type, const QStrin
     m_currentType = type;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -54,6 +55,7 @@ void MusicDownLoadQueryWYMovieThread::startToSingleSearch(const QString &text)
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     deleteAll();
+    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -69,6 +71,7 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -96,9 +99,9 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
                         continue;
                     }
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     startMVListQuery(mvid);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 }
             }
         }
@@ -127,13 +130,14 @@ void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     int mvid = m_searchText.toLongLong();
     if(mvid != 0)
     {
-        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         startMVListQuery(mvid);
-        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     }
 
     emit downLoadDataChanged(QString());
@@ -195,9 +199,9 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
 
                 attr.m_url = value[key].toString();
                 attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 musicInfo.m_songAttrs.append(attr);
             }
 

@@ -39,6 +39,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_URL, false)
                     .arg(m_searchText).arg(offset).arg(m_pageSize);
 
@@ -65,6 +66,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
     QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -140,6 +142,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -161,6 +164,8 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     value = var.toMap();
                     MusicPlaylistItem item;
@@ -191,6 +196,7 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
@@ -226,9 +232,9 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
                     musicInfo.m_lrcUrl = value["lrclink"].toString();
                     musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

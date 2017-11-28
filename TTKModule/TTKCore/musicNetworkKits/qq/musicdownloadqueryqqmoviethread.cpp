@@ -29,6 +29,7 @@ void MusicDownLoadQueryQQMovieThread::startToSearch(QueryType type, const QStrin
     m_currentType = type;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -54,6 +55,7 @@ void MusicDownLoadQueryQQMovieThread::startToSingleSearch(const QString &text)
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     deleteAll();
+    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
@@ -69,6 +71,7 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -108,9 +111,9 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["interval"].toInt()*1000);
 
                     musicInfo.m_songId = value["vid"].toString();
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicMVAttribute(&musicInfo, false);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -152,12 +155,13 @@ void MusicDownLoadQueryQQMovieThread::singleDownLoadFinished()
 
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     readFromMusicMVAttribute(&musicInfo, true);
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {
@@ -261,9 +265,9 @@ void MusicDownLoadQueryQQMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                     attr.m_bitrate = MB_1000;
 
                 bitRate = flValue["id"].toULongLong();
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 QString key = getMovieKey(bitRate, info->m_songId);
-                if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 if(!key.isEmpty())
                 {
                     QString fn = QString("%1.p%2.1.mp4").arg(info->m_songId).arg(bitRate - 10000);

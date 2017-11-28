@@ -27,6 +27,7 @@ void MusicDownLoadQueryWSMovieThread::startToSearch(QueryType type, const QStrin
     m_searchText = text.trimmed();
     m_currentType = type;
     deleteAll();
+    m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(downLoadFinished()));
 }
@@ -42,9 +43,10 @@ void MusicDownLoadQueryWSMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     ///extra yyt movie
-    if(m_queryExtraMovie && m_currentType == MovieQuery)
+    if(!m_interrupt && m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
         MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);

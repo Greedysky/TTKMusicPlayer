@@ -25,6 +25,7 @@ void MusicKGDiscoverListThread::startToSearch()
     m_topListInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(6666);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -49,6 +50,8 @@ void MusicKGDiscoverListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -69,6 +72,8 @@ void MusicKGDiscoverListThread::downLoadFinished()
                 int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
+                    if(m_interrupt) return;
+
                     if((where != counter++) || var.isNull())
                     {
                         continue;

@@ -47,6 +47,7 @@ void MusicWSSongCommentsThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = m_pageSize;
+    m_interrupt = true;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(WS_SG_COMMIT_URL, false)
                     .arg(m_rawData["songID"].toInt()).arg(m_querySearchType).arg(m_pageSize);
 
@@ -74,6 +75,8 @@ void MusicWSSongCommentsThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -101,6 +104,8 @@ void MusicWSSongCommentsThread::downLoadFinished()
                         {
                             continue;
                         }
+
+                        if(m_interrupt) return;
 
                         MusicSongCommentItem comment;
                         value = comm.toMap();

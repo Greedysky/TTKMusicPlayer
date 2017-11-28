@@ -25,6 +25,7 @@ void MusicDownLoadQueryBDArtistThread::startToSearch(const QString &artist)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
+    m_interrupt = true;
     m_searchText = artist;
 
     QNetworkRequest request;
@@ -52,6 +53,7 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -88,9 +90,9 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                     musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
                     musicInfo.m_albumName = value["album_title"].toString();
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -101,9 +103,9 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                     {
                         artistFlag = true;
                         MusicPlaylistItem info;
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;

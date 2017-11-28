@@ -25,6 +25,7 @@ void MusicBDDiscoverListThread::startToSearch()
     m_topListInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(2).arg(m_pageSize).arg(0);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -49,6 +50,8 @@ void MusicBDDiscoverListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
@@ -68,6 +71,8 @@ void MusicBDDiscoverListThread::downLoadFinished()
                 int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
+                    if(m_interrupt) return;
+
                     if((where != counter++) || var.isNull())
                     {
                         continue;

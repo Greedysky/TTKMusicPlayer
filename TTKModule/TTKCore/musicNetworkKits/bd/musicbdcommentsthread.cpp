@@ -47,6 +47,7 @@ void MusicBDSongCommentsThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
 
     QString time = "1494911685";
     QString key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
@@ -82,6 +83,8 @@ void MusicBDSongCommentsThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -104,6 +107,8 @@ void MusicBDSongCommentsThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     MusicSongCommentItem comment;
                     value = comm.toMap();
@@ -157,6 +162,7 @@ void MusicBDPlaylistCommentsThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
 
     QString time = "1494911685";
     QString key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
@@ -192,6 +198,8 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
@@ -214,6 +222,8 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
                     {
                         continue;
                     }
+
+                    if(m_interrupt) return;
 
                     MusicSongCommentItem comment;
                     value = comm.toMap();
