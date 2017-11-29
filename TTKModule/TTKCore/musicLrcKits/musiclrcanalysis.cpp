@@ -5,7 +5,6 @@
 #include <qmath.h>
 #include "musictime.h"
 #include "musictranslationthread.h"
-#include "musicapplication.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -13,7 +12,6 @@ MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     m_lineMax = 0;
     m_currentLrcIndex = 0;
     m_translationThread = nullptr;
-    m_oringinDataLineCount = 0;
 }
 
 MusicLrcAnalysis::~MusicLrcAnalysis()
@@ -32,19 +30,13 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 
-    QStringList getAllText = QString(data).split("\r\n");
-    m_oringinDataLineCount = getAllText.count();
-    if(getAllText.count() == 1 && getAllText.first().isEmpty())
-    {
-        return LrcEmpty;
-    }
-
-    foreach(const QString &oneLine, getAllText)
+    QString getAllText = QString(data);
+    foreach(const QString &oneLine, getAllText.split("\n"))
     {
         matchLrcLine(oneLine);
     }
 
-    if(m_lrcContainer.isEmpty())
+    if (m_lrcContainer.isEmpty())
     {
         return LrcEmpty;
     }
@@ -82,7 +74,6 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const MusicObject::MIntStri
     m_lrcContainer = data;
     m_currentLrcIndex = 0;
     m_currentShowLrcContainer.clear();
-    m_oringinDataLineCount = m_lrcContainer.count();
 
     for(int i=0; i<getMiddle(); ++i)
     {
@@ -136,15 +127,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
         return OpenFileFail;
     }
 
-    QStringList getAllText = QString(krc.getDecodeString()).split("\r\n");
-    m_oringinDataLineCount = getAllText.count();
-    if(getAllText.count() == 1 && getAllText.first().isEmpty())
-    {
-        return LrcEmpty;
-    }
-
+    QString getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
-    foreach(const QString &oneLine, getAllText)
+    foreach(const QString &oneLine, getAllText.split("\r\n"))
     {
         matchLrcLine(oneLine);
     }
@@ -266,83 +251,67 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
         type = Type13;
         regex = reg13;
     }
-    else if(oneLine.contains(reg14))
+    else
     {
         type = Type14;
         regex = reg14;
     }
-    else
-    {
-        type = Type00;
-    }
-
     /////////////////////////////////////////
-    if(type == Type00)
-    {
-        int perTime = m_oringinDataLineCount == 0 ? m_lrcContainer.count()*MT_M2MS/3 :
-                      MusicApplication::instance()->duration()/m_oringinDataLineCount;
-        m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
-    }
-    else
-    {
-        QString temp = oneLine;
-        temp.replace(regex, QString());
-        int pos = regex.indexIn(oneLine, 0);
-        while(pos != -1)
-        {   //That match
-            QString cap = regex.cap(0);
-            //Return zeroth expression matching the content
-            //The time tag into the time value, in milliseconds
-            switch(type)
-            {
-                case Type01:
-                        matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])");
-                        break;
-                case Type02:
-                        matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
-                        break;
-                case Type03:
-                        matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])");
-                        break;
-                case Type04:
-                        matchLrcLine(temp, cap, ":");
-                        break;
-                case Type05:
-                        matchLrcLine(temp, cap, ":");
-                        break;
-                case Type06:
-                        matchLrcLine(temp, cap, ":");
-                        break;
-                case Type07:
-                        matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])");
-                        break;
-                case Type08:
-                        matchLrcLine(temp, cap, ".");
-                        break;
-                case Type09:
-                        matchLrcLine(temp, cap, ".");
-                        break;
-                case Type10:
-                        matchLrcLine(temp, cap, ".");
-                        break;
-                case Type11:
-                        matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])");
-                        break;
-                case Type12:
-                        matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])");
-                        break;
-                case Type13:
-                        matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])");
-                        break;
-                case Type14:
-                        matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
-                        break;
-                default:
-                        break;
-            }
-            pos += regex.matchedLength();
-            pos = regex.indexIn(oneLine, pos); //Matching all
+    QString temp = oneLine;
+    temp.replace(regex, QString());
+    int pos = regex.indexIn(oneLine, 0);
+    while(pos != -1)
+    {   //That match
+        QString cap = regex.cap(0);
+        //Return zeroth expression matching the content
+        //The time tag into the time value, in milliseconds
+        switch(type)
+        {
+            case Type01:
+                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{3}(?=\\])");
+                    break;
+            case Type02:
+                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
+                    break;
+            case Type03:
+                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\.)", "\\d{1}(?=\\])");
+                    break;
+            case Type04:
+                    matchLrcLine(temp, cap, ":");
+                    break;
+            case Type05:
+                    matchLrcLine(temp, cap, ":");
+                    break;
+            case Type06:
+                    matchLrcLine(temp, cap, ":");
+                    break;
+            case Type07:
+                    matchLrcLine(temp, cap, "\\d{2}(?=:)", "\\d{2}(?=\\])");
+                    break;
+            case Type08:
+                    matchLrcLine(temp, cap, ".");
+                    break;
+            case Type09:
+                    matchLrcLine(temp, cap, ".");
+                    break;
+            case Type10:
+                    matchLrcLine(temp, cap, ".");
+                    break;
+            case Type11:
+                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{3}(?=\\])");
+                    break;
+            case Type12:
+                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{2}(?=\\])");
+                    break;
+            case Type13:
+                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=:)", "\\d{1}(?=\\])");
+                    break;
+            case Type14:
+                    matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
+                    break;
         }
+        pos += regex.matchedLength();
+        pos = regex.indexIn(oneLine, pos); //Matching all
     }
 }
 

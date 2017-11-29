@@ -78,17 +78,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
     {
-        if(m_queryMv)
-        {
-            if(attr.m_format == "mkv")
-            {
-                emit mvURLChanged(m_queryMv, attr.m_url, QString());
-            }
-        }
-        else
-        {
-            emit mvURLChanged(m_queryMv, attr.m_url, musicSongInfos[row].m_lrcUrl);
-        }
+        emit mvURLChanged(m_queryMv, attr.m_url, m_queryMv ? QString() : musicSongInfos[row].m_lrcUrl);
     }
 }
 
