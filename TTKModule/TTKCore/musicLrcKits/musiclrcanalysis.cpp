@@ -4,6 +4,7 @@
 #endif
 #include <qmath.h>
 #include "musictime.h"
+#include "musicapplication.h"
 #include "musictranslationthread.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
@@ -30,10 +31,21 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 
-    QString getAllText = QString(data);
-    foreach(const QString &oneLine, getAllText.split("\n"))
+    QStringList getAllText = QString(data).split("\n");
+    if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
-        matchLrcLine(oneLine);
+        int perTime = MusicApplication::instance()->duration()/getAllText.count();
+        foreach(const QString &oneLine, getAllText)
+        {
+            m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
+        }
+    }
+    else
+    {
+        foreach(const QString &oneLine, getAllText)
+        {
+            matchLrcLine(oneLine);
+        }
     }
 
     if (m_lrcContainer.isEmpty())
@@ -47,7 +59,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, QString());
     }
 
     MusicObject::MIntStringMapIterator it(m_lrcContainer);
@@ -81,7 +93,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const MusicObject::MIntStri
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, QString());
     }
 
     MusicObject::MIntStringMapIterator it(m_lrcContainer);
@@ -365,16 +377,20 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap,
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
+qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 {
     QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime = 0;
+    int index = -1;
+
     if(!keys.isEmpty())
     {
+        index = 0;
         beforeTime = keys[0];
     }
     for(int i=1; i<keys.count(); ++i)
     {
+        index = i;
         qint64 afterTime = keys[i];
         if(beforeTime <= time && time <= afterTime)
         {
@@ -384,17 +400,21 @@ qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
         beforeTime = afterTime;
     }
 
-    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
+    if((m_currentLrcIndex = index - 1) < 0)
     {
-        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
-        {
-            if((m_currentLrcIndex = i - getMiddle() - 1) < 0 )
-            {
-                m_currentLrcIndex = 0;
-            }
-            break;
-        }
+        m_currentLrcIndex = 0;
     }
+//    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
+//    {
+//        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
+//        {
+//            if((m_currentLrcIndex = i - getMiddle() - 1) < 0 )
+//            {
+//                m_currentLrcIndex = 0;
+//            }
+//            break;
+//        }
+//    }
     return time;
 }
 

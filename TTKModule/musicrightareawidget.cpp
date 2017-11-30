@@ -204,7 +204,7 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
 
 void MusicRightAreaWidget::setSongSpeedAndSlow(qint64 time) const
 {
-    m_ui->musiclrccontainerforinline->setSongSpeedAndSlow(time);
+    m_ui->musiclrccontainerforinline->setSongSpeedChanged(time);
 }
 
 void MusicRightAreaWidget::musicCheckHasLrcAlready() const

@@ -187,7 +187,7 @@ void MusicSoundKMicroWidget::playFinished()
 void MusicSoundKMicroWidget::setPosition(int position)
 {
     m_mediaPlayer->setPosition(position/MT_S2MS);
-    m_analysis->setSongSpeedAndSlow(position);
+    m_analysis->setSongSpeedChanged(position);
 }
 
 void MusicSoundKMicroWidget::playButtonChanged()

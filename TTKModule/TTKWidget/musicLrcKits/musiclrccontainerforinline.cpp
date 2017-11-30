@@ -175,9 +175,9 @@ QString MusicLrcContainerForInline::text() const
     return m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->text();
 }
 
-qint64 MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
+qint64 MusicLrcContainerForInline::setSongSpeedChanged(qint64 time)
 {
-    return m_lrcAnalysis->setSongSpeedAndSlow(time);
+    return m_lrcAnalysis->setSongSpeedChanged(time);
 }
 
 bool MusicLrcContainerForInline::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
@@ -664,7 +664,7 @@ void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
 void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
 {
     m_lrcAnalysis->revertLrcTime(pos);
-    qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
+    qint64 beforeTime = setSongSpeedChanged(m_currentTime);
     updateCurrentLrc(beforeTime);
 
     if(m_changeSpeedValue + pos == 0)

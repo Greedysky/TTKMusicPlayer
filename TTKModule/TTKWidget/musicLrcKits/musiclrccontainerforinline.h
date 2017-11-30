@@ -74,9 +74,9 @@ public:
      */
     QString text() const;
     /*!
-     * Set song speed and slow by given time, return new time.
+     * Set song speed by given time, return new time.
      */
-    qint64 setSongSpeedAndSlow(qint64 time);
+    qint64 setSongSpeedChanged(qint64 time);
     /*!
      * Get current lrc and next lrc in container by current time.
      */

@@ -1,4 +1,5 @@
 #include "musicwstextdownloadthread.h"
+#include "musiclrcanalysis.h"
 
 MusicWSTextDownLoadThread::MusicWSTextDownLoadThread(const QString &url, const QString &save,
                                                      Download_Type type, QObject *parent)
@@ -20,7 +21,7 @@ void MusicWSTextDownLoadThread::startToDownload()
         {
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");
-            outstream << m_url.toUtf8() << endl;
+            outstream << MUSIC_TTKLRCF << "\r\n" << m_url.toUtf8() << endl;
             m_file->close();
 
             M_LOGGER_INFO(QString("%1 download has finished!").arg(getClassName()));

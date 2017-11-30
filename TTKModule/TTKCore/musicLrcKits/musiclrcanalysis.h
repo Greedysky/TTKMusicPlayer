@@ -22,6 +22,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+#define MUSIC_TTKLRCF               "[TTKLRCF]"
 #define MUSIC_LRC_INLINE_MAX_LINE   11
 
 class MusicTranslationThread;
@@ -102,9 +103,9 @@ public:
     State transKrcFileToTime(const QString &krcFileName);
 
     /*!
-     * Set song speed and slow by given time, return new time.
+     * Set song speed by given time, return new time.
      */
-    qint64 setSongSpeedAndSlow(qint64 time);
+    qint64 setSongSpeedChanged(qint64 time);
     /*!
      * Revert lrc time by pos, both + or - the same pos.
      */
