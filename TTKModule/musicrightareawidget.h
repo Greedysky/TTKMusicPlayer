@@ -55,6 +55,7 @@ public:
         ToplistWidget,          /*!< insert toplist found widget*/
         PlaylistWidget,         /*!< insert playlist found widget*/
         AdvancedSearchWidget,   /*!< insert advanced search widget*/
+        RecommendWidget,        /*!< insert recommend found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget            /*!< insert kugou kuishe widget*/
     };
@@ -179,6 +180,10 @@ public Q_SLOTS:
      * Music playlist function.
      */
     void musicPlaylistFound(const QString &id);
+    /*!
+     * Music recommend function.
+     */
+    void musicRecommendFound();
     /*!
      * Music advanced search function.
      */

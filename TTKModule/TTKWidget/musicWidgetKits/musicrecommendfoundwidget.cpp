@@ -1,25 +1,25 @@
-#include "musicsimilarfoundwidget.h"
+#include "musicrecommendfoundwidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicuiobject.h"
 #include "musicstringutils.h"
 
-MusicSimilarFoundTableWidget::MusicSimilarFoundTableWidget(QWidget *parent)
+MusicRecommendFoundTableWidget::MusicRecommendFoundTableWidget(QWidget *parent)
     : MusicQueryFoundTableWidget(parent)
 {
 
 }
 
-MusicSimilarFoundTableWidget::~MusicSimilarFoundTableWidget()
+MusicRecommendFoundTableWidget::~MusicRecommendFoundTableWidget()
 {
     clearAllItems();
 }
 
-QString MusicSimilarFoundTableWidget::getClassName()
+QString MusicRecommendFoundTableWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+void MusicRecommendFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
     if(parent()->metaObject()->indexOfSlot("queryAllFinished()") != -1)
@@ -28,9 +28,9 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
     }
 }
 
-void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicRecommendFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
 {
-    if(rowCount() >= 15)
+    if(rowCount() >= 50)
     {
         return;
     }
@@ -40,42 +40,42 @@ void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &
 
 
 
-MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
+MusicRecommendFoundWidget::MusicRecommendFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
-    m_foundTableWidget = new MusicSimilarFoundTableWidget(this);
+    m_foundTableWidget = new MusicRecommendFoundTableWidget(this);
 }
 
-QString MusicSimilarFoundWidget::getClassName()
+QString MusicRecommendFoundWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSimilarFoundWidget::setSongName(const QString &name)
+void MusicRecommendFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_foundTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
+    m_foundTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getRecommendThread(this));
     m_foundTableWidget->startSearchQuery(MusicUtils::String::songName(name));
 
     createLabels();
 }
 
-void MusicSimilarFoundWidget::setSongNameById(const QString &id)
+void MusicRecommendFoundWidget::setSongNameById(const QString &id)
 {
     Q_UNUSED(id);
 }
 
-void MusicSimilarFoundWidget::resizeWindow()
+void MusicRecommendFoundWidget::resizeWindow()
 {
     m_foundTableWidget->resizeWindow();
 }
 
-void MusicSimilarFoundWidget::queryAllFinished()
+void MusicRecommendFoundWidget::queryAllFinished()
 {
 
 }
 
-void MusicSimilarFoundWidget::createLabels()
+void MusicRecommendFoundWidget::createLabels()
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
@@ -97,8 +97,11 @@ void MusicSimilarFoundWidget::createLabels()
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
-    firstLabel->setText(tr("Like \"<font color=#158FE1> %1 </font>\" also like this").arg(m_songNameFull));
+    firstLabel->setText(tr("<font color=#158FE1> Recommend Music</font>"));
     grid->addWidget(firstLabel);
+    QLabel *iconLabel = new QLabel(function);
+    iconLabel->setPixmap(QPixmap(":/image/lb_recmd_daily"));
+    grid->addWidget(iconLabel);
     ////////////////////////////////////////////////////////////////////////////
     grid->addWidget(m_container);
 

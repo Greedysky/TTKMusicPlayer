@@ -48,6 +48,8 @@ const QString KW_PL_COMMIT_URL     = "b09RdlBRdzh4bjB4QXZCbXlXcE5ENEpUMzhEUGY5cV
 const QString KW_PLAYLIST_URL      = "OTc4ZUwvTFdHbW0rekNzWGx6aHR1QXg5TnhKRUdmQ2drYlBpdWFRVjhQUkJVN0NaMDl6NmJFZTY5Yy91eHpWWVh3VlFXYzA4clZDRjZrQWdWSExtRnhqNFRZY0xzNnc1R0hhRStpeFQ4QzlKNUk1a1JrdlJtcFU0YkpvUlpSNGUzZFNiR253azVxUlArMEVpS081RlZPMlZLZEE9";
 const QString KW_PLAYLIST_ATTR_URL = "UzZ0NDRTM2s1Mm5OUTZvZDdTRUlCZ0hsVjhZbGh3aWZYNWpLcnQ5WC95VWVTSmFZZXNkU242N3Fsc0haT1l4cUxXRUdjOWwrd2c4M2FDUk9hWXJGVldWVThzcG16UC9DT1lvTnlYT2VqZVlyaFhUY1FsTlJFVE9OQ2NOdTQ5RCt4cFY0SS8rV2NRUTdMUlE5SU85NElXNVlhamF4ajdPeGNteWZPQ1loaXVVPQ==";
 ///////////////////////////////////////////////////////////////////////////
+const QString KW_RCM_URL           = "SUVwN29KVHFLbVRzTC9PSW5QelFZTkJlMC9vVFRNUUM0aklEZkJwa2t0MG9FWnZEeVQwU0xNR0VENDdWUUxzejNFVzFYcFhrOFVuUzh6Tm5ZaDhXRzRnckVhSkUrYm90eHFxS2hVNWp2U05jc3dTandGV21VOGpLY2JJS2c4ZFA0d1NycW93Mldyam15Zm9vTXVBanpScmJBSkkybWxRNGJtQkdZaTQvcGQ0PQ==";
+///////////////////////////////////////////////////////////////////////////
 
 
 /*! @brief The class to kuwo query download interface.

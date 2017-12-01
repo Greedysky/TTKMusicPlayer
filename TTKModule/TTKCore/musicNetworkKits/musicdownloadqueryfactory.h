@@ -64,6 +64,10 @@ public:
      * Get playlist thread object by type.
      */
     MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
+    /*!
+     * Get recommend thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = 0);
 
     /*!
      * Get song comment thread object by type.

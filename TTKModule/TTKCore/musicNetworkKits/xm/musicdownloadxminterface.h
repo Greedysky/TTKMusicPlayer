@@ -62,6 +62,10 @@ const QString XM_PLAYLIST_URL          = "dU0zeENFRlhjYkRnd0QvWmg4RTJjSkZqNEo5SF
 const QString XM_PLAYLIST_A_DATA_URL   = "ZVlSN3dmUmw4UzNrbVduZGdITVNxRm5oZFBjaGxpWWFVQzVyT1dQRExya29OcGt5bW15MnlQRko3M09CS09qSThvUC80OXN0Q1JtUTZXZDcxZGNlQVhDNzBocysyVWFxQjVEV20zbElvTERHcGpRTnM4SmZOejYwM3BiZlRZV3M=";
 const QString XM_PLAYLIST_A_URL        = "ZVpnUGt4NWZnUDRGQ0doWU1POEl5RDdWc0dpVlNtMWFzNlJFQldKVHFydUd2VGpqRDRkbERYcVFlY2N0MUk2MERvTUh2Y3FPNStIUXhYUHI=";
 ///////////////////////////////////////////////////////////////////////////
+const QString XM_RCM_DATA_URL          = "b2dac3VCQ3U0aFdiUUZubEcyS0tzdE1OV045ZHZ3MDVvNTJiYlhQbEhwdUxiTFhwN2h3NnczUTFaNWhUTU1yUjlUZmFTRlVQditCTk5iZ3hzQ0tXOStiQytQNGxTOEJjcklUYUhRPT0=";
+const QString XM_RCM_URL               = "cFptMnVnTUp5akV4QklFTUVhejlsSHhsVDlKWW1TYitWUVFmbThJZmJPdmk1ZU10bkQ5T0Zoc0wzVVUrUVhxVjQ2K3pZVVVHby84PQ==";
+///////////////////////////////////////////////////////////////////////////
+
 
 class QNetworkRequest;
 class QNetworkAccessManager;

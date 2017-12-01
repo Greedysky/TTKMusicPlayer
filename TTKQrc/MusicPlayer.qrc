@@ -14,6 +14,7 @@
         <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
         <file alias="lb_slider">../TTKResource/lb_slider.png</file>
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
+        <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>
@@ -594,6 +595,7 @@
         <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
         <file alias="btn_toplist_hover">../TTKResource/functions/btn_toplist_hover.png</file>
         <file alias="btn_search_hover">../TTKResource/functions/btn_search_hover.png</file>
+        <file alias="btn_recommend_hover">../TTKResource/functions/btn_recommend_hover.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>

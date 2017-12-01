@@ -51,7 +51,7 @@ void MusicDownLoadQueryQQThread::startToSingleSearch(const QString &text)
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_INFO_URL, false).arg(text);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_MINFO_URL, false).arg(text);
     deleteAll();
     m_interrupt = true;
 

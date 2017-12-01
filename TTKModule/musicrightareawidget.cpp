@@ -22,6 +22,7 @@
 #include "musictopareawidget.h"
 #include "musicotherdefine.h"
 #include "musicadvancedsearchedwidget.h"
+#include "musicrecommendfoundwidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -243,6 +244,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
+    else if(MObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
     {
@@ -432,6 +437,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case RecommendWidget: //insert recommend found widget
+            {
+                MusicRecommendFoundWidget *recommendWidget = new MusicRecommendFoundWidget(this);
+                m_ui->surfaceStackedWidget->addWidget(recommendWidget);
+                m_ui->surfaceStackedWidget->setCurrentWidget(recommendWidget);
+                m_stackedFuncWidget = recommendWidget;
+                emit updateBackgroundTheme();
+                break;
+            }
         case AdvancedSearchWidget: //insert advanced search widget
             {
                 MusicAdvancedSearchedWidget *advancedWidget = new MusicAdvancedSearchedWidget(this);
@@ -510,6 +524,12 @@ void MusicRightAreaWidget::musicPlaylistFound(const QString &id)
     musicFunctionClicked(MusicRightAreaWidget::PlaylistWidget);
     MusicPlaylistFoundWidget *w = MStatic_cast(MusicPlaylistFoundWidget*, m_stackedFuncWidget);
     id.isEmpty() ? w->setSongName(QString()) : w->setSongNameById(id);
+}
+
+void MusicRightAreaWidget::musicRecommendFound()
+{
+    musicFunctionClicked(MusicRightAreaWidget::RecommendWidget);
+    MStatic_cast(MusicRecommendFoundWidget*, m_stackedFuncWidget)->setSongName(QString());
 }
 
 void MusicRightAreaWidget::musicAdvancedSearch()

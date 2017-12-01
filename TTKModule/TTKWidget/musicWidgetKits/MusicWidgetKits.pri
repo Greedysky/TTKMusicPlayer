@@ -121,3 +121,9 @@ SOURCES += \
     $$PWD/musicadvancedsearchedwidget.cpp
 
 }
+
+HEADERS += \
+    $$PWD/musicrecommendfoundwidget.h
+
+SOURCES += \
+    $$PWD/musicrecommendfoundwidget.cpp

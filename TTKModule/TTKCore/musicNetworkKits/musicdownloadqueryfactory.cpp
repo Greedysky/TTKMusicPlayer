@@ -49,6 +49,14 @@
 #include "musicdownloadquerykwplaylistthread.h"
 #include "musicdownloadquerywsplaylistthread.h"
 
+#include "musicdownloadquerywyrecommendthread.h"
+#include "musicdownloadqueryqqrecommendthread.h"
+#include "musicdownloadquerybdrecommendthread.h"
+#include "musicdownloadqueryxmrecommendthread.h"
+#include "musicdownloadquerykgrecommendthread.h"
+#include "musicdownloadquerykwrecommendthread.h"
+#include "musicdownloadquerywsrecommendthread.h"
+
 #include "musicwycommentsthread.h"
 #include "musicxmcommentsthread.h"
 #include "musicbdcommentsthread.h"
@@ -203,6 +211,27 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
         case 7:  thread = new MusicDownLoadQueryWSPlaylistThread(parent); break;
         case 8:  thread = new MusicDownLoadQueryWSPlaylistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);
+    }
+    M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicDownLoadQueryWYRecommendThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQRecommendThread(parent); break;
+        case 2:  thread = new MusicDownLoadQueryXMRecommendThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryBDRecommendThread(parent); break;
+        case 4:  thread = new MusicDownLoadQueryKWRecommendThread(parent); break;
+        case 5:  thread = new MusicDownLoadQueryKGRecommendThread(parent); break;
+        case 6:  thread = new MusicDownLoadQueryWSRecommendThread(parent); break;
+        case 7:  thread = new MusicDownLoadQueryWSRecommendThread(parent); break;
+        case 8:  thread = new MusicDownLoadQueryWSRecommendThread(parent); break;
+        default: thread = new MusicDownLoadQueryWYRecommendThread(parent);
     }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
     return thread;

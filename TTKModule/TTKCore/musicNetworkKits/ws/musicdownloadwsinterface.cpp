@@ -50,6 +50,11 @@ void MusicDownLoadWSInterface::readFromMusicSongAttribute(MusicObject::MusicSong
                 return;
             }
 
+            if(info->m_songName == "-")
+            {
+                info->m_songName = value["SN"].toString();
+            }
+
             MusicObject::MusicSongAttribute attr;
             switch(bitrate)
             {

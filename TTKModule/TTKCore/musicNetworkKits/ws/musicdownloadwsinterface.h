@@ -40,6 +40,8 @@ const QString WS_PLAYLIST_URL      = "NXBMdjg2NTIrTTQ2L1AwTy8xYnFoY01ySllBblFIeW
 const QString WS_PLAYLIST_ATTR_URL = "ZWRTbTVMM2F1d2J2bVc1TmJueTRTMGs5MmYzc0FIVXFuNUtTMGIzTENsSUpldFZ4Nk1OcHA0bmVMRnV1YTNsNWwxN09zZWliSkM3SkRlSG9wTS9DVU1iUTJTRkRQK1NOajgxMGl1b2xnS1pvQk5scWVwNCs3RVJmVUV3T0Y2T0V0UndyNlhqbXhWWkNBVjVQRXY0bldXOE8wSTkzYmJlSWIySGUzVE5Za3phbGhDWEZaRXEyVEdJM1A3VTVEMHdzRXJhb1loUU9NSmJZb2luU0Q5anQ0VjNqcDJ2MGQ0TWNPb3pjbXQ4MkFXOVdEdHJHYWRpOThZUlZIM3ZQTHNoVVVIeUJlUkFBTXplYVhTUTd2dEZXK0NwZGdCaWR1ZS9jK0NSY0lxVjVVSlZOMGViSXMzVnN5aWxGYnA1ejRGTmVielo2LzlQRTRhRUI5djZ3czgvSHphQXcwL2swSFJuT1c5bmFZbkgwTCtkZ2sxQnR6SFhjWWFBZjBZU3d2aU1pWXByVWNlUFcvZms9";
 const QString WS_PLAYLIST_INFO_URL = "aE9kMU9kdENKKzBnYjVham5vNGRrVXFTMEdpNGxEK0dtUzd3VEUrVGJPNkdZRjBTcEtubGN0N0VPSEtnbURUTUxVRmIvQkhGWjdaRDMva24=";
 ///////////////////////////////////////////////////////////////////////////
+const QString WS_RCM_URL           = "OXB0WWRUSm9PaXUyNm83bVFwYmJDMUpPQXZYdTlZRjVGVzFOMURTRG5uc08veThoOUduVTZnZm1SYitmM08ya0hUUGE5SlR4TjFWdWg3a29Ed1lHRmcrVW9jbXEyVGpMYnNMZ3lReWVxcktHcjdybw==";
+///////////////////////////////////////////////////////////////////////////
 
 
 /*! @brief The class to wusing query download data from net.
