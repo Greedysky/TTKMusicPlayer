@@ -41,6 +41,10 @@ public:
     static QString getClassName();
 
     /*!
+     * Set network query input.
+     */
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    /*!
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override;
@@ -79,6 +83,10 @@ public Q_SLOTS:
      */
     virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
+     * Create the search finished item.
+     */
+    void createFinishedItem();
+    /*!
      * Search menu type changed.
      */
     void searchChanged(QAction *action);
@@ -98,6 +106,8 @@ protected:
      * Download data from net and just play or not.
      */
     bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
+
+    MusicLabelDelegate *m_labelDelegate;
 
 };
 

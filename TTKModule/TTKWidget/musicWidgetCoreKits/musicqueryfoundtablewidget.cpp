@@ -27,12 +27,15 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
 
+    m_labelDelegate = new MusicLabelDelegate(this);
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
 {
+    delete m_labelDelegate;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
@@ -40,6 +43,12 @@ MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
 QString MusicQueryFoundTableWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicQueryFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+{
+    MusicQueryTableWidget::setQueryInput(query);
+    connect(query, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
 }
 
 void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
@@ -263,6 +272,24 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
     setItem(count, 7, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
+}
+
+void MusicQueryFoundTableWidget::createFinishedItem()
+{
+    setRowCount(rowCount() + 1);
+    int count = rowCount() - 1;
+    for(int i=0; i<columnCount(); ++i)
+    {
+        setItem(count, i, new QTableWidgetItem);
+    }
+    setSpan(count, 0, 1, columnCount());
+
+    QTableWidgetItem *it = item(count, 0);
+    if(it)
+    {
+        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        setItemDelegateForRow(count, m_labelDelegate);
+    }
 }
 
 void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
