@@ -128,6 +128,7 @@ protected:
      */
     void searchInLocalMLrc();
 
+    QString m_currentName;
     Ui::MusicLrcLocalLinkWidget *m_ui;
 
 };

@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadStatusObject(QObject *w);
+    explicit MusicDownloadStatusObject(QObject *parent);
 
     ~MusicDownloadStatusObject();
 

@@ -241,17 +241,20 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
+    item->setTextColor(QColor(100, 100, 100));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_albumName);
+    item->setTextColor(QColor(100, 100, 100));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setTextColor(QColor(100, 100, 100));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
@@ -320,31 +323,25 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
         return false;
     }
 
-    QList<int> findMinTag;
-    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
-    {
-        findMinTag << attr.m_bitrate;
-    }
-    qSort(findMinTag);
+    MusicObject::MusicSongAttributes attrs(downloadInfo.m_songAttrs);
+    qSort(attrs);
     //to find out the min bitrate
 
-    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
+    if(!attrs.isEmpty())
     {
-        if(attr.m_bitrate == findMinTag.first())
-        {
-            QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
-            QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+        const MusicObject::MusicSongAttribute attr = attrs.first();
+        QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
+        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
-            MusicSemaphoreLoop loop(this);
-            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                             MusicDownLoadThreadAbstract::Download_Music, this);
-            connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            downSong->startToDownload();
-            loop.exec();
+        MusicSemaphoreLoop loop(this);
+        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
+                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        downSong->startToDownload();
+        loop.exec();
 
-            emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
-            return true;
-        }
+        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
     }
-    return false;
+
+    return true;
 }

@@ -13,11 +13,11 @@
 #include "musiccoreutils.h"
 #include "musicstringutils.h"
 
-MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *w)
-    : QObject(w)
+MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
+    : QObject(parent)
 {
     m_previousState = true;
-    m_parentWidget = MStatic_cast(MusicApplication*, w);
+    m_parentWidget = MStatic_cast(MusicApplication*, parent);
     m_downloadLrcThread = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
