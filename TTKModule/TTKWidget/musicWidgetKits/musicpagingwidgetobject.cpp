@@ -129,6 +129,11 @@ void MusicPagingWidgetObject::reset(int total)
 
 void MusicPagingWidgetObject::paging(int index, int total)
 {
+    if(total <= 0)
+    {
+        return;
+    }
+
     int page = m_pagingItems[0]->text().toInt();
     for(int i=0; i<m_pagingItems.count() - 2; ++i)
     {
