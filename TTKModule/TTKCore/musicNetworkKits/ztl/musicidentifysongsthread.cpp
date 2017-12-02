@@ -63,7 +63,7 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     QString timeStamp = QString::number(QDateTime::currentDateTime().toMSecsSinceEpoch());
 
     httpMethod = httpMethod + "\n" + httpUri + "\n" + m_accessKey + "\n" + dataType + "\n" + signatureVersion + "\n" + timeStamp;
-    QByteArray content = MusicUtils::Algorithm::hmackSha1(httpMethod.toUtf8(), m_accessSecret.toUtf8()).toBase64();
+    QByteArray content = MusicUtils::Algorithm::hmacSha1(httpMethod.toUtf8(), m_accessSecret.toUtf8()).toBase64();
 
     QString value;
     value += startBoundary + "\r\nContent-Disposition: form-data; name=\"access_key\"\r\n\r\n" + m_accessKey + "\r\n";

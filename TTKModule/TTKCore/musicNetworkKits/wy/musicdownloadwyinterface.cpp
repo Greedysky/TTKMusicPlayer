@@ -27,9 +27,7 @@ QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request,
 
     parameter = QAesWrap("a44e542eaac91dce", "0102030405060708", QAesWrap::AES_128)
                            .encrypt(parameter, QAesWrap::AES_CBC, QAesWrap::PKCS7);
-    parameter.replace('+', "%2B");
-    parameter.replace('/', "%2F");
-    parameter.replace('=', "%3D");
+    MusicUtils::Algorithm::urlEncode(parameter);
 
     request->setUrl(QUrl(query));
     makeTokenQueryQequest(request);

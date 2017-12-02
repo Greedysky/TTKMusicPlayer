@@ -289,6 +289,8 @@ void MusicQueryFoundTableWidget::createFinishedItem()
     {
         it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
+
+        setFixedHeight(rowHeight(0)*rowCount());
     }
 }
 

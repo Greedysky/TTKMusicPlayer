@@ -45,7 +45,24 @@ namespace MusicUtils
         /*!
          * Encode the data into sha1.
          */
-        MUSIC_UTILS_EXPORT QByteArray hmackSha1(const QByteArray &data, const QByteArray &key);
+        MUSIC_UTILS_EXPORT QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
+
+        /*!
+         * Encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlEncode(QString &data);
+        /*!
+         * Decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlDecode(QString &data);
+        /*!
+         * Encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlEncode(QByteArray &data);
+        /*!
+         * Decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlDecode(QByteArray &data);
 
         /*!
          * Get mdII(greedysky) algorithm.

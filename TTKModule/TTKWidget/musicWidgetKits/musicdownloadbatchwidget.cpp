@@ -58,7 +58,10 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
 
     m_smallPicUrl = info.m_smallPicUrl;
 
-    foreach(const MusicObject::MusicSongAttribute &attr, info.m_songAttrs)
+    MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
+    qSort(attrs);
+
+    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
     {
         if(attr.m_bitrate == MB_32)         ///st
         {
@@ -149,11 +152,16 @@ void MusicDownloadBatchTableItem::startToDownload()
 
 void MusicDownloadBatchTableItem::setCurrentQuality(int bitrate)
 {
+    if(bitrate < 0)
+    {
+        return;
+    }
+
     int index = -1;
     for(int i=0; i<m_qulity->count(); ++i)
     {
         MusicObject::MusicSongAttribute attr = m_qulity->itemData(i).value<MusicObject::MusicSongAttribute>();
-        if(attr.m_bitrate == bitrate)
+        if(attr.m_bitrate == bitrate || attr.m_bitrate > MB_320)
         {
             index = i;
             break;

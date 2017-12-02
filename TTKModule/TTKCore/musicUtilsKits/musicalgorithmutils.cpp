@@ -13,7 +13,7 @@ QByteArray MusicUtils::Algorithm::sha1(const QByteArray &data)
     return QCryptographicHash::hash(data, QCryptographicHash::Sha1);
 }
 
-QByteArray MusicUtils::Algorithm::hmackSha1(const QByteArray &data, const QByteArray &key)
+QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteArray &key)
 {
     int blockSize = 64;
     QByteArray newSecretKey = key;
@@ -37,6 +37,34 @@ QByteArray MusicUtils::Algorithm::hmackSha1(const QByteArray &data, const QByteA
     total.append(MusicUtils::Algorithm::sha1(part));
     QByteArray hashed = MusicUtils::Algorithm::sha1(total);
     return hashed;
+}
+
+void MusicUtils::Algorithm::urlEncode(QString &data)
+{
+    data.replace('+', "%2B");
+    data.replace('/', "%2F");
+    data.replace('=', "%3D");
+}
+
+void MusicUtils::Algorithm::urlDecode(QString &data)
+{
+    data.replace("%2B", "+");
+    data.replace("%2F", "/");
+    data.replace("%3D", "=");
+}
+
+void MusicUtils::Algorithm::urlEncode(QByteArray &data)
+{
+    data.replace('+', "%2B");
+    data.replace('/', "%2F");
+    data.replace('=', "%3D");
+}
+
+void MusicUtils::Algorithm::urlDecode(QByteArray &data)
+{
+    data.replace("%2B", "+");
+    data.replace("%2F", "/");
+    data.replace("%3D", "=");
 }
 
 QString MusicUtils::Algorithm::mdII(const QString &data, bool encode)
