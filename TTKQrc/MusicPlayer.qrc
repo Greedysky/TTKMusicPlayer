@@ -340,6 +340,7 @@
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
         <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
         <file alias="lb_5sing">../TTKResource/server/lb_server_5sing.png</file>
+        <file alias="lb_migu">../TTKResource/server/lb_server_migu.png</file>
     </qresource>
     <qresource prefix="/toolSets">
         <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>

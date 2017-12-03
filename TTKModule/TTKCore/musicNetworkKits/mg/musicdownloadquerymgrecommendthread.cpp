@@ -1,59 +1,47 @@
-#include "musicdownloadquerykwtoplistthread.h"
+#include "musicdownloadquerymgrecommendthread.h"
 #include "musicnumberutils.h"
-#include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
 
-MusicDownLoadQueryKWToplistThread::MusicDownLoadQueryKWToplistThread(QObject *parent)
-    : MusicDownLoadQueryToplistThread(parent)
+MusicDownLoadQueryMGRecommendThread::MusicDownLoadQueryMGRecommendThread(QObject *parent)
+    : MusicDownLoadQueryRecommendThread(parent)
 {
-    m_queryServer = "Kuwo";
+    m_queryServer = "Migu";
 }
 
-QString MusicDownLoadQueryKWToplistThread::getClassName()
+QString MusicDownLoadQueryMGRecommendThread::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicDownLoadQueryKWToplistThread::startToSearch(QueryType type, const QString &toplist)
-{
-    if(type == MusicQuery)
-    {
-        startToSearch(toplist);
-    }
-    else
-    {
-        startToSearch(toplist.isEmpty() ? "93" : toplist);
-    }
-}
-
-void MusicDownLoadQueryKWToplistThread::startToSearch(const QString &toplist)
+void MusicDownLoadQueryMGRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)
     {
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_TOPLIST_URL, false).arg(toplist);
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(MG_RCM_URL, false);
     deleteAll();
     m_interrupt = true;
+    m_searchText = id;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(MG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->get(request);
+    m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryKWToplistThread::downLoadFinished()
+void MusicDownLoadQueryMGRecommendThread::downLoadFinished()
 {
     if(!m_reply || !m_manager)
     {
@@ -66,10 +54,9 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
     m_interrupt = false;
 
-    M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
@@ -77,18 +64,9 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["status"].toInt() == 200 && value.contains("data"))
+            if(value["code"].toString() == "000000" && value.contains("songs"))
             {
-                value = value["data"].toMap();
-                MusicPlaylistItem info;
-                info.m_name = value["name"].toString();
-                info.m_coverUrl = value["pic"].toString();
-                info.m_playCount = "-";
-                info.m_description = value["info"].toString();
-                info.m_updateTime = value["pub"].toString();
-                emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
-                QVariantList datas = value["musicList"].toList();
+                QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -98,21 +76,20 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["artist"].toString();
-                    musicInfo.m_songName = value["songName"].toString();
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                    musicInfo.m_singerName = value["singer"].toString();
+                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_timeLength = "-";
 
-                    musicInfo.m_songId = value["id"].toString();
-                    musicInfo.m_artistId = value["artistId"].toString();
+                    musicInfo.m_songId = value["contentid"].toString();
+                    musicInfo.m_artistId = value["singerid"].toString();
                     musicInfo.m_albumId = value["albumid"].toString();
-                    musicInfo.m_albumName = value["albumName"].toString();
+
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(MG_SONG_LRC_URL, false).arg(musicInfo.m_songId);
+                    musicInfo.m_smallPicUrl = value["albumImg"].toString();
+                    musicInfo.m_albumName = value["album"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-                    ///music normal songs urls
-                    readFromMusicSongAttribute(&musicInfo, value["formats"].toList(), m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, true);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -143,7 +120,6 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
             }
         }
     }
-
 
     emit downLoadDataChanged(QString());
     deleteAll();

@@ -1,5 +1,5 @@
-#ifndef MUSICBDDISCOVERLISTTHREAD_H
-#define MUSICBDDISCOVERLISTTHREAD_H
+#ifndef MUSICDOWNLOADQUERYMGTOPLISTTHREAD_H
+#define MUSICDOWNLOADQUERYMGTOPLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,28 +19,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloaddiscoverlistthread.h"
+#include "musicdownloadmginterface.h"
+#include "musicdownloadquerytoplistthread.h"
 
-/*! @brief The class to baidu discover toplist.
+/*! @brief The class to migu query toplist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryMGToplistThread : public MusicDownLoadQueryToplistThread,
+                                                               private MusicDownLoadMGInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDDiscoverListThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryMGToplistThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Start to Search data from toplist.
+     * Start to Search data from name and type.
      */
-    virtual void startToSearch() override;
+    virtual void startToSearch(QueryType type, const QString &toplist) override;
+    /*!
+     * Start to Search data from name and type.
+     */
+    virtual void startToSearch(const QString &toplist) override;
 
 public Q_SLOTS:
     /*!
@@ -50,4 +57,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICBDDISCOVERLISTTHREAD_H
+#endif // MUSICDOWNLOADQUERYMGTOPLISTTHREAD_H

@@ -1,5 +1,5 @@
-#ifndef MUSICBDDISCOVERLISTTHREAD_H
-#define MUSICBDDISCOVERLISTTHREAD_H
+#ifndef MUSICMGDISCOVERLISTTHREAD_H
+#define MUSICMGDISCOVERLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,17 +21,17 @@
 
 #include "musicdownloaddiscoverlistthread.h"
 
-/*! @brief The class to baidu discover toplist.
+/*! @brief The class to migu discover toplist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicMGDiscoverListThread : public MusicDownLoadDiscoverListThread
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDDiscoverListThread(QObject *parent = 0);
+    explicit MusicMGDiscoverListThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -50,4 +50,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICBDDISCOVERLISTTHREAD_H
+#endif // MUSICMGDISCOVERLISTTHREAD_H

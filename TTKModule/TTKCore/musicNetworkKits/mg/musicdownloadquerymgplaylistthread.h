@@ -1,5 +1,5 @@
-#ifndef MUSICBDDISCOVERLISTTHREAD_H
-#define MUSICBDDISCOVERLISTTHREAD_H
+#ifndef MUSICDOWNLOADQUERYMGPLAYLISTTHREAD_H
+#define MUSICDOWNLOADQUERYMGPLAYLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,35 +19,54 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloaddiscoverlistthread.h"
+#include "musicdownloadmginterface.h"
+#include "musicdownloadqueryplaylistthread.h"
 
-/*! @brief The class to baidu discover toplist.
+/*! @brief The class to migu query playlist download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDDiscoverListThread : public MusicDownLoadDiscoverListThread
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryMGPlaylistThread : public MusicDownLoadQueryPlaylistThread,
+                                                                private MusicDownLoadMGInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDDiscoverListThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryMGPlaylistThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Start to Search data from toplist.
+     * Start to Search data from name and type.
      */
-    virtual void startToSearch() override;
+    virtual void startToSearch(QueryType type, const QString &playlist) override;
+    /*!
+     * Start to search data from name and type bt paging.
+     */
+    virtual void startToPage(int offset) override;
+    /*!
+     * Start to Search data.
+     */
+    virtual void startToSearch(const QString &playlist) override;
+    /*!
+     * Get playlist info.
+     */
+    virtual void getPlaylistInfo(MusicPlaylistItem &item) override;
 
 public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+    /*!
+     * Download details data from net finished.
+     */
+    void getDetailsFinished();
 
 };
 
-#endif // MUSICBDDISCOVERLISTTHREAD_H
+#endif // MUSICDOWNLOADQUERYMGPLAYLISTTHREAD_H

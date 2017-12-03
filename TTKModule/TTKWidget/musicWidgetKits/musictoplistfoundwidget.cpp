@@ -127,8 +127,8 @@ void MusicTopListFoundWidget::createLabels()
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
     m_categoryButton = new MusicToplistFoundCategoryPopWidget(categoryWidget);
     m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
-    categoryWidgetLayout->addStretch(1);
     categoryWidgetLayout->addWidget(m_categoryButton);
+    categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);
     grid->addWidget(categoryWidget);
     ////////////////////////////////////////////////////////////////////////////

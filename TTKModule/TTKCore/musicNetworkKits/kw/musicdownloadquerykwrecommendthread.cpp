@@ -25,7 +25,7 @@ void MusicDownLoadQueryKWRecommendThread::startToSearch(const QString &id)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_RCM_URL, false).arg(24005).arg(50);
     m_interrupt = true;
-qDebug() << musicUrl;
+
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -101,7 +101,10 @@ void MusicDownLoadQueryKWRecommendThread::downLoadFinished()
                     {
                         MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+                        if(attr->m_size.isEmpty())
+                        {
+                            attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
+                        }
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     }
                     ////////////////////////////////////////////////////////////

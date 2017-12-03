@@ -43,6 +43,8 @@ QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
         return v.arg(tr("WY"));
     else if(m_queryServer.contains("XiaMi"))
         return v.arg(tr("XM"));
+    else if(m_queryServer.contains("Migu"))
+        return v.arg(tr("MG"));
     else if(m_queryServer.contains("WuSing"))
         return v.arg(tr("WS"));
     else if(m_queryServer.contains("YinYueTai"))
