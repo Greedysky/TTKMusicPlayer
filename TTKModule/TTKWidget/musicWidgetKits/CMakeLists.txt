@@ -47,6 +47,8 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.h
     ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.h
     ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.h
+    ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.h
+    ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -96,5 +98,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musicsongslistplayedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musictoplistfoundwidget.cpp
     ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.cpp
   )
   

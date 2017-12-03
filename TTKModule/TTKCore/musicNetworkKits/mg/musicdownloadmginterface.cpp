@@ -67,9 +67,13 @@ void MusicDownLoadMGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         {
             readFromMusicSongAttribute(info, MB_128, "mp3", 1);
         }
-        else if(quality == QObject::tr("SQ") && flag[2] == '1')
+        else if(quality == QObject::tr("SQ") && flag[1] == '1')
         {
             readFromMusicSongAttribute(info, MB_320, "mp3", 3);
+        }
+        else if(quality == QObject::tr("CD") && flag[2] == '1')
+        {
+            readFromMusicLLAttribute(info);
         }
     }
 }
