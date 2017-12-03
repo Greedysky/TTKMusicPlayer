@@ -119,7 +119,7 @@ SOURCES += \
     $$PWD/musictoplistfoundwidget.cpp \
     $$PWD/musictoplistfoundcategorypopwidget.cpp \
     $$PWD/musicdownloadbatchwidget.cpp \
-    $$PWD/musicadvancedsearchedwidget.cpp ¡¢
+    $$PWD/musicadvancedsearchedwidget.cpp \
     $$PWD/musicrecommendfoundwidget.cpp
 
 }

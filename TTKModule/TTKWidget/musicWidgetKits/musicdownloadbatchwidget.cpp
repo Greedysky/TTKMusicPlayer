@@ -161,7 +161,7 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int bitrate)
     for(int i=0; i<m_qulity->count(); ++i)
     {
         MusicObject::MusicSongAttribute attr = m_qulity->itemData(i).value<MusicObject::MusicSongAttribute>();
-        if(attr.m_bitrate == bitrate || attr.m_bitrate > MB_320)
+        if(attr.m_bitrate == bitrate || (bitrate > MB_320 && attr.m_bitrate > MB_320))
         {
             index = i;
             break;
