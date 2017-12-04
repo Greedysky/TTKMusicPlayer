@@ -224,6 +224,10 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
 
 void MusicQueryFoundTableWidget::clearAllItems()
 {
+    if(rowCount() > 0)
+    {
+        setItemDelegateForRow(rowCount() - 1, nullptr);
+    }
     MusicQueryTableWidget::clear();
     setColumnCount(8);
 }
