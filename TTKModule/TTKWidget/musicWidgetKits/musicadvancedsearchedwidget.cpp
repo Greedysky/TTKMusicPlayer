@@ -119,6 +119,7 @@ QString MusicAdvancedSearchedWidget::getClassName()
     return staticMetaObject.className();
 }
 
+
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
     int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
@@ -253,7 +254,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
                 m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AR_SHARE, ALG_LOW_KEY, false).arg("1212"));
                 m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_AL_SHARE, ALG_LOW_KEY, false).arg("1003463541"));
                 m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_PL_SHARE, ALG_LOW_KEY, false).arg("1818063"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_MV_SHARE, ALG_LOW_KEY, false).arg("630600"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(MG_MV_SHARE, ALG_LOW_KEY, false).arg("1106499464").arg("60061905518"));
                 break;
             }
         default: break;
@@ -314,6 +315,8 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
                     regx.setPattern("200000000(\\w+).html");
                 else if(type == 3)
                     regx.setPattern("/(\\w+).html");
+                else if(type == 4)
+                    regx.setPattern("=(\\w+)");
                 else
                     regx.setPattern("/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;

@@ -22,11 +22,8 @@ void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
 
 QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
 {
-    QByteArray parameter = QAesWrap("0CoJUm6Qyw8W8jud", "0102030405060708", QAesWrap::AES_128)
-                           .encrypt(type.toUtf8(), QAesWrap::AES_CBC, QAesWrap::PKCS7);
-
-    parameter = QAesWrap("a44e542eaac91dce", "0102030405060708", QAesWrap::AES_128)
-                           .encrypt(parameter, QAesWrap::AES_CBC, QAesWrap::PKCS7);
+    QByteArray parameter = QAesWrap::encrypt(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
+    parameter = QAesWrap::encrypt(parameter, "a44e542eaac91dce", "0102030405060708");
     MusicUtils::Algorithm::urlEncode(parameter);
 
     request->setUrl(QUrl(query));
@@ -223,6 +220,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
         readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
         readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192);
         readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320);
+//        readFromMusicSongAttributeNew(info, MB_999);
     }
     else
     {
@@ -238,6 +236,10 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
         {
             readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320);
         }
+//        else if(quality == QObject::tr("CD"))
+//        {
+//            readFromMusicSongAttributeNew(info, MB_999);
+//        }
     }
 }
 

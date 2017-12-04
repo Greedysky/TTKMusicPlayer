@@ -1,124 +1,91 @@
-/*********************************************************************
-* Filename:   aes.h
-* Author:     Brad Conte (brad AT bradconte.com)
-* Copyright:
-* Disclaimer: This code is presented "as is" without any guarantees.
-* Details:    Defines the API for the corresponding AES implementation.
-*********************************************************************/
+/*
+ * Copyright 2002-2016 The OpenSSL Project Authors. All Rights Reserved.
+ *
+ * Licensed under the OpenSSL license (the "License").  You may not use
+ * this file except in compliance with the License.  You can obtain a copy
+ * in the file LICENSE in the source distribution or at
+ * https://www.openssl.org/source/license.html
+ */
 
-#ifndef AES_H
-#define AES_H
+#ifndef HEADER_AES_H
+# define HEADER_AES_H
 
-/*************************** HEADER FILES ***************************/
-#include <stddef.h>
+# include <stddef.h>
 
-/****************************** MACROS ******************************/
-#define AES_BLOCK_SIZE 16               // AES operates on 16 bytes at a time
+# ifdef  __cplusplus
+extern "C" {
+# endif
 
-/**************************** DATA TYPES ****************************/
-typedef unsigned char BYTE;            // 8-bit byte
-typedef unsigned int WORD;             // 32-bit word, change to "long" for 16-bit machines
+# define AES_ENCRYPT     1
+# define AES_DECRYPT     0
 
-/*********************** FUNCTION DECLARATIONS **********************/
-///////////////////
-// AES
-///////////////////
-// Key setup must be done before any AES en/de-cryption functions can be used.
-// 128 bits = 16 字节
-// 192 bits = 24 字节
-// 256 bits = 32 字节
-void aes_key_setup(const BYTE key[],          // The key, must be 128, 192, or 256 bits
-                   WORD w[],                  // Output key schedule to be used later
-                   int keysize);              // Bit length of the key, 128, 192, or 256
+/*
+ * Because array size can't be a const in C, the following two are macros.
+ * Both sizes are in bytes.
+ */
+# define AES_MAXNR 14
+# define AES_BLOCK_SIZE 16
 
-void aes_encrypt(const BYTE in[],             // 16 bytes of plaintext
-                 BYTE out[],                  // 16 bytes of ciphertext
-                 const WORD key[],            // From the key setup
-                 int keysize);                // Bit length of the key, 128, 192, or 256
+/* This should be a hidden type, but EVP requires that the size be known */
+struct aes_key_st {
+# ifdef AES_LONG
+    unsigned long rd_key[4 * (AES_MAXNR + 1)];
+# else
+    unsigned int rd_key[4 * (AES_MAXNR + 1)];
+# endif
+    int rounds;
+};
+typedef struct aes_key_st AES_KEY;
 
-void aes_decrypt(const BYTE in[],             // 16 bytes of ciphertext
-                 BYTE out[],                  // 16 bytes of plaintext
-                 const WORD key[],            // From the key setup
-                 int keysize);                // Bit length of the key, 128, 192, or 256
+const char *AES_options(void);
 
-///////////////////
-// AES - CBC
-///////////////////
-void aes_encrypt_cbc(const BYTE in[],          // Plaintext
-                    size_t in_len, const BYTE * lastBlock,            // Must be a multiple of AES_BLOCK_SIZE
-                    BYTE out[],               // Ciphertext, same length as plaintext
-                    const WORD key[],         // From the key setup
-                    int keysize,              // Bit length of the key, 128, 192, or 256
-                    const BYTE iv[]);         // IV, must be AES_BLOCK_SIZE bytes long
+int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+                        AES_KEY *key);
+int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+                        AES_KEY *key);
 
-void aes_decrypt_cbc(const BYTE in[],
-                    size_t in_len,
-                    BYTE out[],
-                    const WORD key[],
-                    int keysize,
-                    const BYTE iv[]);
+void AES_encrypt(const unsigned char *in, unsigned char *out,
+                 const AES_KEY *key);
+void AES_decrypt(const unsigned char *in, unsigned char *out,
+                 const AES_KEY *key);
 
-//// Only output the CBC-MAC of the input.
-//int aes_encrypt_cbc_mac(const BYTE in[],      // plaintext
-//                        size_t in_len,        // Must be a multiple of AES_BLOCK_SIZE
-//                        BYTE out[],           // Output MAC
-//                        const WORD key[],     // From the key setup
-//                        int keysize,          // Bit length of the key, 128, 192, or 256
-//                        const BYTE iv[]);     // IV, must be AES_BLOCK_SIZE bytes long
+void AES_ecb_encrypt(const unsigned char *in, unsigned char *out,
+                     const AES_KEY *key, const int enc);
+void AES_cbc_encrypt(const unsigned char *in, unsigned char *out,
+                     size_t length, const AES_KEY *key,
+                     unsigned char *ivec, const int enc);
+void AES_cfb128_encrypt(const unsigned char *in, unsigned char *out,
+                        size_t length, const AES_KEY *key,
+                        unsigned char *ivec, int *num, const int enc);
+void AES_cfb1_encrypt(const unsigned char *in, unsigned char *out,
+                      size_t length, const AES_KEY *key,
+                      unsigned char *ivec, int *num, const int enc);
+void AES_cfb8_encrypt(const unsigned char *in, unsigned char *out,
+                      size_t length, const AES_KEY *key,
+                      unsigned char *ivec, int *num, const int enc);
+void AES_ofb128_encrypt(const unsigned char *in, unsigned char *out,
+                        size_t length, const AES_KEY *key,
+                        unsigned char *ivec, int *num);
+/* NB: the IV is _two_ blocks long */
+void AES_ige_encrypt(const unsigned char *in, unsigned char *out,
+                     size_t length, const AES_KEY *key,
+                     unsigned char *ivec, const int enc);
+/* NB: the IV is _four_ blocks long */
+void AES_bi_ige_encrypt(const unsigned char *in, unsigned char *out,
+                        size_t length, const AES_KEY *key,
+                        const AES_KEY *key2, const unsigned char *ivec,
+                        const int enc);
 
-///////////////////
-// AES - CTR
-///////////////////
-//void increment_iv(BYTE iv[],                  // Must be a multiple of AES_BLOCK_SIZE
-//                  int counter_size);          // Bytes of the IV used for counting (low end)
+int AES_wrap_key(AES_KEY *key, const unsigned char *iv,
+                 unsigned char *out,
+                 const unsigned char *in, unsigned int inlen);
+int AES_unwrap_key(AES_KEY *key, const unsigned char *iv,
+                   unsigned char *out,
+                   const unsigned char *in, unsigned int inlen);
 
-void aes_encrypt_ctr(const BYTE in[],         // Plaintext
-                     size_t in_len,           // Any byte length
-                     BYTE out[],              // Ciphertext, same length as plaintext
-                     const WORD key[],        // From the key setup
-                     int keysize,             // Bit length of the key, 128, 192, or 256
-                     const BYTE iv[]);        // IV, must be AES_BLOCK_SIZE bytes long
 
-void aes_decrypt_ctr(const BYTE in[],         // Ciphertext
-                     size_t in_len,           // Any byte length
-                     BYTE out[],              // Plaintext, same length as ciphertext
-                     const WORD key[],        // From the key setup
-                     int keysize,             // Bit length of the key, 128, 192, or 256
-                     const BYTE iv[]);        // IV, must be AES_BLOCK_SIZE bytes long
+# ifdef  __cplusplus
+}
+# endif
 
-///////////////////
-// AES - CCM
-///////////////////
-// Returns True if the input parameters do not violate any constraint.
-int aes_encrypt_ccm(const BYTE plaintext[],              // IN  - Plaintext.
-                    WORD plaintext_len,                  // IN  - Plaintext length.
-                    const BYTE associated_data[],        // IN  - Associated Data included in authentication, but not encryption.
-                    unsigned short associated_data_len,  // IN  - Associated Data length in bytes.
-                    const BYTE nonce[],                  // IN  - The Nonce to be used for encryption.
-                    unsigned short nonce_len,            // IN  - Nonce length in bytes.
-                    BYTE ciphertext[],                   // OUT - Ciphertext, a concatination of the plaintext and the MAC.
-                    WORD *ciphertext_len,                // OUT - The length of the ciphertext, always plaintext_len + mac_len.
-                    WORD mac_len,                        // IN  - The desired length of the MAC, must be 4, 6, 8, 10, 12, 14, or 16.
-                    const BYTE key[],                    // IN  - The AES key for encryption.
-                    int keysize);                        // IN  - The length of the key in bits. Valid values are 128, 192, 256.
-
-// Returns True if the input parameters do not violate any constraint.
-// Use mac_auth to ensure decryption/validation was preformed correctly.
-// If authentication does not succeed, the plaintext is zeroed out. To overwride
-// this, call with mac_auth = NULL. The proper proceedure is to decrypt with
-// authentication enabled (mac_auth != NULL) and make a second call to that
-// ignores authentication explicitly if the first call failes.
-int aes_decrypt_ccm(const BYTE ciphertext[],             // IN  - Ciphertext, the concatination of encrypted plaintext and MAC.
-                    WORD ciphertext_len,                 // IN  - Ciphertext length in bytes.
-                    const BYTE assoc[],                  // IN  - The Associated Data, required for authentication.
-                    unsigned short assoc_len,            // IN  - Associated Data length in bytes.
-                    const BYTE nonce[],                  // IN  - The Nonce to use for decryption, same one as for encryption.
-                    unsigned short nonce_len,            // IN  - Nonce length in bytes.
-                    BYTE plaintext[],                    // OUT - The plaintext that was decrypted. Will need to be large enough to hold ciphertext_len - mac_len.
-                    WORD *plaintext_len,                 // OUT - Length in bytes of the output plaintext, always ciphertext_len - mac_len .
-                    WORD mac_len,                        // IN  - The length of the MAC that was calculated.
-                    int *mac_auth,                       // OUT - TRUE if authentication succeeded, FALSE if it did not. NULL pointer will ignore the authentication.
-                    const BYTE key[],                    // IN  - The AES key for decryption.
-                    int keysize);                        // IN  - The length of the key in BITS. Valid values are 128, 192, 256.
-
-#endif   // AES_H
+#endif

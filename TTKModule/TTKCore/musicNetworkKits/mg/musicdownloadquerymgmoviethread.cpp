@@ -2,6 +2,7 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
+#include "musicstringutils.h"
 #include "musiccoreutils.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -43,6 +44,21 @@ void MusicDownLoadQueryMGMovieThread::startToSearch(QueryType type, const QStrin
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryMGMovieThread::startToSingleSearch(const QString &text)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
+    m_searchText = text.trimmed();
+    deleteAll();
+    m_interrupt = true;
+
+    QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
 }
 
 void MusicDownLoadQueryMGMovieThread::downLoadFinished()
@@ -88,8 +104,8 @@ void MusicDownLoadQueryMGMovieThread::downLoadFinished()
                     if(!musicInfo.m_songId.isEmpty())
                     {
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicMVAttribute(&musicInfo, MB_500);
-                        readFromMusicMVAttribute(&musicInfo, MB_750);
+                        readFromMusicMVAttribute(&musicInfo, MB_500, false);
+                        readFromMusicMVAttribute(&musicInfo, MB_750, false);
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     }
 
@@ -127,7 +143,38 @@ void MusicDownLoadQueryMGMovieThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryMGMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, int bitrate)
+void MusicDownLoadQueryMGMovieThread::singleDownLoadFinished()
+{
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+
+    emit clearAllItems();      ///Clear origin items
+    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
+
+    MusicObject::MusicSongInformation musicInfo;
+    musicInfo.m_songId = m_searchText;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    readFromMusicMVAttribute(&musicInfo, MB_500, true);
+    readFromMusicMVAttribute(&musicInfo, MB_750, true);
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
+    if(!musicInfo.m_songAttrs.isEmpty())
+    {
+        MusicSearchedItem item;
+        item.m_songName = musicInfo.m_songName;
+        item.m_singerName = musicInfo.m_singerName;
+        item.m_time = musicInfo.m_timeLength;
+        item.m_type = mapQueryServerString();
+        emit createSearchedItems(item);
+        m_musicSongInfos << musicInfo;
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryMGMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, int bitrate, bool more)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {
@@ -176,6 +223,15 @@ void MusicDownLoadQueryMGMovieThread::readFromMusicMVAttribute(MusicObject::Musi
 #endif
             attr.m_bitrate = bitrate;
             attr.m_format = MusicUtils::Core::fileSuffix(fileName);
+
+            if(more)
+            {
+                fileName = QFileInfo(fileName).baseName();
+                // Name and song just revert
+                info->m_singerName = MusicUtils::String::songName(fileName);
+                info->m_songName = MusicUtils::String::artistName(fileName);
+            }
+
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

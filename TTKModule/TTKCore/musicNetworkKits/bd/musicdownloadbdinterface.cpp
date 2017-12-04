@@ -16,8 +16,7 @@ void MusicDownLoadBDInterface::makeTokenQueryUrl(QNetworkRequest *request, const
 {
     QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id)
                   .arg(MusicTime::timeStamp());
-    QString eKey = QString(QAesWrap("4CC20A0C44FEB6FD", "2012061402992850", QAesWrap::AES_128)
-                  .encrypt(key.toUtf8(), QAesWrap::AES_CBC, QAesWrap::PKCS7));
+    QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
     MusicUtils::Algorithm::urlEncode(eKey);
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
 
