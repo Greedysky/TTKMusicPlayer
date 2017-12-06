@@ -36,7 +36,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     musicResetWindow();
 
     m_quitAnimation = new QPropertyAnimation(this);
-    m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);;
+    m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250*MT_MS);
 

@@ -38,21 +38,21 @@ QString MusicPlaylistFoundInfoWidget::getClassName()
 void MusicPlaylistFoundInfoWidget::resizeWindow()
 {
     m_foundTableWidget->resizeWindow();
-    if(!m_resizeWidget.isEmpty())
+    if(!m_resizeWidgets.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
         width = width - WINDOW_WIDTH_MIN;
 
-        QLabel *label = m_resizeWidget[0];
+        QLabel *label = m_resizeWidgets[0];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
 
-        label = m_resizeWidget[1];
+        label = m_resizeWidgets[1];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
 
-        label = m_resizeWidget[2];
+        label = m_resizeWidgets[2];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
 
-        label = m_resizeWidget[3];
+        label = m_resizeWidgets[3];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 220 + width));
     }
 }
@@ -252,7 +252,7 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidget << playlistLabel << creatorLabel << tagsLabel << updateLabel;
+    m_resizeWidgets << playlistLabel << creatorLabel << tagsLabel << updateLabel;
 }
 
 void MusicPlaylistFoundInfoWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)

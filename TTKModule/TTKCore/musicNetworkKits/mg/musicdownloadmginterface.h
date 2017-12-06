@@ -26,6 +26,7 @@
 const QString MG_UA_URL_1           = "RmRqVWRxSmI0Z0ZEWHNtNkhvQlpleXprbXF6VThWak1WZnBQU2xOb3ZhQjJDTE9UUk5xNlZFMVcvc0tnUjNDc3hWL0hmWmw0UkFweURvMVJlMkgzMlN0bE1xOD0=";
 /////////////////////////////////////////////////////////////////////////////
 const QString MG_ALBUM_URL          = "dDVkT1UxOWUzR3dDb0N5UXkwcEFUZmt3SWJvWGU4ajYxRTBGc3pMYnRMUzJMUDV5VmREUjdoL2IwZFpJYlNvanJiVGJPbERzcTkwdWR3UmN5Sm0ydlQ0NWQ5cHBpcGFpalBaendxYmMwUDBhNllyWmdpY1M0am1oSFZsVVNZM1lDbEVMcE5PUnNZcGtQeTBhTEhLV0l5R2NzU0U9";
+const QString MG_AR_ALBUM_URL       = "b21uei9xZlFlWkNtMDBPSWRJUm40dm1VeTQ0M202THBjRHAxbU4rYmZnZnFvZ0dVVmpjaGtsM1c4L2hiTzQvR3ZZcVlIdUZSeFBuV2FyNG1idmFLS0J5cTVMZlIwdE9OT1EyZjNvdjRUb0NsUUxwZVJuVWtNaEVuNGxiWVBwaUUxNzQ0SVNickZrMENwaEZyMEs1bDFZb04yemlGTWxHcg==";
 /////////////////////////////////////////////////////////////////////////////
 const QString MG_SONG_SEARCH_URL    = "N0s5WnhWSklNelFwcXJNc21RbXZTWXdMM3g2SlVwQWxCcDJSSzI1RzRsYldRV3BQeU9aMkZwaE9mZC9NQVoxNTJoMEpCcFUvbGNWUzVIWTArZGNWcVBLSXBKSjM2SVk3SkthTFllNlMyL01GYW1UV1NCMWVmNUtSMzNZPQ==";
 const QString MG_SONG_INFO_URL      = "VWRwS0xoYWVINW03MDFOQkZUN0szTWduMm1aVktNbm9BRXI1SkxaZk8ySURmQnVqNC9vaERwMFRVeWpqS3ZpbmNnMkh1VDgvK29aS3gzTzNiNWpoK1cyZXhxNU5GbHVtRy9tSWEyZkpFNFF5bFJaY1NZZ3YxS2VrMk5RPQ==";

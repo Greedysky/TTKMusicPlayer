@@ -169,19 +169,19 @@ void MusicPlaylistFoundWidget::resizeWindow()
         m_infoWidget->resizeWindow();
     }
 
-    if(!m_resizeWidget.isEmpty())
+    if(!m_resizeWidgets.isEmpty())
     {
         if(m_gridLayout)
         {
-            for(int i=0; i<m_resizeWidget.count(); ++i)
+            for(int i=0; i<m_resizeWidgets.count(); ++i)
             {
-                m_gridLayout->removeWidget(m_resizeWidget[i]);
+                m_gridLayout->removeWidget(m_resizeWidgets[i]);
             }
 
             int lineNumber = width()/MAX_LABEL_SIZE;
-            for(int i=0; i<m_resizeWidget.count(); ++i)
+            for(int i=0; i<m_resizeWidgets.count(); ++i)
             {
-                m_gridLayout->addWidget(m_resizeWidget[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
+                m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
             }
         }
     }
@@ -256,9 +256,8 @@ void MusicPlaylistFoundWidget::createPlaylistItems(const MusicPlaylistItem &item
     label->setMusicPlaylistItem(item);
 
     int lineNumber = width()/MAX_LABEL_SIZE;
-    m_gridLayout->addWidget(label, m_resizeWidget.count()/lineNumber,
-                                   m_resizeWidget.count()%lineNumber, Qt::AlignCenter);
-    m_resizeWidget << label;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_resizeWidgets << label;
 }
 
 void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &item)
@@ -291,9 +290,9 @@ void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();
 
-        while(!m_resizeWidget.isEmpty())
+        while(!m_resizeWidgets.isEmpty())
         {
-            QWidget *w = m_resizeWidget.takeLast();
+            QWidget *w = m_resizeWidgets.takeLast();
             m_gridLayout->removeWidget(w);
             delete w;
         }
@@ -303,9 +302,9 @@ void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &
 
 void MusicPlaylistFoundWidget::buttonClicked(int index)
 {
-    while(!m_resizeWidget.isEmpty())
+    while(!m_resizeWidgets.isEmpty())
     {
-        QWidget *w = m_resizeWidget.takeLast();
+        QWidget *w = m_resizeWidgets.takeLast();
         m_gridLayout->removeWidget(w);
         delete w;
     }

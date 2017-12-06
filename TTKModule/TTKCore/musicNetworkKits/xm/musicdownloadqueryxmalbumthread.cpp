@@ -32,7 +32,6 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(XM_ALBUM_DATA_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(XM_ALBUM_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -42,6 +41,33 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
                      SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryXMAlbumThread::startToSingleSearch(const QString &artist)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    deleteAll();
+    m_interrupt = true;
+
+    QNetworkRequest request;
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(XM_AR_ALBUM_DATA_URL, false).arg(artist),
+                      MusicUtils::Algorithm::mdII(XM_AR_ALBUM_URL, false));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkReply *reply = m_manager->get(request);
+    connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
@@ -133,4 +159,53 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryXMAlbumThread::singleDownLoadFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
+    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value.contains("data"))
+            {
+                value = value["data"].toMap();
+                value = value["data"].toMap();
+                QVariantList datas = value["albums"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+
+                    if(m_interrupt) return;
+
+                    MusicPlaylistItem info;
+                    info.m_id = value["albumId"].toString();
+                    info.m_coverUrl = value["albumLogo"].toString();
+                    info.m_name = value["albumName"].toString();
+                    info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy.MM.dd");
+                    emit createAlbumInfoItem(info);
+                }
+            }
+        }
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }

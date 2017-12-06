@@ -67,6 +67,7 @@ void MusicDownLoadQueryMGArtistThread::downLoadFinished()
             if(value["code"].toString() == "000000" && value.contains("songs"))
             {
                 bool artistFlag = false;
+                QString description = value["detail"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
@@ -114,7 +115,7 @@ void MusicDownLoadQueryMGArtistThread::downLoadFinished()
                     {
                         artistFlag = true;
                         MusicPlaylistItem info;
-                        info.m_description = value["detail"].toString();
+                        info.m_description = description;
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;

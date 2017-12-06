@@ -184,6 +184,12 @@ void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
         QVariantMap value = data.toMap();
         if(value["code"].toInt() == 200)
         {
+            item->m_description = value["briefDesc"].toString();
+            if(!item->m_description.isEmpty())
+            {
+                item->m_description = QString("%1\r\n").arg(item->m_description);
+            }
+
             QVariantList array = value["introduction"].toList();
             foreach(const QVariant &var, array)
             {
@@ -193,14 +199,9 @@ void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
                 }
 
                 value = var.toMap();
-                item->m_description += value["txt"].toString() + "\r\n";
-            }
-
-            if(item->m_description == "-")
-            {
-                item->m_description = value["briefDesc"].toString();
+                item->m_description += QString("**%1**\r\n").arg(value["ti"].toString());
+                item->m_description += value["txt"].toString() + "\r\n\r\n";
             }
         }
     }
-
 }

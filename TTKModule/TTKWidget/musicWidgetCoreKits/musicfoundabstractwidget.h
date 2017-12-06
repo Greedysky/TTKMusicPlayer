@@ -122,7 +122,7 @@ protected:
     MusicPlaylistItem m_currentPlaylistItem;
     MusicQueryFoundTableWidget *m_foundTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
-    QList<QLabel*> m_resizeWidget;
+    QList<QLabel*> m_resizeWidgets;
     MusicSongSharingWidget::Type m_shareType;
 
 };

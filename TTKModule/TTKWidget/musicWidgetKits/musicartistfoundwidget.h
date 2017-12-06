@@ -21,6 +21,54 @@
 
 #include "musicfoundabstractwidget.h"
 
+/*! @brief The class of the artist albums item widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicArtistAlbumsItemWidget : public QLabel
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicArtistAlbumsItemWidget(QWidget *parent = 0);
+
+    virtual ~MusicArtistAlbumsItemWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set music item.
+     */
+    void setMusicItem(const MusicPlaylistItem &item);
+
+Q_SIGNALS:
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked(const QString &id);
+
+public Q_SLOTS:
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked();
+
+protected:
+    MusicPlaylistItem m_itemData;
+    QPushButton *m_playButton;
+    QLabel *m_iconLabel, *m_nameLabel, *m_updateLabel;
+
+};
+
+
 /*! @brief The class of the artist music found table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -60,6 +108,8 @@ public:
      */
     explicit MusicArtistFoundWidget(QWidget *parent = 0);
 
+    virtual ~MusicArtistFoundWidget();
+
     /*!
      * Get class object name.
      */
@@ -92,12 +142,31 @@ public Q_SLOTS:
      * Create the current artist info item.
      */
     void createArtistInfoItem(const MusicPlaylistItem &item);
+    /*!
+     * Create the current albums item.
+     */
+    void createAlbumsItem(const MusicPlaylistItem &item);
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked(const QString &id);
+    /*!
+     * Set current container index.
+     */
+    void setCurrentIndex(int index);
 
 protected:
     /*!
      * Create init interface lables.
      */
     void createLabels();
+    /*!
+     * Init the third widget.
+     */
+    void initThirdWidget();
+
+    QWidget *m_albumsContainer;
+    QList<QLabel*> m_albumsWidgets;
 
 };
 

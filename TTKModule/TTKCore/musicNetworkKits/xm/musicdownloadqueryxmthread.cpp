@@ -33,7 +33,6 @@ void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &te
                       MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(30),
                       MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -61,7 +60,6 @@ void MusicDownLoadQueryXMThread::startToSingleSearch(const QString &text)
                       MusicUtils::Algorithm::mdII(XM_SONG_DATA_INFO_URL, false).arg(text),
                       MusicUtils::Algorithm::mdII(XM_SONG_INFO_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);

@@ -44,6 +44,33 @@ void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
                      SLOT(replyError(QNetworkReply::NetworkError)) );
 }
 
+void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &artist)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    deleteAll();
+    m_interrupt = true;
+
+    QNetworkRequest request;
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(artist),
+               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_DATA_N_URL, false));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    QNetworkReply *reply = m_manager->post(request, parameter);
+    connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
 void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
 {
     if(!m_reply || !m_manager)
@@ -143,4 +170,51 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryWYAlbumThread::singleDownLoadFinished()
+{
+    QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
+    if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value.contains("hotAlbums") && value["code"].toInt() == 200)
+            {
+                QVariantList datas = value["hotAlbums"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+
+                    if(m_interrupt) return;
+
+                    MusicPlaylistItem info;
+                    info.m_id = QString::number(value["id"].toULongLong());
+                    info.m_coverUrl = value["picUrl"].toString();
+                    info.m_name = value["name"].toString();
+                    info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["publishTime"].toULongLong()).toString("yyyy.MM.dd");
+                    emit createAlbumInfoItem(info);
+                }
+            }
+        }
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
