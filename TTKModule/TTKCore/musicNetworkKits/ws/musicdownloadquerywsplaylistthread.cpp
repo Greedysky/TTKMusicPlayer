@@ -1,5 +1,6 @@
 #include "musicdownloadquerywsplaylistthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicnumberutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -111,7 +112,7 @@ void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toString() == "0000000" && value.contains("data"))
             {
-                m_pageTotal = 999999;
+                m_pageTotal = MU_MAX;
                 value = value["data"].toMap();
                 QVariantList datas = value["songMenu"].toList();
                 foreach(const QVariant &var, datas)

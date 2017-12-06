@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadqqinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadquerymoviethread.h"
 
 /*! @brief The class to qq mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQMovieThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQMovieThread : public MusicDownLoadQueryMovieThread
 {
     Q_OBJECT
 public:
@@ -43,6 +43,10 @@ public:
      */
     virtual void startToSearch(QueryType type, const QString &text) override;
     /*!
+     * Start to search data from name and type bt paging.
+     */
+    virtual void startToPage(int offset) override;
+    /*!
      * Start to search data by given id.
      */
     virtual void startToSingleSearch(const QString &text) override;
@@ -52,6 +56,10 @@ public Q_SLOTS:
      * Download data from net finished.
      */
     virtual void downLoadFinished() override;
+    /*!
+     * Download page data from net finished.
+     */
+    void pageDownLoadFinished();
     /*!
      * Download single data from net finished.
      */

@@ -8,7 +8,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryWYMovieThread::MusicDownLoadQueryWYMovieThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "WangYi";
 }
@@ -42,6 +42,35 @@ void MusicDownLoadQueryWYMovieThread::startToSearch(QueryType type, const QStrin
 #endif
     m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false).arg(text).arg(0).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryWYMovieThread::startToPage(int offset)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    deleteAll();
+    m_pageTotal = 0;
+    m_pageSize = 20;
+    m_interrupt = true;
+
+    QNetworkRequest request;
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
+               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(m_searchText).arg(m_pageSize*offset).arg(m_pageSize));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    m_reply = m_manager->post(request, parameter);
+    connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
@@ -122,6 +151,58 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryWYMovieThread::pageDownLoadFinished()
+{
+    if(!m_reply || !m_manager)
+    {
+        deleteAll();
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
+    if(m_reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 200 && value.contains("mvs"))
+            {
+                m_pageTotal = MU_MAX;
+                QVariantList datas = value["mvs"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+
+                    if(m_interrupt) return;
+
+                    MusicPlaylistItem info;
+                    info.m_id = QString::number(value["id"].toLongLong());
+                    info.m_coverUrl = value["imgurl"].toString();
+                    info.m_name = value["name"].toString();
+                    info.m_updateTime.clear();
+                    emit createMovieInfoItem(info);
+                }
+            }
+        }
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 pageDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()

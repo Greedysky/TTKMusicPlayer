@@ -68,6 +68,109 @@ protected:
 
 };
 
+class MusicPagingWidgetObject;
+
+/*! @brief The class of the artist mvs found widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicArtistMvsFoundWidget : public MusicFoundAbstractWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicArtistMvsFoundWidget(QWidget *parent = 0);
+
+    virtual ~MusicArtistMvsFoundWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set current name to search founds.
+     */
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    virtual void resizeWindow() override;
+
+public Q_SLOTS:
+    /*!
+     * Create the current albums item.
+     */
+    void createArtistMvsItem(const MusicPlaylistItem &item);
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked(const QString &id);
+    /*!
+     * Paging widget button has changed.
+     */
+    void buttonClicked(int index);
+
+protected:
+    QGridLayout *m_gridLayout;
+    bool m_firstInit;
+    MusicPagingWidgetObject *m_pagingWidgetObject;
+
+};
+
+
+/*! @brief The class of the artist albums found widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicArtistAlbumsFoundWidget : public MusicFoundAbstractWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicArtistAlbumsFoundWidget(QWidget *parent = 0);
+
+    virtual ~MusicArtistAlbumsFoundWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set current name to search founds.
+     */
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    virtual void resizeWindow() override;
+
+public Q_SLOTS:
+    /*!
+     * Create the current albums item.
+     */
+    void createArtistAlbumsItem(const MusicPlaylistItem &item);
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked(const QString &id);
+
+protected:
+    QGridLayout *m_gridLayout;
+
+};
+
 
 /*! @brief The class of the artist music found table widget.
  * @author Greedysky <greedysky@163.com>
@@ -143,14 +246,6 @@ public Q_SLOTS:
      */
     void createArtistInfoItem(const MusicPlaylistItem &item);
     /*!
-     * Create the current albums item.
-     */
-    void createAlbumsItem(const MusicPlaylistItem &item);
-    /*!
-     * Current item clicked.
-     */
-    void currentItemClicked(const QString &id);
-    /*!
      * Set current container index.
      */
     void setCurrentIndex(int index);
@@ -164,9 +259,13 @@ protected:
      * Init the third widget.
      */
     void initThirdWidget();
+    /*!
+     * Init the fourth widget.
+     */
+    void initFourthWidget();
 
-    QWidget *m_albumsContainer;
-    QList<QLabel*> m_albumsWidgets;
+    MusicArtistAlbumsFoundWidget *m_artistAlbums;
+    MusicArtistMvsFoundWidget *m_artistMvs;
 
 };
 

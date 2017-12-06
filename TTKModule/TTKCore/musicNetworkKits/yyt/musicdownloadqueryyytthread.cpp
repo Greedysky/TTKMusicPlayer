@@ -13,7 +13,7 @@ const QString BD_MV_INFO_DID       = "R2hwbW1ZRVI0cjV2Qm1lT0RrQjBrbHVFN3hLUnJyWD
 const QString BD_MV_INFO_DV        = "cEoxTGtxZW9qQ1d0UHhZZWpabnNnSlBLTWV5Z055RThINHA2V3ZjNWs4V0RPUXVLekdoVE56Qzd2YW1YbEwwbQ==";
 
 MusicDownLoadQueryYYTThread::MusicDownLoadQueryYYTThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "YinYueTai";
 }

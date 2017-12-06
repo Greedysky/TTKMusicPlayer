@@ -29,7 +29,7 @@ INCLUDEPATH += $$PWD \
                $$PWD/ws \
                $$PWD/yyt \
                $$PWD/ztl
-               
+
 !contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/radio/musicradiochannelthread.h \
@@ -152,7 +152,8 @@ HEADERS  += \
     $$PWD/musicdownloadqueryartistthread.h \
     $$PWD/musicdownloadqueryplaylistthread.h \
     $$PWD/musicdownloadquerytoplistthread.h \
-    $$PWD/musicdownloadqueryrecommendthread.h
+    $$PWD/musicdownloadqueryrecommendthread.h \
+    $$PWD/musicdownloadquerymoviethread.h
 
 }
 
@@ -278,6 +279,7 @@ SOURCES += \
     $$PWD/musicdownloadqueryartistthread.cpp \
     $$PWD/musicdownloadqueryplaylistthread.cpp \
     $$PWD/musicdownloadquerytoplistthread.cpp \
-    $$PWD/musicdownloadqueryrecommendthread.cpp
+    $$PWD/musicdownloadqueryrecommendthread.cpp \
+    $$PWD/musicdownloadquerymoviethread.cpp
 
 }

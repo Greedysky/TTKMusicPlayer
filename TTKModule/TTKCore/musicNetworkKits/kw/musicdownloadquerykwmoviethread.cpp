@@ -8,7 +8,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryKWMovieThread::MusicDownLoadQueryKWMovieThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "Kuwo";
 }
@@ -43,6 +43,34 @@ void MusicDownLoadQueryKWMovieThread::startToSearch(QueryType type, const QStrin
 #endif
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryKWMovieThread::startToPage(int offset)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    m_pageTotal = 0;
+    m_pageSize = 20;
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_AR_MV_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset);
+    deleteAll();
+    m_interrupt = true;
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    m_reply = m_manager->get(request);
+    connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
@@ -138,6 +166,62 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
+}
+
+void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
+{
+    if(!m_reply || !m_manager)
+    {
+        deleteAll();
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 pageDownLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
+    if(m_reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes.replace("'", "\""), &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            m_pageTotal = value["total"].toString().toLongLong();
+            if(value.contains("mvlist"))
+            {
+                QVariantList datas = value["mvlist"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    value = var.toMap();
+
+                    if(m_interrupt) return;
+
+                    MusicPlaylistItem info;
+                    info.m_id = value["musicid"].toString();
+                    info.m_coverUrl = value["pic"].toString();
+                    if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))
+                    {
+                        info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MV_COVER_URL, false) + info.m_coverUrl;
+                    }
+                    info.m_name = value["name"].toString();
+                    info.m_updateTime.clear();
+                    emit createMovieInfoItem(info);
+                }
+            }
+        }
+    }
+
+    emit downLoadDataChanged(QString());
+    deleteAll();
+    M_LOGGER_INFO(QString("%1 pageDownLoadFinished deleteAll").arg(getClassName()));
 }
 
 void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()

@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadquerymoviethread.h"
 
 /*! @brief The class to yinyuetai query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryYYTThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryYYTThread : public MusicDownLoadQueryMovieThread
 {
     Q_OBJECT
 public:

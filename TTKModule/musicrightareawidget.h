@@ -141,6 +141,10 @@ public:
      */
     void musicArtistAlbums(const QString &id);
     /*!
+     * Music artist mvs function.
+     */
+    void musicArtistMvs(const QString &id);
+    /*!
      * Resize window bound by widgte resize called.
      */
     void resizeWindow();
@@ -176,6 +180,10 @@ public Q_SLOTS:
      * Music artist albums function.
      */
     void musicArtistAlbumsFound();
+    /*!
+     * Music artist mvs function.
+     */
+    void musicArtistMvsFound();
     /*!
      * Music artist function that by string.
      */

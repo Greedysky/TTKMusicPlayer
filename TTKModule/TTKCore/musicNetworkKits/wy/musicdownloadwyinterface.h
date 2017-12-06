@@ -49,6 +49,8 @@ const QString WY_AR_INFO_N_URL       = "RnJtNVNTT01ncFI2cDJMRTMrSFFwWFBWVEEzQnZN
 const QString WY_ALBUM_N_URL         = "QzJrMDNKTGlpVHpvY2taYm5BSWZGVTZWM09xYW5STDdXRFE5eTEzczhLZHB1RWljWlIxOVhRUXVDcmpuVjJsQnhqcmZRZE9UU0JZPQ==";
 const QString WY_AR_ALBUM_DATA_N_URL = "RWhFbktEb0lLdGVwOFE3VHF0SHdOekVQanlOUjJkdE02b0FIdnhXWmkxNHBqaVBYcy9BRDJDRVdqdDM0cmN1cw==";
 const QString WY_AR_ALBUM_N_URL      = "dEJpSTdiaUh3R1hnRGVDUlpCNzJKRnBqNWZHY2xLVmhUcWQ0WW1PUVY0NjlONmRvMmtGaWZiMDBscjAvd0dxZg==";
+const QString WY_AR_MV_DATA_N_URL    = "OE95dm9DdmtycVlzcnZaaWRhRFpHYjNBenl0bmFKM0ZLa1lVaFFVenBFQnZ5N2RoNE5VR3N5TzlDTitNTjFiUk9vdDZ4QndxSHY2QjVzcFlPM0laTlplUEt0bz0=";
+const QString WY_AR_MV_N_URL         = "eFdablNDbDlZVzVvYlo4UU9waEFVRlluRUFzdXA4TXFzVE9RMllXWVdQUXE2WjlsRi9DMzc0VlNXQlU9";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_SG_TOPLIST_NDT_URL  = "UzFpUWk1ZjVnTlpZS2Fabjl0dE50Sk1mUmJZZjlRVTNwVHJlem9ndG1mUzNpSXdvaDluK3NXUlEzdjkyRTl6bXoxYjg1c3g0UXZPWnlPUkxUM0YzMWtmZzVVdzduV2M1";
 const QString WY_SG_TOPLIST_N_URL    = "VUdTa0xMeG1Nblc4cThoS2E1QzhJK0lrTHJBRmk4TUJZMC9NQW1GanZydDJmR0VJVVRZNmJQSEhOZU96aE55bTJxdW55RldJOHl6aElNdTlHbkZkSmc9PQ==";

@@ -225,6 +225,12 @@ void MusicRightAreaWidget::musicArtistAlbums(const QString &id)
     QTimer::singleShot(MT_MS, this, SLOT(musicArtistAlbumsFound()));
 }
 
+void MusicRightAreaWidget::musicArtistMvs(const QString &id)
+{
+    m_rawData = id;
+    QTimer::singleShot(MT_MS, this, SLOT(musicArtistMvsFound()));
+}
+
 void MusicRightAreaWidget::resizeWindow()
 {
     m_ui->songSearchWidget->resizeWindow();
@@ -515,6 +521,11 @@ void MusicRightAreaWidget::musicAlbumFound(const QString &text, const QString &i
 void MusicRightAreaWidget::musicArtistAlbumsFound()
 {
     musicAlbumFound(QString(), m_rawData);
+}
+
+void MusicRightAreaWidget::musicArtistMvsFound()
+{
+    musicVideoButtonSearched(QString(), m_rawData);
 }
 
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)

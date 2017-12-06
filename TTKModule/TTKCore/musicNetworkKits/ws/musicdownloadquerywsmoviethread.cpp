@@ -6,7 +6,7 @@
 #include "qjson/parser.h"
 
 MusicDownLoadQueryWSMovieThread::MusicDownLoadQueryWSMovieThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "WuSing";
 }

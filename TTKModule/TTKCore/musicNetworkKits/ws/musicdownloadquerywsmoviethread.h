@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadwsinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadquerymoviethread.h"
 
 /*! @brief The class to wusing mv query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSMovieThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSMovieThread : public MusicDownLoadQueryMovieThread
 {
     Q_OBJECT
 public:
