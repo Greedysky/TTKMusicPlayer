@@ -98,6 +98,7 @@ MusicArtistMvsFoundWidget::MusicArtistMvsFoundWidget(QWidget *parent)
     m_statusLabel = nullptr;
     m_pagingWidgetObject = nullptr;
     m_firstInit = false;
+
     QWidget *function = new QWidget(m_mainWindow);
     m_gridLayout = new QGridLayout(function);
     function->setLayout(m_gridLayout);
@@ -298,6 +299,7 @@ MusicArtistFoundWidget::MusicArtistFoundWidget(QWidget *parent)
     m_artistMvs = nullptr;
     m_shareType = MusicSongSharingWidget::Artist;
     m_foundTableWidget = new MusicArtistFoundTableWidget(this);
+    m_foundTableWidget->hide();
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }
@@ -338,6 +340,10 @@ void MusicArtistFoundWidget::resizeWindow()
     if(m_artistAlbums)
     {
        m_artistAlbums->resizeWindow();
+    }
+    if(m_artistMvs)
+    {
+       m_artistMvs->resizeWindow();
     }
 }
 

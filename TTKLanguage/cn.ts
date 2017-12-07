@@ -416,54 +416,59 @@
 <context>
     <name>MusicArtistFoundWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="230"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="393"/>
         <source>&lt;font color=#158FE1&gt; Artist &gt; %1 &lt;/font&gt;</source>
         <translation>&lt;font color=#158FE1&gt; 艺术家 &gt; %1 &lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="244"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="407"/>
         <source>NickName: %1</source>
         <translation>别名: %1</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="248"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="411"/>
         <source>Country: %1</source>
         <translation>地区: %1</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="252"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="415"/>
         <source>Birth: %1</source>
         <translation>出生日期: %1</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="362"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="505"/>
         <source>playAll</source>
         <translation>全部播放</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="363"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="506"/>
         <source>share</source>
         <translation>分享</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="398"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="541"/>
         <source>Score:</source>
         <translation>我要评:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="430"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="573"/>
         <source>songItems</source>
         <translation>歌曲列表</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="435"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="578"/>
         <source>Info</source>
         <translation>艺人描述</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="440"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="583"/>
         <source>Albums</source>
         <translation>专辑列表</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicartistfoundwidget.cpp" line="588"/>
+        <source>Mvs</source>
+        <translation>相关MV</translation>
     </message>
 </context>
 <context>
@@ -4184,12 +4189,12 @@ Copyright© 2015-2017 Greedysky All Rights Reserved
         <translation>未找到相应的歌词哦!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicrightareawidget.cpp" line="376"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="382"/>
         <source>please input search text</source>
         <translation>请输入搜索内容</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicrightareawidget.cpp" line="386"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="392"/>
         <source>enter input search text first</source>
         <translation>搜索内容不能为空!</translation>
     </message>

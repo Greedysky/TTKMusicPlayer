@@ -44,6 +44,7 @@ MusicRecommendFoundWidget::MusicRecommendFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
     m_foundTableWidget = new MusicRecommendFoundTableWidget(this);
+    m_foundTableWidget->hide();
 }
 
 QString MusicRecommendFoundWidget::getClassName()

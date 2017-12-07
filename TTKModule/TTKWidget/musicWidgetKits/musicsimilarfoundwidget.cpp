@@ -44,6 +44,7 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
     m_foundTableWidget = new MusicSimilarFoundTableWidget(this);
+    m_foundTableWidget->hide();
 }
 
 QString MusicSimilarFoundWidget::getClassName()

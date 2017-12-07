@@ -180,6 +180,7 @@ void MusicFoundAbstractWidget::initFirstWidget()
     vlayout->addStretch(1);
     songWidget->setLayout(vlayout);
 
+    m_foundTableWidget->show();
     m_container->addWidget(songWidget);
 }
 

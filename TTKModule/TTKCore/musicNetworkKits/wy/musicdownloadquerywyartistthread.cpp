@@ -187,7 +187,7 @@ void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
             item->m_description = value["briefDesc"].toString();
             if(!item->m_description.isEmpty())
             {
-                item->m_description = QString("%1\r\n").arg(item->m_description);
+                item->m_description = QString("%1\r\n\r\n").arg(item->m_description);
             }
 
             QVariantList array = value["introduction"].toList();

@@ -42,6 +42,7 @@ MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
 {
     m_shareType = MusicSongSharingWidget::Album;
     m_foundTableWidget = new MusicAlbumFoundTableWidget(this);
+    m_foundTableWidget->hide();
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
 }

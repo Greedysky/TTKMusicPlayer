@@ -39,6 +39,7 @@ MusicTopListFoundWidget::MusicTopListFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
 
     m_foundTableWidget = new MusicTopListFoundTableWidget(this);
+    m_foundTableWidget->hide();
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
     m_foundTableWidget->setQueryInput(m_downloadThread);
 

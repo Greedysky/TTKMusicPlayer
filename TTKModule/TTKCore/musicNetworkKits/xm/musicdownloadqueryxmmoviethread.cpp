@@ -110,6 +110,7 @@ void MusicDownLoadQueryXMMovieThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     m_pageTotal = 0;
+    m_pageSize = 20;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_AR_MV_URL, false).arg(m_searchText).arg(offset + 1);
     deleteAll();
     m_interrupt = true;
@@ -240,8 +241,16 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
 
         m_pageTotal = MU_MAX;
         QString html(bytes);
-        QRegExp regx("<div class=\"mv_item100_block\">(.*)</div>");
+        QRegExp regx;
         regx.setMinimal(true);
+        ///////////////////////////////////////////////////////////////////
+        regx.setPattern("<p class=\"counts\">.*(\\d+).*</p>");
+        if(html.indexOf(regx) != -1)
+        {
+            m_pageTotal = regx.cap(1).toInt();
+        }
+        ///////////////////////////////////////////////////////////////////
+        regx.setPattern("<div class=\"mv_item100_block\">(.*)</div>");
         int pos = html.indexOf(regx);
         while(pos != -1)
         {
