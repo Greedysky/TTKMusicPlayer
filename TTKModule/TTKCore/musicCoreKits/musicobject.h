@@ -191,7 +191,7 @@ namespace MusicObject
 
         bool operator== (const MusicSongAttribute &other) const
         {
-            return m_bitrate == other.m_bitrate;
+            return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
     }MusicSongAttribute;
     MUSIC_DECLARE_LISTS(MusicSongAttribute)

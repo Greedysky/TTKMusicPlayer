@@ -27,11 +27,11 @@ QByteArray QAesWrap::encrypt(const QByteArray &in, const QByteArray &key, const 
     AES_cbc_encrypt((unsigned char *)enc_s, (unsigned char *)encrypt_string, nTotal,
                     &aes,
                     (unsigned char *)iv.data(), AES_ENCRYPT);
-    delete enc_s;
+    delete[] enc_s;
 
     enc_s = Base64Encode((const unsigned char *)encrypt_string, nTotal);
     QByteArray data(enc_s);
-    delete enc_s;
+    free(enc_s);
 
     return data;
 }
@@ -40,7 +40,7 @@ QByteArray QAesWrap::decrypt(const QByteArray &in, const QByteArray &key, const 
 {
     AES_KEY aes;
     char encrypt_string[CACHE_SIZE] = {0};
-    const char *decode = Base64Decode((const unsigned char *)in.data(), in.length());
+    char *decode = Base64Decode((const unsigned char *)in.data(), in.length());
 
     if(AES_set_decrypt_key((unsigned char *)key.data(), 128, &aes) < 0)
     {
@@ -50,7 +50,7 @@ QByteArray QAesWrap::decrypt(const QByteArray &in, const QByteArray &key, const 
                     &aes,
                     (unsigned char *)iv.data(), AES_DECRYPT);
 
-    delete decode;
+    free(decode);
 
     return QByteArray(QString(encrypt_string).remove("\x0F").toUtf8());
 }

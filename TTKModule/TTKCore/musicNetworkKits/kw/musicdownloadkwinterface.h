@@ -22,6 +22,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
+#define _SIGN                        "OGlVTjJWOEdlMkkzSkZIeg=="
 ///////////////////////////////////////////////////////////////////////////
 const QString KW_UA_URL_1          = "QTllV1FYb3p4ZmZVNDArOW1uSGQrUGp2clowek55RmxrV2kzK3djN2dpb3J4YUlCbHpHSU9FNkJMREtSWDdVdWlVeVRHTnpTQUZ5TjE2RDlLb3lIeFNsMWVHMXBkWEsxSVpIRU85Ui8wVzhEbm80dUdQdHUxc0EzL1VhRHh5WmtxWlpJR1BqR3kzYkMycXVhQWljSmE3K1B3ZFd5dEdWMlE1UGhtWjBzOXJDcVRsN0lrL0d4V2ExdFJjQWtxMy9IbUN4ZkZ1NWhsY0ZqY3ZGcg==";
 /////////////////////////////////////////////////////////////////////////////
@@ -33,15 +34,17 @@ const QString KW_ALBUM_COVER_URL   = "bnkrUTZjQmxjcFVtVXZzR1M5c3hBN25MbWx3aHZpbE
 const QString KW_SONG_SEARCH_URL   = "ZENVRUl0SzZ2Z0lBZjZpNmtzdmE3QlNZc01ZbUtJM3hiM3J6RUJ6Y3lTQmNnMWpwMkJlU2R6RFFaSWhVRm5TZmx5WUhzMWcrK3Q3Umd6OWhWK3J2bWNPdHNxYzk4MEtZeTE4bDA3TitEcCtUejVUYU5Mc1lrMkFYNVlrdlpCQkowWU9YRjUxeTM5UkxvNjA1M2J5T2pqbzBZYm1rVElmeUpnblk5WloxcGFnTkhneUdwUDFXVlYrVzFZY2lxWDI2aEx4TGduTWR5eUNHNjQyT0Y0UnRqTjdDbjIzd2Z3N3EyOVA2OVBabVJBS042MnBJ";
 const QString KW_SONG_LRC_URL      = "dWdMdkJSZDVlTkFmZmVCQ3FJL1MrV2l0TzNmK2Y4cUVyNXVlUTVHbkdtLzdyNW8xVXhqeklkN0E5N1liVDZZMXZ1ZWhkV2pYeFRETHdPZVBRNVQxbnp6MWIyTT0=";
 const QString KW_SONG_ATTR_URL     = "TzlINnJWWWVrVHowRkZhV1NrV2R6ZGh5b2YraFJmNkV6VUhxSlBPMExXVWkxSWt4aVdZNFIwaG9EK200cFdpSzZSYUhLQlA5T0RTQ2l1M1hxNmxjQlU3YkJoZ0JtbkFXbFFlL2JhTVp0WGgxTHdiT3F5MVBDTEowUi9HMXU2R2pqVXVidVE9PQ==";
-const QString KW_SONG_ATTRS_URL    = "MjlwQmQxUlFrazRrVXlrR29BSEtCaDNaNnpRSGJPdlA4RDE4K3Q4clJqZFpkT2d3d2VLQ3ViSmdnUHRzWThLeVFDekZBME5NK1V1amRsYW5ueWNyQmdUUE5LcFpYWnlYcjlJMUw1dkJvM3BweDRabC9yR0tDbFQ4a2c0PQ==";
+const QString KW_SONG_ATTR_LL_URL  = "UTgrZGI3eFBTNkdobUIxbHBNMEh2dXpJMnlmakNuR2FyNmN3bWlDNjhTOHovV2s1V1I0VzhHVkJyZTNXTTBSbUNONXlkKzk4N2szQVBGQmplcXdoYzNSK3R6Vy9LNWdNQksxZUtWQ1p6c0NqZDk4dUtET1pJMVB2NkorV0RMb2J3a1REYjBhTTUzUTVxa1YwejRYc01GVlRTZTQ1V2JRSTFTT1ppY09zcVlxWUNYRm9mOUg3dEJwZG5FRkZuNS9tRzVPeWpMM0JaRE8vNEhISDNFNzRvb2I0UFlOTm1NVEVVc3o2RndiVldEVXNLcU1T";
 const QString KW_SONG_INFO_URL     = "SW50ZXhadlpVQ1RHMjlkZ0ZLbjlYdnR5TEZmVENaM3VxYzV1emNVUmpXdlJjbm5JTGJ6KzJzbGl1VXFqR3RUZk95ZWFQeCtXNEs5akVvNDkrM29SWEp6akNsOD0=";
 /////////////////////////////////////////////////////////////////////////////
 const QString KW_ARTIST_URL        = "YnB5eU5EYWZlV2ROblZIWllJbVJzK0ppMVJqMGxiNVcwM0RaQzVqWE9xdURua0tJWng4OEVaSit1ck5VeGh4SkZ1OGN0SHRaQWNNQS9URXRCM0FVdlZOWDkwcDgzOXZ1Q0JIcGlMMEdyZGlWTUlITE1pZmJOY1YyNmFwS2o5NE1NM3ZDY25RRERlLzEzb1U3NFpKV2lYSGhpOFNINTdDd1ZZWHV4bkUzL0JXY2ZHSkpPYitEazY2QzhiRT0=";
 const QString KW_ARTIST_INFO_URL   = "QW1leS9malJmT2gvWE41OURPbUREVGE5M2Q5ZzlpdUFPWWdreFVaSm0va2p4QlcvblZwdVVJaElwMUZhN1VvbHAvMytVYW44NmNFczl1UjM=";
 /////////////////////////////////////////////////////////////////////////////
+const QString KW_MV_URL            = "TjhtdUUydHowZVp1d2RsUVl1UGg0QWkzTjhqZ1NGTWVLNmxqZytTQzV5T291VytwcUpSczNPMGdQV1U9";
 const QString KW_MV_HOME_URL       = "a3gvOXZGUzF6Sko4TDlWcVRBMFMrdy8yMURLS0JFR0xFVEdJcVE9PQ==";
 const QString KW_MV_COVER_URL      = "c0IyUURSczNib2MzV0w5b3FEZ1dQTEZOeHliNWtWMVh0RWo1MFhoeHF3MjdUbThqb0Rta0JBPT0=";
-const QString KW_MV_ATTR_URL       = "OUptM3B0M3I1SFNvWmZkaE1KNHVPRUhrUkVDa1BPOUpWdmxIcVBVeVhvcHNZR1FEbG1RdjhscjBnVjA9";
+const QString KW_MV_ATTR_URL       = "cnkyNURUa0E0RkpHdVZWamlOZDRVaGVNcVViSHUrSnNZZjBLZWIveGF5bkVEMldMeXFITk1NaVYvNGNkZFYwaURlelNUQzRvQTdRaklLeUNTLzZJMngxYWJha1ZxY1hLQmFtb2ZRenBsSlViZ05DZmpza0YwZ0pCRjMvSVh1RkNFN094NkZaNWY5Tj"
+                                     "RHK2NNU1pNQ1E3MGxENWpQRXVYb1pKNjRkRW9CbzlxRTBYYWZXRlFzMW52Um11U2J0M3EvdHRFR0pONGtMeDY2Zm16ME92akNZL2QxL2RZY2lXZGFuRk4raTBjSWx0emc0b2R2bG9LTFVMMCtKQThsTzZzS0NSdzArOWQxanNnY2pkTERxYkd0YXc9PQ==";
 ///////////////////////////////////////////////////////////////////////////
 const QString KW_SG_COMMIT_URL     = "R29Ob2xrOUcxbXhpMlF6YmRzZ2kxZVFrRmJPcEdzbk0weUNQazNGUEFXSjl4QXdhWU1kUXdNQ3ExOWxGRE5uOERTblpCNk9pZWdnVmRLTHJkK25GckxxbzhpYmh3UHVTbi9DK1RoYm5qaVdZV2o4MXo2cXBwL1ZLTFprY0dyZENDUDhiT0E9PQ==";
 ///////////////////////////////////////////////////////////////////////////
@@ -62,15 +65,20 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadKWInterface
 {
 public:
     /*!
+     * Read mv info attribute from query results.
+     */
+    void readFromMusicSongLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
+                                      const QString &format, int bitrate);
+    /*!
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                    const QString &format, const QString &id, int bitrate);
+                                    const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                        const QString &format, const QString &id, int bitrate);
+                                        const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
