@@ -21,5 +21,4 @@ INCLUDEPATH += \
         $$PWD/Zlib \
         $$PWD/TTKWatcher \
         $$PWD/TTKDumper \
-        $$PWD/TTKExtras \
-        $$PWD/TTKImage
+        $$PWD/TTKExtras
