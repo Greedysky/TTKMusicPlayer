@@ -61,17 +61,10 @@ unix:!mac{
 }
 !exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
 
-##check Qt version
-QT_VER_STRING = $$[QT_VERSION];
-QT_VER_STRING = $$split(QT_VER_STRING, ".")
-QT_VER_MAJOR = $$member(QT_VER_STRING, 0)
-QT_VER_MINOR = $$member(QT_VER_STRING, 1)
-QT_VER_PATCH = $$member(QT_VER_STRING, 2)
-
 win32{
     LIBS += -lIphlpapi -lVersion
     equals(QT_MAJOR_VERSION, 5){
-        greaterThan(QT_VER_MINOR, 1):QT  += winextras
+        greaterThan(QT_MINOR_VERSION, 1):QT  += winextras
         msvc{
             LIBS += -L../bin/$$TTKMusicPlayer -lqmmp1 -lTTKUi -lTTKImage -lTTKExtras -lTTKWatcher -lzlib -lTTKZip -luser32
             CONFIG +=c++11

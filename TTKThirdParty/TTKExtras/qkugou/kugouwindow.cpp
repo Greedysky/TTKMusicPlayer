@@ -5,13 +5,16 @@
  #include <ActiveQt/QAxWidget>
 #else
 # ifdef MUSIC_WEBKIT
-#  ifdef MUSIC_GREATER_NEW
-#   include <QtWebKitWidgets/QWebView>
-#   include <QtWebKitWidgets/QWebFrame>
-#  else
-#   include <QWebView>
-#   include <QWebFrame>
-#  endif
+#   ifdef MUSIC_GREATER_NEW
+#    include <QtWebKitWidgets/QWebView>
+#    include <QtWebKitWidgets/QWebFrame>
+#   else
+#    include <QWebView>
+#    include <QWebFrame>
+#   endif
+# elif defined MUSIC_WEBENGINE
+#   include <QtWebEngineWidgets/QWebEngineView>
+#   include <QtWebEngineWidgets/QWebEngineSettings>
 # endif
 #endif
 
@@ -53,12 +56,19 @@ KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
 {
     MUSIC_INIT_PRIVATE;
 
-#if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
+#ifdef Q_OS_UNIX
+ #ifdef MUSIC_WEBKIT
     QWebSettings *settings = QWebSettings::globalSettings();
     settings->setAttribute(QWebSettings::PluginsEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptEnabled, true);
     settings->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
     settings->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineSettings *settings = QWebEngineSettings::defaultSettings();
+    settings->setAttribute(QWebEngineSettings::PluginsEnabled, true);
+    settings->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+    settings->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
+ #endif
 #endif
 
     switch(type)
@@ -99,6 +109,12 @@ void KugouWindow::setUrl(const QString &url)
     {
         w->setUrl(url);
     }
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
  #else
     Q_UNUSED(url);
     Q_UNUSED(d);
@@ -108,13 +124,21 @@ void KugouWindow::setUrl(const QString &url)
 
 void KugouWindow::goBack()
 {
-#if (defined MUSIC_WEBKIT) && (defined Q_OS_UNIX)
+#ifdef Q_OS_UNIX
     MUSIC_D(KugouWindow);
+ #ifdef MUSIC_WEBKIT
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
     if(w)
     {
         w->back();
     }
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    if(w)
+    {
+        w->back();
+    }
+ #endif
 #endif
 }
 
@@ -142,6 +166,12 @@ void KugouWindow::kugouSongIndexChanged(int index)
 #else
  #ifdef MUSIC_WEBKIT
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -179,9 +209,15 @@ void KugouWindow::kugouRadioIndexChanged(int index)
     {
         w->setUrl(url);
     }
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
  #else
-    Q_UNUSED(url);
-    Q_UNUSED(d);
+   Q_UNUSED(url);
+   Q_UNUSED(d);
  #endif
 #endif
 }
@@ -207,6 +243,12 @@ void KugouWindow::kugouMVIndexChanged(int index)
 #else
  #ifdef MUSIC_WEBKIT
     QWebView *w = MObject_cast(QWebView*, d->m_webView);
+    if(w)
+    {
+        w->setUrl(url);
+    }
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *w = MObject_cast(QWebEngineView*, d->m_webView);
     if(w)
     {
         w->setUrl(url);
@@ -237,10 +279,13 @@ void KugouWindow::createWebViewer()
     view->setProperty("DisplayScrollBars", false);
     d->m_webView = view;
 #else
- # ifdef MUSIC_WEBKIT
+ #ifdef MUSIC_WEBKIT
     QWebView *view = new QWebView(this);
     view->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     view->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    d->m_webView = view;
+ #elif defined MUSIC_WEBENGINE
+    QWebEngineView *view = new QWebEngineView(this);
     d->m_webView = view;
  #endif
 #endif
@@ -252,7 +297,7 @@ void KugouWindow::createKugouSongWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#ifdef MUSIC_WEBKIT
+#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
@@ -317,7 +362,7 @@ void KugouWindow::createKugouRadioWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#ifdef MUSIC_WEBKIT
+#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
@@ -367,13 +412,17 @@ void KugouWindow::createKugouListWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#ifdef MUSIC_WEBKIT
+#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
  #ifdef Q_OS_WIN
     MObject_cast(QAxWidget*, d->m_webView)->dynamicCall("Navigate(const QString&)", KugouUrl::getListUrl());
  #else
+  #ifdef MUSIC_WEBENGINE
+    MObject_cast(QWebEngineView*, d->m_webView)->setUrl(KugouUrl::getListUrl());
+  #else
     MObject_cast(QWebView*, d->m_webView)->setUrl(KugouUrl::getListUrl());
+  #endif
  #endif
 #else
     Q_UNUSED(d);
@@ -391,7 +440,7 @@ void KugouWindow::createKugouMVWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#ifdef MUSIC_WEBKIT
+#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     d->m_topWidget = new QWidget(this);
     d->m_topWidget->setFixedHeight(25);
     d->m_topWidget->setStyleSheet(MusicUIObject::MPushButtonStyle01 + MusicUIObject::MWidgetStyle01);
@@ -437,7 +486,7 @@ void KugouWindow::createKugouSingleWidget()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
-#ifdef MUSIC_WEBKIT
+#if defined MUSIC_WEBKIT || defined MUSIC_WEBENGINE
     createWebViewer();
     layout->addWidget(d->m_webView);
 #else
