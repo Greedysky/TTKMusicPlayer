@@ -48,7 +48,6 @@ include(../TTKExtrasDefine.pri)
 
 include(qalg/QAlg.pri)
 include(qhz2py/QHz2Py.pri)
-include(qimage/QImage.pri)
 include(qiniu/QiNiu.pri)
 include(qjson/QJson.pri)
 include(qkugou/QKuGou.pri)

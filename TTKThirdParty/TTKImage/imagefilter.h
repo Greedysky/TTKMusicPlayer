@@ -3,7 +3,6 @@
 
 #include <new>
 #include <math.h>
-#include "musicextrasglobaldefine.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -14,14 +13,14 @@
 
 namespace filter
 {
-    struct MUSIC_EXTRAS_EXPORT alloc_t
+    struct alloc_t
     {
         static void* alloc(unsigned int size) { return ::malloc(size); }
         static void  free(void* ptr)         { ::free(ptr); }
     };
 
     template <typename TypeT, typename AllocT = FILTER_ALLOC>
-    class MUSIC_EXTRAS_EXPORT auto_t
+    class auto_t
     {
     protected:
         TypeT* _point;
@@ -54,18 +53,18 @@ namespace filter
 
     //////////////////////////////////////////////////////////////////////////
 
-    class MUSIC_EXTRAS_EXPORT bitmap_t
+    class bitmap_t
     {
     public:
         typedef unsigned char channel_t;
 
-        struct MUSIC_EXTRAS_EXPORT pixel_t
+        struct pixel_t
         {
           channel_t r, g, b;
           pixel_t() : r(0), g(0), b(0) {}
         };
 
-        struct MUSIC_EXTRAS_EXPORT buff_t
+        struct buff_t
         {
           double r, g, b;
           buff_t() : r(0.0), g(0.0), b(0.0) {}
@@ -98,7 +97,7 @@ namespace filter
         pixel_t& operator[](long num) { return _bits[num]; }
     };
 
-    class MUSIC_EXTRAS_EXPORT buffer_t : public auto_t<bitmap_t::buff_t>
+    class buffer_t : public auto_t<bitmap_t::buff_t>
     {
     public:
         buffer_t() {}
@@ -111,7 +110,7 @@ namespace filter
         }
     };
 
-    class MUSIC_EXTRAS_EXPORT filter_t : public auto_t<double>
+    class filter_t : public auto_t<double>
     {
     protected:
         long _radius;
@@ -134,16 +133,16 @@ namespace filter
     //////////////////////////////////////////////////////////////////////////
 
     template <typename T1, typename T2>
-    MUSIC_EXTRAS_EXPORT T1 Clamp(T2 n) { return (T1)(n > (T1)~0 ? (T1)~0 : n); }
+    T1 Clamp(T2 n) { return (T1)(n > (T1)~0 ? (T1)~0 : n); }
 
     template <typename T>
-    MUSIC_EXTRAS_EXPORT T Diamet(T r) { return ((r * 2) + 1); }
+    T Diamet(T r) { return ((r * 2) + 1); }
 
     template <typename T>
-    MUSIC_EXTRAS_EXPORT bool Equal(T n1, T n2) { return (fabs(n1 - n2) < (T)0.000001); }
+    bool Equal(T n1, T n2) { return (fabs(n1 - n2) < (T)0.000001); }
 
     template <typename T>
-    MUSIC_EXTRAS_EXPORT T Edge(T i, T x, T w)
+    T Edge(T i, T x, T w)
     {
         T i_k = x + i;
         if (i_k < 0)  i_k = -x;
@@ -152,7 +151,7 @@ namespace filter
         return i_k;
     }
 
-    MUSIC_EXTRAS_EXPORT void Normalization(filter_t& kernel)
+    void Normalization(filter_t& kernel)
     {
         double sum = 0.0;
         for (int n = 0; n < kernel.size(); ++n)
@@ -164,7 +163,7 @@ namespace filter
 
     //////////////////////////////////////////////////////////////////////////
 
-    MUSIC_EXTRAS_EXPORT void Blur1D(bitmap_t& bitmap, filter_t& kernel)
+    void Blur1D(bitmap_t& bitmap, filter_t& kernel)
     {
         Normalization(kernel);
 
@@ -206,7 +205,7 @@ namespace filter
         }
     }
 
-    MUSIC_EXTRAS_EXPORT void Blur2D(bitmap_t& bitmap, filter_t& kernel)
+    void Blur2D(bitmap_t& bitmap, filter_t& kernel)
     {
         filter_t matrix(kernel.radius(), kernel.size() * kernel.size());
         for (long n = 0, i = 0; i < kernel.size(); ++i)
@@ -241,7 +240,7 @@ namespace filter
 
     //////////////////////////////////////////////////////////////////////////
 
-    MUSIC_EXTRAS_EXPORT void Average(filter_t& kernel, long radius)
+    void Average(filter_t& kernel, long radius)
     {
         kernel.set(radius, Diamet(radius));
 
@@ -251,7 +250,7 @@ namespace filter
             kernel[n] = average;
     }
 
-    MUSIC_EXTRAS_EXPORT void Linear(filter_t& kernel, long radius)
+    void Linear(filter_t& kernel, long radius)
     {
         kernel.set(radius, Diamet(radius));
 
@@ -262,7 +261,7 @@ namespace filter
             kernel[n] = a * abs(i) + b;
     }
 
-    MUSIC_EXTRAS_EXPORT void Gauss(filter_t& kernel, long radius)
+    void Gauss(filter_t& kernel, long radius)
     {
         kernel.set(radius, Diamet(radius));
 
@@ -276,7 +275,7 @@ namespace filter
             kernel[n] = exp(-(double)(i * i) / sigma2) / sigmap;
     }
 
-    MUSIC_EXTRAS_EXPORT void Gauss2(filter_t& kernel, long radius)
+    void Gauss2(filter_t& kernel, long radius)
     {
         long diamet = Diamet(radius);           // (r * 2) + 1
         kernel.set(radius, diamet * diamet);    // kernel size is d * d
@@ -298,7 +297,7 @@ namespace filter
     typedef void(*mark_t)(filter_t&, long);
     typedef void(*blur_t)(bitmap_t&, filter_t&);
 
-    MUSIC_EXTRAS_EXPORT bool Filter(mark_t mark, blur_t blur, bitmap_t& bitmap, long radius)
+    bool Filter(mark_t mark, blur_t blur, bitmap_t& bitmap, long radius)
     {
         if (radius < 1) return false;
 
@@ -309,13 +308,13 @@ namespace filter
         return true;
     }
 
-    struct MUSIC_EXTRAS_EXPORT pair_t
+    struct pair_t
     {
         mark_t mark;
         blur_t blur;
     };
 
-    MUSIC_EXTRAS_EXPORT bool Filter(pair_t& pair, bitmap_t& bitmap, long radius)
+    bool Filter(pair_t& pair, bitmap_t& bitmap, long radius)
     {
         return Filter(pair.mark, pair.blur, bitmap, radius);
     }

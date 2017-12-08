@@ -297,7 +297,7 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
     }
     DESSubKeys(keyl, subKey, m_mode);
 
-    qint64* pSrc = (qint64*) malloc(num * sizeof(qint64));
+    qint64* pSrc = new qint64[num];
     for (int i = 0; i < num; i++)
     {
         pSrc[i] = 0;
@@ -307,7 +307,7 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
         }
     }
 
-    qint64* pEncyrpt = (qint64*) malloc((((num + 1) * 8 + 1) / 8) * sizeof(qint64));
+    qint64* pEncyrpt = new qint64[((num + 1) * 8 + 1) / 8];
     for (int i = 0; i < num; i++)
     {
         pEncyrpt[i] = DES64(subKey, pSrc[i]);
@@ -315,7 +315,7 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
 
     int len = srcLength;
     int tail_num = len % 8;
-    char* szTail = (char*) malloc(srcLength - num * 8);
+    char* szTail = new char[srcLength - num * 8];
 
     memcpy(szTail, src + num * 8, srcLength - num * 8);
 
@@ -326,7 +326,7 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
     }
 
     pEncyrpt[num] = DES64(subKey, tail64);
-    char* result = (char*) malloc((num + 1) * 8);
+    char* result = new char[(num + 1) * 8];
 
     int temp = 0;
     for (int i = 0; i < (num + 1); i++)
@@ -339,9 +339,9 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
     }
 
     delete[] subKey;
-    free(pSrc);
-    free(pEncyrpt);
-    free(szTail);
+    delete[] pSrc;
+    delete[] pEncyrpt;
+    delete[] szTail;
 
     return result;
 }
