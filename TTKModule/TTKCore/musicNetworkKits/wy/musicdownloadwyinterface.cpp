@@ -243,7 +243,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
     }
 }
 
-QString MusicDownLoadWYInterface::encryptedId(qlonglong id)
+QString MusicDownLoadWYInterface::encryptedId(qint64 id)
 {
     return encryptedId(QString::number(id));
 }

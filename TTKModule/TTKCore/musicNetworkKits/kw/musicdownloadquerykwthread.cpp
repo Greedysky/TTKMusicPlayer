@@ -182,7 +182,7 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                         musicInfo.m_albumName = value["ALBUM"].toString();
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+                        readFromMusicSongPic(&musicInfo);
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         ///music normal songs urls
@@ -194,16 +194,7 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                             continue;
                         }
                         ////////////////////////////////////////////////////////////
-                        for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
-                        {
-                            MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
-                            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                            if(attr->m_size.isEmpty())
-                            {
-                                attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
-                            }
-                            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        }
+                        if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
                         ////////////////////////////////////////////////////////////
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
@@ -246,20 +237,11 @@ void MusicDownLoadQueryKWThread::singleDownLoadFinished()
             xml.readMusicInfoConfig(&musicInfo);
 
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
+            readFromMusicSongPic(&musicInfo);
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
             ////////////////////////////////////////////////////////////
-            for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
-            {
-                MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                if(attr->m_size.isEmpty())
-                {
-                    attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
-                }
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            }
+            if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
             ////////////////////////////////////////////////////////////
             if(!musicInfo.m_songAttrs.isEmpty())
             {

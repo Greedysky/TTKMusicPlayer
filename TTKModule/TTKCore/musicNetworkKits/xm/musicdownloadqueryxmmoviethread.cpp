@@ -187,7 +187,7 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
 
                     musicInfo.m_songId = value["mvId"].toString();
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicMVInfoAttribute(&musicInfo, false);
+                    readFromMusicMVAttribute(&musicInfo, false);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -296,7 +296,7 @@ void MusicDownLoadQueryXMMovieThread::singleDownLoadFinished()
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    readFromMusicMVInfoAttribute(&musicInfo, true);
+    readFromMusicMVAttribute(&musicInfo, true);
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
@@ -315,7 +315,7 @@ void MusicDownLoadQueryXMMovieThread::singleDownLoadFinished()
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryXMMovieThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, bool more)
+void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {
@@ -382,10 +382,10 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVInfoAttribute(MusicObject::
         break;
     }
 
-    readFromMusicMVInfoAttribute(info, vid, uid);
+    readFromMusicMVAttribute(info, vid, uid);
 }
 
-void MusicDownLoadQueryXMMovieThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QString &vid, const QString &uid)
+void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &vid, const QString &uid)
 {
     if(vid.isEmpty() || uid.isEmpty() || !m_manager)
     {

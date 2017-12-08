@@ -118,7 +118,7 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                     musicInfo.m_albumName = albumInfo.m_nickname;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
-                    readFromMusicSongLrcAndPic(&musicInfo, musicInfo.m_songId);
+                    readFromMusicSongLrcAndPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

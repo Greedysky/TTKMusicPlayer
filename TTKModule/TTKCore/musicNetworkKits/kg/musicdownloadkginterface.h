@@ -74,7 +74,7 @@ public:
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info, const QString &hash);
+    void readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info);
     /*!
      * Read tags(album info) from query results.
      */

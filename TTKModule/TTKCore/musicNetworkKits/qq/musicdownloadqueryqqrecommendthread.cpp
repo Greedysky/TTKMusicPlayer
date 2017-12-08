@@ -180,7 +180,7 @@ void MusicDownLoadQueryQQRecommendThread::readFromMusicAttribute(MusicObject::Mu
                             .arg(info->m_albumId.right(1)).arg(info->m_albumId);
 
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                readFromMusicSongAttributeInfo(info, value["file"].toMap());
+                readFromMusicSongAttributePlus(info, value["file"].toMap());
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             }
         }

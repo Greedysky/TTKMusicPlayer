@@ -67,8 +67,8 @@ public:
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicSongLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                      const QString &format, int bitrate);
+    void readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
+                                  const QString &format, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
@@ -92,7 +92,7 @@ public:
     /*!
      * Read tags(lrc\smallpic) from query results.
      */
-    void readFromMusicSongPic(MusicObject::MusicSongInformation *info, const QString &id);
+    void readFromMusicSongPic(MusicObject::MusicSongInformation *info);
 
 };
 

@@ -236,7 +236,7 @@ void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    readFromMusicMVInfoAttribute(&musicInfo);
+    readFromMusicMVInfo(&musicInfo);
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     readFromMusicMVAttribute(&musicInfo, QString("MP4UL|MP4L|MP4HV|MP4"));
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -257,14 +257,14 @@ void MusicDownLoadQueryKWMovieThread::singleDownLoadFinished()
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &f)
+void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {
         return;
     }
 
-    foreach(const QString &v, f.split('|'))
+    foreach(const QString &v, format.split('|'))
     {
         if(v.contains("MP4L"))
         {
@@ -285,7 +285,8 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     }
 }
 
-void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &f, int bit)
+void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format,
+                                                               int bitrate)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {
@@ -293,7 +294,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     }
 
     QDesWrap des;
-    QByteArray parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId).arg(f).toUtf8(),
+    QByteArray parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
                                        MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
 
@@ -326,22 +327,20 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         {
             MusicObject::MusicSongAttribute attr;
             attr.m_url = regx.cap(1);
-            attr.m_bitrate = bit;
+            attr.m_bitrate = bitrate;
             attr.m_format = "mp4";
             if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
             {
                 return;
             }
 
-            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-            if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+            if(!findUrlFileSize(&attr)) return;
             info->m_songAttrs.append(attr);
         }
     }
 }
 
-void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info)
+void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSongInformation *info)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {

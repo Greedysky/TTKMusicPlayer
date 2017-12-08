@@ -49,13 +49,12 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
     request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info,
-                                                    const QString &songID)
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info)
 {
     QNetworkAccessManager manager;
     QNetworkRequest request;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(songID),
+                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(info->m_songId),
                       MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

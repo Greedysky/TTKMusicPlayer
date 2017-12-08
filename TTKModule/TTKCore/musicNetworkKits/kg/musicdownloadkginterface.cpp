@@ -95,14 +95,14 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info, const QString &hash)
+void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info)
 {
-    if(hash.isEmpty())
+    if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(hash);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -137,7 +137,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
             info->m_artistId = QString::number(value["singerid"].toULongLong());
             info->m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                    .arg(value["songname"].toString()).arg(hash)
+                                                    .arg(value["songname"].toString()).arg(info->m_songId)
                                                     .arg(value["duration"].toInt()*1000);
         }
     }

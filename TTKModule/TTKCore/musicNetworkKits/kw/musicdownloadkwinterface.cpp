@@ -13,8 +13,8 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKWInterface::readFromMusicSongLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                            const QString &format, int bitrate)
+void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
+                                                        const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty())
     {
@@ -101,11 +101,11 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
     else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == "flac")
     {
-        readFromMusicSongLLAttribute(info, "flac", "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
     }
     else if(format.contains("AL") && bitrate == MB_750 && suffix == "ape")
     {
-        readFromMusicSongLLAttribute(info, "ape", "1000kape", bitrate);
+        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
     }
 }
 
@@ -141,11 +141,11 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
     }
     else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == "flac")
     {
-        readFromMusicSongLLAttribute(info, "flac", "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
     }
     else if(format.contains("1000kape") && bitrate == MB_750 && suffix == "ape")
     {
-        readFromMusicSongLLAttribute(info, "ape", "1000kape", bitrate);
+        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
     }
 }
 
@@ -219,15 +219,14 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info,
-                                                    const QString &id)
+void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info)
 {
-    if(id.isEmpty())
+    if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

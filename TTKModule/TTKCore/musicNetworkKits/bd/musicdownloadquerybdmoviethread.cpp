@@ -355,13 +355,13 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             }
 
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            readFromMusicMVInfo(info, path);
+            readFromMusicMVAttribute(info, path);
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         }
     }
 }
 
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfo(MusicObject::MusicSongInformation *info, const QString &id)
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id)
 {
     if(id.isEmpty() || !m_manager)
     {
@@ -401,22 +401,22 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
             QString duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
             if(value.contains("hdVideoUrl"))
             {
-                readFromMusicMVInfoAttribute(info, value["hdVideoUrl"].toString(), duration);
+                readFromMusicMVAttribute(info, value["hdVideoUrl"].toString(), duration);
             }
             if(value.contains("hcVideoUrl"))
             {
-                readFromMusicMVInfoAttribute(info, value["hcVideoUrl"].toString(), duration);
+                readFromMusicMVAttribute(info, value["hcVideoUrl"].toString(), duration);
             }
             if(value.contains("heVideoUrl"))
             {
-                readFromMusicMVInfoAttribute(info, value["heVideoUrl"].toString(), duration);
+                readFromMusicMVAttribute(info, value["heVideoUrl"].toString(), duration);
             }
         }
     }
 }
 
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                                                   const QString &url, const QString &duration)
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
+                                                               const QString &url, const QString &duration)
 {
     if(url.isEmpty())
     {
@@ -429,9 +429,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVInfoAttribute(MusicObject::
         QString v = datas.front();
         MusicObject::MusicSongAttribute attr;
         attr.m_url = url;
-        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-        attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        if(!findUrlFileSize(&attr)) return;
         attr.m_format = MusicUtils::Core::fileSuffix(v);
         attr.m_duration = duration;
         v = datas.back();

@@ -301,22 +301,22 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             QVariantMap mv = value["sd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVInfoAttribute(info, mv);
+                readFromMusicMVAttribute(info, mv);
             }
             mv = value["hd"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVInfoAttribute(info, mv);
+                readFromMusicMVAttribute(info, mv);
             }
             mv = value["sq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVInfoAttribute(info, mv);
+                readFromMusicMVAttribute(info, mv);
             }
             mv = value["rq"].toMap();
             if(!mv.isEmpty())
             {
-                readFromMusicMVInfoAttribute(info, mv);
+                readFromMusicMVAttribute(info, mv);
             }
         }
     }
@@ -363,8 +363,8 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadQueryKGMovieThread::readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                                                   const QVariantMap &key)
+void MusicDownLoadQueryKGMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
+                                                               const QVariantMap &key)
 {
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["downurl"].toString();
@@ -383,17 +383,4 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVInfoAttribute(MusicObject::
 
     attr.m_duration = MusicTime::msecTime2LabelJustified(key["timelength"].toInt());
     info->m_songAttrs.append(attr);
-}
-
-QString MusicDownLoadQueryKGMovieThread::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
-{
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
-    {
-        if(!attr.m_duration.isEmpty())
-        {
-            return attr.m_duration;
-        }
-    }
-
-    return QString("-");
 }

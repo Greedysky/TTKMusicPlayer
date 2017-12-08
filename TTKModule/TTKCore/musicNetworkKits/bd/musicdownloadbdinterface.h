@@ -90,10 +90,6 @@ public:
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicPayAttribute(MusicObject::MusicSongInformation *info);
-    /*!
-     * Find time string by attrs.
-     */
-    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
 
 };
 

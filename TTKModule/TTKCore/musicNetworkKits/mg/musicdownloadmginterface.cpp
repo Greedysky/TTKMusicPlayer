@@ -32,10 +32,10 @@ void MusicDownLoadMGInterface::makeTokenQueryUrl(QNetworkRequest *request, const
 }
 
 void MusicDownLoadMGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bit,
-                                                          const QString &format, int id)
+                                                          const QString &format, int type)
 {
     MusicObject::MusicSongAttribute attr;
-    attr.m_url = MusicUtils::Algorithm::mdII(MG_SONG_PATH_URL, false).arg(info->m_songId).arg(id);
+    attr.m_url = MusicUtils::Algorithm::mdII(MG_SONG_PATH_URL, false).arg(info->m_songId).arg(type);
     attr.m_format = format;
     attr.m_bitrate = bit;
     info->m_songAttrs.append(attr);

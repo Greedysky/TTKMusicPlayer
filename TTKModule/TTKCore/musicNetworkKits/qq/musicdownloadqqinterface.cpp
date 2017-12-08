@@ -70,7 +70,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
-    else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_500)
+    else if(key["sizeape"].toULongLong() != 0 && bitrate == MB_750)
     {
         QString randKey = QString::number(qrand());
         QString vkey = getMusicKey(randKey);
@@ -112,7 +112,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         readFromMusicSongAttribute(info, key, MB_128);
         readFromMusicSongAttribute(info, key, MB_192);
         readFromMusicSongAttribute(info, key, MB_320);
-        readFromMusicSongAttribute(info, key, MB_500);
+        readFromMusicSongAttribute(info, key, MB_750);
         readFromMusicSongAttribute(info, key, MB_1000);
     }
     else
@@ -131,13 +131,13 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, key, MB_500);
+            readFromMusicSongAttribute(info, key, MB_750);
             readFromMusicSongAttribute(info, key, MB_1000);
         }
     }
 }
 
-void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info,
+void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info,
                                                               const QVariantMap &key, int bitrate)
 {
     MusicTime::timeSRand();
@@ -190,7 +190,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::Music
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
-    else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_500)
+    else if(key["size_ape"].toULongLong() != 0 && bitrate == MB_750)
     {
         QString randKey = QString::number(qrand());
         QString vkey = getMusicKey(randKey);
@@ -224,13 +224,13 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::Music
     }
 }
 
-void MusicDownLoadQQInterface::readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info, const QVariantMap &key)
+void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key)
 {
-    readFromMusicSongAttributeInfo(info, key, MB_128);
-    readFromMusicSongAttributeInfo(info, key, MB_192);
-    readFromMusicSongAttributeInfo(info, key, MB_320);
-    readFromMusicSongAttributeInfo(info, key, MB_500);
-    readFromMusicSongAttributeInfo(info, key, MB_1000);
+    readFromMusicSongAttributePlus(info, key, MB_128);
+    readFromMusicSongAttributePlus(info, key, MB_192);
+    readFromMusicSongAttributePlus(info, key, MB_320);
+    readFromMusicSongAttributePlus(info, key, MB_750);
+    readFromMusicSongAttributePlus(info, key, MB_1000);
 }
 
 QString MusicDownLoadQQInterface::getMusicKey(const QString &time)

@@ -96,7 +96,7 @@ public:
     /*!
      * Read tags(lrc) from query results.
      */
-    void readFromMusicSongLrc(MusicObject::MusicSongInformation *info, const QString &songID);
+    void readFromMusicSongLrc(MusicObject::MusicSongInformation *info);
 
 };
 

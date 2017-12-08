@@ -69,15 +69,16 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &f);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &f, int bit);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format,
+                                  int bitrate);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info);
+    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info);
 
 };
 

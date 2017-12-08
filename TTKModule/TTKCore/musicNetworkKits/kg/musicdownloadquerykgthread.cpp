@@ -114,7 +114,7 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     musicInfo.m_albumName = value["album_name"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
+                    readFromMusicSongLrcAndPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(!m_querySimplify)

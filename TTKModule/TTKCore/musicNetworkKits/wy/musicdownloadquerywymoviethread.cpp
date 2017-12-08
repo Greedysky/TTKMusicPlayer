@@ -280,9 +280,7 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
 
                 attr.m_url = value[key].toString();
                 attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(!findUrlFileSize(&attr)) return;
                 musicInfo.m_songAttrs.append(attr);
             }
 

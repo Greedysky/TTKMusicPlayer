@@ -78,12 +78,12 @@ protected:
     /*!
      * Read mv infos from query results.
      */
-    void readFromMusicMVInfo(MusicObject::MusicSongInformation *info, const QString &id);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info,
-                                      const QString &url, const QString &duration);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
+                                  const QString &url, const QString &duration);
 
 };
 

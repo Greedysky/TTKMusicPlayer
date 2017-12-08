@@ -312,9 +312,7 @@ void MusicDownLoadQueryMGMovieThread::readFromMusicMVAttribute(MusicObject::Musi
                 info->m_songName = MusicUtils::String::artistName(fileName);
             }
 
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            attr.m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr.m_url));
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+            if(!findUrlFileSize(&attr)) return;
             info->m_songAttrs.append(attr);
         }
     }

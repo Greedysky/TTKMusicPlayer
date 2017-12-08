@@ -82,12 +82,12 @@ public:
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+    void readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key,
                                         int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttributeInfo(MusicObject::MusicSongInformation *info, const QVariantMap &key);
+    void readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QVariantMap &key);
     /*!
      * Get music key.
      */

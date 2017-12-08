@@ -216,7 +216,7 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongAttributeInfo(&musicInfo, value["file"].toMap());
+                    readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(!musicInfo.m_songAttrs.isEmpty())

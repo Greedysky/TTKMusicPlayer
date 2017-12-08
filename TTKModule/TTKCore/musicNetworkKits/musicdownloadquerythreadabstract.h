@@ -176,9 +176,21 @@ Q_SIGNALS:
 
 protected:
     /*!
+     * Find time string by attrs.
+     */
+    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
+    /*!
      * Map query server string.
      */
     QString mapQueryServerString() const;
+    /*!
+     * Find download file size.
+     */
+    bool findUrlFileSize(MusicObject::MusicSongAttribute *attr);
+    /*!
+     * Find download file size.
+     */
+    bool findUrlFileSize(MusicObject::MusicSongAttributes *attrs);
     /*!
      * Get download file size.
      */

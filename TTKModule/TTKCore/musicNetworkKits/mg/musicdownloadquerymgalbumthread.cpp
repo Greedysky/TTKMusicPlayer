@@ -132,16 +132,7 @@ void MusicDownLoadQueryMGAlbumThread::downLoadFinished()
                         continue;
                     }
                     ////////////////////////////////////////////////////////////
-                    for(int i=0; i<musicInfo.m_songAttrs.count(); ++i)
-                    {
-                        MusicObject::MusicSongAttribute *attr = &musicInfo.m_songAttrs[i];
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        if(attr->m_size.isEmpty())
-                        {
-                            attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
-                        }
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    }
+                    if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
                     ////////////////////////////////////////////////////////////
                     if(!albumFlag)
                     {

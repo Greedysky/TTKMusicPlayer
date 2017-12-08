@@ -52,17 +52,12 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &id);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QString &url,
-                                      const QString &size, const QString &duration);
-    /*!
-     * Find time string by attrs.
-     */
-    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &url,
+                                  const QString &size, const QString &duration);
 
 };
 

@@ -94,7 +94,7 @@ void MusicDownLoadQueryKGRecommendThread::downLoadFinished()
                     musicInfo.m_albumName = albumInfo.m_nickname;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
-                    readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
+                    readFromMusicSongLrcAndPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

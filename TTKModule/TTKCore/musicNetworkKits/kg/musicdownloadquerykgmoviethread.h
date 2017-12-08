@@ -78,11 +78,7 @@ protected:
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key);
-    /*!
-     * Find time string by attrs.
-     */
-    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key);
 
 };
 

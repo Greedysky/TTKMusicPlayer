@@ -111,7 +111,7 @@ public:
     /*!
      * Encrypted music info id.
      */
-    QString encryptedId(qlonglong id);
+    QString encryptedId(qint64 id);
     /*!
      * Encrypted music info id.
      */
