@@ -51,12 +51,6 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
 
-protected:
-    /*!
-     * Read tags(size\bitrate\url) from query results.
-     */
-    void readFromMusicAttribute(MusicObject::MusicSongInformation *info);
-
 };
 
 #endif // MUSICDOWNLOADQUERYQQRECOMMENDTHREAD_H

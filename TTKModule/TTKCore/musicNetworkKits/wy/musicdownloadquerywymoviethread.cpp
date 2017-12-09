@@ -176,7 +176,10 @@ void MusicDownLoadQueryWYMovieThread::pageDownLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("mvs"))
             {
-                m_pageTotal = MU_MAX;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                getArtistMvsCount(m_searchText.toLongLong());
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
                 QVariantList datas = value["mvs"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -296,6 +299,50 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
             item.m_type = mapQueryServerString();
             emit createSearchedItems(item);
             m_musicSongInfos << musicInfo;
+        }
+    }
+}
+
+void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(int id)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    m_pageTotal = MU_MAX;
+
+    QNetworkRequest request;
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
+               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(MU_MAX));
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->post(request, parameter);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["code"].toInt() == 200 && value.contains("mvs"))
+        {
+            m_pageTotal = value["mvs"].toList().count();
         }
     }
 }

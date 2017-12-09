@@ -71,6 +71,10 @@ protected:
      * Start to search mv list by id.
      */
     void startMVListQuery(int id);
+    /*!
+     * Get artist mvs count.
+     */
+    void getArtistMvsCount(int id);
 
 };
 
