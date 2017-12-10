@@ -65,7 +65,6 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
 {
     move(405, 45);
-    m_isSuggested = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
@@ -110,7 +109,7 @@ QString MusicLocalSongSearchPopWidget::getClassName()
 
 void MusicLocalSongSearchPopWidget::createItems()
 {
-    m_isSuggested = false;
+    m_clearButton->show();
     m_popTableWidget->clearAllItems();
 
     MusicLocalSongSearchRecordConfigManager search(this);
@@ -134,11 +133,11 @@ void MusicLocalSongSearchPopWidget::createItems()
 
 void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
 {
-    m_isSuggested = true;
+    m_clearButton->hide();
     m_popTableWidget->clearAllItems();
 
     int count = names.count();
-    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 45 : 7*ROW_HEIGHT + 8) );
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 8 : 6*ROW_HEIGHT + 8) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
@@ -155,11 +154,6 @@ QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 
 void MusicLocalSongSearchPopWidget::clearButtonClicked()
 {
-    if(m_isSuggested)
-    {
-        return;
-    }
-
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {

@@ -77,8 +77,11 @@ endif()
 
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
-    qaes/aes.h
-    qaes/qaeswrap.h
+    qalg/aes.h
+    qalg/base64.h
+    qalg/cbc128.h
+    qalg/qdeswrap.h
+    qalg/qaeswrap.h
     qhz2py/pinyinresource.h
     qhz2py/chinesehelper.h
     qhz2py/pinyinhelper.h
@@ -119,8 +122,12 @@ set(MUSIC_HEADERS
   )
 
 set(MUSIC_SOURCES
-    qaes/aes.c
-    qaes/qaeswrap.cpp
+    qalg/aes_cbc.cpp
+    qalg/aes_core.cpp
+    qalg/base64.cpp
+    qalg/cbc128.cpp
+    qalg/qdeswrap.cpp
+    qalg/qaeswrap.cpp
     qshortcut/qxtglobalshortcut.cpp
     qhz2py/pinyinresource.cpp
     qhz2py/chinesehelper.cpp
