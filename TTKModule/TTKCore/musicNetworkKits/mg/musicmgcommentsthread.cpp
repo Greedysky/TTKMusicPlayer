@@ -59,9 +59,8 @@ void MusicMGSongCommentsThread::startToPage(int offset)
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicMGSongCommentsThread::downLoadFinished()
@@ -163,9 +162,8 @@ void MusicMGPlaylistCommentsThread::startToPage(int offset)
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->get(request);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicMGPlaylistCommentsThread::downLoadFinished()

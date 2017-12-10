@@ -15,8 +15,6 @@
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
-#include "musicdownloaddiscoverlistthread.h"
-#include "musicdownloadqueryfactory.h"
 #include "musicdownloadcounterpvthread.h"
 #include "musicotherdefine.h"
 #include "musictoolsetswidget.h"
@@ -33,10 +31,6 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
     ///////////////////////////////////////////////////////
-    MusicDownLoadDiscoverListThread *discover = M_DOWNLOAD_QUERY_PTR->getDiscoverListThread(this);
-    connect(discover, SIGNAL(downLoadDataChanged(QString)), SLOT(musicSearchTopListInfoFinished(QString)));
-    discover->startToSearch();
-
     m_counterPVThread = new MusicDownloadCounterPVThread(this);
     m_counterPVThread->startToDownload();
     ///////////////////////////////////////////////////////
@@ -177,11 +171,6 @@ void MusicTopAreaWidget::setVolumeValue(int value) const
     {
         m_musicRemoteWidget->setVolumeValue(value);
     }
-}
-
-void MusicTopAreaWidget::musicSearchTopListInfoFinished(const QString &data)
-{
-    m_ui->musicSongSearchLine->setPlaceholderText( data );
 }
 
 void MusicTopAreaWidget::musicShowSkinChangedWindow()

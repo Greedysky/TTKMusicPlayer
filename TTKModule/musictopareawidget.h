@@ -118,10 +118,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Search top list information finished.
-     */
-    void musicSearchTopListInfoFinished(const QString &data);
-    /*!
      * Show change background skin dailog.
      */
     void musicShowSkinChangedWindow();

@@ -2,6 +2,7 @@
 #include "musiclocalsongsearchpopwidget.h"
 #include "musicdownloadquerythreadabstract.h"
 #include "musicdownloadqueryfactory.h"
+#include "musicdownloaddiscoverlistthread.h"
 
 MusicLocalSongSearchInlineEdit::MusicLocalSongSearchInlineEdit(QWidget *parent)
     : MusicLocalSongSearchEdit(parent)
@@ -9,11 +10,17 @@ MusicLocalSongSearchInlineEdit::MusicLocalSongSearchInlineEdit(QWidget *parent)
     m_popWidget = nullptr;
     m_suggestThread = nullptr;
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
+
+    m_discoverThread = M_DOWNLOAD_QUERY_PTR->getDiscoverListThread(this);
+    connect(m_discoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(searchTopListInfoFinished(QString)));
+    m_discoverThread->startToSearch();
 }
 
 MusicLocalSongSearchInlineEdit::~MusicLocalSongSearchInlineEdit()
 {
 //    delete m_popWidget;
+    delete m_discoverThread;
+    delete m_suggestThread;
 }
 
 QString MusicLocalSongSearchInlineEdit::getClassName()
@@ -57,6 +64,11 @@ void MusicLocalSongSearchInlineEdit::suggestDataChanged()
     {
         m_popWidget->createSuggestItems(names);
     }
+}
+
+void MusicLocalSongSearchInlineEdit::searchTopListInfoFinished(const QString &data)
+{
+    setPlaceholderText(data);
 }
 
 void MusicLocalSongSearchInlineEdit::popWidgetChanged(const QString &text)

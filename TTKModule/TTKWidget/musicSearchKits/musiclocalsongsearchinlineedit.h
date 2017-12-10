@@ -21,6 +21,7 @@
 
 #include "musiclocalsongsearchedit.h"
 
+class MusicDownLoadDiscoverListThread;
 class MusicLocalSongSearchPopWidget;
 class MusicDownLoadQueryThreadAbstract;
 
@@ -56,6 +57,10 @@ public Q_SLOTS:
      * Suggest data changed.
      */
     void suggestDataChanged();
+    /*!
+     * Search top list information finished.
+     */
+    void searchTopListInfoFinished(const QString &data);
 
 protected:
     /*!
@@ -69,6 +74,7 @@ protected:
     virtual void leaveEvent(QEvent *event) override;
 
     MusicLocalSongSearchPopWidget *m_popWidget;
+    MusicDownLoadDiscoverListThread *m_discoverThread;
     MusicDownLoadQueryThreadAbstract *m_suggestThread;
 
 };

@@ -38,9 +38,8 @@ void MusicWYSongSuggestThread::startToSearch(QueryType type, const QString &text
     request.setSslConfiguration(sslConfig);
 #endif
     m_reply = m_manager->post(request, parameter);
-    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()) );
-    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                     SLOT(replyError(QNetworkReply::NetworkError)) );
+    connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 void MusicWYSongSuggestThread::downLoadFinished()
