@@ -50,6 +50,7 @@ HEADERS  += \
     $$PWD/wy/musicdownloadquerywymoviethread.h \
     $$PWD/wy/musicdownloadquerywyrecommendthread.h \
     $$PWD/wy/musicwycommentsthread.h \
+    $$PWD/wy/musicwysongsuggestthread.h \
     $$PWD/xm/musicdownloadxminterface.h \
     $$PWD/xm/musicdownloadqueryxmthread.h \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
@@ -61,6 +62,7 @@ HEADERS  += \
     $$PWD/xm/musicdownloadqueryxmrecommendthread.h \
     $$PWD/xm/musicxmdiscoverlistthread.h \
     $$PWD/xm/musicxmcommentsthread.h \
+    $$PWD/xm/musicxmsongsuggestthread.h \
     $$PWD/kg/musicdownloadquerykgthread.h \
     $$PWD/kg/musicdownloadquerykgalbumthread.h \
     $$PWD/kg/musicdownloadquerykgartistthread.h \
@@ -71,6 +73,7 @@ HEADERS  += \
     $$PWD/kg/musicdownloadquerykgrecommendthread.h \
     $$PWD/kg/musickgdiscoverlistthread.h \
     $$PWD/kg/musickgcommentsthread.h \
+    $$PWD/kg/musickgsongsuggestthread.h \
     $$PWD/kw/musicdownloadquerykwthread.h \
     $$PWD/kw/musicdownloadquerykwalbumthread.h \
     $$PWD/kw/musicdownloadquerykwartistthread.h \
@@ -83,6 +86,7 @@ HEADERS  += \
     $$PWD/kw/musickwdiscoverlistthread.h \
     $$PWD/kw/musickwcommentsthread.h \
     $$PWD/kw/musickwbackgroundthread.h \
+    $$PWD/kw/musickwsongsuggestthread.h \
     $$PWD/bd/musicdownloadquerybdthread.h \
     $$PWD/bd/musicdownloadquerybdalbumthread.h \
     $$PWD/bd/musicdownloadquerybdartistthread.h \
@@ -94,6 +98,7 @@ HEADERS  += \
     $$PWD/bd/musicdownloadquerybdrecommendthread.h \
     $$PWD/bd/musicbddiscoverlistthread.h \
     $$PWD/bd/musicbdcommentsthread.h \
+    $$PWD/bd/musicbdsongsuggestthread.h \
     $$PWD/qq/musicdownloadqueryqqthread.h \
     $$PWD/qq/musicdownloadqueryqqalbumthread.h \
     $$PWD/qq/musicdownloadqueryqqartistthread.h \
@@ -106,6 +111,7 @@ HEADERS  += \
     $$PWD/qq/musicqqdiscoverlistthread.h \
     $$PWD/qq/musicqqcommentsthread.h \
     $$PWD/qq/musicqqbackgroundthread.h \
+    $$PWD/qq/musicqqsongsuggestthread.h \
     $$PWD/mg/musicdownloadmginterface.h \
     $$PWD/mg/musicdownloadquerymgalbumthread.h \
     $$PWD/mg/musicdownloadquerymgartistthread.h \
@@ -117,6 +123,7 @@ HEADERS  += \
     $$PWD/mg/musicmgdiscoverlistthread.h \
     $$PWD/mg/musicmgcommentsthread.h \
     $$PWD/mg/musicmgtextdownloadthread.h \
+    $$PWD/mg/musicmgsongsuggestthread.h \
     $$PWD/ws/musicdownloadquerywsthread.h \
     $$PWD/ws/musicdownloadwsinterface.h \
     $$PWD/ws/musicdownloadquerywsartistthread.h \
@@ -128,6 +135,7 @@ HEADERS  += \
     $$PWD/ws/musicwscommentsthread.h \
     $$PWD/ws/musicwsdiscoverlistthread.h \
     $$PWD/ws/musicwstextdownloadthread.h \
+    $$PWD/ws/musicwssongsuggestthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/ztl/musicdownloadsourcethread.h \
     $$PWD/ztl/musicnetworkthread.h \
@@ -177,6 +185,7 @@ SOURCES += \
     $$PWD/wy/musicdownloadquerywymoviethread.cpp \
     $$PWD/wy/musicdownloadquerywyrecommendthread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
+    $$PWD/wy/musicwysongsuggestthread.cpp \
     $$PWD/xm/musicdownloadxminterface.cpp \
     $$PWD/xm/musicdownloadqueryxmthread.cpp \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
@@ -188,6 +197,7 @@ SOURCES += \
     $$PWD/xm/musicdownloadqueryxmrecommendthread.cpp \
     $$PWD/xm/musicxmdiscoverlistthread.cpp \
     $$PWD/xm/musicxmcommentsthread.cpp \
+    $$PWD/xm/musicxmsongsuggestthread.cpp \
     $$PWD/kg/musicdownloadquerykgthread.cpp \
     $$PWD/kg/musicdownloadquerykgalbumthread.cpp \
     $$PWD/kg/musicdownloadquerykgartistthread.cpp \
@@ -198,6 +208,7 @@ SOURCES += \
     $$PWD/kg/musicdownloadquerykgrecommendthread.cpp \
     $$PWD/kg/musickgdiscoverlistthread.cpp \
     $$PWD/kg/musickgcommentsthread.cpp \
+    $$PWD/kg/musickgsongsuggestthread.cpp \
     $$PWD/kw/musicdownloadquerykwthread.cpp \
     $$PWD/kw/musicdownloadquerykwalbumthread.cpp \
     $$PWD/kw/musicdownloadquerykwartistthread.cpp \
@@ -210,6 +221,7 @@ SOURCES += \
     $$PWD/kw/musickwdiscoverlistthread.cpp \
     $$PWD/kw/musickwcommentsthread.cpp \
     $$PWD/kw/musickwbackgroundthread.cpp \
+    $$PWD/kw/musickwsongsuggestthread.cpp \
     $$PWD/bd/musicdownloadquerybdthread.cpp \
     $$PWD/bd/musicdownloadquerybdalbumthread.cpp \
     $$PWD/bd/musicdownloadquerybdartistthread.cpp \
@@ -221,6 +233,7 @@ SOURCES += \
     $$PWD/bd/musicdownloadquerybdrecommendthread.cpp \
     $$PWD/bd/musicbddiscoverlistthread.cpp \
     $$PWD/bd/musicbdcommentsthread.cpp \
+    $$PWD/bd/musicbdsongsuggestthread.cpp \
     $$PWD/qq/musicdownloadqueryqqthread.cpp \
     $$PWD/qq/musicdownloadqueryqqalbumthread.cpp \
     $$PWD/qq/musicdownloadqueryqqartistthread.cpp \
@@ -233,6 +246,7 @@ SOURCES += \
     $$PWD/qq/musicqqdiscoverlistthread.cpp \
     $$PWD/qq/musicqqcommentsthread.cpp \
     $$PWD/qq/musicqqbackgroundthread.cpp \
+    $$PWD/qq/musicqqsongsuggestthread.cpp \
     $$PWD/mg/musicdownloadmginterface.cpp \
     $$PWD/mg/musicdownloadquerymgalbumthread.cpp \
     $$PWD/mg/musicdownloadquerymgartistthread.cpp \
@@ -244,6 +258,7 @@ SOURCES += \
     $$PWD/mg/musicmgdiscoverlistthread.cpp \
     $$PWD/mg/musicmgcommentsthread.cpp \
     $$PWD/mg/musicmgtextdownloadthread.cpp \
+    $$PWD/mg/musicmgsongsuggestthread.cpp \
     $$PWD/ws/musicdownloadquerywsthread.cpp \
     $$PWD/ws/musicdownloadwsinterface.cpp \
     $$PWD/ws/musicdownloadquerywsartistthread.cpp \
@@ -255,6 +270,7 @@ SOURCES += \
     $$PWD/ws/musicwscommentsthread.cpp \
     $$PWD/ws/musicwsdiscoverlistthread.cpp \
     $$PWD/ws/musicwstextdownloadthread.cpp \
+    $$PWD/ws/musicwssongsuggestthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/ztl/musicdownloadsourcethread.cpp \
     $$PWD/ztl/musicnetworkthread.cpp \

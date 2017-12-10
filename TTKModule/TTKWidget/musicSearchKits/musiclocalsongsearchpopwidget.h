@@ -87,6 +87,10 @@ public:
      * Create popup search history table items.
      */
     void createItems();
+    /*!
+     * Create popup search suggest table items.
+     */
+    void createSuggestItems(const QStringList &names);
 
 Q_SIGNALS:
     /*!

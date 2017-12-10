@@ -51,6 +51,8 @@ const QString MG_PLAYLIST_ATTR_URL  = "R1E5aFV6d2RETDJLU01BNDRHUm9hVTN2bHNERHZPa
 ///////////////////////////////////////////////////////////////////////////
 const QString MG_RCM_URL            = "SnA0YUxQb2VlelZEZGpnclR6ZVJKMGdOL29PdHNrZGJNV1JyNzJVdGVpeWR4dEsrVlFNSTdWcGZuY0hDNG9ZL25sUHdSWWhTNVRhd1ZnNlpwYUxHTm11MTVyNkQzeHVjUVo3NngwVW1uRTYyZFlRZWZQRWJUY0xsUVJFMWdBUUthemxlWTAvL3UydmI3Nno3emJiOG9zbURXdmFvQTA0RQ==";
 ///////////////////////////////////////////////////////////////////////////
+const QString MG_SUGGEST_URL        = "YjMzN29GZ1ppc1gyVlZvZ3oxUTBkWTVUckQ0R0hWbkR6U0NrS1pKdkxHUVVVd1czNFo1ZUFQL0FlR01xckd6TUF4ckw3Zz09";
+///////////////////////////////////////////////////////////////////////////
 
 
 class QNetworkRequest;

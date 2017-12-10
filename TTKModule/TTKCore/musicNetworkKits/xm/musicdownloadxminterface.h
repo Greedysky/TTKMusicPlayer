@@ -68,6 +68,8 @@ const QString XM_PLAYLIST_A_URL        = "ZVpnUGt4NWZnUDRGQ0doWU1POEl5RDdWc0dpVl
 const QString XM_RCM_DATA_URL          = "b2dac3VCQ3U0aFdiUUZubEcyS0tzdE1OV045ZHZ3MDVvNTJiYlhQbEhwdUxiTFhwN2h3NnczUTFaNWhUTU1yUjlUZmFTRlVQditCTk5iZ3hzQ0tXOStiQytQNGxTOEJjcklUYUhRPT0=";
 const QString XM_RCM_URL               = "cFptMnVnTUp5akV4QklFTUVhejlsSHhsVDlKWW1TYitWUVFmbThJZmJPdmk1ZU10bkQ5T0Zoc0wzVVUrUVhxVjQ2K3pZVVVHby84PQ==";
 ///////////////////////////////////////////////////////////////////////////
+const QString XM_SUGGEST_URL           = "N3AxWkhmSndLSzB2d1RUc3BDTmo3dEhLMFRkOVhFVW82MmRtdGNzRWZFaEcvMGxCZUJaS0FJNW05SDA0YWt0Zw==";
+///////////////////////////////////////////////////////////////////////////
 
 
 class QNetworkRequest;

@@ -65,6 +65,10 @@ const QString WY_PL_ATTR_N_URL       = "VUdTa0xMeG1Nblc4cThoS2E1QzhJK0lrTHJBRmk4
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_RCM_N_URL           = "VklDaWtHcm5waU1raUxyRUNKMjR3Mk4zRmpMSzRhRUFlL200S2thQmdZZU5BMVpDY3hFUmNuME9mZWdGc1hBZzRVSzBDUmZhK1RJbmxpdnM=";
 ///////////////////////////////////////////////////////////////////////////
+const QString WY_SUGGEST_NDT_URL     = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09";
+const QString WY_SUGGEST_N_URL       = "alpUZU5qWnJJc2NHTDdiN0xDTm5NZnpxN2s0c21BTHU2eUFOcTNiOVFSeHE1dms1UXFhQWZHVGpjY0l4OVhGL0RoeWYvUT09";
+///////////////////////////////////////////////////////////////////////////
+
 
 class QNetworkRequest;
 

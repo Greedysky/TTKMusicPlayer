@@ -52,6 +52,8 @@ const QString KG_PLAYLIST_INFO_URL = "bjBDZVdxUzlqMXJvaGgrSnB3ZEt1UnNOL0lqVU94Wk
 ///////////////////////////////////////////////////////////////////////////
 const QString KG_RCM_URL           = "MXVLUUtYWEpxaVFuZGpwdTgvdHF5NGVkVFZtVDNqMDBnbDhlQWV4M2l4TWc1QXlnMHZwanVZaTZkYStGM2k5T0ZmZ1RxeW16NkcvTTQzQm1LVm1PcWxCSDhLbXBBREd6WThPcC8vazFqTGdZS3U0aUdGWnB6RFdDMDFnWFF6czNVVjNmbFFHV1lRcz0=";
 ///////////////////////////////////////////////////////////////////////////
+const QString KG_SUGGEST_URL       = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZMDdDbmpMUDVTaFJKeHMxSFBhdEw4dGZSRWVCL0tJY2NkMUdObjVyM0dObFdaaUtqbHZhcVpFWFJDTU5JREdnVmR1RFZ0";
+///////////////////////////////////////////////////////////////////////////
 
 
 class MusicPlaylistItem;

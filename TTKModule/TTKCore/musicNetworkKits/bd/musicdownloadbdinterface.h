@@ -61,6 +61,8 @@ const QString BD_PLAYLIST_ATTR_URL  = "NXJsZ3ArR0JHeXFJYmdWUi9sOVNTaHlxbEpuekJYS
 ///////////////////////////////////////////////////////////////////////////
 const QString BD_RCM_URL            = "NFpxdTFTWldSaktNZGRTTVhCc3VuUFZkZFROa2tQdXBLZjVPVFNMN2dGQ0QrbXozUjRyZU1uMUlLSmlQOUk2Qk85VXlwTFdqajRYcngyWEl4QXBFdndEWnFseCt5aS92V3BaYWR6Wi9jYlY2WDg2RnJBaVZ5ZExENUJmUzFwbXZMT1FGbkhab1g1OEthUlc3enNveEMvQWd3NHpBTVNGQnRtWTZQT0xTZUMyWUZHL0ZLVzNKWXNNUzVMMVF5amVl";
 ///////////////////////////////////////////////////////////////////////////
+const QString BD_SUGGEST_URL     = "dEFucnltNXBxUENWK3c2Q3NpbmRlaEpvS2M5OFJpS1NJZ01ma0F5VWNuZVdmUWc2cG5aa3BFaDJSdXd3Vyt6NjZkeHdPeThkMzUxYnE0aWt6NSsvcWFmL1U1ND0=";
+///////////////////////////////////////////////////////////////////////////
 
 
 /*! @brief The class to baidu query download interface.

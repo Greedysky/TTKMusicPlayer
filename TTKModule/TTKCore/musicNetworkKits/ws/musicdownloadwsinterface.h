@@ -42,6 +42,8 @@ const QString WS_PLAYLIST_INFO_URL = "aE9kMU9kdENKKzBnYjVham5vNGRrVXFTMEdpNGxEK0
 ///////////////////////////////////////////////////////////////////////////
 const QString WS_RCM_URL           = "OXB0WWRUSm9PaXUyNm83bVFwYmJDMUpPQXZYdTlZRjVGVzFOMURTRG5uc08veThoOUduVTZnZm1SYitmM08ya0hUUGE5SlR4TjFWdWg3a29Ed1lHRmcrVW9jbXEyVGpMYnNMZ3lReWVxcktHcjdybw==";
 ///////////////////////////////////////////////////////////////////////////
+const QString WS_SUGGEST_URL       = "dHhKMk9vdUZYdkdwTldTUFBMOXhGRFdpak5oclJ0UC9sdDM2UTErcVBHc3l2b2VKLzZ4alU2UXR1elV3UitWaE9Jeml0Y3FicldWRHR5OXFFaU0zMEE9PQ==";
+///////////////////////////////////////////////////////////////////////////
 
 
 /*! @brief The class to wusing query download data from net.

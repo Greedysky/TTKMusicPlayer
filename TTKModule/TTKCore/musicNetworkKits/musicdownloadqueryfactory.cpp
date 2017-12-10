@@ -82,6 +82,15 @@
 #include "musicmgdiscoverlistthread.h"
 #include "musicwsdiscoverlistthread.h"
 
+#include "musicwysongsuggestthread.h"
+#include "musicxmsongsuggestthread.h"
+#include "musicbdsongsuggestthread.h"
+#include "musicqqsongsuggestthread.h"
+#include "musickgsongsuggestthread.h"
+#include "musickwsongsuggestthread.h"
+#include "musicmgsongsuggestthread.h"
+#include "musicwssongsuggestthread.h"
+
 #include "musicdatadownloadthread.h"
 
 #include "musictextdownloadthread.h"
@@ -251,6 +260,28 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(
         default: thread = new MusicDownLoadQueryWYRecommendThread(parent);
     }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
+    return thread;
+}
+
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSuggestThread(QObject *parent)
+{
+    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicWYSongSuggestThread(parent); break;
+        case 1:  thread = new MusicQQSongSuggestThread(parent); break;
+        case 2:  thread = new MusicXMSongSuggestThread(parent); break;
+        case 3:  thread = new MusicBDSongSuggestThread(parent); break;
+        case 4:  thread = new MusicKWSongSuggestThread(parent); break;
+        case 5:  thread = new MusicKGSongSuggestThread(parent); break;
+        case 6:  thread = new MusicMGSongSuggestThread(parent); break;
+        case 7:  thread = new MusicWSSongSuggestThread(parent); break;
+        case 8:  thread = new MusicWSSongSuggestThread(parent); break;
+        case 9:  thread = new MusicWSSongSuggestThread(parent); break;
+        default: thread = new MusicWYSongSuggestThread(parent);
+    }
+    M_LOGGER_INFO(QString("getSuggestThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 
