@@ -14,7 +14,10 @@ add_definitions(-DQT_THREAD)
 
 
 set(QT_WEBKIT_MODULE_NAME "libQt5WebKit")
+set(QT_WEBENGINE_MODULE_NAME "libQt5WebEngine")
 set(USE_QT_WEBKIT_MODULE "0")
+
+
 macro(_TO_FOUND_WEBKIT module)
   find_library(QT_WEBKIT_MODULE
     NAMES ${module}
@@ -33,12 +36,32 @@ macro(_TO_FOUND_WEBKIT module)
   endif()
 endmacro(_TO_FOUND_WEBKIT)
 
+
+macro(_TO_FOUND_WEBENGINE module)
+  find_library(QT_WEBENGINE_MODULE
+    NAMES ${module}
+    PATHS ${QT_INSTALL_LIBS}
+  )
+  string(REGEX MATCH "${QT_WEBENGINE_MODULE_NAME}" QT_WEBENGINE_NAME_FILTER ${QT_WEBENGINE_MODULE})
+  string(COMPARE EQUAL "${QT_WEBENGINE_NAME_FILTER}" "${QT_WEBENGINE_MODULE_NAME}" QT_RESULT)
+  if(${QT_RESULT})
+    find_package(Qt5WebEngineWidgets REQUIRED)
+    add_definitions(-DMUSIC_WEBENGINE)
+    set(USE_QT_WEBKIT_MODULE "2")
+    message(STATUS "Message Found QT_WEBENGINE_MODULE component, build in KuGou by Qt webengine :" ${QT_WEBENGINE_MODULE})
+  else()
+    message(STATUS "Message Not found QT_WEBENGINE_MODULE component, build in KuGou by no webkit")
+  endif()
+endmacro(_TO_FOUND_WEBENGINE)
+
+
 if(WIN32)
   if(TTK_QT_VERSION VERSION_GREATER "4")
     find_package(Qt5AxContainer REQUIRED)
   else()
     set(QT_USE_QAXCONTAINER ON)
   endif()
+  set(USE_QT_WEBKIT_MODULE "3")
   message(STATUS "Webview build in KuGou by QAxContainer")
 else()
   if(TTK_QT_VERSION VERSION_GREATER "4")
@@ -50,6 +73,10 @@ else()
       endif()
     else(UNIX)
       _TO_FOUND_WEBKIT(${QT_WEBKIT_MODULE_NAME}.so)
+      string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "0" QT_RESULT)
+      if(${QT_RESULT})
+        _TO_FOUND_WEBENGINE(${QT_WEBENGINE_MODULE_NAME}.so)
+      endif()
     endif()
   else()
     set(minimum_required_qt_version "4.8")
@@ -181,7 +208,7 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
   
   set(QT5_LIBS Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network TTKUi)
   if(WIN32)
-    string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "0" QT_RESULT)
+    string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "3" QT_RESULT)
     if(${QT_RESULT})
       list(APPEND QT5_LIBS Qt5::AxContainer -luser32)
     endif()
@@ -190,6 +217,12 @@ if(TTK_QT_VERSION VERSION_GREATER "4")
     if(${QT_RESULT})
       list(APPEND QT5_LIBS Qt5::WebKit Qt5::WebKitWidgets)
     endif()
+
+    string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "2" QT_RESULT)
+    if(${QT_RESULT})
+      list(APPEND QT5_LIBS Qt5::WebEngineWidgets)
+    endif()
+
     list(APPEND QT5_LIBS Qt5::X11Extras)
   endif()
   target_link_libraries(${TARGET_NAME} ${QT5_LIBS})
@@ -205,7 +238,7 @@ else()
   
   set(QT4_LIBS ${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTNETWORK_LIBRARY} TTKUi)
   if(WIN32)
-    string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "0" QT_RESULT)
+    string(COMPARE EQUAL "${USE_QT_WEBKIT_MODULE}" "3" QT_RESULT)
     if(${QT_RESULT})
       list(INSERT QT4_LIBS 0 ${QT_QAXCONTAINER_LIBRARY} -luser32)
     endif()
