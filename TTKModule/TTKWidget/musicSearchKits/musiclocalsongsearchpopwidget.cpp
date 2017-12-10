@@ -65,6 +65,7 @@ MusicLocalSongSearchPopWidget::MusicLocalSongSearchPopWidget(QWidget *parent)
     : QWidget(parent)
 {
     move(405, 45);
+    m_isSuggested = false;
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
@@ -109,7 +110,9 @@ QString MusicLocalSongSearchPopWidget::getClassName()
 
 void MusicLocalSongSearchPopWidget::createItems()
 {
+    m_isSuggested = false;
     m_popTableWidget->clearAllItems();
+
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
@@ -131,6 +134,7 @@ void MusicLocalSongSearchPopWidget::createItems()
 
 void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
 {
+    m_isSuggested = true;
     m_popTableWidget->clearAllItems();
 
     int count = names.count();
@@ -151,6 +155,11 @@ QString MusicLocalSongSearchPopWidget::utcTimeToLocal(const QString &time) const
 
 void MusicLocalSongSearchPopWidget::clearButtonClicked()
 {
+    if(m_isSuggested)
+    {
+        return;
+    }
+
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {

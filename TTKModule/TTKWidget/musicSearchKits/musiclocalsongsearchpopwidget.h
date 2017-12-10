@@ -115,6 +115,7 @@ protected:
      */
     QString utcTimeToLocal(const QString &time) const;
 
+    bool m_isSuggested;
     QPushButton *m_clearButton;
     MusicLocalSongSearchPopTableWidget *m_popTableWidget;
 
