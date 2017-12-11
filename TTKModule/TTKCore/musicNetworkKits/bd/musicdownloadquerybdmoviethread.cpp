@@ -343,7 +343,12 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             }
 
             value = value["files"].toMap();
+            if(value.keys().isEmpty())
+            {
+                return;
+            }
             value = value[value.keys().first()].toMap();
+
             QString path = value["file_link"].toString();
             if(path.contains("video-url"))
             {

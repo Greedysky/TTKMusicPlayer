@@ -180,6 +180,9 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QString prefix = MusicUtils::Core::lrcPrefix();
     QString path = QFile::exists(prefix + filename + LRC_FILE) ? (prefix + filename + LRC_FILE) : (prefix + filename + KRC_FILE);
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
+
+    //reset current song lrc index.
+    QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
 void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
@@ -966,6 +969,16 @@ void MusicApplication::musicCurrentLrcUpdated()
         file.remove();
     }
     m_rightAreaWidget->musicCheckHasLrcAlready();
+}
+
+void MusicApplication::resetCurrentSongLrcIndex()
+{
+    int pos = m_musicPlayer->position();
+    if(pos != -1)
+    {
+        //Set lrc corrent to show
+        m_rightAreaWidget->setSongSpeedAndSlow(pos);
+    }
 }
 
 void MusicApplication::updateCurrentTime(qint64 pos)
