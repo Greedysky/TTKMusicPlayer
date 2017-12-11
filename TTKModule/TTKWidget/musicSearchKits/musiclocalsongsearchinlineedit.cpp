@@ -62,6 +62,11 @@ void MusicLocalSongSearchInlineEdit::suggestDataChanged()
 
     if(m_popWidget && !text().trimmed().isEmpty())
     {
+        if(names.isEmpty())
+        {
+            m_popWidget->lower();
+            m_popWidget->hide();
+        }
         m_popWidget->createSuggestItems(names);
     }
 }

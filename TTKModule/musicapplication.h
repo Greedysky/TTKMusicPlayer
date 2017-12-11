@@ -280,6 +280,10 @@ public Q_SLOTS:
      */
     void musicCurrentLrcUpdated();
     /*!
+     * Reset current song lrc index.
+     */
+    void resetCurrentSongLrcIndex();
+    /*!
      * Update current play time when user adjust the progress.
      */
     void updateCurrentTime(qint64 pos);
