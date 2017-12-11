@@ -140,6 +140,9 @@ Screenshots
 ### Spectrum
 ![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
 
+### Other Tools
+![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
+
 Copyright
 -------
  * This file is part of the TTK Music Player project.
