@@ -77,6 +77,7 @@ void MusicDataDownloadThread::downLoadFinished()
         return;
     }
 
+    m_redirection = false;
     m_timer.stop();
     m_file->flush();
     m_file->close();
