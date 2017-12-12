@@ -76,14 +76,24 @@ protected:
      */
     void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
     /*!
-     * Read mv infos from query results.
+     * Read mv infos from web query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id);
+    void readFromMusicMVAttributeWeb(MusicObject::MusicSongInformation *info);
+    /*!
+     * Read mv infos from yyt query results.
+     */
+    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QString &var,
+                                     bool more);
+    /*!
+     * Read mv infos from iqy query results.
+     */
+    void readFromMusicMVAttributeIQY(MusicObject::MusicSongInformation *info, const QString &var,
+                                     bool more);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &url, const QString &duration);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+                                  int bitrate, const QString &duration);
 
 };
 

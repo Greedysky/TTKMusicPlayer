@@ -293,14 +293,10 @@ void MusicDownLoadQueryMGMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["playUrl"].toString();
 
-            QString fileName;
-#ifdef MUSIC_GREATER_NEW
-            fileName = QUrl(attr.m_url).fileName();
-#else
             const QString ourPath = QUrl(attr.m_url).path();
             const int slash = ourPath.lastIndexOf(QLatin1Char('/'));
-            fileName = (slash == -1) ? ourPath : ourPath.mid(slash + 1);
-#endif
+            QString fileName = (slash == -1) ? ourPath : ourPath.mid(slash + 1);
+
             attr.m_bitrate = bitrate;
             attr.m_format = MusicUtils::Core::fileSuffix(fileName);
 

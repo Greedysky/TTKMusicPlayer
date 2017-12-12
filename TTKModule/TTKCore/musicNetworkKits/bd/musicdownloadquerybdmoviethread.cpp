@@ -239,6 +239,12 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
     readFromMusicMVAttribute(&musicInfo, true);
     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
+    /// found playmv url request
+    if(musicInfo.m_songAttrs.isEmpty())
+    {
+        readFromMusicMVAttributeWeb(&musicInfo);
+    }
+
     if(!musicInfo.m_songAttrs.isEmpty())
     {
         MusicSearchedItem item;
@@ -295,6 +301,78 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVCount()
     }
 }
 
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::MusicSongInformation *info)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_W_URL, false).arg(info->m_songId);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QString html(reply->readAll());
+    QRegExp regx("data.push(.*);");
+    regx.setMinimal(true);
+    if(html.indexOf(regx) != -1)
+    {
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(regx.cap(1).remove('(').remove(')').toUtf8(), &ok);
+        if(ok)
+        {
+            QVariantMap value = data.toMap();
+            QString type = value["source"].toString();
+
+            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+            if(type == "yinyuetai")
+            {
+                QString vars = QString("videoId=%1").arg(value["tvid"].toString());
+                readFromMusicMVAttributeYYT(info, vars, true);
+            }
+            else if(type == "iqiyi")
+            {
+                QString vars = QString("tvid=%1&vid=%2").arg(value["tvid"].toString()).arg(value["vid"].toString());
+                readFromMusicMVAttributeIQY(info, vars, true);
+            }
+            else if(type == "own")
+            {
+                info->m_songName = value["title"].toString();
+                info->m_singerName = value["author"].toString();
+                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+
+                MusicObject::MusicSongAttribute attr;
+                attr.m_url = value["file_link"].toString();
+                attr.m_duration = info->m_timeLength;
+                attr.m_bitrate = MB_500;
+                attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
+                if(!findUrlFileSize(&attr)) return;
+                info->m_songAttrs.append(attr);
+            }
+            if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+        }
+    }
+}
+
 void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more)
 {
     if(info->m_songId.isEmpty() || !m_manager)
@@ -330,50 +408,43 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(value["error_code"].toInt() == 22000 && value.contains("result"))
+        if(value["re"].toInt() == 1)
         {
-            value = value["result"].toMap();
-
-            if(more)
-            {
-                QVariantMap mvInfoMap = value["mv_info"].toMap();
-                info->m_singerName = mvInfoMap["artist"].toString();
-                info->m_songName = mvInfoMap["title"].toString();
-                info->m_timeLength = "-";
-            }
-
-            value = value["files"].toMap();
-            if(value.keys().isEmpty())
-            {
-                return;
-            }
-            value = value[value.keys().first()].toMap();
-
-            QString path = value["file_link"].toString();
-            if(path.contains("video-url"))
-            {
-                path = path.split("/").back();
-            }
-            else
-            {
-                path = path.split("/").back().split("_").front();
-            }
+            QString type = value["source"].toString();
+            QString vars = value["flashvars"].toString();
 
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-            readFromMusicMVAttribute(info, path);
+            if(type == "yinyuetai")
+            {
+                readFromMusicMVAttributeYYT(info, vars, more);
+            }
+            else if(type == "iqiyi")
+            {
+                readFromMusicMVAttributeIQY(info, vars, more);
+            }
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
         }
     }
 }
 
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &id)
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QString &var, bool more)
 {
-    if(id.isEmpty() || !m_manager)
+    if(!m_manager)
     {
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_URL, false).arg(id);
+    QString videoId;
+    foreach(QString ty, var.split("&"))
+    {
+        if(ty.contains("videoId="))
+        {
+            videoId = ty.remove("videoId=");
+            break;
+        }
+    }
+
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_Y_URL, false).arg(videoId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -403,56 +474,94 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         QVariantMap value = data.toMap();
         if(value.contains("error") && value["error"].toString() == "false")
         {
+            value = value["videoInfo"].toMap();
+            value = value["coreVideoInfo"].toMap();
+
             QString duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
-            if(value.contains("hdVideoUrl"))
+
+            if(more)
             {
-                readFromMusicMVAttribute(info, value["hdVideoUrl"].toString(), duration);
+                info->m_songName = value["videoName"].toString();
+                info->m_singerName = value["artistNames"].toString();
+                info->m_timeLength = duration;
             }
-            if(value.contains("hcVideoUrl"))
+
+            QVariantList datas = value["videoUrlModels"].toList();
+            foreach(const QVariant &var, datas)
             {
-                readFromMusicMVAttribute(info, value["hcVideoUrl"].toString(), duration);
-            }
-            if(value.contains("heVideoUrl"))
-            {
-                readFromMusicMVAttribute(info, value["heVideoUrl"].toString(), duration);
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                int type = value["bitrateType"].toInt();
+                if(type == 1)
+                {
+                    readFromMusicMVAttribute(info, value, MB_500, duration);
+                }
+                else if(type == 2)
+                {
+                    readFromMusicMVAttribute(info, value, MB_750, duration);
+                }
+                else if(type == 3)
+                {
+                    readFromMusicMVAttribute(info, value, MB_1000, duration);
+                }
             }
         }
     }
 }
 
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                                               const QString &url, const QString &duration)
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeIQY(MusicObject::MusicSongInformation *info, const QString &var, bool more)
 {
-    if(url.isEmpty())
+    if(info->m_songId.isEmpty() || !m_manager)
     {
         return;
     }
 
-    QStringList datas = url.split("?");
+    QString vid, tvid;
+    foreach(QString ty, var.split("&"))
+    {
+        if(ty.contains("vid="))
+        {
+            vid = ty.remove("vid=");
+        }
+        else if(ty.contains("tvid="))
+        {
+            tvid = ty.remove("tvid=");
+        }
+    }
+
+    QString time = QString::number(MusicTime::timeStamp());
+    QString src = "76f90cbd92f94a2e925d83e8ccd22cb7";
+    QString key = "d5fb4bd9d50c4be6948c97edd7254b0e";
+    QByteArray sc = MusicUtils::Algorithm::md5((time + key + vid).toUtf8()).toHex();
+
+    MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_I_URL, false).arg(QString(tvid)).arg(vid).arg(time).arg(QString(sc)).arg(src);
+    Q_UNUSED(more);
+
+}
+
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+                                                               int bitrate, const QString &duration)
+{
+    if(key.isEmpty())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongAttribute attr;
+    attr.m_url = key["videoUrl"].toString();
+    attr.m_duration = duration;
+    attr.m_bitrate = bitrate;
+
+    QStringList datas = attr.m_url.split("?");
     if(datas.count() == 2)
     {
         QString v = datas.front();
-        MusicObject::MusicSongAttribute attr;
-        attr.m_url = url;
-        if(!findUrlFileSize(&attr)) return;
         attr.m_format = MusicUtils::Core::fileSuffix(v);
-        attr.m_duration = duration;
-        v = datas.back();
-        foreach(QString var, v.split("&"))
-        {
-            if(var.contains("br="))
-            {
-                int bitRate = var.remove("br=").toInt();
-                if(bitRate <= 375)
-                    attr.m_bitrate = MB_250;
-                else if(bitRate > 375 && bitRate <= 625)
-                    attr.m_bitrate = MB_500;
-                else if(bitRate > 625 && bitRate <= 875)
-                    attr.m_bitrate = MB_750;
-                else if(bitRate > 875)
-                    attr.m_bitrate = MB_1000;
-            }
-        }
+        attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toLongLong());
         info->m_songAttrs.append(attr);
     }
 }
