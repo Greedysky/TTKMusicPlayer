@@ -8,16 +8,19 @@
             <value key="3778678" value="云音乐热歌榜"/>
         </tag>
         <tag value="全球媒体榜">
+            <value key="1978921795" value="云音乐电音榜"/>
+            <value key="991319590" value="云音乐嘻哈榜"/>
             <value key="180106" value="UK排行榜周榜"/>
             <value key="60198" value="美国Billboard周榜"/>
             <value key="27135204" value="法国 NRJ Vos Hits 周榜"/>
             <value key="11641012" value="iTunes榜"/>
             <value key="71385702" value="云音乐ACG音乐榜"/>
-            <value key="10520166" value="云音乐电音榜"/>
+            <value key="10520166" value="云音乐新电力榜"/>
             <value key="3812895" value="Beatport全球电子舞曲榜"/>
             <value key="60131" value="日本Oricon周榜"/>
             <value key="71384707" value="云音乐古典音乐榜"/>
             <value key="120001" value="Hit FM Top榜"/>
+            <value key="2006508653" value="电竞音乐榜"/>
             <value key="21845217" value="KTV唛榜"/>
             <value key="112463" value="台湾Hito排行榜"/>
             <value key="112504" value="中国TOP排行榜（港台榜）"/>
@@ -59,15 +62,14 @@
             <value key="8888" value="酷狗TOP500"/>
             <value key="23784" value="网络红歌榜"/>
             <value key="24971" value="DJ热歌榜"/>
-            <value key="27" value="华语新歌榜"/>
-            <value key="28" value="欧美新歌榜"/>
-            <value key="24045" value="韩国新歌榜"/>
-            <value key="24047" value="日本新歌榜"/>
-            <value key="30906" value="蒙面唱将榜"/>
+            <value key="31308" value="华语新歌榜"/>
+            <value key="31310" value="欧美新歌榜"/>
+            <value key="31311" value="韩国新歌榜"/>
+            <value key="31312" value="日本新歌榜"/>
             <value key="31127" value="天籁之战榜"/>
-            <value key="31195" value="梦想的声音2"/>
+            <value key="31195" value="梦想的声音"/>
             <value key="30972" value="原创榜"/>
-            <value key="22050" value="粤语新歌榜"/>
+            <value key="31313" value="粤语新歌榜"/>
             <value key="21101" value="酷狗分享榜"/>
             <value key="22603" value="5sing音乐榜"/>
             <value key="21335" value="繁星音乐榜"/>
