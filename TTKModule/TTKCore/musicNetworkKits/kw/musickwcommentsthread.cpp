@@ -86,7 +86,7 @@ void MusicKWSongCommentsThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                m_pageTotal = value["total"].toString().toInt();
+                m_pageTotal = value["total"].toInt();
 
                 QVariantList comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)
@@ -192,7 +192,7 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                m_pageTotal = value["total"].toString().toInt();
+                m_pageTotal = value["total"].toInt();
 
                 QVariantList comments = value["rows"].toList();
                 foreach(const QVariant &comm, comments)

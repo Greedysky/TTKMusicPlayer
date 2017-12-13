@@ -128,7 +128,7 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["ARTIST"].toString();
                     musicInfo.m_songName = value["SONGNAME"].toString();
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toString().toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt()*1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().remove("MUSIC_");
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

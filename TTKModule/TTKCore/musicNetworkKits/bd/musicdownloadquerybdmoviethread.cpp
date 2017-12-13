@@ -358,7 +358,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::M
             {
                 info->m_songName = value["title"].toString();
                 info->m_singerName = value["author"].toString();
-                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["time"].toInt()*1000);
 
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["file_link"].toString();

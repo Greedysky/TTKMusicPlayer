@@ -74,7 +74,7 @@ void MusicKWTextDownLoadThread::downLoadFinished()
                 foreach(const QVariant &var, datas)
                 {
                     value = var.toMap();
-                    lrcData.append(MusicTime(value["timeId"].toString().toInt(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
+                    lrcData.append(MusicTime(value["timeId"].toInt(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
                            .append(value["text"].toByteArray()).append("\n");
                 }
             }

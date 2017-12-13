@@ -131,12 +131,7 @@ void MusicCommentsItem::createSearchedItems(const MusicSongCommentItem &comments
     m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_time.toULongLong()).toString("yyyy-MM-dd hh:mm:ss"));
     m_timerLabel->setFixedWidth(QFontMetrics(m_timerLabel->font()).width(m_timerLabel->text()));
     m_starLabel->setText(QString("(%1)").arg(comments.m_likedCount));
-
     m_userCommit->setText(comments.m_content);
-    int w = 60 + m_iconLabel->width() + m_userName->width();
-    w = MStatic_cast(QWidget*, parent())->width() - w;
-    int acWidth = QFontMetrics(m_userCommit->font()).width(comments.m_content);
-    setFixedHeight(height() + QFontMetrics(m_userCommit->font()).height()*(acWidth/w));
 
     MusicDownloadSourceThread *thread = new MusicDownloadSourceThread(this);
     connect(thread, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(iconDataDownloadFinished(QByteArray)));
@@ -320,16 +315,11 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     createPagingWidget();
 
     initLabel(name, m_commentsThread->getPageTotal());
-
-    if(!m_isPain)
-    {
-        buttonClicked(0);
-    }
 }
 
 void MusicCommentsWidget::createSearchedItems(const MusicSongCommentItem &comments)
 {
-    MusicCommentsItem *item = new MusicCommentsItem(this);
+    MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
     item->createSearchedItems(comments);
     m_commentsItems << item;
     QVBoxLayout *layout = MStatic_cast(QVBoxLayout*, m_messageComments->layout());

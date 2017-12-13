@@ -99,7 +99,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["author"].toString();
                     musicInfo.m_songName = value["title"].toString();
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toString().toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
 
                     musicInfo.m_songId = value["song_id"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
