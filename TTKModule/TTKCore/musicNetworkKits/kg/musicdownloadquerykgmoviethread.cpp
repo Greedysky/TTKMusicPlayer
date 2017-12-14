@@ -353,13 +353,9 @@ void MusicDownLoadQueryKGMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
 
     QString text(reply->readAll());
     QRegExp regx("mv_hash = \"([^\"]+)");
-    int pos = text.indexOf(regx);
-    while(pos != -1)
+    if(text.indexOf(regx) != -1)
     {
         info->m_songId = regx.cap(1);
-        pos += regx.matchedLength();
-        pos = regx.indexIn(text, pos);
-        break;
     }
 }
 

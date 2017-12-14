@@ -348,6 +348,8 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
     }
 
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_HOME_URL, false).arg(info->m_songId);
+    info->m_songName = "Not Found";
+    info->m_singerName = "Anonymous";
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -370,14 +372,10 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
     }
 
     QString text(reply->readAll());
-    QRegExp regx("<h1 title=\"([^<]+)\">([^>]+)>([^<]+)</span></h1>");
-    int pos = text.indexOf(regx);
-    while(pos != -1)
+    QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
+    if(text.indexOf(regx) != -1)
     {
         info->m_songName = regx.cap(1);
-        info->m_singerName = regx.cap(3);
-        pos += regx.matchedLength();
-        pos = regx.indexIn(text, pos);
-        break;
+        info->m_singerName = regx.cap(2);
     }
 }
