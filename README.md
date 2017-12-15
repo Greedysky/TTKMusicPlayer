@@ -1,7 +1,7 @@
 # TTKMusicPlayer
 ![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
-![Version](https://img.shields.io/badge/Version-2.6.2.0-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/Version-2.6.3.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)
@@ -140,8 +140,8 @@ Screenshots
 ### Spectrum
 ![Magic Music](https://github.com/Greedysky/Resource/blob/master/Screen/11.jpg?raw=true)
 
-### Other Tools
-![Other Tools](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
+### Other Functions
+![Other Functions](https://github.com/Greedysky/Resource/blob/master/Screen/12.jpg?raw=true)
 
 Copyright
 -------

@@ -124,18 +124,18 @@ QString MusicCommentsItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicCommentsItem::createSearchedItems(const MusicSongCommentItem &comments)
+void MusicCommentsItem::createSearchedItems(const MusicPlaylistItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(QFontMetrics(m_userName->font()).width(m_userName->text()));
-    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_time.toULongLong()).toString("yyyy-MM-dd hh:mm:ss"));
+    m_timerLabel->setText(QDateTime::fromMSecsSinceEpoch(comments.m_updateTime.toULongLong()).toString("yyyy-MM-dd hh:mm:ss"));
     m_timerLabel->setFixedWidth(QFontMetrics(m_timerLabel->font()).width(m_timerLabel->text()));
-    m_starLabel->setText(QString("(%1)").arg(comments.m_likedCount));
-    m_userCommit->setText(comments.m_content);
+    m_starLabel->setText(QString("(%1)").arg(comments.m_playCount));
+    m_userCommit->setText(comments.m_description);
 
     MusicDownloadSourceThread *thread = new MusicDownloadSourceThread(this);
     connect(thread, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(iconDataDownloadFinished(QByteArray)));
-    thread->startToDownload(comments.m_avatarUrl);
+    thread->startToDownload(comments.m_coverUrl);
 }
 
 void MusicCommentsItem::iconDataDownloadFinished(const QByteArray &data)
@@ -317,7 +317,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     initLabel(name, m_commentsThread->getPageTotal());
 }
 
-void MusicCommentsWidget::createSearchedItems(const MusicSongCommentItem &comments)
+void MusicCommentsWidget::createSearchedItems(const MusicPlaylistItem &comments)
 {
     MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
     item->createSearchedItems(comments);

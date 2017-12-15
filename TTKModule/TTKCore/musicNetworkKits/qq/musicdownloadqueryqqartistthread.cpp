@@ -44,7 +44,7 @@ void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicPlaylistItem *ite
                     QString key = itemlist.at(0).toElement().text();
                     QString value = itemlist.at(1).toElement().text();
                     if(key.contains("\u4e2d\u6587\u540d"))
-                        item->m_nickname = value;
+                        item->m_nickName = value;
                     else if(key.contains("\u51fa\u751f\u65e5\u671f"))
                         item->m_updateTime = value;
                     else if(key.contains("\u56fd\u7c4d"))

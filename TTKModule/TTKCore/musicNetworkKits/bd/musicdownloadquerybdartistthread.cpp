@@ -167,7 +167,7 @@ void MusicDownLoadQueryBDArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
         QVariantMap value = data.toMap();
         item->m_tags = value["country"].toString();
         item->m_updateTime = value["birth"].toString();
-        item->m_nickname = value["nickname"].toString();
+        item->m_nickName = value["nickname"].toString();
         item->m_description = value["intro"].toString();
     }
 

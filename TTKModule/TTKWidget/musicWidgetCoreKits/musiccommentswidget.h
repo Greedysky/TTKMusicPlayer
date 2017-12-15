@@ -47,7 +47,7 @@ public:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItems(const MusicSongCommentItem &comments);
+    void createSearchedItems(const MusicPlaylistItem &comments);
 
 private Q_SLOTS:
     /*!
@@ -94,7 +94,7 @@ public Q_SLOTS:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItems(const MusicSongCommentItem &comments);
+    void createSearchedItems(const MusicPlaylistItem &comments);
     /*!
      * Paging widget button has changed.
      */

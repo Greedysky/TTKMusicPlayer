@@ -1,5 +1,5 @@
-#ifndef MUSICMGSONGSUGGESTTHREAD_H
-#define MUSICMGSONGSUGGESTTHREAD_H
+#ifndef MUSICDOWNLOADSONGSUGGESTTHREAD_H
+#define MUSICDOWNLOADSONGSUGGESTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,19 +19,19 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadsongsuggestthread.h"
+#include "musicdownloadquerythreadabstract.h"
 
-/*! @brief The class to migu query suggest download data from net.
+/*! @brief The class to query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicMGSongSuggestThread : public MusicDownLoadSongSuggestThread
+class MUSIC_NETWORK_EXPORT MusicDownLoadSongSuggestThread : public MusicDownLoadPagingThread
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMGSongSuggestThread(QObject *parent = 0);
+    explicit MusicDownLoadSongSuggestThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -39,16 +39,19 @@ public:
     static QString getClassName();
 
     /*!
-     * Start to Search data from name and type.
+     * Start to Search data from name.
+     * Subclass should implement this function.
      */
-    virtual void startToSearch(const QString &text) override;
+    virtual void startToSearch(const QString &name) = 0;
 
-public Q_SLOTS:
     /*!
-     * Download data from net finished.
+     * Get suggest list items.
      */
-    virtual void downLoadFinished() override;
+    inline MusicPlaylistItems getSearchedItems() const { return m_items; }
+
+protected:
+    MusicPlaylistItems m_items;
 
 };
 
-#endif // MUSICMGSONGSUGGESTTHREAD_H
+#endif // MUSICDOWNLOADSONGSUGGESTTHREAD_H

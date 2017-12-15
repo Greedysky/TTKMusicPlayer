@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadsongsuggestthread.h"
 
 /*! @brief The class to baidu query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicBDSongSuggestThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicBDSongSuggestThread : public MusicDownLoadSongSuggestThread
 {
     Q_OBJECT
 public:
@@ -41,7 +41,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override;
+    virtual void startToSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!

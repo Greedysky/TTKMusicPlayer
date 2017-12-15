@@ -24,6 +24,7 @@
 
 #define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
 
+class MusicDownLoadSongSuggestThread;
 class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
@@ -69,10 +70,14 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = 0);
     /*!
+     * Get similar song query thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = 0);
+
+    /*!
      * Get suggest thread object by type.
      */
-    MusicDownLoadQueryThreadAbstract *getSuggestThread(QObject *parent = 0);
-
+    MusicDownLoadSongSuggestThread *getSuggestThread(QObject *parent = 0);
     /*!
      * Get song comment thread object by type.
      */
@@ -81,7 +86,6 @@ public:
      * Get playlist comment thread object by type.
      */
     MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = 0);
-
     /*!
      * Get discover list thread object by type.
      */
@@ -99,7 +103,6 @@ public:
     MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
                                                       MusicDownLoadThreadAbstract::Download_Type type,
                                                       QObject *parent = 0);
-
     /*!
      * Get download big picture object by type.
      */

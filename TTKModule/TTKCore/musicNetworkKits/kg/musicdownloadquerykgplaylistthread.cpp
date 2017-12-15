@@ -126,7 +126,7 @@ void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
             item.m_playCount = QString::number(value["playcount"].toLongLong());
             item.m_description = value["intro"].toString();
             item.m_updateTime = value["publishtime"].toString();
-            item.m_nickname = value["nickname"].toString();
+            item.m_nickName = value["nickname"].toString();
 
             QVariantList tags = value["tags"].toList();
             foreach(const QVariant &var, tags)
@@ -192,7 +192,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
                 item.m_description = value["intro"].toString();
                 item.m_updateTime = value["publish_time"].toString();
                 item.m_tags = "-";
-                item.m_nickname = value["nickname"].toString();
+                item.m_nickName = value["nickname"].toString();
 
                 emit createPlaylistItems(item);
             }
@@ -252,7 +252,7 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
                     MusicPlaylistItem albumInfo;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
-                    musicInfo.m_albumName = albumInfo.m_nickname;
+                    musicInfo.m_albumName = albumInfo.m_nickName;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     readFromMusicSongLrcAndPic(&musicInfo);

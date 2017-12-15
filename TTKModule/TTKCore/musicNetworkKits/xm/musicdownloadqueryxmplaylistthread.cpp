@@ -132,7 +132,7 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
             item.m_playCount = QString::number(value["playCount"].toULongLong());
             item.m_description = value["description"].toString();
             item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
-            item.m_nickname = value["userName"].toString();
+            item.m_nickName = value["userName"].toString();
 
             QVariantList tags = value["tags"].toList();
             item.m_tags.clear();
@@ -195,7 +195,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                     item.m_playCount = QString::number(value["playCount"].toULongLong());
                     item.m_description = value["description"].toString();
                     item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
-                    item.m_nickname = value["userName"].toString();
+                    item.m_nickName = value["userName"].toString();
 
                     QVariantList tags = value["tags"].toList();
                     item.m_tags.clear();

@@ -19,21 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicobject.h"
-#include "musicdownloadpagingthread.h"
-
-/*! @brief The class of the song comment item.
- * @author Greedysky <greedysky@163.com>
- */
-typedef struct MUSIC_NETWORK_EXPORT MusicSongCommentItem
-{
-    QString m_nickName;
-    QString m_avatarUrl;
-    QString m_time;
-    QString m_content;
-    QString m_likedCount;
-}MusicSongCommentItem;
-MUSIC_DECLARE_LISTS(MusicSongCommentItem)
+#include "musicdownloadquerythreadabstract.h"
 
 /*! @brief The class to query song comments download data from net.
  * @author Greedysky <greedysky@163.com>
@@ -62,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItems(const MusicSongCommentItem &comments);
+    void createSearchedItems(const MusicPlaylistItem &comments);
 
 };
 

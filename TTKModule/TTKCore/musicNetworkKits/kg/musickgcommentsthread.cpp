@@ -98,16 +98,16 @@ void MusicKGSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
 
-                    comment.m_likedCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    comment.m_time = QString::number(QDateTime::fromString(value["addtime"].toString(),
+                    comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    comment.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(),
                                                      "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
-                    comment.m_content = value["content"].toString();
+                    comment.m_description = value["content"].toString();
 
                     comment.m_nickName = value["user_name"].toString();
-                    comment.m_avatarUrl = value["user_pic"].toString();
+                    comment.m_coverUrl = value["user_pic"].toString();
 
                     emit createSearchedItems(comment);
                 }
@@ -204,16 +204,16 @@ void MusicKGPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
 
-                    comment.m_likedCount = QString::number(value["like"].toMap()["count"].toLongLong());
-                    comment.m_time = QString::number(QDateTime::fromString(value["addtime"].toString(),
+                    comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
+                    comment.m_updateTime = QString::number(QDateTime::fromString(value["addtime"].toString(),
                                                      "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
-                    comment.m_content = value["content"].toString();
+                    comment.m_description = value["content"].toString();
 
                     comment.m_nickName = value["user_name"].toString();
-                    comment.m_avatarUrl = value["user_pic"].toString();
+                    comment.m_coverUrl = value["user_pic"].toString();
 
                     emit createSearchedItems(comment);
                 }

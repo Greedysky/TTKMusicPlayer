@@ -98,13 +98,13 @@ void MusicMGSongCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     comment.m_nickName = value["uName"].toString();
-                    comment.m_avatarUrl = value["uAvatar"].toString();
+                    comment.m_coverUrl = value["uAvatar"].toString();
 
-                    comment.m_likedCount = QString::number(value["likedCount"].toLongLong());
-                    comment.m_time = value["time"].toString();
-                    comment.m_content = value["content"].toString();
+                    comment.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    comment.m_updateTime = value["time"].toString();
+                    comment.m_description = value["content"].toString();
 
                     emit createSearchedItems(comment);
                 }
@@ -201,13 +201,13 @@ void MusicMGPlaylistCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     comment.m_nickName = value["uName"].toString();
-                    comment.m_avatarUrl = value["uAvatar"].toString();
+                    comment.m_coverUrl = value["uAvatar"].toString();
 
-                    comment.m_likedCount = QString::number(value["likedCount"].toLongLong());
-                    comment.m_time = value["time"].toString();
-                    comment.m_content = value["content"].toString();
+                    comment.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    comment.m_updateTime = value["time"].toString();
+                    comment.m_description = value["content"].toString();
 
                     emit createSearchedItems(comment);
                 }

@@ -51,7 +51,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
 {
     QString m_id;
     QString m_name;
-    QString m_nickname;
+    QString m_nickName;
     QString m_coverUrl;
     QString m_playCount;
     QString m_description;
@@ -62,7 +62,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
     {
         m_id = "-";
         m_name = "-";
-        m_nickname = "-";
+        m_nickName = "-";
         m_coverUrl = "-";
         m_playCount = "-";
         m_description = "-";
@@ -72,7 +72,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
 
     bool isEmpty() const
     {
-        return m_name == "-" && m_nickname == "-" && m_coverUrl == "-" && m_description == "-";
+        return m_name == "-" && m_nickName == "-" && m_coverUrl == "-" && m_description == "-";
     }
 }MusicPlaylistItem;
 MUSIC_DECLARE_LISTS(MusicPlaylistItem)

@@ -17,7 +17,7 @@ void MusicLrcCommentsWidget::initWidget(bool isPain)
     MusicCommentsWidget::initWidget(isPain);
 
     m_commentsThread = M_DOWNLOAD_QUERY_PTR->getSongCommentThread(this);
-    connect(m_commentsThread, SIGNAL(createSearchedItems(MusicSongCommentItem)), SLOT(createSearchedItems(MusicSongCommentItem)));
+    connect(m_commentsThread, SIGNAL(createSearchedItems(MusicPlaylistItem)), SLOT(createSearchedItems(MusicPlaylistItem)));
 }
 
 void MusicLrcCommentsWidget::wheelEvent(QWheelEvent *event)

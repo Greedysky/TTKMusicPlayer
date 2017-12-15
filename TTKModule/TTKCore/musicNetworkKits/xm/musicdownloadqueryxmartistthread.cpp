@@ -177,7 +177,7 @@ void MusicDownLoadQueryXMArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
             value = value["artistDetailVO"].toMap();
 
             item->m_tags = value["area"].toString();
-            item->m_nickname = value["alias"].toString();
+            item->m_nickName = value["alias"].toString();
             item->m_description = value["description"].toString();
         }
     }

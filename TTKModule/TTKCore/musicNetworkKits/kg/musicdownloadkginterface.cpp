@@ -177,8 +177,8 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *inf
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            info->m_nickname = value["albumname"].toString();
-            info->m_description = info->m_nickname + "<>" +
+            info->m_nickName = value["albumname"].toString();
+            info->m_description = info->m_nickName + "<>" +
                                   value["language"].toString() + "<>" +
                                   value["company"].toString() + "<>" +
                                   value["publishtime"].toString().left(10);

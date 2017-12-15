@@ -141,7 +141,7 @@ void MusicDownLoadQueryQQPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
                 item.m_playCount = QString::number(value["listennum"].toULongLong());
                 item.m_description = value["desc"].toString();
                 item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString("yyyy-MM-dd");
-                item.m_nickname = value["nickname"].toString();
+                item.m_nickName = value["nickname"].toString();
 
                 QVariantList tags = value["tags"].toList();
                 QString tagsString;
@@ -211,7 +211,7 @@ void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     value = value["creator"].toMap();
-                    item.m_nickname = value["name"].toString();
+                    item.m_nickName = value["name"].toString();
 
                     emit createPlaylistItems(item);
                 }

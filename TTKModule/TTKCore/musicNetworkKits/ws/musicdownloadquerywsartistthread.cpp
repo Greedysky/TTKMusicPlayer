@@ -167,7 +167,7 @@ void MusicDownLoadQueryWSArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
             value = value["data"].toMap();
             item->m_tags = value["P"].toString();
             item->m_updateTime = value["B"].toString();
-            item->m_nickname = "";
+            item->m_nickName = "";
             item->m_description = value["M"].toString();
         }
     }

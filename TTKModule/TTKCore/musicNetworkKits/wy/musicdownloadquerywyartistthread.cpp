@@ -124,7 +124,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
-                        info.m_nickname = artistObject["trans"].toString();
+                        info.m_nickName = artistObject["trans"].toString();
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
                     }

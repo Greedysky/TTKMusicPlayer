@@ -103,19 +103,19 @@ void MusicXMSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
-                    comment.m_avatarUrl = value["avatar"].toString();
+                    comment.m_coverUrl = value["avatar"].toString();
 
-                    if(comment.m_avatarUrl.contains("https://"))
+                    if(comment.m_coverUrl.contains("https://"))
                     {
-                        comment.m_avatarUrl.replace("https://", "http://");
+                        comment.m_coverUrl.replace("https://", "http://");
                     }
 
-                    comment.m_likedCount = QString::number(value["likes"].toLongLong());
-                    comment.m_time = QString::number(value["gmtCreate"].toLongLong());
-                    comment.m_content = value["message"].toString();
+                    comment.m_playCount = QString::number(value["likes"].toLongLong());
+                    comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
+                    comment.m_description = value["message"].toString();
 
                     emit createSearchedItems(comment);
                 }
@@ -217,19 +217,19 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
-                    comment.m_avatarUrl = value["avatar"].toString();
+                    comment.m_coverUrl = value["avatar"].toString();
 
-                    if(comment.m_avatarUrl.contains("https://"))
+                    if(comment.m_coverUrl.contains("https://"))
                     {
-                        comment.m_avatarUrl.replace("https://", "http://");
+                        comment.m_coverUrl.replace("https://", "http://");
                     }
 
-                    comment.m_likedCount = QString::number(value["likes"].toLongLong());
-                    comment.m_time = QString::number(value["gmtCreate"].toLongLong());
-                    comment.m_content = value["message"].toString();
+                    comment.m_playCount = QString::number(value["likes"].toLongLong());
+                    comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
+                    comment.m_description = value["message"].toString();
 
                     emit createSearchedItems(comment);
                 }

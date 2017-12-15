@@ -126,7 +126,7 @@ void MusicPlaylistFoundInfoWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     playlistLabel->setText(MusicUtils::Widget::elidedText(playlistFont, playlistLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *creatorLabel = new QLabel(topLineWidget);
     creatorLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);
-    creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickname));
+    creatorLabel->setToolTip(tr("Creator: %1").arg(item.m_nickName));
     creatorLabel->setText(MusicUtils::Widget::elidedText(creatorLabel->font(), creatorLabel->toolTip(), Qt::ElideRight, 220));
     QLabel *tagsLabel = new QLabel(topLineWidget);
     tagsLabel->setStyleSheet(MusicUIObject::MColorStyle04 + MusicUIObject::MFontStyle03);

@@ -98,14 +98,14 @@ void MusicQQSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
-                    comment.m_likedCount = QString::number(value["praisenum"].toInt());
-                    comment.m_time = QString::number(value["time"].toLongLong()*1000);
-                    comment.m_content = value["rootcommentcontent"].toString();
+                    comment.m_playCount = QString::number(value["praisenum"].toInt());
+                    comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);
+                    comment.m_description = value["rootcommentcontent"].toString();
 
                     comment.m_nickName = value["nick"].toString();
-                    comment.m_avatarUrl = value["avatarurl"].toString();
+                    comment.m_coverUrl = value["avatarurl"].toString();
 
                     emit createSearchedItems(comment);
                 }
@@ -202,14 +202,14 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
-                    comment.m_likedCount = QString::number(value["praisenum"].toInt());
-                    comment.m_time = QString::number(value["time"].toLongLong()*1000);
-                    comment.m_content = value["rootcommentcontent"].toString();
+                    comment.m_playCount = QString::number(value["praisenum"].toInt());
+                    comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);
+                    comment.m_description = value["rootcommentcontent"].toString();
 
                     comment.m_nickName = value["nick"].toString();
-                    comment.m_avatarUrl = value["avatarurl"].toString();
+                    comment.m_coverUrl = value["avatarurl"].toString();
 
                     emit createSearchedItems(comment);
                 }

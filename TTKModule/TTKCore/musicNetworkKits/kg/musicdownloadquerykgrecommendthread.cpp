@@ -91,7 +91,7 @@ void MusicDownLoadQueryKGRecommendThread::downLoadFinished()
                     MusicPlaylistItem albumInfo;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
-                    musicInfo.m_albumName = albumInfo.m_nickname;
+                    musicInfo.m_albumName = albumInfo.m_nickName;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     readFromMusicSongLrcAndPic(&musicInfo);

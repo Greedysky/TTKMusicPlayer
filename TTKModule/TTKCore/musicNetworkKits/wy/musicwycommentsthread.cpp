@@ -96,15 +96,15 @@ void MusicWYSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
-                    comment.m_avatarUrl = user["avatarUrl"].toString();
+                    comment.m_coverUrl = user["avatarUrl"].toString();
 
-                    comment.m_likedCount = QString::number(value["likedCount"].toLongLong());
-                    comment.m_time = QString::number(value["time"].toLongLong());
-                    comment.m_content = value["content"].toString();
+                    comment.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    comment.m_updateTime = QString::number(value["time"].toLongLong());
+                    comment.m_description = value["content"].toString();
 
                     emit createSearchedItems(comment);
                 }
@@ -199,15 +199,15 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicSongCommentItem comment;
+                    MusicPlaylistItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
-                    comment.m_avatarUrl = user["avatarUrl"].toString();
+                    comment.m_coverUrl = user["avatarUrl"].toString();
 
-                    comment.m_likedCount = QString::number(value["likedCount"].toLongLong());
-                    comment.m_time = QString::number(value["time"].toLongLong());
-                    comment.m_content = value["content"].toString();
+                    comment.m_playCount = QString::number(value["likedCount"].toLongLong());
+                    comment.m_updateTime = QString::number(value["time"].toLongLong());
+                    comment.m_description = value["content"].toString();
 
                     emit createSearchedItems(comment);
                 }

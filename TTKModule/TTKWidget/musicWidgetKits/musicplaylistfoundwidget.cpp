@@ -68,7 +68,7 @@ void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem 
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
                                                         Qt::ElideRight, MIN_LABEL_SIZE));
-    m_creatorLabel->setToolTip("by " + item.m_nickname);
+    m_creatorLabel->setToolTip("by " + item.m_nickName);
     m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(),
                                                            Qt::ElideRight, MIN_LABEL_SIZE));
     bool ok = false;

@@ -1,6 +1,6 @@
 #include "musiclocalsongsearchinlineedit.h"
 #include "musiclocalsongsearchpopwidget.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadsongsuggestthread.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloaddiscoverlistthread.h"
 
@@ -42,7 +42,7 @@ void MusicLocalSongSearchInlineEdit::textChanged(const QString &text)
     delete m_suggestThread;
     m_suggestThread = M_DOWNLOAD_QUERY_PTR->getSuggestThread(this);
     connect(m_suggestThread, SIGNAL(downLoadDataChanged(QString)), SLOT(suggestDataChanged()));
-    m_suggestThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, text);
+    m_suggestThread->startToSearch(text);
 
     popWidgetChanged(text);
 }
@@ -50,12 +50,12 @@ void MusicLocalSongSearchInlineEdit::textChanged(const QString &text)
 void MusicLocalSongSearchInlineEdit::suggestDataChanged()
 {
     QStringList names;
-    foreach(const MusicObject::MusicSongInformation &info, m_suggestThread->getMusicSongInfos())
+    foreach(const MusicPlaylistItem &item, m_suggestThread->getSearchedItems())
     {
-        QString value = info.m_songName;
-        if(!info.m_singerName.isEmpty())
+        QString value = item.m_name;
+        if(!item.m_nickName.isEmpty())
         {
-            value = info.m_singerName + " - " + value;
+            value = item.m_nickName + " - " + value;
         }
         names << value;
     }

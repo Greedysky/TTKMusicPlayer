@@ -139,7 +139,7 @@ void MusicDownLoadQueryWYPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
             }
 
             value = value["creator"].toMap();
-            item.m_nickname = value["nickname"].toString();
+            item.m_nickName = value["nickname"].toString();
         }
     }
 }
@@ -201,7 +201,7 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     }
 
                     value = value["creator"].toMap();
-                    item.m_nickname = value["nickname"].toString();
+                    item.m_nickName = value["nickname"].toString();
 
                     emit createPlaylistItems(item);
                 }

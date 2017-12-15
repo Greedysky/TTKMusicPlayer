@@ -23,7 +23,7 @@
 
 class MusicDownLoadDiscoverListThread;
 class MusicLocalSongSearchPopWidget;
-class MusicDownLoadQueryThreadAbstract;
+class MusicDownLoadSongSuggestThread;
 
 /*! @brief The class of the net search line edit widget.
  * @author Greedysky <greedysky@163.com>
@@ -75,7 +75,7 @@ protected:
 
     MusicLocalSongSearchPopWidget *m_popWidget;
     MusicDownLoadDiscoverListThread *m_discoverThread;
-    MusicDownLoadQueryThreadAbstract *m_suggestThread;
+    MusicDownLoadSongSuggestThread *m_suggestThread;
 
 };
 

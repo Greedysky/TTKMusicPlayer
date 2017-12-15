@@ -263,9 +263,14 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(
     return thread;
 }
 
-MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSuggestThread(QObject *parent)
+MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSimilarSongThread(QObject *parent)
 {
-    MusicDownLoadQueryThreadAbstract *thread = nullptr;
+    return getQueryThread(parent);
+}
+
+MusicDownLoadSongSuggestThread *MusicDownLoadQueryFactory::getSuggestThread(QObject *parent)
+{
+    MusicDownLoadSongSuggestThread *thread = nullptr;
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     switch( index )
     {
@@ -281,7 +286,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSuggestThread(QO
         case 9:  thread = new MusicWSSongSuggestThread(parent); break;
         default: thread = new MusicWYSongSuggestThread(parent);
     }
-    M_LOGGER_INFO(QString("getSuggestThread server: %1").arg(thread->getQueryServer()));
     return thread;
 }
 

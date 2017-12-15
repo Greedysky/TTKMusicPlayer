@@ -55,7 +55,7 @@ QString MusicSimilarFoundWidget::getClassName()
 void MusicSimilarFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_foundTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getQueryThread(this));
+    m_foundTableWidget->setQueryInput(M_DOWNLOAD_QUERY_PTR->getSimilarSongThread(this));
     m_foundTableWidget->startSearchQuery(MusicUtils::String::songName(name));
 
     createLabels();

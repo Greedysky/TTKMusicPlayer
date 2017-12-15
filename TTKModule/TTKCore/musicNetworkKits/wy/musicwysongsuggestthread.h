@@ -20,12 +20,12 @@
  ================================================= */
 
 #include "musicdownloadwyinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadsongsuggestthread.h"
 
 /*! @brief The class to wangyi query suggest download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWYSongSuggestThread : public MusicDownLoadQueryThreadAbstract,
+class MUSIC_NETWORK_EXPORT MusicWYSongSuggestThread : public MusicDownLoadSongSuggestThread,
                                                       private MusicDownLoadWYInterface
 {
     Q_OBJECT
@@ -43,7 +43,7 @@ public:
     /*!
      * Start to Search data from name and type.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override;
+    virtual void startToSearch(const QString &text) override;
 
 public Q_SLOTS:
     /*!

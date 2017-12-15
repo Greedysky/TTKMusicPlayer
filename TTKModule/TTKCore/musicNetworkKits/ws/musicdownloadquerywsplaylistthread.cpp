@@ -127,7 +127,7 @@ void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
                     item.m_id = value["listId"].toString();
                     item.m_name = value["listName"].toString();
                     item.m_playCount = QString::number(value["playcount"].toULongLong());
-                    item.m_nickname = value["userName"].toString();
+                    item.m_nickName = value["userName"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     getMoreDetails(&item);

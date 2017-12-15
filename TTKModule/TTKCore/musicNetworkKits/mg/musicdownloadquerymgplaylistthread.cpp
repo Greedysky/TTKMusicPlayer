@@ -124,7 +124,7 @@ void MusicDownLoadQueryMGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
             item.m_playCount = QString::number(value["playNums"].toULongLong());
             item.m_description = value["summary"].toString();
             item.m_updateTime = value["publishTime"].toString();
-            item.m_nickname = value["owner"].toMap()["nickname"].toString();
+            item.m_nickName = value["owner"].toMap()["nickname"].toString();
             item.m_tags = value["tagNames"].toString().replace("_", "|");
         }
     }
@@ -174,7 +174,7 @@ void MusicDownLoadQueryMGPlaylistThread::downLoadFinished()
                     item.m_playCount = QString::number(value["playNum"].toULongLong());
                     item.m_description = value["summary"].toString();
                     item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                    item.m_nickname = value["owner"].toMap()["nickname"].toString();
+                    item.m_nickName = value["owner"].toMap()["nickname"].toString();
                     item.m_tags = value["tagNames"].toString().replace("_", "|");
 
                     emit createPlaylistItems(item);

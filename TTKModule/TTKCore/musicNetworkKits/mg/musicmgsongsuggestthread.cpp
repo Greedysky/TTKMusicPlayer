@@ -4,9 +4,9 @@
 #include "qjson/parser.h"
 
 MusicMGSongSuggestThread::MusicMGSongSuggestThread(QObject *parent)
-    : MusicDownLoadQueryThreadAbstract(parent)
+    : MusicDownLoadSongSuggestThread(parent)
 {
-    m_queryServer = "Migu";
+
 }
 
 QString MusicMGSongSuggestThread::getClassName()
@@ -14,14 +14,12 @@ QString MusicMGSongSuggestThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicMGSongSuggestThread::startToSearch(QueryType type, const QString &text)
+void MusicMGSongSuggestThread::startToSearch(const QString &text)
 {
     if(!m_manager)
     {
         return;
     }
-
-    Q_UNUSED(type);
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(MG_SUGGEST_URL, false).arg(text);
@@ -51,8 +49,7 @@ void MusicMGSongSuggestThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_items.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -80,11 +77,11 @@ void MusicMGSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = value["musicName"].toString();
-                    musicInfo.m_singerName = value["artistName"].toString();
-                    musicInfo.m_songName.remove("<font color=\"red\">").remove("</font>");
-                    m_musicSongInfos << musicInfo;
+                    MusicPlaylistItem item;
+                    item.m_name = value["musicName"].toString();
+                    item.m_nickName = value["artistName"].toString();
+                    item.m_name.remove("<font color=\"red\">").remove("</font>");
+                    m_items << item;
                 }
             }
         }

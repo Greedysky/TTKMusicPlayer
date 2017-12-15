@@ -125,7 +125,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
             item.m_playCount = value["listenum"].toString();
             item.m_description = value["desc"].toString();
             item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-            item.m_nickname = "Greedysky";
+            item.m_nickName = "Greedysky";
             item.m_tags = value["tag"].toString().replace(",", "|");
         }
     }
@@ -175,7 +175,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     item.m_playCount = value["listenum"].toString();
                     item.m_description = value["desc"].toString();
                     item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                    item.m_nickname = "Greedysky";
+                    item.m_nickName = "Greedysky";
                     item.m_tags = value["tag"].toString().replace(",", "|");
 
                     emit createPlaylistItems(item);
