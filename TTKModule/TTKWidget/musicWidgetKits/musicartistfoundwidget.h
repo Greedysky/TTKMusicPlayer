@@ -123,6 +123,56 @@ protected:
 
 };
 
+class MusicDownLoadSimilarThread;
+
+/*! @brief The class of the artist similar found widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicArtistSimilarFoundWidget : public MusicFoundAbstractWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicArtistSimilarFoundWidget(QWidget *parent = 0);
+
+    virtual ~MusicArtistSimilarFoundWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set current name to search founds.
+     */
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    virtual void resizeWindow() override;
+
+public Q_SLOTS:
+    /*!
+     * Create the current similar item.
+     */
+    void createArtistSimilarItem(const MusicPlaylistItem &item);
+    /*!
+     * Current item clicked.
+     */
+    void currentItemClicked(const QString &id);
+
+protected:
+    QGridLayout *m_gridLayout;
+    MusicDownLoadSimilarThread *m_similarThread;
+
+};
+
 
 /*! @brief The class of the artist albums found widget.
  * @author Greedysky <greedysky@163.com>
@@ -263,9 +313,14 @@ protected:
      * Init the fourth widget.
      */
     void initFourthWidget();
+    /*!
+     * Init the five widget.
+     */
+    void initFivethWidget();
 
     MusicArtistAlbumsFoundWidget *m_artistAlbums;
     MusicArtistMvsFoundWidget *m_artistMvs;
+    MusicArtistSimilarFoundWidget *m_artistSim;
 
 };
 

@@ -1,6 +1,7 @@
 #include "musicwscommentsthread.h"
 #include "musicsemaphoreloop.h"
 #include "musicdownloadquerywsthread.h"
+#include "musicnumberdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -150,7 +151,7 @@ void MusicWSPlaylistCommentsThread::startToSearch(const QString &name)
 void MusicWSPlaylistCommentsThread::startToPage(int offset)
 {
     Q_UNUSED(offset);
-    QTimer::singleShot(1, this, SLOT(downLoadFinished()));
+    QTimer::singleShot(MT_MS, this, SLOT(downLoadFinished()));
 }
 
 void MusicWSPlaylistCommentsThread::downLoadFinished()

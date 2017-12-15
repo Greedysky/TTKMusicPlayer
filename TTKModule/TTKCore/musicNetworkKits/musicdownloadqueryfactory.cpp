@@ -1,6 +1,6 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicsettingmanager.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywythread.h"
 #include "musicdownloadqueryxmthread.h"
 #include "musicdownloadquerykgthread.h"
@@ -9,7 +9,7 @@
 #include "musicdownloadqueryqqthread.h"
 #include "musicdownloadquerymgthread.h"
 #include "musicdownloadquerywsthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywymoviethread.h"
 #include "musicdownloadqueryxmmoviethread.h"
 #include "musicdownloadquerykgmoviethread.h"
@@ -18,7 +18,7 @@
 #include "musicdownloadqueryqqmoviethread.h"
 #include "musicdownloadquerymgmoviethread.h"
 #include "musicdownloadquerywsmoviethread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
 #include "musicdownloadquerykgalbumthread.h"
@@ -27,7 +27,7 @@
 #include "musicdownloadqueryqqalbumthread.h"
 #include "musicdownloadquerymgalbumthread.h"
 #include "musicdownloadquerywsalbumthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywyartistthread.h"
 #include "musicdownloadqueryxmartistthread.h"
 #include "musicdownloadquerykgartistthread.h"
@@ -36,7 +36,7 @@
 #include "musicdownloadqueryqqartistthread.h"
 #include "musicdownloadquerymgartistthread.h"
 #include "musicdownloadquerywsartistthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywytoplistthread.h"
 #include "musicdownloadqueryqqtoplistthread.h"
 #include "musicdownloadqueryxmtoplistthread.h"
@@ -45,7 +45,7 @@
 #include "musicdownloadquerykwtoplistthread.h"
 #include "musicdownloadquerymgtoplistthread.h"
 #include "musicdownloadquerywstoplistthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicdownloadqueryqqplaylistthread.h"
 #include "musicdownloadquerybdplaylistthread.h"
@@ -54,7 +54,7 @@
 #include "musicdownloadquerykwplaylistthread.h"
 #include "musicdownloadquerymgplaylistthread.h"
 #include "musicdownloadquerywsplaylistthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicdownloadquerywyrecommendthread.h"
 #include "musicdownloadqueryqqrecommendthread.h"
 #include "musicdownloadquerybdrecommendthread.h"
@@ -63,7 +63,7 @@
 #include "musicdownloadquerykwrecommendthread.h"
 #include "musicdownloadquerymgrecommendthread.h"
 #include "musicdownloadquerywsrecommendthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicwycommentsthread.h"
 #include "musicxmcommentsthread.h"
 #include "musicbdcommentsthread.h"
@@ -72,7 +72,7 @@
 #include "musicqqcommentsthread.h"
 #include "musicmgcommentsthread.h"
 #include "musicwscommentsthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicwydiscoverlistthread.h"
 #include "musicxmdiscoverlistthread.h"
 #include "musicbddiscoverlistthread.h"
@@ -81,7 +81,7 @@
 #include "musickwdiscoverlistthread.h"
 #include "musicmgdiscoverlistthread.h"
 #include "musicwsdiscoverlistthread.h"
-
+///////////////////////////////////////////////////////
 #include "musicwysongsuggestthread.h"
 #include "musicxmsongsuggestthread.h"
 #include "musicbdsongsuggestthread.h"
@@ -90,9 +90,18 @@
 #include "musickwsongsuggestthread.h"
 #include "musicmgsongsuggestthread.h"
 #include "musicwssongsuggestthread.h"
-
+///////////////////////////////////////////////////////
+#include "musicwyartistsimilarthread.h"
+#include "musicxmartistsimilarthread.h"
+#include "musicbdartistsimilarthread.h"
+#include "musicqqartistsimilarthread.h"
+#include "musickgartistsimilarthread.h"
+#include "musickwartistsimilarthread.h"
+#include "musicmgartistsimilarthread.h"
+#include "musicwsartistsimilarthread.h"
+///////////////////////////////////////////////////////
 #include "musicdatadownloadthread.h"
-
+///////////////////////////////////////////////////////
 #include "musictextdownloadthread.h"
 #include "musicwytextdownloadthread.h"
 #include "musicxmtextdownloadthread.h"
@@ -100,7 +109,7 @@
 #include "musicqqtextdownloadthread.h"
 #include "musicmgtextdownloadthread.h"
 #include "musicwstextdownloadthread.h"
-
+///////////////////////////////////////////////////////
 #include "musickwbackgroundthread.h"
 #include "musicqqbackgroundthread.h"
 
@@ -266,6 +275,27 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getSimilarSongThread(QObject *parent)
 {
     return getQueryThread(parent);
+}
+
+MusicDownLoadSimilarThread *MusicDownLoadQueryFactory::getSimilarArtistThread(QObject *parent)
+{
+    MusicDownLoadSimilarThread *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicWYArtistSimilarThread(parent); break;
+        case 1:  thread = new MusicQQArtistSimilarThread(parent); break;
+        case 2:  thread = new MusicXMArtistSimilarThread(parent); break;
+        case 3:  thread = new MusicBDArtistSimilarThread(parent); break;
+        case 4:  thread = new MusicKWArtistSimilarThread(parent); break;
+        case 5:  thread = new MusicKGArtistSimilarThread(parent); break;
+        case 6:  thread = new MusicMGArtistSimilarThread(parent); break;
+        case 7:  thread = new MusicWSArtistSimilarThread(parent); break;
+        case 8:  thread = new MusicWSArtistSimilarThread(parent); break;
+        case 9:  thread = new MusicWSArtistSimilarThread(parent); break;
+        default: thread = new MusicWYArtistSimilarThread(parent);
+    }
+    return thread;
 }
 
 MusicDownLoadSongSuggestThread *MusicDownLoadQueryFactory::getSuggestThread(QObject *parent)

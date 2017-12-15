@@ -2,6 +2,7 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicdownloadsourcethread.h"
 #include "musicdownloadquerymoviethread.h"
+#include "musicdownloadsimilarthread.h"
 #include "musicrightareawidget.h"
 #include "musicpagingwidgetobject.h"
 #include "musictinyuiobject.h"
@@ -191,6 +192,80 @@ void MusicArtistMvsFoundWidget::buttonClicked(int index)
 
 
 
+MusicArtistSimilarFoundWidget::MusicArtistSimilarFoundWidget(QWidget *parent)
+    : MusicFoundAbstractWidget(parent)
+{
+    delete m_statusLabel;
+    m_statusLabel = nullptr;
+    QWidget *function = new QWidget(m_mainWindow);
+    m_gridLayout = new QGridLayout(function);
+    function->setLayout(m_gridLayout);
+    m_mainWindow->layout()->addWidget(function);
+    m_container->show();
+
+    m_shareType = MusicSongSharingWidget::Artist;
+    m_similarThread = M_DOWNLOAD_QUERY_PTR->getSimilarArtistThread(this);
+    connect(m_similarThread, SIGNAL(createSimilarItems(MusicPlaylistItem)), SLOT(createArtistSimilarItem(MusicPlaylistItem)));
+}
+
+MusicArtistSimilarFoundWidget::~MusicArtistSimilarFoundWidget()
+{
+    delete m_gridLayout;
+}
+
+QString MusicArtistSimilarFoundWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicArtistSimilarFoundWidget::setSongName(const QString &name)
+{
+    MusicFoundAbstractWidget::setSongName(name);
+    m_similarThread->startToSearch(m_songNameFull);
+}
+
+void MusicArtistSimilarFoundWidget::setSongNameById(const QString &id)
+{
+    MusicFoundAbstractWidget::setSongName(id);
+    m_similarThread->startToSearch(m_songNameFull);
+}
+
+void MusicArtistSimilarFoundWidget::resizeWindow()
+{
+    if(!m_resizeWidgets.isEmpty())
+    {
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        {
+            m_gridLayout->removeWidget(m_resizeWidgets[i]);
+        }
+
+        int lineNumber = width()/MAX_LABEL_SIZE;
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        {
+            m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
+        }
+    }
+}
+
+void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicPlaylistItem &item)
+{
+    MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
+    connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
+    label->setMusicItem(item);
+
+    int lineNumber = width()/MAX_LABEL_SIZE;
+    m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
+                                   m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
+    m_resizeWidgets << label;
+}
+
+void MusicArtistSimilarFoundWidget::currentItemClicked(const QString &id)
+{
+    MusicRightAreaWidget::instance()->musicArtistSimilar(id);
+}
+
+
+
 MusicArtistAlbumsFoundWidget::MusicArtistAlbumsFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
@@ -297,6 +372,7 @@ MusicArtistFoundWidget::MusicArtistFoundWidget(QWidget *parent)
 {
     m_artistAlbums = nullptr;
     m_artistMvs = nullptr;
+    m_artistSim = nullptr;
     m_shareType = MusicSongSharingWidget::Artist;
     m_foundTableWidget = new MusicArtistFoundTableWidget(this);
     m_foundTableWidget->hide();
@@ -308,6 +384,7 @@ MusicArtistFoundWidget::~MusicArtistFoundWidget()
 {
     delete m_artistAlbums;
     delete m_artistMvs;
+    delete m_artistSim;
 }
 
 QString MusicArtistFoundWidget::getClassName()
@@ -431,18 +508,23 @@ void MusicArtistFoundWidget::setCurrentIndex(int index)
     m_artistAlbums = nullptr;
     delete m_artistMvs;
     m_artistMvs = nullptr;
+    delete m_artistSim;
+    m_artistSim = nullptr;
 
     if(index == 2)
     {
-        initThirdWidget();
+        initFivethWidget();
     }
     else if(index == 3)
     {
-        index--;
+        initThirdWidget();
+    }
+    else if(index == 4)
+    {
         initFourthWidget();
     }
 
-    m_container->setCurrentIndex(index);
+    m_container->setCurrentIndex(index > 2 ? 2 : index);
 }
 
 void MusicArtistFoundWidget::createLabels()
@@ -585,6 +667,11 @@ void MusicArtistFoundWidget::createLabels()
     infoButton->setFixedSize(100, 25);
     infoButton->setCursor(QCursor(Qt::PointingHandCursor));
     hlayout->addWidget(infoButton);
+    QPushButton *similarButton = new QPushButton(functionWidget);
+    similarButton->setText(tr("Similar"));
+    similarButton->setFixedSize(100, 25);
+    similarButton->setCursor(QCursor(Qt::PointingHandCursor));
+    hlayout->addWidget(similarButton);
     QPushButton *albumsButton = new QPushButton(functionWidget);
     albumsButton->setText(tr("Albums"));
     albumsButton->setFixedSize(100, 25);
@@ -601,8 +688,9 @@ void MusicArtistFoundWidget::createLabels()
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(m_songButton, 0);
     group->addButton(infoButton, 1);
-    group->addButton(albumsButton, 2);
-    group->addButton(mvsButton, 3);
+    group->addButton(similarButton, 2);
+    group->addButton(albumsButton, 3);
+    group->addButton(mvsButton, 4);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
 
 #ifdef Q_OS_UNIX
@@ -610,7 +698,9 @@ void MusicArtistFoundWidget::createLabels()
     shareButton->setFocusPolicy(Qt::NoFocus);
     m_songButton->setFocusPolicy(Qt::NoFocus);
     infoButton->setFocusPolicy(Qt::NoFocus);
+    similarButton->setFocusPolicy(Qt::NoFocus);
     albumsButton->setFocusPolicy(Qt::NoFocus);
+    mvsButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
     //////////////////////////////////////////////////////////////////////
@@ -635,4 +725,11 @@ void MusicArtistFoundWidget::initFourthWidget()
     m_artistMvs = new MusicArtistMvsFoundWidget(m_container);
     m_container->addWidget(m_artistMvs);
     m_artistMvs->setSongName(m_songNameFull);
+}
+
+void MusicArtistFoundWidget::initFivethWidget()
+{
+    m_artistSim = new MusicArtistSimilarFoundWidget(m_container);
+    m_container->addWidget(m_artistSim);
+    m_artistSim->setSongName(m_songNameFull);
 }

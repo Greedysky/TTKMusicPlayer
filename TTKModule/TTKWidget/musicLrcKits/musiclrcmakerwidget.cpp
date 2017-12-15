@@ -110,7 +110,7 @@ void MusicLrcMakerWidgetItem::moveRight()
     {
         m_painetLineDone = true;
         m_paintIndex = w;
-        QTimer::singleShot(1, m_parentObject, SLOT(currentLineFinished()));
+        QTimer::singleShot(MT_MS, m_parentObject, SLOT(currentLineFinished()));
     }
     update();
 }

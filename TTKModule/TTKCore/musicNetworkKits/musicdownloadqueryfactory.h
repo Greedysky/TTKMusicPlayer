@@ -24,6 +24,7 @@
 
 #define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
 
+class MusicDownLoadSimilarThread;
 class MusicDownLoadSongSuggestThread;
 class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
@@ -74,6 +75,10 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = 0);
 
+    /*!
+     * Get similar query thread object by type.
+     */
+    MusicDownLoadSimilarThread *getSimilarArtistThread(QObject *parent = 0);
     /*!
      * Get suggest thread object by type.
      */

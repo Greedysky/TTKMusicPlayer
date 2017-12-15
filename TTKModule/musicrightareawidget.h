@@ -137,6 +137,10 @@ public:
      */
     void showSettingWidget() const;
     /*!
+     * Music artist similar function.
+     */
+    void musicArtistSimilar(const QString &id);
+    /*!
      * Music artist albums function.
      */
     void musicArtistAlbums(const QString &id);
@@ -176,6 +180,10 @@ public Q_SLOTS:
      * Music album function that by string.
      */
     void musicAlbumFound(const QString &text, const QString &id);
+    /*!
+     * Music artist similar function.
+     */
+    void musicArtistSimilarFound();
     /*!
      * Music artist albums function.
      */

@@ -1,4 +1,5 @@
 #include "musicdownloadquerywsalbumthread.h"
+#include "musicnumberdefine.h"
 
 #include <QTimer>
 
@@ -17,7 +18,7 @@ QString MusicDownLoadQueryWSAlbumThread::getClassName()
 void MusicDownLoadQueryWSAlbumThread::startToSearch(const QString &album)
 {
     Q_UNUSED(album);
-    QTimer::singleShot(1, this, SLOT(downLoadFinished()));
+    QTimer::singleShot(MT_MS, this, SLOT(downLoadFinished()));
 }
 
 void MusicDownLoadQueryWSAlbumThread::downLoadFinished()
