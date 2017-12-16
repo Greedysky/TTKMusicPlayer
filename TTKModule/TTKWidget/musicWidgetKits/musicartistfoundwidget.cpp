@@ -414,14 +414,9 @@ void MusicArtistFoundWidget::resizeWindow()
 {
     m_foundTableWidget->resizeWindow();
 
-    if(m_artistAlbums)
-    {
-       m_artistAlbums->resizeWindow();
-    }
-    if(m_artistMvs)
-    {
-       m_artistMvs->resizeWindow();
-    }
+    if(m_artistAlbums) m_artistAlbums->resizeWindow();
+    if(m_artistMvs) m_artistMvs->resizeWindow();
+    if(m_artistSim) m_artistSim->resizeWindow();
 }
 
 void MusicArtistFoundWidget::queryAllFinished()
@@ -504,6 +499,9 @@ void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
 
 void MusicArtistFoundWidget::setCurrentIndex(int index)
 {
+    if(m_foundTableWidget) m_foundTableWidget->hide();
+    if(m_infoLabel) m_infoLabel->hide();
+
     delete m_artistAlbums;
     m_artistAlbums = nullptr;
     delete m_artistMvs;
@@ -511,7 +509,15 @@ void MusicArtistFoundWidget::setCurrentIndex(int index)
     delete m_artistSim;
     m_artistSim = nullptr;
 
-    if(index == 2)
+    if(index == 0)
+    {
+        m_foundTableWidget->show();
+    }
+    else if(index == 1)
+    {
+        m_infoLabel->show();
+    }
+    else if(index == 2)
     {
         initFivethWidget();
     }

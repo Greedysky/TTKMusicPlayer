@@ -263,10 +263,21 @@ void MusicPlaylistFoundInfoWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 
 void MusicPlaylistFoundInfoWidget::setCurrentIndex(int index)
 {
+    if(m_foundTableWidget) m_foundTableWidget->hide();
+    if(m_infoLabel) m_infoLabel->hide();
+
     delete m_commentsWidget;
     m_commentsWidget = nullptr;
 
-    if(index == 2)
+    if(index == 0)
+    {
+        m_foundTableWidget->show();
+    }
+    else if(index == 1)
+    {
+        m_infoLabel->show();
+    }
+    else if(index == 2)
     {
         initThirdWidget();
     }
