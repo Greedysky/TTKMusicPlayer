@@ -34,6 +34,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     QStringList getAllText = QString(data).split("\n");
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
+        getAllText[0].clear();
         int perTime = MusicApplication::instance()->duration()/getAllText.count();
         foreach(const QString &oneLine, getAllText)
         {
