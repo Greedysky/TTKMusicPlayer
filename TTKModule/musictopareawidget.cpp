@@ -288,7 +288,9 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 
 void MusicTopAreaWidget::musicBgThemeChangedByResize()
 {
+    m_ui->background->setNoAnimation(true);
     drawWindowBackgroundRectString();
+    m_ui->background->setNoAnimation(false);
 }
 
 void MusicTopAreaWidget::musicPlayListTransparent(int index)
