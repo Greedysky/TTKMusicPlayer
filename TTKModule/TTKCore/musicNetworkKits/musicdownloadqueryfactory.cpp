@@ -100,6 +100,9 @@
 #include "musicmgartistsimilarthread.h"
 #include "musicwsartistsimilarthread.h"
 ///////////////////////////////////////////////////////
+#include "musictranslationthread.h"
+#include "musicwytranslationthread.h"
+///////////////////////////////////////////////////////
 #include "musicdatadownloadthread.h"
 ///////////////////////////////////////////////////////
 #include "musictextdownloadthread.h"
@@ -112,6 +115,7 @@
 ///////////////////////////////////////////////////////
 #include "musickwbackgroundthread.h"
 #include "musicqqbackgroundthread.h"
+///////////////////////////////////////////////////////
 
 QString MusicDownLoadQueryFactory::getClassName()
 {
@@ -378,6 +382,27 @@ MusicDownLoadDiscoverListThread *MusicDownLoadQueryFactory::getDiscoverListThrea
         case 8:  thread = new MusicWSDiscoverListThread(parent); break;
         case 9:  thread = new MusicWSDiscoverListThread(parent); break;
         default: thread = new MusicWYDiscoverListThread(parent);
+    }
+    return thread;
+}
+
+MusicTranslationThreadAbstract *MusicDownLoadQueryFactory::getTranslationThread(QObject *parent)
+{
+    MusicTranslationThreadAbstract *thread = nullptr;
+    int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    switch( index )
+    {
+        case 0:  thread = new MusicWYTranslationThread(parent); break;
+        case 1:  thread = new MusicTranslationThread(parent); break;
+        case 2:  thread = new MusicTranslationThread(parent); break;
+        case 3:  thread = new MusicTranslationThread(parent); break;
+        case 4:  thread = new MusicTranslationThread(parent); break;
+        case 5:  thread = new MusicTranslationThread(parent); break;
+        case 6:  thread = new MusicTranslationThread(parent); break;
+        case 7:  thread = new MusicTranslationThread(parent); break;
+        case 8:  thread = new MusicTranslationThread(parent); break;
+        case 9:  thread = new MusicTranslationThread(parent); break;
+        default: thread = new MusicTranslationThread(parent);
     }
     return thread;
 }

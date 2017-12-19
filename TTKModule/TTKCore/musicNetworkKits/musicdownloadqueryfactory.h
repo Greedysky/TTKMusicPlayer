@@ -30,6 +30,7 @@ class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
 class MusicDownloadBackgroundThread;
+class MusicTranslationThreadAbstract;
 
 /*! @brief The class to produce the downlaod query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -95,6 +96,10 @@ public:
      * Get discover list thread object by type.
      */
     MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
+    /*!
+     * Get translation object by type.
+     */
+    MusicTranslationThreadAbstract *getTranslationThread(QObject *parent = 0);
 
     /*!
      * Get download small picture object by type.
@@ -111,7 +116,6 @@ public:
     /*!
      * Get download big picture object by type.
      */
-
     MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
                                                            QObject *parent = 0);
 

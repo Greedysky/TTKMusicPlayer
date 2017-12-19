@@ -52,6 +52,7 @@ HEADERS  += \
     $$PWD/wy/musicwycommentsthread.h \
     $$PWD/wy/musicwyartistsimilarthread.h \
     $$PWD/wy/musicwysongsuggestthread.h \
+    $$PWD/wy/musicwytranslationthread.h \
     $$PWD/xm/musicdownloadxminterface.h \
     $$PWD/xm/musicdownloadqueryxmthread.h \
     $$PWD/xm/musicdownloadqueryxmalbumthread.h \
@@ -157,6 +158,7 @@ HEADERS  += \
     $$PWD/ztl/musicsourceupdatethread.h \
     $$PWD/ztl/musicdownloadcounterpvthread.h \
     $$PWD/ztl/musicdownloadbackgroundremotethread.h \
+    $$PWD/ztl/musictranslationthreadabstract.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicdownloadqueryfactory.h \
@@ -197,6 +199,7 @@ SOURCES += \
     $$PWD/wy/musicwycommentsthread.cpp \
     $$PWD/wy/musicwysongsuggestthread.cpp \
     $$PWD/wy/musicwyartistsimilarthread.cpp \
+    $$PWD/wy/musicwytranslationthread.cpp \
     $$PWD/xm/musicdownloadxminterface.cpp \
     $$PWD/xm/musicdownloadqueryxmthread.cpp \
     $$PWD/xm/musicdownloadqueryxmalbumthread.cpp \
@@ -302,6 +305,7 @@ SOURCES += \
     $$PWD/ztl/musicsourceupdatethread.cpp \
     $$PWD/ztl/musicdownloadcounterpvthread.cpp \
     $$PWD/ztl/musicdownloadbackgroundremotethread.cpp \
+    $$PWD/ztl/musictranslationthreadabstract.cpp \
     $$PWD/musicnetworkabstract.cpp \
     $$PWD/musicdownloadthreadabstract.cpp \
     $$PWD/musicdownloadqueryfactory.cpp \

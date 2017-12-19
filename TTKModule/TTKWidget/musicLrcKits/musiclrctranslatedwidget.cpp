@@ -42,6 +42,7 @@ MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     connect(closeButton, SIGNAL(clicked()), SLOT(close()));
 
     m_plainText = new QLabel(this);
+    m_plainText->setWordWrap(true);
     m_plainText->setAlignment(Qt::AlignCenter);
 
     QScrollArea *scrollArea = new QScrollArea(this);

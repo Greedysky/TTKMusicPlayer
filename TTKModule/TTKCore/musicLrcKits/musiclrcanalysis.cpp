@@ -5,7 +5,8 @@
 #include <qmath.h>
 #include "musictime.h"
 #include "musicapplication.h"
-#include "musictranslationthread.h"
+#include "musicdownloadqueryfactory.h"
+#include "musictranslationthreadabstract.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -580,25 +581,25 @@ QString MusicLrcAnalysis::getAllLrcString() const
 
 void MusicLrcAnalysis::getTranslatedLrc()
 {
-    if(m_translationThread == nullptr)
+    delete m_translationThread;
+    m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationThread(this);
+    if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
-        m_translationThread = new MusicTranslationThread(this);
-        if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
-        {
-            connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
-                                         SLOT(getTranslatedLrcFinished(QString)));
-        }
+        connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
+                                     SLOT(getTranslatedLrcFinished(QString)));
     }
 
     QString data;
-    foreach(const QString &s, m_lrcContainer.values())
+    foreach(const qint64 &key, m_lrcContainer.keys())
     {
-        data.append(s);
+        data.append(QString("[%1.000]").arg(MusicTime::msecTime2LabelJustified(key)) + m_lrcContainer.value(key));
 #ifdef Q_OS_UNIX
         data.append("\r");
 #endif
     }
 
-    m_translationThread->startToDownload(MusicTranslationThread::Type_Auto,
-                                         MusicTranslationThread::Type_Zh, data);
+    QVariantMap dtMap;
+    dtMap["name"] = m_currentLrcFileName;
+    m_translationThread->setRawData(dtMap);
+    m_translationThread->startToDownload(data);
 }

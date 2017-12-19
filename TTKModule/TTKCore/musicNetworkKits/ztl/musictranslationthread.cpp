@@ -3,11 +3,12 @@
 #///QJson import
 #include "qjson/parser.h"
 
+const QString TRANSLATION_URL = "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU=";
+
 MusicTranslationThread::MusicTranslationThread(QObject *parent)
-    : MusicNetworkAbstract(parent)
+    : MusicTranslationThreadAbstract(parent)
 {
-    m_reply = nullptr;
-    m_manager = nullptr;
+
 }
 
 MusicTranslationThread::~MusicTranslationThread()
@@ -20,13 +21,16 @@ QString MusicTranslationThread::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicTranslationThread::startToDownload(const QString &data)
+{
+    startToDownload(MusicTranslationThread::Type_Auto, MusicTranslationThread::Type_Zh, data);
+}
+
 void MusicTranslationThread::startToDownload(TranslationType from, TranslationType to, const QString &data)
 {
-    m_manager = new QNetworkAccessManager(this);
-
     QNetworkRequest request;
     request.setUrl( MusicUtils::Algorithm::mdII(TRANSLATION_URL, false).arg(mapTypeFromEnumToString(from))
-                                            .arg(data).arg(mapTypeFromEnumToString(to)) );
+                                           .arg(data).arg(mapTypeFromEnumToString(to)) );
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
@@ -39,6 +43,7 @@ void MusicTranslationThread::startToDownload(TranslationType from, TranslationTy
 
     m_reply = m_manager->get( request );
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
+    connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
 QString MusicTranslationThread::mapTypeFromEnumToString(TranslationType type)
