@@ -95,6 +95,10 @@ public Q_SLOTS:
      */
     void musicAboutUs();
     /*!
+     * Show bug report view.
+     */
+    void musicBugReportView();
+    /*!
      * Show version update widget.
      */
     void musicVersionUpdate();

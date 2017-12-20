@@ -153,6 +153,7 @@
         <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
         <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
         <file alias="btn_lrc_label">../TTKResource/contextMenu/btn_lrc_label.png</file>
+        <file alias="btn_bug_reoprt">../TTKResource/contextMenu/btn_bug_reoprt.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>

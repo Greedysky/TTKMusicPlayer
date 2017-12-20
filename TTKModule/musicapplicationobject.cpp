@@ -15,6 +15,8 @@
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicotherdefine.h"
+#include "musiccoreutils.h"
+#include "musicalgorithmutils.h"
 
 #include "qdevicewatcher.h"
 
@@ -239,6 +241,11 @@ void MusicApplicationObject::windowCloseAnimationFinished()
 void MusicApplicationObject::musicAboutUs()
 {
     MusicMessageAboutDialog().exec();
+}
+
+void MusicApplicationObject::musicBugReportView()
+{
+    MusicUtils::Core::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
 }
 
 void MusicApplicationObject::musicVersionUpdate()
