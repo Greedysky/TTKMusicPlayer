@@ -141,6 +141,7 @@ void MusicSourceUpdateWidget::start()
 
 void MusicSourceUpdateWidget::upgradeButtonClicked()
 {
+#ifdef Q_OS_WIN
     m_ui->stackedWidget->setCurrentIndex(SOURCE_UPDATE_INDEX_1);
     QString localDwonload = "v" + m_newVersionStr + EXE_FILE;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(QString("%1%2").arg(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false)).arg(localDwonload),
@@ -149,6 +150,11 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downloadProgressFinished()));
     connect(download, SIGNAL(downloadSpeedLabelChanged(QString,qint64)), SLOT(downloadSpeedLabelChanged(QString,qint64)));
     download->startToDownload();
+#else
+    MusicMessageBox message(this);
+    message.setText(tr("Current Platform Not Supported!"));
+    message.exec();
+#endif
 }
 
 void MusicSourceUpdateWidget::upgradeFailedClicked()
