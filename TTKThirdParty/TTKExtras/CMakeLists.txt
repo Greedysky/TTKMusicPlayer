@@ -12,7 +12,6 @@ endif(COMMAND cmake_policy)
 add_definitions(-DQT_NO_DEBUG)
 add_definitions(-DQT_THREAD)
 
-
 set(QT_WEBKIT_MODULE_NAME "libQt5WebKit")
 set(QT_WEBENGINE_MODULE_NAME "libQt5WebEngine")
 set(USE_QT_WEBKIT_MODULE "0")
@@ -112,6 +111,8 @@ set(MUSIC_HEADERS
     qhz2py/pinyinresource.h
     qhz2py/chinesehelper.h
     qhz2py/pinyinhelper.h
+    qimage/gaussianblur.h
+    qimage/qimagewrap.h
     qshortcut/qxtglobal.h
     qshortcut/qxtglobalshortcut.h
     qshortcut/qxtglobalshortcut_p.h
@@ -159,6 +160,8 @@ set(MUSIC_SOURCES
     qhz2py/pinyinresource.cpp
     qhz2py/chinesehelper.cpp
     qhz2py/pinyinhelper.cpp
+    qimage/gaussianblur.cpp
+    qimage/qimagewrap.cpp
     qkugou/kugouurl.cpp
     qkugou/kugouwindow.cpp
     qrencode/bitstream.c

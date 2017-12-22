@@ -44,8 +44,6 @@ unix:!mac{
     LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
 }
 
-DEFINES += _USE_MATH_DEFINES
-
 include(../TTKExtrasDefine.pri)
 
 include(qalg/QAlg.pri)

@@ -3,10 +3,12 @@
 #include <cmath>
 #include <iostream>
 
+#define PI		3.14159265358979323846
+
 void GaussianBlur::gaussBlur1(int* pix, int w, int h, int radius)
 {
     float sigma =  1.0 * radius / 2.57;
-    float deno  =  1.0 / (sigma * sqrt(2.0 * M_PI));
+    float deno  =  1.0 / (sigma * sqrt(2.0 * PI));
     float nume  = -1.0 / (2.0 * sigma * sigma);
 
     float* gaussMatrix = (float*)malloc(sizeof(float)* (radius + radius + 1));
