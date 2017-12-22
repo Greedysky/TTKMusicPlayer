@@ -44,10 +44,13 @@ unix:!mac{
     LIBS += -L../../lib/$$TTKMusicPlayer -lTTKUi
 }
 
+DEFINES += _USE_MATH_DEFINES
+
 include(../TTKExtrasDefine.pri)
 
 include(qalg/QAlg.pri)
 include(qhz2py/QHz2Py.pri)
+include(qimage/QImage.pri)
 include(qiniu/QiNiu.pri)
 include(qjson/QJson.pri)
 include(qkugou/QKuGou.pri)

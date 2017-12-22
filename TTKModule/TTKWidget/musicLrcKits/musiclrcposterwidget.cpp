@@ -7,7 +7,7 @@
 #include "musicextractwrap.h"
 #include "musicbackgroundconfigmanager.h"
 
-#include "qimagewrap.h"
+#include "qimage/qimagewrap.h"
 #include "qhz2py/chinesehelper.h"
 
 #include <qmath.h>
@@ -483,7 +483,8 @@ void MusicLrcPosterItemWidget::drawTheme10(QPainter *painter)
     int gWidth = pix.width()*3/4;
     int gHeight = pix.height()*3/4;
     QRect gaussRect = QRect((pix.width() - gWidth)/2, (pix.height() - gHeight)/2, gWidth, gHeight);
-    QImage gauss = QImageWrap().GaussFilter(pix.copy(gaussRect).toImage());
+    QImage gauss = pix.copy(gaussRect).toImage();
+    QImageWrap().GaussFilter(gauss);
 
     gaussRect = QRect((pix.width() - gWidth)/2, (pix.height() - gHeight)/2 + fixedOffset, gWidth, gHeight);
     painter->drawPixmap(gaussRect, QPixmap::fromImage(gauss));

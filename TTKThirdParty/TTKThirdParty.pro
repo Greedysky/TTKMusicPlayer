@@ -17,4 +17,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = Zlib TTKDumper TTKWatcher TTKImage TTKExtras
+SUBDIRS = Zlib TTKDumper TTKWatcher TTKExtras

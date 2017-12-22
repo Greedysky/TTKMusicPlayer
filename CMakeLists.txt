@@ -105,7 +105,6 @@ include_directories(
     ${MUSIC_THIRDPARTY_DIR}/TTKWatcher
     ${MUSIC_THIRDPARTY_DIR}/TTKDumper
     ${MUSIC_THIRDPARTY_DIR}/TTKExtras
-    ${MUSIC_THIRDPARTY_DIR}/TTKImage
 )
 
 

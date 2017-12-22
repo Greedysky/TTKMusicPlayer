@@ -1,5 +1,5 @@
-#ifndef QIMAGEWRAP_H
-#define QIMAGEWRAP_H
+#ifndef GAUSSIANBLUR_H
+#define GAUSSIANBLUR_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,17 +21,21 @@
 
 #include "musicextrasglobaldefine.h"
 
-/*! @brief The namespace of the image wrapper.
+/*! @brief The namespace of the Gaussian Blur.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_EXTRAS_EXPORT QImageWrap
+class MUSIC_EXTRAS_EXPORT GaussianBlur
 {
 public:
-    /*!
-     * Image gauss filter.
-     */
-    QImage GaussFilter(const QImage &image, int radius = 10);
+    void gaussBlur1(int* pix, int w, int h, int radius);
+    void gaussBlur2(int* pix, int w, int h, int radius);
+
+private:
+    void boxBlurH(int* srcPix, int* destPix, int w, int h, int radius);
+    void boxBlurV(int* srcPix, int* destPix, int w, int h, int radius);
+    void boxBlur(int* srcPix, int* destPix, int w, int h, int r);
+    void boxesForGauss(float sigma, int* size, int n);
 
 };
 
-#endif // QIMAGEWRAP_H
+#endif // GAUSSIANBLUR_H
