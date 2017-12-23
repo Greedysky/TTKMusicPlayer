@@ -171,89 +171,89 @@
     </Kugou>
     <WangYi>
         <tag value="默认">
-            <value key="%E5%85%A8%E9%83%A8" value="全部"/>
+            <value key="全部" value="全部"/>
         </tag>
         <tag value="语种">
-            <value key="%E5%8D%8E%E8%AF%AD" value="华语"/>
-            <value key="%E6%AC%A7%E7%BE%8E" value="欧美"/>
-            <value key="%E6%97%A5%E8%AF%AD" value="日语"/>
-            <value key="%E9%9F%A9%E8%AF%AD" value="韩语"/>
-            <value key="%E7%B2%A4%E8%AF%AD" value="粤语"/>
-            <value key="%E5%B0%8F%E8%AF%AD%E7%A7%8D" value="小语种"/>
+            <value key="华语" value="华语"/>
+            <value key="欧美" value="欧美"/>
+            <value key="日语" value="日语"/>
+            <value key="韩语" value="韩语"/>
+            <value key="粤语" value="粤语"/>
+            <value key="小语种" value="小语种"/>
         </tag>
         <tag value="风格">
-            <value key="%E6%B5%81%E8%A1%8C" value="流行"/>
-            <value key="%E6%91%87%E6%BB%9A" value="摇滚"/>
-            <value key="%E6%B0%91%E8%B0%A3" value="民谣"/>
-            <value key="%E7%94%B5%E5%AD%90" value="电子"/>
-            <value key="%E8%88%9E%E6%9B%B2" value="舞曲"/>
-            <value key="%E8%AF%B4%E5%94%B1" value="说唱"/>
-            <value key="%E8%BD%BB%E9%9F%B3%E4%B9%90" value="轻音乐"/>
-            <value key="%E7%88%B5%E5%A3%AB" value="爵士"/>
-            <value key="%E4%B9%A1%E6%9D%91" value="乡村"/>
-            <value key="R%26B%2FSoul" value="RnB/Soul"/>
-            <value key="%E5%8F%A4%E5%85%B8" value="古典"/>
-            <value key="%E6%B0%91%E6%97%8F" value="民族"/>
-            <value key="%E8%8B%B1%E4%BC%A6" value="英伦"/>
-            <value key="%E9%87%91%E5%B1%9E" value="金属"/>
-            <value key="%E6%9C%8B%E5%85%8B" value="朋克"/>
-            <value key="%E8%93%9D%E8%B0%83" value="蓝调"/>
-            <value key="%E9%9B%B7%E9%AC%BC" value="雷鬼"/>
-            <value key="%E4%B8%96%E7%95%8C%E9%9F%B3%E4%B9%90" value="世界音乐"/>
-            <value key="%E6%8B%89%E4%B8%81" value="拉丁"/>
-            <value key="%E5%8F%A6%E7%B1%BB%2F%E7%8B%AC%E7%AB%8B" value="另类/独立"/>
-            <value key="New%20Age" value="New Age"/>
-            <value key="%E5%8F%A4%E9%A3%8E" value="古风"/>
-            <value key="%E5%90%8E%E6%91%87" value="后摇"/>
-            <value key="Bossa%20Nova" value="Bossa Nova"/>
+            <value key="流行" value="流行"/>
+            <value key="摇滚" value="摇滚"/>
+            <value key="民谣" value="民谣"/>
+            <value key="电子" value="电子"/>
+            <value key="舞曲" value="舞曲"/>
+            <value key="说唱" value="说唱"/>
+            <value key="轻音乐" value="轻音乐"/>
+            <value key="爵士" value="爵士"/>
+            <value key="乡村" value="乡村"/>
+            <value key="R&amp;B/Soul" value="RnB/Soul"/>
+            <value key="古典" value="古典"/>
+            <value key="民族" value="民族"/>
+            <value key="英伦" value="英伦"/>
+            <value key="金属" value="金属"/>
+            <value key="朋克" value="朋克"/>
+            <value key="蓝调" value="蓝调"/>
+            <value key="雷鬼" value="雷鬼"/>
+            <value key="世界音乐" value="世界音乐"/>
+            <value key="拉丁" value="拉丁"/>
+            <value key="另类/独立" value="另类/独立"/>
+            <value key="New Age" value="New Age"/>
+            <value key="古风" value="古风"/>
+            <value key="后摇" value="后摇"/>
+            <value key="Bossa Nova" value="Bossa Nova"/>
         </tag>
         <tag value="场景">
-            <value key="%E6%B8%85%E6%99%A8" value="清晨"/>
-            <value key="%E5%A4%9C%E6%99%9A" value="夜晚"/>
-            <value key="%E5%AD%A6%E4%B9%A0" value="学习"/>
-            <value key="%E5%B7%A5%E4%BD%9C" value="工作"/>
-            <value key="%E5%8D%88%E4%BC%91" value="午休"/>
-            <value key="%E4%B8%8B%E5%8D%88%E8%8C%B6" value="下午茶"/>
-            <value key="%E5%9C%B0%E9%93%81" value="地铁"/>
-            <value key="%E9%A9%BE%E8%BD%A6" value="驾车"/>
-            <value key="%E8%BF%90%E5%8A%A8" value="运动"/>
-            <value key="%E6%97%85%E8%A1%8C" value="旅行"/>
-            <value key="%E6%95%A3%E6%AD%A5" value="散步"/>
-            <value key="%E9%85%92%E5%90%A7" value="酒吧"/>
+            <value key="清晨" value="清晨"/>
+            <value key="夜晚" value="夜晚"/>
+            <value key="学习" value="学习"/>
+            <value key="工作" value="工作"/>
+            <value key="午休" value="午休"/>
+            <value key="下午茶" value="下午茶"/>
+            <value key="地铁" value="地铁"/>
+            <value key="驾车" value="驾车"/>
+            <value key="运动" value="运动"/>
+            <value key="旅行" value="旅行"/>
+            <value key="散步" value="散步"/>
+            <value key="酒吧" value="酒吧"/>
         </tag>
         <tag value="情感">
-            <value key="%E6%80%80%E6%97%A7" value="怀旧"/>
-            <value key="%E6%B8%85%E6%96%B0" value="清新"/>
-            <value key="%E6%B5%AA%E6%BC%AB" value="浪漫"/>
-            <value key="%E6%80%A7%E6%84%9F" value="性感"/>
-            <value key="%E4%BC%A4%E6%84%9F" value="伤感"/>
-            <value key="%E6%B2%BB%E6%84%88" value="治愈"/>
-            <value key="%E6%94%BE%E6%9D%BE" value="放松"/>
-            <value key="%E5%AD%A4%E7%8B%AC" value="孤独"/>
-            <value key="%E6%84%9F%E5%8A%A8" value="感动"/>
-            <value key="%E5%85%B4%E5%A5%8B" value="兴奋"/>
-            <value key="%E5%BF%AB%E4%B9%90" value="快乐"/>
-            <value key="%E5%AE%89%E9%9D%99" value="安静"/>
-            <value key="%E6%80%9D%E5%BF%B5" value="思念"/>
+            <value key="怀旧" value="怀旧"/>
+            <value key="清新" value="清新"/>
+            <value key="浪漫" value="浪漫"/>
+            <value key="性感" value="性感"/>
+            <value key="伤感" value="伤感"/>
+            <value key="治愈" value="治愈"/>
+            <value key="放松" value="放松"/>
+            <value key="孤独" value="孤独"/>
+            <value key="感动" value="感动"/>
+            <value key="兴奋" value="兴奋"/>
+            <value key="快乐" value="快乐"/>
+            <value key="安静" value="安静"/>
+            <value key="思念" value="思念"/>
         </tag>
         <tag value="主题">
-            <value key="%E5%BD%B1%E8%A7%86%E5%8E%9F%E5%A3%B0" value="影视原声"/>
+            <value key="影视原声" value="影视原声"/>
             <value key="ACG" value="ACG"/>
-            <value key="%E6%A0%A1%E5%9B%AD" value="校园"/>
-            <value key="%E6%B8%B8%E6%88%8F" value="游戏"/>
-            <value key="70%E5%90%8E" value="70后"/>
-            <value key="80%E5%90%8E" value="80后"/>
-            <value key="90%E5%90%8E" value="90后"/>
-            <value key="%E7%BD%91%E7%BB%9C%E6%AD%8C%E6%9B%B2" value="网络歌曲"/>
+            <value key="校园" value="校园"/>
+            <value key="游戏" value="游戏"/>
+            <value key="70后" value="70后"/>
+            <value key="80后" value="80后"/>
+            <value key="90后" value="90后"/>
+            <value key="网络歌曲" value="网络歌曲"/>
             <value key="KTV" value="KTV"/>
-            <value key="%E7%BB%8F%E5%85%B8" value="经典"/>
-            <value key="%E7%BF%BB%E5%94%B1" value="翻唱"/>
-            <value key="%E5%90%89%E4%BB%96" value="吉他"/>
-            <value key="%E9%92%A2%E7%90%B4" value="钢琴"/>
-            <value key="%E5%99%A8%E4%B9%90" value="器乐"/>
-            <value key="%E5%84%BF%E7%AB%A5" value="儿童"/>
-            <value key="%E6%A6%9C%E5%8D%95" value="榜单"/>
-            <value key="00%E5%90%8E" value="00后"/>
+            <value key="经典" value="经典"/>
+            <value key="翻唱" value="翻唱"/>
+            <value key="吉他" value="吉他"/>
+            <value key="钢琴" value="钢琴"/>
+            <value key="器乐" value="器乐"/>
+            <value key="儿童" value="儿童"/>
+            <value key="榜单" value="榜单"/>
+            <value key="00后" value="00后"/>
         </tag>
     </WangYi>
     <XiaMi>

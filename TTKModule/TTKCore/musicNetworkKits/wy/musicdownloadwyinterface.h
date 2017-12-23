@@ -23,7 +23,7 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_COOKIE_URL          = "SHV0MTlHYTRxNytPZklyeTMwcEJzUDE3YWxRVmRlMTNlVVZYSlorVzIrVEpLM1pmZ3MyNmY0M0t1MHV6QlZhSVdvS2V4MWNIbnhTNnplUmM5SU5pLzZEcHI5blNWc2tteXBaS1lhME1YTHgxMHdSVkpDVVhWUGp3YzU1ZTZXMHU2aG1iTDRFK3RFQnRneHpqSm51NDFUNS9oVlZGc2VLSjd1RzNaTkFINzc3bjhQd21ic0R4emdHWHhUYkhOQWdGWmFTWW9nPT0=";
+const QString WY_COOKIE_URL          = "bDNKYmtpNXZxSG5tMytPcmE3d2plSHdWQzBCMGtnNXZWVW96bmczWmdab2p2NzlXTkNPdEsvWGJLbFZGVnN4d1pjTFU1cUF1MjlDQkxJQnhRNTlkVEx6emlLemtNcEdsNC90UTdLVUV1NFo3U1JYSmhUNjdQU1NrbzliYmlvNTFaTVdsZlZPdEFucWUwQ21JaUJHMU9VTTNxZWdNUGEyQ3dQcndiZ0FrTVpIYWRwNlVhLzhhenBwNlhXMjVwblNN";
 const QString WY_UA_URL_1            = "N1hBb3hrWFVaNnNTejltZUpIeUhieG9xN0FuV0J3QmkzOElteHZYNkQzL1Z2VEIzVDdsMVlURmhUVFlZT3NSU3BSQzVmUDFWNzBIbEwvaHJ4UFg0ODVzUVBXQzZNcjVheWZEcmF2ZitwSm1WUFV1Y1ozZXdCUXBsdXFoZ1ZyTTNURGVHUTZYQmRMQXJDZ2ZrQ3lNTU0rb3UxMkJmQUpxYXdaYVlCdC9kdm84PQ==";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_BASE_URL            = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
@@ -61,7 +61,8 @@ const QString WY_COMMIT_NDT_URL      = "cmVkanJSR0J1UGdWVlAwaSs2bVFSeTFMdVhvQzVH
 const QString WY_SG_COMMIT_N_URL     = "VjJRaU8vR2xYZmIxM0RIMUNxU2NJRzlLSDVqZTY5ZVVXNlhUWndSWkc1TmlEajFKaGRwaS9TRThKRCtyL0Z4SWVSWmovSzhqMzFKV1R3QmxwUVBHSzA5ZGx0d2VmN0JMaVRFaVRnPT0=";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_PL_COMMIT_N_URL     = "aURTWlNhUlJISEc3VmExQ2FsUXZqS1lXOVdGSzBOc3dmaHNMK3M0U2tScnNIdHc3Y2NJSGJBVVhhUTc1eHIrNEJrdmgzUlpCOU96UmNsZEEwbnIvQkZQU0tFZU9oY0JKazNlRWZRPT0=";
-const QString WY_PL_URL              = "aDd0V0k1Y1lWcXBqZ3VMQWhaWmp6eFlUYXJmZmRyanFwcVFINmo2Qk1KNDVETW9TWE4zellMREllOG1NZ1YvWkZRM1drcE9PbmVpblRBOVcwZUhaRDA3WVoxYW9XK3lPckptL0VjaTd3UDd4ajlGUEhlZE5FK2x5Q3g0PQ==";
+const QString WY_PL_NDT_URL          = "SDBaSmFYMlhNdk50TFZ4VkNFY1dRUDdtYk9icVAvOWwveCtXWXliZVVjQmFHeXBwdnp3LzJnWjB2cVlBeG1uV0VKTkNScVR2c3ROQmtQRjVVcFIyZWRRVkVFRkFSQlphVGlxeTU3Z0tRT2s9";
+const QString WY_PL_N_URL            = "aFZGMG5CbXZXNmNGaS9jZEV6S0c2RE53Tm5Ud3I3WGJSS2ErQVQ5RjdYRlhUMENuS25yRnYwVHUzMnIrQUJQaFRVTlMrSTJUM1pNPQ==";
 const QString WY_PL_ATTR_NDT_URL     = "VkpFemFKQWtOY2ZXeUNpZ210VjVGYndOZ2VibUZlZHV6amZJaE5VL1czaWFzRkNqV2lYKy9CR29McXl6LzUrUldWcmtKS0Fjb0s5dFBFeXpCaHRCc1dhYlp1bGd3U1ZY";
 const QString WY_PL_ATTR_N_URL       = "VUdTa0xMeG1Nblc4cThoS2E1QzhJK0lrTHJBRmk4TUJZMC9NQW1GanZydDJmR0VJVVRZNmJQSEhOZU96aE55bTJxdW55RldJOHl6aElNdTlHbkZkSmc9PQ==";
 ///////////////////////////////////////////////////////////////////////////
