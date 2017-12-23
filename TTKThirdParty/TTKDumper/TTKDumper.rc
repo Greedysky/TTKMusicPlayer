@@ -26,7 +26,7 @@ BEGIN
                 VALUE "CompanyName", "Greedysky studio, Ltd."
                 VALUE "FileDescription", "TTKDumper"
                 VALUE "FileVersion", "1.0.0.0"
-                VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2017"
+                VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2018"
                 VALUE "ProductName", "TTKDumper"
                 VALUE "ProductVersion", "1.0.0.0"
             END

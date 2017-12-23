@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (c) 2015 - 2017 Greedysky Studio
+ * Copyright (c) 2015 - 2018 Greedysky Studio
  * All rights reserved!
  * Redistribution and use of the source code or any derivative
  * works are strictly forbiden.

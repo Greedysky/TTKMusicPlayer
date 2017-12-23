@@ -1,5 +1,4 @@
 # TTKMusicPlayer
-![QtCreator](https://img.shields.io/badge/Coded%20with-QtCreator%20IDE-blue.svg?style=flat-square)
 ![TTKMusicplayer](https://img.shields.io/badge/Greedysky-TTKMusicPlayer-green.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/Version-2.6.3.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
@@ -146,7 +145,7 @@ Screenshots
 Copyright
 -------
  * This file is part of the TTK Music Player project.
- * Copyright (c) 2015 - 2017 Greedysky Studio.
+ * Copyright (c) 2015 - 2018 Greedysky Studio.
  * Mail: greedysky@163.com.
  
 How To Contribute
