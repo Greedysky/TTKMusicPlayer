@@ -129,6 +129,10 @@ public Q_SLOTS:
      * All files upload finsihed.
      */
     void uploadDone();
+    /*!
+     * Show file information widget.
+     */
+    void showFileInformationWidget();
 
 protected:
     /*!

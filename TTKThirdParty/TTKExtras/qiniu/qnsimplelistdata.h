@@ -31,7 +31,7 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
     QString m_hash;
     QString m_mimeType;
     int m_size;
-    int m_putTime;
+    qint64 m_putTime;
 }QNDataItem;
 MUSIC_DECLARE_LISTS(QNDataItem)
 
