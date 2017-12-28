@@ -33,8 +33,8 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 256);
-    headerview->resizeSection(2, 45);
+    headerview->resizeSection(1, 251);
+    headerview->resizeSection(2, 50);
 
     m_uploading = false;
     m_openFileWidget = nullptr;
@@ -136,7 +136,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         item->setToolTip(MusicUtils::Number::size2Label(dataItem.m_size));
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 2, item);
 
         ///insert server datas into caches
