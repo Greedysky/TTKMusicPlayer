@@ -44,12 +44,6 @@ void MusicBackgroundRemoteWidget::abort()
     m_downloadQueue->abort();
 }
 
-void MusicBackgroundRemoteWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
-{
-    Q_UNUSED(image);
-    Q_UNUSED(data);
-}
-
 void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
 {
     if(m_groups.isEmpty())
@@ -59,10 +53,11 @@ void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
 
     MusicBackgroundImage image;
     outputRemoteSkin(image, data);
-    if(image.isValid())
+    if(!image.isValid())
     {
-        m_listWidget->updateItem(image, data);
+        image.m_pix = QPixmap(":/image/lb_noneImage");
     }
+    m_listWidget->updateItem(image, data);
 }
 
 void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)

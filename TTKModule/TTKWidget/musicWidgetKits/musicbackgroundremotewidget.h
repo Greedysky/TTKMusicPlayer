@@ -54,7 +54,7 @@ public:
     /*!
      * Output remote skin.
      */
-    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data);
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) = 0;
 
 public Q_SLOTS:
     /*!

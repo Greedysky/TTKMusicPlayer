@@ -14,6 +14,16 @@
 
 #include <QScrollBar>
 
+#define NEW_OPERATOR(ui, list)  \
+    ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); \
+    ui->setWidgetResizable(true); \
+    ui->setFrameShape(QFrame::NoFrame); \
+    ui->setFrameShadow(QFrame::Plain); \
+    ui->setAlignment(Qt::AlignVCenter); \
+    ui->setWidget(list); \
+    ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+
+
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicBackgroundSkinDialog)
@@ -38,40 +48,16 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     //////////////////////////////////////////////////////
     m_backgroundList = new MusicBackgroundListWidget(this);
-    m_ui->recommandScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->recommandScrollArea->setWidgetResizable(true);
-    m_ui->recommandScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->recommandScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->recommandScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->recommandScrollArea->setWidget(m_backgroundList);
-    m_ui->recommandScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->recommandScrollArea, m_backgroundList);
 
     m_myBackgroundList = new MusicBackgroundListWidget(this);
-    m_ui->userScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->userScrollArea->setWidgetResizable(true);
-    m_ui->userScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->userScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->userScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->userScrollArea->setWidget(m_myBackgroundList);
-    m_ui->userScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->userScrollArea, m_myBackgroundList);
 
     m_thunderBackgroundList = new MusicBackgroundThunderWidget(this);
-    m_ui->remoteScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->remoteScrollArea->setWidgetResizable(true);
-    m_ui->remoteScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->remoteScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->remoteScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->remoteScrollArea->setWidget(m_thunderBackgroundList);
-    m_ui->remoteScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->remoteScrollArea, m_thunderBackgroundList);
 
     m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
-    m_ui->dailyScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->dailyScrollArea->setWidgetResizable(true);
-    m_ui->dailyScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->dailyScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->dailyScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->dailyScrollArea->setWidget(m_dailyBackgroundList);
-    m_ui->dailyScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->dailyScrollArea, m_dailyBackgroundList);
 
     m_myThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();
