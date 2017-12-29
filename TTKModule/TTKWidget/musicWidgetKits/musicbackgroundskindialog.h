@@ -26,6 +26,8 @@ class MusicBackgroundSkinDialog;
 }
 
 class MusicBackgroundListWidget;
+class MusicBackgroundThunderWidget;
+class MusicBackgroundDailyWidget;
 class MusicBackgroundRemoteWidget;
 
 /*! @brief The class of the local background widget.
@@ -118,6 +120,10 @@ public Q_SLOTS:
      */
     void myBackgroundListWidgetItemClicked(const QString &name);
     /*!
+     * Daily background list widget item has clicked.
+     */
+    void dailyBackgroundListWidgetItemClicked(const QString &name);
+    /*!
      * Remote background list widget item has clicked.
      */
     void remoteBackgroundListWidgetItemClicked(const QString &name);
@@ -139,6 +145,10 @@ protected:
      * Background list widget item has clicked changed.
      */
     void listWidgetItemClicked(MusicBackgroundListWidget *item, const QString &name);
+    /*!
+     * Background list widget item has clicked changed.
+     */
+    void listWidgetItemClicked(MusicBackgroundRemoteWidget *item, const QString &name);
     /*!
      * Add all theme into list.
      */
@@ -163,7 +173,8 @@ protected:
     int m_myThemeIndex;
     Ui::MusicBackgroundSkinDialog *m_ui;
     MusicBackgroundListWidget *m_backgroundList, *m_myBackgroundList;
-    MusicBackgroundRemoteWidget *m_remoteBackgroundList;
+    MusicBackgroundThunderWidget *m_thunderBackgroundList;
+    MusicBackgroundDailyWidget *m_dailyBackgroundList;
 
 };
 

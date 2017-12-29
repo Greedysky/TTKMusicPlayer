@@ -6,6 +6,7 @@
 #include <QTextCodec>
 #include <QSettings>
 #include <QProcess>
+#include <QDirIterator>
 #include <QDesktopServices>
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -126,6 +127,57 @@ QString MusicUtils::Core::getLanguageName(int index)
         case 2 : return lan.append("en.ln");
         default: return QString();
     }
+}
+
+bool MusicUtils::Core::removeRecursively(const QString &dir)
+{
+    QDir dr(dir);
+    if(!dr.exists())
+    {
+        return true;
+    }
+
+    bool success = true;
+    const QString dirPath = dr.path();
+    // not empty -- we must empty it first
+    QDirIterator di(dirPath, QDir::AllEntries | QDir::Hidden | QDir::System | QDir::NoDotAndDotDot);
+    while(di.hasNext())
+    {
+        di.next();
+        const QFileInfo &fi = di.fileInfo();
+        const QString &filePath = di.filePath();
+        bool ok;
+        if(fi.isDir() && !fi.isSymLink())
+        {
+            ok = MusicUtils::Core::removeRecursively(filePath); // recursive
+        }
+        else
+        {
+            ok = QFile::remove(filePath);
+            if(!ok)
+            {
+                // Read-only files prevent directory deletion on Windows, retry with Write permission.
+                const QFile::Permissions permissions = QFile::permissions(filePath);
+                if(!(permissions & QFile::WriteUser))
+                {
+                    ok = QFile::setPermissions(filePath, permissions | QFile::WriteUser)
+                      && QFile::remove(filePath);
+                }
+            }
+        }
+
+        if(!ok)
+        {
+            success = false;
+        }
+    }
+
+    if(success)
+    {
+        success = dr.rmdir(dr.absolutePath());
+    }
+
+    return success;
 }
 
 bool MusicUtils::Core::openUrl(const QString &exe, const QString &path)

@@ -61,17 +61,17 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteGroup
 MUSIC_DECLARE_LISTS(MusicSkinRemoteGroup)
 
 
-/*! @brief The class of the remote skin XML Config Manager.
+/*! @brief The class of the thunder skin XML Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSkinRemoteConfigManager : public MusicAbstractXml
+class MUSIC_NETWORK_EXPORT MusicSkinThunderConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinRemoteConfigManager(QObject *parent = 0);
+    explicit MusicSkinThunderConfigManager(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -106,7 +106,7 @@ public:
     /*!
      * Start to download data from net.
      */
-    void startToDownload();
+    virtual void startToDownload() = 0;
 
 Q_SIGNALS:
     /*!
@@ -118,8 +118,71 @@ public Q_SLOTS:
     /*!
      * Download data from net finished.
      */
-    void downLoadDataFinished(const QByteArray &bytes);
+    virtual void downLoadDataFinished(const QByteArray &bytes) = 0;
 
 };
+
+
+/*! @brief The class of download thunder skin background.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundThunderThread : public MusicDownloadBackgroundRemoteThread
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicDownloadBackgroundThunderThread(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to download data from net.
+     */
+    virtual void startToDownload() override;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadDataFinished(const QByteArray &bytes) override;
+
+};
+
+
+/*! @brief The class of download bing daily skin background.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicDownloadBackgroundBingThread : public MusicDownloadBackgroundRemoteThread
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicDownloadBackgroundBingThread(QObject *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to download data from net.
+     */
+    virtual void startToDownload() override;
+
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadDataFinished(const QByteArray &bytes) override;
+
+};
+
 
 #endif // MUSICDOWNLOADBACKGROUNDREMOTETHREAD_H

@@ -62,6 +62,11 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT QString getLanguageName(int index);
 
         /*!
+         * Dir remove recursively.
+         */
+        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir);
+
+        /*!
          * Open file from local by path or net url.
          */
         MUSIC_UTILS_EXPORT bool openUrl(const QString &exe, const QString &path);

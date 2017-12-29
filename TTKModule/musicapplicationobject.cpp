@@ -393,4 +393,7 @@ void MusicApplicationObject::cleanUp()
     QFile::remove(MUSIC_RECORD_IN_FILE);
     QFile::remove(MUSIC_RECORD_OUT_FILE);
     QFile::remove(MUSIC_NETWORK_TEST_FILE);
+
+    ///remove daily pic theme
+    MusicUtils::Core::removeRecursively(CACHE_DIR_FULL + QString(MUSIC_DAILY_DIR));
 }

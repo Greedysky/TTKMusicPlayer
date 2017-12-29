@@ -289,7 +289,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("Re") << tr("My") << tr("Online");
+    names << tr("Re") << tr("My") << tr("daily") << tr("Online");
     for(int i=0; i<names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);
@@ -320,12 +320,14 @@ void MusicSkinAnimationWidget::switchToSelectedItemStyle(int index)
     m_container[0]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
     m_container[1]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
     m_container[2]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
+    m_container[3]->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MBackgroundStyle01);
 
     switch(index)
     {
         case 0: m_container[0]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
         case 1: m_container[1]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
         case 2: m_container[2]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
+        case 3: m_container[3]->setStyleSheet(MusicUIObject::MColorStyle08 + MusicUIObject::MBackgroundStyle01); break;
         default: break;
     }
 

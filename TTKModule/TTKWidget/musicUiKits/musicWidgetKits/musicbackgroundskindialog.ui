@@ -97,6 +97,7 @@
     </property>
     <widget class="QScrollArea" name="recommandScrollArea"/>
     <widget class="QScrollArea" name="userScrollArea"/>
+    <widget class="QScrollArea" name="dailyScrollArea"/>
     <widget class="QScrollArea" name="remoteScrollArea"/>
    </widget>
    <widget class="QPushButton" name="paletteButton">

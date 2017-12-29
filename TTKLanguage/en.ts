@@ -636,14 +636,6 @@
     </message>
 </context>
 <context>
-    <name>MusicBackgroundRemoteWidget</name>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundremotewidget.cpp" line="82"/>
-        <source>ALL</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MusicBackgroundSkinDialog</name>
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundskindialog.cpp" line="26"/>
@@ -667,19 +659,27 @@
         <translation>Custom</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="115"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="116"/>
         <source>调色板</source>
         <translation>Palette</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="142"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="143"/>
         <source>列表透明</source>
         <translation>ListTr</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="187"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicbackgroundskindialog.ui" line="188"/>
         <source>皮肤透明</source>
         <translation>Skin</translation>
+    </message>
+</context>
+<context>
+    <name>MusicBackgroundThunderWidget</name>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicbackgroundremotewidget.cpp" line="152"/>
+        <source>ALL</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -5159,6 +5159,11 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicfuntionanimationwidget.cpp" line="292"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicfuntionanimationwidget.cpp" line="292"/>
+        <source>daily</source>
+        <translation>Daily</translation>
     </message>
 </context>
 <context>

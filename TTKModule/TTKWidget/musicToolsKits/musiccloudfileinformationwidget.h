@@ -27,7 +27,10 @@ namespace Ui {
 class MusicCloudFileInformationWidget;
 }
 
-class MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
+/*! @brief The class of the cloud file information widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
 public:

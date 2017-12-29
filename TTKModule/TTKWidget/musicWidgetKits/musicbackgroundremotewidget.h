@@ -47,13 +47,63 @@ public:
     static QString getClassName();
 
     /*!
-     * Init the current download object.
-     */
-    void init();
-    /*!
      * Abort the current download thread.
      */
     void abort();
+
+    /*!
+     * Output remote skin.
+     */
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data);
+
+public Q_SLOTS:
+    /*!
+     * Send download data from net.
+     */
+    void downLoadDataChanged(const QString &data);
+    /*!
+     * Send download data from net.
+     */
+    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data);
+
+protected:
+    /*!
+     * Start to download data.
+     */
+    void startToDownload(const QString &prefix);
+
+    int m_currentIndex;
+    MusicSkinRemoteGroups m_groups;
+    MusicBackgroundListWidget *m_listWidget;
+    MusicDownloadQueueCache *m_downloadQueue;
+    MusicDownloadBackgroundRemoteThread *m_queryThread;
+
+};
+
+
+/*! @brief The class of the thunder background widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicBackgroundThunderWidget : public MusicBackgroundRemoteWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicBackgroundThunderWidget(QWidget *parent = 0);
+
+    virtual ~MusicBackgroundThunderWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Init the current download object.
+     */
+    void init();
 
     /*!
      * Create functions widget.
@@ -62,13 +112,7 @@ public:
     /*!
      * Output remote skin.
      */
-    void outputRemoteSkin(MusicBackgroundImage &image, const QString &data);
-
-Q_SIGNALS:
-    /*!
-     * Reset the current bg when user click remote bg emit.
-     */
-    void showCustomSkin(const QString &path);
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
 
 public Q_SLOTS:
     /*!
@@ -78,11 +122,7 @@ public Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    void downLoadDataChanged(const QString &data);
-    /*!
-     * Send download data from net.
-     */
-    void downLoadDataChanged(const MusicSkinRemoteGroups &data);
+    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data) override;
 
 protected:
     /*!
@@ -94,13 +134,45 @@ protected:
      */
     void buttonStyleChanged();
 
-    int m_currentIndex;
     QWidget *m_functionsWidget;
     QList<QPushButton*> m_functionsItems;
-    MusicSkinRemoteGroups m_groups;
-    MusicBackgroundListWidget *m_listWidget;
-    MusicDownloadQueueCache *m_downloadQueue;
-    MusicDownloadBackgroundRemoteThread *m_queryThread;
+
+};
+
+
+
+/*! @brief The class of the daily background widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemoteWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicBackgroundDailyWidget(QWidget *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Init the current download object.
+     */
+    void init();
+
+    /*!
+     * Output remote skin.
+     */
+    virtual void outputRemoteSkin(MusicBackgroundImage &image, const QString &data) override;
+
+public Q_SLOTS:
+    /*!
+     * Send download data from net.
+     */
+    virtual void downLoadDataChanged(const MusicSkinRemoteGroups &data) override;
 
 };
 
