@@ -106,10 +106,14 @@ include_directories(
     ${MUSIC_THIRDPARTY_DIR}/TTKDumper
     ${MUSIC_THIRDPARTY_DIR}/TTKExtras
 )
+if(WIN32)
+  set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/bin")  
+else(UNIX)
+  set(MUSIC_INSTALL_DIR "${CMAKE_CACHEFILE_DIR}/lib")
+endif()
 
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION})
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CACHEFILE_DIR}/bin/${TTK_VERSION}) 
+set(LIBRARY_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION})
+set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR}/${TTK_VERSION}) 
 
 set(OPENSSL_DIR "" CACHE PATH "Openssl install path")  
 
@@ -210,3 +214,5 @@ add_subdirectory(TTKModule)
 add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
 add_subdirectory(TTKTest)
+
+install(FILES "${MUSIC_SCRIPT_DIR}/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")
