@@ -1,4 +1,4 @@
-CONFIG += ordered
+ONFIG += ordered
 
 include (qmmp.pri)
 
