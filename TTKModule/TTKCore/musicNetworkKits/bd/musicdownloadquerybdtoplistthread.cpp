@@ -105,7 +105,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                     musicInfo.m_albumId = value["album_id"].toString();
                     musicInfo.m_artistId = value["ting_uid"].toString();
                     musicInfo.m_lrcUrl = value["lrclink"].toString();
-                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
+                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
                     musicInfo.m_albumName = value["album_title"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

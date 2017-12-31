@@ -26,7 +26,7 @@ void MusicDownLoadQueryMGArtistThread::startToSearch(const QString &artist)
     deleteAll();
     m_interrupt = true;
     m_searchText = artist;
-
+qDebug() << musicUrl;
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");

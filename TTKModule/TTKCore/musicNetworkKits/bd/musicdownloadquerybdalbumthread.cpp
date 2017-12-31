@@ -94,7 +94,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                 bool albumFlag = false;
                 QVariantMap albumInfo = value["albumInfo"].toMap();
                 MusicPlaylistItem info;
-                info.m_coverUrl = albumInfo["pic_small"].toString().replace(",w_90", ",w_500");
+                info.m_coverUrl = albumInfo["pic_small"].toString().replace("_90", "_500");
                 info.m_description = albumInfo["title"].toString() + "<>" +
                                      albumInfo["language"].toString() + "<>" +
                                      albumInfo["publishcompany"].toString() + "<>" +
@@ -118,7 +118,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                     musicInfo.m_albumId = value["album_id"].toString();
                     musicInfo.m_artistId = value["ting_uid"].toString();
                     musicInfo.m_lrcUrl = value["lrclink"].toString();
-                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
+                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
                     musicInfo.m_albumName = value["album_title"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -189,7 +189,7 @@ void MusicDownLoadQueryBDAlbumThread::singleDownLoadFinished()
 
                     MusicPlaylistItem info;
                     info.m_id = value["album_id"].toString();
-                    info.m_coverUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
+                    info.m_coverUrl = value["pic_small"].toString().replace("_90", "_500");
                     info.m_name = value["title"].toString();
                     info.m_updateTime = value["publishtime"].toString().replace('-', '.');
                     emit createAlbumInfoItem(info);
