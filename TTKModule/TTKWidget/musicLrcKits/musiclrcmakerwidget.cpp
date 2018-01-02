@@ -593,7 +593,7 @@ void MusicLrcMakerWidget::createFirstWidget()
     m_ui->cancelButton_F->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->timeSlider_F, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
+    connect(m_ui->timeSlider_F, SIGNAL(sliderReleasedAt(int)), SLOT(timeSliderValueChanged(int)));
     connect(m_ui->stateButton_F, SIGNAL(clicked(bool)), SLOT(firstWidgetStateButtonClicked()));
     connect(m_ui->cancelButton_F, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->nextButton_F, SIGNAL(clicked()), SLOT(setCurrentSecondWidget()));
@@ -630,7 +630,7 @@ void MusicLrcMakerWidget::createSecondWidget()
     m_ui->cancelButton_S->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->timeSlider_S, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
+    connect(m_ui->timeSlider_S, SIGNAL(sliderReleasedAt(int)), SLOT(timeSliderValueChanged(int)));
     connect(m_ui->cancelButton_S, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->nextButton_S, SIGNAL(clicked()), SLOT(setCurrentThirdWidget()));
     connect(m_ui->previousButton_S, SIGNAL(clicked()), SLOT(setCurrentFirstWidget()));
@@ -675,7 +675,7 @@ void MusicLrcMakerWidget::createThirdWidget()
     m_ui->cancelButton_T->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    connect(m_ui->timeSlider_T, SIGNAL(valueChanged(int)), SLOT(timeSliderValueChanged(int)));
+    connect(m_ui->timeSlider_T, SIGNAL(sliderReleasedAt(int)), SLOT(timeSliderValueChanged(int)));
     connect(m_ui->remakeButton_T, SIGNAL(clicked()), SLOT(reMakeButtonClicked()));
     connect(m_ui->saveButton_T, SIGNAL(clicked()), SLOT(saveButtonClicked()));
     connect(m_ui->stateButton_T, SIGNAL(clicked()), SLOT(thirdWidgetStateButtonClicked()));

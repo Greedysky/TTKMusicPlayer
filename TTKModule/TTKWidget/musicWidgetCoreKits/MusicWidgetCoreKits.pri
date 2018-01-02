@@ -37,6 +37,7 @@ HEADERS  += \
     $$PWD/musicprogresswidget.h \
     $$PWD/musicclickedlabel.h \
     $$PWD/musicclickedslider.h \
+    $$PWD/musicmovingclickedslider.h \
     $$PWD/musicmovinglabelslider.h \
     $$PWD/musictoastlabel.h \
     $$PWD/musicroundanimationlabel.h \
@@ -79,6 +80,7 @@ SOURCES += \
     $$PWD/musicprogresswidget.cpp \
     $$PWD/musicclickedlabel.cpp \
     $$PWD/musicclickedslider.cpp \
+    $$PWD/musicmovingclickedslider.cpp \
     $$PWD/musicmovinglabelslider.cpp \
     $$PWD/musictoastlabel.cpp \
     $$PWD/musicroundanimationlabel.cpp \

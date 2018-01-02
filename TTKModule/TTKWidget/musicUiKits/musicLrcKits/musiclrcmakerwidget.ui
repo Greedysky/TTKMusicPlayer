@@ -387,7 +387,7 @@
       <string>Play</string>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="timeSlider_F">
+    <widget class="MusicMovingClickedSlider" name="timeSlider_F">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -613,7 +613,7 @@
       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background3</pixmap>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="timeSlider_S">
+    <widget class="MusicMovingClickedSlider" name="timeSlider_S">
      <property name="geometry">
       <rect>
        <x>40</x>
@@ -856,7 +856,7 @@
       <pixmap resource="../../../../TTKQrc/MusicPlayer.qrc">:/lrc/lb_make_background2</pixmap>
      </property>
     </widget>
-    <widget class="MusicClickedSlider" name="timeSlider_T">
+    <widget class="MusicMovingClickedSlider" name="timeSlider_T">
      <property name="geometry">
       <rect>
        <x>140</x>
@@ -962,15 +962,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicClickedSlider</class>
-   <extends>QSlider</extends>
-   <header>musicclickedslider.h</header>
-  </customwidget>
-  <customwidget>
    <class>MusicLayoutAnimationWidget</class>
    <extends>QWidget</extends>
    <header location="global">musiclayoutanimationwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicMovingClickedSlider</class>
+   <extends>QSlider</extends>
+   <header>musicmovingclickedslider.h</header>
   </customwidget>
  </customwidgets>
  <resources>
