@@ -46,7 +46,8 @@ const QString BD_AR_SIM_URL         = "VUhPRG9SSnBGRW1lazhLR0I5YzlaUTF0RE90YTRlZ
 /////////////////////////////////////////////////////////////////////////////
 const QString BD_MV_INFO_URL        = "YkY2RndLaCtlbWN1MEZsTnZ1SVVJVEZraitGYlpGRlFIUEFsVE92WERnNXh0UjNBY3Vib2RZZUtIZnBsRG83bE0rT1ZjaVNYQll3WVJhOW0=";
 const QString BD_MV_INFO_ATTR_Y_URL = "MGxQa3ZtVXgvZkJnbFhoK1lWM2JBQkFjKzB4WXBtWXAxZnZta1VJWU9KbzJZeEtvYXlnb21wUFJIYmJQTDQ0L3o1eWdVQ2lIMS9senRyYnk4TFBXT3Uzc0Z3WT0=";
-const QString BD_MV_INFO_ATTR_I_URL = "M28rSE05RG9TVzYxeThzZ05sQnZaU3NNcG5nZHh5N2xxMlBEM0JYYnVyTlNQY2o2eTJYaC9wdmNtU1lPYkN5bm92R040clZkN3NhUit1aGw=";
+const QString BD_MV_INFO_ATTR_I_URL = "NjFXMDBJUEdCKzdoVy9WbUkwdTZNQ1Fsb1FITG5iL2J0QjVSZFRybEU0ND0=";
+const QString BD_MV_INFO_ATTR_ID_URL= "cFlKVEcrQWpaUC9hN0FFYU5RZDdMYlJEdEVLQTQwR1VFSURqNHBLL0N6NENEamk4c3BUd2hYRHhXOU05Z24vZnpyL3pLL2VEU3QxWVNkTTcyMnMvTzE1dUttZUxub0w0QkgxRGx2cEgxc1VteXBTZ0VZRFk0MDVYQm9aZ3haTGVJWFZpZmVURncyU0I0RlFRSXF4UjVCWk5lTzFXemFqQTVJY0VEQT09";
 const QString BD_MV_INFO_ATTR_W_URL = "OTVsYThrbnMwWnNIQ050ODF5S1JZTDNWZTh4M29qWVVrYzkxKzJudVNEcDZQZjdD";
 /////////////////////////////////////////////////////////////////////////////
 const QString BD_SG_LEAEN_PA_URL    = "Y3lUWmlxbUdMaUVtT3dKVUliRCtZRDRlWEFJPQ==";
@@ -64,7 +65,7 @@ const QString BD_PLAYLIST_ATTR_URL  = "NXJsZ3ArR0JHeXFJYmdWUi9sOVNTaHlxbEpuekJYS
 ///////////////////////////////////////////////////////////////////////////
 const QString BD_RCM_URL            = "NFpxdTFTWldSaktNZGRTTVhCc3VuUFZkZFROa2tQdXBLZjVPVFNMN2dGQ0QrbXozUjRyZU1uMUlLSmlQOUk2Qk85VXlwTFdqajRYcngyWEl4QXBFdndEWnFseCt5aS92V3BaYWR6Wi9jYlY2WDg2RnJBaVZ5ZExENUJmUzFwbXZMT1FGbkhab1g1OEthUlc3enNveEMvQWd3NHpBTVNGQnRtWTZQT0xTZUMyWUZHL0ZLVzNKWXNNUzVMMVF5amVl";
 ///////////////////////////////////////////////////////////////////////////
-const QString BD_SUGGEST_URL     = "dEFucnltNXBxUENWK3c2Q3NpbmRlaEpvS2M5OFJpS1NJZ01ma0F5VWNuZVdmUWc2cG5aa3BFaDJSdXd3Vyt6NjZkeHdPeThkMzUxYnE0aWt6NSsvcWFmL1U1ND0=";
+const QString BD_SUGGEST_URL        = "dEFucnltNXBxUENWK3c2Q3NpbmRlaEpvS2M5OFJpS1NJZ01ma0F5VWNuZVdmUWc2cG5aa3BFaDJSdXd3Vyt6NjZkeHdPeThkMzUxYnE0aWt6NSsvcWFmL1U1ND0=";
 ///////////////////////////////////////////////////////////////////////////
 
 

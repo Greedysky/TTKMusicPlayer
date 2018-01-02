@@ -498,15 +498,15 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeYYT(MusicObject::M
                 int type = value["bitrateType"].toInt();
                 if(type == 1)
                 {
-                    readFromMusicMVAttribute(info, value, MB_500, duration);
+                    readFromMusicMVAttributeYYT(info, value, MB_500, duration);
                 }
                 else if(type == 2)
                 {
-                    readFromMusicMVAttribute(info, value, MB_750, duration);
+                    readFromMusicMVAttributeYYT(info, value, MB_750, duration);
                 }
                 else if(type == 3)
                 {
-                    readFromMusicMVAttribute(info, value, MB_1000, duration);
+                    readFromMusicMVAttributeYYT(info, value, MB_1000, duration);
                 }
             }
         }
@@ -534,17 +534,121 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeIQY(MusicObject::M
     }
 
     QString time = QString::number(MusicTime::timeStamp());
-    QString src = "76f90cbd92f94a2e925d83e8ccd22cb7";
-    QString key = "d5fb4bd9d50c4be6948c97edd7254b0e";
-    QByteArray sc = MusicUtils::Algorithm::md5((time + key + vid).toUtf8()).toHex();
+    QString host = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_I_URL, false);
+    QString src = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_ID_URL, false).arg(tvid).arg(vid).arg(tvid).arg(time);
 
-    MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_I_URL, false).arg(QString(tvid)).arg(vid).arg(time).arg(QString(sc)).arg(src);
-    Q_UNUSED(more);
+    int v8 = 0, v4 = 0;
+    QString sufix;
+    for(int i=0; i<8; ++i)
+    {
+        for(int j=0; j<4; ++j)
+        {
+            v4 = 13 * (66 * j + 27 * i) % 35;
+            if(v4 >= 10)
+            {
+                v8 = v4 + 88;
+            }
+            else
+            {
+                v8 = v4 + 49;
+            }
+            sufix += char(v8);
+        }
+    }
 
+    QUrl musicUrl = host + src + "&vf=" + MusicUtils::Algorithm::md5((src + sufix).toUtf8()).toHex();
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("data") && value["code"].toString() == "A00000")
+        {
+            value = value["data"].toMap();
+            value = value["vp"].toMap();
+
+            QString prefix = value["du"].toString();
+            QVariantList datas = value["tkl"].toList();
+            if(datas.isEmpty())
+            {
+                return;
+            }
+
+            datas = datas.first().toMap()["vs"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                QVariantList fsDatas = value["fs"].toList();
+                if(fsDatas.isEmpty())
+                {
+                    continue;
+                }
+
+                MusicObject::MusicSongAttribute attr;
+                switch(value["bid"].toInt())
+                {
+                    case 96: attr.m_bitrate = MB_250; break;
+                    case 1: attr.m_bitrate = MB_500; break;
+                    case 14:
+                    case 21:
+                    case 2: attr.m_bitrate = MB_750; break;
+                    case 4:
+                    case 17:
+                    case 5:
+                    case 18: attr.m_bitrate = MB_750; break;
+                    default: attr.m_bitrate = MB_250; break;
+                }
+
+                value = fsDatas.first().toMap();
+                attr.m_url = prefix + value["l"].toString();
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                readFromMusicMVAttributeIQY(&attr);
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                attr.m_duration = MusicTime::msecTime2LabelJustified(value["d"].toLongLong());
+                attr.m_format = "flv";
+                attr.m_size = MusicUtils::Number::size2Label(value["b"].toLongLong());
+                info->m_songAttrs.append(attr);
+            }
+
+            if(more)
+            {
+                info->m_songName = "Default";
+                info->m_singerName = "Default";
+                info->m_timeLength = findTimeStringByAttrs(info->m_songAttrs);
+            }
+        }
+    }
 }
 
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
-                                                               int bitrate, const QString &duration)
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+                                                                  int bitrate, const QString &duration)
 {
     if(key.isEmpty())
     {
@@ -563,5 +667,47 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         attr.m_format = MusicUtils::Core::fileSuffix(v);
         attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toLongLong());
         info->m_songAttrs.append(attr);
+    }
+}
+
+void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeIQY(MusicObject::MusicSongAttribute *attr)
+{
+    if(attr->m_url.isEmpty())
+    {
+        return;
+    }
+
+    QUrl musicUrl = attr->m_url;
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("l"))
+        {
+            attr->m_url = value["l"].toString();
+        }
     }
 }

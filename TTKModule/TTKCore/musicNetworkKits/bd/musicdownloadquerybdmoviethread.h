@@ -90,10 +90,14 @@ protected:
     void readFromMusicMVAttributeIQY(MusicObject::MusicSongInformation *info, const QString &var,
                                      bool more);
     /*!
-     * Read mv info attribute from query results.
+     * Read mv info attribute from yyt query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
-                                  int bitrate, const QString &duration);
+    void readFromMusicMVAttributeYYT(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+                                     int bitrate, const QString &duration);
+    /*!
+     * Read mv info attribute from iqy query results.
+     */
+    void readFromMusicMVAttributeIQY(MusicObject::MusicSongAttribute *attr);
 
 };
 
