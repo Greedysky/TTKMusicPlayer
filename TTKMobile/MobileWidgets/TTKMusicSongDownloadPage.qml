@@ -65,27 +65,16 @@ Rectangle {
         itemListView.currentIndex = -1;
         var bitrateString;
 
-        if(queryType !== ttkTheme.search_type_download_mv_index) {
-            if(songInfo.bitrate < 0)
-                bitrateString = qsTr("没有搜到任何结果");
-            else if(0 < songInfo.bitrate && songInfo.bitrate <= 128)
-                bitrateString = qsTr("标准品质") + songInfoFormat(songInfo);
-            else if(128 < songInfo.bitrate && songInfo.bitrate <= 192)
-                bitrateString = qsTr("高品质") + songInfoFormat(songInfo);
-            else if(192 < songInfo.bitrate && songInfo.bitrate <= 320)
-                bitrateString = qsTr("超高品质") + songInfoFormat(songInfo);
-            else if(songInfo.bitrate > 320)
-                bitrateString = qsTr("无损品质") + songInfoFormat(songInfo);
-        }else {
-            if(songInfo.bitrate < 0)
-                bitrateString = qsTr("没有搜到任何结果");
-            else if(0 < songInfo.bitrate && songInfo.bitrate < 500)
-                bitrateString = qsTr("普清品质") + songInfoFormat(songInfo);
-            else if(500 <= songInfo.bitrate && songInfo.bitrate <= 750)
-                bitrateString = qsTr("高清品质") + songInfoFormat(songInfo);
-            else if(750 < songInfo.bitrate && songInfo.bitrate <= 1000)
-                bitrateString = qsTr("超清品质") + songInfoFormat(songInfo);
-        }
+        if(songInfo.bitrate < 0)
+            bitrateString = qsTr("没有搜到任何结果");
+        else if(0 < songInfo.bitrate && songInfo.bitrate <= 128)
+            bitrateString = qsTr("标准品质") + songInfoFormat(songInfo);
+        else if(128 < songInfo.bitrate && songInfo.bitrate <= 192)
+            bitrateString = qsTr("高品质") + songInfoFormat(songInfo);
+        else if(192 < songInfo.bitrate && songInfo.bitrate <= 320)
+            bitrateString = qsTr("超高品质") + songInfoFormat(songInfo);
+        else if(songInfo.bitrate > 320)
+            bitrateString = qsTr("无损品质") + songInfoFormat(songInfo);
 
         if(bitrateString.length !== 0) {
             itemListModel.append({title: bitrateString, bit: songInfo.bitrate});
@@ -96,9 +85,6 @@ Rectangle {
         target: TTK_NETWORK
         onClearAllItems: {
             clearData();
-        }
-        onCreateDownloadSongQuality: {
-//            createData(bitrate)
         }
     }
 

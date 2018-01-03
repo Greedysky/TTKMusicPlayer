@@ -31,6 +31,10 @@ Item {
         onNetworkConnectionStateChanged: {
             networkWidget.visible = !state;
         }
+
+        onDownLoadDataHasFinished: {
+            TTK_UTILS.showMessageBox(qsTr("下载完成!"));
+        }
     }
 
     ColumnLayout {

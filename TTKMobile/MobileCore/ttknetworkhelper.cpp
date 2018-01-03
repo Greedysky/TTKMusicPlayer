@@ -113,7 +113,7 @@ QString TTKNetworkHelper::getCurrentServerString() const
 
 void TTKNetworkHelper::downLoadDataChanged()
 {
-    emit downLoadDataHasFinished( m_queryThread->getMusicSongInfos().isEmpty() );
+    emit queryDataHasFinished( m_queryThread->getMusicSongInfos().isEmpty() );
 }
 
 void TTKNetworkHelper::createSearchedItems(const MusicSearchedItem &songItem)
@@ -178,6 +178,7 @@ void TTKNetworkHelper::downForDownloadSong(int index, int bitrate)
             ////////////////////////////////////////////////
             MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                                    MusicDownLoadThreadAbstract::Download_Music, this);
+            connect(downSong, SIGNAL(downLoadDataChanged(QString)), SIGNAL(downLoadDataHasFinished()));
             downSong->setTags(musicSongInfo.m_smallPicUrl, musicSongInfo.m_songName, musicSongInfo.m_singerName);
             downSong->startToDownload();
             break;

@@ -82,7 +82,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: ttkGlobal.dpHeight(200)
+                height: ttkGlobal.dpHeight(500)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -163,8 +163,8 @@ Item {
 
                     Rectangle {
                         Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: ttkGlobal.dpHeight(60)
-                        color: ttkTheme.color_alpha_lv0
+                        Layout.preferredHeight: ttkGlobal.dpHeight(360)
+                        color: "#EEEEEE"
                     }
                 }
             }

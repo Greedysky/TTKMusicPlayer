@@ -93,11 +93,11 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name\ artist name and time.
      */
-    void createDownloadSongQuality(int bitrate);
+    void queryDataHasFinished(bool empty);
     /*!
-     * Create searched downlaod song by bitrate.
+     * Query data just has finished.
      */
-    void downLoadDataHasFinished(bool empty);
+    void downLoadDataHasFinished();
     /*!
      * Download data just has finished.
      */

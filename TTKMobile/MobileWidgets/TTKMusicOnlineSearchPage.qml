@@ -43,7 +43,7 @@ Item {
                 case 0: searedSongListModel.append(info); break;
             }
         }
-        onDownLoadDataHasFinished: {
+        onQueryDataHasFinished: {
             loadingImageAnimation.stopLoading();
             if(empty) {
                 noMusicFoundItem.visible = true;
