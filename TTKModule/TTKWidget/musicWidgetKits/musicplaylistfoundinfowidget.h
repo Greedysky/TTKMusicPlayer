@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 class QPushButton;
 class QStackedWidget;
 class MusicPlaylistFoundTableWidget;
+class MusicPlaylistFoundCommentsWidget;
 
 /*! @brief The class of the playlist music found info widget.
  * @author Greedysky <greedysky@163.com>
@@ -66,48 +67,21 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Set current container index.
+     */
+    void setCurrentIndex(int index);
+    /*!
      * Query all quality musics is finished.
      */
     void queryAllFinished();
-    /*!
-     * Query all quality musics is finished.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play all button clicked now.
-     */
-    void playAllButtonClicked();
-    /*!
-     * Share button clicked now.
-     */
-    void shareButtonClicked();
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
 
 protected:
     /*!
-     * Init the first widget.
+     * Init the third widget.
      */
-    void initFirstWidget();
-    /*!
-     * Init the second widget.
-     */
-    void initSecondWidget();
+    void initThirdWidget();
 
-    QLabel *m_iconLabel, *m_infoLabel;
-    QStackedWidget *m_container;
-    QPushButton *m_songButton;
-    MusicPlaylistFoundTableWidget *m_playlistTableWidget;
+    MusicPlaylistFoundCommentsWidget *m_commentsWidget;
 
 };
 

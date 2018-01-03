@@ -157,7 +157,7 @@ void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint
     MusicDownloadRecord record;
     record.m_name = musicName;
     record.m_path = QFileInfo(name).absoluteFilePath();
-    record.m_size = "0.0M";
+    record.m_size = "0.00M";
     m_musicRecords << record;
 
     createItem(rowCount() - 1, record, time);
@@ -228,7 +228,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
 
                       item = new QTableWidgetItem( record.m_size );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
-    item->setTextAlignment(Qt::AlignCenter);
+    item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     item->setData(MUSIC_TIMES_ROLE, time);
     setItem(index, 4, item);
 

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicnetworkabstract.h"
-
-const QString TRANSLATION_URL = "TXRkdVhlYnQzSEtZUmpJMVpDeHpaVG5DVzhId0NyVE42YXBPYkw2d25YeGJENDBONm9kSVZ2My95eHgvbVJSQjlDSE92clVkam85OG9uYjU=";
+#include "musictranslationthreadabstract.h"
 
 /*! @brief The class of translation words thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicNetworkAbstract
+class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicTranslationThreadAbstract
 {
     Q_OBJECT
 public:
@@ -65,13 +63,11 @@ public:
     /*!
      * Start to translation data.
      */
-    void startToDownload(TranslationType from, TranslationType to, const QString &data);
-
-Q_SIGNALS:
+    virtual void startToDownload(const QString &data) override;
     /*!
-     * Send translated data from net.
+     * Start to translation data.
      */
-    void downLoadDataChanged(const QString &data);
+    void startToDownload(TranslationType from, TranslationType to, const QString &data);
 
 public Q_SLOTS:
     /*!

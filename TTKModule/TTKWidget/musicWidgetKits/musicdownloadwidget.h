@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,39 @@ namespace Ui {
 class MusicDownloadWidget;
 }
 class QLabel;
+
+#define TABLE_ITEM_ROLE Qt::UserRole + 1
+/*! @brief The class of the music song atrribute.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct MUSIC_WIDGET_EXPORT MusicDownloadTableItemRole
+{
+    int m_bitrate;
+    QString m_format;
+    QString m_size;
+
+    MusicDownloadTableItemRole()
+    {
+        m_bitrate = -1;
+    }
+
+    MusicDownloadTableItemRole(int b, const QString &f, const QString &s)
+    {
+        m_bitrate = b;
+        m_format = f;
+        m_size = s;
+    }
+
+    bool isEmpty() const
+    {
+        return m_bitrate == -1 && m_format.isEmpty() && m_size.isEmpty();
+    }
+
+    bool isEqual(const MusicDownloadTableItemRole &r) const
+    {
+        return m_bitrate == r.m_bitrate && m_format == r.m_format && m_size == r.m_size;
+    }
+}MusicDownloadTableItemRole;
 
 /*! @brief The class of the download table item.
  * @author Greedysky <greedysky@163.com>
@@ -66,7 +99,6 @@ protected:
 
 };
 
-#define BITRATE_ROLE Qt::UserRole + 1
 
 /*! @brief The class of the download table widget.
  * @author Greedysky <greedysky@163.com>
@@ -93,12 +125,11 @@ public:
     /*!
      * Create current itrm by given bitrate\type\icon\otherinfo.
      */
-    void createItem(int bitrate, const QString &type, const QString &info,
-                    const QString &icon);
+    void createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon);
     /*!
      * Get current bitrate from item.
      */
-    int getCurrentBitrate();
+    MusicDownloadTableItemRole getCurrentItemRole() const;
 
 public Q_SLOTS:
     /*!
@@ -228,6 +259,7 @@ protected:
 
     Ui::MusicDownloadWidget *m_ui;
     bool m_querySingleInfo;
+    int m_downloadOffset, m_downloadTotal;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
     MusicObject::MusicSongInformation m_singleSongInfo;

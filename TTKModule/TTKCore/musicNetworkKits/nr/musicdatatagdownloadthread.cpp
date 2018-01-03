@@ -53,6 +53,7 @@ void MusicDataTagDownloadThread::downLoadFinished()
 {
     bool save = (m_file != nullptr);
     MusicDataDownloadThread::downLoadFinished();
+
     if(m_redirection)
     {
         return;

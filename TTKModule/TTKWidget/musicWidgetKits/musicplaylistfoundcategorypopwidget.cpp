@@ -79,7 +79,7 @@ QString MusicPlaylistFoundCategoryPopWidget::getClassName()
 void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     MusicPlaylistCategorys categorys;
-    MusicCategoryConfigManager manager;
+    MusicPlaylistCategoryConfigManager manager;
     manager.readCategoryConfig();
     manager.readCategoryConfig(categorys, server);
 

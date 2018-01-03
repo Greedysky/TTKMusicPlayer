@@ -129,7 +129,7 @@ void MusicSongsListAbstractTableWidget::musicSongMovieFound()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getCurrentSongName() );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getCurrentSongName(), QString());
 }
 
 void MusicSongsListAbstractTableWidget::musicAlbumFoundWidget()
@@ -159,8 +159,11 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidget()
         return;
     }
 
+    QVariantMap data;
+    data["songName"] = getCurrentSongName();
+
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName( getCurrentSongName() );
+    shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
 
@@ -205,7 +208,7 @@ void MusicSongsListAbstractTableWidget::musicSongMovieFoundPy()
         return;
     }
 
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched( getSongName(m_playRowIndex) );
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(getSongName(m_playRowIndex), QString());
 }
 
 void MusicSongsListAbstractTableWidget::musicSimilarFoundWidgetPy()
@@ -225,8 +228,11 @@ void MusicSongsListAbstractTableWidget::musicSongSharedWidgetPy()
         return;
     }
 
+    QVariantMap data;
+    data["songName"] = getSongName(m_playRowIndex);
+
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setSongName( getSongName(m_playRowIndex) );
+    shareWidget.setData(MusicSongSharingWidget::Song, data);
     shareWidget.exec();
 }
 

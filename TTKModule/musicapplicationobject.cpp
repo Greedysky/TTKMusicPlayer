@@ -15,6 +15,8 @@
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicotherdefine.h"
+#include "musiccoreutils.h"
+#include "musicalgorithmutils.h"
 
 #include "qdevicewatcher.h"
 
@@ -36,7 +38,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     musicResetWindow();
 
     m_quitAnimation = new QPropertyAnimation(this);
-    m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);;
+    m_sideAnimation = new QPropertyAnimation(parent, "geometry", this);
     m_quitAnimation->setTargetObject(parent);
     m_sideAnimation->setDuration(250*MT_MS);
 
@@ -241,6 +243,11 @@ void MusicApplicationObject::musicAboutUs()
     MusicMessageAboutDialog().exec();
 }
 
+void MusicApplicationObject::musicBugReportView()
+{
+    MusicUtils::Core::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
+}
+
 void MusicApplicationObject::musicVersionUpdate()
 {
     MusicSourceUpdateWidget(MusicApplication::instance()).exec();
@@ -386,4 +393,7 @@ void MusicApplicationObject::cleanUp()
     QFile::remove(MUSIC_RECORD_IN_FILE);
     QFile::remove(MUSIC_RECORD_OUT_FILE);
     QFile::remove(MUSIC_NETWORK_TEST_FILE);
+
+    ///remove daily pic theme
+    MusicUtils::Core::removeRecursively(STRCAT(CACHE_DIR_FULL, MUSIC_DAILY_DIR));
 }

@@ -1,4 +1,5 @@
 #include "musicxmtextdownloadthread.h"
+#include "musiccoreutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -23,7 +24,7 @@ void MusicXMTextDownLoadThread::startToDownload()
             m_timer.start(MT_S2MS);
             m_manager = new QNetworkAccessManager(this);
 
-            m_lrcType = m_url.right(3);
+            m_lrcType = MusicUtils::Core::fileSuffix(m_url);
 
             QNetworkRequest request;
             request.setUrl(m_url);
@@ -36,12 +37,10 @@ void MusicXMTextDownLoadThread::startToDownload()
             sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
             request.setSslConfiguration(sslConfig);
 #endif
-            m_reply = m_manager->get( request );
+            m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                             SLOT(replyError(QNetworkReply::NetworkError)) );
-            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)),
-                             SLOT(downloadProgress(qint64, qint64)));
+            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
         }
         else
         {

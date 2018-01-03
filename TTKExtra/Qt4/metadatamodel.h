@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright (C) 2009 by Ilya Kotov                                      *
- *   forkotov02@hotmail.ru                                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -29,7 +29,7 @@
 #include "tagmodel.h"
 
 /*! @brief The MetaDataModel is the base interface class of metadata access.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class MetaDataModel : public QObject
 {

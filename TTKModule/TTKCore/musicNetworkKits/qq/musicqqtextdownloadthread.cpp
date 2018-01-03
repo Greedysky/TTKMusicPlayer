@@ -40,12 +40,10 @@ void MusicQQTextDownLoadThread::startToDownload()
             sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
             request.setSslConfiguration(sslConfig);
 #endif
-            m_reply = m_manager->get( request );
+            m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                             SLOT(replyError(QNetworkReply::NetworkError)) );
-            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)),
-                             SLOT(downloadProgress(qint64, qint64)));
+            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)) );
+            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
         }
         else
         {
@@ -68,7 +66,7 @@ void MusicQQTextDownLoadThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-        bytes.replace("jsonp1(", "");
+        bytes.replace("MusicJsonCallback(", "");
         bytes.chop(1);
 
         QJson::Parser parser;

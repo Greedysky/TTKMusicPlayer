@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2012-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -37,7 +37,7 @@ class ChannelConverter;
 
 /** @internal
     @brief Output thread.
-    @author Ilya Kotov <forkotov02@hotmail.ru>
+    @author Ilya Kotov <forkotov02@ya.ru>
 */
 class Q_DECL_EXPORT OutputWriter : public QThread
 {
@@ -110,15 +110,13 @@ public:
 private:
     void run(); //thread run function
     void status();
-    void dispatch(qint64 elapsed,
-                  int bitrate,
-                  int frequency,
-                  int bits,
-                  int channels);
+    void dispatch(qint64 elapsed, int bitrate);
     void dispatch(const Qmmp::State &state);
+    void dispatch(const AudioParameters &p);
     void dispatchVisual(Buffer *buffer);
-    void clearVisuals();
     bool prepareConverters();
+    void startVisualization();
+    void stopVisualization();
 
     bool m_skip;
     QMutex m_mutex;

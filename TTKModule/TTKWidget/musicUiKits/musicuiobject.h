@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ namespace MusicUIObject
             color:rgb(160, 99, 11);";
 
     const QString MColorStyle08 = " \
-            color:#80B7F1;";
+            color:#158FE1;";
 
     const QString MColorStyle09 = " \
             color:#666666;";
@@ -113,7 +113,7 @@ namespace MusicUIObject
             background:rgba(255, 255, 255, 200);";
 
     const QString MBackgroundStyle14 = " \
-            background:#80B7F1;";
+            background:#158FE1;";
 
     const QString MBackgroundStyle15 = " \
             background:#BFBFBF;";
@@ -222,9 +222,9 @@ namespace MusicUIObject
 
     const QString MPushButtonStyle02 = MPushButtonStyle01 + " \
             QPushButton{ border-none;}";
-            
+
     const QString MPushButtonStyle03 = " \
-            QPushButton{ border-radius:3px; background-color:#80B7F1; color:white;}";
+            QPushButton{ border-radius:3px; background-color:#158FE1; color:white;}";
 
     const QString MPushButtonStyle04 = " \
             QPushButton{ border:1px solid #AAAAAA; background:#FFFFFF; color:#777777;} \
@@ -483,6 +483,13 @@ namespace MusicUIObject
             border-left-color:darkgray; border-left-style:solid;} \
             QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow);}";
 
+    const QString MComboBoxStyle02 = " \
+            QComboBox{ border:none;} \
+            QComboBox::hover{ border:none;} \
+            QComboBox::drop-down{ subcontrol-origin:padding; \
+            subcontrol-position:top right; width:20px; border-left:none;} \
+            QComboBox::down-arrow{ image:url(:/usermanager/btn_down_arrow);}";
+
 
 ///TableWidget
 //////////////////////////////////////////////////////
@@ -497,6 +504,14 @@ namespace MusicUIObject
 
     const QString MTableWidgetStyle04 = " \
             QTableWidget{ background:rgba(0, 0, 0, 255);}";
+
+
+///TableWidget
+//////////////////////////////////////////////////////
+    const QString MTabWidgetStyle01 = " \
+        QTabWidget{ border:none;} \
+        QTabBar::tab{ height:30px; width:125px; background-color:#BFBFBF; color:white;} \
+        QTabBar::tab:selected{ background-color:#158FE1; color:white}";
 
 
 ///TextEdit

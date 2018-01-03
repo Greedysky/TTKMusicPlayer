@@ -12,8 +12,7 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QString &hash)
+void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &hash)
 {
     if(hash.isEmpty())
     {
@@ -26,6 +25,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -37,6 +37,11 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
 
     QJson::Parser parser;
     bool ok;
@@ -68,6 +73,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     if(all)
     {
         readFromMusicSongAttribute(info, key["hash"].toString());
+        readFromMusicSongAttribute(info, key["128hash"].toString());
         readFromMusicSongAttribute(info, key["320hash"].toString());
         readFromMusicSongAttribute(info, key["sqhash"].toString());
     }
@@ -76,6 +82,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         if(quality == QObject::tr("SD"))
         {
             readFromMusicSongAttribute(info, key["hash"].toString());
+            readFromMusicSongAttribute(info, key["128hash"].toString());
         }
         else if(quality == QObject::tr("SQ"))
         {
@@ -88,19 +95,19 @@ void MusicDownLoadKGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info,
-                                                          const QString &hash)
+void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSongInformation *info)
 {
-    if(hash.isEmpty())
+    if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(hash);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_INFO_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -113,19 +120,25 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
-        if(!value.isEmpty() && value["error"].toString().isEmpty())
+        if(value["errcode"].toInt() == 0 && value.contains("data"))
         {
-            info->m_artistId = QString::number(value["singerId"].toULongLong());
-            info->m_smallPicUrl = value["imgUrl"].toString().replace("{size}", "480");
+            value = value["data"].toMap();
+            info->m_artistId = QString::number(value["singerid"].toULongLong());
+            info->m_smallPicUrl = value["imgurl"].toString().replace("{size}", "480");
             info->m_lrcUrl = MusicUtils::Algorithm::mdII(KG_SONG_LRC_URL, false)
-                                                    .arg(value["songName"].toString()).arg(hash)
-                                                    .arg(value["timeLength"].toInt()*1000);
+                                                    .arg(value["songname"].toString()).arg(info->m_songId)
+                                                    .arg(value["duration"].toInt()*1000);
         }
     }
 }
@@ -137,6 +150,7 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *inf
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -149,6 +163,11 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *inf
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QJson::Parser parser;
     bool ok;
     QVariant data = parser.parse(reply->readAll(), &ok);
@@ -158,8 +177,8 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *inf
         if(value.contains("data"))
         {
             value = value["data"].toMap();
-            info->m_nickname = value["albumname"].toString();
-            info->m_description = info->m_nickname + "<>" +
+            info->m_nickName = value["albumname"].toString();
+            info->m_description = info->m_nickName + "<>" +
                                   value["language"].toString() + "<>" +
                                   value["company"].toString() + "<>" +
                                   value["publishtime"].toString().left(10);

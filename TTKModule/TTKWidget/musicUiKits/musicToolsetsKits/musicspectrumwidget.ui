@@ -76,21 +76,6 @@
       <height>390</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QTabWidget{
-    border:none;
-}
-QTabBar::tab {
-	height:30px;
-	width:125px;
-    background-color: #BFBFBF;
-    color: white;
-}
-QTabBar::tab:selected {
-    background-color: #80B7F1;
-    color: white
-}</string>
-    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -294,6 +279,99 @@ QTabBar::tab:selected {
       <item>
        <widget class="QWidget" name="spectrumPlusAreaWidget" native="true">
         <layout class="QVBoxLayout" name="spectrumPlusAreaLayout">
+         <property name="spacing">
+          <number>2</number>
+         </property>
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="dazzleWidget">
+     <attribute name="title">
+      <string>炫光显示</string>
+     </attribute>
+     <layout class="QVBoxLayout" name="dazzleLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="dazzleFuncionts" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="dazzleFunciontsLayout">
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="goomBox">
+           <property name="text">
+            <string>Goom</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="dazzleAreaWidget" native="true">
+        <layout class="QVBoxLayout" name="dazzleAreaLayout">
          <property name="spacing">
           <number>2</number>
          </property>

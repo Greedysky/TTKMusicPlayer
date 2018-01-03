@@ -174,7 +174,7 @@ static inline HWND dw_create_internal_window(const void* userData)
 	wc.hIcon = 0;
 	wc.hCursor = 0;
 	wc.hbrBackground = 0;
-	wc.lpszMenuName = NULL;
+    wc.lpszMenuName = nullptr;
     wc.lpszClassName = reinterpret_cast<const wchar_t *>(className.utf16());
     RegisterClassW(&wc);
 

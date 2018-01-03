@@ -35,12 +35,10 @@ void MusicKWTextDownLoadThread::startToDownload()
             sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
             request.setSslConfiguration(sslConfig);
 #endif
-            m_reply = m_manager->get( request );
+            m_reply = m_manager->get(request);
             connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)),
-                             SLOT(replyError(QNetworkReply::NetworkError)) );
-            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)),
-                             SLOT(downloadProgress(qint64, qint64)));
+            connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+            connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
         }
         else
         {
@@ -76,7 +74,7 @@ void MusicKWTextDownLoadThread::downLoadFinished()
                 foreach(const QVariant &var, datas)
                 {
                     value = var.toMap();
-                    lrcData.append(MusicTime(value["timeId"].toString().toInt(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
+                    lrcData.append(MusicTime(value["timeId"].toInt(), MusicTime::All_Sec).toString("[mm:ss.zzz]"))
                            .append(value["text"].toByteArray()).append("\n");
                 }
             }

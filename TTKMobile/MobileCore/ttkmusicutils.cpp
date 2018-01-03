@@ -209,12 +209,6 @@ void TTKMusicUtils::checkTheFileNeededExist()
         QFile::setPermissions(COFIGPATH_FULL, QFile::WriteOwner | QFile::ReadOwner);
     }
 
-    if(!QFile::exists(MUSICPATH_FULL))
-    {
-        QFile(":/extra/music").copy(MUSICPATH_FULL);
-        QFile::setPermissions(MUSICPATH_FULL, QFile::WriteOwner | QFile::ReadOwner);
-    }
-
     QFile(":/extra/TTKMobile").copy(LANGUAGE_DIR_FULL + "TTKMobile.ln");
     QFile::setPermissions(LANGUAGE_DIR_FULL + "TTKMobile.ln", QFile::WriteOwner | QFile::ReadOwner);
 }

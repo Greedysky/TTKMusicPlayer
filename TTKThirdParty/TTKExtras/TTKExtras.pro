@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2017 Greedysky Studio
+# * Copyright (C) 2015 - 2018 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -46,8 +46,9 @@ unix:!mac{
 
 include(../TTKExtrasDefine.pri)
 
-include(qaes/QAes.pri)
+include(qalg/QAlg.pri)
 include(qhz2py/QHz2Py.pri)
+include(qimage/QImage.pri)
 include(qiniu/QiNiu.pri)
 include(qjson/QJson.pri)
 include(qkugou/QKuGou.pri)

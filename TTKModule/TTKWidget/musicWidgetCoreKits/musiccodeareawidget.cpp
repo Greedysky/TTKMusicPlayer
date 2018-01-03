@@ -102,9 +102,9 @@ void MusicCodeAreaWidget::drawOutline(QPainter &painter)
 
 void MusicCodeAreaWidget::drawNoisyPoint(QPainter &painter)
 {
-	painter.setPen(Qt::red);
-	painter.setPen(Qt::DotLine);
-	painter.setBrush(Qt::NoBrush);
+    painter.setPen(Qt::red);
+    painter.setPen(Qt::DotLine);
+    painter.setBrush(Qt::NoBrush);
     for(int i=0; i<m_nNoisyPointCount; i++)
     {
         painter.drawPoint(QPointF(qrand() % size().width(), qrand() % size().height()));
@@ -115,13 +115,12 @@ void MusicCodeAreaWidget::drawConversion(QPainter &painter)
 {
     if(qrand() % 2)
     {
-		painter.rotate(qrand() % m_nConverseRotate);
+        painter.rotate(qrand() % m_nConverseRotate);
     }
-	else
+    else
     {
-		painter.rotate(-(qrand() % m_nConverseRotate));
+        painter.rotate(-(qrand() % m_nConverseRotate));
     }
-	painter.scale((qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0 , 
+    painter.scale((qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0 , 
                   (qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0);
 }
-

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
     QString m_hash;
     QString m_mimeType;
     int m_size;
-    int m_putTime;
+    qint64 m_putTime;
 }QNDataItem;
 MUSIC_DECLARE_LISTS(QNDataItem)
 

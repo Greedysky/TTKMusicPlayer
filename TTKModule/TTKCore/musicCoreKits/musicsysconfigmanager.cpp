@@ -41,6 +41,7 @@ void MusicSysConfigManager::writeXMLConfig()
     int otherInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toInt();
     int otherSideByChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toInt();
     int otherSongFormatChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
+    int otherLrcKTVModeChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     QString bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
@@ -90,6 +91,7 @@ void MusicSysConfigManager::writeXMLConfig()
     int enhancedStereoChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedStereoChoiced).toInt();
     int enhancedLADSPAChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedLADSPAChoiced).toInt();
     int enhancedSOXChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSOXChoiced).toInt();
+    int enhancedSRCChoiced = M_SETTING_PTR->value(MusicSettingManager::EnhancedSRCChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     int timeAutoIndexChoiced = M_SETTING_PTR->value(MusicSettingManager::TimerAutoIndexChoiced).toInt();
@@ -164,6 +166,7 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(otherSettingDom, "otherInfo", MusicXmlAttribute("value", otherInfoChoiced));
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideByChoiced));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormatChoiced));
+    writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(backgroundSettingDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
@@ -213,6 +216,7 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(equalizerSettingDom, "enhancedStereo", MusicXmlAttribute("value", enhancedStereoChoiced));
     writeDomElement(equalizerSettingDom, "enhancedLADSPA", MusicXmlAttribute("value", enhancedLADSPAChoiced));
     writeDomElement(equalizerSettingDom, "enhancedSOX", MusicXmlAttribute("value", enhancedSOXChoiced));
+    writeDomElement(equalizerSettingDom, "enhancedSRC", MusicXmlAttribute("value", enhancedSRCChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(timeSettingDom, "timeAutoIndex", MusicXmlAttribute("value", timeAutoIndexChoiced));
@@ -336,6 +340,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("otherSideBy").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
                      readXmlAttributeByTagNameValue("otherSongFormat").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced,
+                     readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced,
@@ -423,6 +429,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("enhancedLADSPA").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced,
                      readXmlAttributeByTagNameValue("enhancedSOX").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced,
+                     readXmlAttributeByTagNameValue("enhancedSRC").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoIndexChoiced,

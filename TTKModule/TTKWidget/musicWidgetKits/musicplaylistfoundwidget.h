@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,12 +20,9 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
-#include "musicqueryfoundtablewidget.h"
 #include "musiccategoryconfigmanager.h"
 
 class QGridLayout;
-class QPushButton;
-class QStackedWidget;
 class MusicPagingWidgetObject;
 class MusicPlaylistFoundInfoWidget;
 class MusicPlaylistFoundCategoryPopWidget;
@@ -116,7 +113,7 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void queryAllFinished(const MusicPlaylistItem &item);
+    void createPlaylistItems(const MusicPlaylistItem &item);
     /*!
      * Current play list clicked.
      */
@@ -136,12 +133,10 @@ public Q_SLOTS:
 
 protected:
     bool m_firstInit, m_categoryChanged;
-    QStackedWidget *m_container;
     QGridLayout *m_gridLayout;
     MusicPagingWidgetObject *m_pagingWidgetObject;
     MusicPlaylistFoundInfoWidget *m_infoWidget;
     MusicPlaylistFoundCategoryPopWidget *m_categoryButton;
-    MusicDownLoadQueryThreadAbstract *m_downloadThread;
 
 };
 

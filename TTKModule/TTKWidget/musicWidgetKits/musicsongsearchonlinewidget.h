@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,6 +80,10 @@ public:
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override;
+    /*!
+     * Start search query by given id.
+     */
+    void startSearchSingleQuery(const QString &text);
     /*!
      * Data download to local file.
      */
@@ -194,6 +198,10 @@ public:
      */
     void startSearchQuery(const QString &name, bool all);
     /*!
+     * Start search query by given id.
+     */
+    void startSearchSingleQuery(const QString &name);
+    /*!
      * Research query by quality it changed.
      */
     void researchQueryByQuality(const QString &name, const QString &quality);
@@ -232,7 +240,7 @@ protected:
 
     QLabel *m_textLabel;
     QPushButton *m_playButton;
-    QList<QLabel*> m_resizeLabels;
+    QList<QWidget*> m_resizeLabels;
     MusicSongSearchOnlineTableWidget *m_searchTableWidget;
 
 };

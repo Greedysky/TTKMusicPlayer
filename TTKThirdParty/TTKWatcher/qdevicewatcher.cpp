@@ -12,7 +12,7 @@ QDeviceWatcher::~QDeviceWatcher()
 {
 	if (d_ptr) {
 		delete d_ptr;
-		d_ptr = NULL;
+        d_ptr = nullptr;
 	}
 }
 

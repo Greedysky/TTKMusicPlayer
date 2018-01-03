@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <QObject>
 
+#define MUSIC_DAILY_DIR             "Bing"
 #define MUSIC_COLOR_FILE            "color.jpg"
 #define MUSIC_IMAGE_FILE            "image_cache"
 #define MUSIC_RECORD_FILE           "record.raw"

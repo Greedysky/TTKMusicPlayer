@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -172,18 +172,26 @@ namespace MusicObject
     typedef struct MusicSongAttribute
     {
         int m_bitrate;
+        bool m_multiParts;
         QString m_format;
         QString m_url;
         QString m_size;
         QString m_duration;
 
+        MusicSongAttribute()
+        {
+            m_bitrate = -1;
+            m_multiParts = false;
+        }
+
         bool operator< (const MusicSongAttribute &other) const
         {
             return m_bitrate < other.m_bitrate;
         }
+
         bool operator== (const MusicSongAttribute &other) const
         {
-            return m_bitrate == other.m_bitrate;
+            return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
     }MusicSongAttribute;
     MUSIC_DECLARE_LISTS(MusicSongAttribute)

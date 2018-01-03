@@ -4,11 +4,7 @@
 #include "musicstringutils.h"
 #include "musicdownloadsourcethread.h"
 #include "musicsettingmanager.h"
-
-#include <QCheckBox>
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QScrollArea>
+#include "musictoplistfoundcategorypopwidget.h"
 
 MusicTopListFoundTableWidget::MusicTopListFoundTableWidget(QWidget *parent)
     : MusicQueryFoundTableWidget(parent)
@@ -40,18 +36,19 @@ void MusicTopListFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
 MusicTopListFoundWidget::MusicTopListFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
-    m_toplistTableWidget = new MusicTopListFoundTableWidget(this);
+    m_categoryButton = nullptr;
 
-    MusicDownLoadQueryThreadAbstract *thread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
-    m_toplistTableWidget->setQueryInput(thread);
-    connect(thread, SIGNAL(createToplistInfoItem(MusicPlaylistItem)), SLOT(createToplistInfoItem(MusicPlaylistItem)));
+    m_foundTableWidget = new MusicTopListFoundTableWidget(this);
+    m_foundTableWidget->hide();
+    m_downloadThread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
+    m_foundTableWidget->setQueryInput(m_downloadThread);
+
+    connect(m_downloadThread, SIGNAL(createToplistInfoItem(MusicPlaylistItem)), SLOT(createToplistInfoItem(MusicPlaylistItem)));
 }
 
 MusicTopListFoundWidget::~MusicTopListFoundWidget()
 {
-    delete m_iconLabel;
-    delete m_songItemsLabel;
-    delete m_toplistTableWidget;
+    delete m_categoryButton;
 }
 
 QString MusicTopListFoundWidget::getClassName()
@@ -62,7 +59,9 @@ QString MusicTopListFoundWidget::getClassName()
 void MusicTopListFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_toplistTableWidget->startSearchQuery(QString());
+
+    m_downloadThread->setQueryAllRecords(true);
+    m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, QString());
 
     createLabels();
 }
@@ -74,37 +73,39 @@ void MusicTopListFoundWidget::setSongNameById(const QString &id)
 
 void MusicTopListFoundWidget::resizeWindow()
 {
-    m_toplistTableWidget->resizeWindow();
+    m_foundTableWidget->resizeWindow();
 
-    if(!m_resizeWidget.isEmpty())
+    if(!m_resizeWidgets.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
         width = width - WINDOW_WIDTH_MIN;
 
-        QLabel *label = m_resizeWidget[0];
+        QLabel *label = m_resizeWidgets[0];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
 
-        label = m_resizeWidget[1];
+        label = m_resizeWidgets[1];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
 
-        label = m_resizeWidget[2];
+        label = m_resizeWidgets[2];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
 
-        label = m_resizeWidget[3];
+        label = m_resizeWidgets[3];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410 + width));
     }
 }
 
 void MusicTopListFoundWidget::queryAllFinished()
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_toplistTableWidget->getMusicSongInfos());
-    m_songItemsLabel->setText("|" + tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));
+    setSongCountText();
 }
 
 void MusicTopListFoundWidget::createLabels()
 {
     delete m_statusLabel;
     m_statusLabel = nullptr;
+
+    initFirstWidget();
+    m_container->show();
 
     layout()->removeWidget(m_mainWindow);
     QScrollArea *scrollArea = new QScrollArea(this);
@@ -120,8 +121,17 @@ void MusicTopListFoundWidget::createLabels()
     QVBoxLayout *grid = new QVBoxLayout(function);
 
     QLabel *firstLabel = new QLabel(function);
-    firstLabel->setText(tr("<font color=#169AF3> Rank </font>"));
+    firstLabel->setText(tr("<font color=#158FE1> Rank </font>"));
     grid->addWidget(firstLabel);
+    ////////////////////////////////////////////////////////////////////////////
+    QWidget *categoryWidget = new QWidget(function);
+    QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
+    m_categoryButton = new MusicToplistFoundCategoryPopWidget(categoryWidget);
+    m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
+    categoryWidgetLayout->addWidget(m_categoryButton);
+    categoryWidgetLayout->addStretch(1);
+    categoryWidget->setLayout(categoryWidgetLayout);
+    grid->addWidget(categoryWidget);
     ////////////////////////////////////////////////////////////////////////////
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
@@ -159,74 +169,52 @@ void MusicTopListFoundWidget::createLabels()
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
     ////////////////////////////////////////////////////////////////////////////
-    m_songItemsLabel = new QLabel(function);
-    m_songItemsLabel->setFixedHeight(50);
-    m_songItemsLabel->setStyleSheet(MusicUIObject::MFontStyle04);
-    grid->addWidget(m_songItemsLabel);
 
-    QWidget *middleFuncWidget = new QWidget(function);
-    QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
-    middleFuncLayout->setContentsMargins(0, 0, 0, 0);
-    QLabel *marginLabel = new QLabel(middleFuncWidget);
-    marginLabel->setFixedWidth(1);
-    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
-    QPushButton *playButton = new QPushButton(tr("play"), middleFuncWidget);
-    playButton->setIcon(QIcon(":/contextMenu/btn_play_white"));
-    playButton->setIconSize(QSize(14, 14));
-    playButton->setFixedSize(55, 25);
-    playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *addButton = new QPushButton(tr("add"), middleFuncWidget);
-    addButton->setFixedSize(55, 25);
-    addButton->setCursor(QCursor(Qt::PointingHandCursor));
-    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
-    downloadButton->setFixedSize(55, 25);
-    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    QWidget *functionWidget = new QWidget(this);
+    functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
+    m_songButton = new QPushButton(functionWidget);
+    m_songButton->setText(tr("songItems"));
+    m_songButton->setFixedSize(100, 25);
+    m_songButton->setCursor(QCursor(Qt::PointingHandCursor));
+    hlayout->addWidget(m_songButton);
+    hlayout->addStretch(1);
+    functionWidget->setLayout(hlayout);
+    QButtonGroup *group = new QButtonGroup(this);
+    group->addButton(m_songButton, 0);
+    connect(group, SIGNAL(buttonClicked(int)), m_container, SLOT(setCurrentIndex(int)));
 
 #ifdef Q_OS_UNIX
-    allCheckBox->setFocusPolicy(Qt::NoFocus);
-    playButton->setFocusPolicy(Qt::NoFocus);
-    addButton->setFocusPolicy(Qt::NoFocus);
-    downloadButton->setFocusPolicy(Qt::NoFocus);
+    m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    middleFuncLayout->addWidget(marginLabel);
-    middleFuncLayout->addWidget(allCheckBox);
-    middleFuncLayout->addStretch(1);
-    middleFuncLayout->addWidget(playButton);
-    middleFuncLayout->addWidget(addButton);
-    middleFuncLayout->addWidget(downloadButton);
-    connect(allCheckBox, SIGNAL(clicked(bool)), m_toplistTableWidget, SLOT(setSelectedAllItems(bool)));
-    connect(playButton, SIGNAL(clicked()), SLOT(playButtonClicked()));
-    connect(downloadButton, SIGNAL(clicked()), SLOT(downloadButtonClicked()));
-    connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
-    grid->addWidget(middleFuncWidget);
+    grid->addWidget(functionWidget);
     //////////////////////////////////////////////////////////////////////
-    grid->addWidget(m_toplistTableWidget);
+    grid->addWidget(m_container);
     grid->addStretch(1);
 
     function->setLayout(grid);
     m_mainWindow->layout()->addWidget(function);
 
-    m_resizeWidget << nameLabel << playCountLabel << updateTimeLabel << descriptionLabel;
+    m_resizeWidgets << nameLabel << playCountLabel << updateTimeLabel << descriptionLabel;
 }
 
 void MusicTopListFoundWidget::createToplistInfoItem(const MusicPlaylistItem &item)
 {
-    if(!m_resizeWidget.isEmpty())
+    if(!m_resizeWidgets.isEmpty())
     {
-        QLabel *label = m_resizeWidget[0];
+        QLabel *label = m_resizeWidgets[0];
         label->setToolTip(item.m_name);
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-        label = m_resizeWidget[1];
+        label = m_resizeWidgets[1];
         label->setToolTip(tr("PlayCount: %1").arg(item.m_playCount));
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-        label = m_resizeWidget[2];
+        label = m_resizeWidgets[2];
         label->setToolTip(tr("UpdateTime: %1").arg(item.m_updateTime));
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, 410));
 
-        label = m_resizeWidget[3];
+        label = m_resizeWidgets[3];
         label->setToolTip(tr("Description: %1").arg(item.m_description));
         label->setText(label->toolTip());
     }
@@ -239,30 +227,15 @@ void MusicTopListFoundWidget::createToplistInfoItem(const MusicPlaylistItem &ite
     }
 }
 
-void MusicTopListFoundWidget::downLoadFinished(const QByteArray &data)
+void MusicTopListFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)
 {
-    if(m_iconLabel)
+    if(m_categoryButton)
     {
-        QPixmap pix;
-        pix.loadFromData(data);
-        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+        m_categoryButton->setText(category.m_name);
+        m_categoryButton->closeMenu();
+
+        m_songButton->setText(tr("songItems"));
+        m_downloadThread->setQueryAllRecords(true);
+        m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, category.m_id);
     }
-}
-
-void MusicTopListFoundWidget::playButtonClicked()
-{
-    m_toplistTableWidget->downloadDataFrom(true);
-}
-
-void MusicTopListFoundWidget::downloadButtonClicked()
-{
-    foreach(int index, m_toplistTableWidget->getSelectedItems())
-    {
-        m_toplistTableWidget->musicDownloadLocal(index);
-    }
-}
-
-void MusicTopListFoundWidget::addButtonClicked()
-{
-    m_toplistTableWidget->downloadDataFrom(false);
 }

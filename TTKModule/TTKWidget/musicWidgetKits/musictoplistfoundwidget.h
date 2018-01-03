@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,9 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
-#include "musicqueryfoundtablewidget.h"
+#include "musiccategoryconfigmanager.h"
+
+class MusicToplistFoundCategoryPopWidget;
 
 /*! @brief The class of the toplist music found table widget.
  * @author Greedysky <greedysky@163.com>
@@ -43,7 +45,7 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 };
 
@@ -91,21 +93,9 @@ public Q_SLOTS:
      */
     void createToplistInfoItem(const MusicPlaylistItem &item);
     /*!
-     * Send recieved data from net.
+     * Current category changed.
      */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
+    void categoryChanged(const MusicPlaylistCategoryItem &category);
 
 protected:
     /*!
@@ -113,9 +103,7 @@ protected:
      */
     void createLabels();
 
-    QLabel *m_iconLabel, *m_songItemsLabel;
-
-    MusicTopListFoundTableWidget *m_toplistTableWidget;
+    MusicToplistFoundCategoryPopWidget *m_categoryButton;
 
 };
 

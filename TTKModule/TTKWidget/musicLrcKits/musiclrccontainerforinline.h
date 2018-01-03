@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,9 +74,9 @@ public:
      */
     QString text() const;
     /*!
-     * Set song speed and slow by given time, return new time.
+     * Set song speed by given time, return new time.
      */
-    qint64 setSongSpeedAndSlow(qint64 time);
+    qint64 setSongSpeedChanged(qint64 time);
     /*!
      * Get current lrc and next lrc in container by current time.
      */

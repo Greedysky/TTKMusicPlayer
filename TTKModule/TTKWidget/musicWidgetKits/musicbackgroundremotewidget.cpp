@@ -8,7 +8,7 @@
 #include <QBoxLayout>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
-    : QWidget(parent), m_downloadQueue(nullptr)
+    : QWidget(parent)
 {
     QHBoxLayout *hbox = new QHBoxLayout(this);
     hbox->setContentsMargins(0, 0, 0, 0);
@@ -19,19 +19,17 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     setLayout(hbox);
 
     m_currentIndex = -1;
-    m_functionsWidget = nullptr;
     m_queryThread = nullptr;
 
     m_downloadQueue = new MusicDownloadQueueCache(MusicDownLoadThreadAbstract::Download_BigBG, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
-    connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(remoteBackgroundListWidgetItemClicked(QString)));
+
 }
 
 MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
 {
     abort();
     delete m_listWidget;
-    delete m_functionsWidget;
     delete m_downloadQueue;
     delete m_queryThread;
 }
@@ -41,22 +39,89 @@ QString MusicBackgroundRemoteWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicBackgroundRemoteWidget::init()
-{
-    if(!m_queryThread)
-    {
-        m_queryThread = new MusicDownloadBackgroundRemoteThread(this);
-        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadDataChanged(MusicSkinRemoteGroups)));
-        m_queryThread->startToDownload();
-    }
-}
-
 void MusicBackgroundRemoteWidget::abort()
 {
     m_downloadQueue->abort();
 }
 
-QWidget* MusicBackgroundRemoteWidget::createFunctionsWidget(bool revert, QWidget *object)
+void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
+{
+    if(m_groups.isEmpty())
+    {
+        return;
+    }
+
+    MusicBackgroundImage image;
+    outputRemoteSkin(image, data);
+    if(!image.isValid())
+    {
+        image.m_pix = QPixmap(":/image/lb_noneImage");
+    }
+    m_listWidget->updateItem(image, data);
+}
+
+void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
+{
+    m_groups = data;
+}
+
+void MusicBackgroundRemoteWidget::startToDownload(const QString &prefix)
+{
+    if(m_groups.isEmpty())
+    {
+        return;
+    }
+
+    QDir dir(".");
+    QString path = QString("%1%2").arg(CACHE_DIR_FULL).arg(m_groups[m_currentIndex].m_group);
+    dir.mkpath( path );
+
+    m_listWidget->clearAllItems();
+    MusicDownloadQueueDatas datas;
+    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
+    for(int i=0; i<items->count(); i++)
+    {
+        m_listWidget->createItem(":/image/lb_noneImage", false);
+        MusicDownloadQueueData data;
+        data.m_url = (*items)[i].m_url;
+        data.m_savePath = QString("%1/%2%3").arg(path).arg(i).arg(prefix);
+        datas << data;
+    }
+
+    m_downloadQueue->addImageQueue(datas);
+    m_downloadQueue->startToDownload();
+}
+
+
+
+MusicBackgroundThunderWidget::MusicBackgroundThunderWidget(QWidget *parent)
+    : MusicBackgroundRemoteWidget(parent)
+{
+    m_functionsWidget = nullptr;
+    connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(remoteBackgroundListWidgetItemClicked(QString)));
+}
+
+MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
+{
+    delete m_functionsWidget;
+}
+
+QString MusicBackgroundThunderWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicBackgroundThunderWidget::init()
+{
+    if(!m_queryThread)
+    {
+        m_queryThread = new MusicDownloadBackgroundThunderThread(this);
+        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadDataChanged(MusicSkinRemoteGroups)));
+        m_queryThread->startToDownload();
+    }
+}
+
+QWidget* MusicBackgroundThunderWidget::createFunctionsWidget(bool revert, QWidget *object)
 {
     if(!m_functionsWidget)
     {
@@ -121,8 +186,13 @@ QWidget* MusicBackgroundRemoteWidget::createFunctionsWidget(bool revert, QWidget
     return m_functionsWidget;
 }
 
-void MusicBackgroundRemoteWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
+void MusicBackgroundThunderWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
 {
+    if(m_groups.isEmpty() || m_currentIndex < 0)
+    {
+        return;
+    }
+
     int index = QFileInfo(data).baseName().toInt();
     MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
     if(index >= 0 || index < items->count())
@@ -134,7 +204,7 @@ void MusicBackgroundRemoteWidget::outputRemoteSkin(MusicBackgroundImage &image, 
     }
 }
 
-void MusicBackgroundRemoteWidget::buttonClicked(int index)
+void MusicBackgroundThunderWidget::buttonClicked(int index)
 {
     if(index < 0 || index >= m_groups.count())
     {
@@ -149,38 +219,13 @@ void MusicBackgroundRemoteWidget::buttonClicked(int index)
     m_currentIndex = index;
     buttonStyleChanged();
 
-    QDir dir(".");
-    dir.mkpath( QString("%1%2").arg(CACHE_DIR_FULL).arg(index) );
-
-    m_listWidget->clearAllItems();
-    MusicDownloadQueueDatas datas;
-    MusicSkinRemoteItems *items = &m_groups[index].m_items;
-    for(int i=0; i<items->count(); i++)
-    {
-        m_listWidget->createItem(":/image/lb_noneImage", false);
-        MusicDownloadQueueData data;
-        data.m_url = (*items)[i].m_url;
-        data.m_savePath = QString("%1%2/%3%4").arg(CACHE_DIR_FULL).arg(index).arg(i).arg(TTS_FILE);
-        datas << data;
-    }
-
-    m_downloadQueue->addImageQueue(datas);
-    m_downloadQueue->startToDownload();
+    startToDownload(TTS_FILE);
 }
 
-void MusicBackgroundRemoteWidget::downLoadDataChanged(const QString &data)
+void MusicBackgroundThunderWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
 {
-    MusicBackgroundImage image;
-    outputRemoteSkin(image, data);
-    if(image.isValid())
-    {
-        m_listWidget->updateItem(image, data);
-    }
-}
+    MusicBackgroundRemoteWidget::downLoadDataChanged(data);
 
-void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
-{
-    m_groups = data;
     for(int i=0; i<m_groups.count(); ++i)
     {
         MusicSkinRemoteGroup *item = &m_groups[i];
@@ -194,7 +239,7 @@ void MusicBackgroundRemoteWidget::downLoadDataChanged(const MusicSkinRemoteGroup
     }
 }
 
-QPushButton* MusicBackgroundRemoteWidget::createButton(const QString &name)
+QPushButton* MusicBackgroundThunderWidget::createButton(const QString &name)
 {
     QPushButton *btn = new QPushButton(name, m_functionsWidget);
     btn->setStyleSheet(MusicUIObject::MPushButtonStyle02);
@@ -209,7 +254,7 @@ QPushButton* MusicBackgroundRemoteWidget::createButton(const QString &name)
     return btn;
 }
 
-void MusicBackgroundRemoteWidget::buttonStyleChanged()
+void MusicBackgroundThunderWidget::buttonStyleChanged()
 {
     for(int i=0; i<m_functionsItems.count() - 1; ++i)
     {
@@ -217,4 +262,57 @@ void MusicBackgroundRemoteWidget::buttonStyleChanged()
     }
     m_functionsItems[m_currentIndex]->setStyleSheet(MusicUIObject::MPushButtonStyle02 +
                                                     QString("QPushButton{%1}").arg(MusicUIObject::MColorStyle08));
+}
+
+
+
+MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
+    : MusicBackgroundRemoteWidget(parent)
+{
+    m_currentIndex = 0;
+    connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
+}
+
+QString MusicBackgroundDailyWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicBackgroundDailyWidget::init()
+{
+    if(!m_queryThread)
+    {
+        m_queryThread = new MusicDownloadBackgroundBingThread(this);
+        connect(m_queryThread, SIGNAL(downLoadDataChanged(MusicSkinRemoteGroups)), SLOT(downLoadDataChanged(MusicSkinRemoteGroups)));
+        m_queryThread->startToDownload();
+    }
+    else
+    {
+        startToDownload(JPG_FILE);
+    }
+}
+
+void MusicBackgroundDailyWidget::outputRemoteSkin(MusicBackgroundImage &image, const QString &data)
+{
+    if(m_groups.isEmpty() || m_currentIndex < 0)
+    {
+        return;
+    }
+
+    int index = QFileInfo(data).baseName().toInt();
+    MusicSkinRemoteItems *items = &m_groups[m_currentIndex].m_items;
+    if(index >= 0 || index < items->count())
+    {
+        MusicSkinRemoteItem *item = &(*items)[index];
+        image.m_item.m_name = item->m_name;
+        image.m_item.m_useCount = item->m_useCount;
+        image.m_pix = QPixmap(data);
+    }
+}
+
+void MusicBackgroundDailyWidget::downLoadDataChanged(const MusicSkinRemoteGroups &data)
+{
+    MusicBackgroundRemoteWidget::downLoadDataChanged(data);
+
+    startToDownload(JPG_FILE);
 }

@@ -186,7 +186,7 @@ void MusicFileInformationWidget::musicSaveTag()
 
 void MusicFileInformationWidget::setFileInformation(const QString &name)
 {
-    if(name.contains('='))
+    if(name.contains(CACHE_DIR_FULL))
     {
         m_ui->viewButton->setEnabled(false);
     }

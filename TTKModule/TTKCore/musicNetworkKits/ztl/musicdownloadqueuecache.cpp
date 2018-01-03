@@ -164,4 +164,6 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
         m_reply->deleteLater();
         m_reply = nullptr;
     }
+
+    startToDownload();
 }

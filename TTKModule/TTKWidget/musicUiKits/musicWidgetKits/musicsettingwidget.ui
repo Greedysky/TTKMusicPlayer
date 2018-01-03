@@ -1121,6 +1121,19 @@ font-weight:bold;</string>
       </rect>
      </property>
     </widget>
+    <widget class="QCheckBox" name="otherLrcKTVCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>290</y>
+       <width>271</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启歌词KTV模式</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="five">
     <widget class="QLabel" name="DbaseSetSongWordWidget">

@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2017 Greedysky Studio
+# * Copyright (C) 2015 - 2018 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -64,6 +64,7 @@ FORMS    += \
     $$PWD/musicToolsKits/musicwebmusicradiowidget.ui \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfilemanagerdialog.ui \
+    $$PWD/musicToolsKits/musiccloudfileinformationwidget.ui \
     $$PWD/musicToolsKits/musictoolsetswidget.ui \
     $$PWD/musicUserKits/musicuserdialog.ui \
     $$PWD/musicUserKits/musicusermanagerdialog.ui \
@@ -83,5 +84,6 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsourceupdatewidget.ui \
     $$PWD/musicWidgetKits/musicsoundeffectswidget.ui \
     $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
-    $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui
+    $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui \
+    $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui
 }

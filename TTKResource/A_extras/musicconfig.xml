@@ -24,6 +24,7 @@
         <otherInfo value="0"/>
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
+        <otherLrcKTV value="0"/>
     </otherSetting>
     <backgroundSetting>
         <bgTheme value="theme-15"/>
@@ -73,6 +74,7 @@
         <enhancedStereo value="0"/>
         <enhancedLADSPA value="0"/>
         <enhancedSOX value="0"/>
+        <enhancedSRC value="0"/>
     </equalizerSetting>
     <timeSetting>
         <timeAutoIndex value="2"/>

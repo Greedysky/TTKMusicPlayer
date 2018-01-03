@@ -109,7 +109,9 @@ QString MusicLocalSongSearchPopWidget::getClassName()
 
 void MusicLocalSongSearchPopWidget::createItems()
 {
+    m_clearButton->show();
     m_popTableWidget->clearAllItems();
+
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readSearchXMLConfig())
     {
@@ -118,6 +120,7 @@ void MusicLocalSongSearchPopWidget::createItems()
 
     MusicSearchRecords records;
     search.readSearchConfig( records );
+
     int count = records.count();
     resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 45 : 7*ROW_HEIGHT + 8) );
 
@@ -125,6 +128,21 @@ void MusicLocalSongSearchPopWidget::createItems()
     for(int i=0; i<count; ++i)
     {
         m_popTableWidget->createItems(i, records[i].m_name, utcTimeToLocal(records[i].m_time));
+    }
+}
+
+void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
+{
+    m_clearButton->hide();
+    m_popTableWidget->clearAllItems();
+
+    int count = names.count();
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 8 : 6*ROW_HEIGHT + 8) );
+
+    m_popTableWidget->setRowCount( count );
+    for(int i=0; i<count; ++i)
+    {
+        m_popTableWidget->createItems(i, names[i], QString());
     }
 }
 

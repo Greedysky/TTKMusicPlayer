@@ -82,21 +82,6 @@
       <height>417</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">QTabWidget{
-    border:none;
-}
-QTabBar::tab {
-	height:30px;
-	width:125px;
-    background-color: #BFBFBF;
-    color: white;
-}
-QTabBar::tab:selected {
-    background-color: #80B7F1;
-    color: white
-}</string>
-    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -829,7 +814,7 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color:#80B7F1;font-size:15px;font-weight:bold</string>
+       <string notr="true">color:#158FE1;font-size:15px;font-weight:bold</string>
       </property>
       <property name="text">
        <string>g******ky@163.com</string>
@@ -845,7 +830,7 @@ QTabBar::tab:selected {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color:#80B7F1;font-size:15px;font-weight:bold</string>
+       <string notr="true">color:#158FE1;font-size:15px;font-weight:bold</string>
       </property>
       <property name="text">
        <string>159******49</string>

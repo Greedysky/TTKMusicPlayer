@@ -26,42 +26,6 @@ Item {
     width: parent.width
     height: parent.height
 
-    function timeToQuitApp(time) {
-        firstListModel.set(3, {
-            imageSource: "qrc:/image/more_icon_timer",
-            imageSubSource: "qrc:/image/switch_on_normal",
-            title: qsTr("定时关闭")
-        });
-        var beforeTime = Date.parse(new Date);
-        var afterTime = new Date(beforeTime + time*1000*60);
-        ttkFlyInOutBox.text = qsTr("设置成功，") +
-                              TTK_UTILS.fromMSecsSinceEpoch(afterTime*1, "hh:mm") +
-                              qsTr("后退出");
-        ttkFlyInOutBox.start();
-        TTK_APP.setTimeToQuitApp(time*1000*60);
-    }
-
-    function updateWifiConnect(state) {
-        var justUseWifi = TTK_UTILS.getValue("MobileWifiConnectChoiced");
-        if(state)
-        {
-            justUseWifi = !justUseWifi;
-            TTK_UTILS.setValue("MobileWifiConnectChoiced", justUseWifi);
-        }
-        TTK_UTILS.setNetworkBlockNotWifi();
-
-        firstListModel.set(1, {
-            imageSource: "qrc:/image/more_icon_wifionly",
-            imageSubSource: justUseWifi ? "qrc:/image/switch_on_normal"
-                                        : "qrc:/image/switching_off",
-            title: qsTr("仅Wi-Fi联网")
-        });
-    }
-
-    Component.onCompleted: {
-        updateWifiConnect(false);
-    }
-
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -118,55 +82,12 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: ttkGlobal.dpHeight(1000)
+                height: ttkGlobal.dpHeight(200)
                 color: "#EEEEEE"
 
                 ColumnLayout {
                     spacing: 5
                     anchors.fill: parent
-
-                    Rectangle {
-                        id: functionWidget
-                        Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: ttkGlobal.dpHeight(150)
-                        anchors.left: parent.left
-                        color: ttkTheme.color_white
-
-                        TTKMainFunctionItem {
-                            id: vipItemArea
-                            height: (parent.height-10)
-                            anchors {
-                                left: parent.left
-                                top: parent.top
-                            }
-                            source: "qrc:/image/more_icon_myvip_normal"
-                            mainTitle: qsTr("升级为VIP")
-                            subTitle: qsTr("畅想音乐特权")
-                        }
-
-                        TTKMainFunctionItem {
-                            id: themeItemArea
-                            height: (parent.height-10)
-                            anchors {
-                                left: vipItemArea.right
-                                top: parent.top
-                            }
-                            source: "qrc:/image/more_icon_personal_center"
-                            mainTitle: qsTr("个性化主题")
-                            subTitle: qsTr("默认主题")
-                        }
-
-                        TTKMainFunctionItem {
-                            id: msgItemArea
-                            height: (parent.height-10)
-                            anchors {
-                                left: themeItemArea.right
-                                top: parent.top
-                            }
-                            source: "qrc:/image/more_icon_notificationcenter"
-                            mainTitle: qsTr("消息中心")
-                        }
-                    }
 
                     ListView {
                         Layout.preferredWidth: ttkMainWindow.width
@@ -200,21 +121,12 @@ Item {
                                             ttkOutStackView.push("qrc:/MobileWidgets/TTKMainMoreSettingPage.qml");
                                             break;
                                         case 1:
-                                            updateWifiConnect(true);
+                                            TTK_UTILS.updateApplicationDialog();
                                             break;
-                                        case 2: break;
-                                        case 3:
-                                            if(TTK_APP.timeToQuitAppIsSet()) {
-                                                firstListModel.set(3, {
-                                                    imageSource: "qrc:/image/more_icon_timer",
-                                                    imageSubSource: "qrc:/image/switching_off",
-                                                    title: qsTr("定时关闭")
-                                                });
-                                                TTK_APP.setTimeToQuitApp(-1);
-                                            }else {
-                                                ttkMusicTimeSettingPage.visible = true;
-                                            }
+                                        case 2:
+                                            ttkMusicAboutPage.visible = true;
                                             break;
+                                        default: break;
                                     }
                                 }
                             }
@@ -227,130 +139,6 @@ Item {
                                 imageSubSource: "qrc:/image/ic_toolbar_advance"
                                 title: qsTr("设置")
                             }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_wifionly"
-                                imageSubSource: "qrc:/image/switching_off"
-                                title: qsTr("仅Wi-Fi联网")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/simple_mode_icon"
-                                imageSubSource: "qrc:/image/switching_off"
-                                title: qsTr("简洁模式")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_timer"
-                                imageSubSource: "qrc:/image/switching_off";
-                                title: qsTr("定时关闭")
-                            }
-                        }
-
-                        Component.onCompleted: {
-                            if(TTK_APP.timeToQuitAppIsSet()) {
-                                firstListModel.set(3, {
-                                    imageSource: "qrc:/image/more_icon_timer",
-                                    imageSubSource: "qrc:/image/switch_on_normal",
-                                    title: qsTr("定时关闭")
-                                });
-                            }
-                        }
-                    }
-
-                    ListView {
-                        Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: ttkGlobal.dpHeight(304)
-                        boundsBehavior: Flickable.StopAtBounds
-                        clip: true
-                        spacing: 1
-
-                        delegate: Rectangle {
-                            width: ttkMainWindow.width
-                            height: ttkGlobal.dpHeight(60)
-                            color: ttkTheme.color_white
-
-                            TTKImageFunctionItem {
-                                source: imageSource
-                                text: title
-                                textColor: ttkTheme.color_black
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    switch(index) {
-                                        case 0: break;
-                                        case 1:
-                                            if(ttkGlobal.isAndroid()) {
-                                                ttkOutStackView.push("qrc:/MobileWidgets/QRCodeReader.qml");
-                                            }
-                                            break;
-                                        case 2: break;
-                                        case 3:
-                                            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicCleanCachedPage.qml");
-                                            break;
-                                        case 4: break;
-                                    }
-                                }
-                            }
-                        }
-
-                        model: ListModel{
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_chinaunicom"
-                                title: qsTr("免流量服务")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/pc2device_icon"
-                                title: qsTr("传歌到手机")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/player_btn_qplayon_normal"
-                                title: qsTr("QPlay与车载音乐")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_cleancache"
-                                title: qsTr("清理占用空间")
-                            }
-                            ListElement {
-                                imageSource: "qrc:/image/more_icon_wifionly"
-                                title: qsTr("免费WIFI")
-                            }
-                        }
-                    }
-
-                    ListView {
-                        Layout.preferredWidth: ttkMainWindow.width
-                        Layout.preferredHeight: ttkGlobal.dpHeight(121)
-                        boundsBehavior: Flickable.StopAtBounds
-                        clip: true
-                        spacing: 1
-
-                        delegate: Rectangle {
-                            width: ttkMainWindow.width
-                            height: ttkGlobal.dpHeight(60)
-                            color: ttkTheme.color_white
-
-                            TTKImageFunctionItem {
-                                source: imageSource
-                                text: title
-                                textColor: ttkTheme.color_black
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    switch(index) {
-                                        case 0:
-                                            TTK_UTILS.updateApplicationDialog();
-                                            break;
-                                        case 1:
-                                            ttkMusicAboutPage.visible = true;
-                                            break;
-                                    }
-                                }
-                            }
-                        }
-
-                        model: ListModel{
                             ListElement {
                                 imageSource: "qrc:/image/more_icon_about"
                                 title: qsTr("软件更新")
@@ -381,10 +169,6 @@ Item {
                 }
             }
         }
-    }
-
-    TTKMusicTimeSettingPage {
-        id: ttkMusicTimeSettingPage
     }
 
     TTKMusicAboutPage {

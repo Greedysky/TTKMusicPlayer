@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,6 +101,10 @@ public:
      * Get current play state.
      */
     bool isPlaying() const;
+    /*!
+     * Get current player duration.
+     */
+    qint64 duration() const;
     /*!
      * Get current play mode.
      */
@@ -275,6 +279,10 @@ public Q_SLOTS:
      * The current lrc should update, emit it.
      */
     void musicCurrentLrcUpdated();
+    /*!
+     * Reset current song lrc index.
+     */
+    void resetCurrentSongLrcIndex();
     /*!
      * Update current play time when user adjust the progress.
      */

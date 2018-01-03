@@ -24,9 +24,18 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
-    QString tk = cookies[0].value();
-    QString tk_enc = cookies[1].value();
+    QString tk, tk_enc;
+    if(cookies.count() >= 2)
+    {
+        tk = cookies[0].value();
+        tk_enc = cookies[1].value();
+    }
 
     QString time = QString::number(MusicTime::timeStamp());
     QString appkey = "12574478";
@@ -36,32 +45,34 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
 
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
+    request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info,
-                                                    const QString &songID)
+void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info)
 {
     QNetworkAccessManager manager;
     QNetworkRequest request;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(songID),
+                      MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(info->m_songId),
                       MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
     MusicSemaphoreLoop loop;
-    QNetworkReply *reply = manager.get( request );
+    QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
 
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
     QByteArray bytes = reply->readAll();
-    bytes = bytes.replace("xiami(", "");
-    bytes = bytes.replace("callback(", "");
-    bytes.chop(1);
 
     QJson::Parser parser;
     bool ok;
@@ -100,6 +111,16 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     attr.m_size = MusicUtils::Number::size2Label(key["fileSize"].toInt());
     attr.m_format = key["format"].toString();
     attr.m_bitrate = bitrate;
+
+    if(attr.m_url.isEmpty())
+    {
+        attr.m_url = key["url"].toString();
+    }
+    if(key["fileSize"].toInt() == 0)
+    {
+        attr.m_size = MusicUtils::Number::size2Label(key["filesize"].toInt());
+    }
+
     info->m_songAttrs.append(attr);
 }
 

@@ -1,4 +1,5 @@
 #include "musicdownloadquerykgplaylistthread.h"
+#include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -38,18 +39,20 @@ void MusicDownLoadQueryKGPlaylistThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
     m_pageTotal = 0;
+    m_interrupt = true;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false)
                     .arg(offset + 1).arg(m_pageSize).arg(m_searchText);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
     request.setSslConfiguration(sslConfig);
 #endif
-    m_reply = m_manager->get( request );
+    m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -63,10 +66,12 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_PLAYLIST_ATTR_URL, false).arg(playlist);
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -75,6 +80,67 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
+}
+
+void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_PLAYLIST_INFO_URL, false).arg(item.m_id);
+
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = m_manager->get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(reply->readAll(), &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value["errcode"].toInt() == 0 && value.contains("data"))
+        {
+            value = value["data"].toMap();
+            item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
+            item.m_name = value["specialname"].toString();
+            item.m_playCount = QString::number(value["playcount"].toLongLong());
+            item.m_description = value["intro"].toString();
+            item.m_updateTime = value["publishtime"].toString();
+            item.m_nickName = value["nickname"].toString();
+
+            QVariantList tags = value["tags"].toList();
+            foreach(const QVariant &var, tags)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                item.m_tags.append(value["tagname"].toString() + "|");
+            }
+        }
+    }
 }
 
 void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
@@ -88,6 +154,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -114,6 +181,8 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
                     continue;
                 }
 
+                if(m_interrupt) return;
+
                 QVariantMap value = var.toMap();
                 MusicPlaylistItem item;
                 item.m_coverUrl = value["img"].toString();
@@ -123,7 +192,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
                 item.m_description = value["intro"].toString();
                 item.m_updateTime = value["publish_time"].toString();
                 item.m_tags = "-";
-                item.m_nickname = value["nickname"].toString();
+                item.m_nickName = value["nickname"].toString();
 
                 emit createPlaylistItems(item);
             }
@@ -142,6 +211,7 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
@@ -180,15 +250,15 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
                     musicInfo.m_albumId = value["album_id"].toString();
 
                     MusicPlaylistItem albumInfo;
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
-                    musicInfo.m_albumName = albumInfo.m_nickname;
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    musicInfo.m_albumName = albumInfo.m_nickName;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
-                    readFromMusicSongLrcAndPic(&musicInfo, value["hash"].toString());
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongLrcAndPic(&musicInfo);
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

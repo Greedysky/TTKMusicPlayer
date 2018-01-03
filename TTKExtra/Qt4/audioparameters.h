@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -26,11 +26,20 @@
 #include "qmmp.h"
 
 /*! @brief The AudioParameters class keeps information about audio settings.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class AudioParameters
 {
 public:
+
+    /*!
+     * Byte order of samples.
+     */
+    enum ByteOrder
+    {
+        LittleEndian = 0, /*!< Samples are in little-endian byte order */
+        BigEndian         /*!< Samples are in big-endian byte order */
+    };
     /*!
      * Constructor.
      */
@@ -49,7 +58,7 @@ public:
     /*!
      * Assigns audio parameters \b p to this parameters.
      */
-    void operator=(const AudioParameters &p);
+    AudioParameters &operator=(const AudioParameters &p);
     /*!
      * Returns \b true if parameters \b p is equal to this parameters; otherwise returns \b false.
      */
@@ -79,6 +88,24 @@ public:
      */
     int sampleSize() const;
     /*!
+     * Returns the number of bytes required to represent one frame
+     * (a sample in each channel) in this format.
+     */
+    int frameSize() const;
+    /*!
+     * Returns sample size in bits.
+     */
+    int bitsPerSample() const;
+    /*!
+     * Returns the number of used bits in the sample. The value shoud be
+     * less or equal to the value returned by \b bitsPerSample().
+     */
+    int validBitsPerSample() const;
+    /*!
+     * Returns byte order for selected audio format.
+     */
+    ByteOrder byteOrder() const;
+    /*!
      * Returns string represention of the audio parameters.
      * May be useful for debug purposes.
      */
@@ -87,12 +114,29 @@ public:
      * Returns sample size in bytes of the given pcm data \b format.
      */
     static int sampleSize(Qmmp::AudioFormat format);
+    /*!
+     * Returns sample size in bits of the given pcm data \b format.
+     */
+    static int bitsPerSample(Qmmp::AudioFormat format);
+    /*!
+     * Returns the number of used bits in the sample
+     * of the given pcm data \b format.
+     */
+    static int validBitsPerSample(Qmmp::AudioFormat format);
+    /*!
+     * Find audio format by number of bits and byte  order.
+     * Returns \b Qmmp::UNKNOWN if format is not found.
+     * @param bits Number of used bits in the sample (precision).
+     * @param byteOrder Byte order.
+     */
+    static Qmmp::AudioFormat findAudioFormat(int bits, ByteOrder byteOrder = LittleEndian);
 
 private:
     quint32 m_srate;
     ChannelMap m_chan_map;
     Qmmp::AudioFormat m_format;
     int m_sz;
+    int m_precision;
 };
 
 #endif // AUDIOPARAMETERS_H

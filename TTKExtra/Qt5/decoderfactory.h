@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006-2015 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -35,7 +35,7 @@ class FileInfo;
 class MetaDataModel;
 
 /*! @brief Helper class to store input plugin properties.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT DecoderProperties
 {
@@ -48,7 +48,6 @@ public:
         hasAbout = false;
         hasSettings = false;
         noInput = false;
-        noOutput = false;
         priority = 0;
     }
     QString name;             /*!< Input plugin full name */
@@ -61,11 +60,10 @@ public:
     bool hasAbout;            /*!< Should be \b true if plugin has about dialog, otherwise \b false */
     bool hasSettings;         /*!< Should be \b true if plugin has settings dialog, otherwise \b false */
     bool noInput;             /*!< Should be \b true if plugin has own input, otherwise \b false */
-    bool noOutput;            /*!< Should be \b true if plugin has own output, otherwise \b false */
     int priority;             /*!< Decoder priority. Decoders with lowest value will be used first */
 };
 /*! @brief Input plugin interface (decoder factory).
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT DecoderFactory
 {
@@ -74,10 +72,6 @@ public:
     * Object destructor.
     */
     virtual ~DecoderFactory() {}
-    /*!
-     * Returns \b true if plugin supports \b source, otherwise returns \b false
-     */
-    virtual bool supports(const QString &source) const = 0;
     /*!
      * Returns \b true if plugin can decode data provided by \b d, otherwise returns \b false
      */

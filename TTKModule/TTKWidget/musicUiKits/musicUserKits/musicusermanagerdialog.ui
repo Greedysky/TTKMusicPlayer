@@ -228,7 +228,7 @@ QPushButton::menu-indicator{image:None;}</string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{border-radius:3px;background-color:#80B7F1;color:white;}</string>
+    <string notr="true">QPushButton{border-radius:3px;background-color:#158FE1;color:white;}</string>
    </property>
    <property name="text">
     <string>已购音乐</string>
@@ -247,7 +247,7 @@ QPushButton::menu-indicator{image:None;}</string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{background:transparent;color:#80B7F1;}</string>
+    <string notr="true">QPushButton{background:transparent;color:#158FE1;}</string>
    </property>
    <property name="text">
     <string>查看酷币余额</string>
@@ -279,7 +279,7 @@ QPushButton::menu-indicator{image:None;}</string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">QPushButton{background:transparent;color:#80B7F1;}</string>
+    <string notr="true">QPushButton{background:transparent;color:#158FE1;}</string>
    </property>
    <property name="text">
     <string>开通会员&gt;&gt;</string>

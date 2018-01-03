@@ -72,7 +72,7 @@ void MusicRegeditManager::setLeftWinEnable()
 int MusicRegeditManager::getLocalIEVersion() const
 {
 #ifdef Q_OS_WIN
-    DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", NULL);
+    DWORD versionInfoSize = GetFileVersionInfoSizeW(L"mshtml.dll", nullptr);
     if(versionInfoSize == 0)
     {
         return -1;
@@ -85,7 +85,7 @@ int MusicRegeditManager::getLocalIEVersion() const
         return -1;
     }
 
-    VS_FIXEDFILEINFO *fixedFileInfo = NULL;
+    VS_FIXEDFILEINFO *fixedFileInfo = nullptr;
     UINT fixedFileInfoSize = 0;
     if(!VerQueryValueW(pData, L"\\", (LPVOID*)&fixedFileInfo, &fixedFileInfoSize))
     {

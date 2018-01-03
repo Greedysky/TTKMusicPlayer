@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,13 @@
 
 #define M_DOWNLOAD_QUERY_PTR (MusicSingleton<MusicDownLoadQueryFactory>::createInstance())
 
+class MusicDownLoadSimilarThread;
+class MusicDownLoadSongSuggestThread;
 class MusicDownLoadCommentsThread;
 class MusicDownLoadDiscoverListThread;
 class MusicDownLoadQueryThreadAbstract;
 class MusicDownloadBackgroundThread;
+class MusicTranslationThreadAbstract;
 
 /*! @brief The class to produce the downlaod query class by type.
  * @author Greedysky <greedysky@163.com>
@@ -45,6 +48,10 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getQueryThread(QObject *parent = 0);
     /*!
+     * Get movie thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getMovieThread(QObject *parent = 0);
+    /*!
      * Get album thread object by type.
      */
     MusicDownLoadQueryThreadAbstract *getAlbumThread(QObject *parent = 0);
@@ -60,16 +67,39 @@ public:
      * Get playlist thread object by type.
      */
     MusicDownLoadQueryThreadAbstract *getPlaylistThread(QObject *parent = 0);
+    /*!
+     * Get recommend thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getRecommendThread(QObject *parent = 0);
+    /*!
+     * Get similar song query thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getSimilarSongThread(QObject *parent = 0);
 
     /*!
-     * Get comment thread object by type.
+     * Get similar query thread object by type.
      */
-    MusicDownLoadCommentsThread *getCommentThread(QObject *parent = 0);
-
+    MusicDownLoadSimilarThread *getSimilarArtistThread(QObject *parent = 0);
+    /*!
+     * Get suggest thread object by type.
+     */
+    MusicDownLoadSongSuggestThread *getSuggestThread(QObject *parent = 0);
+    /*!
+     * Get song comment thread object by type.
+     */
+    MusicDownLoadCommentsThread *getSongCommentThread(QObject *parent = 0);
+    /*!
+     * Get playlist comment thread object by type.
+     */
+    MusicDownLoadCommentsThread *getPlaylistCommentThread(QObject *parent = 0);
     /*!
      * Get discover list thread object by type.
      */
     MusicDownLoadDiscoverListThread *getDiscoverListThread(QObject *parent = 0);
+    /*!
+     * Get translation object by type.
+     */
+    MusicTranslationThreadAbstract *getTranslationThread(QObject *parent = 0);
 
     /*!
      * Get download small picture object by type.
@@ -83,11 +113,9 @@ public:
     MusicDownLoadThreadAbstract *getDownloadLrcThread(const QString &url, const QString &save,
                                                       MusicDownLoadThreadAbstract::Download_Type type,
                                                       QObject *parent = 0);
-
     /*!
      * Get download big picture object by type.
      */
-
     MusicDownloadBackgroundThread *getDownloadBigPicThread(const QString &name, const QString &save,
                                                            QObject *parent = 0);
 

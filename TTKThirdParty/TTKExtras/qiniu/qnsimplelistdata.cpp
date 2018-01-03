@@ -65,7 +65,7 @@ void QNSimpleListData::receiveDataFromServer()
                     item.m_hash = value["hash"].toString();
                     item.m_mimeType = value["mimeType"].toString();
                     item.m_size = value["fsize"].toInt();
-                    item.m_putTime = value["putTime"].toInt();
+                    item.m_putTime = value["putTime"].toLongLong()/10000;
                     items << item;
                 }
             }

@@ -18,6 +18,8 @@ MusicUserRecordWidget::MusicUserRecordWidget(QWidget *parent)
     MusicUtils::Widget::setLabelFontSize(m_ui->label_5T, 9);
     MusicUtils::Widget::setLabelFontSize(m_ui->label_6T, 9);
 #endif
+    m_ui->tabWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01);
+
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -273,5 +275,5 @@ void MusicUserRecordWidget::checkPwdStrength(int code)
 int MusicUserRecordWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
-    return MusicAbstractMoveDialog::exec();;
+    return MusicAbstractMoveDialog::exec();
 }

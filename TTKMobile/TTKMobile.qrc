@@ -148,37 +148,12 @@
         <file>MobileWidgets/Core/TTKMarquee.qml</file>
         <file>MobileWidgets/Core/TTKImageTextButton.qml</file>
         <file>MobileWidgets/Core/TTKImageRadiusTextButton.qml</file>
-        <file>MobileWidgets/TTKMusicTimeSettingPage.qml</file>
+        <file>MobileWidgets/TTKMainMoreSettingPage.qml</file>
         <file>MobileWidgets/TTKMainPage.qml</file>
         <file>MobileWidgets/TTKMainSettingPage.qml</file>
-        <file>MobileWidgets/TTKMainMoreSettingPage.qml</file>
-        <file>MobileWidgets/TTKMusicOnlineSearchPage.qml</file>
-        <file>MobileWidgets/TTKMusicBar.qml</file>
-        <file>MobileWidgets/TTKMusicPlayerCenterPage.qml</file>
-        <file>MobileWidgets/TTKMusicPlayerCenterLrcPage.qml</file>
-        <file>MobileWidgets/TTKMusicPlayerCenterSettingPage.qml</file>
-        <file>MobileWidgets/TTKMusicListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicListsMorePage.qml</file>
-        <file>MobileWidgets/TTKMusicListsScanPage.qml</file>
-        <file>MobileWidgets/TTKMusicDownloadListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicDownloadYunListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicRecentListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicLovestListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicIdentifyListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicMVDownloadListsPage.qml</file>
-        <file>MobileWidgets/TTKMusicScanFolderPage.qml</file>
-        <file>MobileWidgets/TTKMusicLyricPage.qml</file>
-        <file>MobileWidgets/TTKMusicLyricStylePage.qml</file>
-        <file>MobileWidgets/TTKMusicDTSEffectPage.qml</file>
-        <file>MobileWidgets/TTKMusicEqualizerPage.qml</file>
-        <file>MobileWidgets/TTKMusicSongDownloadPage.qml</file>
-        <file>MobileWidgets/TTKMusicSongSharedPage.qml</file>
-        <file>MobileWidgets/TTKMusicSongSettingPage.qml</file>
-        <file>MobileWidgets/TTKMusicSongInfoPage.qml</file>
-        <file>MobileWidgets/TTKMusicVideoPage.qml</file>
         <file>MobileWidgets/TTKMusicAboutPage.qml</file>
-        <file>MobileWidgets/TTKMusicCleanCachedPage.qml</file>
-        <file>MobileWidgets/TTKMusicDeletePage.qml</file>
-        <file>MobileWidgets/TTKMusicListsManagerPage.qml</file>
+        <file>MobileWidgets/TTKMusicOnlineSearchPage.qml</file>
+        <file>MobileWidgets/TTKMusicSongDownloadPage.qml</file>
+        <file>MobileWidgets/TTKMusicVideoPage.qml</file>
     </qresource>
 </RCC>

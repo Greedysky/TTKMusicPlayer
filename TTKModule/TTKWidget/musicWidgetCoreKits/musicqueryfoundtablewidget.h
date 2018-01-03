@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,10 @@ public:
     static QString getClassName();
 
     /*!
+     * Set network query input.
+     */
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    /*!
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override;
@@ -49,13 +53,13 @@ public:
      */
     virtual void musicDownloadLocal(int row) override;
     /*!
-     * Return the current song container.
-     */
-    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
-    /*!
      * Download data from net and just play or not.
      */
     void downloadDataFrom(bool play);
+    /*!
+     * Download batch data from net.
+     */
+    void downloadBatchData();
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -79,6 +83,10 @@ public Q_SLOTS:
      */
     virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
     /*!
+     * Create the search finished item.
+     */
+    void createFinishedItem();
+    /*!
      * Search menu type changed.
      */
     void searchChanged(QAction *action);
@@ -98,6 +106,8 @@ protected:
      * Download data from net and just play or not.
      */
     bool downloadDataFrom(const MusicObject::MusicSongInformation &downloadInfo, bool play);
+
+    MusicLabelDelegate *m_labelDelegate;
 
 };
 

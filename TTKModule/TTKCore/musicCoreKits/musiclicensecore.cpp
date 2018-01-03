@@ -47,7 +47,7 @@ QString MusicLicenseCore::getCharacteristicStringNormal()
     if(!nets.isEmpty())
     {
         QString adds = nets.first().hardwareAddress();
-        return MusicUtils::Algorithm::hmackSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
+        return MusicUtils::Algorithm::hmacSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
     }
     return QString();
 }
@@ -64,7 +64,7 @@ QStringList MusicLicenseCore::getCharacteristicStrings()
 
 QString MusicLicenseCore::splitString(const QByteArray &data, const QByteArray &key)
 {
-    QString value = MusicUtils::Algorithm::hmackSha1(data, key).toHex().mid(10, 20);
+    QString value = MusicUtils::Algorithm::hmacSha1(data, key).toHex().mid(10, 20);
     int count = value.count();
     for(int i=1; i<count/5; ++i)
     {

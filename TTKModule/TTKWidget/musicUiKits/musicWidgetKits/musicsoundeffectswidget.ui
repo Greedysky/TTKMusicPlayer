@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>368</width>
-    <height>518</height>
+    <height>573</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>360</width>
-     <height>510</height>
+     <height>565</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -64,7 +64,7 @@
      <x>4</x>
      <y>29</y>
      <width>360</width>
-     <height>485</height>
+     <height>540</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -84,7 +84,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>430</y>
+      <y>475</y>
       <width>55</width>
       <height>20</height>
      </rect>
@@ -97,7 +97,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>460</y>
+      <y>510</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -110,7 +110,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>427</y>
+      <y>472</y>
       <width>35</width>
       <height>25</height>
      </rect>
@@ -123,7 +123,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>427</y>
+      <y>472</y>
       <width>35</width>
       <height>25</height>
      </rect>
@@ -136,7 +136,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>460</y>
+      <y>510</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -149,7 +149,7 @@
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>460</y>
+      <y>510</y>
       <width>20</width>
       <height>20</height>
      </rect>
@@ -162,7 +162,7 @@
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>460</y>
+      <y>510</y>
       <width>230</width>
       <height>20</height>
      </rect>
@@ -185,7 +185,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>135</y>
+      <y>130</y>
       <width>340</width>
       <height>50</height>
      </rect>
@@ -195,7 +195,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>210</y>
+      <y>200</y>
       <width>340</width>
       <height>50</height>
      </rect>
@@ -205,7 +205,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>285</y>
+      <y>410</y>
       <width>340</width>
       <height>50</height>
      </rect>
@@ -215,7 +215,17 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>360</y>
+      <y>340</y>
+      <width>340</width>
+      <height>50</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="MusicSoundEffectsItemWidget" name="SRCWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>270</y>
       <width>340</width>
       <height>50</height>
      </rect>

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,32 +23,57 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
-const QByteArray WY_BASE_URL       = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
-const QByteArray WY_ENCRYPT_STRING = "3go8&$8*3*3h0k(2)2";
+const QString WY_COOKIE_URL          = "bDNKYmtpNXZxSG5tMytPcmE3d2plSHdWQzBCMGtnNXZWVW96bmczWmdab2p2NzlXTkNPdEsvWGJLbFZGVnN4d1pjTFU1cUF1MjlDQkxJQnhRNTlkVEx6emlLemtNcEdsNC90UTdLVUV1NFo3U1JYSmhUNjdQU1NrbzliYmlvNTFaTVdsZlZPdEFucWUwQ21JaUJHMU9VTTNxZWdNUGEyQ3dQcndiZ0FrTVpIYWRwNlVhLzhhenBwNlhXMjVwblNN";
+const QString WY_UA_URL_1            = "N1hBb3hrWFVaNnNTejltZUpIeUhieG9xN0FuV0J3QmkzOElteHZYNkQzL1Z2VEIzVDdsMVlURmhUVFlZT3NSU3BSQzVmUDFWNzBIbEwvaHJ4UFg0ODVzUVBXQzZNcjVheWZEcmF2ZitwSm1WUFV1Y1ozZXdCUXBsdXFoZ1ZyTTNURGVHUTZYQmRMQXJDZ2ZrQ3lNTU0rb3UxMkJmQUpxYXdaYVlCdC9kdm84PQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_ALBUM_URL         = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
+const QString WY_BASE_URL            = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
+const QString WY_ENCRYPT_STRING      = "3go8&$8*3*3h0k(2)2";
+const QString WY_SECKRY              = "411571dca16717d9af5ef1ac97a8d21cb740329890560688b1b624de43f49fdd7702493835141b06ae45f1326e264c98c24ce87199c1a776315e5f25c11056b02dd92791fcc012bff8dd4fc86e37888d5ccc060f7837b836607dbb28bddc703308a0ba67c24c6420dd08eec2b8111067486c907b6e53c027ae1e56c188bc568e";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_SONG_SEARCH_URL   = "b2dKQmJVWmxNRXlqYU1saWFpbXV5Y1NkenZvN29UVFh4WjhScXpST0Nic3VDNDJkZ0QrWUxnPT0=";
-const QString WY_SONG_QUERY_URL    = "UUs1NUMwUk9yeExmUFVCakUrS29NNm5OQ05lYUV3ZzJPS3NLVW9lZXhNaGwrd2Za";
-const QString WY_SONG_URL          = "SkRzeTdTcHMvUVpaa01hcWdveklVK2FHbXRlRmRiTXYvYzRHdS9Hc01ZMllBaFlKNlp4RFBodHV0eERPd2haMEM3MjAzQT09";
-const QString WY_SONG_MV_URL       = "cmVKem5MSmhzNk1KeUFRcXJFU2xrcHU3cnhwWHo2TVBNOFIwOC8rSldoSThUbmhQRVd0NEhTSnZGMytkVlFENUZTZ1lDekFLUkJvPQ==";
-const QString WY_SONG_PATH_URL     = "SXZWVUpDL0FCM1pUODJsaDNGZjN4OFlVZk1JQzdXOXRpWVJTSTVEUEZJZkI3YUJOMUdLQ3lnPT0=";
-const QString WY_SONG_PIC_URL      = "eEZpOHNEanlmUmxITG9PRHI4aElxcDRqY1F5VjE1SmtMYm9lV3Z0eVpuakpBWFV4aFNZbDF3PT0=";
-const QString WY_SONG_LRC_URL      = "TjNjL2ttNVR4cGluaEpwU1B2VzNucFhEWUdkRERkempFcThjWEIvMzMzMzVjaWVoR3ZNYXN5MHZsOE9sMTQ1TG1yeDNVQT09";
-const QString WY_SONG_ALBUM_URL    = "WkErZ3FMK2hwekNCVlQxZmF6dmVxNlYzSzVEcmlxY0dYYXhwcEFVWDFYZ2pOdlFkbThJMk93PT0=";
-const QString WY_SONG_DETAIL_URL   = "L3pCVjhOLzB5TUxpNS84czdTRTFndnZvMFkyTjhyKzFTK3lTNVlvQXBjT0xEb1FQZVpqdzZRaW5nNmM9";
-const QString WY_SONG_INFO_URL     = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+const QString WY_SONG_SEARCH_URL     = "b2dKQmJVWmxNRXlqYU1saWFpbXV5Y1NkenZvN29UVFh4WjhScXpST0Nic3VDNDJkZ0QrWUxnPT0=";
+const QString WY_SONG_SQUERY_URL     = "UUs1NUMwUk9yeExmUFVCakUrS29NNm5OQ05lYUV3ZzJPS3NLVW9lZXhNaGwrd2Za";
+const QString WY_SONG_MV_NDT_URL     = "dmt4VnNDdWErYjRYUXBnOWdubVBIQT09";
+const QString WY_SONG_MV_N_URL       = "dFowcHhjYXk3UWRkZlo2eW40NkY2TEU4VzRoMC84TFh4Wm93N1hCbWk5V21WQnZnYzIrVUhvYmVtK0xtUW90cGpidHBqdz09";
+const QString WY_SONG_PATH_URL       = "SXZWVUpDL0FCM1pUODJsaDNGZjN4OFlVZk1JQzdXOXRpWVJTSTVEUEZJZkI3YUJOMUdLQ3lnPT0=";
+const QString WY_SONG_LRC_URL        = "eEZRWnA5eWZZZWFvakpnQ2F2Sml1aTZQa1crekFlZUJoTXUwRUgwekRtOXFsU2l2S1BKZFdwTUVaNGRzWUJ2ZTNpdlRDNnVuTUt2M0xtUTRsaWh2NTZBQ0JacnNTbXp6";
+const QString WY_SONG_INFO_URL       = "N2NkQWg4V3o0NXYvMlFHamVOWVZ5Y2NnTDk2cTNFdFVROVNwTndJV2REYXM0K01Yd2NIT1pwaGcyTGJ0QVVsNHVxT0lTZHFKNTI2QnlWMnVBWFNDdWYrb09Waz0=";
+const QString WY_SONG_INFO_NDT_URL   = "ei9SdFJqZWlHWlh3eXBsWHJTS09FbUpRU1J4Zi9wZDlOQUMyVTVnL3c0YW9GSjVH";
+const QString WY_SONG_INFO_N_URL     = "M21IV2dlSHNzaE1zZEpyb2hrQ0dqVEY3Ly9DZ3ZteDM1RStuSlJIRVVCRTljbWJKKzRBVnNZY3JEcEZKY045dEJ5KzM0WHArSDVCYXhrMHBoZmlTZXBWdHIvND0=";
+const QString WY_SG_DETAIL_NDT_URL   = "Zmh6cVNyd2REdlVlZ3JQVUZpNjd5YlBaYVR0SEQrWFAydVpzOWc9PQ==";
+const QString WY_SG_DETAIL_N_URL     = "S3paVUxRY3hZVDVweWhJZFU0K0FpakhJc3R5YW1hbmpmRUVsL3JTRUdwcnlDdDlMWFJSR0ludFFPZ1MycWExVVlLNjg5Njh3VmV2cGxpQzE=";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_ARTIST_URL        = "VURUWGM0c0NHamdldHFWcGwvZWlxS24rZ3Fpc1o0TEZmUDRDUDl3aWQvdklQN0VCeVpicmxRPT0=";
+const QString WY_AR_N_URL            = "YmhRbVZDYy8rbytiRWc5cXc2MUVUdEFKRmw2eFhTVmhqWTZ6MmRVNEMzbVg0Q3BFQVF4d0VYUktBMk1aVUNVb3ZaNk5VL3BYRjBZPQ==";
+const QString WY_AR_INFO_NDT_URL     = "dmt4VnNDdWErYjRYUXBnOWdubVBIQT09";
+const QString WY_AR_INFO_N_URL       = "RnJtNVNTT01ncFI2cDJMRTMrSFFwWFBWVEEzQnZNYmg4TEJrRjZCeHorTE13aVNCNUxScGo2QzNzVUNKNzhKbkI2VjNKUT09";
+const QString WY_AR_ALBUM_DATA_N_URL = "RWhFbktEb0lLdGVwOFE3VHF0SHdOekVQanlOUjJkdE02b0FIdnhXWmkxNHBqaVBYcy9BRDJDRVdqdDM0cmN1cw==";
+const QString WY_AR_ALBUM_N_URL      = "dEJpSTdiaUh3R1hnRGVDUlpCNzJKRnBqNWZHY2xLVmhUcWQ0WW1PUVY0NjlONmRvMmtGaWZiMDBscjAvd0dxZg==";
+const QString WY_AR_MV_DATA_N_URL    = "OE95dm9DdmtycVlzcnZaaWRhRFpHYjNBenl0bmFKM0ZLa1lVaFFVenBFQnZ5N2RoNE5VR3N5TzlDTitNTjFiUk9vdDZ4QndxSHY2QjVzcFlPM0laTlplUEt0bz0=";
+const QString WY_AR_MV_N_URL         = "eFdablNDbDlZVzVvYlo4UU9waEFVRlluRUFzdXA4TXFzVE9RMllXWVdQUXE2WjlsRi9DMzc0VlNXQlU9";
+const QString WY_AR_SIM_DATA_N_URL   = "OHhrOUw5Y0JLYmxHaG82bUp6YXVLNHV5UnlVPQ==";
+const QString WY_AR_SIM_N_URL        = "TmVISndYN2pvQzUrS0Q4OEkySnBvT092Q2R4c1Iwa2ovUkdxZ1RuUGRERXhDVEFUMDBPbmUwSklvTVZPQXRUdnZ4QlZDUT09";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_SG_COMMIT_URL     = "UjF0OUhmdnIxdXFWNEEwam5ZT0t6Q2EraGdGQzZqT01aYzN1bG1HQUdoOWxDbFhWTVpVWUk2NUdpSEFHcUo4UUlLL3BvWXJZSXJsTlU3M3JiN05sMUFldit5bzRXMFJNYjNjQ3pTOFp3TnBJSERSQjA3VDlycFRXaVpHV3BZOXFSU3NyVUFrZzRWeXRQY0lJ";
+const QString WY_ALBUM_N_URL         = "QzJrMDNKTGlpVHpvY2taYm5BSWZGVTZWM09xYW5STDdXRFE5eTEzczhLZHB1RWljWlIxOVhRUXVDcmpuVjJsQnhqcmZRZE9UU0JZPQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_SONG_TOPLIST_URL  = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
+const QString WY_SG_TOPLIST_NDT_URL  = "UzFpUWk1ZjVnTlpZS2Fabjl0dE50Sk1mUmJZZjlRVTNwVHJlem9ndG1mUzNpSXdvaDluK3NXUlEzdjkyRTl6bXoxYjg1c3g0UXZPWnlPUkxUM0YzMWtmZzVVdzduV2M1";
+const QString WY_SG_TOPLIST_N_URL    = "VUdTa0xMeG1Nblc4cThoS2E1QzhJK0lrTHJBRmk4TUJZMC9NQW1GanZydDJmR0VJVVRZNmJQSEhOZU96aE55bTJxdW55RldJOHl6aElNdTlHbkZkSmc9PQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_PLAYLIST_URL      = "aDd0V0k1Y1lWcXBqZ3VMQWhaWmp6eFlUYXJmZmRyanFwcVFINmo2Qk1KNDVETW9TWE4zellMREllOG1NZ1YvWkZRM1drcE9PbmVpblRBOVcwZUhaRDA3WVoxYW9XK3lPckptL0VjaTd3UDd4ajlGUEhlZE5FK2x5Q3g0PQ==";
-const QString WY_PLAYLIST_ATTR_URL = "NlRTUVV2OWo3U1psdG51VnIxbzl2WHVIZnV0MXkyaU1EbXgwSzBtQzlIbW9xYW43OGdBZEZWZW1vYmdFVXNhY3Y3cUNUdz09";
+const QString WY_COMMIT_NDT_URL      = "cmVkanJSR0J1UGdWVlAwaSs2bVFSeTFMdVhvQzVHNVgyWUVGSWFESXgyUXlSNkU5KzhqQXlBdlI1b3h0UmI5N3lUZlVBM2NIZTE2Tk4zV2Y=";
+const QString WY_SG_COMMIT_N_URL     = "VjJRaU8vR2xYZmIxM0RIMUNxU2NJRzlLSDVqZTY5ZVVXNlhUWndSWkc1TmlEajFKaGRwaS9TRThKRCtyL0Z4SWVSWmovSzhqMzFKV1R3QmxwUVBHSzA5ZGx0d2VmN0JMaVRFaVRnPT0=";
+///////////////////////////////////////////////////////////////////////////
+const QString WY_PL_COMMIT_N_URL     = "aURTWlNhUlJISEc3VmExQ2FsUXZqS1lXOVdGSzBOc3dmaHNMK3M0U2tScnNIdHc3Y2NJSGJBVVhhUTc1eHIrNEJrdmgzUlpCOU96UmNsZEEwbnIvQkZQU0tFZU9oY0JKazNlRWZRPT0=";
+const QString WY_PL_NDT_URL          = "SDBaSmFYMlhNdk50TFZ4VkNFY1dRUDdtYk9icVAvOWwveCtXWXliZVVjQmFHeXBwdnp3LzJnWjB2cVlBeG1uV0VKTkNScVR2c3ROQmtQRjVVcFIyZWRRVkVFRkFSQlphVGlxeTU3Z0tRT2s9";
+const QString WY_PL_N_URL            = "aFZGMG5CbXZXNmNGaS9jZEV6S0c2RE53Tm5Ud3I3WGJSS2ErQVQ5RjdYRlhUMENuS25yRnYwVHUzMnIrQUJQaFRVTlMrSTJUM1pNPQ==";
+const QString WY_PL_ATTR_NDT_URL     = "VkpFemFKQWtOY2ZXeUNpZ210VjVGYndOZ2VibUZlZHV6amZJaE5VL1czaWFzRkNqV2lYKy9CR29McXl6LzUrUldWcmtKS0Fjb0s5dFBFeXpCaHRCc1dhYlp1bGd3U1ZY";
+const QString WY_PL_ATTR_N_URL       = "VUdTa0xMeG1Nblc4cThoS2E1QzhJK0lrTHJBRmk4TUJZMC9NQW1GanZydDJmR0VJVVRZNmJQSEhOZU96aE55bTJxdW55RldJOHl6aElNdTlHbkZkSmc9PQ==";
+///////////////////////////////////////////////////////////////////////////
+const QString WY_RCM_N_URL           = "VklDaWtHcm5waU1raUxyRUNKMjR3Mk4zRmpMSzRhRUFlL200S2thQmdZZU5BMVpDY3hFUmNuME9mZWdGc1hBZzRVSzBDUmZhK1RJbmxpdnM=";
+///////////////////////////////////////////////////////////////////////////
+const QString WY_SUGGEST_NDT_URL     = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09";
+const QString WY_SUGGEST_N_URL       = "alpUZU5qWnJJc2NHTDdiN0xDTm5NZnpxN2s0c21BTHU2eUFOcTNiOVFSeHE1dms1UXFhQWZHVGpjY0l4OVhGL0RoeWYvUT09";
 ///////////////////////////////////////////////////////////////////////////
 
+
+class QNetworkRequest;
 
 /*! @brief The class to wangyi query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -57,23 +82,43 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadWYInterface
 {
 public:
     /*!
-     * Read tags(size\bitrate\url) from query results.
+     * Make token query url string.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &id, int bitrate);
+    void makeTokenQueryQequest(QNetworkRequest *request);
+    /*!
+     * Make token query url string.
+     */
+    QByteArray makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
-    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
-                                    const QString &id, int bitrate);
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate);
     /*!
      * Read tags(size\bitrate\url) from query results.
      */
     void readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key,
                                     const QString &quality, bool all);
     /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate);
+    /*!
+     * Read tags(size\bitrate\url) from query results.
+     */
+    void readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key,
+                                       const QString &quality, bool all);
+    /*!
      * Encrypted music info id.
      */
-    QString encryptedId(qlonglong id);
+    QString encryptedId(qint64 id);
     /*!
      * Encrypted music info id.
      */

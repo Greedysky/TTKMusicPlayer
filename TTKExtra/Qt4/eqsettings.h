@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2010-2012 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2010-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -22,11 +22,15 @@
 #define EQSETTINGS_H
 
 /*! @brief The EqSettings class helps to work with equalizer settings.
-     * @author Ilya Kotov <forkotov02@hotmail.ru>
+     * @author Ilya Kotov <forkotov02@ya.ru>
      */
 class EqSettings
 {
 public:
+    /*!
+     * Constructs a copy of \b other.
+     */
+    EqSettings(const EqSettings &other);
     /*!
      * Constructs an empty equalizer settings (0 dB, disabled)
      * @param bands - Number of bands (supported: 10, 15, 25, 31)
@@ -65,7 +69,7 @@ public:
     /*!
      * Assigns equalizer settings \b s to this settings.
      */
-    void operator=(const EqSettings &s);
+    EqSettings &operator=(const EqSettings &s);
     /*!
      * Returns \b true if equalizer settins \b s is equal to this settings; otherwise returns false.
      */

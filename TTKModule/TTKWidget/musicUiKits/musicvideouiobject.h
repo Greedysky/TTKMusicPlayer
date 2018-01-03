@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,6 +57,11 @@ namespace MusicUIObject
             background-image: url(:/video/btn_barrage_style_normal);} \
             QToolButton:hover{ background-image: url(:/video/btn_barrage_style_hover);} \
             QToolButton:disabled{ background-image: url(:/video/btn_barrage_style_disable);}";
+
+    const QString MKGVideoBtnSTMode  = " \
+            QToolButton{ border:none; \
+            background-image: url(:/video/btn_st_normal);} \
+            QToolButton:hover{ background-image: url(:/video/btn_st_hover);}";
 
     const QString MKGVideoBtnSDMode  = " \
             QToolButton{ border:none; \

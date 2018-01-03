@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,10 @@ public:
      * Start search query by text.
      */
     virtual void startSearchQuery(const QString &text) override;
+    /*!
+     * Start search query by given id.
+     */
+    void startSearchSingleQuery(const QString &text);
     /*!
      * Data download to local file.
      */

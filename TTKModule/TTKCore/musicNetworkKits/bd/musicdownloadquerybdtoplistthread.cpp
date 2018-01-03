@@ -17,9 +17,14 @@ QString MusicDownLoadQueryBDToplistThread::getClassName()
 
 void MusicDownLoadQueryBDToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
-    Q_UNUSED(type);
-    Q_UNUSED(toplist);
-    startToSearch("2");
+    if(type == MusicQuery)
+    {
+        startToSearch(toplist);
+    }
+    else
+    {
+        startToSearch(toplist.isEmpty() ? "2" : toplist);
+    }
 }
 
 void MusicDownLoadQueryBDToplistThread::startToSearch(const QString &toplist)
@@ -32,10 +37,12 @@ void MusicDownLoadQueryBDToplistThread::startToSearch(const QString &toplist)
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(toplist).arg(m_pageSize).arg(0);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -57,6 +64,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
@@ -91,35 +99,32 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["author"].toString();
                     musicInfo.m_songName = value["title"].toString();
-                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toString().toInt()*1000);
+                    musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
 
-                    if(m_currentType != MovieQuery)
+                    musicInfo.m_songId = value["song_id"].toString();
+                    musicInfo.m_albumId = value["album_id"].toString();
+                    musicInfo.m_artistId = value["ting_uid"].toString();
+                    musicInfo.m_lrcUrl = value["lrclink"].toString();
+                    musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
+                    musicInfo.m_albumName = value["album_title"].toString();
+
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+
+                    if(musicInfo.m_songAttrs.isEmpty())
                     {
-                        musicInfo.m_songId = value["song_id"].toString();
-                        musicInfo.m_albumId = value["album_id"].toString();
-                        musicInfo.m_artistId = value["ting_uid"].toString();
-                        musicInfo.m_lrcUrl = value["lrclink"].toString();
-                        musicInfo.m_smallPicUrl = value["pic_small"].toString().replace(",w_90", ",w_500");
-                        musicInfo.m_albumName = value["album_title"].toString();
-
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                        readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
-                        if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-
-                        if(musicInfo.m_songAttrs.isEmpty())
-                        {
-                            continue;
-                        }
-
-                        MusicSearchedItem item;
-                        item.m_songName = musicInfo.m_songName;
-                        item.m_singerName = musicInfo.m_singerName;
-                        item.m_albumName = musicInfo.m_albumName;
-                        item.m_time = musicInfo.m_timeLength;
-                        item.m_type = mapQueryServerString();
-                        emit createSearchedItems(item);
-                        m_musicSongInfos << musicInfo;
+                        continue;
                     }
+
+                    MusicSearchedItem item;
+                    item.m_songName = musicInfo.m_songName;
+                    item.m_singerName = musicInfo.m_singerName;
+                    item.m_albumName = musicInfo.m_albumName;
+                    item.m_time = musicInfo.m_timeLength;
+                    item.m_type = mapQueryServerString();
+                    emit createSearchedItems(item);
+                    m_musicSongInfos << musicInfo;
                 }
             }
         }

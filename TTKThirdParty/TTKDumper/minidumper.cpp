@@ -16,7 +16,7 @@ MiniDumper::MiniDumper(LPCWSTR szAppName, LPCWSTR szVersion, LPCWSTR szBuildNumb
     m_szAppName = szAppName ? wcsdup(szAppName) : wcsdup(L"TTK");
     m_szAppVersion = szVersion ? wcsdup(szVersion) : wcsdup( L"1.0.0.0");
     m_szAppBuildNumber = szBuildNumber ? wcsdup(szBuildNumber) : wcsdup( L"0000");
-	m_szDumpFilePath = NULL;
+    m_szDumpFilePath = nullptr;
 	
 	::SetUnhandledExceptionFilter( TopLevelFilter );
 }
@@ -42,8 +42,8 @@ void MiniDumper::SetBuildNumber(LPCWSTR szBuildNumber)
 void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
 {
 	free(m_szDumpFilePath);
-	m_szDumpFilePath = NULL;
-	if(szFilePath != NULL)
+    m_szDumpFilePath = nullptr;
+    if(szFilePath != nullptr)
 	{
 		m_szDumpFilePath = wcsdup(szFilePath);
 	}	
@@ -58,10 +58,10 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 	// firstly see if dbghelp.dll is around and has the function we need
 	// look next to the EXE first, as the one in System32 might be old 
 	// (e.g. Windows 2000)
-	HMODULE hDll = NULL;
+    HMODULE hDll = nullptr;
 	WCHAR szDbgHelpPath[_MAX_PATH];
 
-    if (GetModuleFileNameW( NULL, szDbgHelpPath, _MAX_PATH ))
+    if (GetModuleFileNameW( nullptr, szDbgHelpPath, _MAX_PATH))
 	{
 		WCHAR *pSlash = wcsrchr( szDbgHelpPath, L'\\');
 		if (pSlash)
@@ -71,13 +71,13 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 		}
 	}
 
-	if (hDll==NULL)
+    if (hDll == nullptr)
 	{
 		// load any version we can
         hDll = ::LoadLibraryW( L"DBGHELP.DLL");
 	}
 
-	LPCWSTR szResult = NULL;
+    LPCWSTR szResult = nullptr;
 
 	if (hDll)
 	{
@@ -90,9 +90,9 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
 			// work out a good place for the dump file
 			
-			if(m_szDumpFilePath == NULL)
+            if(m_szDumpFilePath == nullptr)
 			{
-                if (GetModuleFileNameW(NULL, szDbgHelpPath, _MAX_PATH))
+                if (GetModuleFileNameW(nullptr, szDbgHelpPath, _MAX_PATH))
 				{
 					WCHAR *pSlash = wcsrchr(szDbgHelpPath, L'\\');
 					if (pSlash)
@@ -113,7 +113,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 			//PrintDebug(L"[MiniDumper] Mini Dump file:[%s]",szDumpPath);	
 
 			// ask the user if they want to save a dump file
-			//if (::MessageBox( NULL, _T("Something bad happened in your program, would you like to save a diagnostic file?"), m_szAppName, MB_YESNO )==IDYES)
+            //if (::MessageBox( nullptr, _T("Something bad happened in your program, would you like to save a diagnostic file?"), m_szAppName, MB_YESNO )==IDYES)
 			{
 				HANDLE hFile = INVALID_HANDLE_VALUE;
 				int i = 1;
@@ -129,13 +129,13 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 					wcscat( szDumpPath, m_szAppBuildNumber);
 					wcscat( szDumpPath, szFileNumber);
 					wcscat( szDumpPath, L".dmp" );					
-                    hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_NEW,
-                                        FILE_ATTRIBUTE_NORMAL, NULL );
+                    hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_NEW,
+                                        FILE_ATTRIBUTE_NORMAL, nullptr );
 					i++;
 					if(i > MAX_DUMP_FILE_NUMBER)
 					{
-                        hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS,
-                                               FILE_ATTRIBUTE_NORMAL, NULL );
+                        hFile = ::CreateFileW( szDumpPath, GENERIC_WRITE, FILE_SHARE_WRITE, nullptr, CREATE_ALWAYS,
+                                               FILE_ATTRIBUTE_NORMAL, nullptr );
 						break;
 					}
 				}
@@ -150,7 +150,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
                     ExInfo.ClientPointers = 0;
 
 					// write the dump
-					BOOL bOK = pDump( GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpNormal, &ExInfo, NULL, NULL );
+                    BOOL bOK = pDump( GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpNormal, &ExInfo, nullptr, nullptr );
 					if (bOK)
 					{
 						swprintf( szScratch, sizeof(szScratch), L"Saved dump file to '%s'", szDumpPath );

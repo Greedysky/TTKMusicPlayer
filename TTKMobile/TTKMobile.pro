@@ -103,18 +103,10 @@ HEADERS += \
     ../TTKModule/TTKCore/musicCoreKits/musicbackgroundmanager.h \
     ../TTKModule/TTKCore/musicCoreKits/musicsongtag.h \
     ../TTKModule/TTKCore/musicCoreKits/musicsemaphoreloop.h \
-    ../TTKModule/TTKCore/musicLrcKits/musiclrcanalysis.h \
     ../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.h \
-    MobileCore/ttkfilesearchcore.h \
-    MobileCore/ttkmusicplaylist.h \
-    MobileCore/ttkmusicplayer.h \
     MobileCore/ttkmusicutils.h \
     MobileCore/ttkmusicconfigmanager.h \
-    MobileCore/ttkmusicsongssummarizied.h \
-    MobileCore/ttknetworkhelper.h \
-    MobileCore/ttkmusiclyricmodel.h \
-    MobileCore/ttkfilterproxymodel.h \
-    MobileCore/ttkradiohelper.h
+    MobileCore/ttknetworkhelper.h
 
 
 SOURCES += \
@@ -134,31 +126,21 @@ SOURCES += \
     ../TTKModule/TTKCore/musicCoreKits/musicbackgroundmanager.cpp \
     ../TTKModule/TTKCore/musicCoreKits/musicsongtag.cpp \
     ../TTKModule/TTKCore/musicCoreKits/musicsemaphoreloop.cpp \
-    ../TTKModule/TTKCore/musicLrcKits/musiclrcanalysis.cpp \
     ../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.cpp \
-    MobileCore/ttkfilesearchcore.cpp \
-    MobileCore/ttkmusicplaylist.cpp \
-    MobileCore/ttkmusicplayer.cpp \
     MobileCore/ttkmusicutils.cpp \
     MobileCore/ttkmusicconfigmanager.cpp \
-    MobileCore/ttkmusicsongssummarizied.cpp \
-    MobileCore/ttknetworkhelper.cpp \
-    MobileCore/ttkmusiclyricmodel.cpp \
-    MobileCore/ttkfilterproxymodel.cpp \
-    MobileCore/ttkradiohelper.cpp
+    MobileCore/ttknetworkhelper.cpp
 
 
 CONFIG += MUSIC_BUILD_LIB
 
 include(../TTKModule/TTKCore/musicNetworkKits/MusicNetworkKits.pri)
 include(../TTKThirdParty/TTKExtras/qjson/QJson.pri)
-include(../TTKThirdParty/TTKExtras/qaes/QAes.pri)
+include(../TTKThirdParty/TTKExtras/qalg/QAlg.pri)
 
 contains(ANDROID_TARGET_ARCH, armeabi-v7a) {
 # Default rules for deployment.
 include(deployment.pri)
-include(MobileExtra/QZXing/QZXing/QZXing.pri)
-RESOURCES += MobileExtra/QZXing/QZXing.qrc
 
 QT += androidextras
 

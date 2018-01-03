@@ -7,8 +7,10 @@
 #ifndef   __buffer_h
 #define   __buffer_h
 
-#include <string.h>
+#include <QMap>
+#include <QSharedPointer>
 #include <stddef.h>
+#include "qmmp.h"
 
 #define QMMP_BLOCK_FRAMES 512
 
@@ -45,6 +47,7 @@ public:
     size_t samples;      /*!< Audio data size in samples */
     size_t size;         /*!< Buffer size in samples */
     unsigned int rate;   /*!< Buffer bitrate */
+    QSharedPointer<QMap<Qmmp::MetaData, QString> > metaData; /*!< A pointer to the new metadata if available */
 };
 
 

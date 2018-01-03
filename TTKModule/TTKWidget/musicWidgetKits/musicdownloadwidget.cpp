@@ -12,6 +12,8 @@
 #include <QLabel>
 #include <QFileDialog>
 
+Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
+
 MusicDownloadTableItem::MusicDownloadTableItem(QWidget *parent)
     : QWidget(parent)
 {
@@ -80,34 +82,34 @@ void MusicDownloadTableWidget::clearAllItems()
     setColumnCount(1);
 }
 
-void MusicDownloadTableWidget::createItem(int bitrate, const QString &type, const QString &info, const QString &icon)
+void MusicDownloadTableWidget::createItem(const MusicObject::MusicSongAttribute &attr, const QString &type, const QString &icon)
 {
     int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ROW_HEIGHT);
     QTableWidgetItem *it = new QTableWidgetItem;
-    it->setData(BITRATE_ROLE, bitrate);
+    MusicDownloadTableItemRole role(attr.m_bitrate, attr.m_format, attr.m_size);
+    it->setData(TABLE_ITEM_ROLE, QVariant::fromValue<MusicDownloadTableItemRole>(role));
     setItem(index, 0,  it);
 
     MusicDownloadTableItem *item = new MusicDownloadTableItem(this);
     item->setIcon(icon);
-    item->setInformation(info);
+    item->setInformation(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
     item->setText(type);
     m_items << item;
 
     setCellWidget(index, 0, item);
 }
 
-int MusicDownloadTableWidget::getCurrentBitrate()
+MusicDownloadTableItemRole MusicDownloadTableWidget::getCurrentItemRole() const
 {
-   int bitrate = -1;
    int row = currentRow();
    if(row == -1)
    {
-       return bitrate;
+       return MusicDownloadTableItemRole();
    }
 
-   return item(row, 0)->data(BITRATE_ROLE).toInt();
+   return item(row, 0)->data(TABLE_ITEM_ROLE).value<MusicDownloadTableItemRole>();
 }
 
 void MusicDownloadTableWidget::listCellClicked(int row, int column)
@@ -141,6 +143,8 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_ui->downloadButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
+    m_downloadOffset = 0;
+    m_downloadTotal = 0;
     m_querySingleInfo = false;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
@@ -246,7 +250,7 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
         QString filename = m_downloadThread->getSearchedText();
         QString artistName = MusicUtils::String::artistName(filename);
         QString songName = MusicUtils::String::songName(filename);
-        MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
+        MusicObject::MusicSongInformation musicSongInfo;
         foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
             if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
@@ -269,6 +273,12 @@ void MusicDownloadWidget::queryAllFinishedMusic()
     {
         queryAllFinishedMusic(musicSongInfo.m_songAttrs);
     }
+    else
+    {
+        close();
+        MusicMessageBox message(tr("No Resource found!"));
+        message.exec();
+    }
 }
 
 void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttributes &attrs)
@@ -279,35 +289,25 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
-        if(attr.m_bitrate == MB_32)         ///st
+        if(attr.m_bitrate < MB_128)         ///st
         {
-            m_ui->viewArea->createItem(MB_32, tr("ST"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_st_quality"));
+            m_ui->viewArea->createItem(attr, tr("ST"), QString(":/quality/lb_st_quality"));
         }
         else if(attr.m_bitrate == MB_128)   ///sd
         {
-            m_ui->viewArea->createItem(MB_128, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
         else if(attr.m_bitrate == MB_192)   ///hd
         {
-            m_ui->viewArea->createItem(MB_192, tr("HQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->createItem(attr, tr("HQ"), QString(":/quality/lb_hd_quality"));
         }
         else if(attr.m_bitrate == MB_320)   ///sq
         {
-            m_ui->viewArea->createItem(MB_320, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else if(attr.m_bitrate > MB_320)   ///cd
         {
-            m_ui->viewArea->createItem(attr.m_bitrate, tr("CD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_cd_quality"));
+            m_ui->viewArea->createItem(attr, tr("CD"), QString(":/quality/lb_cd_quality"));
         }
         else
         {
@@ -324,6 +324,12 @@ void MusicDownloadWidget::queryAllFinishedMovie()
     {
         queryAllFinishedMovie(musicSongInfo.m_songAttrs);
     }
+    else
+    {
+        close();
+        MusicMessageBox message(tr("No Resource found!"));
+        message.exec();
+    }
 }
 
 void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttributes &attrs)
@@ -334,23 +340,21 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
 
     foreach(const MusicObject::MusicSongAttribute &attr, attributes)
     {
-        if(attr.m_bitrate == MB_500)       ///hd
+        if(attr.m_bitrate <= MB_250)       ///st
         {
-            m_ui->viewArea->createItem(MB_500, tr("SD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sd_quality"));
+            m_ui->viewArea->createItem(attr, tr("ST"), QString(":/quality/lb_st_quality"));
         }
-        else if(attr.m_bitrate == MB_750)  ///sq
+        else if(attr.m_bitrate == MB_500)  ///sd
         {
-            m_ui->viewArea->createItem(MB_750, tr("HD"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_hd_quality"));
+            m_ui->viewArea->createItem(attr, tr("SD"), QString(":/quality/lb_sd_quality"));
         }
-        else if(attr.m_bitrate == MB_1000) ///cd
+        else if(attr.m_bitrate == MB_750)  ///hd
         {
-            m_ui->viewArea->createItem(MB_1000, tr("SQ"), QString("%1/%2KBPS/%3").arg(attr.m_size)
-                                     .arg(attr.m_bitrate).arg(attr.m_format.toUpper()),
-                                     QString(":/quality/lb_sq_quality"));
+            m_ui->viewArea->createItem(attr, tr("HD"), QString(":/quality/lb_hd_quality"));
+        }
+        else if(attr.m_bitrate >= MB_1000) ///sq
+        {
+            m_ui->viewArea->createItem(attr, tr("SQ"), QString(":/quality/lb_sq_quality"));
         }
         else
         {
@@ -411,8 +415,11 @@ void MusicDownloadWidget::downloadDirSelected()
 
 void MusicDownloadWidget::startToDownload()
 {
+    m_downloadOffset = 0;
+    m_downloadTotal = 0;
+
     hide(); ///hide download widget
-    if(m_ui->viewArea->getCurrentBitrate() == -1)
+    if(m_ui->viewArea->getCurrentItemRole().isEmpty())
     {
         MusicMessageBox message(tr("Please Select One Item First!"));
         message.exec();
@@ -432,8 +439,11 @@ void MusicDownloadWidget::startToDownload()
 
 void MusicDownloadWidget::dataDownloadFinished()
 {
-    emit dataDownloadChanged();
-    close();
+    if(++m_downloadOffset >= m_downloadTotal)
+    {
+        emit dataDownloadChanged();
+        close();
+    }
 }
 
 void MusicDownloadWidget::startToDownloadMusic()
@@ -447,11 +457,11 @@ void MusicDownloadWidget::startToDownloadMusic()
 
 void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    int bitrate = m_ui->viewArea->getCurrentBitrate();
+    MusicDownloadTableItemRole role = m_ui->viewArea->getCurrentItemRole();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
-        if(musicAttr.m_bitrate == bitrate/* || musicAttr.m_bitrate > 321*/)
+        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {
             if(!M_NETWORK_PTR->isOnline())
             {
@@ -495,6 +505,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                 }
             }
             ////////////////////////////////////////////////
+            m_downloadTotal = 1;
             MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                                    MusicDownLoadThreadAbstract::Download_Music, this);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
@@ -516,11 +527,11 @@ void MusicDownloadWidget::startToDownloadMovie()
 
 void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInformation &musicSongInfo)
 {
-    int bitrate = m_ui->viewArea->getCurrentBitrate();
+    MusicDownloadTableItemRole role = m_ui->viewArea->getCurrentItemRole();
     MusicObject::MusicSongAttributes musicAttrs = musicSongInfo.m_songAttrs;
     foreach(const MusicObject::MusicSongAttribute &musicAttr, musicAttrs)
     {
-        if(musicAttr.m_bitrate == bitrate)
+        if(role.isEqual(MusicDownloadTableItemRole(musicAttr.m_bitrate, musicAttr.m_format, musicAttr.m_size)))
         {
             if(!M_NETWORK_PTR->isOnline())
             {
@@ -529,30 +540,38 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
 
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             QString downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
-            QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
-            QFile file(downloadName);
-            if(file.exists())
+            QStringList urls = musicAttr.m_multiParts ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
+            m_downloadTotal = urls.count();
+            for(int ul=0; ul<m_downloadTotal; ++ul)
             {
-                for(int i=1; i<99; ++i)
+                ////////////////////////////////////////////////
+                QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
+                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
+                QFile file(downloadName);
+                if(file.exists())
                 {
-                    if(!QFile::exists(downloadName))
+                    for(int i=1; i<99; ++i)
                     {
-                        break;
+                        if(!QFile::exists(downloadName))
+                        {
+                            break;
+                        }
+                        if(i != 1)
+                        {
+                            musicSong.chop(3);
+                        }
+                        musicSong += QString("(%1)").arg(i);
+                        downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
+                                          : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
                     }
-                    if(i != 1)
-                    {
-                        musicSong.chop(3);
-                    }
-                    musicSong += QString("(%1)").arg(i);
-                    downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
                 }
+                ////////////////////////////////////////////////
+                MusicDataDownloadThread* download = new MusicDataDownloadThread(urls[ul], downloadName,
+                                                                                MusicDownLoadThreadAbstract::Download_Video, this);
+                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+                download->startToDownload();
             }
-            ////////////////////////////////////////////////
-            MusicDataDownloadThread* download = new MusicDataDownloadThread(musicAttr.m_url, downloadName,
-                                                                            MusicDownLoadThreadAbstract::Download_Video, this);
-            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            download->startToDownload();
             break;
         }
     }

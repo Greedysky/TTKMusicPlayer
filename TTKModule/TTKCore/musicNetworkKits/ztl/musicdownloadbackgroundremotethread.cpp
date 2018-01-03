@@ -1,20 +1,25 @@
 #include "musicdownloadbackgroundremotethread.h"
 #include "musicdownloadsourcethread.h"
+#include "musicotherdefine.h"
+#///QJson import
+#include "qjson/parser.h"
 
-#define D_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
+#define THUD_URL   "eC9KOTYxbVhvVDJNcGEwckhyMVZRdVRhOHhFRHQ2eFVNdWJxaURFSzA1ZWVmZm5HOFlzS1VCY2ZKOFRlYStBL2Y3SjNEK2gzY2QwPQ=="
+#define BIGU_URL   "UEQvb1lxVXFnV0dqRmxzNkY0alFJUHZUSUhyZUVNY0Y2OGZ1L255cS9CMklCakk4Q1dNQkF3PT0="
+#define BING_URL   "bkRaMGo0WEhveVlwbEV6a0FDbEsrNmNGVHVrZTh1VmFDZTBmdElkZ0ZCYXk2dDJMaXF3MUlrV2JndmlpUWVudkF5UVVaMklvSXQydGI3cFhaTFRtaUV2VUZBcz0="
 
-MusicSkinRemoteConfigManager::MusicSkinRemoteConfigManager(QObject *parent)
+MusicSkinThunderConfigManager::MusicSkinThunderConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-QString MusicSkinRemoteConfigManager::getClassName()
+QString MusicSkinThunderConfigManager::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSkinRemoteConfigManager::readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items)
+void MusicSkinThunderConfigManager::readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items)
 {
     QDomNodeList nodelist = m_ddom->elementsByTagName("group");
     for(int i=0; i<nodelist.count(); ++i)
@@ -73,21 +78,97 @@ QString MusicDownloadBackgroundRemoteThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDownloadBackgroundRemoteThread::startToDownload()
+
+
+MusicDownloadBackgroundThunderThread::MusicDownloadBackgroundThunderThread(QObject *parent)
+    : MusicDownloadBackgroundRemoteThread(parent)
+{
+
+}
+
+QString MusicDownloadBackgroundThunderThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicDownloadBackgroundThunderThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(D_URL, false));
+    download->startToDownload(MusicUtils::Algorithm::mdII(THUD_URL, false));
 }
 
-void MusicDownloadBackgroundRemoteThread::downLoadDataFinished(const QByteArray &bytes)
+void MusicDownloadBackgroundThunderThread::downLoadDataFinished(const QByteArray &bytes)
 {
     MusicSkinRemoteGroups items;
 
-    MusicSkinRemoteConfigManager manager;
+    MusicSkinThunderConfigManager manager;
     if(manager.fromByteArray(bytes))
     {
         manager.readSkinRemoteXMLConfig(items);
+    }
+
+    emit downLoadDataChanged(items);
+}
+
+
+
+MusicDownloadBackgroundBingThread::MusicDownloadBackgroundBingThread(QObject *parent)
+    : MusicDownloadBackgroundRemoteThread(parent)
+{
+
+}
+
+QString MusicDownloadBackgroundBingThread::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicDownloadBackgroundBingThread::startToDownload()
+{
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadDataFinished(QByteArray)));
+    download->startToDownload(MusicUtils::Algorithm::mdII(BING_URL, false));
+}
+
+void MusicDownloadBackgroundBingThread::downLoadDataFinished(const QByteArray &bytes)
+{
+    MusicSkinRemoteGroups items;
+
+    QJson::Parser parser;
+    bool ok;
+    QVariant data = parser.parse(bytes, &ok);
+    if(ok)
+    {
+        QVariantMap value = data.toMap();
+        if(value.contains("images"))
+        {
+            MusicSkinRemoteGroup group;
+            group.m_group = MUSIC_DAILY_DIR;
+            QVariantList datas = value["images"].toList();
+            foreach(const QVariant &var, datas)
+            {
+                if(var.isNull())
+                {
+                    continue;
+                }
+
+                value = var.toMap();
+                MusicSkinRemoteItem item;
+                item.m_name = value["copyright"].toString();
+                item.m_useCount = value["startdate"].toInt();
+                item.m_url = MusicUtils::Algorithm::mdII(BIGU_URL, false).arg(value["urlbase"].toString());
+
+                if(item.isValid())
+                {
+                    group.m_items << item;
+                }
+            }
+            if(group.isValid())
+            {
+                items << group;
+            }
+        }
     }
 
     emit downLoadDataChanged(items);

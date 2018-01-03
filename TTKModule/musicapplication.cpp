@@ -101,7 +101,7 @@ MusicApplication::MusicApplication(QWidget *parent)
 
     readXMLConfigFromText();
 
-    QTimer::singleShot(MT_S, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
+    QTimer::singleShot(MT_MS, m_rightAreaWidget, SLOT(musicLoadSongIndexWidget()));
 }
 
 MusicApplication::~MusicApplication()
@@ -180,6 +180,9 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QString prefix = MusicUtils::Core::lrcPrefix();
     QString path = QFile::exists(prefix + filename + LRC_FILE) ? (prefix + filename + LRC_FILE) : (prefix + filename + KRC_FILE);
     m_rightAreaWidget->loadCurrentSongLrc(filename, path);
+
+    //reset current song lrc index.
+    QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
 void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
@@ -284,6 +287,11 @@ void MusicApplication::updateCurrentArtist()
 bool MusicApplication::isPlaying() const
 {
     return m_musicPlayer->isPlaying();
+}
+
+qint64 MusicApplication::duration() const
+{
+    return m_musicPlayer->duration();
 }
 
 MusicObject::PlayMode MusicApplication::getPlayMode() const
@@ -842,6 +850,7 @@ void MusicApplication::musicCreateRightMenu()
 
     QMenu musicInfo(tr("musicAbout"), &rightClickMenu);
     rightClickMenu.addMenu(&musicInfo)->setIcon(QIcon(":/contextMenu/btn_about"));
+    musicInfo.addAction(QIcon(":/contextMenu/btn_bug_reoprt"), tr("Bug Report"), m_applicationObject, SLOT(musicBugReportView()));
     musicInfo.addAction(QIcon(":/contextMenu/btn_update"), tr("Update"), m_applicationObject, SLOT(musicVersionUpdate()));
     musicInfo.addAction(QIcon(":/contextMenu/btn_about"), tr("Version") + QString(TTKMUSIC_VERSION_STR) + QString(TTKMUSIC_VER_TIME_STR),
                         m_applicationObject, SLOT(musicAboutUs()));
@@ -961,6 +970,16 @@ void MusicApplication::musicCurrentLrcUpdated()
         file.remove();
     }
     m_rightAreaWidget->musicCheckHasLrcAlready();
+}
+
+void MusicApplication::resetCurrentSongLrcIndex()
+{
+    int pos = m_musicPlayer->position();
+    if(pos != -1)
+    {
+        //Set lrc corrent to show
+        m_rightAreaWidget->setSongSpeedAndSlow(pos);
+    }
 }
 
 void MusicApplication::updateCurrentTime(qint64 pos)

@@ -9,12 +9,8 @@ MusicMovingLabelSlider::MusicMovingLabelSlider(QWidget *parent)
 }
 
 MusicMovingLabelSlider::MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent)
-    : MusicClickedSlider(orientation, parent)
+    : MusicMovingClickedSlider(orientation, parent)
 {
-    setMouseTracking(true);
-
-    m_isMoving = false;
-    m_orientation = orientation;
     m_textLabel = new QLabel(this);
     m_textLabel->setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::Tool);
     m_textLabel->setGeometry(0, 0, 40, 20);
@@ -33,19 +29,9 @@ QString MusicMovingLabelSlider::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicMovingLabelSlider::setValue(int value)
-{
-    if(!m_isMoving)
-    {
-        MusicClickedSlider::setValue(value);
-    }
-}
-
 void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mousePressEvent(event);
-    m_isMoving = false;
-    emit sliderMoved( m_value );
+    MusicMovingClickedSlider::mousePressEvent(event);
 #ifdef Q_OS_UNIX
     m_textLabel->show();
 #endif
@@ -54,12 +40,7 @@ void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
 
 void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mouseMoveEvent(event);
-    if(m_mousePress)
-    {
-        m_isMoving = true;
-        emit sliderMoved( m_value );
-    }
+    MusicMovingClickedSlider::mouseMoveEvent(event);
 
     QPoint curPos = mapFromGlobal(QCursor::pos());
     QPoint glbPos = mapToGlobal(QPoint(0, 0));
@@ -81,9 +62,7 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
 
 void MusicMovingLabelSlider::mouseReleaseEvent(QMouseEvent *event)
 {
-    MusicClickedSlider::mouseReleaseEvent(event);
-    emit sliderReleasedAt( m_value );
-    m_isMoving = false;
+    MusicMovingClickedSlider::mouseReleaseEvent(event);
 }
 
 void MusicMovingLabelSlider::enterEvent(QEvent *event)

@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ public:
     /*!
      * Set network query input.
      */
-    void setQueryInput(MusicDownLoadQueryThreadAbstract *query);
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 public Q_SLOTS:
     /*!
@@ -66,8 +66,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSimilarFoundWidget(QWidget *parent = 0);
-
-    virtual ~MusicSimilarFoundWidget();
 
     /*!
      * Get class object name.
@@ -93,30 +91,12 @@ public Q_SLOTS:
      * Query all quality musics is finished.
      */
     void queryAllFinished();
-    /*!
-     * Send recieved data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Play button clicked now.
-     */
-    void playButtonClicked();
-    /*!
-     * Download button clicked now.
-     */
-    void downloadButtonClicked();
-    /*!
-     * Add button clicked now.
-     */
-    void addButtonClicked();
 
 protected:
     /*!
      * Create init interface lables.
      */
     void createLabels();
-
-    MusicSimilarFoundTableWidget *m_similarTableWidget;
 
 };
 

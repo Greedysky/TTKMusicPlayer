@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,13 +21,51 @@
 
 #include "musicabstractmovedialog.h"
 
-#define WEB_PLAYER     "UnA2T0FHR3dMb2tnQ1JrcWZ4RHY3U1VIdW45RmlOTUNiY1dPd0owSlQxS2NSbEpK"
+#define WY_SG_SHARE    "TEVOTmViQm1OblVEM2JMUlhIM0ZoTk9sK2Y3aDJMb1I5cTRSQWYxemlVR0xyRVJsR1o3TUhRPT0="
+#define QQ_SG_SHARE    "a3c2T3BwbVljRllHNFMxaEpzb3h3aC8ydVdtc1JYdWtxL2dsbVBNZkh1UDE3TVhKSlMyQUVRPT0="
+#define KG_SG_SHARE    "U3g3a2NLTnAvbGJjNXlqTjZuSkhHL0FDS2NMdTZ4U0UwN09jZEhLU0dYYnNMOXl1b3NNb3VRPT0="
+#define BD_SG_SHARE    "MDNKWUpHeHJieG9NV25KRGFQV1RJbFBVK3VBTlhzZTI4WnI2K1JEb0Z3T3hQQmlt"
+#define KW_SG_SHARE    "bThPbExsSllKcjU2MVpHa3NhaElaODNNczMyOHJ3N0RYakkzb1lUUEliYz0="
+#define XM_SG_SHARE    "KzRXK2xrV3ZFY0h4cUFua3lHclRiMHRiN0dLc1drdXIyeEI0Nm9IVzVHbz0="
+#define MG_SG_SHARE    "K1BiNDFuc0RtWXozZ25XRFhNZDhuanQwSHJUS3VXN2hxbzFTeG1zOStlS0ZCWHIraGVwMk0xUmtPSXNWZ2YrMGhVK2N6Zz09"
 
-#define QQ_SHARE       "UlBic0d5OXhCUThoTWlLU3NGZlRUby9MVGhzdmZ2WGdva3ZzT3FzYXRpWXRjaS9MaXpiaG1GTmd6RzFTMG1BNlRaU3JNTEkySkJmd08vYVJ3c3hlNFczT2xUUnAvTWVrbE8yMzA4SkxGdFgvWUNqUUtWWXJydk9Jb1gyTUVYMDI="
-#define RENREN_SHARE   "MXNzTTYvK3FOUGExUVBMdi9BOS9tMDlWNUJxSW9pbHpBQW9ucisxUWtNZG51UjhPSXBWa3R6Z3VsSXNaNjZ3TmVydml1NmpEanBuam1nTTlGWHh4NnNlZEFHQmtrUFRT"
-#define QQ_SPACE_SHARE "WlA2UFBRQVJ2djExYlBwaTFzUVV6MlBLUDJxR0k0TzRudWZWbWdpb3pPL0JCb0dOdXRYcktvUVlFMFVmYnpCT3RVZVZ2VDZiSUNNKzMzYlpBVnZ0UEQxalc0S1ZlV2hjZFZONHVmczN2bmtVZFBuTXUxWXhDQzdveXFuSVByWFpDc1hyZEE9PQ=="
-#define QQ_MICBG_SHARE "bVIzdk1WZ3ZaWEFFQW1QcXhhUU8rNHNjcGpGTkRGc0dITytJVUs4a0dnRFNBQkV6Y1NleUgwM3pCbkxtcitxM2ZvREVrSTBWSytISjMxb09QdmRyeHJVRHlmb0ExcVFyUXRnWmswN1dUemc9"
-#define SINA_SHARE     "cGoxY3doN0ljQWRHZGR1Y1ZzZUhzci83S3NZSk95SG00RXFhdmFyQ1NGODVIa2FKT2UyYWIybGtWbTlnYW5qT3RCOGZNMTNuVGtUZnlOeVl2RWUzdFV5UXRHWT0="
+#define WY_PL_SHARE    "cVhNOXVnOHp2ZVI1S21rd1RHOC8vWkE2ZWhLa0NFaHZuZlpXc2RBaU5KRWRnd091VVI2VDFMd21Pbms9"
+#define QQ_PL_SHARE    "aXRnOVpIRitYNWhPQnQrd2VKeDB2M1RDWTlLL005emtNRXpwd0s2djJaT0d6N0JjS0dyS0lLREg3eU0zcURTU3hJWXB1ejQrNlRLMzVabktTR0xRMWo2MHk0cHBHTGh5"
+#define KG_PL_SHARE    "ZEhtM3BHZUZ3UDJoWE5Kbi9Bc1JVcWxlbXdLZFIrc1JIbHlmR09CR2xEYzQ4K0JYN3JWWHBrbzYyUGpKOHBRZjArL0thQT09"
+#define BD_PL_SHARE    "bmFMaURSbVZhTnIrNE00cVZYb2lHMVN2S084YXo4Q2Q3Rk90c1JyK3lqd0NDeE50azNIb0xRPT0="
+#define KW_PL_SHARE    "dG1JTHFsTms5UjdjbExUK0Q2emMwZnVpMS82blU3Tkt4OXRQcngvcS9SVFl6bWVFa2NjbnduTXltZnM9"
+#define XM_PL_SHARE    "WXk4Wi90bmN0N3QzUFFuUFZuOWY4cTJ5R2hUUDhkeDRIZm8yd0lueTAxYkI0YndV"
+#define MG_PL_SHARE    "YTZKMVRndTdSclo3bXlFcHJZb29ldFd3Mit6YnZSVllMMEVuclZsSXpoV1huK1lUYTliV0d4UWhjSm5XcmhhOXA2WU9CdFRnN0FzPQ=="
+
+#define WY_AR_SHARE    "NHdtOUsxRjZ5YkdEOWhHVGcwelVwWVUwQTY5THZvUnk5d3hyZkdmdGhBN3BmU0htdllzeU13PT0="
+#define QQ_AR_SHARE    "U3RUdnpKZFVQOWMxVzFYSDU3ei9iWUNiVFRabUxOYVc4NjlNUXBwZWlrc3Z1WHY0cUN5WWVxR0hQV0x6d0p4N2VDOUIzdEJWQWhuajlaTHJReEgxblVqRGF5N1lYYmZN"
+#define KG_AR_SHARE    "dVdUSGtqTEw0Z29vVHo4WUZEcWVsOVNBQ0hTNkhoQ0E3NnoyYlJ1R0xlc3VVQzlwamcrMm1CUUFmR2tJY1laQQ=="
+#define BD_AR_SHARE    "RjB6ZmFGSDZoc3pGWEtiUDFTTHk1a3l5WmtoS0FGcWtLeXVWYnk4bzd2cjBHREln"
+#define KW_AR_SHARE    "MU1QNXNHZFNwbEZnQUNzQXNHelNnRmdTRURVcHNoNXVRWm5XWHJId3VHMVVZOERs"
+#define XM_AR_SHARE    "QjRRMDM1ZldLY1Y0YWJ2eGpIaWRxWWUrT0ZGdGY3NVJYNlNMbEJqRlZTOStkL0VQ"
+#define MG_AR_SHARE    "cVJqRjZEakJRcGdWTnBSb1RHWVdhNXNCSVQvRzRSWHA5Z1J3QjBMQnhmbGpadkI3NXg4ODAzNFowT0E9"
+
+#define WY_AL_SHARE    "WmJQamdNaS9CL1hWUmhsejFYMDdZZlpMd002MlhRdnBWSjlVcWtVZjJmNUtEMXRNcGZ6enFnPT0="
+#define QQ_AL_SHARE    "N0E0WlJUeEM1aHFVN0E4RzE1dVV5THRrNlRHMXNFcHF6aHlVcHM4V0ZyekFnVXNiY2hWNFg0YWNNeXdXNDU4NVdNbWtLc0dxV3JzWThvcnNhWFdFOTB3ZldBS3FlOVVS"
+#define KG_AL_SHARE    "dnFzTzNVaU1hUmJkTWwyTFNsdXNoNVB6SWZDN1MvRnRUTjlGQ05TZDIzanJZOVk0OVhyS2JwbHIzSE9sanErSA=="
+#define BD_AL_SHARE    "akp5ZnFLMXNjRER5ckZBcFRTWmZpaW9oZGY1SVJTeFUwZkxvRnRXVWpvd2FnQ1Iy"
+#define KW_AL_SHARE    "SW5jUzJnLy9keTEraGNPWU9va2NGRjFmaFFidU5DTHFpTmZMa2NaQUtZbz0="
+#define XM_AL_SHARE    "MGkwUlpOVkRlb09Db09tS0pWZ1E5S2g0RklXYUNaa2lhM2ppRFZrdU5jTHlLQVo0"
+#define MG_AL_SHARE    "WTVicW0yTUZLazVuOCtLaW1TcGRZR2hqY2hOUnQwcGxEODg1N2dxZHNTOXJFa1JKd2dHazNxQkVkMHM9"
+
+#define WY_MV_SHARE    "Qjh6UWM4QjB4QkpBS3FWRVI5STZSZnZDVkRvMlhQLzZ5aklZMkFmbzRGM3BUNVJI"
+#define QQ_MV_SHARE    "RTNiSlFxbEFrQ3lwaVgwNE5udHFwVXJNVEtsSTJscU90TnVBT0dvM1JzbUVTMUJlMGxyc3ZRPT0="
+#define KG_MV_SHARE    "eU9FKy9aWitpa3MwNytKMGZHMHdkaUVMUmhuczl0ZmhMeHMrdE53eG5FYXRyVzE3ZkIzQ0VvTm00b3FPZTNkaQ=="
+#define BD_MV_SHARE    "SGRjWUphNE0zMDh6UWlkYzYwaVE3czBzMDVHOVdnMTNkL3pXOTR3aW12TT0="
+#define KW_MV_SHARE    "L3ptNGdkZkVuVU56Mmt1ZVVhWjBwQjY2aU1hT1pFaWpvM0NPVWFIOE0wZz0="
+#define XM_MV_SHARE    "Nm1WRVhtcituMU54SXJDdzlLMHJkWm1RdkE4ODVvWmcrQWRSZFp5V1BWRT0="
+#define MG_MV_SHARE    "MDlhRnAvYVRoUzRZcERvcEwwQ1NHT2hHVkU2eFllbzJUbTlpdmw2MGw4OHNaRVppOVQ0WUV6NHd3Q3B3VXpnVTZxS2YrWTZ1WlRzPQ=="
+
+#define QQ_SHARE       "OXJEQURWRlk3c2ZJYjE2RXRtVVJyWVduaUNVMlFFdTNpY3l4U1pudS9CcFdudEZXdVFRL0VHZ3Ryc3NjWnBWM0JPeVY3UUIvWnNkNklVSEdhL3JzVEZTOEY3b015SnZIMkN2cXE1VytEWjhYOURMQ0FtZS9HWWlKd0xwaUJ0Rk4="
+#define RENREN_SHARE   "QzlIUFF1MGhOV1ZKR2MxRWdIRkNvODVpZkY3YVFUL0hqM09sYy9SUDVVL1pNYXlWRVhBcHVHcVIxV0VyeDdvWEdGOFN1L0NYN3FOMnlMWEQ4bE9DRUp4blQyeDhHQ3N4"
+#define QQ_SPACE_SHARE "ck9FZHQzNmJkdzZBMC9KeGhCVGJNODlJUHYyYU5VUmF5eDFPdTJrZGQzZ2NzdFJlTkVRUjRPUGo0OTk0Zk5LWmY3S3BrRGQ2Vk15cUxYQXpraTZ3Vm45WGtMemJrL0FJQmJ1TXdTYTJoREJxcmEza2RHVktBS09HUGlGYVlFVTNrVHF5SVE9PQ=="
+#define QQ_MICBG_SHARE "Ky9NWkJNeWJRWGtTVEMzNDgxd0JCREJzMitXV2ZiZnJoc2NHSVYvR3lmRzhyRkcyQVFRTmxoZkxUMnBzQnpYd1IxNmRmbGFQcTg1VGhubDZJWTAwSW1XemlEM1ZiT3M5L2JsNnNxOUtmZG89"
+#define SINA_SHARE     "SDhiNk5UNFdDTnRneVBqcmNCOVdoOENsMGtXZGxZdVZJTWJncmFNbjRHZnpJVXdXZS9xM25tYW1hTDVsUlhDKzgzcHREK1M1Zlo1QkJsNnFNUk1WMEhPeldDUT0="
 
 class QRCodeQWidget;
 
@@ -42,6 +80,15 @@ class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialo
 {
     Q_OBJECT
 public:
+    enum Type
+    {
+        Song,       /*!< song type*/
+        Artist,     /*!< artist type*/
+        Album,      /*!< album type*/
+        Playlist,   /*!< playlist type*/
+        Null        /*!< null type*/
+    };
+
     /*!
      * Object contsructor.
      */
@@ -54,9 +101,9 @@ public:
      */
     static QString getClassName();
     /*!
-     * Set current name to share.
+     * Set current data to share.
      */
-    void setSongName(const QString &name);
+    void setData(Type type, const QVariantMap &data);
 
 public Q_SLOTS:
     /*!
@@ -83,9 +130,16 @@ public Q_SLOTS:
      * Override close function.
      */
     void close();
+    /*!
+     * Download pixmap data finished.
+     */
+    void downLoadFinished(const QByteArray &data);
 
 protected:
     Ui::MusicSongSharingWidget *m_ui;
+
+    Type m_type;
+    QVariantMap m_data;
     QRCodeQWidget *m_qrCodeWidget;
 
 };

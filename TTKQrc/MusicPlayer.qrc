@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/data">
         <file alias="playlist">../TTKResource/A_extras/playlist</file>
+        <file alias="toplist">../TTKResource/A_extras/toplist</file>
         <file alias="sound">../TTKResource/A_extras/sound.wav</file>
     </qresource>
     <qresource prefix="/image">
@@ -13,6 +14,7 @@
         <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
         <file alias="lb_slider">../TTKResource/lb_slider.png</file>
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
+        <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>
@@ -151,6 +153,7 @@
         <file alias="btn_similar">../TTKResource/contextMenu/btn_similar.png</file>
         <file alias="btn_kmicro">../TTKResource/contextMenu/btn_kmicro.png</file>
         <file alias="btn_lrc_label">../TTKResource/contextMenu/btn_lrc_label.png</file>
+        <file alias="btn_bug_reoprt">../TTKResource/contextMenu/btn_bug_reoprt.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="lb_ballon_white">../TTKResource/gif/lb_ballon_white.png</file>
@@ -337,6 +340,8 @@
         <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
         <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
+        <file alias="lb_5sing">../TTKResource/server/lb_server_5sing.png</file>
+        <file alias="lb_migu">../TTKResource/server/lb_server_migu.png</file>
     </qresource>
     <qresource prefix="/toolSets">
         <file alias="btn_search">../TTKResource/toolSets/btn_search.png</file>
@@ -591,6 +596,8 @@
         <file alias="btn_tools_normal">../TTKResource/functions/btn_tools_normal.png</file>
         <file alias="btn_tools_hover">../TTKResource/functions/btn_tools_hover.png</file>
         <file alias="btn_toplist_hover">../TTKResource/functions/btn_toplist_hover.png</file>
+        <file alias="btn_search_hover">../TTKResource/functions/btn_search_hover.png</file>
+        <file alias="btn_recommend_hover">../TTKResource/functions/btn_recommend_hover.png</file>
     </qresource>
     <qresource prefix="/video">
         <file alias="btn_play_normal">../TTKResource/video/btn_play_normal.png</file>
@@ -647,6 +654,8 @@
         <file alias="lb_big_hover">../TTKResource/video/lb_big_hover.png</file>
         <file alias="lb_big_on_normal">../TTKResource/video/lb_big_on_normal.png</file>
         <file alias="lb_big_on_hover">../TTKResource/video/lb_big_on_hover.png</file>
+        <file alias="btn_st_normal">../TTKResource/video/btn_st_normal.png</file>
+        <file alias="btn_st_hover">../TTKResource/video/btn_st_hover.png</file>
         <file alias="btn_sd_normal">../TTKResource/video/btn_sd_normal.png</file>
         <file alias="btn_sd_hover">../TTKResource/video/btn_sd_hover.png</file>
         <file alias="btn_hd_normal">../TTKResource/video/btn_hd_normal.png</file>

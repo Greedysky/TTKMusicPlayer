@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +20,12 @@
  ================================================= */
 
 #include <QLabel>
-#include "musicglobaldefine.h"
-#include "musicclickedslider.h"
+#include "musicmovingclickedslider.h"
 
 /*! @brief The class of the slider that can show such as tooltip.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public MusicClickedSlider
+class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public MusicMovingClickedSlider
 {
     Q_OBJECT
 public:
@@ -45,26 +44,6 @@ public:
      * Get class object name.
      */
     static QString getClassName();
-    /*!
-     * Slider is now moving or not.
-     */
-    inline bool isMoving() const { return m_isMoving;}
-    /*!
-     * Set slider moving or not.
-     */
-    inline void setMoving(bool m) { m_isMoving = m;}
-
-Q_SIGNALS:
-    /*!
-     * Slider handle release at pos emit.
-     */
-    void sliderReleasedAt(int pos);
-
-public Q_SLOTS:
-    /*!
-     * Set slider current value.
-     */
-    void setValue(int value);
 
 protected:
     /*!
@@ -80,9 +59,7 @@ protected:
      */
     QPoint limitLableGeometry(int x, int y, int z);
 
-    bool m_isMoving;
     QLabel *m_textLabel;
-    Qt::Orientation m_orientation;
 
 };
 

@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2017 Greedysky Studio
+# * Copyright (C) 2015 - 2018 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -29,17 +29,24 @@ CONFIG       += warn_off
 unix:VERSION += 2.1.0
 
 unix{
-  macx{
-    SOURCES += $$PWD/qdevicewatcher_mac.cpp
-    LIBS += -framework DiskArbitration -framework Foundation
-  }else{
-    SOURCES += $$PWD/qdevicewatcher_linux.cpp
-  }
+    macx{
+        SOURCES += $$PWD/qdevicewatcher_mac.cpp
+        LIBS += -framework DiskArbitration -framework Foundation
+    }else{
+        SOURCES += $$PWD/qdevicewatcher_linux.cpp
+    }
 }
+
 win32{
-  wince*: SOURCES += $$PWD/qdevicewatcher_wince.cpp
-  else: SOURCES += $$PWD/qdevicewatcher_win32.cpp
-  LIBS *= -luser32
+    wince*: SOURCES += $$PWD/qdevicewatcher_wince.cpp
+    else: SOURCES += $$PWD/qdevicewatcher_win32.cpp
+    LIBS *= -luser32
+}
+
+win32:msvc{
+    CONFIG +=c++11
+}else{
+    QMAKE_CXXFLAGS += -std=c++11
 }
 
 SOURCES += \

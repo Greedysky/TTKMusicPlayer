@@ -35,18 +35,15 @@ Item {
         onClearAllItems: {
             searedSongList.currentIndex = -1;
             searedMVList.currentIndex = -1;
-            searedLrcList.currentIndex = -1;
 
             searedSongListModel.clear();
             searedMVListModel.clear();
-            searedLrcListModel.clear();
         }
         onCreateSearchedItems: {
             var info = { title: songname, artist: artistname };
             switch( functionList.currentIndex ) {
                 case 0: searedSongListModel.append(info); break;
                 case 1: searedMVListModel.append(info); break;
-                case 2: searedLrcListModel.append(info); break;
             }
         }
         onDownLoadDataHasFinished: {
@@ -113,7 +110,6 @@ Item {
                         switch( functionList.currentIndex ) {
                             case 0: TTK_NETWORK.searchSong(getSearchedText()); break;
                             case 1: TTK_NETWORK.searchMovie(getSearchedText()); break;
-                            case 2: TTK_NETWORK.searchLrc(getSearchedText()); break;
                         }
                     }
                 }
@@ -154,11 +150,6 @@ Item {
                                     TTK_NETWORK.searchMovie(getSearchedText());
                                     loadingImageAnimation.startLoading();
                                     break;
-                                case 2:
-                                    searedSongStackView.push(searedLrcList);
-                                    TTK_NETWORK.searchLrc(getSearchedText());
-                                    loadingImageAnimation.startLoading();
-                                    break;
                             }
                         }
 
@@ -174,9 +165,6 @@ Item {
                 model: ListModel {
                     ListElement { title: qsTr("单曲")}
                     ListElement { title: qsTr("MV")}
-                    ListElement { title: qsTr("歌词")}
-                    ListElement { title: qsTr("专辑")}
-                    ListElement { title: qsTr("歌单")}
                 }
             }
         }
@@ -407,98 +395,6 @@ Item {
                         id: searedMVListModel
                     }
                 }
-
-                ///seared lrc list
-                ListView {
-                    id: searedLrcList
-                    width: parent.width
-                    height: parent.height
-                    visible: false
-                    clip: true
-
-                    delegate: Component {
-                        Rectangle {
-                            id: wrapperLrc
-                            width: ttkMainWindow.width
-                            height: ttkGlobal.dpHeight(70)
-                            color: ttkTheme.color_white
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    searedLrcList.currentIndex = index;
-                                    TTK_NETWORK.setCurrentIndex(index);
-                                    ttkFlyInOutBox.text = qsTr("已加入下载列表");
-                                    ttkFlyInOutBox.start();
-                                }
-                            }
-
-                            Rectangle {
-                                width: ttkMainWindow.width
-                                height: 1
-                                color: ttkTheme.color_alpha_lv9
-                            }
-
-                            Rectangle {
-                                width: ttkGlobal.dpWidth(5)
-                                height: parent.height*2/3
-                                anchors {
-                                    top: parent.top
-                                    topMargin: parent.height/3/2
-                                }
-                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
-                            }
-
-                            Text {
-                                id: titleAreaLrc
-                                text: title
-                                width: ttkMusicOnlineSearchPage.width - iconAreaLrc.width - ttkGlobal.dpHeight(120)
-                                anchors {
-                                    top: parent.top
-                                    topMargin: ttkGlobal.dpHeight(10)
-                                    left: parent.left
-                                    leftMargin: ttkGlobal.dpHeight(20)
-                                }
-                                elide: Text.ElideRight
-                                verticalAlignment: Qt.AlignVCenter
-                                font.pixelSize: parent.height*3/10
-                            }
-
-                            Image {
-                                id: iconAreaLrc
-                                width: parent.height/3
-                                height: parent.height/3
-                                anchors {
-                                    top: titleAreaLrc.bottom
-                                    topMargin: ttkGlobal.dpHeight(5)
-                                    left: parent.left
-                                    leftMargin: ttkGlobal.dpHeight(20)
-                                }
-                                source: "qrc:/image/ic_playlist_normal"
-                            }
-
-                            Text {
-                                text: artist
-                                width: titleAreaLrc.width - iconAreaLrc.width
-                                anchors {
-                                    top: titleAreaLrc.bottom
-                                    topMargin: ttkGlobal.dpHeight(10)
-                                    left: iconAreaLrc.right
-                                    leftMargin: ttkGlobal.dpHeight(10)
-                                }
-                                elide: Text.ElideRight
-                                verticalAlignment: Qt.AlignVCenter
-                                font.pixelSize: parent.height/4
-                                color: ttkTheme.color_gray
-                            }
-                        }
-                    }
-
-                    model: ListModel {
-                        id: searedLrcListModel
-                    }
-                }
-
             }
 
             RotationAnimation {

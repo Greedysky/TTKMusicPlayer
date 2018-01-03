@@ -175,9 +175,9 @@ QString MusicLrcContainerForInline::text() const
     return m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->text();
 }
 
-qint64 MusicLrcContainerForInline::setSongSpeedAndSlow(qint64 time)
+qint64 MusicLrcContainerForInline::setSongSpeedChanged(qint64 time)
 {
-    return m_lrcAnalysis->setSongSpeedAndSlow(time);
+    return m_lrcAnalysis->setSongSpeedChanged(time);
 }
 
 bool MusicLrcContainerForInline::findText(qint64 total, QString &pre, QString &last, qint64 &interval) const
@@ -345,6 +345,7 @@ void MusicLrcContainerForInline::showSongCommentsWidget()
 
     delete m_commentsWidget;
     m_commentsWidget = new MusicLrcCommentsWidget(this);
+    m_commentsWidget->initWidget(true);
     m_commentsWidget->setGeometry(0, height()/5, width(), height()*4/5);
     m_commentsWidget->show();
     m_commentsWidget->setCurrentSongName(m_currentSongName);
@@ -393,7 +394,7 @@ void MusicLrcContainerForInline::musicSongMovieClicked()
     {
         MusicLeftAreaWidget::instance()->lrcWidgetShowFullScreen();
     }
-    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName);
+    MusicRightAreaWidget::instance()->musicVideoButtonSearched(m_currentSongName, QString());
 }
 
 void MusicLrcContainerForInline::updateAnimationLrc()
@@ -663,7 +664,7 @@ void MusicLrcContainerForInline::createColorMenu(QMenu &menu)
 void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
 {
     m_lrcAnalysis->revertLrcTime(pos);
-    qint64 beforeTime = setSongSpeedAndSlow(m_currentTime);
+    qint64 beforeTime = setSongSpeedChanged(m_currentTime);
     updateCurrentLrc(beforeTime);
 
     if(m_changeSpeedValue + pos == 0)

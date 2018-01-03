@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,6 +42,10 @@ public:
      */
     static QString getClassName();
 
+    /*!
+     * Get create paging widget.
+     */
+    QWidget* getCreatePagingWidget();
     /*!
      * Create paging items.
      */

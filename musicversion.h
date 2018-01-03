@@ -4,7 +4,7 @@
 /**
  * C
  *
- * opyright (c) 2015 - 2017 Greedysky Studio <greedysky@163.com>
+ * opyright (c) 2015 - 2018 Greedysky Studio <greedysky@163.com>
  *
  * TTKMusicPlayer that imitation Kugou music, the music player use
  * of qmmp core library based on Qt for windows and linux
@@ -89,7 +89,7 @@
  
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,17 +105,17 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-//update time 2017.10.10
-#define TTKMUSIC_VERSION_STR    "2.6.1.0"
-#define TTKMUSIC_VERSION_WSTR   L"2.6.1.0"
-#define TTKMUSIC_VER_TIME_STR   "(2017/10/10)"
+//update time 2018.01.01
+#define TTKMUSIC_VERSION_STR    "2.6.4.0"
+#define TTKMUSIC_VERSION_WSTR   L"2.6.4.0"
+#define TTKMUSIC_VER_TIME_STR   "(2018/01/01)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
 #define TTKMUSIC_MIDLE_VERSION 6
-#define TTKMUSIC_MINOR_VERSION 1
+#define TTKMUSIC_MINOR_VERSION 4
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02610
+#define TTKMUSIC_VERSION 0x02640
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 

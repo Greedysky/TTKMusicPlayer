@@ -60,10 +60,6 @@ public:
     /*!
      * Search the mv online by given name.
      */
-    Q_INVOKABLE void searchLrc(const QString &text);
-    /*!
-     * Search the lrc online by given name.
-     */
     Q_INVOKABLE void downloadSong(const QString &text);
     /*!
      * Download the song online by given name.

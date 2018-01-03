@@ -1,4 +1,5 @@
 #include "musicdownloadquerykwtoplistthread.h"
+#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -16,9 +17,14 @@ QString MusicDownLoadQueryKWToplistThread::getClassName()
 
 void MusicDownLoadQueryKWToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
-    Q_UNUSED(type);
-    Q_UNUSED(toplist);
-    startToSearch("93");
+    if(type == MusicQuery)
+    {
+        startToSearch(toplist);
+    }
+    else
+    {
+        startToSearch(toplist.isEmpty() ? "93" : toplist);
+    }
 }
 
 void MusicDownLoadQueryKWToplistThread::startToSearch(const QString &toplist)
@@ -31,10 +37,12 @@ void MusicDownLoadQueryKWToplistThread::startToSearch(const QString &toplist)
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_TOPLIST_URL, false).arg(toplist);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -56,6 +64,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     emit clearAllItems();      ///Clear origin items
     m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    m_interrupt = false;
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
@@ -98,19 +107,21 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                     musicInfo.m_albumId = value["albumid"].toString();
                     musicInfo.m_albumName = value["albumName"].toString();
 
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongPic(&musicInfo, musicInfo.m_songId);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(musicInfo.m_songId);
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    readFromMusicSongPic(&musicInfo);
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     ///music normal songs urls
                     readFromMusicSongAttribute(&musicInfo, value["formats"].toList(), m_searchQuality, m_queryAllRecords);
-                    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;
                     }
-
+                    ////////////////////////////////////////////////////////////
+                    if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
+                    ////////////////////////////////////////////////////////////
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

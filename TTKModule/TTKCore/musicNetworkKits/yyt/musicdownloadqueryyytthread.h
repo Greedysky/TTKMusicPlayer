@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadquerythreadabstract.h"
+#include "musicdownloadquerymoviethread.h"
 
 /*! @brief The class to yinyuetai query download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryYYTThread : public MusicDownLoadQueryThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryYYTThread : public MusicDownLoadQueryMovieThread
 {
     Q_OBJECT
 public:
@@ -52,17 +52,12 @@ protected:
     /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
-    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                  const QString &id);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info);
     /*!
      * Read mv info attribute from query results.
      */
-    void readFromMusicMVInfoAttribute(MusicObject::MusicSongInformation *info, const QString &url,
-                                      const QString &size, const QString &duration);
-    /*!
-     * Find time string by attrs.
-     */
-    QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &url,
+                                  const QString &size, const QString &duration);
 
 };
 

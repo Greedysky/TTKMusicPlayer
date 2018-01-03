@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2015 - 2018 Greedysky Studio -->
+<component type="desktop-application">
+  <id>ttkmusicplayer.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>TTKMusicPlayer</name>
+  <pkgname>TTKMusicPlayer</pkgname>
+  <summary>The music player that imitation Kugou</summary>
+
+  <description>
+    <p>
+      TTKMusicPlayer that imitation Kugou music, the music player uses of qmmp core library based on Qt for windows and linux.
+    </p>
+  </description>
+
+  <url type="homepage">https://github.com/Greedysky/TTKMusicplayer</url>
+  <developer_name>Greedysky Studio</developer_name>
+
+  <releases>
+    <release version="2.6.4.0" date="2018-01-01">
+    </release>
+  </releases>
+</component>

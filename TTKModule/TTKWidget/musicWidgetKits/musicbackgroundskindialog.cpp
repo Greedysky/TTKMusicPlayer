@@ -14,6 +14,16 @@
 
 #include <QScrollBar>
 
+#define NEW_OPERATOR(ui, list)  \
+    ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); \
+    ui->setWidgetResizable(true); \
+    ui->setFrameShape(QFrame::NoFrame); \
+    ui->setFrameShadow(QFrame::Plain); \
+    ui->setAlignment(Qt::AlignVCenter); \
+    ui->setWidget(list); \
+    ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+
+
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
       m_ui(new Ui::MusicBackgroundSkinDialog)
@@ -38,31 +48,16 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 
     //////////////////////////////////////////////////////
     m_backgroundList = new MusicBackgroundListWidget(this);
-    m_ui->recommandScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->recommandScrollArea->setWidgetResizable(true);
-    m_ui->recommandScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->recommandScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->recommandScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->recommandScrollArea->setWidget(m_backgroundList);
-    m_ui->recommandScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->recommandScrollArea, m_backgroundList);
 
     m_myBackgroundList = new MusicBackgroundListWidget(this);
-    m_ui->userScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->userScrollArea->setWidgetResizable(true);
-    m_ui->userScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->userScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->userScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->userScrollArea->setWidget(m_myBackgroundList);
-    m_ui->userScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    NEW_OPERATOR(m_ui->userScrollArea, m_myBackgroundList);
 
-    m_remoteBackgroundList = new MusicBackgroundRemoteWidget(this);
-    m_ui->remoteScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_ui->remoteScrollArea->setWidgetResizable(true);
-    m_ui->remoteScrollArea->setFrameShape(QFrame::NoFrame);
-    m_ui->remoteScrollArea->setFrameShadow(QFrame::Plain);
-    m_ui->remoteScrollArea->setAlignment(Qt::AlignVCenter);
-    m_ui->remoteScrollArea->setWidget(m_remoteBackgroundList);
-    m_ui->remoteScrollArea->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    m_thunderBackgroundList = new MusicBackgroundThunderWidget(this);
+    NEW_OPERATOR(m_ui->remoteScrollArea, m_thunderBackgroundList);
+
+    m_dailyBackgroundList = new MusicBackgroundDailyWidget(this);
+    NEW_OPERATOR(m_ui->dailyScrollArea, m_dailyBackgroundList);
 
     m_myThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();
@@ -93,7 +88,8 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
     delete m_ui;
     delete m_backgroundList;
     delete m_myBackgroundList;
-    delete m_remoteBackgroundList;
+    delete m_thunderBackgroundList;
+    delete m_dailyBackgroundList;
 }
 
 QString MusicBackgroundSkinDialog::getClassName()
@@ -221,7 +217,7 @@ void MusicBackgroundSkinDialog::showCustomSkinDialog()
 
 void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
 {
-    QWidget *toolWidget = m_remoteBackgroundList->createFunctionsWidget(index != 2, this);
+    QWidget *toolWidget = m_thunderBackgroundList->createFunctionsWidget(index != 3, this);
     if(!toolWidget->isVisible())
     {
         toolWidget->show();
@@ -233,13 +229,18 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     {
         return;
     }
-
-    m_remoteBackgroundList->abort();
+    ///////////////////////////////////////////////////////
+    m_dailyBackgroundList->abort();
+    m_thunderBackgroundList->abort();
     if(index == 2)
     {
-        m_remoteBackgroundList->init();
+        m_dailyBackgroundList->init();
     }
-
+    else if(index == 3)
+    {
+        m_thunderBackgroundList->init();
+    }
+    ///////////////////////////////////////////////////////
     m_ui->stackedWidget->setIndex(0, 0);
     m_ui->stackedWidget->start(index);
 }
@@ -260,33 +261,14 @@ void MusicBackgroundSkinDialog::myBackgroundListWidgetItemClicked(const QString 
     listWidgetItemClicked(m_backgroundList, name);
 }
 
+void MusicBackgroundSkinDialog::dailyBackgroundListWidgetItemClicked(const QString &name)
+{
+    listWidgetItemClicked(m_dailyBackgroundList, name);
+}
+
 void MusicBackgroundSkinDialog::remoteBackgroundListWidgetItemClicked(const QString &name)
 {
-    MusicBackgroundImage image;
-    m_remoteBackgroundList->outputRemoteSkin(image, name);
-    if(!image.isValid())
-    {
-        return;
-    }
-
-    if(!m_myBackgroundList->contains(image))
-    {
-        int index = cpoyFileToLocalIndex();
-        QString theme = QString("theme-%1").arg(index + 1);
-        QString des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
-        MusicExtractWrap::inputSkin(&image, des);
-
-        m_myBackgroundList->createItem(theme, des, true);
-        listWidgetItemClicked(m_myBackgroundList, theme);
-    }
-    else
-    {
-        MusicBackgroundListItem *it = m_myBackgroundList->find(image);
-        if(it)
-        {
-            listWidgetItemClicked(m_myBackgroundList, it->getFileName());
-        }
-    }
+    listWidgetItemClicked(m_thunderBackgroundList, name);
 }
 
 void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
@@ -332,6 +314,35 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
     M_BACKGROUND_PTR->setMBackground(path);
     emit M_BACKGROUND_PTR->backgroundHasChanged();
+}
+
+void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundRemoteWidget *item, const QString &name)
+{
+    MusicBackgroundImage image;
+    item->outputRemoteSkin(image, name);
+    if(!image.isValid())
+    {
+        return;
+    }
+
+    if(!m_myBackgroundList->contains(image))
+    {
+        int index = cpoyFileToLocalIndex();
+        QString theme = QString("theme-%1").arg(index + 1);
+        QString des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
+        MusicExtractWrap::inputSkin(&image, des);
+
+        m_myBackgroundList->createItem(theme, des, true);
+        listWidgetItemClicked(m_myBackgroundList, theme);
+    }
+    else
+    {
+        MusicBackgroundListItem *it = m_myBackgroundList->find(image);
+        if(it)
+        {
+            listWidgetItemClicked(m_myBackgroundList, it->getFileName());
+        }
+    }
 }
 
 void MusicBackgroundSkinDialog::addThemeListWidgetItem()

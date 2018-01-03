@@ -49,14 +49,10 @@ ApplicationWindow {
             StackView {
                 id: ttkMainStackView
                 width: ttkMainWindow.width
-                height: ttkMainWindow.height - ttkMusicBar.height
+                height: ttkMainWindow.height
                 focus: true
                 initialItem: TTKMainPage {
                 }
-            }
-
-            TTKMusicBar {
-                id: ttkMusicBar
             }
         }
     }

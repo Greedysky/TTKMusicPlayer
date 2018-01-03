@@ -25,10 +25,12 @@ void MusicQQDiscoverListThread::startToSearch()
     m_topListInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_TOPLIST_C_URL, false).arg(4);
     deleteAll();
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -48,6 +50,8 @@ void MusicQQDiscoverListThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
+    m_interrupt = false;
+
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
@@ -67,6 +71,8 @@ void MusicQQDiscoverListThread::downLoadFinished()
                 int counter = 0;
                 foreach(const QVariant &var, datas)
                 {
+                    if(m_interrupt) return;
+
                     if((where != counter++) || var.isNull())
                     {
                         continue;

@@ -57,17 +57,6 @@ void TTKNetworkHelper::searchMovie(const QString &text)
     m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
-void TTKNetworkHelper::searchLrc(const QString &text)
-{
-    if(!M_NETWORK_PTR->isOnline())
-    {
-        return;
-    }
-
-    m_queryType = T_SearcLrc;
-    m_queryThread->startToSearch(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
-}
-
 void TTKNetworkHelper::downloadSong(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())
@@ -101,7 +90,6 @@ void TTKNetworkHelper::setCurrentIndex(int index, const QVariant &data)
                     }
         case T_SearcLrc:
                     {
-                        downForSearchLrc(index);
                         break;
                     }
         case T_DownloadSong:

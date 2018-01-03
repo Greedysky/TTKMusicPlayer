@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #define ALG_URL_KEY         "GREEDYSKY"
 #define ALG_PLUS_KEY        ";DF;45622e"
 #define ALG_LOW_KEY         "123asd"
+#define ALG_UA_KEY          "ua11.25.17"
 
 /*! @brief The class of the utils algorithm object namespace.
  * @author Greedysky <greedysky@163.com>
@@ -44,7 +45,24 @@ namespace MusicUtils
         /*!
          * Encode the data into sha1.
          */
-        MUSIC_UTILS_EXPORT QByteArray hmackSha1(const QByteArray &data, const QByteArray &key);
+        MUSIC_UTILS_EXPORT QByteArray hmacSha1(const QByteArray &data, const QByteArray &key);
+
+        /*!
+         * Encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlEncode(QString &data);
+        /*!
+         * Decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlDecode(QString &data);
+        /*!
+         * Encode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlEncode(QByteArray &data);
+        /*!
+         * Decode the data into url.
+         */
+        MUSIC_UTILS_EXPORT void urlDecode(QByteArray &data);
 
         /*!
          * Get mdII(greedysky) algorithm.

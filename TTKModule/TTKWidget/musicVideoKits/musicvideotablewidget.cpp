@@ -1,4 +1,5 @@
 #include "musicvideotablewidget.h"
+#include "musicdownloadqueryfactory.h"
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musicdownloadwidget.h"
@@ -35,10 +36,33 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    MusicQueryItemTableWidget::startSearchQuery(text);
+    ////////////////////////////////////////////////////////////////////////////////////
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
+    ////////////////////////////////////////////////////////////////////////////////////
     m_loadingLabel->show();
     m_loadingLabel->start();
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
+}
+
+void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
+{
+    if(!M_NETWORK_PTR->isOnline())
+    {   //no network connection
+        clearAllItems();
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
+        return;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
+    ////////////////////////////////////////////////////////////////////////////////////
+    m_loadingLabel->show();
+    m_loadingLabel->start();
+    m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
+    m_downLoadManager->startToSingleSearch(text);
 }
 
 void MusicVideoTableWidget::musicDownloadLocal(int row)
@@ -178,8 +202,9 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     MusicObject::MusicSongAttributes attrs = musicSongInfos[row].m_songAttrs;
     if(!attrs.isEmpty())
     {
-        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(),
-                              attrs.first().m_url);
+        MusicObject::MusicSongAttribute attr = attrs.first();
+        QString url = attr.m_multiParts ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), url);
     }
 }
 
@@ -191,7 +216,7 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
     }
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
-            musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
+             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
 void MusicVideoTableWidget::downloadLocalFromControl()

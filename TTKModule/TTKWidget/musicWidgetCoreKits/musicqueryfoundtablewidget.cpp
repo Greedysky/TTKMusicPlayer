@@ -8,6 +8,7 @@
 #include "musicsettingmanager.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
+#include "musicdownloadbatchwidget.h"
 
 MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     : MusicQueryTableWidget(parent)
@@ -26,12 +27,15 @@ MusicQueryFoundTableWidget::MusicQueryFoundTableWidget(QWidget *parent)
     headerview->resizeSection(6, 26);
     headerview->resizeSection(7, 26);
 
+    m_labelDelegate = new MusicLabelDelegate(this);
+
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
 }
 
 MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
 {
+    delete m_labelDelegate;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllItems();
 }
@@ -39,6 +43,12 @@ MusicQueryFoundTableWidget::~MusicQueryFoundTableWidget()
 QString MusicQueryFoundTableWidget::getClassName()
 {
     return staticMetaObject.className();
+}
+
+void MusicQueryFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
+{
+    MusicQueryTableWidget::setQueryInput(query);
+    connect(query, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
 }
 
 void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
@@ -66,16 +76,18 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
-const MusicObject::MusicSongInformations& MusicQueryFoundTableWidget::getMusicSongInfos() const
-{
-    Q_ASSERT(m_downLoadManager);
-    return m_downLoadManager->getMusicSongInfos();
-}
-
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MIntList list = getSelectedItems();
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
     for(int i=0; i<list.count(); ++i)
     {
         if(downloadDataFrom(musicSongInfos[ list[i] ], play && (i == 0)))
@@ -83,6 +95,33 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
             continue;
         }
     }
+}
+
+void MusicQueryFoundTableWidget::downloadBatchData()
+{
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MIntList list = getSelectedItems();
+    if(list.isEmpty())
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    MusicObject::MusicSongInformations selectedItems;
+    foreach(int index, list)
+    {
+        if(index < 0 || index >= musicSongInfos.count())
+        {
+            continue;
+        }
+
+        selectedItems << musicSongInfos[index];
+    }
+    MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
+    w->setSongName(selectedItems);
+    w->show();
 }
 
 void MusicQueryFoundTableWidget::resizeWindow()
@@ -185,6 +224,10 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
 
 void MusicQueryFoundTableWidget::clearAllItems()
 {
+    if(rowCount() > 0)
+    {
+        setItemDelegateForRow(rowCount() - 1, nullptr);
+    }
     MusicQueryTableWidget::clear();
     setColumnCount(8);
 }
@@ -202,17 +245,20 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_singerName + " - " + songItem.m_songName);
+    item->setTextColor(QColor(100, 100, 100));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 31));
     setItem(count, 1, item);
 
                       item = new QTableWidgetItem;
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     item->setToolTip(songItem.m_albumName);
+    item->setTextColor(QColor(100, 100, 100));
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 31));
     setItem(count, 2, item);
 
                       item = new QTableWidgetItem(songItem.m_time);
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    item->setTextColor(QColor(100, 100, 100));
     setItem(count, 3, item);
 
                       item = new QTableWidgetItem;
@@ -233,6 +279,26 @@ void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &so
     setItem(count, 7, item);
 
     setFixedHeight(rowHeight(0)*rowCount());
+}
+
+void MusicQueryFoundTableWidget::createFinishedItem()
+{
+    setRowCount(rowCount() + 1);
+    int count = rowCount() - 1;
+    for(int i=0; i<columnCount(); ++i)
+    {
+        setItem(count, i, new QTableWidgetItem);
+    }
+    setSpan(count, 0, 1, columnCount());
+
+    QTableWidgetItem *it = item(count, 0);
+    if(it)
+    {
+        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        setItemDelegateForRow(count, m_labelDelegate);
+
+        setFixedHeight(rowHeight(0)*rowCount());
+    }
 }
 
 void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
@@ -261,31 +327,25 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
         return false;
     }
 
-    QList<int> findMinTag;
-    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
-    {
-        findMinTag << attr.m_bitrate;
-    }
-    qSort(findMinTag);
+    MusicObject::MusicSongAttributes attrs(downloadInfo.m_songAttrs);
+    qSort(attrs);
     //to find out the min bitrate
 
-    foreach(const MusicObject::MusicSongAttribute &attr, downloadInfo.m_songAttrs)
+    if(!attrs.isEmpty())
     {
-        if(attr.m_bitrate == findMinTag.first())
-        {
-            QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
-            QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+        const MusicObject::MusicSongAttribute attr = attrs.first();
+        QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
+        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
-            MusicSemaphoreLoop loop(this);
-            MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                             MusicDownLoadThreadAbstract::Download_Music, this);
-            connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            downSong->startToDownload();
-            loop.exec();
+        MusicSemaphoreLoop loop(this);
+        MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
+                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+        connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        downSong->startToDownload();
+        loop.exec();
 
-            emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
-            return true;
-        }
+        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
     }
-    return false;
+
+    return true;
 }

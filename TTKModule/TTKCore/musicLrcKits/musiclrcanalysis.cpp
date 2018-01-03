@@ -4,7 +4,9 @@
 #endif
 #include <qmath.h>
 #include "musictime.h"
-#include "musictranslationthread.h"
+#include "musicapplication.h"
+#include "musicdownloadqueryfactory.h"
+#include "musictranslationthreadabstract.h"
 
 MusicLrcAnalysis::MusicLrcAnalysis(QObject *parent)
     : QObject(parent)
@@ -30,10 +32,22 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     m_lrcContainer.clear();
     m_currentShowLrcContainer.clear();
 
-    QString getAllText = QString(data);
-    foreach(const QString &oneLine, getAllText.split("\n"))
+    QStringList getAllText = QString(data).split("\n");
+    if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
-        matchLrcLine(oneLine);
+        getAllText[0].clear();
+        int perTime = MusicApplication::instance()->duration()/getAllText.count();
+        foreach(const QString &oneLine, getAllText)
+        {
+            m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
+        }
+    }
+    else
+    {
+        foreach(const QString &oneLine, getAllText)
+        {
+            matchLrcLine(oneLine);
+        }
     }
 
     if (m_lrcContainer.isEmpty())
@@ -47,7 +61,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, QString());
     }
 
     MusicObject::MIntStringMapIterator it(m_lrcContainer);
@@ -81,7 +95,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const MusicObject::MIntStri
     }
     if(m_lrcContainer.find(0) == m_lrcContainer.end())
     {
-       m_lrcContainer.insert(0, QString());
+        m_lrcContainer.insert(0, QString());
     }
 
     MusicObject::MIntStringMapIterator it(m_lrcContainer);
@@ -365,16 +379,20 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap,
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
+qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 {
     QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime = 0;
+    int index = -1;
+
     if(!keys.isEmpty())
     {
+        index = 0;
         beforeTime = keys[0];
     }
     for(int i=1; i<keys.count(); ++i)
     {
+        index = i;
         qint64 afterTime = keys[i];
         if(beforeTime <= time && time <= afterTime)
         {
@@ -384,17 +402,21 @@ qint64 MusicLrcAnalysis::setSongSpeedAndSlow(qint64 time)
         beforeTime = afterTime;
     }
 
-    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
+    if((m_currentLrcIndex = index - 1) < 0)
     {
-        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
-        {
-            if((m_currentLrcIndex = i - getMiddle() - 1) < 0 )
-            {
-                m_currentLrcIndex = 0;
-            }
-            break;
-        }
+        m_currentLrcIndex = 0;
     }
+//    for(int i=0; i<m_currentShowLrcContainer.count(); ++i)
+//    {
+//        if(m_currentShowLrcContainer[i] == m_lrcContainer.value(time))
+//        {
+//            if((m_currentLrcIndex = i - getMiddle() - 1) < 0 )
+//            {
+//                m_currentLrcIndex = 0;
+//            }
+//            break;
+//        }
+//    }
     return time;
 }
 
@@ -559,25 +581,25 @@ QString MusicLrcAnalysis::getAllLrcString() const
 
 void MusicLrcAnalysis::getTranslatedLrc()
 {
-    if(m_translationThread == nullptr)
+    delete m_translationThread;
+    m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationThread(this);
+    if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
-        m_translationThread = new MusicTranslationThread(this);
-        if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
-        {
-            connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
-                                         SLOT(getTranslatedLrcFinished(QString)));
-        }
+        connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
+                                     SLOT(getTranslatedLrcFinished(QString)));
     }
 
     QString data;
-    foreach(const QString &s, m_lrcContainer.values())
+    foreach(const qint64 &key, m_lrcContainer.keys())
     {
-        data.append(s);
+        data.append(QString("[%1.000]").arg(MusicTime::msecTime2LabelJustified(key)) + m_lrcContainer.value(key));
 #ifdef Q_OS_UNIX
         data.append("\r");
 #endif
     }
 
-    m_translationThread->startToDownload(MusicTranslationThread::Type_Auto,
-                                         MusicTranslationThread::Type_Zh, data);
+    QVariantMap dtMap;
+    dtMap["name"] = m_currentLrcFileName;
+    m_translationThread->setRawData(dtMap);
+    m_translationThread->startToDownload(data);
 }

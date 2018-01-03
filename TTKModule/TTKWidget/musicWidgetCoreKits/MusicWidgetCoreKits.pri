@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2017 Greedysky Studio
+# * Copyright (C) 2015 - 2018 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ HEADERS  += \
     $$PWD/musicprogresswidget.h \
     $$PWD/musicclickedlabel.h \
     $$PWD/musicclickedslider.h \
+    $$PWD/musicmovingclickedslider.h \
     $$PWD/musicmovinglabelslider.h \
     $$PWD/musictoastlabel.h \
     $$PWD/musicroundanimationlabel.h \
@@ -55,7 +56,8 @@ HEADERS  += \
     $$PWD/musicphotograblabel.h \
     $$PWD/musicresizegrabitemwidget.h \
     $$PWD/musiccodeareawidget.h \
-    $$PWD/musiclayoutanimationwidget.h
+    $$PWD/musiclayoutanimationwidget.h \
+    $$PWD/musiccommentswidget.h
 
 }
 
@@ -78,6 +80,7 @@ SOURCES += \
     $$PWD/musicprogresswidget.cpp \
     $$PWD/musicclickedlabel.cpp \
     $$PWD/musicclickedslider.cpp \
+    $$PWD/musicmovingclickedslider.cpp \
     $$PWD/musicmovinglabelslider.cpp \
     $$PWD/musictoastlabel.cpp \
     $$PWD/musicroundanimationlabel.cpp \
@@ -96,6 +99,7 @@ SOURCES += \
     $$PWD/musicphotograblabel.cpp \
     $$PWD/musicresizegrabitemwidget.cpp \
     $$PWD/musiccodeareawidget.cpp \
-    $$PWD/musiclayoutanimationwidget.cpp
+    $$PWD/musiclayoutanimationwidget.cpp \
+    $$PWD/musiccommentswidget.cpp
 
 }

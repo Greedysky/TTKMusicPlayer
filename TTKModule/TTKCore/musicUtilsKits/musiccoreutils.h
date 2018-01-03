@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,6 +38,10 @@ namespace MusicUtils
          * Get music dir prefix path.
          */
         MUSIC_UTILS_EXPORT QString musicPrefix();
+        /*!
+         * Get file suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString fileSuffix(const QString &name);
 
         /*!
          * Get given dir size.
@@ -56,6 +60,16 @@ namespace MusicUtils
          * Get Language Name by given index.
          */
         MUSIC_UTILS_EXPORT QString getLanguageName(int index);
+
+        /*!
+         * Dir remove recursively.
+         */
+        MUSIC_UTILS_EXPORT bool removeRecursively(const QString &dir);
+
+        /*!
+         * Open file from local by path or net url.
+         */
+        MUSIC_UTILS_EXPORT bool openUrl(const QString &exe, const QString &path);
 
         /*!
          * Open file from local by path or net url.
@@ -98,6 +112,7 @@ namespace MusicUtils
         /*!
          * Music version check.
          */
+
         MUSIC_UTILS_EXPORT bool musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
         /*!
          * Music version check.

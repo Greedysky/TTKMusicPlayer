@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008-2009 by Ilya Kotov                                 *
- *   forkotov02@hotmail.ru                                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -27,7 +27,7 @@
 #include "qmmp.h"
 
 /*! @brief The FileInfo class stores metadata and audio information about media file or stream.
- * @author Ilya Kotov <forkotov02@hotmail.ru>
+ * @author Ilya Kotov <forkotov02@ya.ru>
  */
 class Q_DECL_EXPORT FileInfo
 {
@@ -47,7 +47,7 @@ public:
     /*!
      * Makes a copy of the given \b info
      */
-    void operator=(const FileInfo &info);
+    FileInfo &operator=(const FileInfo &info);
     /*!
      * Returns \b true if this FileInfo object refers to \b info; otherwise returns \b false.
      */
@@ -101,7 +101,6 @@ private:
     QMap <Qmmp::MetaData, QString> m_metaData;
     qint64 m_length;
     QString m_path;
-    QList<QMap<int, int> > map;
 };
 
 #endif

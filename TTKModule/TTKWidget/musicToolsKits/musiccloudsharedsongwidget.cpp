@@ -11,6 +11,8 @@
 #include "musiccoreutils.h"
 #include "musictoastlabel.h"
 #include "musicsemaphoreloop.h"
+#include "musiccloudfileinformationwidget.h"
+#include "musicitemdelegate.h"
 
 #include "qiniu/qnconf.h"
 #///QJson import
@@ -26,6 +28,7 @@
 #define QN_BUCKET       "music"
 #define QN_PRFIX        "bkdIdE5FTXFpalU3MmxKMG5OOFVLS0lWZ0tCdDRzOGtQemJ6QnN3TlN2VUc3SGp4"
 #define QN_UA_URL       "VlQxWWhUSjJzWjFTSkZRRFFqdnlPK3FJZ0JxbmlrcFoydjVCRlZ2a3hRdlBuRFhmOUZObW1STmxqNVVEWUJsdA=="
+Q_DECLARE_METATYPE(QNDataItem)
 
 MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -33,8 +36,8 @@ MusicCloudSharedSongTableWidget::MusicCloudSharedSongTableWidget(QWidget *parent
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 256);
-    headerview->resizeSection(2, 45);
+    headerview->resizeSection(1, 251);
+    headerview->resizeSection(2, 50);
 
     m_uploading = false;
     m_openFileWidget = nullptr;
@@ -123,6 +126,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
     {
         QNDataItem dataItem = items[i];
         QTableWidgetItem *item = new QTableWidgetItem;
+        item->setData(MUSIC_DATAS_ROLE, QVariant::fromValue<QNDataItem>(dataItem));
         setItem(i, 0, item);
 
                           item = new QTableWidgetItem;
@@ -136,7 +140,7 @@ void MusicCloudSharedSongTableWidget::receiveDataFinshed(const QNDataItems &item
         item->setToolTip(MusicUtils::Number::size2Label(dataItem.m_size));
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
-        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
         setItem(i, 2, item);
 
         ///insert server datas into caches
@@ -255,7 +259,8 @@ void MusicCloudSharedSongTableWidget::downloadFileToServer()
 
 void MusicCloudSharedSongTableWidget::uploadFileToServer()
 {
-    QStringList path = MusicUtils::Widget::getOpenFilesDialog(this, "File (*.mp3)");
+    QString filter(MusicFormats::supportFormatsFilterDialogString().join(";;"));
+    QStringList path = MusicUtils::Widget::getOpenFilesDialog(this, filter);
     if(!path.isEmpty())
     {
         foreach(const QString &file, path)
@@ -338,6 +343,25 @@ void MusicCloudSharedSongTableWidget::uploadDone()
     QTimer::singleShot(MT_MS, MusicLeftAreaWidget::instance(), SLOT(cloudSharedSongUploadAllDone()));
 }
 
+void MusicCloudSharedSongTableWidget::showFileInformationWidget()
+{
+    if(currentRow() < 0)
+    {
+        return;
+    }
+
+    QTableWidgetItem *it = item(currentRow(), 0);
+    if(it == nullptr)
+    {
+        return;
+    }
+
+    MusicCloudFileInformationWidget w;
+    QNDataItem data(it->data(MUSIC_DATAS_ROLE).value<QNDataItem>());
+    w.setFileInformation(&data);
+    w.exec();
+}
+
 void MusicCloudSharedSongTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicAbstractTableWidget::contextMenuEvent(event);
@@ -354,8 +378,10 @@ void MusicCloudSharedSongTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("deleteFiles"), this, SLOT(deleteFilesToServer()))->setEnabled(!m_uploading);
     menu.addSeparator();
     menu.addAction(tr("download"), this, SLOT(downloadFileToServer()))->setEnabled(!m_uploading);
-    menu.addSeparator();
     menu.addAction(tr("updateFiles"), this, SLOT(updateListToServer()))->setEnabled(!m_uploading);
+    menu.addSeparator();
+    menu.addAction(tr("musicInfo..."), this, SLOT(showFileInformationWidget()));
+
     menu.exec(QCursor::pos());
 }
 

@@ -2,17 +2,75 @@
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
+#include "musictime.h"
 
 #///QJson import
 #include "qjson/parser.h"
+#include "qalg/qdeswrap.h"
 
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
+void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
+                                                        const QString &format, int bitrate)
+{
+    if(info->m_songId.isEmpty())
+    {
+        return;
+    }
+
+    QDesWrap dess;
+    QByteArray parameter = dess.encrypt(MusicUtils::Algorithm::mdII(KW_SONG_ATTR_LL_URL, false).arg(info->m_songId).arg(suffix).arg(format).toUtf8(),
+                                        MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
+
+    QNetworkAccessManager manager;
+    QNetworkRequest request;
+    request.setUrl(musicUrl);
+    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request.sslConfiguration();
+    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
+    request.setSslConfiguration(sslConfig);
+#endif
+    MusicSemaphoreLoop loop;
+    QNetworkReply *reply = manager.get(request);
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
+    loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
+
+    QByteArray data = reply->readAll();
+    if(!data.isEmpty() && !data.contains("res not found"))
+    {
+        QString text(data);
+        QRegExp regx(".*url=(.*)\r\nsig=");
+        if(text.indexOf(regx) != -1)
+        {
+            MusicObject::MusicSongAttribute attr;
+            attr.m_url = regx.cap(1);
+            attr.m_bitrate = bitrate;
+            attr.m_format = suffix;
+            attr.m_size = "-";
+            if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
+            {
+                return;
+            }
+
+            info->m_songAttrs.append(attr);
+        }
+    }
+}
+
 void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                          const QString &format, const QString &id, int bitrate)
+                                                          const QString &format, int bitrate)
 {
     if(format.contains("MP3128") && bitrate == MB_128 && suffix == "mp3")
     {
@@ -20,7 +78,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3192") && bitrate == MB_192 && suffix == "mp3")
@@ -29,7 +87,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("MP3H") && bitrate == MB_320 && suffix == "mp3")
@@ -38,40 +96,21 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("AL") && bitrate == MB_1000 && suffix == "ape")
+    else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == "flac")
     {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
+        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
     }
-    else if(format.contains("MP4") && bitrate == MB_1000 && suffix == "mp4")
+    else if(format.contains("AL") && bitrate == MB_750 && suffix == "ape")
     {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
-    }
-    else if(format.contains("MV") && bitrate == MB_1000 && suffix == "mkv")
-    {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
+        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
     }
 }
 
 void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix,
-                                                              const QString &format, const QString &id, int bitrate)
+                                                              const QString &format, int bitrate)
 {
     if(format.contains("128kmp3") && bitrate == MB_128 && suffix == "mp3")
     {
@@ -79,7 +118,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("192kmp3") && bitrate == MB_192 && suffix == "mp3")
@@ -88,7 +127,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
     else if(format.contains("320kmp3") && bitrate == MB_320 && suffix == "mp3")
@@ -97,35 +136,16 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_bitrate = bitrate;
         attr.m_format = suffix;
         attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(id);
+        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("AL") && bitrate == MB_1000 && suffix == "ape")
+    else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == "flac")
     {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
+        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
     }
-    else if(format.contains("MP4") && bitrate == MB_1000 && suffix == "mp4")
+    else if(format.contains("1000kape") && bitrate == MB_750 && suffix == "ape")
     {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
-    }
-    else if(format.contains("MV") && bitrate == MB_1000 && suffix == "mkv")
-    {
-        MusicObject::MusicSongAttribute attr;
-        attr.m_bitrate = bitrate;
-        attr.m_format = suffix;
-        attr.m_size = "-";
-        attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTRS_URL, false).arg(id).arg(suffix);
-        info->m_songAttrs.append(attr);
+        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
     }
 }
 
@@ -134,28 +154,30 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 {
     if(all)
     {
-        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_128);
-        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_192);
-        readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_320);
-        readFromMusicSongAttribute(info, "ape", format, info->m_songId, MB_1000);
+        readFromMusicSongAttribute(info, "mp3", format, MB_128);
+        readFromMusicSongAttribute(info, "mp3", format, MB_192);
+        readFromMusicSongAttribute(info, "mp3", format, MB_320);
+        readFromMusicSongAttribute(info, "ape", format, MB_750);
+        readFromMusicSongAttribute(info, "flac", format, MB_1000);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_128);
+            readFromMusicSongAttribute(info, "mp3", format, MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_192);
+            readFromMusicSongAttribute(info, "mp3", format, MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, info->m_songId, MB_320);
+            readFromMusicSongAttribute(info, "mp3", format, MB_320);
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, "ape", format, info->m_songId, MB_1000);
+            readFromMusicSongAttribute(info, "ape", format, MB_750);
+            readFromMusicSongAttribute(info, "flac", format, MB_1000);
         }
     }
 }
@@ -168,46 +190,48 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         const QString fs = var.toString();
         if(all)
         {
-            readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_128);
-            readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_192);
-            readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_320);
-            readFromMusicSongAttributePlus(info, "ape", fs, info->m_songId, MB_1000);
+            readFromMusicSongAttributePlus(info, "mp3", fs, MB_128);
+            readFromMusicSongAttributePlus(info, "mp3", fs, MB_192);
+            readFromMusicSongAttributePlus(info, "mp3", fs, MB_320);
+            readFromMusicSongAttributePlus(info, "ape", fs, MB_750);
+            readFromMusicSongAttributePlus(info, "flac", fs, MB_1000);
         }
         else
         {
             if(quality == QObject::tr("SD"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_128);
+                readFromMusicSongAttributePlus(info, "mp3", fs, MB_128);
             }
             else if(quality == QObject::tr("HQ"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_192);
+                readFromMusicSongAttributePlus(info, "mp3", fs, MB_192);
             }
             else if(quality == QObject::tr("SQ"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, info->m_songId, MB_320);
+                readFromMusicSongAttributePlus(info, "mp3", fs, MB_320);
             }
             else if(quality == QObject::tr("CD"))
             {
-                readFromMusicSongAttributePlus(info, "ape", fs, info->m_songId, MB_1000);
+                readFromMusicSongAttributePlus(info, "ape", fs, MB_750);
+                readFromMusicSongAttributePlus(info, "flac", fs, MB_1000);
             }
         }
     }
 }
 
-void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info,
-                                                    const QString &id)
+void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInformation *info)
 {
-    if(id.isEmpty())
+    if(info->m_songId.isEmpty())
     {
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_INFO_URL, false).arg(id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -219,6 +243,11 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
     loop.exec();
+
+    if(!reply || reply->error() != QNetworkReply::NoError)
+    {
+        return;
+    }
 
     QJson::Parser parser;
     bool ok;
@@ -233,6 +262,11 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
             if(!info->m_smallPicUrl.contains("http://") && !info->m_smallPicUrl.contains("null"))
             {
                 info->m_smallPicUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info->m_smallPicUrl;
+            }
+
+            if(info->m_timeLength.isEmpty())
+            {
+                info->m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
             }
         }
     }
