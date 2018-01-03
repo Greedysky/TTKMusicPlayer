@@ -26,7 +26,6 @@ Rectangle {
     height: parent.height
     color: ttkTheme.color_alpha_lv12
 
-    property bool autoDownloadFlag: true
     property int songBitrate: -1
     property int songIndex: -1
     property int queryType: 0
@@ -38,20 +37,16 @@ Rectangle {
         itemListModel.append({title: qsTr("正在获取数据当中..."), bit: -1});
         if(visible === true) {
             verticalYAnimation.start();
-            if(autoDownloadFlag) {
-                TTK_NETWORK.downloadSong(text);
-            }else {
-                TTK_NETWORK.setQueryType(queryType);
-                var json = JSON.parse(jsonAtrrString);
-                if(json.length !== 0) {
-                    clearData();
-                }else{
-                    createData(-1);
-                }
+            TTK_NETWORK.setQueryType(queryType);
+            var json = JSON.parse(jsonAtrrString);
+            if(json.length !== 0) {
+                clearData();
+            }else{
+                createData(-1);
+            }
 
-                for(var i=0; i<json.length; ++i) {
-                    createData( json[i].bitrate );
-                }
+            for(var i=0; i<json.length; ++i) {
+                createData(json[i]);
             }
         }
     }
@@ -61,35 +56,39 @@ Rectangle {
         itemListView.currentIndex = -1;
     }
 
-    function createData(bitrate) {
+    function songInfoFormat(songInfo) {
+        return "(" + songInfo.bitrate + "kbps/"+ songInfo.size + "/"+ songInfo.format + ")";
+    }
+
+    function createData(songInfo) {
         downloadButton.enabled = true;
         itemListView.currentIndex = -1;
         var bitrateString;
 
         if(queryType !== ttkTheme.search_type_download_mv_index) {
-            if(bitrate < 0)
+            if(songInfo.bitrate < 0)
                 bitrateString = qsTr("没有搜到任何结果");
-            else if(0 < bitrate && bitrate <= 128)
-                bitrateString = qsTr("标准品质");
-            else if(128 < bitrate && bitrate <= 192)
-                bitrateString = qsTr("高品质");
-            else if(192 < bitrate && bitrate <= 320)
-                bitrateString = qsTr("超高品质");
-            else if(bitrate > 320)
-                bitrateString = qsTr("无损品质");
+            else if(0 < songInfo.bitrate && songInfo.bitrate <= 128)
+                bitrateString = qsTr("标准品质") + songInfoFormat(songInfo);
+            else if(128 < songInfo.bitrate && songInfo.bitrate <= 192)
+                bitrateString = qsTr("高品质") + songInfoFormat(songInfo);
+            else if(192 < songInfo.bitrate && songInfo.bitrate <= 320)
+                bitrateString = qsTr("超高品质") + songInfoFormat(songInfo);
+            else if(songInfo.bitrate > 320)
+                bitrateString = qsTr("无损品质") + songInfoFormat(songInfo);
         }else {
-            if(bitrate < 0)
+            if(songInfo.bitrate < 0)
                 bitrateString = qsTr("没有搜到任何结果");
-            else if(0 < bitrate && bitrate < 500)
-                bitrateString = qsTr("普清品质");
-            else if(500 <= bitrate && bitrate <= 750)
-                bitrateString = qsTr("高清品质");
-            else if(750 < bitrate && bitrate <= 1000)
-                bitrateString = qsTr("超清品质");
+            else if(0 < songInfo.bitrate && songInfo.bitrate < 500)
+                bitrateString = qsTr("普清品质") + songInfoFormat(songInfo);
+            else if(500 <= songInfo.bitrate && songInfo.bitrate <= 750)
+                bitrateString = qsTr("高清品质") + songInfoFormat(songInfo);
+            else if(750 < songInfo.bitrate && songInfo.bitrate <= 1000)
+                bitrateString = qsTr("超清品质") + songInfoFormat(songInfo);
         }
 
         if(bitrateString.length !== 0) {
-            itemListModel.append({title: bitrateString, bit: bitrate});
+            itemListModel.append({title: bitrateString, bit: songInfo.bitrate});
         }
     }
 
@@ -99,7 +98,7 @@ Rectangle {
             clearData();
         }
         onCreateDownloadSongQuality: {
-            createData(bitrate)
+//            createData(bitrate)
         }
     }
 

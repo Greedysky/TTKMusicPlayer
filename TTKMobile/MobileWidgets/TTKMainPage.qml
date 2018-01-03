@@ -206,6 +206,7 @@ Item {
                                 horizontalAlignment: Qt.AlignHCenter
                                 verticalAlignment: Qt.AlignVCenter
                                 font.pixelSize: parent.height/4
+                                color: ttkTheme.color_gray
                                 text: TTK_APP.getCurrentServerName()
                             }
 

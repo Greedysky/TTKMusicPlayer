@@ -53,7 +53,7 @@ public:
      */
     Q_INVOKABLE QString getCurrentServerName() const;
     /*!
-     * Load current song lrc.
+     * Get current server name.
      */
 
 Q_SIGNALS:

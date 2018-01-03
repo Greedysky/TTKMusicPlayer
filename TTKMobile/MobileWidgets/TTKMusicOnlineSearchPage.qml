@@ -34,16 +34,13 @@ Item {
         target: TTK_NETWORK
         onClearAllItems: {
             searedSongList.currentIndex = -1;
-            searedMVList.currentIndex = -1;
 
             searedSongListModel.clear();
-            searedMVListModel.clear();
         }
         onCreateSearchedItems: {
             var info = { title: songname, artist: artistname };
             switch( functionList.currentIndex ) {
                 case 0: searedSongListModel.append(info); break;
-                case 1: searedMVListModel.append(info); break;
             }
         }
         onDownLoadDataHasFinished: {
@@ -52,18 +49,10 @@ Item {
                 noMusicFoundItem.visible = true;
             }
         }
-        onDownForSearchSongFinished: {
-            TTK_APP.importNetworkMusicSongs(key, path);
-        }
-        onDownForSearchMovieFinished: {
-            ttkGlobal.video_url = url;
-            ttkOutStackView.push("qrc:/MobileWidgets/TTKMusicVideoPage.qml");
-        }
     }
 
     TTKMusicSongDownloadPage {
         id: ttkMusicSongDownloadPage
-        autoDownloadFlag: false
     }
 
     ColumnLayout {
@@ -145,11 +134,6 @@ Item {
                                     TTK_NETWORK.searchSong(getSearchedText())
                                     loadingImageAnimation.startLoading();
                                     break;
-                                case 1:
-                                    searedSongStackView.push(searedMVList);
-                                    TTK_NETWORK.searchMovie(getSearchedText());
-                                    loadingImageAnimation.startLoading();
-                                    break;
                             }
                         }
 
@@ -164,7 +148,6 @@ Item {
 
                 model: ListModel {
                     ListElement { title: qsTr("单曲")}
-                    ListElement { title: qsTr("MV")}
                 }
             }
         }
@@ -289,116 +272,6 @@ Item {
 
                     model: ListModel {
                         id: searedSongListModel
-                    }
-                }
-
-                ///seared mv list
-                ListView {
-                    id: searedMVList
-                    width: parent.width
-                    height: parent.height
-                    visible: false
-                    clip: true
-
-                    delegate: Component {
-                        Rectangle {
-                            id: wrapperMV
-                            width: ttkMainWindow.width
-                            height: ttkGlobal.dpHeight(70)
-                            color: ttkTheme.color_white
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    searedMVList.currentIndex = index;
-                                    ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_mv_index;
-                                    ttkMusicSongDownloadPage.songIndex = index;
-                                    ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);
-                                    ttkMusicSongDownloadPage.visible = true;
-                                }
-                            }
-
-                            Rectangle {
-                                width: ttkMainWindow.width
-                                height: 1
-                                color: ttkTheme.color_alpha_lv9
-                            }
-
-                            Rectangle {
-                                width: ttkGlobal.dpWidth(5)
-                                height: parent.height*2/3
-                                anchors {
-                                    top: parent.top
-                                    topMargin: parent.height/3/2
-                                }
-                                color: parent.ListView.isCurrentItem ? ttkTheme.topbar_background : ttkTheme.color_white
-                            }
-
-                            Text {
-                                id: titleAreaMV
-                                text: title
-                                width: ttkMusicOnlineSearchPage.width - iconAreaMV.width - ttkGlobal.dpHeight(120)
-                                anchors {
-                                    top: parent.top
-                                    topMargin: ttkGlobal.dpHeight(10)
-                                    left: parent.left
-                                    leftMargin: ttkGlobal.dpHeight(20)
-                                }
-                                elide: Text.ElideRight
-                                verticalAlignment: Qt.AlignVCenter
-                                font.pixelSize: parent.height*3/10
-                            }
-
-                            Image {
-                                id: iconAreaMV
-                                width: parent.height/3
-                                height: parent.height/3
-                                anchors {
-                                    top: titleAreaMV.bottom
-                                    topMargin: ttkGlobal.dpHeight(5)
-                                    left: parent.left
-                                    leftMargin: ttkGlobal.dpHeight(20)
-                                }
-                                source: "qrc:/image/ic_playlist_normal"
-                            }
-
-                            Text {
-                                text: artist
-                                width: titleAreaMV.width - iconAreaMV.width
-                                anchors {
-                                    top: titleAreaMV.bottom
-                                    topMargin: ttkGlobal.dpHeight(10)
-                                    left: iconAreaMV.right
-                                    leftMargin: ttkGlobal.dpHeight(10)
-                                }
-                                elide: Text.ElideRight
-                                verticalAlignment: Qt.AlignVCenter
-                                font.pixelSize: parent.height/4
-                                color: ttkTheme.color_gray
-                            }
-
-                            TTKImageButton {
-                                width: parent.height/2
-                                height: parent.height/2
-                                anchors {
-                                    top: parent.top
-                                    right: parent.right
-                                    topMargin: ttkGlobal.dpHeight(20)
-                                    rightMargin: ttkGlobal.dpHeight(20)
-                                }
-                                source: "qrc:/image/ic_playlist_more_normal"
-                                onClicked: {
-                                    ttkMusicSongDownloadPage.queryType = ttkTheme.search_type_download_mv_index;
-                                    ttkMusicSongDownloadPage.songIndex = index;
-                                    ttkMusicSongDownloadPage.jsonAtrrString = TTK_NETWORK.getSearchedAttributes(index);
-                                    ttkMusicSongDownloadPage.visible = true;
-                                }
-                            }
-                        }
-                    }
-
-                    model: ListModel {
-                        id: searedMVListModel
                     }
                 }
             }
