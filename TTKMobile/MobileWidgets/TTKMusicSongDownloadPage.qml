@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,16 +100,6 @@ Rectangle {
         }
         onCreateDownloadSongQuality: {
             createData(bitrate)
-        }
-        onDownForDownloadSongFinished: {
-            if(path.length !== 0) {
-                TTK_APP.importDownloadMusicSongs(ttkTheme.music_download_list, path);
-            }
-        }
-        onDownForDownloadMovieFinished: {
-            if(path.length !== 0) {
-                TTK_APP.importDownloadMusicSongs(ttkTheme.music_downmv_list, path);
-            }
         }
     }
 
@@ -231,8 +221,7 @@ Rectangle {
         startSearch();
     }
 
-    Component.onCompleted:
-    {
+    Component.onCompleted: {
         itemListView.currentIndex = -1;
         var docRoot = ttkMusicSongDownloadPage.parent;
         while(docRoot.parent)

@@ -40,6 +40,11 @@ void MusicApplication::musicLoadCurrentSongLrc()
 
 }
 
+QString MusicApplication::getCurrentServerName() const
+{
+    return m_networkHelper->getCurrentServerString();
+}
+
 void MusicApplication::readXMLConfigFromText()
 {
     TTKMusicConfigManager xml;

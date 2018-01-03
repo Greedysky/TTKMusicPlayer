@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -180,6 +180,11 @@ Item {
                         }
                         ListElement {
                             imageSource: "qrc:/image/more_icon_settings"
+                            serverImage: "qrc:/server/lb_baidu"
+                            title: qsTr("百度音乐")
+                        }
+                        ListElement {
+                            imageSource: "qrc:/image/more_icon_settings"
                             serverImage: "qrc:/server/lb_kuwo"
                             title: qsTr("酷我音乐")
                         }
@@ -187,11 +192,6 @@ Item {
                             imageSource: "qrc:/image/more_icon_settings"
                             serverImage: "qrc:/server/lb_kugou"
                             title: qsTr("酷狗音乐")
-                        }
-                        ListElement {
-                            imageSource: "qrc:/image/more_icon_settings"
-                            serverImage: "qrc:/server/lb_baidu"
-                            title: qsTr("百度音乐")
                         }
                     }
                 }

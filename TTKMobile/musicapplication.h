@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,6 +48,13 @@ public:
      * Get current file name.
      */
     Q_INVOKABLE void musicLoadCurrentSongLrc();
+    /*!
+     * Load current song lrc.
+     */
+    Q_INVOKABLE QString getCurrentServerName() const;
+    /*!
+     * Load current song lrc.
+     */
 
 Q_SIGNALS:
     void updateCurrentArtist();

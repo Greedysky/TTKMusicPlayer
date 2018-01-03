@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ Item {
                     top: parent.top
                 }
                 width: ttkMainWindow.width
-                height: ttkGlobal.dpHeight(800)
+                height: ttkGlobal.dpHeight(500)
                 color: "#EEEEEE"
 
                 ColumnLayout {
@@ -163,8 +163,64 @@ Item {
                             text: qsTr("畅想无限音乐")
                         }
                     }
+
+                    ///imageWidget
+                    Rectangle {
+                        id: functionWidget
+                        Layout.preferredWidth: ttkMainWindow.width
+                        Layout.preferredHeight: ttkGlobal.dpHeight(310)
+                        anchors.left: parent.left
+                        color: ttkTheme.color_white
+
+                        RowLayout {
+                            spacing: 2
+                            anchors.fill: parent
+
+                            Image {
+                                Layout.alignment: Qt.AlignCenter
+                                source: "qrc:/image/default_background"
+                            }
+                        }
+                    }
+
+                    ///textWidget
+                    Rectangle {
+                        Layout.preferredWidth: ttkMainWindow.width
+                        Layout.preferredHeight: ttkGlobal.dpHeight(80)
+                        anchors.left: parent.left
+                        color: ttkTheme.color_white
+
+                        RowLayout {
+                            spacing: 2
+                            anchors.fill: parent
+
+                            Rectangle {
+                                Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                            }
+
+                            Text {
+                                id: serverText
+                                Layout.alignment: Qt.AlignCenter
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                horizontalAlignment: Qt.AlignHCenter
+                                verticalAlignment: Qt.AlignVCenter
+                                font.pixelSize: parent.height/4
+                                text: TTK_APP.getCurrentServerName()
+                            }
+
+                            Rectangle {
+                                Layout.preferredWidth: ttkGlobal.dpWidth(50)
+                            }
+                        }
+                    }
+
                 }
             }
         }
+    }
+
+    onVisibleChanged: {
+        serverText.text = TTK_APP.getCurrentServerName();
     }
 }

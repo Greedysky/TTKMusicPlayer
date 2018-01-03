@@ -146,6 +146,7 @@ void TTKNetworkHelper::setCurrentServer()
 void TTKNetworkHelper::setCurrentServer(int index)
 {
     delete m_queryThread;
+
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced, index);
     m_queryThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
@@ -158,9 +159,15 @@ int TTKNetworkHelper::getCurrentServer() const
     return M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
 }
 
+QString TTKNetworkHelper::getCurrentServerString() const
+{
+    return m_queryThread->mapQueryServerString();
+}
+
 void TTKNetworkHelper::downLoadDataChanged()
 {
     emit downLoadDataHasFinished( m_queryThread->getMusicSongInfos().isEmpty() );
+
     switch(m_queryType)
     {
         case T_SearcSong: break;

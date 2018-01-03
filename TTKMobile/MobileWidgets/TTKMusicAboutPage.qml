@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2017 Greedysky Studio
+ * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ Rectangle{
             font.pixelSize: parent.height/11
             text: qsTr("TTKMusicPlayer") + "\n\n" +
                   qsTr("Directed By Greedysky") +
-                  ("\nCopyright© 2015-2017") +
+                  ("\nCopyright© 2015 - 2018") +
                   ("\nMail:Greedysky@163.com");
         }
 
@@ -80,8 +80,7 @@ Rectangle{
         }
     }
 
-    Component.onCompleted:
-    {
+    Component.onCompleted: {
         var docRoot = ttkMusicAboutPage.parent;
         while(docRoot.parent)
         {

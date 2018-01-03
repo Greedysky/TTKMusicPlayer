@@ -163,6 +163,10 @@ public:
      * Return the current song container.
      */
     inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
+    /*!
+     * Map query server string.
+     */
+    QString mapQueryServerString() const;
 
 Q_SIGNALS:
     /*!
@@ -179,10 +183,6 @@ protected:
      * Find time string by attrs.
      */
     QString findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs);
-    /*!
-     * Map query server string.
-     */
-    QString mapQueryServerString() const;
     /*!
      * Find download file size.
      */
