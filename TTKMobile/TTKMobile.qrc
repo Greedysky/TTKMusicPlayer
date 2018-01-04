@@ -24,6 +24,8 @@
         <file alias="lb_qq">../TTKResource/server/lb_server_qq.png</file>
         <file alias="lb_wangyiyun">../TTKResource/server/lb_server_wangyiyun.png</file>
         <file alias="lb_xiami">../TTKResource/server/lb_server_xiami.png</file>
+        <file alias="lb_5sing">../TTKResource/server/lb_server_5sing.png</file>
+        <file alias="lb_migu">../TTKResource/server/lb_server_migu.png</file>
     </qresource>
     <qresource prefix="/">
         <file>MobileWidgets/main.qml</file>
@@ -51,6 +53,5 @@
         <file>MobileWidgets/TTKMusicAboutPage.qml</file>
         <file>MobileWidgets/TTKMusicOnlineSearchPage.qml</file>
         <file>MobileWidgets/TTKMusicSongDownloadPage.qml</file>
-        <file>MobileWidgets/TTKMusicVideoPage.qml</file>
     </qresource>
 </RCC>

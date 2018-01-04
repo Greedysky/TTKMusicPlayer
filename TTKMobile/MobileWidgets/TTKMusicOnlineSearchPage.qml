@@ -76,6 +76,7 @@ Item {
                     Layout.preferredHeight: ttkGlobal.dpHeight(50)
                     anchors.left: parent.left
                     onClicked: {
+                        TTK_NETWORK.abort();
                         ttkMainStackView.pop();
                     }
                 }

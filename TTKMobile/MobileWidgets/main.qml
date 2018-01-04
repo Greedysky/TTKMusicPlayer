@@ -63,6 +63,7 @@ ApplicationWindow {
             close.accepted = false;
         }else {
             if(ttkMainStackView.depth > 1) {
+                TTK_NETWORK.abort();
                 ttkMainStackView.pop();
                 close.accepted = false;
             }else {

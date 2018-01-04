@@ -54,6 +54,16 @@ public:
      */
     virtual void deleteAll();
 
+    /*!
+     * Release the network object.
+     */
+
+    inline void setNetworkAbort(bool a) { m_interrupt = a; }
+    /*!
+     * Release the network object.
+     */
+    inline bool networkAbort() { return m_interrupt; }
+
 Q_SIGNALS:
     /*!
      * Send download data from net.

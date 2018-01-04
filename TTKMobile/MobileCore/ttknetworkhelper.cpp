@@ -27,6 +27,14 @@ TTKNetworkHelper::~TTKNetworkHelper()
     delete m_queryThread;
 }
 
+void TTKNetworkHelper::abort()
+{
+    if(m_queryThread)
+    {
+        m_queryThread->setNetworkAbort(true);
+    }
+}
+
 void TTKNetworkHelper::setQueryType(int type)
 {
     m_queryType = MStatic_cast(Type, type);

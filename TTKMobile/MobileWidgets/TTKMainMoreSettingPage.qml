@@ -193,6 +193,26 @@ Item {
                             serverImage: "qrc:/server/lb_kugou"
                             title: qsTr("酷狗音乐")
                         }
+                        ListElement {
+                            imageSource: "qrc:/image/more_icon_settings"
+                            serverImage: "qrc:/server/lb_migu"
+                            title: qsTr("咪咕音乐")
+                        }
+                        ListElement {
+                            imageSource: "qrc:/image/more_icon_settings"
+                            serverImage: "qrc:/server/lb_5sing"
+                            title: qsTr("5Sing音乐(原创)")
+                        }
+                        ListElement {
+                            imageSource: "qrc:/image/more_icon_settings"
+                            serverImage: "qrc:/server/lb_5sing"
+                            title: qsTr("5Sing音乐(翻唱)")
+                        }
+                        ListElement {
+                            imageSource: "qrc:/image/more_icon_settings"
+                            serverImage: "qrc:/server/lb_5sing"
+                            title: qsTr("5Sing音乐(伴奏)")
+                        }
                     }
                 }
 

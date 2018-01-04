@@ -46,6 +46,10 @@ public:
     ~TTKNetworkHelper();
 
     //////////////////////////////////////////////////////
+    Q_INVOKABLE void abort();
+    /*!
+     * Network set abort.
+     */
     Q_INVOKABLE void setQueryType(int type);
     /*!
      * Set network query type.
