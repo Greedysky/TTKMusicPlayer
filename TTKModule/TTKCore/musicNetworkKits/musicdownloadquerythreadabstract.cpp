@@ -27,19 +27,6 @@ void MusicDownLoadQueryThreadAbstract::startToSingleSearch(const QString &text)
     Q_UNUSED(text);
 }
 
-QString MusicDownLoadQueryThreadAbstract::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
-{
-    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
-    {
-        if(!attr.m_duration.isEmpty())
-        {
-            return attr.m_duration;
-        }
-    }
-
-    return QString("-");
-}
-
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
 {
     QString v = tr("Current Used Server Is %1");
@@ -63,6 +50,19 @@ QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
         return v.arg(tr("YYT"));
     else
         return QString();
+}
+
+QString MusicDownLoadQueryThreadAbstract::findTimeStringByAttrs(const MusicObject::MusicSongAttributes &attrs)
+{
+    foreach(const MusicObject::MusicSongAttribute &attr, attrs)
+    {
+        if(!attr.m_duration.isEmpty())
+        {
+            return attr.m_duration;
+        }
+    }
+
+    return QString("-");
 }
 
 bool MusicDownLoadQueryThreadAbstract::findUrlFileSize(MusicObject::MusicSongAttribute *attr)

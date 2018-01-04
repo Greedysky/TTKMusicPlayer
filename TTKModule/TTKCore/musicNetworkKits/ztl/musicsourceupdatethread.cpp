@@ -28,7 +28,15 @@ QString MusicSourceUpdateThread::getLastedVersion() const
 
 bool MusicSourceUpdateThread::isLastedVersion() const
 {
-    return (getLastedVersion() == TTKMUSIC_VERSION_STR);
+    QString v = getLastedVersion();
+    if(v.isEmpty())
+    {
+        return true;
+    }
+    else
+    {
+        return v == TTKMUSIC_VERSION_STR;
+    }
 }
 
 QString MusicSourceUpdateThread::getLastedVersionDes() const

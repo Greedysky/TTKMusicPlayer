@@ -54,6 +54,15 @@ public:
      */
     virtual void deleteAll();
 
+    /*!
+     * Set network block state.
+     */
+    inline void setNetworkAbort(bool a) { m_interrupt = a; }
+    /*!
+     * Get network block state.
+     */
+    inline bool networkAbort() { return m_interrupt; }
+
 Q_SIGNALS:
     /*!
      * Send download data from net.
