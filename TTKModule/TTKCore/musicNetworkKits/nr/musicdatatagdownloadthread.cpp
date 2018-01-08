@@ -17,11 +17,12 @@ QString MusicDataTagDownloadThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDataTagDownloadThread::setTags(const QString &smlUrl, const QString &title, const QString &artist)
+void MusicDataTagDownloadThread::setTags(const QString &smlUrl, const QString &title, const QString &artist, const QString &album)
 {
     m_smallPicUrl = smlUrl;
     m_title = title;
     m_artist = artist;
+    m_album = album;
 }
 
 void MusicDataTagDownloadThread::startToDownload()
@@ -80,6 +81,7 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
     {
         tag.setTitle(m_title);
         tag.setArtist(m_artist);
+        tag.setAlbum(m_album);
         tag.setCover(data);
         tag.save();
         M_LOGGER_INFO("write tag has finished!");

@@ -42,7 +42,8 @@ public:
     /*!
      * Set custom tags.
      */
-    void setTags(const QString &smlUrl, const QString &title, const QString &artist);
+    void setTags(const QString &smlUrl, const QString &title,
+                 const QString &artist, const QString &album);
     /*!
      * Start to download data.
      */
@@ -66,7 +67,7 @@ public Q_SLOTS:
 
 protected:
     QString m_smallPicUrl;
-    QString m_title, m_artist;
+    QString m_title, m_artist, m_album;
 
 };
 

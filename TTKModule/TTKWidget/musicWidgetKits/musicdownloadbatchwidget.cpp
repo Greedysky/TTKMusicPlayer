@@ -57,6 +57,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_singer->setText(MusicUtils::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
     m_smallPicUrl = info.m_smallPicUrl;
+    m_album = info.m_albumName;
 
     MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
     qSort(attrs);
@@ -146,7 +147,7 @@ void MusicDownloadBatchTableItem::startToDownload()
     MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                            MusicDownLoadThreadAbstract::Download_Music, this);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
-    downSong->setTags(m_smallPicUrl, m_songName->toolTip(), m_singer->toolTip());
+    downSong->setTags(m_smallPicUrl, m_songName->toolTip(), m_singer->toolTip(), m_album);
     downSong->startToDownload();
 }
 
