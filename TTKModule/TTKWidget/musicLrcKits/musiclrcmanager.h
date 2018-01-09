@@ -75,11 +75,6 @@ public:
      */
     static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
 
-    /*!
-     * Current lrc color is man custum.
-     */
-    bool isCustum() const;
-
     QList<QColor> m_fgColor;
     QList<QColor> m_bgColor;
     MusicLrcColor::LrcColorType m_index;

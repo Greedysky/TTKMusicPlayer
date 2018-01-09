@@ -11,7 +11,6 @@ MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
     m_geometry.setY(35);
     m_gradientFontSize = 0;
     m_gradientTransparent = 100;
-    m_centerOnLrc = false;
 }
 
 QString MusicLrcManagerForInline::getClassName()
@@ -47,7 +46,7 @@ void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
     }
     else
     {
-        painter.drawText(ttplus + 1, 1, m_geometry.x(), m_geometry.y(), m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
+        painter.drawText(ttplus + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
     }
 
     //Then draw a gradient in the above
@@ -58,7 +57,7 @@ void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
     }
     else
     {
-        painter.drawText(ttplus, 0, m_geometry.x(), m_geometry.y(), m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
+        painter.drawText(ttplus, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
     }
 
     int offsetValue = 0;

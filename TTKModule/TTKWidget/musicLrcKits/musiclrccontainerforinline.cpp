@@ -835,7 +835,6 @@ void MusicLrcContainerForInline::setItemStyleSheet()
 void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int transparent)
 {
     MusicLrcManagerForInline *w = MStatic_cast(MusicLrcManagerForInline*, m_musicLrcContainer[index]);
-    w->setCenterOnLrc(false);
     w->setFontSize(size);
 
     int value = M_SETTING_PTR->value("LrcColorTransChoiced").toInt() - transparent;
