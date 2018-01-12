@@ -1,5 +1,7 @@
 #include "musicmovingclickedslider.h"
 
+#include <QMouseEvent>
+
 MusicMovingClickedSlider::MusicMovingClickedSlider(QWidget *parent)
     : MusicMovingClickedSlider(Qt::Horizontal, parent)
 {
@@ -31,8 +33,11 @@ void MusicMovingClickedSlider::setValue(int value)
 void MusicMovingClickedSlider::mousePressEvent(QMouseEvent *event)
 {
     MusicClickedSlider::mousePressEvent(event);
-    m_isMoving = false;
-    emit sliderMoved( m_value );
+    if(event->button() == Qt::LeftButton)
+    {
+        m_isMoving = false;
+        emit sliderMoved( m_value );
+    }
 }
 
 void MusicMovingClickedSlider::mouseMoveEvent(QMouseEvent *event)
@@ -48,6 +53,9 @@ void MusicMovingClickedSlider::mouseMoveEvent(QMouseEvent *event)
 void MusicMovingClickedSlider::mouseReleaseEvent(QMouseEvent *event)
 {
     MusicClickedSlider::mouseReleaseEvent(event);
-    emit sliderReleasedAt( m_value );
-    m_isMoving = false;
+    if(event->button() == Qt::LeftButton)
+    {
+        emit sliderReleasedAt( m_value );
+        m_isMoving = false;
+    }
 }

@@ -60,11 +60,6 @@ void MusicMovingLabelSlider::mouseMoveEvent(QMouseEvent *event)
     m_textLabel->setText(MusicTime::msecTime2LabelJustified(changePos.y()));
 }
 
-void MusicMovingLabelSlider::mouseReleaseEvent(QMouseEvent *event)
-{
-    MusicMovingClickedSlider::mouseReleaseEvent(event);
-}
-
 void MusicMovingLabelSlider::enterEvent(QEvent *event)
 {
     MusicClickedSlider::enterEvent(event);

@@ -51,15 +51,12 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_linearGradient, 0));
     painter.drawText(m_intervalCount, begin, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
-    int offsetValue = 0;
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
-    {
-        offsetValue = m_lrcMaskWidth;
-    }
-    else
+    int offsetValue = m_lrcMaskWidth;
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }
+
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(m_intervalCount, begin, offsetValue, 60, Qt::AlignLeft, text());
@@ -93,6 +90,7 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
 
     painter.translate(m_geometry.y(), 0);
     painter.rotate(MA_90);
+
     //Draw the underlying text, such as shadow, will make the effect more clearly,
     //and more texture
     painter.setPen(QColor(0, 0, 0, 2*m_transparent));
@@ -102,15 +100,12 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_linearGradient, 0));
     painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
-    int offsetValue = 0;
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
-    {
-        offsetValue = m_lrcMaskWidth;
-    }
-    else
+    int offsetValue = m_lrcMaskWidth;
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }
+
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(m_intervalCount, 0, offsetValue, 60, Qt::AlignLeft, text());
