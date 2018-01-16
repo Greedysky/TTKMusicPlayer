@@ -1,5 +1,5 @@
-#ifndef MUSICTOPLISTFOUNDWIDGET_H
-#define MUSICTOPLISTFOUNDWIDGET_H
+#ifndef MUSICARTISTLISTFOUNDTABLEWIDGET_H
+#define MUSICARTISTLISTFOUNDTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,50 +19,68 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicclickedlabel.h"
 #include "musicfoundabstractwidget.h"
 #include "musiccategoryconfigmanager.h"
 
-class MusicToplistFoundCategoryPopWidget;
+class QGridLayout;
+class MusicPagingWidgetObject;
+class MusicArtistListFoundCategoryPopWidget;
 
-/*! @brief The class of the toplist music found table widget.
+/*! @brief The class of the artist list music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToplistFoundTableWidget : public MusicQueryFoundTableWidget
+class MUSIC_WIDGET_EXPORT MusicArtistListFoundItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToplistFoundTableWidget(QWidget *parent = 0);
-
-    virtual ~MusicToplistFoundTableWidget();
+    explicit MusicArtistListFoundItemWidget(QWidget *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Set network query input.
+     * Set music playlist item.
      */
-    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
+    void setMusicResultsItem(const MusicResultsItem &item);
+
+Q_SIGNALS:
+    /*!
+     * Current artist list clicked.
+     */
+    void currentArtistListClicked(const MusicResultsItem &item);
+
+public Q_SLOTS:
+    /*!
+     * Current artist list clicked.
+     */
+    void currentArtistListClicked();
+
+protected:
+    MusicResultsItem m_itemData;
 
 };
 
 
-/*! @brief The class of toplist music found widget.
+
+/*! @brief The class of the artist list music found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicToplistFoundWidget : public MusicFoundAbstractWidget
+class MUSIC_WIDGET_EXPORT MusicArtistListFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToplistFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistListFoundWidget(QWidget *parent = 0);
 
-    virtual ~MusicToplistFoundWidget();
+    virtual ~MusicArtistListFoundWidget();
 
     /*!
      * Get class object name.
@@ -87,24 +105,31 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void queryAllFinished();
+    void createArtistListItems(const MusicResultsItem &item);
     /*!
-     * Create the current toplist info item.
+     * Current artist list clicked.
      */
-    void createToplistInfoItem(const MusicResultsItem &item);
+    void currentArtistListClicked(const MusicResultsItem &item);
     /*!
      * Current category changed.
      */
     void categoryChanged(const MusicResultsCategoryItem &category);
+    /*!
+     * Paging widget button has changed.
+     */
+    void buttonClicked(int index);
+    /*!
+     * Number type button has changed.
+     */
+    void numberButtonClicked(int index);
 
 protected:
-    /*!
-     * Create init interface lables.
-     */
-    void createLabels();
-
-    MusicToplistFoundCategoryPopWidget *m_categoryButton;
+    bool m_firstInit, m_categoryChanged;
+    QString m_categoryId;
+    QGridLayout *m_gridLayout;
+    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicArtistListFoundCategoryPopWidget *m_categoryButton;
 
 };
 
-#endif // MUSICTOPLISTFOUNDWIDGET_H
+#endif // MUSICARTISTLISTFOUNDTABLEWIDGET_H

@@ -22,7 +22,7 @@ void MusicKGDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_topListInfo.clear();
+    m_toplistInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(6666);
     deleteAll();
     m_interrupt = true;
@@ -80,14 +80,14 @@ void MusicKGDiscoverListThread::downLoadFinished()
                     }
 
                     QVariantMap value = var.toMap();
-                    m_topListInfo = value["filename"].toString();
+                    m_toplistInfo = value["filename"].toString();
                     break;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(m_topListInfo);
+    emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

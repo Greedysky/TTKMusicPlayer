@@ -2,6 +2,7 @@
     <qresource prefix="/data">
         <file alias="playlist">../TTKResource/A_extras/playlist</file>
         <file alias="toplist">../TTKResource/A_extras/toplist</file>
+        <file alias="artistlist">../TTKResource/A_extras/artistlist</file>
         <file alias="sound">../TTKResource/A_extras/sound.wav</file>
     </qresource>
     <qresource prefix="/image">

@@ -49,6 +49,7 @@ HEADERS  += \
     $$PWD/wy/musicdownloadquerywytoplistthread.h \
     $$PWD/wy/musicdownloadquerywymoviethread.h \
     $$PWD/wy/musicdownloadquerywyrecommendthread.h \
+    $$PWD/wy/musicdownloadquerywyartistlistthread.h \
     $$PWD/wy/musicwycommentsthread.h \
     $$PWD/wy/musicwyartistsimilarthread.h \
     $$PWD/wy/musicwysongsuggestthread.h \
@@ -173,7 +174,8 @@ HEADERS  += \
     $$PWD/musicdownloadqueryrecommendthread.h \
     $$PWD/musicdownloadquerymoviethread.h \
     $$PWD/musicdownloadsongsuggestthread.h \
-    $$PWD/musicdownloadsimilarthread.h
+    $$PWD/musicdownloadsimilarthread.h \
+    $$PWD/musicdownloadqueryartistlistthread.h
 
 }
 
@@ -196,6 +198,7 @@ SOURCES += \
     $$PWD/wy/musicdownloadquerywytoplistthread.cpp \
     $$PWD/wy/musicdownloadquerywymoviethread.cpp \
     $$PWD/wy/musicdownloadquerywyrecommendthread.cpp \
+    $$PWD/wy/musicdownloadquerywyartistlistthread.cpp \
     $$PWD/wy/musicwycommentsthread.cpp \
     $$PWD/wy/musicwysongsuggestthread.cpp \
     $$PWD/wy/musicwyartistsimilarthread.cpp \
@@ -321,5 +324,6 @@ SOURCES += \
     $$PWD/musicdownloadquerymoviethread.cpp \
     $$PWD/musicdownloadsongsuggestthread.cpp \
     $$PWD/musicdownloadsimilarthread.cpp \
+    $$PWD/musicdownloadqueryartistlistthread.cpp
 
 }

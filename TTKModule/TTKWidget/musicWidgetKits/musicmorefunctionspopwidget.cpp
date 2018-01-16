@@ -62,6 +62,11 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
                 MusicRightAreaWidget::instance()->musicAdvancedSearch();
                 break;
             }
+        case 8:
+            {
+                MusicRightAreaWidget::instance()->musicArtistCategoryFound();
+                break;
+            }
         default: break;
     }
 }
@@ -69,7 +74,7 @@ void MusicMoreFunctionsPopWidget::musicFunctionClicked(QAction *index)
 void MusicMoreFunctionsPopWidget::initWidget()
 {
     setTranslucentBackground();
-    m_containWidget->setFixedSize(140, 255);
+    m_containWidget->setFixedSize(140, 285);
     m_menu->removeAction(m_menu->actions().first());
 
     QActionGroup *group = new QActionGroup(this);
@@ -81,5 +86,6 @@ void MusicMoreFunctionsPopWidget::initWidget()
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_playlist_hover"), tr("playlist")))->setData(5);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_recommend_hover"), tr("recommend")))->setData(6);
     group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("search")))->setData(7);
+    group->addAction(m_menu->addAction(QIcon(":/functions/btn_search_hover"), tr("artists")))->setData(8);
     connect(group, SIGNAL(triggered(QAction*)), SLOT(musicFunctionClicked(QAction*)));
 }

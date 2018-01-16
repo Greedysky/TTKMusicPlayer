@@ -60,6 +60,10 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getArtistThread(QObject *parent = 0);
     /*!
+     * Get artist category thread object by type.
+     */
+    MusicDownLoadQueryThreadAbstract *getArtistListThread(QObject *parent = 0);
+    /*!
      * Get toplist thread object by type.
      */
     MusicDownLoadQueryThreadAbstract *getToplistThread(QObject *parent = 0);

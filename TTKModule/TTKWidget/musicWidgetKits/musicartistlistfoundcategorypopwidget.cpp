@@ -1,4 +1,4 @@
-#include "musictoplistfoundcategorypopwidget.h"
+#include "musicartistlistfoundcategorypopwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 
@@ -10,18 +10,18 @@
 #define ITEM_MAX_COLUMN     2
 #define ITEM_LABEL_WIDTH    20
 
-MusicToplistFoundCategoryItem::MusicToplistFoundCategoryItem(QWidget *parent)
+MusicArtistListFoundCategoryItem::MusicArtistListFoundCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet(QString());
 }
 
-QString MusicToplistFoundCategoryItem::getClassName()
+QString MusicArtistListFoundCategoryItem::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicToplistFoundCategoryItem::setCategory(const MusicResultsCategory &category)
+void MusicArtistListFoundCategoryItem::setCategory(const MusicResultsCategory &category)
 {
     m_category = category;
 
@@ -53,7 +53,7 @@ void MusicToplistFoundCategoryItem::setCategory(const MusicResultsCategory &cate
     setLayout(layout);
 }
 
-void MusicToplistFoundCategoryItem::buttonClicked(int index)
+void MusicArtistListFoundCategoryItem::buttonClicked(int index)
 {
     if(0 <= index && index < m_category.m_items.count())
     {
@@ -62,7 +62,7 @@ void MusicToplistFoundCategoryItem::buttonClicked(int index)
 }
 
 
-MusicToplistFoundCategoryPopWidget::MusicToplistFoundCategoryPopWidget(QWidget *parent)
+MusicArtistListFoundCategoryPopWidget::MusicArtistListFoundCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     initWidget();
@@ -71,16 +71,16 @@ MusicToplistFoundCategoryPopWidget::MusicToplistFoundCategoryPopWidget(QWidget *
     connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
 }
 
-QString MusicToplistFoundCategoryPopWidget::getClassName()
+QString MusicArtistListFoundCategoryPopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
+void MusicArtistListFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     MusicResultsCategorys categorys;
     MusicCategoryConfigManager manager;
-    manager.readCategoryConfig(MusicCategoryConfigManager::Toplist);
+    manager.readCategoryConfig(MusicCategoryConfigManager::ArtistList);
     manager.readCategoryConfig(categorys, server);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
@@ -99,7 +99,7 @@ void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObj
 
     foreach(const MusicResultsCategory &category, categorys)
     {
-        MusicToplistFoundCategoryItem *item = new MusicToplistFoundCategoryItem(this);
+        MusicArtistListFoundCategoryItem *item = new MusicArtistListFoundCategoryItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));
         item->setCategory(category);
         containLayout->addWidget(item);
@@ -107,19 +107,19 @@ void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObj
     m_containWidget->setLayout(layout);
 }
 
-void MusicToplistFoundCategoryPopWidget::closeMenu()
+void MusicArtistListFoundCategoryPopWidget::closeMenu()
 {
     m_menu->close();
 }
 
-void MusicToplistFoundCategoryPopWidget::popupMenu()
+void MusicArtistListFoundCategoryPopWidget::popupMenu()
 {
     m_menu->exec( mapToGlobal(QPoint(0, 0)) );
 }
 
-void MusicToplistFoundCategoryPopWidget::initWidget()
+void MusicArtistListFoundCategoryPopWidget::initWidget()
 {
-    setFixedSize(200, 30);
+    setFixedSize(100, 30);
     setTranslucentBackground();
     setText(tr("All"));
 

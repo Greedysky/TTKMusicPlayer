@@ -1,6 +1,6 @@
 #include "musicplaylistfoundwidget.h"
 #include "musicdownloadsourcethread.h"
-#include "musicdownloadquerywyplaylistthread.h"
+#include "musicdownloadqueryplaylistthread.h"
 #include "musicplaylistfoundinfowidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
@@ -169,20 +169,17 @@ void MusicPlaylistFoundWidget::resizeWindow()
         m_infoWidget->resizeWindow();
     }
 
-    if(!m_resizeWidgets.isEmpty())
+    if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {
-        if(m_gridLayout)
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
-            for(int i=0; i<m_resizeWidgets.count(); ++i)
-            {
-                m_gridLayout->removeWidget(m_resizeWidgets[i]);
-            }
+            m_gridLayout->removeWidget(m_resizeWidgets[i]);
+        }
 
-            int lineNumber = width()/MAX_LABEL_SIZE;
-            for(int i=0; i<m_resizeWidgets.count(); ++i)
-            {
-                m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
-            }
+        int lineNumber = width()/MAX_LABEL_SIZE;
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        {
+            m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
         }
     }
 }

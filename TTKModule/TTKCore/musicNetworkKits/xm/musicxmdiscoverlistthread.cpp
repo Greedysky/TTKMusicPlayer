@@ -22,7 +22,7 @@ void MusicXMDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_topListInfo.clear();
+    m_toplistInfo.clear();
     deleteAll();
     m_interrupt = true;
 
@@ -82,7 +82,7 @@ void MusicXMDiscoverListThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    m_topListInfo = QString("%1 - %2").arg(value["artistName"].toString())
+                    m_toplistInfo = QString("%1 - %2").arg(value["artistName"].toString())
                                                     .arg(value["songName"].toString());
                     break;
                 }
@@ -90,7 +90,7 @@ void MusicXMDiscoverListThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(m_topListInfo);
+    emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

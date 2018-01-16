@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADDISCOVERLISTTHREAD_H
-#define MUSICDOWNLOADDISCOVERLISTTHREAD_H
+#ifndef MUSICDOWNLOADQUERYWYARTISTLISTTHREAD_H
+#define MUSICDOWNLOADQUERYWYARTISTLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,19 +19,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadpagingthread.h"
+#include "musicdownloadwyinterface.h"
+#include "musicdownloadqueryartistlistthread.h"
 
-/*! @brief The class to download discover toplist abstract thread.
+/*! @brief The class to wangyi query artist list download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadDiscoverListThread : public MusicDownLoadPagingThread
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWYArtistListThread : public MusicDownLoadQueryArtistListThread,
+                                                                  private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadDiscoverListThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYArtistListThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -39,19 +41,20 @@ public:
     static QString getClassName();
 
     /*!
-     * Start to Search data from toplist.
-     * Subclass should implement this function.
+     * Start to search data from name and type bt paging.
      */
-    virtual void startToSearch() = 0;
-
+    virtual void startToPage(int offset) override;
     /*!
-     * Get top list info.
+     * Start to Search data.
      */
-    inline QString getToplistInfo() const { return m_toplistInfo; }
+    virtual void startToSearch(const QString &artistlist) override;
 
-protected:
-    QString m_toplistInfo;
+public Q_SLOTS:
+    /*!
+     * Download data from net finished.
+     */
+    virtual void downLoadFinished() override;
 
 };
 
-#endif // MUSICDOWNLOADDISCOVERLISTTHREAD_H
+#endif // MUSICDOWNLOADQUERYWYARTISTLISTTHREAD_H

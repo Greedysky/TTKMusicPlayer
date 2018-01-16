@@ -54,17 +54,23 @@ typedef struct MUSIC_CORE_EXPORT MusicResultsCategory
 MUSIC_DECLARE_LISTS(MusicResultsCategory)
 
 
-/*! @brief The class of the playlist category Config Manager.
+/*! @brief The class of the category Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlaylistCategoryConfigManager : public MusicAbstractXml
+class MUSIC_CORE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
 public:
+    enum Type
+    {
+        Playlist,       /*!< Playlist Category*/
+        Toplist,        /*!< Toplist Category*/
+        ArtistList      /*!< ArtistList Category*/
+    };
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistCategoryConfigManager(QObject *parent = 0);
+    explicit MusicCategoryConfigManager(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -73,37 +79,9 @@ public:
     /*!
      * Read user datas from xml file by given name.
      */
-    inline bool readCategoryConfig() { return readConfig(":/data/playlist"); }
+    bool readCategoryConfig(Type type);
     /*!
-     * Read user datas into xml file.
-     */
-    void readCategoryConfig(MusicResultsCategorys &records, const QString &key);
-
-};
-
-
-/*! @brief The class of the toplist category Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicToplistCategoryConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicToplistCategoryConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-    /*!
-     * Read user datas from xml file by given name.
-     */
-    inline bool readCategoryConfig() { return readConfig(":/data/toplist"); }
-    /*!
-     * Read user datas into xml file.
+     * Read user datas from xml file.
      */
     void readCategoryConfig(MusicResultsCategorys &records, const QString &key);
 

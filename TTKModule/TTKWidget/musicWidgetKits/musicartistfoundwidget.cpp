@@ -173,7 +173,7 @@ void MusicArtistMvsFoundWidget::createArtistMvsItem(const MusicResultsItem &item
 
 void MusicArtistMvsFoundWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->musicArtistMvs(id);
+    MusicRightAreaWidget::instance()->musicMovieSearch(id);
 }
 
 void MusicArtistMvsFoundWidget::buttonClicked(int index)
@@ -261,7 +261,7 @@ void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicResultsIt
 
 void MusicArtistSimilarFoundWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->musicArtistSimilar(id);
+    MusicRightAreaWidget::instance()->musicArtistSearch(id);
 }
 
 
@@ -335,7 +335,7 @@ void MusicArtistAlbumsFoundWidget::createArtistAlbumsItem(const MusicResultsItem
 
 void MusicArtistAlbumsFoundWidget::currentItemClicked(const QString &id)
 {
-    MusicRightAreaWidget::instance()->musicArtistAlbums(id);
+    MusicRightAreaWidget::instance()->musicAlbumSearch(id);
 }
 
 

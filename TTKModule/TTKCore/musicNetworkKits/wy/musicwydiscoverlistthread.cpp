@@ -87,17 +87,17 @@ void MusicWYDiscoverListThread::downLoadFinished()
                             continue;
                         }
                         QVariantMap artistMap = artistValue.toMap();
-                        m_topListInfo = artistMap["name"].toString();
+                        m_toplistInfo = artistMap["name"].toString();
                     }
 
-                    m_topListInfo += " - " + value["name"].toString();
+                    m_toplistInfo += " - " + value["name"].toString();
                     break;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(m_topListInfo);
+    emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

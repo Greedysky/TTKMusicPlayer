@@ -22,7 +22,7 @@ void MusicBDDiscoverListThread::startToSearch()
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    m_topListInfo.clear();
+    m_toplistInfo.clear();
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(2).arg(m_pageSize).arg(0);
     deleteAll();
     m_interrupt = true;
@@ -79,7 +79,7 @@ void MusicBDDiscoverListThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    m_topListInfo = QString("%1 - %2").arg(value["author"].toString())
+                    m_toplistInfo = QString("%1 - %2").arg(value["author"].toString())
                                                       .arg(value["title"].toString());
                     break;
                 }
@@ -87,7 +87,7 @@ void MusicBDDiscoverListThread::downLoadFinished()
         }
     }
 
-    emit downLoadDataChanged(m_topListInfo);
+    emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
