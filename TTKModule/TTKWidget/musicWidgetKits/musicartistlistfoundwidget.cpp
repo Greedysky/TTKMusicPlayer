@@ -201,7 +201,7 @@ void MusicArtistListFoundWidget::categoryChanged(const MusicResultsCategoryItem 
     {
         m_categoryId = category.m_id;
         m_songNameFull.clear();
-        m_categoryChanged = true;
+
         m_categoryButton->setText(category.m_name);
         m_categoryButton->closeMenu();
 
@@ -231,6 +231,7 @@ void MusicArtistListFoundWidget::numberButtonClicked(int index)
         m_gridLayout->removeWidget(w);
         delete w;
     }
+    m_categoryChanged = true;
 
     QString v = QString("%1%2%3").arg(m_categoryId).arg(STRING_SPLITER).arg(index);
     m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, v);
