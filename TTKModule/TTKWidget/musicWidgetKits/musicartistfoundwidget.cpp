@@ -13,13 +13,13 @@
 
 #include <qmath.h>
 
-#define MIN_LABEL_SIZE  150
-#define MAX_LABEL_SIZE  200
+#define WIDTH_LABEL_SIZE   150
+#define HEIGHT_LABEL_SIZE  200
 
 MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setFixedSize(MIN_LABEL_SIZE, MAX_LABEL_SIZE);
+    setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     m_playButton = new QPushButton(this);
     m_playButton->setGeometry(110, 110, 30, 30);
@@ -32,14 +32,14 @@ MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
 #endif
 
     m_iconLabel = new QLabel(this);
-    m_iconLabel->setGeometry(0, 0, MIN_LABEL_SIZE, MIN_LABEL_SIZE);
+    m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
 
     m_nameLabel = new QLabel(this);
-    m_nameLabel->setGeometry(0, 150, MIN_LABEL_SIZE, 25);
+    m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
     m_nameLabel->setText(" - ");
 
     m_updateLabel = new QLabel(this);
-    m_updateLabel->setGeometry(0, 175, MIN_LABEL_SIZE, 25);
+    m_updateLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);
     m_updateLabel->setText(" - ");
 }
 
@@ -61,10 +61,10 @@ void MusicArtistAlbumsItemWidget::setMusicItem(const MusicResultsItem &item)
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
-                                                        Qt::ElideRight, MIN_LABEL_SIZE));
+                                                        Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_updateLabel->setToolTip(item.m_updateTime);
     m_updateLabel->setText(MusicUtils::Widget::elidedText(m_updateLabel->font(), m_updateLabel->toolTip(),
-                                                          Qt::ElideRight, MIN_LABEL_SIZE));
+                                                          Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -142,7 +142,7 @@ void MusicArtistMvsFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/MAX_LABEL_SIZE;
+        int lineNumber = width()/HEIGHT_LABEL_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -165,7 +165,7 @@ void MusicArtistMvsFoundWidget::createArtistMvsItem(const MusicResultsItem &item
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setMusicItem(item);
 
-    int lineNumber = width()/MAX_LABEL_SIZE;
+    int lineNumber = width()/HEIGHT_LABEL_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
                                    m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
@@ -239,7 +239,7 @@ void MusicArtistSimilarFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/MAX_LABEL_SIZE;
+        int lineNumber = width()/HEIGHT_LABEL_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -253,7 +253,7 @@ void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicResultsIt
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setMusicItem(item);
 
-    int lineNumber = width()/MAX_LABEL_SIZE;
+    int lineNumber = width()/HEIGHT_LABEL_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
                                    m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
@@ -313,7 +313,7 @@ void MusicArtistAlbumsFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/MAX_LABEL_SIZE;
+        int lineNumber = width()/HEIGHT_LABEL_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -327,7 +327,7 @@ void MusicArtistAlbumsFoundWidget::createArtistAlbumsItem(const MusicResultsItem
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
     label->setMusicItem(item);
 
-    int lineNumber = width()/MAX_LABEL_SIZE;
+    int lineNumber = width()/HEIGHT_LABEL_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
                                    m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;

@@ -18,6 +18,7 @@ MusicArtistListFoundItemWidget::MusicArtistListFoundItemWidget(QWidget *parent)
     : MusicClickedLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
+    setStyleSheet(MusicUIObject::MColorStyle09);
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     connect(this, SIGNAL(clicked()), SLOT(currentArtistListClicked()));
@@ -127,28 +128,25 @@ void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &i
         ///////////////////////////////////////////////////////////////////////
         QWidget *containNumberWidget = new QWidget(containTopWidget);
         QHBoxLayout *containNumberLayout  = new QHBoxLayout(containNumberWidget);
+        containNumberLayout->setSpacing(15);
         QSignalMapper *group = new QSignalMapper(this);
         connect(group, SIGNAL(mapped(int)), SLOT(numberButtonClicked(int)));
-
-        MusicClickedLabel *hot = new MusicClickedLabel(tr("hot"), containNumberWidget);
-        hot->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
-        connect(hot, SIGNAL(clicked()), group, SLOT(map()));
-        group->setMapping(hot, -1);
-        containNumberLayout->addWidget(hot);
-        for(int i=0; i<26; ++i)
+        for(int i=-1; i<27; ++i)
         {
             MusicClickedLabel *l = new MusicClickedLabel(QString(MStatic_cast(char, i + 65)), containNumberWidget);
-            l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
+            l->setStyleSheet(QString("QLabel::hover{%1} QLabel{%2}").arg(MusicUIObject::MColorStyle08).arg(MusicUIObject::MColorStyle11));
             connect(l, SIGNAL(clicked()), group, SLOT(map()));
+            if(i == -1)
+            {
+                l->setText(tr("hot"));
+            }
+            else if(i == 26)
+            {
+                l->setText(tr("#"));
+            }
             group->setMapping(l, i);
             containNumberLayout->addWidget(l);
         }
-        MusicClickedLabel *other = new MusicClickedLabel("#", containNumberWidget);
-        other->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
-        connect(other, SIGNAL(clicked()), group, SLOT(map()));
-        group->setMapping(other, 27);
-
-        containNumberLayout->addWidget(other);
         containNumberWidget->setLayout(containNumberLayout);
         containTopLayout->addWidget(containNumberWidget);
         ///////////////////////////////////////////////////////////////////////
@@ -160,7 +158,7 @@ void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &i
 
         QWidget *containWidget = new QWidget(m_mainWindow);
         m_gridLayout = new QGridLayout(containWidget);
-        m_gridLayout->setVerticalSpacing(35);
+        m_gridLayout->setVerticalSpacing(15);
         containWidget->setLayout(m_gridLayout);
 
         mainlayout->addWidget(containTopWidget);

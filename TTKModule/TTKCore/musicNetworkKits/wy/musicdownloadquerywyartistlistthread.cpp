@@ -33,11 +33,11 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
         }
 
         int mIdx = dds[1].toInt();
-        if(mIdx > -1 && mIdx < 27)
+        if(mIdx > -1 && mIdx < 26)
         {
             mIdx += 65;
         }
-        else if(mIdx >= 27)
+        else if(mIdx >= 26)
         {
             mIdx = 0;
         }
