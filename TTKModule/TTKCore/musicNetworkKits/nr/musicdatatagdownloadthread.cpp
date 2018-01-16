@@ -2,6 +2,7 @@
 #include "musicdownloadsourcethread.h"
 #include "musicsemaphoreloop.h"
 #include "musicsongtag.h"
+#include "musicsettingmanager.h"
 
 #include <QImage>
 
@@ -79,10 +80,16 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
     MusicSongTag tag;
     if(tag.read(m_savePathName))
     {
-        tag.setTitle(m_title);
-        tag.setArtist(m_artist);
-        tag.setAlbum(m_album);
-        tag.setCover(data);
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toBool())
+        {
+            tag.setTitle(m_title);
+            tag.setArtist(m_artist);
+            tag.setAlbum(m_album);
+        }
+        if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverWChoiced).toBool())
+        {
+            tag.setCover(data);
+        }
         tag.save();
         M_LOGGER_INFO("write tag has finished!");
     }

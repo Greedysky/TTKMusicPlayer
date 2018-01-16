@@ -57,7 +57,7 @@ void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info
     m_ui->timeValue->setText(
                 MusicUtils::Widget::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()) );
 
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toBool())
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toBool())
     {
         MusicSongTag tag;
         if(tag.read(info.getMusicPath()))

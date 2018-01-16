@@ -37,8 +37,10 @@ void MusicSysConfigManager::writeXMLConfig()
     int otherBgLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toInt();
     int otherUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toInt();
     int otherSearchChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toInt();
-    int otherAlbumChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumChoiced).toInt();
+    int otherAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toInt();
     int otherInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toInt();
+    int otherAlbumCoverWChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverWChoiced).toInt();
+    int otherInfoWChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toInt();
     int otherSideByChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toInt();
     int otherSongFormatChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
     int otherLrcKTVModeChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toInt();
@@ -162,8 +164,10 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(otherSettingDom, "otherBgLossless", MusicXmlAttribute("value", otherBgLosslessChoiced));
     writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherUpdateChoiced));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearchChoiced));
-    writeDomElement(otherSettingDom, "otherAlbum", MusicXmlAttribute("value", otherAlbumChoiced));
+    writeDomElement(otherSettingDom, "otherAlbumCover", MusicXmlAttribute("value", otherAlbumCoverChoiced));
     writeDomElement(otherSettingDom, "otherInfo", MusicXmlAttribute("value", otherInfoChoiced));
+    writeDomElement(otherSettingDom, "otherAlbumCoverW", MusicXmlAttribute("value", otherAlbumCoverWChoiced));
+    writeDomElement(otherSettingDom, "otherInfoW", MusicXmlAttribute("value", otherInfoWChoiced));
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideByChoiced));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormatChoiced));
     writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVModeChoiced));
@@ -332,10 +336,14 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("otherUpdate").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
                      readXmlAttributeByTagNameValue("otherSearch").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumChoiced,
-                     readXmlAttributeByTagNameValue("otherAlbum").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumCoverChoiced,
+                     readXmlAttributeByTagNameValue("otherAlbumCover").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced,
                      readXmlAttributeByTagNameValue("otherInfo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumCoverWChoiced,
+                     readXmlAttributeByTagNameValue("otherAlbumCoverW").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoWChoiced,
+                     readXmlAttributeByTagNameValue("otherInfoW").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced,
                      readXmlAttributeByTagNameValue("otherSideBy").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,

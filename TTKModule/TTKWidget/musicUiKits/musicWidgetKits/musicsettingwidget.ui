@@ -1041,12 +1041,12 @@ font-weight:bold;</string>
       <string>开启左右靠边停靠模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherAlbumCheckBox">
+    <widget class="QCheckBox" name="otherAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
        <y>80</y>
-       <width>271</width>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1059,7 +1059,7 @@ font-weight:bold;</string>
       <rect>
        <x>40</x>
        <y>110</y>
-       <width>271</width>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1132,6 +1132,32 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>开启歌词KTV模式</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherAlbumCoverWCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>80</y>
+       <width>190</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载文件写入专辑封面</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="otherInfoWCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>110</y>
+       <width>190</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>下载文件写入歌曲信息</string>
      </property>
     </widget>
    </widget>
