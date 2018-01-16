@@ -71,7 +71,7 @@ void MusicXMArtistSimilarThread::downLoadFinished()
                 }
 
                 QVariantMap value = var.toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_id = value["artist_id"].toString();
                 info.m_coverUrl = value["artist_logo"].toString();
                 info.m_name = value["name"].toString();

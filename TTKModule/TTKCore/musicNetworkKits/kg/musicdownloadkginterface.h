@@ -57,7 +57,7 @@ const QString KG_SUGGEST_URL       = "UUFkNUtUeXBhZ2hxbG1nY0ZDRzBxTS9GNzdZMDdDbm
 ///////////////////////////////////////////////////////////////////////////
 
 
-class MusicPlaylistItem;
+class MusicResultsItem;
 
 /*! @brief The class to kugou query download interface.
  * @author Greedysky <greedysky@163.com>
@@ -81,7 +81,7 @@ public:
     /*!
      * Read tags(album info) from query results.
      */
-    void readFromMusicSongAlbumInfo(MusicPlaylistItem *info, const QString &album);
+    void readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album);
 
 };
 

@@ -87,7 +87,7 @@ void MusicKGSongSuggestThread::downLoadFinished()
                             }
 
                             value = var.toMap();
-                            MusicPlaylistItem item;
+                            MusicResultsItem item;
                             item.m_name = value["HintInfo"].toString();
                             m_items << item;
                         }

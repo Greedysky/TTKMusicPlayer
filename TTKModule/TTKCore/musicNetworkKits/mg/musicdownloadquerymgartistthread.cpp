@@ -105,7 +105,7 @@ void MusicDownLoadQueryMGArtistThread::downLoadFinished()
                     if(!artistFlag)
                     {
                         artistFlag = true;
-                        MusicPlaylistItem info;
+                        MusicResultsItem info;
                         info.m_description = description;
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;

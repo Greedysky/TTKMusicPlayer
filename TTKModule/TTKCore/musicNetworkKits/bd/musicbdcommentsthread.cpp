@@ -107,7 +107,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["zan_num"].toLongLong());
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
@@ -221,7 +221,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount= QString::number(value["zan_num"].toLongLong());
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);

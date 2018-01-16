@@ -78,7 +78,7 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
             if(value.contains("songs"))
             {
                 QVariantMap topInfo = value["info"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = topInfo["rankname"].toString();
                 info.m_coverUrl = topInfo["imgurl"].toString().replace("{size}", "400");
                 info.m_playCount = "-";
@@ -112,7 +112,7 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
-                    MusicPlaylistItem albumInfo;
+                    MusicResultsItem albumInfo;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
                     musicInfo.m_albumName = albumInfo.m_nickName;

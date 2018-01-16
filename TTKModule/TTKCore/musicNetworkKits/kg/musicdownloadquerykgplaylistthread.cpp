@@ -82,7 +82,7 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -184,7 +184,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
                 if(m_interrupt) return;
 
                 QVariantMap value = var.toMap();
-                MusicPlaylistItem item;
+                MusicResultsItem item;
                 item.m_coverUrl = value["img"].toString();
                 item.m_id = QString::number(value["specialid"].toULongLong());
                 item.m_name = value["specialname"].toString();
@@ -249,7 +249,7 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
-                    MusicPlaylistItem albumInfo;
+                    MusicResultsItem albumInfo;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
                     musicInfo.m_albumName = albumInfo.m_nickName;

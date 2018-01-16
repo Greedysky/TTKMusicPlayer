@@ -79,7 +79,7 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["photo"].toString();
                 info.m_playCount = "-";

@@ -17,7 +17,7 @@ QString MusicQQArtistInfoConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicPlaylistItem *item)
+void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item)
 {
     QDomNodeList resultlist = m_ddom->elementsByTagName("info");
     for(int i=0; i<resultlist.count(); ++i)
@@ -183,7 +183,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                     if(!artistFlag)
                     {
                         artistFlag = true;
-                        MusicPlaylistItem info;
+                        MusicResultsItem info;
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -211,7 +211,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicResultsItem *item)
 {
     if(!m_manager)
     {

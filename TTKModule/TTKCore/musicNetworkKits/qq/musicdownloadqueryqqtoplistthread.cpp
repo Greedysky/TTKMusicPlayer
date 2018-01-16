@@ -78,7 +78,7 @@ void MusicDownLoadQueryQQToplistThread::downLoadFinished()
             if(value["code"].toInt() == 0 && value.contains("songlist"))
             {
                 QVariantMap topInfo = value["topinfo"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = topInfo["ListName"].toString();
                 info.m_coverUrl = topInfo["pic"].toString();
                 info.m_playCount = QString::number(topInfo["listennum"].toULongLong());

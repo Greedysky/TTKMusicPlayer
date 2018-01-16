@@ -45,13 +45,13 @@ public:
     /*!
      * Get playlist info.
      */
-    virtual void getPlaylistInfo(MusicPlaylistItem &item) = 0;
+    virtual void getPlaylistInfo(MusicResultsItem &item) = 0;
 
 Q_SIGNALS:
     /*!
      * Create the current playlist item.
      */
-    void createPlaylistItems(const MusicPlaylistItem &item);
+    void createPlaylistItems(const MusicResultsItem &item);
 
 };
 

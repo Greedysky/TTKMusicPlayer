@@ -205,7 +205,7 @@ void MusicDownLoadQueryKGMovieThread::pageDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["hash"].toString();
                     info.m_coverUrl = value["imgurl"].toString();
                     info.m_name = value["filename"].toString();

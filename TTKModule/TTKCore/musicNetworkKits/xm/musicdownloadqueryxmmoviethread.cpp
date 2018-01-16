@@ -264,7 +264,7 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
             {
                 if(m_interrupt) return;
 
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_id = partial.cap(2).remove("/mv/");
                 info.m_coverUrl = partial.cap(1).remove("@1e_1c_100Q_160w_90h").replace("https://", "http://");
                 info.m_name = partial.cap(3);

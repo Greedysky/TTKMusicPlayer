@@ -83,7 +83,7 @@ void MusicDownLoadQueryWYPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWYPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryWYPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -183,7 +183,7 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["coverImgUrl"].toString();
                     item.m_id = QString::number(value["id"].toULongLong());
                     item.m_name = value["name"].toString();

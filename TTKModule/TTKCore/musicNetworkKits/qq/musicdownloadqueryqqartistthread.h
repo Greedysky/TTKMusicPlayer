@@ -43,7 +43,7 @@ public:
     /*!
      * Read artist info datas into xml file.
      */
-    void readArtistInfoConfig(MusicPlaylistItem *item);
+    void readArtistInfoConfig(MusicResultsItem *item);
 
 };
 
@@ -81,7 +81,7 @@ protected:
     /*!
      * Get Download introduction data from net.
      */
-    void getDownLoadIntro(MusicPlaylistItem *item);
+    void getDownLoadIntro(MusicResultsItem *item);
 
 };
 

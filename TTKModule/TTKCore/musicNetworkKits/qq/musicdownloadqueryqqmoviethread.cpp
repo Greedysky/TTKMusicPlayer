@@ -214,7 +214,7 @@ void MusicDownLoadQueryQQMovieThread::pageDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["vid"].toString();
                     info.m_coverUrl = value["pic"].toString();
                     info.m_name = value["title"].toString();

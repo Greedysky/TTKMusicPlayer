@@ -206,7 +206,7 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
                 {
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = regx.cap(1).remove("/playmv/");
                     info.m_coverUrl = regx.cap(3).remove("@s_0,w_160,h_90");
                     info.m_name = regx.cap(2).remove("MV");

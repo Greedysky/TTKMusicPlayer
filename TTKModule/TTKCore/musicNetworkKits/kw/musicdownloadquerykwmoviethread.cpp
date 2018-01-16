@@ -205,7 +205,7 @@ void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["musicid"].toString();
                     info.m_coverUrl = value["pic"].toString();
                     if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))

@@ -86,7 +86,7 @@ void MusicDownLoadQueryQQPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryQQPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryQQPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -198,7 +198,7 @@ void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["imgurl"].toString();
                     item.m_id = value["dissid"].toString();
                     item.m_name = value["dissname"].toString();
@@ -314,7 +314,7 @@ void MusicDownLoadQueryQQPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
+void MusicDownLoadQueryQQPlaylistThread::getMoreDetails(MusicResultsItem *item)
 {
     if(!m_manager)
     {

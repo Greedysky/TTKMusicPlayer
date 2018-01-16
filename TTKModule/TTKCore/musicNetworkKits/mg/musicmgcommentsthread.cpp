@@ -98,7 +98,7 @@ void MusicMGSongCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     comment.m_nickName = value["uName"].toString();
                     comment.m_coverUrl = value["uAvatar"].toString();
 
@@ -201,7 +201,7 @@ void MusicMGPlaylistCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     comment.m_nickName = value["uName"].toString();
                     comment.m_coverUrl = value["uAvatar"].toString();
 

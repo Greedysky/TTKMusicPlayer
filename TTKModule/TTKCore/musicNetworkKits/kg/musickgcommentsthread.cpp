@@ -98,7 +98,7 @@ void MusicKGSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
 
                     comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());
@@ -204,7 +204,7 @@ void MusicKGPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
 
                     comment.m_playCount = QString::number(value["like"].toMap()["count"].toLongLong());

@@ -56,7 +56,7 @@ QString MusicArtistAlbumsItemWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicArtistAlbumsItemWidget::setMusicItem(const MusicPlaylistItem &item)
+void MusicArtistAlbumsItemWidget::setMusicItem(const MusicResultsItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -108,7 +108,7 @@ MusicArtistMvsFoundWidget::MusicArtistMvsFoundWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Artist;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
-    connect(m_downloadThread, SIGNAL(createMovieInfoItem(MusicPlaylistItem)), SLOT(createArtistMvsItem(MusicPlaylistItem)));
+    connect(m_downloadThread, SIGNAL(createMovieInfoItem(MusicResultsItem)), SLOT(createArtistMvsItem(MusicResultsItem)));
 }
 
 MusicArtistMvsFoundWidget::~MusicArtistMvsFoundWidget()
@@ -150,7 +150,7 @@ void MusicArtistMvsFoundWidget::resizeWindow()
     }
 }
 
-void MusicArtistMvsFoundWidget::createArtistMvsItem(const MusicPlaylistItem &item)
+void MusicArtistMvsFoundWidget::createArtistMvsItem(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {
@@ -205,7 +205,7 @@ MusicArtistSimilarFoundWidget::MusicArtistSimilarFoundWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Artist;
     m_similarThread = M_DOWNLOAD_QUERY_PTR->getSimilarArtistThread(this);
-    connect(m_similarThread, SIGNAL(createSimilarItems(MusicPlaylistItem)), SLOT(createArtistSimilarItem(MusicPlaylistItem)));
+    connect(m_similarThread, SIGNAL(createSimilarItems(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
 
 MusicArtistSimilarFoundWidget::~MusicArtistSimilarFoundWidget()
@@ -247,7 +247,7 @@ void MusicArtistSimilarFoundWidget::resizeWindow()
     }
 }
 
-void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicPlaylistItem &item)
+void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicResultsItem &item)
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
@@ -279,7 +279,7 @@ MusicArtistAlbumsFoundWidget::MusicArtistAlbumsFoundWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Artist;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getAlbumThread(this);
-    connect(m_downloadThread, SIGNAL(createAlbumInfoItem(MusicPlaylistItem)), SLOT(createArtistAlbumsItem(MusicPlaylistItem)));
+    connect(m_downloadThread, SIGNAL(createAlbumInfoItem(MusicResultsItem)), SLOT(createArtistAlbumsItem(MusicResultsItem)));
 }
 
 MusicArtistAlbumsFoundWidget::~MusicArtistAlbumsFoundWidget()
@@ -321,7 +321,7 @@ void MusicArtistAlbumsFoundWidget::resizeWindow()
     }
 }
 
-void MusicArtistAlbumsFoundWidget::createArtistAlbumsItem(const MusicPlaylistItem &item)
+void MusicArtistAlbumsFoundWidget::createArtistAlbumsItem(const MusicResultsItem &item)
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
@@ -407,7 +407,7 @@ void MusicArtistFoundWidget::setSongNameById(const QString &id)
     MusicDownLoadQueryThreadAbstract *v = M_DOWNLOAD_QUERY_PTR->getArtistThread(this);
     m_foundTableWidget->setQueryInput(v);
     m_foundTableWidget->startSearchQuery(id);
-    connect(v, SIGNAL(createArtistInfoItem(MusicPlaylistItem)), SLOT(createArtistInfoItem(MusicPlaylistItem)));
+    connect(v, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));
 }
 
 void MusicArtistFoundWidget::resizeWindow()
@@ -459,7 +459,7 @@ void MusicArtistFoundWidget::queryArtistFinished()
     }
 }
 
-void MusicArtistFoundWidget::createArtistInfoItem(const MusicPlaylistItem &item)
+void MusicArtistFoundWidget::createArtistInfoItem(const MusicResultsItem &item)
 {
     m_currentPlaylistItem = item;
 

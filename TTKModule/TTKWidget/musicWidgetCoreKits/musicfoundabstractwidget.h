@@ -119,7 +119,7 @@ protected:
     QPushButton *m_songButton;
     QLabel *m_iconLabel, *m_statusLabel, *m_infoLabel;
     QStackedWidget *m_container;
-    MusicPlaylistItem m_currentPlaylistItem;
+    MusicResultsItem m_currentPlaylistItem;
     MusicQueryFoundTableWidget *m_foundTableWidget;
     MusicDownLoadQueryThreadAbstract *m_downloadThread;
     QList<QLabel*> m_resizeWidgets;

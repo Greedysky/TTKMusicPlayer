@@ -80,7 +80,7 @@ void MusicDownLoadQueryXMToplistThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["title"].toString();
                 info.m_coverUrl = value["logo"].toString();
                 info.m_playCount = "-";

@@ -82,7 +82,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -168,7 +168,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["pic_300"].toString();
                     item.m_id = value["listid"].toString();
                     item.m_name = value["title"].toString();

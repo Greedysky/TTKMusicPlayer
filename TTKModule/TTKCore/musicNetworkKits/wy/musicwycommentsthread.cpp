@@ -96,7 +96,7 @@ void MusicWYSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
@@ -199,7 +199,7 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();

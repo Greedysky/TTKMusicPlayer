@@ -62,7 +62,7 @@ QString MusicPlaylistFoundItemWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem &item)
+void MusicPlaylistFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -131,7 +131,7 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
-    connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)), SLOT(createPlaylistItems(MusicPlaylistItem)));
+    connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicResultsItem)), SLOT(createPlaylistItems(MusicResultsItem)));
 }
 
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
@@ -157,7 +157,7 @@ void MusicPlaylistFoundWidget::setSongName(const QString &name)
 void MusicPlaylistFoundWidget::setSongNameById(const QString &id)
 {
     setSongName(id);
-    MusicPlaylistItem item;
+    MusicResultsItem item;
     item.m_id = id;
     currentPlayListClicked(item);
 }
@@ -187,7 +187,7 @@ void MusicPlaylistFoundWidget::resizeWindow()
     }
 }
 
-void MusicPlaylistFoundWidget::createPlaylistItems(const MusicPlaylistItem &item)
+void MusicPlaylistFoundWidget::createPlaylistItems(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {
@@ -252,26 +252,26 @@ void MusicPlaylistFoundWidget::createPlaylistItems(const MusicPlaylistItem &item
     }
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
-    connect(label, SIGNAL(currentPlayListClicked(MusicPlaylistItem)), SLOT(currentPlayListClicked(MusicPlaylistItem)));
-    label->setMusicPlaylistItem(item);
+    connect(label, SIGNAL(currentPlayListClicked(MusicResultsItem)), SLOT(currentPlayListClicked(MusicResultsItem)));
+    label->setMusicResultsItem(item);
 
     int lineNumber = width()/MAX_LABEL_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
-void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &item)
+void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicResultsItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
     MusicDownLoadQueryPlaylistThread *pt = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
-    MusicPlaylistItem it(item);
+    MusicResultsItem it(item);
     if(it.isEmpty())
     {
         pt->getPlaylistInfo(it);
     }
     m_infoWidget->setQueryInput(pt);
-    m_infoWidget->setMusicPlaylistItem(it, this);
+    m_infoWidget->setMusicResultsItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }

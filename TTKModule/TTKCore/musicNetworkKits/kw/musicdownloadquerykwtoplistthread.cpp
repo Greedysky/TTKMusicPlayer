@@ -80,7 +80,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
             if(value["status"].toInt() == 200 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["pic"].toString();
                 info.m_playCount = "-";

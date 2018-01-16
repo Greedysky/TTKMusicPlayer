@@ -107,7 +107,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                     if(!artistFlag)
                     {
                         artistFlag = true;
-                        MusicPlaylistItem info;
+                        MusicResultsItem info;
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -135,7 +135,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicResultsItem *item)
 {
     if(!m_manager)
     {

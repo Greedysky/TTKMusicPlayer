@@ -75,7 +75,7 @@ void MusicKWSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["SONGNAME"].toString();
                     item.m_nickName = value["ARTIST"].toString();
                     m_items << item;

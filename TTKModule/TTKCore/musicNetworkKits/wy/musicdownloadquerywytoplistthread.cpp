@@ -78,7 +78,7 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("playlist"))
             {
                 value = value["playlist"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["coverImgUrl"].toString();
                 info.m_playCount = QString::number(value["playCount"].toULongLong());

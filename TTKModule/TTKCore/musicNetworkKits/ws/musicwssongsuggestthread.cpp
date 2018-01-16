@@ -77,7 +77,7 @@ void MusicWSSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["songName"].toString();
                     item.m_nickName = value["singer"].toString();
                     item.m_name.remove("<em class=\"keyword\">").remove("</em>");

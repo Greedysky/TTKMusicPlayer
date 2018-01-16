@@ -207,7 +207,7 @@ void MusicDownLoadQueryMGMovieThread::pageDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["id"].toString();
                     info.m_coverUrl = value["img"].toString();
                     info.m_name = value["title"].toString();

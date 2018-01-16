@@ -78,7 +78,7 @@ void MusicDownLoadQueryMGToplistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toString() == "000000" && value.contains("songs"))
             {
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["shareTitle"].toString();
                 info.m_coverUrl = value["img"].toString();
                 info.m_playCount = "-";

@@ -94,7 +94,7 @@ void MusicDownLoadQueryMGAlbumThread::downLoadFinished()
             if(value["code"].toString() == "000000" && value.contains("songs"))
             {
                 bool albumFlag = false;
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_coverUrl = value["img"].toString();
                 info.m_description = value["shareTitle"].toString() + "<>" +
                                      value["language"].toString() + "<>" +
@@ -191,7 +191,7 @@ void MusicDownLoadQueryMGAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["img"].toString();
                     info.m_name = value["title"].toString();

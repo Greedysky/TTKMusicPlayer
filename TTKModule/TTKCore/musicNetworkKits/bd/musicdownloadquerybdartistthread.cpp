@@ -102,7 +102,7 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                     if(!artistFlag)
                     {
                         artistFlag = true;
-                        MusicPlaylistItem info;
+                        MusicResultsItem info;
                         if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
                         if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -130,7 +130,7 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryBDArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+void MusicDownLoadQueryBDArtistThread::getDownLoadIntro(MusicResultsItem *item)
 {
     if(!m_manager)
     {

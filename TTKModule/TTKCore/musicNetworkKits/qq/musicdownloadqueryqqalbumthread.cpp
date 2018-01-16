@@ -93,7 +93,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
             {
                 bool albumFlag = false;
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_description = "<>" +
                                      value["lan"].toString() + "<>" +
                                      value["company_new"].toMap()["name"].toString() + "<>" +
@@ -200,7 +200,7 @@ void MusicDownLoadQueryQQAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["albumMID"].toString();
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                       .arg(info.m_id.right(2).left(1))

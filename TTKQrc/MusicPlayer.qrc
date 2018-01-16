@@ -577,10 +577,6 @@
         <file alias="btn_more_hover">../TTKResource/functions/btn_more_hover.png</file>
         <file alias="btn_ablum_normal">../TTKResource/functions/btn_ablum_normal.png</file>
         <file alias="btn_ablum_hover">../TTKResource/functions/btn_ablum_hover.png</file>
-        <file alias="btn_share_normal">../TTKResource/functions/btn_share_normal.png</file>
-        <file alias="btn_share_hover">../TTKResource/functions/btn_share_hover.png</file>
-        <file alias="btn_mv_normal">../TTKResource/functions/btn_mv_normal.png</file>
-        <file alias="btn_mv_hover">../TTKResource/functions/btn_mv_hover.png</file>
         <file alias="btn_message_normal">../TTKResource/functions/btn_message_normal.png</file>
         <file alias="btn_message_hover">../TTKResource/functions/btn_message_hover.png</file>
         <file alias="btn_queue_normal">../TTKResource/functions/btn_queue_normal.png</file>

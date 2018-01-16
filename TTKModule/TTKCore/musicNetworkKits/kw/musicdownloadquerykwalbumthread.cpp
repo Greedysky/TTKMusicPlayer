@@ -94,7 +94,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
             {
                 bool albumFlag = false;
                 QString albumName = value["name"].toString();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_nickName = value["albumid"].toString();
                 info.m_coverUrl = value["pic"].toString();
                 if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))
@@ -197,7 +197,7 @@ void MusicDownLoadQueryKWAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["pic"].toString();
                     if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))

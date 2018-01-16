@@ -76,7 +76,7 @@ void MusicWYSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     QVariantList artistsArray = value["artists"].toList();
                     foreach(const QVariant &artistValue, artistsArray)

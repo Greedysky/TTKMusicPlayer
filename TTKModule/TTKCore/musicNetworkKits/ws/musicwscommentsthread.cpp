@@ -104,7 +104,7 @@ void MusicWSSongCommentsThread::downLoadFinished()
                     }
 
                     value = data.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["img"].toString();
@@ -212,7 +212,7 @@ void MusicWSPlaylistCommentsThread::downLoadFinished()
                     }
 
                     value = data.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["img"].toString();

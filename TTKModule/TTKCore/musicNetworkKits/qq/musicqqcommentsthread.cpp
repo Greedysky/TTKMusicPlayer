@@ -98,7 +98,7 @@ void MusicQQSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
                     comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);
@@ -202,7 +202,7 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["praisenum"].toInt());
                     comment.m_updateTime = QString::number(value["time"].toLongLong()*1000);

@@ -48,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Create the current song comment.
      */
-    void createSearchedItems(const MusicPlaylistItem &comments);
+    void createSearchedItems(const MusicResultsItem &comments);
 
 };
 

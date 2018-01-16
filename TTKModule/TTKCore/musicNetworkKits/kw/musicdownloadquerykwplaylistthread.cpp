@@ -83,7 +83,7 @@ void MusicDownLoadQueryKWPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -266,7 +266,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                MusicPlaylistItem item;
+                MusicResultsItem item;
                 item.m_tags = m_tags;
                 item.m_coverUrl = value["pic"].toString();
                 item.m_id = value["id"].toString();

@@ -124,7 +124,7 @@ QString MusicCommentsItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicCommentsItem::createSearchedItems(const MusicPlaylistItem &comments)
+void MusicCommentsItem::createSearchedItems(const MusicResultsItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(QFontMetrics(m_userName->font()).width(m_userName->text()));
@@ -317,7 +317,7 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     initLabel(name, m_commentsThread->getPageTotal());
 }
 
-void MusicCommentsWidget::createSearchedItems(const MusicPlaylistItem &comments)
+void MusicCommentsWidget::createSearchedItems(const MusicResultsItem &comments)
 {
     MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
     item->createSearchedItems(comments);

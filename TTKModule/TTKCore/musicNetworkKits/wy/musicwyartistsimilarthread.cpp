@@ -75,7 +75,7 @@ void MusicWYArtistSimilarThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toULongLong());
                     info.m_coverUrl = value["picUrl"].toString();
                     info.m_name = value["name"].toString();

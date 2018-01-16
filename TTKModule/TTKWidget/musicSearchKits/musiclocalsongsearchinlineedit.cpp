@@ -50,7 +50,7 @@ void MusicLocalSongSearchInlineEdit::textChanged(const QString &text)
 void MusicLocalSongSearchInlineEdit::suggestDataChanged()
 {
     QStringList names;
-    foreach(const MusicPlaylistItem &item, m_suggestThread->getSearchedItems())
+    foreach(const MusicResultsItem &item, m_suggestThread->getSearchedItems())
     {
         QString value = item.m_name;
         if(!item.m_nickName.isEmpty())

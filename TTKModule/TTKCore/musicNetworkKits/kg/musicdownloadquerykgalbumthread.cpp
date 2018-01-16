@@ -96,7 +96,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
             if(value.contains("data"))
             {
                 bool albumFlag = false;
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 ////////////////////////////////////////////////////////////
                 value = value["data"].toMap();
                 QVariantList datas = value["info"].toList();
@@ -196,7 +196,7 @@ void MusicDownLoadQueryKGAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     info.m_name = value["albumname"].toString();

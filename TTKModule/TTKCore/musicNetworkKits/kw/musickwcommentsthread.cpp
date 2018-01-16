@@ -98,7 +98,7 @@ void MusicKWSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = value["like_num"].toString();
                     comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(),
@@ -204,7 +204,7 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = value["like_num"].toString();
                     comment.m_updateTime = QString::number(QDateTime::fromString(value["time"].toString(),

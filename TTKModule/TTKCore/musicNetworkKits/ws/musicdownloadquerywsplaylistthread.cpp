@@ -81,7 +81,7 @@ void MusicDownLoadQueryWSPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     Q_UNUSED(item);
 }
@@ -122,7 +122,7 @@ void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["url"].toString();
                     item.m_id = value["listId"].toString();
                     item.m_name = value["listName"].toString();
@@ -211,7 +211,7 @@ void MusicDownLoadQueryWSPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryWSPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
+void MusicDownLoadQueryWSPlaylistThread::getMoreDetails(MusicResultsItem *item)
 {
     if(!m_manager)
     {

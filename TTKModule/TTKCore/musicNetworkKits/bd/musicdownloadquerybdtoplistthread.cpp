@@ -79,7 +79,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
             if(value["error_code"].toInt() == 22000 && value.contains("song_list"))
             {
                 QVariantMap topInfo = value["billboard"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = topInfo["name"].toString();
                 info.m_coverUrl = topInfo["pic_s192"].toString();
                 info.m_playCount = "-";

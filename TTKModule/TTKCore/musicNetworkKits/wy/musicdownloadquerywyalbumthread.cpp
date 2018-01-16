@@ -97,7 +97,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
             {
                 bool albumFlag = false;
                 QVariantMap albumValue = value["album"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_coverUrl = albumValue["picUrl"].toString();
                 info.m_description = albumValue["name"].toString() + "<>" +
                                      albumValue["language"].toString() + "<>" +
@@ -202,7 +202,7 @@ void MusicDownLoadQueryWYAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toULongLong());
                     info.m_coverUrl = value["picUrl"].toString();
                     info.m_name = value["name"].toString();

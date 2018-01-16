@@ -192,7 +192,7 @@ void MusicDownLoadQueryWYMovieThread::pageDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = QString::number(value["id"].toLongLong());
                     info.m_coverUrl = value["imgurl"].toString();
                     info.m_name = value["name"].toString();

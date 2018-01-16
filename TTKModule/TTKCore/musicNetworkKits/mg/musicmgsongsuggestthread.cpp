@@ -77,7 +77,7 @@ void MusicMGSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["musicName"].toString();
                     item.m_nickName = value["artistName"].toString();
                     item.m_name.remove("<font color=\"red\">").remove("</font>");

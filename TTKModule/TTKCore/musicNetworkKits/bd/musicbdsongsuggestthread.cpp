@@ -76,7 +76,7 @@ void MusicBDSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["songname"].toString();
                     item.m_nickName = value["artistname"].toString();
                     m_items << item;

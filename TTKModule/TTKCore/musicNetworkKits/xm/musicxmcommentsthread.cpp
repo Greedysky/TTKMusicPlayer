@@ -103,7 +103,7 @@ void MusicXMSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();
@@ -217,7 +217,7 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_nickName = value["nickName"].toString();
                     comment.m_coverUrl = value["avatar"].toString();

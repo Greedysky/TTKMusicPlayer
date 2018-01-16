@@ -43,7 +43,7 @@ MusicTopListFoundWidget::MusicTopListFoundWidget(QWidget *parent)
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getToplistThread(this);
     m_foundTableWidget->setQueryInput(m_downloadThread);
 
-    connect(m_downloadThread, SIGNAL(createToplistInfoItem(MusicPlaylistItem)), SLOT(createToplistInfoItem(MusicPlaylistItem)));
+    connect(m_downloadThread, SIGNAL(createToplistInfoItem(MusicResultsItem)), SLOT(createToplistInfoItem(MusicResultsItem)));
 }
 
 MusicTopListFoundWidget::~MusicTopListFoundWidget()
@@ -198,7 +198,7 @@ void MusicTopListFoundWidget::createLabels()
     m_resizeWidgets << nameLabel << playCountLabel << updateTimeLabel << descriptionLabel;
 }
 
-void MusicTopListFoundWidget::createToplistInfoItem(const MusicPlaylistItem &item)
+void MusicTopListFoundWidget::createToplistInfoItem(const MusicResultsItem &item)
 {
     if(!m_resizeWidgets.isEmpty())
     {

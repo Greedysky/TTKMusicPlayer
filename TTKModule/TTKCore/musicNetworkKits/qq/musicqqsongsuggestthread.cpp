@@ -77,7 +77,7 @@ void MusicQQSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["name"].toString();
                     item.m_nickName = value["singer"].toString();
                     m_items << item;

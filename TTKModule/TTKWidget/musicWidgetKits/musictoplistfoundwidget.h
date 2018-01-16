@@ -91,7 +91,7 @@ public Q_SLOTS:
     /*!
      * Create the current toplist info item.
      */
-    void createToplistInfoItem(const MusicPlaylistItem &item);
+    void createToplistInfoItem(const MusicResultsItem &item);
     /*!
      * Current category changed.
      */
