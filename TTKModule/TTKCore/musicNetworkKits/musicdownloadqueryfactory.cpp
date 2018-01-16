@@ -38,6 +38,8 @@
 #include "musicdownloadquerywsartistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyartistlistthread.h"
+#include "musicdownloadqueryqqartistlistthread.h"
+#include "musicdownloadquerybdartistlistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywytoplistthread.h"
 #include "musicdownloadqueryqqtoplistthread.h"
@@ -219,9 +221,9 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistListThread
     switch( index )
     {
         case 0:  thread = new MusicDownLoadQueryWYArtistListThread(parent); break;
-        case 1:  thread = new MusicDownLoadQueryQQArtistThread(parent); break;
+        case 1:  thread = new MusicDownLoadQueryQQArtistListThread(parent); break;
         case 2:  thread = new MusicDownLoadQueryXMArtistThread(parent); break;
-        case 3:  thread = new MusicDownLoadQueryBDArtistThread(parent); break;
+        case 3:  thread = new MusicDownLoadQueryBDArtistListThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWArtistThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGArtistThread(parent); break;
         case 6:  thread = new MusicDownLoadQueryMGArtistThread(parent); break;

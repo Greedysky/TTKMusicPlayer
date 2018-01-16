@@ -27,4 +27,50 @@
             <value key="4003" value="其他组合/乐队"/>
         </tag>
     </WangYi>
+    <QQ>
+        <tag value="华语">
+            <value key="cn_man_" value="华语男歌手"/>
+            <value key="cn_woman_" value="华语女歌手"/>
+            <value key="cn_team_" value="华语组合歌手"/>
+        </tag>
+        <tag value="欧美">
+            <value key="eu_man_" value="欧美男歌手"/>
+            <value key="eu_woman_" value="欧美女歌手"/>
+            <value key="eu_team_" value="欧美组合"/>
+        </tag>
+        <tag value="日本">
+            <value key="j_man_" value="日本男歌手"/>
+            <value key="j_woman_" value="日本女歌手"/>
+            <value key="j_team_" value="日本组合"/>
+        </tag>
+        <tag value="韩国">
+            <value key="k_man_" value="韩国男歌手"/>
+            <value key="k_woman_" value="韩国女歌手"/>
+            <value key="k_team_" value="韩国组合"/>
+        </tag>
+        <tag value="其他">
+            <value key="c_orchestra_" value="乐团"/>
+            <value key="c_performer_" value="演奏家"/>
+            <value key="c_composer_" value="作曲家"/>
+            <value key="c_cantor_" value="指挥家"/>
+            <value key="other_other_" value="其他"/>
+        </tag>
+    </QQ>
+    <Baidu>
+        <tag value="华语">
+            <value key="area=1nsex=1" value="华语男歌手"/>
+            <value key="area=1nsex=2" value="华语女歌手"/>
+            <value key="area=1nsex=3" value="华语组合歌手"/>
+        </tag>
+        <tag value="欧美">
+            <value key="area=3nsex=1" value="欧美男歌手"/>
+            <value key="area=3nsex=2" value="欧美女歌手"/>
+            <value key="area=3nsex=3" value="欧美组合"/>
+        </tag>
+        <tag value="日韩">
+            <value key="area=4nsex=1" value="日韩男歌手"/>
+            <value key="area=4nsex=2" value="日韩女歌手"/>
+            <value key="area=4nsex=3" value="日韩组合"/>
+        </tag>
+    </Baidu>
 <TTKMusicPlayer>

@@ -70,7 +70,7 @@ void MusicDownLoadQueryWYArtistListThread::startToSearch(const QString &artistli
 
 void MusicDownLoadQueryWYArtistListThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply || !m_manager)
     {
         deleteAll();
         return;
