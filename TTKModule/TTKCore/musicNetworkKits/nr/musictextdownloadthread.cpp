@@ -59,7 +59,7 @@ void MusicTextDownLoadThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        ///Get all the data obtained by request
+       
         QByteArray bytes = m_reply->readAll();
         if(!bytes.isEmpty())
         {

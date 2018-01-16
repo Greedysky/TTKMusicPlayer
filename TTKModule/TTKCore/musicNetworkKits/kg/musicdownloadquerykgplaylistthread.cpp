@@ -158,7 +158,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QString buffer = QString(bytes);
         buffer = buffer.split("global = ").back().split("total:").back();
