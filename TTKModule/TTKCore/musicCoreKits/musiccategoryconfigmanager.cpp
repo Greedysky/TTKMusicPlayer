@@ -11,7 +11,7 @@ QString MusicPlaylistCategoryConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlaylistCategoryConfigManager::readCategoryConfig(MusicPlaylistCategorys &records, const QString &key)
+void MusicPlaylistCategoryConfigManager::readCategoryConfig(MusicResultsCategorys &records, const QString &key)
 {
     QDomNodeList nodes = m_ddom->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)
@@ -20,13 +20,13 @@ void MusicPlaylistCategoryConfigManager::readCategoryConfig(MusicPlaylistCategor
         QDomNodeList tagNodes = node.childNodes();
         for(int j=0; j<tagNodes.count(); ++j)
         {
-            MusicPlaylistCategory category;
+            MusicResultsCategory category;
             QDomNode tagNode = tagNodes.at(j);
             category.m_category = tagNode.toElement().attribute("value");
             QDomNodeList typeNodes = tagNode.childNodes();
             for(int k=0; k<typeNodes.count(); ++k)
             {
-                MusicPlaylistCategoryItem item;
+                MusicResultsCategoryItem item;
                 QDomNode typeNode = typeNodes.at(k);
                 item.m_name = typeNode.toElement().attribute("value");
                 item.m_id = typeNode.toElement().attribute("key");
@@ -50,7 +50,7 @@ QString MusicToplistCategoryConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicToplistCategoryConfigManager::readCategoryConfig(MusicPlaylistCategorys &records, const QString &key)
+void MusicToplistCategoryConfigManager::readCategoryConfig(MusicResultsCategorys &records, const QString &key)
 {
     QDomNodeList nodes = m_ddom->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)
@@ -59,13 +59,13 @@ void MusicToplistCategoryConfigManager::readCategoryConfig(MusicPlaylistCategory
         QDomNodeList tagNodes = node.childNodes();
         for(int j=0; j<tagNodes.count(); ++j)
         {
-            MusicPlaylistCategory category;
+            MusicResultsCategory category;
             QDomNode tagNode = tagNodes.at(j);
             category.m_category = tagNode.toElement().attribute("value");
             QDomNodeList typeNodes = tagNode.childNodes();
             for(int k=0; k<typeNodes.count(); ++k)
             {
-                MusicPlaylistCategoryItem item;
+                MusicResultsCategoryItem item;
                 QDomNode typeNode = typeNodes.at(k);
                 item.m_name = typeNode.toElement().attribute("value");
                 item.m_id = typeNode.toElement().attribute("key");

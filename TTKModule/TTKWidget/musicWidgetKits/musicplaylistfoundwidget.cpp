@@ -281,7 +281,7 @@ void MusicPlaylistFoundWidget::backToPlayListMenu()
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
 }
 
-void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)
+void MusicPlaylistFoundWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
     if(m_categoryButton)
     {

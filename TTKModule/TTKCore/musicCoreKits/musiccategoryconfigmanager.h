@@ -21,37 +21,37 @@
 
 #include "musicabstractxml.h"
 
-/*! @brief The class of the playlist category item.
+/*! @brief The class of the results category item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategoryItem
+typedef struct MUSIC_CORE_EXPORT MusicResultsCategoryItem
 {
     QString m_id;
     QString m_name;
 
-    MusicPlaylistCategoryItem()
+    MusicResultsCategoryItem()
     {
 
     }
 
-    MusicPlaylistCategoryItem(const QString &id, const QString &name)
+    MusicResultsCategoryItem(const QString &id, const QString &name)
     {
         m_id = id;
         m_name = name;
     }
-}MusicPlaylistCategoryItem;
-MUSIC_DECLARE_LISTS(MusicPlaylistCategoryItem)
+}MusicResultsCategoryItem;
+MUSIC_DECLARE_LISTS(MusicResultsCategoryItem)
 
 
-/*! @brief The class of the playlist category core.
+/*! @brief The class of the results category core.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_CORE_EXPORT MusicPlaylistCategory
+typedef struct MUSIC_CORE_EXPORT MusicResultsCategory
 {
     QString m_category;
-    MusicPlaylistCategoryItems m_items;
-}MusicPlaylistCategory;
-MUSIC_DECLARE_LISTS(MusicPlaylistCategory)
+    MusicResultsCategoryItems m_items;
+}MusicResultsCategory;
+MUSIC_DECLARE_LISTS(MusicResultsCategory)
 
 
 /*! @brief The class of the playlist category Config Manager.
@@ -77,7 +77,7 @@ public:
     /*!
      * Read user datas into xml file.
      */
-    void readCategoryConfig(MusicPlaylistCategorys &records, const QString &key);
+    void readCategoryConfig(MusicResultsCategorys &records, const QString &key);
 
 };
 
@@ -105,7 +105,7 @@ public:
     /*!
      * Read user datas into xml file.
      */
-    void readCategoryConfig(MusicPlaylistCategorys &records, const QString &key);
+    void readCategoryConfig(MusicResultsCategorys &records, const QString &key);
 
 };
 

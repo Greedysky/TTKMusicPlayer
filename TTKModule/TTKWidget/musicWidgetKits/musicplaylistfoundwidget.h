@@ -125,7 +125,7 @@ public Q_SLOTS:
     /*!
      * Current category changed.
      */
-    void categoryChanged(const MusicPlaylistCategoryItem &category);
+    void categoryChanged(const MusicResultsCategoryItem &category);
     /*!
      * Paging widget button has changed.
      */

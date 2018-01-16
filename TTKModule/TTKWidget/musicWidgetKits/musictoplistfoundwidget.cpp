@@ -227,7 +227,7 @@ void MusicTopListFoundWidget::createToplistInfoItem(const MusicResultsItem &item
     }
 }
 
-void MusicTopListFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)
+void MusicTopListFoundWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
     if(m_categoryButton)
     {
