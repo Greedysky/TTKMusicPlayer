@@ -105,8 +105,7 @@ void MusicKWSongCommentsThread::downLoadFinished()
                                                      "yyyy-MM-dd hh:mm:ss").toMSecsSinceEpoch());
                     comment.m_description = value["msg"].toString();
 
-                    QUrl name;
-                    comment.m_nickName = name.fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
+                    comment.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
                     emit createSearchedItems(comment);

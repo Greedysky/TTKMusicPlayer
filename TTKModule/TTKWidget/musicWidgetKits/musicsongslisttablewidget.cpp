@@ -17,7 +17,6 @@
 #include "musicotherdefine.h"
 
 #include <qmath.h>
-#include <QUrl>
 #include <QAction>
 #include <QTimer>
 #include <QPainter>

@@ -89,7 +89,7 @@ void MusicDownLoadQueryMGPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
     }
 
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
-    QUrl musicUrl =  MusicUtils::Algorithm::mdII(MG_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(MG_PLAYLIST_ATTR_URL, false).arg(item.m_id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -155,7 +155,7 @@ void MusicDownLoadQueryMGPlaylistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toString() == "000000" && value.contains("list"))
             {
-                m_pageTotal = value["pagecount"].toLongLong();
+                m_pageTotal = value["totalcount"].toLongLong();
                 QVariantList datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
