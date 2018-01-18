@@ -1,7 +1,7 @@
 #include "musicaudiorecorderwidget.h"
 #include "ui_musicaudiorecorderwidget.h"
 #include "musictime.h"
-#include "musiccoreutils.h"
+#include "musiccodecutils.h"
 #include "musicwidgetutils.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
@@ -187,7 +187,7 @@ void MusicAudioRecorderWidget::onRecordSave()
     QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Wav(*.wav)");
     if(!filename.isEmpty())
     {
-        m_recordCore->addWavHeader(MusicUtils::Core::toLocal8Bit(filename));
+        m_recordCore->addWavHeader(MusicUtils::Codec::toLocal8Bit(filename));
     }
 }
 

@@ -8,7 +8,7 @@
 #include "musictoastlabel.h"
 #include "musicclickedlabel.h"
 #include "musiclrcanalysis.h"
-#include "musiccoreutils.h"
+#include "musicurlutils.h"
 #include "musicstringutils.h"
 #include "musicnumberdefine.h"
 #include "musicinlinelrcuiobject.h"
@@ -320,7 +320,7 @@ void MusicLrcContainerForInline::showArtBackgroundUploadedWidget()
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
 {
-    MusicUtils::Core::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
+    MusicUtils::Url::openUrl(QFileInfo(m_lrcAnalysis->getCurrentFileName()).absoluteFilePath());
 }
 
 void MusicLrcContainerForInline::lrcCopyClipboard() const

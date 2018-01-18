@@ -2,7 +2,7 @@
 #include "musictime.h"
 #include "musicformats.h"
 #include "musicversion.h"
-#include "musiccoreutils.h"
+#include "musicqmmputils.h"
 #include "musicwidgetutils.h"
 
 #include <QStringList>
@@ -239,7 +239,7 @@ QString MusicSongTag::findPluginPath() const
     {
         if(formats.value(key).contains(suffix))
         {
-            return MusicUtils::Core::pluginPath("Input", key);
+            return MusicUtils::QMMP::pluginPath("Input", key);
         }
     }
 

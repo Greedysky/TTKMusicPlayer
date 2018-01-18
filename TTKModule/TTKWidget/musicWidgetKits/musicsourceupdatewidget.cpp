@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musiccoreutils.h"
+#include "musicurlutils.h"
 #include "musictime.h"
 #include "musicsettingmanager.h"
 #include "musicapplicationobject.h"
@@ -159,7 +160,7 @@ void MusicSourceUpdateWidget::upgradeButtonClicked()
 
 void MusicSourceUpdateWidget::upgradeFailedClicked()
 {
-    MusicUtils::Core::openUrl(MusicUtils::Algorithm::mdII(CSDN_URL, false), false);
+    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(CSDN_URL, false), false);
 }
 
 void MusicSourceUpdateWidget::downLoadFinished(const QVariant &data)
@@ -204,7 +205,7 @@ void MusicSourceUpdateWidget::downloadProgressFinished()
     message.setText(tr("Download Finish, Install Or Not"));
     if(message.exec())
     {
-        MusicUtils::Core::openUrl("open", UPDATE_DIR_FULL+ localDwonload);
+        MusicUtils::Url::openUrl("open", UPDATE_DIR_FULL+ localDwonload);
         MStatic_cast(QWidget*, parent())->close();
     }
 }

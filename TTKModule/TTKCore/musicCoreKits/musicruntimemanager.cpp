@@ -2,7 +2,9 @@
 #include "musicsysconfigmanager.h"
 #include "musicsettingmanager.h"
 #include "musicnetworkthread.h"
+#include "musicqmmputils.h"
 #include "musiccoreutils.h"
+#include "musiccodecutils.h"
 
 #include <QFont>
 #include <QApplication>
@@ -22,9 +24,9 @@ void MusicRunTimeManager::run() const
     M_LOGGER_INFO("MusicApplication Begin");
 
 #ifndef MUSIC_GREATER_NEW
-    MusicUtils::Core::setLocalCodec();
+    MusicUtils::Codec::setLocalCodec();
 #endif
-    MusicUtils::Core::midTransferFile();
+    MusicUtils::QMMP::midTransferFile();
 
     ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX

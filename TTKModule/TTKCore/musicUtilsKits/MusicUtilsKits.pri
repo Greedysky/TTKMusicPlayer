@@ -24,7 +24,10 @@ HEADERS  += \
     $$PWD/musicwidgetutils.h \
     $$PWD/musicnumberutils.h \
     $$PWD/musicstringutils.h \
-    $$PWD/musicalgorithmutils.h
+    $$PWD/musicalgorithmutils.h \
+    $$PWD/musicurlutils.h \
+    $$PWD/musicqmmputils.h \
+    $$PWD/musiccodecutils.h
 
 }
 
@@ -34,6 +37,9 @@ SOURCES += \
     $$PWD/musicwidgetutils.cpp \
     $$PWD/musicnumberutils.cpp \
     $$PWD/musicstringutils.cpp \
-    $$PWD/musicalgorithmutils.cpp
+    $$PWD/musicalgorithmutils.cpp \
+    $$PWD/musicurlutils.cpp \
+    $$PWD/musicqmmputils.cpp \
+    $$PWD/musiccodecutils.cpp
 
 }

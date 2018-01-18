@@ -22,6 +22,7 @@
 #include <QMimeData>
 
 #define DRAG_FORMAT     "Swap Item"
+#define RENAME_WIDTH    220
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
@@ -104,15 +105,16 @@ bool MusicSongsToolBoxTopWidget::isItemExpand() const
 
 void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
 {
-    m_labelText->setText(text);
+    m_labelText->setText(MusicUtils::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
+    m_labelText->setToolTip(text);
 }
 
 QString MusicSongsToolBoxTopWidget::getTitle(bool suffix)
 {
-    QString text = m_labelText->text().trimmed();
+    QString text = m_labelText->toolTip().trimmed();
     if(!suffix)
     {
-        int index = text.lastIndexOf("[");
+        const int index = text.lastIndexOf("[");
         m_suffixString = text.right(text.count() - index);
         text = text.left( index );
     }
@@ -135,15 +137,14 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
     {
         m_renameLine = new MusicSongsToolItemRenamedWidget(getTitle(), this);
         connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
-        m_renameLine->setGeometry(m_labelIcon->width(), 3, 250, height() - 6);
+        m_renameLine->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
     m_renameLine->show();
 }
 
 void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
 {
-    m_labelText->setText(name + m_suffixString);
-    m_labelText->setToolTip(name + m_suffixString);
+    setTitle(name + m_suffixString);
     emit changRowItemName(m_index, name);
 
     m_renameLine->deleteLater();

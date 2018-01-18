@@ -14,7 +14,7 @@
 #include "musictoolsetsuiobject.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
-#include "musiccoreutils.h"
+#include "musiccodecutils.h"
 #include "musicotherdefine.h"
 #include "musictime.h"
 
@@ -179,7 +179,7 @@ void MusicSoundKMicroWidget::playFinished()
         QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Wav(*.wav)");
         if(!filename.isEmpty())
         {
-            m_recordCore->addWavHeader(MusicUtils::Core::toLocal8Bit(filename));
+            m_recordCore->addWavHeader(MusicUtils::Codec::toLocal8Bit(filename));
         }
     }
 }

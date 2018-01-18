@@ -5,7 +5,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicobject.h"
-#include "musiccoreutils.h"
+#include "musicurlutils.h"
 #include "musicstringutils.h"
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
@@ -276,7 +276,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     url.replace("#hash=", "%23hash%3D");
     url.replace('#', "%23");
 
-    MusicUtils::Core::openUrl(url, false);
+    MusicUtils::Url::openUrl(url, false);
     QTimer::singleShot(MT_S2MS, this, SLOT(close()));
 }
 

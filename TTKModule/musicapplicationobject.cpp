@@ -15,6 +15,7 @@
 #include "musicwidgetutils.h"
 #include "musicgiflabelwidget.h"
 #include "musicotherdefine.h"
+#include "musicurlutils.h"
 #include "musiccoreutils.h"
 #include "musicalgorithmutils.h"
 
@@ -245,7 +246,7 @@ void MusicApplicationObject::musicAboutUs()
 
 void MusicApplicationObject::musicBugReportView()
 {
-    MusicUtils::Core::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
+    MusicUtils::Url::openUrl(MusicUtils::Algorithm::mdII(REPORT_URL, false), false);
 }
 
 void MusicApplicationObject::musicVersionUpdate()

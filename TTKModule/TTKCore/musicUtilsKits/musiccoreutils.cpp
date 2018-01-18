@@ -2,18 +2,7 @@
 #include "musicsettingmanager.h"
 #include "musicversion.h"
 
-#include <QUrl>
-#include <QTextCodec>
-#include <QSettings>
-#include <QProcess>
 #include <QDirIterator>
-#include <QDesktopServices>
-#ifdef Q_OS_WIN
-#include <Windows.h>
-#include <shellapi.h>
-#endif
-///qmmp incldue
-#include "qmmp.h"
 
 QString MusicUtils::Core::lrcPrefix()
 {
@@ -178,112 +167,6 @@ bool MusicUtils::Core::removeRecursively(const QString &dir)
     }
 
     return success;
-}
-
-bool MusicUtils::Core::openUrl(const QString &exe, const QString &path)
-{
-#ifdef Q_OS_WIN
-    HINSTANCE value = ShellExecuteA(0, exe.toLocal8Bit(), path.toLocal8Bit(), nullptr, nullptr, SW_SHOWNORMAL);
-    return (int)value >= 32;
-#else
-    Q_UNUSED(exe);
-    return QProcess::startDetached(path, QStringList());
-#endif
-}
-
-bool MusicUtils::Core::openUrl(const QString &path, bool local)
-{
-#ifdef Q_OS_WIN
-    if(path.isEmpty())
-    {
-        return false;
-    }
-
-    if(local)
-    {
-        QString p = path;
-        p.replace('/', "\\");
-        p = "/select," + p;
-        HINSTANCE value = ShellExecuteA(0, "open", "explorer.exe", toLocal8Bit(p), nullptr, SW_SHOWNORMAL);
-        return (int)value >= 32;
-    }
-#else
-    Q_UNUSED(local);
-#endif
-    return QDesktopServices::openUrl(QUrl(path, QUrl::TolerantMode));
-}
-
-QString MusicUtils::Core::toUnicode(const char *chars, const char *format)
-{
-    QTextCodec *codec = QTextCodec::codecForName(format);
-    return codec->toUnicode(chars);
-}
-
-QString MusicUtils::Core::toUnicode(const QByteArray &chars, const char *format)
-{
-    QTextCodec *codec = QTextCodec::codecForName(format);
-    return codec->toUnicode(chars);
-}
-
-QByteArray MusicUtils::Core::fromUnicode(const QString &chars, const char *format)
-{
-    QTextCodec *codec = QTextCodec::codecForName(format);
-    return codec->fromUnicode(chars);
-}
-
-void MusicUtils::Core::setLocalCodec(const char *format)
-{
-    QTextCodec *codec = QTextCodec::codecForName(format);
-    QTextCodec::setCodecForLocale(codec);
-#ifndef MUSIC_GREATER_NEW
-    QTextCodec::setCodecForCStrings(codec);
-    QTextCodec::setCodecForTr(codec);
-#endif
-}
-
-const char* MusicUtils::Core::toLocal8Bit(const QString &str)
-{
-    return str.toLocal8Bit().constData();
-}
-
-const char* MusicUtils::Core::toUtf8(const QString &str)
-{
-    return str.toUtf8().constData();
-}
-
-QString MusicUtils::Core::pluginPath(const QString &module, const QString &format)
-{
-    QString path = MusicObject::getAppDir();
-#ifdef Q_OS_WIN
-    path = path + QString("plugins/%1/%2.dll").arg(module).arg(format);
-#elif defined Q_OS_UNIX
-    path = path + QString("qmmp/%1/lib%2.so").arg(module).arg(format);
-#endif
-    return path;
-}
-
-void MusicUtils::Core::midTransferFile()
-{
-    QString conf_path = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
-    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("Midi");
-    settings.setValue("conf_path", conf_path);
-    settings.endGroup();
-
-    QFile file(conf_path);
-    if(file.open(QFile::ReadOnly))
-    {
-        QByteArray data = file.readAll();
-        file.close();
-
-        if(file.open(QFile::WriteOnly))
-        {
-            data.remove(0, data.indexOf("\r\n"));
-            data.insert(0, QString("dir %1freepats/").arg(MAKE_CONFIG_DIR_FULL));
-            file.write(data);
-        }
-    }
-    file.close();
 }
 
 bool MusicUtils::Core::musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
