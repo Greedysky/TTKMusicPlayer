@@ -128,7 +128,9 @@ void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &i
         ///////////////////////////////////////////////////////////////////////
         QWidget *containNumberWidget = new QWidget(containTopWidget);
         QHBoxLayout *containNumberLayout  = new QHBoxLayout(containNumberWidget);
+#ifdef Q_OS_WIN
         containNumberLayout->setSpacing(15);
+#endif
         QSignalMapper *group = new QSignalMapper(this);
         connect(group, SIGNAL(mapped(int)), SLOT(numberButtonClicked(int)));
         for(int i=-1; i<27; ++i)
