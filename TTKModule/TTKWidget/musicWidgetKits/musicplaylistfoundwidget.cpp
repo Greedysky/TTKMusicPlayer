@@ -39,6 +39,10 @@ MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
     m_iconLabel = new QLabel(this);
     m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
 
+    m_maskLabel = new QLabel(this);
+    m_maskLabel->setPixmap(QPixmap(":/image/lb_album_cover"));
+    m_maskLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
+
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
     m_nameLabel->setText(" - ");
@@ -53,6 +57,7 @@ MusicPlaylistFoundItemWidget::~MusicPlaylistFoundItemWidget()
     delete m_topListenButton;
     delete m_playButton;
     delete m_iconLabel;
+    delete m_maskLabel;
     delete m_nameLabel;
     delete m_creatorLabel;
 }

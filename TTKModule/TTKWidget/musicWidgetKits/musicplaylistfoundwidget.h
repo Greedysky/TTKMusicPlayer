@@ -70,7 +70,7 @@ public Q_SLOTS:
 protected:
     MusicResultsItem m_itemData;
     QPushButton *m_topListenButton, *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
+    QLabel *m_iconLabel, *m_maskLabel, *m_nameLabel, *m_creatorLabel;
 
 };
 
