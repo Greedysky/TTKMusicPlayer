@@ -179,8 +179,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
 
-    menu.addAction(tr("playLater"));
-    menu.addAction(tr("addToPlayList"));
+    menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
+    menu.addAction(tr("addToPlayList"), this, SLOT(addToPlayedList()));
     QMenu musicSortFiles(tr("sort"), &menu);
     musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
     musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
@@ -240,6 +240,16 @@ void MusicSongsToolBoxTopWidget::showShareListDialog()
 void MusicSongsToolBoxTopWidget::showEnhanceLosslessDialog()
 {
     MusicSongListEnhanceLosslessWidget(this).exec();
+}
+
+void MusicSongsToolBoxTopWidget::addToPlayLater()
+{
+    emit addToPlayLater(m_index);
+}
+
+void MusicSongsToolBoxTopWidget::addToPlayedList()
+{
+    emit addToPlayedList(m_index);
 }
 
 bool MusicSongsToolBoxTopWidget::isItemEnable() const
@@ -419,6 +429,8 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
     connect(m_topWidget, SIGNAL(musicListSongSortBy(int)), SIGNAL(musicListSongSortBy(int)));
     connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
+    connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
+    connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));
 
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);

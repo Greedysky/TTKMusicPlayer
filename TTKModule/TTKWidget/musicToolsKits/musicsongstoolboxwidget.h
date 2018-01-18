@@ -114,6 +114,14 @@ Q_SIGNALS:
      * Swap the item index by drag adn drop.
      */
     void swapDragItemIndex(int before, int after);
+    /*!
+     * Add music to played list and play later.
+     */
+    void addToPlayLater(int index);
+    /*!
+     * Add music to played list.
+     */
+    void addToPlayedList(int index);
 
 public Q_SLOTS:
     /*!
@@ -160,6 +168,14 @@ public Q_SLOTS:
      * Show enhance lossless dialog.
      */
     void showEnhanceLosslessDialog();
+    /*!
+     * Add music to played list and play later.
+     */
+    void addToPlayLater();
+    /*!
+     * Add music to played list.
+     */
+    void addToPlayedList();
 
 protected:
     /*!
@@ -314,6 +330,14 @@ Q_SIGNALS:
      * Swap the item index by drag adn drop.
      */
     void swapDragItemIndex(int before, int after);
+    /*!
+     * Add music to played list and play later.
+     */
+    void addToPlayLater(int index);
+    /*!
+     * Add music to played list.
+     */
+    void addToPlayedList(int index);
 
 protected:
     /*!

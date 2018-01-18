@@ -152,6 +152,14 @@ public Q_SLOTS:
      */
     void swapDragItemIndex(int before, int after);
     /*!
+     * Add music to played list and play later.
+     */
+    void addToPlayLater(int index);
+    /*!
+     * Add music to played list.
+     */
+    void addToPlayedList(int index);
+    /*!
      * Import music songs by file.
      */
     void musicImportSongsOnlyFile();
