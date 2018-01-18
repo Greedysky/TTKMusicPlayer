@@ -28,7 +28,7 @@ HEADERS  += \
     $$PWD/musicfillitemtablewidget.h \
     $$PWD/musicquerytablewidget.h \
     $$PWD/musicqueryfoundtablewidget.h \
-    $$PWD/musicslowmovingtablewidget.h \
+    $$PWD/musicsmoothmovingtablewidget.h \
     $$PWD/musicitemdelegate.h \
     $$PWD/musiccolordialog.h \
     $$PWD/musicmarqueewidget.h \
@@ -71,7 +71,7 @@ SOURCES += \
     $$PWD/musicfillitemtablewidget.cpp \
     $$PWD/musicquerytablewidget.cpp \
     $$PWD/musicqueryfoundtablewidget.cpp \
-    $$PWD/musicslowmovingtablewidget.cpp \
+    $$PWD/musicsmoothmovingtablewidget.cpp \
     $$PWD/musicitemdelegate.cpp \
     $$PWD/musiccolordialog.cpp \
     $$PWD/musicmarqueewidget.cpp \

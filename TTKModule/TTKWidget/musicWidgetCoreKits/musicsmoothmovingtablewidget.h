@@ -1,5 +1,5 @@
-#ifndef MUSICSLOWMOVINGTABLEWIDGET_H
-#define MUSICSLOWMOVINGTABLEWIDGET_H
+#ifndef MUSICSMOOTHMOVINGTABLEWIDGET_H
+#define MUSICSMOOTHMOVINGTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -23,19 +23,19 @@
 
 class QPropertyAnimation;
 
-/*! @brief The class of the slider slow moving table widget.
+/*! @brief The class of the slider smooth moving table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSlowMovingTableWidget : public MusicAbstractTableWidget
+class MUSIC_WIDGET_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSlowMovingTableWidget(QWidget *parent = 0);
+    explicit MusicSmoothMovingTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicSlowMovingTableWidget();
+    virtual ~MusicSmoothMovingTableWidget();
 
     /*!
      * Get class object name.
@@ -71,4 +71,4 @@ protected:
 
 };
 
-#endif // MUSICSLOWMOVINGTABLEWIDGET_H
+#endif // MUSICSMOOTHMOVINGTABLEWIDGET_H

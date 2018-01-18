@@ -10,7 +10,7 @@
 #include "musicleftareawidget.h"
 
 MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *parent)
-    : MusicSlowMovingTableWidget(parent)
+    : MusicSmoothMovingTableWidget(parent)
 {
     m_playRowIndex = 0;
     m_parentToolIndex = -1;
@@ -42,7 +42,7 @@ void MusicSongsListAbstractTableWidget::updateSongsFileName(const MusicSongs &so
 
 void MusicSongsListAbstractTableWidget::selectRow(int index)
 {
-    MusicSlowMovingTableWidget::selectRow(index);
+    MusicSmoothMovingTableWidget::selectRow(index);
 }
 
 int MusicSongsListAbstractTableWidget::allRowsHeight() const
