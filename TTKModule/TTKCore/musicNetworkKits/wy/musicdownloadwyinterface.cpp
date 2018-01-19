@@ -2,6 +2,7 @@
 #include "musicsemaphoreloop.h"
 #include "musicnumberutils.h"
 #include "musicalgorithmutils.h"
+#include "musicurlutils.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -24,7 +25,7 @@ QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request,
 {
     QByteArray parameter = QAesWrap::encrypt(type.toUtf8(), "0CoJUm6Qyw8W8jud", "0102030405060708");
     parameter = QAesWrap::encrypt(parameter, "a44e542eaac91dce", "0102030405060708");
-    MusicUtils::Algorithm::urlEncode(parameter);
+    MusicUtils::Url::urlEncode(parameter);
 
     request->setUrl(QUrl(query));
     makeTokenQueryQequest(request);

@@ -81,7 +81,7 @@ void MusicDownLoadQueryMGPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryMGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryMGPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -89,7 +89,7 @@ void MusicDownLoadQueryMGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
     }
 
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
-    QUrl musicUrl =  MusicUtils::Algorithm::mdII(MG_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(MG_PLAYLIST_ATTR_URL, false).arg(item.m_id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -139,8 +139,8 @@ void MusicDownLoadQueryMGPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -155,7 +155,7 @@ void MusicDownLoadQueryMGPlaylistThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value["code"].toString() == "000000" && value.contains("list"))
             {
-                m_pageTotal = value["pagecount"].toLongLong();
+                m_pageTotal = value["totalcount"].toLongLong();
                 QVariantList datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -167,7 +167,7 @@ void MusicDownLoadQueryMGPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["img"].toString();
                     item.m_id = QString::number(value["id"].toULongLong());
                     item.m_name = value["title"].toString();
@@ -193,8 +193,8 @@ void MusicDownLoadQueryMGPlaylistThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
 
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)

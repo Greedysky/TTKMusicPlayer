@@ -83,7 +83,7 @@ void MusicDownLoadQueryKWPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -140,13 +140,13 @@ void MusicDownLoadQueryKWPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -185,8 +185,8 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
@@ -266,7 +266,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
             QVariantMap value = data.toMap();
             if(value["result"].toString() == "ok")
             {
-                MusicPlaylistItem item;
+                MusicResultsItem item;
                 item.m_tags = m_tags;
                 item.m_coverUrl = value["pic"].toString();
                 item.m_id = value["id"].toString();

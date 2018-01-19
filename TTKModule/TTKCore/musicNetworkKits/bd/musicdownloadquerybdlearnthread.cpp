@@ -2,6 +2,7 @@
 #include "musicdownloadbdinterface.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
+#include "musicurlutils.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -53,13 +54,13 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -122,7 +123,7 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
     QString key = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_PA_URL, false).arg(info->m_songId)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
-    MusicUtils::Algorithm::urlEncode(eKey);
+    MusicUtils::Url::urlEncode(eKey);
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SG_LEAEN_INFO_URL, false).arg(key).arg(eKey);
 
     QNetworkRequest request;

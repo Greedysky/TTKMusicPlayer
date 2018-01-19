@@ -3,6 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #include "musicalgorithmutils.h"
+#include "musicurlutils.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -17,7 +18,7 @@ void MusicDownLoadBDInterface::makeTokenQueryUrl(QNetworkRequest *request, const
     QString key = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_PA_URL, false).arg(id)
                   .arg(MusicTime::timeStamp());
     QString eKey = QString(QAesWrap::encrypt(key.toUtf8(), "4CC20A0C44FEB6FD", "2012061402992850"));
-    MusicUtils::Algorithm::urlEncode(eKey);
+    MusicUtils::Url::urlEncode(eKey);
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_ATTR_URL, false).arg(key).arg(eKey);
 
     request->setUrl(musicUrl);

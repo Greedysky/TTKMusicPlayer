@@ -1,6 +1,6 @@
 #include "musicplaylistfoundwidget.h"
 #include "musicdownloadsourcethread.h"
-#include "musicdownloadquerywyplaylistthread.h"
+#include "musicdownloadqueryplaylistthread.h"
 #include "musicplaylistfoundinfowidget.h"
 #include "musicdownloadqueryfactory.h"
 #include "musictinyuiobject.h"
@@ -11,16 +11,16 @@
 #include <qmath.h>
 #include <QGridLayout>
 
-#define MIN_LABEL_SIZE  150
-#define MAX_LABEL_SIZE  200
+#define WIDTH_LABEL_SIZE   150
+#define HEIGHT_LABEL_SIZE  200
 
 MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
     : QLabel(parent)
 {
-    setFixedSize(MIN_LABEL_SIZE, MAX_LABEL_SIZE);
+    setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     m_topListenButton = new QPushButton(this);
-    m_topListenButton->setGeometry(0, 0, MIN_LABEL_SIZE, 20);
+    m_topListenButton->setGeometry(0, 0, WIDTH_LABEL_SIZE, 20);
     m_topListenButton->setIcon(QIcon(":/tiny/btn_listen_hover"));
     m_topListenButton->setText(" - ");
     m_topListenButton->setStyleSheet(MusicUIObject::MBackgroundStyle04 + MusicUIObject::MColorStyle01);
@@ -37,14 +37,18 @@ MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
 #endif
 
     m_iconLabel = new QLabel(this);
-    m_iconLabel->setGeometry(0, 0, MIN_LABEL_SIZE, MIN_LABEL_SIZE);
+    m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
+
+    m_maskLabel = new QLabel(this);
+    m_maskLabel->setPixmap(QPixmap(":/image/lb_album_cover"));
+    m_maskLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
 
     m_nameLabel = new QLabel(this);
-    m_nameLabel->setGeometry(0, 150, MIN_LABEL_SIZE, 25);
+    m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
     m_nameLabel->setText(" - ");
 
     m_creatorLabel = new QLabel(this);
-    m_creatorLabel->setGeometry(0, 175, MIN_LABEL_SIZE, 25);
+    m_creatorLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);
     m_creatorLabel->setText("by anonymous");
 }
 
@@ -53,6 +57,7 @@ MusicPlaylistFoundItemWidget::~MusicPlaylistFoundItemWidget()
     delete m_topListenButton;
     delete m_playButton;
     delete m_iconLabel;
+    delete m_maskLabel;
     delete m_nameLabel;
     delete m_creatorLabel;
 }
@@ -62,15 +67,15 @@ QString MusicPlaylistFoundItemWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundItemWidget::setMusicPlaylistItem(const MusicPlaylistItem &item)
+void MusicPlaylistFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
-                                                        Qt::ElideRight, MIN_LABEL_SIZE));
+                                                        Qt::ElideRight, WIDTH_LABEL_SIZE));
     m_creatorLabel->setToolTip("by " + item.m_nickName);
     m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(),
-                                                           Qt::ElideRight, MIN_LABEL_SIZE));
+                                                           Qt::ElideRight, WIDTH_LABEL_SIZE));
     bool ok = false;
     int count = item.m_playCount.toInt(&ok);
     if(ok)
@@ -131,7 +136,7 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
-    connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicPlaylistItem)), SLOT(createPlaylistItems(MusicPlaylistItem)));
+    connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicResultsItem)), SLOT(createPlaylistItems(MusicResultsItem)));
 }
 
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
@@ -157,7 +162,7 @@ void MusicPlaylistFoundWidget::setSongName(const QString &name)
 void MusicPlaylistFoundWidget::setSongNameById(const QString &id)
 {
     setSongName(id);
-    MusicPlaylistItem item;
+    MusicResultsItem item;
     item.m_id = id;
     currentPlayListClicked(item);
 }
@@ -169,25 +174,22 @@ void MusicPlaylistFoundWidget::resizeWindow()
         m_infoWidget->resizeWindow();
     }
 
-    if(!m_resizeWidgets.isEmpty())
+    if(!m_resizeWidgets.isEmpty() && m_gridLayout)
     {
-        if(m_gridLayout)
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
-            for(int i=0; i<m_resizeWidgets.count(); ++i)
-            {
-                m_gridLayout->removeWidget(m_resizeWidgets[i]);
-            }
+            m_gridLayout->removeWidget(m_resizeWidgets[i]);
+        }
 
-            int lineNumber = width()/MAX_LABEL_SIZE;
-            for(int i=0; i<m_resizeWidgets.count(); ++i)
-            {
-                m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
-            }
+        int lineNumber = width()/HEIGHT_LABEL_SIZE;
+        for(int i=0; i<m_resizeWidgets.count(); ++i)
+        {
+            m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
         }
     }
 }
 
-void MusicPlaylistFoundWidget::createPlaylistItems(const MusicPlaylistItem &item)
+void MusicPlaylistFoundWidget::createPlaylistItems(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {
@@ -252,26 +254,26 @@ void MusicPlaylistFoundWidget::createPlaylistItems(const MusicPlaylistItem &item
     }
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
-    connect(label, SIGNAL(currentPlayListClicked(MusicPlaylistItem)), SLOT(currentPlayListClicked(MusicPlaylistItem)));
-    label->setMusicPlaylistItem(item);
+    connect(label, SIGNAL(currentPlayListClicked(MusicResultsItem)), SLOT(currentPlayListClicked(MusicResultsItem)));
+    label->setMusicResultsItem(item);
 
-    int lineNumber = width()/MAX_LABEL_SIZE;
+    int lineNumber = width()/HEIGHT_LABEL_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
 
-void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicPlaylistItem &item)
+void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicResultsItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
     MusicDownLoadQueryPlaylistThread *pt = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
-    MusicPlaylistItem it(item);
+    MusicResultsItem it(item);
     if(it.isEmpty())
     {
         pt->getPlaylistInfo(it);
     }
     m_infoWidget->setQueryInput(pt);
-    m_infoWidget->setMusicPlaylistItem(it, this);
+    m_infoWidget->setMusicResultsItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }
@@ -281,7 +283,7 @@ void MusicPlaylistFoundWidget::backToPlayListMenu()
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
 }
 
-void MusicPlaylistFoundWidget::categoryChanged(const MusicPlaylistCategoryItem &category)
+void MusicPlaylistFoundWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
     if(m_categoryButton)
     {

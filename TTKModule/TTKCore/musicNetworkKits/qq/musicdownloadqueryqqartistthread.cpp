@@ -4,7 +4,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#define D_URL   "a2tQNGw2RlJyeC9sZjc5RXpsM2hZRXZUeWd0UVJycE1oTzI5MkRQbVRQemN3WUhtOHJiV3FzcS95ZVU9"
+#define REFER_URL   "a2tQNGw2RlJyeC9sZjc5RXpsM2hZRXZUeWd0UVJycE1oTzI5MkRQbVRQemN3WUhtOHJiV3FzcS95ZVU9"
 
 MusicQQArtistInfoConfigManager::MusicQQArtistInfoConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -17,7 +17,7 @@ QString MusicQQArtistInfoConfigManager::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicPlaylistItem *item)
+void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item)
 {
     QDomNodeList resultlist = m_ddom->elementsByTagName("info");
     for(int i=0; i<resultlist.count(); ++i)
@@ -119,13 +119,13 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -183,7 +183,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                     if(!artistFlag)
                     {
                         artistFlag = true;
-                        MusicPlaylistItem info;
+                        MusicResultsItem info;
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         getDownLoadIntro(&info);
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -211,7 +211,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
+void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicResultsItem *item)
 {
     if(!m_manager)
     {
@@ -223,7 +223,7 @@ void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicPlaylistItem *item)
 
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(D_URL, false).toUtf8());
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

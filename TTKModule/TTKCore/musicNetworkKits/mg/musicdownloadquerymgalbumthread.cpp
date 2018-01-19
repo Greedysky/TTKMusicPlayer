@@ -77,13 +77,13 @@ void MusicDownLoadQueryMGAlbumThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -94,7 +94,7 @@ void MusicDownLoadQueryMGAlbumThread::downLoadFinished()
             if(value["code"].toString() == "000000" && value.contains("songs"))
             {
                 bool albumFlag = false;
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_coverUrl = value["img"].toString();
                 info.m_description = value["shareTitle"].toString() + "<>" +
                                      value["language"].toString() + "<>" +
@@ -191,7 +191,7 @@ void MusicDownLoadQueryMGAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["img"].toString();
                     info.m_name = value["title"].toString();

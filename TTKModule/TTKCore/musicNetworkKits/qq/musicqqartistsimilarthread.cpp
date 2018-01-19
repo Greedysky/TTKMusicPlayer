@@ -53,7 +53,7 @@ void MusicQQArtistSimilarThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
         bytes.replace("SingerSimCallback(", "");
         bytes.chop(1);
 
@@ -77,7 +77,7 @@ void MusicQQArtistSimilarThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["mid"].toString();
                     info.m_coverUrl = value["pic"].toString();
                     info.m_name = value["name"].toString();

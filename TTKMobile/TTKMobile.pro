@@ -88,11 +88,6 @@ INCLUDEPATH += \
 HEADERS += \
     musicapplication.h \
     musicmobileglobaldefine.h \
-    ../TTKModule/TTKCore/musicUtilsKits/musiccoreutils.h \
-    ../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.h \
-    ../TTKModule/TTKCore/musicUtilsKits/musicstringutils.h \
-    ../TTKModule/TTKCore/musicUtilsKits/musicalgorithmutils.h \
-    ../TTKModule/TTKCore/musicUtilsKits/musicwidgetutils.h \
     ../TTKModule/TTKCore/musicCoreKits/musicsong.h \
     ../TTKModule/TTKCore/musicCoreKits/musictime.h \
     ../TTKModule/TTKCore/musicCoreKits/musicformats.h \
@@ -112,11 +107,6 @@ HEADERS += \
 SOURCES += \
     musicmobilemain.cpp \
     musicapplication.cpp \
-    ../TTKModule/TTKCore/musicUtilsKits/musiccoreutils.cpp \
-    ../TTKModule/TTKCore/musicUtilsKits/musicnumberutils.cpp \
-    ../TTKModule/TTKCore/musicUtilsKits/musicstringutils.cpp \
-    ../TTKModule/TTKCore/musicUtilsKits/musicalgorithmutils.cpp \
-    ../TTKModule/TTKCore/musicUtilsKits/musicwidgetutils.cpp \
     ../TTKModule/TTKCore/musicCoreKits/musicsong.cpp \
     ../TTKModule/TTKCore/musicCoreKits/musictime.cpp \
     ../TTKModule/TTKCore/musicCoreKits/musicformats.cpp \
@@ -134,6 +124,7 @@ SOURCES += \
 
 CONFIG += MUSIC_BUILD_LIB
 
+include(../TTKModule/TTKCore/musicUtilsKits/MusicUtilsKits.pri)
 include(../TTKModule/TTKCore/musicNetworkKits/MusicNetworkKits.pri)
 include(../TTKThirdParty/TTKExtras/qjson/QJson.pri)
 include(../TTKThirdParty/TTKExtras/qalg/QAlg.pri)

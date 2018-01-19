@@ -49,13 +49,13 @@ public:
     /*!
      * Set music playlist item.
      */
-    void setMusicPlaylistItem(const MusicPlaylistItem &item);
+    void setMusicResultsItem(const MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!
      * Current play list clicked.
      */
-    void currentPlayListClicked(const MusicPlaylistItem &item);
+    void currentPlayListClicked(const MusicResultsItem &item);
 
 public Q_SLOTS:
     /*!
@@ -68,9 +68,9 @@ public Q_SLOTS:
     void currentPlayListClicked();
 
 protected:
-    MusicPlaylistItem m_itemData;
+    MusicResultsItem m_itemData;
     QPushButton *m_topListenButton, *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
+    QLabel *m_iconLabel, *m_maskLabel, *m_nameLabel, *m_creatorLabel;
 
 };
 
@@ -113,11 +113,11 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void createPlaylistItems(const MusicPlaylistItem &item);
+    void createPlaylistItems(const MusicResultsItem &item);
     /*!
      * Current play list clicked.
      */
-    void currentPlayListClicked(const MusicPlaylistItem &item);
+    void currentPlayListClicked(const MusicResultsItem &item);
     /*!
      * Set current index to playlist menu page.
      */
@@ -125,7 +125,7 @@ public Q_SLOTS:
     /*!
      * Current category changed.
      */
-    void categoryChanged(const MusicPlaylistCategoryItem &category);
+    void categoryChanged(const MusicResultsCategoryItem &category);
     /*!
      * Paging widget button has changed.
      */

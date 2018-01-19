@@ -81,7 +81,7 @@ void MusicDownLoadQueryWSPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryWSPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     Q_UNUSED(item);
 }
@@ -95,13 +95,13 @@ void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -122,7 +122,7 @@ void MusicDownLoadQueryWSPlaylistThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["url"].toString();
                     item.m_id = value["listId"].toString();
                     item.m_name = value["listName"].toString();
@@ -149,8 +149,8 @@ void MusicDownLoadQueryWSPlaylistThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && reply->error() == QNetworkReply::NoError)
@@ -211,7 +211,7 @@ void MusicDownLoadQueryWSPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryWSPlaylistThread::getMoreDetails(MusicPlaylistItem *item)
+void MusicDownLoadQueryWSPlaylistThread::getMoreDetails(MusicResultsItem *item)
 {
     if(!m_manager)
     {

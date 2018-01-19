@@ -39,34 +39,6 @@ QByteArray MusicUtils::Algorithm::hmacSha1(const QByteArray &data, const QByteAr
     return hashed;
 }
 
-void MusicUtils::Algorithm::urlEncode(QString &data)
-{
-    data.replace('+', "%2B");
-    data.replace('/', "%2F");
-    data.replace('=', "%3D");
-}
-
-void MusicUtils::Algorithm::urlDecode(QString &data)
-{
-    data.replace("%2B", "+");
-    data.replace("%2F", "/");
-    data.replace("%3D", "=");
-}
-
-void MusicUtils::Algorithm::urlEncode(QByteArray &data)
-{
-    data.replace('+', "%2B");
-    data.replace('/', "%2F");
-    data.replace('=', "%3D");
-}
-
-void MusicUtils::Algorithm::urlDecode(QByteArray &data)
-{
-    data.replace("%2B", "+");
-    data.replace("%2F", "/");
-    data.replace("%3D", "=");
-}
-
 QString MusicUtils::Algorithm::mdII(const QString &data, bool encode)
 {
     MusicCryptographicHash hash;

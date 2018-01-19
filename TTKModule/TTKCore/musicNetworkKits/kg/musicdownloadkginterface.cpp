@@ -143,7 +143,7 @@ void MusicDownLoadKGInterface::readFromMusicSongLrcAndPic(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicPlaylistItem *info, const QString &album)
+void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info, const QString &album)
 {
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_INFO_URL, false).arg(album);
 

@@ -54,7 +54,7 @@ void MusicKWSongSuggestThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -75,7 +75,7 @@ void MusicKWSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["SONGNAME"].toString();
                     item.m_nickName = value["ARTIST"].toString();
                     m_items << item;

@@ -55,7 +55,7 @@ public:
     /*!
      * Get playlist info.
      */
-    virtual void getPlaylistInfo(MusicPlaylistItem &item) override;
+    virtual void getPlaylistInfo(MusicResultsItem &item) override;
 
 public Q_SLOTS:
     /*!
@@ -71,7 +71,7 @@ protected:
     /*!
      * Get more download details data.
      */
-    void getMoreDetails(MusicPlaylistItem *item);
+    void getMoreDetails(MusicResultsItem *item);
 
 };
 

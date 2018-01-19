@@ -62,7 +62,7 @@ void MusicMGArtistSimilarThread::downLoadFinished()
         {
             if(m_interrupt) return;
 
-            MusicPlaylistItem info;
+            MusicResultsItem info;
             info.m_id = regx.cap(1);
             info.m_updateTime.clear();
             getArtistInfo(&info);
@@ -79,7 +79,7 @@ void MusicMGArtistSimilarThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicMGArtistSimilarThread::getArtistInfo(MusicPlaylistItem *info)
+void MusicMGArtistSimilarThread::getArtistInfo(MusicResultsItem *info)
 {
     if(info->m_id.isEmpty() || !m_manager)
     {

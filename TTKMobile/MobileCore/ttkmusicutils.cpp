@@ -4,6 +4,7 @@
 #include "musicsemaphoreloop.h"
 #include "musicnetworkthread.h"
 
+#include <QMessageBox>
 #include <QFontMetrics>
 
 TTKMusicUtils::TTKMusicUtils(QObject *parent)

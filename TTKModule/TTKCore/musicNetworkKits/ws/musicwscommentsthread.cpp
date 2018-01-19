@@ -79,7 +79,7 @@ void MusicWSSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -104,7 +104,7 @@ void MusicWSSongCommentsThread::downLoadFinished()
                     }
 
                     value = data.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["img"].toString();
@@ -187,7 +187,7 @@ void MusicWSPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -212,7 +212,7 @@ void MusicWSPlaylistCommentsThread::downLoadFinished()
                     }
 
                     value = data.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     QVariantMap user = value["user"].toMap();
                     comment.m_nickName = user["nickname"].toString();
                     comment.m_coverUrl = user["img"].toString();

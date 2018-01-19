@@ -82,7 +82,7 @@ void MusicDownLoadQueryKGPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -152,13 +152,13 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QString buffer = QString(bytes);
         buffer = buffer.split("global = ").back().split("total:").back();
@@ -184,7 +184,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
                 if(m_interrupt) return;
 
                 QVariantMap value = var.toMap();
-                MusicPlaylistItem item;
+                MusicResultsItem item;
                 item.m_coverUrl = value["img"].toString();
                 item.m_id = QString::number(value["specialid"].toULongLong());
                 item.m_name = value["specialname"].toString();
@@ -209,8 +209,8 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
@@ -249,7 +249,7 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
                     musicInfo.m_songId = value["hash"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
 
-                    MusicPlaylistItem albumInfo;
+                    MusicResultsItem albumInfo;
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
                     musicInfo.m_albumName = albumInfo.m_nickName;

@@ -54,7 +54,7 @@ void MusicWSSongSuggestThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
         bytes.replace('(', "");
         bytes.replace(')', "");
 
@@ -77,7 +77,7 @@ void MusicWSSongSuggestThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_name = value["songName"].toString();
                     item.m_nickName = value["singer"].toString();
                     item.m_name.remove("<em class=\"keyword\">").remove("</em>");

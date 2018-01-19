@@ -76,7 +76,7 @@ void MusicMGSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -98,7 +98,7 @@ void MusicMGSongCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     comment.m_nickName = value["uName"].toString();
                     comment.m_coverUrl = value["uAvatar"].toString();
 
@@ -179,7 +179,7 @@ void MusicMGPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -201,7 +201,7 @@ void MusicMGPlaylistCommentsThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = comm.toMap();
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     comment.m_nickName = value["uName"].toString();
                     comment.m_coverUrl = value["uAvatar"].toString();
 

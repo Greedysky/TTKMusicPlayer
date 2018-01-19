@@ -4,7 +4,7 @@
 #include "musicsettingmanager.h"
 #include "musicleftareawidget.h"
 #include "musicapplication.h"
-#include "musiccoreutils.h"
+#include "musicurlutils.h"
 
 MusicDownloadResetWidget::MusicDownloadResetWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -81,7 +81,7 @@ void MusicDownloadResetWidget::openFileLocation()
     QString path = MusicApplication::instance()->musicDownloadContains(exist);
     if(exist)
     {
-        MusicUtils::Core::openUrl( path, true );
+        MusicUtils::Url::openUrl( path, true );
     }
     close();
 }

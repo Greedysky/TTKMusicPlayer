@@ -42,13 +42,13 @@ public:
     /*!
      * Set current category.
      */
-    void setCategory(const MusicPlaylistCategory &category);
+    void setCategory(const MusicResultsCategory &category);
 
 Q_SIGNALS:
     /*!
      * Current category changed.
      */
-    void categoryChanged(const MusicPlaylistCategoryItem &category);
+    void categoryChanged(const MusicResultsCategoryItem &category);
 
 public Q_SLOTS:
     /*!
@@ -57,7 +57,7 @@ public Q_SLOTS:
     void buttonClicked(int index);
 
 protected:
-    MusicPlaylistCategory m_category;
+    MusicResultsCategory m_category;
 
 };
 

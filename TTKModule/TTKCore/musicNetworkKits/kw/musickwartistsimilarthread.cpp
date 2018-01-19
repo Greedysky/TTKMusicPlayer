@@ -62,7 +62,7 @@ void MusicKWArtistSimilarThread::downLoadFinished()
         {
             if(m_interrupt) return;
 
-            MusicPlaylistItem info;
+            MusicResultsItem info;
             info.m_id = getArtistIdName(regx.cap(2));
             info.m_coverUrl = regx.cap(1);
             info.m_name = regx.cap(2);

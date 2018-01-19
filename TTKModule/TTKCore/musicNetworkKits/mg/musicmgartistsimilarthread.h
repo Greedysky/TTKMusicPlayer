@@ -53,7 +53,7 @@ protected:
     /*!
      * Get artist info by id.
      */
-    void getArtistInfo(MusicPlaylistItem *info);
+    void getArtistInfo(MusicResultsItem *info);
 
 };
 

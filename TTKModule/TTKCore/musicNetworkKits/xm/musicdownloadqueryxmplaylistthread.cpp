@@ -83,7 +83,7 @@ void MusicDownLoadQueryXMPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -157,13 +157,13 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -188,7 +188,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["collectLogo"].toString();
                     item.m_id = QString::number(value["listId"].toULongLong());
                     item.m_name = value["collectName"].toString();
@@ -224,8 +224,8 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
 
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)

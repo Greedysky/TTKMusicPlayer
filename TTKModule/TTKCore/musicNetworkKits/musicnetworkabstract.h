@@ -55,12 +55,11 @@ public:
     virtual void deleteAll();
 
     /*!
-     * Release the network object.
+     * Set network block state.
      */
-
     inline void setNetworkAbort(bool a) { m_interrupt = a; }
     /*!
-     * Release the network object.
+     * Get network block state.
      */
     inline bool networkAbort() { return m_interrupt; }
 

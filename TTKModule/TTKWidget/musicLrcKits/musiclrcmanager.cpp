@@ -123,11 +123,6 @@ MusicLrcColor MusicLrcColor::mapIndexToColor(MusicLrcColor::LrcColorType index)
     return MusicLrcColor(fg, bg, index);
 }
 
-bool MusicLrcColor::isCustum() const
-{
-    return m_index == MusicLrcColor::Null;
-}
-
 
 
 MusicLrcManager::MusicLrcManager(QWidget *parent)

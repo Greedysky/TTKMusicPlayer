@@ -22,6 +22,7 @@
 #include <QMimeData>
 
 #define DRAG_FORMAT     "Swap Item"
+#define RENAME_WIDTH    220
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
     : QWidget(parent)
@@ -104,15 +105,16 @@ bool MusicSongsToolBoxTopWidget::isItemExpand() const
 
 void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
 {
-    m_labelText->setText(text);
+    m_labelText->setText(MusicUtils::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
+    m_labelText->setToolTip(text);
 }
 
 QString MusicSongsToolBoxTopWidget::getTitle(bool suffix)
 {
-    QString text = m_labelText->text().trimmed();
+    QString text = m_labelText->toolTip().trimmed();
     if(!suffix)
     {
-        int index = text.lastIndexOf("[");
+        const int index = text.lastIndexOf("[");
         m_suffixString = text.right(text.count() - index);
         text = text.left( index );
     }
@@ -135,15 +137,14 @@ void MusicSongsToolBoxTopWidget::changRowItemName()
     {
         m_renameLine = new MusicSongsToolItemRenamedWidget(getTitle(), this);
         connect(m_renameLine, SIGNAL(renameFinished(QString)), SLOT(setChangItemName(QString)));
-        m_renameLine->setGeometry(m_labelIcon->width(), 3, 250, height() - 6);
+        m_renameLine->setGeometry(m_labelIcon->width(), 3, RENAME_WIDTH, height() - 6);
     }
     m_renameLine->show();
 }
 
 void MusicSongsToolBoxTopWidget::setChangItemName(const QString &name)
 {
-    m_labelText->setText(name + m_suffixString);
-    m_labelText->setToolTip(name + m_suffixString);
+    setTitle(name + m_suffixString);
     emit changRowItemName(m_index, name);
 
     m_renameLine->deleteLater();
@@ -178,8 +179,8 @@ void MusicSongsToolBoxTopWidget::showMenu()
     musicAddNewFiles.addAction(tr("openOnlyFiles"), this, SLOT(addNewFiles()));
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
 
-    menu.addAction(tr("playLater"));
-    menu.addAction(tr("addToPlayList"));
+    menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
+    menu.addAction(tr("addToPlayList"), this, SLOT(addToPlayedList()));
     QMenu musicSortFiles(tr("sort"), &menu);
     musicSortFiles.addAction(tr("sortByFileName"))->setData(0);
     musicSortFiles.addAction(tr("sortBySinger"))->setData(1);
@@ -239,6 +240,16 @@ void MusicSongsToolBoxTopWidget::showShareListDialog()
 void MusicSongsToolBoxTopWidget::showEnhanceLosslessDialog()
 {
     MusicSongListEnhanceLosslessWidget(this).exec();
+}
+
+void MusicSongsToolBoxTopWidget::addToPlayLater()
+{
+    emit addToPlayLater(m_index);
+}
+
+void MusicSongsToolBoxTopWidget::addToPlayedList()
+{
+    emit addToPlayedList(m_index);
 }
 
 bool MusicSongsToolBoxTopWidget::isItemEnable() const
@@ -418,6 +429,8 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
     connect(m_topWidget, SIGNAL(musicListSongSortBy(int)), SIGNAL(musicListSongSortBy(int)));
     connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
+    connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
+    connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));
 
     m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);

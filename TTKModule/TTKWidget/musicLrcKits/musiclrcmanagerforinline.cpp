@@ -11,7 +11,6 @@ MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
     m_geometry.setY(35);
     m_gradientFontSize = 0;
     m_gradientTransparent = 100;
-    m_centerOnLrc = false;
 }
 
 QString MusicLrcManagerForInline::getClassName()
@@ -41,44 +40,25 @@ void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
     ttplus = 2.55*m_gradientTransparent;
     painter.setPen(QColor(0, 0, 0, ttplus));
 
-    if((ttplus = (m_lrcPerWidth - m_geometry.x()) / 2.0) < 0)
-    {
-        painter.drawText(m_intervalCount + 1, 1, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
-    }
-    else
-    {
-        painter.drawText(ttplus + 1, 1, m_geometry.x(), m_geometry.y(), m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
-    }
+    ttplus = (m_lrcPerWidth - m_geometry.x()) / 2.0;
+    painter.drawText((ttplus < 0 ? m_intervalCount : ttplus) + 1, 1,
+                     m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
     //Then draw a gradient in the above
     painter.setPen(QPen(m_linearGradient, 0));
-    if(ttplus < 0)
-    {
-        painter.drawText(m_intervalCount, 0, m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
-    }
-    else
-    {
-        painter.drawText(ttplus, 0, m_geometry.x(), m_geometry.y(), m_centerOnLrc ? Qt::AlignHCenter : Qt::AlignLeft, text());
-    }
+    painter.drawText(ttplus < 0 ? m_intervalCount : ttplus, 0,
+                     m_geometry.x(), m_geometry.y(), Qt::AlignLeft, text());
 
-    int offsetValue = 0;
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
-    {
-        offsetValue = m_lrcMaskWidth;
-    }
-    else
+    int offsetValue = m_lrcMaskWidth;
+    if(!M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool())
     {
         offsetValue = (m_lrcMaskWidth != 0) ? m_geometry.x() : m_lrcMaskWidth;
     }
+
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
-    if(ttplus < 0)
-    {
-        painter.drawText(m_intervalCount, 0, offsetValue, m_geometry.y(), Qt::AlignLeft, text());
-    }
-    else
-    {
-        painter.drawText(ttplus, 0, offsetValue, m_geometry.y(), Qt::AlignLeft, text());
-    }
+    painter.drawText(ttplus < 0 ? m_intervalCount : ttplus, 0,
+                     offsetValue, m_geometry.y(), Qt::AlignLeft, text());
+
     painter.end();
 }

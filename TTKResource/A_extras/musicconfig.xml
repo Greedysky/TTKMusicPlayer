@@ -20,8 +20,10 @@
         <otherBgLossless value="0"/>
         <otherUpdate value="0"/>
         <otherSearch value="0"/>
-        <otherAlbum value="0"/>
+        <otherAlbumCover value="0"/>
         <otherInfo value="0"/>
+        <otherAlbumCoverW value="0"/>
+        <otherInfoW value="0"/>
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
         <otherLrcKTV value="0"/>

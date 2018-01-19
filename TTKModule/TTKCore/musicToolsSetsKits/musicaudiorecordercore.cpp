@@ -1,6 +1,6 @@
 #include "musicaudiorecordercore.h"
 #include "musicmessagebox.h"
-#include "musiccoreutils.h"
+#include "musiccodecutils.h"
 
 #define OPEN_FILE_ERROR     -1
 #define SAVE_FILE_ERROR     -2
@@ -93,7 +93,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
 
     FILE *fp_s = nullptr;
     FILE *fp_d = nullptr;
-    fp_s = fopen(MusicUtils::Core::toLocal8Bit(m_mpOutputFile->fileName()), "rb");
+    fp_s = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb");
     if (fp_s == nullptr)
     {
         return OPEN_FILE_ERROR;

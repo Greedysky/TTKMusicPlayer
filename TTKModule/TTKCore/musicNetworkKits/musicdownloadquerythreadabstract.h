@@ -44,10 +44,10 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSearchedItem
 }MusicSearchedItem;
 MUSIC_DECLARE_LISTS(MusicSearchedItem)
 
-/*! @brief The class of the playlist data item.
+/*! @brief The class of the search song results data item.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
+typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
 {
     QString m_id;
     QString m_name;
@@ -58,7 +58,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
     QString m_updateTime;
     QString m_tags;
 
-    MusicPlaylistItem()
+    MusicResultsItem()
     {
         m_id = "-";
         m_name = "-";
@@ -74,8 +74,8 @@ typedef struct MUSIC_NETWORK_EXPORT MusicPlaylistItem
     {
         return m_name == "-" && m_nickName == "-" && m_coverUrl == "-" && m_description == "-";
     }
-}MusicPlaylistItem;
-MUSIC_DECLARE_LISTS(MusicPlaylistItem)
+}MusicResultsItem;
+MUSIC_DECLARE_LISTS(MusicResultsItem)
 
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>

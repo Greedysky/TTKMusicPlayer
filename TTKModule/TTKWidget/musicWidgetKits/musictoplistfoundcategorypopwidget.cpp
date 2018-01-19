@@ -21,7 +21,7 @@ QString MusicToplistFoundCategoryItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicToplistFoundCategoryItem::setCategory(const MusicPlaylistCategory &category)
+void MusicToplistFoundCategoryItem::setCategory(const MusicResultsCategory &category)
 {
     m_category = category;
 
@@ -78,9 +78,9 @@ QString MusicToplistFoundCategoryPopWidget::getClassName()
 
 void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
-    MusicPlaylistCategorys categorys;
-    MusicToplistCategoryConfigManager manager;
-    manager.readCategoryConfig();
+    MusicResultsCategorys categorys;
+    MusicCategoryConfigManager manager;
+    manager.readCategoryConfig(MusicCategoryConfigManager::Toplist);
     manager.readCategoryConfig(categorys, server);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
@@ -97,10 +97,10 @@ void MusicToplistFoundCategoryPopWidget::setCategory(const QString &server, QObj
     scrollArea->setWidget(containWidget);
     layout->addWidget(scrollArea);
 
-    foreach(const MusicPlaylistCategory &category, categorys)
+    foreach(const MusicResultsCategory &category, categorys)
     {
         MusicToplistFoundCategoryItem *item = new MusicToplistFoundCategoryItem(this);
-        connect(item, SIGNAL(categoryChanged(MusicPlaylistCategoryItem)), obj, SLOT(categoryChanged(MusicPlaylistCategoryItem)));
+        connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));
         item->setCategory(category);
         containLayout->addWidget(item);
     }

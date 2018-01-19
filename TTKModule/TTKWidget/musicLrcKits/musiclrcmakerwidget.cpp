@@ -759,7 +759,6 @@ void MusicLrcMakerWidget::updateCurrentLrc(qint64 time)
 void MusicLrcMakerWidget::setItemStyleSheet(int index, int size, int transparent)
 {
     MusicLrcManagerForInline *w = m_musicLrcContainer[index];
-    w->setCenterOnLrc(false);
     w->setFontSize(size);
 
     int value = 100 - transparent;

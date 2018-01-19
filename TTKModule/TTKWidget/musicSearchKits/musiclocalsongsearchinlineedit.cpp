@@ -12,7 +12,7 @@ MusicLocalSongSearchInlineEdit::MusicLocalSongSearchInlineEdit(QWidget *parent)
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
 
     m_discoverThread = M_DOWNLOAD_QUERY_PTR->getDiscoverListThread(this);
-    connect(m_discoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(searchTopListInfoFinished(QString)));
+    connect(m_discoverThread, SIGNAL(downLoadDataChanged(QString)), SLOT(searchToplistInfoFinished(QString)));
     m_discoverThread->startToSearch();
 }
 
@@ -50,7 +50,7 @@ void MusicLocalSongSearchInlineEdit::textChanged(const QString &text)
 void MusicLocalSongSearchInlineEdit::suggestDataChanged()
 {
     QStringList names;
-    foreach(const MusicPlaylistItem &item, m_suggestThread->getSearchedItems())
+    foreach(const MusicResultsItem &item, m_suggestThread->getSearchedItems())
     {
         QString value = item.m_name;
         if(!item.m_nickName.isEmpty())
@@ -71,7 +71,7 @@ void MusicLocalSongSearchInlineEdit::suggestDataChanged()
     }
 }
 
-void MusicLocalSongSearchInlineEdit::searchTopListInfoFinished(const QString &data)
+void MusicLocalSongSearchInlineEdit::searchToplistInfoFinished(const QString &data)
 {
     setPlaceholderText(data);
 }

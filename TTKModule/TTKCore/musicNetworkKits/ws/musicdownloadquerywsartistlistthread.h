@@ -1,5 +1,5 @@
-#ifndef MUSICSLOWMOVINGTABLEWIDGET_H
-#define MUSICSLOWMOVINGTABLEWIDGET_H
+#ifndef MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H
+#define MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,23 +19,20 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstracttablewidget.h"
+#include "musicdownloadwsinterface.h"
+#include "musicdownloadqueryartistlistthread.h"
 
-class QPropertyAnimation;
-
-/*! @brief The class of the slider slow moving table widget.
+/*! @brief The class to wusing query artist list download data from net.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSlowMovingTableWidget : public MusicAbstractTableWidget
+class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSArtistListThread : public MusicDownLoadQueryArtistListThread
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSlowMovingTableWidget(QWidget *parent = 0);
-
-    virtual ~MusicSlowMovingTableWidget();
+    explicit MusicDownLoadQueryWSArtistListThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
@@ -43,32 +40,20 @@ public:
     static QString getClassName();
 
     /*!
-     * Set current moved scroll bar.
+     * Start to search data from name and type bt paging.
      */
-    void setMovedScrollBar(QScrollBar *bar);
+    virtual void startToPage(int offset) override;
+    /*!
+     * Start to Search data.
+     */
+    virtual void startToSearch(const QString &artistlist) override;
 
 public Q_SLOTS:
     /*!
-     * Time out to start animation.
+     * Download data from net finished.
      */
-    void timeToAnimation();
-    /*!
-     * Current scroll bar value changed.
-     */
-    void valueChanged(int value);
-
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void wheelEvent(QWheelEvent *event) override;
-
-    bool m_isFirstInit;
-    int m_previousValue, m_deltaValue;
-    QScrollBar *m_scrollBar;
-    QTimer *m_animationTimer;
-    QPropertyAnimation *m_slowAnimation;
+    virtual void downLoadFinished() override;
 
 };
 
-#endif // MUSICSLOWMOVINGTABLEWIDGET_H
+#endif // MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H

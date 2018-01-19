@@ -62,13 +62,13 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -79,7 +79,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
             if(value["error_code"].toInt() == 22000 && value.contains("song_list"))
             {
                 QVariantMap topInfo = value["billboard"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = topInfo["name"].toString();
                 info.m_coverUrl = topInfo["pic_s192"].toString();
                 info.m_playCount = "-";

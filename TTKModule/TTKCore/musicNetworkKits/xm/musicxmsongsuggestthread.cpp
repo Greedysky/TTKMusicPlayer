@@ -54,7 +54,7 @@ void MusicXMSongSuggestThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -72,7 +72,7 @@ void MusicXMSongSuggestThread::downLoadFinished()
                 }
 
                 QVariantMap value = var.toMap();
-                MusicPlaylistItem item;
+                MusicResultsItem item;
                 item.m_name = value["song_name"].toString();
                 item.m_nickName = value["artist_name"].toString();
                 m_items << item;

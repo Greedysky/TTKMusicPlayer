@@ -153,8 +153,8 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -264,7 +264,7 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
             {
                 if(m_interrupt) return;
 
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_id = partial.cap(2).remove("/mv/");
                 info.m_coverUrl = partial.cap(1).remove("@1e_1c_100Q_160w_90h").replace("https://", "http://");
                 info.m_name = partial.cap(3);
@@ -289,8 +289,8 @@ void MusicDownLoadQueryXMMovieThread::singleDownLoadFinished()
 {
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     MusicObject::MusicSongInformation musicInfo;

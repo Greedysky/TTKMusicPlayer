@@ -51,10 +51,6 @@ public:
      * Set adjust transparent by value.
      */
     inline void setTransparent(int tran) { m_gradientTransparent = tran;}
-    /*!
-     * Set center current lrc on or not.
-     */
-    inline void setCenterOnLrc(bool status) { m_centerOnLrc = status;}
 
 protected:
     /*!
@@ -64,7 +60,6 @@ protected:
 
     int m_gradientFontSize;
     int m_gradientTransparent;
-    bool m_centerOnLrc;
 
 };
 

@@ -66,7 +66,7 @@ public Q_SLOTS:
 protected:
     QObject *m_supperClass;
     QComboBox *m_qulity;
-    QString m_smallPicUrl;
+    QString m_smallPicUrl, m_album;
     QLabel *m_songName, *m_singer, *m_information;
 
 };

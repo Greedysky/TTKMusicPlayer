@@ -1,7 +1,7 @@
 #include "musiclrcfromkrc.h"
 #include "musicnumberdefine.h"
 #include "musicobject.h"
-#include "musiccoreutils.h"
+#include "musiccodecutils.h"
 
 #ifdef Q_CC_GNU
 #   pragma GCC diagnostic ignored "-Wwrite-strings"
@@ -39,7 +39,7 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     struct stat st;
     size_t dstsize;
 
-    fp = fopen(MusicUtils::Core::toLocal8Bit(input), "rb");
+    fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb");
     if(!fp)
     {
         M_LOGGER_ERROR("open file error !");

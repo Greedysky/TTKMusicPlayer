@@ -529,6 +529,37 @@ void MusicSongsSummariziedWidget::swapDragItemIndex(int before, int after)
     resetToolIndex();
 }
 
+void MusicSongsSummariziedWidget::addToPlayLater(int index)
+{
+    int id = foundMappingIndex(index);
+    if(id == -1)
+    {
+        return;
+    }
+
+    MusicSongItem *item = &m_songItems[id];
+    MusicSongs *songs = &item->m_songs;
+    for(int i=songs->count()-1; i>=0; --i)
+    {
+        MusicPlayedListPopWidget::instance()->insert(item->m_itemIndex, (*songs)[i]);
+    }
+}
+
+void MusicSongsSummariziedWidget::addToPlayedList(int index)
+{
+    int id = foundMappingIndex(index);
+    if(id == -1)
+    {
+        return;
+    }
+
+    MusicSongItem *item = &m_songItems[id];
+    foreach(const MusicSong &song, item->m_songs)
+    {
+        MusicPlayedListPopWidget::instance()->append(item->m_itemIndex, song);
+    }
+}
+
 void MusicSongsSummariziedWidget::musicImportSongsOnlyFile()
 {
     m_currentImportIndex = m_currentIndex;
@@ -1004,6 +1035,8 @@ void MusicSongsSummariziedWidget::connectMusicToolBoxWidgetItem(QObject *object)
     connect(object, SIGNAL(addNewDir(int)), SLOT(addNewDir(int)));
     connect(object, SIGNAL(musicListSongSortBy(int)), SLOT(musicListSongSortBy(int)));
     connect(object, SIGNAL(swapDragItemIndex(int,int)), SLOT(swapDragItemIndex(int,int)));
+    connect(object, SIGNAL(addToPlayLater(int)), SLOT(addToPlayLater(int)));
+    connect(object, SIGNAL(addToPlayedList(int)), SLOT(addToPlayedList(int)));
 }
 
 void MusicSongsSummariziedWidget::resizeWindow()

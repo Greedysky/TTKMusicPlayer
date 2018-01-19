@@ -1,7 +1,7 @@
 #include "musicspectrumwidget.h"
 #include "ui_musicspectrumwidget.h"
 #include "musicuiobject.h"
-#include "musiccoreutils.h"
+#include "musicqmmputils.h"
 #include "musicformats.h"
 
 #include <QFileDialog>
@@ -294,7 +294,7 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
         if(findSpectrumWidget(name) == -1)
         {
             QPluginLoader loader;
-            loader.setFileName(MusicUtils::Core::pluginPath("Spek", name));
+            loader.setFileName(MusicUtils::QMMP::pluginPath("Spek", name));
             QObject *obj = loader.instance();
             SpekFactory *decoderfac = nullptr;
             if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)))

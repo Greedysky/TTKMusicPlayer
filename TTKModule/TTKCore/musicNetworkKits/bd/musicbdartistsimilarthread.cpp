@@ -61,7 +61,7 @@ void MusicBDArtistSimilarThread::downLoadFinished()
         {
             if(m_interrupt) return;
 
-            MusicPlaylistItem info;
+            MusicResultsItem info;
             info.m_id = regx.cap(1);
             info.m_coverUrl = regx.cap(2).remove("\t").remove("\n").remove("@s_0,w_120");
             info.m_name = regx.cap(3);

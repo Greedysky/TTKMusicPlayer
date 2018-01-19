@@ -21,12 +21,12 @@
 
 #include <QMenu>
 #include "musicsong.h"
-#include "musicslowmovingtablewidget.h"
+#include "musicsmoothmovingtablewidget.h"
 
 /*! @brief The class of the songs list abstract table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongsListAbstractTableWidget : public MusicSlowMovingTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongsListAbstractTableWidget : public MusicSmoothMovingTableWidget
 {
     Q_OBJECT
 public:

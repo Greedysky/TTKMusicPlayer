@@ -1,11 +1,11 @@
-#include "musicslowmovingtablewidget.h"
+#include "musicsmoothmovingtablewidget.h"
 
 #include <QTimer>
 #include <QScrollBar>
 #include <QWheelEvent>
 #include <QPropertyAnimation>
 
-MusicSlowMovingTableWidget::MusicSlowMovingTableWidget(QWidget *parent)
+MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
     m_deltaValue = 0;
@@ -21,19 +21,19 @@ MusicSlowMovingTableWidget::MusicSlowMovingTableWidget(QWidget *parent)
     connect(m_animationTimer, SIGNAL(timeout()), SLOT(timeToAnimation()));
 }
 
-MusicSlowMovingTableWidget::~MusicSlowMovingTableWidget()
+MusicSmoothMovingTableWidget::~MusicSmoothMovingTableWidget()
 {
     m_animationTimer->stop();
     delete m_animationTimer;
     delete m_slowAnimation;
 }
 
-QString MusicSlowMovingTableWidget::getClassName()
+QString MusicSmoothMovingTableWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicSlowMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
+void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
 {
     m_scrollBar = bar;
     delete m_slowAnimation;
@@ -42,7 +42,7 @@ void MusicSlowMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
     connect(m_scrollBar, SIGNAL(valueChanged(int)), SLOT(valueChanged(int)));
 }
 
-void MusicSlowMovingTableWidget::timeToAnimation()
+void MusicSmoothMovingTableWidget::timeToAnimation()
 {
     m_isFirstInit = true;
     m_animationTimer->stop();
@@ -55,12 +55,12 @@ void MusicSlowMovingTableWidget::timeToAnimation()
     m_slowAnimation->start();
 }
 
-void MusicSlowMovingTableWidget::valueChanged(int value)
+void MusicSmoothMovingTableWidget::valueChanged(int value)
 {
     m_previousValue = value;
 }
 
-void MusicSlowMovingTableWidget::wheelEvent(QWheelEvent *event)
+void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 {
     MusicAbstractTableWidget::wheelEvent(event);
 

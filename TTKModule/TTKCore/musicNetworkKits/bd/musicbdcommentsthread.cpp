@@ -1,6 +1,7 @@
 #include "musicbdcommentsthread.h"
 #include "musicdownloadquerybdthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicurlutils.h"
 
 #///QJson import
 #include "qjson/parser.h"
@@ -54,7 +55,7 @@ void MusicBDSongCommentsThread::startToPage(int offset)
     QString data = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
     QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
     QString sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
-    MusicUtils::Algorithm::urlEncode(eKey);
+    MusicUtils::Url::urlEncode(eKey);
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
 
     QNetworkRequest request;
@@ -84,7 +85,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -107,7 +108,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount = QString::number(value["zan_num"].toLongLong());
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
@@ -198,7 +199,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -221,7 +222,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem comment;
+                    MusicResultsItem comment;
                     value = comm.toMap();
                     comment.m_playCount= QString::number(value["zan_num"].toLongLong());
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);

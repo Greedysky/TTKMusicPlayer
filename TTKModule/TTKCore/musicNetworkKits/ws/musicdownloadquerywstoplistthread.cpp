@@ -62,13 +62,13 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -79,7 +79,7 @@ void MusicDownLoadQueryWSToplistThread::downLoadFinished()
             if(value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["photo"].toString();
                 info.m_playCount = "-";

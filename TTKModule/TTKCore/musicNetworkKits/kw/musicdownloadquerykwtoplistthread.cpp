@@ -62,8 +62,8 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
@@ -80,7 +80,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
             if(value["status"].toInt() == 200 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["pic"].toString();
                 info.m_playCount = "-";

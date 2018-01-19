@@ -65,7 +65,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
-    QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(playlist);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -82,7 +82,7 @@ void MusicDownLoadQueryBDPlaylistThread::startToSearch(const QString &playlist)
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item)
+void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 {
     if(!m_manager)
     {
@@ -90,7 +90,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicPlaylistItem &item
     }
 
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
-    QUrl musicUrl =  MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_PLAYLIST_ATTR_URL, false).arg(item.m_id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -140,8 +140,8 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -168,7 +168,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     if(m_interrupt) return;
 
                     value = var.toMap();
-                    MusicPlaylistItem item;
+                    MusicResultsItem item;
                     item.m_coverUrl = value["pic_300"].toString();
                     item.m_id = value["listid"].toString();
                     item.m_name = value["title"].toString();
@@ -194,8 +194,8 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
     M_LOGGER_INFO(QString("%1 getDetailsFinished").arg(getClassName()));
 
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)

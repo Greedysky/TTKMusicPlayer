@@ -98,8 +98,8 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -206,7 +206,7 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
                 {
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = regx.cap(1).remove("/playmv/");
                     info.m_coverUrl = regx.cap(3).remove("@s_0,w_160,h_90");
                     info.m_name = regx.cap(2).remove("MV");
@@ -229,8 +229,8 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
 {
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished").arg(getClassName()));
 
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     MusicObject::MusicSongInformation musicInfo;

@@ -55,7 +55,7 @@ void MusicWSDiscoverListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -82,15 +82,15 @@ void MusicWSDiscoverListThread::downLoadFinished()
 
                     value = var.toMap();
                     QVariantMap artistsMap = value["user"].toMap();
-                    m_topListInfo = artistsMap["NN"].toString();
-                    m_topListInfo += " - " + value["SN"].toString();
+                    m_toplistInfo = artistsMap["NN"].toString();
+                    m_toplistInfo += " - " + value["SN"].toString();
                     break;
                 }
             }
         }
     }
 
-    emit downLoadDataChanged(m_topListInfo);
+    emit downLoadDataChanged(m_toplistInfo);
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
 }

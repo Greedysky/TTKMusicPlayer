@@ -75,13 +75,13 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();      ///Clear origin items
-    m_musicSongInfos.clear();  ///Empty the last search to songsInfo
+    emit clearAllItems();
+    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll(); ///Get all the data obtained by request
+        QByteArray bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
@@ -93,7 +93,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
             {
                 bool albumFlag = false;
                 QVariantMap albumInfo = value["albumInfo"].toMap();
-                MusicPlaylistItem info;
+                MusicResultsItem info;
                 info.m_coverUrl = albumInfo["pic_small"].toString().replace("_90", "_500");
                 info.m_description = albumInfo["title"].toString() + "<>" +
                                      albumInfo["language"].toString() + "<>" +
@@ -187,7 +187,7 @@ void MusicDownLoadQueryBDAlbumThread::singleDownLoadFinished()
 
                     if(m_interrupt) return;
 
-                    MusicPlaylistItem info;
+                    MusicResultsItem info;
                     info.m_id = value["album_id"].toString();
                     info.m_coverUrl = value["pic_small"].toString().replace("_90", "_500");
                     info.m_name = value["title"].toString();
