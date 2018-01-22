@@ -42,11 +42,8 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
     request.setRawHeader("App-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_ID, false).toUtf8());
     request.setRawHeader("Device-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_DID, false).toUtf8());
     request.setRawHeader("Device-V", MusicUtils::Algorithm::mdII(BD_MV_INFO_DV, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    setSslConfiguration(&request);
+
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -145,11 +142,8 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
     request.setRawHeader("App-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_ID, false).toUtf8());
     request.setRawHeader("Device-Id", MusicUtils::Algorithm::mdII(BD_MV_INFO_DID, false).toUtf8());
     request.setRawHeader("Device-V", MusicUtils::Algorithm::mdII(BD_MV_INFO_DV, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    setSslConfiguration(&request);
+
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

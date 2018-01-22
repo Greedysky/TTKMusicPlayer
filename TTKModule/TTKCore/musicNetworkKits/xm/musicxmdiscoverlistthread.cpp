@@ -32,11 +32,8 @@ void MusicXMDiscoverListThread::startToSearch()
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg("xiami_daxia"),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    setSslConfiguration(&request);
+
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));

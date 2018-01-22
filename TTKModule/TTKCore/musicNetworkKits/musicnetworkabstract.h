@@ -91,6 +91,11 @@ public Q_SLOTS:
 #endif
 
 protected:
+    /*!
+     * Set request ssl configuration.
+     */
+    void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m = QSslSocket::VerifyNone);
+
     StateCode m_stateCode;
     volatile bool m_interrupt;
     QNetworkReply *m_reply;
