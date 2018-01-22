@@ -10,6 +10,7 @@
 #include "musicwidgetutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicdownloadsourcethread.h"
+#include "musicotherdefine.h"
 
 #include "qrencode/qrcodewidget.h"
 
@@ -71,6 +72,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
     switch(m_type)
     {
         case Song: break;
+        case Movie: break;
         case Artist:
         case Album:
         case Playlist:
@@ -147,6 +149,37 @@ void MusicSongSharingWidget::confirmButtonClicked()
                 {
                     QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
                 }
+                break;
+            }
+        case Movie:
+            {
+                QString server = m_data["queryServer"].toString(), id = m_data["id"].toString();
+                if(id.contains(MUSIC_YYT_PREFIX))
+                {
+                    id.remove(MUSIC_YYT_PREFIX);
+                    server = MusicUtils::Algorithm::mdII(YT_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                }
+                else if(server == "WangYi")
+                    server = MusicUtils::Algorithm::mdII(WY_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "QQ")
+                    server = MusicUtils::Algorithm::mdII(QQ_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "Kugou")
+                    server = MusicUtils::Algorithm::mdII(KG_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "Baidu")
+                    server = MusicUtils::Algorithm::mdII(BD_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "Kuwo")
+                    server = MusicUtils::Algorithm::mdII(KW_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "XiaMi")
+                    server = MusicUtils::Algorithm::mdII(XM_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else if(server == "Migu")
+                    server = MusicUtils::Algorithm::mdII(MG_MV_SHARE, ALG_LOW_KEY, false).arg(id);
+                else
+                {
+                    QTimer::singleShot(2*MT_S2MS, this, SLOT(queryUrlTimeout()));
+                    break;
+                }
+
+                downLoadDataChanged(server, QString());
                 break;
             }
         case Artist:

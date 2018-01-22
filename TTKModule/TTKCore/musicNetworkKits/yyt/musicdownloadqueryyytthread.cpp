@@ -3,6 +3,7 @@
 #include "musicnumberutils.h"
 #include "musiccoreutils.h"
 #include "musictime.h"
+#include "musicotherdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -116,6 +117,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                     item.m_type = mapQueryServerString();
                     emit createSearchedItems(item);
 
+                    musicInfo.m_songId = MUSIC_YYT_PREFIX + musicInfo.m_songId;
                     m_musicSongInfos << musicInfo;
                 }
             }

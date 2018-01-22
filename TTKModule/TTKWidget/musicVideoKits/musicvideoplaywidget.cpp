@@ -1,6 +1,5 @@
 #include "musicvideoplaywidget.h"
 #include "musicvideoview.h"
-#include "musicvideotablewidget.h"
 #include "musiclocalsongsearchedit.h"
 #include "musicvideofloatwidget.h"
 #include "musicsongsharingwidget.h"
@@ -101,7 +100,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType, tr("PopupMode"));
 
     connect(m_searchButton,SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
-    connect(m_videoTable, SIGNAL(mvURLNameChanged(QString,QString)), SLOT(mvURLNameChanged(QString,QString)));
+    connect(m_videoTable, SIGNAL(mvURLNameChanged(MusicVideoItem)), SLOT(mvURLNameChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)),
                           SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
@@ -246,7 +245,7 @@ void MusicVideoPlayWidget::switchToPlayView()
     delete m_backButton;
     m_backButton = nullptr;
 
-    setTitleText(m_currentMediaName);
+    setTitleText(m_videoItem.m_name);
     m_searchEdit->hide();
     m_searchButton->hide();
     m_stackedWidget->setCurrentIndex(VIDEO_WINDOW_INDEX_0);
@@ -282,7 +281,7 @@ void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
     m_videoTable->startSearchSingleQuery(name);
 }
 
-void MusicVideoPlayWidget::mvURLChanged(const QString &data)
+void MusicVideoPlayWidget::mvURLChanged(const QString &url)
 {
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
@@ -290,17 +289,17 @@ void MusicVideoPlayWidget::mvURLChanged(const QString &data)
         w->musicStatePlay();
     }
     ///stop current media play while mv starts.
-    m_videoView->setMedia(data);
+    m_videoView->setMedia(url);
     m_videoView->play();
 
     switchToPlayView();
 }
 
-void MusicVideoPlayWidget::mvURLNameChanged(const QString &name, const QString &data)
+void MusicVideoPlayWidget::mvURLNameChanged(const MusicVideoItem &item)
 {
-    m_currentMediaName = name;
-    setTitleText(name);
-    mvURLChanged(data);
+    m_videoItem = item;
+    setTitleText(item.m_name);
+    mvURLChanged(item.m_url);
 }
 
 void MusicVideoPlayWidget::freshButtonClicked()
@@ -329,17 +328,20 @@ void MusicVideoPlayWidget::downloadButtonClicked()
 
 void MusicVideoPlayWidget::shareButtonClicked()
 {
-    QString text = m_currentMediaName.trimmed();
-    if(text.isEmpty())
+    QString name = m_videoItem.m_name.trimmed();
+    QString id = m_videoItem.m_id.trimmed();
+    if(name.isEmpty() || id.isEmpty())
     {
         return;
     }
 
     QVariantMap data;
-    data["songName"] = text;
+    data["id"] = id;
+    data["songName"] = name;
+    data["queryServer"] = m_videoItem.m_server;
 
     MusicSongSharingWidget shareWidget(this);
-    shareWidget.setData(MusicSongSharingWidget::Song, data);
+    shareWidget.setData(MusicSongSharingWidget::Movie, data);
     shareWidget.exec();
 }
 

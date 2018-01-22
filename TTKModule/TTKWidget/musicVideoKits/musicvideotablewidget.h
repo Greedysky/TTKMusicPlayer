@@ -22,6 +22,18 @@
 #include "musicquerytablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
+/*! @brief The class of the video item play data item.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
+{
+    QString m_name;
+    QString m_url;
+    QString m_id;
+    QString m_server;
+}MusicVideoItem;
+
+
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -61,7 +73,7 @@ Q_SIGNALS:
     /*!
      * Set current media name and url to play.
      */
-    void mvURLNameChanged(const QString &name, const QString &data);
+    void mvURLNameChanged(const MusicVideoItem &item);
 
 public Q_SLOTS:
     /*!

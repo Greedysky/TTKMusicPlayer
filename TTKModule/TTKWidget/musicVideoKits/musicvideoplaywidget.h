@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicvideotablewidget.h"
 #include "musicabstractmovewidget.h"
 
 class QLabel;
@@ -27,7 +28,6 @@ class QToolButton;
 class QStackedWidget;
 class MusicVideoView;
 class MusicVideoFloatWidget;
-class MusicVideoTableWidget;
 class MusicLocalSongSearchEdit;
 
 /*! @brief The class of the video play widget.
@@ -112,11 +112,11 @@ public Q_SLOTS:
     /*!
      * Set current media url by selected quality.
      */
-    void mvURLChanged(const QString &data);
+    void mvURLChanged(const QString &url);
     /*!
      * Set current media name and url to play.
      */
-    void mvURLNameChanged(const QString &name, const QString &data);
+    void mvURLNameChanged(const MusicVideoItem &item);
 
     /*!
      * Fresh button clicked.
@@ -149,10 +149,10 @@ protected:
     bool m_windowPopup;
     QWidget *m_topWidget;
     QLabel *m_textLabel;
-    QString m_currentMediaName;
     QToolButton *m_backButton;
     QPushButton *m_searchButton, *m_closeButton, *m_winTopButton;
     QStackedWidget *m_stackedWidget;
+    MusicVideoItem m_videoItem;
     MusicVideoView *m_videoView;
     MusicVideoTableWidget *m_videoTable;
     MusicLocalSongSearchEdit *m_searchEdit;
