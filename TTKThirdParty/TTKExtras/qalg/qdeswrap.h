@@ -19,7 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class QDesWrapPrivate;
 
 /*! @brief The namespace of the des wrapper.
  * @author Greedysky <greedysky@163.com>
@@ -32,6 +35,10 @@ public:
         ENCRYPT = 0,
         DECRYPT = 1
     };
+    /*!
+     * Object contsructor.
+     */
+    QDesWrap();
 
     /*!
      * Encrypt des by input.
@@ -42,13 +49,9 @@ public:
      */
     QByteArray decrypt(const QByteArray &in, const QByteArray &key);
 
-protected:
-    qint64 bitTransform(int *array, int len, qint64 source);
-    void DESSubKeys(qint64 key, qint64* K, Mode mode);
-    qint64 DES64(qint64 *subkeys, qint64 data);
-    char* encrypt(char* src, int srcLength, char* key);
+private:
+    MUSIC_DECLARE_PRIVATE(QDesWrap)
 
-    Mode m_mode;
 };
 
 #endif // QDESWRAP_H

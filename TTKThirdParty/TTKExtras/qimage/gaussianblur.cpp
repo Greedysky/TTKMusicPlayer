@@ -5,6 +5,215 @@
 
 #define PI		3.14159265358979323846
 
+class GaussianBlurPrivate : public MusicPrivate<GaussianBlur>
+{
+public:
+    void boxBlurH(int* srcPix, int* destPix, int w, int h, int radius);
+    void boxBlurV(int* srcPix, int* destPix, int w, int h, int radius);
+    void boxBlur(int* srcPix, int* destPix, int w, int h, int r);
+    void boxesForGauss(float sigma, int* size, int n);
+
+};
+
+void GaussianBlurPrivate::boxBlurH(int* srcPix, int* destPix, int w, int h, int radius)
+{
+    int index, r = 0, g = 0, b = 0;
+    int tr, tg, tb;
+
+    int color, preColor;
+
+    int num;
+    float iarr;
+
+    for (int i = 0; i < h; ++i)
+    {
+        r = 0;
+        g = 0;
+        b = 0;
+
+        index = i * w;
+        num = radius;
+
+        for (int j = 0; j < radius; j++)
+        {
+            color = srcPix[index + j];
+            r += (color & 0x00ff0000) >> 16;
+            g += (color & 0x0000ff00) >> 8;
+            b += (color & 0x000000ff);
+        }
+
+        for (int j = 0; j <= radius; ++j)
+        {
+            num++;
+            iarr = 1.0 / (1.0 * num);
+
+            color = srcPix[index + j + radius];
+            r += (color & 0x00ff0000) >> 16;
+            g += (color & 0x0000ff00) >> 8;
+            b += (color & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+
+        iarr = 1.0 / (1.0 * num);
+        for (int j = radius + 1; j < w - radius; ++j)
+        {
+            preColor = srcPix[index + j - 1 - radius];
+            color = srcPix[index + j + radius];
+
+            r = r + ((color & 0x00ff0000) >> 16) - ((preColor & 0x00ff0000) >> 16);
+            g = g + ((color & 0x0000ff00) >> 8)  - ((preColor & 0x0000ff00) >> 8);
+            b = b +  (color & 0x000000ff)        -  (preColor & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+
+        for (int j = w - radius; j < w; ++j)
+        {
+            num--;
+            iarr = 1.0 / (1.0 * num);
+
+            preColor = srcPix[index + j - 1 - radius];
+
+            r -= (preColor & 0x00ff0000) >> 16;
+            g -= (preColor & 0x0000ff00) >> 8;
+            b -= (preColor & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+    }
+}
+
+void GaussianBlurPrivate::boxBlurV(int* srcPix, int* destPix, int w, int h, int radius)
+{
+    int r = 0, g = 0, b = 0;
+    int tr, tg, tb;
+
+    int color, preColor;
+
+    int num;
+    float iarr;
+
+    for (int i = 0; i < w; ++i)
+    {
+        r = 0;
+        g = 0;
+        b = 0;
+
+        num = radius;
+
+        for (int j = 0; j < radius; ++j)
+        {
+            color = srcPix[j*w + i];
+            r += (color & 0x00ff0000) >> 16;
+            g += (color & 0x0000ff00) >> 8;
+            b += (color & 0x000000ff);
+        }
+
+        for (int j = 0; j <= radius; ++j)
+        {
+            num++;
+            iarr = 1.0 / (1.0 * num);
+
+            color = srcPix[(j + radius) * w + i];
+            r += (color & 0x00ff0000) >> 16;
+            g += (color & 0x0000ff00) >> 8;
+            b += (color & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+
+        iarr = 1.0 / (1.0 * num);
+        for (int j = radius + 1; j < h - radius; ++j)
+        {
+            preColor = srcPix[(j - radius - 1) * w + i];
+            color = srcPix[(j + radius) * w + i];
+
+            r = r + ((color & 0x00ff0000) >> 16) - ((preColor & 0x00ff0000) >> 16);
+            g = g + ((color & 0x0000ff00) >> 8)  - ((preColor & 0x0000ff00) >> 8);
+            b = b + (color & 0x000000ff)       - (preColor & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+
+        for (int j = h - radius; j < h; ++j)
+        {
+            num--;
+            iarr = 1.0 / (1.0 * num);
+            preColor = srcPix[(j - radius - 1) * w + i];
+
+            r -= (preColor & 0x00ff0000) >> 16;
+            g -= (preColor & 0x0000ff00) >> 8;
+            b -= (preColor & 0x000000ff);
+
+            tr = (int)(r * iarr);
+            tg = (int)(g * iarr);
+            tb = (int)(b * iarr);
+
+            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
+        }
+    }
+}
+
+void GaussianBlurPrivate::boxBlur(int* srcPix, int* destPix, int w, int h, int r)
+{
+    if (r < 0)
+    {
+        return;
+    }
+
+    boxBlurH(srcPix, destPix, w, h, r);
+    boxBlurV(destPix, srcPix, w, h, r);
+}
+
+void GaussianBlurPrivate::boxesForGauss(float sigma, int* size, int n)
+{
+    float wIdeal = sqrt(12.0 * sigma * sigma / n + 1.0);
+    int wl = floor(wIdeal);
+
+    if (0 == wl % 2)
+    {
+        wl--;
+    }
+
+    int wu = wl + 2;
+
+    float mIdeal = (12.0 * sigma * sigma - n * wl * wl - 4 * n * wl - 3 * n) / (-4 * wl - 4);
+    int m = round(mIdeal);
+
+    for (int i = 0; i < n; ++i)
+    {
+        size[i] = (i < m ? wl : wu);
+    }
+}
+
+
+
+GaussianBlur::GaussianBlur()
+{
+    MUSIC_INIT_PRIVATE;
+}
+
 void GaussianBlur::gaussBlur(int* pix, int w, int h, int radius)
 {
     float sigma =  1.0 * radius / 2.57;
@@ -113,211 +322,20 @@ void GaussianBlur::gaussBlur(int* pix, int w, int h, int radius)
 
 void GaussianBlur::gaussBlurPlus(int* pix, int w, int h, int radius)
 {
+    MUSIC_D(GaussianBlur);
     float sigma = 1.0 * radius / 2.57;
 
     int boxSize = 3;
     int* boxR = (int*)malloc(sizeof(int) * boxSize);
 
-    boxesForGauss(sigma, boxR, boxSize);
+    d->boxesForGauss(sigma, boxR, boxSize);
 
     int* tempPix = (int*)malloc(sizeof(int) * w * h);
 
-    boxBlur(pix, tempPix, w, h, (boxR[0] - 1) / 2);
-    boxBlur(pix, tempPix, w, h, (boxR[1] - 1) / 2);
-    boxBlur(pix, tempPix, w, h, (boxR[2] - 1) / 2);
+    d->boxBlur(pix, tempPix, w, h, (boxR[0] - 1) / 2);
+    d->boxBlur(pix, tempPix, w, h, (boxR[1] - 1) / 2);
+    d->boxBlur(pix, tempPix, w, h, (boxR[2] - 1) / 2);
 
     free(boxR);
     free(tempPix);
-}
-
-void GaussianBlur::boxBlurH(int* srcPix, int* destPix, int w, int h, int radius)
-{
-    int index, r = 0, g = 0, b = 0;
-    int tr, tg, tb;
-
-    int color, preColor;
-
-    int num;
-    float iarr;
-
-    for (int i = 0; i < h; ++i)
-    {
-        r = 0;
-        g = 0;
-        b = 0;
-
-        index = i * w;
-        num = radius;
-
-        for (int j = 0; j < radius; j++)
-        {
-            color = srcPix[index + j];
-            r += (color & 0x00ff0000) >> 16;
-            g += (color & 0x0000ff00) >> 8;
-            b += (color & 0x000000ff);
-        }
-
-        for (int j = 0; j <= radius; ++j)
-        {
-            num++;
-            iarr = 1.0 / (1.0 * num);
-
-            color = srcPix[index + j + radius];
-            r += (color & 0x00ff0000) >> 16;
-            g += (color & 0x0000ff00) >> 8;
-            b += (color & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-
-        iarr = 1.0 / (1.0 * num);
-        for (int j = radius + 1; j < w - radius; ++j)
-        {
-            preColor = srcPix[index + j - 1 - radius];
-            color = srcPix[index + j + radius];
-
-            r = r + ((color & 0x00ff0000) >> 16) - ((preColor & 0x00ff0000) >> 16);
-            g = g + ((color & 0x0000ff00) >> 8)  - ((preColor & 0x0000ff00) >> 8);
-            b = b +  (color & 0x000000ff)        -  (preColor & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-
-        for (int j = w - radius; j < w; ++j)
-        {
-            num--;
-            iarr = 1.0 / (1.0 * num);
-
-            preColor = srcPix[index + j - 1 - radius];
-
-            r -= (preColor & 0x00ff0000) >> 16;
-            g -= (preColor & 0x0000ff00) >> 8;
-            b -= (preColor & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[index + j] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-    }
-}
-
-void GaussianBlur::boxBlurV(int* srcPix, int* destPix, int w, int h, int radius)
-{
-    int r = 0, g = 0, b = 0;
-    int tr, tg, tb;
-
-    int color, preColor;
-
-    int num;
-    float iarr;
-
-    for (int i = 0; i < w; ++i)
-    {
-        r = 0;
-        g = 0;
-        b = 0;
-
-        num = radius;
-
-        for (int j = 0; j < radius; ++j)
-        {
-            color = srcPix[j*w + i];
-            r += (color & 0x00ff0000) >> 16;
-            g += (color & 0x0000ff00) >> 8;
-            b += (color & 0x000000ff);
-        }
-
-        for (int j = 0; j <= radius; ++j)
-        {
-            num++;
-            iarr = 1.0 / (1.0 * num);
-
-            color = srcPix[(j + radius) * w + i];
-            r += (color & 0x00ff0000) >> 16;
-            g += (color & 0x0000ff00) >> 8;
-            b += (color & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-
-        iarr = 1.0 / (1.0 * num);
-        for (int j = radius + 1; j < h - radius; ++j)
-        {
-            preColor = srcPix[(j - radius - 1) * w + i];
-            color = srcPix[(j + radius) * w + i];
-
-            r = r + ((color & 0x00ff0000) >> 16) - ((preColor & 0x00ff0000) >> 16);
-            g = g + ((color & 0x0000ff00) >> 8)  - ((preColor & 0x0000ff00) >> 8);
-            b = b + (color & 0x000000ff)       - (preColor & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-
-        for (int j = h - radius; j < h; ++j)
-        {
-            num--;
-            iarr = 1.0 / (1.0 * num);
-            preColor = srcPix[(j - radius - 1) * w + i];
-
-            r -= (preColor & 0x00ff0000) >> 16;
-            g -= (preColor & 0x0000ff00) >> 8;
-            b -= (preColor & 0x000000ff);
-
-            tr = (int)(r * iarr);
-            tg = (int)(g * iarr);
-            tb = (int)(b * iarr);
-
-            destPix[j*w + i] = tr << 16 | tg << 8 | tb | 0xff000000;
-        }
-    }
-}
-
-void GaussianBlur::boxBlur(int* srcPix, int* destPix, int w, int h, int r)
-{
-    if (r < 0)
-    {
-        return;
-    }
-
-    boxBlurH(srcPix, destPix, w, h, r);
-    boxBlurV(destPix, srcPix, w, h, r);
-}
-
-void GaussianBlur::boxesForGauss(float sigma, int* size, int n)
-{
-    float wIdeal = sqrt(12.0 * sigma * sigma / n + 1.0);
-    int wl = floor(wIdeal);
-
-    if (0 == wl % 2)
-    {
-        wl--;
-    }
-
-    int wu = wl + 2;
-
-    float mIdeal = (12.0 * sigma * sigma - n * wl * wl - 4 * n * wl - 3 * n) / (-4 * wl - 4);
-    int m = round(mIdeal);
-
-    for (int i = 0; i < n; ++i)
-    {
-        size[i] = (i < m ? wl : wu);
-    }
 }

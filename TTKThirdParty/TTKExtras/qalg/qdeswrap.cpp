@@ -170,33 +170,18 @@ qint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 
-QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
+class QDesWrapPrivate : public MusicPrivate<QDesWrap>
 {
-    m_mode = ENCRYPT;
-    char *enc_data = encrypt((char *)in.data(), in.length(), (char *)key.data());
-    char *enc_base = Base64Encode((unsigned char *)enc_data, (in.length() / 8 + 1) * 8);
+public:
+    qint64 bitTransform(int *array, int len, qint64 source);
+    void DESSubKeys(qint64 key, qint64* K, QDesWrap::Mode mode);
+    qint64 DES64(qint64 *subkeys, qint64 data);
+    char* encrypt(char *src, int srcLength, char *key);
 
-    QByteArray d(enc_base);
-    delete enc_data;
-    free(enc_base);
+    QDesWrap::Mode m_mode;
+};
 
-    return d;
-}
-
-QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
-{
-    m_mode = DECRYPT;
-    char *enc_base = Base64Decode((unsigned char *)in.data(), in.length());
-    char *enc_data = encrypt(enc_base, strlen(enc_base), (char *)key.data());
-
-    QByteArray d(enc_base);
-    delete enc_data;
-    free(enc_base);
-
-    return d;
-}
-
-qint64 QDesWrap::bitTransform(int *array, int len, qint64 source)
+qint64 QDesWrapPrivate::bitTransform(int *array, int len, qint64 source)
 {
     qint64 bts = source, dest = 0;
     for (int bti = 0; bti < len; bti++)
@@ -209,7 +194,7 @@ qint64 QDesWrap::bitTransform(int *array, int len, qint64 source)
     return dest;
 }
 
-void QDesWrap::DESSubKeys(qint64 key, qint64* K, Mode mode)
+void QDesWrapPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrap::Mode mode)
 {
     qint64 temp = bitTransform(ARRAYPC_1, 56, key);
     for (int j = 0; j < 16; j++)
@@ -219,7 +204,7 @@ void QDesWrap::DESSubKeys(qint64 key, qint64* K, Mode mode)
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
-    if (mode == DECRYPT)
+    if (mode == QDesWrap::DECRYPT)
     {
         qint64 t;
         for (int j = 0; j < 8; j++)
@@ -231,7 +216,7 @@ void QDesWrap::DESSubKeys(qint64 key, qint64* K, Mode mode)
     }
 }
 
-qint64 QDesWrap::DES64(qint64 *subkeys, qint64 data) {
+qint64 QDesWrapPrivate::DES64(qint64 *subkeys, qint64 data) {
 
     qint64 out = bitTransform(ARRAYIP, 64, data);
     qint64 L = 0, R = 0;
@@ -280,7 +265,7 @@ qint64 QDesWrap::DES64(qint64 *subkeys, qint64 data) {
     return out;
 }
 
-char* QDesWrap::encrypt(char* src, int srcLength, char* key)
+char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
 {
     qint64 keyl = 0;
     for (int i = 0; i < 8; i++)
@@ -344,4 +329,39 @@ char* QDesWrap::encrypt(char* src, int srcLength, char* key)
     free(szTail);
 
     return result;
+}
+
+
+
+QDesWrap::QDesWrap()
+{
+    MUSIC_INIT_PRIVATE;
+}
+
+QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
+{
+    MUSIC_D(QDesWrap);
+    d->m_mode = ENCRYPT;
+    char *enc_data = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
+    char *enc_base = Base64Encode((unsigned char *)enc_data, (in.length() / 8 + 1) * 8);
+
+    QByteArray dt(enc_base);
+    delete enc_data;
+    free(enc_base);
+
+    return dt;
+}
+
+QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
+{
+    MUSIC_D(QDesWrap);
+    d->m_mode = DECRYPT;
+    char *enc_base = Base64Decode((unsigned char *)in.data(), in.length());
+    char *enc_data = d->encrypt(enc_base, strlen(enc_base), (char *)key.data());
+
+    QByteArray dt(enc_base);
+    delete enc_data;
+    free(enc_base);
+
+    return dt;
 }
