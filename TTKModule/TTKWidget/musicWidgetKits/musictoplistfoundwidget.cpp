@@ -138,8 +138,7 @@ void MusicToplistFoundWidget::createLabels()
 
     m_iconLabel = new QLabel(topFuncWidget);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
-    m_iconLabel->setFixedSize(180, 180);
-
+    m_iconLabel->setFixedSize(210, 180);
     ////////////////////////////////////////////////////////////////////////////
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);

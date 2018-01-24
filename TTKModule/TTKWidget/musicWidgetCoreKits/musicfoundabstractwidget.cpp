@@ -68,7 +68,10 @@ void MusicFoundAbstractWidget::downLoadFinished(const QByteArray &data)
     {
         QPixmap pix;
         pix.loadFromData(data);
-        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+        QPixmap cv(":/image/lb_playlist_cover");
+        pix = pix.scaled(QSize(180, 180));
+        MusicUtils::Widget::fusionPixmap(cv, pix, QPoint(0, 0));
+        m_iconLabel->setPixmap(cv);
     }
 }
 

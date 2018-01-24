@@ -17,6 +17,7 @@
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
         <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>
         <file alias="lb_album_cover">../TTKResource/lb_album_cover.png</file>
+        <file alias="lb_playlist_cover">../TTKResource/lb_playlist_cover.png</file>
     </qresource>
     <qresource prefix="/quality">
         <file alias="lb_st_quality">../TTKResource/quality/lb_st_quality.png</file>

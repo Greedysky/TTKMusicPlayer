@@ -34,10 +34,6 @@ MusicArtistAlbumsItemWidget::MusicArtistAlbumsItemWidget(QWidget *parent)
     m_iconLabel = new QLabel(this);
     m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
 
-    m_maskLabel = new QLabel(this);
-    m_maskLabel->setPixmap(QPixmap(":/image/lb_album_cover"));
-    m_maskLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
-
     m_nameLabel = new QLabel(this);
     m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
     m_nameLabel->setText(" - ");
@@ -51,7 +47,6 @@ MusicArtistAlbumsItemWidget::~MusicArtistAlbumsItemWidget()
 {
     delete m_playButton;
     delete m_iconLabel;
-    delete m_maskLabel;
     delete m_nameLabel;
     delete m_updateLabel;
 }
@@ -85,7 +80,10 @@ void MusicArtistAlbumsItemWidget::downLoadFinished(const QByteArray &data)
     pix.loadFromData(data);
     if(!pix.isNull())
     {
-        m_iconLabel->setPixmap(pix.scaled(m_iconLabel->size()));
+        QPixmap cv(":/image/lb_album_cover");
+        pix = pix.scaled(m_iconLabel->size());
+        MusicUtils::Widget::fusionPixmap(pix, cv, QPoint(0, 0));
+        m_iconLabel->setPixmap(pix);
     }
     m_playButton->raise();
 }
@@ -568,8 +566,7 @@ void MusicArtistFoundWidget::createLabels()
 
     m_iconLabel = new QLabel(topFuncWidget);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
-    m_iconLabel->setFixedSize(180, 180);
-
+    m_iconLabel->setFixedSize(210, 180);
     ////////////////////////////////////////////////////////////////////////////
 
     QWidget *topLineWidget = new QWidget(topFuncWidget);
