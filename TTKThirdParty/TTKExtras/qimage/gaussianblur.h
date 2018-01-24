@@ -27,8 +27,8 @@
 class MUSIC_EXTRAS_EXPORT GaussianBlur
 {
 public:
-    void gaussBlur1(int* pix, int w, int h, int radius);
-    void gaussBlur2(int* pix, int w, int h, int radius);
+    void gaussBlur(int* pix, int w, int h, int radius);
+    void gaussBlurPlus(int* pix, int w, int h, int radius);
 
 private:
     void boxBlurH(int* srcPix, int* destPix, int w, int h, int radius);

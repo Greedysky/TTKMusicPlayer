@@ -5,7 +5,7 @@
 
 #define PI		3.14159265358979323846
 
-void GaussianBlur::gaussBlur1(int* pix, int w, int h, int radius)
+void GaussianBlur::gaussBlur(int* pix, int w, int h, int radius)
 {
     float sigma =  1.0 * radius / 2.57;
     float deno  =  1.0 / (sigma * sqrt(2.0 * PI));
@@ -111,7 +111,7 @@ void GaussianBlur::gaussBlur1(int* pix, int w, int h, int radius)
 }
 
 
-void GaussianBlur::gaussBlur2(int* pix, int w, int h, int radius)
+void GaussianBlur::gaussBlurPlus(int* pix, int w, int h, int radius)
 {
     float sigma = 1.0 * radius / 2.57;
 
