@@ -83,6 +83,7 @@ QString MusicWebMusicRadioWidget::getClassName()
 
 void MusicWebMusicRadioWidget::closeEvent(QCloseEvent *event)
 {
+    m_autoNextTimer.stop();
     delete m_radio;
     m_radio = nullptr;
     QWidget::closeEvent(event);
