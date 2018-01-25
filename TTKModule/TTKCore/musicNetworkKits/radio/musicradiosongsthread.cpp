@@ -86,7 +86,7 @@ void MusicRadioSongsThread::downLoadFinished()
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 
                 QString lrcPrefix = MusicUtils::Algorithm::mdII(LRC_URL, false);
-                if(!m_songInfo.m_lrcUrl.contains(lrcPrefix))
+                if(!m_songInfo.m_lrcUrl.contains("http://"))
                 {
                     m_songInfo.m_lrcUrl = lrcPrefix + m_songInfo.m_lrcUrl;
                 }
