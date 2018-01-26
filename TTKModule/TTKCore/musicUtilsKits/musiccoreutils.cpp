@@ -87,36 +87,26 @@ void MusicUtils::Core::checkCacheSize(quint64 cacheSize, bool disabled, const QS
     }
 }
 
-QFileInfoList MusicUtils::Core::findFile(const QString &path, const QStringList &filter)
+QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, bool recursively)
 {
-    ///Find the corresponding suffix name
-    QDir dir(path);
+    return getFileListByDir(dpath, QStringList(), recursively);
+}
+
+QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
+{
+    QDir dir(dpath);
     if(!dir.exists())
     {
         return QFileInfoList();
     }
 
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-    QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-
-    foreach(const QFileInfo &folder, folderList)
-    {
-        fileList.append( findFile(folder.absoluteFilePath(), filter) );
-    }
-    return fileList;
-}
-
-QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, bool recursively)
-{
-    QDir dir(dpath);
-
-    QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     if(recursively)
     {
         QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
         foreach(const QFileInfo &fileInfo, folderList)
         {
-            fileList.append( getFileListByDir(fileInfo.absoluteFilePath(), recursively) );
+            fileList.append( getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively) );
         }
     }
 

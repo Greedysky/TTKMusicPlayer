@@ -52,13 +52,13 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT void checkCacheSize(quint64 cacheSize, bool disabled, const QString &path);
         /*!
-         * To find file by dir path.
-         */
-        MUSIC_UTILS_EXPORT QFileInfoList findFile(const QString &path, const QStringList &filter);
-        /*!
          * Get all files in given dir.
          */
         MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, bool recursively);
+        /*!
+         * Get all files in given dir.
+         */
+        MUSIC_UTILS_EXPORT QFileInfoList getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively);
         /*!
          * Dir remove recursively.
          */
