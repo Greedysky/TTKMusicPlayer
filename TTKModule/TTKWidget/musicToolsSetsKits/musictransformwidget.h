@@ -91,10 +91,6 @@ protected:
      */
     QString getTransformSongName() const;
     /*!
-     * If input is dir just get all files in this dir.
-     */
-    QFileInfoList getFileList(const QString &path);
-    /*!
      * Init control parameter.
      */
     void initControlParameter() const;

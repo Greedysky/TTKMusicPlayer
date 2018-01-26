@@ -106,16 +106,21 @@ QFileInfoList MusicUtils::Core::findFile(const QString &path, const QStringList 
     return fileList;
 }
 
-QString MusicUtils::Core::getLanguageName(int index)
+QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, bool recursively)
 {
-    QString lan(LANGUAGE_DIR_FULL);
-    switch(index)
+    QDir dir(dpath);
+
+    QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+    if(recursively)
     {
-        case 0 : return lan.append("cn.ln");
-        case 1 : return lan.append("cn_c.ln");
-        case 2 : return lan.append("en.ln");
-        default: return QString();
+        QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        foreach(const QFileInfo &fileInfo, folderList)
+        {
+            fileList.append( getFileListByDir(fileInfo.absoluteFilePath(), recursively) );
+        }
     }
+
+    return fileList;
 }
 
 bool MusicUtils::Core::removeRecursively(const QString &dir)
@@ -167,6 +172,18 @@ bool MusicUtils::Core::removeRecursively(const QString &dir)
     }
 
     return success;
+}
+
+QString MusicUtils::Core::getLanguageName(int index)
+{
+    QString lan(LANGUAGE_DIR_FULL);
+    switch(index)
+    {
+        case 0 : return lan.append("cn.ln");
+        case 1 : return lan.append("cn_c.ln");
+        case 2 : return lan.append("en.ln");
+        default: return QString();
+    }
 }
 
 bool MusicUtils::Core::musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth)
