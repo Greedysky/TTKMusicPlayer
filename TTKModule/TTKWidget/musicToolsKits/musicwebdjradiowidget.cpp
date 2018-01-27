@@ -143,6 +143,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(Program::Type type, Q
     QLabel *label = new QLabel(type == Program::Recommed ? tr("Recommend") : tr("Program"), this);
     QFont font = label->font();
     font.setPixelSize(20);
+    font.setBold(true);
     label->setFont(font);
     topLayout->addWidget(label);
 
@@ -309,12 +310,14 @@ void MusicWebDJRadioWidget::initFirstWidget()
     MusicClickedLabel *recommendLabel = new MusicClickedLabel(tr("Recommend"), leftTop);
     QFont recommendFont = recommendLabel->font();
     recommendFont.setPixelSize(20);
+    recommendFont.setBold(true);
     recommendLabel->setFont(recommendFont);
     leftTopLayout->addWidget(recommendLabel);
     leftTopLayout->addStretch(1);
     connect(recommendLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
 
     MusicClickedLabel *recommendMoreLabel = new MusicClickedLabel(tr("More >"), leftTop);
+    recommendMoreLabel->setStyleSheet(MusicUIObject::MColorStyle04);
     connect(recommendMoreLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
     leftTopLayout->addWidget(recommendMoreLabel);
     topLayout->addWidget(leftTop);
@@ -326,12 +329,14 @@ void MusicWebDJRadioWidget::initFirstWidget()
     MusicClickedLabel *programLabel = new MusicClickedLabel(tr("Program"), rightTop);
     QFont programFont = programLabel->font();
     programFont.setPixelSize(20);
+    programFont.setBold(true);
     programLabel->setFont(programFont);
     rightTopLayout->addWidget(programLabel);
     rightTopLayout->addStretch(1);
     connect(programLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
 
     MusicClickedLabel *programMoreLabel = new MusicClickedLabel(tr("More >"), rightTop);
+    programMoreLabel->setStyleSheet(MusicUIObject::MColorStyle04);
     connect(programMoreLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
     rightTopLayout->addWidget(programMoreLabel);
     topLayout->addWidget(rightTop);

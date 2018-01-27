@@ -13,7 +13,7 @@
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicWebMusicRadioWidget), m_radio(nullptr), m_playListThread(nullptr),
+      m_ui(new Ui::MusicWebMusicRadioWidget), m_playListThread(nullptr),
       m_songsThread(nullptr)
 {
     m_ui->setupUi(this);
@@ -59,6 +59,8 @@ MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
     m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_ui->volumeSlider->setRange(0, 100);
     m_ui->volumeSlider->setValue(100);
+
+    createCoreModule();
 
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
@@ -110,19 +112,14 @@ void MusicWebMusicRadioWidget::updateRadioList(const QString &category)
 
 void MusicWebMusicRadioWidget::radioPlay()
 {
-    m_isPlaying = !m_isPlaying;
-    if(m_isPlaying)
+    if(!m_radio)
     {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    }
-    else
-    {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_play_hover"));
-        m_radio->stop();
         return;
     }
 
-    startToPlay();
+    m_isPlaying = !m_isPlaying;
+    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
+    m_radio->play();
 }
 
 void MusicWebMusicRadioWidget::radioPrevious()
@@ -199,6 +196,13 @@ void MusicWebMusicRadioWidget::getSongInfoFinished()
     startToPlay();
 }
 
+void MusicWebMusicRadioWidget::createCoreModule()
+{
+    m_radio = new MusicCoreMPlayer(this);
+    connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
+    connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+}
+
 void MusicWebMusicRadioWidget::startToPlay()
 {
     MusicRadioSongInfo info;
@@ -212,11 +216,12 @@ void MusicWebMusicRadioWidget::startToPlay()
         return;
     }
 
-    delete m_radio;
-    m_radio = new MusicCoreMPlayer(this);
-    connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    if(!m_radio)
+    {
+        createCoreModule();
+    }
     m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl);
+    m_radio->play();
 
     /// fix current play volume temporary
     int v = m_ui->volumeSlider->value();
