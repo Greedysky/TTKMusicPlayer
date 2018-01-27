@@ -3,6 +3,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
+#include "musiccoreutils.h"
 
 #include <QProcess>
 #include <QFileDialog>
@@ -210,8 +211,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
     if(dialog.exec())
     {
         setControlEnable(false);
-        QList<QFileInfo> file(dialog.directory().entryInfoList());
-        foreach(const QFileInfo &info, file)
+        foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if( QString("mp3").contains(info.suffix().toLower()) &&
                 !m_paths.contains(info.absoluteFilePath()) )

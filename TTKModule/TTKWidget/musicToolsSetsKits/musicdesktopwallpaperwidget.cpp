@@ -146,7 +146,7 @@ void MusicDesktopWallpaperWidget::viewButtonPressed()
 
     QStringList filters;
     filters << "*.bmp" << "*.jpg" <<"*.jpeg" << "*.png";
-    foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, filters))
+    foreach(const QFileInfo &file, MusicUtils::Core::getFileListByDir(path, filters, true))
     {
         m_path << file.absoluteFilePath();
     }

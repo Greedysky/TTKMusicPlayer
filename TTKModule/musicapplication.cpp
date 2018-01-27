@@ -552,9 +552,8 @@ void MusicApplication::musicImportSongsOnlyDir()
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
-        QList<QFileInfo> file(dialog.directory().entryInfoList());
         QStringList fileList;
-        foreach(const QFileInfo &info, file)
+        foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if( MusicFormats::supportFormatsString().contains(info.suffix().toLower()) )
             {

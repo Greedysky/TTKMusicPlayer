@@ -290,7 +290,7 @@ void MusicCloudSharedSongTableWidget::uploadFilesToServer()
     QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
     {
-        foreach(const QFileInfo &file, MusicUtils::Core::findFile(path, MusicFormats::supportFormatsFilterString()))
+        foreach(const QFileInfo &file, MusicUtils::Core::getFileListByDir(path, MusicFormats::supportFormatsFilterString(), true))
         {
             MusicUploadData data;
             data.m_path = file.absoluteFilePath().trimmed();
