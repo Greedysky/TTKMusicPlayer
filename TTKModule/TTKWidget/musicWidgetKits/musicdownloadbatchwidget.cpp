@@ -219,7 +219,7 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
 
     MusicUtils::Widget::setTransparent(this, 255);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
-    setStyleSheet( styleSheet() + MusicUIObject::MTableWidgetStyle02);
+    setStyleSheet(styleSheet() + MusicUIObject::MTableWidgetStyle02);
 
 }
 

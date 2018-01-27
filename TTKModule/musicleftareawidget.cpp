@@ -164,7 +164,7 @@ void MusicLeftAreaWidget::musicStackedRadioWidgetChanged()
     m_currentIndex = 2;
 
     delete m_stackedWidget;
-    MusicWebMusicRadioListView *w = new MusicWebMusicRadioListView(this);
+    MusicWebRadioView *w = new MusicWebRadioView(this);
     w->initListItems();
     m_stackedWidget = w;
 

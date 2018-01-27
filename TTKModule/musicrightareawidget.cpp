@@ -24,6 +24,7 @@
 #include "musicadvancedsearchedwidget.h"
 #include "musicrecommendfoundwidget.h"
 #include "musicartistlistfoundwidget.h"
+#include "musicwebdjradiowidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -271,6 +272,10 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicArtistListFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
+    else if(MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
     {
@@ -504,6 +509,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = kugouWindow);
                 m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
+                emit updateBackgroundTheme();
+                break;
+            }
+        case WebDJRadio: //insert web dj radio widget
+            {
+                MusicWebDJRadioWidget *djRadio = new MusicWebDJRadioWidget(this);
+                djRadio->init();
+                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = djRadio);
+                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
                 emit updateBackgroundTheme();
                 break;
             }

@@ -66,4 +66,45 @@ protected:
 
 };
 
+
+/*! @brief The class of the web radio widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicWebRadioView : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebRadioView(QWidget *parent = 0);
+
+    ~MusicWebRadioView();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+    /*!
+     * To init list items.
+     */
+    void initListItems();
+
+public Q_SLOTS:
+    /*!
+     * Open Dj Radio window has clicked.
+     */
+    void openDJRadioWindow();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    MusicWebMusicRadioListView *m_musicRadio;
+
+};
+
+
 #endif // MUSICWEBMUSICRADIOLISTVIEW_H

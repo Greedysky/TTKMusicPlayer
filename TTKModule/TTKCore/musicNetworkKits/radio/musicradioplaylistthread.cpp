@@ -77,6 +77,7 @@ void MusicRadioPlayListThread::downLoadFinished()
             }
         }
     }
+
     emit downLoadDataChanged("query finished!");
     deleteAll();
 }
