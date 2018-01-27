@@ -1,4 +1,5 @@
 #include "musicdjradioprogramcategorythread.h"
+#include "musicdjradiothreadabstract.h"
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #///QJson import
@@ -42,7 +43,7 @@ void MusicDJRadioProgramCategoryThread::startToPage(int offset)
     m_interrupt = true;
 
     QNetworkRequest request;
-    QUrl musicUrl(QString("http://music.163.com/discover/djradio/category?id=%1&order=1&_hash=allradios&limit=%2&offset=%3")
+    QUrl musicUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false)
                   .arg(m_searchText).arg(m_pageSize).arg(offset*m_pageSize));
     request.setUrl(musicUrl);
     setSslConfiguration(&request);
@@ -65,8 +66,8 @@ void MusicDJRadioProgramCategoryThread::startToSearch(const QString &category)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
-               "http://music.163.com/weapi/dj/program/byradio",
-               QString("{\"radioId\": %1, \"limit\": 1000}").arg(category));
+               MusicUtils::Algorithm::mdII(DJ_DETAIL_N_URL, false),
+               MusicUtils::Algorithm::mdII(DJ_DETAIL_NDT_URL, false).arg(category));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
 
@@ -87,8 +88,8 @@ void MusicDJRadioProgramCategoryThread::getProgramInfo(MusicResultsItem &item)
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
-               "http://music.163.com/weapi/djradio/get",
-               QString("{\"id\": %1}").arg(item.m_id));
+               MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_N_URL, false),
+               MusicUtils::Algorithm::mdII(DJ_PROGRAM_INFO_NDT_URL, false).arg(item.m_id));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
 

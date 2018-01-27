@@ -21,7 +21,7 @@ void MusicDJRadioCategoryThread::startToDownload()
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
-               "http://music.163.com/weapi/djradio/category/get",
+               MusicUtils::Algorithm::mdII(DJ_CATEGORY_N_URL, false),
                QString("{}"));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);

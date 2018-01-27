@@ -22,11 +22,10 @@ void MusicDJRadioProgramThread::startToDownload(Program::Type type)
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-                type == Program::Recommed ?
-                "http://music.163.com/weapi/djradio/recommend/v1":
-                "http://music.163.com/weapi/djradio/hot/v1",
-               QString("{\"limit\": 100}"));
+    QByteArray parameter = makeTokenQueryUrl(&request, type == Program::Recommed ?
+               MusicUtils::Algorithm::mdII(DJ_RECOMMEND_N_URL, false):
+               MusicUtils::Algorithm::mdII(DJ_HOT_N_URL, false),
+               MusicUtils::Algorithm::mdII(DJ_HOT_NDT_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
 
