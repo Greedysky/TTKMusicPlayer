@@ -31,6 +31,7 @@ HEADERS  += \
     $$PWD/musicwebdjradiocategorywidget.h \
     $$PWD/musicwebdjradiowidget.h \
     $$PWD/musicwebdjradiofoundwidget.h \
+    $$PWD/musicwebradioview.h \
     $$PWD/musiccloudsharedsongwidget.h \
     $$PWD/musiccloudfilemanagerdialog.h \
     $$PWD/musiccloudtablewidget.h \
@@ -52,6 +53,7 @@ SOURCES += \
     $$PWD/musicwebdjradiocategorywidget.cpp \
     $$PWD/musicwebdjradiowidget.cpp \
     $$PWD/musicwebdjradiofoundwidget.cpp \
+    $$PWD/musicwebradioview.cpp \
     $$PWD/musiccloudsharedsongwidget.cpp \
     $$PWD/musiccloudfilemanagerdialog.cpp \
     $$PWD/musiccloudtablewidget.cpp \

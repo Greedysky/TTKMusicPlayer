@@ -1,5 +1,5 @@
-#ifndef MUSICWEBMUSICRADIOLISTVIEW_H
-#define MUSICWEBMUSICRADIOLISTVIEW_H
+#ifndef MUSICWEBRADIOVIEW_H
+#define MUSICWEBRADIOVIEW_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,26 +19,24 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QListWidget>
+#include <QWidget>
 #include "musicglobaldefine.h"
 
-class QNetworkCookieJar;
-class MusicRadioChannelThread;
-class MusicWebMusicRadioWidget;
+class MusicWebMusicRadioListView;
 
-/*! @brief The class of the web music radio list widget.
+/*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMusicRadioListView : public QListWidget
+class MUSIC_TOOL_EXPORT MusicWebRadioView : public QWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioListView(QWidget *parent = 0);
+    explicit MusicWebRadioView(QWidget *parent = 0);
 
-    ~MusicWebMusicRadioListView();
+    ~MusicWebRadioView();
 
     /*!
      * Get class object name.
@@ -47,23 +45,22 @@ public:
     /*!
      * To init list items.
      */
-    void initListItems();
+    void init();
 
 public Q_SLOTS:
     /*!
-     * Radio list item has clicked.
+     * Open Dj Radio window has clicked.
      */
-    void itemHasClicked(QListWidgetItem *item);
-    /*!
-     * Add radio list into list widget.
-     */
-    void addListWidgetItem();
+    void openDJRadioWindow();
 
 protected:
-    QNetworkCookieJar *m_cookJar;
-    MusicRadioChannelThread *m_getChannelThread;
-    MusicWebMusicRadioWidget *m_musicRadio;
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    MusicWebMusicRadioListView *m_musicRadio;
 
 };
 
-#endif // MUSICWEBMUSICRADIOLISTVIEW_H
+#endif // MUSICWEBRADIOVIEW_H
