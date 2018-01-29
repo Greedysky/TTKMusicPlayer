@@ -5,6 +5,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradioplaylistthread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradiosongsthread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradiothreadabstract.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategorythread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiothreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatadownloadthread.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musictextdownloadthread.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatatagdownloadthread.h
@@ -159,6 +163,10 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradioplaylistthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradiosongsthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/musicradiothreadabstract.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiocategorythread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiothreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatadownloadthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musictextdownloadthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatatagdownloadthread.cpp

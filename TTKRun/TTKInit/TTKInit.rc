@@ -25,11 +25,11 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
             BEGIN
-                VALUE "CompanyName", "Greedysky studio, Ltd."
+                VALUE "CompanyName", "Greedysky Studio, Ltd."
                 VALUE "FileDescription", "初始化"
                 VALUE "FileVersion", "1.0.0.0"
                 VALUE "InternalName", "初始化.exe"
-                VALUE "LegalCopyright", "Copyright By Greedysky studio(C)2018"
+                VALUE "LegalCopyright", "Copyright By Greedysky Studio(C)2018"
                 VALUE "OriginalFilename", "初始化.exe"
                 VALUE "ProductName", "初始化"
                 VALUE "ProductVersion", "1.0.0.0"

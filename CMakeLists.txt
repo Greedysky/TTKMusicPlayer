@@ -53,6 +53,7 @@ include_directories(
     ${MUSIC_CORE_NETWORK_DIR}/nr
     ${MUSIC_CORE_NETWORK_DIR}/qq
     ${MUSIC_CORE_NETWORK_DIR}/radio
+    ${MUSIC_CORE_NETWORK_DIR}/radio/dj
     ${MUSIC_CORE_NETWORK_DIR}/ws
     ${MUSIC_CORE_NETWORK_DIR}/wy
     ${MUSIC_CORE_NETWORK_DIR}/xm
