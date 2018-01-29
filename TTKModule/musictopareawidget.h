@@ -202,6 +202,10 @@ public Q_SLOTS:
      */
     void musicRipplesRemote();
     /*!
+     * Changed current remote to rayswave mode.
+     */
+    void musicRaysWaveRemote();
+    /*!
      * Delete current remote.
      */
     void musicDeleteRemote();
