@@ -119,7 +119,7 @@ void MusicVideoView::setMedia(const QString &data)
 void MusicVideoView::resizeWindow(int width, int height)
 {
     m_videoWidget->setGeometry(10, 35, 655 + width, 372 + height);
-    m_videoControl->setGeometry(0, 437 + height, 680 + width, 60);
+    m_videoControl->setGeometry(0, 438 + height, 680 + width, 60);
     m_barrageCore->setSize(m_videoWidget->size());
 }
 
