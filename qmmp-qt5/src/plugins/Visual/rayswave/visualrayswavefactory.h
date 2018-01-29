@@ -16,8 +16,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef VISUALXRAYSFACTORY_H
-#define VISUALXRAYSFACTORY_H
+#ifndef VISUALRAYSWAVEFACTORY_H
+#define VISUALRAYSWAVEFACTORY_H
 
 
 #include <QObject>
@@ -28,7 +28,7 @@
 /**
     @author Ilya Kotov <forkotov02@hotmail.ru>
 */
-class VisualXRaysFactory : public QObject, public VisualFactory
+class VisualRaysWaveFactory : public QObject, public VisualFactory
 {
 Q_OBJECT
 Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
