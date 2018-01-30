@@ -11,6 +11,7 @@
 #include "musictinyuiobject.h"
 #include "musicclickedslider.h"
 #include "musicsettingmanager.h"
+#include "musicapplication.h"
 
 MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent)
@@ -86,7 +87,10 @@ MusicRemoteWidget::MusicRemoteWidget(QWidget *parent)
 
     volumeLayout->addWidget(m_volumeButton);
     volumeLayout->addWidget(m_volumeSlider);
+    m_volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_volumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
+
+    connect(m_volumeButton, SIGNAL(clicked()), MusicApplication::instance(), SLOT(musicVolumeMute()));
     connect(m_volumeSlider, SIGNAL(valueChanged(int)), SLOT(musicVolumeChanged(int)));
 }
 
