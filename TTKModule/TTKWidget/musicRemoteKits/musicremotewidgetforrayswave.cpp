@@ -18,7 +18,7 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    enableRipples(true);
+    enablePlugin(true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
@@ -54,7 +54,7 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
 
 MusicRemoteWidgetForRaysWave::~MusicRemoteWidgetForRaysWave()
 {
-    enableRipples(false);
+    enablePlugin(false);
     delete m_songNameLabel;
 }
 
@@ -68,13 +68,14 @@ void MusicRemoteWidgetForRaysWave::setLabelText(const QString &value)
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
 }
 
-void MusicRemoteWidgetForRaysWave::enableRipples(bool enable)
+void MusicRemoteWidgetForRaysWave::enablePlugin(bool enable)
 {
     foreach(VisualFactory *v, Visual::factories())
     {
         if(v->properties().shortName.contains("rayswave"))
         {
             Visual::setEnabled(v, enable);
+            break;
         }
     }
 }

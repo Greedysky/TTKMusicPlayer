@@ -343,6 +343,7 @@ void MusicSpectrumWidget::showSpectrum(const QString &name, bool state)
         if(v->properties().shortName.contains(name))
         {
             Visual::setEnabled(v, state);
+            break;
         }
     }
 }

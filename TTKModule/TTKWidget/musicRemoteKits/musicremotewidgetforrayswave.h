@@ -48,9 +48,9 @@ public:
 
 protected:
     /*!
-     * Enable ripples control.
+     * Enable rayswave control.
      */
-    void enableRipples(bool enable);
+    void enablePlugin(bool enable);
 
     MusicMarqueeWidget *m_songNameLabel;
 
