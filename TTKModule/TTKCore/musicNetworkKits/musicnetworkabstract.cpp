@@ -65,3 +65,15 @@ void MusicNetworkAbstract::sslErrorsString(QNetworkReply *reply, const QList<QSs
     reply->ignoreSslErrors();
 }
 #endif
+
+void MusicNetworkAbstract::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m)
+{
+#ifndef QT_NO_SSL
+    QSslConfiguration sslConfig = request->sslConfiguration();
+    sslConfig.setPeerVerifyMode(m);
+    request->setSslConfiguration(sslConfig);
+#else
+    Q_UNUSED(request);
+    Q_UNUSED(m);
+#endif
+}

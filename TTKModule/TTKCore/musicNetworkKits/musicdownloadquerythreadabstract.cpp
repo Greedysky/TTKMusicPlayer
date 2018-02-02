@@ -97,11 +97,8 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(url);
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    setSslConfiguration(&request);
+
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.head(request);
     connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

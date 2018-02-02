@@ -58,7 +58,8 @@ public:
         AdvancedSearchWidget,   /*!< insert advanced search widget*/
         RecommendWidget,        /*!< insert recommend found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
-        KuiSheWidget            /*!< insert kugou kuishe widget*/
+        KuiSheWidget,           /*!< insert kugou kuishe widget*/
+        WebDJRadio              /*!< insert web dj radio widget*/
     };
 
     /*!

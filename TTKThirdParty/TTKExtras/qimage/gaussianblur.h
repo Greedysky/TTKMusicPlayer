@@ -19,7 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicprivate.h"
 #include "musicextrasglobaldefine.h"
+
+class GaussianBlurPrivate;
 
 /*! @brief The namespace of the Gaussian Blur.
  * @author Greedysky <greedysky@163.com>
@@ -27,14 +30,21 @@
 class MUSIC_EXTRAS_EXPORT GaussianBlur
 {
 public:
-    void gaussBlur1(int* pix, int w, int h, int radius);
-    void gaussBlur2(int* pix, int w, int h, int radius);
+    /*!
+     * Object contsructor.
+     */
+    GaussianBlur();
+    /*!
+     * Image gauss alg.
+     */
+    void gaussBlur(int* pix, int w, int h, int radius);
+    /*!
+     * Image gauss alg.
+     */
+    void gaussBlurPlus(int* pix, int w, int h, int radius);
 
 private:
-    void boxBlurH(int* srcPix, int* destPix, int w, int h, int radius);
-    void boxBlurV(int* srcPix, int* destPix, int w, int h, int radius);
-    void boxBlur(int* srcPix, int* destPix, int w, int h, int r);
-    void boxesForGauss(float sigma, int* size, int n);
+    MUSIC_DECLARE_PRIVATE(GaussianBlur)
 
 };
 

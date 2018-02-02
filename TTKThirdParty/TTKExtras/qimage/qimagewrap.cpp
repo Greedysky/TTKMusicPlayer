@@ -12,8 +12,8 @@ QImage QImageWrap::GaussFilter(const QImage &image, int radius)
 
 void QImageWrap::GaussFilter(QImage &image, int radius)
 {
-    GaussianBlur().gaussBlur1((int*)image.bits(),
-                              image.width(),
-                              image.height(),
-                              radius);
+    GaussianBlur().gaussBlur((int*)image.bits(),
+                             image.width(),
+                             image.height(),
+                             radius);
 }

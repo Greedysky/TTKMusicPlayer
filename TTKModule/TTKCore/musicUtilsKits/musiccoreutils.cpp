@@ -87,35 +87,30 @@ void MusicUtils::Core::checkCacheSize(quint64 cacheSize, bool disabled, const QS
     }
 }
 
-QFileInfoList MusicUtils::Core::findFile(const QString &path, const QStringList &filter)
+QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, bool recursively)
 {
-    ///Find the corresponding suffix name
-    QDir dir(path);
+    return getFileListByDir(dpath, QStringList(), recursively);
+}
+
+QFileInfoList MusicUtils::Core::getFileListByDir(const QString &dpath, const QStringList &filter, bool recursively)
+{
+    QDir dir(dpath);
     if(!dir.exists())
     {
         return QFileInfoList();
     }
 
     QFileInfoList fileList = dir.entryInfoList(filter, QDir::Files | QDir::Hidden | QDir::NoSymLinks);
-    QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
-
-    foreach(const QFileInfo &folder, folderList)
+    if(recursively)
     {
-        fileList.append( findFile(folder.absoluteFilePath(), filter) );
+        QFileInfoList folderList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+        foreach(const QFileInfo &fileInfo, folderList)
+        {
+            fileList.append( getFileListByDir(fileInfo.absoluteFilePath(), filter, recursively) );
+        }
     }
+
     return fileList;
-}
-
-QString MusicUtils::Core::getLanguageName(int index)
-{
-    QString lan(LANGUAGE_DIR_FULL);
-    switch(index)
-    {
-        case 0 : return lan.append("cn.ln");
-        case 1 : return lan.append("cn_c.ln");
-        case 2 : return lan.append("en.ln");
-        default: return QString();
-    }
 }
 
 bool MusicUtils::Core::removeRecursively(const QString &dir)
@@ -167,6 +162,18 @@ bool MusicUtils::Core::removeRecursively(const QString &dir)
     }
 
     return success;
+}
+
+QString MusicUtils::Core::getLanguageName(int index)
+{
+    QString lan(LANGUAGE_DIR_FULL);
+    switch(index)
+    {
+        case 0 : return lan.append("cn.ln");
+        case 1 : return lan.append("cn_c.ln");
+        case 2 : return lan.append("en.ln");
+        default: return QString();
+    }
 }
 
 bool MusicUtils::Core::musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth)

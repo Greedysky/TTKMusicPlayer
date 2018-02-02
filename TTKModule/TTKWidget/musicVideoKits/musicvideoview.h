@@ -145,7 +145,6 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-
     bool m_positionChanged;
     MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;

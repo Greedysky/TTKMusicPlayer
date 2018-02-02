@@ -27,15 +27,12 @@ void MusicRadioChannelThread::startToDownload(const QString &)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(CHANNEL_URL, false)));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_CHANNEL_URL, false)));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
+    setSslConfiguration(&request);
 #endif
     if(m_cookJar)
     {

@@ -50,7 +50,7 @@ protected:
     /*!
      * Enable ripples control.
      */
-    void enableRipples(bool enable);
+    void enablePlugin(bool enable);
 
     MusicMarqueeWidget *m_songNameLabel;
 

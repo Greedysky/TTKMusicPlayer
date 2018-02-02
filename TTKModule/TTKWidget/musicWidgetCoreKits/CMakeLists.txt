@@ -8,7 +8,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicqueryfoundtablewidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicslowmovingtablewidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicitemdelegate.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmarqueewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.h
@@ -16,6 +16,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicprogresswidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicclickedlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicclickedslider.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicmovingclickedslider.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmovinglabelslider.h
     ${MUSIC_WIDGET_CORE_DIR}/musictoastlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musicroundanimationlabel.h
@@ -48,7 +49,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicqueryfoundtablewidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicslowmovingtablewidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingtablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicitemdelegate.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmarqueewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.cpp
@@ -56,6 +57,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicprogresswidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicclickedlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicclickedslider.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicmovingclickedslider.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmovinglabelslider.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musictoastlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicroundanimationlabel.cpp

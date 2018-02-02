@@ -198,13 +198,18 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MusicSongAttributes attrs = musicSongInfos[row].m_songAttrs;
+    MusicObject::MusicSongInformation musicSongInfo = m_downLoadManager->getMusicSongInfos()[row];
+    MusicObject::MusicSongAttributes attrs = musicSongInfo.m_songAttrs;
     if(!attrs.isEmpty())
     {
         MusicObject::MusicSongAttribute attr = attrs.first();
         QString url = attr.m_multiParts ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
-        emit mvURLNameChanged(item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip(), url);
+        MusicVideoItem data;
+        data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+        data.m_url = url;
+        data.m_id = musicSongInfo.m_songId;
+        data.m_server = m_downLoadManager->getQueryServer();
+        emit mvURLNameChanged(data);
     }
 }
 

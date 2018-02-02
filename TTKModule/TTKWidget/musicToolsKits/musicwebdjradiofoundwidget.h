@@ -1,0 +1,230 @@
+#ifndef MUSICWEBDJRADIOFOUNDWIDGET_H
+#define MUSICWEBDJRADIOFOUNDWIDGET_H
+
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (C) 2015 - 2018 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ================================================= */
+
+#include "musicfoundabstractwidget.h"
+
+class QGridLayout;
+class MusicPagingWidgetObject;
+
+/*! @brief The class of dj radio music info table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicWebDJRadioInfoTableWidget : public MusicQueryFoundTableWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = 0);
+
+    virtual ~MusicWebDJRadioInfoTableWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set network query input.
+     */
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+};
+
+
+/*! @brief The class of dj radio music info widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicWebDJRadioInfoWidget : public MusicFoundAbstractWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebDJRadioInfoWidget(QWidget *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set current name to search founds.
+     */
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    virtual void resizeWindow() override;
+
+Q_SIGNALS:
+    /*!
+     * Set current index to main menu page.
+     */
+    void backToMainMenu();
+
+public Q_SLOTS:
+    /*!
+     * Query all quality musics is finished.
+     */
+    void queryAllFinished();
+    /*!
+     * Create the current category info item.
+     */
+    void createCategoryInfoItem(const MusicResultsItem &item);
+
+protected:
+    /*!
+     * Create init interface lables.
+     */
+    void createLabels();
+
+};
+
+
+/*! @brief The class of the dj radio music item widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicWebDJRadioFoundItemWidget : public QLabel
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebDJRadioFoundItemWidget(QWidget *parent = 0);
+
+    virtual ~MusicWebDJRadioFoundItemWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set music item.
+     */
+    void setMusicResultsItem(const MusicResultsItem &item);
+
+Q_SIGNALS:
+    /*!
+     * Current radio clicked.
+     */
+    void currentRadioClicked(const MusicResultsItem &item);
+
+public Q_SLOTS:
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &data);
+    /*!
+     * Current radio clicked.
+     */
+    void currentRadioClicked();
+
+protected:
+    MusicResultsItem m_itemData;
+    QPushButton *m_playButton;
+    QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
+
+};
+
+
+
+/*! @brief The class of the dj radio music found widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicWebDJRadioFoundWidget : public MusicFoundAbstractWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebDJRadioFoundWidget(QWidget *parent = 0);
+
+    virtual ~MusicWebDJRadioFoundWidget();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Set current name to search founds.
+     */
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    virtual void resizeWindow() override;
+
+Q_SIGNALS:
+    /*!
+     * Set current index to main menu page.
+     */
+    void backToMainMenu();
+
+public Q_SLOTS:
+    /*!
+     * Query all quality musics is finished.
+     */
+    void createProgramItem(const MusicResultsItem &item);
+    /*!
+     * Current radio clicked.
+     */
+    void currentRadioClicked(const MusicResultsItem &item);
+    /*!
+     * Set current index to main menu page.
+     */
+    void backToMainMenuClicked();
+    /*!
+     * Paging widget button has changed.
+     */
+    void buttonClicked(int index);
+
+protected:
+    bool m_firstInit;
+    QGridLayout *m_gridLayout;
+    MusicPagingWidgetObject *m_pagingWidgetObject;
+    MusicWebDJRadioInfoWidget *m_infoWidget;
+
+};
+
+#endif // MUSICWEBDJRADIOFOUNDWIDGET_H

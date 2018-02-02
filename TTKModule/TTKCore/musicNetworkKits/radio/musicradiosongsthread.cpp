@@ -27,15 +27,12 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
-    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(SONG_URL, false) + id));
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_SONG_URL, false) + id));
 #ifndef QT_NO_SSL
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
+    setSslConfiguration(&request);
 #endif
     if(m_cookJar)
     {
@@ -88,8 +85,8 @@ void MusicRadioSongsThread::downLoadFinished()
                 m_songInfo.m_albumName = value["albumName"].toString();
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 
-                QString lrcPrefix = MusicUtils::Algorithm::mdII(LRC_URL, false);
-                if(!m_songInfo.m_lrcUrl.contains(lrcPrefix))
+                QString lrcPrefix = MusicUtils::Algorithm::mdII(RADIO_LRC_URL, false);
+                if(!m_songInfo.m_lrcUrl.contains("http://"))
                 {
                     m_songInfo.m_lrcUrl = lrcPrefix + m_songInfo.m_lrcUrl;
                 }

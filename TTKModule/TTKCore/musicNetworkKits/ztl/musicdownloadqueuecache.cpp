@@ -22,11 +22,9 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &d
     connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
                        SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
-
-    QSslConfiguration sslConfig = m_request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    m_request->setSslConfiguration(sslConfig);
+    setSslConfiguration(m_request);
 #endif
+
 }
 
 MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, Download_Type type, QObject *parent)

@@ -49,6 +49,8 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_HEADERS
     ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.h
     ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.h
     ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistlistfoundwidget.h
+    ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
@@ -100,5 +102,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_KITS_SOURCES
     ${MUSIC_WIDGET_DIR}/musictoplistfoundcategorypopwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicadvancedsearchedwidget.cpp
     ${MUSIC_WIDGET_DIR}/musicrecommendfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistlistfoundwidget.cpp
+    ${MUSIC_WIDGET_DIR}/musicartistlistfoundcategorypopwidget.cpp
   )
   

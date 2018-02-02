@@ -552,9 +552,8 @@ void MusicApplication::musicImportSongsOnlyDir()
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
-        QList<QFileInfo> file(dialog.directory().entryInfoList());
         QStringList fileList;
-        foreach(const QFileInfo &info, file)
+        foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(dialog.directory().absolutePath(), true))
         {
             if( MusicFormats::supportFormatsString().contains(info.suffix().toLower()) )
             {
@@ -818,13 +817,14 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addSeparator();
     QMenu musicRemoteControl(tr("RemoteControl"), &rightClickMenu);
     rightClickMenu.addMenu(&musicRemoteControl);
+    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
     musicRemoteControl.addAction(tr("SquareRemote"), m_topAreaWidget, SLOT(musicSquareRemote()));
     musicRemoteControl.addAction(tr("RectangleRemote"), m_topAreaWidget, SLOT(musicRectangleRemote()));
-    musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
     musicRemoteControl.addAction(tr("SimpleStyleRemote"), m_topAreaWidget, SLOT(musicSimpleStyleRemote()));
     musicRemoteControl.addAction(tr("ComplexStyleRemote"), m_topAreaWidget, SLOT(musicComplexStyleRemote()));
+    musicRemoteControl.addAction(tr("DiamondRemote"), m_topAreaWidget, SLOT(musicDiamondRemote()));
     musicRemoteControl.addAction(tr("RipplesRemote"), m_topAreaWidget, SLOT(musicRipplesRemote()));
-    musicRemoteControl.addAction(tr("CircleRemote"), m_topAreaWidget, SLOT(musicCircleRemote()));
+    musicRemoteControl.addAction(tr("RaysWaveRemote"), m_topAreaWidget, SLOT(musicRaysWaveRemote()));
     musicRemoteControl.addAction(tr("DeleteRemote"), m_topAreaWidget, SLOT(musicDeleteRemote()));
 
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));

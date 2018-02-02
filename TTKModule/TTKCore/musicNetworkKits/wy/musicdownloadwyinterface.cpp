@@ -73,7 +73,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
             MusicObject::MusicSongAttribute attr;
             attr.m_url = value["url"].toString();
-            attr.m_bitrate = value["br"].toInt()/1000;
+            attr.m_bitrate = bitrate;
 
             if(attr.m_url.isEmpty())
             {
@@ -180,7 +180,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
                 value = var.toMap();
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["url"].toString();
-                attr.m_bitrate = value["br"].toInt()/1000;
+                attr.m_bitrate = bitrate;
                 if(attr.m_url.isEmpty() || info->m_songAttrs.contains(attr))
                 {
                     break;

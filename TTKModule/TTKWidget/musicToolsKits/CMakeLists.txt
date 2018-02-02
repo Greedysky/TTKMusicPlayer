@@ -10,6 +10,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiofoundwidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
@@ -22,6 +26,10 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicconnecttransfertablewidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmusicradiolistview.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmusicradiowidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiocategorywidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiowidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebdjradiofoundwidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongstoolboxwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicsongssummariziedwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musictoolsetswidget.cpp

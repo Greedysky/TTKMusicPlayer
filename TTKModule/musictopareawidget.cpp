@@ -12,6 +12,7 @@
 #include "musicremotewidgetforcomplexstyle.h"
 #include "musicremotewidgetforstrip.h"
 #include "musicremotewidgetforripples.h"
+#include "musicremotewidgetforrayswave.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
@@ -398,6 +399,17 @@ void MusicTopAreaWidget::musicRipplesRemote()
     createRemoteWidget();
 }
 
+void MusicTopAreaWidget::musicRaysWaveRemote()
+{
+    if(m_musicRemoteWidget)
+    {
+        delete m_musicRemoteWidget;
+    }
+    m_musicRemoteWidget = new MusicRemoteWidgetForRaysWave;
+    m_musicRemoteWidget->setLabelText(m_ui->showCurrentSong->text());
+    createRemoteWidget();
+}
+
 void MusicTopAreaWidget::musicDeleteRemote()
 {
     delete m_musicRemoteWidget;
@@ -433,6 +445,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::ComplexStyle: musicComplexStyleRemote(); break;
         case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
         case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
+        case MusicRemoteWidget::RaysWave: musicRaysWaveRemote(); break;
     }
 }
 

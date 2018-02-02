@@ -112,6 +112,10 @@ protected:
      */
     virtual void closeEvent(QCloseEvent *event) override;
     /*!
+     * Create core module.
+     */
+    void createCoreModule();
+    /*!
      * Start to play music radio.
      */
     void startToPlay();
