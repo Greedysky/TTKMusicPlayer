@@ -25,8 +25,8 @@ void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, cons
         return;
     }
     ///////////////////////////////////////////////////////
-    QDomNode node = m_ddom->createProcessingInstruction("wpl", "version='1.0' encoding='UTF-8'");
-    m_ddom->appendChild( node );
+    QDomNode node = m_document->createProcessingInstruction("wpl", "version='1.0' encoding='UTF-8'");
+    m_document->appendChild( node );
     ///////////////////////////////////////////////////////
     QDomElement musicPlayerDom = createRoot("smil");
     //Class A
@@ -57,13 +57,13 @@ void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, cons
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicWPLConfigManager::readWPLXMLConfig(MusicSongItems &musics)
 {
     bool state = false;
-    QDomNodeList nodes = m_ddom->elementsByTagName("head");
+    QDomNodeList nodes = m_document->elementsByTagName("head");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNodeList nodelist = nodes.at(i).childNodes();
@@ -81,7 +81,7 @@ void MusicWPLConfigManager::readWPLXMLConfig(MusicSongItems &musics)
         return;
     }
 
-    nodes = m_ddom->elementsByTagName("seq");
+    nodes = m_document->elementsByTagName("seq");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);
@@ -170,13 +170,13 @@ void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, co
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicXSPFConfigManager::readXSPFXMLConfig(MusicSongItems &musics)
 {
     bool state = false;
-    QDomNodeList nodes = m_ddom->elementsByTagName("playlist");
+    QDomNodeList nodes = m_document->elementsByTagName("playlist");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNodeList nodelist = nodes.at(i).childNodes();
@@ -198,7 +198,7 @@ void MusicXSPFConfigManager::readXSPFXMLConfig(MusicSongItems &musics)
         return;
     }
 
-    nodes = m_ddom->elementsByTagName("trackList");
+    nodes = m_document->elementsByTagName("trackList");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);
@@ -285,13 +285,13 @@ void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, cons
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
 {
     bool state = false;
-    QDomNodeList nodes = m_ddom->elementsByTagName("author");
+    QDomNodeList nodes = m_document->elementsByTagName("author");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);
@@ -310,7 +310,7 @@ void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
     }
 
     MusicSongItem item;
-    nodes = m_ddom->elementsByTagName("ttkitem");
+    nodes = m_document->elementsByTagName("ttkitem");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomElement element = nodes.at(i).toElement();
@@ -320,7 +320,7 @@ void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
                            element.attribute("name"));
     }
 
-    nodes = m_ddom->elementsByTagName("ttklist");
+    nodes = m_document->elementsByTagName("ttklist");
     if(!nodes.isEmpty())
     {
         QDomElement element = nodes.at(0).toElement();
@@ -374,7 +374,7 @@ void MusicKWLConfigManager::readKWLXMLConfig(MusicSongItems &musics)
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
-    QDomNodeList nodes = m_ddom->elementsByTagName("so");
+    QDomNodeList nodes = m_document->elementsByTagName("so");
     for(int i=0; i<nodes.count(); ++i)
     {
         if(i == 0) //Skip root node
@@ -420,7 +420,7 @@ void MusicKGLConfigManager::readKGLXMLConfig(MusicSongItems &musics)
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
 
     QTextCodec *codec = QTextCodec::codecForName("windows-1252");
-    QDomNodeList nodes = m_ddom->elementsByTagName("File");
+    QDomNodeList nodes = m_document->elementsByTagName("File");
     for(int i=0; i<nodes.count(); ++i)
     {
         MusicSong song;

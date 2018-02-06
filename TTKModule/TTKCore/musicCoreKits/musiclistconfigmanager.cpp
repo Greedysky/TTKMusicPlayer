@@ -43,12 +43,12 @@ void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicListConfigManager::readMusicSongsConfig(MusicSongItems &musics)
 {
-    QDomNodeList nodes = m_ddom->elementsByTagName("musicList");
+    QDomNodeList nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);

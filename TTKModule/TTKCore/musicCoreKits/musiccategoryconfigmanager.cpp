@@ -27,7 +27,7 @@ bool MusicCategoryConfigManager::readCategoryConfig(Type type)
 
 void MusicCategoryConfigManager::readCategoryConfig(MusicResultsCategorys &records, const QString &key)
 {
-    QDomNodeList nodes = m_ddom->elementsByTagName(key);
+    QDomNodeList nodes = m_document->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)
     {
         QDomNode node = nodes.at(i);

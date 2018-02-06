@@ -21,7 +21,7 @@ QString MusicSkinThunderConfigManager::getClassName()
 
 void MusicSkinThunderConfigManager::readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items)
 {
-    QDomNodeList nodelist = m_ddom->elementsByTagName("group");
+    QDomNodeList nodelist = m_document->elementsByTagName("group");
     for(int i=0; i<nodelist.count(); ++i)
     {
         MusicSkinRemoteGroup group;

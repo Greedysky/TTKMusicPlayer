@@ -148,7 +148,7 @@ public Q_SLOTS:
     /*!
      * Update current artist pic.
      */
-    void artHasChanged();
+    void artistNameChanged();
     /*!
      * User selected the plane pic.
      */

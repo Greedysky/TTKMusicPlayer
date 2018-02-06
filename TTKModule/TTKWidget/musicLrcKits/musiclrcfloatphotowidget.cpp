@@ -168,7 +168,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBg(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
-    connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SLOT(artHasChanged()));
+    connect(M_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
 }
 
@@ -248,7 +248,7 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
     showPhoto();
 }
 
-void MusicLrcFloatPhotoWidget::artHasChanged()
+void MusicLrcFloatPhotoWidget::artistNameChanged()
 {
     m_selectNum.clear();
     m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();

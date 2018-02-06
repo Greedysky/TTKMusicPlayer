@@ -22,7 +22,7 @@ void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformat
 {
     info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
 
-    QDomNodeList resultlist = m_ddom->elementsByTagName("video");
+    QDomNodeList resultlist = m_document->elementsByTagName("video");
     for(int i=0; i<resultlist.count(); ++i)
     {
         QDomNodeList infolist = resultlist.at(i).childNodes();

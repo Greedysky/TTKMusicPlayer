@@ -128,7 +128,7 @@ Q_SIGNALS:
     /*!
      * New art has been set emit.
      */
-    void artHasChanged();
+    void artistNameChanged();
     /*!
      * User selected index changed emit.
      */
