@@ -108,6 +108,10 @@ public Q_SLOTS:
 
 protected:
     /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+    /*!
      * Infinited mode check.
      */
     bool infinitedModeCheck();
@@ -115,6 +119,7 @@ protected:
     int m_index;
     Type m_type;
     QTimer *m_timer;
+    QPixmap m_renderer;
     bool m_isRunning, m_infinited;
 
 };
