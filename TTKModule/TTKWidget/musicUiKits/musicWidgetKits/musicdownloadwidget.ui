@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>468</width>
-    <height>178</height>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>460</width>
-     <height>170</height>
+     <height>220</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>460</width>
-     <height>145</height>
+     <height>195</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -78,7 +78,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>70</y>
+      <y>120</y>
       <width>60</width>
       <height>20</height>
      </rect>
@@ -91,7 +91,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>100</x>
-      <y>70</y>
+      <y>120</y>
       <width>211</width>
       <height>20</height>
      </rect>
@@ -104,7 +104,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>70</y>
+      <y>120</y>
       <width>55</width>
       <height>20</height>
      </rect>
@@ -120,7 +120,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>70</y>
+      <y>120</y>
       <width>55</width>
       <height>20</height>
      </rect>
@@ -136,7 +136,7 @@ QLabel{background:transparent;}</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>100</y>
+      <y>150</y>
       <width>100</width>
       <height>35</height>
      </rect>
@@ -196,6 +196,16 @@ QLabel{background:transparent;}</string>
    <zorder>downloadPathEdit</zorder>
    <zorder>downloadButton</zorder>
   </widget>
+  <widget class="MusicGifLabelWidget" name="loadingLabel">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>72</y>
+     <width>58</width>
+     <height>58</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -203,6 +213,11 @@ QLabel{background:transparent;}</string>
    <extends>QTableWidget</extends>
    <header>musicdownloadwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicGifLabelWidget</class>
+   <extends>QLabel</extends>
+   <header>musicgiflabelwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

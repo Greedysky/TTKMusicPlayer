@@ -84,6 +84,10 @@ public:
     bool getInfinited() const;
 
     /*!
+     * Run the gif.
+     */
+    void run(bool run);
+    /*!
      * Start the gif.
      */
     void start();

@@ -41,8 +41,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
     ////////////////////////////////////////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
 
@@ -59,8 +58,7 @@ void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
     ////////////////////////////////////////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
     m_downLoadManager->startToSingleSearch(text);
 }

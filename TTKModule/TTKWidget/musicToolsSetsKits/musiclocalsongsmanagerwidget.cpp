@@ -564,14 +564,5 @@ void MusicLocalSongsManagerWidget::controlEnable(bool state)
 
 void MusicLocalSongsManagerWidget::loadingLabelState(bool state)
 {
-    if(state)
-    {
-        m_ui->loadingLabel->show();
-        m_ui->loadingLabel->start();
-    }
-    else
-    {
-        m_ui->loadingLabel->hide();
-        m_ui->loadingLabel->stop();
-    }
+    m_ui->loadingLabel->run(state);
 }

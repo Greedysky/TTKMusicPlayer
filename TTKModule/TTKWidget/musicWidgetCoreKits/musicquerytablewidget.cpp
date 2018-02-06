@@ -108,8 +108,7 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 
 void MusicQueryItemTableWidget::createFinishedItem()
 {
-    m_loadingLabel->hide();
-    m_loadingLabel->stop();
+    m_loadingLabel->run(false);
 
     setRowCount(rowCount() + 1);
     int count = rowCount() - 1;

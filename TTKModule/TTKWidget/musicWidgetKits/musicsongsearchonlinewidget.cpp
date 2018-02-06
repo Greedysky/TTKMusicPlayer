@@ -86,8 +86,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
         m_downLoadManager->setSearchQuality(quality);
     }
     ////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
@@ -112,8 +111,7 @@ void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &tex
         m_downLoadManager->setSearchQuality(quality);
     }
     ////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSingleSearch(text);
 }

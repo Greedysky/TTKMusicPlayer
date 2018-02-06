@@ -82,6 +82,20 @@ bool MusicGifLabelWidget::getInfinited() const
     return m_infinited;
 }
 
+void MusicGifLabelWidget::run(bool run)
+{
+    if(run)
+    {
+        show();
+        start();
+    }
+    else
+    {
+        hide();
+        stop();
+    }
+}
+
 void MusicGifLabelWidget::start()
 {
     m_timer->start();
