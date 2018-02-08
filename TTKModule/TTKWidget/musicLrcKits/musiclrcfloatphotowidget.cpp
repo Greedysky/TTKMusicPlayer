@@ -109,6 +109,20 @@ void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
     }
 }
 
+void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
+{
+    MusicClickedLabel::enterEvent(event);
+    if(!pixmap()->isNull())
+    {
+        setCursor(Qt::PointingHandCursor);
+    }
+    else
+    {
+        unsetCursor();
+    }
+}
+
+
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
@@ -250,6 +264,12 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
 
 void MusicLrcFloatPhotoWidget::artistNameChanged()
 {
+    if(isVisible())
+    {
+        m_currentIndex = 0;
+        close();
+    }
+
     m_selectNum.clear();
     m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
