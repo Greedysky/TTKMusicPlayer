@@ -102,6 +102,7 @@ void MusicDispatchManager::activeFunctions()
             }
             break;
         }
+        default: break;
     }
 
     if(state)

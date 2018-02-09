@@ -101,6 +101,7 @@ bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
                         songItem.m_itemName = tr("myRecentSongItem");
                         break;
                     }
+                default: break;
             }
             m_songItems << songItem;
         }

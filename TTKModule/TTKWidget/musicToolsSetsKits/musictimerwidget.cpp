@@ -191,6 +191,7 @@ void MusicTimerWidget::changeWidgetIndex(int index)
         case 0: m_ui->timerToPlay->setStyleSheet(MusicUIObject::MKGTimeToPlayClicked); break;
         case 1: m_ui->timerToStop->setStyleSheet(MusicUIObject::MKGTimeToStopClicked); break;
         case 2: m_ui->timerToShutdown->setStyleSheet(MusicUIObject::MKGTimeToDownClicked); break;
+        default: break;
     }
 
     m_ui->stackedWidget->setCurrentIndex(index);

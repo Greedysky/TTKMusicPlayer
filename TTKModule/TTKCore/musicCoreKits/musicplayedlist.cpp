@@ -211,6 +211,7 @@ void MusicPlayedlist::setCurrentIndex(int index)
                 break;
             case MusicObject::PM_PlayOnce :
                 break;
+            default: break;
         }
     }
     else

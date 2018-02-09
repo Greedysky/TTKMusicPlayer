@@ -92,6 +92,7 @@ void MusicUserLineEdit::checkTheInput()
         case Mail:
              showLabel();
              break;
+        default: break;
     }
 }
 

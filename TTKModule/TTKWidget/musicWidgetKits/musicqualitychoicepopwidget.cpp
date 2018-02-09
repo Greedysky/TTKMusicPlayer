@@ -211,6 +211,7 @@ void MusicQualityChoicePopWidget::listCellClicked(int row)
                 m_currentQuality = tr("CD");
                 break;
             }
+        default: break;
     }
     setStyleSheet( styleSheet() + style);
 

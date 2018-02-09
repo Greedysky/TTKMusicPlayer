@@ -452,6 +452,7 @@ void MusicLocalSongsManagerWidget::clearAllItems()
         case 0: m_ui->songlistsTable->clear(); break;
         case 1:
         case 2: m_ui->songInfoTable->clear(); break;
+        default: break;
     }
 }
 

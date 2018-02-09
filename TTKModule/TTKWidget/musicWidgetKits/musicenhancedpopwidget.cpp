@@ -130,6 +130,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
         case 2: style += "#EnhancedWidget{ margin-left: -192px; }"; break;
         case 3: style += "#EnhancedWidget{ margin-left: -96px; }"; break;
         case 4: style += "#EnhancedWidget{ margin-left: -144px; }"; break;
+        default: break;
     }
     setStyleSheet( style );
 

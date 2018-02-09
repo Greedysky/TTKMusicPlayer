@@ -54,6 +54,7 @@ void MusicVideoBarrageStylePopWidget::barrageSizeButtonClicked(int index)
                 buttons[1]->setStyleSheet(MusicUIObject::MKGVideoBtnMiddleOn); break;
         case 2: m_barrageSize = 30;
                 buttons[2]->setStyleSheet(MusicUIObject::MKGVideoBtnBigOn); break;
+        default: break;
     }
 }
 
@@ -87,6 +88,7 @@ void MusicVideoBarrageStylePopWidget::barrageColorButtonClicked(int index)
                 buttons[5]->setStyleSheet(MusicUIObject::MKGVideoBtnBlueOn); break;
         case 6: m_barrageColor = QColor(160, 32, 240);
                 buttons[6]->setStyleSheet(MusicUIObject::MKGVideoBtnPurpleOn); break;
+        default: break;
     }
 }
 

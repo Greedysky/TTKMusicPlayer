@@ -95,6 +95,7 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
         case 1: button->setIcon(QIcon(":/color/lb_indigo")); break;
         case 2: button->setIcon(QIcon(":/color/lb_blue")); break;
         case 3: button->setIcon(QIcon(":/color/lb_orange")); break;
+        default: break;
     }
     button->setGeometry(80 + index*20, 25, 16, 16);
     button->setCursor(QCursor(Qt::PointingHandCursor));

@@ -221,6 +221,7 @@ void MusicAbstractXml::writeAttribute(QDomElement &element, const MusicXmlAttrib
             element.setAttribute(attr.m_key, attr.m_value.toDouble()); break;
         case QVariant::UInt :
             element.setAttribute(attr.m_key, attr.m_value.toUInt()); break;
+        default: break;
     }
 }
 

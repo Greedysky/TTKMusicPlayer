@@ -446,6 +446,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
         case MusicRemoteWidget::Diamond: musicDiamondRemote(); break;
         case MusicRemoteWidget::Ripples: musicRipplesRemote(); break;
         case MusicRemoteWidget::RaysWave: musicRaysWaveRemote(); break;
+        default: break;
     }
 }
 

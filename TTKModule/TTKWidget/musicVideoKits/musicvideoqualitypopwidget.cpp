@@ -64,6 +64,7 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
         case 1: url = findMVUrlByBitrate(MB_500); break;
         case 2: url = findMVUrlByBitrate(MB_750); break;
         case 3: url = findMVUrlByBitrate(MB_1000); break;
+        default: break;
     }
     setQualityText( url );
     emit mvURLChanged( url );

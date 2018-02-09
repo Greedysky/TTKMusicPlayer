@@ -56,5 +56,6 @@ void MusicLocalSongSearchEdit::keyReleaseEvent(QKeyEvent *event)
                 emit enterFinished(text());
             }
             break;
+        default: break;
     }
 }

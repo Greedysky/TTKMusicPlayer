@@ -103,6 +103,7 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
         case 1: emit restartSearchQuery(songName); break;
         case 2: emit restartSearchQuery(artistName); break;
         case 3: emit restartSearchQuery(songName + "-" + artistName); break;
+        default: break;
     }
 }
 

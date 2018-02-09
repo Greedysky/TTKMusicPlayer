@@ -323,6 +323,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
             case Type14:
                     matchLrcLine(temp, cap, "\\d{2}(?=\\.)", "\\d{2}(?=\\])");
                     break;
+            default: break;
         }
         pos += regex.matchedLength();
         pos = regex.indexIn(oneLine, pos); //Matching all
