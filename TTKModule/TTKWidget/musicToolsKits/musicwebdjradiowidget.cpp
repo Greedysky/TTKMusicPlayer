@@ -352,3 +352,8 @@ void MusicWebDJRadioWidget::initFirstWidget()
 
     addWidget(w);
 }
+
+void MusicWebDJRadioWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}

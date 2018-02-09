@@ -170,6 +170,10 @@ protected:
      * Init the first widget.
      */
     void initFirstWidget();
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     MusicWebDJRadioCategoryWidget *m_categoryWidget;
     MusicWebDJRadioProgramWidget *m_recommendWidget, *m_programWidget;
