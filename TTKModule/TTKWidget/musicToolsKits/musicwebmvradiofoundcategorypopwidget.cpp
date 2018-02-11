@@ -1,4 +1,4 @@
-#include "musicplaylistfoundcategorypopwidget.h"
+#include "musicwebmvradiofoundcategorypopwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
 
@@ -7,28 +7,28 @@
 #include <QSignalMapper>
 #include <QScrollArea>
 
-#define ITEM_MAX_COLUMN     6
+#define ITEM_MAX_COLUMN     2
 #define ITEM_LABEL_WIDTH    20
 
-MusicPlaylistFoundCategoryItem::MusicPlaylistFoundCategoryItem(QWidget *parent)
+MusicWebMVRadioFoundCategoryItem::MusicWebMVRadioFoundCategoryItem(QWidget *parent)
     : QWidget(parent)
 {
     setStyleSheet(QString());
 }
 
-QString MusicPlaylistFoundCategoryItem::getClassName()
+QString MusicWebMVRadioFoundCategoryItem::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundCategoryItem::setCategory(const MusicResultsCategory &category)
+void MusicWebMVRadioFoundCategoryItem::setCategory(const MusicResultsCategory &category)
 {
     m_category = category;
 
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *label = new QLabel(category.m_category, this);
     label->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle03);
-    label->setFixedSize(50, ITEM_LABEL_WIDTH);
+    label->setFixedSize(100, ITEM_LABEL_WIDTH);
     layout->addWidget(label, 0, Qt::AlignTop);
 
     QWidget *item = new QWidget(this);
@@ -42,7 +42,7 @@ void MusicPlaylistFoundCategoryItem::setCategory(const MusicResultsCategory &cat
     {
         MusicClickedLabel *l = new MusicClickedLabel(m_category.m_items[i].m_name, item);
         l->setStyleSheet(QString("QLabel::hover{%1}").arg(MusicUIObject::MColorStyle08));
-        l->setFixedSize(75, ITEM_LABEL_WIDTH);
+        l->setFixedSize(200, ITEM_LABEL_WIDTH);
         connect(l, SIGNAL(clicked()), group, SLOT(map()));
         group->setMapping(l, i);
         itemlayout->addWidget(l, i/ITEM_MAX_COLUMN, i%ITEM_MAX_COLUMN, Qt::AlignLeft);
@@ -53,7 +53,7 @@ void MusicPlaylistFoundCategoryItem::setCategory(const MusicResultsCategory &cat
     setLayout(layout);
 }
 
-void MusicPlaylistFoundCategoryItem::buttonClicked(int index)
+void MusicWebMVRadioFoundCategoryItem::buttonClicked(int index)
 {
     if(0 <= index && index < m_category.m_items.count())
     {
@@ -63,7 +63,7 @@ void MusicPlaylistFoundCategoryItem::buttonClicked(int index)
 
 
 
-MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget *parent)
+MusicWebMVRadioFoundCategoryPopWidget::MusicWebMVRadioFoundCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     initWidget();
@@ -72,16 +72,16 @@ MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget
     connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
 }
 
-QString MusicPlaylistFoundCategoryPopWidget::getClassName()
+QString MusicWebMVRadioFoundCategoryPopWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
+void MusicWebMVRadioFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)
 {
     MusicResultsCategorys categorys;
     MusicCategoryConfigManager manager;
-    manager.readCategoryConfig(MusicCategoryConfigManager::Playlist);
+    manager.readCategoryConfig(MusicCategoryConfigManager::MovieList);
     manager.readCategoryConfig(categorys, server);
 
     QVBoxLayout *layout = new QVBoxLayout(m_containWidget);
@@ -100,7 +100,7 @@ void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QOb
 
     foreach(const MusicResultsCategory &category, categorys)
     {
-        MusicPlaylistFoundCategoryItem *item = new MusicPlaylistFoundCategoryItem(this);
+        MusicWebMVRadioFoundCategoryItem *item = new MusicWebMVRadioFoundCategoryItem(this);
         connect(item, SIGNAL(categoryChanged(MusicResultsCategoryItem)), obj, SLOT(categoryChanged(MusicResultsCategoryItem)));
         item->setCategory(category);
         containLayout->addWidget(item);
@@ -108,19 +108,19 @@ void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QOb
     m_containWidget->setLayout(layout);
 }
 
-void MusicPlaylistFoundCategoryPopWidget::closeMenu()
+void MusicWebMVRadioFoundCategoryPopWidget::closeMenu()
 {
     m_menu->close();
 }
 
-void MusicPlaylistFoundCategoryPopWidget::popupMenu()
+void MusicWebMVRadioFoundCategoryPopWidget::popupMenu()
 {
     m_menu->exec( mapToGlobal(QPoint(0, 0)) );
 }
 
-void MusicPlaylistFoundCategoryPopWidget::initWidget()
+void MusicWebMVRadioFoundCategoryPopWidget::initWidget()
 {
-    setFixedSize(100, 30);
+    setFixedSize(150, 30);
     setTranslucentBackground();
     setText(tr("All"));
 

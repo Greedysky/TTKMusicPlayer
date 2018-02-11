@@ -1,5 +1,5 @@
-#ifndef MUSICWEBRADIOVIEW_H
-#define MUSICWEBRADIOVIEW_H
+#ifndef MUSICMVRADIOTHREADABSTRACT_H
+#define MUSICMVRADIOTHREADABSTRACT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,52 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
-#include "musicglobaldefine.h"
+#include "musicdownloadquerythreadabstract.h"
 
-class MusicWebMusicRadioListView;
+const QString MV_CATEGORY_URL       = "a2JPOG81ckd3T1NtN004dnRBZ2JubTZYeFYxSFBXWCtDdkZmVVZKY1NVNGxDUGhaMjY0dXh2bk1XWWpXRlpQUmE3ZG5VZVErNURVPQ==";
 
-/*! @brief The class of the web radio widget.
+
+/*! @brief The class of music mv radio thread abstract.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebRadioView : public QWidget
+class MUSIC_NETWORK_EXPORT MusicMVRadioThreadAbstract : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicWebRadioView(QWidget *parent = 0);
-
-    ~MusicWebRadioView();
+    explicit MusicMVRadioThreadAbstract(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-    /*!
-     * To init list items.
-     */
-    void init();
 
-public Q_SLOTS:
     /*!
-     * Open Dj Radio window has clicked.
+     * Start to search data from name and type.
      */
-    void openDJRadioWindow();
-    /*!
-     * Open mv Radio window has clicked.
-     */
-    void openMVRadioWindow();
+    virtual void startToSearch(QueryType type, const QString &text) override;
 
-protected:
+Q_SIGNALS:
     /*!
-     * Override the widget event.
+     * Create the current category item.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
-    MusicWebMusicRadioListView *m_musicRadio;
+    void createCategoryItem(const MusicResultsItem &item);
 
 };
 
-#endif // MUSICWEBRADIOVIEW_H
+#endif // MUSICMVRADIOTHREADABSTRACT_H

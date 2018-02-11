@@ -19,6 +19,7 @@ bool MusicCategoryConfigManager::readCategoryConfig(Type type)
         case Playlist: v = ":/data/playlist"; break;
         case Toplist: v = ":/data/toplist"; break;
         case ArtistList: v = ":/data/artistlist"; break;
+        case MovieList: v = ":/data/movielist"; break;
         default: break;
     }
 

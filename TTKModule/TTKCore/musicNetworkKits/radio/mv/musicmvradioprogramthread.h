@@ -1,5 +1,5 @@
-#ifndef MUSICWEBRADIOVIEW_H
-#define MUSICWEBRADIOVIEW_H
+#ifndef MUSICMVRADIOPROGRAMTHREAD_H
+#define MUSICMVRADIOPROGRAMTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,52 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
-#include "musicglobaldefine.h"
+#include "musicmvradiothreadabstract.h"
 
-class MusicWebMusicRadioListView;
-
-/*! @brief The class of the web radio widget.
+/*! @brief The class of mv radio program thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebRadioView : public QWidget
+class MUSIC_NETWORK_EXPORT MusicMVRadioProgramThread : public MusicMVRadioThreadAbstract
 {
     Q_OBJECT
 public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicWebRadioView(QWidget *parent = 0);
-
-    ~MusicWebRadioView();
+    explicit MusicMVRadioProgramThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-    /*!
-     * To init list items.
-     */
-    void init();
 
 public Q_SLOTS:
     /*!
-     * Open Dj Radio window has clicked.
+     * Download data from net finished.
      */
-    void openDJRadioWindow();
-    /*!
-     * Open mv Radio window has clicked.
-     */
-    void openMVRadioWindow();
+    virtual void downLoadFinished() override;
 
 protected:
     /*!
-     * Override the widget event.
+     * Read mv tags(size\bitrate\url) from query results.
      */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
-    MusicWebMusicRadioListView *m_musicRadio;
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info);
+    /*!
+     * Read mv info attribute from query results.
+     */
+    void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key);
 
 };
 
-#endif // MUSICWEBRADIOVIEW_H
+#endif // MUSICMVRADIOPROGRAMTHREAD_H

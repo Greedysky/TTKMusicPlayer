@@ -1,5 +1,5 @@
-#ifndef MUSICWEBDJRADIOCATEGORYWIDGET_H
-#define MUSICWEBDJRADIOCATEGORYWIDGET_H
+#ifndef MUSICWEBMVRADIOINFOWIDGET_H
+#define MUSICWEBMVRADIOINFOWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,25 +19,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicclickedlabel.h"
 #include "musicfoundabstractwidget.h"
 
-class QGridLayout;
-class MusicDJRadioCategoryThread;
-
-/*! @brief The class of music dj radio category item widget.
+/*! @brief The class of music mv info table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
+class MUSIC_TOOL_EXPORT MusicWebMVRadioInfoTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioInfoTableWidget(QWidget *parent = 0);
 
-    ~MusicWebDJRadioCategoryItemWidget();
+    virtual ~MusicWebMVRadioInfoTableWidget();
 
     /*!
      * Get class object name.
@@ -45,46 +41,30 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music category item.
+     * Set network query input.
      */
-    void setMusicResultsItem(const MusicResultsItem &item);
-
-Q_SIGNALS:
-    /*!
-     * Current category clicked.
-     */
-    void currentCategoryClicked(const MusicResultsItem &item);
-
-public Q_SLOTS:
-    /*!
-     * Send recieved data from net.
-     */
-    void downLoadFinished(const QByteArray &data);
-    /*!
-     * Current category clicked.
-     */
-    void currentCategoryClicked();
+    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
 
 protected:
-    QLabel *m_iconLabel, *m_nameLabel;
-    MusicResultsItem m_itemData;
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 
 
-/*! @brief The class of music dj radio category widget.
+/*! @brief The class of music mv info widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
+class MUSIC_TOOL_EXPORT MusicWebMVRadioInfoWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioCategoryWidget(QWidget *parent = 0);
-
-    virtual ~MusicWebDJRadioCategoryWidget();
+    explicit MusicWebMVRadioInfoWidget(QWidget *parent = 0);
 
     /*!
      * Get class object name.
@@ -92,31 +72,41 @@ public:
     static QString getClassName();
 
     /*!
-     * Init widget.
+     * Set current name to search founds.
      */
-    void init();
+    virtual void setSongName(const QString &name) override;
+    /*!
+     * Set current id to search founds.
+     */
+    virtual void setSongNameById(const QString &id) override;
+
     /*!
      * Resize window bound by widgte resize called.
      */
-    void resizeWindow();
+    virtual void resizeWindow() override;
 
 Q_SIGNALS:
     /*!
-     * Current category clicked.
+     * Set current index to main menu page.
      */
-    void currentCategoryClicked(const MusicResultsItem &item);
+    void backToMainMenu();
 
 public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void createCategoryItems();
+    void queryAllFinished();
+    /*!
+     * Create the current category info item.
+     */
+    void createCategoryInfoItem(const MusicResultsItem &item);
 
 protected:
-    QGridLayout *m_gridLayout;
-    QList<QLabel*> m_resizeWidgets;
-    MusicDJRadioCategoryThread *m_categoryThread;
+    /*!
+     * Create init interface lables.
+     */
+    void createLabels();
 
 };
 
-#endif // MUSICWEBDJRADIOCATEGORYWIDGET_H
+#endif // MUSICWEBMVRADIOINFOWIDGET_H

@@ -1,5 +1,5 @@
-#ifndef MUSICWEBDJRADIOFOUNDWIDGET_H
-#define MUSICWEBDJRADIOFOUNDWIDGET_H
+#ifndef MUSICWEBMVRADIOFOUNDWIDGET_H
+#define MUSICWEBMVRADIOFOUNDWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,24 +20,24 @@
  ================================================= */
 
 #include "musicfoundabstractwidget.h"
+#include "musiccategoryconfigmanager.h"
 
-class QGridLayout;
-class MusicPagingWidgetObject;
-class MusicWebDJRadioInfoWidget;
+class MusicWebMVRadioInfoWidget;
+class MusicWebMVRadioFoundCategoryPopWidget;
 
-/*! @brief The class of the dj radio music item widget.
+/*! @brief The class of the music mv found item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundItemWidget : public QLabel
+class MUSIC_TOOL_EXPORT MusicWebMVRadioFoundItemWidget : public QLabel
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioFoundItemWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundItemWidget(QWidget *parent = 0);
 
-    virtual ~MusicWebDJRadioFoundItemWidget();
+    virtual ~MusicWebMVRadioFoundItemWidget();
 
     /*!
      * Get class object name.
@@ -45,7 +45,7 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music item.
+     * Set music playlist item.
      */
     void setMusicResultsItem(const MusicResultsItem &item);
 
@@ -66,27 +66,33 @@ public Q_SLOTS:
     void currentRadioClicked();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
+
     MusicResultsItem m_itemData;
     QPushButton *m_playButton;
-    QLabel *m_iconLabel, *m_nameLabel, *m_creatorLabel;
+    QLabel *m_iconLabel, *m_nameLabel;
 
 };
 
 
 
-/*! @brief The class of the dj radio music found widget.
+/*! @brief The class of the music mv found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundWidget : public MusicFoundAbstractWidget
+class MUSIC_TOOL_EXPORT MusicWebMVRadioFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioFoundWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundWidget(QWidget *parent = 0);
 
-    virtual ~MusicWebDJRadioFoundWidget();
+    virtual ~MusicWebMVRadioFoundWidget();
 
     /*!
      * Get class object name.
@@ -107,19 +113,13 @@ public:
      */
     virtual void resizeWindow() override;
 
-Q_SIGNALS:
-    /*!
-     * Set current index to main menu page.
-     */
-    void backToMainMenu();
-
 public Q_SLOTS:
     /*!
-     * Query all quality musics is finished.
+     * Create the current category item.
      */
-    void createProgramItem(const MusicResultsItem &item);
+    void createCategoryItem(const MusicResultsItem &item);
     /*!
-     * Current radio clicked.
+     * Current item clicked.
      */
     void currentRadioClicked(const MusicResultsItem &item);
     /*!
@@ -127,16 +127,16 @@ public Q_SLOTS:
      */
     void backToMainMenuClicked();
     /*!
-     * Paging widget button has changed.
+     * Current category changed.
      */
-    void buttonClicked(int index);
+    void categoryChanged(const MusicResultsCategoryItem &category);
 
 protected:
     bool m_firstInit;
     QGridLayout *m_gridLayout;
-    MusicPagingWidgetObject *m_pagingWidgetObject;
-    MusicWebDJRadioInfoWidget *m_infoWidget;
+    MusicWebMVRadioInfoWidget *m_infoWidget;
+    MusicWebMVRadioFoundCategoryPopWidget *m_categoryButton;
 
 };
 
-#endif // MUSICWEBDJRADIOFOUNDWIDGET_H
+#endif // MUSICWEBMVRADIOFOUNDWIDGET_H

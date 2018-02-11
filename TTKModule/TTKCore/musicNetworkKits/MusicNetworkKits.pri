@@ -19,6 +19,7 @@
 INCLUDEPATH += $$PWD \
                $$PWD/radio \
                $$PWD/radio/dj \
+               $$PWD/radio/mv \
                $$PWD/nr \
                $$PWD/wy \
                $$PWD/xm \
@@ -41,6 +42,9 @@ HEADERS  += \
     $$PWD/radio/dj/musicdjradioprogramthread.h \
     $$PWD/radio/dj/musicdjradioprogramcategorythread.h \
     $$PWD/radio/dj/musicdjradiothreadabstract.h \
+    $$PWD/radio/mv/musicmvradiocategorythread.h \
+    $$PWD/radio/mv/musicmvradioprogramthread.h \
+    $$PWD/radio/mv/musicmvradiothreadabstract.h \
     $$PWD/nr/musicdatadownloadthread.h \
     $$PWD/nr/musictextdownloadthread.h \
     $$PWD/nr/musicdatatagdownloadthread.h \
@@ -201,6 +205,9 @@ SOURCES += \
     $$PWD/radio/dj/musicdjradioprogramthread.cpp \
     $$PWD/radio/dj/musicdjradioprogramcategorythread.cpp \
     $$PWD/radio/dj/musicdjradiothreadabstract.cpp \
+    $$PWD/radio/mv/musicmvradiocategorythread.cpp \
+    $$PWD/radio/mv/musicmvradioprogramthread.cpp \
+    $$PWD/radio/mv/musicmvradiothreadabstract.cpp \
     $$PWD/nr/musicdatadownloadthread.cpp \
     $$PWD/nr/musictextdownloadthread.cpp \
     $$PWD/nr/musicdatatagdownloadthread.cpp \

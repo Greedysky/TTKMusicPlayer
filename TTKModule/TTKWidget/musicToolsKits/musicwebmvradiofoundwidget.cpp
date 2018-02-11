@@ -1,27 +1,22 @@
-#include "musicwebdjradiofoundwidget.h"
-#include "musicdjradioprogramcategorythread.h"
-#include "musictinyuiobject.h"
-#include "musicpagingwidgetobject.h"
-#include "musicsettingmanager.h"
-#include "musicdownloadqueryfactory.h"
+#include "musicwebmvradiofoundwidget.h"
+#include "musicwebmvradiofoundcategorypopwidget.h"
+#include "musicwebmvradioinfowidget.h"
+#include "musicmvradiocategorythread.h"
 #include "musicdownloadsourcethread.h"
-#include "musicwebdjradioinfowidget.h"
+#include "musictinyuiobject.h"
 #include "musicotherdefine.h"
 
-#include <qmath.h>
-#include <QGridLayout>
-
 #define WIDTH_LABEL_SIZE   150
-#define HEIGHT_LABEL_SIZE  200
+#define HEIGHT_LABEL_SIZE  100
 #define LINE_SPACING_SIZE  200
 
-MusicWebDJRadioFoundItemWidget::MusicWebDJRadioFoundItemWidget(QWidget *parent)
+MusicWebMVRadioFoundItemWidget::MusicWebMVRadioFoundItemWidget(QWidget *parent)
     : QLabel(parent)
 {
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
     m_playButton = new QPushButton(this);
-    m_playButton->setGeometry(110, 110, 30, 30);
+    m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30)/2, (HEIGHT_LABEL_SIZE - 30)/2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
     connect(m_playButton, SIGNAL(clicked()), SLOT(currentRadioClicked()));
@@ -34,36 +29,30 @@ MusicWebDJRadioFoundItemWidget::MusicWebDJRadioFoundItemWidget(QWidget *parent)
     m_iconLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, WIDTH_LABEL_SIZE);
 
     m_nameLabel = new QLabel(this);
-    m_nameLabel->setGeometry(0, 150, WIDTH_LABEL_SIZE, 25);
+    m_nameLabel->setAlignment(Qt::AlignCenter);
+    m_nameLabel->setGeometry(0, 0, WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
+    m_nameLabel->setStyleSheet(MusicUIObject::MColorStyle01 + MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01);
     m_nameLabel->setText(" - ");
-
-    m_creatorLabel = new QLabel(this);
-    m_creatorLabel->setGeometry(0, 175, WIDTH_LABEL_SIZE, 25);
-    m_creatorLabel->setText("by anonymous");
 }
 
-MusicWebDJRadioFoundItemWidget::~MusicWebDJRadioFoundItemWidget()
+MusicWebMVRadioFoundItemWidget::~MusicWebMVRadioFoundItemWidget()
 {
     delete m_playButton;
     delete m_iconLabel;
     delete m_nameLabel;
-    delete m_creatorLabel;
 }
 
-QString MusicWebDJRadioFoundItemWidget::getClassName()
+QString MusicWebMVRadioFoundItemWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicWebDJRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
+void MusicWebMVRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
     m_nameLabel->setText(MusicUtils::Widget::elidedText(m_nameLabel->font(), m_nameLabel->toolTip(),
                                                         Qt::ElideRight, WIDTH_LABEL_SIZE));
-    m_creatorLabel->setToolTip("by " + item.m_nickName);
-    m_creatorLabel->setText(MusicUtils::Widget::elidedText(m_creatorLabel->font(), m_creatorLabel->toolTip(),
-                                                           Qt::ElideRight, WIDTH_LABEL_SIZE));
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
@@ -71,9 +60,11 @@ void MusicWebDJRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
     {
         download->startToDownload(item.m_coverUrl);
     }
+
+    m_playButton->hide();
 }
 
-void MusicWebDJRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
+void MusicWebMVRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
 {
     QPixmap pix;
     pix.loadFromData(data);
@@ -85,17 +76,34 @@ void MusicWebDJRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
         MusicUtils::Widget::fusionPixmap(pix, cv, QPoint(0, 0));
         m_iconLabel->setPixmap(pix);
     }
+
     m_playButton->raise();
 }
 
-void MusicWebDJRadioFoundItemWidget::currentRadioClicked()
+void MusicWebMVRadioFoundItemWidget::currentRadioClicked()
 {
     emit currentRadioClicked(m_itemData);
 }
 
+void MusicWebMVRadioFoundItemWidget::enterEvent(QEvent *event)
+{
+    QLabel::enterEvent(event);
+
+    m_playButton->show();
+    m_nameLabel->hide();
+}
+
+void MusicWebMVRadioFoundItemWidget::leaveEvent(QEvent *event)
+{
+    QLabel::leaveEvent(event);
+
+    m_playButton->hide();
+    m_nameLabel->show();
+}
 
 
-MusicWebDJRadioFoundWidget::MusicWebDJRadioFoundWidget(QWidget *parent)
+
+MusicWebMVRadioFoundWidget::MusicWebMVRadioFoundWidget(QWidget *parent)
     : MusicFoundAbstractWidget(parent)
 {
     m_container->show();
@@ -106,39 +114,37 @@ MusicWebDJRadioFoundWidget::MusicWebDJRadioFoundWidget(QWidget *parent)
     m_firstInit = false;
     m_infoWidget = nullptr;
     m_gridLayout = nullptr;
-    m_pagingWidgetObject = nullptr;
-    m_downloadThread = new MusicDJRadioProgramCategoryThread(this);
-    connect(m_downloadThread, SIGNAL(createProgramItem(MusicResultsItem)), SLOT(createProgramItem(MusicResultsItem)));
+    m_categoryButton = nullptr;
+
+    m_downloadThread = new MusicMVRadioCategoryThread(this);
+    connect(m_downloadThread, SIGNAL(createCategoryItem(MusicResultsItem)), SLOT(createCategoryItem(MusicResultsItem)));
 }
 
-MusicWebDJRadioFoundWidget::~MusicWebDJRadioFoundWidget()
+MusicWebMVRadioFoundWidget::~MusicWebMVRadioFoundWidget()
 {
     delete m_infoWidget;
     delete m_gridLayout;
+    delete m_categoryButton;
     delete m_downloadThread;
-    delete m_pagingWidgetObject;
 }
 
-QString MusicWebDJRadioFoundWidget::getClassName()
+QString MusicWebMVRadioFoundWidget::getClassName()
 {
     return staticMetaObject.className();
 }
 
-void MusicWebDJRadioFoundWidget::setSongName(const QString &name)
+void MusicWebMVRadioFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
-    m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, name);
+    m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, QString());
 }
 
-void MusicWebDJRadioFoundWidget::setSongNameById(const QString &id)
+void MusicWebMVRadioFoundWidget::setSongNameById(const QString &id)
 {
-    MusicFoundAbstractWidget::setSongName(id);
-    MusicResultsItem item;
-    item.m_id = id;
-    currentRadioClicked(item);
+    Q_UNUSED(id);
 }
 
-void MusicWebDJRadioFoundWidget::resizeWindow()
+void MusicWebMVRadioFoundWidget::resizeWindow()
 {
     if(m_infoWidget)
     {
@@ -160,7 +166,7 @@ void MusicWebDJRadioFoundWidget::resizeWindow()
     }
 }
 
-void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
+void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {
@@ -181,15 +187,10 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
         QWidget *containTopWidget = new QWidget(m_mainWindow);
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
+        m_categoryButton = new MusicWebMVRadioFoundCategoryPopWidget(m_mainWindow);
+        m_categoryButton->setCategory("Kugou", this);
+        containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
-
-        QPushButton *backButton = new QPushButton(tr("Back"), containTopWidget);
-        backButton->setFixedSize(90, 30);
-        backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
-        backButton->setCursor(QCursor(Qt::PointingHandCursor));
-        connect(backButton, SIGNAL(clicked()), this, SIGNAL(backToMainMenu()));
-        containTopLayout->addWidget(backButton);
-
         containTopWidget->setLayout(containTopLayout);
 
         QFrame *line = new QFrame(m_mainWindow);
@@ -205,20 +206,10 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
         mainlayout->addWidget(line);
         mainlayout->addWidget(containWidget);
 
-        m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
-        connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
-        mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));
         mainlayout->addStretch(1);
     }
 
-    if(m_pagingWidgetObject)
-    {
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
-        m_pagingWidgetObject->reset(total);
-    }
-
-    MusicWebDJRadioFoundItemWidget *label = new MusicWebDJRadioFoundItemWidget(this);
+    MusicWebMVRadioFoundItemWidget *label = new MusicWebMVRadioFoundItemWidget(this);
     connect(label, SIGNAL(currentRadioClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
@@ -227,10 +218,10 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
     m_resizeWidgets << label;
 }
 
-void MusicWebDJRadioFoundWidget::currentRadioClicked(const MusicResultsItem &item)
+void MusicWebMVRadioFoundWidget::currentRadioClicked(const MusicResultsItem &item)
 {
     delete m_infoWidget;
-    m_infoWidget = new MusicWebDJRadioInfoWidget(this);
+    m_infoWidget = new MusicWebMVRadioInfoWidget(this);
     connect(m_infoWidget, SIGNAL(backToMainMenu()), SLOT(backToMainMenuClicked()));
     m_infoWidget->setSongName(item.m_id);
 
@@ -238,26 +229,25 @@ void MusicWebDJRadioFoundWidget::currentRadioClicked(const MusicResultsItem &ite
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }
 
-void MusicWebDJRadioFoundWidget::backToMainMenuClicked()
+void MusicWebMVRadioFoundWidget::backToMainMenuClicked()
 {
-    if(!m_firstInit)
-    {
-        emit backToMainMenu();
-        return;
-    }
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
 }
 
-void MusicWebDJRadioFoundWidget::buttonClicked(int index)
+void MusicWebMVRadioFoundWidget::categoryChanged(const MusicResultsCategoryItem &category)
 {
-    while(!m_resizeWidgets.isEmpty())
+    if(m_categoryButton)
     {
-        QWidget *w = m_resizeWidgets.takeLast();
-        m_gridLayout->removeWidget(w);
-        delete w;
-    }
+        m_songNameFull.clear();
+        m_categoryButton->setText(category.m_name);
+        m_categoryButton->closeMenu();
 
-    int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
-    m_pagingWidgetObject->paging(index, total);
-    m_downloadThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
+        while(!m_resizeWidgets.isEmpty())
+        {
+            QWidget *w = m_resizeWidgets.takeLast();
+            m_gridLayout->removeWidget(w);
+            delete w;
+        }
+        m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, category.m_id);
+    }
 }

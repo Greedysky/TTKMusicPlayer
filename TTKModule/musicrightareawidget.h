@@ -59,7 +59,8 @@ public:
         RecommendWidget,        /*!< insert recommend found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget,           /*!< insert kugou kuishe widget*/
-        WebDJRadio              /*!< insert web dj radio widget*/
+        WebDJRadio,             /*!< insert web dj radio widget*/
+        WebMVRadio              /*!< insert web mv radio widget*/
     };
 
     /*!

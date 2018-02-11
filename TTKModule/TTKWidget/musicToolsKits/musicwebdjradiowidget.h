@@ -29,7 +29,7 @@ class MusicWebDJRadioFoundWidget;
 /*! @brief The class of music dj radio program table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -83,7 +83,7 @@ protected:
 /*! @brief The class of music dj radio program widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioProgramWidget : public QWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -118,7 +118,7 @@ protected:
 /*! @brief The class of music dj radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioWidget : public QStackedWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioWidget : public QStackedWidget
 {
     Q_OBJECT
 public:
