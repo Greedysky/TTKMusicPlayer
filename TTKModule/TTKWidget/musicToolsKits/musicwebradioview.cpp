@@ -22,14 +22,14 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     bottomLayout->setContentsMargins(5, 0, 0, 0);
 
     QPushButton *dj = new QPushButton(this);
-    dj->setIcon(QIcon(":/tiny/btn_wallpaper_off_hover"));
+    dj->setIcon(QIcon(":/tiny/btn_dj_radio"));
     dj->setToolTip(tr("DJRadio"));
     dj->setCursor(QCursor(Qt::PointingHandCursor));
     dj->setStyleSheet(MusicUIObject::MPushButtonStyle01);
     dj->setFixedWidth(40);
 
     QPushButton *mv = new QPushButton(this);
-    mv->setIcon(QIcon(":/tiny/btn_wallpaper_off_hover"));
+    mv->setIcon(QIcon(":/tiny/btn_mv_radio"));
     mv->setToolTip(tr("MVRadio"));
     mv->setCursor(QCursor(Qt::PointingHandCursor));
     mv->setStyleSheet(MusicUIObject::MPushButtonStyle01);
