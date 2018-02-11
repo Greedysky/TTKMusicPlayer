@@ -111,7 +111,7 @@ void MusicWSSongCommentsThread::downLoadFinished()
                                                                      "yyyy-MM-dd")).toMSecsSinceEpoch());
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -216,7 +216,7 @@ void MusicWSPlaylistCommentsThread::downLoadFinished()
                                                                      "yyyy-MM-dd")).toMSecsSinceEpoch());
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

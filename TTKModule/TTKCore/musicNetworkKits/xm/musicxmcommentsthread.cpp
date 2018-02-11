@@ -114,7 +114,7 @@ void MusicXMSongCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -225,7 +225,7 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

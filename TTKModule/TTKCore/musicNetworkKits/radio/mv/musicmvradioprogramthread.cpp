@@ -114,7 +114,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
                             item.m_time = musicInfo.m_timeLength;
                             item.m_albumName.clear();
                             item.m_type.clear();
-                            emit createSearchedItems(item);
+                            emit createSearchedItem(item);
                             m_musicSongInfos << musicInfo;
                         }
                     }

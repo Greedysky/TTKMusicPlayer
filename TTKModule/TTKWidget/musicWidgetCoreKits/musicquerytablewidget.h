@@ -94,7 +94,7 @@ public Q_SLOTS:
      * Create searched items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) = 0;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
 
 protected:
     /*!

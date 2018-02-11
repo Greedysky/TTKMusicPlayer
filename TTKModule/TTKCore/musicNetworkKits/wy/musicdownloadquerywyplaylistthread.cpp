@@ -196,7 +196,7 @@ void MusicDownLoadQueryWYPlaylistThread::downLoadFinished()
                     value = value["creator"].toMap();
                     item.m_nickName = value["nickname"].toString();
 
-                    emit createPlaylistItems(item);
+                    emit createPlaylistItem(item);
                 }
             }
         }
@@ -276,7 +276,7 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }

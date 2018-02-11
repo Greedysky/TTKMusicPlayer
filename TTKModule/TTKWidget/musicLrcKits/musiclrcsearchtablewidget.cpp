@@ -96,7 +96,7 @@ void MusicLrcSearchTableWidget::clearAllItems()
     setColumnCount(7);
 }
 
-void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicLrcSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);

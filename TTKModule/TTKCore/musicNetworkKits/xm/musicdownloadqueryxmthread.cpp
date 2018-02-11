@@ -130,7 +130,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         item.m_albumName = musicInfo.m_albumName;
                         item.m_time = musicInfo.m_timeLength;
                         item.m_type = mapQueryServerString();
-                        emit createSearchedItems(item);
+                        emit createSearchedItem(item);
                     }
                     m_musicSongInfos << musicInfo;
                 }
@@ -194,7 +194,7 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
 
                     m_musicSongInfos << musicInfo;
                 }

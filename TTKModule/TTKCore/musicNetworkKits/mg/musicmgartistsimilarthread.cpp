@@ -64,7 +64,7 @@ void MusicMGArtistSimilarThread::downLoadFinished()
             info.m_updateTime.clear();
             getArtistInfo(&info);
 
-            emit createSimilarItems(info);
+            emit createSimilarItem(info);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);

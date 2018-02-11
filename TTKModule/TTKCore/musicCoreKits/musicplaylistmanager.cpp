@@ -487,7 +487,7 @@ void MusicPlayListManager::messageAlert()
     message.exec();
 }
 
-void MusicPlayListManager::setMusicSongItems(const QString &save, const MusicSongItem &item)
+void MusicPlayListManager::setMusicSongItem(const QString &save, const MusicSongItem &item)
 {
     QFileInfo info(save);
     QString suffix = info.suffix().toLower();

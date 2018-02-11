@@ -93,7 +93,7 @@ void MusicSoundKMicroSearchTableWidget::clearAllItems()
     setColumnCount(5);
 }
 
-void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);

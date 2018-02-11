@@ -28,14 +28,14 @@ void MusicRecommendFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstr
     }
 }
 
-void MusicRecommendFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicRecommendFoundTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     if(rowCount() >= 50)
     {
         return;
     }
 
-    MusicQueryFoundTableWidget::createSearchedItems(songItem);
+    MusicQueryFoundTableWidget::createSearchedItem(songItem);
 }
 
 

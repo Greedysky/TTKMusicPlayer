@@ -67,7 +67,7 @@ void MusicKGArtistSimilarThread::downLoadFinished()
             info.m_coverUrl = regx.cap(1);
             info.m_name = regx.cap(3);
             info.m_updateTime.clear();
-            emit createSimilarItems(info);
+            emit createSimilarItem(info);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);

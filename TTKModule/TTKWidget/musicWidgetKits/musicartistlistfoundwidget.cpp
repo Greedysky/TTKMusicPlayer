@@ -58,7 +58,7 @@ MusicArtistListFoundWidget::MusicArtistListFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getArtistListThread(this);
-    connect(m_downloadThread, SIGNAL(createArtistListItems(MusicResultsItem)), SLOT(createArtistListItems(MusicResultsItem)));
+    connect(m_downloadThread, SIGNAL(createArtistListItem(MusicResultsItem)), SLOT(createArtistListItem(MusicResultsItem)));
 }
 
 MusicArtistListFoundWidget::~MusicArtistListFoundWidget()
@@ -102,7 +102,7 @@ void MusicArtistListFoundWidget::resizeWindow()
     }
 }
 
-void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &item)
+void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {

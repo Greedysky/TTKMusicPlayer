@@ -249,7 +249,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                     item.m_albumName.clear();
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }

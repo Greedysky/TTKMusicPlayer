@@ -176,7 +176,7 @@ Q_SIGNALS:
     /*!
      * Create the current items by song name\ artist name and time.
      */
-    void createSearchedItems(const MusicSearchedItem &songItem);
+    void createSearchedItem(const MusicSearchedItem &songItem);
 
 protected:
     /*!

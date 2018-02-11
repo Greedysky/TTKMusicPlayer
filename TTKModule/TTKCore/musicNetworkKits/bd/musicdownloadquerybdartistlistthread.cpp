@@ -107,7 +107,7 @@ void MusicDownLoadQueryBDArtistListThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["ting_uid"].toString();
                     info.m_name = value["name"].toString();
-                    emit createArtistListItems(info);
+                    emit createArtistListItem(info);
                 }
             }
         }

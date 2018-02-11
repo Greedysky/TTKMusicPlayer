@@ -73,7 +73,7 @@ void MusicXMArtistSimilarThread::downLoadFinished()
                 info.m_coverUrl = value["artist_logo"].toString();
                 info.m_name = value["name"].toString();
                 info.m_updateTime.clear();
-                emit createSimilarItems(info);
+                emit createSimilarItem(info);
             }
         }
     }

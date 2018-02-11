@@ -103,7 +103,7 @@ void MusicMGSongCommentsThread::downLoadFinished()
                     comment.m_updateTime = value["time"].toString();
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -203,7 +203,7 @@ void MusicMGPlaylistCommentsThread::downLoadFinished()
                     comment.m_updateTime = value["time"].toString();
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

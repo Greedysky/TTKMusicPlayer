@@ -209,7 +209,7 @@ MusicArtistSimilarFoundWidget::MusicArtistSimilarFoundWidget(QWidget *parent)
 
     m_shareType = MusicSongSharingWidget::Artist;
     m_similarThread = M_DOWNLOAD_QUERY_PTR->getSimilarArtistThread(this);
-    connect(m_similarThread, SIGNAL(createSimilarItems(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
+    connect(m_similarThread, SIGNAL(createSimilarItem(MusicResultsItem)), SLOT(createArtistSimilarItem(MusicResultsItem)));
 }
 
 MusicArtistSimilarFoundWidget::~MusicArtistSimilarFoundWidget()

@@ -105,7 +105,7 @@ public Q_SLOTS:
     /*!
      * Query all quality musics is finished.
      */
-    void createArtistListItems(const MusicResultsItem &item);
+    void createArtistListItem(const MusicResultsItem &item);
     /*!
      * Current artist list clicked.
      */

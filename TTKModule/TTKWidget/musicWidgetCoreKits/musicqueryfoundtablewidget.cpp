@@ -242,7 +242,7 @@ void MusicQueryFoundTableWidget::clearAllItems()
     setColumnCount(8);
 }
 
-void MusicQueryFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicQueryFoundTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);

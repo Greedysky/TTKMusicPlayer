@@ -48,7 +48,7 @@ Q_SIGNALS:
     /*!
      * Create the current similar item.
      */
-    void createSimilarItems(const MusicResultsItem &item);
+    void createSimilarItem(const MusicResultsItem &item);
 
 };
 

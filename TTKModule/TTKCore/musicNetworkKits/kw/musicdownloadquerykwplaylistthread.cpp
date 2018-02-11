@@ -232,7 +232,7 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
@@ -266,7 +266,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
                 item.m_description = value["info"].toString();
                 item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["ctime"].toULongLong()*1000).toString("yyyy-MM-dd");
                 item.m_nickName = value["uname"].toString();
-                emit createPlaylistItems(item);
+                emit createPlaylistItem(item);
             }
         }
     }

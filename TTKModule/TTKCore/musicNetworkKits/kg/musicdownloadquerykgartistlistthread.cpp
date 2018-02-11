@@ -122,7 +122,7 @@ void MusicDownLoadQueryKGArtistListThread::downLoadFinished()
                             MusicResultsItem info;
                             info.m_id = QString::number(value["singerid"].toLongLong());
                             info.m_name = value["singername"].toString();
-                            emit createArtistListItems(info);
+                            emit createArtistListItem(info);
                         }
                         break;
                     }

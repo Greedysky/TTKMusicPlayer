@@ -115,7 +115,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl = user["userpic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -226,7 +226,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl= user["userpic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

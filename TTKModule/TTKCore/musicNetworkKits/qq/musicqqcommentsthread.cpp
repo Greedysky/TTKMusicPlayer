@@ -104,7 +104,7 @@ void MusicQQSongCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -205,7 +205,7 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

@@ -103,7 +103,7 @@ void MusicWYSongCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["time"].toLongLong());
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -203,7 +203,7 @@ void MusicWYPlaylistCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["time"].toLongLong());
                     comment.m_description = value["content"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

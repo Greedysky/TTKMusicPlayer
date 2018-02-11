@@ -136,7 +136,7 @@ MusicPlaylistFoundWidget::MusicPlaylistFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this);
-    connect(m_downloadThread, SIGNAL(createPlaylistItems(MusicResultsItem)), SLOT(createPlaylistItems(MusicResultsItem)));
+    connect(m_downloadThread, SIGNAL(createPlaylistItem(MusicResultsItem)), SLOT(createPlaylistItem(MusicResultsItem)));
 }
 
 MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
@@ -189,7 +189,7 @@ void MusicPlaylistFoundWidget::resizeWindow()
     }
 }
 
-void MusicPlaylistFoundWidget::createPlaylistItems(const MusicResultsItem &item)
+void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {

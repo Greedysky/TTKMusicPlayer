@@ -108,7 +108,7 @@ void MusicDownLoadQueryQQArtistListThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["Fsinger_mid"].toString();
                     info.m_name = value["Fsinger_name"].toString();
-                    emit createArtistListItems(info);
+                    emit createArtistListItem(info);
                 }
             }
         }
