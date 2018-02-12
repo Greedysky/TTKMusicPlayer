@@ -2,6 +2,8 @@
 #include "musicmvradioprogramthread.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadsourcethread.h"
+#include "musicdownloadwidget.h"
+#include "musicrightareawidget.h"
 
 #include <qmath.h>
 #include <QScrollBar>
@@ -29,6 +31,35 @@ void MusicWebMVRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstr
     {
         connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(queryAllFinished()));
     }
+}
+
+void MusicWebMVRadioInfoTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryTableWidget::listCellClicked(row, column);
+    switch(column)
+    {
+        case 5:
+        case 6:
+            break;
+        case 7:
+            musicDownloadLocal(row);
+            break;
+        default:
+            break;
+    }
+}
+
+void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
+{
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MovieQuery);
+    download->show();
 }
 
 void MusicWebMVRadioInfoTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -114,9 +145,14 @@ void MusicWebMVRadioInfoWidget::createCategoryInfoItem(const MusicResultsItem &i
     }
 }
 
+void MusicWebMVRadioInfoWidget::downloadMVsButtonClicked()
+{
+    m_foundTableWidget->downloadBatchData(false);
+}
+
 void MusicWebMVRadioInfoWidget::createLabels()
 {
-    initFirstWidget();
+    initThirdWidget();
     m_container->show();
 
     layout()->removeWidget(m_mainWindow);
@@ -204,4 +240,44 @@ void MusicWebMVRadioInfoWidget::createLabels()
     m_mainWindow->layout()->addWidget(function);
 
     m_resizeWidgets << nameLabel << typeLabel;
+}
+
+void MusicWebMVRadioInfoWidget::initThirdWidget()
+{
+    QWidget *songWidget = new QWidget(this);
+    QVBoxLayout *vlayout = new QVBoxLayout(songWidget);
+    vlayout->setSpacing(0);
+    vlayout->setContentsMargins(0, 0, 0, 0);
+
+    QWidget *middleFuncWidget = new QWidget(songWidget);
+    middleFuncWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
+    QHBoxLayout *middleFuncLayout = new QHBoxLayout(middleFuncWidget);
+    middleFuncLayout->setContentsMargins(0, 5, 0, 5);
+    QLabel *marginLabel = new QLabel(middleFuncWidget);
+    marginLabel->setFixedWidth(1);
+    QCheckBox *allCheckBox = new QCheckBox(" " + tr("all"), middleFuncWidget);
+    QPushButton *downloadButton = new QPushButton(tr("download"), middleFuncWidget);
+    downloadButton->setFixedSize(55, 25);
+    downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+
+#ifdef Q_OS_UNIX
+    allCheckBox->setFocusPolicy(Qt::NoFocus);
+    downloadButton->setFocusPolicy(Qt::NoFocus);
+#endif
+
+    middleFuncLayout->addWidget(marginLabel);
+    middleFuncLayout->addWidget(allCheckBox);
+    middleFuncLayout->addStretch(1);
+    middleFuncLayout->addWidget(downloadButton);
+    connect(allCheckBox, SIGNAL(clicked(bool)), m_foundTableWidget, SLOT(setSelectedAllItems(bool)));
+    connect(downloadButton, SIGNAL(clicked()), SLOT(downloadMVsButtonClicked()));
+
+    vlayout->addWidget(middleFuncWidget);
+    //////////////////////////////////////////////////////////////////////
+    vlayout->addWidget(m_foundTableWidget);
+    vlayout->addStretch(1);
+    songWidget->setLayout(vlayout);
+
+    m_foundTableWidget->show();
+    m_container->addWidget(songWidget);
 }

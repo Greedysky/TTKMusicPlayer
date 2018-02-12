@@ -97,7 +97,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
     }
 }
 
-void MusicQueryFoundTableWidget::downloadBatchData()
+void MusicQueryFoundTableWidget::downloadBatchData(bool music)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicObject::MIntList list = getSelectedItems();
@@ -119,8 +119,9 @@ void MusicQueryFoundTableWidget::downloadBatchData()
 
         selectedItems << musicSongInfos[index];
     }
+
     MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
-    w->setSongName(selectedItems);
+    w->setSongName(selectedItems, music ? MusicDownLoadQueryThreadAbstract::MusicQuery : MusicDownLoadQueryThreadAbstract::MovieQuery);
     w->show();
 }
 

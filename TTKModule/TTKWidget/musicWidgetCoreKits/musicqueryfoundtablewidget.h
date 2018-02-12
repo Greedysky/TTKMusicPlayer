@@ -59,7 +59,7 @@ public:
     /*!
      * Download batch data from net.
      */
-    void downloadBatchData();
+    void downloadBatchData(bool music);
     /*!
      * Resize window bound by widgte resize called.
      */

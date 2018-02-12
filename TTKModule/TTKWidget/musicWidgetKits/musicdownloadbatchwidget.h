@@ -21,6 +21,7 @@
 
 #include "musicabstractmovewidget.h"
 #include "musicabstracttablewidget.h"
+#include "musicdownloadquerythreadabstract.h"
 
 namespace Ui {
 class MusicDownloadBatchWidget;
@@ -49,9 +50,9 @@ public:
      */
     void createItem(const MusicObject::MusicSongInformation &info);
     /*!
-     * Start to download music data.
+     * Start to download data.
      */
-    void startToDownload();
+    void startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type);
     /*!
      * Set current quality.
      */
@@ -64,6 +65,15 @@ public Q_SLOTS:
     void currentQualityChanged(int index);
 
 protected:
+    /*!
+     * Start to download music data.
+     */
+    void startToDownloadMusic();
+    /*!
+     * Start to download movie data.
+     */
+    void startToDownloadMovie();
+
     QObject *m_supperClass;
     QComboBox *m_qulity;
     QString m_smallPicUrl, m_album;
@@ -105,7 +115,7 @@ public:
     /*!
      * Start to download music data.
      */
-    void startToDownload();
+    void startToDownload(MusicDownLoadQueryThreadAbstract::QueryType type);
 
 public Q_SLOTS:
     /*!
@@ -150,7 +160,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformations &infos);
+    void setSongName(const MusicObject::MusicSongInformations &infos, MusicDownLoadQueryThreadAbstract::QueryType type);
 
 public Q_SLOTS:
     /*!
@@ -165,6 +175,7 @@ public Q_SLOTS:
 protected:
     Ui::MusicDownloadBatchWidget *m_ui;
 
+    MusicDownLoadQueryThreadAbstract::QueryType m_queryType;
 };
 
 #endif // MUSICDOWNLOADBATCHWIDGET_H

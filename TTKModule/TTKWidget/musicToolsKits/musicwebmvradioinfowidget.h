@@ -44,6 +44,16 @@ public:
      * Set network query input.
      */
     virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
+    /*!
+     * Data download to local file.
+     */
+    virtual void musicDownloadLocal(int row) override;
+
+public Q_SLOTS:
+    /*!
+     * Subclass should implement this function.
+     */
+    virtual void listCellClicked(int row, int column) override;
 
 protected:
     /*!
@@ -100,12 +110,20 @@ public Q_SLOTS:
      * Create the current category info item.
      */
     void createCategoryInfoItem(const MusicResultsItem &item);
+    /*!
+     * Download button clicked now.
+     */
+    void downloadMVsButtonClicked();
 
 protected:
     /*!
      * Create init interface lables.
      */
     void createLabels();
+    /*!
+     * Init the third widget.
+     */
+    void initThirdWidget();
 
 };
 

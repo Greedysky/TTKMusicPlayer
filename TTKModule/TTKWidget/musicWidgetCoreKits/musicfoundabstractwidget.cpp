@@ -105,7 +105,7 @@ void MusicFoundAbstractWidget::playButtonClicked()
 
 void MusicFoundAbstractWidget::downloadButtonClicked()
 {
-    m_foundTableWidget->downloadBatchData();
+    m_foundTableWidget->downloadBatchData(true);
 }
 
 void MusicFoundAbstractWidget::addButtonClicked()
