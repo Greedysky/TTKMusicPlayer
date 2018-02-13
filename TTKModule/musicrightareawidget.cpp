@@ -240,6 +240,12 @@ void MusicRightAreaWidget::musicMovieSearch(const QString &id)
     QTimer::singleShot(MT_MS, this, SLOT(musicMovieSearchFound()));
 }
 
+void MusicRightAreaWidget::musicMovieRadioSearch(const QVariant &data)
+{
+    m_rawData = data;
+    QTimer::singleShot(MT_MS, this, SLOT(musicMovieSearchRadioFound()));
+}
+
 void MusicRightAreaWidget::resizeWindow()
 {
     m_ui->songSearchWidget->resizeWindow();
@@ -574,17 +580,31 @@ void MusicRightAreaWidget::musicArtistCategoryFound()
 
 void MusicRightAreaWidget::musicArtistSearchFound()
 {
-    musicArtistFound(QString(), m_rawData);
+    musicArtistFound(QString(), m_rawData.toString());
 }
 
 void MusicRightAreaWidget::musicAlbumSearchFound()
 {
-    musicAlbumFound(QString(), m_rawData);
+    musicAlbumFound(QString(), m_rawData.toString());
 }
 
 void MusicRightAreaWidget::musicMovieSearchFound()
 {
-    musicVideoButtonSearched(QString(), m_rawData);
+    musicVideoButtonSearched(QString(), m_rawData.toString());
+}
+
+void MusicRightAreaWidget::musicMovieSearchRadioFound()
+{
+    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
+    {
+        m_videoPlayerWidget->raise();
+    }
+    else
+    {
+        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
+    }
+
+    m_videoPlayerWidget->videoResearchButtonSearched(m_rawData);
 }
 
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)

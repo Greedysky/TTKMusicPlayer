@@ -188,7 +188,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
         QHBoxLayout *containTopLayout  = new QHBoxLayout(containTopWidget);
         containTopLayout->setContentsMargins(30, 0, 30, 0);
         m_categoryButton = new MusicWebMVRadioFoundCategoryPopWidget(m_mainWindow);
-        m_categoryButton->setCategory("Kugou", this);
+        m_categoryButton->setCategory(MUSIC_MOVIE_RADIO, this);
         containTopLayout->addWidget(m_categoryButton);
         containTopLayout->addStretch(1);
         containTopWidget->setLayout(containTopLayout);

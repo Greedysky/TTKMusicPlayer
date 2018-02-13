@@ -13,6 +13,8 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeWindow(0);
 
+    m_singleRadioMode = false;
+
     MusicTime::timeSRand();
     M_CONNECTION_PTR->setValue(getClassName(), this);
 }
@@ -41,6 +43,7 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
     ////////////////////////////////////////////////////////////////////////////////////
+    m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
 }
@@ -58,21 +61,46 @@ void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
     ////////////////////////////////////////////////////////////////////////////////////
+    m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
     m_downLoadManager->startToSingleSearch(text);
 }
 
-void MusicVideoTableWidget::musicDownloadLocal(int row)
+void MusicVideoTableWidget::startSearchSingleQuery(const QVariant &data)
 {
-    if(row < 0 || (row >= rowCount() - 1))
-    {
-        MusicMessageBox message;
-        message.setText(tr("Please Select One Item First!"));
-        message.exec();
+    if(!M_NETWORK_PTR->isOnline())
+    {   //no network connection
+        clearAllItems();
+        emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    downloadLocalMovie(row);
+    ////////////////////////////////////////////////////////////////////////////////////
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
+    setQueryInput( d );
+    ////////////////////////////////////////////////////////////////////////////////////
+    m_singleRadioMode = true;
+    d->setMusicSongInfos(MusicObject::MusicSongInformations() << data.value<MusicObject::MusicSongInformation>());
+}
+
+void MusicVideoTableWidget::musicDownloadLocal(int row)
+{
+    if(!m_singleRadioMode)
+    {
+        if(row < 0 || (row >= rowCount() - 1))
+        {
+            MusicMessageBox message;
+            message.setText(tr("Please Select One Item First!"));
+            message.exec();
+            return;
+        }
+        downloadLocalMovie(row);
+    }
+    else
+    {
+        downloadLocalMovie(0);
+    }
 }
 
 void MusicVideoTableWidget::resizeWindow(int delta)
@@ -217,16 +245,25 @@ void MusicVideoTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &dat
     {
         return;
     }
+
+    int row = !m_singleRadioMode ? m_previousClickRow : 0;
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    data = (!musicSongInfos.isEmpty() && m_previousClickRow != -1) ?
-             musicSongInfos[m_previousClickRow].m_songAttrs : MusicObject::MusicSongAttributes();
+    data = (!musicSongInfos.isEmpty() && row != -1) ?
+            musicSongInfos[row].m_songAttrs : MusicObject::MusicSongAttributes();
 }
 
 void MusicVideoTableWidget::downloadLocalFromControl()
 {
-    if( m_previousClickRow != -1 && currentRow() != -1)
+    if(!m_singleRadioMode)
     {
-        downloadLocalMovie(currentRow());
+        if(m_previousClickRow != -1 && currentRow() != -1)
+        {
+            downloadLocalMovie(currentRow());
+        }
+    }
+    else
+    {
+        downloadLocalMovie(0);
     }
 }
 

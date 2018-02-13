@@ -1,5 +1,6 @@
 #include "musicdownloadquerybdplaylistthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicotherdefine.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -116,7 +117,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_playCount = value["listenum"].toString();
             item.m_description = value["desc"].toString();
             item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-            item.m_nickName = "Greedysky";
+            item.m_nickName = MUSIC_AUTHOR_NAME;
             item.m_tags = value["tag"].toString().replace(",", "|");
         }
     }
@@ -166,7 +167,7 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     item.m_playCount = value["listenum"].toString();
                     item.m_description = value["desc"].toString();
                     item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                    item.m_nickName = "Greedysky";
+                    item.m_nickName = MUSIC_AUTHOR_NAME;
                     item.m_tags = value["tag"].toString().replace(",", "|");
 
                     emit createPlaylistItem(item);

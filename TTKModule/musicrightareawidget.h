@@ -152,6 +152,10 @@ public:
      */
     void musicMovieSearch(const QString &id);
     /*!
+     * Music movie radio search function.
+     */
+    void musicMovieRadioSearch(const QVariant &data);
+    /*!
      * Resize window bound by widgte resize called.
      */
     void resizeWindow();
@@ -199,6 +203,10 @@ public Q_SLOTS:
      * Music movie search function.
      */
     void musicMovieSearchFound();
+    /*!
+     * Music movie search radio function.
+     */
+    void musicMovieSearchRadioFound();
     /*!
      * Music artist function that by string.
      */
@@ -289,7 +297,7 @@ public Q_SLOTS:
     void musicChangeDownloadCustumWidget();
 
 protected:
-    QString m_rawData;
+    QVariant m_rawData;
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;
