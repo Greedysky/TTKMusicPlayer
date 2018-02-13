@@ -34,12 +34,6 @@ MusicDownLoadQueryThreadAbstract *MusicQueryTableWidget::getQueryInput()
     return m_downLoadManager;
 }
 
-const MusicObject::MusicSongInformations& MusicQueryTableWidget::getMusicSongInfos() const
-{
-    Q_ASSERT(m_downLoadManager);
-    return m_downLoadManager->getMusicSongInfos();
-}
-
 void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);

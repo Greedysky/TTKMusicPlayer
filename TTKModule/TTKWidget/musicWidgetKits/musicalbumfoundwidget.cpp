@@ -122,7 +122,13 @@ void MusicAlbumFoundWidget::queryAllFinished()
 
 void MusicAlbumFoundWidget::queryAlbumFinished()
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_foundTableWidget->getMusicSongInfos());
+    MusicDownLoadQueryThreadAbstract *query = m_foundTableWidget->getQueryInput();
+    if(!query)
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInformations musicSongInfos(query->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noAlbum"));

@@ -160,6 +160,10 @@ public:
      */
     inline QString getSearchedText() const { return m_searchText;}
     /*!
+     * Set the current song container.
+     */
+    inline void setMusicSongInfos(const MusicObject::MusicSongInformations &infos) { m_musicSongInfos = infos; }
+    /*!
      * Return the current song container.
      */
     inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }

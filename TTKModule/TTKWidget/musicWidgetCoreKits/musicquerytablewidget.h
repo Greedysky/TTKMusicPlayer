@@ -55,10 +55,6 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getQueryInput();
     /*!
-     * Return the current song container.
-     */
-    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
-    /*!
      * Start search query by text.
      * Subclass should implement this function.
      */

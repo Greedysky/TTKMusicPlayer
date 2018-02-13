@@ -112,17 +112,17 @@ void MusicSongSharingWidget::confirmButtonClicked()
     {
         case Song:
             {
-                MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-                down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
+                MusicDownLoadQueryThreadAbstract *query = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+                query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, m_ui->sharedName->text().trimmed());
 
                 MusicSemaphoreLoop loop;
-                connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+                connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
                 loop.exec();
 
-                if(!down->getMusicSongInfos().isEmpty())
+                if(!query->getMusicSongInfos().isEmpty())
                 {
-                    MusicObject::MusicSongInformation info(down->getMusicSongInfos().first());
-                    QString server = down->getQueryServer();
+                    MusicObject::MusicSongInformation info(query->getMusicSongInfos().first());
+                    QString server = query->getQueryServer();
                     if(server == "WangYi")
                         server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
                     else if(server == "QQ")

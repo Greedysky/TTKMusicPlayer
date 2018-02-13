@@ -542,7 +542,13 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 2)
     {
-        MusicObject::MusicSongInformations selectedItems, musicSongInfos(m_searchTableWidget->getMusicSongInfos());
+        MusicDownLoadQueryThreadAbstract *query = m_searchTableWidget->getQueryInput();
+        if(!query)
+        {
+            return;
+        }
+
+        MusicObject::MusicSongInformations selectedItems, musicSongInfos(query->getMusicSongInfos());
         foreach(int index, list)
         {
             if(index < 0 || index >= musicSongInfos.count())
