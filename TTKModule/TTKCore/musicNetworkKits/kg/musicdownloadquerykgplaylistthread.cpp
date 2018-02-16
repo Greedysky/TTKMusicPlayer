@@ -136,7 +136,7 @@ void MusicDownLoadQueryKGPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

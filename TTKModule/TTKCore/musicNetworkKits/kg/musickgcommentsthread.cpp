@@ -62,7 +62,7 @@ void MusicKGSongCommentsThread::startToPage(int offset)
 
 void MusicKGSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -165,7 +165,7 @@ void MusicKGPlaylistCommentsThread::startToPage(int offset)
 
 void MusicKGPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

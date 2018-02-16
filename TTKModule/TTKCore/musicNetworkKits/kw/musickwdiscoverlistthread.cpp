@@ -40,7 +40,7 @@ void MusicKWDiscoverListThread::startToSearch()
 
 void MusicKWDiscoverListThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

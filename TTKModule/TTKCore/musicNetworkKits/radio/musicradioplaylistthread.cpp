@@ -52,7 +52,7 @@ QStringList MusicRadioPlayListThread::getMusicPlayList()
 
 void MusicRadioPlayListThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

@@ -71,7 +71,7 @@ void MusicBDSongCommentsThread::startToPage(int offset)
 
 void MusicBDSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -182,7 +182,7 @@ void MusicBDPlaylistCommentsThread::startToPage(int offset)
 
 void MusicBDPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

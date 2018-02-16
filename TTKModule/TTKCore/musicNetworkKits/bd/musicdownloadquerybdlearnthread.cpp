@@ -44,7 +44,7 @@ void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QStrin
 
 void MusicDownLoadQueryBDLearnThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

@@ -124,7 +124,7 @@ void MusicDJRadioProgramCategoryThread::getProgramInfo(MusicResultsItem &item)
 
 void MusicDJRadioProgramCategoryThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

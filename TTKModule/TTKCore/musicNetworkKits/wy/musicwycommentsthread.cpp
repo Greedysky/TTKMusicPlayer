@@ -62,7 +62,7 @@ void MusicWYSongCommentsThread::startToPage(int offset)
 
 void MusicWYSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -162,7 +162,7 @@ void MusicWYPlaylistCommentsThread::startToPage(int offset)
 
 void MusicWYPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

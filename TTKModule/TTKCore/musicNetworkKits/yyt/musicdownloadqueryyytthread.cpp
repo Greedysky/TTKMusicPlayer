@@ -52,7 +52,7 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
 
 void MusicDownLoadQueryYYTThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

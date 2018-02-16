@@ -63,7 +63,7 @@ void MusicXMSongCommentsThread::startToPage(int offset)
 
 void MusicXMSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -174,7 +174,7 @@ void MusicXMPlaylistCommentsThread::startToPage(int offset)
 
 void MusicXMPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

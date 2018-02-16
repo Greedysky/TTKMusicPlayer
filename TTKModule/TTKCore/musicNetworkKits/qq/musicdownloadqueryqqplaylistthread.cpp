@@ -153,7 +153,7 @@ void MusicDownLoadQueryQQPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicDownLoadQueryQQPlaylistThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
