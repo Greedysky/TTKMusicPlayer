@@ -41,7 +41,7 @@ void MusicDownLoadQueryKGPlaylistThread::startToPage(int offset)
     m_pageTotal = 0;
     m_interrupt = true;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_PLAYLIST_URL, false)
-                    .arg(offset + 1).arg(m_pageSize).arg(m_searchText);
+                    .arg(m_searchText).arg(offset + 1).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -151,41 +151,40 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
     {
         QByteArray bytes = m_reply->readAll();
 
-        QString buffer = QString(bytes);
-        buffer = buffer.split("global = ").back().split("total:").back();
-        buffer = buffer.split(",").front().remove("'").trimmed();
-        m_pageTotal = buffer.toInt();
-
-        bytes = QString(bytes).split("global.special = [").back().split("];").front().toUtf8();
-        bytes = "[" + bytes + "]";
-
         QJson::Parser parser;
         bool ok;
         QVariant data = parser.parse(bytes, &ok);
         if(ok)
         {
-            QVariantList datas = data.toList();
-            foreach(const QVariant &var, datas)
+            QVariantMap value = data.toMap();
+            if(value["errcode"].toInt() == 0)
             {
-                if(var.isNull())
+                value = value["data"].toMap();
+                m_pageTotal = value["total"].toLongLong();
+
+                QVariantList datas = value["info"].toList();
+                foreach(const QVariant &var, datas)
                 {
-                    continue;
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
+
+                    if(m_interrupt) return;
+
+                    value = var.toMap();
+                    MusicResultsItem item;
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");;
+                    item.m_id = QString::number(value["specialid"].toULongLong());
+                    item.m_name = value["specialname"].toString();
+                    item.m_playCount = value["playcount"].toString();
+                    item.m_description = value["intro"].toString();
+                    item.m_updateTime = value["publishtime"].toString();
+                    item.m_tags = "-";
+                    item.m_nickName = value["username"].toString();
+
+                    emit createPlaylistItem(item);
                 }
-
-                if(m_interrupt) return;
-
-                QVariantMap value = var.toMap();
-                MusicResultsItem item;
-                item.m_coverUrl = value["img"].toString();
-                item.m_id = QString::number(value["specialid"].toULongLong());
-                item.m_name = value["specialname"].toString();
-                item.m_playCount = value["total_play_count"].toString();
-                item.m_description = value["intro"].toString();
-                item.m_updateTime = value["publish_time"].toString();
-                item.m_tags = "-";
-                item.m_nickName = value["nickname"].toString();
-
-                emit createPlaylistItem(item);
             }
         }
     }
