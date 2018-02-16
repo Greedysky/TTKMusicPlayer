@@ -73,6 +73,10 @@ public Q_SLOTS:
      * Create the current program info item.
      */
     void createProgramItem(const MusicResultsItem &item);
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &data, const QVariantMap &ext);
 
 protected:
     MusicDJRadioProgramThread *m_programThread;
