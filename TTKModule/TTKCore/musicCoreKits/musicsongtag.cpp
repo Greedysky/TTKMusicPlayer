@@ -257,7 +257,7 @@ bool MusicSongTag::readOtherTaglib()
     {
         int length = 0;
         MetaDataModel *model = decoderfac->createMetaDataModel(m_filePath);
-        if(model != nullptr)
+        if(model)
         {
             QHash<QString, QString> datas = model->audioProperties();
             MusicTime t = MusicTime::fromString(datas.value("Length"), QString("m:ss"));

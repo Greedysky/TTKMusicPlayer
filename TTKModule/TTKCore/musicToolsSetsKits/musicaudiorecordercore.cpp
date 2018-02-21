@@ -214,14 +214,14 @@ void MusicAudioRecorderCore::onRecordPlay()
 
 void MusicAudioRecorderCore::onRecordStop()
 {
-    if(m_mpAudioInputFile != nullptr)
+    if(m_mpAudioInputFile)
     {
         m_mpAudioInputFile->stop();
         delete m_mpAudioInputFile;
         m_mpAudioInputFile = nullptr;
     }
 
-    if(m_mpAudioOutputFile != nullptr)
+    if(m_mpAudioOutputFile)
     {
         m_mpAudioOutputFile->stop();
         delete m_mpAudioOutputFile;

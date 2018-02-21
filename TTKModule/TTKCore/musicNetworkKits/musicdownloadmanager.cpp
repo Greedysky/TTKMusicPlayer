@@ -16,7 +16,7 @@ void MusicDownLoadManager::setNetworkMultiValue(QObject *object)
 {
     m_queueList << object;
     QObject *to = M_CONNECTION_PTR->value( MusicDownloadStatusObject::getClassName() );
-    if(to != nullptr)
+    if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));
     }
@@ -35,14 +35,14 @@ void MusicDownLoadManager::connectMusicDownload(QObject *object)
 {
 #ifndef MUSIC_MOBILE
     QObject *to = M_CONNECTION_PTR->value( MusicDownloadRecordWidget::getClassName() );
-    if(to != nullptr && object)
+    if(to && object)
     {
         QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
         QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to, SLOT(createDownloadItem(QString, qint64)));
     }
 
     to = M_CONNECTION_PTR->value( MusicCloudDownloadTableWidget::getClassName() );
-    if(to != nullptr && object)
+    if(to && object)
     {
         QObject::connect(object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
         QObject::connect(object, SIGNAL(createDownloadItem(QString, qint64)), to, SLOT(createDownloadItem(QString, qint64)));

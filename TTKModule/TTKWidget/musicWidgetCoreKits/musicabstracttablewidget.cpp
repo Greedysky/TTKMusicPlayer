@@ -60,14 +60,12 @@ void MusicAbstractTableWidget::clear()
 
 void MusicAbstractTableWidget::listCellEntered(int row, int column)
 {
-    QTableWidgetItem *it = item(m_previousColorRow, 0);
-    if(it != nullptr)
+    if(item(m_previousColorRow, 0))
     {
        setRowColor(m_previousColorRow, m_defaultBkColor);
     }
 
-    it = item(row, column);
-    if(it != nullptr)
+    if(item(row, column))
     {
        setRowColor(row, QColor(20, 20, 20, 20));
     }
@@ -80,7 +78,7 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
     for(int col=0; col<columnCount(); col++)
     {
         QTableWidgetItem *it = item(row, col);
-        if(it != nullptr)
+        if(it)
         {
             it->setBackgroundColor(color);
         }

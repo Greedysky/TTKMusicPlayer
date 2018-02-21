@@ -32,7 +32,7 @@ class MusicDownLoadQueryThreadAbstract;
 class MusicDownloadBackgroundThread;
 class MusicTranslationThreadAbstract;
 
-/*! @brief The class to produce the downlaod query class by type.
+/*! @brief The class to produce the download query class by type.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory

@@ -281,51 +281,55 @@ void MusicSongsListTableWidget::listCellEntered(int row, int column)
 {
     ///clear previous table item state
     QTableWidgetItem *it = item(m_previousColorRow, 0);
-    if(it != nullptr)
+    if(it)
     {
         it->setIcon(QIcon());
     }
+
     it = item(m_previousColorRow, 2);
-    if(it != nullptr)
+    if(it)
     {
         it->setIcon(QIcon());
     }
+
     it = item(m_previousColorRow, 3);
-    if(it != nullptr)
+    if(it)
     {
         it->setIcon(QIcon());
     }
+
     it = item(m_previousColorRow, 4);
-    if(it != nullptr)
+    if(it)
     {
         it->setIcon(QIcon());
     }
+
     it = item(m_previousColorRow, 5);
-    if(it != nullptr)
+    if(it)
     {
         it->setIcon(QIcon());
         it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
     }
 
     ///draw new table item state
-    if((it = item(row, 0)) != nullptr)
+    if((it = item(row, 0)))
     {
         it->setIcon(QIcon(":/tiny/btn_play_later_normal"));
     }
-    if((it = item(row, 2)) != nullptr)
+    if((it = item(row, 2)))
     {
         it->setIcon(QIcon(":/tiny/btn_mv_normal"));
     }
-    if((it = item(row, 3)) != nullptr)
+    if((it = item(row, 3)))
     {
         bool contains = MusicApplication::instance()->musicListLovestContains(row);
         it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
     }
-    if((it = item(row, 4)) != nullptr)
+    if((it = item(row, 4)))
     {
         it->setIcon(QIcon(":/tiny/btn_delete_normal"));
     }
-    if((it = item(row, 5)) != nullptr)
+    if((it = item(row, 5)))
     {
         it->setText(QString());
         it->setIcon(QIcon(":/tiny/btn_more_normal"));
@@ -384,7 +388,7 @@ void MusicSongsListTableWidget::listCellClicked(int row, int column)
 
                 bool contains = !MusicApplication::instance()->musicListLovestContains(row);
                 QTableWidgetItem *it = item(row, 3);
-                if(it != nullptr)
+                if(it)
                 {
                     it->setIcon(QIcon(contains ? ":/tiny/btn_loved_normal" : ":/tiny/btn_unloved_normal"));
                 }
