@@ -66,19 +66,6 @@ public:
     }
 
     /*!
-     * Set mutiple network connection object.
-     */
-    void setNetworkMultiValue(QObject *object);
-    /*!
-     * Remove mutiple network connection object.
-     */
-    void removeNetworkMultiValue(QObject *object);
-    /*!
-     * Set music data network connection object.
-     */
-    void connectMusicDownload(QObject *object);
-
-    /*!
      * Set connection by two object.
      */
     void poolConnect(const QObject *from, const QObject *to);
@@ -97,7 +84,6 @@ public:
 
 protected:
     QMap<QString, QObject*> m_para;
-    QList<QObject*> m_queueList;
 
     /*!
      * Object contsructor.

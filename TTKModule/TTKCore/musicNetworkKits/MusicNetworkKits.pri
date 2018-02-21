@@ -191,7 +191,8 @@ HEADERS  += \
     $$PWD/musicdownloadquerymoviethread.h \
     $$PWD/musicdownloadsongsuggestthread.h \
     $$PWD/musicdownloadsimilarthread.h \
-    $$PWD/musicdownloadqueryartistlistthread.h
+    $$PWD/musicdownloadqueryartistlistthread.h \
+    $$PWD/musicdownloadmanager.h
 
 }
 
@@ -354,6 +355,7 @@ SOURCES += \
     $$PWD/musicdownloadquerymoviethread.cpp \
     $$PWD/musicdownloadsongsuggestthread.cpp \
     $$PWD/musicdownloadsimilarthread.cpp \
-    $$PWD/musicdownloadqueryartistlistthread.cpp
+    $$PWD/musicdownloadqueryartistlistthread.cpp \
+    $$PWD/musicdownloadmanager.cpp
 
 }
