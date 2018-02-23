@@ -62,6 +62,7 @@ void MusicPlaylistFoundCategoryItem::buttonClicked(int index)
 }
 
 
+
 MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {

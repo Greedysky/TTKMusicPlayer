@@ -25,6 +25,7 @@
 #include "musicrecommendfoundwidget.h"
 #include "musicartistlistfoundwidget.h"
 #include "musicwebdjradiowidget.h"
+#include "musicwebmvradiofoundwidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -239,6 +240,12 @@ void MusicRightAreaWidget::musicMovieSearch(const QString &id)
     QTimer::singleShot(MT_MS, this, SLOT(musicMovieSearchFound()));
 }
 
+void MusicRightAreaWidget::musicMovieRadioSearch(const QVariant &data)
+{
+    m_rawData = data;
+    QTimer::singleShot(MT_MS, this, SLOT(musicMovieSearchRadioFound()));
+}
+
 void MusicRightAreaWidget::resizeWindow()
 {
     m_ui->songSearchWidget->resizeWindow();
@@ -275,6 +282,10 @@ void MusicRightAreaWidget::resizeWindow()
     else if(MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget))
     {
         MObject_cast(MusicWebDJRadioWidget*, m_stackedFuncWidget)->resizeWindow();
+    }
+    else if(MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget))
+    {
+        MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
 
     if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
@@ -521,6 +532,15 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
+        case WebMVRadio: //insert web mv radio widget
+            {
+                MusicWebMVRadioFoundWidget *mvRadio = new MusicWebMVRadioFoundWidget(this);
+                mvRadio->setSongName(QString());
+                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = mvRadio);
+                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                emit updateBackgroundTheme();
+                break;
+            }
         default: break;
     }
 }
@@ -560,17 +580,31 @@ void MusicRightAreaWidget::musicArtistCategoryFound()
 
 void MusicRightAreaWidget::musicArtistSearchFound()
 {
-    musicArtistFound(QString(), m_rawData);
+    musicArtistFound(QString(), m_rawData.toString());
 }
 
 void MusicRightAreaWidget::musicAlbumSearchFound()
 {
-    musicAlbumFound(QString(), m_rawData);
+    musicAlbumFound(QString(), m_rawData.toString());
 }
 
 void MusicRightAreaWidget::musicMovieSearchFound()
 {
-    musicVideoButtonSearched(QString(), m_rawData);
+    musicVideoButtonSearched(QString(), m_rawData.toString());
+}
+
+void MusicRightAreaWidget::musicMovieSearchRadioFound()
+{
+    if(m_videoPlayerWidget && m_videoPlayerWidget->isPopup())
+    {
+        m_videoPlayerWidget->raise();
+    }
+    else
+    {
+        musicFunctionClicked(MusicRightAreaWidget::VideoWidget);
+    }
+
+    m_videoPlayerWidget->videoResearchButtonSearched(m_rawData);
 }
 
 void MusicRightAreaWidget::musicArtistFound(const QString &text, const QString &id)

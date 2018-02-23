@@ -29,7 +29,7 @@ class MusicWebDJRadioFoundWidget;
 /*! @brief The class of music dj radio program table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -73,6 +73,10 @@ public Q_SLOTS:
      * Create the current program info item.
      */
     void createProgramItem(const MusicResultsItem &item);
+    /*!
+     * Send recieved data from net.
+     */
+    void downLoadFinished(const QByteArray &data, const QVariantMap &ext);
 
 protected:
     MusicDJRadioProgramThread *m_programThread;
@@ -83,7 +87,7 @@ protected:
 /*! @brief The class of music dj radio program widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioProgramWidget : public QWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -118,7 +122,7 @@ protected:
 /*! @brief The class of music dj radio widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioWidget : public QStackedWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioWidget : public QStackedWidget
 {
     Q_OBJECT
 public:
@@ -170,6 +174,10 @@ protected:
      * Init the first widget.
      */
     void initFirstWidget();
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     MusicWebDJRadioCategoryWidget *m_categoryWidget;
     MusicWebDJRadioProgramWidget *m_recommendWidget, *m_programWidget;

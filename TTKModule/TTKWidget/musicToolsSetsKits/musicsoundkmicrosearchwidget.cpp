@@ -46,8 +46,8 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
         return;
     }
 
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
+
     if(m_queryMv)
     {
         MusicDownLoadQueryKWMovieThread *d = new MusicDownLoadQueryKWMovieThread(this);
@@ -93,7 +93,7 @@ void MusicSoundKMicroSearchTableWidget::clearAllItems()
     setColumnCount(5);
 }
 
-void MusicSoundKMicroSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);

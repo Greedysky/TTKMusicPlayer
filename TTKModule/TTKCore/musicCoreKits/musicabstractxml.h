@@ -156,7 +156,7 @@ public:
 
 protected:
     QFile *m_file;
-    QDomDocument *m_ddom;
+    QDomDocument *m_document;
 
 };
 

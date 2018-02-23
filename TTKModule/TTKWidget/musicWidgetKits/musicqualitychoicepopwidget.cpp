@@ -113,7 +113,7 @@ void MusicQualityChoiceTableWidget::createItems()
 void MusicQualityChoiceTableWidget::listCellEntered(int row, int column)
 {
     QTableWidgetItem *it = item(m_previousColorRow, 0);
-    if(it != nullptr)
+    if(it)
     {
        it->setTextColor(PREVIOUS_COLOR);
     }
@@ -121,7 +121,7 @@ void MusicQualityChoiceTableWidget::listCellEntered(int row, int column)
     MusicAbstractTableWidget::listCellEntered(row, column);
 
     it = item(row, 0);
-    if(it != nullptr)
+    if(it)
     {
        setRowColor(row, QColor(20, 20, 20, 200));
        it->setTextColor(HOVER_COLOR);
@@ -211,6 +211,7 @@ void MusicQualityChoicePopWidget::listCellClicked(int row)
                 m_currentQuality = tr("CD");
                 break;
             }
+        default: break;
     }
     setStyleSheet( styleSheet() + style);
 

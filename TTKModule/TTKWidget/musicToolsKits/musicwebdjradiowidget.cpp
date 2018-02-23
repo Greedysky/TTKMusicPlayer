@@ -2,6 +2,7 @@
 #include "musicuiobject.h"
 #include "musicwebdjradiocategorywidget.h"
 #include "musicwebdjradiofoundwidget.h"
+#include "musicdownloadsourcethread.h"
 #include "musicsettingmanager.h"
 
 #include <QScrollBar>
@@ -123,6 +124,27 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
     item->setTextColor(QColor(100, 100, 100));
     item->setTextAlignment(Qt::AlignCenter);
     setItem(index, 5, item);
+
+    MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+    connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
+    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != "null")
+    {
+        QVariantMap map;
+        map["id"] = index;
+        download->setRawData(map);
+        download->startToDownload(data.m_coverUrl);
+    }
+}
+
+void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
+{
+    QTableWidgetItem *it = item(ext["id"].toInt(), 1);
+    if(it)
+    {
+        QPixmap pix;
+        pix.loadFromData(data);
+        it->setIcon(pix);
+    }
 }
 
 
@@ -351,4 +373,9 @@ void MusicWebDJRadioWidget::initFirstWidget()
     layout->addWidget(m_categoryWidget);
 
     addWidget(w);
+}
+
+void MusicWebDJRadioWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
 }

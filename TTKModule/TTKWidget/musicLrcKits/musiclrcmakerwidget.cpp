@@ -504,6 +504,7 @@ void MusicLrcMakerWidget::createCurrentLine(int key)
                     }
                     break;
                 }
+            default: break;
         }
     }
     m_ui->makeTextEdit->setTextCursor(cursor);
@@ -744,6 +745,7 @@ void MusicLrcMakerWidget::resetToOriginPlayMode()
             w->musicPlayOneLoop(); break;
         case MusicObject::PM_PlayOnce:
             w->musicPlayItemOnce(); break;
+        default: break;
     }
 }
 

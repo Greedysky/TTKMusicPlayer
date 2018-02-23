@@ -49,10 +49,6 @@ public:
     virtual void startToPage(int offset);
 
     /*!
-     * Return the current raw data.
-     */
-    inline QVariantMap getRawData() const { return m_rawData; }
-    /*!
      * Return the each page max size.
      */
     inline int getPageSize() const { return m_pageSize; }
@@ -62,7 +58,6 @@ public:
     inline int getPageTotal() const { return m_pageTotal; }
 
 protected:
-    QVariantMap m_rawData;
     int m_pageSize, m_pageTotal;
 
 };

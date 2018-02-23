@@ -189,9 +189,9 @@ void MusicTransformWidget::transformFinish()
         {
             setMusicCheckedControl(false);
         }
+
         m_ui->inputLineEdit->clear();
-        m_ui->loadingLabel->hide();
-        m_ui->loadingLabel->stop();
+        m_ui->loadingLabel->run(false);
     }
 }
 

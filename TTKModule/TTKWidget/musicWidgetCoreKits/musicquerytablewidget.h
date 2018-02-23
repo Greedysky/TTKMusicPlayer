@@ -55,10 +55,6 @@ public:
      */
     MusicDownLoadQueryThreadAbstract *getQueryInput();
     /*!
-     * Return the current song container.
-     */
-    const MusicObject::MusicSongInformations& getMusicSongInfos() const;
-    /*!
      * Start search query by text.
      * Subclass should implement this function.
      */
@@ -94,7 +90,7 @@ public Q_SLOTS:
      * Create searched items.
      * Subclass should implement this function.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) = 0;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) = 0;
 
 protected:
     /*!

@@ -90,7 +90,7 @@ static inline bool killProcess(LPCWSTR processName)
 
    //Kill The Process
    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, id);
-   if(hProcess != nullptr)
+   if(hProcess)
    {
        TerminateProcess(hProcess,0);
        CloseHandle(hProcess);

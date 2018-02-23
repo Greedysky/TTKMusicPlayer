@@ -23,100 +23,12 @@
 
 class QGridLayout;
 class MusicPagingWidgetObject;
-
-/*! @brief The class of dj radio music info table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioInfoTableWidget : public MusicQueryFoundTableWidget
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = 0);
-
-    virtual ~MusicWebDJRadioInfoTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
-    /*!
-     * Set network query input.
-     */
-    virtual void setQueryInput(MusicDownLoadQueryThreadAbstract *query) override;
-
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
-};
-
-
-/*! @brief The class of dj radio music info widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioInfoWidget : public MusicFoundAbstractWidget
-{
-    Q_OBJECT
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicWebDJRadioInfoWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
-    /*!
-     * Set current name to search founds.
-     */
-    virtual void setSongName(const QString &name) override;
-    /*!
-     * Set current id to search founds.
-     */
-    virtual void setSongNameById(const QString &id) override;
-
-    /*!
-     * Resize window bound by widgte resize called.
-     */
-    virtual void resizeWindow() override;
-
-Q_SIGNALS:
-    /*!
-     * Set current index to main menu page.
-     */
-    void backToMainMenu();
-
-public Q_SLOTS:
-    /*!
-     * Query all quality musics is finished.
-     */
-    void queryAllFinished();
-    /*!
-     * Create the current category info item.
-     */
-    void createCategoryInfoItem(const MusicResultsItem &item);
-
-protected:
-    /*!
-     * Create init interface lables.
-     */
-    void createLabels();
-
-};
-
+class MusicWebDJRadioInfoWidget;
 
 /*! @brief The class of the dj radio music item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioFoundItemWidget : public QLabel
+class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundItemWidget : public QLabel
 {
     Q_OBJECT
 public:
@@ -165,7 +77,7 @@ protected:
 /*! @brief The class of the dj radio music found widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioFoundWidget : public MusicFoundAbstractWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
 public:

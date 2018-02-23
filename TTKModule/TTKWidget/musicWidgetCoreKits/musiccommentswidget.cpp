@@ -124,7 +124,7 @@ QString MusicCommentsItem::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicCommentsItem::createSearchedItems(const MusicResultsItem &comments)
+void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
     m_userName->setFixedWidth(QFontMetrics(m_userName->font()).width(m_userName->text()));
@@ -317,10 +317,10 @@ void MusicCommentsWidget::setCurrentSongName(const QString &name)
     initLabel(name, m_commentsThread->getPageTotal());
 }
 
-void MusicCommentsWidget::createSearchedItems(const MusicResultsItem &comments)
+void MusicCommentsWidget::createSearchedItem(const MusicResultsItem &comments)
 {
     MusicCommentsItem *item = new MusicCommentsItem(m_messageComments);
-    item->createSearchedItems(comments);
+    item->createSearchedItem(comments);
     m_commentsItems << item;
     QVBoxLayout *layout = MStatic_cast(QVBoxLayout*, m_messageComments->layout());
     layout->insertWidget(layout->count() - 1, item);

@@ -19,13 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#define S_LONG  10
-#define S_SPAOK 7
-#define S_SHORT 5
-#define S_SPACE 3
-#define S_ANGLE 10
-
-#include <QtGui>
 #include <QWidget>
 #include "musicglobaldefine.h"
 
@@ -80,7 +73,7 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void paintEvent(QPaintEvent *event);
+    virtual void paintEvent(QPaintEvent *event) override;
     /*!
      * Override the sizeHint function.
      */
@@ -102,35 +95,35 @@ private:
     /*!
      * Draw outer circle.
      */
-    void drawOuterCircle(QPainter* painter);
+    void drawOuterCircle(QPainter *painter);
     /*!
      * Draw inner circle.
      */
-    void drawInnerCircle(QPainter* painter);
+    void drawInnerCircle(QPainter *painter);
     /*!
      * Draw mark.
      */
-    void drawMark(QPainter* painter);
+    void drawMark(QPainter *painter);
     /*!
      * Draw cover circle.
      */
-    void drawCoverCircle(QPainter* painter);
+    void drawCoverCircle(QPainter *painter);
     /*!
      * Draw color pie.
      */
-    void drawColorPie(QPainter* painter);
+    void drawColorPie(QPainter *painter);
     /*!
      * Draw indicator.
      */
-    void drawIndicator(QPainter* painter);
+    void drawIndicator(QPainter *painter);
     /*!
      * Draw cover ball.
      */
-    void drawCoverBall(QPainter* painter);
+    void drawCoverBall(QPainter *painter);
     /*!
      * Draw text rect.
      */
-    void drawTextRect(QPainter* painter);
+    void drawTextRect(QPainter *painter);
 
     qreal m_outerRadius, m_innerRadius;
     qreal m_coverCircleRadius, m_colorCircleRadius;
@@ -138,10 +131,8 @@ private:
     QPointF m_center;
     QRectF m_colorCircleRect;
     qreal m_value, m_ratio, m_currentValue;
-    QTimer* updateTimer;
-    bool m_bReverse;
-    QTimer* singleTimer;
-    bool m_bAnimating;
+    QTimer *m_updateTimer, *m_singleTimer;
+    bool m_bReverse, m_bAnimating;
 
 };
 

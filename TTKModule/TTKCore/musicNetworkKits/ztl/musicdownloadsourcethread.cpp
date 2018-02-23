@@ -45,14 +45,28 @@ void MusicDownloadSourceThread::downLoadFinished()
         }
         else
         {
-            emit downLoadByteDataChanged(m_reply->readAll());
+            if(m_rawData.isEmpty())
+            {
+                emit downLoadByteDataChanged(m_reply->readAll());
+            }
+            else
+            {
+                emit downLoadExtDataChanged(m_reply->readAll(), m_rawData);
+            }
             deleteAll();
         }
     }
     else
     {
         M_LOGGER_ERROR("Download source data error");
-        emit downLoadByteDataChanged(QByteArray());
+        if(m_rawData.isEmpty())
+        {
+            emit downLoadByteDataChanged(QByteArray());
+        }
+        else
+        {
+            emit downLoadExtDataChanged(QByteArray(), m_rawData);
+        }
         deleteAll();
     }
 }
@@ -60,7 +74,14 @@ void MusicDownloadSourceThread::downLoadFinished()
 void MusicDownloadSourceThread::replyError(QNetworkReply::NetworkError)
 {
     M_LOGGER_ERROR("Abnormal network connection");
-    emit downLoadByteDataChanged(QByteArray());
+    if(m_rawData.isEmpty())
+    {
+        emit downLoadByteDataChanged(QByteArray());
+    }
+    else
+    {
+        emit downLoadExtDataChanged(QByteArray(), m_rawData);
+    }
     deleteAll();
 }
 
@@ -68,7 +89,14 @@ void MusicDownloadSourceThread::replyError(QNetworkReply::NetworkError)
 void MusicDownloadSourceThread::sslErrors(QNetworkReply* reply, const QList<QSslError> &errors)
 {
     sslErrorsString(reply, errors);
-    emit downLoadByteDataChanged(QByteArray());
+    if(m_rawData.isEmpty())
+    {
+        emit downLoadByteDataChanged(QByteArray());
+    }
+    else
+    {
+        emit downLoadExtDataChanged(QByteArray(), m_rawData);
+    }
     deleteAll();
 }
 #endif

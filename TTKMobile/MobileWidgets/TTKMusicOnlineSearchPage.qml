@@ -37,7 +37,7 @@ Item {
 
             searedSongListModel.clear();
         }
-        onCreateSearchedItems: {
+        onCreateSearchedItem: {
             var info = { title: songname, artist: artistname };
             switch( functionList.currentIndex ) {
                 case 0: searedSongListModel.append(info); break;

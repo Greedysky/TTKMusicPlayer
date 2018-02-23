@@ -93,7 +93,7 @@ Q_SIGNALS:
     /*!
      * Clear all items before the new query start.
      */
-    void createSearchedItems(const QString &songname, const QString &artistname);
+    void createSearchedItem(const QString &songname, const QString &artistname);
     /*!
      * Create the current items by song name\ artist name and time.
      */
@@ -111,7 +111,7 @@ private Q_SLOTS:
     /*!
      * Send download data from net.
      */
-    void createSearchedItems(const MusicSearchedItem &songItem);
+    void createSearchedItem(const MusicSearchedItem &songItem);
     /*!
      * Create the current items by song name\ artist name and time.
      */

@@ -19,7 +19,7 @@ QString MusicQQArtistInfoConfigManager::getClassName()
 
 void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item)
 {
-    QDomNodeList resultlist = m_ddom->elementsByTagName("info");
+    QDomNodeList resultlist = m_document->elementsByTagName("info");
     for(int i=0; i<resultlist.count(); ++i)
     {
         QDomNodeList infolist = resultlist.at(i).childNodes();
@@ -196,7 +196,7 @@ void MusicDownLoadQueryQQArtistThread::downLoadFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }

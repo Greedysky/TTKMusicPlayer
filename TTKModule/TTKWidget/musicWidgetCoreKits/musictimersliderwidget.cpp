@@ -86,6 +86,7 @@ void MusicTimerSliderWidget::setSliderStyleByType(int type)
         case 2: rgba1 = "rgb(232, 202, 189)"; rgba2 = "rgb(191, 252, 198)"; break;
         case 3: rgba1 = "rgb(213, 203, 255)"; rgba2 = "rgb(153, 236, 255)"; break;
         case 4: rgba1 = "rgb(255, 179, 249)"; rgba2 = "rgb(247, 246, 200)"; break;
+        default: break;
     }
     QString prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
                      "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";

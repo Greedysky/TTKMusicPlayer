@@ -30,12 +30,12 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicUserConfigManager::readUserConfig(MusicUserRecords &records)
 {
-    QDomNodeList nodelist = m_ddom->elementsByTagName("username");
+    QDomNodeList nodelist = m_document->elementsByTagName("username");
     for(int i=0; i<nodelist.count(); ++i)
     {
         MusicUserRecord record;

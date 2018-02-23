@@ -39,8 +39,7 @@ void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
     }
     MusicQueryItemTableWidget::startSearchQuery(text);
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::LrcQuery, text);
 }
 
@@ -97,7 +96,7 @@ void MusicLrcSearchTableWidget::clearAllItems()
     setColumnCount(7);
 }
 
-void MusicLrcSearchTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicLrcSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);

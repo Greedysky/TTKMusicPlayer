@@ -193,7 +193,7 @@ public:
     /*!
      * Write music playlist data to file.
      */
-    void setMusicSongItems(const QString &save, const MusicSongItem &item);
+    void setMusicSongItem(const QString &save, const MusicSongItem &item);
     /*!
      * Read music playlist data from file.
      */

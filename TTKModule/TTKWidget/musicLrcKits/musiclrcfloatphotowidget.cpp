@@ -109,6 +109,20 @@ void MusicLrcFloatPhotoItem::contextMenuEvent(QContextMenuEvent *event)
     }
 }
 
+void MusicLrcFloatPhotoItem::enterEvent(QEvent *event)
+{
+    MusicClickedLabel::enterEvent(event);
+    if(!pixmap()->isNull())
+    {
+        setCursor(Qt::PointingHandCursor);
+    }
+    else
+    {
+        unsetCursor();
+    }
+}
+
+
 
 MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)
@@ -168,7 +182,7 @@ MusicLrcFloatPhotoWidget::MusicLrcFloatPhotoWidget(QWidget *parent)
         connect(item, SIGNAL(itemClicked(int)), SLOT(sendUserSelectArtBg(int)));
         connect(item, SIGNAL(boxClicked(int)), SLOT(userSelectCheckBoxChecked(int)));
     }
-    connect(M_BACKGROUND_PTR, SIGNAL(artHasChanged()), SLOT(artHasChanged()));
+    connect(M_BACKGROUND_PTR, SIGNAL(artistNameChanged()), SLOT(artistNameChanged()));
     connect(m_checkBox, SIGNAL(clicked(bool)), SLOT(selectAllStateChanged(bool)));
 }
 
@@ -248,8 +262,14 @@ void MusicLrcFloatPhotoWidget::photoPrevious()
     showPhoto();
 }
 
-void MusicLrcFloatPhotoWidget::artHasChanged()
+void MusicLrcFloatPhotoWidget::artistNameChanged()
 {
+    if(isVisible())
+    {
+        m_currentIndex = 0;
+        close();
+    }
+
     m_selectNum.clear();
     m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)

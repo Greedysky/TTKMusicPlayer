@@ -1,5 +1,5 @@
 #include "musicdatadownloadthread.h"
-#include "musicconnectionpool.h"
+#include "musicdownloadmanager.h"
 #include "musicnumberutils.h"
 #include "musictime.h"
 
@@ -60,8 +60,8 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     /// only download music data can that show progress
     if(m_downloadType == Download_Music && !m_redirection)
     {
-        M_CONNECTION_PTR->connectMusicDownload(this);
         m_createItemTime = MusicTime::timeStamp();
+        M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this));
         emit createDownloadItem(m_savePathName, m_createItemTime);
     }
 }

@@ -593,7 +593,7 @@ void MusicApplication::musicExportSongsItemList(int index)
         }
 
         MusicPlayListManager manager;
-        manager.setMusicSongItems(fileName, items[index]);
+        manager.setMusicSongItem(fileName, items[index]);
     }
 }
 

@@ -59,7 +59,7 @@ public:
     /*!
      * Download batch data from net.
      */
-    void downloadBatchData();
+    void downloadBatchData(bool music);
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -81,7 +81,7 @@ public Q_SLOTS:
     /*!
      * Create searched items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) override;
     /*!
      * Create the search finished item.
      */

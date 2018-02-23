@@ -22,6 +22,8 @@
 #include "musicquerytablewidget.h"
 #include "musicdownloadquerythreadabstract.h"
 
+Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
+
 /*! @brief The class of the video item play data item.
  * @author Greedysky <greedysky@163.com>
  */
@@ -61,6 +63,10 @@ public:
      */
     void startSearchSingleQuery(const QString &text);
     /*!
+     * Start search query by given data.
+     */
+    void startSearchSingleQuery(const QVariant &data);
+    /*!
      * Data download to local file.
      */
     virtual void musicDownloadLocal(int row) override;
@@ -91,7 +97,7 @@ public Q_SLOTS:
     /*!
      * Create searched items.
      */
-    virtual void createSearchedItems(const MusicSearchedItem &songItem) override;
+    virtual void createSearchedItem(const MusicSearchedItem &songItem) override;
     /*!
      * Item has double clicked.
      */
@@ -116,6 +122,7 @@ protected:
     void downloadLocalMovie(int row);
 
     QString m_currentSongName;
+    bool m_singleRadioMode;
 
 };
 

@@ -293,14 +293,14 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     textLabel->setAlignment(Qt::AlignCenter);
     /////////////////////////////////////////////////////////////////////
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryThreadAbstract *down = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-    connect(down, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    down->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
+    MusicDownLoadQueryThreadAbstract *query = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
     loop.exec();
 
-    if(!down->getMusicSongInfos().isEmpty())
+    if(!query->getMusicSongInfos().isEmpty())
     {
-        foreach(const MusicObject::MusicSongInformation &info, down->getMusicSongInfos())
+        foreach(const MusicObject::MusicSongInformation &info, query->getMusicSongInfos())
         {
             if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive) )

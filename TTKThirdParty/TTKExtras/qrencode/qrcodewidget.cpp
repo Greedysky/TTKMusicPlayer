@@ -170,7 +170,7 @@ void QRCodeQWidget::paintEvent(QPaintEvent *event)
 
     QRcode *qrcode = QRcode_encodeString(d->m_text.constData(), 7,
                                          d->m_level, d->m_mode, d->m_casesen);
-    if(qrcode != nullptr)
+    if(qrcode)
     {
         unsigned char *point = qrcode->data;
         painter.setPen(Qt::NoPen);

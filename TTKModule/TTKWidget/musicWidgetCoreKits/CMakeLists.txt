@@ -39,6 +39,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccolordialog.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -80,5 +81,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicresizegrabitemwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccolordialog.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.cpp
   )
   

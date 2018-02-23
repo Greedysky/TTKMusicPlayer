@@ -1,6 +1,15 @@
 #include "musicspeedmeterwidget.h"
 #include "musicnumberdefine.h"
 
+#include <QTimer>
+#include <QPainter>
+
+#define S_LONG      10
+#define S_SPAOK     7
+#define S_SHORT     5
+#define S_SPACE     3
+#define S_ANGLE     10
+
 MusicSpeedMeterWidget::MusicSpeedMeterWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -25,7 +34,7 @@ void MusicSpeedMeterWidget::setValue(qreal value)
     {
         m_currentValue = m_value;
     }
-    updateTimer->start();
+    m_updateTimer->start();
 }
 
 void MusicSpeedMeterWidget::setRatio(qreal value)
@@ -46,7 +55,7 @@ void MusicSpeedMeterWidget::updateGraph()
         m_currentValue -= 0.5;
         if(m_currentValue <= m_value)
         {
-            updateTimer->stop();
+            m_updateTimer->stop();
         }
     }
     else
@@ -54,7 +63,7 @@ void MusicSpeedMeterWidget::updateGraph()
         m_currentValue += 0.5;
         if(m_currentValue >= m_value)
         {
-            updateTimer->stop();
+            m_updateTimer->stop();
         }
     }
     update();
@@ -95,13 +104,13 @@ void MusicSpeedMeterWidget::initVariables()
     m_currentValue = 0;
     m_ratio = 1;
 
-    updateTimer = new QTimer(this);
-    updateTimer->setInterval(10);
-    connect(updateTimer, SIGNAL(timeout()), SLOT(updateGraph()));
-    singleTimer=new QTimer(this);
-    singleTimer->setInterval(100);
-    connect(singleTimer, SIGNAL(timeout()), SLOT(update()));
-    singleTimer->start();
+    m_updateTimer = new QTimer(this);
+    m_updateTimer->setInterval(10);
+    connect(m_updateTimer, SIGNAL(timeout()), SLOT(updateGraph()));
+    m_singleTimer = new QTimer(this);
+    m_singleTimer->setInterval(100);
+    connect(m_singleTimer, SIGNAL(timeout()), SLOT(update()));
+    m_singleTimer->start();
 }
 
 void MusicSpeedMeterWidget::resetVariables()

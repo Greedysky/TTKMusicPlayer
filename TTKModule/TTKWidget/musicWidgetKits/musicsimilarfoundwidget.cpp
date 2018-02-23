@@ -28,14 +28,14 @@ void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstrac
     }
 }
 
-void MusicSimilarFoundTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicSimilarFoundTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     if(rowCount() >= 15)
     {
         return;
     }
 
-    MusicQueryFoundTableWidget::createSearchedItems(songItem);
+    MusicQueryFoundTableWidget::createSearchedItem(songItem);
 }
 
 

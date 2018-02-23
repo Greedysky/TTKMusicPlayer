@@ -86,8 +86,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
         m_downLoadManager->setSearchQuality(quality);
     }
     ////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
@@ -112,8 +111,7 @@ void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &tex
         m_downLoadManager->setSearchQuality(quality);
     }
     ////////////////////////////////////////////////
-    m_loadingLabel->show();
-    m_loadingLabel->start();
+    m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSingleSearch(text);
 }
@@ -254,7 +252,7 @@ void MusicSongSearchOnlineTableWidget::clearAllItems()
     setColumnCount(9);
 }
 
-void MusicSongSearchOnlineTableWidget::createSearchedItems(const MusicSearchedItem &songItem)
+void MusicSongSearchOnlineTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -544,7 +542,13 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 2)
     {
-        MusicObject::MusicSongInformations selectedItems, musicSongInfos(m_searchTableWidget->getMusicSongInfos());
+        MusicDownLoadQueryThreadAbstract *query = m_searchTableWidget->getQueryInput();
+        if(!query)
+        {
+            return;
+        }
+
+        MusicObject::MusicSongInformations selectedItems, musicSongInfos(query->getMusicSongInfos());
         foreach(int index, list)
         {
             if(index < 0 || index >= musicSongInfos.count())
@@ -554,8 +558,9 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
             selectedItems << musicSongInfos[index];
         }
+
         MusicDownloadBatchWidget *w = new MusicDownloadBatchWidget(this);
-        w->setSongName(selectedItems);
+        w->setSongName(selectedItems, MusicDownLoadQueryThreadAbstract::MusicQuery);
         w->show();
     }
 }

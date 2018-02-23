@@ -102,7 +102,7 @@ void MusicDownLoadQueryKWArtistListThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["id"].toString();
                     info.m_name = value["name"].toString();
-                    emit createArtistListItems(info);
+                    emit createArtistListItem(info);
                 }
             }
         }

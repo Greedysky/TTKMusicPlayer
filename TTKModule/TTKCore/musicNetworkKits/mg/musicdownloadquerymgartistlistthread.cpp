@@ -96,7 +96,7 @@ void MusicDownLoadQueryMGArtistListThread::downLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["singerid"].toString();
                     info.m_name = value["singer"].toString();
-                    emit createArtistListItems(info);
+                    emit createArtistListItem(info);
                 }
             }
         }

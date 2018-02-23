@@ -13,6 +13,7 @@
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  25
+#define LINE_SPACING_SIZE  150
 
 MusicArtistListFoundItemWidget::MusicArtistListFoundItemWidget(QWidget *parent)
     : MusicClickedLabel(parent)
@@ -57,7 +58,7 @@ MusicArtistListFoundWidget::MusicArtistListFoundWidget(QWidget *parent)
     m_categoryButton = nullptr;
     m_pagingWidgetObject = nullptr;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getArtistListThread(this);
-    connect(m_downloadThread, SIGNAL(createArtistListItems(MusicResultsItem)), SLOT(createArtistListItems(MusicResultsItem)));
+    connect(m_downloadThread, SIGNAL(createArtistListItem(MusicResultsItem)), SLOT(createArtistListItem(MusicResultsItem)));
 }
 
 MusicArtistListFoundWidget::~MusicArtistListFoundWidget()
@@ -93,7 +94,7 @@ void MusicArtistListFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/WIDTH_LABEL_SIZE;
+        int lineNumber = width()/LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -101,7 +102,7 @@ void MusicArtistListFoundWidget::resizeWindow()
     }
 }
 
-void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &item)
+void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &item)
 {
     if(!m_firstInit)
     {
@@ -185,7 +186,7 @@ void MusicArtistListFoundWidget::createArtistListItems(const MusicResultsItem &i
     connect(label, SIGNAL(currentArtistListClicked(MusicResultsItem)), SLOT(currentArtistListClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
-    int lineNumber = width()/WIDTH_LABEL_SIZE;
+    int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }

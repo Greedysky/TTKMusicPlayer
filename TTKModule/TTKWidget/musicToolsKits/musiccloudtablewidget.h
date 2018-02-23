@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicsongslistabstracttablewidget.h"
+#include "musicdownloadabstracttablewidget.h"
 #include "musicdownloadrecordconfigmanager.h"
 
 class MusicProgressBarDelegate;
@@ -58,7 +58,7 @@ protected:
 /*! @brief The class of the cloud shared song download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicSongsListAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -67,57 +67,16 @@ public:
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicCloudDownloadTableWidget();
-
     /*!
      * Get class object name.
      */
     static QString getClassName();
 
-Q_SIGNALS:
-    /*!
-     * Add current selected song to play lists.
-     */
-    void addSongToPlay(const QStringList &names);
-
-public Q_SLOTS:
-    /*!
-     * Table widget list cell click.
-     */
-    virtual void listCellClicked(int row, int column) override;
-    /*!
-     * List cell double clicked.
-     */
-    void listCellDoubleClicked(int row, int column);
-    /*!
-     * Delete item from list at current row.
-     */
-    virtual void setDeleteItemAt() override;
-    /*!
-     * Update download percent\ total time and current time progress.
-     */
-    void downloadProgressChanged(float percent, const QString &total, qint64 time);
-    /*!
-     * Create download item from download name and total time.
-     */
-    void createDownloadItem(const QString &name, qint64 time);
-
 protected:
-    /*!
-     * Read all config from file and insert items.
-     */
-    void musicSongsFileName();
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create item by index and name and size and time.
      */
-    void createItem(int index, const MusicDownloadRecord &record, qint64 time);
-
-    MusicProgressBarDelegate *m_progressBarDelegate;
-    MusicDownloadRecords m_musicRecords;
+    virtual void createItem(int index, const MusicDownloadRecord &record) override;
 
 };
 

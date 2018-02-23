@@ -184,6 +184,7 @@ void MusicSongCheckToolsDuplicateTableWidget::listCellClicked(int row, int colum
     {
         case 5: musicPlay(); break;
         case 6: deleteCurrentRow(); break;
+        default: break;
     }
 }
 
@@ -329,6 +330,7 @@ void MusicSongCheckToolsQualityTableWidget::listCellClicked(int row, int column)
     {
         case 6: musicPlay(); break;
         case 7: deleteCurrentRow(); break;
+        default: break;
     }
 }
 

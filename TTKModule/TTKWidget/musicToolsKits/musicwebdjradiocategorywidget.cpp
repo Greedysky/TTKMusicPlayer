@@ -6,6 +6,7 @@
 
 #define WIDTH_LABEL_SIZE   60
 #define HEIGHT_LABEL_SIZE  105
+#define LINE_SPACING_SIZE  105
 
 MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *parent)
     : MusicClickedLabel(parent)
@@ -117,7 +118,7 @@ void MusicWebDJRadioCategoryWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/HEIGHT_LABEL_SIZE;
+        int lineNumber = width()/LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -133,7 +134,7 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
         connect(label, SIGNAL(currentCategoryClicked(MusicResultsItem)), SIGNAL(currentCategoryClicked(MusicResultsItem)));
         label->setMusicResultsItem(item);
 
-        int lineNumber = width()/HEIGHT_LABEL_SIZE;
+        int lineNumber = width()/LINE_SPACING_SIZE;
         m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
         m_resizeWidgets << label;
     }

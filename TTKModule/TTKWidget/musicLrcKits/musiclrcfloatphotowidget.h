@@ -89,6 +89,7 @@ protected:
      * Override the widget event.
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
 
     int m_index;
     QString m_pixPath;
@@ -148,7 +149,7 @@ public Q_SLOTS:
     /*!
      * Update current artist pic.
      */
-    void artHasChanged();
+    void artistNameChanged();
     /*!
      * User selected the plane pic.
      */

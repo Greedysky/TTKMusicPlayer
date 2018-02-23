@@ -133,6 +133,7 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
             case Direction_Bottom:
                 m_originPoint = pt_lu;
                 break;
+            default: break;
         }
     }
     else

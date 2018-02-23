@@ -22,7 +22,7 @@ void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformat
 {
     info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
 
-    QDomNodeList resultlist = m_ddom->elementsByTagName("video");
+    QDomNodeList resultlist = m_document->elementsByTagName("video");
     for(int i=0; i<resultlist.count(); ++i)
     {
         QDomNodeList infolist = resultlist.at(i).childNodes();
@@ -194,7 +194,7 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }
@@ -205,12 +205,12 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
     if(m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *yyt = new MusicDownLoadQueryYYTThread(this);
-        connect(yyt, SIGNAL(createSearchedItems(MusicSearchedItem)), SIGNAL(createSearchedItems(MusicSearchedItem)));
-        connect(yyt, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        yyt->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        MusicDownLoadQueryYYTThread *query = new MusicDownLoadQueryYYTThread(this);
+        connect(query, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
+        connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        query->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();
-        m_musicSongInfos << yyt->getMusicSongInfos();
+        m_musicSongInfos << query->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());
@@ -300,7 +300,7 @@ void MusicDownLoadQueryXMMovieThread::singleDownLoadFinished()
         item.m_singerName = musicInfo.m_singerName;
         item.m_time = musicInfo.m_timeLength;
         item.m_type = mapQueryServerString();
-        emit createSearchedItems(item);
+        emit createSearchedItem(item);
         m_musicSongInfos << musicInfo;
     }
 

@@ -92,7 +92,7 @@ void MusicDownLoadQueryWYArtistListThread::downLoadFinished()
             MusicResultsItem info;
             info.m_id = regx.cap(1);
             info.m_name = regx.cap(2);
-            emit createArtistListItems(info);
+            emit createArtistListItem(info);
 
             pos += regx.matchedLength();
             pos = regx.indexIn(html, pos);

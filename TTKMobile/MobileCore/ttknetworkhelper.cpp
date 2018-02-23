@@ -105,7 +105,7 @@ void TTKNetworkHelper::setCurrentServer(int index)
 
     m_queryThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_queryThread, SIGNAL(clearAllItems()), SIGNAL(clearAllItems()));
-    connect(m_queryThread, SIGNAL(createSearchedItems(MusicSearchedItem)), SLOT(createSearchedItems(MusicSearchedItem)));
+    connect(m_queryThread, SIGNAL(createSearchedItem(MusicSearchedItem)), SLOT(createSearchedItem(MusicSearchedItem)));
     connect(m_queryThread, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged()));
 }
 
@@ -124,9 +124,9 @@ void TTKNetworkHelper::downLoadDataChanged()
     emit queryDataHasFinished( m_queryThread->getMusicSongInfos().isEmpty() );
 }
 
-void TTKNetworkHelper::createSearchedItems(const MusicSearchedItem &songItem)
+void TTKNetworkHelper::createSearchedItem(const MusicSearchedItem &songItem)
 {
-    emit createSearchedItems(songItem.m_songName, songItem.m_singerName);
+    emit createSearchedItem(songItem.m_songName, songItem.m_singerName);
 }
 
 void TTKNetworkHelper::downloadProgressChanged(float percent, const QString &total, qint64 time)

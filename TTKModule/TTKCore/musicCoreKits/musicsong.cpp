@@ -89,6 +89,7 @@ bool MusicSong::operator< (const MusicSong &other) const
         case SortByAddTime : return m_musicAddTime < other.m_musicAddTime;
         case SortByPlayTime : return m_musicTime < other.m_musicTime;
         case SortByPlayCount : return m_musicPlayCount < other.m_musicPlayCount;
+        default: break;
     }
     return false;
 }

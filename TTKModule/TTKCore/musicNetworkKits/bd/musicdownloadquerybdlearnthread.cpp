@@ -44,7 +44,7 @@ void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QStrin
 
 void MusicDownLoadQueryBDLearnThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -98,7 +98,7 @@ void MusicDownLoadQueryBDLearnThread::downLoadFinished()
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }

@@ -91,6 +91,7 @@ void MusicMessageBox::buttonClicked(int index)
         case 0:
         case 2: m_status = 0; break;
         case 1: m_status = 1; break;
+        default: break;
     }
     close();
 }

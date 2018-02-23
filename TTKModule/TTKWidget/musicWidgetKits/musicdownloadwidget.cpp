@@ -148,6 +148,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_querySingleInfo = false;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
+    m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
 
     connect(m_ui->pathChangedButton, SIGNAL(clicked()), SLOT(downloadDirSelected()));
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
@@ -168,7 +169,10 @@ QString MusicDownloadWidget::getClassName()
 
 void MusicDownloadWidget::initWidget()
 {
+    m_ui->loadingLabel->run(true);
+
     controlEnable(true);
+
     if(m_queryType == MusicDownLoadQueryThreadAbstract::MovieQuery)
     {
         m_ui->downloadPathEdit->setText(MOVIE_DIR_FULL);
@@ -197,8 +201,7 @@ void MusicDownloadWidget::setSongName(const QString &name, MusicDownLoadQueryThr
     m_downloadThread->startToSearch(type, name);
 }
 
-void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info,
-                                      MusicDownLoadQueryThreadAbstract::QueryType type)
+void MusicDownloadWidget::setSongName(const MusicObject::MusicSongInformation &info, MusicDownLoadQueryThreadAbstract::QueryType type)
 {
     m_queryType = type;
     m_singleSongInfo = info;
@@ -314,6 +317,7 @@ void MusicDownloadWidget::queryAllFinishedMusic(const MusicObject::MusicSongAttr
             continue;
         }
     }
+
     resizeWindow();
 }
 
@@ -361,18 +365,24 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
             continue;
         }
     }
+
     resizeWindow();
 }
 
 void MusicDownloadWidget::resizeWindow()
 {
+    if(m_ui->loadingLabel->isRunning())
+    {
+        m_ui->loadingLabel->run(false);
+    }
+
     int delta = m_ui->viewArea->rowCount();
-    delta = (delta == 0) ? 0 : (delta - 1)*ROW_HEIGHT;
+    delta = ((delta == 0) ? 0 : (delta - 1)*ROW_HEIGHT) - 2*ROW_HEIGHT;
 
     setFixedHeightWidget(this, delta);
     setFixedHeightWidget(m_ui->backgroundMask, delta);
     setFixedHeightWidget(m_ui->background, delta);
-    setFixedHeightWidget(m_ui->viewArea, delta);
+    setFixedHeightWidget(m_ui->viewArea, delta + 2*ROW_HEIGHT);
 
     setMoveWidget(m_ui->label2, delta);
     setMoveWidget(m_ui->downloadPathEdit, delta);
@@ -484,6 +494,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             record.m_name = musicSong;
             record.m_path = QFileInfo(downloadName).absoluteFilePath();
             record.m_size = musicAttr.m_size;
+            record.m_time = "-1";
             records << record;
             down.writeDownloadConfig( records );
             ////////////////////////////////////////////////

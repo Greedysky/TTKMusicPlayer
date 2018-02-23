@@ -62,7 +62,7 @@ void MusicKWSongCommentsThread::startToPage(int offset)
 
 void MusicKWSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -105,7 +105,7 @@ void MusicKWSongCommentsThread::downLoadFinished()
                     comment.m_nickName = QUrl::fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -164,7 +164,7 @@ void MusicKWPlaylistCommentsThread::startToPage(int offset)
 
 void MusicKWPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -208,7 +208,7 @@ void MusicKWPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = name.fromEncoded(value["u_name"].toByteArray(), QUrl::TolerantMode).toString();
                     comment.m_coverUrl = value["u_pic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

@@ -201,7 +201,7 @@ void MusicAudioRecorderWidget::onStateChange(QAudio::State state)
 
 void MusicAudioRecorderWidget::createAudioInput()
 {
-    if (m_mpInputDevSound != nullptr)
+    if(m_mpInputDevSound)
     {
         disconnect(m_mpInputDevSound, 0, this, 0);
         m_mpInputDevSound = nullptr;

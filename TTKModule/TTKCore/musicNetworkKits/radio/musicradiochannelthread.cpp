@@ -52,7 +52,7 @@ MusicRadioChannelInfos MusicRadioChannelThread::getMusicChannel()
 
 void MusicRadioChannelThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

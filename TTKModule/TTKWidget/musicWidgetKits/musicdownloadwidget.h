@@ -28,9 +28,11 @@
 namespace Ui {
 class MusicDownloadWidget;
 }
+
 class QLabel;
 
 #define TABLE_ITEM_ROLE Qt::UserRole + 1
+
 /*! @brief The class of the music song atrribute.
  * @author Greedysky <greedysky@163.com>
  */
@@ -167,8 +169,7 @@ public:
     /*!
      * Set current name to search and download musics.
      */
-    void setSongName(const MusicObject::MusicSongInformation &info,
-                     MusicDownLoadQueryThreadAbstract::QueryType type);
+    void setSongName(const MusicObject::MusicSongInformation &info, MusicDownLoadQueryThreadAbstract::QueryType type);
 
 Q_SIGNALS:
     /*!

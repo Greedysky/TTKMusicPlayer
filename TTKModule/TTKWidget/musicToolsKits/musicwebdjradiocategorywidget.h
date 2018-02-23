@@ -28,7 +28,7 @@ class MusicDJRadioCategoryThread;
 /*! @brief The class of music dj radio category item widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
+class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
 public:
@@ -75,7 +75,7 @@ protected:
 /*! @brief The class of music dj radio category widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
+class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
 {
     Q_OBJECT
 public:

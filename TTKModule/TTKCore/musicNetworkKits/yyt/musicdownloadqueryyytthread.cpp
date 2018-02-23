@@ -52,7 +52,7 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
 
 void MusicDownLoadQueryYYTThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -115,7 +115,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                     item.m_singerName = musicInfo.m_singerName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
 
                     musicInfo.m_songId = MUSIC_YYT_PREFIX + musicInfo.m_songId;
                     m_musicSongInfos << musicInfo;

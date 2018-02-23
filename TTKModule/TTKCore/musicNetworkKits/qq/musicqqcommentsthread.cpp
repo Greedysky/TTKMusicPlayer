@@ -62,7 +62,7 @@ void MusicQQSongCommentsThread::startToPage(int offset)
 
 void MusicQQSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -104,7 +104,7 @@ void MusicQQSongCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -163,7 +163,7 @@ void MusicQQPlaylistCommentsThread::startToPage(int offset)
 
 void MusicQQPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -205,7 +205,7 @@ void MusicQQPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = value["nick"].toString();
                     comment.m_coverUrl = value["avatarurl"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

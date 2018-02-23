@@ -106,6 +106,10 @@ public Q_SLOTS:
      */
     void videoResearchButtonSearched(const QString &name);
     /*!
+     * Video research button searched by name.
+     */
+    void videoResearchButtonSearched(const QVariant &data);
+    /*!
      * Video search query by given id.
      */
     void startSearchSingleQuery(const QString &name);

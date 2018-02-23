@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "musicabstractxml.h"
+#include "musicotherdefine.h"
 
 /*! @brief The class of the remote skin item.
  * @author Greedysky <greedysky@163.com>
@@ -32,7 +33,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSkinRemoteItem
 
     MusicSkinRemoteItem()
     {
-        m_name = "Greedysky";
+        m_name = MUSIC_AUTHOR_NAME;
         m_useCount = 8888;
     }
 

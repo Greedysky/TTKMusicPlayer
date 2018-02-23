@@ -251,12 +251,12 @@ void MusicSysConfigManager::writeXMLConfig()
 
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) const
 {
-    QDomNodeList nodelist = m_ddom->elementsByTagName("lastPlayIndex");
+    QDomNodeList nodelist = m_document->elementsByTagName("lastPlayIndex");
     if(nodelist.isEmpty())
     {
         key << "0" << "0" << "-1";
@@ -274,7 +274,7 @@ void MusicSysConfigManager::readSystemLastPlayIndexConfig(QStringList &key) cons
 
 QRect MusicSysConfigManager::readWindowGeometry() const
 {
-    QDomNodeList nodelist = m_ddom->elementsByTagName("geometry");
+    QDomNodeList nodelist = m_document->elementsByTagName("geometry");
     if(nodelist.isEmpty())
     {
         return QRect(0, 0, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);

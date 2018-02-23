@@ -62,7 +62,7 @@ void MusicKGSongCommentsThread::startToPage(int offset)
 
 void MusicKGSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -106,7 +106,7 @@ void MusicKGSongCommentsThread::downLoadFinished()
                     comment.m_nickName = value["user_name"].toString();
                     comment.m_coverUrl = value["user_pic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -165,7 +165,7 @@ void MusicKGPlaylistCommentsThread::startToPage(int offset)
 
 void MusicKGPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -209,7 +209,7 @@ void MusicKGPlaylistCommentsThread::downLoadFinished()
                     comment.m_nickName = value["user_name"].toString();
                     comment.m_coverUrl = value["user_pic"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

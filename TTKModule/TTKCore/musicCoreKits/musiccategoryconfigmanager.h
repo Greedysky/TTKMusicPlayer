@@ -65,7 +65,8 @@ public:
     {
         Playlist,       /*!< Playlist Category*/
         Toplist,        /*!< Toplist Category*/
-        ArtistList      /*!< ArtistList Category*/
+        ArtistList,     /*!< ArtistList Category*/
+        MovieList,      /*!< MovieList Category*/
     };
     /*!
      * Object contsructor.

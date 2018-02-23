@@ -44,7 +44,7 @@ void MiniDumper::SetDumpFilePath(LPCWSTR szFilePath)
     free(m_szDumpFilePath);
     m_szDumpFilePath = nullptr;
 
-    if(szFilePath != nullptr)
+    if(szFilePath)
     {
         m_szDumpFilePath = wcsdup(szFilePath);
     }

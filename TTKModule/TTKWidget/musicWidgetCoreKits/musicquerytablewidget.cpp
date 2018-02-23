@@ -26,18 +26,12 @@ void MusicQueryTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *quer
     delete m_downLoadManager;
     m_downLoadManager = query;
     connect(m_downLoadManager, SIGNAL(clearAllItems()), SLOT(clearAllItems()));
-    connect(m_downLoadManager, SIGNAL(createSearchedItems(MusicSearchedItem)), SLOT(createSearchedItems(MusicSearchedItem)));
+    connect(m_downLoadManager, SIGNAL(createSearchedItem(MusicSearchedItem)), SLOT(createSearchedItem(MusicSearchedItem)));
 }
 
 MusicDownLoadQueryThreadAbstract *MusicQueryTableWidget::getQueryInput()
 {
     return m_downLoadManager;
-}
-
-const MusicObject::MusicSongInformations& MusicQueryTableWidget::getMusicSongInfos() const
-{
-    Q_ASSERT(m_downLoadManager);
-    return m_downLoadManager->getMusicSongInfos();
 }
 
 void MusicQueryTableWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -103,13 +97,13 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
         case 1: emit restartSearchQuery(songName); break;
         case 2: emit restartSearchQuery(artistName); break;
         case 3: emit restartSearchQuery(songName + "-" + artistName); break;
+        default: break;
     }
 }
 
 void MusicQueryItemTableWidget::createFinishedItem()
 {
-    m_loadingLabel->hide();
-    m_loadingLabel->stop();
+    m_loadingLabel->run(false);
 
     setRowCount(rowCount() + 1);
     int count = rowCount() - 1;

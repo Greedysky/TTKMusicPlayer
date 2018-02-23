@@ -28,7 +28,7 @@ void MusicBackgroundManager::setArtName(const QString &name)
             m_photos << filter.arg(i);
         }
     }
-    emit artHasChanged();
+    emit artistNameChanged();
 }
 
 void MusicBackgroundManager::clearArtName()

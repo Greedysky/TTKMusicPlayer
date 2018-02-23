@@ -1,12 +1,7 @@
 #include "musiccloudtablewidget.h"
-#include "musicconnectionpool.h"
 #include "musicitemdelegate.h"
-#include "musiccoreutils.h"
-#include "musicmessagebox.h"
-#include "musicsongssummariziedwidget.h"
 
 #include <QScrollBar>
-#include <QContextMenuEvent>
 
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
@@ -45,7 +40,7 @@ void MusicCloudUploadTableWidget::listCellClicked(int row, int column)
 
 
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
-    : MusicSongsListAbstractTableWidget(parent)
+    : MusicDownloadAbstractTableWidget(parent)
 {
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
@@ -55,28 +50,11 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     headerview->resizeSection(3, 111);
     headerview->resizeSection(4, 50);
 
+    m_type = MusicDownloadRecordConfigManager::Cloud;
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle05.arg(50));
-
-    m_progressBarDelegate = new MusicProgressBarDelegate(this);
-    setItemDelegateForColumn(3, m_progressBarDelegate);
+    setItemDelegateForColumn(3, m_delegate);
 
     musicSongsFileName();
-
-    M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicSongsSummariziedWidget::getClassName());
-
-    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
-}
-
-MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
-{
-    M_CONNECTION_PTR->removeValue(getClassName());
-    delete m_musicSongs;
-    delete m_progressBarDelegate;
-    clear();
-
-    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
-    xml.writeDownloadConfig(m_musicRecords);
 }
 
 QString MusicCloudDownloadTableWidget::getClassName()
@@ -84,128 +62,7 @@ QString MusicCloudDownloadTableWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicCloudDownloadTableWidget::listCellClicked(int row, int column)
-{
-    Q_UNUSED(row);
-    Q_UNUSED(column);
-}
-
-void MusicCloudDownloadTableWidget::listCellDoubleClicked(int row, int column)
-{
-    Q_UNUSED(column);
-    if(row > -1 && row < m_musicRecords.count())
-    {
-        QString path = m_musicRecords[row].m_path;
-        if(QFile::exists(path))
-        {
-            emit addSongToPlay(QStringList(path));
-        }
-    }
-}
-
-void MusicCloudDownloadTableWidget::setDeleteItemAt()
-{
-    MusicMessageBox message;
-    message.setText(tr("Are you sure to delete?"));
-    if( !message.exec() || rowCount() == 0 )
-    {
-       return;
-    }
-
-    MusicObject::MIntSet deletedRow; //if selected multi rows
-    foreach(QTableWidgetItem *item, selectedItems())
-    {
-        deletedRow.insert(item->row());
-    }
-
-    MusicObject::MIntList deleteList = deletedRow.toList();
-    qSort(deleteList);
-    for(int i=deleteList.count() - 1; i>=0; --i)
-    {
-        int index = deleteList[i];
-        removeRow(index); //Delete the current row
-        m_musicRecords.removeAt(index);
-        m_musicSongs->removeAt(index);
-    }
-}
-
-void MusicCloudDownloadTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
-{
-    for(int i=0; i<rowCount(); ++i)
-    {
-        QTableWidgetItem *it = item(i, 4);
-        if(it && it->data(MUSIC_TIMES_ROLE).toLongLong() == time)
-        {
-            item(i, 3)->setData(MUSIC_PROCS_ROLE, percent);
-            item(i, 4)->setText( total );
-
-            if(percent == 100)
-            {
-                m_musicRecords[i].m_size = total;
-            }
-            break;
-        }
-    }
-}
-
-void MusicCloudDownloadTableWidget::createDownloadItem(const QString &name, qint64 time)
-{
-    setRowCount( rowCount() + 1);
-    QString musicName = name;
-    musicName.remove(MusicUtils::Core::musicPrefix()).chop(4);
-
-    MusicDownloadRecord record;
-    record.m_name = musicName;
-    record.m_path = QFileInfo(name).absoluteFilePath();
-    record.m_size = "0.00M";
-    m_musicRecords << record;
-
-    createItem(rowCount() - 1, record, time);
-}
-
-void MusicCloudDownloadTableWidget::musicSongsFileName()
-{
-    MusicDownloadRecordConfigManager xml(MusicDownloadRecordConfigManager::Cloud, this);
-    if(!xml.readDownloadXMLConfig())
-    {
-        return;
-    }
-    xml.readDownloadConfig(m_musicRecords);
-
-    m_musicSongs = new MusicSongs;
-    setRowCount(m_musicRecords.count()); //reset row count
-    for(int i=0; i<m_musicRecords.count(); i++)
-    {
-        createItem(i, m_musicRecords[i], DEFAULT_INDEX_LEVEL1);
-    }
-}
-
-void MusicCloudDownloadTableWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
-    QMenu rightClickMenu(this);
-
-    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
-    rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
-    rightClickMenu.addSeparator();
-
-    createMoreMenu(&rightClickMenu);
-
-    bool empty = !m_musicSongs->isEmpty();
-    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_ablum"), tr("ablum"), this, SLOT(musicAlbumFoundWidget()));
-    rightClickMenu.addSeparator();
-
-    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
-    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
-
-    rightClickMenu.exec(QCursor::pos());
-    event->accept();
-}
-
-void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record, qint64 time)
+void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
@@ -229,7 +86,7 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
                       item = new QTableWidgetItem( record.m_size );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIMES_ROLE, time);
+    item->setData(MUSIC_TIMES_ROLE, record.m_time);
     setItem(index, 4, item);
 
     m_musicSongs->append(MusicSong(record.m_path));

@@ -199,7 +199,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                         item.m_tags.append(var.toString() + "|");
                     }
 
-                    emit createPlaylistItems(item);
+                    emit createPlaylistItem(item);
                 }
             }
         }
@@ -270,7 +270,7 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
                     m_musicSongInfos << musicInfo;
                 }
             }

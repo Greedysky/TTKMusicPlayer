@@ -1,5 +1,6 @@
 #include "musicdownloadquerybdplaylistthread.h"
 #include "musicsemaphoreloop.h"
+#include "musicotherdefine.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -116,7 +117,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_playCount = value["listenum"].toString();
             item.m_description = value["desc"].toString();
             item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-            item.m_nickName = "Greedysky";
+            item.m_nickName = MUSIC_AUTHOR_NAME;
             item.m_tags = value["tag"].toString().replace(",", "|");
         }
     }
@@ -124,7 +125,7 @@ void MusicDownLoadQueryBDPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 
 void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -166,10 +167,10 @@ void MusicDownLoadQueryBDPlaylistThread::downLoadFinished()
                     item.m_playCount = value["listenum"].toString();
                     item.m_description = value["desc"].toString();
                     item.m_updateTime = QDateTime::currentDateTime().toString("yyyy-MM-dd");
-                    item.m_nickName = "Greedysky";
+                    item.m_nickName = MUSIC_AUTHOR_NAME;
                     item.m_tags = value["tag"].toString().replace(",", "|");
 
-                    emit createPlaylistItems(item);
+                    emit createPlaylistItem(item);
                 }
             }
         }
@@ -239,7 +240,7 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
                     item.m_albumName = musicInfo.m_albumName;
                     item.m_time = musicInfo.m_timeLength;
                     item.m_type = mapQueryServerString();
-                    emit createSearchedItems(item);
+                    emit createSearchedItem(item);
 
                     m_musicSongInfos << musicInfo;
                 }

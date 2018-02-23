@@ -275,6 +275,24 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QString &name)
     m_videoTable->startSearchQuery(name);
 }
 
+void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
+{
+    m_videoTable->startSearchSingleQuery(data);
+    MusicObject::MusicSongInformation info(data.value<MusicObject::MusicSongInformation>());
+    MusicObject::MusicSongAttributes attrs = info.m_songAttrs;
+    if(!attrs.isEmpty())
+    {
+        MusicObject::MusicSongAttribute attr = attrs.first();
+        QString url = attr.m_multiParts ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        MusicVideoItem data;
+        data.m_name = info.m_singerName + " - " + info.m_songName;
+        data.m_url = url;
+        data.m_id = info.m_songId;
+        data.m_server = MUSIC_MOVIE_RADIO;
+        mvURLNameChanged(data);
+    }
+}
+
 void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
 {
     switchToSearchTable();

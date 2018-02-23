@@ -39,7 +39,7 @@ void MusicWYDiscoverListThread::startToSearch()
 
 void MusicWYDiscoverListThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;

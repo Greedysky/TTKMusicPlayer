@@ -63,7 +63,7 @@ void MusicXMSongCommentsThread::startToPage(int offset)
 
 void MusicXMSongCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -114,7 +114,7 @@ void MusicXMSongCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }
@@ -174,7 +174,7 @@ void MusicXMPlaylistCommentsThread::startToPage(int offset)
 
 void MusicXMPlaylistCommentsThread::downLoadFinished()
 {
-    if(m_reply == nullptr)
+    if(!m_reply)
     {
         deleteAll();
         return;
@@ -225,7 +225,7 @@ void MusicXMPlaylistCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["gmtCreate"].toLongLong());
                     comment.m_description = value["message"].toString();
 
-                    emit createSearchedItems(comment);
+                    emit createSearchedItem(comment);
                 }
             }
         }

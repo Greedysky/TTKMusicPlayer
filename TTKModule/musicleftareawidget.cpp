@@ -238,6 +238,7 @@ void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()
         case 2: musicStackedRadioWidgetChanged(); break;
         case 3: musicStackedMobileWidgetChanged(); break;
         case 4: musicStackedMyDownWidgetChanged(); break;
+        default: break;
     }
 
     delete m_cloudSharedSongWidget;

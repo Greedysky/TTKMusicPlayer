@@ -30,7 +30,7 @@ void TTKMusicConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
     //Write to file
     QTextStream out(m_file);
-    m_ddom->save(out, 4);
+    m_document->save(out, 4);
 }
 
 bool TTKMusicConfigManager::readNeedUpdateConfig()
