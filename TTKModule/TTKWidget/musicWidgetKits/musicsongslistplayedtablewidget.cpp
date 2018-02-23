@@ -10,7 +10,6 @@
 
 #include <qmath.h>
 #include <QScrollBar>
-#include <QContextMenuEvent>
 
 MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
@@ -295,7 +294,7 @@ void MusicSongsListPlayedTableWidget::setDeleteItemAt()
 
 void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    MusicSongsListAbstractTableWidget::contextMenuEvent(event);
+    Q_UNUSED(event);
     QMenu rightClickMenu(this);
 
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
@@ -315,5 +314,4 @@ void MusicSongsListPlayedTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addSeparator();
 
     rightClickMenu.exec(QCursor::pos());
-    event->accept();
 }

@@ -29,6 +29,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
     QString m_name;
     QString m_path;
     QString m_size;
+    QString m_time;
 }MusicDownloadRecord;
 MUSIC_DECLARE_LISTS(MusicDownloadRecord)
 

@@ -4,8 +4,6 @@
 #include "musicdownloadstatusobject.h"
 #include "musicnetworkthread.h"
 #ifndef MUSIC_MOBILE
-#include "musicdownloadrecordwidget.h"
-#include "musiccloudtablewidget.h"
 #include "musicplayer.h"
 #include "musiclrcmakerwidget.h"
 #include "musicsongssummariziedwidget.h"
@@ -22,6 +20,7 @@
 #include "musicsongchecktoolswidget.h"
 #include "musicsongchecktoolstablewidget.h"
 #include "musicqueryfoundtablewidget.h"
+#include "musicdownloadabstracttablewidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -55,10 +54,9 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(durationChanged(qint64)), second, SLOT(durationChanged(qint64)));
     }
     else if( (from == MusicLocalSongsManagerWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName() ) ||
-             (from == MusicDownloadRecordWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
              (from == MusicSongCheckToolsDuplicateTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
              (from == MusicSongCheckToolsQualityTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
-             (from == MusicCloudDownloadTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
+             (from == MusicDownloadAbstractTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) )
     {
         QObject::connect(first, SIGNAL(addSongToPlay(QStringList)), second, SLOT(addSongToPlayList(QStringList)));
     }

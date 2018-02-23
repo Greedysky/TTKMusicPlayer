@@ -25,7 +25,8 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRe
     foreach(const MusicDownloadRecord &record, records)
     {
         writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("name", record.m_name)
-                                                 << MusicXmlAttribute("size", record.m_size), record.m_path);
+                                                 << MusicXmlAttribute("size", record.m_size)
+                                                 << MusicXmlAttribute("time", record.m_time), record.m_path);
     }
 
     //Write to file
@@ -40,8 +41,9 @@ void MusicDownloadRecordConfigManager::readDownloadConfig(MusicDownloadRecords &
     {
         MusicDownloadRecord record;
         record.m_name = nodelist.at(i).toElement().attribute("name");
-        record.m_path = nodelist.at(i).toElement().text();
         record.m_size = nodelist.at(i).toElement().attribute("size");
+        record.m_time = nodelist.at(i).toElement().attribute("time");
+        record.m_path = nodelist.at(i).toElement().text();
         records << record;
     }
 }

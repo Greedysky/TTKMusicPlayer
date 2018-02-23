@@ -494,6 +494,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             record.m_name = musicSong;
             record.m_path = QFileInfo(downloadName).absoluteFilePath();
             record.m_size = musicAttr.m_size;
+            record.m_time = "-1";
             records << record;
             down.writeDownloadConfig( records );
             ////////////////////////////////////////////////

@@ -57,7 +57,8 @@ HEADERS  += \
     $$PWD/musicresizegrabitemwidget.h \
     $$PWD/musiccodeareawidget.h \
     $$PWD/musiclayoutanimationwidget.h \
-    $$PWD/musiccommentswidget.h
+    $$PWD/musiccommentswidget.h \
+    $$PWD/musicdownloadabstracttablewidget.h
 
 }
 
@@ -100,6 +101,7 @@ SOURCES += \
     $$PWD/musicresizegrabitemwidget.cpp \
     $$PWD/musiccodeareawidget.cpp \
     $$PWD/musiclayoutanimationwidget.cpp \
-    $$PWD/musiccommentswidget.cpp
+    $$PWD/musiccommentswidget.cpp \
+    $$PWD/musicdownloadabstracttablewidget.cpp
 
 }

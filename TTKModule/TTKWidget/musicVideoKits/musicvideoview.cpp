@@ -40,6 +40,7 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
 
 void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 {
+    Q_UNUSED(event);
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
@@ -49,7 +50,6 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
             ->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
     menu.exec(QCursor::pos());
-    event->accept();
 }
 
 
@@ -96,7 +96,7 @@ QString MusicVideoView::getClassName()
 
 void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 {
-    QWidget::contextMenuEvent(event);
+    Q_UNUSED(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     bool playing;
@@ -105,7 +105,6 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
             ->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), this, SLOT(stop()));
     menu.exec(QCursor::pos());
-    event->accept();
 }
 
 void MusicVideoView::setMedia(const QString &data)

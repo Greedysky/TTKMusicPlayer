@@ -23,7 +23,38 @@
 
 #define M_DOWNLOAD_MANAGER_PTR (MusicSingleton<MusicDownLoadManager>::createInstance())
 
-/*! @brief The class to produce the downlaod manager.
+/*! @brief The class of the download manager pair.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
+{
+    qint64 m_time;
+    QObject *m_object;
+
+    MusicDownLoadPair()
+    {
+        m_time = -1;
+        m_object = nullptr;
+    }
+
+    MusicDownLoadPair(qint64 t, QObject *object)
+    {
+        m_time = t;
+        m_object = object;
+    }
+
+    bool operator< (const MusicDownLoadPair &other) const
+    {
+        return m_time < other.m_time;
+    }
+
+    bool operator== (const MusicDownLoadPair &other) const
+    {
+        return m_time == other.m_time;
+    }
+}MusicDownLoadPair;
+
+/*! @brief The class to produce the download manager.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadManager : public QObject
@@ -38,18 +69,34 @@ public:
     /*!
      * Set mutiple network connection object.
      */
-    void setNetworkMultiValue(QObject *object);
+    void connectNetworkMultiValue(QObject *object);
     /*!
      * Remove mutiple network connection object.
      */
     void removeNetworkMultiValue(QObject *object);
+
     /*!
      * Set music data network connection object.
      */
-    void connectMusicDownload(QObject *object);
+    void connectMusicDownload(const MusicDownLoadPair &pair);
+    /*!
+     * Reset music data network connection object.
+     */
+    void reconnectMusicDownload(const MusicDownLoadPair &pair);
+    /*!
+     * Remove music data network connection object.
+     */
+    void removeMusicDownload(const MusicDownLoadPair &pair);
+
+private Q_SLOTS:
+    /*!
+     * Update download percent\ total time and current time progress.
+     */
+    void downloadProgressChanged(float percent, const QString &total, qint64 time);
 
 protected:
     QList<QObject*> m_queueList;
+    QList<MusicDownLoadPair> m_pairList;
 
     DECLARE_SINGLETON_CLASS(MusicDownLoadManager)
 
