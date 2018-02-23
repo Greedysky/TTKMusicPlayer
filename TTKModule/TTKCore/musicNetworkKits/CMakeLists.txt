@@ -9,6 +9,9 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.h
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiothreadabstract.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategorythread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiothreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatadownloadthread.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musictextdownloadthread.h
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatatagdownloadthread.h
@@ -156,6 +159,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsongsuggestthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsimilarthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryartistlistthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.h
 )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
@@ -167,6 +171,9 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradioprogramcategorythread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/radio/dj/musicdjradiothreadabstract.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiocategorythread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradioprogramthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/radio/mv/musicmvradiothreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatadownloadthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musictextdownloadthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/nr/musicdatatagdownloadthread.cpp
@@ -314,4 +321,5 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsongsuggestthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadsimilarthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryartistlistthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/musicdownloadmanager.cpp
 )
