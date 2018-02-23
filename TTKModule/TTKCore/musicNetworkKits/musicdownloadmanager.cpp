@@ -13,12 +13,16 @@ QString MusicDownLoadManager::getClassName()
 
 void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
+#ifndef MUSIC_MOBILE
     m_queueList << object;
     QObject *to = M_CONNECTION_PTR->value( MusicDownloadStatusObject::getClassName() );
     if(to)
     {
         QObject::connect(object, SIGNAL(downLoadDataChanged(QString)), to, SLOT(showDownLoadInfoFinished(QString)));
     }
+#else
+    Q_UNUSED(object);
+#endif
 }
 
 void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
@@ -43,7 +47,7 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPair &pair)
     QObject::connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), SLOT(downloadProgressChanged(float, QString, qint64)));
     m_pairList << pair;
 #else
-    Q_UNUSED(object);
+    Q_UNUSED(pair);
 #endif
 }
 
