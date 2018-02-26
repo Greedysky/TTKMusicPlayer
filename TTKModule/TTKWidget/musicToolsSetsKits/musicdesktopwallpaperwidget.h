@@ -28,6 +28,37 @@ namespace Ui {
 class MusicDesktopWallpaperWidget;
 }
 
+/*! @brief The class of the desktop wallpaper item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperItem : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicDesktopWallpaperItem(QWidget *parent = 0);
+
+    ~MusicDesktopWallpaperItem();
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+public Q_SLOTS:
+    /*!
+     * Update background pixmap.
+     */
+    void updateBackground(const QPixmap &pix);
+
+protected:
+    QLabel *m_background;
+
+};
+
+
 /*! @brief The class of the desktop wallpaper widget.
  * @author Greedysky <greedysky@163.com>
  */
@@ -104,14 +135,10 @@ protected:
      * Init parameters.
      */
     void initParameters() const;
-    /*!
-     * Set auto thread to show wallpaper.
-     */
-    void setAutoStart(bool autoStart) const;
 
     Ui::MusicDesktopWallpaperWidget *m_ui;
     int m_currentMode;
-    QStringList m_path;
+    MusicDesktopWallpaperItem *m_wallItem;
     MusicDesktopWallpaperThread *m_wallThread;
 
 };

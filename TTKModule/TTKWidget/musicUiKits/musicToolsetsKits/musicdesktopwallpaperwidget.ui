@@ -110,21 +110,11 @@
     </property>
    </widget>
   </widget>
-  <widget class="QComboBox" name="pictureType">
-   <property name="geometry">
-    <rect>
-     <x>154</x>
-     <y>154</y>
-     <width>221</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="urlLineEdit">
    <property name="geometry">
     <rect>
      <x>154</x>
-     <y>127</y>
+     <y>137</y>
      <width>221</width>
      <height>20</height>
     </rect>
@@ -134,7 +124,7 @@
    <property name="geometry">
     <rect>
      <x>54</x>
-     <y>129</y>
+     <y>139</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -147,30 +137,17 @@
    <property name="geometry">
     <rect>
      <x>154</x>
-     <y>184</y>
+     <y>180</y>
      <width>61</width>
      <height>22</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>54</x>
-     <y>157</y>
-     <width>101</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>选择图片位置：</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>54</x>
-     <y>187</y>
+     <y>183</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -183,7 +160,7 @@
    <property name="geometry">
     <rect>
      <x>234</x>
-     <y>184</y>
+     <y>180</y>
      <width>61</width>
      <height>22</height>
     </rect>
@@ -193,7 +170,7 @@
    <property name="geometry">
     <rect>
      <x>314</x>
-     <y>184</y>
+     <y>180</y>
      <width>61</width>
      <height>22</height>
     </rect>
@@ -203,7 +180,7 @@
    <property name="geometry">
     <rect>
      <x>154</x>
-     <y>214</y>
+     <y>223</y>
      <width>221</width>
      <height>22</height>
     </rect>
@@ -213,43 +190,17 @@
    <property name="geometry">
     <rect>
      <x>154</x>
-     <y>244</y>
+     <y>266</y>
      <width>221</width>
      <height>22</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="openWithstart">
-   <property name="geometry">
-    <rect>
-     <x>44</x>
-     <y>284</y>
-     <width>181</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>开机随系统启动</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="recoveryWallpaper">
-   <property name="geometry">
-    <rect>
-     <x>254</x>
-     <y>284</y>
-     <width>191</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>关闭软件时还原初始壁纸</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>54</x>
-     <y>217</y>
+     <y>226</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -262,7 +213,7 @@
    <property name="geometry">
     <rect>
      <x>54</x>
-     <y>247</y>
+     <y>269</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -301,7 +252,7 @@
    <property name="geometry">
     <rect>
      <x>379</x>
-     <y>127</y>
+     <y>137</y>
      <width>31</width>
      <height>19</height>
     </rect>
@@ -341,18 +292,14 @@
   <zorder>topTitleName</zorder>
   <zorder>topTitleCloseButton</zorder>
   <zorder>groupBox</zorder>
-  <zorder>pictureType</zorder>
   <zorder>urlLineEdit</zorder>
   <zorder>label</zorder>
   <zorder>timeH</zorder>
-  <zorder>label_2</zorder>
   <zorder>label_3</zorder>
   <zorder>timeM</zorder>
   <zorder>timeS</zorder>
   <zorder>pictureFunc</zorder>
   <zorder>pictureEffect</zorder>
-  <zorder>openWithstart</zorder>
-  <zorder>recoveryWallpaper</zorder>
   <zorder>label_4</zorder>
   <zorder>label_5</zorder>
   <zorder>confirmButton</zorder>

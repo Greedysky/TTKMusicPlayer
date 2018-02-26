@@ -4,7 +4,7 @@
 #include <QProcess>
 #include <QDesktopServices>
 #ifdef Q_OS_WIN
-#include <Windows.h>
+#include <qt_windows.h>
 #include <shellapi.h>
 #endif
 

@@ -824,8 +824,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
-        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper,
-                                                  SLOT(changeCurrentLrcColor()));
+        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));
 
         MusicApplication::instance()->activateWindow();
         MusicApplication::instance()->showMinimized();
