@@ -206,7 +206,7 @@
    <widget class="QToolButton" name="auditionButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>110</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -216,7 +216,7 @@
    <widget class="QToolButton" name="addButton">
     <property name="geometry">
      <rect>
-      <x>145</x>
+      <x>135</x>
       <y>5</y>
       <width>25</width>
       <height>25</height>
@@ -226,7 +226,7 @@
    <widget class="QLineEdit" name="searchLineEdit">
     <property name="geometry">
      <rect>
-      <x>186</x>
+      <x>176</x>
       <y>5</y>
       <width>165</width>
       <height>25</height>
@@ -239,7 +239,7 @@
    <widget class="QPushButton" name="scanButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>380</x>
       <y>5</y>
       <width>60</width>
       <height>25</height>
@@ -252,7 +252,7 @@
    <widget class="QPushButton" name="searchLineLabel">
     <property name="geometry">
      <rect>
-      <x>355</x>
+      <x>345</x>
       <y>10</y>
       <width>16</width>
       <height>16</height>
@@ -275,7 +275,7 @@ background:rgba(255,255,255,50)</string>
    <widget class="QComboBox" name="filterComboBox">
     <property name="geometry">
      <rect>
-      <x>525</x>
+      <x>515</x>
       <y>6</y>
       <width>105</width>
       <height>23</height>
@@ -297,7 +297,7 @@ background:rgba(255,255,255,50)</string>
     <widget class="QPushButton" name="scanCustButton">
      <property name="geometry">
       <rect>
-       <x>455</x>
+       <x>445</x>
        <y>5</y>
        <width>60</width>
        <height>25</height>

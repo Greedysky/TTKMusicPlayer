@@ -49,9 +49,9 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     connect(m_ui->watchDirButton, SIGNAL(clicked()), SLOT(watchDirSelected()));
 
     m_ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
-                                      "QToolButton{ image:url(:/contextMenu/btn_audition);}");
+                                      "QToolButton{ image:url(:/contextMenu/btn_audition); }");
     m_ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
-                                 "QToolButton{ image:url(:/contextMenu/btn_add);}");
+                                 "QToolButton{ image:url(:/contextMenu/btn_add); }");
 
     m_ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));
