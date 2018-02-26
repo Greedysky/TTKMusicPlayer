@@ -1,5 +1,4 @@
 #include "musicwyartistsimilarthread.h"
-
 #///QJson import
 #include "qjson/parser.h"
 

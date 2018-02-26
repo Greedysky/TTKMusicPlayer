@@ -37,10 +37,25 @@ QString MusicUserRecordWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &uid)
+QString MusicUserRecordWidget::avatarPixmapRender(const MusicUserUIDItem &item, const QPixmap &pix)
+{
+    QPixmap p(pix);
+    QByteArray name(MusicUtils::Algorithm::md5(QString("%1%2%3").arg(item.m_uid)
+                                                                .arg(STRING_SPLITER)
+                                                                .arg(item.m_server).toUtf8()));
+    QString path = QString("%1%2").arg(AVATAR_DIR_FULL).arg(QString(name.toHex().toUpper()));
+    p.save(path + JPG_FILE);
+    QFile::rename(path + JPG_FILE, path);
+
+    return path;
+}
+
+void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const MusicUserUIDItem &uid)
 {
     m_userModel = model;
-    m_ui->userIDLabel_F->setText(uid);
+    m_userUID = uid;
+    m_ui->userIDLabel_F->setText(uid.m_uid);
+
     ///first tab
     initTabF();
     ///second tab
@@ -61,7 +76,6 @@ void MusicUserRecordWidget::setUserModel(MusicUserModel *model, const QString &u
 
 void MusicUserRecordWidget::initTabF()
 {
-    QString uid = m_ui->userIDLabel_F->text();
     m_ui->cityComboBox_F->setItemDelegate(new QStyledItemDelegate(m_ui->cityComboBox_F));
     m_ui->cityComboBox_F->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->countryComboBox_F->setItemDelegate(new QStyledItemDelegate(m_ui->countryComboBox_F));
@@ -69,39 +83,39 @@ void MusicUserRecordWidget::initTabF()
     m_ui->cityComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->countryComboBox_F->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->signatureEdit_F->setStyleSheet(MusicUIObject::MTextEditStyle01);
-    connect(m_ui->cityComboBox_F, SIGNAL(currentIndexChanged(QString)),
-                                SLOT(cityComboBoxIndexChanged(QString)));
+    connect(m_ui->cityComboBox_F, SIGNAL(currentIndexChanged(QString)), SLOT(cityComboBoxIndexChanged(QString)));
+
     m_ui->cityComboBox_F->addItems(m_userModel->getAllCities());
 
-    m_ui->userTimeLabel_F->setText(m_userModel->getUserLogTime(uid));
-    m_ui->nicknameEdit->setText(m_userModel->getUserName(uid));
-    m_ui->userIDLabel_F->setText(uid);
+    m_ui->userTimeLabel_F->setText(m_userModel->getUserLogTime(m_userUID));
+    m_ui->nicknameEdit->setText(m_userModel->getUserName(m_userUID));
+    m_ui->userIDLabel_F->setText(m_userUID.m_uid);
 
     m_ui->nicknameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->birthDateEdit_F->setStyleSheet(MusicUIObject::MDateEditStyle01);
 
-    QString string(m_userModel->getUserSex(uid));
+    QString string(m_userModel->getUserSex(m_userUID));
     m_ui->maleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->femaleRadioButton_F->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
     m_ui->maleRadioButton_F->setChecked(string.isEmpty() || string == "0");
     m_ui->femaleRadioButton_F->setChecked(string == "1");
 
-    string = m_userModel->getUserBirthday(uid);
+    string = m_userModel->getUserBirthday(m_userUID);
     m_ui->birthDateEdit_F->setDisplayFormat(QString("yyyy-MM-dd"));
-    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate()
-                               : QDate::fromString(string, QString("yyyy-MM-dd")));
-    string = m_userModel->getUserCity(uid);
+    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate() :
+                                                      QDate::fromString(string, QString("yyyy-MM-dd")));
+    string = m_userModel->getUserCity(m_userUID);
     if(!string.isEmpty())
     {
         MusicUtils::Widget::setComboboxText(m_ui->cityComboBox_F, string);
     }
 
-    string = m_userModel->getUserCountry(uid);
+    string = m_userModel->getUserCountry(m_userUID);
     if(!string.isEmpty())
     {
         MusicUtils::Widget::setComboboxText(m_ui->countryComboBox_F, string);
     }
-    m_ui->signatureEdit_F->setText(m_userModel->getUserSignature(uid));
+    m_ui->signatureEdit_F->setText(m_userModel->getUserSignature(m_userUID));
     m_ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle06);
 
     connect(m_ui->confirmButton_F, SIGNAL(clicked()), SLOT(confirmButtonClickedF()));
@@ -109,8 +123,7 @@ void MusicUserRecordWidget::initTabF()
 
 void MusicUserRecordWidget::initTabS()
 {
-    QString path = m_userModel->getUserIcon(m_ui->userIDLabel_F->text());
-//    m_ui->bigPixmapLabel_S->setImagePath(path);
+    QString path = m_userModel->getUserIcon(m_userUID);
     m_ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(m_ui->smlPixmapLabel_S->size()));
     m_ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
@@ -125,9 +138,9 @@ void MusicUserRecordWidget::initTabT()
     m_ui->labelRighT1->hide();
     m_ui->labelRighT2->hide();
     m_ui->labelRighT3->hide();
-    m_ui->originPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, nullptr, m_ui->labelRighT1);
+    m_ui->originPwdEdit_T->setLabel(MusicUserLineEdit::PasswdConfirm, nullptr, m_ui->labelRighT1);
     m_ui->newPwdEdit_T->setLabel(MusicUserLineEdit::PasswdNew, nullptr, m_ui->labelRighT2);
-    m_ui->newCPwdEdit_T->setLabel(MusicUserLineEdit::PwdConfirm, nullptr, m_ui->labelRighT3);
+    m_ui->newCPwdEdit_T->setLabel(MusicUserLineEdit::PasswdConfirm, nullptr, m_ui->labelRighT3);
     connect(m_ui->newPwdEdit_T, SIGNAL(checkPwdStrength(int)), SLOT(checkPwdStrength(int)));
 
     changeVerificationCodeT();
@@ -146,11 +159,11 @@ void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)
 void MusicUserRecordWidget::confirmButtonClickedF()
 {
     QString nickname(m_ui->nicknameEdit->text());
-    if(nickname != m_userModel->getUserName(m_ui->userIDLabel_F->text()))
+    if(nickname != m_userModel->getUserName(m_userUID))
     {
         emit resetUserName(m_ui->nicknameEdit->text());
     }
-    m_userModel->updateUser(m_ui->userIDLabel_F->text(), nickname,
+    m_userModel->updateUser(m_userUID, nickname,
                             m_ui->maleRadioButton_F->isChecked() ? "0" : "1",
                             m_ui->birthDateEdit_F->text(),
                             m_ui->cityComboBox_F->currentText(),
@@ -177,16 +190,10 @@ void MusicUserRecordWidget::saveFileButtonClickedS()
         return;
     }
 
-    QPixmap pix(m_ui->bigPixmapLabel_S->pixmap());
-    QByteArray name(MusicUtils::Algorithm::md5(QByteArray::number(pix.cacheKey())));
-    QString path = QString("%1%2").arg(AVATAR_DIR_FULL)
-                          .arg(QString(name.toHex().toUpper()));
-    pix.save(path + JPG_FILE);
+    QString path = avatarPixmapRender(m_userUID, m_ui->bigPixmapLabel_S->pixmap());
+    m_userModel->updateUserIcon(m_userUID, path);
 
-    QFile::rename(path + JPG_FILE, path);
-
-    m_userModel->updateUserIcon(m_ui->userIDLabel_F->text(), path);
-    emit userIconChanged(m_ui->userIDLabel_F->text(), path);
+    emit userIconChanged(m_userUID, path);
 }
 
 void MusicUserRecordWidget::intersectedPixmap(const QPixmap &pix)
@@ -203,7 +210,6 @@ void MusicUserRecordWidget::changeVerificationCodeT()
 
 void MusicUserRecordWidget::confirmButtonClickedT()
 {
-    QString uid = m_ui->userIDLabel_F->text();
     if( m_ui->originPwdEdit_T->getStrStatus() &&
         m_ui->newPwdEdit_T->getStrStatus() &&
         m_ui->newCPwdEdit_T->getStrStatus() )
@@ -215,7 +221,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
             message.exec();
             return;
         }
-        if(!m_userModel->passwordCheck(uid, m_ui->originPwdEdit_T->text()))
+        if(!m_userModel->passwordCheck(m_userUID, m_ui->originPwdEdit_T->text()))
         {
             MusicMessageBox message;
             message.setText(tr("The origin password does not match"));
@@ -229,7 +235,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
             message.exec();
             return;
         }
-        if(!m_userModel->updateUserPwd(uid, m_ui->newPwdEdit_T->text()))
+        if(!m_userModel->updateUserPwd(m_userUID, m_ui->newPwdEdit_T->text()))
         {
             MusicMessageBox message;
             message.setText(tr("The modity password failed"));
@@ -237,7 +243,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
             return;
         }
 
-        emit userIconChanged(QString(), QString());
+        emit userIconChanged(MusicUserUIDItem(), QString());
         close();
 
         MusicMessageBox message;

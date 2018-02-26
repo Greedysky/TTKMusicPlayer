@@ -1,5 +1,5 @@
-#ifndef MUSICUSERWINDOW_H
-#define MUSICUSERWINDOW_H
+#ifndef MUSICAUTHENTICATIONTHREAD_H
+#define MUSICAUTHENTICATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,72 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStackedWidget>
 #include "musicdatabaseobject.h"
+#include "musicnetworkabstract.h"
 
-class MusicUserModel;
-class MusicUserDialog;
-class MusicUserManagerDialog;
-
-namespace Ui {
-class MusicUserWindow;
-}
-
-/*! @brief The class of the user window.
+/*! @brief The class to login authentication.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
+class MUSIC_NETWORK_EXPORT MusicAuthenticationThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserWindow(QWidget *parent = 0);
+    explicit MusicAuthenticationThread(QObject *parent = 0);
 
-    ~MusicUserWindow();
+    virtual ~MusicAuthenticationThread();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
     /*!
-     * Check if the user is login now.
+     * Release the network object.
      */
-    bool isUserLogin() const;
-
-public Q_SLOTS:
+    virtual void deleteAll() override;
     /*!
-     * User widget button clicked.
+     * Start to translation data.
+     * Subclass should implement this function.
      */
-    void musicUserLogin();
+    virtual void startToDownload(const QString &usr, const QString &pwd) = 0;
     /*!
-     * User login state changed.
+     * Get info record.
      */
-    void userStateChanged(const MusicUserUIDItem &uid, const QString &icon);
-    /*!
-     * Send user to login.
-     */
-    void musicUserContextLogin();
-    /*!
-     * Check current user to login auto automatic.
-     */
-    void checkToAutoLogin();
+    inline MusicUserInfoRecord getInfoRecord() const { return m_info; }
 
 protected:
-    /*!
-     * Connect to database.
-     */
-    bool connectDatabase();
-    /*!
-     * Disconnect to database.
-     */
-    bool disConnectDatabase();
-
-    Ui::MusicUserWindow *m_ui;
-    MusicUserModel *m_userModel;
-    MusicUserManagerDialog *m_userManager;
+    MusicUserInfoRecord m_info;
 
 };
 
-#endif // MUSICUSERWINDOW_H
+#endif // MUSICAUTHENTICATIONTHREAD_H

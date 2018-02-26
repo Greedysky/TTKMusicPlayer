@@ -1,5 +1,5 @@
-#ifndef MUSICXMLCONFIGMANAGER_H
-#define MUSICXMLCONFIGMANAGER_H
+#ifndef MUSICWYAUTHENTICATIONTHREAD_H
+#define MUSICWYAUTHENTICATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,57 +19,38 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractxml.h"
+#include "musicdownloadwyinterface.h"
+#include "musicauthenticationthread.h"
 
-/*! @brief The class of the user record item.
+/*! @brief The class to wangyi login authentication.
  * @author Greedysky <greedysky@163.com>
  */
-typedef struct MUSIC_USER_EXPORT MusicUserRecord
-{
-    QString m_userUID;
-    QString m_password;
-    int m_type;
-    bool m_rememberFlag;
-    bool m_autoFlag;
-
-    MusicUserRecord()
-    {
-        m_type = 0;
-        m_rememberFlag = false;
-        m_autoFlag = false;
-    }
-}MusicUserRecord;
-MUSIC_DECLARE_LISTS(MusicUserRecord)
-
-/*! @brief The class of the user config manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
+class MUSIC_NETWORK_EXPORT MusicWYAuthenticationThread : public MusicAuthenticationThread,
+                                                         private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserConfigManager(QObject *parent = 0);
+    explicit MusicWYAuthenticationThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Read user datas from xml file by given name.
+     * Start to translation data.
      */
-    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
+    virtual void startToDownload(const QString &usr, const QString &pwd) override;
+
+public Q_SLOTS:
     /*!
-     * Write user datas into xml file.
+     * Download data from net finished.
      */
-    void writeUserXMLConfig(const MusicUserRecords &records);
-    /*!
-     * Read user datas into xml file.
-     */
-    void readUserConfig(MusicUserRecords &records);
+    virtual void downLoadFinished() override;
 
 };
 
-#endif // MUSICXMLCONFIGMANAGER_H
+#endif // MUSICWYAUTHENTICATIONTHREAD_H

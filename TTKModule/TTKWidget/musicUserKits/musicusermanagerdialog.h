@@ -22,6 +22,7 @@
 #include <QTime>
 #include <QMenu>
 #include "musicabstractmovedialog.h"
+#include "musicdatabaseobject.h"
 
 class MusicUserModel;
 
@@ -50,7 +51,7 @@ public:
     /*!
      * Set current user's uid.
      */
-    void setUserUID(const QString &uid);
+    void setUserUID(const MusicUserUIDItem &uid);
     /*!
      * Set user model.
      */
@@ -60,7 +61,7 @@ Q_SIGNALS:
     /*!
      * User login state changed.
      */
-    void userStateChanged(const QString &uid, const QString &icon);
+    void userStateChanged(const MusicUserUIDItem &uid, const QString &icon);
 
 public Q_SLOTS:
     /*!
@@ -95,11 +96,10 @@ protected:
     void createButtonPopMenu();
 
     Ui::MusicUserManagerDialog *m_ui;
-    MusicUserModel* m_userModel;
-    QString m_currentUserUID;
+    MusicUserModel *m_userModel;
+    MusicUserUIDItem m_userUID;
     QTime m_time;
     QMenu m_popMenu;
-
 
 };
 

@@ -858,7 +858,7 @@ void MusicSettingWidget::initInlineLrcWidget()
 
 void MusicSettingWidget::initSoundEffectWidget()
 {
-    m_ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadServerComboBox));
+    m_ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->outputTypeComboBox));
     m_ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
@@ -936,7 +936,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->proxyUsernameEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
     m_ui->proxyAreaEdit->setStyleSheet(MusicUIObject::MLineEditStyle01);
 
-    m_ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->downloadServerComboBox));
+    m_ui->proxyTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->proxyTypeComboBox));
     m_ui->proxyTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->proxyTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 

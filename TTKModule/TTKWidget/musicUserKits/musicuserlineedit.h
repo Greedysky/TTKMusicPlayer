@@ -33,11 +33,11 @@ class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 public:
     enum LabelType
     {
-        User,       /*!< label type is user*/
-        Passwd,     /*!< label type is password*/
-        PasswdNew,  /*!< label type is new password*/
-        PwdConfirm, /*!< label type is confirm password*/
-        Mail        /*!< label type is mail*/
+        User,           /*!< label type is user*/
+        Passwd,         /*!< label type is password*/
+        PasswdNew,      /*!< label type is new password*/
+        PasswdConfirm,  /*!< label type is confirm password*/
+        Mail            /*!< label type is mail*/
     };
 
     /*!

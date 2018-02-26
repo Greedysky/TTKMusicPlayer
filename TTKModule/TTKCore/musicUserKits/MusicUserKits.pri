@@ -21,7 +21,8 @@ INCLUDEPATH += $$PWD
 !contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicusermodel.h \
-    $$PWD/musicuserconfigmanager.h
+    $$PWD/musicuserconfigmanager.h \
+    $$PWD/musicdatabaseobject.h
     
 }
 

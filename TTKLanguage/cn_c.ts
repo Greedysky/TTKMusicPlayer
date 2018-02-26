@@ -7392,145 +7392,157 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>登錄</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="306"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="228"/>
         <source>注册帐号：</source>
         <translation>註冊帳號：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="241"/>
         <source>邮箱地址：</source>
         <translation>郵箱地址：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="355"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="277"/>
         <source>4-20个字母、数字和符号组成</source>
         <translation>4-20個字母、數字和符號組成</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="290"/>
         <source>请填写正确的邮箱地址</source>
         <translation>請填寫正確的郵箱地址</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="381"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="394"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="303"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="316"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="586"/>
         <source>6-16个字母、数字和符号组成</source>
         <translation>6-16個字母、數字和符號組成</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="439"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="361"/>
         <source>设置密码：</source>
         <translation>設置密碼：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="452"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="374"/>
         <source>确认密码：</source>
         <translation>確認密碼：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="465"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="729"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="387"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="651"/>
         <source>确定</source>
         <translation>確定</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="478"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="742"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="400"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
         <source>取消</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="491"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="413"/>
         <source>我已阅读并接受</source>
         <translation>我已閱讀並接受</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="504"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="426"/>
         <source>网站协议</source>
         <translation>網站協議</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="583"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="505"/>
         <source>原帐号：</source>
         <translation>原帳號：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="596"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="518"/>
         <source>原邮箱：</source>
         <translation>原郵箱：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="635"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="557"/>
         <source>新密码：</source>
         <translation>新密碼：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="716"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="638"/>
         <source>输入验证码：</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="25"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="28"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="102"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="156"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="173"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="140"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="158"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="246"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="434"/>
         <source>You entered is incorrect</source>
         <translation>請按要求填寫！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="94"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="234"/>
+        <source>Login error</source>
+        <translation>登陸出現錯誤！</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="254"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="425"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>用戶名不存在或密碼不正確！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="110"/>
         <source>The two passwords do not match</source>
         <translation>兩次輸入的密碼不壹致！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="134"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="38"/>
+        <source>localDB</source>
+        <translation>本地登錄</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="39"/>
+        <source>wangyiDB</source>
+        <translation>網易登錄</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="117"/>
         <source>The agreement does not tick</source>
         <translation>請閱讀註冊協議並打勾！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="126"/>
         <source>The username is existed</source>
         <translation>用戶名已經存在!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="148"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="132"/>
         <source>The register successfully</source>
         <translation>註冊成功！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="180"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="165"/>
         <source>You mail is incorrect or user is not exist</source>
         <translation>郵箱用戶名不正確！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="187"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="172"/>
         <source>You passwd is incorrect</source>
         <translation>密碼格式不正確！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="179"/>
         <source>You verificationCode is incorrect</source>
         <translation>輸入的驗證碼有誤！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="186"/>
         <source>Change password successfully</source>
         <translation>修改密碼成功！</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="238"/>
-        <source>This way of loading is now not supported</source>
-        <translation>這個登錄方式暫時還不支持！</translation>
     </message>
 </context>
 <context>
@@ -7777,32 +7789,32 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>關閉</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="214"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="220"/>
         <source>You verificationCode is incorrect</source>
         <translation>輸入的驗證碼有誤！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="221"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="227"/>
         <source>The origin password does not match</source>
         <translation>原密碼不正確！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="228"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="234"/>
         <source>The two passwords do not match</source>
         <translation>兩次輸入的密碼不壹致！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="235"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="241"/>
         <source>The modity password failed</source>
         <translation>修改密碼失敗！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="244"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
         <source>The modity password successfully, please relogin</source>
         <translation>修改密碼成功，請重新登錄！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="256"/>
         <source>You entered is incorrect</source>
         <translation>請按要求填寫！</translation>
     </message>
@@ -7815,7 +7827,7 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="135"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="134"/>
         <source>L|R</source>
         <translation>登錄|註冊</translation>
     </message>

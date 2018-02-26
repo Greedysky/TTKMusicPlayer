@@ -7396,145 +7396,157 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="306"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="228"/>
         <source>注册帐号：</source>
         <translation>UserName:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="241"/>
         <source>邮箱地址：</source>
         <translation>Mail Addr:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="355"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="277"/>
         <source>4-20个字母、数字和符号组成</source>
         <translation>4-20 Letters Numbers And Char</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="290"/>
         <source>请填写正确的邮箱地址</source>
         <translation>Please Fill Corrent Email Addr</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="381"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="394"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="303"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="316"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="586"/>
         <source>6-16个字母、数字和符号组成</source>
         <translation>6-16 Letters Numbers And Char</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="439"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="361"/>
         <source>设置密码：</source>
         <translation>PassWord:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="452"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="374"/>
         <source>确认密码：</source>
         <translation>PassWord:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="465"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="729"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="387"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="651"/>
         <source>确定</source>
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="478"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="742"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="400"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="491"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="413"/>
         <source>我已阅读并接受</source>
         <translation>I Have Accept</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="504"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="426"/>
         <source>网站协议</source>
         <translation>Agreement</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="583"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="505"/>
         <source>原帐号：</source>
         <translation>O-User:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="596"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="518"/>
         <source>原邮箱：</source>
         <translation>O-Mail:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="635"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="557"/>
         <source>新密码：</source>
         <translation>NewPWD:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="716"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="638"/>
         <source>输入验证码：</source>
         <translation>Verification:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="25"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="28"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="102"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="156"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="173"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="140"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="158"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="246"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="434"/>
         <source>You entered is incorrect</source>
         <translation>Incorrect!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="94"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="234"/>
+        <source>Login error</source>
+        <translation>Login Error！</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="254"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="425"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>PWD Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="110"/>
         <source>The two passwords do not match</source>
         <translation>Two PWDS Don&apos;t Match！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="134"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="38"/>
+        <source>localDB</source>
+        <translation>Local DB Mode</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="39"/>
+        <source>wangyiDB</source>
+        <translation>WangYi DB Mode</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="117"/>
         <source>The agreement does not tick</source>
         <translation>Agreement Doesn&apos;t Ticked！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="126"/>
         <source>The username is existed</source>
         <translation>User Existed!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="148"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="132"/>
         <source>The register successfully</source>
         <translation>Register Successfully！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="180"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="165"/>
         <source>You mail is incorrect or user is not exist</source>
         <translation>Mail Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="187"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="172"/>
         <source>You passwd is incorrect</source>
         <translation>You PWD Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="179"/>
         <source>You verificationCode is incorrect</source>
         <translation>You VerificationCode Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="186"/>
         <source>Change password successfully</source>
         <translation>Change PWD Successfully!</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="238"/>
-        <source>This way of loading is now not supported</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7781,32 +7793,32 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="214"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="220"/>
         <source>You verificationCode is incorrect</source>
         <translation type="unfinished">You VerificationCode Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="221"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="227"/>
         <source>The origin password does not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="228"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="234"/>
         <source>The two passwords do not match</source>
         <translation type="unfinished">Two PWDS Don&apos;t Match！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="235"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="241"/>
         <source>The modity password failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="244"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
         <source>The modity password successfully, please relogin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="256"/>
         <source>You entered is incorrect</source>
         <translation type="unfinished">Incorrect!</translation>
     </message>
@@ -7819,7 +7831,7 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="135"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="134"/>
         <source>L|R</source>
         <translation>Log|Reg</translation>
     </message>

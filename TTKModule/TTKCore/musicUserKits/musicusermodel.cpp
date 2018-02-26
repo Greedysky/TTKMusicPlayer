@@ -1,9 +1,10 @@
 #include "musicusermodel.h"
 #include "musicalgorithmutils.h"
 
-#include <QStringList>
-#include <QtSql/QSqlRecord>
 #include <QSet>
+#include <QSqlQuery>
+#include <QSqlRecord>
+#include <QStringList>
 
 MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     : QSqlTableModel(parent,db)
@@ -16,19 +17,26 @@ QString MusicUserModel::getClassName()
     return staticMetaObject.className();
 }
 
-bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
-                             const QString &mail)
+bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd,
+                             const QString &mail, bool pwdMask)
 {
+    if(!databaseSelectedFilter(uid))
+    {
+        return false;
+    }
+
     setTable("MusicUser");
     select();
 
     insertRow(0);
-    setData(index(0, fieldIndex("USERID")), uid);
-    setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(pwd));
+    setData(index(0, fieldIndex("USERID")), uid.m_uid);
+    setData(index(0, fieldIndex("SERVER")), uid.m_server);
+    setData(index(0, fieldIndex("PASSWD")), pwdMask ? pwd : userPasswordEncryption(pwd));
     setData(index(0, fieldIndex("EMAIL")), mail);
-    setData(index(0, fieldIndex("USERNAME")), uid);
+    setData(index(0, fieldIndex("USERNAME")), uid.m_uid);
     setData(index(0, fieldIndex("LOGINTIME")), 0);
     database().transaction();
+
     if(submitAll())
     {
         database().commit();
@@ -43,56 +51,51 @@ bool MusicUserModel::addUser(const QString &uid, const QString &pwd,
     }
 }
 
-bool MusicUserModel::databaseSelectedFilter(const QString &uid)
+bool MusicUserModel::addUser(const MusicUserInfoRecord &info)
 {
-    setTable("MusicUser");
-    setFilter(QString("USERID='%1'").arg(uid));
-    select();
-    return (rowCount() == 0);
-}
-
-QString MusicUserModel::getRecordData(const QString &uid, const QString &field)
-{
-    if(databaseSelectedFilter(uid))
-    {
-        return QString();
-    }
-    return record(0).value(field).toString();
-}
-
-bool MusicUserModel::updateRecordData(const QString &uid, const MusicObject::MStriantMap &data)
-{
-    if(databaseSelectedFilter(uid))
+    if(!databaseSelectedFilter(MusicUserUIDItem(info.m_uid, info.m_server)))
     {
         return false;
     }
 
-    QStringList keys = data.keys();
-    foreach(const QString &key, keys)
-    {
-        QString var = data[key].toString();
-        if(!var.isEmpty())
-        {
-            setData(index(0, fieldIndex(key)), var);
-        }
-    }
+    setTable("MusicUser");
+    select();
 
-    return submitAll();
+    insertRow(0);
+    setData(index(0, fieldIndex("USERID")), info.m_uid);
+    setData(index(0, fieldIndex("SERVER")), info.m_server);
+    setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(info.m_password));
+    setData(index(0, fieldIndex("USERNAME")), info.m_nickName);
+    setData(index(0, fieldIndex("LOGINTIME")), 0);
+    database().transaction();
+
+    if(submitAll())
+    {
+        database().commit();
+        M_LOGGER_INFO("submit successfully");
+        return true;
+    }
+    else
+    {
+        M_LOGGER_INFO("submit failed");
+        database().rollback();
+        return false;
+    }
 }
 
-bool MusicUserModel::updateUser(const QString &uid, const QString &pwd,
-                                const QString &mail,const QString &name,
-                                const QString &time)
+bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &pwd,
+                                const QString &mail, const QString &name,
+                                const QString &time, bool pwdMask)
 {
     MusicObject::MStriantMap map;
     map["USERNAME"] = name;
-    map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
+    map["PASSWD"] = pwd.isEmpty() ? QString() : (pwdMask ? pwd : userPasswordEncryption(pwd));
     map["EMAIL"] = mail;
     map["LOGINTIME"] = time;
     return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::updateUser(const QString &uid, const QString &name,
+bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &name,
                                 const QString &sex, const QString &birth,
                                 const QString &city, const QString &country,
                                 const QString &sign)
@@ -107,31 +110,28 @@ bool MusicUserModel::updateUser(const QString &uid, const QString &name,
     return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::updateUserIcon(const QString &uid, const QString &icon)
+bool MusicUserModel::updateUser(const MusicUserInfoRecord &info)
+{
+    MusicObject::MStriantMap map;
+    map["USERNAME"] = info.m_nickName;
+    return updateRecordData(MusicUserUIDItem(info.m_uid, info.m_server), map);
+}
+
+bool MusicUserModel::updateUserIcon(const MusicUserUIDItem &uid, const QString &icon)
 {
     MusicObject::MStriantMap map;
     map["ICON"] = icon;
     return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::updateUserPwd(const QString &uid, const QString &pwd)
+bool MusicUserModel::updateUserPwd(const MusicUserUIDItem &uid, const QString &pwd, bool pwdMask)
 {
     MusicObject::MStriantMap map;
-    map["PASSWD"] = pwd.isEmpty() ? QString() : userPasswordEncryption(pwd);
+    map["PASSWD"] = pwd.isEmpty() ? QString() : (pwdMask ? pwd : userPasswordEncryption(pwd));
     return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::passwordCheck(const QString &uid, const QString &pwd)
-{
-    if(databaseSelectedFilter(uid))
-    {
-        return false;
-    }
-
-    return record(0).value("PASSWD") == userPasswordEncryption(pwd);
-}
-
-bool MusicUserModel::deleteUser(const QString &uid)
+bool MusicUserModel::deleteUser(const MusicUserUIDItem &uid)
 {
     if(databaseSelectedFilter(uid))
     {
@@ -142,7 +142,17 @@ bool MusicUserModel::deleteUser(const QString &uid)
     return submitAll();
 }
 
-bool MusicUserModel::mailCheck(const QString &uid, const QString &mail)
+bool MusicUserModel::passwordCheck(const MusicUserUIDItem &uid, const QString &pwd, bool pwdMask)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return false;
+    }
+
+    return record(0).value("PASSWD") == (pwdMask ? pwd : userPasswordEncryption(pwd));
+}
+
+bool MusicUserModel::mailCheck(const MusicUserUIDItem &uid, const QString &mail)
 {
     if(databaseSelectedFilter(uid))
     {
@@ -152,22 +162,22 @@ bool MusicUserModel::mailCheck(const QString &uid, const QString &mail)
     return record(0).value("EMAIL") == mail;
 }
 
+QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
+{
+    return MusicUtils::Algorithm::md5( pwd.toUtf8() ).toHex();
+}
+
 QStringList MusicUserModel::getAllUsers()
 {
     setTable("MusicUser");
     select();
 
-    QStringList users;
+    QSet<QString> users;
     for(int i=0; i<rowCount(); ++i)
     {
-        users << record(i).value("USERID").toString();
+        users.insert(record(i).value("USERID").toString());
     }
-    return users;
-}
-
-QString MusicUserModel::userPasswordEncryption(const QString &pwd) const
-{
-    return MusicUtils::Algorithm::md5( pwd.toLatin1() ).toHex();
+    return users.toList();
 }
 
 QStringList MusicUserModel::getAllCities()
@@ -197,4 +207,41 @@ QStringList MusicUserModel::getAllCountries(const QString &city)
     }
 
     return cities;
+}
+
+QString MusicUserModel::getRecordData(const MusicUserUIDItem &uid, const QString &field)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return QString();
+    }
+    return record(0).value(field).toString();
+}
+
+bool MusicUserModel::updateRecordData(const MusicUserUIDItem &uid, const MusicObject::MStriantMap &data)
+{
+    if(databaseSelectedFilter(uid))
+    {
+        return false;
+    }
+
+    QStringList keys = data.keys();
+    foreach(const QString &key, keys)
+    {
+        QString var = data[key].toString();
+        if(!var.isEmpty())
+        {
+            setData(index(0, fieldIndex(key)), var);
+        }
+    }
+
+    return submitAll();
+}
+
+bool MusicUserModel::databaseSelectedFilter(const MusicUserUIDItem &uid)
+{
+    setTable("MusicUser");
+    setFilter(QString("USERID='%1' and SERVER='%2'").arg(uid.m_uid).arg(uid.m_server));
+    select();
+    return (rowCount() == 0);
 }

@@ -42,6 +42,7 @@ void MusicUserLineEdit::setLabel(LabelType ty, QLabel *t, QLabel *s)
     m_tipsLabel = t;
     m_statusLabel = s;
     m_type = ty;
+
     if(ty == PasswdNew)
     {
         connect(this, SIGNAL(textChanged(QString)), SLOT(checkPwdStrength()));
@@ -86,7 +87,7 @@ void MusicUserLineEdit::checkTheInput()
              showLabel(4, 20);
              break;  
         case Passwd:
-        case PwdConfirm:
+        case PasswdConfirm:
              showLabel(6, 16);
              break;
         case Mail:

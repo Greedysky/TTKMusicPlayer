@@ -118,7 +118,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="MusicClickedLabel" name="username">
+  <widget class="MusicClickedLabel" name="userName">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -291,7 +291,7 @@ QPushButton::menu-indicator{image:None;}</string>
   <zorder>label</zorder>
   <zorder>totalTimeLabel</zorder>
   <zorder>topLabel</zorder>
-  <zorder>username</zorder>
+  <zorder>userName</zorder>
   <zorder>line</zorder>
   <zorder>line_2</zorder>
   <zorder>vipButton</zorder>
