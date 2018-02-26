@@ -150,8 +150,6 @@ void MusicDesktopWallpaperWidget::initWidgetStyle() const
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->stopButton->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->openWithstart->setFocusPolicy(Qt::NoFocus);
-    m_ui->recoveryWallpaper->setFocusPolicy(Qt::NoFocus);
 #endif
 }
 
