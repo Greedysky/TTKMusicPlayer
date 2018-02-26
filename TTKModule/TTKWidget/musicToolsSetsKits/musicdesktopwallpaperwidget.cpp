@@ -15,11 +15,6 @@
 MusicDesktopWallpaperItem::MusicDesktopWallpaperItem(QWidget *parent)
     : QWidget(parent)
 {
-    setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint | Qt::Tool);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setWindowState(Qt::WindowNoState);
-    setFocusPolicy(Qt::NoFocus);
-
     QVBoxLayout *vBoxLayout = new QVBoxLayout(this);
     vBoxLayout->setContentsMargins(0, 0, 0, 0);
     vBoxLayout->setSpacing(0);
