@@ -21,7 +21,7 @@ MusicWebDJRadioCategoryItemWidget::MusicWebDJRadioCategoryItemWidget(QWidget *pa
     m_nameLabel->setAlignment(Qt::AlignCenter);
     m_nameLabel->setText(" - ");
 
-    connect(this, SIGNAL(clicked()), SLOT(currentCategoryClicked()));
+    connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }
 
 MusicWebDJRadioCategoryItemWidget::~MusicWebDJRadioCategoryItemWidget()
@@ -60,9 +60,9 @@ void MusicWebDJRadioCategoryItemWidget::downLoadFinished(const QByteArray &data)
     }
 }
 
-void MusicWebDJRadioCategoryItemWidget::currentCategoryClicked()
+void MusicWebDJRadioCategoryItemWidget::currentItemClicked()
 {
-    emit currentCategoryClicked(m_itemData);
+    emit currentItemClicked(m_itemData);
 }
 
 
@@ -131,7 +131,7 @@ void MusicWebDJRadioCategoryWidget::createCategoryItems()
     foreach(const MusicResultsItem &item, m_categoryThread->getSearchedItems())
     {
         MusicWebDJRadioCategoryItemWidget *label = new MusicWebDJRadioCategoryItemWidget(this);
-        connect(label, SIGNAL(currentCategoryClicked(MusicResultsItem)), SIGNAL(currentCategoryClicked(MusicResultsItem)));
+        connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SIGNAL(currentCategoryClicked(MusicResultsItem)));
         label->setMusicResultsItem(item);
 
         int lineNumber = width()/LINE_SPACING_SIZE;

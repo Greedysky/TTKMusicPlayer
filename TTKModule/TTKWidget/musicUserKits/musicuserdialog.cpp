@@ -206,7 +206,7 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
 {
     if(m_userModel->getAllUsers().contains(uid))
     {
-        m_userUID = MusicUserUIDItem(uid, m_ui->serverComboBox->currentIndex());;
+        m_userUID = MusicUserUIDItem(uid, m_ui->serverComboBox->currentIndex());
         readFromUserSettings();
     }
     else
@@ -222,7 +222,7 @@ void MusicUserDialog::userServerComboBoxChanged(int index)
     bool s = (index <= 0);
     m_ui->forgotPwdButton->setEnabled(s);
     m_ui->registerButton->setEnabled(s);
-    m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), index);;
+    m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), index);
 }
 
 void MusicUserDialog::networkLoginChanged()

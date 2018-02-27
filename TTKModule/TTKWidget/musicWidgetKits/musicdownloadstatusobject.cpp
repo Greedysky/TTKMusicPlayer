@@ -100,9 +100,8 @@ bool MusicDownloadStatusObject::checkSettingParameterValue() const
 
 void MusicDownloadStatusObject::musicCheckHasLrcAlready()
 {
-    if(!M_NETWORK_PTR->isOnline())
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
-        ///no network connection
         showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
@@ -137,8 +136,8 @@ void MusicDownloadStatusObject::musicCheckHasLrcAlready()
 
 void MusicDownloadStatusObject::musicHaveNoLrcAlready()
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }

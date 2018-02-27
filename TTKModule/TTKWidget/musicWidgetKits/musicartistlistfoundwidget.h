@@ -45,21 +45,21 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music playlist item.
+     * Set music results item.
      */
     void setMusicResultsItem(const MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!
-     * Current artist list clicked.
+     * Current item clicked.
      */
-    void currentArtistListClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultsItem &item);
 
 public Q_SLOTS:
     /*!
-     * Current artist list clicked.
+     * Current item clicked.
      */
-    void currentArtistListClicked();
+    void currentItemClicked();
 
 protected:
     MusicResultsItem m_itemData;

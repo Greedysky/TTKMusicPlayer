@@ -19,7 +19,7 @@ MusicWebMVRadioFoundItemWidget::MusicWebMVRadioFoundItemWidget(QWidget *parent)
     m_playButton->setGeometry((WIDTH_LABEL_SIZE - 30)/2, (HEIGHT_LABEL_SIZE - 30)/2, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
-    connect(m_playButton, SIGNAL(clicked()), SLOT(currentRadioClicked()));
+    connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
     m_playButton->setFocusPolicy(Qt::NoFocus);
@@ -80,9 +80,9 @@ void MusicWebMVRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
     m_playButton->raise();
 }
 
-void MusicWebMVRadioFoundItemWidget::currentRadioClicked()
+void MusicWebMVRadioFoundItemWidget::currentItemClicked()
 {
-    emit currentRadioClicked(m_itemData);
+    emit currentItemClicked(m_itemData);
 }
 
 void MusicWebMVRadioFoundItemWidget::enterEvent(QEvent *event)
@@ -210,7 +210,7 @@ void MusicWebMVRadioFoundWidget::createCategoryItem(const MusicResultsItem &item
     }
 
     MusicWebMVRadioFoundItemWidget *label = new MusicWebMVRadioFoundItemWidget(this);
-    connect(label, SIGNAL(currentRadioClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;

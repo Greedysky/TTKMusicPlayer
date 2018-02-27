@@ -24,7 +24,7 @@ MusicWebDJRadioFoundItemWidget::MusicWebDJRadioFoundItemWidget(QWidget *parent)
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
-    connect(m_playButton, SIGNAL(clicked()), SLOT(currentRadioClicked()));
+    connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
     m_playButton->setFocusPolicy(Qt::NoFocus);
@@ -88,9 +88,9 @@ void MusicWebDJRadioFoundItemWidget::downLoadFinished(const QByteArray &data)
     m_playButton->raise();
 }
 
-void MusicWebDJRadioFoundItemWidget::currentRadioClicked()
+void MusicWebDJRadioFoundItemWidget::currentItemClicked()
 {
-    emit currentRadioClicked(m_itemData);
+    emit currentItemClicked(m_itemData);
 }
 
 
@@ -219,7 +219,7 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
     }
 
     MusicWebDJRadioFoundItemWidget *label = new MusicWebDJRadioFoundItemWidget(this);
-    connect(label, SIGNAL(currentRadioClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentRadioClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;

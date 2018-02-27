@@ -174,7 +174,7 @@ void MusicDownLoadQueryKGPlaylistThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicResultsItem item;
-                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");;
+                    item.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     item.m_id = QString::number(value["specialid"].toULongLong());
                     item.m_name = value["specialname"].toString();
                     item.m_playCount = value["playcount"].toString();

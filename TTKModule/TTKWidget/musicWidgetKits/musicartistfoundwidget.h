@@ -41,9 +41,9 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music item.
+     * Set music results item.
      */
-    void setMusicItem(const MusicResultsItem &item);
+    void setMusicResultsItem(const MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!

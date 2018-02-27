@@ -31,12 +31,13 @@ QString MusicLrcSearchTableWidget::getClassName()
 
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
+
     MusicQueryItemTableWidget::startSearchQuery(text);
     connect(m_downLoadManager, SIGNAL(downLoadDataChanged(QString)), SIGNAL(resolvedSuccess()));
     m_loadingLabel->run(true);

@@ -45,15 +45,15 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music category item.
+     * Set music results item.
      */
     void setMusicResultsItem(const MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!
-     * Current category clicked.
+     * Current item clicked.
      */
-    void currentCategoryClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultsItem &item);
 
 public Q_SLOTS:
     /*!
@@ -61,9 +61,9 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &data);
     /*!
-     * Current category clicked.
+     * Current item clicked.
      */
-    void currentCategoryClicked();
+    void currentItemClicked();
 
 protected:
     QLabel *m_iconLabel, *m_nameLabel;
