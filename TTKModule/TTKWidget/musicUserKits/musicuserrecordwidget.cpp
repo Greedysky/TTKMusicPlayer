@@ -107,13 +107,13 @@ void MusicUserRecordWidget::initTabF()
     string = m_userModel->getUserCity(m_userUID);
     if(!string.isEmpty())
     {
-        MusicUtils::Widget::setComboboxText(m_ui->cityComboBox_F, string);
+        MusicUtils::Widget::setComboBoxText(m_ui->cityComboBox_F, string);
     }
 
     string = m_userModel->getUserCountry(m_userUID);
     if(!string.isEmpty())
     {
-        MusicUtils::Widget::setComboboxText(m_ui->countryComboBox_F, string);
+        MusicUtils::Widget::setComboBoxText(m_ui->countryComboBox_F, string);
     }
     m_ui->signatureEdit_F->setText(m_userModel->getUserSignature(m_userUID));
     m_ui->confirmButton_F->setStyleSheet(MusicUIObject::MPushButtonStyle06);

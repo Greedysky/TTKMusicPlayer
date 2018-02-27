@@ -5,6 +5,7 @@
 #include "musicusermodel.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
+#include "musicwidgetutils.h"
 
 #include "musicuserrecordwidget.h"
 #include "musicdownloadsourcethread.h"
@@ -59,14 +60,27 @@ QString MusicUserDialog::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicUserDialog::checkToAutoLogin(MusicUserUIDItem &uid, QString &icon)
+bool MusicUserDialog::checkToAutoLogin()
 {
-    if(m_ui->automaticLogin->isChecked() && m_ui->rememberPwd->isChecked() &&
-       m_ui->passwLineEdit->text() == m_userModel->getUserPWDMD5(m_userUID))
+    foreach(const MusicUserRecord &record, m_records)
     {
-        uid = m_userUID;
-        icon = m_userModel->getUserIcon(m_userUID);
+        if(record.m_autoFlag)
+        {
+            m_userUID = MusicUserUIDItem(record.m_uid, record.m_server);
+            MusicUtils::Widget::setComboBoxText(m_ui->userComboBox, record.m_uid);
+            readFromUserSettings();
+            break;
+        }
     }
+
+    bool result = false;
+    if(m_ui->automaticLogin->isChecked() && m_ui->rememberPwd->isChecked())
+    {
+        checkUserLogin();
+        result = true;
+    }
+
+    return result;
 }
 
 void MusicUserDialog::setUserModel(MusicUserModel *model)
@@ -453,9 +467,9 @@ void MusicUserDialog::networkLoginMode()
 
     QString user = m_ui->userComboBox->currentText();
     QString pwd = m_ui->passwLineEdit->text();
-
     QString ew = m_userModel->userPasswordEncryption(pwd);
-    if(pwd != ew)
+
+    if(pwd.length() != ew.length())
     {
         pwd = ew;
     }
@@ -479,7 +493,7 @@ int MusicUserDialog::findUserNameIndex(const MusicUserUIDItem &uid)
     int index = -1;
     for(int i=0; i<m_records.count(); ++i)
     {
-        if(m_records[i].m_userUID == uid.m_uid)
+        if(m_records[i].m_uid == uid.m_uid)
         {
             return i;
         }
@@ -492,10 +506,10 @@ void MusicUserDialog::readFromUserSettings()
     int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
-        m_ui->automaticLogin->setChecked( m_records[index].m_autoFlag  );
+        m_ui->automaticLogin->setChecked( m_records[index].m_autoFlag );
         m_ui->rememberPwd->setChecked( m_records[index].m_rememberFlag );
         m_ui->passwLineEdit->setText( m_records[index].m_password );
-        m_ui->serverComboBox->setCurrentIndex( m_records[index].m_type );
+        m_ui->serverComboBox->setCurrentIndex( m_records[index].m_server );
     }
 }
 
@@ -508,6 +522,14 @@ void MusicUserDialog::writeToUserConfig()
 
 void MusicUserDialog::writeToUserSettings()
 {
+    if(m_ui->automaticLogin->isChecked())
+    {
+        for(int i=0; i<m_records.count(); ++i)
+        {
+            m_records[i].m_autoFlag = false;
+        }
+    }
+
     int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
@@ -518,8 +540,8 @@ void MusicUserDialog::writeToUserSettings()
     else
     {
         MusicUserRecord record;
-        record.m_userUID = m_userUID.m_uid;
-        record.m_type = m_userUID.m_server;
+        record.m_uid = m_userUID.m_uid;
+        record.m_server = m_userUID.m_server;
         record.m_autoFlag = m_ui->automaticLogin->isChecked();
         record.m_rememberFlag = m_ui->rememberPwd->isChecked();
         record.m_password = m_ui->rememberPwd->isChecked() ? m_userModel->getUserPWDMD5(m_userUID) : QString();

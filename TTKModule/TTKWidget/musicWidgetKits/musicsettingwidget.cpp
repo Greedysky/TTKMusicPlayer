@@ -207,8 +207,8 @@ void MusicSettingWidget::initControllerParameter()
     M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
                      m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
 
-    MusicUtils::Widget::setComboboxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
-    MusicUtils::Widget::setComboboxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
+    MusicUtils::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
+    MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
                      m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 

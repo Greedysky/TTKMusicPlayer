@@ -95,7 +95,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     int index = -1;
     for(int i=0; i<records.count(); ++i)
     {
-        if(records[i].m_userUID == m_userUID.m_uid)
+        if(records[i].m_uid == m_userUID.m_uid)
         {
             index = i;
         }

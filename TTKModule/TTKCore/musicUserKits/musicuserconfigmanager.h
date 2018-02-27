@@ -26,15 +26,15 @@
  */
 typedef struct MUSIC_USER_EXPORT MusicUserRecord
 {
-    QString m_userUID;
+    QString m_uid;
     QString m_password;
-    int m_type;
+    int m_server;
     bool m_rememberFlag;
     bool m_autoFlag;
 
     MusicUserRecord()
     {
-        m_type = 0;
+        m_server = 0;
         m_rememberFlag = false;
         m_autoFlag = false;
     }

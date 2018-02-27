@@ -165,11 +165,14 @@ void MusicUserWindow::musicUserContextLogin()
 
 void MusicUserWindow::checkToAutoLogin()
 {
-    MusicUserDialog dialog;
-    dialog.setUserModel(m_userModel);
+    userStateChanged(MusicUserUIDItem(), QString());
 
-    MusicUserUIDItem uid;
-    QString icon;
-    dialog.checkToAutoLogin(uid, icon);
-    userStateChanged(uid, icon);
+    MusicUserDialog dialog;
+    connect(&dialog, SIGNAL(userLoginSuccess(MusicUserUIDItem,QString)), SLOT(userStateChanged(MusicUserUIDItem,QString)));
+
+    dialog.setUserModel(m_userModel);
+    if(dialog.checkToAutoLogin())
+    {
+        dialog.exec();
+    }
 }

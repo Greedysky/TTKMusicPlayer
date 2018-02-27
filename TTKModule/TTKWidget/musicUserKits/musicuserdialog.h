@@ -51,7 +51,7 @@ public:
     /*!
      * Check current user to login auto automatic.
      */
-    void checkToAutoLogin(MusicUserUIDItem &uid, QString &icon);
+    bool checkToAutoLogin();
     /*!
      * Set user model.
      */
