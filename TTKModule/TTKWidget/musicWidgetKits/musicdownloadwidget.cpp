@@ -257,8 +257,8 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
         MusicObject::MusicSongInformation musicSongInfo;
         foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
-            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
-                var.m_songName.contains(songName, Qt::CaseInsensitive) )
+            if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
+               var.m_songName.contains(songName, Qt::CaseInsensitive))
             {
                 musicSongInfo = var;
                 break;

@@ -13,7 +13,7 @@ QString MusicDownloadRecordConfigManager::getClassName()
 
 void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
 {
-    if( !writeConfig( mappingFilePathFromEnum() ) )
+    if(!writeConfig(mappingFilePathFromEnum()))
     {
         return;
     }

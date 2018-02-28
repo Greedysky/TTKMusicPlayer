@@ -113,28 +113,25 @@ void MusicUserDialog::registerUser()
 
 void MusicUserDialog::checkRegisterUser()
 {
-    if( m_ui->registerUserLine->getStrStatus() &&
-        m_ui->registerMailLine->getMailStatus() &&
-        m_ui->registerPwdLine->getStrStatus() &&
-        m_ui->registerPwdCLine->getStrStatus() )
+    if(m_ui->registerUserLine->getStrStatus() && m_ui->registerMailLine->getMailStatus() &&
+       m_ui->registerPwdLine->getStrStatus() && m_ui->registerPwdCLine->getStrStatus())
     {
-        if( m_ui->registerPwdLine->text() != m_ui->registerPwdCLine->text() )
+        if(m_ui->registerPwdLine->text() != m_ui->registerPwdCLine->text())
         {
             MusicMessageBox message;
             message.setText(tr("The two passwords do not match"));
             message.exec();
             return;
         }
-        if( !m_ui->agreementCheckBox->isChecked() )
+        if(!m_ui->agreementCheckBox->isChecked())
         {
             MusicMessageBox message;
             message.setText(tr("The agreement does not tick"));
             message.exec();
             return;
         }
-        if( !m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), m_ui->serverComboBox->currentIndex()),
-                                  m_ui->registerPwdLine->text(),
-                                  m_ui->registerMailLine->text()) )
+        if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), m_ui->serverComboBox->currentIndex()),
+                                 m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
         {
             MusicMessageBox message;
             message.setText(tr("The username is existed"));
@@ -166,35 +163,35 @@ void MusicUserDialog::checkUserForgotPasswd()
      MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
      QString mail = m_ui->mailLineEdit->text();
 
-     if( user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty() )
+     if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
      {
          MusicMessageBox message;
          message.setText(tr("You entered is incorrect"));
          message.exec();
          return;
      }
-     if( !m_userModel->mailCheck(user, mail) )
+     if(!m_userModel->mailCheck(user, mail))
      {
          MusicMessageBox message;
          message.setText(tr("You mail is incorrect or user is not exist"));
          message.exec();
          return;
      }
-     if( !m_ui->pwdLineEdit->getStrStatus() )
+     if(!m_ui->pwdLineEdit->getStrStatus())
      {
          MusicMessageBox message;
          message.setText(tr("You passwd is incorrect"));
          message.exec();
          return;
      }
-     if( m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit->text().trimmed() )
+     if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit->text().trimmed())
      {
          MusicMessageBox message;
          message.setText(tr("You verificationCode is incorrect"));
          message.exec();
          return;
      }
-     if( m_userModel->updateUser(user, m_ui->pwdLineEdit->text(), mail, QString(), QString()))
+     if(m_userModel->updateUser(user, m_ui->pwdLineEdit->text(), mail, QString(), QString()))
      {
          MusicMessageBox message;
          message.setText(tr("Change password successfully"));
@@ -432,7 +429,7 @@ void MusicUserDialog::localLoginMode()
 
     if(!m_ui->rememberPwd->isChecked() || pwd != m_userModel->getUserPWDMD5(m_userUID))
     {
-        if( !m_userModel->passwordCheck(uid, pwd) )
+        if(!m_userModel->passwordCheck(uid, pwd))
         {
             MusicMessageBox message;
             message.setText(tr("You passwd is incorrect or user is not exist"));
@@ -441,7 +438,7 @@ void MusicUserDialog::localLoginMode()
         }
     }
 
-    if( uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty() )
+    if(uid.m_uid.trimmed().isEmpty() || pwd.trimmed().isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("You entered is incorrect"));

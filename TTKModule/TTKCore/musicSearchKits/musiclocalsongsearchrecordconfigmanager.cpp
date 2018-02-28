@@ -13,7 +13,7 @@ QString MusicLocalSongSearchRecordConfigManager::getClassName()
 
 void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecords &records)
 {
-    if( !writeConfig( MUSICSEARCH_FULL ) )
+    if(!writeConfig(MUSICSEARCH_FULL))
     {
         return;
     }

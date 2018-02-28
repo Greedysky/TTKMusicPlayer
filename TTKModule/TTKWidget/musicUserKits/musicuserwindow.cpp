@@ -65,7 +65,7 @@ bool MusicUserWindow::disConnectDatabase()
     {
         QSqlDatabase data = QSqlDatabase::database("user-data");
         connectionName = data.connectionName();
-        if( data.isValid() )
+        if(data.isValid())
         {
             data.close();
         }

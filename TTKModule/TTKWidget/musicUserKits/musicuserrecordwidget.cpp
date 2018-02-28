@@ -210,9 +210,8 @@ void MusicUserRecordWidget::changeVerificationCodeT()
 
 void MusicUserRecordWidget::confirmButtonClickedT()
 {
-    if( m_ui->originPwdEdit_T->getStrStatus() &&
-        m_ui->newPwdEdit_T->getStrStatus() &&
-        m_ui->newCPwdEdit_T->getStrStatus() )
+    if(m_ui->originPwdEdit_T->getStrStatus() && m_ui->newPwdEdit_T->getStrStatus() &&
+       m_ui->newCPwdEdit_T->getStrStatus())
     {
         if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit_T->text().trimmed())
         {

@@ -18,7 +18,7 @@ QString MusicDownloadBackgroundThread::getClassName()
 
 void MusicDownloadBackgroundThread::downLoadFinished()
 {
-    if( ++m_index >= m_counter)
+    if(++m_index >= m_counter)
     {
         M_BACKGROUND_PTR->setArtName( m_artName );
 #ifndef MUSIC_MOBILE

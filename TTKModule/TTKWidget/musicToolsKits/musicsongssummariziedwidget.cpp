@@ -715,7 +715,7 @@ void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &i
     {
         MusicSong song = item->m_songs.takeAt(index[i]);
         deleteFiles << song.getMusicPath();
-        if( cIndex != m_currentPlayToolIndex && cIndex == MUSIC_LOVEST_LIST )
+        if(cIndex != m_currentPlayToolIndex && cIndex == MUSIC_LOVEST_LIST)
         {
             int playIndex = m_songItems[m_currentPlayToolIndex].m_itemObject->getPlayRowIndex();
             MusicSongs songs = m_songItems[m_currentPlayToolIndex].m_songs;

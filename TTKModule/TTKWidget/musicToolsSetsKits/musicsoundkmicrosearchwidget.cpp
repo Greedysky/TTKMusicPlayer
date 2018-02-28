@@ -67,7 +67,7 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 
 void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
 {
-    if( row < 0 || (row >= rowCount() - 1))
+    if(row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;
         message.setText(tr("Please Select One Item First!"));

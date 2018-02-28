@@ -13,7 +13,7 @@ QString MusicUserConfigManager::getClassName()
 
 void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
 {
-    if( !writeConfig( USERPATH_FULL ) )
+    if(!writeConfig(USERPATH_FULL))
     {
         return;
     }

@@ -28,11 +28,12 @@ bool MusicAbstractXml::readConfig(const QString &name)
     delete m_document;
     m_file = new QFile( name );
     m_document = new QDomDocument;
-    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text) )
+
+    if(!m_file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return false;
     }
-    if( !m_document->setContent(m_file) )
+    if(!m_document->setContent(m_file))
     {
         m_file->close();
         delete m_file;
@@ -48,7 +49,8 @@ bool MusicAbstractXml::writeConfig(const QString &name)
     delete m_document;
     m_file = new QFile( name );
     m_document = new QDomDocument;
-    if( !m_file->open(QFile::WriteOnly | QFile::Text) )
+
+    if(!m_file->open(QFile::WriteOnly | QFile::Text))
     {
         return false;
     }
@@ -61,7 +63,8 @@ bool MusicAbstractXml::fromString(const QString &data)
     delete m_document;
     m_file = nullptr;
     m_document = new QDomDocument;
-    if( !m_document->setContent(data) )
+
+    if(!m_document->setContent(data))
     {
         return false;
     }
@@ -74,7 +77,8 @@ bool MusicAbstractXml::fromByteArray(const QByteArray &data)
     delete m_document;
     m_file = nullptr;
     m_document = new QDomDocument;
-    if( !m_document->setContent(data) )
+
+    if(!m_document->setContent(data))
     {
         return false;
     }

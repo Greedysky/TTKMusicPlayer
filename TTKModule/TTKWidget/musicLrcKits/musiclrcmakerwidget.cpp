@@ -131,7 +131,7 @@ void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
     {
         m_intervalCount -= m_itemDelta;
     }
-    if( m_leftDirection && m_intervalCount < 0)
+    if(m_leftDirection && m_intervalCount < 0)
     {
         m_intervalCount += m_itemDelta;
     }
