@@ -53,7 +53,7 @@ bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd,
 
 bool MusicUserModel::addUser(const MusicUserInfoRecord &info)
 {
-    if(!databaseSelectedFilter(MusicUserUIDItem(info.m_uid, info.m_server)))
+    if(!databaseSelectedFilter(info.m_item))
     {
         return false;
     }
@@ -62,8 +62,8 @@ bool MusicUserModel::addUser(const MusicUserInfoRecord &info)
     select();
 
     insertRow(0);
-    setData(index(0, fieldIndex("USERID")), info.m_uid);
-    setData(index(0, fieldIndex("SERVER")), info.m_server);
+    setData(index(0, fieldIndex("USERID")), info.m_item.m_uid);
+    setData(index(0, fieldIndex("SERVER")), info.m_item.m_server);
     setData(index(0, fieldIndex("PASSWD")), userPasswordEncryption(info.m_password));
     setData(index(0, fieldIndex("USERNAME")), info.m_nickName);
     setData(index(0, fieldIndex("LOGINTIME")), 0);
@@ -114,7 +114,7 @@ bool MusicUserModel::updateUser(const MusicUserInfoRecord &info)
 {
     MusicObject::MStriantMap map;
     map["USERNAME"] = info.m_nickName;
-    return updateRecordData(MusicUserUIDItem(info.m_uid, info.m_server), map);
+    return updateRecordData(info.m_item, map);
 }
 
 bool MusicUserModel::updateUserIcon(const MusicUserUIDItem &uid, const QString &icon)

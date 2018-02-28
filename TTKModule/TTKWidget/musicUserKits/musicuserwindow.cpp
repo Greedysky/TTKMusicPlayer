@@ -89,18 +89,18 @@ bool MusicUserWindow::connectDatabase()
         }
         else
         {
-            data = QSqlDatabase::addDatabase(SQLITE_DATABASE, "user-data");
+            data = QSqlDatabase::addDatabase(DB_SQLITE_DATABASE, "user-data");
         }
         data.setDatabaseName(DARABASEPATH_FULL);
-        if( !data.isDriverAvailable(SQLITE_DATABASE) )
+        if(!data.isDriverAvailable(DB_SQLITE_DATABASE))
         {
             throw QString("The driver name is not available!");
         }
-        if( !data.isValid() )
+        if(!data.isValid())
         {
             throw QString("The database has not a valid driver!");
         }
-        if(!data.isOpen() && !data.open() )
+        if(!data.isOpen() && !data.open())
         {
             throw QString("Can not open database connection!");
         }

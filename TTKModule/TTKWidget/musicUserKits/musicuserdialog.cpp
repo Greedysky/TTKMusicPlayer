@@ -250,11 +250,10 @@ void MusicUserDialog::networkLoginChanged()
         return;
     }
 
-    v.m_uid = m_ui->userComboBox->currentText();
-    v.m_server = m_ui->serverComboBox->currentIndex();
+    v.m_item = MusicUserUIDItem(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
     v.m_password = m_ui->passwLineEdit->text();
 
-    if( v.m_uid.trimmed().isEmpty() || v.m_password.trimmed().isEmpty() )
+    if(v.m_item.m_uid.trimmed().isEmpty() || v.m_password.trimmed().isEmpty())
     {
         MusicMessageBox message;
         message.setText(tr("You entered is incorrect"));
@@ -270,7 +269,7 @@ void MusicUserDialog::networkLoginChanged()
     }
     else
     {
-        m_userUID = MusicUserUIDItem(v.m_uid, v.m_server);
+        m_userUID = v.m_item;
 
         writeToUserConfig();
         emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));

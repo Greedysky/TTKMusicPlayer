@@ -21,9 +21,9 @@
 
 #include "musicglobaldefine.h"
 
-#define SQLITE_DATABASE         "QSQLITE"
-#define MYSQL_DATABASE          "QMYSQL"
-#define OCI_DATABASE            "QOCI"
+#define DB_SQLITE_DATABASE      "QSQLITE"
+#define DB_MYSQL_DATABASE       "QMYSQL"
+#define DB_OCI_DATABASE         "QOCI"
 
 ///////////////////////////////////////
 #define DB_USERID               20
@@ -46,14 +46,19 @@ typedef struct MUSIC_USER_EXPORT MusicUserUIDItem
 
     MusicUserUIDItem()
     {
-        m_uid.clear();
-        m_server = 0;
+        clear();
     }
 
     MusicUserUIDItem(const QString &uid, int server)
     {
         m_uid = uid;
         m_server = server;
+    }
+
+    void clear()
+    {
+        m_uid.clear();
+        m_server = 0;
     }
 }MusicUserUIDItem;
 
@@ -63,8 +68,7 @@ typedef struct MUSIC_USER_EXPORT MusicUserUIDItem
  */
 typedef struct MUSIC_USER_EXPORT MusicUserInfoRecord
 {
-    QString m_uid;
-    int m_server;
+    MusicUserUIDItem m_item;
     QString m_userName;
     QString m_password;
     QString m_nickName;
@@ -77,8 +81,7 @@ typedef struct MUSIC_USER_EXPORT MusicUserInfoRecord
 
     void clear()
     {
-        m_uid.clear();
-        m_server = 0;
+        m_item.clear();
         m_userName.clear();
         m_password.clear();
         m_nickName.clear();
