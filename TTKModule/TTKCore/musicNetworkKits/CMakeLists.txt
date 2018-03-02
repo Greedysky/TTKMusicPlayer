@@ -30,6 +30,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwyartistsimilarthread.h
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwysongsuggestthread.h
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwytranslationthread.h
+    ${MUSIC_CORE_NETWORK_DIR}/wy/musicwyauthenticationthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadxminterface.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmthread.h
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmalbumthread.h
@@ -143,6 +144,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadcounterpvthread.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthreadabstract.h
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicauthenticationthread.h
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.h
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.h
@@ -192,6 +194,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwysongsuggestthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwyartistsimilarthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/wy/musicwytranslationthread.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/wy/musicwyauthenticationthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadxminterface.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/xm/musicdownloadqueryxmalbumthread.cpp
@@ -305,6 +308,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadcounterpvthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadbackgroundremotethread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musictranslationthreadabstract.cpp
+    ${MUSIC_CORE_NETWORK_DIR}/ztl/musicauthenticationthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicnetworkabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadthreadabstract.cpp
     ${MUSIC_CORE_NETWORK_DIR}/musicdownloadqueryfactory.cpp

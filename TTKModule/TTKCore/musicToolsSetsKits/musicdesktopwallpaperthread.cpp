@@ -52,23 +52,23 @@ void MusicDesktopWallpaperThread::setImagePath(const QStringList &list)
 #if defined Q_OS_WIN
 HWND MusicDesktopWallpaperThread::findDesktopIconWnd()
 {
-    HWND hWorkerW = FindWindowEx(NULL, NULL, L"WorkerW", NULL);
+    HWND hWorkerW = FindWindowExW(NULL, NULL, L"WorkerW", NULL);
     HWND hDefView = NULL;
 
     while((!hDefView) && hWorkerW)
     {
-        hDefView = FindWindowEx(hWorkerW, NULL, L"SHELLDLL_DefView", NULL);
-        hWorkerW = FindWindowEx(NULL, hWorkerW, L"WorkerW", NULL);
+        hDefView = FindWindowExW(hWorkerW, NULL, L"SHELLDLL_DefView", NULL);
+        hWorkerW = FindWindowExW(NULL, hWorkerW, L"WorkerW", NULL);
     }
 
     ShowWindow(hWorkerW, 0);
-    return FindWindow(L"Progman", NULL);
+    return FindWindowW(L"Progman", NULL);
 }
 
 void MusicDesktopWallpaperThread::sendMessageToDesktop()
 {
      PDWORD_PTR result = NULL;
-     SendMessageTimeout(FindWindow(L"Progman",NULL), 0x52c, 0, 0, SMTO_NORMAL, 1000, result);
+     SendMessageTimeoutW(FindWindowW(L"Progman",NULL), 0x52c, 0, 0, SMTO_NORMAL, 1000, result);
 }
 #endif
 
