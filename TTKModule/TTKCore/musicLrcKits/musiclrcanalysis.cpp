@@ -50,7 +50,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
         }
     }
 
-    if (m_lrcContainer.isEmpty())
+    if(m_lrcContainer.isEmpty())
     {
         return LrcEmpty;
     }
@@ -80,7 +80,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const MusicObject::MIntStringMap &data)
 {
-    if (data.isEmpty())
+    if(data.isEmpty())
     {
         return LrcEmpty;
     }
@@ -149,7 +149,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
     }
 
     //If the lrcContainer is empty
-    if (m_lrcContainer.isEmpty())
+    if(m_lrcContainer.isEmpty())
     {
         return LrcEmpty;
     }

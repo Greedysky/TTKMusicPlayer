@@ -29,7 +29,7 @@ bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
 
     unz_file_info64 fileInfo;
     unz_global_info64 gInfo;
-    if (unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
+    if(unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
     {
         return false;
     }
@@ -90,7 +90,7 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &pa
 
     unz_file_info64 fileInfo;
     unz_global_info64 gInfo;
-    if (unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
+    if(unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
     {
         return false;
     }
@@ -207,7 +207,7 @@ bool MusicExtractWrap::outputText(QByteArray &data, const QString &path)
 
     unz_file_info64 fileInfo;
     unz_global_info64 gInfo;
-    if (unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
+    if(unzGetGlobalInfo64(zFile, &gInfo) != UNZ_OK)
     {
         return false;
     }

@@ -155,7 +155,7 @@ int MusicLrcFromKrc::isfilter(char *tok)
     {
         return 1;
     }
-    else if (!sncasecmp(tok, const_cast<char*>(std::string("[sign").c_str()), 5))
+    else if(!sncasecmp(tok, const_cast<char*>(std::string("[sign").c_str()), 5))
     {
         return 1;
     }

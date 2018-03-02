@@ -119,14 +119,14 @@ void MusicAudioRecorderWidget::initMonitor()
     m_mFormatSound.setCodec("audio/pcm"); //set codec as simple audio/pcm
 
     QAudioDeviceInfo infoIn(QAudioDeviceInfo::defaultInputDevice());
-    if (!infoIn.isFormatSupported(m_mFormatSound))
+    if(!infoIn.isFormatSupported(m_mFormatSound))
     {
         //Default format not supported - trying to use nearest
         m_mFormatSound = infoIn.nearestFormat(m_mFormatSound);
     }
 
     QAudioDeviceInfo infoOut(QAudioDeviceInfo::defaultOutputDevice());
-    if (!infoOut.isFormatSupported(m_mFormatSound))
+    if(!infoOut.isFormatSupported(m_mFormatSound))
     {
         //Default format not supported - trying to use nearest
         m_mFormatSound = infoOut.nearestFormat(m_mFormatSound);
