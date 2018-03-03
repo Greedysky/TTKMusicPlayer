@@ -19,14 +19,21 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QThread>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+
+#if defined Q_OS_WIN
+#   include <qt_windows.h>
+#   if defined Q_CC_MSVC
+#      pragma comment(lib, "user32.lib")
+#   endif
+#endif
+class QTimer;
 
 /*! @brief The class of the desktop wallpaper thread.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperThread : public QThread
+class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperThread : public QObject
 {
     Q_OBJECT
 public:
@@ -41,14 +48,41 @@ public:
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Set paramters(Time\Type\Func\Close).
+     * Set time interval.
      */
-    void setParamters(const MusicObject::MStriantMap &p);
+    void setInterval(int msec);
     /*!
-     * Stop and quit current thread.
+     * State is running.
      */
-    void stopAndQuitThread();
+    bool isRunning() const;
+
+    /*!
+     * Set random mode check.
+     */
+    void setRandom(bool random);
+    /*!
+     * Set image path.
+     */
+    void setImagePath(const QStringList &list);
+
+#if defined Q_OS_WIN
+    /*!
+     * Find desktop icon wnd.
+     */
+    HWND findDesktopIconWnd();
+    /*!
+     * Send message to desktop.
+     */
+    void sendMessageToDesktop();
+#endif
+
+Q_SIGNALS:
+    /*!
+     * Update background pixmap.
+     */
+    void updateBackground(const QPixmap &pix);
 
 public Q_SLOTS:
     /*!
@@ -56,20 +90,19 @@ public Q_SLOTS:
      */
     void start();
     /*!
+     * Stop and quit current thread.
+     */
+    void stop();
+    /*!
      * Thread run now.
      */
-    virtual void run() override;
+    void timeout();
 
 protected:
-    /*!
-     * Set desktop wallpaper.
-     */
-    void setWallpaper(const QString &path, int type) const;
-
-    bool m_run, m_returnToOrigin;
-    int m_currentImageIndex, m_originType;
-    QString m_originPath;
-    MusicObject::MStriantMap m_paramter;
+    bool m_run, m_random;
+    int m_currentImageIndex;
+    QTimer *m_timer;
+    QStringList m_path;
 
 };
 

@@ -32,8 +32,8 @@ QString MusicVideoTableWidget::getClassName()
 
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -50,8 +50,8 @@ void MusicVideoTableWidget::startSearchQuery(const QString &text)
 
 void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -69,8 +69,8 @@ void MusicVideoTableWidget::startSearchSingleQuery(const QString &text)
 
 void MusicVideoTableWidget::startSearchSingleQuery(const QVariant &data)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;

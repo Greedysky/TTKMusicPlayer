@@ -19,7 +19,7 @@ void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
 void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
-    if( musics.isEmpty() || !writeConfig( path ) )
+    if(musics.isEmpty() || !writeConfig(path))
     {
         return;
     }

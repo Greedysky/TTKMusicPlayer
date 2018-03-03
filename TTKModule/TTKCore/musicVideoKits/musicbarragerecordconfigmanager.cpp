@@ -13,7 +13,7 @@ QString MusicBarrageRecordConfigManager::getClassName()
 
 void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecords &records)
 {
-    if( !writeConfig( BARRAGEPATH_FULL ) )
+    if(!writeConfig(BARRAGEPATH_FULL))
     {
         return;
     }

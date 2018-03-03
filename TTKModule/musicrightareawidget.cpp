@@ -101,7 +101,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 
 void MusicRightAreaWidget::stopLrcMask() const
 {
-    if( checkSettingParameterValue() )
+    if(checkSettingParameterValue())
     {
        m_ui->musiclrccontainerforinline->stopLrcMask();
        m_musicLrcForDesktop->stopLrcMask();
@@ -114,7 +114,7 @@ void MusicRightAreaWidget::stopLrcMask() const
 
 void MusicRightAreaWidget::startTimerClock() const
 {
-    if( checkSettingParameterValue() )
+    if(checkSettingParameterValue())
     {
        m_ui->musiclrccontainerforinline->startTimerClock();
        m_musicLrcForDesktop->startTimerClock();
@@ -187,7 +187,7 @@ void MusicRightAreaWidget::updateCurrentLrc(qint64 current, qint64 total, bool p
 
 void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString &path) const
 {
-    if( checkSettingParameterValue() )
+    if(checkSettingParameterValue())
     {
         m_ui->musiclrccontainerforinline->stopLrcMask();
         m_ui->musiclrccontainerforinline->setCurrentSongName( name );
@@ -824,8 +824,7 @@ void MusicRightAreaWidget::musicContainerForWallpaperClicked()
         m_musicLrcForWallpaper->setLrcAnalysisModel(m_ui->musiclrccontainerforinline->getLrcAnalysisModel());
         m_musicLrcForWallpaper->setSettingParameter();
         m_musicLrcForWallpaper->showFullScreen();
-        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper,
-                                                  SLOT(changeCurrentLrcColor()));
+        connect(m_ui->musiclrccontainerforinline, SIGNAL(linearGradientColorChanged()), m_musicLrcForWallpaper, SLOT(changeCurrentLrcColor()));
 
         MusicApplication::instance()->activateWindow();
         MusicApplication::instance()->showMinimized();

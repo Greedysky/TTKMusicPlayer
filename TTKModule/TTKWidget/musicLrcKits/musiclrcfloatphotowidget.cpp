@@ -281,7 +281,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    if( ++m_currentIndex > (page = (page < 0) ? 0 : page) )
+    if(++m_currentIndex > (page = (page < 0) ? 0 : page))
     {
         m_currentIndex = page;
     }

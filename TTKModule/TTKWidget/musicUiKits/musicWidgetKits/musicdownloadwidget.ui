@@ -196,13 +196,13 @@ QLabel{background:transparent;}</string>
    <zorder>downloadPathEdit</zorder>
    <zorder>downloadButton</zorder>
   </widget>
-  <widget class="MusicGifLabelWidget" name="loadingLabel">
+  <widget class="MusicGifLabelMaskWidget" name="loadingLabel">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>72</y>
-     <width>58</width>
-     <height>58</height>
+     <x>4</x>
+     <y>29</y>
+     <width>460</width>
+     <height>195</height>
     </rect>
    </property>
   </widget>
@@ -215,7 +215,7 @@ QLabel{background:transparent;}</string>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicGifLabelWidget</class>
+   <class>MusicGifLabelMaskWidget</class>
    <extends>QLabel</extends>
    <header>musicgiflabelwidget.h</header>
   </customwidget>

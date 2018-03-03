@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>389</width>
-    <height>264</height>
+    <height>284</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>4</x>
      <y>4</y>
      <width>381</width>
-     <height>256</height>
+     <height>276</height>
     </rect>
    </property>
    <property name="text">
@@ -67,7 +67,7 @@
      <x>4</x>
      <y>29</y>
      <width>381</width>
-     <height>231</height>
+     <height>251</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -167,8 +167,8 @@
     <widget class="QCheckBox" name="rememberPwd">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>137</y>
+       <x>50</x>
+       <y>165</y>
        <width>90</width>
        <height>15</height>
       </rect>
@@ -177,11 +177,11 @@
       <string>记住密码</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="automaticLogon">
+    <widget class="QCheckBox" name="automaticLogin">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>137</y>
+       <x>240</x>
+       <y>165</y>
        <width>90</width>
        <height>15</height>
       </rect>
@@ -193,9 +193,9 @@
     <widget class="QPushButton" name="loginButton">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>170</y>
-       <width>241</width>
+       <x>50</x>
+       <y>200</y>
+       <width>255</width>
        <height>30</height>
       </rect>
      </property>
@@ -203,92 +203,14 @@
       <string>登录</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="useTencentLogin">
+    <widget class="QComboBox" name="serverComboBox">
      <property name="geometry">
       <rect>
-       <x>284</x>
-       <y>180</y>
-       <width>16</width>
-       <height>16</height>
+       <x>70</x>
+       <y>120</y>
+       <width>200</width>
+       <height>30</height>
       </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/lb_qq)</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="useRenrenLogin">
-     <property name="geometry">
-      <rect>
-       <x>306</x>
-       <y>180</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/lb_renren)</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="useWechatLogin">
-     <property name="geometry">
-      <rect>
-       <x>328</x>
-       <y>180</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/lb_weixing)</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="useSinaLogin">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>180</y>
-       <width>16</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">border-image:url(:/usermanager/lb_xinlang)</string>
-     </property>
-     <property name="text">
-      <string/>
      </property>
     </widget>
    </widget>
@@ -759,6 +681,31 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>userComboBox</tabstop>
+  <tabstop>passwLineEdit</tabstop>
+  <tabstop>serverComboBox</tabstop>
+  <tabstop>rememberPwd</tabstop>
+  <tabstop>automaticLogin</tabstop>
+  <tabstop>loginButton</tabstop>
+  <tabstop>registerButton</tabstop>
+  <tabstop>forgotPwdButton</tabstop>
+  <tabstop>topTitleCloseButton</tabstop>
+  <tabstop>registerUserLine</tabstop>
+  <tabstop>registerMailLine</tabstop>
+  <tabstop>registerPwdLine</tabstop>
+  <tabstop>registerPwdCLine</tabstop>
+  <tabstop>agreementCheckBox</tabstop>
+  <tabstop>agreementButton</tabstop>
+  <tabstop>confirmButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>userLineEdit</tabstop>
+  <tabstop>mailLineEdit</tabstop>
+  <tabstop>pwdLineEdit</tabstop>
+  <tabstop>verificationCodeEdit</tabstop>
+  <tabstop>confirmButton_2</tabstop>
+  <tabstop>cancelButton_2</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

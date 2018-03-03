@@ -20,7 +20,7 @@ QString MusicWPLConfigManager::getClassName()
 void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
-    if( musics.isEmpty() || !writeConfig( path ) )
+    if(musics.isEmpty() || !writeConfig(path))
     {
         return;
     }
@@ -130,7 +130,7 @@ QString MusicXSPFConfigManager::getClassName()
 void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
-    if( musics.isEmpty() || !writeConfig( path ) )
+    if(musics.isEmpty() || !writeConfig(path))
     {
         return;
     }
@@ -247,7 +247,7 @@ QString MusicASXConfigManager::getClassName()
 void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
-    if( musics.isEmpty() || !writeConfig( path ) )
+    if(musics.isEmpty() || !writeConfig(path))
     {
         return;
     }
@@ -350,7 +350,7 @@ bool MusicKWLConfigManager::readConfig(const QString &name)
 {
     delete m_file;
     m_file = new QFile( name );
-    if( !m_file->open(QIODevice::ReadOnly | QIODevice::Text ) )
+    if(!m_file->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         return false;
     }
@@ -359,7 +359,7 @@ bool MusicKWLConfigManager::readConfig(const QString &name)
     data.insert(0, "<?xml version=\"1.0\" encoding=\"gb2312\"?>\r\n");
     m_file->close();
 
-    if( !m_file->open(QIODevice::WriteOnly | QIODevice::Text ) )
+    if(!m_file->open(QIODevice::WriteOnly | QIODevice::Text))
     {
         return false;
     }

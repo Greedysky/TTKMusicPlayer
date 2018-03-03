@@ -22,7 +22,7 @@ MusicArtistListFoundItemWidget::MusicArtistListFoundItemWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MColorStyle09);
     setFixedSize(WIDTH_LABEL_SIZE, HEIGHT_LABEL_SIZE);
 
-    connect(this, SIGNAL(clicked()), SLOT(currentArtistListClicked()));
+    connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }
 
 QString MusicArtistListFoundItemWidget::getClassName()
@@ -37,9 +37,9 @@ void MusicArtistListFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
     setText(MusicUtils::Widget::elidedText(font(), toolTip(), Qt::ElideRight, WIDTH_LABEL_SIZE));
 }
 
-void MusicArtistListFoundItemWidget::currentArtistListClicked()
+void MusicArtistListFoundItemWidget::currentItemClicked()
 {
-    emit currentArtistListClicked(m_itemData);
+    emit currentItemClicked(m_itemData);
 }
 
 
@@ -183,7 +183,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
     }
 
     MusicArtistListFoundItemWidget *label = new MusicArtistListFoundItemWidget(this);
-    connect(label, SIGNAL(currentArtistListClicked(MusicResultsItem)), SLOT(currentArtistListClicked(MusicResultsItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentArtistListClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;

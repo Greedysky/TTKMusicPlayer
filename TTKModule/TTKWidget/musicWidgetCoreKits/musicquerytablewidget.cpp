@@ -83,7 +83,7 @@ void MusicQueryItemTableWidget::clearAllItems()
 void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 {
     int row = currentRow();
-    if( row < 0 || (row >= rowCount() - 1))
+    if(row < 0 || (row >= rowCount() - 1))
     {
         return;
     }

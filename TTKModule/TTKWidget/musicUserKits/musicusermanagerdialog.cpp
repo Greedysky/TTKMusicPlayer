@@ -30,15 +30,15 @@ MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
 
     connect(m_ui->logoffButton, SIGNAL(clicked()), SLOT(musicUserLogoff()));
     connect(m_ui->userIcon, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
-    connect(m_ui->username, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
+    connect(m_ui->userName, SIGNAL(clicked()), SLOT(popupUserRecordWidget()));
 }
 
 MusicUserManagerDialog::~MusicUserManagerDialog()
 {
-    if(!m_currentUserUID.isEmpty())
+    if(!m_userUID.m_uid.isEmpty())
     {
-        m_userModel->updateUser(m_currentUserUID, QString(), QString(), m_ui->username->text(),
-                                QString::number(m_userModel->getUserLogTime(m_currentUserUID)
+        m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
+                                QString::number(m_userModel->getUserLogTime(m_userUID)
                                 .toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
     }
     delete m_ui;
@@ -49,10 +49,10 @@ QString MusicUserManagerDialog::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicUserManagerDialog::setUserUID(const QString &uid)
+void MusicUserManagerDialog::setUserUID(const MusicUserUIDItem &uid)
 {
-    m_currentUserUID = uid;
-    m_ui->username->setText(m_userModel->getUserName(uid));
+    m_userUID = uid;
+    m_ui->userName->setText(m_userModel->getUserName(uid));
     m_ui->userIcon->setPixmap(QPixmap(m_userModel->getUserIcon(uid)).scaled(m_ui->userIcon->size()));
     createUserTime();
     m_time.start();
@@ -65,7 +65,7 @@ void MusicUserManagerDialog::setUserModel(MusicUserModel *model)
 
 void MusicUserManagerDialog::createUserTime() const
 {
-    qlonglong time = m_userModel->getUserLogTime(m_currentUserUID).toLongLong();
+    qlonglong time = m_userModel->getUserLogTime(m_userUID).toLongLong();
     m_ui->totalTimeLabel->setText(QString::number(time));
 }
 
@@ -80,8 +80,8 @@ void MusicUserManagerDialog::createButtonPopMenu()
 
 void MusicUserManagerDialog::musicUserLogoff()
 {
-    m_userModel->updateUser(m_currentUserUID, QString(), QString(), m_ui->username->text(),
-                            QString::number(m_userModel->getUserLogTime(m_currentUserUID)
+    m_userModel->updateUser(m_userUID, QString(), QString(), m_ui->userName->text(),
+                            QString::number(m_userModel->getUserLogTime(m_userUID)
                             .toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
 
     MusicUserConfigManager xml;
@@ -95,19 +95,19 @@ void MusicUserManagerDialog::musicUserLogoff()
     int index = -1;
     for(int i=0; i<records.count(); ++i)
     {
-        if(records[i].m_userName == m_currentUserUID)
+        if(records[i].m_uid == m_userUID.m_uid)
         {
             index = i;
         }
     }
     if(index != -1)
     {
-        records[index].m_autoLogin = "0";  //auto login flag
+        records[index].m_autoFlag = false;  //auto login flag
     }
     xml.writeUserXMLConfig( records );
 
-    m_currentUserUID.clear();
-    emit userStateChanged(QString(), QString());
+    m_userUID.m_uid.clear();
+    emit userStateChanged(MusicUserUIDItem(), QString());
     close();
 }
 
@@ -130,15 +130,17 @@ void MusicUserManagerDialog::popupUserRecordWidget()
 #ifndef MUSIC_GREATER_NEW
     close();
 #endif
-    MusicUserRecordWidget record;
-    connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));
-    connect(&record, SIGNAL(userIconChanged(QString,QString)),
-                     SIGNAL(userStateChanged(QString,QString)));
-    record.setUserModel(m_userModel, m_currentUserUID);
-    record.exec();
+    if(m_userUID.m_uid <= 0)
+    {
+        MusicUserRecordWidget record;
+        connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));
+        connect(&record, SIGNAL(userIconChanged(MusicUserUIDItem,QString)), SIGNAL(userStateChanged(MusicUserUIDItem,QString)));
+        record.setUserModel(m_userModel, m_userUID);
+        record.exec();
+    }
 }
 
 void MusicUserManagerDialog::resetUserName(const QString &name)
 {
-    m_ui->username->setText(name);
+    m_ui->userName->setText(name);
 }

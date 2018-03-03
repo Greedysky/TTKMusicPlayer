@@ -50,9 +50,9 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT void setTransparent(QWidget *widget, int alpha);
         /*!
-         * Set Combobox text.
+         * Set ComboBox text.
          */
-        MUSIC_UTILS_EXPORT void setComboboxText(QComboBox *object, const QString &text);
+        MUSIC_UTILS_EXPORT void setComboBoxText(QComboBox *object, const QString &text);
         /*!
          * Set widget to round by ratioX and ratioY.
          */

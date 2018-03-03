@@ -19,11 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtSql/QSqlTableModel>
-#include <QtSql/QSqlQuery>
+#include <QSqlTableModel>
 
 #include "musicobject.h"
-#include "musicglobaldefine.h"
+#include "musicdatabaseobject.h"
 
 /*! @brief The class of the user data model.
  * @author Greedysky <greedysky@163.com>
@@ -42,83 +41,97 @@ public:
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
      * Insert user into databse by uid and pwd and mail.
      */
-    bool addUser(const QString &uid, const QString &pwd,
-                 const QString &mail);
+    bool addUser(const MusicUserUIDItem &uid, const QString &pwd,
+                 const QString &mail, bool pwdMask = false);
+    /*!
+     * Insert user into databse by user info record.
+     */
+    bool addUser(const MusicUserInfoRecord &info);
     /*!
      * Update user into databse by uid and pwd and mail and name and logintime.
      */
-    bool updateUser(const QString &uid, const QString &pwd,
+    bool updateUser(const MusicUserUIDItem &uid, const QString &pwd,
                     const QString &mail, const QString &name,
-                    const QString &time);
+                    const QString &time, bool pwdMask = false);
     /*!
      * Update user into databse by uid and name and sex and
      * birth and city and country nad sign.
      */
-    bool updateUser(const QString &uid, const QString &name,
+    bool updateUser(const MusicUserUIDItem &uid, const QString &name,
                     const QString &sex, const QString &birth,
                     const QString &city, const QString &country,
                     const QString &sign);
     /*!
+     * Update user into databse by user info record.
+     */
+    bool updateUser(const MusicUserInfoRecord &info);
+    /*!
      * Update user icon by uid and icon path.
      */
-    bool updateUserIcon(const QString &uid, const QString &icon);
+    bool updateUserIcon(const MusicUserUIDItem &uid, const QString &icon);
     /*!
      * Update user password by uid and new password.
      */
-    bool updateUserPwd(const QString &uid, const QString &pwd);
+    bool updateUserPwd(const MusicUserUIDItem &uid, const QString &pwd, bool pwdMask = false);
 
     /*!
      * Delete user by given uid.
      */
-    bool deleteUser(const QString &uid);
+    bool deleteUser(const MusicUserUIDItem &uid);
     /*!
      * Check password valid or invalid by given uid and password.
      */
-    bool passwordCheck(const QString &uid, const QString &pwd);
+    bool passwordCheck(const MusicUserUIDItem &uid, const QString &pwd, bool pwdMask = false);
     /*!
      * Check mail exsit or not by given uid and mail.
      */
-    bool mailCheck(const QString &uid, const QString &mail);
+    bool mailCheck(const MusicUserUIDItem &uid, const QString &mail);
+
+    /*!
+     * To encrypt user password by md5.
+     */
+    QString userPasswordEncryption(const QString &pwd) const;
 
     /*!
      * Get user logintime.
      */
-    inline QString getUserLogTime(const QString &uid) { return getRecordData(uid, "LOGINTIME");}
+    inline QString getUserLogTime(const MusicUserUIDItem &uid) { return getRecordData(uid, "LOGINTIME");}
     /*!
      * Get user name.
      */
-    inline QString getUserName(const QString &uid) { return getRecordData(uid, "USERNAME");}
+    inline QString getUserName(const MusicUserUIDItem &uid) { return getRecordData(uid, "USERNAME");}
     /*!
      * Get user sex.
      */
-    inline QString getUserSex(const QString &uid) { return getRecordData(uid, "SEX");}
+    inline QString getUserSex(const MusicUserUIDItem &uid) { return getRecordData(uid, "SEX");}
     /*!
      * Get user city.
      */
-    inline QString getUserCity(const QString &uid) { return getRecordData(uid, "CITY");}
+    inline QString getUserCity(const MusicUserUIDItem &uid) { return getRecordData(uid, "CITY");}
     /*!
      * Get user country.
      */
-    inline QString getUserCountry(const QString &uid) { return getRecordData(uid, "COUNTRY");}
+    inline QString getUserCountry(const MusicUserUIDItem &uid) { return getRecordData(uid, "COUNTRY");}
     /*!
      * Get user birthday.
      */
-    inline QString getUserBirthday(const QString &uid) { return getRecordData(uid, "BIRTHDAY");}
+    inline QString getUserBirthday(const MusicUserUIDItem &uid) { return getRecordData(uid, "BIRTHDAY");}
     /*!
      * Get user signature.
      */
-    inline QString getUserSignature(const QString &uid) { return getRecordData(uid, "SIGNATURE");}
+    inline QString getUserSignature(const MusicUserUIDItem &uid) { return getRecordData(uid, "SIGNATURE");}
     /*!
      * Get user password by md5 mut.
      */
-    inline QString getUserPWDMD5(const QString &uid) { return getRecordData(uid, "PASSWD");}
+    inline QString getUserPWDMD5(const MusicUserUIDItem &uid) { return getRecordData(uid, "PASSWD");}
     /*!
      * Get user icon.
      */
-    inline QString getUserIcon(const QString &uid)
+    inline QString getUserIcon(const MusicUserUIDItem &uid)
     {
         QString icon = getRecordData(uid, "ICON");
         return icon.isEmpty()  || !QFile::exists(icon) ? ":/image/lb_defaultArt" : icon;
@@ -139,21 +152,17 @@ public:
 
 protected:
     /*!
-     * To encrypt user password by md5.
-     */
-    QString userPasswordEncryption(const QString &pwd) const;
-    /*!
      * Get record data by uid and field.
      */
-    QString getRecordData(const QString &uid, const QString &field);
+    QString getRecordData(const MusicUserUIDItem &uid, const QString &field);
     /*!
      * Update record data by uid and field and data.
      */
-    bool updateRecordData(const QString &uid, const MusicObject::MStriantMap &data);
+    bool updateRecordData(const MusicUserUIDItem &uid, const MusicObject::MStriantMap &data);
     /*!
      * Set current database table by given uid.
      */
-    bool databaseSelectedFilter(const QString &uid);
+    bool databaseSelectedFilter(const MusicUserUIDItem &uid);
 
 };
 

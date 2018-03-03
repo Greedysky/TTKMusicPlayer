@@ -147,6 +147,7 @@ MusicDownloadWidget::MusicDownloadWidget(QWidget *parent)
     m_downloadTotal = 0;
     m_querySingleInfo = false;
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+
     m_queryType = MusicDownLoadQueryThreadAbstract::MusicQuery;
     m_ui->loadingLabel->setType(MusicGifLabelWidget::Gif_Cicle_Blue);
 
@@ -256,8 +257,8 @@ MusicObject::MusicSongInformation MusicDownloadWidget::getMatchMusicSongInformat
         MusicObject::MusicSongInformation musicSongInfo;
         foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
-            if( var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
-                var.m_songName.contains(songName, Qt::CaseInsensitive) )
+            if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
+               var.m_songName.contains(songName, Qt::CaseInsensitive))
             {
                 musicSongInfo = var;
                 break;
@@ -371,10 +372,7 @@ void MusicDownloadWidget::queryAllFinishedMovie(const MusicObject::MusicSongAttr
 
 void MusicDownloadWidget::resizeWindow()
 {
-    if(m_ui->loadingLabel->isRunning())
-    {
-        m_ui->loadingLabel->run(false);
-    }
+    m_ui->loadingLabel->run(false);
 
     int delta = m_ui->viewArea->rowCount();
     delta = ((delta == 0) ? 0 : (delta - 1)*ROW_HEIGHT) - 2*ROW_HEIGHT;

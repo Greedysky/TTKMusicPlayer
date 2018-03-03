@@ -15,9 +15,9 @@ QString MusicWSTextDownLoadThread::getClassName()
 
 void MusicWSTextDownLoadThread::startToDownload()
 {
-    if( m_file && (!m_file->exists() || m_file->size() < 4) )
+    if(m_file && (!m_file->exists() || m_file->size() < 4))
     {
-        if( m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text) )
+        if(m_file->open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
         {
             QTextStream outstream(m_file);
             outstream.setCodec("utf-8");

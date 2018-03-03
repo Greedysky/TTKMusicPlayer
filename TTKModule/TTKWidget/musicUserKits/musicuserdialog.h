@@ -19,11 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMouseEvent>
-#include "musicabstractmovedialog.h"
+#include "musicdatabaseobject.h"
 #include "musicuserconfigmanager.h"
+#include "musicabstractmovedialog.h"
 
 class MusicUserModel;
+class MusicAuthenticationThread;
 
 namespace Ui {
 class MusicUserDialog;
@@ -50,7 +51,7 @@ public:
     /*!
      * Check current user to login auto automatic.
      */
-    void checkToAutoLogin(QString &name, QString &icon);
+    bool checkToAutoLogin();
     /*!
      * Set user model.
      */
@@ -60,7 +61,7 @@ Q_SIGNALS:
     /*!
      * User login success emit.
      */
-    void userLoginSuccess(const QString &uid, const QString &icon);
+    void userLoginSuccess(const MusicUserUIDItem &uid, const QString &icon);
 
 public Q_SLOTS:
     /*!
@@ -94,15 +95,23 @@ public Q_SLOTS:
     /*!
      * Selected new user to login.
      */
-    void userComboBoxChanged(const QString &name);
+    void userComboBoxChanged(const QString &uid);
     /*!
      * Input a new user to login.
      */
-    void userEditTextChanged(const QString &name);
+    void userEditTextChanged(const QString &uid);
     /*!
-     * Other login way, but now there is no supported.
+     * Server type changed.
      */
-    void buttonClicked(int index);
+    void userServerComboBoxChanged(int index);
+    /*!
+     * Network login changed.
+     */
+    void networkLoginChanged();
+    /*!
+     * Send recieved icon data from net.
+     */
+    void downLoadFinished(const QByteArray &data);
     /*!
      * Override exec function.
      */
@@ -126,13 +135,21 @@ protected:
      */
     void clearOriginData();
     /*!
+     * Select local login mode.
+     */
+    void localLoginMode();
+    /*!
+     * Select network login mode.
+     */
+    void networkLoginMode();
+    /*!
      * Read user setting to config file.
      */
     void readFromUserConfig();
     /*!
      * To find current username in the record list.
      */
-    int findUserNameIndex(const QString &name);
+    int findUserNameIndex(const MusicUserUIDItem &uid);
     /*!
      * Read user info from setting.
      */
@@ -153,7 +170,8 @@ protected:
     Ui::MusicUserDialog *m_ui;
     MusicUserModel *m_userModel;
     MusicUserRecords m_records;
-    QString m_userName;
+    MusicUserUIDItem m_userUID;
+    MusicAuthenticationThread *m_loginThread;
 
 };
 

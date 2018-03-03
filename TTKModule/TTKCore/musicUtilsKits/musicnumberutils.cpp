@@ -6,19 +6,19 @@
 
 QString MusicUtils::Number::size2Number(qint64 size)
 {
-    if( size < MH_KB2B)
+    if(size < MH_KB2B)
     {
         return QString::number(size*1.0, 'f', 2);
     }
-    else if( MH_KB2B <= size && size < MH_MB2B)
+    else if(MH_KB2B <= size && size < MH_MB2B)
     {
         return QString::number(size*1.0/MH_KB2B, 'f', 2);
     }
-    else if( MH_MB2B <= size && size < MH_GB2B)
+    else if(MH_MB2B <= size && size < MH_GB2B)
     {
         return QString::number(size*1.0/MH_MB2B, 'f', 2);
     }
-    else if( MH_GB2B <= size && size < MH_TB2B)
+    else if(MH_GB2B <= size && size < MH_TB2B)
     {
         return QString::number(size*1.0/MH_GB2B, 'f', 2);
     }
@@ -46,19 +46,19 @@ QString MusicUtils::Number::size2Label(qint64 size)
     }
 
     QString label = size2Number(size);
-    if( size < MH_KB2B)
+    if(size < MH_KB2B)
     {
         return QString("%1B").arg(label);
     }
-    else if( MH_KB2B <= size && size < MH_MB2B)
+    else if(MH_KB2B <= size && size < MH_MB2B)
     {
         return QString("%1K").arg(label);
     }
-    else if( MH_MB2B <= size && size < MH_GB2B)
+    else if(MH_MB2B <= size && size < MH_GB2B)
     {
         return QString("%1M").arg(label);
     }
-    else if( MH_GB2B <= size && size < MH_TB2B)
+    else if(MH_GB2B <= size && size < MH_TB2B)
     {
         return QString("%1G").arg(label);
     }
@@ -95,19 +95,19 @@ qreal MusicUtils::Number::sizeByte2TByte(qint64 size)
 
 QString MusicUtils::Number::speed2LabelFromLabel(qint64 size, const QString &label)
 {
-    if( size < MH_KB2B)
+    if(size < MH_KB2B)
     {
         return QString("%1B/s").arg(label);
     }
-    else if( MH_KB2B <= size && size < MH_MB2B)
+    else if(MH_KB2B <= size && size < MH_MB2B)
     {
         return QString("%1K/s").arg(label);
     }
-    else if( MH_MB2B <= size && size < MH_GB2B)
+    else if(MH_MB2B <= size && size < MH_GB2B)
     {
         return QString("%1M/s").arg(label);
     }
-    else if( MH_GB2B <= size && size < MH_TB2B)
+    else if(MH_GB2B <= size && size < MH_TB2B)
     {
         return QString("%1G/s").arg(label);
     }

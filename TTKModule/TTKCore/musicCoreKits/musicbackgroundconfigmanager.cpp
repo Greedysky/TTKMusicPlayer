@@ -14,7 +14,7 @@ QString MusicSkinConfigManager::getClassName()
 void MusicSkinConfigManager::writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path)
 {
     //Open wirte file
-    if( !writeConfig( path ) )
+    if(!writeConfig( path ))
     {
         return;
     }

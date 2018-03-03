@@ -69,6 +69,10 @@ public Q_SLOTS:
      * Change current lrc linear color.
      */
     void changeCurrentLrcColor();
+    /*!
+     * Update background pixmap.
+     */
+    void updateBackground(const QPixmap &pix);
 
 private Q_SLOTS:
     /*!
@@ -89,6 +93,7 @@ protected:
     int m_animationFreshTime;
     MusicLayoutAnimationWidget *m_layoutWidget;
     MusicDesktopWallpaperThread *m_wallThread;
+    QLabel *m_background;
 
 };
 

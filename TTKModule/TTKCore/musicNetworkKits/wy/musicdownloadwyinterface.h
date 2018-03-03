@@ -72,6 +72,9 @@ const QString WY_RCM_N_URL           = "VklDaWtHcm5waU1raUxyRUNKMjR3Mk4zRmpMSzRh
 const QString WY_SUGGEST_NDT_URL     = "ajU1Wm14WjV3KzhBeTdpSlNmVE5lUT09";
 const QString WY_SUGGEST_N_URL       = "alpUZU5qWnJJc2NHTDdiN0xDTm5NZnpxN2s0c21BTHU2eUFOcTNiOVFSeHE1dms1UXFhQWZHVGpjY0l4OVhGL0RoeWYvUT09";
 ///////////////////////////////////////////////////////////////////////////
+const QString WY_AUT_NDT_URL         = "YzNwMndvcTdqSFBoeDJhT3A5TE5pUDJINGIyaFhMYTh5VXltVWdNZWRIZ1BlcTFkVS9DUmMveFZDUnlwakNHUnUzOHBVaU03a3BiREt4VXc=";
+const QString WY_AUT_N_URL           = "VWJSRUlWTDlpMEIxRnArU0o5Q21tS2hsbGp5RzBWdWliczlmdElZbG9HcEF6eVRDb2t5RWYxL2N2b1l3QmYyOA==";
+///////////////////////////////////////////////////////////////////////////
 
 
 class QNetworkRequest;

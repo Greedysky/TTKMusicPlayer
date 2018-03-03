@@ -30,7 +30,7 @@ MusicPlaylistFoundItemWidget::MusicPlaylistFoundItemWidget(QWidget *parent)
     m_playButton->setGeometry(110, 110, 30, 30);
     m_playButton->setCursor(Qt::PointingHandCursor);
     m_playButton->setStyleSheet(MusicUIObject::MKGTinyBtnPlaylist);
-    connect(m_playButton, SIGNAL(clicked()), SLOT(currentPlayListClicked()));
+    connect(m_playButton, SIGNAL(clicked()), SLOT(currentItemClicked()));
 
 #ifdef Q_OS_UNIX
     m_topListenButton->setFocusPolicy(Qt::NoFocus);
@@ -114,9 +114,9 @@ void MusicPlaylistFoundItemWidget::downLoadFinished(const QByteArray &data)
     m_playButton->raise();
 }
 
-void MusicPlaylistFoundItemWidget::currentPlayListClicked()
+void MusicPlaylistFoundItemWidget::currentItemClicked()
 {
-    emit currentPlayListClicked(m_itemData);
+    emit currentItemClicked(m_itemData);
 }
 
 
@@ -254,7 +254,7 @@ void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
     }
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
-    connect(label, SIGNAL(currentPlayListClicked(MusicResultsItem)), SLOT(currentPlayListClicked(MusicResultsItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentPlayListClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;

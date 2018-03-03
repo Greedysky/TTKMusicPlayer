@@ -6,10 +6,10 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
-#include "musicdatabaseobject.h"
 #include "musicotherdefine.h"
 
 #include <QTimer>
+#include <QSqlQuery>
 
 MusicUserWindow::MusicUserWindow(QWidget *parent)
    : QStackedWidget(parent),
@@ -36,8 +36,7 @@ MusicUserWindow::MusicUserWindow(QWidget *parent)
     connect(m_ui->userNameU, SIGNAL(clicked()), SLOT(musicUserLogin()));
     connect(m_ui->userIconL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
     connect(m_ui->userNameL, SIGNAL(clicked()), m_userManager, SLOT(exec()));
-    connect(m_userManager, SIGNAL(userStateChanged(QString,QString)),
-                           SLOT(userStateChanged(QString,QString)));
+    connect(m_userManager, SIGNAL(userStateChanged(MusicUserUIDItem,QString)), SLOT(userStateChanged(MusicUserUIDItem,QString)));
 
     QTimer::singleShot(MT_MS, this, SLOT(checkToAutoLogin()));
 }
@@ -66,7 +65,7 @@ bool MusicUserWindow::disConnectDatabase()
     {
         QSqlDatabase data = QSqlDatabase::database("user-data");
         connectionName = data.connectionName();
-        if( data.isValid() )
+        if(data.isValid())
         {
             data.close();
         }
@@ -90,28 +89,28 @@ bool MusicUserWindow::connectDatabase()
         }
         else
         {
-            data = QSqlDatabase::addDatabase(SQLITE_DATABASE, "user-data");
+            data = QSqlDatabase::addDatabase(DB_SQLITE_DATABASE, "user-data");
         }
         data.setDatabaseName(DARABASEPATH_FULL);
-        if( !data.isDriverAvailable(SQLITE_DATABASE) )
+        if(!data.isDriverAvailable(DB_SQLITE_DATABASE))
         {
             throw QString("The driver name is not available!");
         }
-        if( !data.isValid() )
+        if(!data.isValid())
         {
             throw QString("The database has not a valid driver!");
         }
-        if (!data.isOpen() && !data.open() )
+        if(!data.isOpen() && !data.open())
         {
             throw QString("Can not open database connection!");
         }
         if(!data.tables().contains("MusicUser"))
         {
             QSqlQuery query(data);
-            QString musicUserSql = QString("create table MusicUser (USERID vchar(%1) PRIMARY KEY,"
-                    "PASSWD vchar(%2),EMAIL vchar(%3),USERNAME vchar(%4),LOGINTIME vchar(%5),"
-                    "SEX vchar(%6),ICON TEXT,BIRTHDAY Date,CITY TEXT,COUNTRY TEXT,SIGNATURE TEXT)")
-                    .arg(USERID).arg(PASSWD).arg(EMAIL).arg(USERNAME).arg(LOGINTIME).arg(SEX);
+            QString musicUserSql = QString("create table MusicUser (USERID vchar(%1),SERVER vchar(%2),"
+                    "PASSWD vchar(%3),EMAIL vchar(%4),USERNAME vchar(%5),LOGINTIME vchar(%6),"
+                    "SEX vchar(%7),ICON TEXT,BIRTHDAY Date,CITY TEXT,COUNTRY TEXT,SIGNATURE TEXT)")
+                    .arg(DB_USERID).arg(DB_SERVER).arg(DB_PASSWD).arg(DB_EMAIL).arg(DB_USERNAME).arg(DB_LOGINTIME).arg(DB_SEX);
             query.exec(musicUserSql);
         }
     }
@@ -125,13 +124,13 @@ bool MusicUserWindow::connectDatabase()
     return true;
 }
 
-void MusicUserWindow::userStateChanged(const QString &uid, const QString &icon)
+void MusicUserWindow::userStateChanged(const MusicUserUIDItem &uid, const QString &icon)
 {
-    if(uid.isEmpty())
+    if(uid.m_uid.isEmpty())
     {
         m_ui->userIconU->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_player_logo"),
-                                                                   QPixmap(":/usermanager/lb_mask"),
-                                                                   m_ui->userIconU->size()));
+                                                                     QPixmap(":/usermanager/lb_mask"),
+                                                                     m_ui->userIconU->size()));
         m_ui->userNameU->setText(tr("L|R"));
         setCurrentIndex(USER_WINDOW_INDEX_0);
     }
@@ -150,8 +149,7 @@ void MusicUserWindow::musicUserLogin()
 {
     MusicUserDialog dialog;
     dialog.setUserModel(m_userModel);
-    connect(&dialog, SIGNAL(userLoginSuccess(QString,QString)),
-                     SLOT(userStateChanged(QString,QString)));
+    connect(&dialog, SIGNAL(userLoginSuccess(MusicUserUIDItem,QString)), SLOT(userStateChanged(MusicUserUIDItem,QString)));
     dialog.exec();
 }
 
@@ -167,9 +165,14 @@ void MusicUserWindow::musicUserContextLogin()
 
 void MusicUserWindow::checkToAutoLogin()
 {
+    userStateChanged(MusicUserUIDItem(), QString());
+
     MusicUserDialog dialog;
+    connect(&dialog, SIGNAL(userLoginSuccess(MusicUserUIDItem,QString)), SLOT(userStateChanged(MusicUserUIDItem,QString)));
+
     dialog.setUserModel(m_userModel);
-    QString name, icon;
-    dialog.checkToAutoLogin(name, icon);
-    userStateChanged(name, icon);
+    if(dialog.checkToAutoLogin())
+    {
+        dialog.exec();
+    }
 }

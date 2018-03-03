@@ -80,6 +80,7 @@ INCLUDEPATH += \
     ../TTKModule/TTKCore/musicUtilsKits \
     ../TTKModule/TTKCore/musicLrcKits \
     ../TTKModule/TTKCore/musicNetworkKits \
+    ../TTKModule/TTKCore/musicUserKits \
     ../TTKModule/TTKWidget/musicWidgetKits \
     ../TTKThirdParty/TTKExtras \
     ../TTKThirdParty
@@ -98,6 +99,7 @@ HEADERS += \
     ../TTKModule/TTKCore/musicCoreKits/musicbackgroundmanager.h \
     ../TTKModule/TTKCore/musicCoreKits/musicsongtag.h \
     ../TTKModule/TTKCore/musicCoreKits/musicsemaphoreloop.h \
+    ../TTKModule/TTKCore/musicUserKits/musicdatabaseobject.h \
     ../TTKModule/TTKWidget/musicWidgetKits/musicdownloadstatusobject.h \
     MobileCore/ttkmusicutils.h \
     MobileCore/ttkmusicconfigmanager.h \

@@ -510,12 +510,12 @@
 <context>
     <name>MusicAudioRecorderCore</name>
     <message>
-        <location filename="../TTKModule/TTKCore/musicToolsSetsKits/musicaudiorecordercore.cpp" line="188"/>
+        <location filename="../TTKModule/TTKCore/musicToolsSetsKits/musicaudiorecordercore.cpp" line="189"/>
         <source>Audio Input Open Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicToolsSetsKits/musicaudiorecordercore.cpp" line="206"/>
+        <location filename="../TTKModule/TTKCore/musicToolsSetsKits/musicaudiorecordercore.cpp" line="207"/>
         <source>Audio Output Open Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1090,7 +1090,7 @@
     </message>
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="55"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="310"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="261"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1115,107 +1115,77 @@
         <translation>Background Image As Wallpaper</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="133"/>
         <source>选择壁纸路径：</source>
         <translation>Path Choice：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="166"/>
-        <source>选择图片位置：</source>
-        <translation>Image Postion：</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="179"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="156"/>
         <source>设置时间间隔：</source>
         <translation>Time Interval：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="232"/>
-        <source>开机随系统启动</source>
-        <translation>Start With The System Boot</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="245"/>
-        <source>关闭软件时还原初始壁纸</source>
-        <translation>Change To Original Wallpaper When Closed</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="258"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="209"/>
         <source>壁纸更换方式：</source>
         <translation>Replacement：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="271"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="222"/>
         <source>壁纸切换效果：</source>
         <translation>Effectment：</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="284"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="235"/>
         <source>确定</source>
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="297"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="248"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="323"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicToolsetsKits/musicdesktopwallpaperwidget.ui" line="274"/>
         <source>停止</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="26"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="57"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="121"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="153"/>
         <source>none</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
-        <source>center</source>
-        <translation>Center</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
-        <source>tile</source>
-        <translation>Tile</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="122"/>
-        <source>drawing</source>
-        <translation>Drawing</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="123"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="154"/>
         <source>order</source>
         <translation>Order</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="123"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="154"/>
         <source>random</source>
         <translation>Random</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="159"/>
         <source>%1H</source>
         <translation>%1 Hour</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="131"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="163"/>
         <source>%1M</source>
         <translation>%1 Min</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="132"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="164"/>
         <source>%1S</source>
         <translation>%1 Sec</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="185"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicdesktopwallpaperwidget.cpp" line="208"/>
         <source>url is now empty!</source>
         <translation>The Input Url Is Empty!</translation>
     </message>
@@ -1530,46 +1500,46 @@
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="282"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="334"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="283"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="335"/>
         <source>No Resource found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="297"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="349"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="298"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="350"/>
         <source>ST</source>
         <translation>流畅品质</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="305"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="306"/>
         <source>HQ</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="309"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="361"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="310"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="362"/>
         <source>SQ</source>
         <translation>超高品质</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="434"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="432"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="357"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="358"/>
         <source>HD</source>
         <translation>普高品质</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="301"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="353"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="302"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="354"/>
         <source>SD</source>
         <translation>标准品质</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="313"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicdownloadwidget.cpp" line="314"/>
         <source>CD</source>
         <translation>无损品质</translation>
     </message>
@@ -2844,7 +2814,7 @@
 <context>
     <name>MusicLrcContainerForWallpaper</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforwallpaper.cpp" line="105"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrccontainerforwallpaper.cpp" line="99"/>
         <source>Init Wallpaper Module</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3406,7 +3376,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MusicLrcSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcsearchtablewidget.cpp" line="51"/>
+        <location filename="../TTKModule/TTKWidget/musicLrcKits/musiclrcsearchtablewidget.cpp" line="52"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5690,7 +5660,7 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
     <message>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="146"/>
         <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="183"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="400"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="401"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5698,59 +5668,59 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicSongSearchOnlineWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="593"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="594"/>
         <source>&amp;nbsp;find no result</source>
         <translation>&amp;nbsp;Find No Result</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="644"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="645"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="650"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="651"/>
         <source>Artist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="656"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="657"/>
         <source>Album</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="662"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="663"/>
         <source>Operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="686"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="687"/>
         <source>&amp;nbsp;find &lt;font color=#158FE1&gt; %1 &lt;/font&gt; result</source>
         <translation>&amp;nbsp;Find &lt;font color=#158FE1&gt; %1 &lt;/font&gt; Results</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="529"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="570"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="597"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="530"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="571"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="598"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="605"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="606"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="611"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="612"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="519"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="520"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="570"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicsongsearchonlinewidget.cpp" line="571"/>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
     </message>
@@ -7396,145 +7366,157 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>Login</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="306"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="228"/>
         <source>注册帐号：</source>
         <translation>UserName:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="319"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="241"/>
         <source>邮箱地址：</source>
         <translation>Mail Addr:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="355"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="277"/>
         <source>4-20个字母、数字和符号组成</source>
         <translation>4-20 Letters Numbers And Char</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="368"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="290"/>
         <source>请填写正确的邮箱地址</source>
         <translation>Please Fill Corrent Email Addr</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="381"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="394"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="303"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="316"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="586"/>
         <source>6-16个字母、数字和符号组成</source>
         <translation>6-16 Letters Numbers And Char</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="439"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="361"/>
         <source>设置密码：</source>
         <translation>PassWord:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="452"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="374"/>
         <source>确认密码：</source>
         <translation>PassWord:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="465"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="729"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="387"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="651"/>
         <source>确定</source>
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="478"/>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="742"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="400"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="664"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="491"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="413"/>
         <source>我已阅读并接受</source>
         <translation>I Have Accept</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="504"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="426"/>
         <source>网站协议</source>
         <translation>Agreement</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="583"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="505"/>
         <source>原帐号：</source>
         <translation>O-User:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="596"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="518"/>
         <source>原邮箱：</source>
         <translation>O-Mail:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="635"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="557"/>
         <source>新密码：</source>
         <translation>NewPWD:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="716"/>
+        <location filename="../TTKModule/TTKWidget/musicUiKits/musicUserKits/musicuserdialog.ui" line="638"/>
         <source>输入验证码：</source>
         <translation>Verification:</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="25"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="29"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="102"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="156"/>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="173"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="151"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="169"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="256"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="444"/>
         <source>You entered is incorrect</source>
         <translation>Incorrect!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="94"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="245"/>
+        <source>Login error</source>
+        <translation>Login Error！</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="264"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="435"/>
         <source>You passwd is incorrect or user is not exist</source>
         <translation>PWD Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="127"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="122"/>
         <source>The two passwords do not match</source>
         <translation>Two PWDS Don&apos;t Match！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="134"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="39"/>
+        <source>localDB</source>
+        <translation>Local DB Mode</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="40"/>
+        <source>wangyiDB</source>
+        <translation>WangYi DB Mode</translation>
+    </message>
+    <message>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="129"/>
         <source>The agreement does not tick</source>
         <translation>Agreement Doesn&apos;t Ticked！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="143"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="137"/>
         <source>The username is existed</source>
         <translation>User Existed!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="148"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="143"/>
         <source>The register successfully</source>
         <translation>Register Successfully！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="180"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="176"/>
         <source>You mail is incorrect or user is not exist</source>
         <translation>Mail Incorrect Or User Isn&apos;t Exist！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="187"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="183"/>
         <source>You passwd is incorrect</source>
         <translation>You PWD Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="194"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="190"/>
         <source>You verificationCode is incorrect</source>
         <translation>You VerificationCode Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="201"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="197"/>
         <source>Change password successfully</source>
         <translation>Change PWD Successfully!</translation>
-    </message>
-    <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserdialog.cpp" line="238"/>
-        <source>This way of loading is now not supported</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7781,32 +7763,32 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished">Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="214"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="219"/>
         <source>You verificationCode is incorrect</source>
         <translation type="unfinished">You VerificationCode Is Incorrect！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="221"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="226"/>
         <source>The origin password does not match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="228"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="233"/>
         <source>The two passwords do not match</source>
         <translation type="unfinished">Two PWDS Don&apos;t Match！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="235"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="240"/>
         <source>The modity password failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="244"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="249"/>
         <source>The modity password successfully, please relogin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="250"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserrecordwidget.cpp" line="255"/>
         <source>You entered is incorrect</source>
         <translation type="unfinished">Incorrect!</translation>
     </message>
@@ -7819,7 +7801,7 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="135"/>
+        <location filename="../TTKModule/TTKWidget/musicUserKits/musicuserwindow.cpp" line="134"/>
         <source>L|R</source>
         <translation>Log|Reg</translation>
     </message>
@@ -8096,22 +8078,22 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>Gain Apply</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="238"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="237"/>
         <source>please select one item</source>
         <translation>Please Select One Item</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="262"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="261"/>
         <source>Music gain list is empty!</source>
         <translation>Music Gain List Is Empty!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="288"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="287"/>
         <source>Music gain finished!</source>
         <translation>Music Gain Finished!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="355"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicvolumegainwidget.cpp" line="354"/>
         <source>Lack of plugin file!</source>
         <translation>Lack Of Plugin File!</translation>
     </message>

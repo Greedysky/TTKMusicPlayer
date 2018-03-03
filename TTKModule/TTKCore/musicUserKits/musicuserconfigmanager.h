@@ -26,10 +26,18 @@
  */
 typedef struct MUSIC_USER_EXPORT MusicUserRecord
 {
-    QString m_userName;
+    QString m_uid;
     QString m_password;
-    QString m_rememberPWD;
-    QString m_autoLogin;
+    int m_server;
+    bool m_rememberFlag;
+    bool m_autoFlag;
+
+    MusicUserRecord()
+    {
+        m_server = 0;
+        m_rememberFlag = false;
+        m_autoFlag = false;
+    }
 }MusicUserRecord;
 MUSIC_DECLARE_LISTS(MusicUserRecord)
 

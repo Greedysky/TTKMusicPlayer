@@ -2,6 +2,7 @@
 
 #include <QTimer>
 #include <QPainter>
+#include <QBoxLayout>
 
 #define GIF_BALLON_WHITE        35
 #define GIF_CICLE_BLUE          58
@@ -38,6 +39,11 @@ MusicGifLabelWidget::MusicGifLabelWidget(Type type, QWidget *parent)
 MusicGifLabelWidget::~MusicGifLabelWidget()
 {
     delete m_timer;
+}
+
+QString MusicGifLabelWidget::getClassName()
+{
+    return staticMetaObject.className();
 }
 
 void MusicGifLabelWidget::setType(Type type)
@@ -248,4 +254,65 @@ bool MusicGifLabelWidget::infinitedModeCheck()
     {
         return false;
     }
+}
+
+
+
+MusicGifLabelMaskWidget::MusicGifLabelMaskWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+    setLayout(layout);
+
+    m_gifLabel = new MusicGifLabelWidget(this);
+    layout->addWidget(m_gifLabel, 0, Qt::AlignCenter);
+}
+
+MusicGifLabelMaskWidget::~MusicGifLabelMaskWidget()
+{
+    delete m_gifLabel;
+}
+
+QString MusicGifLabelMaskWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Type type)
+{
+    m_gifLabel->setType(type);
+}
+
+MusicGifLabelWidget::Type MusicGifLabelMaskWidget::getType() const
+{
+    return m_gifLabel->getType();
+}
+
+void MusicGifLabelMaskWidget::run(bool run)
+{
+    if(run)
+    {
+        m_gifLabel->run(true);
+        raise();
+        show();
+    }
+    else
+    {
+        if(m_gifLabel->isRunning())
+        {
+            m_gifLabel->run(false);
+            lower();
+            hide();
+        }
+    }
+}
+
+void MusicGifLabelMaskWidget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event);
+
+    QPainter painter(this);
+    painter.fillRect(rect(), QColor(50, 50, 50, 150));
 }

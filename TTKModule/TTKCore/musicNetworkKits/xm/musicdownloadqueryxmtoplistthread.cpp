@@ -22,7 +22,7 @@ void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QStr
     }
     else
     {
-        startToSearch(toplist.isEmpty() ? "xiami_daxia" : toplist);
+        startToSearch(toplist.isEmpty() ? "103" : toplist);
     }
 }
 
@@ -77,15 +77,16 @@ void MusicDownLoadQueryXMToplistThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
+                value = value["billboard"].toMap();
                 MusicResultsItem info;
-                info.m_name = value["title"].toString();
+                info.m_name = value["name"].toString();
                 info.m_coverUrl = value["logo"].toString();
                 info.m_playCount = "-";
-                info.m_description = value["cont"].toString();
+                info.m_description = value["description"].toString();
                 info.m_updateTime = value["time"].toString();
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["songs"].toList();
+                QVariantList datas = value["items"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

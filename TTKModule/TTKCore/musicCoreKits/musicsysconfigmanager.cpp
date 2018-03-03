@@ -124,7 +124,7 @@ void MusicSysConfigManager::writeXMLConfig()
     ///////////////////////////////////////////////////////////////////////////
 
     //Open wirte file
-    if( !writeConfig(COFIGPATH_FULL) )
+    if(!writeConfig(COFIGPATH_FULL))
     {
         return;
     }

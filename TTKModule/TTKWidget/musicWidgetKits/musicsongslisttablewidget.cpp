@@ -618,7 +618,7 @@ void MusicSongsListTableWidget::mousePressEvent(QMouseEvent *event)
     MusicSongsListAbstractTableWidget::mousePressEvent(event);
     closeRenameItem();
 
-    if( event->button() == Qt::LeftButton )
+    if(event->button() == Qt::LeftButton)
     {
         m_leftButtonPressed = true;
         m_dragStartIndex = currentRow();

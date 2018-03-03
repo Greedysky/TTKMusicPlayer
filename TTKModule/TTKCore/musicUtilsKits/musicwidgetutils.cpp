@@ -44,7 +44,7 @@ void MusicUtils::Widget::setTransparent(QWidget *widget, int alpha)
     widget->setPalette(pal);
 }
 
-void MusicUtils::Widget::setComboboxText(QComboBox *object, const QString &text)
+void MusicUtils::Widget::setComboBoxText(QComboBox *object, const QString &text)
 {
     if(object->isEditable())
     {

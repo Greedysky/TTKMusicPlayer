@@ -47,15 +47,15 @@ public:
     static QString getClassName();
 
     /*!
-     * Set music playlist item.
+     * Set music results item.
      */
     void setMusicResultsItem(const MusicResultsItem &item);
 
 Q_SIGNALS:
     /*!
-     * Current play list clicked.
+     * Current item clicked.
      */
-    void currentPlayListClicked(const MusicResultsItem &item);
+    void currentItemClicked(const MusicResultsItem &item);
 
 public Q_SLOTS:
     /*!
@@ -63,9 +63,9 @@ public Q_SLOTS:
      */
     void downLoadFinished(const QByteArray &data);
     /*!
-     * Current play list clicked.
+     * Current item clicked.
      */
-    void currentPlayListClicked();
+    void currentItemClicked();
 
 protected:
     MusicResultsItem m_itemData;

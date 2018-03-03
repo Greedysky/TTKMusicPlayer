@@ -55,8 +55,8 @@ QString MusicSongSearchOnlineTableWidget::getClassName()
 
 void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -93,8 +93,8 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
 
 void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &text)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         clearAllItems();
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
@@ -389,11 +389,12 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
 
 void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
 {
-    if(!M_NETWORK_PTR->isOnline())
-    {   //no network connection
+    if(!M_NETWORK_PTR->isOnline())   //no network connection
+    {
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
+
     if(row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;

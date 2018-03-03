@@ -62,17 +62,17 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
     HMODULE hDll = nullptr;
     WCHAR szDbgHelpPath[_MAX_PATH];
 
-    if (GetModuleFileNameW( nullptr, szDbgHelpPath, _MAX_PATH))
+    if(GetModuleFileNameW( nullptr, szDbgHelpPath, _MAX_PATH))
     {
         WCHAR *pSlash = wcsrchr( szDbgHelpPath, L'\\');
-        if (pSlash)
+        if(pSlash)
         {
             wcscpy( pSlash+1, L"DBGHELP.DLL" );
             hDll = ::LoadLibraryW( szDbgHelpPath );
         }
     }
 
-    if (hDll == nullptr)
+    if(hDll == nullptr)
     {
         // load any version we can
         hDll = ::LoadLibraryW( L"DBGHELP.DLL");
@@ -80,10 +80,10 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
     LPCWSTR szResult = nullptr;
 
-    if (hDll)
+    if(hDll)
     {
         MINIDUMPWRITEDUMP pDump = (MINIDUMPWRITEDUMP)::GetProcAddress( hDll, "MiniDumpWriteDump" );
-        if (pDump)
+        if(pDump)
         {
             WCHAR szDumpPath[_MAX_PATH];
             WCHAR szDumpRootPath[_MAX_PATH];
@@ -93,16 +93,16 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
             if(m_szDumpFilePath == nullptr)
             {
-                if (GetModuleFileNameW(nullptr, szDbgHelpPath, _MAX_PATH))
+                if(GetModuleFileNameW(nullptr, szDbgHelpPath, _MAX_PATH))
                 {
                     WCHAR *pSlash = wcsrchr(szDbgHelpPath, L'\\');
-                    if (pSlash)
+                    if(pSlash)
                     {
                         wcscpy(pSlash + 1, L"");
                         wcscpy(szDumpPath, szDbgHelpPath);
                     }
                 }
-                else if (!GetTempPathW( _MAX_PATH, szDumpPath ))
+                else if(!GetTempPathW( _MAX_PATH, szDumpPath ))
                     wcscpy( szDumpPath, L"c:\\temp\\" );
             }
             else
@@ -114,7 +114,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
             //PrintDebug(L"[MiniDumper] Mini Dump file:[%s]",szDumpPath);
 
             // ask the user if they want to save a dump file
-            //if (::MessageBox( nullptr, _T("Something bad happened in your program, would you like to save a diagnostic file?"), m_szAppName, MB_YESNO )==IDYES)
+            //if(::MessageBox( nullptr, _T("Something bad happened in your program, would you like to save a diagnostic file?"), m_szAppName, MB_YESNO )==IDYES)
             {
                 HANDLE hFile = INVALID_HANDLE_VALUE;
                 int i = 1;
@@ -142,7 +142,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
                 }
                 // create the file
 
-                if (hFile!=INVALID_HANDLE_VALUE)
+                if(hFile!=INVALID_HANDLE_VALUE)
                 {
                     _MINIDUMP_EXCEPTION_INFORMATION ExInfo;
 
@@ -152,7 +152,7 @@ LONG MiniDumper::TopLevelFilter( struct _EXCEPTION_POINTERS *pExceptionInfo )
 
                     // write the dump
                     BOOL bOK = pDump( GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpNormal, &ExInfo, nullptr, nullptr );
-                    if (bOK)
+                    if(bOK)
                     {
                         swprintf( szScratch, sizeof(szScratch), L"Saved dump file to '%s'", szDumpPath );
                         szResult = szScratch;

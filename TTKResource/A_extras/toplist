@@ -144,19 +144,21 @@
     </Kuwo>
     <XiaMi>
         <tag value="全球媒体榜">
-            <value key="billboard" value="美国Billboard单曲榜"/>
-            <value key="hito" value="Hito 中文排行榜"/>
-            <value key="jingge" value="劲歌金榜"/>
-            <value key="uk" value="英国UK单曲榜"/>
-            <value key="oricon" value="oricon公信单曲榜"/>
-            <value key="mnet" value="韩国MNET音乐排行榜"/>
+            <value key="102" value="新歌榜"/>
+            <value key="103" value="热歌榜"/>
+            <value key="104" value="原创榜"/>
+            <value key="204" value="美国Billboard单曲榜"/>
+            <value key="201" value="Hito 中文排行榜"/>
+            <value key="202" value="劲歌金榜"/>
+            <value key="203" value="英国UK单曲榜"/>
+            <value key="205" value="oricon公信单曲榜"/>
+            <value key="206" value="韩国MNET音乐排行榜"/>
         </tag>
         <tag value="虾米特色榜">
-            <value key="xiami_daxia" value="大虾试听榜"/>
-            <value key="xiami_collect" value="歌单收录榜"/>
-            <value key="xiami_ktv" value="KTV嗨歌榜"/>
-            <value key="xiami_wechat" value="微信分享榜"/>
-            <value key="xiami_weibo" value="微博分享榜"/>
+            <value key="304" value="大虾试听榜"/>
+            <value key="305" value="歌单收录榜"/>
+            <value key="306" value="KTV嗨歌榜"/>
+            <value key="307" value="虾米分享榜"/>
         </tag>
     </XiaMi>
     <WuSing>

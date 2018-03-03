@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QStackedWidget>
-#include "musicglobaldefine.h"
+#include "musicdatabaseobject.h"
 
 class MusicUserModel;
 class MusicUserDialog;
@@ -61,7 +61,7 @@ public Q_SLOTS:
     /*!
      * User login state changed.
      */
-    void userStateChanged(const QString &uid, const QString &icon);
+    void userStateChanged(const MusicUserUIDItem &uid, const QString &icon);
     /*!
      * Send user to login.
      */
@@ -82,7 +82,7 @@ protected:
     bool disConnectDatabase();
 
     Ui::MusicUserWindow *m_ui;
-    MusicUserModel* m_userModel;
+    MusicUserModel *m_userModel;
     MusicUserManagerDialog *m_userManager;
 
 };

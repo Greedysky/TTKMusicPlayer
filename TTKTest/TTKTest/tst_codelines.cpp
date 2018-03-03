@@ -37,7 +37,7 @@ void CodeLinesTest::codeLines()
     int fileCount = 0, lineCount = 0;
 
     QString currentPath = "../";
-    if( currentPath.isEmpty() )
+    if(currentPath.isEmpty())
     {
         return;
     }

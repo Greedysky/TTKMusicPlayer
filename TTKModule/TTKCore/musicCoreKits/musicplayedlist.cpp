@@ -166,10 +166,11 @@ void MusicPlayedlist::laterListClear()
 
 bool MusicPlayedlist::removeMedia(int pos)
 {
-    if( pos < 0 || pos >= m_mediaList.count())
+    if(pos < 0 || pos >= m_mediaList.count())
     {
         return false;
     }
+
     m_mediaList.removeAt(pos);
     laterListClear();
     return true;

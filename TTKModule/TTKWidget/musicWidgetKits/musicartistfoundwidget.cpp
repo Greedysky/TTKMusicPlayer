@@ -57,7 +57,7 @@ QString MusicArtistAlbumsItemWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicArtistAlbumsItemWidget::setMusicItem(const MusicResultsItem &item)
+void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
     m_nameLabel->setToolTip(item.m_name);
@@ -167,7 +167,7 @@ void MusicArtistMvsFoundWidget::createArtistMvsItem(const MusicResultsItem &item
 
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicItem(item);
+    label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
@@ -255,7 +255,7 @@ void MusicArtistSimilarFoundWidget::createArtistSimilarItem(const MusicResultsIt
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicItem(item);
+    label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,
@@ -329,7 +329,7 @@ void MusicArtistAlbumsFoundWidget::createArtistAlbumsItem(const MusicResultsItem
 {
     MusicArtistAlbumsItemWidget *label = new MusicArtistAlbumsItemWidget(this);
     connect(label, SIGNAL(currentItemClicked(QString)), SLOT(currentItemClicked(QString)));
-    label->setMusicItem(item);
+    label->setMusicResultsItem(item);
 
     int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber,

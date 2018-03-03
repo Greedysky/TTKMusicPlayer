@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicdatabaseobject.h"
 #include "musicabstractmovedialog.h"
 
 namespace Ui {
@@ -47,9 +48,14 @@ public:
      */
     static QString getClassName();
     /*!
+     * Avatar pixmap render.
+     */
+    static QString avatarPixmapRender(const MusicUserUIDItem &item, const QPixmap &pix);
+
+    /*!
      * Set user model.
      */
-    void setUserModel(MusicUserModel *model, const QString &uid);
+    void setUserModel(MusicUserModel *model, const MusicUserUIDItem &uid);
 
 Q_SIGNALS:
     /*!
@@ -59,7 +65,7 @@ Q_SIGNALS:
     /*!
      * Reset current user icon.
      */
-    void userIconChanged(const QString &uid, const QString &icon);
+    void userIconChanged(const MusicUserUIDItem &uid, const QString &icon);
 
 public Q_SLOTS:
     /*!
@@ -115,6 +121,7 @@ protected:
 
     Ui::MusicUserRecordWidget *m_ui;
     MusicUserModel *m_userModel;
+    MusicUserUIDItem m_userUID;
     QString m_iconLocalPath;
 
 };
