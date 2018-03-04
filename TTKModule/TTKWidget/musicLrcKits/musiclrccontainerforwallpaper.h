@@ -23,6 +23,7 @@
 
 class MusicLayoutAnimationWidget;
 class MusicDesktopWallpaperThread;
+class MusicTransitionAnimationLabel;
 
 /*! @brief The class of the wall paper lrc container.
  * @author Greedysky <greedysky@163.com>
@@ -93,7 +94,7 @@ protected:
     int m_animationFreshTime;
     MusicLayoutAnimationWidget *m_layoutWidget;
     MusicDesktopWallpaperThread *m_wallThread;
-    QLabel *m_background;
+    MusicTransitionAnimationLabel *m_background;
 
 };
 

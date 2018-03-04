@@ -23,6 +23,7 @@
 #include "musicabstractmovewidget.h"
 
 class MusicDesktopWallpaperThread;
+class MusicTransitionAnimationLabel;
 
 namespace Ui {
 class MusicDesktopWallpaperWidget;
@@ -54,7 +55,7 @@ public Q_SLOTS:
     void updateBackground(const QPixmap &pix);
 
 protected:
-    QLabel *m_background;
+    MusicTransitionAnimationLabel *m_background;
 
 };
 
