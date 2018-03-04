@@ -232,7 +232,7 @@ protected:
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
-    QTimer *m_updateTiemr;
+    QTimer *m_updateTimer;
 
 };
 

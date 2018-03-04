@@ -252,6 +252,14 @@ void MusicDesktopWallpaperWidget::parameterFinished()
     int time = m_ui->timeH->currentIndex()*MT_H2S +
                m_ui->timeM->currentIndex()*MT_M2S +
                m_ui->timeS->currentIndex();
+    if(time == 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("time is now empty!"));
+        message.exec();
+        return;
+    }
+
     m_wallThread->setInterval(time*MT_S2MS);
     m_wallThread->start();
     m_wallItem->showFullScreen();

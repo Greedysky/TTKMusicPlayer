@@ -367,6 +367,7 @@ void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 }
 
 
+
 MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
     : MusicSongsToolBoxTopWidget(-1, QString(), parent)
 {
@@ -376,16 +377,16 @@ MusicSongsToolBoxMaskWidget::MusicSongsToolBoxMaskWidget(QWidget *parent)
 
     hide();
 
-    m_updateTiemr = new QTimer(this);
-    m_updateTiemr->setInterval(MT_S*200);
-    connect(m_updateTiemr, SIGNAL(timeout()), SLOT(update()));
-    m_updateTiemr->start();
+    m_updateTimer = new QTimer(this);
+    m_updateTimer->setInterval(MT_S*200);
+    connect(m_updateTimer, SIGNAL(timeout()), SLOT(update()));
+    m_updateTimer->start();
 }
 
 MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
 {
-    m_updateTiemr->stop();
-    delete m_updateTiemr;
+    m_updateTimer->stop();
+    delete m_updateTimer;
 }
 
 QString MusicSongsToolBoxMaskWidget::getClassName()
@@ -414,6 +415,7 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
     painter.drawPixmap(0, 0, width(), height() - 3, pix.copy(1, 91, width(), height() - 3));
     painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(255, 255, 255, alpha));
 }
+
 
 
 MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
