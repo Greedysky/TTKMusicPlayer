@@ -12,11 +12,6 @@ QString MusicTranslationThreadAbstract::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicTranslationThreadAbstract::setRawData(const QVariantMap &data)
-{
-    m_rawData = data;
-}
-
 void MusicTranslationThreadAbstract::deleteAll()
 {
     if(m_reply)

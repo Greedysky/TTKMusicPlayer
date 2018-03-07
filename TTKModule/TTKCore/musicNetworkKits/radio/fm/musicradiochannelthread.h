@@ -56,7 +56,7 @@ public:
     /*!
      * Get music channel.
      */
-    MusicRadioChannelInfos getMusicChannel();
+    inline const MusicRadioChannelInfos& getMusicChannel() const { return m_channels; }
 
 public Q_SLOTS:
     /*!

@@ -52,7 +52,7 @@ public:
     /*!
      * Get info record.
      */
-    inline MusicUserInfoRecord getInfoRecord() const { return m_info; }
+    inline const MusicUserInfoRecord& getInfoRecord() const { return m_info; }
 
 protected:
     MusicUserInfoRecord m_info;

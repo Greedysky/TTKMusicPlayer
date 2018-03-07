@@ -60,7 +60,7 @@ public:
     /*!
      * Get music song information.
      */
-    MusicRadioSongInfo getMusicSongInfo();
+    inline const MusicRadioSongInfo& getMusicSongInfo() const { return m_songInfo; }
 
 public Q_SLOTS:
     /*!

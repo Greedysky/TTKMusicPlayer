@@ -47,7 +47,7 @@ public:
     /*!
      * Get music playlist.
      */
-    QStringList getMusicPlayList();
+    inline const QStringList& getMusicPlayList() const { return m_playList; }
 
 public Q_SLOTS:
     /*!

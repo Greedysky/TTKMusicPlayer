@@ -64,7 +64,7 @@ public:
     /*!
      * Get identify songs.
      */
-    const MusicSongIdentifys& getIdentifySongs() const;
+    inline const MusicSongIdentifys& getIdentifySongs() const { return m_songIdentifys; }
 
 Q_SIGNALS:
     /*!

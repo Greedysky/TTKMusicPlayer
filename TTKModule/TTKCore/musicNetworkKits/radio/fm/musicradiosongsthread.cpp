@@ -45,11 +45,6 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
 
 }
 
-MusicRadioSongInfo MusicRadioSongsThread::getMusicSongInfo()
-{
-    return m_songInfo;
-}
-
 void MusicRadioSongsThread::downLoadFinished()
 {
     if(!m_reply)

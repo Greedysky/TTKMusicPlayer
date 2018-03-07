@@ -53,6 +53,7 @@ void MusicSourceUpdateThread::downLoadFinished(const QByteArray &data)
     {
         return;
     }
+
     m_rawData = parseData.toMap();
     emit downLoadDataChanged(m_rawData);
 }

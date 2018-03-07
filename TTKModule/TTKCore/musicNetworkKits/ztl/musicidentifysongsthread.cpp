@@ -95,11 +95,6 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
 }
 
-const MusicSongIdentifys& MusicIdentifySongsThread::getIdentifySongs() const
-{
-    return m_songIdentifys;
-}
-
 void MusicIdentifySongsThread::downLoadFinished()
 {
     m_songIdentifys.clear();

@@ -46,11 +46,6 @@ void MusicRadioChannelThread::startToDownload(const QString &id)
 
 }
 
-MusicRadioChannelInfos MusicRadioChannelThread::getMusicChannel()
-{
-    return m_channels;
-}
-
 void MusicRadioChannelThread::downLoadFinished()
 {
     if(!m_reply)

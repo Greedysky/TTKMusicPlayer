@@ -38,10 +38,6 @@ public:
      */
     static QString getClassName();
     /*!
-     * Set the current raw data.
-     */
-    void setRawData(const QVariantMap &data);
-    /*!
      * Release the network object.
      */
     virtual void deleteAll() override;

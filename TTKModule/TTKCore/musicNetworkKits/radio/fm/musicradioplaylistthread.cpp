@@ -45,11 +45,6 @@ void MusicRadioPlayListThread::startToDownload(const QString &id)
 
 }
 
-QStringList MusicRadioPlayListThread::getMusicPlayList()
-{
-    return m_playList;
-}
-
 void MusicRadioPlayListThread::downLoadFinished()
 {
     if(!m_reply)
