@@ -93,6 +93,7 @@ void MusicRadioSongsThread::downLoadFinished()
             }
         }
     }
+
     emit downLoadDataChanged("query finished!");
     deleteAll();
 }

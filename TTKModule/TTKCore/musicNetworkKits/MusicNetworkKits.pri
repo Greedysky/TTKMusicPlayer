@@ -17,7 +17,7 @@
 # =================================================
 
 INCLUDEPATH += $$PWD \
-               $$PWD/radio \
+               $$PWD/radio/fm \
                $$PWD/radio/dj \
                $$PWD/radio/mv \
                $$PWD/nr \
@@ -34,10 +34,10 @@ INCLUDEPATH += $$PWD \
 
 !contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
-    $$PWD/radio/musicradiochannelthread.h \
-    $$PWD/radio/musicradioplaylistthread.h \
-    $$PWD/radio/musicradiosongsthread.h \
-    $$PWD/radio/musicradiothreadabstract.h \
+    $$PWD/radio/fm/musicradiochannelthread.h \
+    $$PWD/radio/fm/musicradioplaylistthread.h \
+    $$PWD/radio/fm/musicradiosongsthread.h \
+    $$PWD/radio/fm/musicradiothreadabstract.h \
     $$PWD/radio/dj/musicdjradiocategorythread.h \
     $$PWD/radio/dj/musicdjradioprogramthread.h \
     $$PWD/radio/dj/musicdjradioprogramcategorythread.h \
@@ -200,10 +200,10 @@ HEADERS  += \
 
 contains(CONFIG, MUSIC_BUILD_LIB){
 SOURCES += \
-    $$PWD/radio/musicradiochannelthread.cpp \
-    $$PWD/radio/musicradioplaylistthread.cpp \
-    $$PWD/radio/musicradiosongsthread.cpp \
-    $$PWD/radio/musicradiothreadabstract.cpp \
+    $$PWD/radio/fm/musicradiochannelthread.cpp \
+    $$PWD/radio/fm/musicradioplaylistthread.cpp \
+    $$PWD/radio/fm/musicradiosongsthread.cpp \
+    $$PWD/radio/fm/musicradiothreadabstract.cpp \
     $$PWD/radio/dj/musicdjradiocategorythread.cpp \
     $$PWD/radio/dj/musicdjradioprogramthread.cpp \
     $$PWD/radio/dj/musicdjradioprogramcategorythread.cpp \

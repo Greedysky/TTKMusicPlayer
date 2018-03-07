@@ -2,9 +2,9 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
+#include <QNetworkAccessManager>
 
 MusicRadioChannelThread::MusicRadioChannelThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
@@ -22,8 +22,9 @@ QString MusicRadioChannelThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicRadioChannelThread::startToDownload(const QString &)
+void MusicRadioChannelThread::startToDownload(const QString &id)
 {
+    Q_UNUSED(id);
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
@@ -80,6 +81,7 @@ void MusicRadioChannelThread::downLoadFinished()
             }
         }
     }
+
     emit downLoadDataChanged("query finished!");
     deleteAll();
 }

@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QObject>
 #include "musicglobaldefine.h"
 
 #define DB_SQLITE_DATABASE      "QSQLITE"

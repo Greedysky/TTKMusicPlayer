@@ -1,5 +1,5 @@
-#ifndef GETBAIDUCHANNEL_H
-#define GETBAIDUCHANNEL_H
+#ifndef MUSICRADIOCHANNELTHREAD_H
+#define MUSICRADIOCHANNELTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -69,4 +69,4 @@ protected:
 
 };
 
-#endif // GETBAIDUCHANNEL_H
+#endif // MUSICRADIOCHANNELTHREAD_H
