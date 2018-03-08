@@ -61,7 +61,7 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musicsongchecktoolsitemselecteddialog.ui \
     $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \
     $$PWD/musicToolsetsKits/musicspectrumwidget.ui \
-    $$PWD/musicToolsKits/musicwebmusicradiowidget.ui \
+    $$PWD/musicToolsKits/musicwebmusicradioplaywidget.ui \
     $$PWD/musicToolsKits/musicconnecttransferwidget.ui \
     $$PWD/musicToolsKits/musiccloudfilemanagerdialog.ui \
     $$PWD/musicToolsKits/musiccloudfileinformationwidget.ui \

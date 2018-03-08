@@ -137,7 +137,7 @@ void MusicUserWindow::userStateChanged(const MusicUserUIDItem &uid, const QStrin
     else
     {
         m_userManager->setUserUID(uid);
-        m_ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon), QPixmap(":/usermanager/lb_mask"),
+        m_ui->userIconL->setPixmap(MusicUtils::Widget::pixmapToRound(QPixmap(icon), QPixmap(":/usermanager/lb_mask_30"),
                                                                      m_ui->userIconL->size()));
         m_ui->userNameL->setToolTip(m_userModel->getUserName(uid));
         m_ui->userNameL->setText(MusicUtils::Widget::elidedText(font(), m_ui->userNameL->toolTip(), Qt::ElideRight, 44));

@@ -4,6 +4,7 @@
         <file alias="toplist">../TTKResource/A_extras/toplist</file>
         <file alias="artistlist">../TTKResource/A_extras/artistlist</file>
         <file alias="movielist">../TTKResource/A_extras/movielist</file>
+        <file alias="fmarclist">../TTKResource/A_extras/fmarclist</file>
         <file alias="sound">../TTKResource/A_extras/sound.wav</file>
     </qresource>
     <qresource prefix="/image">
@@ -695,7 +696,10 @@
         <file alias="btn_down_arrow">../TTKResource/usermanager/btn_down_arrow.png</file>
         <file alias="btn_up_arrow">../TTKResource/usermanager/btn_up_arrow.png</file>
         <file alias="btn_setting">../TTKResource/usermanager/btn_setting.png</file>
-        <file alias="lb_mask">../TTKResource/usermanager/lb_mask.png</file>
+        <file alias="lb_mask_30">../TTKResource/usermanager/lb_mask_30.png</file>
+        <file alias="lb_mask_40">../TTKResource/usermanager/lb_mask_40.png</file>
+        <file alias="lb_mask_50">../TTKResource/usermanager/lb_mask_50.png</file>
+        <file alias="lb_mask_60">../TTKResource/usermanager/lb_mask_60.png</file>
     </qresource>
     <qresource prefix="/emoji">
         <file alias="db">../TTKResource/emoji/db</file>

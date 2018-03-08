@@ -66,12 +66,24 @@ void MusicRadioChannelThread::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             QVariantList channels = value["channel_list"].toList();
-            foreach(const QVariant &var, channels)
+
+            QFile arcFile(":/data/fmarclist");
+            arcFile.open(QFile::ReadOnly);
+            QStringList arcs = QString(arcFile.readAll()).split("\r\n");
+            arcFile.close();
+
+            while(channels.count() > arcs.count())
             {
-                value = var.toMap();
+                arcs.append(QString());
+            }
+
+            for(int i=0; i<channels.count(); ++i)
+            {
+                value = channels[i].toMap();
                 MusicRadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
+                channel.m_coverUrl = arcs[i];
                 m_channels << channel;
             }
         }

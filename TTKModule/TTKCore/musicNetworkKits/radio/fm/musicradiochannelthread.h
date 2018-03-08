@@ -28,6 +28,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
 {
     QString m_id;
     QString m_name;
+    QString m_coverUrl;
 }MusicRadioChannelInfo;
 MUSIC_DECLARE_LISTS(MusicRadioChannelInfo)
 
