@@ -29,7 +29,7 @@ MusicSongsListPlayedTableWidget::MusicSongsListPlayedTableWidget(QWidget *parent
     m_hasParentToolIndex = false;
     m_musicSongsPlayWidget = nullptr;
 
-    MusicUtils::Widget::setTransparent(this, 0xff);
+    MusicUtils::Widget::setTransparent(this, 0xFF);
 }
 
 MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()

@@ -102,10 +102,10 @@ std::string MusicCryptographicHash::base64Encode(unsigned char const* bytes_to_e
         char_array_3[i++] = *(bytes_to_encode++);
         if(i == 3)
         {
-            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-            char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-            char_array_4[3] = char_array_3[2] & 0x3f;
+            char_array_4[0] = (char_array_3[0] & 0xFC) >> 2;
+            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xF0) >> 4);
+            char_array_4[2] = ((char_array_3[1] & 0x0F) << 2) + ((char_array_3[2] & 0xC0) >> 6);
+            char_array_4[3] = char_array_3[2] & 0x3F;
 
             for(i = 0; (i <4) ; i++)
             {
@@ -122,10 +122,10 @@ std::string MusicCryptographicHash::base64Encode(unsigned char const* bytes_to_e
             char_array_3[j] = '\0';
         }
 
-        char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-        char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-        char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-        char_array_4[3] = char_array_3[2] & 0x3f;
+        char_array_4[0] = (char_array_3[0] & 0xFC) >> 2;
+        char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xF0) >> 4);
+        char_array_4[2] = ((char_array_3[1] & 0x0F) << 2) + ((char_array_3[2] & 0xC0) >> 6);
+        char_array_4[3] = char_array_3[2] & 0x3F;
 
         for (j = 0; (j < i + 1); j++)
         {
@@ -159,7 +159,7 @@ std::string MusicCryptographicHash::base64Decode(std::string const& encoded_stri
             }
 
             char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-            char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+            char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
             char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
             for (i = 0; (i < 3); i++)
@@ -183,7 +183,7 @@ std::string MusicCryptographicHash::base64Decode(std::string const& encoded_stri
         }
 
         char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-        char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+        char_array_3[1] = ((char_array_4[1] & 0xF) << 4) + ((char_array_4[2] & 0x3C) >> 2);
         char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
 
         for (j = 0; (j < i - 1); j++)
@@ -276,7 +276,7 @@ unsigned char *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_
     }
     result = (unsigned char *)malloc(n + 1);
     for (i = 0; i < n; i++) {
-        result[i] = (unsigned char)((data[i >> 2] >> ((i & 3) << 3)) & 0xff);
+        result[i] = (unsigned char)((data[i >> 2] >> ((i & 3) << 3)) & 0xFF);
     }
     result[n] = '\0';
     *ret_len = n;

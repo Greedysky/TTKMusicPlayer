@@ -68,7 +68,7 @@ HWND MusicDesktopWallpaperThread::findDesktopIconWnd()
 void MusicDesktopWallpaperThread::sendMessageToDesktop()
 {
      PDWORD_PTR result = NULL;
-     SendMessageTimeoutW(FindWindowW(L"Progman",NULL), 0x52c, 0, 0, SMTO_NORMAL, 1000, result);
+     SendMessageTimeoutW(FindWindowW(L"Progman",NULL), 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
 }
 #endif
 

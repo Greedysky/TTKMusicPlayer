@@ -397,7 +397,7 @@ QString MusicSongsToolBoxMaskWidget::getClassName()
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
-    alpha = MusicUtils::Widget::reRenderValue<int>(0xff, 0x1f, alpha);
+    alpha = MusicUtils::Widget::reRenderValue<int>(0xFF, 0x1F, alpha);
     QWidget::paintEvent(event);
     QPainter painter(this);
 
