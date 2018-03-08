@@ -67,6 +67,11 @@ void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
 
 void MusicUtils::Widget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt)
 {
+    if(fg.isNull())
+    {
+        return;
+    }
+
     QPainter painter(&bg);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(pt.x(), pt.y(), fg);
@@ -92,7 +97,7 @@ QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QRect &rect,
 
 QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QPixmap &mask, const QSize &size)
 {
-    if(src.isNull())
+    if(src.isNull() || mask.isNull())
     {
         return QPixmap();
     }
@@ -120,6 +125,11 @@ QBitmap MusicUtils::Widget::getBitmapMask(const QRect &rect, int ratioX, int rat
 
 QByteArray MusicUtils::Widget::getPixmapData(const QPixmap &pix)
 {
+    if(pix.isNull())
+    {
+        return QByteArray();
+    }
+
     QByteArray data;
     QBuffer buffer(&data);
     if(buffer.open(QIODevice::WriteOnly))
