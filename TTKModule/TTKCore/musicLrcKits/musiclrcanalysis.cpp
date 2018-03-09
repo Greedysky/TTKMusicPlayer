@@ -143,7 +143,11 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
     QString getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
+#ifdef Q_OS_WIN
     foreach(const QString &oneLine, getAllText.split("\r\n"))
+#else
+    foreach(const QString &oneLine, getAllText.split("\n"))
+#endif
     {
         matchLrcLine(oneLine);
     }
