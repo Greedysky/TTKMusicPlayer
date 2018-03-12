@@ -50,7 +50,8 @@ void MusicRunObject::run(int argc, char **argv)
     QStringList list(APPNAME);
     if(argc == 3)
     {
-        list << argv[1] << argv[2];
+        list << QString::fromLocal8Bit(argv[1])
+             << QString::fromLocal8Bit(argv[2]);
     }
 
     d->m_process->start(S_TTKSERVICE_FULL, list);
