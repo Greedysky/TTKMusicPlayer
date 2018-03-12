@@ -4,7 +4,7 @@
 #include "qjson/parser.h"
 
 MusicXMTextDownLoadThread::MusicXMTextDownLoadThread(const QString &url, const QString &save,
-                                                     Download_Type type, QObject *parent)
+                                                     DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
@@ -29,8 +29,7 @@ void MusicXMTextDownLoadThread::startToDownload()
             QNetworkRequest request;
             request.setUrl(m_url);
 #ifndef QT_NO_SSL
-            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                               SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
             M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
             setSslConfiguration(&request);
 #endif

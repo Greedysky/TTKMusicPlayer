@@ -3,13 +3,13 @@
 
 #include <QStringList>
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(Download_Type type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(DownloadType type, QObject *parent)
     : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
 {
 
 }
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &data, Download_Type type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &data, DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(data.m_url, data.m_savePath, type, parent)
 {
     m_request = nullptr;
@@ -19,15 +19,14 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &d
     m_manager = new QNetworkAccessManager(this);
     m_request = new QNetworkRequest();
 #ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
     setSslConfiguration(m_request);
 #endif
 
 }
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, Download_Type type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, DownloadType type, QObject *parent)
     : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
 {
     addImageQueue(datas);

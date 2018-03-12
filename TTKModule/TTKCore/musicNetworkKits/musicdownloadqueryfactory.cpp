@@ -439,7 +439,7 @@ MusicTranslationThreadAbstract *MusicDownLoadQueryFactory::getTranslationThread(
 }
 
 MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPicThread(const QString &url, const QString &save,
-                                                                                  MusicDownLoadThreadAbstract::Download_Type type,
+                                                                                  MusicDownLoadThreadAbstract::DownloadType type,
                                                                                   QObject *parent)
 {
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
@@ -456,7 +456,7 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadSmallPicThrea
 }
 
 MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(const QString &url, const QString &save,
-                                                                             MusicDownLoadThreadAbstract::Download_Type type,
+                                                                             MusicDownLoadThreadAbstract::DownloadType type,
                                                                              QObject *parent)
 {
     int index = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();

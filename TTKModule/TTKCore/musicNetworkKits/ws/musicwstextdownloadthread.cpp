@@ -2,7 +2,7 @@
 #include "musiclrcanalysis.h"
 
 MusicWSTextDownLoadThread::MusicWSTextDownLoadThread(const QString &url, const QString &save,
-                                                     Download_Type type, QObject *parent)
+                                                     DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
