@@ -211,8 +211,12 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
 #endif
 
     MusicRegeditManager reg;
+#ifdef Q_OS_WIN
     reg.setFileLink(MAIN_DIR_FULL + APPEXE, desktop + "/" + fileName + ".lnk", QString(),
                     QString("-Radio \"%1\"").arg(row), tr("TTK Radio Link"));
+#else
+    reg.setFileLink(QString("-Radio \"%1\"").arg(row), desktop, MAIN_DIR_FULL + APPNAME,  MusicObject::getAppDir(),  fileName);
+#endif
 }
 
 void MusicWebMusicRadioWidget::contextMenuEvent(QContextMenuEvent *event)
@@ -224,12 +228,7 @@ void MusicWebMusicRadioWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.addAction(tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addSeparator();
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
-
-    bool run = true;
-#ifndef Q_OS_WIN
-    run = false;
-#endif
-    rightClickMenu.addAction(tr("sendToDesktop"), this, SLOT(sendToDesktopLink()))->setEnabled(run);
+    rightClickMenu.addAction(tr("sendToDesktop"), this, SLOT(sendToDesktopLink()));
 
     rightClickMenu.exec(QCursor::pos());
 }

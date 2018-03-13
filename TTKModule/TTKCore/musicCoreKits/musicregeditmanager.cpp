@@ -8,6 +8,7 @@
 #include <shlobj.h>
 #endif
 #include <QSettings>
+#include <QProcess>
 #include <QStringList>
 #include <QApplication>
 
@@ -141,11 +142,26 @@ void MusicRegeditManager::setFileLink(const QString &src, const QString &des, co
         }
     }
 #else
-    Q_UNUSED(src);
-    Q_UNUSED(des);
     Q_UNUSED(ico);
-    Q_UNUSED(args);
-    Q_UNUSED(description);
+
+    QFile file(":/ext/desktop");
+    if(file.open(QFile::ReadOnly))
+    {
+        QByteArray data(file.readAll());
+        file.close();
+
+        data.append(QString("Icon=%1\n").arg(ico));
+        data.append(QString("Exec=%1\n").arg(ico + src));
+        data.append(QString("Path=%1\n").arg(args));
+
+        file.setFileName(des + "/" + description + ".desktop");
+        if(file.open(QFile::WriteOnly))
+        {
+            file.write(data);
+            file.close();
+            QProcess::execute("chmod", QStringList() << "+x" << file.fileName());
+        }
+    }
 #endif
 }
 

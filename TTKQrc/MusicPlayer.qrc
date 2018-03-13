@@ -1,4 +1,7 @@
 <RCC>
+    <qresource prefix="/ext">
+        <file alias="desktop">../TTKScript/deploy/ttkmusicplayer.desktop</file>
+    </qresource>
     <qresource prefix="/data">
         <file alias="playlist">../TTKResource/A_extras/playlist</file>
         <file alias="toplist">../TTKResource/A_extras/toplist</file>

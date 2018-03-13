@@ -15,12 +15,12 @@ mkdir -p ~/$LIB_PATH
 mkdir -p ~/$PACK_PATH/usr/share/applications
 mkdir -p ~/$PACK_PATH/usr/share/pixmaps
 mkdir -p ~/$PACK_PATH/usr/share/mime/packages
-mkdir -p ~/$PACK_PATH/usr/share/metainfo/
+mkdir -p ~/$PACK_PATH/usr/share/metainfo
 
 cp $DEV_PATH/deploy/ttkmusicplayer.png ~/$LIB_PATH
 cp $DEV_PATH/deploy/ttkmusicplayer.png ~/$PACK_PATH/usr/share/pixmaps
 cp $DEV_PATH/deploy/ttkmusicplayer.desktop ~/$PACK_PATH/usr/share/applications
-cp $DEV_PATH/deploy/ttkmusicplayer.appdata.xml ~/$PACK_PATH/usr/share/metainfo/
+cp $DEV_PATH/deploy/ttkmusicplayer.appdata.xml ~/$PACK_PATH/usr/share/metainfo
 
 chmod -x ~/$LIB_PATH/ttkmusicplayer.png
 chmod -x ~/$PACK_PATH/usr/share/pixmaps/ttkmusicplayer.png
