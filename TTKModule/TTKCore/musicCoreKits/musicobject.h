@@ -33,6 +33,7 @@
 #define APPNAME                 "TTKMusicPlayer"
 #define APPDOT                  "TTKMusicPlayer."
 #define APPCOME                 "TTKMusicPlayer.com"
+#define APPEXE                  "TTKMusicPlayer.exe"
 ///////////////////////////////////////
 
 #define APPDATA_DIR             "AppData/"
@@ -109,8 +110,9 @@
 #  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
 #  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
 #else
-#  define APPDATA_DIR_FULL      MusicObject::getAppDir() + QString("../") + APPDATA_DIR
-#  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + QString("../") + DOWNLOADS_DIR
+#  define MAIN_DIR_FULL         MusicObject::getAppDir() + "../"
+#  define APPDATA_DIR_FULL      MAIN_DIR_FULL + APPDATA_DIR
+#  define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
 #endif
 
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR

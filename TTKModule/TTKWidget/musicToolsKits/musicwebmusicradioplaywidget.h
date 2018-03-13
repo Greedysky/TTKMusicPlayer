@@ -78,6 +78,10 @@ public Q_SLOTS:
      */
     void radioVolume(int num);
     /*!
+     * Radio resource download.
+     */
+    void radioResourceDownload();
+    /*!
      * Get playList finished.
      */
     void getPlayListFinished();

@@ -1,4 +1,5 @@
 #include "musicradiosongsthread.h"
+#include "musicnumberutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -41,7 +42,6 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-
 }
 
 void MusicRadioSongsThread::downLoadFinished()
@@ -72,10 +72,16 @@ void MusicRadioSongsThread::downLoadFinished()
                     continue;
                 }
 
-                m_songInfo.m_songUrl = value["songLink"].toString();
+                MusicObject::MusicSongAttribute attr;
+                attr.m_url = value["songLink"].toString();
+                attr.m_bitrate = value["rate"].toInt();
+                attr.m_format = value["format"].toString();
+                attr.m_size = MusicUtils::Number::size2Label(value["size"].toLongLong());
+
+                m_songInfo.m_songAttrs << attr;
                 m_songInfo.m_songName = value["songName"].toString();
-                m_songInfo.m_artistName = value["artistName"].toString();
-                m_songInfo.m_songPicUrl = value["songPicRadio"].toString();
+                m_songInfo.m_singerName = value["artistName"].toString();
+                m_songInfo.m_smallPicUrl = value["songPicRadio"].toString();
                 m_songInfo.m_albumName = value["albumName"].toString();
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 

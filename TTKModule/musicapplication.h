@@ -77,6 +77,10 @@ public:
     void musicLoadCurrentSongLrc();
 
     /*!
+     * Execute outer radio by type.
+     */
+    void radioExecuteOuter(const QString &path);
+    /*!
      * Import outer music datas into container.
      */
     void musicImportSongsSettingPathOuter(const QStringList &path, bool play);

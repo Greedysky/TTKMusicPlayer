@@ -45,7 +45,7 @@ public:
     /*!
      * To init list items.
      */
-    void init();
+    void init(int index);
 
 public Q_SLOTS:
     /*!

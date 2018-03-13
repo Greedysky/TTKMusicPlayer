@@ -62,9 +62,9 @@ QString MusicWebRadioView::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWebRadioView::init()
+void MusicWebRadioView::init(int index)
 {
-    m_musicRadio->initListItems();
+    m_musicRadio->initListItems(index);
 }
 
 void MusicWebRadioView::openDJRadioWindow()

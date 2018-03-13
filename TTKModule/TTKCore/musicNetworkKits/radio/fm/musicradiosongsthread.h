@@ -21,20 +21,6 @@
 
 #include "musicradiothreadabstract.h"
 
-/*! @brief The class of the radio song info item.
- * @author Greedysky <greedysky@163.com>
- */
-typedef struct MUSIC_NETWORK_EXPORT MusicRadioSongInfo
-{
-    QString m_songUrl;
-    QString m_songName;
-    QString m_artistName;
-    QString m_songPicUrl;
-    QString m_albumName;
-    QString m_lrcUrl;
-}MusicRadioSongInfo;
-MUSIC_DECLARE_LISTS(MusicRadioSongInfo)
-
 /*! @brief The class of music radio thread of song info.
  * @author Greedysky <greedysky@163.com>
  */
@@ -60,7 +46,7 @@ public:
     /*!
      * Get music song information.
      */
-    inline const MusicRadioSongInfo& getMusicSongInfo() const { return m_songInfo; }
+    inline const MusicObject::MusicSongInformation& getMusicSongInfo() const { return m_songInfo; }
 
 public Q_SLOTS:
     /*!
@@ -69,7 +55,7 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
-    MusicRadioSongInfo m_songInfo;
+    MusicObject::MusicSongInformation m_songInfo;
 
 };
 

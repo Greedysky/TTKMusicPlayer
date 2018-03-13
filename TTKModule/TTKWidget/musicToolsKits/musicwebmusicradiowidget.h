@@ -46,7 +46,7 @@ public:
     /*!
      * To init list items.
      */
-    void initListItems();
+    void initListItems(int index);
 
 public Q_SLOTS:
     /*!
@@ -58,6 +58,10 @@ public Q_SLOTS:
      */
     virtual void listCellClicked(int row, int column) override;
     /*!
+     * Table widget list cell double click.
+     */
+    void listCellDoubleClicked(int row, int column);
+    /*!
      * Add radio list into list widget.
      */
     void addListWidgetItem();
@@ -65,8 +69,22 @@ public Q_SLOTS:
      * Send recieved data from net.
      */
     void downLoadFinished(const QByteArray &data, const QVariantMap &ext);
+    /*!
+     * Music item has been clicked.
+     */
+    void musicPlayClicked();
+    /*!
+     * Send to desktop link.
+     */
+    void sendToDesktopLink();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    int m_outerIndex;
     QNetworkCookieJar *m_cookJar;
     MusicWebMusicRadioPlayWidget *m_musicRadio;
     MusicRadioChannelThread *m_getChannelThread;

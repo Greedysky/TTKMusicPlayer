@@ -185,6 +185,11 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
+void MusicApplication::radioExecuteOuter(const QString &path)
+{
+    m_leftAreaWidget->radioExecuteOuter(path);
+}
+
 void MusicApplication::musicImportSongsSettingPathOuter(const QStringList &path, bool play)
 {
     musicImportSongsSettingPath(path);

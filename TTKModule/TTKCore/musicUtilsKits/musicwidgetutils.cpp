@@ -159,7 +159,7 @@ void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *o
     }
 }
 
-uint MusicUtils::Widget::colorBurnTransform(int c, int delta)
+int MusicUtils::Widget::colorBurnTransform(int c, int delta)
 {
     if(0 > delta || delta > 0xFF)
     {

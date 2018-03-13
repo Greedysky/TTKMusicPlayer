@@ -10,6 +10,8 @@
 #include "musictime.h"
 #include "musiccoreutils.h"
 #include "musicwidgetutils.h"
+#include "musicfunctionuiobject.h"
+#include "musicdownloadwidget.h"
 
 MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -37,6 +39,8 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
     m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
     m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
+    m_ui->downloadButton->setStyleSheet(MusicUIObject::MKGBtnUnDownload);
+    m_ui->shareButton->setStyleSheet(MusicUIObject::MKGBtnMore);
 
     m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
@@ -55,6 +59,8 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->downloadButton->setCursor(QCursor(Qt::PointingHandCursor));
+    m_ui->shareButton->setCursor(QCursor(Qt::PointingHandCursor));
 
     m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_ui->volumeSlider->setRange(0, 100);
@@ -65,6 +71,7 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
     connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
     connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(radioNext()));
+    connect(m_ui->downloadButton, SIGNAL(clicked()), SLOT(radioResourceDownload()));
     connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
 }
 
@@ -180,6 +187,24 @@ void MusicWebMusicRadioPlayWidget::radioVolume(int num)
     }
 }
 
+void MusicWebMusicRadioPlayWidget::radioResourceDownload()
+{
+    MusicObject::MusicSongInformation info;
+    if(m_songsThread)
+    {
+        info = m_songsThread->getMusicSongInfo();
+    }
+
+    if(info.m_songAttrs.isEmpty())
+    {
+        return;
+    }
+
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(info, MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
+}
+
 void MusicWebMusicRadioPlayWidget::getPlayListFinished()
 {
     m_playListIds = m_playListThread->getMusicPlayList();
@@ -205,13 +230,13 @@ void MusicWebMusicRadioPlayWidget::createCoreModule()
 
 void MusicWebMusicRadioPlayWidget::startToPlay()
 {
-    MusicRadioSongInfo info;
+    MusicObject::MusicSongInformation info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
 
-    if(info.m_songUrl.isEmpty())
+    if(info.m_songAttrs.isEmpty())
     {
         return;
     }
@@ -220,7 +245,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     {
         createCoreModule();
     }
-    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl);
+    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songAttrs.first().m_url);
     m_radio->play();
 
     /// fix current play volume temporary
@@ -228,7 +253,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
-    QString name = MusicUtils::Core::lrcPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
+    QString name = MusicUtils::Core::lrcPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
@@ -241,10 +266,10 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
         lrcDownloadStateChanged();
     }
 
-    name = ART_DIR_FULL + info.m_artistName + SKN_FILE;
+    name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_songPicUrl, name,
+        MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_smallPicUrl, name,
                                  MusicDownLoadThreadAbstract::Download_SmlBG, this);
         connect(picDwonload, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         picDwonload->startToDownload();
@@ -257,18 +282,18 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
 
 void MusicWebMusicRadioPlayWidget::lrcDownloadStateChanged()
 {
-    MusicRadioSongInfo info;
+    MusicObject::MusicSongInformation info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
 
-    if(info.m_songUrl.isEmpty())
+    if(info.m_songAttrs.isEmpty())
     {
         return;
     }
 
-    QString name = info.m_artistName + " - " + info.m_songName;
+    QString name = info.m_singerName + " - " + info.m_songName;
     name = name.trimmed();
     m_ui->titleWidget->setText(name);
     m_analysis->transLrcFileToTime(MusicUtils::Core::lrcPrefix() + name + LRC_FILE);
@@ -276,18 +301,18 @@ void MusicWebMusicRadioPlayWidget::lrcDownloadStateChanged()
 
 void MusicWebMusicRadioPlayWidget::picDownloadStateChanged()
 {
-    MusicRadioSongInfo info;
+    MusicObject::MusicSongInformation info;
     if(m_songsThread)
     {
         info = m_songsThread->getMusicSongInfo();
     }
 
-    if(info.m_songUrl.isEmpty())
+    if(info.m_songAttrs.isEmpty())
     {
         return;
     }
 
-    QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);
+    QPixmap pix(ART_DIR_FULL + info.m_singerName + SKN_FILE);
     if(pix.isNull())
     {
         pix.load(":/image/lb_defaultArt");

@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
         {
             w.musicImportSongsSettingPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), false);
         }
+        if(QString::fromLocal8Bit(argv[2]) == "-Radio")
+        {
+            w.radioExecuteOuter(argv[3]);
+        }
     }
 
     return a.exec();
