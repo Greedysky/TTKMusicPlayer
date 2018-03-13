@@ -108,7 +108,7 @@ void MusicRegeditManager::setFileLink(const QString &src, const QString &des, co
     HRESULT hres = CoInitialize(nullptr);
     if(SUCCEEDED(hres))
     {
-        IShellLink *psl = nullptr;
+        IShellLinkW *psl = nullptr;
         hres = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink, (LPVOID*)&psl);
 
         if(SUCCEEDED(hres))

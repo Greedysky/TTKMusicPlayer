@@ -218,4 +218,4 @@ add_subdirectory(TTKService)
 add_subdirectory(TTKRun)
 add_subdirectory(TTKTest)
 
-install(FILES "${MUSIC_SCRIPT_DIR}/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")
+install(FILES "${MUSIC_SCRIPT_DIR}/deploy/ttkmusicplayer.appdata.xml" DESTINATION "${MUSIC_INSTALL_DIR}/metainfo")
