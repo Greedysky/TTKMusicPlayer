@@ -8,7 +8,11 @@
 
 #include <QMenu>
 #include <QScrollBar>
+#ifdef MUSIC_GREATER_NEW
 #include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
 #include <QNetworkCookieJar>
 
 #define ICON_SIZE       50
@@ -200,9 +204,15 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
         fileName = it->text();
     }
 
+#ifdef MUSIC_GREATER_NEW
+    QString desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+#else
+    QString desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+#endif
+
     MusicRegeditManager reg;
-    reg.setFileLink(MAIN_DIR_FULL + APPEXE, QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + fileName + ".lnk",
-                    QString(), QString("-Radio \"%1\"").arg(row), tr("TTK Radio Link"));
+    reg.setFileLink(MAIN_DIR_FULL + APPEXE, desktop + "/" + fileName + ".lnk", QString(),
+                    QString("-Radio \"%1\"").arg(row), tr("TTK Radio Link"));
 }
 
 void MusicWebMusicRadioWidget::contextMenuEvent(QContextMenuEvent *event)
