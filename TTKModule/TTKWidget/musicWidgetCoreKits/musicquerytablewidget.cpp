@@ -76,13 +76,14 @@ void MusicQueryItemTableWidget::listCellClicked(int row, int column)
 {
     MusicQueryTableWidget::listCellClicked(row, column);
 
-    if(rowCount() > 0)
+    if(rowCount() > 0 && row == rowCount() - 1)
     {
-        QTableWidgetItem *it = item(rowCount() - 1, 0);
+        QTableWidgetItem *it = item(row, 0);
         if(it && it->data(MUSIC_TEXTS_ROLE).toString() == tr("More Data"))
         {
-            setItemDelegateForRow(rowCount() - 1, nullptr);
+            setItemDelegateForRow(row, nullptr);
             clearSpans();
+            removeRow(row);
 
             m_downLoadManager->startToPage(m_downLoadManager->getPageIndex() + 1);
         }
