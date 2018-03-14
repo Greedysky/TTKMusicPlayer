@@ -116,20 +116,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_HEADERS
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgtextdownloadthread.h
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgsongsuggestthread.h
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgartistsimilarthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadwsinterface.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsartistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsalbumthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywstoplistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsplaylistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsmoviethread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsrecommendthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsartistlistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwscommentsthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwsdiscoverlistthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwstextdownloadthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwssongsuggestthread.h
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwsartistsimilarthread.h
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadsourcethread.h
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkthread.h
@@ -280,20 +266,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_NETWORK_KITS_SOURCES
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgtextdownloadthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgsongsuggestthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/mg/musicmgartistsimilarthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadwsinterface.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsartistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsalbumthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywstoplistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsplaylistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsmoviethread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsrecommendthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicdownloadquerywsartistlistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwscommentsthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwsdiscoverlistthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwstextdownloadthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwssongsuggestthread.cpp
-    ${MUSIC_CORE_NETWORK_DIR}/ws/musicwsartistsimilarthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/yyt/musicdownloadqueryyytthread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicdownloadsourcethread.cpp
     ${MUSIC_CORE_NETWORK_DIR}/ztl/musicnetworkthread.cpp
