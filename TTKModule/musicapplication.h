@@ -84,6 +84,7 @@ public:
      * Import outer music datas into container.
      */
     void musicImportSongsSettingPathOuter(const QStringList &path, bool play);
+    
     /*!
      * Import music datas into container.
      */

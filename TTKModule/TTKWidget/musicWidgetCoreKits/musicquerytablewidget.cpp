@@ -47,6 +47,7 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Gif_Cicle_Blue, this);
     m_actionGroup = new QActionGroup(this);
     m_labelDelegate = new MusicLabelDelegate(this);
+
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }

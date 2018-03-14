@@ -215,7 +215,7 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
     reg.setFileLink(MAIN_DIR_FULL + APPEXE, desktop + "/" + fileName + ".lnk", QString(),
                     QString("-Radio \"%1\"").arg(row), tr("TTK Radio Link"));
 #else
-    reg.setFileLink(QString("-Radio \"%1\"").arg(row), desktop, MAIN_DIR_FULL + APPNAME,  MusicObject::getAppDir(),  fileName);
+    reg.setFileLink(QString(" -Radio \"%1\"").arg(row), desktop, MAIN_DIR_FULL + APPNAME, MusicObject::getAppDir(), fileName);
 #endif
 }
 

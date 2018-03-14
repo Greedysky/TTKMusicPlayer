@@ -142,8 +142,6 @@ void MusicRegeditManager::setFileLink(const QString &src, const QString &des, co
         }
     }
 #else
-    Q_UNUSED(ico);
-
     QFile file(":/ext/desktop");
     if(file.open(QFile::ReadOnly))
     {
