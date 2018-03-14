@@ -6,6 +6,7 @@ MusicDownLoadQueryBDThread::MusicDownLoadQueryBDThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_queryServer = "Baidu";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryBDThread::getClassName()
@@ -21,11 +22,30 @@ void MusicDownLoadQueryBDThread::startToSearch(QueryType type, const QString &te
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
+    m_searchText = text.trimmed();
+
+    emit clearAllItems();
+    m_musicSongInfos.clear();
+
+    startToPage(0);
+}
+
+void MusicDownLoadQueryBDThread::startToPage(int offset)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false)
+                    .arg(m_searchText).arg(offset + 1).arg(m_pageSize);
     m_interrupt = true;
+    m_pageTotal = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -66,8 +86,6 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
-    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -84,6 +102,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
             {
                 value = value["result"].toMap();
                 value = value["song_info"].toMap();
+                m_pageTotal = value["total"].toInt();
                 QVariantList datas = value["song_list"].toList();
                 foreach(const QVariant &var, datas)
                 {

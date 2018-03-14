@@ -11,6 +11,7 @@ MusicDownLoadQueryKGMovieThread::MusicDownLoadQueryKGMovieThread(QObject *parent
     : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "Kugou";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryKGMovieThread::getClassName()
@@ -28,7 +29,7 @@ void MusicDownLoadQueryKGMovieThread::startToSearch(QueryType type, const QStrin
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
     deleteAll();
     m_interrupt = true;
 

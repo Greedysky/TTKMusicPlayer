@@ -11,6 +11,7 @@ MusicDownLoadQueryMGMovieThread::MusicDownLoadQueryMGMovieThread(QObject *parent
     : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "Migu";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryMGMovieThread::getClassName()
@@ -28,6 +29,7 @@ void MusicDownLoadQueryMGMovieThread::startToSearch(QueryType type, const QStrin
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     m_currentType = type;
+
     QUrl musicUrl = MusicUtils::Algorithm::mdII(MG_SONG_SEARCH_URL, false).arg(text);
     deleteAll();
     m_interrupt = true;

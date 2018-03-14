@@ -3,6 +3,7 @@
 #include "musicitemdelegate.h"
 #include "musicgiflabelwidget.h"
 
+#include <qmath.h>
 #include <QActionGroup>
 
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
@@ -85,6 +86,7 @@ void MusicQueryItemTableWidget::listCellClicked(int row, int column)
             clearSpans();
             removeRow(row);
 
+            m_loadingLabel->run(true);
             m_downLoadManager->startToPage(m_downLoadManager->getPageIndex() + 1);
         }
     }
@@ -135,8 +137,8 @@ void MusicQueryItemTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        bool more = (m_downLoadManager->getPageTotal() > 0 &&
-                     m_downLoadManager->getPageSize()*(m_downLoadManager->getPageIndex() + 1) <= count);
+        int total = ceil(m_downLoadManager->getPageTotal()*1.0/m_downLoadManager->getPageSize());
+        bool more = (total > m_downLoadManager->getPageIndex() + 1);
         it->setData(MUSIC_TEXTS_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
