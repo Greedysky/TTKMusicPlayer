@@ -408,10 +408,10 @@ void MusicArtistFoundWidget::setSongName(const QString &name)
 void MusicArtistFoundWidget::setSongNameById(const QString &id)
 {
     MusicFoundAbstractWidget::setSongName(id);
-    MusicDownLoadQueryThreadAbstract *v = M_DOWNLOAD_QUERY_PTR->getArtistThread(this);
-    m_foundTableWidget->setQueryInput(v);
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getArtistThread(this);
+    m_foundTableWidget->setQueryInput(d);
     m_foundTableWidget->startSearchQuery(id);
-    connect(v, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));
+    connect(d, SIGNAL(createArtistInfoItem(MusicResultsItem)), SLOT(createArtistInfoItem(MusicResultsItem)));
 }
 
 void MusicArtistFoundWidget::resizeWindow()
@@ -452,13 +452,13 @@ void MusicArtistFoundWidget::queryAllFinished()
 
 void MusicArtistFoundWidget::queryArtistFinished()
 {
-    MusicDownLoadQueryThreadAbstract *query = m_foundTableWidget->getQueryInput();
-    if(!query)
+    MusicDownLoadQueryThreadAbstract *d = m_foundTableWidget->getQueryInput();
+    if(!d)
     {
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(query->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(musicSongInfos.isEmpty())
     {
         m_statusLabel->setPixmap(QPixmap(":/image/lb_noArtist"));

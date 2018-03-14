@@ -266,13 +266,13 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicResultsItem &it
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
-    MusicDownLoadQueryPlaylistThread *pt = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
+    MusicDownLoadQueryPlaylistThread *d = MStatic_cast(MusicDownLoadQueryPlaylistThread*, M_DOWNLOAD_QUERY_PTR->getPlaylistThread(this));
     MusicResultsItem it(item);
     if(it.isEmpty())
     {
-        pt->getPlaylistInfo(it);
+        d->getPlaylistInfo(it);
     }
-    m_infoWidget->setQueryInput(pt);
+    m_infoWidget->setQueryInput(d);
     m_infoWidget->setMusicResultsItem(it, this);
     m_container->addWidget(m_infoWidget);
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);

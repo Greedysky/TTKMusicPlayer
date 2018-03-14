@@ -204,13 +204,13 @@ void MusicFoundAbstractWidget::initSecondWidget()
 
 void MusicFoundAbstractWidget::setSongCountText()
 {
-    MusicDownLoadQueryThreadAbstract *query = m_foundTableWidget->getQueryInput();
-    if(!query)
+    MusicDownLoadQueryThreadAbstract *d = m_foundTableWidget->getQueryInput();
+    if(!d)
     {
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(query->getMusicSongInfos());
+    MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(m_songButton)
     {
         m_songButton->setText(tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));
