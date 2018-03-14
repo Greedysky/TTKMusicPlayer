@@ -72,6 +72,23 @@ void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
     setQueryInput( d );
 }
 
+void MusicQueryItemTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryTableWidget::listCellClicked(row, column);
+
+    if(rowCount() > 0)
+    {
+        QTableWidgetItem *it = item(rowCount() - 1, 0);
+        if(it && it->data(MUSIC_TEXTS_ROLE).toString() == tr("More Data"))
+        {
+            setItemDelegateForRow(rowCount() - 1, nullptr);
+            clearSpans();
+
+            m_downLoadManager->startToPage(m_downLoadManager->getPageIndex() + 1);
+        }
+    }
+}
+
 void MusicQueryItemTableWidget::clearAllItems()
 {
     if(rowCount() > 0)
@@ -117,7 +134,9 @@ void MusicQueryItemTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        bool more = (m_downLoadManager->getPageTotal() > 0 &&
+                     m_downLoadManager->getPageSize()*(m_downLoadManager->getPageIndex() + 1) <= count);
+        it->setData(MUSIC_TEXTS_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
 }

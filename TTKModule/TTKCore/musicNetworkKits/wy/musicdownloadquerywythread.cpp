@@ -7,6 +7,7 @@ MusicDownLoadQueryWYThread::MusicDownLoadQueryWYThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_queryServer = "WangYi";
+    m_pageSize = 40;
 }
 
 QString MusicDownLoadQueryWYThread::getClassName()
@@ -22,18 +23,37 @@ void MusicDownLoadQueryWYThread::startToSearch(QueryType type, const QString &te
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false);
+    m_searchText = text.trimmed();
+
+    emit clearAllItems();
+    m_musicSongInfos.clear();
+
+    startToPage(0);
+}
+
+void MusicDownLoadQueryWYThread::startToPage(int offset)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false);
     m_interrupt = true;
+    m_pageTotal = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
     makeTokenQueryQequest(&request);
     setSslConfiguration(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false).arg(text).arg(0).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false)
+                              .arg(m_searchText).arg(m_pageSize).arg(offset*m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -71,8 +91,6 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
-    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -86,6 +104,7 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
             if(value.contains("code") && value["code"].toInt() == 200)
             {
                 value = value["result"].toMap();
+                m_pageTotal = value["songCount"].toInt();
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {

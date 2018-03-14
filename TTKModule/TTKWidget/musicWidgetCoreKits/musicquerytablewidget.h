@@ -129,6 +129,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Table widget list cell click.
+     */
+    virtual void listCellClicked(int row, int column) override;
+    /*!
      * Clear All Items.
      */
     virtual void clearAllItems() override;

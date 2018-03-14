@@ -5,6 +5,7 @@ MusicDownLoadPagingThread::MusicDownLoadPagingThread(QObject *parent)
 {
     m_pageSize = 0;
     m_pageTotal = 0;
+    m_pageIndex = 0;
 
     m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL

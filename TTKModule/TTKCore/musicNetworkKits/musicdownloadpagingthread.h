@@ -56,9 +56,13 @@ public:
      * Return the page total number.
      */
     inline int getPageTotal() const { return m_pageTotal; }
+    /*!
+     * Return the page index number.
+     */
+    inline int getPageIndex() const { return m_pageIndex; }
 
 protected:
-    int m_pageSize, m_pageTotal;
+    int m_pageSize, m_pageTotal, m_pageIndex;
 
 };
 
