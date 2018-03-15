@@ -117,29 +117,37 @@
         </tag>
     </Baidu>
     <Kuwo>
-        <tag value="全球榜">
-            <value key="12" value="Billboard榜"/>
-            <value key="14" value="韩国M-net榜"/>
-            <value key="13" value="英国UK榜"/>
-            <value key="49" value="iTunes音乐榜"/>
-            <value key="117" value="全球电子舞曲榜"/>
-            <value key="15" value="日本公信榜"/>
-            <value key="4" value="台湾Hito"/>
-            <value key="8" value="香港音乐榜"/>
-        </tag>
         <tag value="分类榜">
-            <value key="17" value="酷我新歌榜"/>
             <value key="16" value="酷我热歌榜"/>
+            <value key="17" value="酷我新歌榜"/>
             <value key="93" value="酷我飙升榜"/>
-            <value key="130" value="酷音乐流行榜"/>
-            <value key="145" value="酷我畅销榜"/>
-            <value key="147" value="中国嘻哈榜"/>
             <value key="62" value="酷我华语榜"/>
-            <value key="63" value="网络神曲榜"/>
+            <value key="26" value="经典怀旧榜"/>
             <value key="76" value="夜店舞曲榜"/>
             <value key="64" value="热门影视榜"/>
-            <value key="112" value="K歌翻唱榜"/>
+            <value key="104" value="酷我首发榜"/>
+        </tag>
+        <tag value="特色榜">
+            <value key="22" value="酷我欧美榜"/>
+            <value key="23" value="酷我日韩榜"/>
+            <value key="158" value="抖音热歌榜"/>
+            <value key="157" value="快手热歌榜"/>
+            <value key="145" value="酷我单曲畅销榜"/>
+            <value key="154" value="酷我综艺榜"/>
+            <value key="63" value="网络神曲榜"/>
+            <value key="153" value="网红新歌榜"/>
+            <value key="156" value="鬼畜调教榜"/>
             <value key="106" value="酷我真声音"/>
+            <value key="151" value="腾讯音乐人原创榜"/>
+        </tag>
+        <tag value="全球榜">
+            <value key="12" value="Billboard榜"/>
+            <value key="49" value="iTunes音乐榜"/>
+            <value key="13" value="英国UK榜"/>
+            <value key="4" value="台湾Hito"/>
+            <value key="14" value="韩国M-net榜"/>
+            <value key="15" value="日本公信榜"/>
+            <value key="8" value="香港音乐榜"/>
         </tag>
     </Kuwo>
     <XiaMi>

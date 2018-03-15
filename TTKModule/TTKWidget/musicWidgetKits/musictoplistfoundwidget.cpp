@@ -223,6 +223,7 @@ void MusicToplistFoundWidget::createToplistInfoItem(const MusicResultsItem &item
     if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != "null")
     {
         download->startToDownload(item.m_coverUrl);
+        qDebug() << item.m_coverUrl;
     }
 }
 

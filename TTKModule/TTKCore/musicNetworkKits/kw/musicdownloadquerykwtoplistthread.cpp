@@ -23,7 +23,7 @@ void MusicDownLoadQueryKWToplistThread::startToSearch(QueryType type, const QStr
     }
     else
     {
-        startToSearch(toplist.isEmpty() ? "93" : toplist);
+        startToSearch(toplist.isEmpty() ? "16" : toplist);
     }
 }
 
@@ -74,9 +74,8 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
         if(ok)
         {
             QVariantMap value = data.toMap();
-            if(value["status"].toInt() == 200 && value.contains("data"))
+            if(value.contains("musiclist"))
             {
-                value = value["data"].toMap();
                 MusicResultsItem info;
                 info.m_name = value["name"].toString();
                 info.m_coverUrl = value["pic"].toString();
@@ -85,7 +84,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                 info.m_updateTime = value["pub"].toString();
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["musicList"].toList();
+                QVariantList datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -96,20 +95,20 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_singerName = value["artist"].toString();
-                    musicInfo.m_songName = value["songName"].toString();
+                    musicInfo.m_songName = value["name"].toString();
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
                     musicInfo.m_songId = value["id"].toString();
-                    musicInfo.m_artistId = value["artistId"].toString();
+                    musicInfo.m_artistId = value["artistid"].toString();
                     musicInfo.m_albumId = value["albumid"].toString();
-                    musicInfo.m_albumName = value["albumName"].toString();
+                    musicInfo.m_albumName = value["album"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     ///music normal songs urls
-                    readFromMusicSongAttribute(&musicInfo, value["formats"].toList(), m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttribute(&musicInfo, value["formats"].toString(), m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -131,7 +130,6 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
             }
         }
     }
-
 
     emit downLoadDataChanged(QString());
     deleteAll();
