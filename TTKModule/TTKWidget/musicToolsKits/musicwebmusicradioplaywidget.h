@@ -129,7 +129,7 @@ protected:
     bool m_isPlaying;
     QTimer m_autoNextTimer;
     MusicLrcAnalysis *m_analysis;
-    MusicCoreMPlayer *m_radio;
+    MusicCoreMPlayer *m_mediaPlayer;
     MusicRadioPlayListThread *m_playListThread;
     MusicRadioSongsThread *m_songsThread;
     QStringList m_playListIds;

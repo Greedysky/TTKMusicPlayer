@@ -150,6 +150,10 @@ public Q_SLOTS:
      * Open music song download widget.
      */
     void musicSongDownload(int row);
+    /*!
+     * Media aution play error.
+     */
+    void mediaAutionPlayError(int code);
 
 protected:
     /*!
@@ -164,7 +168,7 @@ protected:
 
     bool m_queryAllRecords;
     int m_previousAuditionRow;
-    MusicCoreMPlayer *m_audition;
+    MusicCoreMPlayer *m_mediaPlayer;
     MusicDownloadData m_downloadData;
 
 };

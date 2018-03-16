@@ -107,7 +107,7 @@ protected:
     QLabel *m_detectedLabel, *m_lrcLabel;
     QMovie *m_detectedMovie;
     QPushButton *m_detectedButton;
-    MusicCoreMPlayer *m_songPlayer;
+    MusicCoreMPlayer *m_mediaPlayer;
     MusicLrcAnalysis *m_analysis;
     MusicAudioRecorderCore *m_recordCore;
     MusicIdentifySongsThread *m_detectedThread;

@@ -126,6 +126,10 @@ private Q_SLOTS:
      */
     void mediaChanged(const QString &data);
     /*!
+     * Media aution play error.
+     */
+    void mediaAutionPlayError(int code);
+    /*!
      * Current media is playing.
      */
     void mediaIsPlaying(bool &play);
@@ -145,13 +149,11 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    bool m_positionChanged;
     MusicViewWidget *m_videoWidget;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicVideoControlWidget *m_videoControl;
     MusicBarrageWidget *m_barrageCore;
 
 };
-
 
 #endif // MUSICVIDEOVIEW_H

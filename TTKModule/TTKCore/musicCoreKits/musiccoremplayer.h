@@ -116,7 +116,7 @@ Q_SIGNALS:
     /*!
      * Current media is finished.
      */
-    void finished();
+    void finished(int code);
 
 public Q_SLOTS:
     /*!
@@ -149,6 +149,10 @@ private Q_SLOTS:
      * Player one second time out.
      */
     void timeout();
+    /*!
+     * Check thread time out.
+     */
+    void checkTimerout();
 
 protected:
     /*!
@@ -163,7 +167,7 @@ protected:
     QProcess *m_process;
     MusicObject::PlayState m_playState;
     Category m_category;
-    QTimer m_timer;
+    QTimer m_timer, m_checkTimer;
 
 };
 

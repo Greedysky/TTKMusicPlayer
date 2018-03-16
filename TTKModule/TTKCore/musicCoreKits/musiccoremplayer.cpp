@@ -13,10 +13,16 @@ MusicCoreMPlayer::MusicCoreMPlayer(QObject *parent)
 
     m_timer.setInterval(MT_S2MS);
     connect(&m_timer, SIGNAL(timeout()), SLOT(timeout()));
+
+    m_checkTimer.setInterval(5*MT_S2MS);
+    connect(&m_checkTimer, SIGNAL(timeout()), SLOT(checkTimerout()));
 }
 
 MusicCoreMPlayer::~MusicCoreMPlayer()
 {
+    m_timer.stop();
+    m_checkTimer.stop();
+
     if(m_process)
     {
         m_process->kill();
@@ -49,7 +55,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     m_category = type;
     m_playState = MusicObject::PS_StoppedState;
     m_process = new QProcess(this);
-    connect(m_process, SIGNAL(finished(int)), SIGNAL(finished()));
+    connect(m_process, SIGNAL(finished(int)), SIGNAL(finished(int)));
 
     switch(m_category)
     {
@@ -157,6 +163,8 @@ bool MusicCoreMPlayer::isPlaying() const
 void MusicCoreMPlayer::play()
 {
     m_timer.stop();
+    m_checkTimer.start();
+
     if(!m_process)
     {
         return;
@@ -176,6 +184,20 @@ void MusicCoreMPlayer::play()
     }
 
     emit stateChanged(m_playState);
+}
+
+void MusicCoreMPlayer::stop()
+{
+    m_playState = MusicObject::PS_StoppedState;
+    m_timer.stop();
+    m_checkTimer.stop();
+
+    if(!m_process)
+    {
+        return;
+    }
+
+    m_process->write("quit\n");
 }
 
 void MusicCoreMPlayer::durationRecieve()
@@ -220,7 +242,6 @@ void MusicCoreMPlayer::positionRecieve()
 
 void MusicCoreMPlayer::musicStandardRecieve()
 {
-    m_timer.start();
     while(m_process->canReadLine())
     {
         QString message(m_process->readLine());
@@ -237,21 +258,17 @@ void MusicCoreMPlayer::musicStandardRecieve()
     }
 }
 
-void MusicCoreMPlayer::stop()
-{
-    m_playState = MusicObject::PS_StoppedState;
-    m_timer.stop();
-
-    if(!m_process)
-    {
-        return;
-    }
-
-    m_process->write("quit\n");
-}
-
 void MusicCoreMPlayer::timeout()
 {
     m_process->write("get_time_length\n");
     m_process->write("get_time_pos\n");
+}
+
+void MusicCoreMPlayer::checkTimerout()
+{
+    if(m_process && m_process->state() == QProcess::NotRunning)
+    {
+        m_checkTimer.stop();
+        emit finished(DEFAULT_INDEX_LEVEL1);
+    }
 }
