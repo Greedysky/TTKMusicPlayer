@@ -21,6 +21,7 @@ MusicCoreMPlayer::~MusicCoreMPlayer()
     {
         m_process->kill();
     }
+
     delete m_process;
 }
 
@@ -38,6 +39,7 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
         delete m_process;
         m_process = nullptr;
     }
+
     if(!QFile::exists(MAKE_PLAYER_FULL))
     {
         M_LOGGER_ERROR(tr("Lack of plugin file!"));
@@ -52,7 +54,6 @@ void MusicCoreMPlayer::setMedia(Category type, const QString &data, int winId)
     switch(m_category)
     {
         case MusicCategory: setMusicMedia(data); break;
-        case RadioCategory: setRadioMedia(data); break;
         case VideoCategory: setVideoMedia(data, winId); break;
         case NullCategory: break;
         default: break;
@@ -87,22 +88,13 @@ void MusicCoreMPlayer::setMusicMedia(const QString &data)
     m_process->start(MAKE_PLAYER_FULL, arguments);
 }
 
-void MusicCoreMPlayer::setRadioMedia(const QString &data)
-{
-    emit mediaChanged(data);
-
-    QStringList arguments;
-    arguments << "-slave" << "-quiet" << "-vo" << "directx:noaccel" << data;
-    connect(m_process, SIGNAL(readyReadStandardOutput()), SLOT(dataRecieve()));
-    m_process->start(MAKE_PLAYER_FULL, arguments);
-}
-
 void MusicCoreMPlayer::setPosition(qint64 pos)
 {
     if(!m_process)
     {
         return;
     }
+
     m_process->write(QString("seek %1 2\n").arg(pos).toUtf8());
 }
 
@@ -112,6 +104,7 @@ void MusicCoreMPlayer::setLeftVolume()
     {
         return;
     }
+
     m_process->write(QString("af channels=1:1:1\n").toUtf8());
 }
 
@@ -121,6 +114,7 @@ void MusicCoreMPlayer::setRightVolume()
     {
         return;
     }
+
     m_process->write(QString("af channels=1:1\n").toUtf8());
 }
 
@@ -130,6 +124,7 @@ void MusicCoreMPlayer::setMultiVoice(int number)
     {
         return;
     }
+
     m_process->write(QString("switch_audio %1\n").arg(number).toUtf8());
 }
 
@@ -139,6 +134,7 @@ void MusicCoreMPlayer::setMute(bool mute)
     {
         return;
     }
+
     m_process->write(QString("mute %1\n").arg(mute ? 1 : 0).toUtf8());
 }
 
@@ -148,6 +144,7 @@ void MusicCoreMPlayer::setVolume(int value)
     {
         return;
     }
+
     emit volumeChanged(value);
     m_process->write(QString("volume %1 1\n").arg(value).toUtf8());
 }
@@ -177,6 +174,7 @@ void MusicCoreMPlayer::play()
         m_playState = MusicObject::PS_PausedState;
         disconnect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(positionRecieve()));
     }
+
     emit stateChanged(m_playState);
 }
 
@@ -200,7 +198,6 @@ void MusicCoreMPlayer::dataRecieve()
     switch(m_category)
     {
         case MusicCategory: musicStandardRecieve(); break;
-        case RadioCategory: radioStandardRecieve(); break;
         case VideoCategory: positionRecieve(); break;
         case NullCategory: break;
         default: break;
@@ -217,19 +214,6 @@ void MusicCoreMPlayer::positionRecieve()
         {
             data.replace(QByteArray("\r\n"), QByteArray(""));
             emit positionChanged(QString(data).mid(18).toFloat());
-        }
-    }
-}
-
-void MusicCoreMPlayer::radioStandardRecieve()
-{
-    while(m_process->canReadLine())
-    {
-        QString message(m_process->readLine());
-        QStringList messagelist = message.split(" ");
-        if(messagelist[0] == "Starting")
-        {
-            emit radioChanged();
         }
     }
 }
@@ -257,10 +241,12 @@ void MusicCoreMPlayer::stop()
 {
     m_playState = MusicObject::PS_StoppedState;
     m_timer.stop();
+
     if(!m_process)
     {
         return;
     }
+
     m_process->write("quit\n");
 }
 

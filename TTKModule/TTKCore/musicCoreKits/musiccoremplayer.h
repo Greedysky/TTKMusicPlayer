@@ -36,7 +36,6 @@ public:
     {
         NullCategory,   /*!< no category*/
         MusicCategory,  /*!< music category*/
-        RadioCategory,  /*!< radio category*/
         VideoCategory   /*!< video category*/
     };
 
@@ -115,11 +114,7 @@ Q_SIGNALS:
      */
     void stateChanged(MusicObject::PlayState state);
     /*!
-     * Current media is radio changed.
-     */
-    void radioChanged();
-    /*!
-     * Current media is radio changed.
+     * Current media is finished.
      */
     void finished();
 
@@ -147,10 +142,6 @@ private Q_SLOTS:
      */
     void durationRecieve();
     /*!
-     * Player radio data has recieved.
-     */
-    void radioStandardRecieve();
-    /*!
      * Player music data has recieved.
      */
     void musicStandardRecieve();
@@ -168,10 +159,6 @@ protected:
      * Set player to music media data.
      */
     void setMusicMedia(const QString &data);
-    /*!
-     * Set player to radio media data.
-     */
-    void setRadioMedia(const QString &data);
 
     QProcess *m_process;
     MusicObject::PlayState m_playState;
