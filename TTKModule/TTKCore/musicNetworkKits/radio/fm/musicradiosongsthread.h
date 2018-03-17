@@ -1,5 +1,5 @@
-#ifndef MUSICWEBMUSICRADIOLISTVIEW_H
-#define MUSICWEBMUSICRADIOLISTVIEW_H
+#ifndef MUSICRADIOSONGSTHREAD_H
+#define MUSICRADIOSONGSTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,51 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QListWidget>
-#include "musicglobaldefine.h"
+#include "musicradiothreadabstract.h"
 
-class QNetworkCookieJar;
-class MusicRadioChannelThread;
-class MusicWebMusicRadioWidget;
-
-/*! @brief The class of the web music radio list widget.
+/*! @brief The class of music radio thread of song info.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMusicRadioListView : public QListWidget
+class MUSIC_NETWORK_EXPORT MusicRadioSongsThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioListView(QWidget *parent = 0);
+    explicit MusicRadioSongsThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
 
-    ~MusicWebMusicRadioListView();
+    virtual ~MusicRadioSongsThread();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
     /*!
-     * To init list items.
+     * Start to download data.
      */
-    void initListItems();
+    virtual void startToDownload(const QString &id) override;
+    /*!
+     * Get music song information.
+     */
+    inline const MusicObject::MusicSongInformation& getMusicSongInfo() const { return m_songInfo; }
 
 public Q_SLOTS:
     /*!
-     * Radio list item has clicked.
+     * Download data from net finished.
      */
-    void itemHasClicked(QListWidgetItem *item);
-    /*!
-     * Add radio list into list widget.
-     */
-    void addListWidgetItem();
+    virtual void downLoadFinished() override;
 
 protected:
-    QNetworkCookieJar *m_cookJar;
-    MusicRadioChannelThread *m_getChannelThread;
-    MusicWebMusicRadioWidget *m_musicRadio;
+    MusicObject::MusicSongInformation m_songInfo;
 
 };
 
-#endif // MUSICWEBMUSICRADIOLISTVIEW_H
+#endif // MUSICRADIOSONGSTHREAD_H

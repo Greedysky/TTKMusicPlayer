@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H
-#define MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H
+#ifndef MUSICRADIOCHANNELTHREAD_H
+#define MUSICRADIOCHANNELTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,34 +19,45 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadwsinterface.h"
-#include "musicdownloadqueryartistlistthread.h"
+#include "musicradiothreadabstract.h"
 
-/*! @brief The class to wusing query artist list download data from net.
+/*! @brief The class of the radio channel info item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSArtistListThread : public MusicDownLoadQueryArtistListThread
+typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
+{
+    QString m_id;
+    QString m_name;
+    QString m_coverUrl;
+}MusicRadioChannelInfo;
+MUSIC_DECLARE_LISTS(MusicRadioChannelInfo)
+
+/*! @brief The class of music radio thread of song channel.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_NETWORK_EXPORT MusicRadioChannelThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryWSArtistListThread(QObject *parent = 0);
+    explicit MusicRadioChannelThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+
+    virtual ~MusicRadioChannelThread();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
-     * Start to search data from name and type bt paging.
+     * Start to download data.
      */
-    virtual void startToPage(int offset) override;
+    virtual void startToDownload(const QString &id) override;
     /*!
-     * Start to Search data.
+     * Get music channel.
      */
-    virtual void startToSearch(const QString &artistlist) override;
+    inline const MusicRadioChannelInfos& getMusicChannel() const { return m_channels; }
 
 public Q_SLOTS:
     /*!
@@ -54,6 +65,9 @@ public Q_SLOTS:
      */
     virtual void downLoadFinished() override;
 
+protected:
+    MusicRadioChannelInfos m_channels;
+
 };
 
-#endif // MUSICDOWNLOADQUERYWSARTISTLISTTHREAD_H
+#endif // MUSICRADIOCHANNELTHREAD_H

@@ -16,7 +16,7 @@ MusicDesktopWallpaperThread::MusicDesktopWallpaperThread(QObject *parent)
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), SLOT(timeout()));
 
-    setInterval(10*MT_S2MS);
+    setInterval(20*MT_S2MS);
 }
 
 MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()
@@ -68,7 +68,7 @@ HWND MusicDesktopWallpaperThread::findDesktopIconWnd()
 void MusicDesktopWallpaperThread::sendMessageToDesktop()
 {
      PDWORD_PTR result = NULL;
-     SendMessageTimeoutW(FindWindowW(L"Progman",NULL), 0x52c, 0, 0, SMTO_NORMAL, 1000, result);
+     SendMessageTimeoutW(FindWindowW(L"Progman",NULL), 0x52C, 0, 0, SMTO_NORMAL, 1000, result);
 }
 #endif
 

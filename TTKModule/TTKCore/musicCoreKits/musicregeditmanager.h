@@ -46,7 +46,6 @@ public:
      * Set desktop wall auto start.
      */
     void setDesktopWallAutoStart(bool state);
-
     /*!
      * Get desktop wall control panel.
      */
@@ -60,11 +59,15 @@ public:
      * Set left win key enable.
      */
     void setLeftWinEnable();
-
     /*!
      * Get local IE version.
      */
     int getLocalIEVersion() const;
+    /*!
+     * Set file link.
+     */
+    void setFileLink(const QString &src, const QString &des, const QString &ico,
+                     const QString &args, const QString &description);
 
 protected:
     /*!

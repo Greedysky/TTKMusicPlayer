@@ -1,9 +1,7 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
-#include "musicnumberdefine.h"
 #include "ttkdumper.h"
 
-#include <QTimer>
 #include <QScreen>
 #include <QTranslator>
 #include <QApplication>
@@ -62,14 +60,17 @@ int main(int argc, char *argv[])
 
     if(argc == 4)
     {
-        if(QString(argv[1]) == "-Open")
+        if(QString::fromLocal8Bit(argv[2]) == "-Open")
         {
-            w.musicImportSongsSettingPath(QStringList() << argv[2]);
-            QTimer::singleShot(MT_MS, &w, SLOT(musicImportPlay()));
+            w.musicImportSongsSettingPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), true);
         }
-        if(QString(argv[1]) == "-List")
+        if(QString::fromLocal8Bit(argv[2]) == "-List")
         {
-            w.musicImportSongsSettingPath(QStringList() << argv[2]);
+            w.musicImportSongsSettingPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), false);
+        }
+        if(QString::fromLocal8Bit(argv[2]) == "-Radio")
+        {
+            w.radioExecuteOuter(argv[3]);
         }
     }
 

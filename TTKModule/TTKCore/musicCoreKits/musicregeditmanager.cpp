@@ -4,8 +4,11 @@
 #ifdef Q_OS_WIN
 #include <qt_windows.h>
 #include <ole2.h>
+#include <shobjidl.h>
+#include <shlobj.h>
 #endif
 #include <QSettings>
+#include <QProcess>
 #include <QStringList>
 #include <QApplication>
 
@@ -97,6 +100,67 @@ int MusicRegeditManager::getLocalIEVersion() const
     return HIWORD(fixedFileInfo->dwProductVersionMS);
 #endif
     return -1;
+}
+
+void MusicRegeditManager::setFileLink(const QString &src, const QString &des, const QString &ico,
+                                      const QString &args, const QString &description)
+{
+#ifdef Q_OS_WIN
+    HRESULT hres = CoInitialize(nullptr);
+    if(SUCCEEDED(hres))
+    {
+        IShellLinkW *psl = nullptr;
+        hres = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_IShellLink, (LPVOID*)&psl);
+
+        if(SUCCEEDED(hres))
+        {
+            IPersistFile *ppf;
+            if(!src.isEmpty())
+            {
+                psl->SetPath(src.toStdWString().c_str());
+            }
+            if(!ico.isEmpty())
+            {
+                psl->SetIconLocation(ico.toStdWString().c_str(), 0);
+            }
+            if(!args.isEmpty())
+            {
+                psl->SetArguments(args.toStdWString().c_str());
+            }
+            if(!description.isEmpty())
+            {
+                psl->SetDescription(description.toStdWString().c_str());
+            }
+
+            hres = psl->QueryInterface(IID_IPersistFile, (void**)&ppf);
+            if(SUCCEEDED(hres))
+            {
+                ppf->Save(des.toStdWString().c_str(), FALSE);
+                ppf->Release();
+            }
+            psl->Release();
+        }
+    }
+#else
+    QFile file(":/ext/desktop");
+    if(file.open(QFile::ReadOnly))
+    {
+        QByteArray data(file.readAll());
+        file.close();
+
+        data.append(QString("Icon=%1\n").arg(ico));
+        data.append(QString("Exec=%1\n").arg(ico + src));
+        data.append(QString("Path=%1\n").arg(args));
+
+        file.setFileName(des + "/" + description + ".desktop");
+        if(file.open(QFile::WriteOnly))
+        {
+            file.write(data);
+            file.close();
+            QProcess::execute("chmod", QStringList() << "+x" << file.fileName());
+        }
+    }
+#endif
 }
 
 bool MusicRegeditManager::currentNodeHasExist(const QString &key)

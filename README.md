@@ -34,6 +34,10 @@ Qmmp Source You Can See Here(extra): **<u>https://github.com/Greedysky/qmmp</u>*
 
 Qmmp Core Library URL: **<u>http://pan.baidu.com/s/1bv4iSY</u>**
 
+Player Base URL: **<u>http://pan.baidu.com/s/1gdB5QLH</u>**
+
+Executable Download URL: **<u>http://pan.baidu.com/s/1kVOHN0b</u>**
+
 Mobile
 ----
 *Follow the QQ music UI to achieve most of the features.*

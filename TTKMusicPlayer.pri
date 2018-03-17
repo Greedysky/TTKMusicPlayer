@@ -62,7 +62,7 @@ unix:!mac{
 !exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
 
 win32{
-    LIBS += -lIphlpapi -lVersion
+    LIBS += -lIphlpapi -lVersion -lole32 -luuid
     equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_MINOR_VERSION, 1):QT  += winextras
         msvc{

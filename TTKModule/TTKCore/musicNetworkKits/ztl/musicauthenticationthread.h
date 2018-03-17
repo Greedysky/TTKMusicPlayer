@@ -1,5 +1,5 @@
-#ifndef MUSICWSARTISTSIMILARTHREAD_H
-#define MUSICWSARTISTSIMILARTHREAD_H
+#ifndef MUSICAUTHENTICATIONTHREAD_H
+#define MUSICAUTHENTICATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,36 +19,44 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadsimilarthread.h"
+#include "musicdatabaseobject.h"
+#include "musicnetworkabstract.h"
 
-/*! @brief The class to query wusing artist similar download data from net.
+/*! @brief The class to login authentication.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWSArtistSimilarThread : public MusicDownLoadSimilarThread
+class MUSIC_NETWORK_EXPORT MusicAuthenticationThread : public MusicNetworkAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWSArtistSimilarThread(QObject *parent = 0);
+    explicit MusicAuthenticationThread(QObject *parent = 0);
+
+    virtual ~MusicAuthenticationThread();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
-     * Start to Search data from name.
+     * Release the network object.
      */
-    virtual void startToSearch(const QString &text) override;
-
-public Q_SLOTS:
+    virtual void deleteAll() override;
     /*!
-     * Download data from net finished.
+     * Start to translation data.
+     * Subclass should implement this function.
      */
-    virtual void downLoadFinished() override;
+    virtual void startToDownload(const QString &usr, const QString &pwd) = 0;
+    /*!
+     * Get info record.
+     */
+    inline const MusicUserInfoRecord& getInfoRecord() const { return m_info; }
+
+protected:
+    MusicUserInfoRecord m_info;
 
 };
 
-#endif // MUSICWSARTISTSIMILARTHREAD_H
+#endif // MUSICAUTHENTICATIONTHREAD_H

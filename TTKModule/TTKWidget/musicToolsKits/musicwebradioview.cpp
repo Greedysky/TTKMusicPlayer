@@ -1,5 +1,5 @@
 #include "musicwebradioview.h"
-#include "musicwebmusicradiolistview.h"
+#include "musicwebmusicradiowidget.h"
 #include "musicuiobject.h"
 #include "musicrightareawidget.h"
 
@@ -13,7 +13,7 @@ MusicWebRadioView::MusicWebRadioView(QWidget *parent)
     layout->setSpacing(0);
     layout->setContentsMargins(0, 0, 0, 0);
 
-    m_musicRadio = new MusicWebMusicRadioListView(this);
+    m_musicRadio = new MusicWebMusicRadioWidget(this);
 
     QWidget *bottomWidget = new QWidget(this);
     bottomWidget->setFixedHeight(40);
@@ -62,9 +62,9 @@ QString MusicWebRadioView::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWebRadioView::init()
+void MusicWebRadioView::init(int index)
 {
-    m_musicRadio->initListItems();
+    m_musicRadio->initListItems(index);
 }
 
 void MusicWebRadioView::openDJRadioWindow()

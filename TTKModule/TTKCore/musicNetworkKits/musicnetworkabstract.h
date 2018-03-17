@@ -70,7 +70,7 @@ public:
     /*!
      * Get the current raw data.
      */
-    inline QVariantMap getRawData() const { return m_rawData; }
+    inline const QVariantMap& getRawData() const { return m_rawData; }
 
 Q_SIGNALS:
     /*!

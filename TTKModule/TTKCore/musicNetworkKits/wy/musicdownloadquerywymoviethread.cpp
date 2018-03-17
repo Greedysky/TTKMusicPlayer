@@ -11,6 +11,7 @@ MusicDownLoadQueryWYMovieThread::MusicDownLoadQueryWYMovieThread(QObject *parent
     : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "WangYi";
+    m_pageSize = 40;
 }
 
 QString MusicDownLoadQueryWYMovieThread::getClassName()
@@ -37,7 +38,8 @@ void MusicDownLoadQueryWYMovieThread::startToSearch(QueryType type, const QStrin
     makeTokenQueryQequest(&request);
     setSslConfiguration(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false).arg(text).arg(0).toUtf8());
+    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false)
+                              .arg(m_searchText).arg(m_pageSize).arg(0*m_pageSize).toUtf8());
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -134,12 +136,12 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
     if(m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *query = new MusicDownLoadQueryYYTThread(this);
-        connect(query, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
-        connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        query->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        MusicDownLoadQueryYYTThread *d = new MusicDownLoadQueryYYTThread(this);
+        connect(d, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
+        connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        d->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();
-        m_musicSongInfos << query->getMusicSongInfos();
+        m_musicSongInfos << d->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

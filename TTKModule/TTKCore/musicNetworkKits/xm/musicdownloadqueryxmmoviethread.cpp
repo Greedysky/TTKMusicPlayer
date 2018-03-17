@@ -65,6 +65,7 @@ MusicDownLoadQueryXMMovieThread::MusicDownLoadQueryXMMovieThread(QObject *parent
     : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "XiaMi";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryXMMovieThread::getClassName()
@@ -88,7 +89,7 @@ void MusicDownLoadQueryXMMovieThread::startToSearch(QueryType type, const QStrin
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(30),
+                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
@@ -205,12 +206,12 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
     if(m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *query = new MusicDownLoadQueryYYTThread(this);
-        connect(query, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
-        connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        query->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        MusicDownLoadQueryYYTThread *d = new MusicDownLoadQueryYYTThread(this);
+        connect(d, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
+        connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        d->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();
-        m_musicSongInfos << query->getMusicSongInfos();
+        m_musicSongInfos << d->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

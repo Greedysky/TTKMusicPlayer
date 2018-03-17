@@ -80,7 +80,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     /*!
-     * Music item has double been clicked.
+     * Music item has been clicked.
      */
     void musicPlayClicked();
     /*!

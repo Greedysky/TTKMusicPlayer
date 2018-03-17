@@ -105,7 +105,7 @@ namespace MusicUtils
         /*!
          * Image color burn transform.
          */
-        MUSIC_UTILS_EXPORT uint colorBurnTransform(int c, int delta);
+        MUSIC_UTILS_EXPORT int colorBurnTransform(int c, int delta);
 
         /*!
          * Get open file dialog.

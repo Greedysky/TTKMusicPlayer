@@ -185,6 +185,21 @@ void MusicApplication::musicLoadCurrentSongLrc()
     QTimer::singleShot(MT_S2MS, this, SLOT(resetCurrentSongLrcIndex()));
 }
 
+void MusicApplication::radioExecuteOuter(const QString &path)
+{
+    m_leftAreaWidget->radioExecuteOuter(path);
+}
+
+void MusicApplication::musicImportSongsSettingPathOuter(const QStringList &path, bool play)
+{
+    musicImportSongsSettingPath(path);
+
+    if(play)
+    {
+        musicPlayIndex(m_musicPlayList->mediaCount() - 1, 0);
+    }
+}
+
 void MusicApplication::musicImportSongsSettingPath(const QStringList &items)
 {
     if(items.isEmpty())
@@ -769,11 +784,6 @@ void MusicApplication::musicWindowConciseChanged()
 void MusicApplication::musicEnhancedMusicChanged(int type)
 {
     m_musicPlayer->setMusicEnhanced(MStatic_cast(MusicPlayer::Enhanced, type));
-}
-
-void MusicApplication::musicImportPlay()
-{
-    musicPlayIndex(m_musicPlayList->mediaCount() - 1, 0);
 }
 
 void MusicApplication::musicCreateRightMenu()

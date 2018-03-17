@@ -293,14 +293,14 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     textLabel->setAlignment(Qt::AlignCenter);
     /////////////////////////////////////////////////////////////////////
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryThreadAbstract *query = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
-    connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
+    MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, textLabel->text().trimmed());
     loop.exec();
 
-    if(!query->getMusicSongInfos().isEmpty())
+    if(!d->isEmpty())
     {
-        foreach(const MusicObject::MusicSongInformation &info, query->getMusicSongInfos())
+        foreach(const MusicObject::MusicSongInformation &info, d->getMusicSongInfos())
         {
             if(info.m_singerName.toLower().trimmed().contains(songIdentify.m_singerName.toLower().trimmed(), Qt::CaseInsensitive) &&
                info.m_songName.toLower().trimmed().contains(songIdentify.m_songName.toLower().trimmed(), Qt::CaseInsensitive) )
@@ -378,10 +378,10 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         QString name = MusicUtils::Core::lrcPrefix() + m_currentSong.m_singerName + " - " + m_currentSong.m_songName + LRC_FILE;
         if(!QFile::exists(name))
         {
-            MusicDownLoadThreadAbstract* lrcDownload = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name,
-                                                                        MusicDownLoadThreadAbstract::Download_Lrc, this);
-            connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            lrcDownload->startToDownload();
+            MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name,
+                                                                   MusicDownLoadThreadAbstract::Download_Lrc, this);
+            connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            d->startToDownload();
             loop.exec();
         }
         m_analysis->transLrcFileToTime(name);

@@ -25,27 +25,22 @@ void MusicWYTranslationThread::startToDownload(const QString &data)
 {
     Q_UNUSED(data);
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryWYThread *query = new MusicDownLoadQueryWYThread(this);
-    query->setQueryAllRecords(false);
-    query->setQuerySimplify(true);
-    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, QFileInfo(m_rawData["name"].toString()).baseName());
-    connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    MusicDownLoadQueryWYThread *d = new MusicDownLoadQueryWYThread(this);
+    d->setQueryAllRecords(false);
+    d->setQuerySimplify(true);
+    d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, QFileInfo(m_rawData["name"].toString()).baseName());
+    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
     QUrl musicUrl;
-    if(!query->getMusicSongInfos().isEmpty())
+    if(!d->isEmpty())
     {
-        musicUrl.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(query->getMusicSongInfos().first().m_songId));
+        musicUrl.setUrl(MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(d->getMusicSongInfos().first().m_songId));
     }
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-#ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
-    M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
     setSslConfiguration(&request);
-#endif
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

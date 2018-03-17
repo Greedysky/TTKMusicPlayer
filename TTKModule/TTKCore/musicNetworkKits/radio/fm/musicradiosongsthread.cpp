@@ -1,4 +1,5 @@
 #include "musicradiosongsthread.h"
+#include "musicnumberutils.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -29,8 +30,7 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_SONG_URL, false) + id));
 #ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
     setSslConfiguration(&request);
 #endif
@@ -42,12 +42,6 @@ void MusicRadioSongsThread::startToDownload(const QString &id)
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
-
-}
-
-MusicRadioSongInfo MusicRadioSongsThread::getMusicSongInfo()
-{
-    return m_songInfo;
 }
 
 void MusicRadioSongsThread::downLoadFinished()
@@ -78,10 +72,16 @@ void MusicRadioSongsThread::downLoadFinished()
                     continue;
                 }
 
-                m_songInfo.m_songUrl = value["songLink"].toString();
+                MusicObject::MusicSongAttribute attr;
+                attr.m_url = value["songLink"].toString();
+                attr.m_bitrate = value["rate"].toInt();
+                attr.m_format = value["format"].toString();
+                attr.m_size = MusicUtils::Number::size2Label(value["size"].toLongLong());
+
+                m_songInfo.m_songAttrs << attr;
                 m_songInfo.m_songName = value["songName"].toString();
-                m_songInfo.m_artistName = value["artistName"].toString();
-                m_songInfo.m_songPicUrl = value["songPicRadio"].toString();
+                m_songInfo.m_singerName = value["artistName"].toString();
+                m_songInfo.m_smallPicUrl = value["songPicRadio"].toString();
                 m_songInfo.m_albumName = value["albumName"].toString();
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 
@@ -93,6 +93,7 @@ void MusicRadioSongsThread::downLoadFinished()
             }
         }
     }
+
     emit downLoadDataChanged("query finished!");
     deleteAll();
 }

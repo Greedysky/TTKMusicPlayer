@@ -22,7 +22,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class MusicWebMusicRadioListView;
+class MusicWebMusicRadioWidget;
 
 /*! @brief The class of the web radio widget.
  * @author Greedysky <greedysky@163.com>
@@ -45,7 +45,7 @@ public:
     /*!
      * To init list items.
      */
-    void init();
+    void init(int index);
 
 public Q_SLOTS:
     /*!
@@ -63,7 +63,7 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    MusicWebMusicRadioListView *m_musicRadio;
+    MusicWebMusicRadioWidget *m_musicRadio;
 
 };
 

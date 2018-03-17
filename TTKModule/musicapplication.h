@@ -75,10 +75,19 @@ public:
      * Load current song lrc.
      */
     void musicLoadCurrentSongLrc();
+
+    /*!
+     * Execute outer radio by type.
+     */
+    void radioExecuteOuter(const QString &path);
+    /*!
+     * Import outer music datas into container.
+     */
+    void musicImportSongsSettingPathOuter(const QStringList &path, bool play);
+    
     /*!
      * Import music datas into container.
      */
-
     void musicImportSongsSettingPath(const QStringList &path);
     /*!
      * Get music current song download contains.
@@ -247,10 +256,6 @@ public Q_SLOTS:
      * Set current music enhanced effect by type.
      */
     void musicEnhancedMusicChanged(int type);
-    /*!
-     * Import outside song to play list and play.
-     */
-    void musicImportPlay();
     /*!
      * Create right menu.
      */

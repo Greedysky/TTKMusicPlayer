@@ -11,7 +11,7 @@
 #include <QSslError>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                                         Download_Type type, QObject *parent)
+                                                         DownloadType type, QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_url = url;

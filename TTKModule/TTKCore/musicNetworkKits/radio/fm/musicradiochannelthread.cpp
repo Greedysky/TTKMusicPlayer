@@ -2,9 +2,9 @@
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
+#include <QNetworkAccessManager>
 
 MusicRadioChannelThread::MusicRadioChannelThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
@@ -22,15 +22,15 @@ QString MusicRadioChannelThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicRadioChannelThread::startToDownload(const QString &)
+void MusicRadioChannelThread::startToDownload(const QString &id)
 {
+    Q_UNUSED(id);
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(RADIO_CHANNEL_URL, false)));
 #ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
     setSslConfiguration(&request);
 #endif
@@ -43,11 +43,6 @@ void MusicRadioChannelThread::startToDownload(const QString &)
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 
-}
-
-MusicRadioChannelInfos MusicRadioChannelThread::getMusicChannel()
-{
-    return m_channels;
 }
 
 void MusicRadioChannelThread::downLoadFinished()
@@ -70,16 +65,33 @@ void MusicRadioChannelThread::downLoadFinished()
         {
             QVariantMap value = data.toMap();
             QVariantList channels = value["channel_list"].toList();
-            foreach(const QVariant &var, channels)
+
+            QFile arcFile(":/data/fmarclist");
+            arcFile.open(QFile::ReadOnly);
+#ifdef Q_OS_WIN
+            QStringList arcs = QString(arcFile.readAll()).split("\r\n");
+#else
+            QStringList arcs = QString(arcFile.readAll()).split("\n");
+#endif
+            arcFile.close();
+
+            while(channels.count() > arcs.count())
             {
-                value = var.toMap();
+                arcs.append(QString());
+            }
+
+            for(int i=0; i<channels.count(); ++i)
+            {
+                value = channels[i].toMap();
                 MusicRadioChannelInfo channel;
                 channel.m_id = value["channel_id"].toString();
                 channel.m_name = value["channel_name"].toString();
+                channel.m_coverUrl = arcs[i];
                 m_channels << channel;
             }
         }
     }
+
     emit downLoadDataChanged("query finished!");
     deleteAll();
 }

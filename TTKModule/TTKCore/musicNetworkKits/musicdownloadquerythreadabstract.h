@@ -164,9 +164,13 @@ public:
      */
     inline void setMusicSongInfos(const MusicObject::MusicSongInformations &infos) { m_musicSongInfos = infos; }
     /*!
-     * Return the current song container.
+     * Get the current song container.
      */
     inline const MusicObject::MusicSongInformations& getMusicSongInfos() const { return m_musicSongInfos; }
+    /*!
+     * Check the current song container is empty.
+     */
+    inline bool isEmpty() const { return m_musicSongInfos.isEmpty(); }
     /*!
      * Map query server string.
      */

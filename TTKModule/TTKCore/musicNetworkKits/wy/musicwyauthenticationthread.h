@@ -1,5 +1,5 @@
-#ifndef MUSICWSTEXTDOWNLOADTHREAD_H
-#define MUSICWSTEXTDOWNLOADTHREAD_H
+#ifndef MUSICWYAUTHENTICATIONTHREAD_H
+#define MUSICWYAUTHENTICATIONTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,29 +19,31 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadthreadabstract.h"
+#include "musicdownloadwyinterface.h"
+#include "musicauthenticationthread.h"
 
-/*! @brief The class of downloading the type of wusing txt.
+/*! @brief The class to wangyi login authentication.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicWSTextDownLoadThread : public MusicDownLoadThreadAbstract
+class MUSIC_NETWORK_EXPORT MusicWYAuthenticationThread : public MusicAuthenticationThread,
+                                                         private MusicDownLoadWYInterface
 {
     Q_OBJECT
 public:
     /*!
-     * Object contsructor provide download URL\ save local path and download type.
+     * Object contsructor.
      */
-    MusicWSTextDownLoadThread(const QString &url, const QString &save,
-                              Download_Type type, QObject *parent = 0);
+    explicit MusicWYAuthenticationThread(QObject *parent = 0);
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
+
     /*!
-     * Start to download data.
+     * Start to translation data.
      */
-    virtual void startToDownload() override;
+    virtual void startToDownload(const QString &usr, const QString &pwd) override;
 
 public Q_SLOTS:
     /*!
@@ -51,4 +53,4 @@ public Q_SLOTS:
 
 };
 
-#endif // MUSICWSTEXTDOWNLOADTHREAD_H
+#endif // MUSICWYAUTHENTICATIONTHREAD_H

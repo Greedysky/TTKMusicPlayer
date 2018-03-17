@@ -2,6 +2,7 @@
 #include "musicdesktopwallpaperthread.h"
 #include "musiclrcmanagerforinline.h"
 #include "musiclayoutanimationwidget.h"
+#include "musictransitionanimationlabel.h"
 #include "musicbackgroundmanager.h"
 #include "musiclrcanalysis.h"
 #include "musicstringutils.h"
@@ -16,7 +17,7 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     vBoxLayout->setSpacing(0);
     setLayout(vBoxLayout);
 
-    m_background = new QLabel(this);
+    m_background = new MusicTransitionAnimationLabel(this);
     m_background->setScaledContents(true);
     vBoxLayout->addWidget(m_background);
     QVBoxLayout *bBoxLayout = new QVBoxLayout(m_background);

@@ -79,7 +79,11 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
     QFile file(":/emoji/db");
     if(file.open(QFile::ReadOnly))
     {
+#ifdef Q_OS_WIN
        m_datas = QString(file.readAll()).split("\r\n");
+#else
+       m_datas = QString(file.readAll()).split("\n");
+#endif
     }
     file.close();
 }

@@ -6,7 +6,7 @@
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="
 
 MusicQQTextDownLoadThread::MusicQQTextDownLoadThread(const QString &url, const QString &save,
-                                                     Download_Type type, QObject *parent)
+                                                     DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
@@ -32,8 +32,7 @@ void MusicQQTextDownLoadThread::startToDownload()
             request.setRawHeader("Host", "lyric.music.qq.com");
             request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
 #ifndef QT_NO_SSL
-            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                               SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+            connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
             M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
             setSslConfiguration(&request);
 #endif

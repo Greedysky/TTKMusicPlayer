@@ -1,81 +1,49 @@
 #include "musicwebmusicradiowidget.h"
-#include "ui_musicwebmusicradiowidget.h"
-#include "musiccoremplayer.h"
-#include "musicuiobject.h"
-#include "musicradioplaylistthread.h"
-#include "musicradiosongsthread.h"
-#include "musictextdownloadthread.h"
-#include "musicdatadownloadthread.h"
-#include "musiclrcanalysis.h"
-#include "musictime.h"
-#include "musiccoreutils.h"
+#include "musicradiochannelthread.h"
+#include "musicwebmusicradioplaywidget.h"
 #include "musicwidgetutils.h"
+#include "musicuiobject.h"
+#include "musicdownloadsourcethread.h"
+#include "musicregeditmanager.h"
+
+#include <QMenu>
+#include <QScrollBar>
+#ifdef MUSIC_GREATER_NEW
+#include <QStandardPaths>
+#else
+#include <QDesktopServices>
+#endif
+#include <QNetworkCookieJar>
+
+#define ICON_SIZE       50
 
 MusicWebMusicRadioWidget::MusicWebMusicRadioWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(parent),
-      m_ui(new Ui::MusicWebMusicRadioWidget), m_playListThread(nullptr),
-      m_songsThread(nullptr)
+    : MusicAbstractTableWidget(parent), m_musicRadio(nullptr), m_getChannelThread(nullptr)
 {
-    m_ui->setupUi(this);
+    setIconSize(QSize(ICON_SIZE, ICON_SIZE));
+    setColumnCount(4);
 
-    m_currentPlayListIndex = 0;
-    m_isPlaying = false;
-    m_analysis = new MusicLrcAnalysis(this);
-    m_analysis->setLineMax(9);
+    QHeaderView *headerview = horizontalHeader();
+    headerview->resizeSection(0, 10);
+    headerview->resizeSection(1, ICON_SIZE + 20);
+    headerview->resizeSection(2, 157);
+    headerview->resizeSection(3, 75);
 
-    m_autoNextTimer.setInterval(3*MT_S2MS);
-    connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
-    connect(m_ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
-    connect(m_ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
+    m_outerIndex = -1;
+    m_cookJar = new QNetworkCookieJar(this);
 
-    m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
-    m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
-    m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->topTitleCloseButton->setToolTip(tr("Close"));
-    connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
+    MusicUtils::Widget::setTransparent(this, 0);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
-    m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    m_ui->previousButton->setIcon(QIcon(":/functions/btn_previous_hover"));
-    m_ui->nextButton->setIcon(QIcon(":/functions/btn_next_hover"));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
 
-    m_ui->playButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    m_ui->previousButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-    m_ui->nextButton->setStyleSheet(MusicUIObject::MBackgroundStyle01);
-
-#ifdef Q_OS_UNIX
-    m_ui->playButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->previousButton->setFocusPolicy(Qt::NoFocus);
-    m_ui->nextButton->setFocusPolicy(Qt::NoFocus);
-#endif
-
-    m_ui->playButton->setIconSize(QSize(31, 31));
-    m_ui->previousButton->setIconSize(QSize(31, 31));
-    m_ui->nextButton->setIconSize(QSize(31, 31));
-
-    m_ui->playButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->previousButton->setCursor(QCursor(Qt::PointingHandCursor));
-    m_ui->nextButton->setCursor(QCursor(Qt::PointingHandCursor));
-
-    m_ui->volumeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
-    m_ui->volumeSlider->setRange(0, 100);
-    m_ui->volumeSlider->setValue(100);
-
-    createCoreModule();
-
-    connect(m_ui->playButton, SIGNAL(clicked()), SLOT(radioPlay()));
-    connect(m_ui->previousButton, SIGNAL(clicked()), SLOT(radioPrevious()));
-    connect(m_ui->nextButton, SIGNAL(clicked()), SLOT(radioNext()));
-    connect(m_ui->volumeSlider, SIGNAL(valueChanged(int)), SLOT(radioVolume(int)));
 }
 
 MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
 {
-    m_autoNextTimer.stop();
-    delete m_analysis;
-    delete m_radio;
-    delete m_songsThread;
-    delete m_playListThread;
-    delete m_ui;
+    delete m_cookJar;
+    delete m_musicRadio;
+    delete m_getChannelThread;
 }
 
 QString MusicWebMusicRadioWidget::getClassName()
@@ -83,273 +51,184 @@ QString MusicWebMusicRadioWidget::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicWebMusicRadioWidget::closeEvent(QCloseEvent *event)
+void MusicWebMusicRadioWidget::initListItems(int index)
 {
-    m_autoNextTimer.stop();
-    delete m_radio;
-    m_radio = nullptr;
-    QWidget::closeEvent(event);
-}
-
-void MusicWebMusicRadioWidget::setNetworkCookie(QNetworkCookieJar *jar)
-{
-    if(m_songsThread == nullptr || m_playListThread == nullptr)
+    m_outerIndex = index;
+    if(rowCount() == 0)
     {
-        m_playListThread = new MusicRadioPlayListThread(this, jar);
-        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlayListFinished()));
-        m_songsThread = new MusicRadioSongsThread(this, jar);
-        connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
+        delete m_getChannelThread;
+        m_getChannelThread = new MusicRadioChannelThread(this, m_cookJar);
+        connect(m_getChannelThread, SIGNAL(downLoadDataChanged(QString)), SLOT(addListWidgetItem()));
+        m_getChannelThread->startToDownload(QString());
     }
 }
 
-void MusicWebMusicRadioWidget::updateRadioList(const QString &category)
+void MusicWebMusicRadioWidget::listCellEntered(int row, int column)
 {
-    if(m_playListThread)
+    QTableWidgetItem *it = item(m_previousColorRow, 3);
+    if(it)
     {
-        m_playListThread->startToDownload(category);
-    }
-}
-
-void MusicWebMusicRadioWidget::radioPlay()
-{
-    if(!m_radio)
-    {
-        return;
+        it->setIcon(QIcon());
     }
 
-    m_isPlaying = !m_isPlaying;
-    m_ui->playButton->setIcon(QIcon(m_isPlaying ? ":/functions/btn_pause_hover" : ":/functions/btn_play_hover"));
-    m_radio->play();
-}
-
-void MusicWebMusicRadioWidget::radioPrevious()
-{
-    if(m_playListIds.isEmpty())
+    if((it = item(row, 3)))
     {
-        return;
+        it->setIcon(QIcon(":/contextMenu/btn_play"));
     }
 
-    --m_currentPlayListIndex;
-    if(m_currentPlayListIndex > m_playListIds.count())
+    if(column == 3)
     {
-        m_currentPlayListIndex = m_playListIds.count() - 1;
-    }
-    else if(m_currentPlayListIndex < 0)
-    {
-        m_currentPlayListIndex = 0;
-    }
-
-    m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
-
-    if(!m_isPlaying)
-    {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    }
-}
-
-void MusicWebMusicRadioWidget::radioNext()
-{
-    if(m_playListIds.isEmpty())
-    {
-        return;
-    }
-
-    ++m_currentPlayListIndex;
-    if(m_currentPlayListIndex > m_playListIds.count())
-    {
-        m_currentPlayListIndex = m_playListIds.count() - 1;
-    }
-    else if(m_currentPlayListIndex < 0)
-    {
-        m_currentPlayListIndex = 0;
-    }
-
-    m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
-
-    if(!m_isPlaying)
-    {
-        m_ui->playButton->setIcon(QIcon(":/functions/btn_pause_hover"));
-    }
-}
-
-void MusicWebMusicRadioWidget::radioVolume(int num)
-{
-    if(m_radio)
-    {
-        m_radio->setVolume(num);
-    }
-}
-
-void MusicWebMusicRadioWidget::getPlayListFinished()
-{
-    m_playListIds = m_playListThread->getMusicPlayList();
-    m_currentPlayListIndex = 0;
-    if(m_songsThread && !m_playListIds.isEmpty())
-    {
-        m_songsThread->startToDownload(m_playListIds.first());
-    }
-}
-
-void MusicWebMusicRadioWidget::getSongInfoFinished()
-{
-    m_isPlaying = true;
-    startToPlay();
-}
-
-void MusicWebMusicRadioWidget::createCoreModule()
-{
-    m_radio = new MusicCoreMPlayer(this);
-    connect(m_radio, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
-    connect(m_radio, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-}
-
-void MusicWebMusicRadioWidget::startToPlay()
-{
-    MusicRadioSongInfo info;
-    if(m_songsThread)
-    {
-        info = m_songsThread->getMusicSongInfo();
-    }
-
-    if(info.m_songUrl.isEmpty())
-    {
-        return;
-    }
-
-    if(!m_radio)
-    {
-        createCoreModule();
-    }
-    m_radio->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songUrl);
-    m_radio->play();
-
-    /// fix current play volume temporary
-    int v = m_ui->volumeSlider->value();
-    m_ui->volumeSlider->setValue(0);
-    m_ui->volumeSlider->setValue(v);
-
-    QString name = MusicUtils::Core::lrcPrefix() + info.m_artistName + " - " + info.m_songName + LRC_FILE;
-    if(!QFile::exists(name))
-    {
-        MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
-                                 MusicDownLoadThreadAbstract::Download_Lrc, this);
-        connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
-        lrcDownload->startToDownload();
+        setCursor(QCursor(Qt::PointingHandCursor));
     }
     else
     {
-        lrcDownloadStateChanged();
+        unsetCursor();
     }
 
-    name = ART_DIR_FULL + info.m_artistName + SKN_FILE;
-    if(!QFile::exists(name))
+    MusicAbstractTableWidget::listCellEntered(row, column);
+}
+
+void MusicWebMusicRadioWidget::listCellClicked(int row, int column)
+{
+    Q_UNUSED(row);
+
+    if(column == 3)
     {
-        MusicDataDownloadThread *picDwonload = new MusicDataDownloadThread(info.m_songPicUrl, name,
-                                 MusicDownLoadThreadAbstract::Download_SmlBG, this);
-        connect(picDwonload, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
-        picDwonload->startToDownload();
-    }
-    else
-    {
-        picDownloadStateChanged();
+        listCellDoubleClicked(row, DEFAULT_INDEX_LEVEL0);
     }
 }
 
-void MusicWebMusicRadioWidget::lrcDownloadStateChanged()
+void MusicWebMusicRadioWidget::listCellDoubleClicked(int row, int column)
 {
-    MusicRadioSongInfo info;
-    if(m_songsThread)
-    {
-        info = m_songsThread->getMusicSongInfo();
-    }
+    Q_UNUSED(column);
 
-    if(info.m_songUrl.isEmpty())
+    if(!m_getChannelThread)
     {
         return;
     }
 
-    QString name = info.m_artistName + " - " + info.m_songName;
-    name = name.trimmed();
-    m_ui->titleWidget->setText(name);
-    m_analysis->transLrcFileToTime(MusicUtils::Core::lrcPrefix() + name + LRC_FILE);
+    MusicRadioChannelInfos channels = m_getChannelThread->getMusicChannel();
+    if(m_musicRadio == nullptr)
+    {
+        m_musicRadio = new MusicWebMusicRadioPlayWidget(this);
+        m_musicRadio->setNetworkCookie(m_cookJar);
+    }
+
+    if(!channels.isEmpty())
+    {
+        m_musicRadio->updateRadioList(channels[row].m_id);
+    }
+    m_musicRadio->show();
 }
 
-void MusicWebMusicRadioWidget::picDownloadStateChanged()
+void MusicWebMusicRadioWidget::addListWidgetItem()
 {
-    MusicRadioSongInfo info;
-    if(m_songsThread)
+    MusicRadioChannelInfos channels = m_getChannelThread->getMusicChannel();
+    foreach(const MusicRadioChannelInfo &channel, channels)
     {
-        info = m_songsThread->getMusicSongInfo();
-    }
+        int index = rowCount();
+        setRowCount(index + 1);
+        setRowHeight(index, 60);
 
-    if(info.m_songUrl.isEmpty())
-    {
-        return;
-    }
+        QTableWidgetItem *item = new QTableWidgetItem;
+        setItem(index, 0, item);
 
-    QPixmap pix(ART_DIR_FULL + info.m_artistName + SKN_FILE);
-    if(pix.isNull())
-    {
-        pix.load(":/image/lb_defaultArt");
-    }
-    pix = MusicUtils::Widget::pixmapToRound(pix, QSize(150, 150), 100, 100);
-    m_ui->artistLabel->setPixmap(pix);
-    m_ui->artistLabel->start();
-}
+                          item = new QTableWidgetItem;
+        item->setIcon(MusicUtils::Widget::pixmapToRound(QPixmap(":/image/lb_defaultArt"),
+                                                        QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+        setItem(index, 1, item);
 
-void MusicWebMusicRadioWidget::positionChanged(qint64 position)
-{
-    if(!m_radio)
-    {
-        return;
-    }
+                          item = new QTableWidgetItem;
+        QFont f = item->font();
+        f.setBold(true);
+        item->setFont(f);
+        item->setText(channel.m_name);
+        item->setTextColor(QColor(100, 100, 100));
+        item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+        setItem(index, 2, item);
 
-    m_autoNextTimer.stop();
-    m_autoNextTimer.start();
-    m_ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS)));
+                          item = new QTableWidgetItem;
+        setItem(index, 3, item);
 
-    if(m_analysis->isEmpty())
-    {
-        QString lrc = QString("<p style='font-weight:600;' align='center'>%1</p>").arg(tr("unFoundLrc"));
-        m_ui->lrcLabel->setText(lrc);
-        return;
-    }
-
-    int index = m_analysis->getCurrentIndex();
-    qint64 time = m_analysis->findTime(index);
-
-    if(time < position*MT_S2MS && time != -1)
-    {
-        QString lrc;
-        for(int i=0; i<m_analysis->getLineMax(); ++i)
+        MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
+        connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
+        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != "null")
         {
-            if(i == m_analysis->getMiddle())
-            {
-                lrc += QString("<p style='font-weight:600;' align='center'>");
-            }
-            else
-            {
-                lrc += QString("<p align='center'>");
-            }
-            lrc += m_analysis->getText(i);
-            lrc += QString("</p>");
+            QVariantMap map;
+            map["id"] = index;
+            download->setRawData(map);
+            download->startToDownload(channel.m_coverUrl);
         }
-        m_ui->lrcLabel->setText(lrc);
-        m_analysis->setCurrentIndex(++index);
+    }
+
+    //radio outer flag
+    if(m_outerIndex != -1)
+    {
+        selectRow(m_outerIndex);
+        listCellDoubleClicked(m_outerIndex, DEFAULT_INDEX_LEVEL0);
     }
 }
 
-void MusicWebMusicRadioWidget::durationChanged(qint64 duration)
+void MusicWebMusicRadioWidget::downLoadFinished(const QByteArray &data, const QVariantMap &ext)
 {
-    if(!m_radio)
+    QTableWidgetItem *it = item(ext["id"].toInt(), 1);
+    if(it)
+    {
+        QPixmap pix;
+        pix.loadFromData(data);
+        it->setIcon(MusicUtils::Widget::pixmapToRound(pix, QPixmap(":/usermanager/lb_mask_50"), iconSize()));
+    }
+}
+
+void MusicWebMusicRadioWidget::musicPlayClicked()
+{
+    int row = currentRow();
+    if(row >= 0)
+    {
+        listCellDoubleClicked(row, DEFAULT_INDEX_LEVEL0);
+    }
+}
+
+void MusicWebMusicRadioWidget::sendToDesktopLink()
+{
+    int row = currentRow();
+    if(row < 0)
     {
         return;
     }
-    m_ui->durationLabel->setText(QString("/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
+
+    QString fileName("Radio");
+    QTableWidgetItem *it = nullptr;
+    if((it = item(row, 2)))
+    {
+        fileName = it->text();
+    }
+
+#ifdef MUSIC_GREATER_NEW
+    QString desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+#else
+    QString desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+#endif
+
+    MusicRegeditManager reg;
+#ifdef Q_OS_WIN
+    reg.setFileLink(MAIN_DIR_FULL + APPEXE, desktop + "/" + fileName + ".lnk", QString(),
+                    QString("-Radio \"%1\"").arg(row), tr("TTK Radio Link"));
+#else
+    reg.setFileLink(QString(" -Radio \"%1\"").arg(row), desktop, MAIN_DIR_FULL + APPNAME, MusicObject::getAppDir(), fileName);
+#endif
 }
 
-void MusicWebMusicRadioWidget::show()
+void MusicWebMusicRadioWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-    setBackgroundPixmap(m_ui->background, size());
-    MusicAbstractMoveWidget::show();
+    MusicAbstractTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    rightClickMenu.addAction(tr("musicPlay"), this, SLOT(musicPlayClicked()));
+    rightClickMenu.addSeparator();
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"));
+    rightClickMenu.addAction(tr("sendToDesktop"), this, SLOT(sendToDesktopLink()));
+
+    rightClickMenu.exec(QCursor::pos());
 }

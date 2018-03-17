@@ -7,6 +7,7 @@ MusicDownLoadQueryXMThread::MusicDownLoadQueryXMThread(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
 {
     m_queryServer = "XiaMi";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryXMThread::getClassName()
@@ -22,15 +23,33 @@ void MusicDownLoadQueryXMThread::startToSearch(QueryType type, const QString &te
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    m_searchText = text.trimmed();
     m_currentType = type;
+    m_searchText = text.trimmed();
+
+    emit clearAllItems();
+    m_musicSongInfos.clear();
+
+    startToPage(0);
+}
+
+void MusicDownLoadQueryXMThread::startToPage(int offset)
+{
+    if(!m_manager)
+    {
+        return;
+    }
+
+    M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_interrupt = true;
+    m_pageTotal = 0;
+    m_pageIndex = offset;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     makeTokenQueryUrl(&request,
-                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(text).arg(1).arg(30),
+                      MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
@@ -73,8 +92,6 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
     }
 
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
-    emit clearAllItems();
-    m_musicSongInfos.clear();
     m_interrupt = false;
 
     if(m_reply->error() == QNetworkReply::NoError)
@@ -91,6 +108,10 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
+
+                QVariantMap pagingVO = value["pagingVO"].toMap();
+                m_pageTotal = pagingVO["count"].toInt();
+
                 QVariantList datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {

@@ -15,8 +15,7 @@ MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
 {
     m_manager = new QNetworkAccessManager(this);
 #ifndef QT_NO_SSL
-    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
-                       SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
+    connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));
     M_LOGGER_INFO(QString("%1 Support ssl: %2").arg(getClassName()).arg(QSslSocket::supportsSsl()));
 #endif
 }
@@ -93,11 +92,6 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
 
     m_reply = m_manager->post(request, content);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
-}
-
-const MusicSongIdentifys& MusicIdentifySongsThread::getIdentifySongs() const
-{
-    return m_songIdentifys;
 }
 
 void MusicIdentifySongsThread::downLoadFinished()

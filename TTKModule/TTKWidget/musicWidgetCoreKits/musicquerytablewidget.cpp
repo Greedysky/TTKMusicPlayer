@@ -3,6 +3,7 @@
 #include "musicitemdelegate.h"
 #include "musicgiflabelwidget.h"
 
+#include <qmath.h>
 #include <QActionGroup>
 
 MusicQueryTableWidget::MusicQueryTableWidget(QWidget *parent)
@@ -47,6 +48,7 @@ MusicQueryItemTableWidget::MusicQueryItemTableWidget(QWidget *parent)
     m_loadingLabel = new MusicGifLabelWidget(MusicGifLabelWidget::Gif_Cicle_Blue, this);
     m_actionGroup = new QActionGroup(this);
     m_labelDelegate = new MusicLabelDelegate(this);
+
     connect(m_actionGroup, SIGNAL(triggered(QAction*)), SLOT(actionGroupClick(QAction*)));
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(itemDoubleClicked(int,int)));
 }
@@ -69,6 +71,25 @@ void MusicQueryItemTableWidget::startSearchQuery(const QString &text)
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
+}
+
+void MusicQueryItemTableWidget::listCellClicked(int row, int column)
+{
+    MusicQueryTableWidget::listCellClicked(row, column);
+
+    if(rowCount() > 0 && row == rowCount() - 1)
+    {
+        QTableWidgetItem *it = item(row, 0);
+        if(it && it->data(MUSIC_TEXTS_ROLE).toString() == tr("More Data"))
+        {
+            setItemDelegateForRow(row, nullptr);
+            clearSpans();
+            removeRow(row);
+
+            m_loadingLabel->run(true);
+            m_downLoadManager->startToPage(m_downLoadManager->getPageIndex() + 1);
+        }
+    }
 }
 
 void MusicQueryItemTableWidget::clearAllItems()
@@ -116,7 +137,9 @@ void MusicQueryItemTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        it->setData(MUSIC_TEXTS_ROLE, tr("No More Data"));
+        int total = ceil(m_downLoadManager->getPageTotal()*1.0/m_downLoadManager->getPageSize());
+        bool more = (total > m_downLoadManager->getPageIndex() + 1);
+        it->setData(MUSIC_TEXTS_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
 }

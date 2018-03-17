@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicWebMusicRadioWidget</class>
- <widget class="QWidget" name="MusicWebMusicRadioWidget">
+ <class>MusicWebMusicRadioPlayWidget</class>
+ <widget class="QWidget" name="MusicWebMusicRadioPlayWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -104,7 +104,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:white;</string>
+    <string notr="true">background:rgba(255, 255, 255, 100);</string>
    </property>
   </widget>
   <widget class="QLabel" name="lrcLabel">
@@ -113,7 +113,7 @@
      <x>193</x>
      <y>34</y>
      <width>270</width>
-     <height>290</height>
+     <height>260</height>
     </rect>
    </property>
   </widget>
@@ -192,6 +192,26 @@
     </rect>
    </property>
   </widget>
+  <widget class="QToolButton" name="shareButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>305</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="downloadButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>305</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
   <zorder>background</zorder>
   <zorder>backgroundMask</zorder>
   <zorder>topTitleName</zorder>
@@ -206,6 +226,8 @@
   <zorder>durationLabel</zorder>
   <zorder>titleWidget</zorder>
   <zorder>lrcLabel</zorder>
+  <zorder>shareButton</zorder>
+  <zorder>downloadButton</zorder>
  </widget>
  <customwidgets>
   <customwidget>

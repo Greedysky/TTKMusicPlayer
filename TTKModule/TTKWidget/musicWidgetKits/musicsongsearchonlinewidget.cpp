@@ -184,7 +184,12 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
         message.exec();
         return;
     }
-    item(row, 0)->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
+
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        it->setData(MUSIC_AUDIT_ROLE, AUDITION_STOP);
+    }
     emit auditionIsPlaying(true);
 }
 
@@ -243,7 +248,11 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
             break;
     }
 
-    emit auditionIsPlaying( item(row, 0)->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP );
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        emit auditionIsPlaying(it->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP);
+    }
 }
 
 void MusicSongSearchOnlineTableWidget::clearAllItems()
@@ -543,13 +552,13 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
 
     if(index == 2)
     {
-        MusicDownLoadQueryThreadAbstract *query = m_searchTableWidget->getQueryInput();
-        if(!query)
+        MusicDownLoadQueryThreadAbstract *d = m_searchTableWidget->getQueryInput();
+        if(!d)
         {
             return;
         }
 
-        MusicObject::MusicSongInformations selectedItems, musicSongInfos(query->getMusicSongInfos());
+        MusicObject::MusicSongInformations selectedItems, musicSongInfos(d->getMusicSongInfos());
         foreach(int index, list)
         {
             if(index < 0 || index >= musicSongInfos.count())

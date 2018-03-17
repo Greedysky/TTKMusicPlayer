@@ -20,17 +20,17 @@ void MusicQQSongCommentsThread::startToSearch(const QString &name)
 {
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
     MusicSemaphoreLoop loop;
-    MusicDownLoadQueryQQThread *query = new MusicDownLoadQueryQQThread(this);
-    query->setQueryAllRecords(false);
-    query->setQuerySimplify(true);
-    query->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
-    connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+    MusicDownLoadQueryQQThread *d = new MusicDownLoadQueryQQThread(this);
+    d->setQueryAllRecords(false);
+    d->setQuerySimplify(true);
+    d->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, name);
+    connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
     loop.exec();
 
     m_rawData["songID"].clear();
-    if(!query->getMusicSongInfos().isEmpty())
+    if(!d->isEmpty())
     {
-        m_rawData["songID"] = query->getRawData()["songID"];
+        m_rawData["songID"] = d->getRawData()["songID"];
         startToPage(0);
     }
 }

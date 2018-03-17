@@ -19,23 +19,16 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QTimer>
-#include "musicabstractmovewidget.h"
+#include "musicabstracttablewidget.h"
 
 class QNetworkCookieJar;
-class MusicLrcAnalysis;
-class MusicCoreMPlayer;
-class MusicRadioSongsThread;
-class MusicRadioPlayListThread;
+class MusicRadioChannelThread;
+class MusicWebMusicRadioPlayWidget;
 
-namespace Ui {
-class MusicWebMusicRadioWidget;
-}
-
-/*! @brief The class of the web music radio widget.
+/*! @brief The class of the web music radio list widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicWebMusicRadioWidget : public MusicAbstractMoveWidget
+class MUSIC_TOOL_EXPORT MusicWebMusicRadioWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
 public:
@@ -44,91 +37,57 @@ public:
      */
     explicit MusicWebMusicRadioWidget(QWidget *parent = 0);
 
-    virtual ~MusicWebMusicRadioWidget();
+    ~MusicWebMusicRadioWidget();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
-
     /*!
-     * Set network cookie.
+     * To init list items.
      */
-    void setNetworkCookie(QNetworkCookieJar *jar);
-    /*!
-     * Update radio list by given category.
-     */
-    void updateRadioList(const QString &category);
+    void initListItems(int index);
 
 public Q_SLOTS:
     /*!
-     * Set radio to play.
+     * Table widget list cell enter.
      */
-    void radioPlay();
+    virtual void listCellEntered(int row, int column) override;
     /*!
-     * Set radio to previous.
+     * Table widget list cell click.
      */
-    void radioPrevious();
+    virtual void listCellClicked(int row, int column) override;
     /*!
-     * Set radio to next.
+     * Table widget list cell double click.
      */
-    void radioNext();
+    void listCellDoubleClicked(int row, int column);
     /*!
-     * Set radio volume.
+     * Add radio list into list widget.
      */
-    void radioVolume(int num);
+    void addListWidgetItem();
     /*!
-     * Get playList finished.
+     * Send recieved data from net.
      */
-    void getPlayListFinished();
+    void downLoadFinished(const QByteArray &data, const QVariantMap &ext);
     /*!
-     * Get song information finished.
+     * Music item has been clicked.
      */
-    void getSongInfoFinished();
+    void musicPlayClicked();
     /*!
-     * Lrc download state changed.
+     * Send to desktop link.
      */
-    void lrcDownloadStateChanged();
-    /*!
-     * Small pic download state changed.
-     */
-    void picDownloadStateChanged();
-    /*!
-     * Current position changed.
-     */
-    void positionChanged(qint64 position);
-    /*!
-     * Current duration changed.
-     */
-    void durationChanged(qint64 duration);
-    /*!
-     * Override show function.
-     */
-    void show();
+    void sendToDesktopLink();
 
 protected:
     /*!
      * Override the widget event.
      */
-    virtual void closeEvent(QCloseEvent *event) override;
-    /*!
-     * Create core module.
-     */
-    void createCoreModule();
-    /*!
-     * Start to play music radio.
-     */
-    void startToPlay();
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
-    Ui::MusicWebMusicRadioWidget *m_ui;
-    int m_currentPlayListIndex;
-    bool m_isPlaying;
-    QTimer m_autoNextTimer;
-    MusicLrcAnalysis *m_analysis;
-    MusicCoreMPlayer *m_radio;
-    MusicRadioPlayListThread *m_playListThread;
-    MusicRadioSongsThread *m_songsThread;
-    QStringList m_playListIds;
+    int m_outerIndex;
+    QNetworkCookieJar *m_cookJar;
+    MusicWebMusicRadioPlayWidget *m_musicRadio;
+    MusicRadioChannelThread *m_getChannelThread;
 
 };
 

@@ -10,6 +10,7 @@ MusicDownLoadQueryQQMovieThread::MusicDownLoadQueryQQMovieThread(QObject *parent
     : MusicDownLoadQueryMovieThread(parent)
 {
     m_queryServer = "QQ";
+    m_pageSize = 30;
 }
 
 QString MusicDownLoadQueryQQMovieThread::getClassName()
@@ -27,7 +28,7 @@ void MusicDownLoadQueryQQMovieThread::startToSearch(QueryType type, const QStrin
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(50);
+    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
     deleteAll();
     m_interrupt = true;
 
@@ -158,12 +159,12 @@ void MusicDownLoadQueryQQMovieThread::downLoadFinished()
     if(m_queryExtraMovie && m_currentType == MovieQuery)
     {
         MusicSemaphoreLoop loop;
-        MusicDownLoadQueryYYTThread *query = new MusicDownLoadQueryYYTThread(this);
-        connect(query, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
-        connect(query, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-        query->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
+        MusicDownLoadQueryYYTThread *d = new MusicDownLoadQueryYYTThread(this);
+        connect(d, SIGNAL(createSearchedItem(MusicSearchedItem)), SIGNAL(createSearchedItem(MusicSearchedItem)));
+        connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+        d->startToSearch(MusicDownLoadQueryYYTThread::MovieQuery, m_searchText);
         loop.exec();
-        m_musicSongInfos << query->getMusicSongInfos();
+        m_musicSongInfos << d->getMusicSongInfos();
     }
 
     emit downLoadDataChanged(QString());

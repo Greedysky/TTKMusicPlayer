@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADQUERYWSTHREAD_H
-#define MUSICDOWNLOADQUERYWSTHREAD_H
+#ifndef MUSICRADIOPLAYLISTTHREAD_H
+#define MUSICRADIOPLAYLISTTHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,30 +19,35 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicdownloadwsinterface.h"
-#include "musicdownloadquerythreadabstract.h"
+#include <QStringList>
+#include "musicradiothreadabstract.h"
 
-/*! @brief The class to wusing query download data from net.
+/*! @brief The class of music radio thread of playlist.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicDownLoadQueryWSThread : public MusicDownLoadQueryThreadAbstract,
-                                                        private MusicDownLoadWSInterface
+class MUSIC_NETWORK_EXPORT MusicRadioPlayListThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryWSThread(const QString &type, QObject *parent = 0);
+    explicit MusicRadioPlayListThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+
+    virtual ~MusicRadioPlayListThread();
 
     /*!
      * Get class object name.
      */
     static QString getClassName();
     /*!
-     * Start to search data from name and type.
+     * Start to download data.
      */
-    virtual void startToSearch(QueryType type, const QString &text) override;
+    virtual void startToDownload(const QString &id) override;
+    /*!
+     * Get music playlist.
+     */
+    inline const QStringList& getMusicPlayList() const { return m_playList; }
 
 public Q_SLOTS:
     /*!
@@ -51,8 +56,8 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
-    QString m_querySearchType;
+    QStringList m_playList;
 
 };
 
-#endif // MUSICDOWNLOADQUERYWSTHREAD_H
+#endif // MUSICRADIOPLAYLISTTHREAD_H
