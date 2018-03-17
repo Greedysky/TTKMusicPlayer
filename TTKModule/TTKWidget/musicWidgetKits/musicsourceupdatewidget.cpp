@@ -10,11 +10,12 @@
 #include "musicsettingmanager.h"
 #include "musicapplicationobject.h"
 #include "musicotherdefine.h"
-
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QBoxLayout>
+
+#define DOWNLOAD_URL    "YXhxRk5PeWpscVNYbEZKMmEwbUExdkMxcm9QN1ZybTlZYTcwVmN1aUdTNEJoMFRiM3V5cnE2S3VDbG89"
 
 MusicSourceUpdateNotifyWidget::MusicSourceUpdateNotifyWidget(QWidget *parent)
     : MusicAbstractMoveSingleWidget(true, parent)

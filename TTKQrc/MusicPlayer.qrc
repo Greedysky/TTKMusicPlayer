@@ -123,6 +123,7 @@
         <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>
         <file alias="lb_grabwindow">../TTKResource/tools/lb_grabwindow.png</file>
         <file alias="lb_connections">../TTKResource/tools/lb_connections.png</file>
+        <file alias="lb_radio">../TTKResource/tools/lb_radio.png</file>
     </qresource>
     <qresource prefix="/contextMenu">
         <file alias="btn_next_normal">../TTKResource/contextMenu/btn_next_normal.png</file>

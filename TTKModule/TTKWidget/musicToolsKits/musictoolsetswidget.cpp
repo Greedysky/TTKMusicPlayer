@@ -18,6 +18,7 @@
 #include "musicsoundkmicrowidget.h"
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
+#include "musicwebradioobject.h"
 
 #define NEW_OPERATOR(flag, type)  \
     if((m_toolsFlags & flag) != flag) \
@@ -99,6 +100,7 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_detect", tr("detect"))
           << ItemPair(":/tools/lb_soundtouch", tr("soundtouch"))
           << ItemPair(":/tools/lb_grabwindow", tr("grabwindow"))
+          << ItemPair(":/tools/lb_radio", tr("radio"))
           << ItemPair(":/tools/lb_ktv", tr("kmicro"));
 
     foreach(const ItemPair &pair, pairs)
@@ -195,6 +197,17 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
                 break;
             }
         case 14:
+            {
+#ifdef Q_OS_WIN
+                NEW_OPERATOR(MusicObject::TT_WebRadio, MusicWebRadioObject);
+#else
+                MusicMessageBox message;
+                message.setText(tr("Not Supported On Current Plantform!"));
+                message.exec();
+#endif
+                break;
+            }
+        case 15:
             {
                 NEW_OPERATOR(MusicObject::TT_SoundKMicro, MusicSoundKMicroWidget);
                 break;

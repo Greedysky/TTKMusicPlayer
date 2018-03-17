@@ -249,7 +249,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
             }
         }
         ////////////////////////////////////////////////
-        MusicDataDownloadThread* download = new MusicDataDownloadThread(urls[ul], downloadName,
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
                                                                         MusicDownLoadThreadAbstract::DownloadVideo, this);
         download->startToDownload();
     }

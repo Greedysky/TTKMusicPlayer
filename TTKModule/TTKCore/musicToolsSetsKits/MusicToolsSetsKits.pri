@@ -27,7 +27,8 @@ HEADERS  += \
     $$PWD/musicnetworktestthread.h \
     $$PWD/musicnetworkspeedtestthread.h \
     $$PWD/musicsongchecktoolscore.h \
-    $$PWD/musicsongchecktoolsunit.h
+    $$PWD/musicsongchecktoolsunit.h \
+    $$PWD/musicwebradioobject.h
 
 }
 
@@ -39,6 +40,7 @@ SOURCES += \
     $$PWD/musicaudiorecordercore.cpp \
     $$PWD/musicnetworktestthread.cpp \
     $$PWD/musicnetworkspeedtestthread.cpp \
-    $$PWD/musicsongchecktoolscore.cpp
+    $$PWD/musicsongchecktoolscore.cpp \
+    $$PWD/musicwebradioobject.cpp
 
 }

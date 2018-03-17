@@ -576,7 +576,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                     }
                 }
                 ////////////////////////////////////////////////
-                MusicDataDownloadThread* download = new MusicDataDownloadThread(urls[ul], downloadName,
+                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
                                                                                 MusicDownLoadThreadAbstract::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();

@@ -271,7 +271,8 @@ namespace MusicObject
         TT_Identify =       0x00800,   /*!< Identify*/
         TT_SoundTouch =     0x01000,   /*!< Sound Touch*/
         TT_GrabWindow =     0x02000,   /*!< Grab Window*/
-        TT_SoundKMicro =    0x04000    /*!< Sound KMicro*/
+        TT_SoundKMicro =    0x04000,   /*!< Sound KMicro*/
+        TT_WebRadio =       0x08000    /*!< Web Radio*/
     };
     MUSIC_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
