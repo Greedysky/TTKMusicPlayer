@@ -331,25 +331,26 @@ void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
 
 void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
 {
-    MusicQueryItemTableWidget::actionGroupClick(action);
+//    MusicQueryItemTableWidget::actionGroupClick(action);
     int row = currentRow();
+    if(!m_downLoadManager || row < 0 || (row >= rowCount() - 1))
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+
     switch( action->data().toInt() )
     {
+        case 0: musicDownloadLocal(row); break;
+        case 1: emit restartSearchQuery(info->m_songName); break;
+        case 2: MusicRightAreaWidget::instance()->musicArtistFound(info->m_singerName, info->m_artistId); break;
+        case 3: emit restartSearchQuery(info->m_singerName + " - " + info->m_songName); break;
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
         case 6: musicSongDownload(row); break;
-        case 7:
-            {
-                if(row < 0)
-                {
-                    break;
-                }
-
-                MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-                MusicObject::MusicSongInformation *info = &musicSongInfos[row];
-                MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId);
-                break;
-            }
+        case 7: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
         default: break;
     }
 }
@@ -402,15 +403,20 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     MusicQueryItemTableWidget::contextMenuEvent(event);
 
     QMenu rightClickMenu(this);
-    m_actionGroup->addAction( rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")) )->setData(4);
-    m_actionGroup->addAction( rightClickMenu.addAction(tr("musicAdd")) )->setData(5);
-    m_actionGroup->addAction( rightClickMenu.addAction(tr("downloadMore...")) )->setData(6);
+    m_actionGroup->addAction(rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay")))->setData(4);
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("musicAdd")))->setData(5);
+    m_actionGroup->addAction(rightClickMenu.addAction(tr("downloadMore...")))->setData(6);
 
     createContextMenu(rightClickMenu);
-    QString albumName = currentRow() != -1 && rowCount() > 0 ?
-                   item(currentRow(), 3)->toolTip() : QString();
-    m_actionGroup->addAction( rightClickMenu.addAction(tr("search '%1'").arg(albumName)))->setData(7);
 
+    if(!m_actionGroup->actions().isEmpty())
+    {
+        QString albumName = currentRow() != -1 && rowCount() > 0 ? item(currentRow(), 3)->toolTip() : QString();
+        QAction *lastAction = m_actionGroup->actions().last();
+        QAction *action = m_actionGroup->addAction(tr("search '%1'").arg(albumName));
+        action->setData(7);
+        rightClickMenu.insertAction(lastAction, action);
+    }
     rightClickMenu.exec(QCursor::pos());
 }
 

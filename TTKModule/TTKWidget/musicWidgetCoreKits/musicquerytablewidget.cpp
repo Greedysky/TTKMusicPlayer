@@ -117,7 +117,7 @@ void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
         case 0: musicDownloadLocal(row); break;
         case 1: emit restartSearchQuery(songName); break;
         case 2: emit restartSearchQuery(artistName); break;
-        case 3: emit restartSearchQuery(songName + "-" + artistName); break;
+        case 3: emit restartSearchQuery(artistName + " - " + songName); break;
         default: break;
     }
 }
@@ -157,7 +157,7 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
                 item(currentRow(), 2)->toolTip() : QString();
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)))->setData(1);
     m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(songName).arg(artistName)))->setData(3);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(artistName).arg(songName)))->setData(3);
 }
 
 void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)
