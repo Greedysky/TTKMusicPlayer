@@ -319,7 +319,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         if(!QFile::exists(name))
         {
             MusicDataDownloadThread *smallPic = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name,
-                                                                            MusicDownLoadThreadAbstract::Download_SmlBG, this);
+                                                                            MusicDownLoadThreadAbstract::DownloadSmallBG, this);
             connect(smallPic, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             smallPic->startToDownload();
             loop.exec();
@@ -379,7 +379,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         if(!QFile::exists(name))
         {
             MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(m_currentSong.m_lrcUrl, name,
-                                                                   MusicDownLoadThreadAbstract::Download_Lrc, this);
+                                                                   MusicDownLoadThreadAbstract::DownloadLrc, this);
             connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             d->startToDownload();
             loop.exec();

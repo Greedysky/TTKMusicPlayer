@@ -103,7 +103,7 @@ void MusicLrcSearchWidget::lrcSearchDownloadClicked()
 
 void MusicLrcSearchWidget::lrcDownloadStateChanged(const QString &string)
 {
-    if(string == "Download_Lrc")
+    if(string == "DownloadLrc")
     {
        m_ui->stateLabel->setText(tr("lrc download finished!"));
     }

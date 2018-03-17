@@ -350,7 +350,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
 
         MusicSemaphoreLoop loop(this);
         MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+                                                                         MusicDownLoadThreadAbstract::DownloadMusic, this);
         connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         downSong->startToDownload();
         loop.exec();
