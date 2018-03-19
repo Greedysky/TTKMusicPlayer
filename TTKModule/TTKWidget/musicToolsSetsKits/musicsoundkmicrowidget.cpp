@@ -23,14 +23,11 @@
 #endif
 
 MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
-    : MusicAbstractMoveWidget(parent),
+    : MusicAbstractMoveWidget(false, parent),
     m_ui(new Ui::MusicSoundKMicroWidget)
 {
     m_ui->setupUi(this);
 
-#if defined MUSIC_GREATER_NEW
-    setAttribute(Qt::WA_TranslucentBackground, false);
-#endif
 //    setAttribute(Qt::WA_DeleteOnClose, true);
 //    setAttribute(Qt::WA_QuitOnClose, true);
 
@@ -47,7 +44,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->timeSlider->setStyleSheet(MusicUIObject::MSliderStyle01);
     m_ui->transferButton->setStyleSheet(MusicUIObject::MKGRecordTransfer);
 
-    m_queryMv = true;
+    m_queryMovieMode = true;
     m_stateButtonOn = true;
     m_intervalTime = 0;
     m_recordCore = nullptr;
@@ -139,7 +136,7 @@ void MusicSoundKMicroWidget::positionChanged(qint64 position)
     m_ui->timeLabel->setText(QString("%1/%2").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS))
                                              .arg(MusicTime::msecTime2LabelJustified(m_ui->timeSlider->maximum())));
 
-    if(!m_queryMv && !m_analysis->isEmpty())
+    if(!m_queryMovieMode && !m_analysis->isEmpty())
     {
         QString currentLrc, laterLrc;
         if(m_analysis->findText(m_ui->timeSlider->value(), m_ui->timeSlider->maximum(), currentLrc, laterLrc, m_intervalTime))
@@ -203,7 +200,7 @@ void MusicSoundKMicroWidget::playButtonChanged()
         default: break;
     }
 
-    if(!m_queryMv)
+    if(!m_queryMovieMode)
     {
         if(m_mediaPlayer->state() == MusicObject::PS_PlayingState)
         {
@@ -239,14 +236,14 @@ void MusicSoundKMicroWidget::tipsButtonChanged()
     }
 }
 
-void MusicSoundKMicroWidget::mvURLChanged(bool mv, const QString &url, const QString &lrcUrl)
+void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const QString &lrcUrl)
 {
     setButtonStyle(false);
 
     m_ui->loadingLabel->show();
     m_ui->loadingLabel->start();
 
-    if(m_queryMv = mv)
+    if(m_queryMovieMode = mv)
     {
         m_ui->stackedWidget->setCurrentIndex(SOUND_KMICRO_INDEX_0);
         m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, url, (int)m_ui->videoPage->winId());
@@ -343,7 +340,7 @@ void MusicSoundKMicroWidget::mouseMoveEvent(QMouseEvent *event)
 
 void MusicSoundKMicroWidget::multiMediaChanged()
 {
-    if(m_queryMv)
+    if(m_queryMovieMode)
     {
         m_mediaPlayer->setMultiVoice(m_stateButtonOn ? 0 : 1);
     }

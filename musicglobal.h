@@ -92,7 +92,7 @@
     #define STRCAT(a, b)    a b
   #endif
 #else
-#define STRCAT(a, b)    a b
+  #define STRCAT(a, b)    a b
 #endif
 
 #define MUSIC_DECLARE_LISTS(Class) \

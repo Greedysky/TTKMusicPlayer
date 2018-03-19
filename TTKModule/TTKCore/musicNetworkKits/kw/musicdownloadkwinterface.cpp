@@ -72,7 +72,7 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
 void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QString &suffix,
                                                           const QString &format, int bitrate)
 {
-    if(format.contains("MP3128") && bitrate == MB_128 && suffix == "mp3")
+    if(format.contains("MP3128") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -81,7 +81,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("MP3192") && bitrate == MB_192 && suffix == "mp3")
+    else if(format.contains("MP3192") && bitrate == MB_192 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -90,7 +90,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("MP3H") && bitrate == MB_320 && suffix == "mp3")
+    else if(format.contains("MP3H") && bitrate == MB_320 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -99,20 +99,20 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == "flac")
+    else if(format.contains("ALFLAC") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, FLC_FILE_PREFIX, "2000kflac", bitrate);
     }
-    else if(format.contains("AL") && bitrate == MB_750 && suffix == "ape")
+    else if(format.contains("AL") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
+        readFromMusicLLAttribute(info, APE_FILE_PREFIX, "1000kape", bitrate);
     }
 }
 
 void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::MusicSongInformation *info, const QString &suffix,
                                                               const QString &format, int bitrate)
 {
-    if(format.contains("128kmp3") && bitrate == MB_128 && suffix == "mp3")
+    if(format.contains("128kmp3") && bitrate == MB_128 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -121,7 +121,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("192kmp3") && bitrate == MB_192 && suffix == "mp3")
+    else if(format.contains("192kmp3") && bitrate == MB_192 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -130,7 +130,7 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("320kmp3") && bitrate == MB_320 && suffix == "mp3")
+    else if(format.contains("320kmp3") && bitrate == MB_320 && suffix == MP3_FILE_PREFIX)
     {
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
@@ -139,13 +139,13 @@ void MusicDownLoadKWInterface::readFromMusicSongAttributePlus(MusicObject::Music
         attr.m_url = MusicUtils::Algorithm::mdII(KW_SONG_ATTR_URL, false).arg(bitrate).arg(info->m_songId);
         info->m_songAttrs.append(attr);
     }
-    else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == "flac")
+    else if(format.contains("2000kflac") && bitrate == MB_1000 && suffix == FLC_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, "flac", "2000kflac", bitrate);
+        readFromMusicLLAttribute(info, FLC_FILE_PREFIX, "2000kflac", bitrate);
     }
-    else if(format.contains("1000kape") && bitrate == MB_750 && suffix == "ape")
+    else if(format.contains("1000kape") && bitrate == MB_750 && suffix == APE_FILE_PREFIX)
     {
-        readFromMusicLLAttribute(info, "ape", "1000kape", bitrate);
+        readFromMusicLLAttribute(info, APE_FILE_PREFIX, "1000kape", bitrate);
     }
 }
 
@@ -154,30 +154,30 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 {
     if(all)
     {
-        readFromMusicSongAttribute(info, "mp3", format, MB_128);
-        readFromMusicSongAttribute(info, "mp3", format, MB_192);
-        readFromMusicSongAttribute(info, "mp3", format, MB_320);
-        readFromMusicSongAttribute(info, "ape", format, MB_750);
-        readFromMusicSongAttribute(info, "flac", format, MB_1000);
+        readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_128);
+        readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_192);
+        readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_320);
+        readFromMusicSongAttribute(info, APE_FILE_PREFIX, format, MB_750);
+        readFromMusicSongAttribute(info, FLC_FILE_PREFIX, format, MB_1000);
     }
     else
     {
         if(quality == QObject::tr("SD"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, MB_128);
+            readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_128);
         }
         else if(quality == QObject::tr("HQ"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, MB_192);
+            readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_192);
         }
         else if(quality == QObject::tr("SQ"))
         {
-            readFromMusicSongAttribute(info, "mp3", format, MB_320);
+            readFromMusicSongAttribute(info, MP3_FILE_PREFIX, format, MB_320);
         }
         else if(quality == QObject::tr("CD"))
         {
-            readFromMusicSongAttribute(info, "ape", format, MB_750);
-            readFromMusicSongAttribute(info, "flac", format, MB_1000);
+            readFromMusicSongAttribute(info, APE_FILE_PREFIX, format, MB_750);
+            readFromMusicSongAttribute(info, FLC_FILE_PREFIX, format, MB_1000);
         }
     }
 }
@@ -190,30 +190,30 @@ void MusicDownLoadKWInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         const QString fs = var.toString();
         if(all)
         {
-            readFromMusicSongAttributePlus(info, "mp3", fs, MB_128);
-            readFromMusicSongAttributePlus(info, "mp3", fs, MB_192);
-            readFromMusicSongAttributePlus(info, "mp3", fs, MB_320);
-            readFromMusicSongAttributePlus(info, "ape", fs, MB_750);
-            readFromMusicSongAttributePlus(info, "flac", fs, MB_1000);
+            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_128);
+            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_192);
+            readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_320);
+            readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
+            readFromMusicSongAttributePlus(info, FLC_FILE_PREFIX, fs, MB_1000);
         }
         else
         {
             if(quality == QObject::tr("SD"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, MB_128);
+                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_128);
             }
             else if(quality == QObject::tr("HQ"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, MB_192);
+                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_192);
             }
             else if(quality == QObject::tr("SQ"))
             {
-                readFromMusicSongAttributePlus(info, "mp3", fs, MB_320);
+                readFromMusicSongAttributePlus(info, MP3_FILE_PREFIX, fs, MB_320);
             }
             else if(quality == QObject::tr("CD"))
             {
-                readFromMusicSongAttributePlus(info, "ape", fs, MB_750);
-                readFromMusicSongAttributePlus(info, "flac", fs, MB_1000);
+                readFromMusicSongAttributePlus(info, APE_FILE_PREFIX, fs, MB_750);
+                readFromMusicSongAttributePlus(info, FLC_FILE_PREFIX, fs, MB_1000);
             }
         }
     }

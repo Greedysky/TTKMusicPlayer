@@ -34,7 +34,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_128_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size128"].toULongLong());
-        attr.m_format = "mp3";
+        attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -50,7 +50,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_192_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeogg"].toULongLong());
-        attr.m_format = "ogg";
+        attr.m_format = OGG_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -66,7 +66,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_320_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size320"].toULongLong());
-        attr.m_format = "mp3";
+        attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -82,7 +82,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_APE_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeape"].toULongLong());
-        attr.m_format = "ape";
+        attr.m_format = APE_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -98,7 +98,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_FLAC_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["sizeflac"].toULongLong());
-        attr.m_format = "flac";
+        attr.m_format = FLC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -154,7 +154,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_128_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size_128mp3"].toULongLong());
-        attr.m_format = "mp3";
+        attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -170,7 +170,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_192_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size_192ogg"].toULongLong());
-        attr.m_format = "ogg";
+        attr.m_format = OGG_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -186,7 +186,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_320_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size_320mp3"].toULongLong());
-        attr.m_format = "mp3";
+        attr.m_format = MP3_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -202,7 +202,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_APE_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size_ape"].toULongLong());
-        attr.m_format = "ape";
+        attr.m_format = APE_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }
@@ -218,7 +218,7 @@ void MusicDownLoadQQInterface::readFromMusicSongAttributePlus(MusicObject::Music
         MusicObject::MusicSongAttribute attr;
         attr.m_url = MusicUtils::Algorithm::mdII(QQ_SONG_FLAC_URL, false).arg(mid).arg(vkey).arg(randKey);
         attr.m_size = MusicUtils::Number::size2Label(key["size_flac"].toULongLong());
-        attr.m_format = "flac";
+        attr.m_format = FLC_FILE_PREFIX;
         attr.m_bitrate = bitrate;
         info->m_songAttrs.append(attr);
     }

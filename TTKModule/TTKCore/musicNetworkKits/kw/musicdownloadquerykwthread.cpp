@@ -32,7 +32,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
         {
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_128;
-            attr.m_format = "mp3";
+            attr.m_format = MP3_FILE_PREFIX;
             attr.m_size = "-";
             attr.m_url = QString("http://%1/resource/%2").arg(mp3Url).arg(v);
             info->m_songAttrs.append(attr);
@@ -43,7 +43,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
         {
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_96;
-            attr.m_format = "wma";
+            attr.m_format = WMA_FILE_PREFIX;
             attr.m_size = "-";
             attr.m_url = QString("http://%1/resource/%2").arg(mp3Url).arg(v);
             info->m_songAttrs.append(attr);
@@ -58,7 +58,7 @@ void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongIn
         {
             MusicObject::MusicSongAttribute attr;
             attr.m_bitrate = MB_32;
-            attr.m_format = "aac";
+            attr.m_format = AAC_FILE_PREFIX;
             attr.m_size = "-";
             attr.m_url = QString("http://%1/resource/%2").arg(aacUrl).arg(v);
             info->m_songAttrs.append(attr);

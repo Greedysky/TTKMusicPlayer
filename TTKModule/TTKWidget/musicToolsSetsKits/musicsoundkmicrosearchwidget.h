@@ -49,15 +49,15 @@ public:
      */
     virtual void musicDownloadLocal(int row) override;
     /*!
-     * Set query MV flag.
+     * Set query Movie flag.
      */
-    void setQueryMVFlag(bool flag);
+    void setQueryMovieFlag(bool flag);
 
 Q_SIGNALS:
     /*!
      * Set current media url.
      */
-    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
+    void mediaUrlChanged(bool mv, const QString &url, const QString &lrcUrl);
 
 public Q_SLOTS:
     /*!
@@ -78,7 +78,16 @@ public Q_SLOTS:
     virtual void listCellClicked(int row, int column) override;
 
 protected:
-    bool m_queryMv;
+    /*!
+     * Data download to play.
+     */
+    void dataDownloadPlay(int row);
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    bool m_queryMovieMode;
 
 };
 
@@ -120,10 +129,10 @@ public Q_SLOTS:
     /*!
      * Set query MV flag.
      */
-    void setQueryMVFlag(int flag);
+    void setQueryMovieFlag(int flag);
 
 protected:
-    bool m_queryMv;
+    bool m_queryMovieMode;
     MusicLocalSongSearchEdit *m_searchEdit;
     MusicSoundKMicroSearchTableWidget *m_searchTableWidget;
 

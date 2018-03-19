@@ -151,13 +151,17 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
 
     menu.addSeparator();
 
-    QString songName = currentRow() != -1 && rowCount() > 0 ?
-                item(currentRow(), 1)->toolTip() : QString();
-    QString artistName = currentRow() != -1 && rowCount() > 0 ?
-                item(currentRow(), 2)->toolTip() : QString();
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(songName)))->setData(1);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(artistName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(artistName).arg(songName)))->setData(3);
+    int row = currentRow();
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    if(row < 0 || row >= musicSongInfos.count())
+    {
+        return;
+    }
+
+    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info->m_songName)))->setData(1);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info->m_singerName)))->setData(2);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName)))->setData(3);
 }
 
 void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)

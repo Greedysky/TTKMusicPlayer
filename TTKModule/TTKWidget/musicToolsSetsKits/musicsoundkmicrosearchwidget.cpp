@@ -6,6 +6,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicitemdelegate.h"
+#include "musicdownloadwidget.h"
 
 #include <QLabel>
 #include <QBoxLayout>
@@ -24,7 +25,7 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
     headerview->resizeSection(3, 24);
     headerview->resizeSection(4, 24);
 
-    m_queryMv = true;
+    m_queryMovieMode = true;
 }
 
 MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
@@ -48,7 +49,7 @@ void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 
     m_loadingLabel->run(true);
 
-    if(m_queryMv)
+    if(m_queryMovieMode)
     {
         MusicDownLoadQueryKWMovieThread *d = new MusicDownLoadQueryKWMovieThread(this);
         d->setQueryExtraMovie(false);
@@ -76,15 +77,15 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
     }
 
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
-    {
-        emit mvURLChanged(m_queryMv, attr.m_url, m_queryMv ? QString() : musicSongInfos[row].m_lrcUrl);
-    }
+    MusicDownloadWidget *download = new MusicDownloadWidget(this);
+    download->setSongName(musicSongInfos[row], m_queryMovieMode ?
+                          MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->show();
 }
 
-void MusicSoundKMicroSearchTableWidget::setQueryMVFlag(bool flag)
+void MusicSoundKMicroSearchTableWidget::setQueryMovieFlag(bool flag)
 {
-    m_queryMv = flag;
+    m_queryMovieMode = flag;
 }
 
 void MusicSoundKMicroSearchTableWidget::clearAllItems()
@@ -130,7 +131,8 @@ void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    musicDownloadLocal(row);
+
+    dataDownloadPlay(row);
 }
 
 void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)
@@ -139,12 +141,39 @@ void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)
     switch(column)
     {
         case 4:
-            musicDownloadLocal(row);
+            dataDownloadPlay(row);
             break;
         default:
             break;
     }
 }
+
+void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
+{
+    if(row < 0 || (row >= rowCount() - 1))
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
+    {
+        emit mediaUrlChanged(m_queryMovieMode, attr.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);
+    }
+}
+
+void MusicSoundKMicroSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    MusicQueryItemTableWidget::contextMenuEvent(event);
+    QMenu rightClickMenu(this);
+    createContextMenu(rightClickMenu);
+
+    rightClickMenu.exec(QCursor::pos());
+}
+
 
 
 MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
@@ -187,7 +216,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(mvButton, 0);
     group->addButton(songButton, 1);
-    connect(group, SIGNAL(buttonClicked(int)), SLOT(setQueryMVFlag(int)));
+    connect(group, SIGNAL(buttonClicked(int)), SLOT(setQueryMovieFlag(int)));
     searchLayout->addWidget(mvButton);
     searchLayout->addWidget(songButton);
     searchLayout->addWidget(m_searchEdit);
@@ -205,7 +234,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     layout->addWidget(m_searchTableWidget);
     m_container->setLayout(layout);
 
-    m_queryMv = true;
+    m_queryMovieMode = true;
     mvButton->setChecked(true);
 
     connect(searchButton, SIGNAL(clicked()), SLOT(startToSearch()));
@@ -225,8 +254,8 @@ QString MusicSoundKMicroSearchWidget::getClassName()
 
 void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
 {
-    connect(m_searchTableWidget, SIGNAL(mvURLChanged(bool,QString,QString)), obj,
-                                 SLOT(mvURLChanged(bool,QString,QString)));
+    connect(m_searchTableWidget, SIGNAL(mediaUrlChanged(bool,QString,QString)), obj,
+                                 SLOT(mediaUrlChanged(bool,QString,QString)));
 }
 
 void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)
@@ -237,10 +266,10 @@ void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)
 
 void MusicSoundKMicroSearchWidget::startToSearch()
 {
-    m_searchTableWidget->setQueryMVFlag(m_queryMv);
+    m_searchTableWidget->setQueryMovieFlag(m_queryMovieMode);
     m_searchTableWidget->startSearchQuery(m_searchEdit->text());
 }
-void MusicSoundKMicroSearchWidget::setQueryMVFlag(int flag)
+void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 {
-    m_queryMv = (flag == 0);
+    m_queryMovieMode = (flag == 0);
 }

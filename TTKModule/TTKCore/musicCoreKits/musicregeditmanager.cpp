@@ -19,7 +19,7 @@ QString MusicRegeditManager::getClassName()
 
 bool MusicRegeditManager::isFileAssociate()
 {
-    return currentNodeHasExist("mp3");
+    return currentNodeHasExist(MP3_FILE_PREFIX);
 }
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()

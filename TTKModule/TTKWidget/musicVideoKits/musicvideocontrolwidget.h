@@ -78,7 +78,7 @@ Q_SIGNALS:
     /*!
      * Set current media url by selected quality.
      */
-    void mvURLChanged(const QString &data);
+    void mediaUrlChanged(const QString &data);
     /*!
      * Slider value changed at value.
      */

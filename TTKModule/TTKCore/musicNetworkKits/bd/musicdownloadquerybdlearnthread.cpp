@@ -3,6 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #include "musicurlutils.h"
+#include "musiccoreutils.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -142,6 +143,7 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
 
     QJson::Parser parser;
     bool ok;
+
     QVariant data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
@@ -150,7 +152,11 @@ void MusicDownLoadQueryBDLearnThread::readFromMusicSongAttribute(MusicObject::Mu
         {
             value = value["result"].toMap();
             MusicObject::MusicSongAttribute attr;
+            attr.m_bitrate = MB_128;
             attr.m_url = value["merge_link"].toString();
+            attr.m_format = MP3_FILE_PREFIX;
+            if(!findUrlFileSize(&attr)) return;
+
             info->m_songAttrs.append(attr);
         }
     }
