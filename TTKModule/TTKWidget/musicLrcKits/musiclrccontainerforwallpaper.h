@@ -64,6 +64,14 @@ public:
      * Update current lrc by given time.
      */
     void updateCurrentLrc(qint64 time);
+    /*!
+     * Update current lrc by given text.
+     */
+    void updateCurrentLrc(const QString &text);
+    /*!
+     * Strat now.
+     */
+    void start(bool immediate);
 
 public Q_SLOTS:
     /*!

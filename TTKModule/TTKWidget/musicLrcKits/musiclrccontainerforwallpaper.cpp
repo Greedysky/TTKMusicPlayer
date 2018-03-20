@@ -98,11 +98,8 @@ void MusicLrcContainerForWallpaper::setLrcAnalysisModel(MusicLrcAnalysis *analys
     m_layoutWidget->addStretch(1);
 
     initCurrentLrc(tr("Init Wallpaper Module"));
-    if(!m_wallThread->isRunning())
-    {
-        m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtPhotoPathList());
-        m_wallThread->start();
-    }
+
+    start(false);
 }
 
 void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
@@ -113,10 +110,32 @@ void MusicLrcContainerForWallpaper::updateCurrentLrc(qint64 time)
         m_layoutWidget->start();
     }
 
-    if(!m_wallThread->isRunning())
+    start(false);
+}
+
+void MusicLrcContainerForWallpaper::updateCurrentLrc(const QString &text)
+{
+    for(int i=0; i<MUSIC_LRC_INLINE_MAX_LINE; ++i)
+    {
+        m_musicLrcContainer[i]->setText(QString());
+    }
+    m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->setText(text);
+}
+
+void MusicLrcContainerForWallpaper::start(bool immediate)
+{
+    if(m_wallThread)
     {
         m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtPhotoPathList());
-        m_wallThread->start();
+
+        if(!m_wallThread->isRunning())
+        {
+            m_wallThread->start();
+        }
+        if(immediate)
+        {
+            m_wallThread->timeout();
+        }
     }
 }
 

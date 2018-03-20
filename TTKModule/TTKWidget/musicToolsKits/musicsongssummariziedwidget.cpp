@@ -1055,14 +1055,14 @@ void MusicSongsSummariziedWidget::resizeWindow()
 
 void MusicSongsSummariziedWidget::resetToolIndex()
 {
-    PairList pairs;
+    PlayedPairList pairs;
     foreach(const MusicSongItem &item, m_songItems)
     {
         int mappedIndex = foundMappingIndex(item.m_itemIndex);
         item.m_itemObject->setParentToolIndex(mappedIndex);
         if(item.m_itemIndex != mappedIndex)
         {
-            pairs << PairItem(item.m_itemIndex, mappedIndex);
+            pairs << PlayedPairItem(item.m_itemIndex, mappedIndex);
         }
     }
     MusicPlayedListPopWidget::instance()->resetToolIndex(pairs);

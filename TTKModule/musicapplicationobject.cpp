@@ -18,6 +18,7 @@
 #include "musicurlutils.h"
 #include "musiccoreutils.h"
 #include "musicalgorithmutils.h"
+#include "musicdownloadcounterpvthread.h"
 
 #include "qdevicewatcher.h"
 
@@ -54,6 +55,9 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_deviceWatcher->appendEventReceiver(this);
     m_deviceWatcher->start();
 
+    m_counterPVThread = new MusicDownloadCounterPVThread(this);
+    m_counterPVThread->startToDownload();
+
     musicToolSetsParameter();
 }
 
@@ -68,6 +72,7 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_deviceWatcher;
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
+    delete m_counterPVThread;
 }
 
 QString MusicApplicationObject::getClassName()

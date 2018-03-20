@@ -16,7 +16,6 @@
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicfunctionuiobject.h"
-#include "musicdownloadcounterpvthread.h"
 #include "musicotherdefine.h"
 #include "musictoolsetswidget.h"
 
@@ -31,10 +30,7 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
     m_pictureCarouselTimer.setInterval(10*MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
     connect(M_BACKGROUND_PTR, SIGNAL(userSelectIndexChanged()), SLOT(musicBackgroundChanged()));
-    ///////////////////////////////////////////////////////
-    m_counterPVThread = new MusicDownloadCounterPVThread(this);
-    m_counterPVThread->startToDownload();
-    ///////////////////////////////////////////////////////
+
     m_backgroundAListlpha = 40;
     m_lastRemoteBeforeWallpaper = -1;
 }
@@ -44,7 +40,6 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicUserWindow;
     delete m_musicBackgroundWidget;
     delete m_musicRemoteWidget;
-    delete m_counterPVThread;
 }
 
 QString MusicTopAreaWidget::getClassName()
