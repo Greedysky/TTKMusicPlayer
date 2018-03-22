@@ -20,7 +20,7 @@
    <string>天天酷音</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
+   <iconset>
     <normaloff>:/image/lb_player_logo</normaloff>:/image/lb_player_logo</iconset>
   </property>
   <layout class="QHBoxLayout" name="mainLayout">

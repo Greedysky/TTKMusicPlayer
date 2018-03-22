@@ -26,7 +26,7 @@ MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     m_background->setLayout(bBoxLayout);
 
     m_containerType = "WALLPAPER";
-    m_layoutWidget = new MusicLayoutAnimationWidget(this);
+    m_layoutWidget = new MusicVLayoutAnimationWidget(this);
     m_layoutWidget->connectTo(this);
     bBoxLayout->addWidget(m_layoutWidget);
 

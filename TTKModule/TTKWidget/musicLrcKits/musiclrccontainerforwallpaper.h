@@ -21,7 +21,7 @@
 
 #include "musiclrccontainer.h"
 
-class MusicLayoutAnimationWidget;
+class MusicVLayoutAnimationWidget;
 class MusicDesktopWallpaperThread;
 class MusicTransitionAnimationLabel;
 
@@ -100,7 +100,7 @@ protected:
     void setItemStyleSheet(int index, int size, int transparent);
 
     int m_animationFreshTime;
-    MusicLayoutAnimationWidget *m_layoutWidget;
+    MusicVLayoutAnimationWidget *m_layoutWidget;
     MusicDesktopWallpaperThread *m_wallThread;
     MusicTransitionAnimationLabel *m_background;
 
