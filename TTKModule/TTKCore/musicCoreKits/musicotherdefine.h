@@ -24,14 +24,23 @@
 #define MUSIC_AUTHOR_NAME           "Greedysky"
 
 #define MUSIC_DAILY_DIR             "Bing"
+
 #define MUSIC_YYT_PREFIX            "TTK_YYT_"
+
 #define MUSIC_COLOR_FILE            "color.jpg"
 #define MUSIC_IMAGE_FILE            "image_cache"
+
 #define MUSIC_RECORD_FILE           "record.raw"
 #define MUSIC_RECORD_IN_FILE        "record_input.wav"
 #define MUSIC_RECORD_OUT_FILE       "record_output.wav"
+
 #define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
+
 #define MUSIC_MOVIE_RADIO           "Kugou"
+
+#define MUSIC_OUTER_OPEN            "-Open"
+#define MUSIC_OUTER_LIST            "-List"
+#define MUSIC_OUTER_RADIO           "-Radio"
 
 //MusicLrcMakerWidget
 #define LRC_MAKER_INDEX_0           0
