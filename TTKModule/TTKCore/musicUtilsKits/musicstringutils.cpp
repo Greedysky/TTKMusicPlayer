@@ -62,6 +62,44 @@ QString MusicUtils::String::songName(const QString &value, const QString &key)
     return value;
 }
 
+QStringList MusicUtils::String::illegalCharacters()
+{
+    QStringList acs;
+    acs << "\\" << "/" << "?"  << "*" << "\"" << ":" << "<" << ">" << "|";
+    return acs;
+}
+
+bool MusicUtils::String::illegalCharactersCheck(const QString &value)
+{
+    QStringList acs(illegalCharacters());
+
+    foreach(const QString &ac, acs)
+    {
+        if(value.contains(ac))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+QString MusicUtils::String::illegalCharactersReplaced(const QString &value)
+{
+    QStringList acs(illegalCharacters());
+    QString s(value);
+
+    foreach(const QString &ac, acs)
+    {
+        if(s.contains(ac))
+        {
+            s.replace(ac, " ");
+        }
+    }
+
+    return s;
+}
+
 QList<QColor> MusicUtils::String::readColorConfig(const QString &value)
 {
     QList<QColor> colors;
