@@ -1,5 +1,7 @@
 #include "musicdesktopwallpaperthread.h"
+#include "musicbackgroundconfigmanager.h"
 #include "musicbackgroundmanager.h"
+#include "musicextractwrap.h"
 #include "musictime.h"
 
 #include <QTimer>
@@ -87,19 +89,29 @@ void MusicDesktopWallpaperThread::stop()
 
 void MusicDesktopWallpaperThread::timeout()
 {
-    if(!m_run || m_path.isEmpty())
+    if(!m_run)
     {
         return;
     }
 
-    if(m_random) ///random mode
+    if(!m_path.isEmpty())
     {
-        m_currentImageIndex = qrand() % m_path.size();
-    }
-    else if(++m_currentImageIndex >= m_path.size())
-    {
-        m_currentImageIndex = 0;
-    }
+        if(m_random) ///random mode
+        {
+            m_currentImageIndex = qrand() % m_path.size();
+        }
+        else if(++m_currentImageIndex >= m_path.size())
+        {
+            m_currentImageIndex = 0;
+        }
 
-    emit updateBackground(QPixmap(m_path[m_currentImageIndex]));
+        emit updateBackground(QPixmap(m_path[m_currentImageIndex]));
+    }
+    else
+    {
+        MusicBackgroundImage image;
+        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground());
+
+        emit updateBackground(image.m_pix);
+    }
 }

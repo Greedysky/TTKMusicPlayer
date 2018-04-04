@@ -1,4 +1,5 @@
 #include "musicregeditmanager.h"
+#include "musicotherdefine.h"
 #include "musicformats.h"
 
 #ifdef Q_OS_WIN
@@ -19,7 +20,7 @@ QString MusicRegeditManager::getClassName()
 
 bool MusicRegeditManager::isFileAssociate()
 {
-    return currentNodeHasExist("mp3");
+    return currentNodeHasExist(MP3_FILE_PREFIX);
 }
 
 void MusicRegeditManager::setMusicRegeditAssociateFileIcon()
@@ -207,7 +208,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
     const QString openComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APPDOT + key + "\\Shell\\Open\\Command";
     QSettings openComSetting(openComString, QSettings::NativeFormat);
     openComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                     + QString(" -Open \"%1\""));
+                                     + QString(" %1 ").arg(MUSIC_OUTER_OPEN) + QString("\"%1\""));
 
     const QString playListString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APPDOT + key + "\\Shell\\PlayList";
     QSettings playListSetting(playListString, QSettings::NativeFormat);
@@ -216,7 +217,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
     const QString playListComString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APPDOT + key + "\\Shell\\PlayList\\Command";
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
     playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
-                                         + QString(" -List \"%1\""));
+                                         + QString(" %1 ").arg(MUSIC_OUTER_LIST) + QString("\"%1\""));
 
     ////////////////////////////////////////////////////////
     const QString fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;

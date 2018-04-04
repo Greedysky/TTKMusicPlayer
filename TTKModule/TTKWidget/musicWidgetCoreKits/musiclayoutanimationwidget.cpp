@@ -15,10 +15,7 @@ MusicLayoutAnimationWidget::MusicLayoutAnimationWidget(QWidget *parent)
     mainLayout->addWidget(m_mainWidget);
     setLayout(mainLayout);
 
-    m_widgetLayout = new QVBoxLayout(m_mainWidget);
-    m_widgetLayout->setContentsMargins(0, 0, 0, 0);
-    m_widgetLayout->setSpacing(0);
-    m_mainWidget->setLayout(m_widgetLayout);
+    m_widgetLayout = nullptr;
 
     m_isAnimating = false;
     m_currentValue = 0;
@@ -52,7 +49,6 @@ void MusicLayoutAnimationWidget::start()
     }
 
     m_animation->setStartValue(0);
-    m_animation->setEndValue(height()/m_widgetLayout->count());
 
     m_mainWidget->hide();
     m_isAnimating = true;
@@ -99,7 +95,35 @@ void MusicLayoutAnimationWidget::animationFinished()
     m_mainWidget->show();
 }
 
-void MusicLayoutAnimationWidget::paintEvent(QPaintEvent * event)
+
+
+MusicVLayoutAnimationWidget::MusicVLayoutAnimationWidget(QWidget *parent)
+    : MusicLayoutAnimationWidget(parent)
+{
+    m_widgetLayout = new QVBoxLayout(m_mainWidget);
+    m_widgetLayout->setContentsMargins(0, 0, 0, 0);
+    m_widgetLayout->setSpacing(0);
+    m_mainWidget->setLayout(m_widgetLayout);
+}
+
+QString MusicVLayoutAnimationWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicVLayoutAnimationWidget::start()
+{
+    if(m_isAnimating)
+    {
+        return;
+    }
+
+    m_animation->setEndValue(height()/m_widgetLayout->count());
+
+    MusicLayoutAnimationWidget::start();
+}
+
+void MusicVLayoutAnimationWidget::paintEvent(QPaintEvent * event)
 {
     if(m_isAnimating)
     {
@@ -113,6 +137,55 @@ void MusicLayoutAnimationWidget::paintEvent(QPaintEvent * event)
         painter.translate(0, m_currentValue);
         painter.drawPixmap(0, 0, pixmap);
         painter.drawPixmap(0, height(), pixmap);
+    }
+    else
+    {
+        QWidget::paintEvent(event);
+    }
+}
+
+
+
+MusicHLayoutAnimationWidget::MusicHLayoutAnimationWidget(QWidget *parent)
+    : MusicLayoutAnimationWidget(parent)
+{
+    m_widgetLayout = new QHBoxLayout(m_mainWidget);
+    m_widgetLayout->setContentsMargins(0, 0, 0, 0);
+    m_widgetLayout->setSpacing(0);
+    m_mainWidget->setLayout(m_widgetLayout);
+}
+
+QString MusicHLayoutAnimationWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicHLayoutAnimationWidget::start()
+{
+    if(m_isAnimating)
+    {
+        return;
+    }
+
+    m_animation->setEndValue(width()/m_widgetLayout->count());
+
+    MusicLayoutAnimationWidget::start();
+}
+
+void MusicHLayoutAnimationWidget::paintEvent(QPaintEvent * event)
+{
+    if(m_isAnimating)
+    {
+        QPainter painter(this);
+        QPixmap pixmap( size() );
+        pixmap.fill(Qt::transparent);
+        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, true);
+        m_mainWidget->render(&pixmap);
+        m_mainWidget->setAttribute(Qt::WA_TranslucentBackground, false);
+
+        painter.translate(m_currentValue, 0);
+        painter.drawPixmap(0, 0, pixmap);
+        painter.drawPixmap(width(), 0, pixmap);
     }
     else
     {

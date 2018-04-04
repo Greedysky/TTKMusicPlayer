@@ -57,19 +57,19 @@ void MusicDownLoadMGInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     if(all)
     {
-        if(flag[0] == '1') readFromMusicSongAttribute(info, MB_128, "mp3", 1);
-        if(flag[1] == '1') readFromMusicSongAttribute(info, MB_320, "mp3", 2);
+        if(flag[0] == '1') readFromMusicSongAttribute(info, MB_128, MP3_FILE_PREFIX, 1);
+        if(flag[1] == '1') readFromMusicSongAttribute(info, MB_320, MP3_FILE_PREFIX, 2);
         if(flag[2] == '1') readFromMusicLLAttribute(info);
     }
     else
     {
         if(quality == QObject::tr("SD") && flag[0] == '1')
         {
-            readFromMusicSongAttribute(info, MB_128, "mp3", 1);
+            readFromMusicSongAttribute(info, MB_128, MP3_FILE_PREFIX, 1);
         }
         else if(quality == QObject::tr("SQ") && flag[1] == '1')
         {
-            readFromMusicSongAttribute(info, MB_320, "mp3", 3);
+            readFromMusicSongAttribute(info, MB_320, MP3_FILE_PREFIX, 3);
         }
         else if(quality == QObject::tr("CD") && flag[2] == '1')
         {

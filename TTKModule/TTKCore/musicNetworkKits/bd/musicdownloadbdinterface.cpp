@@ -102,7 +102,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     {
         if(all)
         {
-            if(f != "flac")
+            if(f != FLC_FILE_PREFIX)
             {
                 readFromMusicSongAttribute(info, f);
             }
@@ -113,7 +113,7 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         }
         else
         {
-            if(f != "flac")
+            if(f != FLC_FILE_PREFIX)
             {
                 int bit = MusicUtils::Number::transfromBitrateToNormal(f.toInt());
                 if(quality == QObject::tr("ST") && bit <= MB_64)

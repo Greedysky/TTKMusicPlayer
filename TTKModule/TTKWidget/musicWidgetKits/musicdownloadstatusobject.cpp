@@ -65,11 +65,11 @@ void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode ty
 void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
 {
     ///If the lyrics download finished immediately loaded to display
-    if(type == "Download_Lrc")
+    if(type == "DownloadLrc")
     {
         m_parentWidget->musicLoadCurrentSongLrc();
     }
-    else if(type == "Download_SmlBG")
+    else if(type == "DownloadSmallBG")
     {
         m_parentWidget->updateCurrentArtist();
     }
@@ -163,10 +163,10 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
 
         ///download lrc
         M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE,
-                                                   MusicDownLoadThreadAbstract::Download_Lrc, this)->startToDownload();
+                                                   MusicDownLoadThreadAbstract::DownloadLrc, this)->startToDownload();
         ///download art picture
         M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
-                                                        MusicDownLoadThreadAbstract::Download_SmlBG, this)->startToDownload();
+                                                        MusicDownLoadThreadAbstract::DownloadSmallBG, this)->startToDownload();
         ///download big picture
         M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }

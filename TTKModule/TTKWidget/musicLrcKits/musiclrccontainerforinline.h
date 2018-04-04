@@ -27,7 +27,7 @@ class MusicLrcFloatPlayWidget;
 class MusicClickedLabel;
 class MusicLrcCommentsWidget;
 class MusicLrcTranslatedWidget;
-class MusicLayoutAnimationWidget;
+class MusicVLayoutAnimationWidget;
 
 /*! @brief The class of the inline lrc container.
  * @author Greedysky <greedysky@163.com>
@@ -261,7 +261,7 @@ protected:
     MusicClickedLabel *m_noLrcCurrentInfo;
     MusicLrcCommentsWidget *m_commentsWidget;
     MusicLrcTranslatedWidget *m_translatedWidget;
-    MusicLayoutAnimationWidget *m_layoutWidget;
+    MusicVLayoutAnimationWidget *m_layoutWidget;
 
 };
 

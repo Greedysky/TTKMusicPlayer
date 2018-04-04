@@ -116,7 +116,7 @@ public Q_SLOTS:
     /*!
      * Set current media url by selected quality.
      */
-    void mvURLChanged(const QString &url);
+    void mediaUrlChanged(const QString &url);
     /*!
      * Set current media name and url to play.
      */

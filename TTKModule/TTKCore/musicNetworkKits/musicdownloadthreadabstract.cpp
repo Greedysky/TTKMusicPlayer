@@ -100,12 +100,12 @@ QString MusicDownLoadThreadAbstract::transferData() const
 {
     switch(m_downloadType)
     {
-        case Download_Music: return "Download_Music";
-        case Download_Lrc:   return "Download_Lrc";
-        case Download_SmlBG: return "Download_SmlBG";
-        case Download_BigBG: return "Download_BigBG";
-        case Download_Video: return "Download_Video";
-        case Download_Other: return "Download_Other";
+        case DownloadMusic: return "DownloadMusic";
+        case DownloadLrc:   return "DownloadLrc";
+        case DownloadSmallBG: return "DownloadSmallBG";
+        case DownloadBigBG: return "DownloadBigBG";
+        case DownloadVideo: return "DownloadVideo";
+        case DownloadOther: return "DownloadOther";
         default: return QString();
     }
 }

@@ -213,7 +213,7 @@ void MusicVolumeGainWidget::addFilesButtonClicked()
         setControlEnable(false);
         foreach(const QFileInfo &info, MusicUtils::Core::getFileListByDir(dialog.directory().absolutePath(), true))
         {
-            if(QString("mp3").contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
+            if(QString(MP3_FILE_PREFIX).contains(info.suffix().toLower()) && !m_paths.contains(info.absoluteFilePath()))
             {
                 m_currentIndex = m_paths.count();
                 m_paths << info.absoluteFilePath();

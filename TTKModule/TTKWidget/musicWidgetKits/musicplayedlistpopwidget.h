@@ -27,8 +27,35 @@ class QScrollArea;
 class MusicPlayedlist;
 class MusicSongsListPlayedTableWidget;
 
-#define PairItem(a, b) std::pair<int, int>(a, b);
-typedef QList< std::pair<int, int> > PairList;
+#define PlayedPairItem(a, b) std::pair<int, int>(a, b);
+typedef QList< std::pair<int, int> > PlayedPairList;
+
+
+/*! @brief The class of the played list top container widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicPlayedListTopContainerWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicPlayedListTopContainerWidget(QWidget *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
+
+};
+
 
 /*! @brief The class of the played list pop widget.
  * @author Greedysky <greedysky@163.com>
@@ -69,7 +96,7 @@ public:
     /*!
      * Get current played list.
      */
-    void resetToolIndex(const PairList &indexs);
+    void resetToolIndex(const PlayedPairList &indexs);
 
     /*!
      * Remove music from data list.

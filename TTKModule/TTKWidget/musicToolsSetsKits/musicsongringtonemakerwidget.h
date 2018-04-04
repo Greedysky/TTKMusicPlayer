@@ -97,7 +97,7 @@ protected:
     Ui::MusicSongRingtoneMaker *m_ui;
     bool m_playRingtone;
     QString m_inputFilePath;
-    MusicCoreMPlayer *m_player;
+    MusicCoreMPlayer *m_mediaPlayer;
     qint64 m_startPos, m_stopPos;
 
 };

@@ -299,7 +299,7 @@ void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
     m_videoTable->startSearchSingleQuery(name);
 }
 
-void MusicVideoPlayWidget::mvURLChanged(const QString &url)
+void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
 {
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
@@ -317,7 +317,7 @@ void MusicVideoPlayWidget::mvURLNameChanged(const MusicVideoItem &item)
 {
     m_videoItem = item;
     setTitleText(item.m_name);
-    mvURLChanged(item.m_url);
+    mediaUrlChanged(item.m_url);
 }
 
 void MusicVideoPlayWidget::freshButtonClicked()

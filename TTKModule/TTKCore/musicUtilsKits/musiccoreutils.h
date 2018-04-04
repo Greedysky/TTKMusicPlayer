@@ -42,6 +42,10 @@ namespace MusicUtils
          * Get file suffix path.
          */
         MUSIC_UTILS_EXPORT QString fileSuffix(const QString &name);
+        /*!
+         * Get file suffix path.
+         */
+        MUSIC_UTILS_EXPORT QString fileSuffix(const QString &name, const QString &prefix);
 
         /*!
          * Get given dir size.

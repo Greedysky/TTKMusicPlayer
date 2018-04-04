@@ -48,6 +48,19 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT QString songName(const QString &value, const QString &key = "-");
 
         /*!
+         * Illegal characters check.
+         */
+        MUSIC_UTILS_EXPORT QStringList illegalCharacters();
+        /*!
+         * Illegal characters check.
+         */
+        MUSIC_UTILS_EXPORT bool illegalCharactersCheck(const QString &value);
+        /*!
+         * Illegal characters replaced.
+         */
+        MUSIC_UTILS_EXPORT QString illegalCharactersReplaced(const QString &value);
+
+        /*!
          * Transform colors string to color list.
          */
         MUSIC_UTILS_EXPORT QList<QColor> readColorConfig(const QString &value);

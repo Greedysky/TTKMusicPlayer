@@ -159,8 +159,8 @@ void MusicQueryFoundTableWidget::searchChanged(QAction *action)
         case 2: musicDownloadLocal(row); break;
         case 3: MusicRightAreaWidget::instance()->musicArtistFound(info->m_singerName, info->m_artistId); break;
         case 4: MusicRightAreaWidget::instance()->musicSongSearchedFound(info->m_songName); break;
-        case 5: MusicRightAreaWidget::instance()->musicSongSearchedFound(item(row, 1)->toolTip()); break;
-        case 6: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
+        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
+        case 6: MusicRightAreaWidget::instance()->musicSongSearchedFound(item(row, 1)->toolTip()); break;
         default: break;
     }
 }
@@ -194,8 +194,8 @@ void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
     MusicObject::MusicSongInformation *info = &musicSongInfos[row];
     menu.addAction(tr("search '%1'").arg(info->m_singerName))->setData(3);
     menu.addAction(tr("search '%1'").arg(info->m_songName))->setData(4);
-    menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName))->setData(5);
-    menu.addAction(tr("search '%1'").arg(info->m_albumName))->setData(6);
+    menu.addAction(tr("search '%1'").arg(info->m_albumName))->setData(5);
+    menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchChanged(QAction*)));
 
     menu.exec(QCursor::pos());
@@ -350,7 +350,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
 
         MusicSemaphoreLoop loop(this);
         MusicDataDownloadThread *downSong = new MusicDataDownloadThread( attr.m_url, downloadName,
-                                                                         MusicDownLoadThreadAbstract::Download_Music, this);
+                                                                         MusicDownLoadThreadAbstract::DownloadMusic, this);
         connect(downSong, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         downSong->startToDownload();
         loop.exec();

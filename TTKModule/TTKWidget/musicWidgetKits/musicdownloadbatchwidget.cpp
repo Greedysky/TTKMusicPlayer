@@ -212,7 +212,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     }
     ////////////////////////////////////////////////
     MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
-                                                                           MusicDownLoadThreadAbstract::Download_Music, this);
+                                                                           MusicDownLoadThreadAbstract::DownloadMusic, this);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
     downSong->setTags(m_smallPicUrl, m_songName->toolTip(), m_singer->toolTip(), m_album);
     downSong->startToDownload();
@@ -249,8 +249,8 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
             }
         }
         ////////////////////////////////////////////////
-        MusicDataDownloadThread* download = new MusicDataDownloadThread(urls[ul], downloadName,
-                                                                        MusicDownLoadThreadAbstract::Download_Video, this);
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
+                                                                        MusicDownLoadThreadAbstract::DownloadVideo, this);
         download->startToDownload();
     }
 }

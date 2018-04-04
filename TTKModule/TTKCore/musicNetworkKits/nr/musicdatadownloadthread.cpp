@@ -57,7 +57,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     /// only download music data can that show progress
-    if(m_downloadType == Download_Music && !m_redirection)
+    if(m_downloadType == DownloadMusic && !m_redirection)
     {
         m_createItemTime = MusicTime::timeStamp();
         M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this));
@@ -114,7 +114,7 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
 {
     MusicDownLoadThreadAbstract::downloadProgress(bytesReceived, bytesTotal);
     /// only download music data or oather type can that show progress
-    if(m_downloadType == Download_Music || m_downloadType == Download_Other)
+    if(m_downloadType == DownloadMusic || m_downloadType == DownloadOther)
     {
         QString total = MusicUtils::Number::size2Label(bytesTotal);
         emit downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);

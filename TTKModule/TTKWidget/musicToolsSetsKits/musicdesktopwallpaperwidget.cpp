@@ -220,7 +220,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
             m_wallThread->setImagePath(imgs);
 
             MusicDataDownloadThread *background = new MusicDataDownloadThread(m_ui->urlLineEdit->text().trimmed(),
-                                                      imgs[0], MusicDownLoadThreadAbstract::Download_BigBG, this);
+                                                      imgs[0], MusicDownLoadThreadAbstract::DownloadBigBG, this);
             connect(background, SIGNAL(downLoadDataChanged(QString)), SLOT(parameterFinished()));
             background->startToDownload();
             break;

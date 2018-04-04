@@ -22,7 +22,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
-class QVBoxLayout;
+class QBoxLayout;
 class QPropertyAnimation;
 
 /*! @brief The class of the layout float animation widget.
@@ -47,7 +47,7 @@ public:
     /*!
      * Start to anmiation.
      */
-    void start();
+    virtual void start();
     /*!
      * Stop to anmiation.
      */
@@ -81,16 +81,73 @@ private Q_SLOTS:
     void animationFinished();
 
 protected:
+    bool m_isAnimating;
+    float m_currentValue;
+    QWidget *m_mainWidget;
+    QBoxLayout *m_widgetLayout;
+    QPropertyAnimation *m_animation;
+
+};
+
+
+/*! @brief The class of the vertical layout float animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimationWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicVLayoutAnimationWidget(QWidget *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to anmiation.
+     */
+    virtual void start() override;
+
+protected:
     /*!
      * Override the widget event.
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
-    bool m_isAnimating;
-    float m_currentValue;
-    QWidget *m_mainWidget;
-    QVBoxLayout *m_widgetLayout;
-    QPropertyAnimation *m_animation;
+};
+
+
+/*! @brief The class of the horizontal layout float animation widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimationWidget
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicHLayoutAnimationWidget(QWidget *parent = 0);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Start to anmiation.
+     */
+    virtual void start() override;
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void paintEvent(QPaintEvent *event) override;
 
 };
 

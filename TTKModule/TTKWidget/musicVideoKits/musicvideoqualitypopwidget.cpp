@@ -67,7 +67,7 @@ void MusicVideoQualityPopWidget::movieQualityChoiced(QAction *action)
         default: break;
     }
     setQualityText( url );
-    emit mvURLChanged( url );
+    emit mediaUrlChanged( url );
 }
 
 void MusicVideoQualityPopWidget::initWidget()

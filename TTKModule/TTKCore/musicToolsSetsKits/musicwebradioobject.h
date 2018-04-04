@@ -1,5 +1,5 @@
-#ifndef MUSICEXTRACTWRAP_H
-#define MUSICEXTRACTWRAP_H
+#ifndef MUSICWEBRADIOOBJECT_H
+#define MUSICWEBRADIOOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,49 +19,47 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicobject.h"
 #include "musicglobaldefine.h"
 
-class MusicBackgroundImage;
-
-/*! @brief The class of the extract data wrap.
+/*! @brief The class of the web radio object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicExtractWrap
+class MUSIC_TOOLSET_EXPORT MusicWebRadioObject : public QObject
 {
+    Q_OBJECT
 public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicWebRadioObject(QObject *parent = 0);
+
     /*!
      * Get class object name.
      */
     static QString getClassName();
 
     /*!
-     * Transfer file to image data.
+     * Null function.
      */
-    static bool outputThunderSkin(QPixmap &image, const QString &path);
+    void raise();
+    /*!
+     * Start to run object.
+     */
+    void show();
 
+Q_SIGNALS:
     /*!
-     * Transfer file to normal data.
+     * Reset window open flag.
      */
-    static bool outputData(const QString &path);
+    void resetFlag(MusicObject::ToolsType flag);
 
+public Q_SLOTS:
     /*!
-     * Transfer file to image data.
+     * Send recieved data from net.
      */
-    static bool outputSkin(MusicBackgroundImage *image, const QString &path);
-    /*!
-     * Transfer image data to file.
-     */
-    static bool inputSkin(MusicBackgroundImage *image, const QString &path);
-
-    /*!
-     * Transfer file to data.
-     */
-    static bool outputText(QByteArray &data, const QString &path);
-    /*!
-     * Transfer data to file.
-     */
-    static bool inputText(const QByteArray &data, const QString &path);
+    void dataDownloadFinished();
 
 };
 
-#endif // MUSICEXTRACTWRAP_H
+#endif // MUSICWEBRADIOOBJECT_H

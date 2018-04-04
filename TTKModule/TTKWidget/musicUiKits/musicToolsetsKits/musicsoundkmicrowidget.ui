@@ -198,7 +198,7 @@
     </rect>
    </property>
    <widget class="QWidget" name="videoPage"/>
-   <widget class="MusicLayoutAnimationWidget" name="musicPage"/>
+   <widget class="MusicVLayoutAnimationWidget" name="musicPage"/>
   </widget>
   <widget class="MusicGifLabelWidget" name="loadingLabel">
    <property name="geometry">
@@ -216,7 +216,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicLayoutAnimationWidget</class>
+   <class>MusicVLayoutAnimationWidget</class>
    <extends>QWidget</extends>
    <header location="global">musiclayoutanimationwidget.h</header>
    <container>1</container>

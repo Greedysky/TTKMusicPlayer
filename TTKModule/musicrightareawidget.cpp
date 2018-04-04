@@ -191,18 +191,26 @@ void MusicRightAreaWidget::loadCurrentSongLrc(const QString &name, const QString
     {
         m_ui->musiclrccontainerforinline->stopLrcMask();
         m_ui->musiclrccontainerforinline->setCurrentSongName( name );
+        bool state = m_ui->musiclrccontainerforinline->transLyricFileToTime(path);
+
         m_musicLrcForDesktop->stopLrcMask();
         m_musicLrcForDesktop->setCurrentSongName( name );
+        if(!state)
+        {
+            m_musicLrcForDesktop->updateCurrentLrc(tr("unFoundLrc"), QString(), 0);
+        }
+
         if(m_musicLrcForWallpaper)
         {
             m_musicLrcForWallpaper->stopLrcMask();
             m_musicLrcForWallpaper->setCurrentSongName( name );
+            m_musicLrcForWallpaper->start(true);
+            if(!state)
+            {
+                m_musicLrcForWallpaper->updateCurrentLrc(tr("unFoundLrc"));
+            }
         }
 
-        if(!m_ui->musiclrccontainerforinline->transLyricFileToTime( path ))
-        {
-            m_musicLrcForDesktop->updateCurrentLrc(tr("unFoundLrc"), QString(), 0);
-        }
     }
 }
 

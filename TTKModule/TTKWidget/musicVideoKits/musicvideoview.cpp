@@ -1,12 +1,11 @@
 #include "musicvideoview.h"
-#include "musicmessagebox.h"
+#include "musictoastlabel.h"
 #include "musiccoremplayer.h"
 #include "musicbarragewidget.h"
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
 
 #include <QMenu>
-#include <QTimer>
 #include <QMouseEvent>
 
 MusicViewWidget::MusicViewWidget(QWidget *parent)
@@ -59,7 +58,6 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     setObjectName("MusicVideoView");
     setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MBackgroundStyle02));
 
-    m_positionChanged = false;
     m_mediaPlayer = new MusicCoreMPlayer(this);
     m_videoWidget = new MusicViewWidget(this);
     m_barrageCore = new MusicBarrageWidget(this);
@@ -69,7 +67,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     connect(m_videoWidget, SIGNAL(mediaIsPlaying(bool&)), SLOT(mediaIsPlaying(bool&)));
 
     m_videoControl = new MusicVideoControlWidget(this);
-    connect(m_videoControl, SIGNAL(mvURLChanged(QString)), parent, SLOT(mvURLChanged(QString)));
+    connect(m_videoControl, SIGNAL(mediaUrlChanged(QString)), parent, SLOT(mediaUrlChanged(QString)));
     connect(m_videoControl, SIGNAL(sliderValueChanged(int)), SLOT(setPosition(int)));
     connect(m_videoControl, SIGNAL(addBarrageChanged(MusicBarrageRecord)), SLOT(addBarrageChanged(MusicBarrageRecord)));
     connect(m_videoControl, SIGNAL(pushBarrageChanged(bool)), SLOT(pushBarrageChanged(bool)));
@@ -79,6 +77,7 @@ MusicVideoView::MusicVideoView(QWidget *parent)
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(mediaChanged(QString)), SLOT(mediaChanged(QString)));
+    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
 }
 
 MusicVideoView::~MusicVideoView()
@@ -99,20 +98,19 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
     Q_UNUSED(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
     bool playing;
     mediaIsPlaying(playing);
-    menu.addAction(tr("videoPlay"), this, SLOT(play()))
-            ->setText(playing ? tr("videoPause") : tr("videoPlay"));
+    menu.addAction(tr("videoPlay"), this, SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), this, SLOT(stop()));
+
     menu.exec(QCursor::pos());
 }
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data,
-                           (int)m_videoWidget->winId());
+    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data, (int)m_videoWidget->winId());
     m_videoControl->setQualityActionState();
-    QTimer::singleShot(10*MT_S2MS, this, SLOT(stop()));
 }
 
 void MusicVideoView::resizeWindow(int width, int height)
@@ -141,24 +139,12 @@ void MusicVideoView::play()
 
 void MusicVideoView::stop()
 {
-    if(!m_positionChanged)
-    {
-        m_mediaPlayer->stop();
-        m_barrageCore->stop();
-
-        MusicMessageBox message;
-        message.setText(tr("Session time out, try again!"));
-        message.exec();
-    }
-    m_positionChanged = false;
+    m_mediaPlayer->stop();
+    m_barrageCore->stop();
 }
 
 void MusicVideoView::positionChanged(qint64 position)
 {
-    if(position != 0)
-    {
-        m_positionChanged = true;
-    }
     m_videoControl->setValue(position);
 }
 
@@ -180,6 +166,20 @@ void MusicVideoView::volumeChanged(int volume)
 void MusicVideoView::mediaChanged(const QString &data)
 {
     m_videoControl->mediaChanged(data);
+}
+
+void MusicVideoView::mediaAutionPlayError(int code)
+{
+    if(DEFAULT_INDEX_LEVEL1 == code)
+    {
+        stop();
+
+        MusicToastLabel *toast = new MusicToastLabel(this);
+        toast->setFontSize(15);
+        toast->setFontMargin(20, 20);
+        toast->setText(tr("Audio Play Time out!"));
+        toast->popup(this);
+    }
 }
 
 void MusicVideoView::mediaIsPlaying(bool &play)

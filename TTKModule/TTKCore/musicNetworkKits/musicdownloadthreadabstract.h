@@ -34,12 +34,12 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public MusicNetworkAbst
 public:
     enum DownloadType
     {
-        Download_Music, /*!< type of dwonlaod music*/
-        Download_Lrc,   /*!< type of dwonlaod lrc*/
-        Download_SmlBG, /*!< type of dwonlaod small background*/
-        Download_BigBG, /*!< type of dwonlaod big background*/
-        Download_Video, /*!< type of dwonlaod video*/
-        Download_Other  /*!< type of dwonlaod other user mod*/
+        DownloadMusic,      /*!< type of dwonlaod music*/
+        DownloadLrc,        /*!< type of dwonlaod lrc*/
+        DownloadSmallBG,    /*!< type of dwonlaod small background*/
+        DownloadBigBG,      /*!< type of dwonlaod big background*/
+        DownloadVideo,      /*!< type of dwonlaod video*/
+        DownloadOther       /*!< type of dwonlaod other user mod*/
     };
 
     /*!

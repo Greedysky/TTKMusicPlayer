@@ -1,5 +1,6 @@
 #include "musicapplication.h"
 #include "musicruntimemanager.h"
+#include "musicotherdefine.h"
 #include "ttkdumper.h"
 
 #include <QScreen>
@@ -60,15 +61,15 @@ int main(int argc, char *argv[])
 
     if(argc == 4)
     {
-        if(QString::fromLocal8Bit(argv[2]) == "-Open")
+        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_OPEN)
         {
             w.musicImportSongsSettingPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), true);
         }
-        if(QString::fromLocal8Bit(argv[2]) == "-List")
+        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_LIST)
         {
             w.musicImportSongsSettingPathOuter(QStringList() << QString::fromLocal8Bit(argv[3]), false);
         }
-        if(QString::fromLocal8Bit(argv[2]) == "-Radio")
+        if(QString::fromLocal8Bit(argv[2]) == MUSIC_OUTER_RADIO)
         {
             w.radioExecuteOuter(argv[3]);
         }

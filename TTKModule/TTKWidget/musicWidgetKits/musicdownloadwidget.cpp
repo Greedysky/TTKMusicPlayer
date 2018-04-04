@@ -516,7 +516,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             ////////////////////////////////////////////////
             m_downloadTotal = 1;
             MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
-                                                                                   MusicDownLoadThreadAbstract::Download_Music, this);
+                                                                                   MusicDownLoadThreadAbstract::DownloadMusic, this);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
             downSong->setTags(musicSongInfo.m_smallPicUrl, musicSongInfo.m_songName, musicSongInfo.m_singerName, musicSongInfo.m_albumName);
             downSong->startToDownload();
@@ -576,8 +576,8 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                     }
                 }
                 ////////////////////////////////////////////////
-                MusicDataDownloadThread* download = new MusicDataDownloadThread(urls[ul], downloadName,
-                                                                                MusicDownLoadThreadAbstract::Download_Video, this);
+                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
+                                                                                MusicDownLoadThreadAbstract::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
             }

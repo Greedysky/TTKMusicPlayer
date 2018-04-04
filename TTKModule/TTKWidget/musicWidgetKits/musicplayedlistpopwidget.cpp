@@ -8,12 +8,44 @@
 #include "musicplayedlist.h"
 
 #include <QLabel>
+#include <QPainter>
 #include <QBoxLayout>
 #include <QPushButton>
 #include <QToolButton>
 #include <QScrollArea>
 
 #define MAX_SIZE    3
+
+MusicPlayedListTopContainerWidget::MusicPlayedListTopContainerWidget(QWidget *parent)
+    : QWidget(parent)
+{
+    setFixedHeight(37);
+}
+
+QString MusicPlayedListTopContainerWidget::getClassName()
+{
+    return staticMetaObject.className();
+}
+
+void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
+{
+    QWidget::paintEvent(event);
+    QPainter painter(this);
+
+    QLinearGradient gradient;
+    gradient.setStart(0, 32);
+    gradient.setFinalStop(0, height());
+    gradient.setColorAt(0.1, QColor(150, 150, 150, 150));
+    gradient.setColorAt(0.9, QColor(180, 180, 180, 50));
+
+    painter.setPen(Qt::transparent);
+    painter.setBrush(gradient);
+    painter.drawRect(0, 32, width(), height());
+
+    painter.fillRect(QRect(0, 0, width(), height() - 3), QColor(0xED, 0xF8, 0xFE));
+}
+
+
 
 MusicPlayedListPopWidget *MusicPlayedListPopWidget::m_instance = nullptr;
 
@@ -66,7 +98,7 @@ void MusicPlayedListPopWidget::clear()
     setPlayListCount(0);
 }
 
-void MusicPlayedListPopWidget::resetToolIndex(const PairList &indexs)
+void MusicPlayedListPopWidget::resetToolIndex(const PlayedPairList &indexs)
 {
     MusicPlayedItems *items = m_playlist->mediaList();
     for(int s=0; s<items->count(); ++s)
@@ -307,9 +339,7 @@ void MusicPlayedListPopWidget::initWidget()
 
 QWidget *MusicPlayedListPopWidget::createContainerWidget()
 {
-    QWidget *topWidget = new QWidget(this);
-    topWidget->setFixedHeight(35);
-    topWidget->setStyleSheet(MusicUIObject::MBackgroundStyle20);
+    MusicPlayedListTopContainerWidget *topWidget = new MusicPlayedListTopContainerWidget(this);
 
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     topWidgetLayout->setSpacing(15);

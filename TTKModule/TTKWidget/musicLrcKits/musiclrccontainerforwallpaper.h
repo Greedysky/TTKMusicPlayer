@@ -21,7 +21,7 @@
 
 #include "musiclrccontainer.h"
 
-class MusicLayoutAnimationWidget;
+class MusicVLayoutAnimationWidget;
 class MusicDesktopWallpaperThread;
 class MusicTransitionAnimationLabel;
 
@@ -64,6 +64,14 @@ public:
      * Update current lrc by given time.
      */
     void updateCurrentLrc(qint64 time);
+    /*!
+     * Update current lrc by given text.
+     */
+    void updateCurrentLrc(const QString &text);
+    /*!
+     * Strat now.
+     */
+    void start(bool immediate);
 
 public Q_SLOTS:
     /*!
@@ -92,7 +100,7 @@ protected:
     void setItemStyleSheet(int index, int size, int transparent);
 
     int m_animationFreshTime;
-    MusicLayoutAnimationWidget *m_layoutWidget;
+    MusicVLayoutAnimationWidget *m_layoutWidget;
     MusicDesktopWallpaperThread *m_wallThread;
     MusicTransitionAnimationLabel *m_background;
 

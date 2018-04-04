@@ -26,7 +26,6 @@
 class MusicUserWindow;
 class MusicRemoteWidget;
 class MusicBackgroundSkinDialog;
-class MusicDownloadCounterPVThread;
 
 namespace Ui {
     class MusicApplication;
@@ -248,7 +247,6 @@ protected:
     MusicUserWindow *m_musicUserWindow;
     MusicBackgroundSkinDialog *m_musicBackgroundWidget;
     MusicRemoteWidget *m_musicRemoteWidget;
-    MusicDownloadCounterPVThread *m_counterPVThread;
 
     QImage m_backgroundImage;
     int m_lastRemoteBeforeWallpaper;

@@ -104,7 +104,7 @@ public Q_SLOTS:
     /*!
      * Set current media url.
      */
-    void mvURLChanged(bool mv, const QString &url, const QString &lrcUrl);
+    void mediaUrlChanged(bool mv, const QString &url, const QString &lrcUrl);
     /*!
      * Receive download byte data from net.
      */
@@ -140,7 +140,7 @@ protected:
 
     Ui::MusicSoundKMicroWidget *m_ui;
     qint64 m_intervalTime;
-    bool m_stateButtonOn, m_queryMv;
+    bool m_stateButtonOn, m_queryMovieMode;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicSoundKMicroSearchWidget *m_searchWidget;
     MusicLrcAnalysis *m_analysis;

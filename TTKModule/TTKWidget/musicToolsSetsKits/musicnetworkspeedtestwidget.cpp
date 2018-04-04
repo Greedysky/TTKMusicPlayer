@@ -130,7 +130,7 @@ void MusicNetworkSpeedTestWidget::networkTestStart()
     m_testTimer.stop();
     delete m_testDownload;
     m_testDownload = new MusicDataDownloadThread(MusicUtils::Algorithm::mdII(testUrl, false), MUSIC_NETWORK_TEST_FILE,
-                         MusicDownLoadThreadAbstract::Download_BigBG, this);
+                         MusicDownLoadThreadAbstract::DownloadBigBG, this);
     if(M_NETWORK_PTR->isOnline())
     {
         m_testDownload->startToDownload();

@@ -35,9 +35,9 @@
 #define APPCOME                 "TTKMusicPlayer.com"
 #define APPEXE                  "TTKMusicPlayer.exe"
 ///////////////////////////////////////
-
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"
+
 
 #define LRC_DIR                 "MLrc/"
 #define MUSIC_DIR               "Music/"
@@ -54,6 +54,7 @@
 #define LANGUAGE_DIR            "MLanguage/"
 #define TEMPORARY_DIR           "temporary"
 
+
 #define TTS_FILE_PREFIX         "ttks"
 #define SKN_FILE_PREFIX         "skn"
 #define JPG_FILE_PREFIX         "jpg"
@@ -61,17 +62,26 @@
 #define PNG_FILE_PREFIX         "png"
 #define LRC_FILE_PREFIX         "lrc"
 #define KRC_FILE_PREFIX         "krc"
-#define MP3_FILE_PREFIX         "mp3"
 #define CFG_FILE_PREFIX         "ttk"
 #define LST_FILE_PREFIX         "lis"
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
+
+//music ext
+#define AAC_FILE_PREFIX         "aac"
+#define WMA_FILE_PREFIX         "wma"
+#define MP3_FILE_PREFIX         "mp3"
+#define OGG_FILE_PREFIX         "ogg"
+#define APE_FILE_PREFIX         "ape"
+#define FLC_FILE_PREFIX         "flac"
+
 
 #define MAKE_TRANSFORM_PREFIX   "avconv.dll"
 #define MAKE_KRC2LRC_PREFIX     "avk2l.dll"
 #define MAKE_PLAYER_PREFIX      "avplayer.dll"
 #define MAKE_GAIN_PREFIX        "avgain.dll"
 #define MAKE_SOUNDTOUCH_PREFIX  "avm2v.dll"
+
 
 #define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
 #define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
@@ -86,6 +96,15 @@
 #define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
 #define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
 
+//music ext
+#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
+#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
+#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
+#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
+#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
+#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
+
+
 #define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")
 #define MAKE_TRANSFORM          STRCAT(PLUGINS_DIR, MAKE_TRANSFORM_PREFIX)
 #define MAKE_KRC2LRC            STRCAT(PLUGINS_DIR, MAKE_KRC2LRC_PREFIX)
@@ -96,6 +115,7 @@
 #define MAKE_NETS               STRCAT(PLUGINS_DIR, "avnets.dll")
 #endif
 
+
 #define COFIGPATH               "musicconfig.xml"
 #define MUSICPATH               "music.lis"
 #define NORMALDOWNPATH          "musicdown.ttk"
@@ -104,6 +124,7 @@
 #define DARABASEPATH            "musicuser.dll"
 #define USERPATH                "musicuser.ttk"
 #define BARRAGEPATH             "musicbarrage.ttk"
+
 
 ///////////////////////////////////////
 #if defined (Q_OS_ANDROID)
@@ -115,6 +136,7 @@
 #  define DOWNLOADS_DIR_FULL    MAIN_DIR_FULL + DOWNLOADS_DIR
 #endif
 
+
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOADS_DIR_FULL + MOVIE_DIR
@@ -123,6 +145,7 @@
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 #define UPDATE_DIR_FULL         DOWNLOADS_DIR_FULL + UPDATE_DIR
+
 
 #define COFIGPATH_FULL          APPDATA_DIR_FULL + COFIGPATH
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
@@ -135,9 +158,11 @@
 #define AVATAR_DIR_FULL         APPDATA_DIR_FULL + AVATAR_DIR
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
+
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
+
 
 #define MAKE_CONFIG_DIR_FULL    MusicObject::getAppDir() + MAKE_CONFIG_DIR
 #define MAKE_TRANSFORM_FULL     MusicObject::getAppDir() + MAKE_TRANSFORM
@@ -148,6 +173,7 @@
 #ifdef Q_OS_UNIX
 #define MAKE_NETS_FULL          MusicObject::getAppDir() + MAKE_NETS
 #endif
+
 
 ///////////////////////////////////////
 #define WINDOW_WIDTH_MIN        1000
@@ -162,6 +188,7 @@
 ///////////////////////////////////////
 #define STRING_SPLITER          "*|||*"
 ///////////////////////////////////////
+
 
 /*! @brief The namespace of the application object.
  * @author Greedysky <greedysky@163.com>
@@ -221,38 +248,38 @@ namespace MusicObject
 
     enum PlayState
     {
-        PS_StoppedState,      /*!< stop state*/
-        PS_PlayingState,      /*!< play state*/
-        PS_PausedState        /*!< pause state*/
+        PS_StoppedState,               /*!< stop state*/
+        PS_PlayingState,               /*!< play state*/
+        PS_PausedState                 /*!< pause state*/
     };
 
     enum PlayMode
     {
-        PM_PlayOrder = 1,   /*!< play order*/
-        PM_PlayRandom,      /*!< play random*/
-        PM_PlayListLoop,    /*!< play list loop*/
-        PM_PlayOneLoop,     /*!< play single loop*/
-        PM_PlayOnce         /*!< play just once*/
+        PM_PlayOrder = 1,              /*!< play order*/
+        PM_PlayRandom,                 /*!< play random*/
+        PM_PlayListLoop,               /*!< play list loop*/
+        PM_PlayOneLoop,                /*!< play single loop*/
+        PM_PlayOnce                    /*!< play just once*/
     };
 
     enum DownLoadMode
     {
-        DW_Null,           /*!< network null*/
-        DW_DisConnection,  /*!< network disable*/
-        DW_DownLoading,    /*!< network download*/
-        DW_Buffing,        /*!< network buffing*/
-        DW_Waiting         /*!< network waiting*/
+        DW_Null,                       /*!< network null*/
+        DW_DisConnection,              /*!< network disable*/
+        DW_DownLoading,                /*!< network download*/
+        DW_Buffing,                    /*!< network buffing*/
+        DW_Waiting                     /*!< network waiting*/
     };
 
     enum FontStyleMode
     {
-        FT_Bold =       0x00001,   /*!< font bold*/
-        FT_Italic =     0x00002,   /*!< font italic*/
-        FT_Underline =  0x00004,   /*!< font underline*/
-        FT_Overline =   0x00008,   /*!< font overline*/
-        FT_StrikeOut =  0x00010,   /*!< font strikeOut*/
-        FT_FixedPitch = 0x00020,   /*!< font fixedPitch*/
-        FT_Kerningt =   0x00040    /*!< font kerningt*/
+        FT_Bold =           0x00001,   /*!< font bold*/
+        FT_Italic =         0x00002,   /*!< font italic*/
+        FT_Underline =      0x00004,   /*!< font underline*/
+        FT_Overline =       0x00008,   /*!< font overline*/
+        FT_StrikeOut =      0x00010,   /*!< font strikeOut*/
+        FT_FixedPitch =     0x00020,   /*!< font fixedPitch*/
+        FT_Kerningt =       0x00040    /*!< font kerningt*/
     };
 
     enum ToolsType
@@ -271,7 +298,8 @@ namespace MusicObject
         TT_Identify =       0x00800,   /*!< Identify*/
         TT_SoundTouch =     0x01000,   /*!< Sound Touch*/
         TT_GrabWindow =     0x02000,   /*!< Grab Window*/
-        TT_SoundKMicro =    0x04000    /*!< Sound KMicro*/
+        TT_SoundKMicro =    0x04000,   /*!< Sound KMicro*/
+        TT_WebRadio =       0x08000    /*!< Web Radio*/
     };
     MUSIC_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
