@@ -418,7 +418,7 @@
 <context>
     <name>MusicApplicationObject</name>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="387"/>
+        <location filename="../TTKModule/musicapplicationobject.cpp" line="392"/>
         <source>we are opening the magic sound, if you want to close?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3832,23 +3832,23 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicPlayedListPopWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="26"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="316"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="58"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="346"/>
         <source>playedList</source>
         <translation>Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="322"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="352"/>
         <source>shareList</source>
         <translation>Share Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="328"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="358"/>
         <source>clearList</source>
         <translation>Clear Play List</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="340"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetKits/musicplayedlistpopwidget.cpp" line="370"/>
         <source>closeList</source>
         <translation>Close Play List</translation>
     </message>
@@ -4080,13 +4080,13 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="158"/>
-        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="159"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="162"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="163"/>
         <source>search &apos;%1&apos;</source>
         <translation>Search &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="160"/>
+        <location filename="../TTKModule/TTKWidget/musicWidgetCoreKits/musicquerytablewidget.cpp" line="164"/>
         <source>search &apos;%1 - %2&apos;</source>
         <translation>Search &apos;%1 - %2&apos;</translation>
     </message>
@@ -4230,17 +4230,18 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicRightAreaWidget</name>
     <message>
-        <location filename="../TTKModule/musicrightareawidget.cpp" line="204"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="200"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="210"/>
         <source>unFoundLrc</source>
         <translation> --- No Lrc File Found！</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicrightareawidget.cpp" line="409"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="417"/>
         <source>please input search text</source>
         <translation>Please Input Search Words!</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicrightareawidget.cpp" line="419"/>
+        <location filename="../TTKModule/musicrightareawidget.cpp" line="427"/>
         <source>enter input search text first</source>
         <translation>Please Enter Input Search Text First!</translation>
     </message>
@@ -6475,7 +6476,8 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundKMicroSearchTableWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="73"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="74"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="156"/>
         <source>Please Select One Item First!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6483,17 +6485,17 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicSoundKMicroSearchWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="164"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="193"/>
         <source> Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="183"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="212"/>
         <source>MV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="185"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrosearchwidget.cpp" line="214"/>
         <source>Song</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6544,22 +6546,22 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation type="unfinished">00:00/00:00</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="40"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="37"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="173"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="170"/>
         <source>Record Finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="298"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="295"/>
         <source>Recording Now, Stop It?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="314"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsSetsKits/musicsoundkmicrowidget.cpp" line="311"/>
         <source>Input Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7166,42 +7168,42 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicTopAreaWidget</name>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="72"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="67"/>
         <source>identify</source>
         <translation>Identify Songs</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="76"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="71"/>
         <source>tools</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="81"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="76"/>
         <source>changeskin</source>
         <translation>Skin Change</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="86"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="81"/>
         <source>setting</source>
         <translation>Setting</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="91"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="86"/>
         <source>concisein/out</source>
         <translation>Concise in/out</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="96"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="91"/>
         <source>remoteWindow</source>
         <translation>Open Remote</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="103"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="98"/>
         <source>Minimization</source>
         <translation>Minimization</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musictopareawidget.cpp" line="106"/>
+        <location filename="../TTKModule/musictopareawidget.cpp" line="101"/>
         <source>Close</source>
         <translation>Close</translation>
     </message>
@@ -8263,22 +8265,22 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>MusicWebMusicRadioWidget</name>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="216"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="217"/>
         <source>TTK Radio Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="228"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="230"/>
         <source>musicPlay</source>
         <translation>Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="230"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="232"/>
         <source>songToMobile</source>
         <translation>Song To Mobile</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="231"/>
+        <location filename="../TTKModule/TTKWidget/musicToolsKits/musicwebmusicradiowidget.cpp" line="233"/>
         <source>sendToDesktop</source>
         <translation>Send To Desktop Link</translation>
     </message>
@@ -8325,17 +8327,17 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="197"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="198"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="205"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="206"/>
         <source>user TTKMusicPlayer play</source>
         <translation>Use TTKMusicPlayer Play</translation>
     </message>
     <message>
-        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="214"/>
+        <location filename="../TTKModule/TTKCore/musicCoreKits/musicregeditmanager.cpp" line="215"/>
         <source>add TTKMusicPlayer playList</source>
         <translation>Add To TTKMusicPlayer PlayList</translation>
     </message>
@@ -8434,12 +8436,12 @@ Copyright© 2015-2018 Greedysky All Rights Reserved
         <translation>Choose A File To Save</translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="302"/>
+        <location filename="../TTKModule/musicapplicationobject.cpp" line="307"/>
         <source>No IE Core Detected!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TTKModule/musicapplicationobject.cpp" line="302"/>
+        <location filename="../TTKModule/musicapplicationobject.cpp" line="307"/>
         <source>IE Version Less Than 8!</source>
         <translation type="unfinished"></translation>
     </message>

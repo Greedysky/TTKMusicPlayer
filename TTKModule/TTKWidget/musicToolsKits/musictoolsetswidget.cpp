@@ -236,4 +236,9 @@ void MusicToolSetsWidget::clearAllItems()
 void MusicToolSetsWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);
+    QListWidgetItem *it = m_ui->listItemWidget->currentItem();
+    if(it)
+    {
+        itemHasClicked(it);
+    }
 }
