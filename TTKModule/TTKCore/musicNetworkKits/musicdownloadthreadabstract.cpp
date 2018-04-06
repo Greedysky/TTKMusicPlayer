@@ -1,6 +1,7 @@
 #include "musicdownloadthreadabstract.h"
 #include "musicsettingmanager.h"
 #include "musicdownloadmanager.h"
+#include "musicstringutils.h"
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
@@ -15,16 +16,16 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, con
     : MusicNetworkAbstract(parent)
 {
     m_url = url;
-    m_savePathName = save;
+    m_savePathName = MusicUtils::String::illegalCharactersReplaced(save);
     m_downloadType = type;
     m_hasReceived = 0;
     m_currentReceived = 0;
 
-    if(QFile::exists(save))
+    if(QFile::exists(m_savePathName))
     {
-        QFile::remove(save);
+        QFile::remove(m_savePathName);
     }
-    m_file = new QFile(save, this);
+    m_file = new QFile(m_savePathName, this);
 
     M_DOWNLOAD_MANAGER_PTR->connectNetworkMultiValue(this);
     m_timer.setInterval(MT_S2MS);

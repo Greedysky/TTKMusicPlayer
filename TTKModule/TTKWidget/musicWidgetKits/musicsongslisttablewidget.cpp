@@ -508,12 +508,14 @@ void MusicSongsListTableWidget::setChangSongName()
     {
         return;
     }
-    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
+
     //the playing widget allow renaming
+    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
     {
         m_musicSongsPlayWidget->setItemRename();
         return;
     }
+
     //others
     m_renameActived = true;
     m_renameItem = item(currentRow(), 1);

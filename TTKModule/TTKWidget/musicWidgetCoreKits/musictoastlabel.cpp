@@ -98,7 +98,10 @@ void MusicToastLabel::closeAnimation()
     animation->setStartValue(1);
     animation->setEndValue(0);
     animation->start();
+
     connect(animation, SIGNAL(finished()), SLOT(close()));
+    connect(animation, SIGNAL(finished()), SIGNAL(animationCloseChanged()));
+
 }
 
 void MusicToastLabel::paintEvent(QPaintEvent *event)

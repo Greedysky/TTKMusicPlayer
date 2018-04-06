@@ -79,6 +79,12 @@ public:
      */
     void popup(QWidget *parent);
 
+Q_SIGNALS:
+    /*!
+     * Animation close changed.
+     */
+    void animationCloseChanged();
+
 public Q_SLOTS:
     /*!
      * Set context text.
