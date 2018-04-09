@@ -122,11 +122,11 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
             if(m_counter < 5)
             {
                 M_LOGGER_ERROR(url);
-                MusicDataDownloadThread *down = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
-                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
-                                        MusicDownLoadThreadAbstract::DownloadBigBG, this);
-                connect(down, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
-                down->startToDownload();
+                MusicDataDownloadThread *download = new MusicDataDownloadThread(url, QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL)
+                                                        .arg(m_savePath).arg(m_counter++).arg(SKN_FILE),
+                                                        MusicDownLoadThreadAbstract::DownloadBigBG, this);
+                connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadFinished()));
+                download->startToDownload();
             }
         }
     }
