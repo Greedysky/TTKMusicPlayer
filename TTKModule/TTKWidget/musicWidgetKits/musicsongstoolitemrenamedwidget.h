@@ -32,6 +32,10 @@ public:
     /*!
      * Object contsructor by index and origin name.
      */
+    /*!
+     * Object contsructor by index and origin name.
+     */
+    explicit MusicSongsToolItemRenamedWidget(QWidget *parent = 0);
     explicit MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent = 0);
 
     /*!

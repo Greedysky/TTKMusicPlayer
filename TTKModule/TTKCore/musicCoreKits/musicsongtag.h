@@ -177,6 +177,10 @@ public:
 
 protected:
     /*!
+     * Find legal data string.
+     */
+    QString findLegalDataString(TagReadAndWrite::MusicTag type) const;
+    /*!
      * Find current pluin store path.
      */
     QString findPluginPath() const;

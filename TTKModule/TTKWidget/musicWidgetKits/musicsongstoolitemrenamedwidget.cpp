@@ -2,15 +2,15 @@
 #include "musicstringutils.h"
 #include "musicuiobject.h"
 #include "musictoastlabel.h"
+#include "musicapplication.h"
 
-MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent)
+MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(QWidget *parent)
     : QLineEdit(parent)
 {
     setGeometry(1, 0, 330, 20);
 
     m_focusBlock = false;
 
-    setText(text);
     setStyleSheet(MusicUIObject::MLineEditStyle01);
     setFocus(Qt::MouseFocusReason);
     setFocusPolicy(Qt::ClickFocus);
@@ -18,6 +18,12 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &
     connect(this, SIGNAL(textChanged(QString)), SLOT(textChanged(QString)));
     connect(this, SIGNAL(editingFinished()), SLOT(renameFinished()));
 
+}
+
+MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent)
+    : MusicSongsToolItemRenamedWidget(parent)
+{
+    setText(text);
 }
 
 QString MusicSongsToolItemRenamedWidget::getClassName()
@@ -36,7 +42,7 @@ void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
         toast->setFontSize(15);
         toast->setFontMargin(20, 20);
         toast->setText(tr("Illegal Chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
-        toast->popup(this);
+        toast->popup(MusicApplication::instance());
         connect(toast, SIGNAL(animationCloseChanged()), SLOT(animationCloseChanged()));
     }
 }
