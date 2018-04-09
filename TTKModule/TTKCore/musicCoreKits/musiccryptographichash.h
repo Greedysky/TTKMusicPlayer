@@ -62,6 +62,7 @@ public:
      */
     QString decrypt(const QString &data, const QString &key);
 
+protected:
     /*!
      * XXTEA encrypt by std::string data.
      */
@@ -80,7 +81,6 @@ public:
      */
     QString xxteaDecrypt(const QString &data, const QString &key);
 
-protected:
     /*!
      * Check current char is base64.
      */
