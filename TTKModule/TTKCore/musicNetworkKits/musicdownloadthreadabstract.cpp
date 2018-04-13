@@ -16,7 +16,7 @@ MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, con
     : MusicNetworkAbstract(parent)
 {
     m_url = url;
-    m_savePathName = MusicUtils::String::illegalCharactersReplaced(save);
+    m_savePathName = save;
     m_downloadType = type;
     m_hasReceived = 0;
     m_currentReceived = 0;
