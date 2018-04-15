@@ -120,8 +120,8 @@ void MusicDownLoadQueryMGMovieThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["singer"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singer"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = "-";
 
                     musicInfo.m_songId = value["mvid"].toString();

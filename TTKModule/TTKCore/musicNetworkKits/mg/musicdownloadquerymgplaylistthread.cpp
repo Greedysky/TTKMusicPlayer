@@ -210,8 +210,8 @@ void MusicDownLoadQueryMGPlaylistThread::getDetailsFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["singer"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singer"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = "-";
 
                     musicInfo.m_songId = value["contentid"].toString();
@@ -220,7 +220,7 @@ void MusicDownLoadQueryMGPlaylistThread::getDetailsFinished()
 
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(MG_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                     musicInfo.m_smallPicUrl = value["albumImg"].toString();
-                    musicInfo.m_albumName = value["album"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album"].toString());
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, true);

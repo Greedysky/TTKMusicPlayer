@@ -257,8 +257,8 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
             value = value["data"].toMap();
             MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songId = QString::number(id);
-            musicInfo.m_songName = value["name"].toString();
-            musicInfo.m_singerName = value["artistName"].toString();
+            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();

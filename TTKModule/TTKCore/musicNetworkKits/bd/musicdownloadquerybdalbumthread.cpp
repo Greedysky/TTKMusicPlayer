@@ -89,9 +89,9 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                 QVariantMap albumInfo = value["albumInfo"].toMap();
                 MusicResultsItem info;
                 info.m_coverUrl = albumInfo["pic_small"].toString().replace("_90", "_500");
-                info.m_description = albumInfo["title"].toString() + "<>" +
-                                     albumInfo["language"].toString() + "<>" +
-                                     albumInfo["publishcompany"].toString() + "<>" +
+                info.m_description = albumInfo["title"].toString() + STRING_SPLITER +
+                                     albumInfo["language"].toString() + STRING_SPLITER +
+                                     albumInfo["publishcompany"].toString() + STRING_SPLITER +
                                      albumInfo["publishtime"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songlist"].toList();
@@ -104,8 +104,8 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["author"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["author"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["file_duration"].toInt()*1000);
 
                     musicInfo.m_songId = value["song_id"].toString();
@@ -113,7 +113,7 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                     musicInfo.m_artistId = value["ting_uid"].toString();
                     musicInfo.m_lrcUrl = value["lrclink"].toString();
                     musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
-                    musicInfo.m_albumName = value["album_title"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_title"].toString());
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);

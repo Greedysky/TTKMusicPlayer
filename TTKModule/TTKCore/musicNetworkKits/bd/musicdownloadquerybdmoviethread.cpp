@@ -121,8 +121,8 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["author"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["author"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = "-";
 
                     if(value["has_mv"].toInt() == 1)

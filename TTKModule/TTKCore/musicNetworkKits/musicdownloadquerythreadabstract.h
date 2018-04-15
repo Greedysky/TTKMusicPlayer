@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "musicobject.h"
+#include "musicstringutils.h"
 #include "musicdownloadpagingthread.h"
 
 /*! @brief The class of the searched data item.

@@ -113,8 +113,8 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["author"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["author"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = "-";
 
                     musicInfo.m_songId = value["song_id"].toString();
@@ -125,7 +125,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                     {
                         musicInfo.m_lrcUrl = value["lrclink"].toString();
                         musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
-                        musicInfo.m_albumName = value["album_title"].toString();
+                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_title"].toString());
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
@@ -179,8 +179,8 @@ void MusicDownLoadQueryBDThread::singleDownLoadFinished()
             {
                 value = value["songinfo"].toMap();
                 MusicObject::MusicSongInformation musicInfo;
-                musicInfo.m_singerName = value["author"].toString();
-                musicInfo.m_songName = value["title"].toString();
+                musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["author"].toString());
+                musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                 musicInfo.m_timeLength = "-";
 
                 musicInfo.m_songId = value["song_id"].toString();
@@ -189,7 +189,7 @@ void MusicDownLoadQueryBDThread::singleDownLoadFinished()
 
                 musicInfo.m_lrcUrl = value["lrclink"].toString();
                 musicInfo.m_smallPicUrl = value["pic_small"].toString().replace("_90", "_500");
-                musicInfo.m_albumName = value["album_title"].toString();
+                musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_title"].toString());
 
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, true);

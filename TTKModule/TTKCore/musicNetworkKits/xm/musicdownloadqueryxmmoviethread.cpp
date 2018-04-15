@@ -176,8 +176,8 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["singers"].toString();
-                    musicInfo.m_songName = value["songName"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singers"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
                     musicInfo.m_songId = value["mvId"].toString();

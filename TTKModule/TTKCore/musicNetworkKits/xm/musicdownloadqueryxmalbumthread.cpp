@@ -94,9 +94,9 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                 bool albumFlag = false;
                 MusicResultsItem info;
                 info.m_coverUrl = value["albumLogo"].toString();
-                info.m_description = value["albumName"].toString() + "<>" +
-                                     value["language"].toString() + "<>" +
-                                     value["company"].toString() + "<>" +
+                info.m_description = value["albumName"].toString() + STRING_SPLITER +
+                                     value["language"].toString() + STRING_SPLITER +
+                                     value["company"].toString() + STRING_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy-MM-dd");
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();
@@ -109,14 +109,14 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["artistName"].toString();
-                    musicInfo.m_songName = value["songName"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
                     musicInfo.m_songId = value["songId"].toString();
                     musicInfo.m_albumId = value["albumId"].toString();
                     musicInfo.m_artistId = value["artistId"].toString();
-                    musicInfo.m_albumName = value["albumName"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
                     musicInfo.m_smallPicUrl = value["albumLogo"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

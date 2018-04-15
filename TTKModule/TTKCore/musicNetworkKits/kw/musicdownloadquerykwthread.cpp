@@ -182,8 +182,8 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["ARTIST"].toString();
-                    musicInfo.m_songName = value["SONGNAME"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["ARTIST"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["SONGNAME"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["DURATION"].toInt()*1000);
 
                     musicInfo.m_songId = value["MUSICRID"].toString().replace("MUSIC_", "");
@@ -192,7 +192,7 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
 
                     if(!m_querySimplify)
                     {
-                        musicInfo.m_albumName = value["ALBUM"].toString();
+                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongPic(&musicInfo);

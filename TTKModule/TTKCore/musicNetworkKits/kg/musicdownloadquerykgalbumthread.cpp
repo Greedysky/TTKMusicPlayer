@@ -103,14 +103,14 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = value["filename"].toString();
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
                     if(musicInfo.m_songName.contains("-"))
                     {
                         QStringList ll = musicInfo.m_songName.split("-");
-                        musicInfo.m_singerName = ll.front().trimmed();
-                        musicInfo.m_songName = ll.back().trimmed();
+                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
+                        musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }
 
                     musicInfo.m_songId = value["hash"].toString();
@@ -118,7 +118,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAlbumInfo(&info, m_searchText);
-                    musicInfo.m_albumName = info.m_nickName;
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(info.m_nickName);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     readFromMusicSongLrcAndPic(&musicInfo);
