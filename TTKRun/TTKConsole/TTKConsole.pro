@@ -16,5 +16,46 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-TEMPLATE = subdirs
-SUBDIRS = TTKInit TTKConsole TTKApp
+QT       += core
+unix:VERSION += 1.0.0.0
+include(../../TTKVersion.pri)
+
+win32:TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole
+unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKConsole
+
+TEMPLATE = app
+CONFIG += console
+
+UI_DIR = ./.build/ui
+MOC_DIR = ./.build/moc
+OBJECTS_DIR = ./.build/obj
+RCC_DIR = ./.build/rcc
+
+DEFINES += MUSIC_LIBRARY
+
+win32:msvc{
+    CONFIG +=c++11
+}else{
+    QMAKE_CXXFLAGS += -std=c++11
+}
+win32{
+    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKCore
+}
+
+INCLUDEPATH += \
+    $$PWD/../ \
+    $$PWD/../../ \
+    $$PWD/../../TTKModule/TTKCore/musicCoreKits \
+    $$PWD/../../TTKModule/TTKCore/musicUtilsKits
+
+SOURCES += \
+    musicconsolemain.cpp \
+    musicconsoleobject.cpp
+
+HEADERS += \
+    ../musicrunglobaldefine.h \
+    musicconsoleobject.h
+
+win32{
+    RC_FILE = TTKConsole.rc
+}

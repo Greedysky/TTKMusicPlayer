@@ -73,6 +73,25 @@ QString MusicHotKeyManager::hotKey(int index)
     return m_hotkeys[index]->shortcut().toString();
 }
 
+QObject* MusicHotKeyManager::getHotKey(int index)
+{
+    if(index >= m_hotkeys.count())
+    {
+        return nullptr;
+    }
+    return m_hotkeys[index];
+}
+
+void MusicHotKeyManager::addHotKey(const QString &key)
+{
+    m_hotkeys << (new QxtGlobalShortcut(QKeySequence(key)));
+}
+
+void MusicHotKeyManager::addHotKey(int key)
+{
+    m_hotkeys << (new QxtGlobalShortcut(QKeySequence(key)));
+}
+
 void MusicHotKeyManager::setEnabled(int index, bool enabled)
 {
     if(index >= m_hotkeys.count())

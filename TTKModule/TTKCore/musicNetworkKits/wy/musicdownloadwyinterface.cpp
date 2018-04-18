@@ -3,6 +3,7 @@
 #include "musicnumberutils.h"
 #include "musicalgorithmutils.h"
 #include "musicurlutils.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -15,10 +16,13 @@
 void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
 {
     request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request->setRawHeader("Cookie", MusicUtils::Algorithm::mdII(WY_COOKIE_URL, ALG_UA_KEY, false).toUtf8() + " appver=2.0.3.131777; __remember_me=true;");
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+
+    QString cookie = M_SETTING_PTR->value(MusicSettingManager::NetworkCookieChoiced).toString();
+    cookie = cookie.isEmpty() ? MusicUtils::Algorithm::mdII(WY_COOKIE_URL, ALG_UA_KEY, false) : cookie;
+    request->setRawHeader("Cookie", QString("MUSIC_U=%1; appver=2.0.3.131777; __remember_me=true;").arg(cookie).toUtf8());
 }
 
 QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)

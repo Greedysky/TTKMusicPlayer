@@ -23,7 +23,7 @@
 #include "musicglobaldefine.h"
 
 ///////////////////////////////////////////////////////////////////////////
-const QString WY_COOKIE_URL          = "bDNKYmtpNXZxSG5tMytPcmE3d2plSHdWQzBCMGtnNXZWVW96bmczWmdab2p2NzlXTkNPdEsvWGJLbFZGVnN4d1pjTFU1cUF1MjlDQkxJQnhRNTlkVEx6emlLemtNcEdsNC90UTdLVUV1NFo3U1JYSmhUNjdQU1NrbzliYmlvNTFaTVdsZlZPdEFucWUwQ21JaUJHMU9VTTNxZWdNUGEyQ3dQcndiZ0FrTVpIYWRwNlVhLzhhenBwNlhXMjVwblNN";
+const QString WY_COOKIE_URL          = "M2g1Q0hEb2JJeDNROGtJcDE3ZEFpR0J2TFFJOGtvbms1Sk4zTjBDV3p6b3hOVXZMSllpQmNFRFlxdVJvdHk0T0owNVpJTjBhejlqS2M1OVZPRXNQdWg2eCtPR3l5cG5nNkdpUUIrUHZpUzhRRTBNMFZWUnZ4SmlTaXdZOHoxQVBlTjg2UGZtUkJmWVhRNlU5TEs2aHJ2MVg3WVdqYjZrdWRwdnBPVlVJNHlPKzdVbCs=";
 const QString WY_UA_URL_1            = "N1hBb3hrWFVaNnNTejltZUpIeUhieG9xN0FuV0J3QmkzOElteHZYNkQzL1Z2VEIzVDdsMVlURmhUVFlZT3NSU3BSQzVmUDFWNzBIbEwvaHJ4UFg0ODVzUVBXQzZNcjVheWZEcmF2ZitwSm1WUFV1Y1ozZXdCUXBsdXFoZ1ZyTTNURGVHUTZYQmRMQXJDZ2ZrQ3lNTU0rb3UxMkJmQUpxYXdaYVlCdC9kdm84PQ==";
 ///////////////////////////////////////////////////////////////////////////
 const QString WY_BASE_URL            = "MVNVTXo4bW9WdHhXR1dXeTZmU3k5dmFOcGlua1VOMlE=";
