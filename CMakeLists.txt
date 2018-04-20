@@ -49,7 +49,6 @@ include_directories(
     ${MUSIC_CORE_NETWORK_DIR}/bd
     ${MUSIC_CORE_NETWORK_DIR}/kg
     ${MUSIC_CORE_NETWORK_DIR}/kw
-    ${MUSIC_CORE_NETWORK_DIR}/mg
     ${MUSIC_CORE_NETWORK_DIR}/nr
     ${MUSIC_CORE_NETWORK_DIR}/qq
     ${MUSIC_CORE_NETWORK_DIR}/radio
