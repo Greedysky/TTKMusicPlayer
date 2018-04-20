@@ -52,7 +52,6 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musiclocalsongsmanagerwidget.ui \
     $$PWD/musicToolsetsKits/musictimerwidget.ui \
     $$PWD/musicToolsetsKits/musictransformwidget.ui \
-    $$PWD/musicToolsetsKits/musicnetworkspeedtestwidget.ui \
     $$PWD/musicToolsetsKits/musicnetworkconnectiontestwidget.ui \
     $$PWD/musicToolsetsKits/musicvolumegainwidget.ui \
     $$PWD/musicToolsetsKits/musicsoundtouchwidget.ui \

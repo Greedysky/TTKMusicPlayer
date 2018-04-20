@@ -2,7 +2,7 @@
 #define MUSICCONSOLEOBJECT_H
 
 /* =================================================
- * This file is part of the TTK Downloader project
+ * This file is part of the TTK Music Player project
  * Copyright (C) 2015 - 2018 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 class MusicPlayer;
 class MusicPlayedlist;
 
-/*! @brief The class of the download console object.
+/*! @brief The class of the music console object.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_RUN_EXPORT MusicConsoleObject : public QObject

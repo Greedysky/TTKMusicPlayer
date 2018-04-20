@@ -117,7 +117,6 @@
         <file alias="lb_spectrum">../TTKResource/tools/lb_spectrum.png</file>
         <file alias="lb_wallpaper">../TTKResource/tools/lb_wallpaper.png</file>
         <file alias="lb_phone">../TTKResource/tools/lb_phone.png</file>
-        <file alias="lb_speed">../TTKResource/tools/lb_speed.png</file>
         <file alias="lb_gain">../TTKResource/tools/lb_gain.png</file>
         <file alias="lb_soundtouch">../TTKResource/tools/lb_soundtouch.png</file>
         <file alias="lb_detect">../TTKResource/tools/lb_detect.png</file>

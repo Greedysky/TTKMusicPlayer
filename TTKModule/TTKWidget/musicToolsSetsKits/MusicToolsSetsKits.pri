@@ -30,11 +30,8 @@ HEADERS  += \
     $$PWD/musiclocalsongstablewidget.h \
     $$PWD/musicvolumegainwidget.h \
     $$PWD/musicsoundtouchwidget.h \
-    $$PWD/musicspeedmeterwidget.h \
     $$PWD/musicsongringtonemakerwidget.h \
     $$PWD/musicidentifysongswidget.h \
-    $$PWD/musicnetworkspeedtestwidget.h \
-    $$PWD/musicnetworkspeedsuspensionwidget.h \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
@@ -59,11 +56,8 @@ SOURCES += \
     $$PWD/musiclocalsongstablewidget.cpp \
     $$PWD/musicvolumegainwidget.cpp \
     $$PWD/musicsoundtouchwidget.cpp \
-    $$PWD/musicspeedmeterwidget.cpp \
     $$PWD/musicsongringtonemakerwidget.cpp \
     $$PWD/musicidentifysongswidget.cpp \
-    $$PWD/musicnetworkspeedsuspensionwidget.cpp \
-    $$PWD/musicnetworkspeedtestwidget.cpp \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \
