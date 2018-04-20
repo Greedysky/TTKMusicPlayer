@@ -20,9 +20,6 @@ QT       += core
 unix:VERSION += 1.0.0.0
 include(../../TTKVersion.pri)
 
-win32:TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole
-unix:TARGET = ../../lib/$$TTKMusicPlayer/TTKConsole
-
 TEMPLATE = app
 CONFIG += console
 
@@ -33,13 +30,19 @@ RCC_DIR = ./.build/rcc
 
 DEFINES += MUSIC_LIBRARY
 
+win32{
+    TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole
+    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKCore
+}
+unix{
+    TARGET = ../../lib/$$TTKMusicPlayer/TTKConsole
+    LIBS += -L../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
+}
+
 win32:msvc{
     CONFIG +=c++11
 }else{
     QMAKE_CXXFLAGS += -std=c++11
-}
-win32{
-    LIBS += -L../../bin/$$TTKMusicPlayer -lTTKCore
 }
 
 INCLUDEPATH += \
