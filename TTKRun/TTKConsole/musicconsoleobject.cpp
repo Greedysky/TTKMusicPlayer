@@ -332,25 +332,25 @@ void MusicConsoleObject::musicEnhancedOff()
 
 void MusicConsoleObject::musicEnhanced3D()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::Music3D);
+    m_musicPlayer->setMusicEnhanced(MusicPlayer::Enhanced3D);
     m_enhanced = "3D";
 }
 
 void MusicConsoleObject::musicEnhancedNICAM()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::MusicNICAM);
+    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedNICAM);
     m_enhanced = "NICAM";
 }
 
 void MusicConsoleObject::musicEnhancedSubwoofer()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::MusicSubwoofer);
+    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedSubwoofer);
     m_enhanced = "Subwoofer";
 }
 
 void MusicConsoleObject::musicEnhancedVocal()
 {
-    m_musicPlayer->setMusicEnhanced(MusicPlayer::MusicVocal);
+    m_musicPlayer->setMusicEnhanced(MusicPlayer::EnhancedVocal);
     m_enhanced = "Vocal";
 }
 

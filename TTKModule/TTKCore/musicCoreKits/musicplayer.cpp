@@ -111,7 +111,7 @@ void MusicPlayer::setMusicEnhanced(Enhanced type)
 {
     m_musicEnhanced = type;
 
-    if(m_musicEnhanced == Music3D)
+    if(m_musicEnhanced == Enhanced3D)
     {
         m_volumeMusic3D = volume();
     }
@@ -249,7 +249,7 @@ void MusicPlayer::update()
 {
     emit positionChanged( position() );
 
-    if(m_musicEnhanced == Music3D && !m_music->isMuted())
+    if(m_musicEnhanced == Enhanced3D && !m_music->isMuted())
     {
         ///3D music settings
         setEnaleEffect(false);
@@ -301,13 +301,13 @@ void MusicPlayer::setMusicEnhancedCase()
         case EnhancedOff:
             setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
             break;
-        case MusicVocal:
+        case EnhancedVocal:
             setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
             break;
-        case MusicNICAM:
+        case EnhancedNICAM:
             setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
             break;
-        case MusicSubwoofer:
+        case EnhancedSubwoofer:
             setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
             break;
         default:
