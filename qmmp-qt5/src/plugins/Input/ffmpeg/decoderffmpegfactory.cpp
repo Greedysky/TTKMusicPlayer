@@ -35,9 +35,11 @@ extern "C"{
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
+#if (LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
+#endif
 }
 
 bool DecoderFFmpegFactory::canDecode(QIODevice *i) const

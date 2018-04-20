@@ -34,7 +34,7 @@ class VisualBuffer;
 /*! @brief The Visual class provides the base interface class of visualizations.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT Visual : public QWidget
+class Visual : public QWidget
 {
     Q_OBJECT
 public:

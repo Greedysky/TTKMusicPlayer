@@ -17,11 +17,11 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
 
-#include <QObject>
-
+class QObject;
 class QWidget;
 class QTranslator;
 class QDialog;
@@ -30,7 +30,7 @@ class Visual;
 /*! @brief Helper class to store visual plugin properies.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT VisualProperties
+class VisualProperties
 {
 public:
     /*!

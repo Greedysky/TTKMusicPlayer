@@ -25,7 +25,7 @@
 /*! @brief The class of the file tag read and write.
  * @author Greedysky <greedysky@163.com>
  */
-class Q_DECL_EXPORT TagReadAndWrite
+class TagReadAndWrite
 {
 public:
     enum MusicTag

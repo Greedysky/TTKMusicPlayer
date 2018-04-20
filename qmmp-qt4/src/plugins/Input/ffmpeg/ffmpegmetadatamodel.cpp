@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -55,7 +55,7 @@ QHash<QString, QString> FFmpegMetaDataModel::audioProperties()
 
     if(idx >= 0)
     {
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
         AVCodecParameters *c = m_in->streams[idx]->codecpar;
 #else
         AVCodecContext *c = m_in->streams[idx]->codec;
@@ -70,7 +70,7 @@ QPixmap FFmpegMetaDataModel::cover()
 {
     if(!m_in)
         return QPixmap();
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
     AVCodecParameters *c = 0;
 #else
     AVCodecContext *c = 0;
@@ -78,13 +78,13 @@ QPixmap FFmpegMetaDataModel::cover()
 
     for (uint idx = 0; idx < m_in->nb_streams; idx++)
     {
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
         c = m_in->streams[idx]->codecpar;
 #else
         c = m_in->streams[idx]->codec;
 #endif
 
-#if (LIBAVCODEC_VERSION_INT >= ((55<<16)+(34<<8)+0)) //libav 10
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav 10
         if (c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == AV_CODEC_ID_MJPEG)
 #else
         if (c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == CODEC_ID_MJPEG)

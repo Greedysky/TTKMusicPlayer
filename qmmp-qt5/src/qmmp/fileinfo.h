@@ -29,7 +29,7 @@
 /*! @brief The FileInfo class stores metadata and audio information about media file or stream.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT FileInfo
+class FileInfo
 {
 public:
     /*!

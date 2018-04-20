@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -61,7 +61,12 @@ private:
     AVPacket m_pkt;
     AVPacket m_temp_pkt;
     qint64 m_output_at;
+
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
+    uchar m_input_buf[INPUT_BUFFER_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
+#else
     uchar m_input_buf[INPUT_BUFFER_SIZE + FF_INPUT_BUFFER_PADDING_SIZE];
+#endif
     int64_t m_seekTime;
     qint64  m_skipBytes;
     int m_channels;

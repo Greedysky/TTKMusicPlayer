@@ -35,7 +35,7 @@ class QmmpPluginCache;
 /*! @brief The AbstractEngine class provides the base interface class of audio audio engines.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT AbstractEngine : public QThread
+class AbstractEngine : public QThread
 {
  Q_OBJECT
 public:

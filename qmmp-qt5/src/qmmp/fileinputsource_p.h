@@ -28,7 +28,7 @@ class QFile;
 /** @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class Q_DECL_EXPORT FileInputSource : public InputSource
+class FileInputSource : public InputSource
 {
 Q_OBJECT
 public:

@@ -32,7 +32,7 @@ class SoftwareVolume;
  * @brief The VolumeControl class provides volume control access
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT VolumeControl : public QObject
+class VolumeControl : public QObject
 {
     Q_OBJECT
 public:
@@ -123,7 +123,7 @@ private:
  * @brief The SoftwareVolume class provides access to the software volume control.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT SoftwareVolume : public Volume
+class SoftwareVolume : public Volume
 {
 public:
     SoftwareVolume();

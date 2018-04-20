@@ -37,9 +37,11 @@ extern "C"{
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
+#if (LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
+#endif
 }
 
 bool DecoderFFmpegFactory::canDecode(QIODevice *i) const
@@ -90,7 +92,7 @@ const DecoderProperties DecoderFFmpegFactory::properties() const
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
     //remove unsupported filters
-#if (LIBAVCODEC_VERSION_INT >= ((54<<16) + (51<<8) + 100)) //libav 10
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54,51,100)) //libav 10
     if(!avcodec_find_decoder(AV_CODEC_ID_WMAV1))
         filters.removeAll("*.wma");
     if(!avcodec_find_decoder(AV_CODEC_ID_APE))

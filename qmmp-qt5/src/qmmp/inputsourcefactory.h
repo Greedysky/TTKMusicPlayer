@@ -30,7 +30,7 @@ class InputSource;
 /*! @brief Helper class to store transport plugin properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT InputSourceProperties
+class InputSourceProperties
 {
 public:
     /*!
@@ -53,7 +53,7 @@ public:
 /*! @brief Transport plugin interface.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT InputSourceFactory
+class InputSourceFactory
 {
 public:
     /*!

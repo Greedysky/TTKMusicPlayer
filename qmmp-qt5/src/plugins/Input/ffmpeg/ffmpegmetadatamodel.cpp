@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -48,31 +48,21 @@ QHash<QString, QString> FFmpegMetaDataModel::audioProperties()
     QString text = QString("%1").arg(int(m_in->duration/AV_TIME_BASE)/60);
     text +=":"+QString("%1").arg(int(m_in->duration/AV_TIME_BASE)%60,2,10,QChar('0'));
     ap.insert(tr("Length"), text);
-    ap.insert(tr("File size"),  QString("%1 ").arg(avio_size(m_in->pb) / 1000) + " " + tr("KB"));
-    ap.insert(tr("Bitrate"), QString("%1 "+tr("kbps")).arg(m_in->bit_rate/1000));
+    ap.insert(tr("File size"), tr("%1 KB").arg(avio_size(m_in->pb) / 1000));
+    ap.insert(tr("Bitrate"), tr("%1 kbps").arg(m_in->bit_rate/1000));
 
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
-    AVCodecParameters *c = 0;
-#else
-    AVCodecContext *c = 0;
-#endif
-    uint idx;
-    for (idx = 0; idx < m_in->nb_streams; idx++)
+    int idx = av_find_best_stream(m_in, AVMEDIA_TYPE_AUDIO, -1, -1, 0, 0);
+
+    if(idx >= 0)
     {
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
-        c = m_in->streams[idx]->codecpar;
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+        AVCodecParameters *c = m_in->streams[idx]->codecpar;
 #else
-        c = m_in->streams[idx]->codec;
+        AVCodecContext *c = m_in->streams[idx]->codec;
 #endif
-        if (c->codec_type == AVMEDIA_TYPE_AUDIO)
-            break;
-    }
-    if (c)
-    {
-        ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(c->sample_rate));
+        ap.insert(tr("Sample rate"), tr("%1 Hz").arg(c->sample_rate));
         ap.insert(tr("Channels"), QString("%1").arg(c->channels));
     }
-
     return ap;
 }
 
@@ -80,8 +70,7 @@ QPixmap FFmpegMetaDataModel::cover()
 {
     if(!m_in)
         return QPixmap();
-		
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
     AVCodecParameters *c = 0;
 #else
     AVCodecContext *c = 0;
@@ -89,7 +78,7 @@ QPixmap FFmpegMetaDataModel::cover()
 
     for (uint idx = 0; idx < m_in->nb_streams; idx++)
     {
-#if (LIBAVCODEC_VERSION_INT >= ((57<<16)+(48<<8)+0)) //ffmpeg-3.1:  57.48.101
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
         c = m_in->streams[idx]->codecpar;
 #else
         c = m_in->streams[idx]->codec;

@@ -32,7 +32,7 @@ class QTimer;
 /*! @brief The QmmpSettings class provides access to global settings.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT QmmpSettings : public QObject
+class QmmpSettings : public QObject
 {
 Q_OBJECT
 public:

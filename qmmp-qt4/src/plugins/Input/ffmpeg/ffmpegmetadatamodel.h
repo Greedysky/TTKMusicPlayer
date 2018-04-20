@@ -24,7 +24,7 @@
 extern "C"{
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
-#if (LIBAVUTIL_VERSION_INT >= ((51<<16)+(32<<8)+0))
+#if (LIBAVUTIL_VERSION_INT >= AV_VERSION_INT(51,32,0))
 #include <libavutil/dict.h>
 #endif
 }

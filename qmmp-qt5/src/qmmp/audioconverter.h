@@ -27,7 +27,7 @@
 /*! @brief The AbstractEngine class provides the internal audio converter
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT AudioConverter
+class AudioConverter
 {
 public:
     /*!

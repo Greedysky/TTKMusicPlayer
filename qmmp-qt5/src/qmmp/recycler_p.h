@@ -16,7 +16,7 @@
  *  @brief The Recycler class provides a queue of audio buffers.
  *  @author Brad Hughes <bhughes@trolltech.com>
  */
-class Q_DECL_EXPORT Recycler
+class Recycler
 {
 public:
     /*!

@@ -32,7 +32,7 @@ class QmmpPluginCache;
 /*! @brief The Effect class provides the base interface class of audio effects.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT Effect
+class Effect
 {
 public:
     /*!
