@@ -17,4 +17,4 @@
 # =================================================
 
 TEMPLATE = subdirs
-SUBDIRS = TTKInit TTKConsole TTKApp
+SUBDIRS = TTKInit TTKConsole TTKApp TTKTools
