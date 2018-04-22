@@ -385,10 +385,7 @@ void MusicSongSearchOnlineTableWidget::mediaAutionPlayError(int code)
         m_mediaPlayer->stop();
 
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->setFontSize(15);
-        toast->setFontMargin(20, 20);
-        toast->setText(tr("Audio Play Time out!"));
-        toast->popup(this);
+        toast->defaultLabel(this, tr("Audio Play Time out!"));
     }
 }
 

@@ -77,10 +77,7 @@ void MusicIdentifySongsWidget::getKey()
     else
     {
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->setFontSize(15);
-        toast->setFontMargin(20, 20);
-        toast->setText(tr("Init Error!"));
-        toast->popup(this);
+        toast->defaultLabel(this, tr("Init Error!"));
     }
 }
 

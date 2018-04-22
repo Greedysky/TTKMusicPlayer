@@ -35,6 +35,14 @@ QString MusicToastLabel::getClassName()
     return staticMetaObject.className();
 }
 
+void MusicToastLabel::defaultLabel(QWidget *parent, const QString &text)
+{
+    setFontSize(15);
+    setFontMargin(20, 20);
+    setText(text);
+    popup(parent);
+}
+
 void MusicToastLabel::setFontMargin(int height, int width)
 {
     m_margin.setX(height);

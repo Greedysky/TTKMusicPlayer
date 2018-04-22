@@ -77,10 +77,7 @@ void MusicSongListSharingWidget::writeMainCopyButtonClicked()
     clipboard->setText(m_ui->writeMainLabel2->text());
 
     MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->setFontSize(15);
-    toast->setFontMargin(20, 20);
-    toast->setText(tr("Copy Finished!"));
-    toast->popup(this);
+    toast->defaultLabel(this, tr("Copy Finished!"));
 }
 
 void MusicSongListSharingWidget::readMainButtonClicked()

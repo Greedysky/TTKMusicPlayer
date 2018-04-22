@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musicqmmputils.h"
 #include "musicformats.h"
+#include "musictoastlabel.h"
 
 #include <QFileDialog>
 #include <QPluginLoader>
@@ -269,6 +270,9 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
         QList<Visual *> *vs = Visual::visuals();
         if(before == vs->count())
         {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
             return;
         }
 
@@ -279,6 +283,12 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
             t.m_obj = vs->last();
             layout->addWidget(t.m_obj);
             m_types << t;
+        }
+        else
+        {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
         }
     }
     else
@@ -312,6 +322,12 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
                 m_types << sp;
                 layout->addWidget(spekWidget);
             }
+        }
+        else
+        {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
         }
     }
     else
