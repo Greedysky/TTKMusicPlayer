@@ -168,6 +168,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QCheckBox" name="pointxrayBox">
+           <property name="text">
+            <string>PointXRay</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
