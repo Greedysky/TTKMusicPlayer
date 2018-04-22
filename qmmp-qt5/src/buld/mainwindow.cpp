@@ -40,6 +40,13 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
     m_sound->setPlaylist(list);
 
+    Visual::initialize(this);
+    foreach (VisualFactory *var, Visual::factories()) {
+        if(var->properties().shortName == "fwave"){
+            Visual::setEnabled(var, true);
+        }
+
+    }
 }
 
 MainWindow::~MainWindow()

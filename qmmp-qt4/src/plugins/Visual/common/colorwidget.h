@@ -14,54 +14,64 @@ class ColorWidget : public QDialog
 {
     Q_OBJECT
 public:
-    explicit ColorWidget(QWidget *parent = 0);
     /*!
      * Object contsructor.
      */
+    explicit ColorWidget(QWidget *parent = 0);
+
     virtual ~ColorWidget();
 
-    static QList<QColor> readColorConfig(const QString &value);
     /*!
      * Read color config.
      */
-    static QString writeColorConfig(const QList<QColor> &colors);
+    static QList<QColor> readColorConfig(const QString &value);
     /*!
      * Write color config.
      */
+    static QString writeColorConfig(const QList<QColor> &colors);
 
-    void setColors(const QList<QColor> &colors);
     /*!
      * Set current colors.
      */
-    QList<QColor> getColors() const;
+    void setColors(const QList<QColor> &colors);
     /*!
      * Get selected colors.
      */
+    QList<QColor> getColors() const;
 
 public Q_SLOTS:
-    void addButtonClicked();
     /*!
      * Add button clicked.
      */
-    void deleteButtonClicked();
+    void addButtonClicked();
     /*!
      * Delete button clicked.
      */
-    void modifyButtonClicked();
+    void deleteButtonClicked();
     /*!
      * Modify button clicked.
      */
-    void upButtonClicked();
+    void modifyButtonClicked();
     /*!
      * Up button clicked.
      */
-    void downButtonClicked();
+    void upButtonClicked();
     /*!
      * Down button clicked.
      */
+    void downButtonClicked();
 
 protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
+
     Ui::ColorWidget *m_ui;
+    QPoint m_pressAt;
+    bool m_leftButtonPress;
 
 };
 

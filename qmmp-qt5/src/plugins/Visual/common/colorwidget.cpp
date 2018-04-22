@@ -1,6 +1,7 @@
 #include "colorwidget.h"
 #include "ui_colorwidget.h"
 
+#include <QMouseEvent>
 #include <QColorDialog>
 
 const QString MPushButtonStyle04 = " \
@@ -19,8 +20,10 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->background->setStyleSheet("background:#80B7F1");
 
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
+
+    m_leftButtonPress = false;
 
     m_ui->topTitleCloseButton->setIcon(style()->standardPixmap(QStyle::SP_TitleBarCloseButton));
     m_ui->topTitleCloseButton->setStyleSheet(MToolButtonStyle03);
@@ -163,4 +166,36 @@ void ColorWidget::downButtonClicked()
         m_ui->listWidget->insertItem(index, it);
         m_ui->listWidget->setCurrentRow(index);
     }
+}
+
+void ColorWidget::mousePressEvent(QMouseEvent *event)
+{
+    QWidget::mousePressEvent(event);
+    m_pressAt = event->globalPos();
+    if(event->button() == Qt::LeftButton)
+    {
+        m_leftButtonPress = true;
+    }
+}
+
+void ColorWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    QWidget::mouseMoveEvent(event);
+    if(!m_leftButtonPress)
+    {
+        event->ignore();
+        return;
+    }
+
+    int xpos = event->globalX() - m_pressAt.x();
+    int ypos = event->globalY() - m_pressAt.y();
+    m_pressAt = event->globalPos();
+    move(x() + xpos, y() + ypos);
+}
+
+void ColorWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    QWidget::mouseReleaseEvent(event);
+    m_pressAt = event->globalPos();
+    m_leftButtonPress = false;
 }

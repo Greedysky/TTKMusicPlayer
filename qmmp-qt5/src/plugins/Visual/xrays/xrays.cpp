@@ -162,8 +162,8 @@ void XRays::draw (QPainter *p)
 
     for (int i = 0; i<m_cols - 1; ++i)
     {
-        int h1 = (m_rows/2 - m_intern_vis_data[i])*l;
-        int h2 = (m_rows/2 - m_intern_vis_data[i+1])*l;
+        int h1 = m_rows/2 - m_intern_vis_data[i]*l;
+        int h2 = m_rows/2 - m_intern_vis_data[i+1]*l;
         if (h1 > h2)
             qSwap(h1, h2);
         p->drawLine(i, h1, (i+1), h2);

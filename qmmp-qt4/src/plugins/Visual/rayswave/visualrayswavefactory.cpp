@@ -18,4 +18,4 @@ Visual *VisualRaysWaveFactory::create(QWidget *parent)
     return new RaysWave(parent);
 }
 
-Q_EXPORT_PLUGIN2(ripples,VisualRaysWaveFactory)
+Q_EXPORT_PLUGIN2(rayswave,VisualRaysWaveFactory)

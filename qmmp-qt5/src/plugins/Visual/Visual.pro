@@ -3,4 +3,4 @@ TEMPLATE = subdirs
 
 SUBDIRS += analyzer ewave fwave gwave goom histogram \
            lineplus monowave multiwave ripples volumewave \
-           xrays rayswave
+           xrays rayswave pointxrays

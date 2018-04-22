@@ -10,17 +10,17 @@
 #include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
-#include "xrays.h"
+#include "pointxrays.h"
 #include "colorwidget.h"
 
-XRays::XRays (QWidget *parent) : Visual (parent)
+PointXRays::PointXRays (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
     m_running = false;
     m_cols = 0;
     m_rows = 0;
 
-    setWindowTitle (tr("XRays"));
+    setWindowTitle (tr("PointXRays"));
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
@@ -30,34 +30,34 @@ XRays::XRays (QWidget *parent) : Visual (parent)
     readSettings();
 }
 
-XRays::~XRays()
+PointXRays::~PointXRays()
 {
     if(m_intern_vis_data)
         delete [] m_intern_vis_data;
 }
 
-void XRays::start()
+void PointXRays::start()
 {
     m_running = true;
     if(isVisible())
         m_timer->start();
 }
 
-void XRays::stop()
+void PointXRays::stop()
 {
     m_running = false;
     m_timer->stop();
     clear();
 }
 
-void XRays::clear()
+void PointXRays::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void XRays::timeout()
+void PointXRays::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -66,22 +66,22 @@ void XRays::timeout()
     }
 }
 
-void XRays::readSettings()
+void PointXRays::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("XRays");
+    settings.beginGroup("PointXRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
 }
 
-void XRays::writeSettings()
+void PointXRays::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("XRays");
+    settings.beginGroup("PointXRays");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.endGroup();
 }
 
-void XRays::changeColor()
+void PointXRays::changeColor()
 {
     ColorWidget c;
     c.setColors(m_colors);
@@ -91,25 +91,25 @@ void XRays::changeColor()
     }
 }
 
-void XRays::hideEvent (QHideEvent *)
+void PointXRays::hideEvent (QHideEvent *)
 {
     m_timer->stop();
 }
 
-void XRays::showEvent (QShowEvent *)
+void PointXRays::showEvent (QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void XRays::paintEvent (QPaintEvent * e)
+void PointXRays::paintEvent (QPaintEvent * e)
 {
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void XRays::contextMenuEvent(QContextMenuEvent *)
+void PointXRays::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
@@ -119,7 +119,7 @@ void XRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void XRays::process ()
+void PointXRays::process ()
 {
     static fft_state *state = 0;
     if (!state)
@@ -144,7 +144,7 @@ void XRays::process ()
     }
 }
 
-void XRays::draw (QPainter *p)
+void PointXRays::draw (QPainter *p)
 {
     QLinearGradient line(0, 0, 0, height());
     for(int i=0; i<m_colors.count(); ++i)
@@ -152,7 +152,7 @@ void XRays::draw (QPainter *p)
         line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setPen(QPen(line, 1));
+    p->setPen(QPen(line, 3));
 
     float l = 1.0f;
     if(SoundCore::instance())
@@ -160,12 +160,12 @@ void XRays::draw (QPainter *p)
         l = SoundCore::instance()->volume()*1.0/100;
     }
 
-    for (int i = 0; i<m_cols - 1; ++i)
+    for (int i = 0; i<m_cols; ++i)
     {
-        int h1 = m_rows/2 - m_intern_vis_data[i]*l;
-        int h2 = m_rows/2 - m_intern_vis_data[i+1]*l;
-        if (h1 > h2)
-            qSwap(h1, h2);
-        p->drawLine(i, h1, (i+1), h2);
+        int v = m_intern_vis_data[i]*l;
+        if(v != 0 && i%5 == 0)
+        {
+            p->drawPoint(i, m_rows/2 - m_intern_vis_data[i]*l);
+        }
     }
 }

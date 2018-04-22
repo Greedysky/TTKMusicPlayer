@@ -18,4 +18,4 @@ Visual *VisualXRaysFactory::create(QWidget *parent)
     return new XRays(parent);
 }
 
-Q_EXPORT_PLUGIN2(ripples,VisualXRaysFactory)
+Q_EXPORT_PLUGIN2(xrays,VisualXRaysFactory)
