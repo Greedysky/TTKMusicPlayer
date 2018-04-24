@@ -40,21 +40,21 @@ void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &artist)
+void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &album)
 {
     if(!m_manager)
     {
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(album));
     deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(artist),
+               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(album),
                MusicUtils::Algorithm::mdII(WY_AR_ALBUM_DATA_N_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
@@ -131,7 +131,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                     }
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())

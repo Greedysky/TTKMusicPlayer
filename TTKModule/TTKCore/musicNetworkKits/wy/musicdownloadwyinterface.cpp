@@ -110,6 +110,10 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = key.value("extension").toString();
+        if(attr.m_format.isEmpty())
+        {
+            attr.m_format =  MP3_FILE_PREFIX;
+        }
         attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
         attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false).arg(encryptedId(dfsId)).arg(dfsId);
         info->m_songAttrs.append(attr);
@@ -119,23 +123,58 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, const QString &quality, bool all)
 {
+    int maxBr = MB_999;
+    QVariantMap privilege = key["privilege"].toMap();
+    if(!privilege.isEmpty())
+    {
+        QString brStr = privilege["maxbr"].toString();
+        if(brStr == "999000")
+        {
+            maxBr = MB_999;
+        }
+        else if(brStr == "320000" || brStr == "192000" || brStr == "190000")
+        {
+            maxBr = MB_320;
+        }
+        else if(brStr == "160000")
+        {
+            maxBr = MB_192;
+        }
+        else
+        {
+            maxBr = MB_128;
+        }
+    }
+
     if(all)
     {
-        readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
-        readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
-        readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320);
-    }
-    else
-    {
-        if(quality == QObject::tr("SD"))
+        if(maxBr == MB_999 || maxBr == MB_320)
+        {
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
+            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
+            readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320);
+        }
+        else if(maxBr == MB_192)
+        {
+            readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
+        }
+        else
         {
             readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
         }
-        else if(quality == QObject::tr("HQ"))
+    }
+    else
+    {
+        if(quality == QObject::tr("SD") && maxBr >= MB_128)
+        {
+            readFromMusicSongAttribute(info, key["bMusic"].toMap(), MB_128);
+        }
+        else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
             readFromMusicSongAttribute(info, key["mMusic"].toMap(), MB_192);
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
             readFromMusicSongAttribute(info, key["hMusic"].toMap(), MB_320);
         }
@@ -211,6 +250,10 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
         MusicObject::MusicSongAttribute attr;
         attr.m_bitrate = bitrate;
         attr.m_format = key.value("extension").toString();
+        if(attr.m_format.isEmpty())
+        {
+            attr.m_format =  MP3_FILE_PREFIX;
+        }
         attr.m_size = MusicUtils::Number::size2Label(key.value("size").toInt());
         attr.m_url = MusicUtils::Algorithm::mdII(WY_SONG_PATH_URL, false).arg(encryptedId(fid)).arg(fid);
         info->m_songAttrs.append(attr);
@@ -220,31 +263,61 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
 void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info,
                                                              const QVariantMap &key, const QString &quality, bool all)
 {
+    int maxBr = MB_999;
+    QVariantMap privilege = key["privilege"].toMap();
+    if(!privilege.isEmpty())
+    {
+        QString brStr = privilege["maxbr"].toString();
+        if(brStr == "999000")
+        {
+            maxBr = MB_999;
+        }
+        else if(brStr == "320000" || brStr == "192000" || brStr == "190000")
+        {
+            maxBr = MB_320;
+        }
+        else if(brStr == "160000")
+        {
+            maxBr = MB_192;
+        }
+        else
+        {
+            maxBr = MB_128;
+        }
+    }
+
     if(all)
     {
-        readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
-        readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192);
-        readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320);
-//        readFromMusicSongAttributeNew(info, MB_999);
-    }
-    else
-    {
-        if(quality == QObject::tr("SD"))
+        if(maxBr == MB_999 || maxBr == MB_320)
+        {
+            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
+            readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192);
+            readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320);
+        }
+        else if(maxBr == MB_192)
+        {
+            readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192);
+            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
+        }
+        else
         {
             readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
         }
-        else if(quality == QObject::tr("HQ"))
+    }
+    else
+    {
+        if(quality == QObject::tr("SD") && maxBr >= MB_128)
+        {
+            readFromMusicSongAttributeNew(info, key["l"].toMap(), MB_128);
+        }
+        else if(quality == QObject::tr("HQ") && maxBr >= MB_192)
         {
             readFromMusicSongAttributeNew(info, key["m"].toMap(), MB_192);
         }
-        else if(quality == QObject::tr("SQ"))
+        else if(quality == QObject::tr("SQ") && maxBr >= MB_320)
         {
             readFromMusicSongAttributeNew(info, key["h"].toMap(), MB_320);
         }
-//        else if(quality == QObject::tr("CD"))
-//        {
-//            readFromMusicSongAttributeNew(info, MB_999);
-//        }
     }
 }
 
