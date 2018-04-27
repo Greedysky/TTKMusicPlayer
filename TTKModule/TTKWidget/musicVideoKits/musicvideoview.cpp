@@ -11,7 +11,14 @@
 MusicViewWidget::MusicViewWidget(QWidget *parent)
     : QWidget(parent)
 {
+    m_clickedTimer = new QTimer(this);
+    m_clickedTimer->setSingleShot(true);
+    connect(m_clickedTimer, SIGNAL(timeout()), SIGNAL(setClick()));
+}
 
+MusicViewWidget::~MusicViewWidget()
+{
+    delete m_clickedTimer;
 }
 
 QString MusicViewWidget::getClassName()
@@ -24,7 +31,7 @@ void MusicViewWidget::mousePressEvent(QMouseEvent *event)
     QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
-        emit setClick();
+        m_clickedTimer->start(300*MT_MS);
     }
 }
 
@@ -33,6 +40,10 @@ void MusicViewWidget::mouseDoubleClickEvent(QMouseEvent *event)
     QWidget::mouseDoubleClickEvent(event);
     if(event->button() == Qt::LeftButton)
     {
+        if(m_clickedTimer->isActive())
+        {
+            m_clickedTimer->stop();
+        }
         emit setFullScreen();
     }
 }
@@ -50,6 +61,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
     menu.exec(QCursor::pos());
 }
+
 
 
 MusicVideoView::MusicVideoView(QWidget *parent)
