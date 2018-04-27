@@ -150,6 +150,11 @@ public Q_SLOTS:
     void downloadDirSelected(int index);
 
     /*!
+     * Version update check changed.
+     */
+    void otherVersionUpdateChanged();
+
+    /*!
      * Change to desktop lrc widget.
      */
     void changeDesktopLrcWidget();
