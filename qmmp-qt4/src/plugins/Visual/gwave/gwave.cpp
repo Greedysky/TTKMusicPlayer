@@ -11,7 +11,6 @@
 #include "fft.h"
 #include "inlines.h"
 #include "gwave.h"
-#include "colorwidget.h"
 
 GWave::GWave (QWidget *parent) : Visual (parent)
 {
@@ -22,14 +21,27 @@ GWave::GWave (QWidget *parent) : Visual (parent)
     m_rows = 0;
     m_cols = 0;
 
+    for(int i=0; i<50; ++i)
+    {
+        m_starPoints << StarPoint();
+    }
+
     setWindowTitle (tr("GWave"));
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
 
+    m_starTimer = new QTimer (this);
+    connect(m_starTimer, SIGNAL (timeout()), this, SLOT (starTimeout()));
+
+    m_starAction = new QAction(tr("Star"), this);
+    m_starAction->setCheckable(true);
+    connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
+
     m_peaks_falloff = 0.2;
     m_analyzer_falloff = 1.2;
     m_timer->setInterval(10);
+    m_starTimer->setInterval(1000);
     m_cell_size = QSize(16, 2);
 
     clear();
@@ -50,13 +62,17 @@ void GWave::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+        m_starTimer->start();
+    }
 }
 
 void GWave::stop()
 {
     m_running = false;
     m_timer->stop();
+    m_starTimer->stop();
     clear();
 }
 
@@ -76,11 +92,23 @@ void GWave::timeout()
     }
 }
 
+void GWave::starTimeout()
+{
+    for(int i=0; i<m_starPoints.count(); ++i)
+    {
+        StarPoint *sp = &m_starPoints[i];
+        sp->m_alpha = rand()%255;
+        sp->m_pt = QPoint(rand()%width(), rand()%height());
+    }
+}
+
 void GWave::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("GWave");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+    m_starAction->setChecked(settings.value("show_star", false).toBool());
+    m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
 }
 
 void GWave::writeSettings()
@@ -88,6 +116,8 @@ void GWave::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("GWave");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.setValue("show_star", m_starAction->isChecked());
+    settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
     settings.endGroup();
 }
 
@@ -101,15 +131,40 @@ void GWave::changeColor()
     }
 }
 
+void GWave::changeStarState(bool state)
+{
+    m_starAction->setChecked(state);
+    update();
+}
+
+void GWave::changeStarColor()
+{
+    ColorWidget c;
+    c.setColors(QList<QColor>() << m_starColor);
+    if(c.exec())
+    {
+        QList<QColor> colors(c.getColors());
+        if(!colors.isEmpty())
+        {
+            m_starColor = colors.first();
+            update();
+        }
+    }
+}
+
 void GWave::hideEvent (QHideEvent *)
 {
     m_timer->stop();
+    m_starTimer->stop();
 }
 
 void GWave::showEvent (QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+        m_starTimer->start();
+    }
 }
 
 void GWave::paintEvent (QPaintEvent * e)
@@ -126,6 +181,9 @@ void GWave::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
+    menu.addAction(m_starAction);
+    menu.addAction("StarColor", this, SLOT(changeStarColor()));
+
     menu.exec(QCursor::pos());
 }
 
@@ -218,6 +276,17 @@ void GWave::process ()
 
 void GWave::draw (QPainter *p)
 {
+    if(m_starAction->isChecked())
+    {
+        for(int i=0; i<m_starPoints.count(); ++i)
+        {
+            StarPoint *sp = &m_starPoints[i];
+            m_starColor.setAlpha(sp->m_alpha);
+            p->setPen(QPen(m_starColor, 3));
+            p->drawPoint(sp->m_pt);
+        }
+    }
+
     QLinearGradient line(0, 0, 0, height());
     for(int i=0; i<m_colors.count(); ++i)
     {

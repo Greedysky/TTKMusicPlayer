@@ -118,8 +118,11 @@ void RaysWave::draw (QPainter *p)
         l = SoundCore::instance()->volume()*1.0/100;
     }
 
-    for (int i = 0; i<m_cols - 1; ++i)
+    for (int i = 0; i<m_cols; ++i)
     {
+        if((i+1) >= m_cols)
+            break;
+
         int h1 = m_rows/2 - m_intern_vis_data[i]*l;
         int h2 = m_rows/2 - m_intern_vis_data[i+1]*l;
         if (h1 > h2)

@@ -20,7 +20,7 @@ ColorWidget::ColorWidget(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->background->setStyleSheet("background:#80B7F1");
 
-    setWindowFlags( Qt::Window | Qt::FramelessWindowHint );
+    setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     m_leftButtonPress = false;
@@ -54,6 +54,24 @@ ColorWidget::ColorWidget(QWidget *parent)
 ColorWidget::~ColorWidget()
 {
     delete m_ui;
+}
+
+QColor ColorWidget::readSingleColorConfig(const QString &value)
+{
+    QStringList var = value.split(',');
+    if(var.count() != 3)
+    {
+        return QColor();
+    }
+    return QColor(var[0].toInt(), var[1].toInt(), var[2].toInt());
+}
+
+QString ColorWidget::writeSingleColorConfig(const QColor &color)
+{
+    QString value;
+    value.append(QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue()));
+    value.append(";");
+    return value;
 }
 
 QList<QColor> ColorWidget::readColorConfig(const QString &value)
@@ -199,4 +217,3 @@ void ColorWidget::mouseReleaseEvent(QMouseEvent *event)
     m_pressAt = event->globalPos();
     m_leftButtonPress = false;
 }
-

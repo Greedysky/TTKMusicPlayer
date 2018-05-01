@@ -26,6 +26,10 @@ PointXRays::PointXRays (QWidget *parent) : Visual (parent)
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
     m_timer->setInterval(10);
 
+    m_gridAction = new QAction(tr("Grid"), this);
+    m_gridAction->setCheckable(true);
+    connect(m_gridAction, SIGNAL(triggered(bool)), this, SLOT(changeGridState(bool)));
+
     clear();
     readSettings();
 }
@@ -71,6 +75,7 @@ void PointXRays::readSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PointXRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+    m_gridAction->setChecked(settings.value("show_grid", false).toBool());
 }
 
 void PointXRays::writeSettings()
@@ -78,6 +83,7 @@ void PointXRays::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("PointXRays");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.setValue("show_grid", m_gridAction->isChecked());
     settings.endGroup();
 }
 
@@ -89,6 +95,12 @@ void PointXRays::changeColor()
     {
         m_colors = c.getColors();
     }
+}
+
+void PointXRays::changeGridState(bool state)
+{
+    m_gridAction->setChecked(state);
+    update();
 }
 
 void PointXRays::hideEvent (QHideEvent *)
@@ -116,6 +128,8 @@ void PointXRays::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
+    menu.addAction(m_gridAction);
+
     menu.exec(QCursor::pos());
 }
 
@@ -146,6 +160,22 @@ void PointXRays::process ()
 
 void PointXRays::draw (QPainter *p)
 {
+    if(m_gridAction->isChecked())
+    {
+        p->setPen(QPen(QColor(255, 255, 255, 50), 1));
+        int per = width()/8;
+        for(int w=0; w<width(); ++w)
+        {
+            p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
+        }
+
+        per = height()/8;
+        for(int h=0; h<height(); ++h)
+        {
+            p->drawLine(QPoint(0, h*per), QPoint(width(), h*per));
+        }
+    }
+
     QLinearGradient line(0, 0, 0, height());
     for(int i=0; i<m_colors.count(); ++i)
     {

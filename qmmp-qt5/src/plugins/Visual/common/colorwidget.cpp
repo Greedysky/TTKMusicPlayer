@@ -56,6 +56,24 @@ ColorWidget::~ColorWidget()
     delete m_ui;
 }
 
+QColor ColorWidget::readSingleColorConfig(const QString &value)
+{
+    QStringList var = value.split(',');
+    if(var.count() != 3)
+    {
+        return QColor();
+    }
+    return QColor(var[0].toInt(), var[1].toInt(), var[2].toInt());
+}
+
+QString ColorWidget::writeSingleColorConfig(const QColor &color)
+{
+    QString value;
+    value.append(QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue()));
+    value.append(";");
+    return value;
+}
+
 QList<QColor> ColorWidget::readColorConfig(const QString &value)
 {
     QList<QColor> colors;

@@ -21,6 +21,22 @@
 
 #include <QDialog>
 
+/*! @brief The class of the color star point core.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct StarPoint
+{
+    QPoint m_pt;
+    int m_alpha;
+
+    StarPoint()
+    {
+        m_pt = QPoint(0, 0);
+        m_alpha = 255;
+    }
+}StarPoint;
+
+
 namespace Ui {
 class ColorWidget;
 }
@@ -38,6 +54,15 @@ public:
     explicit ColorWidget(QWidget *parent = 0);
 
     virtual ~ColorWidget();
+
+    /*!
+     * Read single color config.
+     */
+    static QColor readSingleColorConfig(const QString &value);
+    /*!
+     * Write single color config.
+     */
+    static QString writeSingleColorConfig(const QColor &color);
 
     /*!
      * Read color config.

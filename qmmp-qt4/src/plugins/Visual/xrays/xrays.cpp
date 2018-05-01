@@ -26,6 +26,10 @@ XRays::XRays (QWidget *parent) : Visual (parent)
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
     m_timer->setInterval(10);
 
+    m_gridAction = new QAction(tr("Grid"), this);
+    m_gridAction->setCheckable(true);
+    connect(m_gridAction, SIGNAL(triggered(bool)), this, SLOT(changeGridState(bool)));
+
     clear();
     readSettings();
 }
@@ -71,6 +75,7 @@ void XRays::readSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("XRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
+    m_gridAction->setChecked(settings.value("show_grid", false).toBool());
 }
 
 void XRays::writeSettings()
@@ -78,6 +83,7 @@ void XRays::writeSettings()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("XRays");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
+    settings.setValue("show_grid", m_gridAction->isChecked());
     settings.endGroup();
 }
 
@@ -89,6 +95,12 @@ void XRays::changeColor()
     {
         m_colors = c.getColors();
     }
+}
+
+void XRays::changeGridState(bool state)
+{
+    m_gridAction->setChecked(state);
+    update();
 }
 
 void XRays::hideEvent (QHideEvent *)
@@ -116,6 +128,8 @@ void XRays::contextMenuEvent(QContextMenuEvent *)
     connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
+    menu.addAction(m_gridAction);
+
     menu.exec(QCursor::pos());
 }
 
@@ -146,6 +160,22 @@ void XRays::process ()
 
 void XRays::draw (QPainter *p)
 {
+    if(m_gridAction->isChecked())
+    {
+        p->setPen(QPen(QColor(255, 255, 255, 50), 1));
+        int per = width()/8;
+        for(int w=0; w<width(); ++w)
+        {
+            p->drawLine(QPoint(w*per, 0), QPoint(w*per, height()));
+        }
+
+        per = height()/8;
+        for(int h=0; h<height(); ++h)
+        {
+            p->drawLine(QPoint(0, h*per), QPoint(width(), h*per));
+        }
+    }
+
     QLinearGradient line(0, 0, 0, height());
     for(int i=0; i<m_colors.count(); ++i)
     {
@@ -160,8 +190,11 @@ void XRays::draw (QPainter *p)
         l = SoundCore::instance()->volume()*1.0/100;
     }
 
-    for (int i = 0; i<m_cols - 1; ++i)
+    for (int i = 0; i<m_cols; ++i)
     {
+        if((i+1) >= m_cols)
+            break;
+
         int h1 = m_rows/2 - m_intern_vis_data[i]*l;
         int h2 = m_rows/2 - m_intern_vis_data[i+1]*l;
         if (h1 > h2)

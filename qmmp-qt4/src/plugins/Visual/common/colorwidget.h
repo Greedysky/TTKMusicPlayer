@@ -1,7 +1,41 @@
+/* =================================================
+ * This file is part of the TTK Music Player qmmp plugin project
+ * Copyright (C) 2015 - 2018 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ================================================= */
+
 #ifndef COLORWIDGET_H
 #define COLORWIDGET_H
 
 #include <QDialog>
+
+/*! @brief The class of the color star point core.
+ * @author Greedysky <greedysky@163.com>
+ */
+typedef struct StarPoint
+{
+    QPoint m_pt;
+    int m_alpha;
+
+    StarPoint()
+    {
+        m_pt = QPoint(0, 0);
+        m_alpha = 255;
+    }
+}StarPoint;
+
 
 namespace Ui {
 class ColorWidget;
@@ -20,6 +54,15 @@ public:
     explicit ColorWidget(QWidget *parent = 0);
 
     virtual ~ColorWidget();
+
+    /*!
+     * Read single color config.
+     */
+    static QColor readSingleColorConfig(const QString &value);
+    /*!
+     * Write single color config.
+     */
+    static QString writeSingleColorConfig(const QColor &color);
 
     /*!
      * Read color config.

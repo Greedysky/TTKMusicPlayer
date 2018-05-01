@@ -8,18 +8,15 @@
 #include <stdlib.h>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <qmmp/soundcore.h>
 #include <QTime>
 #include "goomwidget.h"
 
 GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
 {
-    m_core = SoundCore::instance();
     m_update = false;
     m_goom = 0;
     m_fps = 25;
     m_running = false;
-    connect(m_core, SIGNAL(metaDataChanged()), SLOT(updateTitle()));
 
     setWindowTitle ("Goom");
     setMinimumSize(150,150);
@@ -30,10 +27,6 @@ GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
     createMenu();
     readSettings();
 
-    if(m_core->state() != Qmmp::Stopped)
-    {
-        updateTitle();
-    }
 }
 
 GoomWidget::~GoomWidget()
@@ -74,7 +67,7 @@ void GoomWidget::timeout()
             m_out[0][i] = m_buf[0][i] * 32767.0;
             m_out[1][i] = m_buf[1][i] * 32767.0;
         }
-        goom_update (m_goom, m_out, 0, m_fps, qPrintable(m_title), "");
+        goom_update (m_goom, m_out, 0, m_fps, "", "");
         update();
     }
 }
@@ -97,7 +90,6 @@ void GoomWidget::readSettings()
             }
         }
     }
-    m_showTitleAction->setChecked(settings.value("show_title", false).toBool());
 }
 
 void GoomWidget::writeSettings()
@@ -106,17 +98,7 @@ void GoomWidget::writeSettings()
     settings.beginGroup("Goom");
     QAction *act = m_fpsGroup->checkedAction ();
     settings.setValue("refresh_rate", act ? act->data().toInt() : 25);
-    settings.setValue("show_title", m_showTitleAction->isChecked());
     settings.endGroup();
-}
-
-void GoomWidget::updateTitle()
-{
-    if(m_showTitleAction->isChecked())
-        m_title = tr("%1 - %2").arg(m_core->metaData(Qmmp::ARTIST),
-                                    m_core->metaData(Qmmp::TITLE));
-    else
-        m_title.clear();
 }
 
 void GoomWidget::hideEvent (QHideEvent *)
@@ -166,6 +148,5 @@ void GoomWidget::createMenu()
         act->setCheckable(true);
         refreshRate->addAction(act);
     }
-    m_showTitleAction = m_menu->addAction(tr("&Show Title"), this, SLOT(updateTitle()));
-    m_showTitleAction->setCheckable(true);
+
 }

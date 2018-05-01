@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include <qmmp/visual.h>
+#include "colorwidget.h"
 
 class QTimer;
 class QMenu;
@@ -44,9 +45,12 @@ public slots:
 
 private slots:
     void timeout();
+    void starTimeout();
     void readSettings();
     void writeSettings();
     void changeColor();
+    void changeStarState(bool state);
+    void changeStarColor();
 
 private:
 	void clear();
@@ -59,7 +63,10 @@ private:
     void draw(QPainter *p);
     void createMenu();
     
-    QTimer *m_timer;
+    QAction *m_starAction;
+    QColor m_starColor;
+    QList<StarPoint> m_starPoints;
+    QTimer *m_timer, *m_starTimer;
     double *m_intern_vis_data, *m_peaks;
     double m_peaks_falloff, m_analyzer_falloff;
     bool m_show_peaks, m_update, m_running;

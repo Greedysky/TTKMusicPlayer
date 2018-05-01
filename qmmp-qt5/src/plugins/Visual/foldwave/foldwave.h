@@ -16,28 +16,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef ANALYZER_H
-#define ANALYZER_H
+#ifndef FOLDWAVE_H
+#define FOLDWAVE_H
 
 #include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 
 class QTimer;
-class QMenu;
-class QAction;
-class QActionGroup;
 class QPainter;
 class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class Analyzer : public Visual
+class FoldWave : public Visual
 {
     Q_OBJECT
 public:
-    Analyzer( QWidget *parent = 0);
-    virtual ~Analyzer();
+    FoldWave( QWidget *parent = 0);
+    virtual ~FoldWave();
 
 public slots:
     void start();
@@ -53,34 +50,28 @@ private slots:
     void changeStarColor();
 
 private:
-	void clear();
+    void clear();
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
-    void mousePressEvent(QMouseEvent *e);
+    void contextMenuEvent(QContextMenuEvent *e);
 
     void process();
     void draw(QPainter *p);
-    void createMenu();
-    
+
+    QList<QColor> m_colors;
     QAction *m_starAction;
     QColor m_starColor;
     QList<StarPoint> m_starPoints;
     QTimer *m_timer, *m_starTimer;
     double *m_intern_vis_data, *m_peaks;
     double m_peaks_falloff, m_analyzer_falloff;
-    bool m_show_peaks, m_update, m_running;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
     float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
     int *m_x_scale, m_cols, m_rows;
+    bool m_running;
 
-    //colors
-    QList<QColor> m_colors;
     QSize m_cell_size;
-    QMenu *m_menu;
-    QAction *m_peaksAction;
-    QActionGroup *m_fpsGroup;
-    QActionGroup *m_analyzerFalloffGroup, *m_peaksFalloffGroup;
 
 };
 

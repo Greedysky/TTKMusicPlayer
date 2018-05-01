@@ -10,9 +10,9 @@
 #include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
-#include "ewave.h"
+#include "foldwave.h"
 
-EWave::EWave (QWidget *parent) : Visual (parent)
+FoldWave::FoldWave (QWidget *parent) : Visual (parent)
 {
     m_intern_vis_data = 0;
     m_peaks = 0;
@@ -26,7 +26,7 @@ EWave::EWave (QWidget *parent) : Visual (parent)
         m_starPoints << StarPoint();
     }
 
-    setWindowTitle (tr("EWave"));
+    setWindowTitle (tr("FoldWave"));
     setMinimumSize(2*300-30, 105);
     m_timer = new QTimer (this);
     connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
@@ -42,13 +42,13 @@ EWave::EWave (QWidget *parent) : Visual (parent)
     m_analyzer_falloff = 1.2;
     m_timer->setInterval(10);
     m_starTimer->setInterval(1000);
-    m_cell_size = QSize(6, 2);
+    m_cell_size = QSize(3, 2);
 
     clear();
     readSettings();
 }
 
-EWave::~EWave()
+FoldWave::~FoldWave()
 {
     if(m_peaks)
         delete [] m_peaks;
@@ -58,7 +58,7 @@ EWave::~EWave()
         delete [] m_x_scale;
 }
 
-void EWave::start()
+void FoldWave::start()
 {
     m_running = true;
     if(isVisible())
@@ -68,7 +68,7 @@ void EWave::start()
     }
 }
 
-void EWave::stop()
+void FoldWave::stop()
 {
     m_running = false;
     m_timer->stop();
@@ -76,14 +76,14 @@ void EWave::stop()
     clear();
 }
 
-void EWave::clear()
+void FoldWave::clear()
 {
     m_rows = 0;
     m_cols = 0;
     update();
 }
 
-void EWave::timeout()
+void FoldWave::timeout()
 {
     if(takeData(m_left_buffer, m_right_buffer))
     {
@@ -92,7 +92,7 @@ void EWave::timeout()
     }
 }
 
-void EWave::starTimeout()
+void FoldWave::starTimeout()
 {
     for(int i=0; i<m_starPoints.count(); ++i)
     {
@@ -102,26 +102,26 @@ void EWave::starTimeout()
     }
 }
 
-void EWave::readSettings()
+void FoldWave::readSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("EWave");
+    settings.beginGroup("FoldWave");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_starAction->setChecked(settings.value("show_star", false).toBool());
     m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
 }
 
-void EWave::writeSettings()
+void FoldWave::writeSettings()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
-    settings.beginGroup("EWave");
+    settings.beginGroup("FoldWave");
     settings.setValue("colors", ColorWidget::writeColorConfig(m_colors));
     settings.setValue("show_star", m_starAction->isChecked());
     settings.setValue("star_color", ColorWidget::writeSingleColorConfig(m_starColor));
     settings.endGroup();
 }
 
-void EWave::changeColor()
+void FoldWave::changeColor()
 {
     ColorWidget c;
     c.setColors(m_colors);
@@ -131,13 +131,13 @@ void EWave::changeColor()
     }
 }
 
-void EWave::changeStarState(bool state)
+void FoldWave::changeStarState(bool state)
 {
     m_starAction->setChecked(state);
     update();
 }
 
-void EWave::changeStarColor()
+void FoldWave::changeStarColor()
 {
     ColorWidget c;
     c.setColors(QList<QColor>() << m_starColor);
@@ -152,13 +152,13 @@ void EWave::changeStarColor()
     }
 }
 
-void EWave::hideEvent (QHideEvent *)
+void FoldWave::hideEvent (QHideEvent *)
 {
     m_timer->stop();
     m_starTimer->stop();
 }
 
-void EWave::showEvent (QShowEvent *)
+void FoldWave::showEvent (QShowEvent *)
 {
     if(m_running)
     {
@@ -167,14 +167,14 @@ void EWave::showEvent (QShowEvent *)
     }
 }
 
-void EWave::paintEvent (QPaintEvent * e)
+void FoldWave::paintEvent (QPaintEvent * e)
 {
     QPainter painter (this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void EWave::contextMenuEvent(QContextMenuEvent *)
+void FoldWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
     connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
@@ -187,7 +187,7 @@ void EWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void EWave::process ()
+void FoldWave::process ()
 {
     static fft_state *state = 0;
     if (!state)
@@ -274,7 +274,7 @@ void EWave::process ()
     }
 }
 
-void EWave::draw (QPainter *p)
+void FoldWave::draw (QPainter *p)
 {
     if(m_starAction->isChecked())
     {
@@ -293,9 +293,8 @@ void EWave::draw (QPainter *p)
         line.setColorAt((i+1)*1.0/m_colors.count(), m_colors[i]);
     }
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    p->setBrush(line);
+    p->setPen(QPen(line, 1));
 
-    int x = 0;
     int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
     float l = 1.0f;
@@ -304,16 +303,29 @@ void EWave::draw (QPainter *p)
         l = SoundCore::instance()->volume()*1.0/100;
     }
 
-    QPolygon psx;
-    psx << QPoint(0, height());
+    int x = 0, x1 = 0;
     for (int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)
             x += rdx; //correct right part position
+        int hh = m_intern_vis_data[j] * l * m_cell_size.height();
+        if(abs(hh) > height()/2)
+            hh = height()/2;
 
-        psx << QPoint(x, height() - m_intern_vis_data[j] * l * m_cell_size.height());
+        p->drawLine(QPoint(x, height()/2 - hh), QPoint(x, height()/2 + hh));
+
+        if((j+1) >= m_cols * 2)
+            break;
+
+        x1 = (j+1) * m_cell_size.width() + 1;
+        if((j+1) >= m_cols)
+            x1 += rdx; //correct right part position
+        int hh1 = m_intern_vis_data[j+1] * l * m_cell_size.height();
+        if(abs(hh1) > height()/2)
+            hh1 = height()/2;
+
+        p->drawLine(QPoint(x, height()/2 - hh), QPoint(x1, height()/2 - hh1));
+        p->drawLine(QPoint(x, height()/2 + hh), QPoint(x1, height()/2 + hh1));
     }
-    psx << QPoint(width(), height());
-    p->drawPolygon(psx);
 }

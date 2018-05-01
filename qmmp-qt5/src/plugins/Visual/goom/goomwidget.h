@@ -35,7 +35,6 @@ class QPainter;
 class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
-class SoundCore;
 
 class GoomWidget : public Visual
 {
@@ -53,7 +52,6 @@ private slots:
     void timeout();
     void readSettings();
     void writeSettings();
-    void updateTitle();
 
 private:
     void clear();
@@ -67,15 +65,13 @@ private:
     bool m_update, m_running;
     QMenu *m_menu;
     QActionGroup *m_fpsGroup;
-    QAction *m_showTitleAction;
     PluginInfo *m_goom;
 
     QImage m_image;
     float m_buf[2][QMMP_VISUAL_NODE_SIZE];
     gint16 m_out[2][QMMP_VISUAL_NODE_SIZE];
     int m_fps;
-    SoundCore *m_core;
-    QString m_title;
+
 };
 
 
