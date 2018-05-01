@@ -253,6 +253,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="foldwaveBox">
+           <property name="text">
+            <string>FoldWave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="monowaveBox">
            <property name="text">
             <string>Monowave</string>

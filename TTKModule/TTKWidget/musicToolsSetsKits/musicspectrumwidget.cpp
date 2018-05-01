@@ -44,6 +44,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->pointxrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->foldwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->monowaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -71,6 +72,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->pointxrayBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->fwaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->foldwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->monowaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->multiwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->fspekBox->setFocusPolicy(Qt::NoFocus);
@@ -97,10 +99,11 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     QButtonGroup *group1 = new QButtonGroup(this);
     group1->setExclusive(false);
     group1->addButton(m_ui->fwaveBox, 0);
-    group1->addButton(m_ui->monowaveBox, 1);
-    group1->addButton(m_ui->multiwaveBox, 2);
-    group1->addButton(m_ui->volumeWaveBox, 3);
-    group1->addButton(m_ui->fspekBox, 4);
+    group1->addButton(m_ui->foldwaveBox, 1);
+    group1->addButton(m_ui->monowaveBox, 2);
+    group1->addButton(m_ui->multiwaveBox, 3);
+    group1->addButton(m_ui->volumeWaveBox, 4);
+    group1->addButton(m_ui->fspekBox, 5);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     QButtonGroup *group2 = new QButtonGroup(this);
@@ -186,15 +189,18 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
             newSpectrumWidget(m_ui->fwaveBox, "fwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 1:
-            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->foldwaveBox, "foldwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 4:
+            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 5:
             newSpekWidget(m_ui->fspekBox, "fspek", m_ui->spectrumPlusAreaLayout);
             fspekStateChanged();
             break;
