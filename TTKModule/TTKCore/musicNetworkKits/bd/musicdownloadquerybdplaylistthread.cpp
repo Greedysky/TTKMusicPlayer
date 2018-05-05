@@ -212,14 +212,14 @@ void MusicDownLoadQueryBDPlaylistThread::getDetailsFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["author"].toString();
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["author"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
                     musicInfo.m_timeLength = "-";
 
                     musicInfo.m_songId = value["song_id"].toString();
                     musicInfo.m_artistId = value["ting_uid"].toString();
                     musicInfo.m_albumId = value["album_id"].toString();
-                    musicInfo.m_albumName = value["album_title"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_title"].toString());
 
                     musicInfo.m_lrcUrl = value["lrclink"].toString();
                     musicInfo.m_smallPicUrl = value["pic_big"].toString().replace("_90", "_500");

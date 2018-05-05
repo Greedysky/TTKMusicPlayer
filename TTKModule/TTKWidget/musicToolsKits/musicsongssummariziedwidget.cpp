@@ -173,10 +173,7 @@ void MusicSongsSummariziedWidget::importOtherMusicSongs(QStringList &filelist)
     MusicSongsToolBoxWidget::setCurrentIndex(m_currentImportIndex);
 
     MusicToastLabel *toast = new MusicToastLabel(MusicApplication::instance());
-    toast->setFontSize(15);
-    toast->setFontMargin(20, 20);
-    toast->setText(tr("Import Music Songs Done!"));
-    toast->popup(this);
+    toast->defaultLabel(this, tr("Import Music Songs Done!"));
 }
 
 QStringList MusicSongsSummariziedWidget::getMusicSongsFileName(int index) const

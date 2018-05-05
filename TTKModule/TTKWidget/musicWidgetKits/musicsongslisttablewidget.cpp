@@ -3,6 +3,7 @@
 #include "musicsongslistplaywidget.h"
 #include "musictransformwidget.h"
 #include "musicsongringtonemakerwidget.h"
+#include "musicitemdelegate.h"
 #include "musicmessagebox.h"
 #include "musicprogresswidget.h"
 #include "musiccoreutils.h"
@@ -23,13 +24,15 @@
 #include <QMouseEvent>
 
 #define ROW_HIGHT   30
-#define SEARCH_ITEM_DEFINE(index, names) \
+#define SEARCH_ITEM_DEFINED(index, names) \
     case index: \
-    if(names.count() >= index) \
     { \
-        MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]); \
-    } \
-    break;
+        if(names.count() >= index) \
+        { \
+            MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]); \
+        } \
+        break; \
+    }
 
 
 MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
@@ -44,6 +47,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
     m_listHasSearched = false;
     m_mouseMoved = false;
     m_parentToolIndex = index;
+    m_renameLineEditDelegate = nullptr;
     m_musicSort = nullptr;
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -72,9 +76,11 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
         delete m_musicSongs;
     }
     clearAllItems();
+
     delete m_openFileWidget;
     delete m_musicSongsInfoWidget;
     delete m_musicSongsPlayWidget;
+    delete m_renameLineEditDelegate;
 }
 
 QString MusicSongsListTableWidget::getClassName()
@@ -508,13 +514,18 @@ void MusicSongsListTableWidget::setChangSongName()
     {
         return;
     }
-    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
+
     //the playing widget allow renaming
+    if((currentRow() == m_playRowIndex) && m_musicSongsPlayWidget)
     {
         m_musicSongsPlayWidget->setItemRename();
         return;
     }
+
     //others
+    delete m_renameLineEditDelegate;
+    m_renameLineEditDelegate = new MusicRenameLineEditDelegate(this);
+    setItemDelegateForRow(currentRow(), m_renameLineEditDelegate);
     m_renameActived = true;
     m_renameItem = item(currentRow(), 1);
     m_renameItem->setText((*m_musicSongs)[m_renameItem->row()].getMusicName());
@@ -554,9 +565,9 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
     switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
     {
         case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
-        SEARCH_ITEM_DEFINE(1, names);
-        SEARCH_ITEM_DEFINE(2, names);
-        SEARCH_ITEM_DEFINE(3, names);
+        SEARCH_ITEM_DEFINED(1, names);
+        SEARCH_ITEM_DEFINED(2, names);
+        SEARCH_ITEM_DEFINED(3, names);
         default: break;
     }
 }
@@ -773,8 +784,13 @@ void MusicSongsListTableWidget::closeRenameItem()
         QHeaderView *headerview = horizontalHeader();
         (*m_musicSongs)[m_renameItem->row()].setMusicName(m_renameItem->text());
         m_renameItem->setText(MusicUtils::Widget::elidedText(font(), m_renameItem->text(), Qt::ElideRight, headerview->sectionSize(1) - 10));
+
         m_renameActived = false;
+        setItemDelegateForRow(m_renameItem->row(), nullptr);
         m_renameItem = nullptr;
+
+        delete m_renameLineEditDelegate;
+        m_renameLineEditDelegate = nullptr;
     }
 }
 

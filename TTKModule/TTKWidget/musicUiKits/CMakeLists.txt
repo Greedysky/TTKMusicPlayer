@@ -30,7 +30,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicdesktopwallpaperwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicfileinformationwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musiclocalsongsmanagerwidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicnetworkspeedtestwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicnetworkconnectiontestwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musictimerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musictransformwidget.ui

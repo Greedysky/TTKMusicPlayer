@@ -219,10 +219,10 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
             imgs << QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE);
             m_wallThread->setImagePath(imgs);
 
-            MusicDataDownloadThread *background = new MusicDataDownloadThread(m_ui->urlLineEdit->text().trimmed(),
-                                                      imgs[0], MusicDownLoadThreadAbstract::DownloadBigBG, this);
-            connect(background, SIGNAL(downLoadDataChanged(QString)), SLOT(parameterFinished()));
-            background->startToDownload();
+            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_ui->urlLineEdit->text().trimmed(), imgs[0],
+                                                                            MusicDownLoadThreadAbstract::DownloadBigBG, this);
+            connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(parameterFinished()));
+            download->startToDownload();
             break;
         }
         case 1:

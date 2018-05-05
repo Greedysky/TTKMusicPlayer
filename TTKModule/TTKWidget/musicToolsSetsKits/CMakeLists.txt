@@ -2,10 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkspeedsuspensionwidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkspeedtestwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.h
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspeedmeterwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.h
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicmobiledeviceswidget.h
@@ -36,10 +33,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLSETS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicfileinformationwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicdesktopwallpaperwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musiclocalsongstablewidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkspeedsuspensionwidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkspeedtestwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicnetworkconnectiontestwidget.cpp
-    ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicspeedmeterwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicvolumegainwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsoundtouchwidget.cpp
     ${MUSIC_WIDGET_TOOLSETSWIDGET_DIR}/musicsongringtonemakerwidget.cpp

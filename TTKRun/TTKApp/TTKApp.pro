@@ -34,10 +34,10 @@ win32:msvc{
 }
 
 INCLUDEPATH += \
-    ../ \
-    ../TTKInit \
-    ../../ \
-    ../../TTKModule/TTKCore/musicCoreKits
+    $$PWD/../ \
+    $$PWD/../TTKInit \
+    $$PWD/../../ \
+    $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \
     musicrunmain.cpp \

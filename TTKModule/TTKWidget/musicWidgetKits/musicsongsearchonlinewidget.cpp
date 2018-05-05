@@ -385,10 +385,7 @@ void MusicSongSearchOnlineTableWidget::mediaAutionPlayError(int code)
         m_mediaPlayer->stop();
 
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->setFontSize(15);
-        toast->setFontMargin(20, 20);
-        toast->setText(tr("Audio Play Time out!"));
-        toast->popup(this);
+        toast->defaultLabel(this, tr("Audio Play Time out!"));
     }
 }
 
@@ -443,10 +440,10 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
     QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
-    MusicDataDownloadThread *downSong = new MusicDataDownloadThread( musicSongAttr.m_url, downloadName,
-                                                                     MusicDownLoadThreadAbstract::DownloadMusic, this);
-    connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
-    downSong->startToDownload();
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(musicSongAttr.m_url, downloadName,
+                                                                    MusicDownLoadThreadAbstract::DownloadMusic, this);
+    connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
+    download->startToDownload();
 
     M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
                                                     MusicDownLoadThreadAbstract::DownloadSmallBG, this)->startToDownload();

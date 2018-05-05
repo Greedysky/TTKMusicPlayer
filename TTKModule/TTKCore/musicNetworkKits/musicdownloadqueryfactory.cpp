@@ -7,7 +7,6 @@
 #include "musicdownloadquerykwthread.h"
 #include "musicdownloadquerybdthread.h"
 #include "musicdownloadqueryqqthread.h"
-#include "musicdownloadquerymgthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywymoviethread.h"
 #include "musicdownloadqueryxmmoviethread.h"
@@ -15,7 +14,6 @@
 #include "musicdownloadquerykwmoviethread.h"
 #include "musicdownloadquerybdmoviethread.h"
 #include "musicdownloadqueryqqmoviethread.h"
-#include "musicdownloadquerymgmoviethread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
@@ -23,7 +21,6 @@
 #include "musicdownloadquerykwalbumthread.h"
 #include "musicdownloadquerybdalbumthread.h"
 #include "musicdownloadqueryqqalbumthread.h"
-#include "musicdownloadquerymgalbumthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyartistthread.h"
 #include "musicdownloadqueryxmartistthread.h"
@@ -31,7 +28,6 @@
 #include "musicdownloadquerykwartistthread.h"
 #include "musicdownloadquerybdartistthread.h"
 #include "musicdownloadqueryqqartistthread.h"
-#include "musicdownloadquerymgartistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyartistlistthread.h"
 #include "musicdownloadqueryxmartistlistthread.h"
@@ -39,7 +35,6 @@
 #include "musicdownloadquerykwartistlistthread.h"
 #include "musicdownloadquerybdartistlistthread.h"
 #include "musicdownloadqueryqqartistlistthread.h"
-#include "musicdownloadquerymgartistlistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywytoplistthread.h"
 #include "musicdownloadqueryqqtoplistthread.h"
@@ -47,7 +42,6 @@
 #include "musicdownloadquerybdtoplistthread.h"
 #include "musicdownloadquerykgtoplistthread.h"
 #include "musicdownloadquerykwtoplistthread.h"
-#include "musicdownloadquerymgtoplistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicdownloadqueryqqplaylistthread.h"
@@ -55,7 +49,6 @@
 #include "musicdownloadqueryxmplaylistthread.h"
 #include "musicdownloadquerykgplaylistthread.h"
 #include "musicdownloadquerykwplaylistthread.h"
-#include "musicdownloadquerymgplaylistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicdownloadquerywyrecommendthread.h"
 #include "musicdownloadqueryqqrecommendthread.h"
@@ -63,7 +56,6 @@
 #include "musicdownloadqueryxmrecommendthread.h"
 #include "musicdownloadquerykgrecommendthread.h"
 #include "musicdownloadquerykwrecommendthread.h"
-#include "musicdownloadquerymgrecommendthread.h"
 ///////////////////////////////////////////////////////
 #include "musicwycommentsthread.h"
 #include "musicxmcommentsthread.h"
@@ -71,7 +63,6 @@
 #include "musickgcommentsthread.h"
 #include "musickwcommentsthread.h"
 #include "musicqqcommentsthread.h"
-#include "musicmgcommentsthread.h"
 ///////////////////////////////////////////////////////
 #include "musicwydiscoverlistthread.h"
 #include "musicxmdiscoverlistthread.h"
@@ -79,7 +70,6 @@
 #include "musicqqdiscoverlistthread.h"
 #include "musickgdiscoverlistthread.h"
 #include "musickwdiscoverlistthread.h"
-#include "musicmgdiscoverlistthread.h"
 ///////////////////////////////////////////////////////
 #include "musicwysongsuggestthread.h"
 #include "musicxmsongsuggestthread.h"
@@ -87,7 +77,6 @@
 #include "musicqqsongsuggestthread.h"
 #include "musickgsongsuggestthread.h"
 #include "musickwsongsuggestthread.h"
-#include "musicmgsongsuggestthread.h"
 ///////////////////////////////////////////////////////
 #include "musicwyartistsimilarthread.h"
 #include "musicxmartistsimilarthread.h"
@@ -95,7 +84,6 @@
 #include "musicqqartistsimilarthread.h"
 #include "musickgartistsimilarthread.h"
 #include "musickwartistsimilarthread.h"
-#include "musicmgartistsimilarthread.h"
 ///////////////////////////////////////////////////////
 #include "musictranslationthread.h"
 #include "musicwytranslationthread.h"
@@ -107,7 +95,6 @@
 #include "musicxmtextdownloadthread.h"
 #include "musickwtextdownloadthread.h"
 #include "musicqqtextdownloadthread.h"
-#include "musicmgtextdownloadthread.h"
 ///////////////////////////////////////////////////////
 #include "musickwbackgroundthread.h"
 #include "musicqqbackgroundthread.h"
@@ -130,7 +117,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObj
         case 3:  thread = new MusicDownLoadQueryBDThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGThread(parent); break;
         default: thread = new MusicDownLoadQueryWYThread(parent);
     }
     M_LOGGER_INFO(QString("getQueryThread server: %1").arg(thread->getQueryServer()));
@@ -149,7 +135,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getMovieThread(QObj
         case 3:  thread = new MusicDownLoadQueryBDMovieThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWMovieThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGMovieThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGMovieThread(parent); break;
         default: thread = new MusicDownLoadQueryWYMovieThread(parent);
     }
     M_LOGGER_INFO(QString("getMovieThread server: %1").arg(thread->getQueryServer()));
@@ -168,7 +153,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getAlbumThread(QObj
         case 3:  thread = new MusicDownLoadQueryBDAlbumThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWAlbumThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGAlbumThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGAlbumThread(parent); break;
         default: thread = new MusicDownLoadQueryWYAlbumThread(parent);
     }
     M_LOGGER_INFO(QString("getAlbumThread server: %1").arg(thread->getQueryServer()));
@@ -187,7 +171,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistThread(QOb
         case 3:  thread = new MusicDownLoadQueryBDArtistThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWArtistThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGArtistThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGArtistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYArtistThread(parent);
     }
     M_LOGGER_INFO(QString("getArtistThread server: %1").arg(thread->getQueryServer()));
@@ -206,7 +189,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getArtistListThread
         case 3:  thread = new MusicDownLoadQueryBDArtistListThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWArtistListThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGArtistListThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGArtistListThread(parent); break;
         default: thread = new MusicDownLoadQueryWYArtistListThread(parent);
     }
     M_LOGGER_INFO(QString("getArtistListThread server: %1").arg(thread->getQueryServer()));
@@ -225,7 +207,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getToplistThread(QO
         case 3:  thread = new MusicDownLoadQueryBDToplistThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWToplistThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGToplistThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGToplistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYToplistThread(parent);
     }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
@@ -244,7 +225,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getPlaylistThread(Q
         case 3:  thread = new MusicDownLoadQueryBDPlaylistThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWPlaylistThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGPlaylistThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGPlaylistThread(parent); break;
         default: thread = new MusicDownLoadQueryWYPlaylistThread(parent);
     }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
@@ -263,7 +243,6 @@ MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getRecommendThread(
         case 3:  thread = new MusicDownLoadQueryBDRecommendThread(parent); break;
         case 4:  thread = new MusicDownLoadQueryKWRecommendThread(parent); break;
         case 5:  thread = new MusicDownLoadQueryKGRecommendThread(parent); break;
-        case 6:  thread = new MusicDownLoadQueryMGRecommendThread(parent); break;
         default: thread = new MusicDownLoadQueryWYRecommendThread(parent);
     }
     M_LOGGER_INFO(QString("getPlaylistThread server: %1").arg(thread->getQueryServer()));
@@ -287,7 +266,6 @@ MusicDownLoadSimilarThread *MusicDownLoadQueryFactory::getSimilarArtistThread(QO
         case 3:  thread = new MusicBDArtistSimilarThread(parent); break;
         case 4:  thread = new MusicKWArtistSimilarThread(parent); break;
         case 5:  thread = new MusicKGArtistSimilarThread(parent); break;
-        case 6:  thread = new MusicMGArtistSimilarThread(parent); break;
         default: thread = new MusicWYArtistSimilarThread(parent);
     }
     return thread;
@@ -305,7 +283,6 @@ MusicDownLoadSongSuggestThread *MusicDownLoadQueryFactory::getSuggestThread(QObj
         case 3:  thread = new MusicBDSongSuggestThread(parent); break;
         case 4:  thread = new MusicKWSongSuggestThread(parent); break;
         case 5:  thread = new MusicKGSongSuggestThread(parent); break;
-        case 6:  thread = new MusicMGSongSuggestThread(parent); break;
         default: thread = new MusicWYSongSuggestThread(parent);
     }
     return thread;
@@ -323,7 +300,6 @@ MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getSongCommentThread(QOb
         case 3:  thread = new MusicBDSongCommentsThread(parent); break;
         case 4:  thread = new MusicKWSongCommentsThread(parent); break;
         case 5:  thread = new MusicKGSongCommentsThread(parent); break;
-        case 6:  thread = new MusicMGSongCommentsThread(parent); break;
         default: thread = new MusicWYSongCommentsThread(parent);
     }
     return thread;
@@ -341,7 +317,6 @@ MusicDownLoadCommentsThread *MusicDownLoadQueryFactory::getPlaylistCommentThread
         case 3:  thread = new MusicBDPlaylistCommentsThread(parent); break;
         case 4:  thread = new MusicKWPlaylistCommentsThread(parent); break;
         case 5:  thread = new MusicKGPlaylistCommentsThread(parent); break;
-        case 6:  thread = new MusicMGPlaylistCommentsThread(parent); break;
         default: thread = new MusicWYPlaylistCommentsThread(parent);
     }
     return thread;
@@ -359,7 +334,6 @@ MusicDownLoadDiscoverListThread *MusicDownLoadQueryFactory::getDiscoverListThrea
         case 3:  thread = new MusicBDDiscoverListThread(parent); break;
         case 4:  thread = new MusicKWDiscoverListThread(parent); break;
         case 5:  thread = new MusicKGDiscoverListThread(parent); break;
-        case 6:  thread = new MusicMGDiscoverListThread(parent); break;
         default: thread = new MusicWYDiscoverListThread(parent);
     }
     return thread;
@@ -377,7 +351,6 @@ MusicTranslationThreadAbstract *MusicDownLoadQueryFactory::getTranslationThread(
         case 3:  thread = new MusicTranslationThread(parent); break;
         case 4:  thread = new MusicTranslationThread(parent); break;
         case 5:  thread = new MusicTranslationThread(parent); break;
-        case 6:  thread = new MusicTranslationThread(parent); break;
         default: thread = new MusicTranslationThread(parent);
     }
     return thread;
@@ -413,7 +386,6 @@ MusicDownLoadThreadAbstract *MusicDownLoadQueryFactory::getDownloadLrcThread(con
         case 3: return (new MusicTextDownLoadThread(url, save, type, parent));
         case 4: return (new MusicKWTextDownLoadThread(url, save, type, parent));
         case 5: return (new MusicTextDownLoadThread(url, save, type, parent));
-        case 6: return (new MusicMGTextDownLoadThread(url, save, type, parent));
     }
     return (new MusicTextDownLoadThread(url, save, type, parent));
 }

@@ -61,7 +61,7 @@ MusicSoundKMicroWidget::MusicSoundKMicroWidget(QWidget *parent)
     m_ui->volumeButton->setValue(100);
     m_ui->volumeButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_mediaPlayer = new MusicCoreMPlayer(this);
-    m_searchWidget = new MusicSoundKMicroSearchWidget;
+    m_searchWidget = new MusicSoundKMicroSearchWidget(this);
     m_searchWidget->connectTo(this);
     m_searchWidget->show();
 

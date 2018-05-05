@@ -180,7 +180,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
     : MusicAbstractMoveSingleWidget(parent)
 {
     ///Remove the title bar
-    setWindowFlags( windowFlags() | Qt::WindowStaysOnTopHint | Qt::Tool);
+    setWindowFlags(windowFlags() | Qt::Tool);
     blockMoveOption(true);
 
     raise();
@@ -254,8 +254,7 @@ QString MusicSoundKMicroSearchWidget::getClassName()
 
 void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)
 {
-    connect(m_searchTableWidget, SIGNAL(mediaUrlChanged(bool,QString,QString)), obj,
-                                 SLOT(mediaUrlChanged(bool,QString,QString)));
+    connect(m_searchTableWidget, SIGNAL(mediaUrlChanged(bool,QString,QString)), obj, SLOT(mediaUrlChanged(bool,QString,QString)));
 }
 
 void MusicSoundKMicroSearchWidget::startSeachKMicro(const QString &name)

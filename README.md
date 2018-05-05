@@ -1,6 +1,6 @@
 # TTKMobile
 ![TTKMobile](https://img.shields.io/badge/Greedysky-TTKMobile-green.svg?style=flat-square)
-![Version](https://img.shields.io/badge/Version-2.6.7.0-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/Version-2.6.8.0-blue.svg?style=flat-square)
 ![License](https://img.shields.io/badge/License-GPL%20V3-yellowgreen.svg?style=flat-square)
 
 ![LOGO](https://github.com/Greedysky/Resource/blob/master/Screen/logo_pic.png?raw=true)

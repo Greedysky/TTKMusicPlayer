@@ -122,8 +122,8 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["singers"].toString();
-                    musicInfo.m_songName = value["songName"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singers"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
                     musicInfo.m_songId = value["songId"].toString();
@@ -132,7 +132,7 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     if(!m_querySimplify)
                     {
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
-                        musicInfo.m_albumName = value["albumName"].toString();
+                        musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
 
                         if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                         readFromMusicSongLrc(&musicInfo);
@@ -190,8 +190,8 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
                 value = value["songDetail"].toMap();
 
                 MusicObject::MusicSongInformation musicInfo;
-                musicInfo.m_singerName = value["singers"].toString();
-                musicInfo.m_songName = value["songName"].toString();
+                musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["singers"].toString());
+                musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
                 musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["length"].toInt());
 
                 musicInfo.m_songId = value["songId"].toString();
@@ -199,7 +199,7 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
                 musicInfo.m_albumId = value["albumId"].toString();
 
                 musicInfo.m_smallPicUrl = value["albumLogo"].toString();
-                musicInfo.m_albumName = value["albumName"].toString();
+                musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
 
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongLrc(&musicInfo);

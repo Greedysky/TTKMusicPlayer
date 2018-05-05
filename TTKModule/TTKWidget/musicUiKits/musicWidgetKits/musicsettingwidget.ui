@@ -1019,7 +1019,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>200</y>
+       <y>175</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1032,7 +1032,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>230</y>
+       <y>200</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1071,7 +1071,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>175</y>
+       <y>145</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1089,7 +1089,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>260</y>
+       <y>230</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1098,34 +1098,11 @@ font-weight:bold;</string>
       <string>开启搜索词优化</string>
      </property>
     </widget>
-    <widget class="QLabel" name="otherSongFormatLabel">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>145</y>
-       <width>60</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>音乐格式</string>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="otherSongFormatComboBox">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>142</y>
-       <width>170</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QCheckBox" name="otherLrcKTVCheckBox">
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>290</y>
+       <y>260</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -1158,6 +1135,53 @@ font-weight:bold;</string>
      </property>
      <property name="text">
       <string>下载文件写入歌曲信息</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherVersionWidget">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>290</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>版本设置</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="otherVersionValue">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>320</y>
+       <width>70</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>未知</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="otherVersionUpdateButton">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>320</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>更新</string>
      </property>
     </widget>
    </widget>

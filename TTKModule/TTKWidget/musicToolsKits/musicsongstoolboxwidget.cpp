@@ -303,6 +303,7 @@ void MusicSongsToolBoxTopWidget::dropEvent(QDropEvent *event)
 void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
+
     if(event->button() == Qt::LeftButton)
     {
         emit mousePressAt(m_index);
@@ -313,6 +314,7 @@ void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
 void MusicSongsToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
+
     QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
     if(!itemRect.contains(event->pos()) && isItemEnable())
     {

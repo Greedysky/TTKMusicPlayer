@@ -1,4 +1,5 @@
 #include "musicmvradiothreadabstract.h"
+#include "musicdownloadkginterface.h"
 
 MusicMVRadioThreadAbstract::MusicMVRadioThreadAbstract(QObject *parent)
     : MusicDownLoadQueryThreadAbstract(parent)
@@ -22,6 +23,7 @@ void MusicMVRadioThreadAbstract::startToSearch(QueryType type, const QString &te
     QNetworkRequest request;
     QUrl musicUrl = MusicUtils::Algorithm::mdII(MV_CATEGORY_URL, false);
     request.setUrl(musicUrl);
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
     setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);

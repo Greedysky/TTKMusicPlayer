@@ -69,7 +69,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                 ////////////////////////////////////////////////////////////
                 QVariantMap artistObject = value["artist"].toMap();
                 QString smallPicUrl = artistObject["picUrl"].toString();
-                QString singerName = artistObject["name"].toString();
+                QString singerName = MusicUtils::String::illegalCharactersReplaced(artistObject["name"].toString());
 
                 QVariantList datas = value["hotSongs"].toList();
                 foreach(const QVariant &var, datas)
@@ -81,7 +81,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = value["name"].toString();
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_singerName = singerName;
                     musicInfo.m_smallPicUrl = smallPicUrl;
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
@@ -90,7 +90,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
 
                     QVariantMap albumObject = value["al"].toMap();
                     musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
-                    musicInfo.m_albumName = albumObject["name"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     QVariantList artistsArray = value["ar"].toList();
                     foreach(const QVariant &artistValue, artistsArray)
@@ -104,7 +104,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     }
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())

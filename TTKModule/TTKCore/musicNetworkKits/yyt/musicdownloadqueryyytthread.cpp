@@ -86,7 +86,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
 
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songId = QString::number(value["videoId"].toULongLong());
-                    musicInfo.m_songName = value["title"].toString();
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
 
                     QVariantList artistsList = value["artists"].toList();
                     foreach(const QVariant &var, artistsList)
@@ -97,7 +97,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                         }
 
                         QVariantMap artMap = var.toMap();
-                        musicInfo.m_singerName = artMap["artistName"].toString();
+                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artMap["artistName"].toString());
                     }
 
                     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

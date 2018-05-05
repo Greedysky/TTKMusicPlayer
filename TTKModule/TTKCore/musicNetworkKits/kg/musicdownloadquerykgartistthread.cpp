@@ -77,14 +77,14 @@ void MusicDownLoadQueryKGArtistThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = value["filename"].toString();
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
                     if(musicInfo.m_songName.contains("-"))
                     {
                         QStringList ll = musicInfo.m_songName.split("-");
-                        musicInfo.m_singerName = ll.front().trimmed();
-                        musicInfo.m_songName = ll.back().trimmed();
+                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
+                        musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }
 
                     musicInfo.m_songId = value["hash"].toString();

@@ -39,11 +39,11 @@ class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 public:
     enum Enhanced
     {
-        EnhancedOff,    /*!< enhanced off, no any effect*/
-        Music3D,        /*!< 3d music effect*/
-        MusicNICAM,     /*!< nicam music effect*/
-        MusicSubwoofer, /*!< subwoofer music effect*/
-        MusicVocal      /*!< vocal music effect*/
+        EnhancedOff,       /*!< enhanced off, no any effect*/
+        Enhanced3D,        /*!< 3d music effect*/
+        EnhancedNICAM,     /*!< nicam music effect*/
+        EnhancedSubwoofer, /*!< subwoofer music effect*/
+        EnhancedVocal      /*!< vocal music effect*/
     };
 
     /*!

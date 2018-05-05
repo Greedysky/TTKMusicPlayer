@@ -13,6 +13,8 @@
 #include "musiclrcmanager.h"
 #include "musicregeditmanager.h"
 #include "musicotherdefine.h"
+#include "musicversion.h"
+#include "musicsourceupdatewidget.h"
 //qmmp
 #include "qmmpsettings.h"
 
@@ -198,8 +200,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->otherInfoWCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool());
-    m_ui->otherSongFormatComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt());
-
+    m_ui->otherVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
     ////////////////////////////////////////////////
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
@@ -340,6 +341,11 @@ void MusicSettingWidget::downloadDirSelected(int index)
             index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
         }
     }
+}
+
+void MusicSettingWidget::otherVersionUpdateChanged()
+{
+    MusicSourceUpdateWidget(this).exec();
 }
 
 void MusicSettingWidget::changeDesktopLrcWidget()
@@ -532,7 +538,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumCoverWChoiced, m_ui->otherAlbumCoverWCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoWChoiced, m_ui->otherInfoWCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, m_ui->otherSideByCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, m_ui->otherSongFormatComboBox->currentIndex());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced, m_ui->otherLrcKTVCheckBox->isChecked());
 
 
@@ -673,6 +679,10 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherInfoWCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->otherVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
+    m_ui->otherVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
+    connect(m_ui->otherVersionUpdateButton, SIGNAL(clicked()), SLOT(otherVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
     m_ui->otherNorImgRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHerImgRadioBox->setFocusPolicy(Qt::NoFocus);
@@ -684,12 +694,8 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherInfoWCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
 #endif
-
-    m_ui->otherSongFormatComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->otherSongFormatComboBox));
-    m_ui->otherSongFormatComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
-    m_ui->otherSongFormatComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
-    m_ui->otherSongFormatComboBox->addItems(QStringList() << tr("Singer - Song") << tr("Song - Singer"));
 
     m_ui->otherNorImgRadioBox->click();
 }
@@ -742,7 +748,6 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_baidu"), tr("baiduMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
-    m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_migu"), tr("miguMusic"));
 
     /////////////////////////////////////////////////////////////
     QButtonGroup *buttonGroup = new QButtonGroup(this);

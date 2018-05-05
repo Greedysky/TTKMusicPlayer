@@ -37,6 +37,7 @@ public:
      * Object contsructor.
      */
     explicit MusicViewWidget(QWidget *parent = 0);
+    ~MusicViewWidget();
 
     /*!
      * Get class object name.
@@ -64,6 +65,8 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+
+    QTimer *m_clickedTimer;
 
 };
 

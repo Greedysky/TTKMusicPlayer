@@ -193,11 +193,6 @@ Item {
                             serverImage: "qrc:/server/lb_kugou"
                             title: qsTr("酷狗音乐")
                         }
-                        ListElement {
-                            imageSource: "qrc:/image/more_icon_settings"
-                            serverImage: "qrc:/server/lb_migu"
-                            title: qsTr("咪咕音乐")
-                        }
                     }
                 }
 

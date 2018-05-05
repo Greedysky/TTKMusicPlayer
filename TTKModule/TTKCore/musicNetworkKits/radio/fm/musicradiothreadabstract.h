@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "musicobject.h"
+#include "musicstringutils.h"
 #include "musicnetworkabstract.h"
 
 const QString RADIO_CHANNEL_URL  = "bkNHdDVjMFdFMllITEJKTXBSSEsyNXhHWGJ2d0RjdUtJV0hwVk0yMzVUNy9wOTBxSXBkWFQ2MDBlcmtVcHoxeg==";

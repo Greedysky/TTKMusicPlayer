@@ -134,7 +134,9 @@ public:
         DownloadULoadLimitChoiced,      /*!< Download ULoad Limit Parameter*/
 
         HotkeyEnableChoiced,            /*!< Hotkey Enable Parameter*/
-        HotkeyStringChoiced             /*!< Hotkey String Parameter*/
+        HotkeyStringChoiced,            /*!< Hotkey String Parameter*/
+
+        NetworkCookieChoiced            /*!< Network cookie Parameter*/
 
 #ifdef MUSIC_MOBILE
         ,MobileWifiConnectChoiced       /*!< Mobile Wifi Connect Parameter*/

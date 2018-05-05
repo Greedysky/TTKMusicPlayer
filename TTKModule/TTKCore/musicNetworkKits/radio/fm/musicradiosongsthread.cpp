@@ -79,10 +79,10 @@ void MusicRadioSongsThread::downLoadFinished()
                 attr.m_size = MusicUtils::Number::size2Label(value["size"].toLongLong());
 
                 m_songInfo.m_songAttrs << attr;
-                m_songInfo.m_songName = value["songName"].toString();
-                m_songInfo.m_singerName = value["artistName"].toString();
+                m_songInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["songName"].toString());
+                m_songInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
                 m_songInfo.m_smallPicUrl = value["songPicRadio"].toString();
-                m_songInfo.m_albumName = value["albumName"].toString();
+                m_songInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
                 m_songInfo.m_lrcUrl = value["lrcLink"].toString();
 
                 QString lrcPrefix = MusicUtils::Algorithm::mdII(RADIO_LRC_URL, false);

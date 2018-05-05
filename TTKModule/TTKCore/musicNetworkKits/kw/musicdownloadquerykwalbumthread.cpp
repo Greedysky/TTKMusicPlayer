@@ -95,9 +95,9 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                 {
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                 }
-                info.m_description = albumName + "<>" +
-                                     value["lang"].toString() + "<>" +
-                                     value["company"].toString() + "<>" +
+                info.m_description = albumName + STRING_SPLITER +
+                                     value["lang"].toString() + STRING_SPLITER +
+                                     value["company"].toString() + STRING_SPLITER +
                                      value["pub"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["musiclist"].toList();
@@ -110,14 +110,14 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_singerName = value["artist"].toString();
-                    musicInfo.m_songName = value["name"].toString();
+                    musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artist"].toString());
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = "-";
 
                     musicInfo.m_songId = value["id"].toString();
                     musicInfo.m_artistId = value["artistid"].toString();
                     musicInfo.m_albumId = info.m_nickName;
-                    musicInfo.m_albumName = albumName;
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumName);
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongPic(&musicInfo);

@@ -77,10 +77,7 @@ void MusicIdentifySongsWidget::getKey()
     else
     {
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->setFontSize(15);
-        toast->setFontMargin(20, 20);
-        toast->setText(tr("Init Error!"));
-        toast->popup(this);
+        toast->defaultLabel(this, tr("Init Error!"));
     }
 }
 
@@ -318,10 +315,10 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         QString name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDataDownloadThread *smallPic = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name,
+            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name,
                                                                             MusicDownLoadThreadAbstract::DownloadSmallBG, this);
-            connect(smallPic, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
-            smallPic->startToDownload();
+            connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
+            download->startToDownload();
             loop.exec();
         }
         iconLabel->setPixmap(QPixmap(name).scaled(iconLabel->size()));

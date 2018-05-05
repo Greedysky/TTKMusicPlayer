@@ -47,7 +47,7 @@ public:
     /*!
      * Start to search data by given id.
      */
-    virtual void startToSingleSearch(const QString &artist) override;
+    virtual void startToSingleSearch(const QString &album) override;
 
 public Q_SLOTS:
     /*!

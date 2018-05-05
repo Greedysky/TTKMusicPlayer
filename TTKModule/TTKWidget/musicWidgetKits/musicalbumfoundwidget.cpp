@@ -147,7 +147,7 @@ void MusicAlbumFoundWidget::createAlbumInfoItem(const MusicResultsItem &item)
 
     if(!m_resizeWidgets.isEmpty())
     {
-        QStringList lists = item.m_description.split("<>");
+        QStringList lists = item.m_description.split(STRING_SPLITER);
         if(lists.count() < 4)
         {
             return;

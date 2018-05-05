@@ -769,10 +769,7 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
     }
 
     MusicToastLabel *toast = new MusicToastLabel(this);
-    toast->setFontSize(25);
-    toast->setFontMargin(20, 20);
-    toast->setText(!contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
-    toast->popup(this);
+    toast->defaultLabel(this, !contains ? tr("add music to lovest list done!") : tr("remove music to lovest list done!"));
 }
 
 void MusicApplication::musicWindowConciseChanged()

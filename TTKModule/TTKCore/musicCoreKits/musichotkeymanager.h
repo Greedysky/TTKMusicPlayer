@@ -60,6 +60,19 @@ public:
     QString hotKey(int index);
 
     /*!
+     * Get the object key by given hotKey index.
+     */
+    QObject* getHotKey(int index);
+    /*!
+     * Add hotKey by given index and string key.
+     */
+    void addHotKey(const QString &key);
+    /*!
+     * Set hotKey by given index and virtual key.
+     */
+    void addHotKey(int key);
+
+    /*!
      * Enable or disable the hotkey by index.
      */
     void setEnabled(int index, bool enabled);

@@ -47,6 +47,10 @@ public:
     static QString getClassName();
 
     /*!
+     * Create default label.
+     */
+    void defaultLabel(QWidget *parent, const QString &text);
+    /*!
      * Set text margin in the body.
      */
     void setFontMargin(int height, int width);
@@ -78,6 +82,12 @@ public:
      * Popup the toast widget in parent widget.
      */
     void popup(QWidget *parent);
+
+Q_SIGNALS:
+    /*!
+     * Animation close changed.
+     */
+    void animationCloseChanged();
 
 public Q_SLOTS:
     /*!

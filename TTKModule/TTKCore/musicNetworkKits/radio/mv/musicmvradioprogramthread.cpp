@@ -85,8 +85,8 @@ void MusicMVRadioProgramThread::downLoadFinished()
 
                             value = var.toMap();
                             MusicObject::MusicSongInformation musicInfo;
-                            musicInfo.m_singerName = value["name"].toString();
-                            musicInfo.m_songName = value["name"].toString();
+                            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+                            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                             if(musicInfo.m_singerName.contains(" - "))
                             {
                                 QStringList ds = musicInfo.m_singerName.split(" - ");

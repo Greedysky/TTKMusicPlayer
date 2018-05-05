@@ -29,17 +29,20 @@ void MusicDownLoadQueryWYMovieThread::startToSearch(QueryType type, const QStrin
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_URL, false);
+
     deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    makeTokenQueryQequest(&request);
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_N_URL, false),
+               MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_NDT_URL, false)
+               .arg(m_searchText).arg(m_pageSize).arg(0).toUtf8());
+    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
 
-    m_reply = m_manager->post(request, MusicUtils::Algorithm::mdII(WY_SONG_SQUERY_URL, false)
-                              .arg(m_searchText).arg(m_pageSize).arg(0*m_pageSize).toUtf8());
+    m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -118,7 +121,7 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    int mvid = value["mvid"].toLongLong();
+                    int mvid = value["mv"].toLongLong();
                     if(mvid == 0)
                     {
                         continue;
@@ -257,8 +260,8 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
             value = value["data"].toMap();
             MusicObject::MusicSongInformation musicInfo;
             musicInfo.m_songId = QString::number(id);
-            musicInfo.m_songName = value["name"].toString();
-            musicInfo.m_singerName = value["artistName"].toString();
+            musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
+            musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(value["artistName"].toString());
             musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt());
 
             value = value["brs"].toMap();

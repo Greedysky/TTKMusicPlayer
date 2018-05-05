@@ -62,14 +62,14 @@ public:
     /*!
      * Override size hint.
      */
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 protected:
     QRadioButton *m_radioButton;
@@ -103,14 +103,14 @@ public:
     /*!
      * Override size hint.
      */
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 protected:
     QCheckBox *m_checkBox;
@@ -140,9 +140,9 @@ public:
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 };
 
@@ -170,17 +170,18 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+
     /*!
      * Override size hint.
      */
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 private:
     QProgressBar *m_progress;
@@ -211,17 +212,18 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+
     /*!
      * Override size hint.
      */
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 protected:
     QLabel *m_label;
@@ -252,20 +254,48 @@ public:
      * Set delegate item style.
      */
     void setStyleSheet(const QString &style);
+
     /*!
      * Override size hint.
      */
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &) const;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
-               const QModelIndex &index) const;
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const override;
 
 protected:
     QPushButton *m_pushButton;
+
+};
+
+
+/*! @brief The class of the rename lineedit item delegate.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicRenameLineEditDelegate : public QItemDelegate
+{
+    Q_OBJECT
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicRenameLineEditDelegate(QObject *parent);
+
+    /*!
+     * Get class object name.
+     */
+    static QString getClassName();
+
+    /*!
+     * Override createEditor.
+     */
+    virtual QWidget *createEditor(QWidget *parent,
+                                  const QStyleOptionViewItem &option,
+                                  const QModelIndex &index) const override;
 
 };
 

@@ -27,7 +27,6 @@ INCLUDEPATH += $$PWD \
                $$PWD/kw \
                $$PWD/bd \
                $$PWD/qq \
-               $$PWD/mg \
                $$PWD/yyt \
                $$PWD/ztl
 
@@ -134,20 +133,6 @@ HEADERS  += \
     $$PWD/qq/musicqqbackgroundthread.h \
     $$PWD/qq/musicqqsongsuggestthread.h \
     $$PWD/qq/musicqqartistsimilarthread.h \
-    $$PWD/mg/musicdownloadmginterface.h \
-    $$PWD/mg/musicdownloadquerymgalbumthread.h \
-    $$PWD/mg/musicdownloadquerymgartistthread.h \
-    $$PWD/mg/musicdownloadquerymgmoviethread.h \
-    $$PWD/mg/musicdownloadquerymgplaylistthread.h \
-    $$PWD/mg/musicdownloadquerymgrecommendthread.h \
-    $$PWD/mg/musicdownloadquerymgthread.h \
-    $$PWD/mg/musicdownloadquerymgtoplistthread.h \
-    $$PWD/mg/musicdownloadquerymgartistlistthread.h \
-    $$PWD/mg/musicmgdiscoverlistthread.h \
-    $$PWD/mg/musicmgcommentsthread.h \
-    $$PWD/mg/musicmgtextdownloadthread.h \
-    $$PWD/mg/musicmgsongsuggestthread.h \
-    $$PWD/mg/musicmgartistsimilarthread.h \
     $$PWD/yyt/musicdownloadqueryyytthread.h \
     $$PWD/ztl/musicdownloadsourcethread.h \
     $$PWD/ztl/musicnetworkthread.h \
@@ -286,20 +271,6 @@ SOURCES += \
     $$PWD/qq/musicqqbackgroundthread.cpp \
     $$PWD/qq/musicqqsongsuggestthread.cpp \
     $$PWD/qq/musicqqartistsimilarthread.cpp \
-    $$PWD/mg/musicdownloadmginterface.cpp \
-    $$PWD/mg/musicdownloadquerymgalbumthread.cpp \
-    $$PWD/mg/musicdownloadquerymgartistthread.cpp \
-    $$PWD/mg/musicdownloadquerymgmoviethread.cpp \
-    $$PWD/mg/musicdownloadquerymgplaylistthread.cpp \
-    $$PWD/mg/musicdownloadquerymgrecommendthread.cpp \
-    $$PWD/mg/musicdownloadquerymgthread.cpp \
-    $$PWD/mg/musicdownloadquerymgtoplistthread.cpp \
-    $$PWD/mg/musicdownloadquerymgartistlistthread.cpp \
-    $$PWD/mg/musicmgdiscoverlistthread.cpp \
-    $$PWD/mg/musicmgcommentsthread.cpp \
-    $$PWD/mg/musicmgtextdownloadthread.cpp \
-    $$PWD/mg/musicmgsongsuggestthread.cpp \
-    $$PWD/mg/musicmgartistsimilarthread.cpp \
     $$PWD/yyt/musicdownloadqueryyytthread.cpp \
     $$PWD/ztl/musicdownloadsourcethread.cpp \
     $$PWD/ztl/musicnetworkthread.cpp \

@@ -40,21 +40,21 @@ void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
 
-void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &artist)
+void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &album)
 {
     if(!m_manager)
     {
         return;
     }
 
-    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
+    M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(album));
     deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(artist),
+               MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(album),
                MusicUtils::Algorithm::mdII(WY_AR_ALBUM_DATA_N_URL, false));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
@@ -93,9 +93,9 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                 QVariantMap albumValue = value["album"].toMap();
                 MusicResultsItem info;
                 info.m_coverUrl = albumValue["picUrl"].toString();
-                info.m_description = albumValue["name"].toString() + "<>" +
-                                     albumValue["language"].toString() + "<>" +
-                                     albumValue["company"].toString() + "<>" +
+                info.m_description = albumValue["name"].toString() + STRING_SPLITER +
+                                     albumValue["language"].toString() + STRING_SPLITER +
+                                     albumValue["company"].toString() + STRING_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString("yyyy-MM-dd");
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();
@@ -108,7 +108,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
 
                     value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
-                    musicInfo.m_songName = value["name"].toString();
+                    musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["dt"].toInt());
                     musicInfo.m_songId = QString::number(value["id"].toInt());
                     musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(WY_SONG_LRC_URL, false).arg(musicInfo.m_songId);
@@ -116,7 +116,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                     QVariantMap albumObject = value["al"].toMap();
                     musicInfo.m_smallPicUrl = albumObject["picUrl"].toString();
                     musicInfo.m_albumId = QString::number(albumObject["id"].toInt());
-                    musicInfo.m_albumName = albumObject["name"].toString();
+                    musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumObject["name"].toString());
 
                     QVariantList artistsArray = value["ar"].toList();
                     foreach(const QVariant &artistValue, artistsArray)
@@ -127,11 +127,11 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                         }
                         QVariantMap artistMap = artistValue.toMap();
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
-                        musicInfo.m_singerName = artistMap["name"].toString();
+                        musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistMap["name"].toString());
                     }
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
-                    readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
+                    readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())

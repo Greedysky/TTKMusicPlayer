@@ -5,7 +5,6 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "musictransformwidget.h"
 #include "musicdesktopwallpaperwidget.h"
-#include "musicnetworkspeedtestwidget.h"
 #include "musicnetworkconnectiontestwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicvolumegainwidget.h"
@@ -94,7 +93,6 @@ void MusicToolSetsWidget::addListWidgetItem()
           << ItemPair(":/tools/lb_spectrum", tr("spectrum"))
           << ItemPair(":/tools/lb_wallpaper", tr("wallpaper"))
           << ItemPair(":/tools/lb_phone", tr("phone"))
-          << ItemPair(":/tools/lb_speed", tr("speed"))
           << ItemPair(":/tools/lb_connections" ,tr("connections"))
           << ItemPair(":/tools/lb_gain", tr("gain"))
           << ItemPair(":/tools/lb_detect", tr("detect"))
@@ -168,35 +166,30 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                NEW_OPERATOR(MusicObject::TT_SpeedTest, MusicNetworkSpeedTestWidget);
+                NEW_OPERATOR(MusicObject::TT_ConnectionTest, MusicNetworkConnectionTestWidget);
                 break;
             }
         case 9:
             {
-                NEW_OPERATOR(MusicObject::TT_ConnectionTest, MusicNetworkConnectionTestWidget);
+                NEW_OPERATOR(MusicObject::TT_SoundGain, MusicVolumeGainWidget);
                 break;
             }
         case 10:
             {
-                NEW_OPERATOR(MusicObject::TT_SoundGain, MusicVolumeGainWidget);
+                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
                 break;
             }
         case 11:
             {
-                MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::IndentifyWidget);
+                NEW_OPERATOR(MusicObject::TT_SoundTouch, MusicSoundTouchWidget);
                 break;
             }
         case 12:
             {
-                NEW_OPERATOR(MusicObject::TT_SoundTouch, MusicSoundTouchWidget);
-                break;
-            }
-        case 13:
-            {
                 NEW_OPERATOR(MusicObject::TT_GrabWindow, MusicGrabWidget);
                 break;
             }
-        case 14:
+        case 13:
             {
 #ifdef Q_OS_WIN
                 NEW_OPERATOR(MusicObject::TT_WebRadio, MusicWebRadioObject);
@@ -207,7 +200,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
 #endif
                 break;
             }
-        case 15:
+        case 14:
             {
                 NEW_OPERATOR(MusicObject::TT_SoundKMicro, MusicSoundKMicroWidget);
                 break;

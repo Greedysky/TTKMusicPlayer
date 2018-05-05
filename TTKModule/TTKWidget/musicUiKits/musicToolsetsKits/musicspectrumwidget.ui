@@ -168,6 +168,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QCheckBox" name="pointxrayBox">
+           <property name="text">
+            <string>PointXRay</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -242,6 +249,13 @@
           <widget class="QCheckBox" name="fwaveBox">
            <property name="text">
             <string>FWave</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="foldwaveBox">
+           <property name="text">
+            <string>FoldWave</string>
            </property>
           </widget>
          </item>

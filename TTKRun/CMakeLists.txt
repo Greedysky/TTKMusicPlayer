@@ -15,3 +15,5 @@ include_directories(TTKInit)
 
 add_subdirectory(TTKInit)
 add_subdirectory(TTKApp)
+add_subdirectory(TTKConsole)
+add_subdirectory(TTKTools)

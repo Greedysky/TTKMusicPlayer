@@ -3,10 +3,7 @@
 #define XXTEA_MX (z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z)
 #define XXTEA_DELTA 0x9E3779B9
 
-const std::string base64_chars =
-                    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    "abcdefghijklmnopqrstuvwxyz"
-                    "0123456789+/";
+const std::string base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 MusicCryptographicHash::MusicCryptographicHash()
 {
@@ -18,23 +15,17 @@ QString MusicCryptographicHash::getClassName()
     return "MusicCryptographicHash";
 }
 
-QString MusicCryptographicHash::encrypt(const QString &data, const QString &key, Priority p)
+QString MusicCryptographicHash::encrypt(const QString &data, const QString &key)
 {
     QString d = data;
-    for(int i=0; i<p; ++i)
-    {
-        d = xxteaEncrypt(d, key).toUtf8().toBase64();
-    }
+    d = xxteaEncrypt(d, key).toUtf8().toBase64();
     return d;
 }
 
-QString MusicCryptographicHash::decrypt(const QString &data, const QString &key, Priority p)
+QString MusicCryptographicHash::decrypt(const QString &data, const QString &key)
 {
     QString d = data;
-    for(int i=0; i<p; ++i)
-    {
-        d = xxteaDecrypt(QByteArray::fromBase64(d.toUtf8()), key);
-    }
+    d = xxteaDecrypt(QByteArray::fromBase64(d.toUtf8()), key);
     return d;
 }
 

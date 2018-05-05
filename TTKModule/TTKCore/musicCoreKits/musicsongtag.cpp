@@ -4,6 +4,7 @@
 #include "musicversion.h"
 #include "musicqmmputils.h"
 #include "musicwidgetutils.h"
+#include "musicstringutils.h"
 
 #include <QStringList>
 #include <QPluginLoader>
@@ -70,22 +71,22 @@ QString MusicSongTag::getFilePath() const
 
 QString MusicSongTag::getArtist() const
 {
-    return m_parameters[TagReadAndWrite::TAG_ARTIST].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_ARTIST);
 }
 
 QString MusicSongTag::getTitle() const
 {
-    return m_parameters[TagReadAndWrite::TAG_TITLE].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_TITLE);
 }
 
 QString MusicSongTag::getAlbum() const
 {
-    return m_parameters[TagReadAndWrite::TAG_ALBUM].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_ALBUM);
 }
 
 QString MusicSongTag::getComment() const
 {
-    return m_parameters[TagReadAndWrite::TAG_COMMENT].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_COMMENT);
 }
 
 QString MusicSongTag::getYear() const
@@ -106,17 +107,17 @@ QString MusicSongTag::getTrackNum() const
 
 QString MusicSongTag::getGenre() const
 {
-    return m_parameters[TagReadAndWrite::TAG_GENRE].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_GENRE);
 }
 
 QString MusicSongTag::getAlbumArtist() const
 {
-    return m_parameters[TagReadAndWrite::TAG_ALBUMARTIST].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_ALBUMARTIST);
 }
 
 QString MusicSongTag::getComposer() const
 {
-    return m_parameters[TagReadAndWrite::TAG_COMPOSER].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_COMPOSER);
 }
 
 QString MusicSongTag::getChannel() const
@@ -126,7 +127,7 @@ QString MusicSongTag::getChannel() const
 
 QString MusicSongTag::getURL() const
 {
-    return m_parameters[TagReadAndWrite::TAG_URL].toString();
+    return findLegalDataString(TagReadAndWrite::TAG_URL);
 }
 
 /////////////////////////////////////////////
@@ -228,6 +229,12 @@ QString MusicSongTag::getLengthString() const
 {
     return MusicTime::msecTime2LabelJustified(
            m_parameters[TagReadAndWrite::TAG_LENGTH].toULongLong());
+}
+
+QString MusicSongTag::findLegalDataString(TagReadAndWrite::MusicTag type) const
+{
+    QString v = m_parameters[type].toString();
+    return MusicUtils::String::illegalCharactersReplaced(v);
 }
 
 QString MusicSongTag::findPluginPath() const

@@ -3,6 +3,7 @@
 #include "musicuiobject.h"
 #include "musicqmmputils.h"
 #include "musicformats.h"
+#include "musictoastlabel.h"
 
 #include <QFileDialog>
 #include <QPluginLoader>
@@ -40,8 +41,10 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->gwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->histogramBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->xrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->pointxrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->foldwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->monowaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
@@ -66,8 +69,10 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->gwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->histogramBox->setFocusPolicy(Qt::NoFocus);
     m_ui->xrayBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->pointxrayBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->fwaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->foldwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->monowaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->multiwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->fspekBox->setFocusPolicy(Qt::NoFocus);
@@ -88,15 +93,17 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     group->addButton(m_ui->gwaveBox, 3);
     group->addButton(m_ui->histogramBox, 4);
     group->addButton(m_ui->xrayBox, 5);
+    group->addButton(m_ui->pointxrayBox, 6);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(spectrumTypeChanged(int)));
 
     QButtonGroup *group1 = new QButtonGroup(this);
     group1->setExclusive(false);
     group1->addButton(m_ui->fwaveBox, 0);
-    group1->addButton(m_ui->monowaveBox, 1);
-    group1->addButton(m_ui->multiwaveBox, 2);
-    group1->addButton(m_ui->volumeWaveBox, 3);
-    group1->addButton(m_ui->fspekBox, 4);
+    group1->addButton(m_ui->foldwaveBox, 1);
+    group1->addButton(m_ui->monowaveBox, 2);
+    group1->addButton(m_ui->multiwaveBox, 3);
+    group1->addButton(m_ui->volumeWaveBox, 4);
+    group1->addButton(m_ui->fspekBox, 5);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     QButtonGroup *group2 = new QButtonGroup(this);
@@ -153,16 +160,19 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
             newSpectrumWidget(m_ui->analyzer2Box, "lineplus", m_ui->spectrumAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->ewaveBox, "espewave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->ewaveBox, "ewave", m_ui->spectrumAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->gwaveBox, "gspewave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->gwaveBox, "gwave", m_ui->spectrumAreaLayout);
             break;
         case 4:
             newSpectrumWidget(m_ui->histogramBox, "histogram", m_ui->spectrumAreaLayout);
             break;
         case 5:
-            newSpectrumWidget(m_ui->xrayBox, "xray", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->xrayBox, "xrays", m_ui->spectrumAreaLayout);
+            break;
+        case 6:
+            newSpectrumWidget(m_ui->pointxrayBox, "pointxrays", m_ui->spectrumAreaLayout);
             break;
         default:
             break;
@@ -176,18 +186,21 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
     switch(index)
     {
         case 0:
-            newSpectrumWidget(m_ui->fwaveBox, "fspewave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->fwaveBox, "fwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 1:
-            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->foldwaveBox, "foldwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 4:
+            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 5:
             newSpekWidget(m_ui->fspekBox, "fspek", m_ui->spectrumPlusAreaLayout);
             fspekStateChanged();
             break;
@@ -263,6 +276,9 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
         QList<Visual *> *vs = Visual::visuals();
         if(before == vs->count())
         {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
             return;
         }
 
@@ -273,6 +289,12 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
             t.m_obj = vs->last();
             layout->addWidget(t.m_obj);
             m_types << t;
+        }
+        else
+        {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
         }
     }
     else
@@ -307,6 +329,12 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
                 layout->addWidget(spekWidget);
             }
         }
+        else
+        {
+            MusicToastLabel *toast = new MusicToastLabel(this);
+            toast->defaultLabel(this, tr("Spectrum Init Error!"));
+            box->setChecked(false);
+        }
     }
     else
     {
@@ -340,7 +368,7 @@ void MusicSpectrumWidget::showSpectrum(const QString &name, bool state)
 {
     foreach(VisualFactory *v, Visual::factories())
     {
-        if(v->properties().shortName.contains(name))
+        if(v->properties().shortName == name)
         {
             Visual::setEnabled(v, state);
             break;

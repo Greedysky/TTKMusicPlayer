@@ -1,7 +1,10 @@
 #include "musicwyauthenticationthread.h"
 #include "musicalgorithmutils.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
+
+#include <QNetworkCookie>
 
 MusicWYAuthenticationThread::MusicWYAuthenticationThread(QObject *parent)
     : MusicAuthenticationThread(parent)
@@ -53,6 +56,12 @@ void MusicWYAuthenticationThread::downLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("code") && value["code"].toInt() == 200)
             {
+                QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(m_reply->rawHeader("Set-Cookie"));
+                if(!cookies.isEmpty())
+                {
+                    M_SETTING_PTR->setValue(MusicSettingManager::NetworkCookieChoiced, cookies[0].value());
+                }
+
                 value = value["profile"].toMap();
                 m_info.m_nickName = value["nickname"].toString();
                 m_info.m_coverUrl = value["avatarUrl"].toString();
