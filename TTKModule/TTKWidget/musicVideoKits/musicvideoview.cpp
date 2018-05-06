@@ -13,6 +13,8 @@ MusicViewWidget::MusicViewWidget(QWidget *parent)
 {
     m_clickedTimer = new QTimer(this);
     m_clickedTimer->setSingleShot(true);
+    m_leftPressed = false;
+
     connect(m_clickedTimer, SIGNAL(timeout()), SIGNAL(setClick()));
 }
 
@@ -29,9 +31,23 @@ QString MusicViewWidget::getClassName()
 void MusicViewWidget::mousePressEvent(QMouseEvent *event)
 {
     QWidget::mousePressEvent(event);
+    m_leftPressed = false;
     if(event->button() == Qt::LeftButton)
     {
+        m_leftPressed = true;
         m_clickedTimer->start(300*MT_MS);
+    }
+}
+
+void MusicViewWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    QWidget::mousePressEvent(event);
+    if(m_leftPressed)
+    {
+        if(m_clickedTimer->isActive())
+        {
+            m_clickedTimer->stop();
+        }
     }
 }
 
@@ -65,7 +81,7 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
 
 
 MusicVideoView::MusicVideoView(QWidget *parent)
-    : QGraphicsView(parent)
+    : QAbstractScrollArea(parent)
 {
     setObjectName("MusicVideoView");
     setStyleSheet(QString("#MusicVideoView{%1}").arg(MusicUIObject::MBackgroundStyle02));

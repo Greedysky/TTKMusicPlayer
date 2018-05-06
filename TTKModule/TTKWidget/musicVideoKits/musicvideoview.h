@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QGraphicsView>
+#include <QAbstractScrollArea>
 #include "musicglobaldefine.h"
 #include "musicvideocontrolwidget.h"
 
@@ -63,17 +63,18 @@ protected:
      * Override the widget event.
      */
     virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mouseDoubleClickEvent(QMouseEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     QTimer *m_clickedTimer;
-
+    bool m_leftPressed;
 };
 
 /*! @brief The class of the video view widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoView : public QGraphicsView
+class MUSIC_VIDEO_EXPORT MusicVideoView : public QAbstractScrollArea
 {
     Q_OBJECT
 public:
