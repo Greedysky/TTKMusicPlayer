@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 
 #define QMMP_VERSION_MAJOR 1
 #define QMMP_VERSION_MINOR 2
-#define QMMP_VERSION_PATCH 0
+#define QMMP_VERSION_PATCH 1
 #define QMMP_VERSION_STABLE 1
 
 #define QMMP_VERSION_INT (QMMP_VERSION_MAJOR<<16 | QMMP_VERSION_MINOR<<8 | QMMP_VERSION_PATCH)
@@ -42,7 +42,7 @@
 /*! @brief The Qmmp class stores global settings and enums.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT Qmmp
+class Qmmp
 {
 public:
     /*!

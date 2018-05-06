@@ -26,7 +26,7 @@
 /*! @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class Q_DECL_EXPORT EmptyInputSource : public InputSource
+class EmptyInputSource : public InputSource
 {
 Q_OBJECT
 public:

@@ -26,7 +26,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT ChannelConverter : public Effect
+class ChannelConverter : public Effect
 {
 public:
     ChannelConverter(ChannelMap out_map);

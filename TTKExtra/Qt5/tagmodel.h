@@ -28,7 +28,7 @@
 /*! @brief The StateHandler class provides is the base interface class of tag editor.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT TagModel
+class TagModel
 {
 public:
     /*!

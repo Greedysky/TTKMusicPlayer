@@ -21,8 +21,7 @@
 #ifndef DECODERFACTORY_H
 #define DECODERFACTORY_H
 
-#include <QObject>
-
+class QObject;
 class QString;
 class QIODevice;
 class QWidget;
@@ -37,7 +36,7 @@ class MetaDataModel;
 /*! @brief Helper class to store input plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT DecoderProperties
+class DecoderProperties
 {
 public:
     /*!
@@ -65,7 +64,7 @@ public:
 /*! @brief Input plugin interface (decoder factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT DecoderFactory
+class DecoderFactory
 {
 public:
     /*!

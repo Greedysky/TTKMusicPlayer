@@ -40,7 +40,7 @@ class StateHandler;
 /*! \brief The SoundCore class provides a simple interface for audio playback.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT SoundCore : public QObject
+class SoundCore : public QObject
 {
     Q_OBJECT
 public:

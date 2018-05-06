@@ -17,7 +17,7 @@
 /*! @brief Audio buffer class.
  * @author Brad Hughes <bhughes@trolltech.com>
  */
-class Q_DECL_EXPORT Buffer
+class Buffer
 {
 public:
     /*!

@@ -29,7 +29,7 @@
 /** @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class Q_DECL_EXPORT Dithering : public Effect
+class Dithering : public Effect
 {
 public:
     Dithering();

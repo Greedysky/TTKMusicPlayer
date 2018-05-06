@@ -39,7 +39,7 @@ class ChannelConverter;
     @brief Output thread.
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class Q_DECL_EXPORT OutputWriter : public QThread
+class OutputWriter : public QThread
 {
     Q_OBJECT
 public:

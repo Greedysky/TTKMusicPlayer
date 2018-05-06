@@ -43,7 +43,7 @@ class Dithering;
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT QmmpAudioEngine : public AbstractEngine
+class QmmpAudioEngine : public AbstractEngine
 {
 Q_OBJECT
 public:

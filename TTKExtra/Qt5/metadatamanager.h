@@ -38,7 +38,7 @@ class QmmpSettings;
 /*! @brief The MetaDataManager class is the base class for metadata access.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Q_DECL_EXPORT MetaDataManager
+class MetaDataManager
 {
 public:
     /*!
