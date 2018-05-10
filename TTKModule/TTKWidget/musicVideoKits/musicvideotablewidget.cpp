@@ -13,6 +13,9 @@ MusicVideoTableWidget::MusicVideoTableWidget(QWidget *parent)
     setColumnCount(9);
     resizeWindow(0);
 
+    viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle02);
+
+    m_defaultBkColor = Qt::black;
     m_singleRadioMode = false;
 
     MusicTime::timeSRand();
@@ -139,6 +142,12 @@ void MusicVideoTableWidget::listCellEntered(int row, int column)
     {
        unsetCursor();
     }
+
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        it->setBackgroundColor(m_defaultBkColor);
+    }
 }
 
 void MusicVideoTableWidget::listCellClicked(int row, int column)
@@ -172,6 +181,7 @@ void MusicVideoTableWidget::createSearchedItem(const MusicSearchedItem &songItem
 
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
+    item->setBackgroundColor(m_defaultBkColor);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
@@ -205,15 +215,15 @@ void MusicVideoTableWidget::createSearchedItem(const MusicSearchedItem &songItem
     setItem(count, 5, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_mv"));
+    item->setIcon(QIcon(":/video/btn_mv"));
     setItem(count, 6, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_audition"));
+    item->setIcon(QIcon(":/video/btn_audition"));
     setItem(count, 7, item);
 
                       item = new QTableWidgetItem;
-    item->setIcon(QIcon(":/contextMenu/btn_download"));
+    item->setIcon(QIcon(":/video/btn_download"));
     setItem(count, 8, item);
 }
 

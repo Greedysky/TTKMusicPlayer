@@ -26,6 +26,8 @@ MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *pa
     headerview->resizeSection(4, 24);
 
     m_queryMovieMode = true;
+    viewport()->setStyleSheet(MusicUIObject::MBackgroundStyle02);
+    m_defaultBkColor = Qt::black;
 }
 
 MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
@@ -102,6 +104,7 @@ void MusicSoundKMicroSearchTableWidget::createSearchedItem(const MusicSearchedIt
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     item->setData(MUSIC_CHECK_ROLE, false);
+    item->setBackgroundColor(m_defaultBkColor);
     setItem(count, 0, item);
 
                       item = new QTableWidgetItem;
@@ -133,6 +136,16 @@ void MusicSoundKMicroSearchTableWidget::itemDoubleClicked(int row, int column)
     }
 
     dataDownloadPlay(row);
+}
+
+void MusicSoundKMicroSearchTableWidget::listCellEntered(int row, int column)
+{
+    MusicQueryItemTableWidget::listCellEntered(row, column);
+    QTableWidgetItem *it = item(row, 0);
+    if(it)
+    {
+        it->setBackgroundColor(m_defaultBkColor);
+    }
 }
 
 void MusicSoundKMicroSearchTableWidget::listCellClicked(int row, int column)

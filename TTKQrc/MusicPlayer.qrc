@@ -685,6 +685,9 @@
         <file alias="lb_video_3">../TTKResource/video/lb_video_3.png</file>
         <file alias="lb_video_4">../TTKResource/video/lb_video_4.png</file>
         <file alias="lb_video_5">../TTKResource/video/lb_video_5.png</file>
+        <file alias="btn_mv">../TTKResource/video/btn_mv.png</file>
+        <file alias="btn_audition">../TTKResource/video/btn_audition.png</file>
+        <file alias="btn_download">../TTKResource/video/btn_download.png</file>
     </qresource>
     <qresource prefix="/usermanager">
         <file alias="lb_qq">../TTKResource/usermanager/lb_qq.png</file>

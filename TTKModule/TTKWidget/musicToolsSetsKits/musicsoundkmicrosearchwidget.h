@@ -73,6 +73,10 @@ public Q_SLOTS:
      */
     virtual void itemDoubleClicked(int row, int column) override;
     /*!
+     * Table widget list cell enter.
+     */
+    virtual void listCellEntered(int row, int column) override;
+    /*!
      * Table widget list cell click.
      */
     virtual void listCellClicked(int row, int column) override;
