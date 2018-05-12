@@ -97,6 +97,10 @@ public:
      * Resize widget size or not.
      */
     void resizeWindow(int width, int height);
+    /*!
+     * Get control bar widget.
+     */
+    MusicVideoControlWidget *controlBarWidget() const { return m_videoControl; }
 
 public Q_SLOTS:
     /*!

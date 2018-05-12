@@ -26,6 +26,7 @@ class QLabel;
 class QPushButton;
 class QToolButton;
 class QStackedWidget;
+class QParallelAnimationGroup;
 class MusicVideoView;
 class MusicVideoFloatWidget;
 class MusicLocalSongSearchEdit;
@@ -135,16 +136,31 @@ public Q_SLOTS:
      */
     void shareButtonClicked();
 
+private Q_SLOTS:
+    /*!
+     * Leave Timeout.
+     */
+    void leaveTimeout();
+
 protected:
     /*!
      * Override the widget event.
      */
     virtual void resizeEvent(QResizeEvent *event) override;
+    virtual void enterEvent(QEvent *event) override;
+    virtual void leaveEvent(QEvent *event) override;
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Set current title text(song name).
      */
     void setTitleText(const QString &text);
+    /*!
+     * Start to turn on animation.
+     */
+    void start(int topst, int topend, int ctrlst, int ctrlend);
+
+    QTimer *m_leaverTimer;
+    QParallelAnimationGroup *m_leaverAnimation;
 
     QWidget *m_topWidget;
     QLabel *m_textLabel;
