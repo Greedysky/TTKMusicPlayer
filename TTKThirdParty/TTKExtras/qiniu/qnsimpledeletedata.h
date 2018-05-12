@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QtNetwork/QNetworkReply>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNSimpleDeleteDataPrivate;
@@ -59,7 +59,7 @@ private Q_SLOTS:
     void handleError(QNetworkReply::NetworkError error);
 
 private:
-    MUSIC_DECLARE_PRIVATE(QNSimpleDeleteData)
+    TTK_DECLARE_PRIVATE(QNSimpleDeleteData)
 
 };
 

@@ -21,7 +21,7 @@
 #ifndef QJSON_SERIALIZER_H
 #define QJSON_SERIALIZER_H
 
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 QT_BEGIN_NAMESPACE
@@ -222,7 +222,7 @@ namespace QJson {
 
   private:
     class SerializerPrivate;
-    MUSIC_DECLARE_PRIVATE(Serializer)
+    TTK_DECLARE_PRIVATE(Serializer)
 
   };
 }

@@ -6,7 +6,7 @@
 #  pragma GCC diagnostic ignored "-Wmultichar"
 #endif
 
-class PinyinHelperPrivate : public MusicPrivate<PinyinHelper>
+class PinyinHelperPrivate : public TTKPrivate<PinyinHelper>
 {
 public:
     /*!
@@ -117,7 +117,7 @@ QStringList PinyinHelperPrivate::convertWithoutTone(QString pinyinArrayString)
 ///
 PinyinHelper::PinyinHelper()
 {
-    MUSIC_INIT_PRIVATE;
+    TTK_INIT_PRIVATE;
 }
 
 QStringList PinyinHelper::convertToPinyinArray(const QChar &c)
@@ -127,7 +127,7 @@ QStringList PinyinHelper::convertToPinyinArray(const QChar &c)
 
 QString PinyinHelper::convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat)
 {
-    MUSIC_D(PinyinHelper);
+    TTK_D(PinyinHelper);
     QString str = d->m_chineseHelper.convertToSimplifiedChinese(s);
     QString sb;
     for(int i=0, len=str.length(); i<len; i++)
@@ -205,7 +205,7 @@ bool PinyinHelper::hasMultiPinyin(char c)
 
 QStringList PinyinHelper::formatPinyin(QString pinyinString, Format pinyinFormat)
 {
-    MUSIC_D(PinyinHelper);
+    TTK_D(PinyinHelper);
     switch(pinyinFormat)
     {
         case WITH_TONE_MARK: return d->convertWithToneMark(pinyinString);
@@ -217,7 +217,7 @@ QStringList PinyinHelper::formatPinyin(QString pinyinString, Format pinyinFormat
 
 QStringList PinyinHelper::convertToPinyinArray(const QChar &c, Format pinyinFormat)
 {
-    MUSIC_D(PinyinHelper);
+    TTK_D(PinyinHelper);
     QString pinyin = d->m_pinyinTable.value(QString(c));
     if(!pinyin.isEmpty())
     {

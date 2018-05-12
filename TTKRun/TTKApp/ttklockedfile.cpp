@@ -1,6 +1,6 @@
-#include "musiclockedfile.h"
+#include "ttklockedfile.h"
 
-MusicLockedFile::MusicLockedFile()
+TTKLockedFile::TTKLockedFile()
     : QFile()
 {
 #ifdef Q_OS_WIN
@@ -10,7 +10,7 @@ MusicLockedFile::MusicLockedFile()
     m_lock_mode = NoLock;
 }
 
-MusicLockedFile::MusicLockedFile(const QString &name)
+TTKLockedFile::TTKLockedFile(const QString &name)
     : QFile(name)
 {
 #ifdef Q_OS_WIN
@@ -20,21 +20,21 @@ MusicLockedFile::MusicLockedFile(const QString &name)
     m_lock_mode = NoLock;
 }
 
-bool MusicLockedFile::open(OpenMode mode)
+bool TTKLockedFile::open(OpenMode mode)
 {
     if (mode & QIODevice::Truncate) {
-        qWarning("MusicLockedFile::open(): Truncate mode not allowed.");
+        qWarning("TTKLockedFile::open(): Truncate mode not allowed.");
         return false;
     }
     return QFile::open(mode);
 }
 
-bool MusicLockedFile::isLocked() const
+bool TTKLockedFile::isLocked() const
 {
     return m_lock_mode != NoLock;
 }
 
-MusicLockedFile::LockMode MusicLockedFile::lockMode() const
+TTKLockedFile::LockMode TTKLockedFile::lockMode() const
 {
     return m_lock_mode;
 }

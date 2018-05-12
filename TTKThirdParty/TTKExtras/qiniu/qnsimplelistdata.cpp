@@ -6,7 +6,7 @@
 
 #include <QDebug>
 
-class QNSimpleListDataPrivate : public MusicPrivate<QNSimpleListData>
+class QNSimpleListDataPrivate : public TTKPrivate<QNSimpleListData>
 {
 public:
     QNSimpleListDataPrivate();
@@ -26,14 +26,14 @@ QNSimpleListDataPrivate::QNSimpleListDataPrivate()
 QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(QNSimpleListData);
+    TTK_INIT_PRIVATE;
+    TTK_D(QNSimpleListData);
     d->m_networkManager = networkManager;
 }
 
 void QNSimpleListData::listDataToServer(const QString &bucket)
 {
-    MUSIC_D(QNSimpleListData);
+    TTK_D(QNSimpleListData);
     QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNetworkRequest request = QNIOHelper::listRequest(bucket, &mac);
     QNetworkReply *reply = d->m_networkManager->get(request);

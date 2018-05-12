@@ -18,17 +18,17 @@ set(EXECUTABLE_OUTPUT_PATH ${MUSIC_INSTALL_DIR})
 set(MUSIC_HEADERS
     ../musicrunglobaldefine.h
     ../TTKInit/musicinitobject.h
-    musiclocalpeer.h
-    musicrunapplication.h
-    musicrunobject.h
+    ttklocalpeer.h
+    ttkrunapplication.h
+    ttkrunobject.h
   )
 
 set(MUSIC_SOURCES
     ../TTKInit/musicinitobject.cpp
-    musiclocalpeer.cpp
-    musicrunapplication.cpp
-    musicrunobject.cpp
-    musicrunmain.cpp
+    ttklocalpeer.cpp
+    ttkrunapplication.cpp
+    ttkrunobject.cpp
+    ttkrunmain.cpp
   )
   
 SET(MUSIC_QRC

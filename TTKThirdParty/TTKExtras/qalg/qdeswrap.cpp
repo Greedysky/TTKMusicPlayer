@@ -170,7 +170,7 @@ qint64 ARRAYLSMASK[] = {
     0x0000000000000000l, 0x0000000000100001l, 0x0000000000300003l
 };
 
-class QDesWrapPrivate : public MusicPrivate<QDesWrap>
+class QDesWrapPrivate : public TTKPrivate<QDesWrap>
 {
 public:
     qint64 bitTransform(int *array, int len, qint64 source);
@@ -335,12 +335,12 @@ char* QDesWrapPrivate::encrypt(char *src, int srcLength, char *key)
 
 QDesWrap::QDesWrap()
 {
-    MUSIC_INIT_PRIVATE;
+    TTK_INIT_PRIVATE;
 }
 
 QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
 {
-    MUSIC_D(QDesWrap);
+    TTK_D(QDesWrap);
     d->m_mode = ENCRYPT;
     char *enc_data = d->encrypt((char *)in.data(), in.length(), (char *)key.data());
     char *enc_base = Base64Encode((unsigned char *)enc_data, (in.length() / 8 + 1) * 8);
@@ -354,7 +354,7 @@ QByteArray QDesWrap::encrypt(const QByteArray &in, const QByteArray &key)
 
 QByteArray QDesWrap::decrypt(const QByteArray &in, const QByteArray &key)
 {
-    MUSIC_D(QDesWrap);
+    TTK_D(QDesWrap);
     d->m_mode = DECRYPT;
     char *enc_base = Base64Decode((unsigned char *)in.data(), in.length());
     char *enc_data = d->encrypt(enc_base, strlen(enc_base), (char *)key.data());

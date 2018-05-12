@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include "qrencode.h"
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QRCodeQWidgetPrivate;
@@ -126,7 +126,7 @@ protected:
     virtual void paintEvent(QPaintEvent *event) override;
 
 private:
-    MUSIC_DECLARE_PRIVATE(QRCodeQWidget)
+    TTK_DECLARE_PRIVATE(QRCodeQWidget)
 
 };
 

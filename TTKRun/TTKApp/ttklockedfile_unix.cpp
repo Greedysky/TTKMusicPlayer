@@ -3,12 +3,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "musiclockedfile.h"
+#include "ttklockedfile.h"
 
-bool MusicLockedFile::lock(LockMode mode, bool block)
+bool TTKLockedFile::lock(LockMode mode, bool block)
 {
     if (!isOpen()) {
-        qWarning("MusicLockedFile::lock(): file is not opened");
+        qWarning("TTKLockedFile::lock(): file is not opened");
         return false;
     }
  
@@ -31,7 +31,7 @@ bool MusicLockedFile::lock(LockMode mode, bool block)
     
     if (ret == -1) {
         if (errno != EINTR && errno != EAGAIN)
-            qWarning("MusicLockedFile::lock(): fcntl: %s", strerror(errno));
+            qWarning("TTKLockedFile::lock(): fcntl: %s", strerror(errno));
         return false;
     }
 
@@ -40,10 +40,10 @@ bool MusicLockedFile::lock(LockMode mode, bool block)
 }
 
 
-bool MusicLockedFile::unlock()
+bool TTKLockedFile::unlock()
 {
     if (!isOpen()) {
-        qWarning("MusicLockedFile::unlock(): file is not opened");
+        qWarning("TTKLockedFile::unlock(): file is not opened");
         return false;
     }
 
@@ -58,7 +58,7 @@ bool MusicLockedFile::unlock()
     int ret = fcntl(handle(), F_SETLKW, &fl);
     
     if (ret == -1) {
-        qWarning("MusicLockedFile::lock(): fcntl: %s", strerror(errno));
+        qWarning("TTKLockedFile::lock(): fcntl: %s", strerror(errno));
         return false;
     }
     
@@ -66,7 +66,7 @@ bool MusicLockedFile::unlock()
     return true;
 }
 
-MusicLockedFile::~MusicLockedFile()
+TTKLockedFile::~TTKLockedFile()
 {
     if (isOpen())
         unlock();

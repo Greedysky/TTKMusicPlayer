@@ -2,7 +2,7 @@
 
 #include <QMap>
 
-class QNPutExtraPrivate : public MusicPrivate<QNPutExtra>
+class QNPutExtraPrivate : public TTKPrivate<QNPutExtra>
 {
 public:
     QNPutExtraPrivate();
@@ -47,53 +47,53 @@ QString QNPutExtraPrivate::remove(const QString &key)
 ///
 QNPutExtra::QNPutExtra()
 {
-    MUSIC_INIT_PRIVATE;
+    TTK_INIT_PRIVATE;
 }
 
 void QNPutExtra::addExtraParam(const QString &key, const QString &value)
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     d->insert(key, value);
 }
 
 QString QNPutExtra::removeExtraParam(const QString &key)
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     return d->remove(key);
 }
 
 QString QNPutExtra::getMimeType() const
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     return d->m_mimeType;
 }
 
 void QNPutExtra::setMimeType(const QString &value)
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     d->m_mimeType = value;
 }
 
 qint32 QNPutExtra::getCrc32() const
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     return d->m_crc32;
 }
 
 void QNPutExtra::setCrc32(qint32 value)
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     d->m_crc32 = value;
 }
 
 qint32 QNPutExtra::getCheckCrc32() const
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     return d->m_checkCrc32;
 }
 
 void QNPutExtra::setCheckCrc32(qint32 value)
 {
-    MUSIC_D(QNPutExtra);
+    TTK_D(QNPutExtra);
     d->m_checkCrc32 = value;
 }

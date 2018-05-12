@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QObject>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNPutRetPrivate;
@@ -60,7 +60,7 @@ public:
     void setKey(const QString &value);
 
 private:
-    MUSIC_DECLARE_PRIVATE(QNPutRet)
+    TTK_DECLARE_PRIVATE(QNPutRet)
 
 };
 

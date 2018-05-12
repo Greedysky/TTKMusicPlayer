@@ -1,5 +1,5 @@
-#include "musiclocalpeer.h"
-#include "musiclockedfile.h"
+#include "ttklocalpeer.h"
+#include "ttklockedfile.h"
 
 #include <QCoreApplication>
 #include <QDataStream>
@@ -20,35 +20,35 @@ static PProcessIdToSessionId pProcessIdToSessionId = 0;
 #include <unistd.h>
 #endif
 
-namespace MusicLockedPrivate {
-#include "musiclockedfile.cpp"
+namespace TTKLockedPrivate {
+#include "ttklockedfile.cpp"
 #if defined(Q_OS_WIN)
-#include "musiclockedfile_win.cpp"
+#include "ttklockedfile_win.cpp"
 #else
-#include "musiclockedfile_unix.cpp"
+#include "ttklockedfile_unix.cpp"
 #endif
 }
 
-class MusicLocalPeerPrivate : public MusicPrivate<MusicLocalPeer>
+class TTKLocalPeerPrivate : public TTKPrivate<TTKLocalPeer>
 {
 public:
-    MusicLocalPeerPrivate();
-    ~MusicLocalPeerPrivate();
+    TTKLocalPeerPrivate();
+    ~TTKLocalPeerPrivate();
 
     QString m_id;
     QString m_socketName;
     QLocalServer *m_server;
-    MusicLockedPrivate::MusicLockedFile m_lockFile;
+    TTKLockedPrivate::TTKLockedFile m_lockFile;
     static const char *m_ack;
 };
-const char *MusicLocalPeerPrivate::m_ack = "ack";
+const char *TTKLocalPeerPrivate::m_ack = "ack";
 
-MusicLocalPeerPrivate::MusicLocalPeerPrivate()
+TTKLocalPeerPrivate::TTKLocalPeerPrivate()
 {
     m_server = nullptr;
 }
 
-MusicLocalPeerPrivate::~MusicLocalPeerPrivate()
+TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
 {
     delete m_server;
 }
@@ -58,11 +58,11 @@ MusicLocalPeerPrivate::~MusicLocalPeerPrivate()
 ///
 ///
 
-MusicLocalPeer::MusicLocalPeer(QObject *parent, const QString &appId)
+TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(MusicLocalPeer);
+    TTK_INIT_PRIVATE;
+    TTK_D(TTKLocalPeer);
 
     QString prefix = d->m_id = appId;
     if(prefix.isEmpty())
@@ -105,15 +105,15 @@ MusicLocalPeer::MusicLocalPeer(QObject *parent, const QString &appId)
     d->m_lockFile.open(QIODevice::ReadWrite);
 }
 
-bool MusicLocalPeer::isClient()
+bool TTKLocalPeer::isClient()
 {
-    MUSIC_D(MusicLocalPeer);
+    TTK_D(TTKLocalPeer);
     if(d->m_lockFile.isLocked())
     {
         return false;
     }
 
-    if(!d->m_lockFile.lock(MusicLockedPrivate::MusicLockedFile::WriteLock, false))
+    if(!d->m_lockFile.lock(TTKLockedPrivate::TTKLockedFile::WriteLock, false))
     {
         return true;
     }
@@ -136,9 +136,9 @@ bool MusicLocalPeer::isClient()
     return false;
 }
 
-bool MusicLocalPeer::sendMessage(const QString &message, int timeout)
+bool TTKLocalPeer::sendMessage(const QString &message, int timeout)
 {
-    MUSIC_D(MusicLocalPeer);
+    TTK_D(TTKLocalPeer);
     if(!isClient())
     {
         return false;
@@ -184,15 +184,15 @@ bool MusicLocalPeer::sendMessage(const QString &message, int timeout)
     return res;
 }
 
-QString MusicLocalPeer::applicationId() const
+QString TTKLocalPeer::applicationId() const
 {
-    MUSIC_D(MusicLocalPeer);
+    TTK_D(TTKLocalPeer);
     return d->m_id;
 }
 
-void MusicLocalPeer::receiveConnection()
+void TTKLocalPeer::receiveConnection()
 {
-    MUSIC_D(MusicLocalPeer);
+    TTK_D(TTKLocalPeer);
     QLocalSocket *socket = d->m_server->nextPendingConnection();
     if(!socket)
     {
@@ -231,7 +231,7 @@ void MusicLocalPeer::receiveConnection()
     }while(remaining && got >= 0 && socket->waitForReadyRead(2000));
     if(got < 0)
     {
-        qWarning("MusictLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
+        qWarning("TTKLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
         delete socket;
         return;
     }

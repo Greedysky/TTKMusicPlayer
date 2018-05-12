@@ -3,7 +3,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 
-class QRCodeQWidgetPrivate : public MusicPrivate<QRCodeQWidget>
+class QRCodeQWidgetPrivate : public TTKPrivate<QRCodeQWidget>
 {
 public:
     QRCodeQWidgetPrivate();
@@ -36,8 +36,8 @@ QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
 QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
     : QWidget(parent)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(QRCodeQWidget);
+    TTK_INIT_PRIVATE;
+    TTK_D(QRCodeQWidget);
     if(text.isEmpty())
     {
         d->m_text = QByteArray("https://github.com/Greedysky/TTKMusicplayer");
@@ -52,20 +52,20 @@ QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget 
 
 void QRCodeQWidget::setMargin(const int margin)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_margin = margin;
     update();
 }
 
 int QRCodeQWidget::getMargin() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_margin;
 }
 
 void QRCodeQWidget::setIcon(const QString &path, qreal percent)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     setIconPercent(percent);
     d->m_iconPath = path;
     update();
@@ -73,98 +73,98 @@ void QRCodeQWidget::setIcon(const QString &path, qreal percent)
 
 QString QRCodeQWidget::getIcon() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_iconPath;
 }
 
 void QRCodeQWidget::setIconPercent(qreal percent)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_percent = percent < 0.5 ? percent : 0.3;
 }
 
 qreal QRCodeQWidget::getIconPercent() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_percent;
 }
 
 void QRCodeQWidget::setCaseSensitive(bool flag)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_casesen = flag;
     update();
 }
 
 bool QRCodeQWidget::caseSensitive() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_casesen;
 }
 
 void QRCodeQWidget::setText(const QByteArray &text)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_text = text;
 }
 
 QByteArray QRCodeQWidget::getText() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_text;
 }
 
 void QRCodeQWidget::setForegroundColor(const QColor &color)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_foreground = color;
 }
 
 QColor QRCodeQWidget::getForegroundColor() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_foreground;
 }
 
 void QRCodeQWidget::setBackgroundColor(const QColor &color)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_background = color;
 }
 
 QColor QRCodeQWidget::getBackgroundColor() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_background;
 }
 
 void QRCodeQWidget::setMode(QRencodeMode mode)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_mode = mode;
 }
 
 QRencodeMode QRCodeQWidget::getMode() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_mode;
 }
 
 void QRCodeQWidget::setLevel(QRecLevel level)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     d->m_level = level;
 }
 
 QRecLevel QRCodeQWidget::getLevel() const
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     return d->m_level;
 }
 
 void QRCodeQWidget::paintEvent(QPaintEvent *event)
 {
-    MUSIC_D(QRCodeQWidget);
+    TTK_D(QRCodeQWidget);
     QWidget::paintEvent (event);
     QPainter painter(this);
 

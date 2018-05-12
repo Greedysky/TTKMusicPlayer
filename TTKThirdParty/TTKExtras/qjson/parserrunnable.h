@@ -21,7 +21,7 @@
 #ifndef PARSERRUNNABLE_H
 #define PARSERRUNNABLE_H
 
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 #include <QtCore/QObject>
@@ -56,7 +56,7 @@ namespace QJson {
 
     private:
       class ParserRunnablePrivate;
-      MUSIC_DECLARE_PRIVATE(ParserRunnable)
+      TTK_DECLARE_PRIVATE(ParserRunnable)
 
   };
 }

@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QtNetwork/QNetworkRequest>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNMacPrivate;
@@ -58,7 +58,7 @@ public:
     QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = 0) const;
 
 private:
-    MUSIC_DECLARE_PRIVATE(QNMac)
+    TTK_DECLARE_PRIVATE(QNMac)
 
 };
 

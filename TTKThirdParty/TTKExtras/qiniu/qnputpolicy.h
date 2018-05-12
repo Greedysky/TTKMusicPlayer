@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QObject>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNMac;
@@ -205,7 +205,7 @@ public:
 
 
 private:
-    MUSIC_DECLARE_PRIVATE(QNPutPolicy)
+    TTK_DECLARE_PRIVATE(QNPutPolicy)
 
 };
 

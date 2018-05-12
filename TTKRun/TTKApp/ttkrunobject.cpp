@@ -1,25 +1,25 @@
-#include "musicrunobject.h"
+#include "ttkrunobject.h"
 #include "musicinitobject.h"
 
 #include <QProcess>
 #include <QApplication>
 
-class MusicRunObjectPrivate : public MusicPrivate<MusicRunObject>
+class TTKRunObjectPrivate : public TTKPrivate<TTKRunObject>
 {
 public:
-    MusicRunObjectPrivate();
-    ~MusicRunObjectPrivate();
+    TTKRunObjectPrivate();
+    ~TTKRunObjectPrivate();
 
     QProcess *m_process;
 
 };
 
-MusicRunObjectPrivate::MusicRunObjectPrivate()
+TTKRunObjectPrivate::TTKRunObjectPrivate()
 {
     m_process = nullptr;
 }
 
-MusicRunObjectPrivate::~MusicRunObjectPrivate()
+TTKRunObjectPrivate::~TTKRunObjectPrivate()
 {
     delete m_process;
 }
@@ -28,25 +28,25 @@ MusicRunObjectPrivate::~MusicRunObjectPrivate()
 //////////////////////////////////////////////////////
 ///
 ///
-MusicRunObject::MusicRunObject(QObject *parent)
+TTKRunObject::TTKRunObject(QObject *parent)
     : QObject(parent)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(MusicRunObject);
+    TTK_INIT_PRIVATE;
+    TTK_D(TTKRunObject);
 
     d->m_process = new QProcess(this);
     connect(d->m_process, SIGNAL(finished(int)),SLOT(finished(int)));
 }
 
-void MusicRunObject::checkValid()
+void TTKRunObject::checkValid()
 {
     MusicInitObject object;
     object.checkValid();
 }
 
-void MusicRunObject::run(int argc, char **argv)
+void TTKRunObject::run(int argc, char **argv)
 {
-    MUSIC_D(MusicRunObject);
+    TTK_D(TTKRunObject);
     QStringList list(APPNAME);
     if(argc == 3)
     {
@@ -57,7 +57,7 @@ void MusicRunObject::run(int argc, char **argv)
     d->m_process->start(S_TTKSERVICE_FULL, list);
 }
 
-void MusicRunObject::finished(int code)
+void TTKRunObject::finished(int code)
 {
      if(code == 0)
      {

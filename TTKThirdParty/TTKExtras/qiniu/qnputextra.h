@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QString>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class QNPutExtraPrivate;
@@ -73,7 +73,7 @@ public:
     void setCheckCrc32(qint32 value);
 
 private:
-    MUSIC_DECLARE_PRIVATE(QNPutExtra)
+    TTK_DECLARE_PRIVATE(QNPutExtra)
 
 };
 

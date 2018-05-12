@@ -1,12 +1,12 @@
-#include "musiclockedfile.h"
+#include "ttklockedfile.h"
 #include <qt_windows.h>
 #include <QFileInfo>
 
-#define MUTEX_PREFIX "MusicLockedFile mutex "
+#define MUTEX_PREFIX "TTKLockedFile mutex "
 // Maximum number of concurrent read locks. Must not be greater than MAXIMUM_WAIT_OBJECTS
 #define MAX_READERS MAXIMUM_WAIT_OBJECTS
 
-Qt::HANDLE MusicLockedFile::getMutexHandle(int idx, bool doCreate)
+Qt::HANDLE TTKLockedFile::getMutexHandle(int idx, bool doCreate)
 {
     if (mutexname.isEmpty()) {
         QFileInfo fi(*this);
@@ -21,7 +21,7 @@ Qt::HANDLE MusicLockedFile::getMutexHandle(int idx, bool doCreate)
     if (doCreate) {
         mutex = CreateMutexA(NULL, FALSE, mname.toLocal8Bit().constData());
         if (!mutex) {
-            qErrnoWarning("MusicLockedFile::lock(): CreateMutex failed");
+            qErrnoWarning("TTKLockedFile::lock(): CreateMutex failed");
             return 0;
         }
     }
@@ -29,14 +29,14 @@ Qt::HANDLE MusicLockedFile::getMutexHandle(int idx, bool doCreate)
         mutex = OpenMutexA(SYNCHRONIZE | MUTEX_MODIFY_STATE, FALSE, mname.toLocal8Bit().constData());
         if (!mutex) {
             if (GetLastError() != ERROR_FILE_NOT_FOUND)
-                qErrnoWarning("MusicLockedFile::lock(): OpenMutex failed");
+                qErrnoWarning("TTKLockedFile::lock(): OpenMutex failed");
             return 0;
         }
     }
     return mutex;
 }
 
-bool MusicLockedFile::waitMutex(Qt::HANDLE mutex, bool doBlock)
+bool TTKLockedFile::waitMutex(Qt::HANDLE mutex, bool doBlock)
 {
     Q_ASSERT(mutex);
     DWORD res = WaitForSingleObject(mutex, doBlock ? INFINITE : 0);
@@ -48,17 +48,17 @@ bool MusicLockedFile::waitMutex(Qt::HANDLE mutex, bool doBlock)
     case WAIT_TIMEOUT:
         break;
     default:
-        qErrnoWarning("MusicLockedFile::lock(): WaitForSingleObject failed");
+        qErrnoWarning("TTKLockedFile::lock(): WaitForSingleObject failed");
     }
     return false;
 }
 
 
 
-bool MusicLockedFile::lock(LockMode mode, bool block)
+bool TTKLockedFile::lock(LockMode mode, bool block)
 {
     if (!isOpen()) {
-        qWarning("MusicLockedFile::lock(): file is not opened");
+        qWarning("TTKLockedFile::lock(): file is not opened");
         return false;
     }
 
@@ -87,7 +87,7 @@ bool MusicLockedFile::lock(LockMode mode, bool block)
         }
         bool ok = true;
         if (idx >= MAX_READERS) {
-            qWarning("MusicLockedFile::lock(): too many readers");
+            qWarning("TTKLockedFile::lock(): too many readers");
             rmutex = 0;
             ok = false;
         }
@@ -116,7 +116,7 @@ bool MusicLockedFile::lock(LockMode mode, bool block)
                                                TRUE, block ? INFINITE : 0);
             if (res != WAIT_OBJECT_0 && res != WAIT_ABANDONED) {
                 if (res != WAIT_TIMEOUT)
-                    qErrnoWarning("MusicLockedFile::lock(): WaitForMultipleObjects failed");
+                    qErrnoWarning("TTKLockedFile::lock(): WaitForMultipleObjects failed");
                 m_lock_mode = WriteLock;  // trick unlock() to clean up - semiyucky
                 unlock();
                 return false;
@@ -128,10 +128,10 @@ bool MusicLockedFile::lock(LockMode mode, bool block)
     return true;
 }
 
-bool MusicLockedFile::unlock()
+bool TTKLockedFile::unlock()
 {
     if (!isOpen()) {
-        qWarning("MusicLockedFile::unlock(): file is not opened");
+        qWarning("TTKLockedFile::unlock(): file is not opened");
         return false;
     }
 
@@ -152,11 +152,11 @@ bool MusicLockedFile::unlock()
         ReleaseMutex(wmutex);
     }
 
-    m_lock_mode = MusicLockedFile::NoLock;
+    m_lock_mode = TTKLockedFile::NoLock;
     return true;
 }
 
-MusicLockedFile::~MusicLockedFile()
+TTKLockedFile::~TTKLockedFile()
 {
     if (isOpen())
         unlock();

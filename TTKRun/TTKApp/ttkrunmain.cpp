@@ -1,10 +1,10 @@
-#include "musicrunapplication.h"
-#include "musicrunobject.h"
+#include "ttkrunapplication.h"
+#include "ttkrunobject.h"
 #include "musicobject.h"
 
 int main(int argc, char *argv[])
 {
-    MusicRunApplication app(argc, argv);
+    TTKRunApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName(APPNAME);
     QCoreApplication::setOrganizationDomain(APPCOME);
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    MusicRunObject object;
+    TTKRunObject object;
     object.checkValid();
     object.run(argc, argv);
 

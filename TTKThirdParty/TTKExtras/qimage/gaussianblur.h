@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 class GaussianBlurPrivate;
@@ -44,7 +44,7 @@ public:
     void gaussBlurPlus(int* pix, int w, int h, int radius);
 
 private:
-    MUSIC_DECLARE_PRIVATE(GaussianBlur)
+    TTK_DECLARE_PRIVATE(GaussianBlur)
 
 };
 

@@ -1,5 +1,5 @@
-#ifndef MUSICLOCKEDFILE_H
-#define MUSICLOCKEDFILE_H
+#ifndef TTKLOCKEDFILE_H
+#define TTKLOCKEDFILE_H
 
 #include <QFile>
 #ifdef Q_OS_WIN
@@ -7,11 +7,11 @@
 #endif
 #include "musicrunglobaldefine.h"
 
-namespace MusicLockedPrivate {
+namespace TTKLockedPrivate {
   /*! @brief The class of the music local file.
    * @author Greedysky <greedysky@163.com>
    */
-    class MUSIC_RUN_EXPORT MusicLockedFile : public QFile
+    class MUSIC_RUN_EXPORT TTKLockedFile : public QFile
     {
     public:
         enum LockMode
@@ -21,15 +21,15 @@ namespace MusicLockedPrivate {
             WriteLock
         };
 
-        MusicLockedFile();
+        TTKLockedFile();
        /*!
          * Object contsructor.
         */
-        explicit MusicLockedFile(const QString &name);
+        explicit TTKLockedFile(const QString &name);
         /*!
          * Object contsructor.
         */
-        ~MusicLockedFile();
+        ~TTKLockedFile();
 
         bool open(OpenMode mode);
         /*!
@@ -67,4 +67,4 @@ namespace MusicLockedPrivate {
         LockMode m_lock_mode;
     };
 }
-#endif //MUSICLOCKEDFILE_H
+#endif //TTKLOCKEDFILE_H

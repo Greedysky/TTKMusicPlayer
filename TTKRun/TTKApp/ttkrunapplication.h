@@ -1,5 +1,5 @@
-#ifndef MUSICRUNAPPLICATION_H
-#define MUSICRUNAPPLICATION_H
+#ifndef TTKRUNAPPLICATION_H
+#define TTKRUNAPPLICATION_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,45 +20,45 @@
  ================================================= */
 
 #include <QApplication>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicrunglobaldefine.h"
 
-class MusicRunApplicationPrivate;
+class TTKRunApplicationPrivate;
 
 /*! @brief The class of the music run application.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT MusicRunApplication : public QApplication
+class MUSIC_RUN_EXPORT TTKRunApplication : public QApplication
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(int &argc, char **argv, bool GUIenabled = true);
+    TTKRunApplication(int &argc, char **argv, bool GUIenabled = true);
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(const QString &id, int &argc, char **argv);
+    TTKRunApplication(const QString &id, int &argc, char **argv);
 
 #if QT_VERSION < 0x050000
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(int &argc, char **argv, Type type);
+    TTKRunApplication(int &argc, char **argv, Type type);
 #  if defined(Q_WS_X11)
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+    TTKRunApplication(Display *dpy, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
+    TTKRunApplication(Display *dpy, int &argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE cmap= 0);
     /*!
      * Object contsructor.
     */
-    MusicRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
+    TTKRunApplication(Display *dpy, const QString &appId, int argc, char **argv, Qt::HANDLE visual = 0, Qt::HANDLE colormap = 0);
 #  endif
 #endif
 
@@ -106,8 +106,8 @@ private:
     */
     void sysInit(const QString &appId = QString());
 
-    MUSIC_DECLARE_PRIVATE(MusicRunApplication)
+    TTK_DECLARE_PRIVATE(TTKRunApplication)
 
 };
 
-#endif // MUSICRUNAPPLICATION_H
+#endif // TTKRUNAPPLICATION_H

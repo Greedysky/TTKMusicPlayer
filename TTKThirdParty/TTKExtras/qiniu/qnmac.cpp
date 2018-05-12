@@ -1,7 +1,7 @@
 #include "qnmac.h"
 #include "qnutils.h"
 
-class QNMacPrivate : public MusicPrivate<QNMac>
+class QNMacPrivate : public TTKPrivate<QNMac>
 {
 public:
     QNMacPrivate();
@@ -22,8 +22,8 @@ QNMacPrivate::QNMacPrivate()
 // Use access key and secret key from https://portal.qiniu.com
 QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(QNMac);
+    TTK_INIT_PRIVATE;
+    TTK_D(QNMac);
     d->m_accessKey = accesKey;
     d->m_secretKey = secretKey;
 }
@@ -36,7 +36,7 @@ QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)
 // 3. Join access key and the result string from step2 with ':'
 QString QNMac::sign(const QByteArray &data) const
 {
-    MUSIC_D(QNMac);
+    TTK_D(QNMac);
     QByteArray signedData = QNUtils::hmacSha1(data, d->m_secretKey);
     QString retStr = d->m_accessKey;
     retStr.append(":");
@@ -54,7 +54,7 @@ QString QNMac::sign(const QByteArray &data) const
 // step1 with ':'
 QString QNMac::signWithData(const QByteArray &data) const
 {
-    MUSIC_D(QNMac);
+    TTK_D(QNMac);
     QString encodedData = QNUtils::urlSafeBase64Encode(data);
     QByteArray signedData = QNUtils::hmacSha1(encodedData.toLocal8Bit(), d->m_secretKey);
     QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
@@ -66,7 +66,7 @@ QString QNMac::signWithData(const QByteArray &data) const
 
 QString QNMac::signWithData2(const QByteArray &data) const
 {
-    MUSIC_D(QNMac);
+    TTK_D(QNMac);
     QByteArray signedData = QNUtils::hmacSha1(data, d->m_secretKey);
     QString encodedSignedData = QNUtils::urlSafeBase64Encode(signedData);
     QString retStr = d->m_accessKey;
@@ -83,7 +83,7 @@ QString QNMac::signWithData2(const QByteArray &data) const
 // 4. Join access key and the result string from step3 with ':'
 QString QNMac::signRequest(const QUrl &requestUrl, const QByteArray &bodyData) const
 {
-    MUSIC_D(QNMac);
+    TTK_D(QNMac);
     QString path = requestUrl.path();
     QString requestUrlstr = requestUrl.toString();
     QString query = QNUtils::urlQuery(requestUrlstr);

@@ -23,4 +23,4 @@ INCLUDEPATH += \
 HEADERS  += \
     $$PWD/musicextrasglobaldefine.h \
     $$PWD/../musicglobal.h \
-    $$PWD/../musicprivate.h
+    $$PWD/../ttkprivate.h

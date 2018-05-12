@@ -5,7 +5,7 @@
 
 #define PI		3.14159265358979323846
 
-class GaussianBlurPrivate : public MusicPrivate<GaussianBlur>
+class GaussianBlurPrivate : public TTKPrivate<GaussianBlur>
 {
 public:
     void boxBlurH(int* srcPix, int* destPix, int w, int h, int radius);
@@ -211,7 +211,7 @@ void GaussianBlurPrivate::boxesForGauss(float sigma, int* size, int n)
 
 GaussianBlur::GaussianBlur()
 {
-    MUSIC_INIT_PRIVATE;
+    TTK_INIT_PRIVATE;
 }
 
 void GaussianBlur::gaussBlur(int* pix, int w, int h, int radius)
@@ -322,7 +322,7 @@ void GaussianBlur::gaussBlur(int* pix, int w, int h, int radius)
 
 void GaussianBlur::gaussBlurPlus(int* pix, int w, int h, int radius)
 {
-    MUSIC_D(GaussianBlur);
+    TTK_D(GaussianBlur);
     float sigma = 1.0 * radius / 2.57;
 
     int boxSize = 3;

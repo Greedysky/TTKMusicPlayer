@@ -90,7 +90,7 @@ public:
     bool containsChinese(const QString &str);
 
 private:
-    MUSIC_DECLARE_PRIVATE(ChineseHelper)
+    TTK_DECLARE_PRIVATE(ChineseHelper)
 
 };
 

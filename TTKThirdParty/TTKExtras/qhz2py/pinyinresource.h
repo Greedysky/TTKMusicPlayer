@@ -21,7 +21,7 @@
 
 #include <QMap>
 #include <QStringList>
-#include "musicprivate.h"
+#include "ttkprivate.h"
 #include "musicextrasglobaldefine.h"
 
 /*! @brief The class of the pinyin resource.

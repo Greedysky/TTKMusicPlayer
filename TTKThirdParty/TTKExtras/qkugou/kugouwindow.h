@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include "kugouurl.h"
-#include "musicprivate.h"
+#include "ttkprivate.h"
 
 class KugouWindowPrivate;
 
@@ -102,7 +102,7 @@ protected:
     void changeClickedButtonStyle(int index);
 
 private:
-    MUSIC_DECLARE_PRIVATE(KugouWindow)
+    TTK_DECLARE_PRIVATE(KugouWindow)
 
 };
 

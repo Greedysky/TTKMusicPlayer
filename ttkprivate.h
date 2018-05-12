@@ -1,5 +1,5 @@
-#ifndef MUSICPRIVATE_H
-#define MUSICPRIVATE_H
+#ifndef TTKPRIVATE_H
+#define TTKPRIVATE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,34 +20,34 @@
  ================================================= */
 
 
-#define MUSIC_DECLARE_PRIVATE(Class) \
+#define TTK_DECLARE_PRIVATE(Class) \
     friend class Class##Private; \
-    MusicPrivateInterface<Class, Class##Private> music_d;
+    TTKPrivateInterface<Class, Class##Private> ttk_d;
 
-#define MUSIC_DECLARE_PUBLIC(Class) \
+#define TTK_DECLARE_PUBLIC(Class) \
     friend class Class;
 
-#define MUSIC_INIT_PRIVATE \
-    music_d.setPublic(this);
+#define TTK_INIT_PRIVATE \
+    ttk_d.setPublic(this);
 
-#define MUSIC_D(Class) Class##Private *const d = music_d()
-#define MUSIC_Q(Class) Class *const q = music_q()
+#define TTK_D(Class) Class##Private *const d = ttk_d()
+#define TTK_Q(Class) Class *const q = ttk_q()
 
 template <typename PUB>
-/*! @brief The class of the music private base.
+/*! @brief The class of the ttk private base.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicPrivate
+class TTKPrivate
 {
 public:
-    virtual ~MusicPrivate() { }
-    inline void setPublic(PUB* pub) { music_q_ptr = pub; }
+    virtual ~TTKPrivate() { }
+    inline void setPublic(PUB* pub) { ttk_q_ptr = pub; }
 
 protected:
-    inline PUB *music_q() const { return music_q_ptr; }
+    inline PUB *ttk_q() const { return ttk_q_ptr; }
 
 private:
-    PUB* music_q_ptr;
+    PUB* ttk_q_ptr;
 
 };
 
@@ -55,22 +55,22 @@ template <typename PUB, typename PVT>
 /*! @brief The class of the ttk private interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MusicPrivateInterface
+class TTKPrivateInterface
 {
-    friend class MusicPrivate<PUB>;
+    friend class TTKPrivate<PUB>;
 public:
-    MusicPrivateInterface() { pvt = new PVT; }
-    ~MusicPrivateInterface() { delete pvt; }
+    TTKPrivateInterface() { pvt = new PVT; }
+    ~TTKPrivateInterface() { delete pvt; }
 
     inline void setPublic(PUB* pub) { pvt->setPublic(pub); }
     inline PVT *operator()() const { return static_cast<PVT*>(pvt); }
 
 private:
-    MusicPrivateInterface(const MusicPrivateInterface&) { }
-    MusicPrivateInterface& operator=(const MusicPrivateInterface&) { }
-    MusicPrivate<PUB>* pvt;
+    TTKPrivateInterface(const TTKPrivateInterface&) { }
+    TTKPrivateInterface& operator=(const TTKPrivateInterface&) { }
+    TTKPrivate<PUB>* pvt;
 
 };
 
 
-#endif // MUSICPRIVATE_H
+#endif // TTKPRIVATE_H

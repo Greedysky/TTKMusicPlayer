@@ -4,7 +4,7 @@
 #  pragma GCC diagnostic ignored "-Wmultichar"
 #endif
 
-class ChineseHelperPrivate : public MusicPrivate<ChineseHelper>
+class ChineseHelperPrivate : public TTKPrivate<ChineseHelper>
 {
 public:
     ChineseHelperPrivate();
@@ -23,19 +23,19 @@ ChineseHelperPrivate::ChineseHelperPrivate()
 ///
 ChineseHelper::ChineseHelper()
 {
-    MUSIC_INIT_PRIVATE;
+    TTK_INIT_PRIVATE;
 }
 
 QChar ChineseHelper::convertToSimplifiedChinese(const QChar &c)
 {
-    MUSIC_D(ChineseHelper);
+    TTK_D(ChineseHelper);
     QString simplifiedChinese = d->m_data.value(c);
     return simplifiedChinese.isEmpty() ? c : simplifiedChinese.at(0);
 }
 
 QChar ChineseHelper::convertToTraditionalChinese(const QChar &c)
 {
-    MUSIC_D(ChineseHelper);
+    TTK_D(ChineseHelper);
     QString simpTraditionaChinese = d->m_data.key(c);
     return simpTraditionaChinese.isEmpty() ? c : simpTraditionaChinese.at(0);
 }
@@ -62,7 +62,7 @@ QString ChineseHelper::convertToTraditionalChinese(const QString &str)
 
 bool ChineseHelper::isTraditionalChinese(const QChar &c)
 {
-    MUSIC_D(ChineseHelper);
+    TTK_D(ChineseHelper);
     return d->m_data.keys().indexOf(c) != -1;
 }
 

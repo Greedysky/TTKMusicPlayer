@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALPEER_H
-#define MUSICLOCALPEER_H
+#ifndef TTKRUNOBJECT_H
+#define TTKRUNOBJECT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,54 +19,42 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QObject>
-#include "musicprivate.h"
+#include <QDebug>
+#include "ttkprivate.h"
 #include "musicrunglobaldefine.h"
 
-class MusicLocalPeerPrivate;
+class TTKRunObjectPrivate;
 
-/*! @brief The class of the music local peer.
+/*! @brief The class of the music run object.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_RUN_EXPORT MusicLocalPeer : public QObject
+class MUSIC_RUN_EXPORT TTKRunObject : public QObject
 {
     Q_OBJECT
 public:
     /*!
      * Object contsructor.
-    */
-    explicit MusicLocalPeer(QObject *parent = 0, const QString &appId = QString());
+     */
+    explicit TTKRunObject(QObject *parent = 0);
 
     /*!
-     * Current client is running or not.
-    */
-    bool isClient();
-
+     * Check current setting file's validation.
+     */
+    void checkValid();
     /*!
-     * Send current message when the client in.
-    */
-    bool sendMessage(const QString &message, int timeout);
+     * To run main window.
+     */
+    void run(int argc, char **argv);
 
+private Q_SLOTS:
     /*!
-     * Get current server id.
-    */
-    QString applicationId() const;
-
-Q_SIGNALS:
-    /*!
-     * Emit when the current message received.
-    */
-    void messageReceived(const QString &message);
-
-protected Q_SLOTS:
-    /*!
-     * Current message received.
-    */
-    void receiveConnection();
+     * Run finished.
+     */
+    void finished(int code);
 
 private:
-    MUSIC_DECLARE_PRIVATE(MusicLocalPeer)
+    TTK_DECLARE_PRIVATE(TTKRunObject)
 
 };
 
-#endif // MUSICLOCALPEER_H
+#endif // TTKRUNOBJECT_H

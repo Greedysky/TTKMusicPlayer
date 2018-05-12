@@ -7,7 +7,7 @@
 
 #include <QStringList>
 
-class QNPutPolicyPrivate : public MusicPrivate<QNPutPolicy>
+class QNPutPolicyPrivate : public TTKPrivate<QNPutPolicy>
 {
 public:
     QNPutPolicyPrivate();
@@ -142,20 +142,20 @@ QByteArray QNPutPolicyPrivate::toJSON(bool compact)
 ///
 QNPutPolicy::QNPutPolicy(const QString &scope)
 {
-    MUSIC_INIT_PRIVATE;
-    MUSIC_D(QNPutPolicy);
+    TTK_INIT_PRIVATE;
+    TTK_D(QNPutPolicy);
     d->m_scope = scope;
 }
 
 QByteArray QNPutPolicy::toJSON(bool compact)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->toJSON(compact);
 }
 
 QString QNPutPolicy::makeUploadToken(const QNMac *mac)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     // check whether deadline set, otherwise default is one hour
     if(d->m_deadline == 0)
     {
@@ -177,7 +177,7 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
 
 QString QNPutPolicy::makeDownloadToken(const QNMac *mac)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     // check whether deadline set, otherwise default is one hour
     if(d->m_deadline == 0)
     {
@@ -199,204 +199,204 @@ QString QNPutPolicy::makeDownloadToken(const QNMac *mac)
 
 qint32 QNPutPolicy::getDeadline() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_deadline;
 }
 
 void QNPutPolicy::setDeadline(qint32 value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_deadline = value;
 }
 
 QString QNPutPolicy::getScope() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_scope;
 }
 
 void QNPutPolicy::setScope(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_scope = value;
 }
 
 quint16 QNPutPolicy::getInsertOnly() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_insertOnly;
 }
 
 void QNPutPolicy::setInsertOnly(quint16 value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_insertOnly = value;
 }
 
 QString QNPutPolicy::getSaveKey() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_saveKey;
 }
 
 void QNPutPolicy::setSaveKey(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_saveKey = value;
 }
 
 QString QNPutPolicy::getEndUser() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_endUser;
 }
 
 void QNPutPolicy::setEndUser(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_endUser = value;
 }
 
 qint32 QNPutPolicy::getFSizeLimit() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_fSizeLimit;
 }
 
 void QNPutPolicy::setFSizeLimit(qint32 value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_fSizeLimit = value;
 }
 
 qint16 QNPutPolicy::getDetectMime() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_detectMime;
 }
 
 void QNPutPolicy::setDetectMime(qint16 value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_detectMime = value;
 }
 
 QString QNPutPolicy::getMimeLimit() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_mimeLimit;
 }
 
 void QNPutPolicy::setMimeLimit(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_mimeLimit = value;
 }
 
 QString QNPutPolicy::getCallbackUrl() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_callbackUrl;
 }
 
 void QNPutPolicy::setCallbackUrl(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_callbackUrl = value;
 }
 
 QString QNPutPolicy::getCallbackHost() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_callbackHost;
 }
 
 void QNPutPolicy::setCallbackHost(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_callbackHost = value;
 }
 
 QString QNPutPolicy::getCallbackBody() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_callbackBody;
 }
 
 void QNPutPolicy::setCallbackBody(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_callbackBody = value;
 }
 
 qint16 QNPutPolicy::getCallbackFetchKey() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_callbackFetchKey;
 }
 
 void QNPutPolicy::setCallbackFetchKey(qint16 value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_callbackFetchKey = value;
 }
 
 QString QNPutPolicy::getReturnUrl() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_returnUrl;
 }
 
 void QNPutPolicy::setReturnUrl(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_returnUrl = value;
 }
 
 QString QNPutPolicy::getReturnBody() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_returnBody;
 }
 
 void QNPutPolicy::setReturnBody(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_returnBody = value;
 }
 
 QString QNPutPolicy::getPersistentOps() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_persistentOps;
 }
 
 void QNPutPolicy::setPersistentOps(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_persistentOps = value;
 }
 
 QString QNPutPolicy::getPersistentNotifyUrl() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_persistentNotifyUrl;
 }
 
 void QNPutPolicy::setPersistentNotifyUrl(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_persistentNotifyUrl = value;
 }
 
 QString QNPutPolicy::getPersistentPipeline() const
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     return d->m_persistentPipeline;
 }
 
 void QNPutPolicy::setPersistentPipeline(const QString &value)
 {
-    MUSIC_D(QNPutPolicy);
+    TTK_D(QNPutPolicy);
     d->m_persistentPipeline = value;
 }

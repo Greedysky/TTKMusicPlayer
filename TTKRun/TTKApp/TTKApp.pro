@@ -40,18 +40,18 @@ INCLUDEPATH += \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits
 
 SOURCES += \
-    musicrunmain.cpp \
-    musiclocalpeer.cpp \
-    musicrunapplication.cpp \
-    musicrunobject.cpp \
+    ttkrunmain.cpp \
+    ttklocalpeer.cpp \
+    ttkrunapplication.cpp \
+    ttkrunobject.cpp \
     ../TTKInit/musicinitobject.cpp
 
 
 HEADERS += \
     ../musicrunglobaldefine.h \
-    musicrunobject.h \
-    musiclocalpeer.h \
-    musicrunapplication.h \
+    ttkrunobject.h \
+    ttklocalpeer.h \
+    ttkrunapplication.h \
     ../TTKInit/musicinitobject.h
 
 
