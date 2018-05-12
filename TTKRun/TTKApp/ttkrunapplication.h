@@ -25,7 +25,7 @@
 
 class TTKRunApplicationPrivate;
 
-/*! @brief The class of the music run application.
+/*! @brief The class of the ttk run application.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_RUN_EXPORT TTKRunApplication : public QApplication

@@ -25,7 +25,7 @@
 
 class TTKRunObjectPrivate;
 
-/*! @brief The class of the music run object.
+/*! @brief The class of the ttk run object.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_RUN_EXPORT TTKRunObject : public QObject

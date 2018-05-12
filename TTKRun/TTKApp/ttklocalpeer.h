@@ -25,7 +25,7 @@
 
 class TTKLocalPeerPrivate;
 
-/*! @brief The class of the music local peer.
+/*! @brief The class of the ttk local peer.
  * @author Greedysky <greedysky@163.com>
  */
 class MUSIC_RUN_EXPORT TTKLocalPeer : public QObject
