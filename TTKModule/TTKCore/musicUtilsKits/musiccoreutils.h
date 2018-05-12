@@ -74,13 +74,13 @@ namespace MusicUtils
         MUSIC_UTILS_EXPORT QString getLanguageName(int index);
 
         /*!
-         * Music version check.
+         * App version check.
          */
-        MUSIC_UTILS_EXPORT bool musicVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
+        MUSIC_UTILS_EXPORT bool appVersionCheck(const QStringList &ol, const QStringList &dl, int depth);
         /*!
-         * Music version check.
+         * App version check.
          */
-        MUSIC_UTILS_EXPORT bool musicVersionCheck(const QString &o, const QString &d);
+        MUSIC_UTILS_EXPORT bool appVersionCheck(const QString &o, const QString &d);
 
     }
 }
