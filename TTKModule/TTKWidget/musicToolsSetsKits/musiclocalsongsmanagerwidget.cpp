@@ -141,7 +141,7 @@ void MusicLocalSongsManagerWidget::findExtraDevicePath(const QString &dir)
 {
     MusicUtils::Widget::setComboBoxText(m_ui->filterComboBox, dir);
     m_thread->setFindFilePath(dir);
-    filterScanChanged(DEFAULT_INDEX_LEVEL0);
+    filterScanChanged(DEFAULT_LEVEL0);
 }
 
 void MusicLocalSongsManagerWidget::selectedAllItems(bool check)

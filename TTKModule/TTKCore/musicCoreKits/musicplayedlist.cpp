@@ -190,7 +190,7 @@ int MusicPlayedlist::removeMedia(int toolIndex, const QString &content)
 
 void MusicPlayedlist::setCurrentIndex(int index)
 {
-    if(index == DEFAULT_INDEX_LEVEL1)
+    if(index == DEFAULT_LEVEL2)
     {
         switch(m_playbackMode)
         {

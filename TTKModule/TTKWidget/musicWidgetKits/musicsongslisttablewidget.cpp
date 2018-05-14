@@ -562,7 +562,7 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
 
     QString songName = getCurrentSongName();
     QStringList names(MusicUtils::String::splitString(songName));
-    switch(action->data().toInt() - DEFAULT_INDEX_LEVEL1)
+    switch(action->data().toInt() - DEFAULT_LEVEL2)
     {
         case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
         SEARCH_ITEM_DEFINED(1, names);
@@ -853,8 +853,8 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
     QStringList names(MusicUtils::String::splitString(songName));
     for(int i=1; i<=names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_INDEX_LEVEL1);
+        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_LEVEL2);
     }
-    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_INDEX_LEVEL1);
+    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_LEVEL2);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }

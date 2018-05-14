@@ -234,7 +234,7 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
     {
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
 
-        m_pageTotal = MU_MAX;
+        m_pageTotal = DEFAULT_LEVEL4;
         QString html(bytes);
         QRegExp regx;
         regx.setMinimal(true);

@@ -1,13 +1,12 @@
 #include "musicdownloadquerykgartistlistthread.h"
-#include "musicnumberdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 
 MusicDownLoadQueryKGArtistListThread::MusicDownLoadQueryKGArtistListThread(QObject *parent)
     : MusicDownLoadQueryArtistListThread(parent)
 {
-    m_pageSize = MU_MAX;
-    m_pageTotal = MU_MAX;
+    m_pageSize = DEFAULT_LEVEL4;
+    m_pageTotal = DEFAULT_LEVEL4;
     m_queryServer = "Kugou";
 }
 

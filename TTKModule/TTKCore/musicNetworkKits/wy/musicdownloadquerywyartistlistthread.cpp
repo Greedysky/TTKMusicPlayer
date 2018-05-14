@@ -1,11 +1,10 @@
 #include "musicdownloadquerywyartistlistthread.h"
-#include "musicnumberdefine.h"
 
 MusicDownLoadQueryWYArtistListThread::MusicDownLoadQueryWYArtistListThread(QObject *parent)
     : MusicDownLoadQueryArtistListThread(parent)
 {
-    m_pageSize = MU_MAX;
-    m_pageTotal = MU_MAX;
+    m_pageSize = DEFAULT_LEVEL4;
+    m_pageTotal = DEFAULT_LEVEL4;
     m_queryServer = "WangYi";
 }
 

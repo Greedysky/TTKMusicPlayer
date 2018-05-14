@@ -1,5 +1,4 @@
 #include "musicdownloadqueryxmartistlistthread.h"
-#include "musicnumberdefine.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -9,7 +8,7 @@ MusicDownLoadQueryXMArtistListThread::MusicDownLoadQueryXMArtistListThread(QObje
     : MusicDownLoadQueryArtistListThread(parent)
 {
     m_pageSize = 100;
-    m_pageTotal = MU_MAX;
+    m_pageTotal = DEFAULT_LEVEL4;
     m_queryServer = "XiaMi";
 }
 

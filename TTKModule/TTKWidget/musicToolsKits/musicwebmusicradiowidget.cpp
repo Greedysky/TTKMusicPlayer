@@ -95,7 +95,7 @@ void MusicWebMusicRadioWidget::listCellClicked(int row, int column)
 
     if(column == 3)
     {
-        listCellDoubleClicked(row, DEFAULT_INDEX_LEVEL0);
+        listCellDoubleClicked(row, DEFAULT_LEVEL0);
     }
 }
 
@@ -166,7 +166,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
     if(m_outerIndex != -1)
     {
         selectRow(m_outerIndex);
-        listCellDoubleClicked(m_outerIndex, DEFAULT_INDEX_LEVEL0);
+        listCellDoubleClicked(m_outerIndex, DEFAULT_LEVEL0);
     }
 }
 
@@ -186,7 +186,7 @@ void MusicWebMusicRadioWidget::musicPlayClicked()
     int row = currentRow();
     if(row >= 0)
     {
-        listCellDoubleClicked(row, DEFAULT_INDEX_LEVEL0);
+        listCellDoubleClicked(row, DEFAULT_LEVEL0);
     }
 }
 

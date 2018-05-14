@@ -265,7 +265,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVCount()
 
     M_LOGGER_INFO(QString("%1 readFromMusicMVCount").arg(getClassName()));
     QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_AR_MV_PG_URL, false).arg(m_searchText);
-    m_pageTotal = MU_MAX;
+    m_pageTotal = DEFAULT_LEVEL4;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

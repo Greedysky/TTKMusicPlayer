@@ -2,7 +2,6 @@
 #include "musicdownloadqueryyytthread.h"
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
-#include "musicnumberutils.h"
 #include "musictime.h"
 #///QJson import
 #include "qjson/parser.h"
@@ -307,13 +306,13 @@ void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(int id)
         return;
     }
 
-    m_pageTotal = MU_MAX;
+    m_pageTotal = DEFAULT_LEVEL4;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(MU_MAX));
+               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL4));
     if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
     setSslConfiguration(&request);
 

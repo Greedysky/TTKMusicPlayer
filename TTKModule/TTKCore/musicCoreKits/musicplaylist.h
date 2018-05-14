@@ -115,7 +115,7 @@ public Q_SLOTS:
     /*!
      * Set current play index.
      */
-    void setCurrentIndex(int index = DEFAULT_INDEX_LEVEL1);
+    void setCurrentIndex(int index = DEFAULT_LEVEL2);
     /*!
      * Append music media.
      */

@@ -179,12 +179,11 @@
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       690
 ///////////////////////////////////////
-#define DEFAULT_INDEX_LEVEL0    -1
-#define DEFAULT_INDEX_LEVEL1    -999
-#define DEFAULT_INDEX_LEVEL2    -888
-#define DEFAULT_INDEX_LEVEL3    -777
-#define DEFAULT_INDEX_LEVEL4    -666
-#define DEFAULT_INDEX_LEVEL5    -555
+#define DEFAULT_LEVEL0          -1
+#define DEFAULT_LEVEL1          0
+#define DEFAULT_LEVEL2          -999
+#define DEFAULT_LEVEL3           999
+#define DEFAULT_LEVEL4          9999
 ///////////////////////////////////////
 #define STRING_SPLITER          "*|||*"
 ///////////////////////////////////////
