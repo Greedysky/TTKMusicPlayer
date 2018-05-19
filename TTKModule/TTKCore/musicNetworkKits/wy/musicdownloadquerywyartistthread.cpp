@@ -103,6 +103,10 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                     }
 
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = value["cd"].toString();
+                    musicInfo.m_trackNumber = value["no"].toString();
+
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

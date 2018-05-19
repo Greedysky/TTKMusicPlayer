@@ -239,7 +239,7 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     if(!attrs.isEmpty())
     {
         MusicObject::MusicSongAttribute attr = attrs.first();
-        QString url = attr.m_multiParts ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        QString url = attr.m_multiPart ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = url;

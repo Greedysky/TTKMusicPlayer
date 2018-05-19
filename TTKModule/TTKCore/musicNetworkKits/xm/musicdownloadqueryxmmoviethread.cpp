@@ -428,7 +428,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
 
         if(urls.count() > 1)
         {
-            attr->m_multiParts = true;
+            attr->m_multiPart = true;
         }
         attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
         attr->m_url = urls.join(STRING_SPLITER);

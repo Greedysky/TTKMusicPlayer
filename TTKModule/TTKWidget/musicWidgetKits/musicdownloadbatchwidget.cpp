@@ -56,8 +56,7 @@ void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInforma
     m_singer->setToolTip(info.m_singerName);
     m_singer->setText(MusicUtils::Widget::elidedText(m_singer->font(), m_singer->toolTip(), Qt::ElideRight, m_singer->width() - 10));
 
-    m_smallPicUrl = info.m_smallPicUrl;
-    m_album = info.m_albumName;
+    m_songInfo = info;
 
     MusicObject::MusicSongAttributes attrs(info.m_songAttrs);
     qSort(attrs);
@@ -214,7 +213,14 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                            MusicDownLoadThreadAbstract::DownloadMusic, this);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
-    downSong->setTags(m_smallPicUrl, m_songName->toolTip(), m_singer->toolTip(), m_album);
+    MusicSongTag tag;
+    tag.setComment(m_songInfo.m_smallPicUrl);
+    tag.setTitle(m_songInfo.m_songName);
+    tag.setArtist(m_songInfo.m_singerName);
+    tag.setAlbum(m_songInfo.m_albumName);
+    tag.setTrackNum(m_songInfo.m_trackNumber);
+    tag.setYear(m_songInfo.m_year);
+    downSong->setSongTag(tag);
     downSong->startToDownload();
 }
 
@@ -224,7 +230,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     QString downloadPrefix = MOVIE_DIR_FULL;
     ////////////////////////////////////////////////
-    QStringList urls = musicAttr.m_multiParts ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
+    QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
     for(int ul=0; ul<urls.count(); ++ul)
     {
         ////////////////////////////////////////////////

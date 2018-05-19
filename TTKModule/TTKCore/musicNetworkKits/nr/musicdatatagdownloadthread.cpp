@@ -1,7 +1,6 @@
 #include "musicdatatagdownloadthread.h"
 #include "musicdownloadsourcethread.h"
 #include "musicsemaphoreloop.h"
-#include "musicsongtag.h"
 #include "musicsettingmanager.h"
 
 #include <QImage>
@@ -18,12 +17,9 @@ QString MusicDataTagDownloadThread::getClassName()
     return staticMetaObject.className();
 }
 
-void MusicDataTagDownloadThread::setTags(const QString &smlUrl, const QString &title, const QString &artist, const QString &album)
+void MusicDataTagDownloadThread::setSongTag(const MusicSongTag &tag)
 {
-    m_smallPicUrl = smlUrl;
-    m_title = title;
-    m_artist = artist;
-    m_album = album;
+    m_musicTag = tag;
 }
 
 void MusicDataTagDownloadThread::startToDownload()
@@ -65,7 +61,7 @@ void MusicDataTagDownloadThread::downLoadFinished()
         MusicSemaphoreLoop loop;
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-        download->startToDownload(m_smallPicUrl);
+        download->startToDownload(m_musicTag.getComment());
         connect(this, SIGNAL(finished()), &loop, SLOT(quit()));
         loop.exec();
     }
@@ -81,9 +77,11 @@ void MusicDataTagDownloadThread::downLoadFinished(const QByteArray &data)
     {
         if(M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toBool())
         {
-            tag.setTitle(m_title);
-            tag.setArtist(m_artist);
-            tag.setAlbum(m_album);
+            tag.setTitle(m_musicTag.getTitle());
+            tag.setArtist(m_musicTag.getArtist());
+            tag.setAlbum(m_musicTag.getAlbum());
+            tag.setTrackNum(m_musicTag.getTrackNum());
+            tag.setYear(m_musicTag.getYear());
         }
         if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverWChoiced).toBool())
         {

@@ -100,6 +100,10 @@ void MusicDownLoadQueryQQRecommendThread::downLoadFinished()
                                 .arg(musicInfo.m_albumId.right(2).left(1))
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
 
+                    musicInfo.m_year = value["time_public"].toString();
+                    musicInfo.m_discNumber = value["index_cd"].toString();
+                    musicInfo.m_trackNumber = value["index_album"].toString();
+
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

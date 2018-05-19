@@ -200,7 +200,7 @@ namespace MusicObject
     typedef struct MusicSongAttribute
     {
         int m_bitrate;
-        bool m_multiParts;
+        bool m_multiPart;
         QString m_format;
         QString m_url;
         QString m_size;
@@ -209,7 +209,7 @@ namespace MusicObject
         MusicSongAttribute()
         {
             m_bitrate = -1;
-            m_multiParts = false;
+            m_multiPart = false;
         }
 
         bool operator< (const MusicSongAttribute &other) const
@@ -241,6 +241,9 @@ namespace MusicObject
         QString m_albumName;
         QString m_songName;
         QString m_timeLength;
+        QString m_year;
+        QString m_discNumber;
+        QString m_trackNumber;
     }MusicSongInformation;
     MUSIC_DECLARE_LISTS(MusicSongInformation)
     ///////////////////////////////////////

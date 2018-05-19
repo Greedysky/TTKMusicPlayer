@@ -190,6 +190,10 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     musicInfo.m_artistId = value["ARTISTID"].toString();
                     musicInfo.m_albumId = value["ALBUMID"].toString();
 
+                    musicInfo.m_year = value["RELEASEDATE"].toString();
+                    musicInfo.m_discNumber = "1";
+                    musicInfo.m_trackNumber = "0";
+
                     if(!m_querySimplify)
                     {
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
@@ -248,6 +252,10 @@ void MusicDownLoadQueryKWThread::singleDownLoadFinished()
         if(xml.fromByteArray(data))
         {
             xml.readMusicInfoConfig(&musicInfo);
+
+            musicInfo.m_year = QString();
+            musicInfo.m_discNumber = "1";
+            musicInfo.m_trackNumber = "0";
 
             if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
             readFromMusicSongPic(&musicInfo);

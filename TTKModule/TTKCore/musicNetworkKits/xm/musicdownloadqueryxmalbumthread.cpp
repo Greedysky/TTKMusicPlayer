@@ -119,6 +119,10 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
                     musicInfo.m_smallPicUrl = value["albumLogo"].toString();
 
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = "0";
+                    musicInfo.m_trackNumber = value["track"].toString();
+
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;

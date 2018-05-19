@@ -99,7 +99,7 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
     {
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(m_reply->readAll(), &ok);
+        QVariant data = parser.parse(m_reply->readAll(), &ok); 
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -138,6 +138,10 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistMap["name"].toString());
                     }
+
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = value["cd"].toString();
+                    musicInfo.m_trackNumber = value["no"].toString();
 
                     if(!m_querySimplify)
                     {
@@ -221,6 +225,10 @@ void MusicDownLoadQueryWYThread::singleDownLoadFinished()
                         musicInfo.m_artistId = QString::number(artistMap["id"].toULongLong());
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artistMap["name"].toString());
                     }
+
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = value["cd"].toString();
+                    musicInfo.m_trackNumber = value["no"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, true);

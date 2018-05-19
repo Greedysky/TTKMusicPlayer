@@ -76,7 +76,7 @@ protected:
 
     QObject *m_supperClass;
     QComboBox *m_qulity;
-    QString m_smallPicUrl, m_album;
+    MusicObject::MusicSongInformation m_songInfo;
     QLabel *m_songName, *m_singer, *m_information;
 
 };

@@ -86,7 +86,7 @@ QString MusicSongTag::getAlbum() const
 
 QString MusicSongTag::getComment() const
 {
-    return findLegalDataString(TagReadAndWrite::TAG_COMMENT);
+    return m_parameters[TagReadAndWrite::TAG_COMMENT].toString();
 }
 
 QString MusicSongTag::getYear() const
@@ -355,6 +355,7 @@ bool MusicSongTag::saveOtherTaglib()
                 tagModel->setValue(Qmmp::TITLE, getTitle());
                 tagModel->setValue(Qmmp::YEAR, getYear());
                 tagModel->setValue(Qmmp::GENRE, getGenre());
+                tagModel->setValue(Qmmp::TRACK, getTrackNum());
                 tagModel->save();
             }
 

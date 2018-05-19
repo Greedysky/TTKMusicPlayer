@@ -136,6 +136,10 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                     musicInfo.m_songId = value["songmid"].toString();
                     musicInfo.m_albumId = value["albummid"].toString();
 
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = value["cdIdx"].toString();
+                    musicInfo.m_trackNumber = value["belongCD"].toString();
+
                     if(!m_querySimplify)
                     {
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(QQ_SONG_LRC_URL, false).arg(musicInfo.m_songId);
@@ -227,6 +231,10 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                     musicInfo.m_smallPicUrl = MusicUtils::Algorithm::mdII(QQ_SONG_PIC_URL, false)
                                 .arg(musicInfo.m_albumId.right(2).left(1))
                                 .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
+
+                    musicInfo.m_year = value["time_public"].toString();
+                    musicInfo.m_discNumber = value["cdIdx"].toString();
+                    musicInfo.m_trackNumber = value["belongCD"].toString();
 
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());

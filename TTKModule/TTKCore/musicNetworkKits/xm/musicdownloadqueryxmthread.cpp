@@ -129,6 +129,11 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                     musicInfo.m_songId = value["songId"].toString();
                     musicInfo.m_artistId = value["artistId"].toString();
                     musicInfo.m_albumId = value["albumId"].toString();
+
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = "0";
+                    musicInfo.m_trackNumber = value["track"].toString();
+
                     if(!m_querySimplify)
                     {
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
@@ -200,6 +205,10 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
 
                 musicInfo.m_smallPicUrl = value["albumLogo"].toString();
                 musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
+
+                musicInfo.m_year = QString();
+                musicInfo.m_discNumber = "0";
+                musicInfo.m_trackNumber = value["track"].toString();
 
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongLrc(&musicInfo);

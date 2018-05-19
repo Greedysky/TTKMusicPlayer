@@ -518,7 +518,14 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
                                                                                    MusicDownLoadThreadAbstract::DownloadMusic, this);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
-            downSong->setTags(musicSongInfo.m_smallPicUrl, musicSongInfo.m_songName, musicSongInfo.m_singerName, musicSongInfo.m_albumName);
+            MusicSongTag tag;
+            tag.setComment(musicSongInfo.m_smallPicUrl);
+            tag.setTitle(musicSongInfo.m_songName);
+            tag.setArtist(musicSongInfo.m_singerName);
+            tag.setAlbum(musicSongInfo.m_albumName);
+            tag.setTrackNum(musicSongInfo.m_trackNumber);
+            tag.setYear(musicSongInfo.m_year);
+            downSong->setSongTag(tag);
             downSong->startToDownload();
             break;
         }
@@ -550,7 +557,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             QString downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
             ////////////////////////////////////////////////
-            QStringList urls = musicAttr.m_multiParts ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
+            QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
             m_downloadTotal = urls.count();
             for(int ul=0; ul<m_downloadTotal; ++ul)
             {

@@ -126,6 +126,10 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     musicInfo.m_albumId = value["album_id"].toString();
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["album_name"].toString());
 
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = "1";
+                    musicInfo.m_trackNumber = "0";
+
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongLrcAndPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
@@ -203,6 +207,10 @@ void MusicDownLoadQueryKGThread::singleDownLoadFinished()
                     musicInfo.m_albumId = albumMap["album_audio_id"].toString();
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumMap["album_name"].toString());
                 }
+
+                musicInfo.m_year = QString();
+                musicInfo.m_discNumber = "1";
+                musicInfo.m_trackNumber = "0";
 
                 if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                 readFromMusicSongAttribute(&musicInfo, value["extra"].toMap(), m_searchQuality, true);

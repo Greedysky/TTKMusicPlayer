@@ -119,6 +119,10 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                     musicInfo.m_albumId = info.m_nickName;
                     musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(albumName);
 
+                    musicInfo.m_year = QString();
+                    musicInfo.m_discNumber = "1";
+                    musicInfo.m_trackNumber = "0";
+
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
                     readFromMusicSongPic(&musicInfo);
                     if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
