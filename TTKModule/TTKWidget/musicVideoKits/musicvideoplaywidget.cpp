@@ -358,7 +358,8 @@ void MusicVideoPlayWidget::leaveTimeout()
     QWidget *w(m_videoView->controlBarWidget());
     if(w->y() != height())
     {
-        start(0, -m_topWidget->height(), height() - w->height() - m_topWidget->height(), height());
+        int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
+        start(0, topHeight, height() - w->height() - m_topWidget->height(), height());
     }
 }
 
@@ -379,7 +380,8 @@ void MusicVideoPlayWidget::enterEvent(QEvent *event)
     QWidget *w(m_videoView->controlBarWidget());
     if(w->y() >= height())
     {
-        start(-m_topWidget->height(), 0, height(), height() - w->height() - m_topWidget->height());
+        int topHeight = (m_stackedWidget->currentIndex() == 1) ? 0 : -m_topWidget->height();
+        start(topHeight, 0, height(), height() - w->height() - m_topWidget->height());
     }
 }
 

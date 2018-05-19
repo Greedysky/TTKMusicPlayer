@@ -52,8 +52,8 @@ public Q_SLOTS:
     virtual void downLoadFinished() override;
 
 protected:
-    QString m_artName, m_savePath;
     int m_index, m_counter;
+    QString m_artName, m_savePath;
 
 };
 
