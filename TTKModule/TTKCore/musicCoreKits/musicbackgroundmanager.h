@@ -106,14 +106,15 @@ public:
      * Remove observer.
      */
     void removeObserver(QObject *object);
+
     /*!
      * Set artist background picture by path.
      */
-    void setMBackground(const QString &path);
+    void setBackgroundUrl(const QString &path);
     /*!
      * Get artist background picture path.
      */
-    QString getMBackground() const;
+    QString getBackgroundUrl() const;
 
     /*!
      * Get artist background picture path.

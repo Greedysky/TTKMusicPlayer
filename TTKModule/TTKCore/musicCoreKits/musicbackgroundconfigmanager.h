@@ -45,6 +45,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
 }MusicSkinConfigItem;
 MUSIC_DECLARE_LISTS(MusicSkinConfigItem)
 
+
 /*! @brief The class of the skin backgroud image item.
  * @author Greedysky <greedysky@163.com>
  */

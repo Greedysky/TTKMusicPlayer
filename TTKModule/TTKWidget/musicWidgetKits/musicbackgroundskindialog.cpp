@@ -97,11 +97,11 @@ QString MusicBackgroundSkinDialog::getClassName()
     return staticMetaObject.className();
 }
 
-QPixmap MusicBackgroundSkinDialog::setMBackground(QString &name)
+QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {
     QString path = USER_THEME_DIR_FULL + name + TTS_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(name, path);
-    M_BACKGROUND_PTR->setMBackground(path);
+    M_BACKGROUND_PTR->setBackgroundUrl(path);
 
     MusicBackgroundImage image;
     return MusicExtractWrap::outputSkin(&image, path) ? image.m_pix : QPixmap();
@@ -281,7 +281,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
     {
         MusicTopAreaWidget::instance()->musicBackgroundSkinCustumChanged(QFileInfo(path).baseName());
     }
-    M_BACKGROUND_PTR->setMBackground(path);
+    M_BACKGROUND_PTR->setBackgroundUrl(path);
     emit M_BACKGROUND_PTR->backgroundHasChanged();
 }
 
@@ -312,7 +312,7 @@ void MusicBackgroundSkinDialog::listWidgetItemClicked(MusicBackgroundListWidget 
     QString s(name);
     QString path = USER_THEME_DIR_FULL + s + TTS_FILE;
     MusicBackgroundSkinDialog::themeValidCheck(s, path);
-    M_BACKGROUND_PTR->setMBackground(path);
+    M_BACKGROUND_PTR->setBackgroundUrl(path);
     emit M_BACKGROUND_PTR->backgroundHasChanged();
 }
 

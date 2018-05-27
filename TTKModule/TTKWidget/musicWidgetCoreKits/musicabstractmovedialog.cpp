@@ -114,12 +114,12 @@ void MusicAbstractMoveDialog::setBackgroundPixmap(const QSize &size)
 {
     QLabel *label = MStatic_cast(QLabel*, m_background);
     MusicBackgroundImage image;
-    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground()))
+    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl()))
     {
         label->setPixmap(image.m_pix.scaled(size));
     }
     else
     {
-        label->setPixmap(QPixmap(M_BACKGROUND_PTR->getMBackground()).scaled(size));
+        label->setPixmap(QPixmap(M_BACKGROUND_PTR->getBackgroundUrl()).scaled(size));
     }
 }

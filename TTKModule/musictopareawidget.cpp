@@ -472,7 +472,7 @@ void MusicTopAreaWidget::createRemoteWidget()
 void MusicTopAreaWidget::drawWindowBackgroundRect()
 {
     m_pictureCarouselTimer.stop();
-    drawWindowBackgroundRect(MusicBackgroundSkinDialog::setMBackground(m_backgroundImagePath).toImage());
+    drawWindowBackgroundRect(MusicBackgroundSkinDialog::setBackgroundUrl(m_backgroundImagePath).toImage());
 }
 
 void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)

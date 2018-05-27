@@ -110,7 +110,7 @@ void MusicDesktopWallpaperThread::timeout()
     else
     {
         MusicBackgroundImage image;
-        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground());
+        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl());
 
         emit updateBackground(image.m_pix);
     }

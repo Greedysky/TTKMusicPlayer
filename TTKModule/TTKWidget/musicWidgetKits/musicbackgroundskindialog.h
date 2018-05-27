@@ -52,7 +52,7 @@ public:
     /*!
      * Set artist background picture by name.
      */
-    static QPixmap setMBackground(QString &name);
+    static QPixmap setBackgroundUrl(QString &name);
     /*!
      * Theme valid check.
      */

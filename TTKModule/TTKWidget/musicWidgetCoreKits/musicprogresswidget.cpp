@@ -101,13 +101,13 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
 void MusicProgressWidget::show()
 {
     MusicBackgroundImage image;
-    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground()))
+    if(MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl()))
     {
         m_background->setPixmap(image.m_pix.scaled(size()));
     }
     else
     {
-        m_background->setPixmap(QPixmap(M_BACKGROUND_PTR->getMBackground()).scaled(size()));
+        m_background->setPixmap(QPixmap(M_BACKGROUND_PTR->getBackgroundUrl()).scaled(size()));
     }
     QProgressDialog::show();
 }

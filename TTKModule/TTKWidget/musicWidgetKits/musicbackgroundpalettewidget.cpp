@@ -249,7 +249,7 @@ void MusicBackgroundPaletteWidget::currentColorToMemory(const QString &path)
 
 int MusicBackgroundPaletteWidget::exec()
 {
-    m_previousBackground = M_BACKGROUND_PTR->getMBackground();
+    m_previousBackground = M_BACKGROUND_PTR->getBackgroundUrl();
     updateBackground(m_previousBackground);
     return MusicAbstractMoveDialog::exec();
 }

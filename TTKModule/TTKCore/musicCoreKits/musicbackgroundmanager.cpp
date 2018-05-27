@@ -113,12 +113,12 @@ void MusicBackgroundManager::removeObserver(QObject *object)
     disconnect(this, SIGNAL(backgroundChanged()), object, SLOT(backgroundChanged()));
 }
 
-void MusicBackgroundManager::setMBackground(const QString &path)
+void MusicBackgroundManager::setBackgroundUrl(const QString &path)
 {
     m_background = path;
 }
 
-QString MusicBackgroundManager::getMBackground() const
+QString MusicBackgroundManager::getBackgroundUrl() const
 {
     return m_background;
 }

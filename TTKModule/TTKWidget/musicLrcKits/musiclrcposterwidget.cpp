@@ -28,7 +28,7 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     if(m_pixmap.isNull())
     {
         MusicBackgroundImage image;
-        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getMBackground());
+        MusicExtractWrap::outputSkin(&image, M_BACKGROUND_PTR->getBackgroundUrl());
         m_pixmap = image.m_pix;
     }
 }
