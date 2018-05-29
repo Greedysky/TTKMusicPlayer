@@ -17,11 +17,6 @@ MusicMovingClickedSlider::MusicMovingClickedSlider(Qt::Orientation orientation, 
     m_orientation = orientation;
 }
 
-QString MusicMovingClickedSlider::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMovingClickedSlider::setValue(int value)
 {
     if(!m_isMoving)

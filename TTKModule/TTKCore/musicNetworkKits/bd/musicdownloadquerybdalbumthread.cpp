@@ -9,11 +9,6 @@ MusicDownLoadQueryBDAlbumThread::MusicDownLoadQueryBDAlbumThread(QObject *parent
     m_queryServer = "Baidu";
 }
 
-QString MusicDownLoadQueryBDAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryBDAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

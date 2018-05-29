@@ -35,11 +35,6 @@ MusicCloudFileManagerDialog::~MusicCloudFileManagerDialog()
     delete m_ui;
 }
 
-QString MusicCloudFileManagerDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCloudFileManagerDialog::setReuploadState(bool state)
 {
     m_ui->reuploadButton->setEnabled(state);

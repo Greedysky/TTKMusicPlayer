@@ -10,11 +10,6 @@ MusicDownLoadQueryKGArtistListThread::MusicDownLoadQueryKGArtistListThread(QObje
     m_queryServer = "Kugou";
 }
 
-QString MusicDownLoadQueryKGArtistListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKGArtistListThread::startToPage(int offset)
 {
     if(!m_manager)

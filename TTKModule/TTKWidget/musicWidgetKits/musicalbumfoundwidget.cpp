@@ -21,11 +21,6 @@ MusicAlbumFoundTableWidget::~MusicAlbumFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicAlbumFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAlbumFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -45,11 +40,6 @@ MusicAlbumFoundWidget::MusicAlbumFoundWidget(QWidget *parent)
     m_foundTableWidget->hide();
     m_downloadThread = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(m_downloadThread, SIGNAL(downLoadDataChanged(QString)), SLOT(queryAllFinished()));
-}
-
-QString MusicAlbumFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicAlbumFoundWidget::setSongName(const QString &name)

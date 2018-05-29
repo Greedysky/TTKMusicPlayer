@@ -24,11 +24,6 @@ MusicTransitionAnimationLabel::~MusicTransitionAnimationLabel()
     delete m_animation;
 }
 
-QString MusicTransitionAnimationLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 QPixmap MusicTransitionAnimationLabel::getRendererPixmap() const
 {
     return m_rendererPixmap;

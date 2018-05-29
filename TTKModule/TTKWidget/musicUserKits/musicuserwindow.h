@@ -36,6 +36,7 @@ class MusicUserWindow;
 class MUSIC_USER_EXPORT MusicUserWindow : public QStackedWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserWindow)
 public:
     /*!
      * Object contsructor.
@@ -44,10 +45,6 @@ public:
 
     ~MusicUserWindow();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Check if the user is login now.
      */

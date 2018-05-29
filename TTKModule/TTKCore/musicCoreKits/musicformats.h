@@ -27,6 +27,7 @@
  */
 class MUSIC_CORE_EXPORT MusicFormats
 {
+    TTK_DECLARE_MODULE(MusicFormats)
 public:
     /*!
      * Get player supported formats.

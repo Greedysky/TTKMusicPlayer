@@ -8,11 +8,6 @@ MusicDJRadioCategoryThread::MusicDJRadioCategoryThread(QObject *parent)
 
 }
 
-QString MusicDJRadioCategoryThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDJRadioCategoryThread::startToDownload()
 {
     deleteAll();

@@ -23,11 +23,6 @@ MusicLocalSongSearchPopTableWidget::~MusicLocalSongSearchPopTableWidget()
     clearAllItems();
 }
 
-QString MusicLocalSongSearchPopTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongSearchPopTableWidget::clearAllItems()
 {
     MusicAbstractTableWidget::clear();
@@ -100,11 +95,6 @@ MusicLocalSongSearchPopWidget::~MusicLocalSongSearchPopWidget()
 {
     delete m_popTableWidget;
     delete m_clearButton;
-}
-
-QString MusicLocalSongSearchPopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLocalSongSearchPopWidget::createItems()

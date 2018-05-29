@@ -11,11 +11,6 @@ MusicDownLoadQueryWYAlbumThread::MusicDownLoadQueryWYAlbumThread(QObject *parent
     m_queryServer = "WangYi";
 }
 
-QString MusicDownLoadQueryWYAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

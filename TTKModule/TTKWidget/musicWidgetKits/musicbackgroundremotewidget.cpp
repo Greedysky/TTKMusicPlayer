@@ -34,11 +34,6 @@ MusicBackgroundRemoteWidget::~MusicBackgroundRemoteWidget()
     delete m_queryThread;
 }
 
-QString MusicBackgroundRemoteWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBackgroundRemoteWidget::abort()
 {
     m_downloadQueue->abort();
@@ -104,11 +99,6 @@ MusicBackgroundThunderWidget::MusicBackgroundThunderWidget(QWidget *parent)
 MusicBackgroundThunderWidget::~MusicBackgroundThunderWidget()
 {
     delete m_functionsWidget;
-}
-
-QString MusicBackgroundThunderWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicBackgroundThunderWidget::init()
@@ -271,11 +261,6 @@ MusicBackgroundDailyWidget::MusicBackgroundDailyWidget(QWidget *parent)
 {
     m_currentIndex = 0;
     connect(m_listWidget, SIGNAL(itemClicked(QString)), parent, SLOT(dailyBackgroundListWidgetItemClicked(QString)));
-}
-
-QString MusicBackgroundDailyWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicBackgroundDailyWidget::init()

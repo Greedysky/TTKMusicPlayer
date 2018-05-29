@@ -15,11 +15,6 @@ MusicHlPalette::MusicHlPalette(QWidget *parent)
     m_dblSaturation = 1.0;
 }
 
-QString MusicHlPalette::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 QColor MusicHlPalette::color() const
 {
     return m_color;
@@ -138,11 +133,6 @@ MusicHlSaturationPalette::MusicHlSaturationPalette(QWidget *parent)
     m_dblVernierX = 0;
     m_dblVernierPercentX = 0;
     m_dblSaturation = 0;
-}
-
-QString MusicHlSaturationPalette::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 double MusicHlSaturationPalette::saturation() const
@@ -279,11 +269,6 @@ MusicColorDialog::MusicColorDialog(QWidget *parent)
 MusicColorDialog::~MusicColorDialog()
 {
     delete m_ui;
-}
-
-QString MusicColorDialog::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 QColor MusicColorDialog::getColor(QWidget *parent)

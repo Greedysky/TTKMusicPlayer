@@ -35,11 +35,6 @@ MusicQualityChoiceTableWidget::~MusicQualityChoiceTableWidget()
     clear();
 }
 
-QString MusicQualityChoiceTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicQualityChoiceTableWidget::createItems()
 {
     setRowCount(5);
@@ -150,11 +145,6 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
 
     setStyleSheet(MusicUIObject::MToolButtonStyle05 + MusicUIObject::MKGBtnQuality +
                   "QToolButton{ margin-left:-45px;}" );
-}
-
-QString MusicQualityChoicePopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicQualityChoicePopWidget::initWidget()

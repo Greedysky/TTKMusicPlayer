@@ -5,8 +5,3 @@ MusicDownLoadQueryPlaylistThread::MusicDownLoadQueryPlaylistThread(QObject *pare
 {
 
 }
-
-QString MusicDownLoadQueryPlaylistThread::getClassName()
-{
-    return staticMetaObject.className();
-}

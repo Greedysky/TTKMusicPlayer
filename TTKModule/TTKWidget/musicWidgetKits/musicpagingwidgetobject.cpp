@@ -21,11 +21,6 @@ MusicPagingWidgetObject::~MusicPagingWidgetObject()
     delete m_pagingWidget;
 }
 
-QString MusicPagingWidgetObject::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 QWidget* MusicPagingWidgetObject::getCreatePagingWidget()
 {
     return m_pagingWidget;

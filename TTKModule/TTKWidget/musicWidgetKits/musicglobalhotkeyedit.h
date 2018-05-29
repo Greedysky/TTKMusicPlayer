@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicGlobalHotKeyEdit : public QLineEdit
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicGlobalHotKeyEdit)
 public:
     /*!
      * Object contsructor.
@@ -35,11 +36,6 @@ public:
     explicit MusicGlobalHotKeyEdit(QWidget *parent = 0);
 
     ~MusicGlobalHotKeyEdit();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

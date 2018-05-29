@@ -31,6 +31,7 @@ class QPropertyAnimation;
 class MUSIC_WIDGET_EXPORT MusicLayoutAnimationWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLayoutAnimationWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicLayoutAnimationWidget(QWidget *parent = 0);
 
     ~MusicLayoutAnimationWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to anmiation.
@@ -96,16 +92,12 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicVLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVLayoutAnimationWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicVLayoutAnimationWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to anmiation.
@@ -127,16 +119,12 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicHLayoutAnimationWidget : public MusicLayoutAnimationWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicHLayoutAnimationWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicHLayoutAnimationWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to anmiation.

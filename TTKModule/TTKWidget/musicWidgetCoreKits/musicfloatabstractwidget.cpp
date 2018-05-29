@@ -13,11 +13,6 @@ MusicFloatAbstractWidget::~MusicFloatAbstractWidget()
     delete m_animation;
 }
 
-QString MusicFloatAbstractWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFloatAbstractWidget::animationIn()
 {
     m_animation->setStartValue(m_rectOut);

@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
 #include <QTimer>
+#include <QWidget>
 #include "musicglobaldefine.h"
 
 class MusicUserWindow;
@@ -37,6 +37,7 @@ namespace Ui {
 class MUSIC_GUI_EXPORT MusicTopAreaWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTopAreaWidget)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +46,6 @@ public:
 
     ~MusicTopAreaWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get class object instance.
      */

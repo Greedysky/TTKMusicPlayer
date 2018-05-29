@@ -56,11 +56,6 @@ MusicRightAreaWidget::~MusicRightAreaWidget()
     delete m_videoPlayerWidget;
 }
 
-QString MusicRightAreaWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicRightAreaWidget *MusicRightAreaWidget::instance()
 {
     return m_instance;

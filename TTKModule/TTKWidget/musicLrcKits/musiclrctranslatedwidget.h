@@ -28,6 +28,7 @@
 class MUSIC_LRC_EXPORT MusicLrcTranslatedWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcTranslatedWidget)
 public:
     /*!
      * Object contsructor.
@@ -35,11 +36,6 @@ public:
     explicit MusicLrcTranslatedWidget(QWidget *parent = 0);
 
     ~MusicLrcTranslatedWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current translated string.

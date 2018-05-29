@@ -92,10 +92,6 @@ MusicBackgroundSkinDialog::~MusicBackgroundSkinDialog()
     delete m_dailyBackgroundList;
 }
 
-QString MusicBackgroundSkinDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
 
 QPixmap MusicBackgroundSkinDialog::setBackgroundUrl(QString &name)
 {

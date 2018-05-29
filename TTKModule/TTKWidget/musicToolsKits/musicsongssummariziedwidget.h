@@ -35,6 +35,7 @@ class MusicLocalSongSearchDialog;
 class MUSIC_TOOL_EXPORT MusicSongsSummariziedWidget : public MusicSongsToolBoxWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsSummariziedWidget)
 public:
     /*!
      * Object contsructor.
@@ -43,10 +44,6 @@ public:
 
     virtual ~MusicSongsSummariziedWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Add music datas into container.
      */

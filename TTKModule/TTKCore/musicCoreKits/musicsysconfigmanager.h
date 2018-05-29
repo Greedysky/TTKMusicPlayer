@@ -28,16 +28,13 @@
 class MUSIC_CORE_EXPORT MusicSysConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSysConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicSysConfigManager(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Read config datas from xml file by given name.
      */

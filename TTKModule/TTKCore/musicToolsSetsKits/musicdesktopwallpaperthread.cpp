@@ -27,11 +27,6 @@ MusicDesktopWallpaperThread::~MusicDesktopWallpaperThread()
     delete m_timer;
 }
 
-QString MusicDesktopWallpaperThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDesktopWallpaperThread::setInterval(int msec)
 {
     m_timer->setInterval(msec);

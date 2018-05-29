@@ -39,16 +39,12 @@ namespace Program
 class MUSIC_NETWORK_EXPORT MusicDJRadioProgramThread : public MusicDJRadioThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDJRadioProgramThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDJRadioProgramThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to download data.

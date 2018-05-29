@@ -33,18 +33,14 @@ class MusicSongsToolItemRenamedWidget;
 class MUSIC_WIDGET_EXPORT MusicSongsListPlayWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListPlayWidget)
 public:
     /*!
      * Object contsructor by index.
      */
     explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
 
-    virtual ~MusicSongsListPlayWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
+    ~MusicSongsListPlayWidget();
 
     /*!
      * Update item time label time.

@@ -88,11 +88,6 @@ MusicLrcContainerForInline::~MusicLrcContainerForInline()
     delete m_layoutWidget;
 }
 
-QString MusicLrcContainerForInline::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcContainerForInline::startTimerClock()
 {
     m_musicLrcContainer[m_lrcAnalysis->getMiddle()]->startTimerClock();

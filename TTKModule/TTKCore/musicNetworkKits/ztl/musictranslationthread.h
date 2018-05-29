@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicTranslationThread : public MusicTranslationThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTranslationThread)
 public:
     enum TranslationType
     {
@@ -56,10 +57,6 @@ public:
 
     virtual ~MusicTranslationThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to translation data.
      */

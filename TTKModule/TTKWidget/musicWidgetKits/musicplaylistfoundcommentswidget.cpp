@@ -7,11 +7,6 @@ MusicPlaylistFoundCommentsWidget::MusicPlaylistFoundCommentsWidget(QWidget *pare
 
 }
 
-QString MusicPlaylistFoundCommentsWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlaylistFoundCommentsWidget::initWidget(bool isPain)
 {
     MusicCommentsWidget::initWidget(isPain);

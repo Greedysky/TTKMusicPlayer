@@ -107,11 +107,6 @@ MusicRemoteWidget::~MusicRemoteWidget()
     delete m_mainWidget;
 }
 
-QString MusicRemoteWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidget::showPlayStatus(bool status) const
 {
     m_PlayButton->setStyleSheet(status ? MusicUIObject::MKGTinyBtnPlay : MusicUIObject::MKGTinyBtnPause);

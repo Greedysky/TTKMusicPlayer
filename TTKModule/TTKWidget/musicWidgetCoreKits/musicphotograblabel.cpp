@@ -13,11 +13,6 @@ MusicPhotoGrabItem::MusicPhotoGrabItem(QWidget *parent)
 
 }
 
-QString MusicPhotoGrabItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPhotoGrabItem::setBorderRect(const QRect &rect)
 {
     MusicResizeGrabItemWidget::setBorderRect(rect);
@@ -42,11 +37,6 @@ MusicPhotoGrabLabel::MusicPhotoGrabLabel(QWidget *parent)
 MusicPhotoGrabLabel::~MusicPhotoGrabLabel()
 {
     delete m_grabItem;
-}
-
-QString MusicPhotoGrabLabel::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicPhotoGrabLabel::setImagePath(const QString &path)

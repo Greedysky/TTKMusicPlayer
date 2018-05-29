@@ -37,6 +37,7 @@ class MusicAudioRecorderCore;
 class MUSIC_TOOLSET_EXPORT MusicSoundKMicroWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundKMicroWidget)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +46,6 @@ public:
 
     virtual ~MusicSoundKMicroWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current button style.
      */

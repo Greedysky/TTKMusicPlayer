@@ -31,6 +31,7 @@ class MusicWebMVRadioFoundCategoryPopWidget;
 class MUSIC_TOOL_EXPORT MusicWebMVRadioFoundItemWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebMVRadioFoundItemWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicWebMVRadioFoundItemWidget(QWidget *parent = 0);
 
     virtual ~MusicWebMVRadioFoundItemWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music results item.
@@ -86,6 +82,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebMVRadioFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebMVRadioFoundWidget)
 public:
     /*!
      * Object contsructor.
@@ -93,11 +90,6 @@ public:
     explicit MusicWebMVRadioFoundWidget(QWidget *parent = 0);
 
     virtual ~MusicWebMVRadioFoundWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

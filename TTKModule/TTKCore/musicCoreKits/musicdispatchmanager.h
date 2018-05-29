@@ -59,12 +59,8 @@ typedef struct MUSIC_CORE_EXPORT MusicDispatchItem
 class MUSIC_CORE_EXPORT MusicDispatchManager : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDispatchManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Set dispatch.
      */

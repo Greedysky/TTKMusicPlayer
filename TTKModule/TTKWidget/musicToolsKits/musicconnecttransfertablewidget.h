@@ -28,16 +28,12 @@
 class MUSIC_TOOL_EXPORT MusicConnectTransferTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicConnectTransferTableWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicConnectTransferTableWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Create all items.

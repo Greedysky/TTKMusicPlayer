@@ -35,6 +35,7 @@ class MusicDesktopWallpaperWidget;
 class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperItem : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDesktopWallpaperItem)
 public:
     /*!
      * Object contsructor.
@@ -42,11 +43,6 @@ public:
     explicit MusicDesktopWallpaperItem(QWidget *parent = 0);
 
     ~MusicDesktopWallpaperItem();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!
@@ -66,6 +62,7 @@ protected:
 class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDesktopWallpaperWidget)
 public:
     /*!
      * Object contsructor.
@@ -73,11 +70,6 @@ public:
     explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
 
     ~MusicDesktopWallpaperWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

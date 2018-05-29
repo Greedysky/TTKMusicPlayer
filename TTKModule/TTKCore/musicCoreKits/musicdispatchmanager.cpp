@@ -18,11 +18,6 @@ MusicDispatchManager::~MusicDispatchManager()
     qDeleteAll(m_observer);
 }
 
-QString MusicDispatchManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDispatchManager::dispatch(int type)
 {
     MusicDispatchItem *item = new MusicDispatchItem;

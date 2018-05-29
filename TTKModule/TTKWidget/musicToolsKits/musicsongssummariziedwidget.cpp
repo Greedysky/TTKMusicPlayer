@@ -54,11 +54,6 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
     clearAllLists();
 }
 
-QString MusicSongsSummariziedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
 {
     MusicObject::MIntSet inDeed;

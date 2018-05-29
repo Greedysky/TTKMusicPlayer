@@ -31,6 +31,7 @@ class MusicLrcColorWidget;
 class MUSIC_LRC_EXPORT MusicLrcColorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcColorWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     virtual ~MusicLrcColorWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current colors.
      */

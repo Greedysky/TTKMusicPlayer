@@ -54,11 +54,6 @@ MusicSongsListFunctionWidget::~MusicSongsListFunctionWidget()
     delete m_animation;
 }
 
-QString MusicSongsListFunctionWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListFunctionWidget::active()
 {
     m_timer.stop();

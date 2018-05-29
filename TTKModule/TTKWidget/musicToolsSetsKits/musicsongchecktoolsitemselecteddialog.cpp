@@ -24,11 +24,6 @@ MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTable
 #endif
 }
 
-QString MusicSongCheckToolsItemSelectedTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *items)
 {
     if(items->count() >= 4)
@@ -116,11 +111,6 @@ MusicSongCheckToolsItemSelectedDialog::MusicSongCheckToolsItemSelectedDialog(QWi
 MusicSongCheckToolsItemSelectedDialog::~MusicSongCheckToolsItemSelectedDialog()
 {
     delete m_ui;
-}
-
-QString MusicSongCheckToolsItemSelectedDialog::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSongCheckToolsItemSelectedDialog::createAllItems(MusicSongItems *items)

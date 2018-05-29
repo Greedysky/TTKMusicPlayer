@@ -30,15 +30,12 @@ class MusicProgressBarDelegate;
 class MUSIC_WIDGET_EXPORT MusicDownloadAbstractTableWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadAbstractTableWidget)
 public:
     explicit MusicDownloadAbstractTableWidget(QWidget *parent = 0);
 
     virtual ~MusicDownloadAbstractTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Read all config from file and insert items.
      */

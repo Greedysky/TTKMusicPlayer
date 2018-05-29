@@ -29,6 +29,7 @@
 class MUSIC_WIDGET_EXPORT MusicSongsListAbstractTableWidget : public MusicSmoothMovingTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListAbstractTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicSongsListAbstractTableWidget(QWidget *parent = 0);
 
     virtual ~MusicSongsListAbstractTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set songs file names.

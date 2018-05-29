@@ -32,6 +32,7 @@ namespace Ui {
 class MUSIC_WIDGET_EXPORT MusicMessageAboutDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMessageAboutDialog)
 public:
     /*!
      * Object contsructor.
@@ -39,11 +40,6 @@ public:
     explicit MusicMessageAboutDialog(QWidget *parent = 0);
 
     virtual ~MusicMessageAboutDialog();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

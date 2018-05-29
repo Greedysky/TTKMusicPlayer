@@ -24,11 +24,6 @@ MusicSongCheckToolsRenameTableWidget::MusicSongCheckToolsRenameTableWidget(QWidg
     setItemDelegateForColumn(3, new MusicPushButtonDelegate(this));
 }
 
-QString MusicSongCheckToolsRenameTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongCheckToolsRenameTableWidget::createAllItems(const MusicSongCheckToolsRenames &items)
 {
     setRowCount(items.count());
@@ -127,11 +122,6 @@ MusicSongCheckToolsDuplicateTableWidget::MusicSongCheckToolsDuplicateTableWidget
 MusicSongCheckToolsDuplicateTableWidget::~MusicSongCheckToolsDuplicateTableWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
-}
-
-QString MusicSongCheckToolsDuplicateTableWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongCheckToolsDuplicates &songs)
@@ -264,11 +254,6 @@ MusicSongCheckToolsQualityTableWidget::MusicSongCheckToolsQualityTableWidget(QWi
 MusicSongCheckToolsQualityTableWidget::~MusicSongCheckToolsQualityTableWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
-}
-
-QString MusicSongCheckToolsQualityTableWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckToolsQualitys &songs)

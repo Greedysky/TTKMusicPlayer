@@ -30,7 +30,7 @@ typedef struct MUSIC_LRC_EXPORT MusicLocalDataItem
     QString m_name;
     QString m_path;
 }MusicLocalDataItem;
-MUSIC_DECLARE_LISTS(MusicLocalDataItem)
+TTK_DECLARE_LISTS(MusicLocalDataItem)
 
 /*! @brief The class of the local lrc link table widget.
  * @author Greedysky <greedysky@163.com>
@@ -38,16 +38,12 @@ MUSIC_DECLARE_LISTS(MusicLocalDataItem)
 class MUSIC_LRC_EXPORT MusicLrcLocalLinkTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcLocalLinkTableWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcLocalLinkTableWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Check if current item has in.
@@ -77,6 +73,7 @@ class MusicLrcLocalLinkWidget;
 class MUSIC_LRC_EXPORT MusicLrcLocalLinkWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcLocalLinkWidget)
 public:
     /*!
      * Object contsructor.
@@ -85,10 +82,6 @@ public:
 
     virtual ~MusicLrcLocalLinkWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current song name.
      */

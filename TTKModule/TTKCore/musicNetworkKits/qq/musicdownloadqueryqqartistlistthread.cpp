@@ -9,11 +9,6 @@ MusicDownLoadQueryQQArtistListThread::MusicDownLoadQueryQQArtistListThread(QObje
     m_queryServer = "QQ";
 }
 
-QString MusicDownLoadQueryQQArtistListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryQQArtistListThread::startToPage(int offset)
 {
     if(!m_manager)

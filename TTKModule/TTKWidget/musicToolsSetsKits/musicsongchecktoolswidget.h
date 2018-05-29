@@ -36,6 +36,7 @@ class MusicSongCheckToolsQualityCore;
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongCheckToolsWidget)
 public:
     /*!
      * Object contsructor.
@@ -43,11 +44,6 @@ public:
     explicit MusicSongCheckToolsWidget(QWidget *parent = 0);
 
     virtual ~MusicSongCheckToolsWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

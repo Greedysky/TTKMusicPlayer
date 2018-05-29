@@ -28,6 +28,7 @@
 class MUSIC_CORE_EXPORT MusicLicenseCore : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLicenseCore)
 public:
     /*!
      * Object contsructor.

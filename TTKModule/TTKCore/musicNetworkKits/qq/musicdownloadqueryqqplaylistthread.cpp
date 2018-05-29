@@ -13,11 +13,6 @@ MusicDownLoadQueryQQPlaylistThread::MusicDownLoadQueryQQPlaylistThread(QObject *
     m_queryServer = "QQ";
 }
 
-QString MusicDownLoadQueryQQPlaylistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryQQPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)

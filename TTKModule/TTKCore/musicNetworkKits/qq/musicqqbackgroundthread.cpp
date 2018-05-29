@@ -19,11 +19,6 @@ MusicQQBackgroundThread::MusicQQBackgroundThread(const QString &name, const QStr
 #endif
 }
 
-QString MusicQQBackgroundThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicQQBackgroundThread::deleteAll()
 {
     if(m_reply)

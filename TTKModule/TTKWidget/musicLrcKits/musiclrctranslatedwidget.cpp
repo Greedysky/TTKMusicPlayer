@@ -70,11 +70,6 @@ MusicLrcTranslatedWidget::~MusicLrcTranslatedWidget()
     delete m_plainText;
 }
 
-QString MusicLrcTranslatedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcTranslatedWidget::setPlainText(const QString &name, const QString &text)
 {
     m_titleName->setText(name);

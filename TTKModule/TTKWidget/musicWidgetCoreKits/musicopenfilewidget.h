@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicOpenFileWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicOpenFileWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicOpenFileWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Adjust the widget rect in the parent widget.

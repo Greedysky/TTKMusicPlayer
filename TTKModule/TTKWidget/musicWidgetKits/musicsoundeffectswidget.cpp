@@ -76,11 +76,6 @@ MusicSoundEffectsItemWidget::~MusicSoundEffectsItemWidget()
     delete m_settingButton;
 }
 
-QString MusicSoundEffectsItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSoundEffectsItemWidget::setText(const QString &text)
 {
     m_textLabel->setText(" " + text);
@@ -240,11 +235,6 @@ MusicSoundEffectsWidget::~MusicSoundEffectsWidget()
     writeSoundEffect();
 
     delete m_ui;
-}
-
-QString MusicSoundEffectsWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSoundEffectsWidget::setParentConnect(QObject *object)

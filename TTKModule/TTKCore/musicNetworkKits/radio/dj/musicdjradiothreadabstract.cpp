@@ -10,11 +10,6 @@ MusicDJRadioThreadAbstract::MusicDJRadioThreadAbstract(QObject *parent)
 #endif
 }
 
-QString MusicDJRadioThreadAbstract::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDJRadioThreadAbstract::deleteAll()
 {
     if(m_reply)

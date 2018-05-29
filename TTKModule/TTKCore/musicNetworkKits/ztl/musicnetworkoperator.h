@@ -28,18 +28,12 @@
 class MUSIC_NETWORK_EXPORT MusicNetworkOperator : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNetworkOperator)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicNetworkOperator(QObject *parent = 0);
-
-    ~MusicNetworkOperator();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to get current ip operator from net.

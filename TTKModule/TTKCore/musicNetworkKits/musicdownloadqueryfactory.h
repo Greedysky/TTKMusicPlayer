@@ -37,12 +37,8 @@ class MusicTranslationThreadAbstract;
  */
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryFactory
 {
+    TTK_DECLARE_MODULE(MusicDownLoadQueryFactory)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Get query thread object by type.
      */

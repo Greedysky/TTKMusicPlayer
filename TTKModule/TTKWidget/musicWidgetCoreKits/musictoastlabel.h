@@ -29,6 +29,7 @@
 class MUSIC_WIDGET_EXPORT MusicToastLabel : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToastLabel)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicToastLabel(const QString &text, QWidget *parent = 0);
 
     ~MusicToastLabel();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Create default label.

@@ -6,11 +6,6 @@ MusicBarrageRecordConfigManager::MusicBarrageRecordConfigManager(QObject *parent
 
 }
 
-QString MusicBarrageRecordConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecords &records)
 {
     if(!writeConfig(BARRAGEPATH_FULL))

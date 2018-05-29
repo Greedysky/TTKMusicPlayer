@@ -33,6 +33,7 @@ class MusicDownloadQueueCache;
 class MUSIC_WIDGET_EXPORT MusicBackgroundRemoteWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundRemoteWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicBackgroundRemoteWidget(QWidget *parent = 0);
 
     ~MusicBackgroundRemoteWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Abort the current download thread.
@@ -87,6 +83,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicBackgroundThunderWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundThunderWidget)
 public:
     /*!
      * Object contsructor.
@@ -94,11 +91,6 @@ public:
     explicit MusicBackgroundThunderWidget(QWidget *parent = 0);
 
     virtual ~MusicBackgroundThunderWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init the current download object.
@@ -147,16 +139,12 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicBackgroundDailyWidget : public MusicBackgroundRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundDailyWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicBackgroundDailyWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init the current download object.

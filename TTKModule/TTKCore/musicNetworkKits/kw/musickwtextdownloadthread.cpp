@@ -10,11 +10,6 @@ MusicKWTextDownLoadThread::MusicKWTextDownLoadThread(const QString &url, const Q
 
 }
 
-QString MusicKWTextDownLoadThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicKWTextDownLoadThread::startToDownload()
 {
     if(m_file && (!m_file->exists() || m_file->size() < 4))

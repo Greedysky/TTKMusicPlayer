@@ -28,16 +28,12 @@
 class MUSIC_TOOLSET_EXPORT MusicWebRadioObject : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebRadioObject)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWebRadioObject(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Null function.

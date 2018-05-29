@@ -37,6 +37,7 @@ class QWinThumbnailToolButton;
 class MUSIC_WIDGET_EXPORT MusicWindowExtras : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWindowExtras)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +46,6 @@ public:
 
     ~MusicWindowExtras();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current play state button.
      */

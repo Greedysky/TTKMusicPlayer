@@ -94,11 +94,6 @@ MusicEMOJILabelWidget::~MusicEMOJILabelWidget()
     qDeleteAll(m_buttonItems);
 }
 
-QString MusicEMOJILabelWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicEMOJILabelWidget::buttonClicked(int index)
 {
     m_currentPage = index;

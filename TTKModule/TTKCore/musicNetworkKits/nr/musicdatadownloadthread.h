@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicDataDownloadThread : public MusicDownLoadThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDataDownloadThread)
 public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
@@ -34,10 +35,6 @@ public:
     MusicDataDownloadThread(const QString &url, const QString &save,
                             DownloadType type, QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      */

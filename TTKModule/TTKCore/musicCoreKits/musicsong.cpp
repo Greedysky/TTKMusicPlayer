@@ -59,11 +59,6 @@ MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &tim
     m_musicTime = time;
 }
 
-QString MusicSong::getClassName()
-{
-    return "MusicSong";
-}
-
 QString MusicSong::getMusicArtistFront() const
 {
     return MusicUtils::String::artistName(m_musicName);

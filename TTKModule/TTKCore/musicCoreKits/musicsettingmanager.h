@@ -32,6 +32,7 @@ class MUSIC_CORE_EXPORT MusicSettingManager : public QObject
 {
     Q_OBJECT
     Q_ENUMS(ConfigType)
+    TTK_DECLARE_MODULE(MusicSettingManager)
 public:
     enum ConfigType
     {
@@ -143,14 +144,6 @@ public:
 #endif
 
     };
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName()
-    {
-        return staticMetaObject.className();
-    }
 
     /*!
      * Set current value by Config Type.

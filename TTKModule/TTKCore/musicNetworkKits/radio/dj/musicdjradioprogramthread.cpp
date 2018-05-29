@@ -10,11 +10,6 @@ MusicDJRadioProgramThread::MusicDJRadioProgramThread(QObject *parent)
 
 }
 
-QString MusicDJRadioProgramThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDJRadioProgramThread::startToDownload(Program::Type type)
 {
     deleteAll();

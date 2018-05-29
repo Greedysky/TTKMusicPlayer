@@ -33,6 +33,7 @@ class MusicOpenFileWidget;
 class MUSIC_TOOL_EXPORT MusicCloudSharedSongTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudSharedSongTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicCloudSharedSongTableWidget(QWidget *parent = 0);
 
     virtual ~MusicCloudSharedSongTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get query cloud id keys.
@@ -171,6 +167,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicCloudSharedSongWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudSharedSongWidget)
 public:
     /*!
      * Object contsructor.
@@ -178,11 +175,6 @@ public:
     explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
 
     ~MusicCloudSharedSongWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get query cloud id keys.

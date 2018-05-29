@@ -69,11 +69,6 @@ MusicSourceUpdateNotifyWidget::~MusicSourceUpdateNotifyWidget()
     delete m_textLabel;
 }
 
-QString MusicSourceUpdateNotifyWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSourceUpdateNotifyWidget::start()
 {
     MusicSourceUpdateThread *download = new MusicSourceUpdateThread(this);
@@ -127,11 +122,6 @@ MusicSourceUpdateWidget::MusicSourceUpdateWidget(QWidget *parent)
 MusicSourceUpdateWidget::~MusicSourceUpdateWidget()
 {
     delete m_ui;
-}
-
-QString MusicSourceUpdateWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSourceUpdateWidget::start()

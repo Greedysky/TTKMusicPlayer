@@ -32,6 +32,7 @@
 class MUSIC_TOOLSET_EXPORT MusicAudioRecorderCore : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAudioRecorderCore)
 public:
     /*! @brief The class of the audio file tag header.
      * @author Greedysky <greedysky@163.com>
@@ -59,11 +60,6 @@ public:
     explicit MusicAudioRecorderCore(QObject *parent = 0);
 
     ~MusicAudioRecorderCore();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Add the header of wav.

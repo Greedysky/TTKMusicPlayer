@@ -15,11 +15,6 @@
 #  pragma GCC diagnostic ignored "-Wsign-compare"
 #endif
 
-QString MusicExtractWrap::getClassName()
-{
-    return "MusicExtractWrap";
-}
-
 bool MusicExtractWrap::outputThunderSkin(QPixmap &image, const QString &path)
 {
     unzFile zFile = unzOpen64(path.toLocal8Bit().constData());

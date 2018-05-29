@@ -28,6 +28,7 @@
 class MUSIC_NETWORK_EXPORT MusicAuthenticationThread : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAuthenticationThread)
 public:
     /*!
      * Object contsructor.
@@ -36,10 +37,6 @@ public:
 
     virtual ~MusicAuthenticationThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Release the network object.
      */

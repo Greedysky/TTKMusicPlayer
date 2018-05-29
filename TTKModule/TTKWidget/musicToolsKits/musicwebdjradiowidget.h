@@ -32,6 +32,7 @@ class MusicWebDJRadioFoundWidget;
 class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioProgramTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,11 +40,6 @@ public:
     explicit MusicWebDJRadioProgramTableWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioProgramTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init widget.
@@ -90,6 +86,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebDJRadioProgramWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioProgramWidget)
 public:
     /*!
      * Object contsructor.
@@ -97,11 +94,6 @@ public:
     explicit MusicWebDJRadioProgramWidget(Program::Type type, QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioProgramWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init widget.
@@ -125,6 +117,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebDJRadioWidget : public QStackedWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioWidget)
 public:
     /*!
      * Object contsructor.
@@ -132,11 +125,6 @@ public:
     explicit MusicWebDJRadioWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init widget.

@@ -38,11 +38,6 @@ MusicFoundAbstractWidget::~MusicFoundAbstractWidget()
     delete m_mainWindow;
 }
 
-QString MusicFoundAbstractWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFoundAbstractWidget::setSongName(const QString &name)
 {
     m_songNameFull = name;

@@ -28,6 +28,7 @@
 class MUSIC_NETWORK_EXPORT MusicNetworkProxy : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNetworkProxy)
 public:
     /*!
      * Object contsructor.
@@ -36,10 +37,6 @@ public:
 
     ~MusicNetworkProxy();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set proxy hostName.
      */

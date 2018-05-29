@@ -28,11 +28,6 @@ MusicVideoTableWidget::~MusicVideoTableWidget()
     clearAllItems();
 }
 
-QString MusicVideoTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVideoTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection

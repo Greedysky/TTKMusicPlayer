@@ -33,11 +33,6 @@ MusicLrcContainerForDesktop::~MusicLrcContainerForDesktop()
     delete m_toolBarWidget;
 }
 
-QString MusicLrcContainerForDesktop::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcContainerForDesktop::startTimerClock()
 {
     m_musicLrcContainer[!m_singleLineType ? !m_reverse : 0]->startTimerClock();
@@ -459,11 +454,6 @@ MusicLrcContainerHorizontalDesktop::MusicLrcContainerHorizontalDesktop(QWidget *
     m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();
 }
 
-QString MusicLrcContainerHorizontalDesktop::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcContainerHorizontalDesktop::initCurrentLrc() const
 {
     MusicLrcContainerForDesktop::initCurrentLrc();
@@ -541,11 +531,6 @@ MusicLrcContainerVerticalDesktop::MusicLrcContainerVerticalDesktop(QWidget *pare
 
     setSelfGeometry();
     m_currentLrcFontSize = m_musicLrcContainer[0]->getFirstFontSize();
-}
-
-QString MusicLrcContainerVerticalDesktop::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcContainerVerticalDesktop::initCurrentLrc() const

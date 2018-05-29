@@ -35,11 +35,6 @@ MusicAbstractMoveWidget::~MusicAbstractMoveWidget()
     M_BACKGROUND_PTR->removeObserver(this);
 }
 
-QString MusicAbstractMoveWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAbstractMoveWidget::backgroundChanged()
 {
     if(m_background)
@@ -145,9 +140,4 @@ MusicAbstractMoveSingleWidget::MusicAbstractMoveSingleWidget(bool transparent, Q
 MusicAbstractMoveSingleWidget::~MusicAbstractMoveSingleWidget()
 {
     delete m_container;
-}
-
-QString MusicAbstractMoveSingleWidget::getClassName()
-{
-    return staticMetaObject.className();
 }

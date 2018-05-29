@@ -37,11 +37,6 @@ MusicDownLoadThreadAbstract::~MusicDownLoadThreadAbstract()
     M_DOWNLOAD_MANAGER_PTR->removeNetworkMultiValue(this);
 }
 
-QString MusicDownLoadThreadAbstract::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadThreadAbstract::deleteAll()
 {
     MusicNetworkAbstract::deleteAll();

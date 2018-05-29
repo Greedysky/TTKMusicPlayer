@@ -79,11 +79,6 @@ MusicLrcFloatWidget::~MusicLrcFloatWidget()
     delete m_floatSettingWidget;
 }
 
-QString MusicLrcFloatWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcFloatWidget::resizeWindow(int width, int height)
 {
     m_rectIn = QRect(566 + width, 138 + height/2, 115, 210);

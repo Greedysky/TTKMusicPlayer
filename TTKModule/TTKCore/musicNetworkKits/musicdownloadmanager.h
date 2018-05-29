@@ -60,12 +60,8 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
 class MUSIC_NETWORK_EXPORT MusicDownLoadManager : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Set mutiple network connection object.
      */

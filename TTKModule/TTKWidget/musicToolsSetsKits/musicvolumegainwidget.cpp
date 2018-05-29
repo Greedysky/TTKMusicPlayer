@@ -29,11 +29,6 @@ MusicVolumeGainTableWidget::~MusicVolumeGainTableWidget()
 
 }
 
-QString MusicVolumeGainTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVolumeGainTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
@@ -113,11 +108,6 @@ MusicVolumeGainWidget::~MusicVolumeGainWidget()
 {
     delete m_process;
     delete m_ui;
-}
-
-QString MusicVolumeGainWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicVolumeGainWidget::closeEvent(QCloseEvent *event)

@@ -14,11 +14,6 @@ MusicSongCheckToolsRenameCore::~MusicSongCheckToolsRenameCore()
     stopAndQuitThread();
 }
 
-QString MusicSongCheckToolsRenameCore::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongCheckToolsRenameCore::setRenameSongs(MusicSongs *songs)
 {
     m_songItems = songs;
@@ -105,11 +100,6 @@ MusicSongCheckToolsDuplicateCore::~MusicSongCheckToolsDuplicateCore()
     stopAndQuitThread();
 }
 
-QString MusicSongCheckToolsDuplicateCore::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongCheckToolsDuplicateCore::setDuplicateSongs(MusicSongs *songs)
 {
     m_songItems = songs;
@@ -185,11 +175,6 @@ MusicSongCheckToolsQualityCore::MusicSongCheckToolsQualityCore(QObject *parent)
 MusicSongCheckToolsQualityCore::~MusicSongCheckToolsQualityCore()
 {
     stopAndQuitThread();
-}
-
-QString MusicSongCheckToolsQualityCore::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSongCheckToolsQualityCore::setQualitySongs(MusicSongs *songs)

@@ -11,11 +11,6 @@ MusicTranslationThreadAbstract::MusicTranslationThreadAbstract(QObject *parent)
 #endif
 }
 
-QString MusicTranslationThreadAbstract::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicTranslationThreadAbstract::deleteAll()
 {
     if(m_reply)

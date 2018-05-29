@@ -19,11 +19,6 @@ MusicFileReceiveServer::~MusicFileReceiveServer()
     delete m_file;
 }
 
-QString MusicFileReceiveServer::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFileReceiveServer::setSavePathDir(const QString &dir)
 {
     m_saveDir = dir;

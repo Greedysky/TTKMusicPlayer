@@ -44,11 +44,6 @@ MusicDownloadResetWidget::~MusicDownloadResetWidget()
     delete m_ui;
 }
 
-QString MusicDownloadResetWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadResetWidget::setSongName(const QString &name)
 {
     m_currentName = name;
@@ -91,11 +86,6 @@ MusicDownloadMgmtWidget::MusicDownloadMgmtWidget(QObject *parent)
     : QObject(parent)
 {
     m_parentClass = MStatic_cast(QWidget*, parent);
-}
-
-QString MusicDownloadMgmtWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownloadMgmtWidget::setSongName(const QString &name, MusicDownLoadQueryThreadAbstract::QueryType type)

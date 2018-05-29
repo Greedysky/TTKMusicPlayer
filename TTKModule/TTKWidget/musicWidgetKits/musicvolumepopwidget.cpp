@@ -22,11 +22,6 @@ MusicVolumePopWidget::~MusicVolumePopWidget()
     delete m_volumeSlider;
 }
 
-QString MusicVolumePopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVolumePopWidget::setValue(int value)
 {
     m_volumeSlider->blockSignals(true);

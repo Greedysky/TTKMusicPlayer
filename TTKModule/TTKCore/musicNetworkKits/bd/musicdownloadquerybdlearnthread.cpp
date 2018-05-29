@@ -14,11 +14,6 @@ MusicDownLoadQueryBDLearnThread::MusicDownLoadQueryBDLearnThread(QObject *parent
     m_queryServer = "Baidu";
 }
 
-QString MusicDownLoadQueryBDLearnThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryBDLearnThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)

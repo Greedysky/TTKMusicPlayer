@@ -123,11 +123,6 @@ MusicSpectrumWidget::~MusicSpectrumWidget()
     delete m_ui;
 }
 
-QString MusicSpectrumWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSpectrumWidget::tabIndexChanged(int index)
 {
     switch(index)

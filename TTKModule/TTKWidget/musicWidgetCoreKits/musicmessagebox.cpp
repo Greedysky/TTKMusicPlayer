@@ -59,11 +59,6 @@ MusicMessageBox::~MusicMessageBox()
     delete m_ui;
 }
 
-QString MusicMessageBox::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMessageBox::setTitle(const QString &text) const
 {
     m_ui->topTitleName->setText(text);

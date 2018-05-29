@@ -27,11 +27,6 @@ MusicSongsListItemInfoWidget::~MusicSongsListItemInfoWidget()
     delete m_ui;
 }
 
-QString MusicSongsListItemInfoWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicSongsListItemInfoWidget::showArtPicture(const QString &name)
 {
     QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));

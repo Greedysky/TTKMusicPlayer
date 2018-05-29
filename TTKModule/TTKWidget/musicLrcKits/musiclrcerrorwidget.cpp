@@ -55,11 +55,6 @@ MusicLrcErrorWidget::~MusicLrcErrorWidget()
     delete m_ui;
 }
 
-QString MusicLrcErrorWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcErrorWidget::buttonClicked(int index)
 {
     if(index == 3)

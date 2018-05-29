@@ -54,11 +54,6 @@ MusicFileInformationWidget::~MusicFileInformationWidget()
     delete m_ui;
 }
 
-QString MusicFileInformationWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFileInformationWidget::musicOpenFileDir()
 {
     if(!MusicUtils::Url::openUrl(QFileInfo(m_path).absoluteFilePath()))

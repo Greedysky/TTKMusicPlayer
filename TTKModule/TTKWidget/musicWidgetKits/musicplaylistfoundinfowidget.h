@@ -33,6 +33,7 @@ class MusicPlaylistFoundCommentsWidget;
 class MUSIC_WIDGET_EXPORT MusicPlaylistFoundInfoWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundInfoWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicPlaylistFoundInfoWidget(QWidget *parent = 0);
 
     virtual ~MusicPlaylistFoundInfoWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Resize window bound by widgte resize called.

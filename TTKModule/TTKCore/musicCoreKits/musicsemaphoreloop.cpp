@@ -14,11 +14,6 @@ MusicSemaphoreLoop::~MusicSemaphoreLoop()
     quit();
 }
 
-QString MusicSemaphoreLoop::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 int MusicSemaphoreLoop::exec(ProcessEventsFlags flags)
 {
     m_timer.start();

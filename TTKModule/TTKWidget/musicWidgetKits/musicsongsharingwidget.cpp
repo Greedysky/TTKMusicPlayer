@@ -57,11 +57,6 @@ MusicSongSharingWidget::~MusicSongSharingWidget()
     delete m_ui;
 }
 
-QString MusicSongSharingWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
 {
     m_type = type;

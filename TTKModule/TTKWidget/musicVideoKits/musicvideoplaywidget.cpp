@@ -143,11 +143,6 @@ MusicVideoPlayWidget::~MusicVideoPlayWidget()
     delete m_stackedWidget;
 }
 
-QString MusicVideoPlayWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVideoPlayWidget::popup(bool popup)
 {
     m_videoFloatWidget->setText(MusicVideoFloatWidget::FreshType,

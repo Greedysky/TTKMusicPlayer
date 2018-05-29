@@ -29,16 +29,12 @@
 class MUSIC_WIDGET_EXPORT MusicToolMenu : public QMenu
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToolMenu)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicToolMenu(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!
@@ -62,6 +58,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicToolMenuWidget : public QToolButton
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToolMenuWidget)
 public:
     /*!
      * Object contsructor.
@@ -69,11 +66,6 @@ public:
     explicit MusicToolMenuWidget(QWidget *parent = 0);
 
     ~MusicToolMenuWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set background translucent.

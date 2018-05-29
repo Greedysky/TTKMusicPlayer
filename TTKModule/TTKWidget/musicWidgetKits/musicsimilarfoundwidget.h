@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicSimilarFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSimilarFoundTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,10 +37,6 @@ public:
 
     virtual ~MusicSimilarFoundTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set network query input.
      */
@@ -61,16 +58,12 @@ public Q_SLOTS:
 class MUSIC_WIDGET_EXPORT MusicSimilarFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSimilarFoundWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicSimilarFoundWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

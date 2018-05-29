@@ -29,16 +29,13 @@ class QPushButton;
 class MUSIC_LRC_EXPORT MusicLrcFloatSettingWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcFloatSettingWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */

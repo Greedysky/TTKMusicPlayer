@@ -25,11 +25,6 @@ MusicArtistListFoundItemWidget::MusicArtistListFoundItemWidget(QWidget *parent)
     connect(this, SIGNAL(clicked()), SLOT(currentItemClicked()));
 }
 
-QString MusicArtistListFoundItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicArtistListFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -67,11 +62,6 @@ MusicArtistListFoundWidget::~MusicArtistListFoundWidget()
     delete m_categoryButton;
     delete m_downloadThread;
     delete m_pagingWidgetObject;
-}
-
-QString MusicArtistListFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicArtistListFoundWidget::setSongName(const QString &name)

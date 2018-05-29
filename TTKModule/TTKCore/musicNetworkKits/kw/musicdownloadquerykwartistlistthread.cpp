@@ -9,11 +9,6 @@ MusicDownLoadQueryKWArtistListThread::MusicDownLoadQueryKWArtistListThread(QObje
     m_queryServer = "Kuwo";
 }
 
-QString MusicDownLoadQueryKWArtistListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKWArtistListThread::startToPage(int offset)
 {
     if(!m_manager)

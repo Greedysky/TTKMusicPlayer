@@ -16,11 +16,6 @@ MusicWYTranslationThread::~MusicWYTranslationThread()
     deleteAll();
 }
 
-QString MusicWYTranslationThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWYTranslationThread::startToDownload(const QString &data)
 {
     Q_UNUSED(data);

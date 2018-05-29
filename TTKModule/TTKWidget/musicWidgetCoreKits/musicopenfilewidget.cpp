@@ -33,11 +33,6 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     resize(150, 50);
 }
 
-QString MusicOpenFileWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicOpenFileWidget::adjustRect(int w, int h)
 {
     int x = (w - width() - 60)/2;

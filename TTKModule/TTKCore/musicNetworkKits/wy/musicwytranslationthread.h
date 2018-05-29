@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicWYTranslationThread : public MusicTranslationThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWYTranslationThread)
 public:
     /*!
      * Object contsructor.
@@ -35,10 +36,6 @@ public:
 
     virtual ~MusicWYTranslationThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to translation data.
      */

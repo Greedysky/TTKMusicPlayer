@@ -10,11 +10,6 @@ MusicDownLoadQueryBDRecommendThread::MusicDownLoadQueryBDRecommendThread(QObject
     m_queryServer = "Baidu";
 }
 
-QString MusicDownLoadQueryBDRecommendThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryBDRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)

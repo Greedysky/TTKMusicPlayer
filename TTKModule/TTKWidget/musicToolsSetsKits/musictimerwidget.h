@@ -33,6 +33,7 @@ class MusicTimerWidget;
 class MUSIC_TOOLSET_EXPORT MusicTimerWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTimerWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     virtual ~MusicTimerWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current songs path list.
      */

@@ -35,6 +35,7 @@
 class MUSIC_WIDGET_EXPORT MusicFoundAbstractWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicFoundAbstractWidget)
 public:
     /*!
      * Object contsructor.
@@ -42,11 +43,6 @@ public:
     explicit MusicFoundAbstractWidget(QWidget *parent = 0);
 
     ~MusicFoundAbstractWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

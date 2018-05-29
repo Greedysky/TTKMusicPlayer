@@ -14,11 +14,6 @@ MusicPhotoModLabel::MusicPhotoModLabel(QWidget *parent)
     m_picMoved = false;
 }
 
-QString MusicPhotoModLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPhotoModLabel::setImagePath(const QString &path)
 {
     m_path = path;

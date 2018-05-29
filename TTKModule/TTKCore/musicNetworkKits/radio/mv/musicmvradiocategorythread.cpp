@@ -8,11 +8,6 @@ MusicMVRadioCategoryThread::MusicMVRadioCategoryThread(QObject *parent)
 
 }
 
-QString MusicMVRadioCategoryThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMVRadioCategoryThread::downLoadFinished()
 {
     if(!m_reply || !m_manager)

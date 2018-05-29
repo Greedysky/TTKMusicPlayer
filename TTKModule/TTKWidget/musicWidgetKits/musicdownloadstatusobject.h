@@ -29,6 +29,7 @@ class MusicApplication;
 class MUSIC_WIDGET_EXPORT MusicDownloadStatusObject : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadStatusObject)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicDownloadStatusObject(QObject *parent);
 
     ~MusicDownloadStatusObject();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Check the current song already has lrc or not,

@@ -19,11 +19,6 @@ MusicDownLoadQueryYYTThread::MusicDownLoadQueryYYTThread(QObject *parent)
     m_queryServer = "YinYueTai";
 }
 
-QString MusicDownLoadQueryYYTThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)

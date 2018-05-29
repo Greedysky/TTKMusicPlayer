@@ -43,16 +43,13 @@ typedef uint32_t xxtea_uint;
  */
 class MUSIC_CORE_EXPORT MusicCryptographicHash
 {
+    TTK_DECLARE_MODULE(MusicCryptographicHash)
 public:
     /*!
      * Object contsructor.
      */
     MusicCryptographicHash();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * encrypt by QString data.
      */

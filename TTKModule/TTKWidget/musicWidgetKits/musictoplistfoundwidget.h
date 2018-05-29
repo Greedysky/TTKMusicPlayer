@@ -30,6 +30,7 @@ class MusicToplistFoundCategoryPopWidget;
 class MUSIC_WIDGET_EXPORT MusicToplistFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToplistFoundTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,10 +39,6 @@ public:
 
     virtual ~MusicToplistFoundTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set network query input.
      */
@@ -56,6 +53,7 @@ public:
 class MUSIC_WIDGET_EXPORT MusicToplistFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToplistFoundWidget)
 public:
     /*!
      * Object contsructor.
@@ -63,11 +61,6 @@ public:
     explicit MusicToplistFoundWidget(QWidget *parent = 0);
 
     virtual ~MusicToplistFoundWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

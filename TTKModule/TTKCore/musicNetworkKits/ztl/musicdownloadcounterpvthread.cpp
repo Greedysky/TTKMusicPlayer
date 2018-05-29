@@ -13,11 +13,6 @@ MusicDownloadCounterPVThread::~MusicDownloadCounterPVThread()
     deleteAll();
 }
 
-QString MusicDownloadCounterPVThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadCounterPVThread::startToDownload()
 {
     m_manager = new QNetworkAccessManager(this);

@@ -118,11 +118,6 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_moreButton;
 }
 
-QString MusicSongsListPlayWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListPlayWidget::insertTimerLabel(const QString &time, const QString &total)
 {
     if(m_totalTimeLabel.contains("00:00"))

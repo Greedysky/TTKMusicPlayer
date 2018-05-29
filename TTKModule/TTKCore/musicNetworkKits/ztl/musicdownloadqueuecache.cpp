@@ -42,11 +42,6 @@ MusicDownloadQueueCache::~MusicDownloadQueueCache()
     deleteAll();
 }
 
-QString MusicDownloadQueueCache::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadQueueCache::startToDownload()
 {
     if(!m_imageQueue.isEmpty())

@@ -28,17 +28,13 @@
 class MUSIC_WIDGET_EXPORT MusicClickedLabel : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicClickedLabel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicClickedLabel(QWidget *parent = 0);
     explicit MusicClickedLabel(const QString &text, QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

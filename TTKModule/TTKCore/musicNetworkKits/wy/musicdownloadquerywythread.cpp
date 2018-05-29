@@ -10,11 +10,6 @@ MusicDownLoadQueryWYThread::MusicDownLoadQueryWYThread(QObject *parent)
     m_pageSize = 40;
 }
 
-QString MusicDownLoadQueryWYThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryWYThread::startToSearch(QueryType type, const QString &text)
 {
     if(!m_manager)

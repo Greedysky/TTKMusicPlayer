@@ -8,11 +8,6 @@ MusicMoreFunctionsPopWidget::MusicMoreFunctionsPopWidget(QWidget *parent)
     initWidget();
 }
 
-QString MusicMoreFunctionsPopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMoreFunctionsPopWidget::setCurrentSongName(const QString &name)
 {
     m_currentSongName = name;

@@ -35,6 +35,7 @@ class MusicVLayoutAnimationWidget;
 class MUSIC_LRC_EXPORT MusicLrcContainerForInline : public MusicLrcContainer
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcContainerForInline)
 public:
     /*!
      * Object contsructor.
@@ -42,11 +43,6 @@ public:
     explicit MusicLrcContainerForInline(QWidget *parent = 0);
 
     virtual ~MusicLrcContainerForInline();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start timer clock to draw lrc.

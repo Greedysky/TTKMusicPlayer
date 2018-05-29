@@ -9,11 +9,6 @@ MusicXMArtistSimilarThread::MusicXMArtistSimilarThread(QObject *parent)
 
 }
 
-QString MusicXMArtistSimilarThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicXMArtistSimilarThread::startToSearch(const QString &text)
 {
     if(!m_manager)

@@ -29,6 +29,7 @@ class MusicMarqueeWidget;
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRectangle : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForRectangle)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
 
     virtual ~MusicRemoteWidgetForRectangle();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current song text.
      */

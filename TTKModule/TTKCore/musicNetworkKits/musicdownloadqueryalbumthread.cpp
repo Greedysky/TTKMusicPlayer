@@ -6,11 +6,6 @@ MusicDownLoadQueryAlbumThread::MusicDownLoadQueryAlbumThread(QObject *parent)
 
 }
 
-QString MusicDownLoadQueryAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryAlbumThread::startToSearch(QueryType type, const QString &album)
 {
     Q_UNUSED(type);

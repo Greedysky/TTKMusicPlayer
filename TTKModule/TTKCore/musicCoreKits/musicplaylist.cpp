@@ -9,11 +9,6 @@ MusicPlaylist::MusicPlaylist(QObject *parent)
     m_playbackMode = MusicObject::PM_PlayOrder;
 }
 
-QString MusicPlaylist::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicObject::PlayMode MusicPlaylist::playbackMode() const
 {
     return m_playbackMode;

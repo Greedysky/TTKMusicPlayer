@@ -39,7 +39,7 @@ typedef struct MUSIC_USER_EXPORT MusicUserRecord
         m_autoFlag = false;
     }
 }MusicUserRecord;
-MUSIC_DECLARE_LISTS(MusicUserRecord)
+TTK_DECLARE_LISTS(MusicUserRecord)
 
 /*! @brief The class of the user config manager.
  * @author Greedysky <greedysky@163.com>
@@ -47,16 +47,13 @@ MUSIC_DECLARE_LISTS(MusicUserRecord)
 class MUSIC_USER_EXPORT MusicUserConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicUserConfigManager(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Read user datas from xml file by given name.
      */

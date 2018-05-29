@@ -27,16 +27,13 @@
 class MUSIC_WIDGET_EXPORT MusicPhotoGrabItem : public MusicResizeGrabItemWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPhotoGrabItem)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPhotoGrabItem(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set border rect.
      */
@@ -52,6 +49,7 @@ public:
 class MUSIC_WIDGET_EXPORT MusicPhotoGrabLabel : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPhotoGrabLabel)
 public:
     /*!
      * Object contsructor.
@@ -60,10 +58,6 @@ public:
 
     ~MusicPhotoGrabLabel();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set song image path.
      */

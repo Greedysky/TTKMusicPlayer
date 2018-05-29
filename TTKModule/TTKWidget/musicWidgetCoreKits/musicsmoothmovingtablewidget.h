@@ -29,6 +29,7 @@ class QPropertyAnimation;
 class MUSIC_WIDGET_EXPORT MusicSmoothMovingTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSmoothMovingTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicSmoothMovingTableWidget(QWidget *parent = 0);
 
     virtual ~MusicSmoothMovingTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current moved scroll bar.

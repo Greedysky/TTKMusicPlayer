@@ -8,11 +8,6 @@ MusicWYSongSuggestThread::MusicWYSongSuggestThread(QObject *parent)
 
 }
 
-QString MusicWYSongSuggestThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWYSongSuggestThread::startToSearch(const QString &text)
 {
     if(!m_manager)

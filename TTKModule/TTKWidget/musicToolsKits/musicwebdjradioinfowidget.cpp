@@ -17,11 +17,6 @@ MusicWebDJRadioInfoTableWidget::~MusicWebDJRadioInfoTableWidget()
     clearAllItems();
 }
 
-QString MusicWebDJRadioInfoTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebDJRadioInfoTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -50,11 +45,6 @@ MusicWebDJRadioInfoWidget::MusicWebDJRadioInfoWidget(QWidget *parent)
     MusicDJRadioProgramCategoryThread *v = new MusicDJRadioProgramCategoryThread(this);
     m_foundTableWidget->setQueryInput(v);
     connect(v, SIGNAL(createCategoryInfoItem(MusicResultsItem)), SLOT(createCategoryInfoItem(MusicResultsItem)));
-}
-
-QString MusicWebDJRadioInfoWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebDJRadioInfoWidget::setSongName(const QString &name)

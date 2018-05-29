@@ -6,8 +6,3 @@ MusicDownLoadDiscoverListThread::MusicDownLoadDiscoverListThread(QObject *parent
 {
     MusicTime::timeSRand();
 }
-
-QString MusicDownLoadDiscoverListThread::getClassName()
-{
-    return staticMetaObject.className();
-}

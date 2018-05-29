@@ -31,6 +31,7 @@ class MusicLrcErrorWidget;
 class MUSIC_LRC_EXPORT MusicLrcErrorWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcErrorWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicLrcErrorWidget(QWidget *parent = 0);
 
     virtual ~MusicLrcErrorWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

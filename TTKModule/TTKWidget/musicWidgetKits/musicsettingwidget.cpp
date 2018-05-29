@@ -36,11 +36,6 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     m_listIndex = 0;
 }
 
-QString MusicFunctionTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFunctionTableWidget::addFunctionItems(int index, const MusicFunctionItems &items)
 {
     m_listIndex = index;
@@ -142,11 +137,6 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 MusicSettingWidget::~MusicSettingWidget()
 {
     delete m_ui;
-}
-
-QString MusicSettingWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSettingWidget::initControllerParameter()

@@ -41,11 +41,6 @@ MusicGifLabelWidget::~MusicGifLabelWidget()
     delete m_timer;
 }
 
-QString MusicGifLabelWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicGifLabelWidget::setType(Type type)
 {
     switch(m_type = type)
@@ -273,11 +268,6 @@ MusicGifLabelMaskWidget::MusicGifLabelMaskWidget(QWidget *parent)
 MusicGifLabelMaskWidget::~MusicGifLabelMaskWidget()
 {
     delete m_gifLabel;
-}
-
-QString MusicGifLabelMaskWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicGifLabelMaskWidget::setType(MusicGifLabelWidget::Type type)

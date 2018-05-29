@@ -31,11 +31,8 @@
 class MUSIC_CORE_EXPORT MusicConnectionPool : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicConnectionPool)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set connection object and type name.
      */

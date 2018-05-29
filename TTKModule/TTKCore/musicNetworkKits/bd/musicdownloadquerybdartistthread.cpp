@@ -10,11 +10,6 @@ MusicDownLoadQueryBDArtistThread::MusicDownLoadQueryBDArtistThread(QObject *pare
     m_queryServer = "Baidu";
 }
 
-QString MusicDownLoadQueryBDArtistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryBDArtistThread::startToSearch(const QString &artist)
 {
     if(!m_manager)

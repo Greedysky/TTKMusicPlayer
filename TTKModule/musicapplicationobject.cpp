@@ -75,11 +75,6 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_counterPVThread;
 }
 
-QString MusicApplicationObject::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicApplicationObject *MusicApplicationObject::instance()
 {
     return m_instance;

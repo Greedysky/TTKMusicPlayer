@@ -29,6 +29,7 @@ class MusicMarqueeWidget;
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForRaysWave : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForRaysWave)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
 
     virtual ~MusicRemoteWidgetForRaysWave();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current song text.
      */

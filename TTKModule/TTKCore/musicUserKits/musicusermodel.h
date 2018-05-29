@@ -30,17 +30,13 @@
 class MUSIC_USER_EXPORT MusicUserModel : public QSqlTableModel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserModel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicUserModel(QObject *parent = 0,
                             QSqlDatabase db = QSqlDatabase::database("user-data"));
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Insert user into databse by uid and pwd and mail.

@@ -9,11 +9,6 @@ MusicDownLoadQueryXMRecommendThread::MusicDownLoadQueryXMRecommendThread(QObject
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMRecommendThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryXMRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)

@@ -30,6 +30,7 @@
 class MUSIC_WIDGET_EXPORT MusicAnimationStackedWidget : public QStackedWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAnimationStackedWidget)
 public:
     enum AnimationType
     {
@@ -45,11 +46,6 @@ public:
     explicit MusicAnimationStackedWidget(QWidget *parent = 0);
 
     virtual ~MusicAnimationStackedWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to anmiation by index.

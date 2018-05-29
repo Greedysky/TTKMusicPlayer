@@ -26,12 +26,8 @@
  */
 class MUSIC_CORE_EXPORT MusicSystemEnvironment
 {
+    TTK_DECLARE_MODULE(MusicSystemEnvironment)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Get variant data from system environment.
      */

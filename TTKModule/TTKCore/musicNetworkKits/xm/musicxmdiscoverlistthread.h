@@ -29,16 +29,13 @@ class MUSIC_NETWORK_EXPORT MusicXMDiscoverListThread : public MusicDownLoadDisco
                                                        private MusicDownLoadXMInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicXMDiscoverListThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicXMDiscoverListThread(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to Search data from toplist.
      */

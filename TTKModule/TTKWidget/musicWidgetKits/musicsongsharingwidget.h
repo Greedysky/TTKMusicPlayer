@@ -80,6 +80,7 @@ class MusicSongSharingWidget;
 class MUSIC_WIDGET_EXPORT MusicSongSharingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongSharingWidget)
 public:
     enum Type
     {
@@ -98,10 +99,6 @@ public:
 
     virtual ~MusicSongSharingWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current data to share.
      */

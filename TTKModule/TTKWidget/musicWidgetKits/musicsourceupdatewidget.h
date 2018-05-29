@@ -36,6 +36,7 @@ class MusicSourceUpdateWidget;
 class MUSIC_WIDGET_EXPORT MusicSourceUpdateNotifyWidget : public MusicAbstractMoveSingleWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSourceUpdateNotifyWidget)
 public:
     /*!
      * Object contsructor.
@@ -43,11 +44,6 @@ public:
     explicit MusicSourceUpdateNotifyWidget(QWidget *parent = 0);
 
     ~MusicSourceUpdateNotifyWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start update.
@@ -76,6 +72,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicSourceUpdateWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSourceUpdateWidget)
 public:
     /*!
      * Object contsructor.
@@ -83,11 +80,6 @@ public:
     explicit MusicSourceUpdateWidget(QWidget *parent = 0);
 
     virtual ~MusicSourceUpdateWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start update.

@@ -31,6 +31,7 @@ class MusicLrcArtPhotoUploadWidget;
 class MUSIC_LRC_EXPORT MusicLrcArtPhotoUploadWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcArtPhotoUploadWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
 
     virtual ~MusicLrcArtPhotoUploadWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

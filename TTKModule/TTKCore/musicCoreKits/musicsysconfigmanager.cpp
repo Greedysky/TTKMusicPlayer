@@ -10,11 +10,6 @@ MusicSysConfigManager::MusicSysConfigManager(QObject *parent)
 
 }
 
-QString MusicSysConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSysConfigManager::writeXMLConfig()
 {
     int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();

@@ -13,11 +13,6 @@ MusicLocalSongsManagerThread::~MusicLocalSongsManagerThread()
     stopAndQuitThread();
 }
 
-QString MusicLocalSongsManagerThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongsManagerThread::run()
 {
     QFileInfoList list;

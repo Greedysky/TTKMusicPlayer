@@ -12,11 +12,6 @@ MusicSplitItemClickedLabel::MusicSplitItemClickedLabel(QWidget *parent)
     setMouseTracking(true);
 }
 
-QString MusicSplitItemClickedLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSplitItemClickedLabel::enterEvent(QEvent *event)
 {
     QLabel::enterEvent(event);

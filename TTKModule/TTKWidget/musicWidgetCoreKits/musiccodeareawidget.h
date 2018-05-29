@@ -27,16 +27,13 @@
 class MUSIC_WIDGET_EXPORT MusicCodeAreaWidget : public MusicClickedLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCodeAreaWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicCodeAreaWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Render the verify code picture.
      */

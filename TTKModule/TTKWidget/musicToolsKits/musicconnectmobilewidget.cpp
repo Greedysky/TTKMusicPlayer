@@ -34,11 +34,6 @@ MusicConnectMobileWidget::~MusicConnectMobileWidget()
     delete m_stackedWidget;
 }
 
-QString MusicConnectMobileWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicConnectMobileWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);

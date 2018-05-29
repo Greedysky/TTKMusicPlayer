@@ -36,6 +36,7 @@ class QTimer;
 class MUSIC_TOOLSET_EXPORT MusicDesktopWallpaperThread : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDesktopWallpaperThread)
 public:
     /*!
      * Object contsructor.
@@ -43,11 +44,6 @@ public:
     explicit MusicDesktopWallpaperThread(QObject *parent = 0);
 
     ~MusicDesktopWallpaperThread();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set time interval.

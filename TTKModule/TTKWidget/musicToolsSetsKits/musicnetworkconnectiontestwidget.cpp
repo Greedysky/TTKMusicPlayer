@@ -47,11 +47,6 @@ MusicNetworkConnectionItem::~MusicNetworkConnectionItem()
     delete m_stateText;
 }
 
-QString MusicNetworkConnectionItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicNetworkConnectionItem::setText(const QString &text)
 {
     m_nameText->setText(text);
@@ -169,11 +164,6 @@ MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 {
     qDeleteAll(m_connectionItems);
     delete m_ui;
-}
-
-QString MusicNetworkConnectionTestWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicNetworkConnectionTestWidget::show()

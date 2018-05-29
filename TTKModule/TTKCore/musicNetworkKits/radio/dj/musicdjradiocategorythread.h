@@ -27,16 +27,12 @@
 class MUSIC_NETWORK_EXPORT MusicDJRadioCategoryThread : public MusicDJRadioThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDJRadioCategoryThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDJRadioCategoryThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to download data.

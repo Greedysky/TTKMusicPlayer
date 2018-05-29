@@ -33,11 +33,6 @@ MusicLrcPosterItemWidget::MusicLrcPosterItemWidget(QWidget *parent)
     }
 }
 
-QString MusicLrcPosterItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicLrcPosterItemWidget::hasScroll() const
 {
      return height() > ITEM_HEIGHT;
@@ -866,11 +861,6 @@ MusicLrcPosterTableWidget::MusicLrcPosterTableWidget(QWidget *parent)
     headerview->resizeSection(1, 237);
 }
 
-QString MusicLrcPosterTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcPosterTableWidget::createAllItems(const QStringList &lrcs)
 {
     setRowCount(lrcs.count());
@@ -920,11 +910,6 @@ MusicLrcPosterThemeListWidget::MusicLrcPosterThemeListWidget(QWidget *parent)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     addListWidgetItem();
-}
-
-QString MusicLrcPosterThemeListWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcPosterThemeListWidget::addListWidgetItem()
@@ -1049,11 +1034,6 @@ MusicLrcPosterWidget::~MusicLrcPosterWidget()
     delete m_itemWidget;
     delete m_themeWidget;
     delete m_ui;
-}
-
-QString MusicLrcPosterWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcPosterWidget::setCurrentLrcs(const QStringList &lrcs, const QString &name)

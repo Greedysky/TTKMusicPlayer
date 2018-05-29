@@ -32,17 +32,13 @@ class MusicBarrageWidget;
 class MUSIC_VIDEO_EXPORT MusicViewWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicViewWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicViewWidget(QWidget *parent = 0);
     ~MusicViewWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!
@@ -77,6 +73,7 @@ protected:
 class MUSIC_VIDEO_EXPORT MusicVideoView : public QAbstractScrollArea
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoView)
 public:
     /*!
      * Object contsructor.
@@ -85,10 +82,6 @@ public:
 
     ~MusicVideoView();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set video play data.
      */

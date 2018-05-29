@@ -11,11 +11,6 @@ MusicSourceUpdateThread::MusicSourceUpdateThread(QObject *parent)
 
 }
 
-QString MusicSourceUpdateThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);

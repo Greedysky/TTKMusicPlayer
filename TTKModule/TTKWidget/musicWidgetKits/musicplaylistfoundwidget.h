@@ -33,6 +33,7 @@ class MusicPlaylistFoundCategoryPopWidget;
 class MUSIC_WIDGET_EXPORT MusicPlaylistFoundItemWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundItemWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicPlaylistFoundItemWidget(QWidget *parent = 0);
 
     virtual ~MusicPlaylistFoundItemWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music results item.
@@ -82,6 +78,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicPlaylistFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundWidget)
 public:
     /*!
      * Object contsructor.
@@ -89,11 +86,6 @@ public:
     explicit MusicPlaylistFoundWidget(QWidget *parent = 0);
 
     virtual ~MusicPlaylistFoundWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

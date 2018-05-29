@@ -31,6 +31,7 @@ class QProcess;
 class MUSIC_CORE_EXPORT MusicCoreMPlayer : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCoreMPlayer)
 public:
     enum Category
     {
@@ -46,10 +47,6 @@ public:
 
     ~MusicCoreMPlayer();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set media by type and data path.
      */

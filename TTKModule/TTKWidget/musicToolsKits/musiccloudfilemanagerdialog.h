@@ -48,7 +48,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicUploadData
         return !(*this < other || other < *this);
     }
 }MusicUploadData;
-MUSIC_DECLARE_LISTS(MusicUploadData)
+TTK_DECLARE_LISTS(MusicUploadData)
 
 namespace Ui {
 class MusicCloudFileManagerDialog;
@@ -61,6 +61,7 @@ class MusicCloudFileManagerDialog;
 class MUSIC_TOOL_EXPORT MusicCloudFileManagerDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudFileManagerDialog)
 public:
     /*!
      * Object contsructor.
@@ -68,11 +69,6 @@ public:
     explicit MusicCloudFileManagerDialog(QWidget *parent = 0);
 
     virtual ~MusicCloudFileManagerDialog();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set reupload state.

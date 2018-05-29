@@ -17,11 +17,6 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
     delete m_checkBoxDelegate;
 }
 
-QString MusicFillItemTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicObject::MIntList MusicFillItemTableWidget::getSelectedItems() const
 {
     MusicObject::MIntList list;

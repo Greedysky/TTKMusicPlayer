@@ -31,6 +31,7 @@ class QPropertyAnimation;
 class MUSIC_TOOL_EXPORT MusicSongsListFunctionWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListFunctionWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicSongsListFunctionWidget(QWidget *parent = 0);
 
     virtual ~MusicSongsListFunctionWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current animation active.

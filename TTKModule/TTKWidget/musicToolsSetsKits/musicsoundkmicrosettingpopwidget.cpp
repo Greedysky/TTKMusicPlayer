@@ -22,11 +22,6 @@ MusicSoundKMicroSettingPopWidget::~MusicSoundKMicroSettingPopWidget()
     delete m_outputComboBox;
 }
 
-QString MusicSoundKMicroSettingPopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSoundKMicroSettingPopWidget::initWidget()
 {
     setFixedSize(54, 24);

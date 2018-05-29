@@ -16,11 +16,6 @@ MusicBackgroundPopWidget::~MusicBackgroundPopWidget()
     delete m_slider;
 }
 
-QString MusicBackgroundPopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBackgroundPopWidget::setValue(int value)
 {
     m_slider->setValue(value);

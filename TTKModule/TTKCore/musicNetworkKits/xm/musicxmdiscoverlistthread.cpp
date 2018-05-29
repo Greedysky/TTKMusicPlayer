@@ -9,11 +9,6 @@ MusicXMDiscoverListThread::MusicXMDiscoverListThread(QObject *parent)
 
 }
 
-QString MusicXMDiscoverListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicXMDiscoverListThread::startToSearch()
 {
     if(!m_manager)

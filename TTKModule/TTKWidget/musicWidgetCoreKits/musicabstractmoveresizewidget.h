@@ -42,6 +42,7 @@ struct MUSIC_WIDGET_EXPORT MoveResizeStruct
 class MUSIC_WIDGET_EXPORT MusicAbstractMoveResizeWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractMoveResizeWidget)
 public:
     enum Direction
     {
@@ -59,11 +60,6 @@ public:
      * Object contsructor.
      */
     explicit MusicAbstractMoveResizeWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

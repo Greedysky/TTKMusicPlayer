@@ -13,11 +13,6 @@ MusicXMMVInfoConfigManager::MusicXMMVInfoConfigManager(QObject *parent)
 
 }
 
-QString MusicXMMVInfoConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformation *info)
 {
     info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
@@ -66,11 +61,6 @@ MusicDownLoadQueryXMMovieThread::MusicDownLoadQueryXMMovieThread(QObject *parent
 {
     m_queryServer = "XiaMi";
     m_pageSize = 30;
-}
-
-QString MusicDownLoadQueryXMMovieThread::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownLoadQueryXMMovieThread::startToSearch(QueryType type, const QString &text)

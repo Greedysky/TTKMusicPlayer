@@ -8,11 +8,6 @@ MusicDownLoadQueryWYArtistListThread::MusicDownLoadQueryWYArtistListThread(QObje
     m_queryServer = "WangYi";
 }
 
-QString MusicDownLoadQueryWYArtistListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
 {
     if(!m_manager)

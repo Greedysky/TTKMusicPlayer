@@ -29,6 +29,7 @@ class MusicClickedLabel;
 class MUSIC_WIDGET_EXPORT MusicPagingWidgetObject : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPagingWidgetObject)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicPagingWidgetObject(QObject *parent = 0);
 
     virtual ~MusicPagingWidgetObject();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get create paging widget.

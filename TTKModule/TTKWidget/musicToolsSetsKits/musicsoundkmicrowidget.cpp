@@ -103,11 +103,6 @@ MusicSoundKMicroWidget::~MusicSoundKMicroWidget()
     delete m_ui;
 }
 
-QString MusicSoundKMicroWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSoundKMicroWidget::setButtonStyle(bool style) const
 {
     m_ui->playButton->setStyleSheet(style ? MusicUIObject::MKGVideoBtnPlay :

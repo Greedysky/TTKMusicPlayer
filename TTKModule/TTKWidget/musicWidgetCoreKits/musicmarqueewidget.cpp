@@ -11,11 +11,6 @@ MusicMarqueeWidget::MusicMarqueeWidget(QWidget *parent)
     m_effectOnResize = false;
 }
 
-QString MusicMarqueeWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMarqueeWidget::setText(const QString &newText)
 {
     int w = 0;

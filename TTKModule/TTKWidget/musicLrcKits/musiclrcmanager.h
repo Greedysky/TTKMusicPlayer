@@ -87,6 +87,7 @@ public:
 class MUSIC_LRC_EXPORT MusicLrcManager : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcManager)
 public:
     /*!
      * Object contsructor.
@@ -94,11 +95,6 @@ public:
     explicit MusicLrcManager(QWidget *parent = 0);
 
     virtual ~MusicLrcManager();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start timer clock to draw lrc.

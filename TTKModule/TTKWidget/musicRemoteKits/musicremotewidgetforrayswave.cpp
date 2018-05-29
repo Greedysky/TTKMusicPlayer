@@ -58,11 +58,6 @@ MusicRemoteWidgetForRaysWave::~MusicRemoteWidgetForRaysWave()
     delete m_songNameLabel;
 }
 
-QString MusicRemoteWidgetForRaysWave::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForRaysWave::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));

@@ -33,6 +33,7 @@
 class MUSIC_WIDGET_EXPORT MusicAbstractTableWidget : public QTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     virtual ~MusicAbstractTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Clear current items.
      */

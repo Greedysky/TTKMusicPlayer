@@ -37,7 +37,7 @@ typedef struct MUSIC_TOOLSET_EXPORT MusicSpectrum
     QString m_name;
     QWidget *m_obj;
 }MusicSpectrum;
-MUSIC_DECLARE_LISTS(MusicSpectrum)
+TTK_DECLARE_LISTS(MusicSpectrum)
 
 /*! @brief The class of the music spectrum widget all.
  * @author Greedysky <greedysky@163.com>
@@ -45,6 +45,7 @@ MUSIC_DECLARE_LISTS(MusicSpectrum)
 class MUSIC_TOOLSET_EXPORT MusicSpectrumWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSpectrumWidget)
 public:
     /*!
      * Object contsructor.
@@ -52,11 +53,6 @@ public:
     explicit MusicSpectrumWidget(QWidget *parent = 0);
 
     virtual ~MusicSpectrumWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

@@ -10,11 +10,6 @@ MusicKWMusicInfoConfigManager::MusicKWMusicInfoConfigManager(QObject *parent)
 
 }
 
-QString MusicKWMusicInfoConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicKWMusicInfoConfigManager::readMusicInfoConfig(MusicObject::MusicSongInformation *info)
 {
     info->m_singerName = readXmlTextByTagName("artist");
@@ -73,11 +68,6 @@ MusicDownLoadQueryKWThread::MusicDownLoadQueryKWThread(QObject *parent)
 {
     m_queryServer = "Kuwo";
     m_pageSize = 40;
-}
-
-QString MusicDownLoadQueryKWThread::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownLoadQueryKWThread::startToSearch(QueryType type, const QString &text)

@@ -42,11 +42,6 @@ MusicTopAreaWidget::~MusicTopAreaWidget()
     delete m_musicRemoteWidget;
 }
 
-QString MusicTopAreaWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicTopAreaWidget *MusicTopAreaWidget::instance()
 {
     return m_instance;

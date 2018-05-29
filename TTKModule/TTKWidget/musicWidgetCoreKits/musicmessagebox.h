@@ -31,6 +31,7 @@ class MusicMessageBox;
 class MUSIC_WIDGET_EXPORT MusicMessageBox : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMessageBox)
 public:
     /*!
      * Object contsructor.
@@ -47,11 +48,6 @@ public:
                     QWidget *parent = 0);
 
     virtual ~MusicMessageBox();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set box title.

@@ -37,11 +37,6 @@ MusicLrcFloatPhotoItem::~MusicLrcFloatPhotoItem()
     delete m_checkBox;
 }
 
-QString MusicLrcFloatPhotoItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcFloatPhotoItem::setPhoto(const QString &path)
 {
     m_pixPath = path;
@@ -194,11 +189,6 @@ MusicLrcFloatPhotoWidget::~MusicLrcFloatPhotoWidget()
     delete m_confirmButton;
     delete m_checkBox;
     delete m_filmBGWidget;
-}
-
-QString MusicLrcFloatPhotoWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcFloatPhotoWidget::resizeWindow(int width, int height)

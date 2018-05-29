@@ -32,6 +32,7 @@ class MusicSongsToolItemRenamedWidget;
 class MUSIC_TOOL_EXPORT MusicSongsToolBoxTopWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsToolBoxTopWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,11 +40,6 @@ public:
     explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
 
     ~MusicSongsToolBoxTopWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set Item index.
@@ -213,6 +209,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicSongsToolBoxMaskWidget : public MusicSongsToolBoxTopWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsToolBoxMaskWidget)
 public:
     /*!
      * Object contsructor.
@@ -220,11 +217,6 @@ public:
     explicit MusicSongsToolBoxMaskWidget(QWidget *parent = 0);
 
     virtual ~MusicSongsToolBoxMaskWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!
@@ -243,6 +235,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidgetItem : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsToolBoxWidgetItem)
 public:
     /*!
      * Object contsructor.
@@ -250,11 +243,6 @@ public:
     explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
 
     ~MusicSongsToolBoxWidgetItem();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get widget item.
@@ -376,6 +364,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicToolBoxWidgetItem
 class MUSIC_TOOL_EXPORT MusicSongsToolBoxWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsToolBoxWidget)
 public:
     /*!
      * Object contsructor.
@@ -383,11 +372,6 @@ public:
     explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
 
     ~MusicSongsToolBoxWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Add widget item.

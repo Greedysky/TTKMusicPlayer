@@ -55,11 +55,6 @@ MusicRemoteWidgetForComplexStyle::~MusicRemoteWidgetForComplexStyle()
     delete m_songArtist;
 }
 
-QString MusicRemoteWidgetForComplexStyle::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForComplexStyle::setLabelText(const QString &value)
 {
     bool flag = (MusicUtils::String::splitString(value).count() == 1);

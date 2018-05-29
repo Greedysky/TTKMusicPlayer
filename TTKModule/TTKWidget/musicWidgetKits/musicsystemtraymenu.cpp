@@ -55,11 +55,6 @@ MusicSystemTrayMenu::~MusicSystemTrayMenu()
     delete m_loginAction;
 }
 
-QString MusicSystemTrayMenu::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSystemTrayMenu::setLabelText(const QString &text) const
 {
 #ifndef Q_OS_UNIX

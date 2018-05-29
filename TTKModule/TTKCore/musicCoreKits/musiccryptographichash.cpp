@@ -10,11 +10,6 @@ MusicCryptographicHash::MusicCryptographicHash()
 
 }
 
-QString MusicCryptographicHash::getClassName()
-{
-    return "MusicCryptographicHash";
-}
-
 QString MusicCryptographicHash::encrypt(const QString &data, const QString &key)
 {
     QString d = data;

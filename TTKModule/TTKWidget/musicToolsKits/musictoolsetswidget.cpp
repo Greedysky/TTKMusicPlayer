@@ -63,11 +63,6 @@ MusicToolSetsWidget::~MusicToolSetsWidget()
     delete m_ui;
 }
 
-QString MusicToolSetsWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicToolSetsWidget::addListWidgetItem()
 {
     typedef struct ItemPair
@@ -82,7 +77,7 @@ void MusicToolSetsWidget::addListWidgetItem()
             m_name = name;
         }
     }ItemPair;
-    MUSIC_DECLARE_LISTS(ItemPair);
+    TTK_DECLARE_LISTS(ItemPair);
 
     ItemPairs pairs;
     pairs << ItemPair(":/tools/lb_localmanager", tr("localmanager"))

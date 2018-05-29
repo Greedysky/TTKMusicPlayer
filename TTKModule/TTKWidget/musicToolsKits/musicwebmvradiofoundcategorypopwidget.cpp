@@ -16,11 +16,6 @@ MusicWebMVRadioFoundCategoryItem::MusicWebMVRadioFoundCategoryItem(QWidget *pare
     setStyleSheet(QString());
 }
 
-QString MusicWebMVRadioFoundCategoryItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebMVRadioFoundCategoryItem::setCategory(const MusicResultsCategory &category)
 {
     m_category = category;
@@ -70,11 +65,6 @@ MusicWebMVRadioFoundCategoryPopWidget::MusicWebMVRadioFoundCategoryPopWidget(QWi
 
     disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
     connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
-}
-
-QString MusicWebMVRadioFoundCategoryPopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebMVRadioFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)

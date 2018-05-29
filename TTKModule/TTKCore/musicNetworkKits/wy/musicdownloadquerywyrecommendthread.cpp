@@ -9,11 +9,6 @@ MusicDownLoadQueryWYRecommendThread::MusicDownLoadQueryWYRecommendThread(QObject
     m_queryServer = "WangYi";
 }
 
-QString MusicDownLoadQueryWYRecommendThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryWYRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)

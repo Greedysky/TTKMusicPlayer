@@ -19,11 +19,6 @@ MusicSongListEnhanceLosslessWidget::~MusicSongListEnhanceLosslessWidget()
     delete m_ui;
 }
 
-QString MusicSongListEnhanceLosslessWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 int MusicSongListEnhanceLosslessWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());

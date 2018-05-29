@@ -40,16 +40,12 @@ class MUSIC_NETWORK_EXPORT MusicDJRadioThreadAbstract : public MusicNetworkAbstr
                                                         protected MusicDownLoadWYInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDJRadioThreadAbstract)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDJRadioThreadAbstract(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Release the network object.

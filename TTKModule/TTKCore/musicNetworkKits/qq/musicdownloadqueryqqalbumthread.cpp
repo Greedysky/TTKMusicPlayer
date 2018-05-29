@@ -9,11 +9,6 @@ MusicDownLoadQueryQQAlbumThread::MusicDownLoadQueryQQAlbumThread(QObject *parent
     m_queryServer = "QQ";
 }
 
-QString MusicDownLoadQueryQQAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryQQAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

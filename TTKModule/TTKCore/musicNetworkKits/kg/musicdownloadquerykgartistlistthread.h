@@ -28,16 +28,12 @@
 class MUSIC_NETWORK_EXPORT MusicDownLoadQueryKGArtistListThread : public MusicDownLoadQueryArtistListThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadQueryKGArtistListThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownLoadQueryKGArtistListThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to search data from name and type bt paging.

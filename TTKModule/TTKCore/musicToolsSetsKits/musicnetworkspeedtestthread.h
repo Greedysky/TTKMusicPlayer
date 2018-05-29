@@ -31,6 +31,7 @@ class QProcess;
 class MUSIC_TOOLSET_EXPORT MusicNetworkSpeedTestThread : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNetworkSpeedTestThread)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicNetworkSpeedTestThread(QObject *parent = 0);
 
     ~MusicNetworkSpeedTestThread();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Stop and quit current thread.

@@ -28,12 +28,8 @@ class MusicBackgroundImage;
  */
 class MUSIC_CORE_EXPORT MusicExtractWrap
 {
+    TTK_DECLARE_MODULE(MusicExtractWrap)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Transfer file to image data.
      */

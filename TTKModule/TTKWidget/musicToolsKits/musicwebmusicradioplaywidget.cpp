@@ -85,11 +85,6 @@ MusicWebMusicRadioPlayWidget::~MusicWebMusicRadioPlayWidget()
     delete m_ui;
 }
 
-QString MusicWebMusicRadioPlayWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebMusicRadioPlayWidget::closeEvent(QCloseEvent *event)
 {
     m_autoNextTimer.stop();

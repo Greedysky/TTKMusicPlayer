@@ -27,16 +27,12 @@
 class MUSIC_WIDGET_EXPORT MusicMoreFunctionsPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMoreFunctionsPopWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicMoreFunctionsPopWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current song name.

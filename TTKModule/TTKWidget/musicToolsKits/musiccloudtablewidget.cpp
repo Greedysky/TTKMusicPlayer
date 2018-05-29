@@ -26,11 +26,6 @@ MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
     clear();
 }
 
-QString MusicCloudUploadTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCloudUploadTableWidget::listCellClicked(int row, int column)
 {
     Q_UNUSED(row);
@@ -55,11 +50,6 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     setItemDelegateForColumn(3, m_delegate);
 
     musicSongsFileName();
-}
-
-QString MusicCloudDownloadTableWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRecord &record)

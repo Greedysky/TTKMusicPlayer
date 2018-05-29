@@ -29,7 +29,7 @@ typedef struct MUSIC_SEARCH_EXPORT MusicSearchRecord
     QString m_name;
     QString m_time;
 }MusicSearchRecord;
-MUSIC_DECLARE_LISTS(MusicSearchRecord)
+TTK_DECLARE_LISTS(MusicSearchRecord)
 
 /*! @brief The class of the search history Config.
  * @author Greedysky <greedysky@163.com>
@@ -37,16 +37,13 @@ MUSIC_DECLARE_LISTS(MusicSearchRecord)
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongSearchRecordConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Read history search datas from xml file by given name.
      */

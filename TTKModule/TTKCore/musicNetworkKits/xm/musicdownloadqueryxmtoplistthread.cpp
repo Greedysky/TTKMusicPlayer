@@ -9,11 +9,6 @@ MusicDownLoadQueryXMToplistThread::MusicDownLoadQueryXMToplistThread(QObject *pa
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMToplistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
     if(type == MusicQuery)

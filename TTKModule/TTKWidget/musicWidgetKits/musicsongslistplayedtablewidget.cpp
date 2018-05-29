@@ -38,11 +38,6 @@ MusicSongsListPlayedTableWidget::~MusicSongsListPlayedTableWidget()
     delete m_musicSongsPlayWidget;
 }
 
-QString MusicSongsListPlayedTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListPlayedTableWidget::clearPlayLaterState()
 {
     for(int i=0; i<rowCount(); ++i)

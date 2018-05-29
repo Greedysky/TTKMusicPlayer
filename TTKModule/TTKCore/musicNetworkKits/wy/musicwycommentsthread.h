@@ -29,16 +29,12 @@ class MUSIC_NETWORK_EXPORT MusicWYSongCommentsThread : public MusicDownLoadComme
                                                        private MusicDownLoadWYInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWYSongCommentsThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWYSongCommentsThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name.
@@ -65,16 +61,12 @@ class MUSIC_NETWORK_EXPORT MusicWYPlaylistCommentsThread : public MusicDownLoadC
                                                            private MusicDownLoadWYInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWYPlaylistCommentsThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWYPlaylistCommentsThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name.

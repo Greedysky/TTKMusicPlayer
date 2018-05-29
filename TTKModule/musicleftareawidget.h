@@ -36,6 +36,7 @@ namespace Ui {
 class MUSIC_GUI_EXPORT MusicLeftAreaWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLeftAreaWidget)
 public:
     /*!
      * Object contsructor.
@@ -43,10 +44,7 @@ public:
     explicit MusicLeftAreaWidget(QWidget *parent = 0);
 
     ~MusicLeftAreaWidget();
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
+
     /*!
      * Get class object instance.
      */

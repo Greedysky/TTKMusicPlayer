@@ -30,7 +30,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicSongIdentify
     QString m_singerName;
     QString m_songName;
 }MusicSongIdentify;
-MUSIC_DECLARE_LISTS(MusicSongIdentify)
+TTK_DECLARE_LISTS(MusicSongIdentify)
 
 /*! @brief The class of the song identify query thread.
  * @author Greedysky <greedysky@163.com>
@@ -38,16 +38,12 @@ MUSIC_DECLARE_LISTS(MusicSongIdentify)
 class MUSIC_NETWORK_EXPORT MusicIdentifySongsThread : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicIdentifySongsThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicIdentifySongsThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Release the network object.

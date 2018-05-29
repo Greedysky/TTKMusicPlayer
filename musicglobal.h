@@ -83,6 +83,29 @@
 #endif
 
 //////////////////////////////////////
+#define TTK_IN const &
+#define TTK_OT &
+#define TTK_RT const &
+#define TTK_RD &
+
+#define TTK_DECLARE_PTR(Class) \
+public: \
+    using Class##Ptr = Class *; \
+    using Class##CPtr = const Class *;
+
+#define TTK_DECLARE_GCN(Class) \
+public: \
+    inline static QString getClassName() \
+    { \
+        return #Class; \
+    }
+
+#define TTK_DECLARE_MODULE(Class) \
+public: \
+    TTK_DECLARE_PTR(Class) \
+    TTK_DECLARE_GCN(Class)
+
+//////////////////////////////////////
 
 #ifndef _MSC_VER
   //gcc version less than 3.4.0
@@ -95,10 +118,10 @@
   #define STRCAT(a, b)    a b
 #endif
 
-#define MUSIC_DECLARE_LISTS(Class) \
+#define TTK_DECLARE_LISTS(Class) \
     typedef QList<Class> Class##s;
 
-#define MUSIC_DECLARE_FLAGS(Flags, Enum) \
+#define TTK_DECLARE_FLAGS(Flags, Enum) \
     typedef QFlags<Enum> Flags;
 
 //////////////////////////////////////
@@ -164,6 +187,5 @@ namespace MusicObject
     typedef QMapIterator<qint64, QString>      MIntStringMapIterator;   /* intStrMapIterator */
     ///////////////////////////////////////
 }
-
 
 #endif // MUSICGLOBAL_H

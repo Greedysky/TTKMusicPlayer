@@ -141,7 +141,8 @@
 #endif
 
 //////////////////////////////////////
-///load logger
 #include "musiclogger.h"
+#include "musicobject.h"
+//////////////////////////////////////
 
 #endif // MUSICGLOBALDEFINE_H

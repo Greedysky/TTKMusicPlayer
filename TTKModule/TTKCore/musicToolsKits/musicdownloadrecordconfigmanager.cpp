@@ -6,11 +6,6 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(Type type, QO
     m_type = type;
 }
 
-QString MusicDownloadRecordConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicDownloadRecords &records)
 {
     if(!writeConfig(mappingFilePathFromEnum()))

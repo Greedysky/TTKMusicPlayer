@@ -33,6 +33,7 @@ class QToolButton;
 class MUSIC_WIDGET_EXPORT MusicSystemTrayMenu : public QMenu
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSystemTrayMenu)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     ~MusicSystemTrayMenu();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set tray menu song text.
      */

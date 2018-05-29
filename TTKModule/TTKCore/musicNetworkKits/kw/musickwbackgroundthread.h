@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicKWBackgroundThread : public MusicDownloadBackgroundThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKWBackgroundThread)
 public:
     /*!
      * Object contsructor provide artist name and save local path.
@@ -34,10 +35,6 @@ public:
     MusicKWBackgroundThread(const QString &name, const QString &save,
                             QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download artist picture from net.
      */

@@ -9,11 +9,6 @@ MusicDownLoadQueryXMAlbumThread::MusicDownLoadQueryXMAlbumThread(QObject *parent
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

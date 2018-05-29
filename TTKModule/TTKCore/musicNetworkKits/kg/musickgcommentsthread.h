@@ -27,16 +27,12 @@
 class MUSIC_NETWORK_EXPORT MusicKGSongCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKGSongCommentsThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKGSongCommentsThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name.
@@ -62,16 +58,12 @@ public Q_SLOTS:
 class MUSIC_NETWORK_EXPORT MusicKGPlaylistCommentsThread : public MusicDownLoadCommentsThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKGPlaylistCommentsThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKGPlaylistCommentsThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name.

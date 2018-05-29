@@ -38,6 +38,7 @@ class MusicWebMusicRadioPlayWidget;
 class MUSIC_TOOL_EXPORT MusicWebMusicRadioPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebMusicRadioPlayWidget)
 public:
     /*!
      * Object contsructor.
@@ -45,11 +46,6 @@ public:
     explicit MusicWebMusicRadioPlayWidget(QWidget *parent = 0);
 
     virtual ~MusicWebMusicRadioPlayWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set network cookie.

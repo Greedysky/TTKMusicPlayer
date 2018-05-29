@@ -31,6 +31,7 @@ class QToolButton;
 class MUSIC_TOOLSET_EXPORT MusicMobileDevicesWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMobileDevicesWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicMobileDevicesWidget(QWidget *parent = 0);
 
     ~MusicMobileDevicesWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

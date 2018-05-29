@@ -31,6 +31,7 @@
 class MUSIC_NETWORK_EXPORT MusicDownLoadThreadAbstract : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadThreadAbstract)
 public:
     enum DownloadType
     {
@@ -50,10 +51,6 @@ public:
 
     virtual ~MusicDownLoadThreadAbstract();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Release the network object.
      */

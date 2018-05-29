@@ -5,8 +5,3 @@ MusicDownLoadCommentsThread::MusicDownLoadCommentsThread(QObject *parent)
 {
 
 }
-
-QString MusicDownLoadCommentsThread::getClassName()
-{
-    return staticMetaObject.className();
-}

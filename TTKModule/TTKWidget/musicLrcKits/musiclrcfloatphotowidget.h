@@ -31,6 +31,7 @@ class QPushButton;
 class MUSIC_LRC_EXPORT MusicLrcFloatPhotoItem : public MusicClickedLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcFloatPhotoItem)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     virtual ~MusicLrcFloatPhotoItem();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set photo path and pix.
      */
@@ -104,6 +101,7 @@ protected:
 class MUSIC_LRC_EXPORT MusicLrcFloatPhotoWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcFloatPhotoWidget)
 public:
     /*!
      * Object contsructor.
@@ -112,10 +110,6 @@ public:
 
     virtual ~MusicLrcFloatPhotoWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */

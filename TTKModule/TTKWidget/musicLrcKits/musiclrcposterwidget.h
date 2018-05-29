@@ -33,6 +33,7 @@ class MusicLrcPosterWidget;
 class MUSIC_LRC_EXPORT MusicLrcPosterItemWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPosterItemWidget)
 public:
     enum Type
     {
@@ -59,11 +60,6 @@ public:
      * Object contsructor.
      */
     explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Check widget has scroll or not.
@@ -176,16 +172,13 @@ protected:
 class MUSIC_LRC_EXPORT MusicLrcPosterTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPosterTableWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcPosterTableWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Create all items.
      */
@@ -212,16 +205,12 @@ public Q_SLOTS:
 class MUSIC_LRC_EXPORT MusicLrcPosterThemeListWidget : public QListWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPosterThemeListWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcPosterThemeListWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!
@@ -238,6 +227,7 @@ public Q_SLOTS:
 class MUSIC_LRC_EXPORT MusicLrcPosterWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcPosterWidget)
 public:
     /*!
      * Object contsructor.
@@ -245,11 +235,6 @@ public:
     explicit MusicLrcPosterWidget(QWidget *parent = 0);
 
     virtual ~MusicLrcPosterWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current lrc and song name.

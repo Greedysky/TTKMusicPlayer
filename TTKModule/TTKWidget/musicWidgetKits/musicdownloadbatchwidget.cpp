@@ -43,11 +43,6 @@ MusicDownloadBatchTableItem::~MusicDownloadBatchTableItem()
     delete m_qulity;
 }
 
-QString MusicDownloadBatchTableItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadBatchTableItem::createItem(const MusicObject::MusicSongInformation &info)
 {
     m_songName->setToolTip(info.m_songName);
@@ -284,11 +279,6 @@ MusicDownloadBatchTableWidget::~MusicDownloadBatchTableWidget()
     clearAllItems();
 }
 
-QString MusicDownloadBatchTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadBatchTableWidget::setParentObject(QWidget *parent)
 {
     m_supperClass = parent;
@@ -399,11 +389,6 @@ MusicDownloadBatchWidget::MusicDownloadBatchWidget(QWidget *parent)
 MusicDownloadBatchWidget::~MusicDownloadBatchWidget()
 {
     delete m_ui;
-}
-
-QString MusicDownloadBatchWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownloadBatchWidget::setSongName(const MusicObject::MusicSongInformations &infos, MusicDownLoadQueryThreadAbstract::QueryType type)

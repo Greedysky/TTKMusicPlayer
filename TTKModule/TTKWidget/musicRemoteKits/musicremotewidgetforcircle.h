@@ -26,16 +26,12 @@
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForCircle : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForCircle)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForCircle(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

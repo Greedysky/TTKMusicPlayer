@@ -34,6 +34,7 @@ class MusicRenameLineEditDelegate;
 class MUSIC_WIDGET_EXPORT MusicSongsListTableWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,11 +42,6 @@ public:
     explicit MusicSongsListTableWidget(int index, QWidget *parent = 0);
 
     virtual ~MusicSongsListTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Update songs file names in table.

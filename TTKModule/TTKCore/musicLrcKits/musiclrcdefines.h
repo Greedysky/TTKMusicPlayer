@@ -27,16 +27,12 @@
  */
 class MUSIC_LRC_EXPORT MusicLrcDefines
 {
+    TTK_DECLARE_MODULE(MusicLrcDefines)
 public:
     /*!
      * Object contsructor.
      */
     MusicLrcDefines();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get inline lrc size.

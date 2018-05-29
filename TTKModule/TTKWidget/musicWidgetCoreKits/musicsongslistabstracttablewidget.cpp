@@ -24,11 +24,6 @@ MusicSongsListAbstractTableWidget::~MusicSongsListAbstractTableWidget()
 
 }
 
-QString MusicSongsListAbstractTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListAbstractTableWidget::setSongsFileName(MusicSongs *songs)
 {
     m_musicSongs = songs;

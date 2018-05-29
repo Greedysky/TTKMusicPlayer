@@ -40,6 +40,7 @@ class MusicApplication;
 class MUSIC_GUI_EXPORT MusicApplication : public MusicAbstractMoveResizeWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicApplication)
 public:
     /*!
      * Object contsructor.
@@ -47,11 +48,6 @@ public:
     explicit MusicApplication(QWidget *parent = 0);
 
     virtual ~MusicApplication();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get class object instance.

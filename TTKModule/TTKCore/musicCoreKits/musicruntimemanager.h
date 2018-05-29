@@ -26,17 +26,8 @@
  */
 class MUSIC_CORE_EXPORT MusicRunTimeManager
 {
+    TTK_DECLARE_MODULE(MusicRunTimeManager)
 public:
-    /*!
-     * Object contsructor.
-     */
-    MusicRunTimeManager();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Run.
      */

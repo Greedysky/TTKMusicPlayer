@@ -28,6 +28,7 @@
  */
 class MUSIC_CORE_EXPORT MusicTime
 {
+    TTK_DECLARE_MODULE(MusicTime)
 public:
     enum Type
     {
@@ -52,10 +53,6 @@ public:
      */
     MusicTime(int day, int hour, int min, int sec, int msec);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current day and hour and min and sec and msec.
      */

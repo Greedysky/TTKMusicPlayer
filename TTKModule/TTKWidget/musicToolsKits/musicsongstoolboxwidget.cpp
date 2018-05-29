@@ -88,11 +88,6 @@ MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
     delete m_labelText;
 }
 
-QString MusicSongsToolBoxTopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsToolBoxTopWidget::setItemExpand(bool expand)
 {
     m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
@@ -391,11 +386,6 @@ MusicSongsToolBoxMaskWidget::~MusicSongsToolBoxMaskWidget()
     delete m_updateTimer;
 }
 
-QString MusicSongsToolBoxMaskWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 {
     int alpha = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
@@ -447,11 +437,6 @@ MusicSongsToolBoxWidgetItem::~MusicSongsToolBoxWidgetItem()
 {
     delete m_topWidget;
     delete m_layout;
-}
-
-QString MusicSongsToolBoxWidgetItem::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 QWidget *MusicSongsToolBoxWidgetItem::item(int index)
@@ -566,11 +551,6 @@ MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
     }
     delete m_layout;
     delete m_scrollArea;
-}
-
-QString MusicSongsToolBoxWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)

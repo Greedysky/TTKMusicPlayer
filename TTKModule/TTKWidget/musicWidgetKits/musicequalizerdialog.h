@@ -37,6 +37,7 @@ class QSignalMapper;
 class MUSIC_WIDGET_EXPORT MusicEqualizerDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicEqualizerDialog)
 public:
     /*!
      * Object contsructor.
@@ -44,11 +45,6 @@ public:
     explicit MusicEqualizerDialog(QWidget *parent = 0);
 
     virtual ~MusicEqualizerDialog();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

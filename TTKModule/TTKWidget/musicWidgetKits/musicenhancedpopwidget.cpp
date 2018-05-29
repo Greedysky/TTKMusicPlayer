@@ -44,11 +44,6 @@ MusicEnhancedToolButton::~MusicEnhancedToolButton()
     delete m_animation;
 }
 
-QString MusicEnhancedToolButton::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicEnhancedToolButton::setStyleSheet(const QString &styleSheet, bool state)
 {
     m_state = state;
@@ -112,11 +107,6 @@ MusicEnhancedPopWidget::~MusicEnhancedPopWidget()
 {
     delete m_caseButton;
     qDeleteAll(m_buttons);
-}
-
-QString MusicEnhancedPopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)

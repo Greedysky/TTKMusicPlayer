@@ -33,6 +33,7 @@ class MusicSongsListItemInfoWidget;
 class MUSIC_WIDGET_EXPORT MusicSongsListItemInfoWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListItemInfoWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     ~MusicSongsListItemInfoWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set music song information.
      */

@@ -28,17 +28,13 @@
 class MUSIC_NETWORK_EXPORT MusicDataTagDownloadThread : public MusicDataDownloadThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDataTagDownloadThread)
 public:
     /*!
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicDataTagDownloadThread(const QString &url, const QString &save,
                                DownloadType type, QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set custom tags.

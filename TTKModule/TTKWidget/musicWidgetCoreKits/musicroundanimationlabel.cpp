@@ -17,11 +17,6 @@ MusicRoundAnimationLabel::~MusicRoundAnimationLabel()
     stop();
 }
 
-QString MusicRoundAnimationLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRoundAnimationLabel::setPixmap(const QPixmap &pix)
 {
     m_pixmap = pix;

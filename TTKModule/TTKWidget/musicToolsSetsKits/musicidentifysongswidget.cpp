@@ -63,11 +63,6 @@ MusicIdentifySongsWidget::~MusicIdentifySongsWidget()
     delete m_mainWindow;
 }
 
-QString MusicIdentifySongsWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicIdentifySongsWidget::getKey()
 {
     if(m_detectedThread->getKey())

@@ -28,11 +28,6 @@ MusicDownloadAbstractTableWidget::~MusicDownloadAbstractTableWidget()
     xml.writeDownloadConfig(m_musicRecords);
 }
 
-QString MusicDownloadAbstractTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadAbstractTableWidget::musicSongsFileName()
 {
     MusicDownloadRecordConfigManager xml(m_type, this);

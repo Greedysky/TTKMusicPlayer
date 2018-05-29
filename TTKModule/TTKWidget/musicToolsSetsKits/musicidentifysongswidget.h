@@ -37,6 +37,7 @@ class MusicIdentifySongsThread;
 class MUSIC_TOOLSET_EXPORT MusicIdentifySongsWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicIdentifySongsThread)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +46,6 @@ public:
 
     ~MusicIdentifySongsWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get query song id keys.
      */

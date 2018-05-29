@@ -46,11 +46,6 @@ MusicSongCheckToolsWidget::~MusicSongCheckToolsWidget()
     delete m_ui;
 }
 
-QString MusicSongCheckToolsWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
 {
     MusicSongItems songs;

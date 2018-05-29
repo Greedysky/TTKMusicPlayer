@@ -29,6 +29,7 @@ class QToolButton;
 class MUSIC_LRC_EXPORT MusicLrcFloatPlayWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcFloatPlayWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
 
     virtual ~MusicLrcFloatPlayWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */

@@ -7,11 +7,6 @@ MusicLrcCommentsWidget::MusicLrcCommentsWidget(QWidget *parent)
 
 }
 
-QString MusicLrcCommentsWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcCommentsWidget::initWidget(bool isPain)
 {
     MusicCommentsWidget::initWidget(isPain);

@@ -34,6 +34,7 @@ class MusicAudioRecorderCore;
 class MUSIC_TOOLSET_EXPORT MusicSoundTouchWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundTouchWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,11 +42,6 @@ public:
     explicit MusicSoundTouchWidget(QWidget *parent = 0);
 
     virtual ~MusicSoundTouchWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

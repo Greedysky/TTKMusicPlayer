@@ -28,6 +28,7 @@
 class MUSIC_VIDEO_EXPORT MusicVideoQualityPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoQualityPopWidget)
 public:
     /*!
      * Object contsructor.
@@ -35,11 +36,6 @@ public:
     explicit MusicVideoQualityPopWidget(QWidget *parent = 0);
 
     virtual ~MusicVideoQualityPopWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set quality action state enable or disable.

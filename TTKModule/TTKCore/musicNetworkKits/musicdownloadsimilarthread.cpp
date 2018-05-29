@@ -5,8 +5,3 @@ MusicDownLoadSimilarThread::MusicDownLoadSimilarThread(QObject *parent)
 {
 
 }
-
-QString MusicDownLoadSimilarThread::getClassName()
-{
-    return staticMetaObject.className();
-}

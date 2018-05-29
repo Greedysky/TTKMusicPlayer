@@ -24,11 +24,6 @@ MusicLrcSearchTableWidget::~MusicLrcSearchTableWidget()
     clearAllItems();
 }
 
-QString MusicLrcSearchTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection

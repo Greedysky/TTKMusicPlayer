@@ -28,11 +28,6 @@ MusicTime::MusicTime(int day, int hour, int min, int sec, int msec)
     setHMSM(day, hour, min, sec, msec);
 }
 
-QString MusicTime::getClassName()
-{
-    return "MusicTime";
-}
-
 void MusicTime::setHMSM(int day, int hour, int min, int sec, int msec)
 {
     init();

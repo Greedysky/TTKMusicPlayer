@@ -21,11 +21,6 @@ MusicNetworkThread::~MusicNetworkThread()
     m_timer.stop();
 }
 
-QString MusicNetworkThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicNetworkThread::start()
 {
     M_LOGGER_INFO("Load NetworkThread");

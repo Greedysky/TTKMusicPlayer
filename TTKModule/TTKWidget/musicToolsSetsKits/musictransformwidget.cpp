@@ -75,11 +75,6 @@ MusicTransformWidget::~MusicTransformWidget()
     delete m_ui;
 }
 
-QString MusicTransformWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicTransformWidget::initControlParameter() const
 {
     m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV" << "WMA"

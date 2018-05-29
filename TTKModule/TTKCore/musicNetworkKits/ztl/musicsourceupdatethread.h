@@ -29,16 +29,13 @@
 class MUSIC_NETWORK_EXPORT MusicSourceUpdateThread : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSourceUpdateThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicSourceUpdateThread(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      */

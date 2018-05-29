@@ -29,6 +29,7 @@ class QPushButton;
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongSearchPopTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
 
     virtual ~MusicLocalSongSearchPopTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Clear All Items.
      */
@@ -71,6 +68,7 @@ public Q_SLOTS:
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchPopWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongSearchPopWidget)
 public:
     /*!
      * Object contsructor.
@@ -79,10 +77,6 @@ public:
 
     ~MusicLocalSongSearchPopWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Create popup search history table items.
      */

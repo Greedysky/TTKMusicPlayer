@@ -26,11 +26,6 @@ MusicSongsToolItemRenamedWidget::MusicSongsToolItemRenamedWidget(const QString &
     setText(text);
 }
 
-QString MusicSongsToolItemRenamedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
 {
     if(MusicUtils::String::illegalCharactersCheck(text))

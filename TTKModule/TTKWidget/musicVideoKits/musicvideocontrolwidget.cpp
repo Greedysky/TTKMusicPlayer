@@ -82,11 +82,6 @@ MusicVideoControlWidget::~MusicVideoControlWidget()
     delete m_lineEditBarrage;
 }
 
-QString MusicVideoControlWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVideoControlWidget::setValue(qint64 position) const
 {
     m_timeSlider->setValue(position*MT_S2MS);

@@ -27,16 +27,13 @@
 class MUSIC_WIDGET_EXPORT MusicHlPalette : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicHlPalette)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicHlPalette(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get color.
      */
@@ -85,16 +82,13 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicHlSaturationPalette : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicHlSaturationPalette)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicHlSaturationPalette(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get saturation.
      */
@@ -141,6 +135,7 @@ class MusicColorDialog;
 class MUSIC_WIDGET_EXPORT MusicColorDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicColorDialog)
 public:
     /*!
      * Object contsructor.
@@ -149,10 +144,6 @@ public:
 
     virtual ~MusicColorDialog();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get color static function.
      */

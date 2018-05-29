@@ -29,6 +29,7 @@
 class MUSIC_CORE_EXPORT MusicSemaphoreLoop : public QEventLoop
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSemaphoreLoop)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicSemaphoreLoop(QObject *parent = 0);
 
     ~MusicSemaphoreLoop();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Event loop start.

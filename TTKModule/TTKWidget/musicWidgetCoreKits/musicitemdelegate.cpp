@@ -25,11 +25,6 @@ MusicRadioButtonDelegate::~MusicRadioButtonDelegate()
     delete m_radioButton;
 }
 
-QString MusicRadioButtonDelegate::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRadioButtonDelegate::setStyleSheet(const QString &style)
 {
     m_radioButton->setStyleSheet(style);
@@ -74,11 +69,6 @@ MusicCheckBoxDelegate::~MusicCheckBoxDelegate()
     delete m_checkBox;
 }
 
-QString MusicCheckBoxDelegate::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCheckBoxDelegate::setStyleSheet(const QString &style)
 {
     m_checkBox->setStyleSheet(style);
@@ -119,11 +109,6 @@ MusicQueryTableDelegate::~MusicQueryTableDelegate()
 
 }
 
-QString MusicQueryTableDelegate::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicQueryTableDelegate::paint(QPainter *painter,
                                     const QStyleOptionViewItem &option,
                                     const QModelIndex &index) const
@@ -145,11 +130,6 @@ MusicProgressBarDelegate::MusicProgressBarDelegate(QObject *parent)
 MusicProgressBarDelegate::~MusicProgressBarDelegate()
 {
     delete m_progress;
-}
-
-QString MusicProgressBarDelegate::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicProgressBarDelegate::setStyleSheet(const QString &style)
@@ -191,11 +171,6 @@ MusicLabelDelegate::MusicLabelDelegate(QObject *parent)
 MusicLabelDelegate::~MusicLabelDelegate()
 {
     delete m_label;
-}
-
-QString MusicLabelDelegate::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLabelDelegate::setStyleSheet(const QString &style)
@@ -245,11 +220,6 @@ MusicPushButtonDelegate::~MusicPushButtonDelegate()
     delete m_pushButton;
 }
 
-QString MusicPushButtonDelegate::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPushButtonDelegate::setStyleSheet(const QString &style)
 {
     m_pushButton->setStyleSheet(style);
@@ -283,11 +253,6 @@ MusicRenameLineEditDelegate::MusicRenameLineEditDelegate(QObject *parent)
     : QItemDelegate(parent)
 {
 
-}
-
-QString MusicRenameLineEditDelegate::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 QWidget *MusicRenameLineEditDelegate::createEditor(QWidget *parent,

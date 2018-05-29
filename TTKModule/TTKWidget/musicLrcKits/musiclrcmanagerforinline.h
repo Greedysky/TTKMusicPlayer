@@ -29,16 +29,13 @@
 class MUSIC_LRC_EXPORT MusicLrcManagerForInline : public MusicLrcManager
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcManagerForInline)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcManagerForInline(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set lrc per width.
      */

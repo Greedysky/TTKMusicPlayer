@@ -11,11 +11,6 @@ MusicXMSongCommentsThread::MusicXMSongCommentsThread(QObject *parent)
     m_pageSize = 20;
 }
 
-QString MusicXMSongCommentsThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicXMSongCommentsThread::startToSearch(const QString &name)
 {
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(name));
@@ -131,11 +126,6 @@ MusicXMPlaylistCommentsThread::MusicXMPlaylistCommentsThread(QObject *parent)
     : MusicDownLoadCommentsThread(parent)
 {
     m_pageSize = 20;
-}
-
-QString MusicXMPlaylistCommentsThread::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicXMPlaylistCommentsThread::startToSearch(const QString &name)

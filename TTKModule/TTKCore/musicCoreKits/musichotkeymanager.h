@@ -31,12 +31,8 @@ class QxtGlobalShortcut;
 class MUSIC_CORE_EXPORT MusicHotKeyManager : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicHotKeyManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * To connect parent slot object.
      */

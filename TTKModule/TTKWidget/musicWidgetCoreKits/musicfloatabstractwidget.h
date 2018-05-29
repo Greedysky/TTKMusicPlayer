@@ -31,6 +31,7 @@
 class MUSIC_WIDGET_EXPORT MusicFloatAbstractWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicFloatAbstractWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     virtual ~MusicFloatAbstractWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set block animation state or not.
      */

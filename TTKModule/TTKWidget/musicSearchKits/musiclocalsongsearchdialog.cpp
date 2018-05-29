@@ -54,11 +54,6 @@ MusicLocalSongSearchDialog::~MusicLocalSongSearchDialog()
     delete m_searchLine;
 }
 
-QString MusicLocalSongSearchDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicLocalSongSearchDialog::close()
 {
     clearSearchedText();

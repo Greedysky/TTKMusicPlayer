@@ -32,11 +32,8 @@
 class MUSIC_CORE_EXPORT MusicBackgroundManager : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current artist name.
      */

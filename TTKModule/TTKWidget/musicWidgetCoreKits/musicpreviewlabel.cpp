@@ -8,11 +8,6 @@ MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
     m_linearGradient.setStart(0, 0);
 }
 
-QString MusicColorPreviewLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicColorPreviewLabel::setLinearGradient(const QList<QColor> &colors)
 {
     QLinearGradient linearGradient;
@@ -55,11 +50,6 @@ MusicPreviewLabel::MusicPreviewLabel(QWidget *parent)
     m_transparent = 255;
     m_linearGradient.setStart(0, 0);
     m_maskLinearGradient.setStart(0, 0);
-}
-
-QString MusicPreviewLabel::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicPreviewLabel::setLinearGradient(const MusicPreviewLabelItem &item)

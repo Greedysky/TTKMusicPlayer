@@ -24,11 +24,6 @@ MusicMovingLabelSlider::~MusicMovingLabelSlider()
     delete m_textLabel;
 }
 
-QString MusicMovingLabelSlider::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMovingLabelSlider::mousePressEvent(QMouseEvent *event)
 {
     MusicMovingClickedSlider::mousePressEvent(event);

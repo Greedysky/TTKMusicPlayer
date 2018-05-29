@@ -37,6 +37,7 @@ class MusicLocalSongSearchEdit;
 class MUSIC_VIDEO_EXPORT MusicVideoControlWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoControlWidget)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +46,6 @@ public:
 
     ~MusicVideoControlWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current video play value.
      */

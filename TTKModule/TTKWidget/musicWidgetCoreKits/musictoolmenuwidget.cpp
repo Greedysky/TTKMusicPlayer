@@ -9,11 +9,6 @@ MusicToolMenu::MusicToolMenu(QWidget *parent)
 
 }
 
-QString MusicToolMenu::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicToolMenu::showEvent(QShowEvent *event)
 {
     QMenu::showEvent(event);
@@ -46,11 +41,6 @@ MusicToolMenuWidget::~MusicToolMenuWidget()
 {
     delete m_containWidget;
     delete m_menu;
-}
-
-QString MusicToolMenuWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicToolMenuWidget::setTranslucentBackground()

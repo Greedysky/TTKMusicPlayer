@@ -57,11 +57,6 @@ MusicWebRadioView::~MusicWebRadioView()
     delete m_musicRadio;
 }
 
-QString MusicWebRadioView::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebRadioView::init(int index)
 {
     m_musicRadio->initListItems(index);

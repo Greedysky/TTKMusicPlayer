@@ -12,11 +12,6 @@ MusicWYAuthenticationThread::MusicWYAuthenticationThread(QObject *parent)
 
 }
 
-QString MusicWYAuthenticationThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWYAuthenticationThread::startToDownload(const QString &usr, const QString &pwd)
 {
     m_interrupt = true;

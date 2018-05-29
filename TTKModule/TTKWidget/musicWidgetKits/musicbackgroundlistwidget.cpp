@@ -21,11 +21,6 @@ MusicBackgroundListItem::MusicBackgroundListItem(QWidget *parent)
     m_selectedMask = true;
 }
 
-QString MusicBackgroundListItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBackgroundListItem::updatePixImage()
 {
     if(!m_path.isEmpty())
@@ -160,11 +155,6 @@ MusicBackgroundListWidget::MusicBackgroundListWidget(QWidget *parent)
 MusicBackgroundListWidget::~MusicBackgroundListWidget()
 {
     clearAllItems();
-}
-
-QString MusicBackgroundListWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicBackgroundListWidget::setCurrentItemName(const QString &name)

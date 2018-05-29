@@ -21,11 +21,6 @@ MusicLrcContainer::~MusicLrcContainer()
     delete m_musicLrcSearchWidget;
 }
 
-QString MusicLrcContainer::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcContainer::setLinearGradientColor(MusicLrcColor::LrcColorType lrcColorType)
 {
     MusicLrcColor cl = MusicLrcColor::mapIndexToColor(lrcColorType);

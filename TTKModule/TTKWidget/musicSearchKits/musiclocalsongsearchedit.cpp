@@ -11,11 +11,6 @@ MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)
     setPlaceholderText(tr("please input search text"));
 }
 
-QString MusicLocalSongSearchEdit::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongSearchEdit::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);

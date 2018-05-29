@@ -30,11 +30,6 @@ MusicPlaylistFoundInfoWidget::~MusicPlaylistFoundInfoWidget()
     delete m_commentsWidget;
 }
 
-QString MusicPlaylistFoundInfoWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlaylistFoundInfoWidget::resizeWindow()
 {
     m_foundTableWidget->resizeWindow();

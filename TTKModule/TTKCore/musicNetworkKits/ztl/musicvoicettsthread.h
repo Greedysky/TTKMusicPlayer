@@ -32,6 +32,7 @@ class MusicDownloadSourceThread;
 class MUSIC_NETWORK_EXPORT MusicVoiceTtsThread : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVoiceTtsThread)
 public:
     enum TranslationType
     {
@@ -47,10 +48,6 @@ public:
 
     ~MusicVoiceTtsThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set speed.
      */

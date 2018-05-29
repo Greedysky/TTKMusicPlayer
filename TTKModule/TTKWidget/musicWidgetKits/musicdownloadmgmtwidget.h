@@ -32,6 +32,7 @@ class MusicDownloadResetWidget;
 class MUSIC_WIDGET_EXPORT MusicDownloadResetWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadResetWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,10 +41,6 @@ public:
 
     ~MusicDownloadResetWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current name to search and download musics.
      */
@@ -88,16 +85,13 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicDownloadMgmtWidget : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadMgmtWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownloadMgmtWidget(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current name to search and download musics.
      */

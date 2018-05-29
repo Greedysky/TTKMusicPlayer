@@ -29,6 +29,7 @@ class MusicClickedSlider;
 class MUSIC_WIDGET_EXPORT MusicVolumePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVolumePopWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicVolumePopWidget(QWidget *parent = 0);
 
     virtual ~MusicVolumePopWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set slider value.

@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicMoveButton : public QPushButton
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMoveButton)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicMoveButton(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!
@@ -69,6 +65,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicCutSliderWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCutSliderWidget)
 public:
     /*!
      * Object contsructor.
@@ -77,10 +74,6 @@ public:
 
     ~MusicCutSliderWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current position.
      */

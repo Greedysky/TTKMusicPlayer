@@ -55,11 +55,6 @@ MusicUserDialog::~MusicUserDialog()
     delete m_loginThread;
 }
 
-QString MusicUserDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicUserDialog::checkToAutoLogin()
 {
     foreach(const MusicUserRecord &record, m_records)

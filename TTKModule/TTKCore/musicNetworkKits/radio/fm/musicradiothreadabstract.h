@@ -34,6 +34,7 @@ const QString RADIO_LRC_URL      = "NmdYZm9tYkZjdHJOc1ZNNjIxSFdsc0NZc0xWa1RsM0dh
 class MUSIC_NETWORK_EXPORT MusicRadioThreadAbstract : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRadioThreadAbstract)
 public:
     /*!
      * Object contsructor.
@@ -42,10 +43,6 @@ public:
 
     virtual ~MusicRadioThreadAbstract();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      * Subclass should implement this function.

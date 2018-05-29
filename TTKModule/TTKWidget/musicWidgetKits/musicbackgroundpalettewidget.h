@@ -32,6 +32,7 @@ class MusicBackgroundPaletteWidget;
 class MUSIC_WIDGET_EXPORT MusicBackgroundPalette : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundPalette)
 public:
     /*!
      * Object contsructor.
@@ -40,10 +41,6 @@ public:
 
     ~MusicBackgroundPalette();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current label background by color.
      */
@@ -81,6 +78,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicBackgroundPaletteWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBackgroundPaletteWidget)
 public:
     /*!
      * Object contsructor.
@@ -89,10 +87,6 @@ public:
 
     ~MusicBackgroundPaletteWidget();
 
-    /*!
-    * Get class object name.
-    */
-    static QString getClassName();
     /*!
      * Update this bg when user change the current bg.
      */

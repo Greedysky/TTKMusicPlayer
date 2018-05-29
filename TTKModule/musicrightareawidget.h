@@ -38,6 +38,7 @@ namespace Ui {
 class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRightAreaWidget)
 public:
     enum MusicFunction
     {
@@ -70,10 +71,6 @@ public:
 
     ~MusicRightAreaWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get class object instance.
      */

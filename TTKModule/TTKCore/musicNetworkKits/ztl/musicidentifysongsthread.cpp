@@ -20,11 +20,6 @@ MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
 #endif
 }
 
-QString MusicIdentifySongsThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicIdentifySongsThread::deleteAll()
 {
     if(m_reply)

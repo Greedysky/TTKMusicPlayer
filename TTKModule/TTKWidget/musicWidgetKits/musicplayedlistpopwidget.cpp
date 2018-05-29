@@ -22,11 +22,6 @@ MusicPlayedListTopContainerWidget::MusicPlayedListTopContainerWidget(QWidget *pa
     setFixedHeight(37);
 }
 
-QString MusicPlayedListTopContainerWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlayedListTopContainerWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -68,11 +63,6 @@ MusicPlayedListPopWidget::~MusicPlayedListPopWidget()
 {
     delete m_playedListWidget;
     qDeleteAll(m_labels);
-}
-
-QString MusicPlayedListPopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 MusicPlayedListPopWidget *MusicPlayedListPopWidget::instance()

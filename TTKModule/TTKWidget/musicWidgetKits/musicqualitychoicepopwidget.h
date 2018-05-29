@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicQualityChoiceTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQualityChoiceTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -35,11 +36,6 @@ public:
     explicit MusicQualityChoiceTableWidget(QWidget *parent = 0);
 
     virtual ~MusicQualityChoiceTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!
@@ -64,16 +60,12 @@ public Q_SLOTS:
 class MUSIC_WIDGET_EXPORT MusicQualityChoicePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQualityChoicePopWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicQualityChoicePopWidget(QWidget *parent = 0);
-
-    /*!
-    * Get class object name.
-    */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

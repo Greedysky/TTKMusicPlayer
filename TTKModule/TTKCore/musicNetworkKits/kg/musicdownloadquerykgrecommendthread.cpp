@@ -9,11 +9,6 @@ MusicDownLoadQueryKGRecommendThread::MusicDownLoadQueryKGRecommendThread(QObject
     m_queryServer = "Kugou";
 }
 
-QString MusicDownLoadQueryKGRecommendThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKGRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)

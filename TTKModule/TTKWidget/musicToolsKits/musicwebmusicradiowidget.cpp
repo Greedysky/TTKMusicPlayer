@@ -47,11 +47,6 @@ MusicWebMusicRadioWidget::~MusicWebMusicRadioWidget()
     delete m_getChannelThread;
 }
 
-QString MusicWebMusicRadioWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebMusicRadioWidget::initListItems(int index)
 {
     m_outerIndex = index;

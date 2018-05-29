@@ -27,16 +27,13 @@
 class MUSIC_LRC_EXPORT MusicPlaylistFoundCommentsWidget : public MusicCommentsWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundCommentsWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPlaylistFoundCommentsWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Init widget.
      */

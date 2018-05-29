@@ -19,11 +19,6 @@ MusicDownLoadPagingThread::~MusicDownLoadPagingThread()
     deleteAll();
 }
 
-QString MusicDownLoadPagingThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadPagingThread::deleteAll()
 {
     if(m_reply)

@@ -25,11 +25,6 @@ MusicAnimationStackedWidget::~MusicAnimationStackedWidget()
     delete m_animation;
 }
 
-QString MusicAnimationStackedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
 {
     if(m_isAnimating)

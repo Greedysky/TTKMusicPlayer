@@ -29,6 +29,7 @@ class QPushButton;
 class MUSIC_VIDEO_EXPORT MusicVideoFloatWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoFloatWidget)
 public:
     enum Type
     {
@@ -46,10 +47,6 @@ public:
 
     virtual ~MusicVideoFloatWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */

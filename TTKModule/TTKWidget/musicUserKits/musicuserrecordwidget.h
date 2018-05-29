@@ -35,6 +35,7 @@ class MusicUserModel;
 class MUSIC_USER_EXPORT MusicUserRecordWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserRecordWidget)
 public:
     /*!
      * Object contsructor.
@@ -43,10 +44,6 @@ public:
 
     ~MusicUserRecordWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Avatar pixmap render.
      */

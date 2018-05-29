@@ -31,6 +31,7 @@ class MusicPagingWidgetObject;
 class MUSIC_LRC_EXPORT MusicCommentsItem : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCommentsItem)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicCommentsItem(QWidget *parent = 0);
 
     ~MusicCommentsItem();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Create the current song comment.
@@ -68,6 +64,7 @@ protected:
 class MUSIC_LRC_EXPORT MusicCommentsWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCommentsWidget)
 public:
     /*!
      * Object contsructor.
@@ -75,11 +72,6 @@ public:
     explicit MusicCommentsWidget(QWidget *parent = 0);
 
     ~MusicCommentsWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init widget.

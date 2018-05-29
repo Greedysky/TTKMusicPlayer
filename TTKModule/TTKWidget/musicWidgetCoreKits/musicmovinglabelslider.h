@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicMovingLabelSlider : public MusicMovingClickedSlider
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMovingLabelSlider)
 public:
     /*!
      * Object contsructor.
@@ -39,11 +40,6 @@ public:
     explicit MusicMovingLabelSlider(Qt::Orientation orientation, QWidget *parent = 0);
 
     ~MusicMovingLabelSlider();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

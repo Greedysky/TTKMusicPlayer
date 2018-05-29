@@ -29,6 +29,7 @@
 class MUSIC_WIDGET_EXPORT MusicRoundAnimationLabel : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRoundAnimationLabel)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
 
     ~MusicRoundAnimationLabel();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set rotating widget background pixmap.
      */

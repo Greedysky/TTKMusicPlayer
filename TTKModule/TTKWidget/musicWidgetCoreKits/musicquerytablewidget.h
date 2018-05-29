@@ -33,6 +33,7 @@ class MusicGifLabelWidget;
 class MUSIC_WIDGET_EXPORT MusicQueryTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQueryTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,11 +41,6 @@ public:
     explicit MusicQueryTableWidget(QWidget *parent = 0);
 
     virtual ~MusicQueryTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set network query input.
@@ -110,6 +106,7 @@ class MusicLabelDelegate;
 class MUSIC_WIDGET_EXPORT MusicQueryItemTableWidget : public MusicQueryTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQueryItemTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -118,10 +115,6 @@ public:
 
     virtual ~MusicQueryItemTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start search query by text.
      */

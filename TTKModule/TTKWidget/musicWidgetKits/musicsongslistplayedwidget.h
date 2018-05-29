@@ -32,6 +32,7 @@ class MusicGifLabelWidget;
 class MUSIC_WIDGET_EXPORT MusicSongsListPlayedWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListPlayedWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,10 +41,6 @@ public:
 
     ~MusicSongsListPlayedWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Update item artist label by name.
      */

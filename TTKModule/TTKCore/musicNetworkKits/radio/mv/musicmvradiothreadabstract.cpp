@@ -7,11 +7,6 @@ MusicMVRadioThreadAbstract::MusicMVRadioThreadAbstract(QObject *parent)
     m_searchText = "1";
 }
 
-QString MusicMVRadioThreadAbstract::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMVRadioThreadAbstract::startToSearch(QueryType type, const QString &text)
 {
     Q_UNUSED(type);

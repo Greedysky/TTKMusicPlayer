@@ -9,11 +9,6 @@ MusicKGSongSuggestThread::MusicKGSongSuggestThread(QObject *parent)
 
 }
 
-QString MusicKGSongSuggestThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicKGSongSuggestThread::startToSearch(const QString &text)
 {
     if(!m_manager)

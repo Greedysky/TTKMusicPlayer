@@ -34,11 +34,6 @@ MusicGrabWidget::MusicGrabWidget(QWidget *parent)
 #endif
 }
 
-QString MusicGrabWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicGrabWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);

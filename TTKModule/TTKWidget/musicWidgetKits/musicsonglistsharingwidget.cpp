@@ -55,11 +55,6 @@ MusicSongListSharingWidget::~MusicSongListSharingWidget()
     delete m_ui;
 }
 
-QString MusicSongListSharingWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 int MusicSongListSharingWidget::exec()
 {
     setBackgroundPixmap(m_ui->background, size());

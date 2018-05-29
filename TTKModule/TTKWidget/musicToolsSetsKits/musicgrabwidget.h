@@ -29,16 +29,12 @@
 class MUSIC_WIDGET_EXPORT MusicGrabWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicGrabWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicGrabWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

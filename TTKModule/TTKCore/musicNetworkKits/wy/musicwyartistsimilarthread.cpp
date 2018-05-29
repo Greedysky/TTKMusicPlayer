@@ -8,11 +8,6 @@ MusicWYArtistSimilarThread::MusicWYArtistSimilarThread(QObject *parent)
 
 }
 
-QString MusicWYArtistSimilarThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWYArtistSimilarThread::startToSearch(const QString &text)
 {
     if(!m_manager)

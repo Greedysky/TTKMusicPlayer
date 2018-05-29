@@ -12,11 +12,6 @@ MusicDataTagDownloadThread::MusicDataTagDownloadThread(const QString &url, const
     m_needUpdate = false;
 }
 
-QString MusicDataTagDownloadThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDataTagDownloadThread::setSongTag(const MusicSongTag &tag)
 {
     m_musicTag = tag;

@@ -29,16 +29,12 @@
 class MUSIC_CORE_EXPORT MusicXMMVInfoConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicXMMVInfoConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicXMMVInfoConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Read mv info datas into xml file.
@@ -55,16 +51,12 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryXMMovieThread : public MusicDownLoa
                                                              private MusicDownLoadXMInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadQueryXMMovieThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownLoadQueryXMMovieThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to search data from name and type.

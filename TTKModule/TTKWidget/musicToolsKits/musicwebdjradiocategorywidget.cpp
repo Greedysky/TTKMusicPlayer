@@ -30,11 +30,6 @@ MusicWebDJRadioCategoryItemWidget::~MusicWebDJRadioCategoryItemWidget()
     delete m_nameLabel;
 }
 
-QString MusicWebDJRadioCategoryItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebDJRadioCategoryItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -97,11 +92,6 @@ MusicWebDJRadioCategoryWidget::~MusicWebDJRadioCategoryWidget()
 {
     delete m_gridLayout;
     delete m_categoryThread;
-}
-
-QString MusicWebDJRadioCategoryWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebDJRadioCategoryWidget::init()

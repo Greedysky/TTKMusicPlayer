@@ -33,6 +33,7 @@ class MusicTranslationThreadAbstract;
 class MUSIC_LRC_EXPORT MusicLrcAnalysis : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcAnalysis)
 public:
     enum State
     {
@@ -66,11 +67,6 @@ public:
     explicit MusicLrcAnalysis(QObject *parent = 0);
 
     ~MusicLrcAnalysis();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current line maximum value.

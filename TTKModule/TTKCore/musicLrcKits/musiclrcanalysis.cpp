@@ -21,11 +21,6 @@ MusicLrcAnalysis::~MusicLrcAnalysis()
     delete m_translationThread;
 }
 
-QString MusicLrcAnalysis::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
 {
     m_currentLrcIndex = 0;

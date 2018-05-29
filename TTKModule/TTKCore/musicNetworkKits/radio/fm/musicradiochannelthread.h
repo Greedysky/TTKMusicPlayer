@@ -30,7 +30,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicRadioChannelInfo
     QString m_name;
     QString m_coverUrl;
 }MusicRadioChannelInfo;
-MUSIC_DECLARE_LISTS(MusicRadioChannelInfo)
+TTK_DECLARE_LISTS(MusicRadioChannelInfo)
 
 /*! @brief The class of music radio thread of song channel.
  * @author Greedysky <greedysky@163.com>
@@ -38,6 +38,7 @@ MUSIC_DECLARE_LISTS(MusicRadioChannelInfo)
 class MUSIC_NETWORK_EXPORT MusicRadioChannelThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRadioChannelThread)
 public:
     /*!
      * Object contsructor.
@@ -46,10 +47,6 @@ public:
 
     virtual ~MusicRadioChannelThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      */

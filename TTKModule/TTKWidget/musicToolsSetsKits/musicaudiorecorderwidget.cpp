@@ -100,11 +100,6 @@ MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
     delete m_ui;
 }
 
-QString MusicAudioRecorderWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAudioRecorderWidget::onTimerout()
 {
     QString text = MusicTime::normalTime2Label( ++m_time );

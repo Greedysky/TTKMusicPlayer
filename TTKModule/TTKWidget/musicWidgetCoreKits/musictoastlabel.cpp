@@ -30,11 +30,6 @@ MusicToastLabel::~MusicToastLabel()
     m_timer.stop();
 }
 
-QString MusicToastLabel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicToastLabel::defaultLabel(QWidget *parent, const QString &text)
 {
     setFontSize(15);

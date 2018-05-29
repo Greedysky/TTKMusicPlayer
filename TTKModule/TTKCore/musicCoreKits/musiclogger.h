@@ -61,19 +61,12 @@ public:
     /*!
      * Get object instance ptr.
      */
-    static inline MusicLogger* createInstance()
+    inline static MusicLogger* createInstance()
     {
         static MusicLogger obj;
         return &obj;
     }
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName()
-    {
-        return "MusicLogger";
-    }
     /*!
      * Set logger level.
      */

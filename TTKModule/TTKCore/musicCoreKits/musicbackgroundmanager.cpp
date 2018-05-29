@@ -6,11 +6,6 @@ MusicBackgroundManager::MusicBackgroundManager()
     m_currentIndex = 0;
 }
 
-QString MusicBackgroundManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBackgroundManager::setArtName(const QString &name)
 {
     QString sName = MusicUtils::String::artistName(name);

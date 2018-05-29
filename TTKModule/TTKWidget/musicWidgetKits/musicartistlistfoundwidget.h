@@ -33,16 +33,12 @@ class MusicArtistListFoundCategoryPopWidget;
 class MUSIC_WIDGET_EXPORT MusicArtistListFoundItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicArtistListFoundItemWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicArtistListFoundItemWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music results item.
@@ -74,6 +70,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicArtistListFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicArtistListFoundWidget)
 public:
     /*!
      * Object contsructor.
@@ -81,11 +78,6 @@ public:
     explicit MusicArtistListFoundWidget(QWidget *parent = 0);
 
     virtual ~MusicArtistListFoundWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

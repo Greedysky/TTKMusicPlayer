@@ -11,11 +11,6 @@ MusicPlaylistFoundTableWidget::~MusicPlaylistFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicPlaylistFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlaylistFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);

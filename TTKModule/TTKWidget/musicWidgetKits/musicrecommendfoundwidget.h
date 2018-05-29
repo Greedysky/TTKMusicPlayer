@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicRecommendFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRecommendFoundTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,10 +37,6 @@ public:
 
     virtual ~MusicRecommendFoundTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set network query input.
      */
@@ -60,16 +57,12 @@ public Q_SLOTS:
 class MUSIC_WIDGET_EXPORT MusicRecommendFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRecommendFoundWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicRecommendFoundWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

@@ -35,11 +35,6 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
     delete m_programThread;
 }
 
-QString MusicWebDJRadioProgramTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebDJRadioProgramTableWidget::init(Program::Type type)
 {
     m_programThread->startToDownload(type);
@@ -192,11 +187,6 @@ MusicWebDJRadioProgramWidget::~MusicWebDJRadioProgramWidget()
     delete m_tableWidget;
 }
 
-QString MusicWebDJRadioProgramWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebDJRadioProgramWidget::init()
 {
     m_tableWidget->init(m_type);
@@ -228,11 +218,6 @@ MusicWebDJRadioWidget::~MusicWebDJRadioWidget()
     delete m_programWidget;
     delete m_categoryWidget;
     delete m_foundWidget;
-}
-
-QString MusicWebDJRadioWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebDJRadioWidget::init()

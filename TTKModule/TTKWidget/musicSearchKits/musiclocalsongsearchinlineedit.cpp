@@ -23,11 +23,6 @@ MusicLocalSongSearchInlineEdit::~MusicLocalSongSearchInlineEdit()
     delete m_suggestThread;
 }
 
-QString MusicLocalSongSearchInlineEdit::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongSearchInlineEdit::initWidget(QWidget *parent)
 {
     setFocus(Qt::MouseFocusReason);

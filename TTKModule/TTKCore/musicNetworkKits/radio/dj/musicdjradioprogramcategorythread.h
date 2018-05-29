@@ -29,16 +29,12 @@ class MUSIC_NETWORK_EXPORT MusicDJRadioProgramCategoryThread : public MusicDownL
                                                                private MusicDownLoadWYInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDJRadioProgramCategoryThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDJRadioProgramCategoryThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name and type.

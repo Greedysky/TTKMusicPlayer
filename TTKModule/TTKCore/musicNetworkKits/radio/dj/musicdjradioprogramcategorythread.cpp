@@ -12,11 +12,6 @@ MusicDJRadioProgramCategoryThread::MusicDJRadioProgramCategoryThread(QObject *pa
     m_queryServer = "WangYi";
 }
 
-QString MusicDJRadioProgramCategoryThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDJRadioProgramCategoryThread::startToSearch(QueryType type, const QString &category)
 {
     if(type == MusicQuery)

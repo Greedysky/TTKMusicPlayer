@@ -23,11 +23,6 @@ MusicCloudFileInformationWidget::~MusicCloudFileInformationWidget()
     delete m_ui;
 }
 
-QString MusicCloudFileInformationWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCloudFileInformationWidget::setFileInformation(QNDataItem *data)
 {
     m_ui->filePathEdit->setText(data->m_name);

@@ -6,11 +6,6 @@
 #include "musicdownloadabstracttablewidget.h"
 #endif
 
-QString MusicDownLoadManager::getClassName()
-{
-    return "MusicDownLoadManager";
-}
-
 void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
 {
 #ifndef MUSIC_MOBILE

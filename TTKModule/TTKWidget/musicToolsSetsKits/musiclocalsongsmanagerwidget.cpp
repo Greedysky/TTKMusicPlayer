@@ -132,11 +132,6 @@ MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
     delete m_ui;
 }
 
-QString MusicLocalSongsManagerWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongsManagerWidget::findExtraDevicePath(const QString &dir)
 {
     MusicUtils::Widget::setComboBoxText(m_ui->filterComboBox, dir);

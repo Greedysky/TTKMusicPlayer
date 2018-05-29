@@ -6,11 +6,6 @@ MusicListConfigManager::MusicListConfigManager(QObject *parent)
 
 }
 
-QString MusicListConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
 {
     writeMusicSongsConfig(musics, MUSICPATH_FULL);

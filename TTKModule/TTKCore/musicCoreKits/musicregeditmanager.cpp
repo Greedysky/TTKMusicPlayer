@@ -13,11 +13,6 @@
 #include <QStringList>
 #include <QApplication>
 
-QString MusicRegeditManager::getClassName()
-{
-    return "MusicRegeditManager";
-}
-
 bool MusicRegeditManager::isFileAssociate()
 {
     return currentNodeHasExist(MP3_FILE_PREFIX);

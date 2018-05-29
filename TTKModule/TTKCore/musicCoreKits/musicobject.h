@@ -222,7 +222,7 @@ namespace MusicObject
             return m_bitrate == other.m_bitrate || m_url == other.m_url;
         }
     }MusicSongAttribute;
-    MUSIC_DECLARE_LISTS(MusicSongAttribute)
+    TTK_DECLARE_LISTS(MusicSongAttribute)
 
     ///////////////////////////////////////
 
@@ -245,7 +245,7 @@ namespace MusicObject
         QString m_discNumber;
         QString m_trackNumber;
     }MusicSongInformation;
-    MUSIC_DECLARE_LISTS(MusicSongInformation)
+    TTK_DECLARE_LISTS(MusicSongInformation)
     ///////////////////////////////////////
 
     enum PlayState
@@ -302,7 +302,7 @@ namespace MusicObject
         TT_SoundKMicro =    0x02000,   /*!< Sound KMicro*/
         TT_WebRadio =       0x04000    /*!< Web Radio*/
     };
-    MUSIC_DECLARE_FLAGS(ToolsTypes, ToolsType)
+    TTK_DECLARE_FLAGS(ToolsTypes, ToolsType)
 
     /*!
      * Get application dir.

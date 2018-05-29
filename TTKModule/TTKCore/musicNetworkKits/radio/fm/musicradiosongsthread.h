@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicRadioSongsThread : public MusicRadioThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRadioSongsThread)
 public:
     /*!
      * Object contsructor.
@@ -35,10 +36,6 @@ public:
 
     virtual ~MusicRadioSongsThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      */

@@ -28,20 +28,13 @@
 class MUSIC_WIDGET_EXPORT MusicSongsToolItemRenamedWidget : public QLineEdit
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsToolItemRenamedWidget)
 public:
-    /*!
-     * Object contsructor by index and origin name.
-     */
     /*!
      * Object contsructor by index and origin name.
      */
     explicit MusicSongsToolItemRenamedWidget(QWidget *parent = 0);
     explicit MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

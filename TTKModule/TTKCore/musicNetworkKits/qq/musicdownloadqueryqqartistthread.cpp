@@ -12,11 +12,6 @@ MusicQQArtistInfoConfigManager::MusicQQArtistInfoConfigManager(QObject *parent)
 
 }
 
-QString MusicQQArtistInfoConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item)
 {
     QDomNodeList resultlist = m_document->elementsByTagName("info");
@@ -76,11 +71,6 @@ MusicDownLoadQueryQQArtistThread::MusicDownLoadQueryQQArtistThread(QObject *pare
     : MusicDownLoadQueryArtistThread(parent)
 {
     m_queryServer = "QQ";
-}
-
-QString MusicDownLoadQueryQQArtistThread::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)

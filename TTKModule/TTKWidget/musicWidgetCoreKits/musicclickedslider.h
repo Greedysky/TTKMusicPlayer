@@ -28,17 +28,13 @@
 class MUSIC_WIDGET_EXPORT MusicClickedSlider : public QSlider
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicClickedSlider)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicClickedSlider(QWidget *parent = 0);
     explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

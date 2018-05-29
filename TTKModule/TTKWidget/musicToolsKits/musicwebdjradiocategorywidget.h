@@ -31,6 +31,7 @@ class MusicDJRadioCategoryThread;
 class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryItemWidget : public MusicClickedLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioCategoryItemWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = 0);
 
     ~MusicWebDJRadioCategoryItemWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music results item.
@@ -78,6 +74,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebDJRadioCategoryWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioCategoryWidget)
 public:
     /*!
      * Object contsructor.
@@ -85,11 +82,6 @@ public:
     explicit MusicWebDJRadioCategoryWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioCategoryWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Init widget.

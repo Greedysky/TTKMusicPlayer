@@ -75,11 +75,6 @@ MusicSongRingtoneMaker::~MusicSongRingtoneMaker()
     delete m_ui;
 }
 
-QString MusicSongRingtoneMaker::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongRingtoneMaker::initInputPath()
 {
     QStringList supportedFormat;

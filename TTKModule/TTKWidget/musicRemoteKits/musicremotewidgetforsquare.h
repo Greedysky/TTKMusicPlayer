@@ -27,6 +27,7 @@
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForSquare : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForSquare)
 public:
     /*!
      * Object contsructor.
@@ -34,11 +35,6 @@ public:
     explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
 
     virtual ~MusicRemoteWidgetForSquare();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

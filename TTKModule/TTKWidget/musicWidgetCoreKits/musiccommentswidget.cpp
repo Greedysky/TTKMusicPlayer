@@ -119,11 +119,6 @@ MusicCommentsItem::~MusicCommentsItem()
     delete m_starLabel;
 }
 
-QString MusicCommentsItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCommentsItem::createSearchedItem(const MusicResultsItem &comments)
 {
     m_userName->setText(comments.m_nickName + ":");
@@ -169,11 +164,6 @@ MusicCommentsWidget::~MusicCommentsWidget()
     delete m_pagingWidgetObject;
     delete m_messageComments;
     delete m_commentsThread;
-}
-
-QString MusicCommentsWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicCommentsWidget::initWidget(bool isPain)

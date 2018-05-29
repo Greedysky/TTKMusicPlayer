@@ -33,6 +33,7 @@ class MusicCloudFileInformationWidget;
 class MUSIC_TOOL_EXPORT MusicCloudFileInformationWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudFileInformationWidget)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     virtual ~MusicCloudFileInformationWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set music file song path name.
      */

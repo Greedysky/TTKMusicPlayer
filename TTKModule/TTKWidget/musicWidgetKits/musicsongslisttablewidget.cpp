@@ -83,11 +83,6 @@ MusicSongsListTableWidget::~MusicSongsListTableWidget()
     delete m_renameLineEditDelegate;
 }
 
-QString MusicSongsListTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
     if(createUploadFileWidget())

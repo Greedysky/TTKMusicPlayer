@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryItem : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundCategoryItem)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPlaylistFoundCategoryItem(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current category.
@@ -69,16 +65,13 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicPlaylistFoundCategoryPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylistFoundCategoryPopWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current category by input server.
      */

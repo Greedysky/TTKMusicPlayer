@@ -11,11 +11,6 @@ MusicDownLoadQueryKGPlaylistThread::MusicDownLoadQueryKGPlaylistThread(QObject *
     m_queryServer = "Kugou";
 }
 
-QString MusicDownLoadQueryKGPlaylistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKGPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)

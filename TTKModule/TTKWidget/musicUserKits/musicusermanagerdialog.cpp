@@ -44,11 +44,6 @@ MusicUserManagerDialog::~MusicUserManagerDialog()
     delete m_ui;
 }
 
-QString MusicUserManagerDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicUserManagerDialog::setUserUID(const MusicUserUIDItem &uid)
 {
     m_userUID = uid;

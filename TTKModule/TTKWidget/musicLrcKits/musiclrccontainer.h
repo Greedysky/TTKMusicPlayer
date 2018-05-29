@@ -33,6 +33,7 @@ class MusicLrcSearchWidget;
 class MUSIC_LRC_EXPORT MusicLrcContainer : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcContainer)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     virtual ~MusicLrcContainer();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start timer clock to draw lrc.
      * Subclass should implement this function.

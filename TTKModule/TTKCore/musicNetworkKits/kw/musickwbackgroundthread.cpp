@@ -14,11 +14,6 @@ MusicKWBackgroundThread::MusicKWBackgroundThread(const QString &name, const QStr
 
 }
 
-QString MusicKWBackgroundThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicKWBackgroundThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);

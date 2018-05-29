@@ -29,6 +29,7 @@ class MusicSongsListPlayedWidget;
 class MUSIC_WIDGET_EXPORT MusicSongsListPlayedTableWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongsListPlayedTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicSongsListPlayedTableWidget(QWidget *parent = 0);
 
     virtual ~MusicSongsListPlayedTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Clear play later state.

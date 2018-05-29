@@ -32,11 +32,6 @@ MusicUserRecordWidget::~MusicUserRecordWidget()
     delete m_ui;
 }
 
-QString MusicUserRecordWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 QString MusicUserRecordWidget::avatarPixmapRender(const MusicUserUIDItem &item, const QPixmap &pix)
 {
     QPixmap p(pix);

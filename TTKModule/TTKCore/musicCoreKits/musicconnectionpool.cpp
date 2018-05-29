@@ -29,11 +29,6 @@ MusicConnectionPool::MusicConnectionPool()
 
 }
 
-QString MusicConnectionPool::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 {
     QObject *first = m_para.value(from);

@@ -40,7 +40,7 @@ typedef struct MUSIC_CORE_EXPORT MusicResultsCategoryItem
         m_name = name;
     }
 }MusicResultsCategoryItem;
-MUSIC_DECLARE_LISTS(MusicResultsCategoryItem)
+TTK_DECLARE_LISTS(MusicResultsCategoryItem)
 
 
 /*! @brief The class of the results category core.
@@ -51,7 +51,7 @@ typedef struct MUSIC_CORE_EXPORT MusicResultsCategory
     QString m_category;
     MusicResultsCategoryItems m_items;
 }MusicResultsCategory;
-MUSIC_DECLARE_LISTS(MusicResultsCategory)
+TTK_DECLARE_LISTS(MusicResultsCategory)
 
 
 /*! @brief The class of the category Config Manager.
@@ -60,6 +60,7 @@ MUSIC_DECLARE_LISTS(MusicResultsCategory)
 class MUSIC_CORE_EXPORT MusicCategoryConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCategoryConfigManager)
 public:
     enum Type
     {
@@ -73,10 +74,6 @@ public:
      */
     explicit MusicCategoryConfigManager(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Read user datas from xml file by given name.
      */

@@ -9,11 +9,6 @@ MusicBDDiscoverListThread::MusicBDDiscoverListThread(QObject *parent)
     m_pageSize = 100;
 }
 
-QString MusicBDDiscoverListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicBDDiscoverListThread::startToSearch()
 {
     if(!m_manager)

@@ -28,6 +28,7 @@
 class MUSIC_WIDGET_EXPORT MusicResizeGrabItemWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicResizeGrabItemWidget)
 public:
     enum Direction
     {
@@ -46,10 +47,6 @@ public:
      */
     explicit MusicResizeGrabItemWidget(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set border rect.
      */

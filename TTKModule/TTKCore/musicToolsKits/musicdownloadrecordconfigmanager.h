@@ -31,7 +31,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
     QString m_size;
     QString m_time;
 }MusicDownloadRecord;
-MUSIC_DECLARE_LISTS(MusicDownloadRecord)
+TTK_DECLARE_LISTS(MusicDownloadRecord)
 
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
@@ -39,6 +39,7 @@ MUSIC_DECLARE_LISTS(MusicDownloadRecord)
 class MUSIC_TOOL_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
 public:
     enum Type
     {
@@ -51,10 +52,6 @@ public:
      */
     explicit MusicDownloadRecordConfigManager(Type type, QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set config type.
      */

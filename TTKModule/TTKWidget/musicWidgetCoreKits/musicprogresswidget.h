@@ -30,6 +30,7 @@ class QLabel;
 class MUSIC_WIDGET_EXPORT MusicProgressWidget : public QProgressDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicProgressWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,10 +39,6 @@ public:
 
     ~MusicProgressWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set widget title.
      */

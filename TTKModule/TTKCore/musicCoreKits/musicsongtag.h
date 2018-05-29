@@ -29,6 +29,7 @@
  */
 class MUSIC_CORE_EXPORT MusicSongTag
 {
+    TTK_DECLARE_MODULE(MusicSongTag)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
      * Object contsructor.
      */
     explicit MusicSongTag(const QString &file);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Read music file to anaylsis.

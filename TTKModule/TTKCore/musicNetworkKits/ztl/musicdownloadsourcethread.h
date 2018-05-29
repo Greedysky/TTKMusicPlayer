@@ -26,6 +26,7 @@
 class MUSIC_NETWORK_EXPORT MusicDownloadSourceThread : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadSourceThread)
 public:
     /*!
      * Object contsructor.
@@ -34,10 +35,6 @@ public:
 
     ~MusicDownloadSourceThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download data.
      */

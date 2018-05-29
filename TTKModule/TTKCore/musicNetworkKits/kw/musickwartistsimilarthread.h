@@ -27,16 +27,12 @@
 class MUSIC_NETWORK_EXPORT MusicKWArtistSimilarThread : public MusicDownLoadSimilarThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKWArtistSimilarThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKWArtistSimilarThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name.

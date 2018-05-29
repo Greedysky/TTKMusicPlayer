@@ -30,6 +30,7 @@ class MusicProgressBarDelegate;
 class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudUploadTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
 
     virtual ~MusicCloudUploadTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!
@@ -61,16 +57,12 @@ protected:
 class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

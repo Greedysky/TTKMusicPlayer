@@ -50,11 +50,6 @@ MusicLrcArtPhotoUploadWidget::~MusicLrcArtPhotoUploadWidget()
     delete m_ui;
 }
 
-QString MusicLrcArtPhotoUploadWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcArtPhotoUploadWidget::deltaValueChanged(float v)
 {
     m_ui->deltaValueLabel->setText(QString::number(MStatic_cast(int, v*100)) + "%");

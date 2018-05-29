@@ -26,6 +26,7 @@
  */
 class MUSIC_LRC_EXPORT MusicLrcFromKrc
 {
+    TTK_DECLARE_MODULE(MusicLrcFromKrc)
 public:
     /*!
      * Object contsructor.
@@ -33,11 +34,6 @@ public:
     MusicLrcFromKrc();
 
     ~MusicLrcFromKrc();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Decode krc file to lrc by input file and output file.

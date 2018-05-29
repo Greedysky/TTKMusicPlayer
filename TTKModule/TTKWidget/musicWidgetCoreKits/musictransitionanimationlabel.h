@@ -30,6 +30,7 @@ class QPropertyAnimation;
 class MUSIC_WIDGET_EXPORT MusicTransitionAnimationLabel : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTransitionAnimationLabel)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicTransitionAnimationLabel(QWidget *parent = 0);
 
     ~MusicTransitionAnimationLabel();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set no animation to start.

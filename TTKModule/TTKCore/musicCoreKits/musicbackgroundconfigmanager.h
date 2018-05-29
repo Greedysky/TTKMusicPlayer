@@ -43,7 +43,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSkinConfigItem
     }
 
 }MusicSkinConfigItem;
-MUSIC_DECLARE_LISTS(MusicSkinConfigItem)
+TTK_DECLARE_LISTS(MusicSkinConfigItem)
 
 
 /*! @brief The class of the skin backgroud image item.
@@ -60,7 +60,7 @@ typedef struct MUSIC_CORE_EXPORT MusicBackgroundImage
     }
 
 }MusicBackgroundImage;
-MUSIC_DECLARE_LISTS(MusicBackgroundImage)
+TTK_DECLARE_LISTS(MusicBackgroundImage)
 
 
 /*! @brief The class of the skin XML Config Manager.
@@ -69,16 +69,12 @@ MUSIC_DECLARE_LISTS(MusicBackgroundImage)
 class MUSIC_CORE_EXPORT MusicSkinConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSkinConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicSkinConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Write datas into xml file.

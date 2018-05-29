@@ -16,11 +16,6 @@ MusicTranslationThread::~MusicTranslationThread()
     deleteAll();
 }
 
-QString MusicTranslationThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicTranslationThread::startToDownload(const QString &data)
 {
     startToDownload(MusicTranslationThread::Type_Auto, MusicTranslationThread::Type_Zh, data);

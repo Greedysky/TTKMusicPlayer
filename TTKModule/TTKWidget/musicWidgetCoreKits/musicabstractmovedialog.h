@@ -29,6 +29,7 @@
 class MUSIC_WIDGET_EXPORT MusicAbstractMoveDialog : public QDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAbstractMoveDialog)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     virtual ~MusicAbstractMoveDialog();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set or not draw window bound shadow.
      */

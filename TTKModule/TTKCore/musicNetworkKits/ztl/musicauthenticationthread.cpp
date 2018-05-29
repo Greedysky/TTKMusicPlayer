@@ -12,11 +12,6 @@ MusicAuthenticationThread::~MusicAuthenticationThread()
     deleteAll();
 }
 
-QString MusicAuthenticationThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAuthenticationThread::deleteAll()
 {
     if(m_reply)

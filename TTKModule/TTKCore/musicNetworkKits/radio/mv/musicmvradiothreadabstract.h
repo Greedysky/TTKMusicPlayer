@@ -30,13 +30,9 @@ const QString MV_CATEGORY_URL       = "a2JPOG81ckd3T1NtN004dnRBZ2JubTZYeFYxSFBXW
 class MUSIC_NETWORK_EXPORT MusicMVRadioThreadAbstract : public MusicDownLoadQueryThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMVRadioThreadAbstract)
 public:
     explicit MusicMVRadioThreadAbstract(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to search data from name and type.

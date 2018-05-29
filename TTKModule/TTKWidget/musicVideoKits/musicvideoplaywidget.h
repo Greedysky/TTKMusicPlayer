@@ -37,6 +37,7 @@ class MusicLocalSongSearchEdit;
 class MUSIC_VIDEO_EXPORT MusicVideoPlayWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoPlayWidget)
 public:
     /*!
      * Object contsructor.
@@ -44,11 +45,6 @@ public:
     explicit MusicVideoPlayWidget(QWidget *parent = 0);
 
     ~MusicVideoPlayWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set the window is popup or not.

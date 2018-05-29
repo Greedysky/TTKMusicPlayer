@@ -42,6 +42,7 @@ class QPushButton;
 class MUSIC_WIDGET_EXPORT MusicRadioButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRadioButtonDelegate)
 public:
     /*!
      * Object contsructor.
@@ -49,11 +50,6 @@ public:
     explicit MusicRadioButtonDelegate(QObject* parent = 0);
 
     virtual ~MusicRadioButtonDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set delegate item style.
@@ -83,6 +79,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicCheckBoxDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCheckBoxDelegate)
 public:
     /*!
      * Object contsructor.
@@ -90,11 +87,6 @@ public:
     explicit MusicCheckBoxDelegate(QObject* parent = 0);
 
     virtual ~MusicCheckBoxDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set delegate item style.
@@ -124,6 +116,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicQueryTableDelegate : public MusicCheckBoxDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQueryTableDelegate)
 public:
     /*!
      * Object contsructor.
@@ -131,11 +124,6 @@ public:
     explicit MusicQueryTableDelegate(QObject* parent = 0);
 
     virtual ~MusicQueryTableDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Override paint.
@@ -153,6 +141,7 @@ public:
 class MUSIC_WIDGET_EXPORT MusicProgressBarDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicProgressBarDelegate)
 public:
     /*!
      * Object contsructor.
@@ -160,11 +149,6 @@ public:
     explicit MusicProgressBarDelegate(QObject* parent = 0);
 
     ~MusicProgressBarDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set delegate item style.
@@ -195,6 +179,7 @@ private:
 class MUSIC_WIDGET_EXPORT MusicLabelDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLabelDelegate)
 public:
     /*!
      * Object contsructor.
@@ -202,11 +187,6 @@ public:
     explicit MusicLabelDelegate(QObject* parent = 0);
 
     virtual ~MusicLabelDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set delegate item style.
@@ -237,6 +217,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicPushButtonDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPushButtonDelegate)
 public:
     /*!
      * Object contsructor.
@@ -244,11 +225,6 @@ public:
     explicit MusicPushButtonDelegate(QObject* parent = 0);
 
     virtual ~MusicPushButtonDelegate();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set delegate item style.
@@ -279,16 +255,12 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicRenameLineEditDelegate : public QItemDelegate
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRenameLineEditDelegate)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicRenameLineEditDelegate(QObject *parent);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Override createEditor.

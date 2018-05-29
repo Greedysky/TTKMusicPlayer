@@ -11,11 +11,6 @@ MusicDownLoadQueryXMPlaylistThread::MusicDownLoadQueryXMPlaylistThread(QObject *
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMPlaylistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryXMPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)

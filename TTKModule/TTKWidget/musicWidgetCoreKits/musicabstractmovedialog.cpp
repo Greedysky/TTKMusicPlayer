@@ -35,11 +35,6 @@ MusicAbstractMoveDialog::~MusicAbstractMoveDialog()
     M_BACKGROUND_PTR->removeObserver(this);
 }
 
-QString MusicAbstractMoveDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicAbstractMoveDialog::backgroundChanged()
 {
     if(m_background)

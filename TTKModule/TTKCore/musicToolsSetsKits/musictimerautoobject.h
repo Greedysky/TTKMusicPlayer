@@ -43,7 +43,7 @@ typedef struct MUSIC_TOOLSET_EXPORT MusicTimeObject
         m_state = false;
     }
 }MusicTimeObject;
-MUSIC_DECLARE_LISTS(MusicTimeObject)
+TTK_DECLARE_LISTS(MusicTimeObject)
 
 
 /*! @brief The class of the time auto run.
@@ -52,6 +52,7 @@ MUSIC_DECLARE_LISTS(MusicTimeObject)
 class MUSIC_TOOLSET_EXPORT MusicTimerAutoObject : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTimerAutoObject)
 public:
     /*!
      * Object contsructor.
@@ -60,10 +61,6 @@ public:
 
     ~MusicTimerAutoObject();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Run time auto from local file config.
      */

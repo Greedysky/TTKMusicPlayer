@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicSplitItemClickedLabel : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSplitItemClickedLabel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicSplitItemClickedLabel(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 private:
     /*!

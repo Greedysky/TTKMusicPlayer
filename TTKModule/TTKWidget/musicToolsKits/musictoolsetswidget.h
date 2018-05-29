@@ -33,6 +33,7 @@ class MusicToolSetsWidget;
 class MUSIC_TOOL_EXPORT MusicToolSetsWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicToolSetsWidget)
 public:
     /*!
      * Object contsructor.
@@ -40,12 +41,6 @@ public:
     explicit MusicToolSetsWidget(QWidget *parent = 0);
 
     virtual ~MusicToolSetsWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
 
 public Q_SLOTS:
     /*!

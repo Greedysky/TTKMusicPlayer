@@ -71,11 +71,6 @@ MusicSongsListPlayedWidget::~MusicSongsListPlayedWidget()
     delete m_moreButton;
 }
 
-QString MusicSongsListPlayedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSongsListPlayedWidget::setParameter(const QString &name)
 {
     m_textLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 168));

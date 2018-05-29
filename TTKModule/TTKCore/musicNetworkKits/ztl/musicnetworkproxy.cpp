@@ -15,11 +15,6 @@ MusicNetworkProxy::~MusicNetworkProxy()
     delete m_testSocket;
 }
 
-QString MusicNetworkProxy::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicNetworkProxy::setHostName(const QString &name)
 {
     m_hostName = name;

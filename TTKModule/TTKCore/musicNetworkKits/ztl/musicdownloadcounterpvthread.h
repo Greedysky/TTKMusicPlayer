@@ -32,6 +32,7 @@ const QString COOKIE_URL = "cWpxdUI0YmIyNDdOcWp6TWZvMy9hYkdNN25UYVdpdStSUEV6Q3Zp
 class MUSIC_NETWORK_EXPORT MusicDownloadCounterPVThread : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadCounterPVThread)
 public:
     /*!
      * Object contsructor.
@@ -40,10 +41,6 @@ public:
 
     virtual ~MusicDownloadCounterPVThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to download counter pv from net.
      */

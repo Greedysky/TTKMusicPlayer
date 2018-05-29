@@ -6,11 +6,6 @@ MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
 
 }
 
-QString MusicCategoryConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicCategoryConfigManager::readCategoryConfig(Type type)
 {
     QString v;

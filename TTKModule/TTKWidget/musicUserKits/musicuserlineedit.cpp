@@ -16,11 +16,6 @@ MusicUserLineEdit::MusicUserLineEdit(QWidget *parent)
     m_statusLabel = nullptr;
 }
 
-QString MusicUserLineEdit::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicUserLineEdit::focusInEvent(QFocusEvent *event)
 {
     QLineEdit::focusInEvent(event);

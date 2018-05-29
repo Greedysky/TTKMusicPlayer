@@ -100,11 +100,6 @@ MusicRemoteWidgetForStrip::~MusicRemoteWidgetForStrip()
 //    delete m_bottomWidget;
 }
 
-QString MusicRemoteWidgetForStrip::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForStrip::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));

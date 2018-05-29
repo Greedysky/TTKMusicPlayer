@@ -3,11 +3,6 @@
 
 #include <QStringList>
 
-QString MusicHotKeyManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicHotKeyManager::connectParentObject(QObject *object)
 {
     for(int i=0; i<8; ++i)

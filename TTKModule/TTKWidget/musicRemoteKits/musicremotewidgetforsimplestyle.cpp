@@ -34,11 +34,6 @@ MusicRemoteWidgetForSimpleStyle::~MusicRemoteWidgetForSimpleStyle()
     delete m_songNameLabel;
 }
 
-QString MusicRemoteWidgetForSimpleStyle::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForSimpleStyle::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));

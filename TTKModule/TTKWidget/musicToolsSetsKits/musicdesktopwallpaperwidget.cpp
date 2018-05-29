@@ -31,11 +31,6 @@ MusicDesktopWallpaperItem::~MusicDesktopWallpaperItem()
     delete m_background;
 }
 
-QString MusicDesktopWallpaperItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDesktopWallpaperItem::updateBackground(const QPixmap &pix)
 {
     m_background->setPixmap(pix);
@@ -94,11 +89,6 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
     delete m_wallThread;
     delete m_wallItem;
     delete m_ui;
-}
-
-QString MusicDesktopWallpaperWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDesktopWallpaperWidget::closeEvent(QCloseEvent *event)

@@ -27,6 +27,7 @@
 class MUSIC_TOOLSET_EXPORT MusicLocalSongsTableWidget : public MusicSongsListAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongsTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -34,11 +35,6 @@ public:
     explicit MusicLocalSongsTableWidget(QWidget *parent = 0);
 
     virtual ~MusicLocalSongsTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Clear current items.
@@ -81,16 +77,12 @@ typedef QMapIterator<QString , QFileInfoList> MusicInfoDataIterator;
 class MUSIC_TOOLSET_EXPORT MusicLocalSongsInfoTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongsInfoTableWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLocalSongsInfoTableWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Clear current items.

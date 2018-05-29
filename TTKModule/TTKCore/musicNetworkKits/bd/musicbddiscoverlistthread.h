@@ -27,16 +27,13 @@
 class MUSIC_NETWORK_EXPORT MusicBDDiscoverListThread : public MusicDownLoadDiscoverListThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBDDiscoverListThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicBDDiscoverListThread(QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to Search data from toplist.
      */

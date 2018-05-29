@@ -29,16 +29,12 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQAlbumThread : public MusicDownLoa
                                                              private MusicDownLoadQQInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadQueryQQAlbumThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownLoadQueryQQAlbumThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name and type.

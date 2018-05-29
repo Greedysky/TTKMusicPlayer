@@ -27,6 +27,7 @@
 class MUSIC_NETWORK_EXPORT MusicDownLoadPagingThread : public MusicNetworkAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadPagingThread)
 public:
     /*!
      * Object contsructor.
@@ -35,10 +36,6 @@ public:
 
     virtual ~MusicDownLoadPagingThread();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Release the network object.
      */

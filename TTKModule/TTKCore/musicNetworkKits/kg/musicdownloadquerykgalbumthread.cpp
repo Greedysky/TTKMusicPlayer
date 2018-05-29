@@ -12,11 +12,6 @@ MusicDownLoadQueryKGAlbumThread::MusicDownLoadQueryKGAlbumThread(QObject *parent
     m_queryServer = "Kugou";
 }
 
-QString MusicDownLoadQueryKGAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKGAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

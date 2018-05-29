@@ -6,14 +6,9 @@
 
 MusicDownloadBackgroundThread::MusicDownloadBackgroundThread(const QString &name, const QString &save,
                                                              QObject *parent)
-    : MusicNetworkAbstract(parent), m_artName(name), m_savePath(save), m_index(0), m_counter(0)
+    : MusicNetworkAbstract(parent), m_index(0), m_counter(0), m_artName(name), m_savePath(save)
 {
 
-}
-
-QString MusicDownloadBackgroundThread::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicDownloadBackgroundThread::downLoadFinished()

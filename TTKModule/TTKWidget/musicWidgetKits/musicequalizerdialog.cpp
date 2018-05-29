@@ -62,11 +62,6 @@ MusicEqualizerDialog::~MusicEqualizerDialog()
     delete m_ui;
 }
 
-QString MusicEqualizerDialog::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicEqualizerDialog::init()
 {
     m_signalMapper = new QSignalMapper(this);

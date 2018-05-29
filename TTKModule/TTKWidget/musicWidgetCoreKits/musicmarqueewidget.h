@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicMarqueeWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMarqueeWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicMarqueeWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set effect on resize.

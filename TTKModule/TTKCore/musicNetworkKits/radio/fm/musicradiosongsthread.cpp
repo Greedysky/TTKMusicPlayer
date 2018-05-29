@@ -18,11 +18,6 @@ MusicRadioSongsThread::~MusicRadioSongsThread()
     deleteAll();
 }
 
-QString MusicRadioSongsThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRadioSongsThread::startToDownload(const QString &id)
 {
     m_manager = new QNetworkAccessManager(this);

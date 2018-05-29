@@ -6,11 +6,6 @@ MusicDownLoadQueryMovieThread::MusicDownLoadQueryMovieThread(QObject *parent)
 
 }
 
-QString MusicDownLoadQueryMovieThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryMovieThread::startToSearch(const QString &movie)
 {
     m_searchText = movie;

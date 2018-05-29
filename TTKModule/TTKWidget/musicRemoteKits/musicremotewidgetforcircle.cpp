@@ -22,11 +22,6 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
     mainWidgetLayout->addWidget(m_volumeWidget);
 }
 
-QString MusicRemoteWidgetForCircle::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForCircle::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);

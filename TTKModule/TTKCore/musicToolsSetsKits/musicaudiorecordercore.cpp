@@ -54,11 +54,6 @@ MusicAudioRecorderCore::~MusicAudioRecorderCore()
     delete m_mpAudioOutputFile;
 }
 
-QString MusicAudioRecorderCore::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 int MusicAudioRecorderCore::addWavHeader(const char *filename)
 {
     HEADER destionFileHeader;

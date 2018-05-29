@@ -35,11 +35,6 @@ MusicSoundKMicroSearchTableWidget::~MusicSoundKMicroSearchTableWidget()
     clearAllItems();
 }
 
-QString MusicSoundKMicroSearchTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSoundKMicroSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
@@ -258,11 +253,6 @@ MusicSoundKMicroSearchWidget::~MusicSoundKMicroSearchWidget()
 {
     delete m_searchEdit;
     delete m_searchTableWidget;
-}
-
-QString MusicSoundKMicroSearchWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSoundKMicroSearchWidget::connectTo(QObject *obj)

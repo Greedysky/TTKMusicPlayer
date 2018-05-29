@@ -31,6 +31,7 @@ class MusicSoundEffectsWidget;
 class MUSIC_WIDGET_EXPORT MusicSoundEffectsItemWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundEffectsItemWidget)
 public:
     enum Type
     {
@@ -48,11 +49,6 @@ public:
     explicit MusicSoundEffectsItemWidget(QWidget *parent = 0);
 
     ~MusicSoundEffectsItemWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set sound effect plugin name.
@@ -111,6 +107,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicSoundEffectsWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundEffectsWidget)
 public:
     /*!
      * Object contsructor.
@@ -119,10 +116,6 @@ public:
 
     virtual ~MusicSoundEffectsWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set parent connection.
      */

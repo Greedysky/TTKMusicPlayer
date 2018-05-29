@@ -35,11 +35,6 @@ MusicLrcMakerWidgetItem::MusicLrcMakerWidgetItem(QWidget *ui, QObject *parent)
     setFont(ft);
 }
 
-QString MusicLrcMakerWidgetItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicLrcMakerWidgetItem::biggerThan(int value) const
 {
     return m_currentIndex > value;
@@ -187,11 +182,6 @@ MusicLrcMakerWidget::~MusicLrcMakerWidget()
     resetToOriginPlayMode();
     M_CONNECTION_PTR->removeValue(getClassName());
     delete m_ui;
-}
-
-QString MusicLrcMakerWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcMakerWidget::setCurrentSongName(const QString &name)

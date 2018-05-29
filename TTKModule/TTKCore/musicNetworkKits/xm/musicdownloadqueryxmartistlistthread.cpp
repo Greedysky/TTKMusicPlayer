@@ -12,11 +12,6 @@ MusicDownLoadQueryXMArtistListThread::MusicDownLoadQueryXMArtistListThread(QObje
     m_queryServer = "XiaMi";
 }
 
-QString MusicDownLoadQueryXMArtistListThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryXMArtistListThread::startToPage(int offset)
 {
     if(!m_manager)

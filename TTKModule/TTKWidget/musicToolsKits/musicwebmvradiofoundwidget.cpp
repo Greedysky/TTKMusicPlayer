@@ -42,11 +42,6 @@ MusicWebMVRadioFoundItemWidget::~MusicWebMVRadioFoundItemWidget()
     delete m_nameLabel;
 }
 
-QString MusicWebMVRadioFoundItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebMVRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -126,11 +121,6 @@ MusicWebMVRadioFoundWidget::~MusicWebMVRadioFoundWidget()
     delete m_gridLayout;
     delete m_categoryButton;
     delete m_downloadThread;
-}
-
-QString MusicWebMVRadioFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebMVRadioFoundWidget::setSongName(const QString &name)

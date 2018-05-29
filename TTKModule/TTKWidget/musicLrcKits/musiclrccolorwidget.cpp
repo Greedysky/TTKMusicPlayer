@@ -50,11 +50,6 @@ MusicLrcColorWidget::~MusicLrcColorWidget()
     delete m_ui;
 }
 
-QString MusicLrcColorWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcColorWidget::setColors(const QList<QColor> &colors)
 {
     foreach(const QColor &color, colors)

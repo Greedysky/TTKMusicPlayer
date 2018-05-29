@@ -29,6 +29,7 @@
 class MUSIC_CORE_EXPORT MusicPlaylist : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlaylist)
 public:
     /*!
      * Object contsructor.
@@ -36,11 +37,6 @@ public:
     explicit MusicPlaylist(QObject *parent = 0);
 
     ~MusicPlaylist() = default;
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get current play mode.

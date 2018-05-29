@@ -31,6 +31,7 @@ class MusicTransitionAnimationLabel;
 class MUSIC_LRC_EXPORT MusicLrcContainerForWallpaper : public MusicLrcContainer
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcContainerForWallpaper)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     virtual ~MusicLrcContainerForWallpaper();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start timer clock to draw lrc.
      */

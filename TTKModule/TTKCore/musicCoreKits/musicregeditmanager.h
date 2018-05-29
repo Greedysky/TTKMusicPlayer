@@ -27,12 +27,8 @@
  */
 class MUSIC_CORE_EXPORT MusicRegeditManager
 {
+    TTK_DECLARE_MODULE(MusicRegeditManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Check current is file associate.
      */

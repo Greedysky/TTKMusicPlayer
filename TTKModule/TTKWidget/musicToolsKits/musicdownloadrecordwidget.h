@@ -27,16 +27,12 @@
 class MUSIC_TOOL_EXPORT MusicDownloadRecordWidget : public MusicDownloadAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadRecordWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownloadRecordWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

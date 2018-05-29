@@ -66,11 +66,6 @@ MusicCloudSharedSongTableWidget::~MusicCloudSharedSongTableWidget()
     delete m_networkManager;
 }
 
-QString MusicCloudSharedSongTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicCloudSharedSongTableWidget::getKey()
 {
     MusicSemaphoreLoop loop;
@@ -475,11 +470,6 @@ MusicCloudSharedSongWidget::~MusicCloudSharedSongWidget()
 {
     delete m_tableWidget;
     delete m_statusLabel;
-}
-
-QString MusicCloudSharedSongWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicCloudSharedSongWidget::getKey()

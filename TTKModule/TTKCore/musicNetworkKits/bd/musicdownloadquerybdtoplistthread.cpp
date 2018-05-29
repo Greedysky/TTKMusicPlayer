@@ -10,11 +10,6 @@ MusicDownLoadQueryBDToplistThread::MusicDownLoadQueryBDToplistThread(QObject *pa
     m_pageSize = 100;
 }
 
-QString MusicDownLoadQueryBDToplistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryBDToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
     if(type == MusicQuery)

@@ -30,6 +30,7 @@
 class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerThread : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongsManagerThread)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicLocalSongsManagerThread(QObject *parent = 0);
 
     ~MusicLocalSongsManagerThread();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set find file path by given path.

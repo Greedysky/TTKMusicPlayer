@@ -100,11 +100,6 @@
 #include "musicqqbackgroundthread.h"
 ///////////////////////////////////////////////////////
 
-QString MusicDownLoadQueryFactory::getClassName()
-{
-    return "MusicDownLoadQueryFactory";
-}
-
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObject *parent)
 {
     MusicDownLoadQueryThreadAbstract *thread = nullptr;

@@ -31,6 +31,7 @@ class MusicSongListEnhanceLosslessWidget;
 class MUSIC_WIDGET_EXPORT MusicSongListEnhanceLosslessWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongListEnhanceLosslessWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = 0);
 
     virtual ~MusicSongListEnhanceLosslessWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

@@ -26,11 +26,6 @@ MusicSongTag::MusicSongTag(const QString &file)
     m_filePath = file;
 }
 
-QString MusicSongTag::getClassName()
-{
-    return "MusicSongTag";
-}
-
 bool MusicSongTag::read()
 {
     if(m_filePath.isEmpty())

@@ -37,6 +37,7 @@ class MusicTransformWidget;
 class MUSIC_TOOLSET_EXPORT MusicTransformWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicTransformWidget)
 public:
     enum TransformType
     {
@@ -49,11 +50,6 @@ public:
     explicit MusicTransformWidget(QWidget *parent = 0);
 
     virtual ~MusicTransformWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

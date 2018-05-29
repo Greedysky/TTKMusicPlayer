@@ -31,6 +31,7 @@ class MusicLrcFloatSettingWidget;
 class MUSIC_LRC_EXPORT MusicLrcFloatWidget : public MusicFloatAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcFloatWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     virtual ~MusicLrcFloatWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Resize window bound by given width and height.
      */

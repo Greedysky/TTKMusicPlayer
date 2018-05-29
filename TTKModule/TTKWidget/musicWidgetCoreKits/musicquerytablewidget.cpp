@@ -17,11 +17,6 @@ MusicQueryTableWidget::~MusicQueryTableWidget()
     delete m_downLoadManager;
 }
 
-QString MusicQueryTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicQueryTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     delete m_downLoadManager;
@@ -58,11 +53,6 @@ MusicQueryItemTableWidget::~MusicQueryItemTableWidget()
     delete m_loadingLabel;
     delete m_actionGroup;
     delete m_labelDelegate;
-}
-
-QString MusicQueryItemTableWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicQueryItemTableWidget::startSearchQuery(const QString &text)

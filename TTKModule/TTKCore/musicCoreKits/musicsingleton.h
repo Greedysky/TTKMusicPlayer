@@ -30,15 +30,12 @@ template <typename T>
  */
 class MUSIC_CORE_EXPORT MusicSingleton
 {
+    TTK_DECLARE_MODULE(MusicSingleton)
 public:
     /*!
      * Get object instance ptr.
      */
     static T* createInstance();
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 private:
     /*!
@@ -76,12 +73,6 @@ T* MusicSingleton<T>::createInstance()
         m_mutex.unlock();
     }
     return m_instance.data();
-}
-
-template<typename T>
-QString MusicSingleton<T>::getClassName()
-{
-    return "MusicSingleton";
 }
 
     ////////////////////////////////////////////////////////////////

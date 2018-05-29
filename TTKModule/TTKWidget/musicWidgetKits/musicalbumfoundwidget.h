@@ -27,6 +27,7 @@
 class MUSIC_WIDGET_EXPORT MusicAlbumFoundTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAlbumFoundTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -34,11 +35,6 @@ public:
     explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
 
     virtual ~MusicAlbumFoundTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set network query input.
@@ -54,16 +50,12 @@ public:
 class MUSIC_WIDGET_EXPORT MusicAlbumFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicAlbumFoundWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicAlbumFoundWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

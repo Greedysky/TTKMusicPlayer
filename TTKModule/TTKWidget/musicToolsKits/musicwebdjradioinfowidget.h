@@ -27,6 +27,7 @@
 class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoTableWidget : public MusicQueryFoundTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioInfoTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -34,11 +35,6 @@ public:
     explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioInfoTableWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set network query input.
@@ -60,16 +56,12 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebDJRadioInfoWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioInfoWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWebDJRadioInfoWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

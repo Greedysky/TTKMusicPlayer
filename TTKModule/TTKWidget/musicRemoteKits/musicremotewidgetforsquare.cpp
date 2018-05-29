@@ -50,11 +50,6 @@ MusicRemoteWidgetForSquare::~MusicRemoteWidgetForSquare()
     }
 }
 
-QString MusicRemoteWidgetForSquare::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRemoteWidgetForSquare::enterEvent(QEvent *event)
 {
     QWidget::enterEvent(event);

@@ -21,7 +21,6 @@
 
 #include <QWidget>
 #include <QSystemTrayIcon>
-#include "musicobject.h"
 #include "musicglobaldefine.h"
 
 class MusicSystemTrayMenu;
@@ -37,6 +36,7 @@ namespace Ui {
 class MUSIC_GUI_EXPORT MusicBottomAreaWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicBottomAreaWidget)
 public:
     /*!
      * Object contsructor.
@@ -45,10 +45,6 @@ public:
 
     ~MusicBottomAreaWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get class object instance.
      */

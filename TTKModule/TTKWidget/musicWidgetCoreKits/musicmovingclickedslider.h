@@ -27,6 +27,7 @@
 class MUSIC_WIDGET_EXPORT MusicMovingClickedSlider : public MusicClickedSlider
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMovingClickedSlider)
 public:
     /*!
      * Object contsructor.
@@ -37,10 +38,6 @@ public:
      */
     explicit MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Slider is now moving or not.
      */

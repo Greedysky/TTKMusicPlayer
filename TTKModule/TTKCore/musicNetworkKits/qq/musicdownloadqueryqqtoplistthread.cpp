@@ -9,11 +9,6 @@ MusicDownLoadQueryQQToplistThread::MusicDownLoadQueryQQToplistThread(QObject *pa
     m_queryServer = "QQ";
 }
 
-QString MusicDownLoadQueryQQToplistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryQQToplistThread::startToSearch(QueryType type, const QString &toplist)
 {
     if(type == MusicQuery)

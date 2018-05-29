@@ -30,6 +30,7 @@
 class MUSIC_USER_EXPORT MusicUserLineEdit : public QLineEdit
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserLineEdit)
 public:
     enum LabelType
     {
@@ -45,10 +46,6 @@ public:
      */
     explicit MusicUserLineEdit(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set label and label type.
      */

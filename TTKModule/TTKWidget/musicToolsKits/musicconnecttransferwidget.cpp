@@ -80,11 +80,6 @@ MusicConnectTransferWidget::~MusicConnectTransferWidget()
     delete m_ui;
 }
 
-QString MusicConnectTransferWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicConnectTransferWidget::openTransferFiles(int mode)
 {
     if(mode == 1)

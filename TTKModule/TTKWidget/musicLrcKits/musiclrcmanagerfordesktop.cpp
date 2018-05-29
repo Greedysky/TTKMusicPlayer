@@ -9,22 +9,12 @@ MusicLrcManagerForDesktop::MusicLrcManagerForDesktop(QWidget *parent)
     m_speedLevel = 50;
 }
 
-QString MusicLrcManagerForDesktop::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 
 
 MusicLrcManagerHorizontalDesktop::MusicLrcManagerHorizontalDesktop(QWidget *parent)
     : MusicLrcManagerForDesktop(parent)
 {
 
-}
-
-QString MusicLrcManagerHorizontalDesktop::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
@@ -68,11 +58,6 @@ MusicLrcManagerVerticalDesktop::MusicLrcManagerVerticalDesktop(QWidget *parent)
     : MusicLrcManagerForDesktop(parent)
 {
 
-}
-
-QString MusicLrcManagerVerticalDesktop::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)

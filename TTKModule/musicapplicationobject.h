@@ -34,6 +34,7 @@ class MusicDownloadCounterPVThread;
 class MUSIC_GUI_EXPORT MusicApplicationObject : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicApplicationObject)
 public:
     /*!
      * Object contsructor.
@@ -42,10 +43,6 @@ public:
 
     ~MusicApplicationObject();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get class object instance.
      */

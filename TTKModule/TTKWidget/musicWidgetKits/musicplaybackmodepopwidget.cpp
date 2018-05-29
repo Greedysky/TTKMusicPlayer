@@ -9,11 +9,6 @@ MusicPlayBackModePopWidget::MusicPlayBackModePopWidget(QWidget *parent)
     initWidget();
 }
 
-QString MusicPlayBackModePopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlayBackModePopWidget::setPlaybackMode(MusicObject::PlayMode mode)
 {
     switch( mode )

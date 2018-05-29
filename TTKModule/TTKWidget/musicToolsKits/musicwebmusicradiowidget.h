@@ -31,6 +31,7 @@ class MusicWebMusicRadioPlayWidget;
 class MUSIC_TOOL_EXPORT MusicWebMusicRadioWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebMusicRadioWidget)
 public:
     /*!
      * Object contsructor.
@@ -39,10 +40,6 @@ public:
 
     ~MusicWebMusicRadioWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * To init list items.
      */

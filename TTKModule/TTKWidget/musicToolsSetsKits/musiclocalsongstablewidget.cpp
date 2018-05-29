@@ -29,11 +29,6 @@ MusicLocalSongsTableWidget::~MusicLocalSongsTableWidget()
     delete m_musicSongs;
 }
 
-QString MusicLocalSongsTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongsTableWidget::clear()
 {
     MusicAbstractTableWidget::clear();
@@ -117,11 +112,6 @@ MusicLocalSongsInfoTableWidget::MusicLocalSongsInfoTableWidget(QWidget *parent)
     headerview->resizeSection(2, 120);
 
     connect(this, SIGNAL(cellDoubleClicked(int,int)), SLOT(listCellDoubleClicked(int,int)));
-}
-
-QString MusicLocalSongsInfoTableWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicLocalSongsInfoTableWidget::clear()

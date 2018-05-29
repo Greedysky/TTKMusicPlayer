@@ -29,16 +29,12 @@
 class MUSIC_CORE_EXPORT MusicQQArtistInfoConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicQQArtistInfoConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicQQArtistInfoConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Read artist info datas into xml file.
@@ -55,16 +51,12 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryQQArtistThread : public MusicDownLo
                                                               private MusicDownLoadQQInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownLoadQueryQQArtistThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicDownLoadQueryQQArtistThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name and type.

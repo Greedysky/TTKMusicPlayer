@@ -12,11 +12,6 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 }
 
-QString MusicWPLConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
@@ -120,11 +115,6 @@ MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
-}
-
-QString MusicXSPFConfigManager::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path)
@@ -239,11 +229,6 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 
 }
 
-QString MusicASXConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
@@ -341,11 +326,6 @@ MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
 
 }
 
-QString MusicKWLConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicKWLConfigManager::readConfig(const QString &name)
 {
     delete m_file;
@@ -409,11 +389,6 @@ MusicKGLConfigManager::MusicKGLConfigManager(QObject *parent)
 
 }
 
-QString MusicKGLConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicKGLConfigManager::readKGLXMLConfig(MusicSongItems &musics)
 {
     MusicSongItem item;
@@ -474,11 +449,6 @@ void MusicKGLConfigManager::readKGLXMLConfig(MusicSongItems &musics)
 }
 
 
-
-QString MusicPlayListManager::getClassName()
-{
-    return "MusicPlayListManager";
-}
 
 void MusicPlayListManager::messageAlert()
 {

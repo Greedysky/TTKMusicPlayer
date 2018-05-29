@@ -114,10 +114,6 @@ MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
     delete m_tabWidget;
 }
 
-QString MusicAdvancedSearchedWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
 
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()

@@ -28,16 +28,12 @@
 class MUSIC_CORE_EXPORT MusicWPLConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWPLConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWPLConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Write datas into xml file.
@@ -63,16 +59,12 @@ protected:
 class MUSIC_CORE_EXPORT MusicXSPFConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicXSPFConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicXSPFConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Write datas into xml file.
@@ -98,16 +90,12 @@ protected:
 class MUSIC_CORE_EXPORT MusicASXConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicASXConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicASXConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Write datas into xml file.
@@ -127,16 +115,12 @@ public:
 class MUSIC_CORE_EXPORT MusicKWLConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKWLConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKWLConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Read datas from xml file by given name.
@@ -156,16 +140,12 @@ public:
 class MUSIC_CORE_EXPORT MusicKGLConfigManager : public MusicAbstractXml
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKGLConfigManager)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKGLConfigManager(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Read datas into xml file.
@@ -180,12 +160,8 @@ public:
  */
 class MUSIC_CORE_EXPORT MusicPlayListManager
 {
+    TTK_DECLARE_MODULE(MusicPlayListManager)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Import error message alert.
      */

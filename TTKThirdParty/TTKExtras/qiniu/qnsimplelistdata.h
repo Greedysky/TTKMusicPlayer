@@ -33,7 +33,7 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
     int m_size;
     qint64 m_putTime;
 }QNDataItem;
-MUSIC_DECLARE_LISTS(QNDataItem)
+TTK_DECLARE_LISTS(QNDataItem)
 
 /*! @brief The namespace of the qiniu simple list data.
  * @author Jemy Graw <jemygraw@gmail.com>

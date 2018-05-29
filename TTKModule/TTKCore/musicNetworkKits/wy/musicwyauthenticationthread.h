@@ -29,16 +29,12 @@ class MUSIC_NETWORK_EXPORT MusicWYAuthenticationThread : public MusicAuthenticat
                                                          private MusicDownLoadWYInterface
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWYAuthenticationThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicWYAuthenticationThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to translation data.

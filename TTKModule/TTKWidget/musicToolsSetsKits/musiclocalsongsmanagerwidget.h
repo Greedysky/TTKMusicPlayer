@@ -39,6 +39,7 @@ class MusicLocalSongsManagerWidget;
 class MUSIC_TOOLSET_EXPORT MusicLocalSongsManagerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongsManagerWidget)
 public:
     /*!
      * Object contsructor.
@@ -46,11 +47,6 @@ public:
     explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
 
     virtual ~MusicLocalSongsManagerWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Find extra device path.

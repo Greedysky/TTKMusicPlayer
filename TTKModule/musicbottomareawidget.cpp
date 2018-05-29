@@ -27,11 +27,6 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_musicWindowExtras;
 }
 
-QString MusicBottomAreaWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
 {
     return m_instance;

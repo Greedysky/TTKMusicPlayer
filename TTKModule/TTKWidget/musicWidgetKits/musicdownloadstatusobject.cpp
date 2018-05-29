@@ -32,11 +32,6 @@ MusicDownloadStatusObject::~MusicDownloadStatusObject()
     delete m_downloadLrcThread;
 }
 
-QString MusicDownloadStatusObject::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadStatusObject::showDownLoadInfoFor(MusicObject::DownLoadMode type)
 {
     QString stringType;

@@ -12,11 +12,6 @@ MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
-QString MusicUserModel::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd,
                              const QString &mail, bool pwdMask)
 {

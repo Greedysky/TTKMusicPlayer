@@ -6,11 +6,6 @@ MusicSkinConfigManager::MusicSkinConfigManager(QObject *parent)
 
 }
 
-QString MusicSkinConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSkinConfigManager::writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path)
 {
     //Open wirte file

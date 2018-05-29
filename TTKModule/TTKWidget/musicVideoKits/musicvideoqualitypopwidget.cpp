@@ -24,11 +24,6 @@ MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
     delete m_actionGroup;
 }
 
-QString MusicVideoQualityPopWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicVideoQualityPopWidget::setQualityActionState()
 {
     QList<QAction*> actions = m_actionGroup->actions();

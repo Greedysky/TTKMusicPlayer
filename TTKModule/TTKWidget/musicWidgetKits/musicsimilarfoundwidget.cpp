@@ -14,11 +14,6 @@ MusicSimilarFoundTableWidget::~MusicSimilarFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicSimilarFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSimilarFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -45,11 +40,6 @@ MusicSimilarFoundWidget::MusicSimilarFoundWidget(QWidget *parent)
 {
     m_foundTableWidget = new MusicSimilarFoundTableWidget(this);
     m_foundTableWidget->hide();
-}
-
-QString MusicSimilarFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicSimilarFoundWidget::setSongName(const QString &name)

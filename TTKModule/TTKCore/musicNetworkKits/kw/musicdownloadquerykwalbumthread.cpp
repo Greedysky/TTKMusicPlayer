@@ -10,11 +10,6 @@ MusicDownLoadQueryKWAlbumThread::MusicDownLoadQueryKWAlbumThread(QObject *parent
     m_queryServer = "Kuwo";
 }
 
-QString MusicDownLoadQueryKWAlbumThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryKWAlbumThread::startToSearch(const QString &album)
 {
     if(!m_manager)

@@ -29,6 +29,7 @@
 class MUSIC_NETWORK_EXPORT MusicNetworkAbstract : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNetworkAbstract)
 public:
     typedef enum StateCode
     {
@@ -45,10 +46,6 @@ public:
 
     virtual ~MusicNetworkAbstract();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Release the network object.
      */

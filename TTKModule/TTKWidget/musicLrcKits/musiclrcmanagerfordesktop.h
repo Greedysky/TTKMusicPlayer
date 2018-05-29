@@ -27,16 +27,12 @@
 class MUSIC_LRC_EXPORT MusicLrcManagerForDesktop : public MusicLrcManager
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcManagerForDesktop)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcManagerForDesktop(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 };
 
@@ -47,16 +43,12 @@ public:
 class MUSIC_LRC_EXPORT MusicLrcManagerHorizontalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcManagerHorizontalDesktop)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!
@@ -73,16 +65,12 @@ protected:
 class MUSIC_LRC_EXPORT MusicLrcManagerVerticalDesktop : public MusicLrcManagerForDesktop
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcManagerVerticalDesktop)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcManagerVerticalDesktop(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

@@ -17,11 +17,6 @@ MusicRadioChannelThread::~MusicRadioChannelThread()
     deleteAll();
 }
 
-QString MusicRadioChannelThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRadioChannelThread::startToDownload(const QString &id)
 {
     Q_UNUSED(id);

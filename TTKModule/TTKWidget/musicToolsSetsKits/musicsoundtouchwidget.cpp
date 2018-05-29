@@ -80,11 +80,6 @@ MusicSoundTouchWidget::~MusicSoundTouchWidget()
     delete m_ui;
 }
 
-QString MusicSoundTouchWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSoundTouchWidget::show()
 {
     if(!QFile::exists(MAKE_SOUNDTOUCH_FULL))

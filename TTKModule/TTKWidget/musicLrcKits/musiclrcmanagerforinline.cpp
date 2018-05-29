@@ -13,11 +13,6 @@ MusicLrcManagerForInline::MusicLrcManagerForInline(QWidget *parent)
     m_gradientTransparent = 100;
 }
 
-QString MusicLrcManagerForInline::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);

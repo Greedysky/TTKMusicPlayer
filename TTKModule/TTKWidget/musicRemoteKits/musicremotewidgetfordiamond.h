@@ -27,16 +27,12 @@
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForDiamond : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForDiamond)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicRemoteWidgetForDiamond(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!

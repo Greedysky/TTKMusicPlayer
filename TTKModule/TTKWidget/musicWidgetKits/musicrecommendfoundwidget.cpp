@@ -14,11 +14,6 @@ MusicRecommendFoundTableWidget::~MusicRecommendFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicRecommendFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicRecommendFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -45,11 +40,6 @@ MusicRecommendFoundWidget::MusicRecommendFoundWidget(QWidget *parent)
 {
     m_foundTableWidget = new MusicRecommendFoundTableWidget(this);
     m_foundTableWidget->hide();
-}
-
-QString MusicRecommendFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicRecommendFoundWidget::setSongName(const QString &name)

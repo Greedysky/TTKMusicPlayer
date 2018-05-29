@@ -6,11 +6,6 @@ MusicLocalSongSearchRecordConfigManager::MusicLocalSongSearchRecordConfigManager
 
 }
 
-QString MusicLocalSongSearchRecordConfigManager::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecords &records)
 {
     if(!writeConfig(MUSICSEARCH_FULL))

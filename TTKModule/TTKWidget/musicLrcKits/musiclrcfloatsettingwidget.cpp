@@ -74,11 +74,6 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
 #endif
 }
 
-QString MusicLrcFloatSettingWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcFloatSettingWidget::resizeWindow(int width, int height)
 {
     m_rectIn = QRect(513 + width, 120 + height/2, 165, 210);

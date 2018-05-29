@@ -30,6 +30,7 @@ class MusicAudioRecorderCore;
 class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSettingPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundKMicroSettingPopWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicSoundKMicroSettingPopWidget(QWidget *parent = 0);
 
     virtual ~MusicSoundKMicroSettingPopWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set audio core.

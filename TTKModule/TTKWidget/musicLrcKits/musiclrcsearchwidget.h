@@ -31,6 +31,7 @@ class MusicLrcSearchWidget;
 class MUSIC_LRC_EXPORT MusicLrcSearchWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcSearchWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicLrcSearchWidget(QWidget *parent = 0);
 
     virtual ~MusicLrcSearchWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

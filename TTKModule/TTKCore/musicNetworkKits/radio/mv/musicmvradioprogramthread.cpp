@@ -13,11 +13,6 @@ MusicMVRadioProgramThread::MusicMVRadioProgramThread(QObject *parent)
 
 }
 
-QString MusicMVRadioProgramThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicMVRadioProgramThread::downLoadFinished()
 {
     if(!m_reply || !m_manager)

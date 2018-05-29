@@ -36,6 +36,7 @@ class MusicPlayedlist;
 class MUSIC_CORE_EXPORT MusicPlayer : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlayer)
 public:
     enum Enhanced
     {
@@ -52,11 +53,6 @@ public:
     explicit MusicPlayer(QObject *parent = 0);
 
     ~MusicPlayer();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get current player is playing or not.

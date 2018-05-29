@@ -34,16 +34,13 @@ class MusicLrcManagerForInline;
 class MUSIC_LRC_EXPORT MusicLrcMakerWidgetItem : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcMakerWidgetItem)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Check the last index.
      */
@@ -99,6 +96,7 @@ private:
 class MUSIC_LRC_EXPORT MusicLrcMakerWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLrcMakerWidget)
 public:
     /*!
      * Object contsructor.
@@ -107,10 +105,6 @@ public:
 
     virtual ~MusicLrcMakerWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current song name.
      */

@@ -14,11 +14,6 @@ MusicConnectTransferTableWidget::MusicConnectTransferTableWidget(QWidget *parent
     headerview->resizeSection(2, 43);
 }
 
-QString MusicConnectTransferTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)
 {
     setRowCount(songs.count());

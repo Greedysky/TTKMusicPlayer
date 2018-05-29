@@ -11,11 +11,6 @@ MusicDownLoadQueryWYPlaylistThread::MusicDownLoadQueryWYPlaylistThread(QObject *
     m_queryServer = "WangYi";
 }
 
-QString MusicDownLoadQueryWYPlaylistThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryWYPlaylistThread::startToSearch(QueryType type, const QString &playlist)
 {
     if(type == MusicQuery)

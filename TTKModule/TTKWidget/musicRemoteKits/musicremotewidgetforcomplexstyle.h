@@ -27,6 +27,7 @@
 class MUSIC_REMOTE_EXPORT MusicRemoteWidgetForComplexStyle : public MusicRemoteWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidgetForComplexStyle)
 public:
     /*!
      * Object contsructor.
@@ -35,10 +36,6 @@ public:
 
     virtual ~MusicRemoteWidgetForComplexStyle();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current song text.
      */

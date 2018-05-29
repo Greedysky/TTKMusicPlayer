@@ -33,6 +33,7 @@ class MusicDownloadBatchWidget;
 class MUSIC_WIDGET_EXPORT MusicDownloadBatchTableItem : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadBatchTableItem)
 public:
     /*!
      * Object contsructor.
@@ -41,10 +42,6 @@ public:
 
     ~MusicDownloadBatchTableItem();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Create current item by song info.
      */
@@ -88,6 +85,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicDownloadBatchTableWidget : public MusicAbstractTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadBatchTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -96,10 +94,6 @@ public:
 
     virtual ~MusicDownloadBatchTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set parent object.
      */
@@ -145,6 +139,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicDownloadBatchWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicDownloadBatchWidget)
 public:
     /*!
      * Object contsructor.
@@ -153,10 +148,6 @@ public:
 
     virtual ~MusicDownloadBatchWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current name to search and download musics.
      */

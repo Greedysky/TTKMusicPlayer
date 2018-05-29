@@ -5,8 +5,3 @@ MusicDownLoadSongSuggestThread::MusicDownLoadSongSuggestThread(QObject *parent)
 {
 
 }
-
-QString MusicDownLoadSongSuggestThread::getClassName()
-{
-    return staticMetaObject.className();
-}

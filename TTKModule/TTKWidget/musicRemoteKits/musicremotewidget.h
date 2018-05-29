@@ -36,6 +36,7 @@ class MusicClickedSlider;
 class MUSIC_REMOTE_EXPORT MusicRemoteWidget : public MusicAbstractMoveWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicRemoteWidget)
 public:
     enum RemoteType
     {
@@ -57,10 +58,6 @@ public:
 
     virtual ~MusicRemoteWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set current play state button.
      */

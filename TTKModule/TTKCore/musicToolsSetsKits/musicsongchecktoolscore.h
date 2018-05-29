@@ -11,6 +11,7 @@
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsRenameCore : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongCheckToolsRenameCore)
 public:
     /*!
      * Object contsructor.
@@ -18,11 +19,6 @@ public:
     explicit MusicSongCheckToolsRenameCore(QObject *parent = 0);
 
     ~MusicSongCheckToolsRenameCore();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music song check tool mode.
@@ -78,17 +74,13 @@ protected:
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsDuplicateCore : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongCheckToolsDuplicateCore)
 public:
     explicit MusicSongCheckToolsDuplicateCore(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
     ~MusicSongCheckToolsDuplicateCore();
-
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
 
     inline void setMode(MusicObject::MusicSongCheckToolsMode mode) { m_operateMode = mode; }
     /*!
@@ -144,17 +136,13 @@ protected:
 class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsQualityCore : public QThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongCheckToolsQualityCore)
 public:
     explicit MusicSongCheckToolsQualityCore(QObject *parent = 0);
     /*!
      * Object contsructor.
      */
     ~MusicSongCheckToolsQualityCore();
-
-    static QString getClassName();
-    /*!
-     * Get class object name.
-     */
 
     void setQualitySongs(MusicSongs *songs);
     /*!

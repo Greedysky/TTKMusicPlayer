@@ -1,11 +1,5 @@
 #include "musicsystemenvironment.h"
-
 #include <QProcess>
-
-QString MusicSystemEnvironment::getClassName()
-{
-    return "MusicSystemEnvironment";
-}
 
 QString MusicSystemEnvironment::getData(const QString &data)
 {

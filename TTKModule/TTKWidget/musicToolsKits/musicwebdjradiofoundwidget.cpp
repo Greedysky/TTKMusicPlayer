@@ -50,11 +50,6 @@ MusicWebDJRadioFoundItemWidget::~MusicWebDJRadioFoundItemWidget()
     delete m_creatorLabel;
 }
 
-QString MusicWebDJRadioFoundItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebDJRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -117,11 +112,6 @@ MusicWebDJRadioFoundWidget::~MusicWebDJRadioFoundWidget()
     delete m_gridLayout;
     delete m_downloadThread;
     delete m_pagingWidgetObject;
-}
-
-QString MusicWebDJRadioFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicWebDJRadioFoundWidget::setSongName(const QString &name)

@@ -9,16 +9,6 @@
 #include <QFont>
 #include <QApplication>
 
-MusicRunTimeManager::MusicRunTimeManager()
-{
-
-}
-
-QString MusicRunTimeManager::getClassName()
-{
-    return "MusicRunTimeManager";
-}
-
 void MusicRunTimeManager::run() const
 {
     M_LOGGER_INFO("MusicApplication Begin");

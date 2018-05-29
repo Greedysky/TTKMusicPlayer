@@ -17,11 +17,6 @@ MusicToplistFoundTableWidget::~MusicToplistFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicToplistFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicToplistFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -49,11 +44,6 @@ MusicToplistFoundWidget::MusicToplistFoundWidget(QWidget *parent)
 MusicToplistFoundWidget::~MusicToplistFoundWidget()
 {
     delete m_categoryButton;
-}
-
-QString MusicToplistFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicToplistFoundWidget::setSongName(const QString &name)

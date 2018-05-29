@@ -36,6 +36,7 @@ class MusicUserDialog;
 class MUSIC_USER_EXPORT MusicUserDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicUserDialog)
 public:
     /*!
      * Object contsructor.
@@ -44,10 +45,6 @@ public:
 
     ~MusicUserDialog();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Check current user to login auto automatic.
      */

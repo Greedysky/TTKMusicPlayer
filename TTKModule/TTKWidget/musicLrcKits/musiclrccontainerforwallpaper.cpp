@@ -46,11 +46,6 @@ MusicLrcContainerForWallpaper::~MusicLrcContainerForWallpaper()
     delete m_wallThread;
 }
 
-QString MusicLrcContainerForWallpaper::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicLrcContainerForWallpaper::startTimerClock()
 {
     m_musicLrcContainer[MUSIC_LRC_INLINE_MAX_LINE/2]->startTimerClock();

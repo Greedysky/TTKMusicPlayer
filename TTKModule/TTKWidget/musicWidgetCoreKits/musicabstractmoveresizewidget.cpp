@@ -18,11 +18,6 @@ MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
     setMouseTracking(true);
 }
 
-QString MusicAbstractMoveResizeWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 {
     QWidget::eventFilter(object, event);

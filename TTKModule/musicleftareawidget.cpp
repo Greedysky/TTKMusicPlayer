@@ -40,11 +40,6 @@ MusicLeftAreaWidget::~MusicLeftAreaWidget()
     delete m_stackedWidget;
 }
 
-QString MusicLeftAreaWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
 {
     return m_instance;

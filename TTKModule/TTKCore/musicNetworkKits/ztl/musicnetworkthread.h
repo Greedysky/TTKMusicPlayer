@@ -32,12 +32,8 @@
 class MUSIC_NETWORK_EXPORT MusicNetworkThread : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNetworkThread)
 public:
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
-
     /*!
      * Strat thread now.
      */

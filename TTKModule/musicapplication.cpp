@@ -117,11 +117,6 @@ MusicApplication::~MusicApplication()
     delete m_ui;
 }
 
-QString MusicApplication::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 MusicApplication *MusicApplication::instance()
 {
     return m_instance;

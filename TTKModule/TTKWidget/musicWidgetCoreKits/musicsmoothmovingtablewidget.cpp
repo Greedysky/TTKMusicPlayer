@@ -28,11 +28,6 @@ MusicSmoothMovingTableWidget::~MusicSmoothMovingTableWidget()
     delete m_slowAnimation;
 }
 
-QString MusicSmoothMovingTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
 {
     m_scrollBar = bar;

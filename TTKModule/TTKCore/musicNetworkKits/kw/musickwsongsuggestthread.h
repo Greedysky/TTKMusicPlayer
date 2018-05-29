@@ -27,16 +27,12 @@
 class MUSIC_NETWORK_EXPORT MusicKWSongSuggestThread : public MusicDownLoadSongSuggestThread
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicKWSongSuggestThread)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicKWSongSuggestThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Start to Search data from name and type.

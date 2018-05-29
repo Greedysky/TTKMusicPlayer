@@ -27,16 +27,13 @@
 class MUSIC_WIDGET_EXPORT MusicColorPreviewLabel : public MusicClickedLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicColorPreviewLabel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicColorPreviewLabel(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set linear gradient and fg and bg.
      */
@@ -70,16 +67,13 @@ typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
 class MUSIC_WIDGET_EXPORT MusicPreviewLabel : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPreviewLabel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPreviewLabel(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set linear gradient item.
      */

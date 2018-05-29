@@ -30,6 +30,7 @@ class MusicAnimationStackedWidget;
 class MUSIC_TOOL_EXPORT MusicConnectMobileWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicConnectMobileWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicConnectMobileWidget(QWidget *parent = 0);
 
     ~MusicConnectMobileWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 private Q_SLOTS:
     /*!

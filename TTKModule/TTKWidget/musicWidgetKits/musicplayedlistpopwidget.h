@@ -37,16 +37,12 @@ typedef QList< std::pair<int, int> > PlayedPairList;
 class MUSIC_WIDGET_EXPORT MusicPlayedListTopContainerWidget : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlayedListTopContainerWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPlayedListTopContainerWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 protected:
     /*!
@@ -63,6 +59,7 @@ protected:
 class MUSIC_WIDGET_EXPORT MusicPlayedListPopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlayedListPopWidget)
 public:
     /*!
      * Object contsructor.
@@ -71,10 +68,6 @@ public:
 
     virtual ~MusicPlayedListPopWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get class object instance.
      */

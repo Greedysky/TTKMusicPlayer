@@ -52,11 +52,6 @@ MusicArtistAlbumsItemWidget::~MusicArtistAlbumsItemWidget()
     delete m_updateLabel;
 }
 
-QString MusicArtistAlbumsItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicArtistAlbumsItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -118,11 +113,6 @@ MusicArtistMvsFoundWidget::MusicArtistMvsFoundWidget(QWidget *parent)
 MusicArtistMvsFoundWidget::~MusicArtistMvsFoundWidget()
 {
     delete m_gridLayout;
-}
-
-QString MusicArtistMvsFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicArtistMvsFoundWidget::setSongName(const QString &name)
@@ -217,11 +207,6 @@ MusicArtistSimilarFoundWidget::~MusicArtistSimilarFoundWidget()
     delete m_gridLayout;
 }
 
-QString MusicArtistSimilarFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicArtistSimilarFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
@@ -291,11 +276,6 @@ MusicArtistAlbumsFoundWidget::~MusicArtistAlbumsFoundWidget()
     delete m_gridLayout;
 }
 
-QString MusicArtistAlbumsFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicArtistAlbumsFoundWidget::setSongName(const QString &name)
 {
     MusicFoundAbstractWidget::setSongName(name);
@@ -355,11 +335,6 @@ MusicArtistFoundTableWidget::~MusicArtistFoundTableWidget()
     clearAllItems();
 }
 
-QString MusicArtistFoundTableWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicArtistFoundTableWidget::setQueryInput(MusicDownLoadQueryThreadAbstract *query)
 {
     MusicQueryFoundTableWidget::setQueryInput(query);
@@ -389,11 +364,6 @@ MusicArtistFoundWidget::~MusicArtistFoundWidget()
     delete m_artistAlbums;
     delete m_artistMvs;
     delete m_artistSim;
-}
-
-QString MusicArtistFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicArtistFoundWidget::setSongName(const QString &name)

@@ -28,16 +28,12 @@
 class MUSIC_WIDGET_EXPORT MusicPlayBackModePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPlayBackModePopWidget)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPlayBackModePopWidget(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Create all widget in layout.

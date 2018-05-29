@@ -31,16 +31,13 @@
 class MUSIC_LRC_EXPORT MusicPhotoModLabel : public QWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicPhotoModLabel)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicPhotoModLabel(QWidget *parent = 0);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Set song image path.
      */

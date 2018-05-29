@@ -19,11 +19,6 @@ MusicFileSenderServer::~MusicFileSenderServer()
     delete m_file;
 }
 
-QString MusicFileSenderServer::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicFileSenderServer::setSendFile(const QString &file)
 {
     m_files << file;

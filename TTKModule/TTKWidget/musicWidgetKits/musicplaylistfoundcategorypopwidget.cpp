@@ -16,11 +16,6 @@ MusicPlaylistFoundCategoryItem::MusicPlaylistFoundCategoryItem(QWidget *parent)
     setStyleSheet(QString());
 }
 
-QString MusicPlaylistFoundCategoryItem::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlaylistFoundCategoryItem::setCategory(const MusicResultsCategory &category)
 {
     m_category = category;
@@ -70,11 +65,6 @@ MusicPlaylistFoundCategoryPopWidget::MusicPlaylistFoundCategoryPopWidget(QWidget
 
     disconnect(this, SIGNAL(clicked()), this, SLOT(popupMenu()));
     connect(this, SIGNAL(clicked()), SLOT(popupMenu()));
-}
-
-QString MusicPlaylistFoundCategoryPopWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicPlaylistFoundCategoryPopWidget::setCategory(const QString &server, QObject *obj)

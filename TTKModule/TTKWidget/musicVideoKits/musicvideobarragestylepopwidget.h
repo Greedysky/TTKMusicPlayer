@@ -27,6 +27,7 @@
 class MUSIC_VIDEO_EXPORT MusicVideoBarrageStylePopWidget : public MusicToolMenuWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoBarrageStylePopWidget)
 public:
     /*!
      * Object contsructor.
@@ -34,11 +35,6 @@ public:
     explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = 0);
 
     virtual ~MusicVideoBarrageStylePopWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Get barrage size.

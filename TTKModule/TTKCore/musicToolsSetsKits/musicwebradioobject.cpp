@@ -19,11 +19,6 @@ MusicWebRadioObject::MusicWebRadioObject(QObject *parent)
     Q_UNUSED(qRegisterMetaType<MusicObject::ToolsType>("MusicObject::ToolsType"));
 }
 
-QString MusicWebRadioObject::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicWebRadioObject::raise()
 {
 

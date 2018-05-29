@@ -31,6 +31,7 @@ class MusicWebDJRadioInfoWidget;
 class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundItemWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioFoundItemWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicWebDJRadioFoundItemWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioFoundItemWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set music results item.
@@ -80,6 +76,7 @@ protected:
 class MUSIC_TOOL_EXPORT MusicWebDJRadioFoundWidget : public MusicFoundAbstractWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicWebDJRadioFoundWidget)
 public:
     /*!
      * Object contsructor.
@@ -87,11 +84,6 @@ public:
     explicit MusicWebDJRadioFoundWidget(QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioFoundWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
     /*!
      * Set current name to search founds.

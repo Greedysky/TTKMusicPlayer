@@ -10,11 +10,6 @@ MusicDownLoadQueryQQRecommendThread::MusicDownLoadQueryQQRecommendThread(QObject
     m_queryServer = "QQ";
 }
 
-QString MusicDownLoadQueryQQRecommendThread::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownLoadQueryQQRecommendThread::startToSearch(const QString &id)
 {
     if(!m_manager)

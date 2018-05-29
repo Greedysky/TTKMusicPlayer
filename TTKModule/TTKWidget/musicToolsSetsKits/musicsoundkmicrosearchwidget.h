@@ -28,6 +28,7 @@
 class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundKMicroSearchTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -36,10 +37,6 @@ public:
 
     virtual ~MusicSoundKMicroSearchTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start search query by text.
      */
@@ -104,6 +101,7 @@ class MusicLocalSongSearchEdit;
 class MUSIC_TOOLSET_EXPORT MusicSoundKMicroSearchWidget : public MusicAbstractMoveSingleWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSoundKMicroSearchWidget)
 public:
     /*!
      * Object contsructor.
@@ -112,10 +110,6 @@ public:
 
     ~MusicSoundKMicroSearchWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Connect to parent.
      */

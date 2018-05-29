@@ -27,6 +27,7 @@
  */
 class MUSIC_CORE_EXPORT MusicSong
 {
+    TTK_DECLARE_MODULE(MusicSong)
 public:
     enum Sort
     {
@@ -70,10 +71,6 @@ public:
     MusicSong(const QString &musicPath, int playCount, const QString &time,
               const QString &musicName);
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Get music artist name.
      */
@@ -154,7 +151,7 @@ protected:
     QString m_musicName, m_musicPath, m_musicType, m_musicTime;
 
 };
-MUSIC_DECLARE_LISTS(MusicSong)
+TTK_DECLARE_LISTS(MusicSong)
 
 ////////////////////////////////////////////////////////
 class MusicSongsListTableWidget;
@@ -196,6 +193,6 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
         return m_itemIndex < other.m_itemIndex;
     }
 }MusicSongItem;
-MUSIC_DECLARE_LISTS(MusicSongItem)
+TTK_DECLARE_LISTS(MusicSongItem)
 
 #endif // MUSICSONG_H

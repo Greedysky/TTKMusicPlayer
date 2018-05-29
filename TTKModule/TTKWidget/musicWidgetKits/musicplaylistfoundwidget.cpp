@@ -58,11 +58,6 @@ MusicPlaylistFoundItemWidget::~MusicPlaylistFoundItemWidget()
     delete m_creatorLabel;
 }
 
-QString MusicPlaylistFoundItemWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicPlaylistFoundItemWidget::setMusicResultsItem(const MusicResultsItem &item)
 {
     m_itemData = item;
@@ -146,11 +141,6 @@ MusicPlaylistFoundWidget::~MusicPlaylistFoundWidget()
     delete m_categoryButton;
     delete m_downloadThread;
     delete m_pagingWidgetObject;
-}
-
-QString MusicPlaylistFoundWidget::getClassName()
-{
-    return staticMetaObject.className();
 }
 
 void MusicPlaylistFoundWidget::setSongName(const QString &name)

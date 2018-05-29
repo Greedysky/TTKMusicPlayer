@@ -23,11 +23,6 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     musicSongsFileName();
 }
 
-QString MusicDownloadRecordWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord &record)
 {
     QHeaderView *headerview = horizontalHeader();

@@ -42,6 +42,7 @@ typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
 class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicVideoTableWidget)
 public:
     /*!
      * Object contsructor.
@@ -50,10 +51,6 @@ public:
 
     virtual ~MusicVideoTableWidget();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start search query by text.
      */

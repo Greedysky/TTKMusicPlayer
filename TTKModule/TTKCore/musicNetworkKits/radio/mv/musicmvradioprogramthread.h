@@ -27,13 +27,9 @@
 class MUSIC_NETWORK_EXPORT MusicMVRadioProgramThread : public MusicMVRadioThreadAbstract
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicMVRadioProgramThread)
 public:
     explicit MusicMVRadioProgramThread(QObject *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

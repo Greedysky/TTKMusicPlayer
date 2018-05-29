@@ -28,11 +28,6 @@ MusicCodeAreaWidget::MusicCodeAreaWidget(QWidget *parent)
     m_nCodeCount = DEF_CODECOUNT;
 }
 
-QString MusicCodeAreaWidget::getClassName()
-{
-    return staticMetaObject.className();
-}
-
 void MusicCodeAreaWidget::renderPicture()
 {
     QStringList number;

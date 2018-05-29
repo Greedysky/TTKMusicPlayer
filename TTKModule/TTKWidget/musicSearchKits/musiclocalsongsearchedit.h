@@ -27,16 +27,12 @@
 class MUSIC_SEARCH_EXPORT MusicLocalSongSearchEdit : public QLineEdit
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicLocalSongSearchEdit)
 public:
     /*!
      * Object contsructor.
      */
     explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!

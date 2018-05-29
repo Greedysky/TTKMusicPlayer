@@ -31,6 +31,7 @@ class MusicSongListSharingWidget;
 class MUSIC_WIDGET_EXPORT MusicSongListSharingWidget : public MusicAbstractMoveDialog
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSongListSharingWidget)
 public:
     /*!
      * Object contsructor.
@@ -38,11 +39,6 @@ public:
     explicit MusicSongListSharingWidget(QWidget *parent = 0);
 
     virtual ~MusicSongListSharingWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 public Q_SLOTS:
     /*!

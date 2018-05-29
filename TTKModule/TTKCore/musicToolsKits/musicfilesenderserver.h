@@ -35,6 +35,7 @@
 class MUSIC_TOOL_EXPORT MusicFileSenderServer : public QObject
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicFileSenderServer)
 public:
     /*!
      * Object contsructor.
@@ -43,10 +44,6 @@ public:
 
     ~MusicFileSenderServer();
 
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
     /*!
      * Start to transfer file.
      */

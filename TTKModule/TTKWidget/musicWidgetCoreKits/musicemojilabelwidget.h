@@ -30,6 +30,7 @@ class QToolButton;
 class MUSIC_WIDGET_EXPORT MusicEMOJILabelWidget : public QLabel
 {
     Q_OBJECT
+    TTK_DECLARE_MODULE(MusicEMOJILabelWidget)
 public:
     /*!
      * Object contsructor.
@@ -37,11 +38,6 @@ public:
     explicit MusicEMOJILabelWidget(QWidget *parent = 0);
 
     ~MusicEMOJILabelWidget();
-
-    /*!
-     * Get class object name.
-     */
-    static QString getClassName();
 
 Q_SIGNALS:
     /*!
