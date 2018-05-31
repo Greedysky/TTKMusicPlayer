@@ -24,14 +24,14 @@
 #include <QMouseEvent>
 
 #define ROW_HIGHT   30
-#define SEARCH_ITEM_DEFINED(index, names) \
-    case index: \
-    { \
-        if(names.count() >= index) \
-        { \
-            MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]); \
-        } \
-        break; \
+#define SEARCH_ITEM_DEFINED(index, names)                                                   \
+    case index:                                                                             \
+    {                                                                                       \
+        if(names.count() >= index)                                                          \
+        {                                                                                   \
+            MusicRightAreaWidget::instance()->musicSongSearchedFound(names[index - 1]);     \
+        }                                                                                   \
+        break;                                                                              \
     }
 
 

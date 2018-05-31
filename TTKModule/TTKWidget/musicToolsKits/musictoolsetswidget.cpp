@@ -19,14 +19,14 @@
 #include "musicspectrumwidget.h"
 #include "musicwebradioobject.h"
 
-#define NEW_OPERATOR(flag, type)  \
-    if((m_toolsFlags & flag) != flag) \
-    { \
-        m_toolsFlags |= flag; \
-        type *w = new type(MusicApplication::instance()); \
-        connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType))); \
-        w->raise(); \
-        w->show(); \
+#define NEW_OPERATOR(flag, type)                                                                            \
+    if((m_toolsFlags & flag) != flag)                                                                       \
+    {                                                                                                       \
+        m_toolsFlags |= flag;                                                                               \
+        type *w = new type(MusicApplication::instance());                                                   \
+        connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType)));     \
+        w->raise();                                                                                         \
+        w->show();                                                                                          \
     }
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)

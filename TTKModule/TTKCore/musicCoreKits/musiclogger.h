@@ -30,10 +30,10 @@
 #define LOG_END     QString("log::npos")
 
 #define M_LOGGER    (*MusicLogger::createInstance())
-#define M_MESSAGE(str, msg) \
-{ \
-    M_LOGGER.setLevel(msg); \
-    M_LOGGER << str << LOG_END;\
+#define M_MESSAGE(str, msg)         \
+{                                   \
+    M_LOGGER.setLevel(msg);         \
+    M_LOGGER << str << LOG_END;     \
 }
 
 #ifdef MUSIC_DEBUG

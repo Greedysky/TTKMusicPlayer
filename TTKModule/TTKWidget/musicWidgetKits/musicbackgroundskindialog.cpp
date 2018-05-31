@@ -14,13 +14,13 @@
 
 #include <QScrollBar>
 
-#define NEW_OPERATOR(ui, list)  \
-    ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); \
-    ui->setWidgetResizable(true); \
-    ui->setFrameShape(QFrame::NoFrame); \
-    ui->setFrameShadow(QFrame::Plain); \
-    ui->setAlignment(Qt::AlignVCenter); \
-    ui->setWidget(list); \
+#define NEW_OPERATOR(ui, list)                                                  \
+    ui->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);                   \
+    ui->setWidgetResizable(true);                                               \
+    ui->setFrameShape(QFrame::NoFrame);                                         \
+    ui->setFrameShadow(QFrame::Plain);                                          \
+    ui->setAlignment(Qt::AlignVCenter);                                         \
+    ui->setWidget(list);                                                        \
     ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
 

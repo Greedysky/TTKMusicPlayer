@@ -88,21 +88,21 @@
 #define TTK_RT const &
 #define TTK_RD &
 
-#define TTK_DECLARE_PTR(Class) \
-public: \
-    using Class##Ptr = Class *; \
+#define TTK_DECLARE_PTR(Class)              \
+public:                                     \
+    using Class##Ptr = Class *;             \
     using Class##CPtr = const Class *;
 
-#define TTK_DECLARE_GCN(Class) \
-public: \
-    inline static QString getClassName() \
-    { \
-        return #Class; \
+#define TTK_DECLARE_GCN(Class)              \
+public:                                     \
+    inline static QString getClassName()    \
+    {                                       \
+        return #Class;                      \
     }
 
-#define TTK_DECLARE_MODULE(Class) \
-public: \
-    TTK_DECLARE_PTR(Class) \
+#define TTK_DECLARE_MODULE(Class)           \
+public:                                     \
+    TTK_DECLARE_PTR(Class)                  \
     TTK_DECLARE_GCN(Class)
 
 //////////////////////////////////////
@@ -118,10 +118,10 @@ public: \
   #define STRCAT(a, b)    a b
 #endif
 
-#define TTK_DECLARE_LISTS(Class) \
+#define TTK_DECLARE_LISTS(Class)            \
     typedef QList<Class> Class##s;
 
-#define TTK_DECLARE_FLAGS(Flags, Enum) \
+#define TTK_DECLARE_FLAGS(Flags, Enum)      \
     typedef QFlags<Enum> Flags;
 
 //////////////////////////////////////
