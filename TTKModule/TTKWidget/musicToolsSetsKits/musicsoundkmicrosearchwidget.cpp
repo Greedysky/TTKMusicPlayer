@@ -8,10 +8,6 @@
 #include "musicitemdelegate.h"
 #include "musicdownloadwidget.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QRadioButton>
 #include <QButtonGroup>
 
 MusicSoundKMicroSearchTableWidget::MusicSoundKMicroSearchTableWidget(QWidget *parent)

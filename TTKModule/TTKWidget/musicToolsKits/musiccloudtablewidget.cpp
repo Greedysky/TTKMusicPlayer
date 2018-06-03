@@ -1,7 +1,6 @@
 #include "musiccloudtablewidget.h"
 #include "musicitemdelegate.h"
-
-#include <QScrollBar>
+#include "musicwidgetheaders.h"
 
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)

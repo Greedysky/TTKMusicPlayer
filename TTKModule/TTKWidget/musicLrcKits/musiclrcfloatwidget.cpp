@@ -4,8 +4,7 @@
 #include "musicinlinefloatuiobject.h"
 #include "musicrightareawidget.h"
 #include "musicleftareawidget.h"
-
-#include <QPushButton>
+#include "musicwidgetheaders.h"
 
 MusicLrcFloatWidget::MusicLrcFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)

@@ -7,10 +7,6 @@
 #include "musicalgorithmutils.h"
 #include "musicmessagebox.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QPushButton>
-
 MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -106,15 +102,12 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     mainLayout->addStretch(1);
 
     updateServerPlaceholderText();
-
 }
 
 MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
 {
     delete m_tabWidget;
 }
-
-
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {

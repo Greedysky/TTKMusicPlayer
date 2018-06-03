@@ -4,9 +4,8 @@
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicwidgetheaders.h"
 
-#include <QHBoxLayout>
-#include <QToolButton>
 #include <QPropertyAnimation>
 
 MusicSongsListFunctionWidget::MusicSongsListFunctionWidget(QWidget *parent)

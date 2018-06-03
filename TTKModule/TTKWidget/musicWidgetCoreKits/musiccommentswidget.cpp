@@ -8,14 +8,11 @@
 #include "musicclickedlabel.h"
 #include "musicsemaphoreloop.h"
 #include "musicpagingwidgetobject.h"
+#include "musicwidgetheaders.h"
 
 #include <qmath.h>
-#include <QBoxLayout>
-#include <QPushButton>
 #include <QTextEdit>
 #include <QDateTime>
-#include <QScrollBar>
-#include <QScrollArea>
 
 MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     : QWidget(parent)

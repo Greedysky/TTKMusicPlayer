@@ -4,8 +4,8 @@
 #include "musicqmmputils.h"
 #include "musicformats.h"
 #include "musictoastlabel.h"
+#include "musicwidgetheaders.h"
 
-#include <QFileDialog>
 #include <QPluginLoader>
 
 ///qmmp incldue

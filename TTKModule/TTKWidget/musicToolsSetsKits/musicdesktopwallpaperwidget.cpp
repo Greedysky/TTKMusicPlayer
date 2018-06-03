@@ -8,9 +8,8 @@
 #include "musicmessagebox.h"
 #include "musicnumberdefine.h"
 #include "musiccoreutils.h"
+#include "musicwidgetheaders.h"
 
-#include <QBoxLayout>
-#include <QFileDialog>
 #include <QStyledItemDelegate>
 
 MusicDesktopWallpaperItem::MusicDesktopWallpaperItem(QWidget *parent)

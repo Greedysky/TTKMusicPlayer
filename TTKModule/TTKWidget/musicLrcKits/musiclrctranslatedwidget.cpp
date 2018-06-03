@@ -2,12 +2,6 @@
 #include "musicfunctionuiobject.h"
 #include "musicuiobject.h"
 
-#include <QTextEdit>
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QScrollArea>
-#include <QScrollBar>
-
 MusicLrcTranslatedWidget::MusicLrcTranslatedWidget(QWidget *parent)
     : QLabel(parent)
 {

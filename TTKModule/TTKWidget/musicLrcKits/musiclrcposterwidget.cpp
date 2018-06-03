@@ -12,7 +12,6 @@
 
 #include <qmath.h>
 #include <QPainter>
-#include <QScrollBar>
 
 #define ITEM_SCROLL_WIDTH   8
 #define ITEM_BORDER         3

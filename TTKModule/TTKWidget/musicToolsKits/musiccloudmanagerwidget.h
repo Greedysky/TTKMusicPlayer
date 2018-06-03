@@ -1,5 +1,5 @@
-#ifndef MUSICLOCALSONGSEARCHDIALOG_H
-#define MUSICLOCALSONGSEARCHDIALOG_H
+#ifndef MUSICCLOUDMANAGERWIDGET_H
+#define MUSICCLOUDMANAGERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -22,41 +22,25 @@
 #include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
 
-class MusicLocalSongSearchEdit;
-
-/*! @brief The class of the local song search widget.
+/*! @brief The class of the cloud manager widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_SEARCH_EXPORT MusicLocalSongSearchDialog : public QDialog
+class MUSIC_TOOL_EXPORT MusicCloudManagerWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicLocalSongSearchDialog)
+    TTK_DECLARE_MODULE(MusicCloudManagerWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchDialog(QWidget *parent = 0);
+    explicit MusicCloudManagerWidget(QWidget *parent = 0);
 
-    ~MusicLocalSongSearchDialog();
+    ~MusicCloudManagerWidget();
 
-    /*!
-     * Get the search text that the user searched.
-     */
-    QString getSearchedText() const;
-    /*!
-     * Clear the search text.
-     */
-    void clearSearchedText() const;
-
-public Q_SLOTS:
-    /*!
-     * Override the close function.
-     */
-    bool close();
-
-private:
-    MusicLocalSongSearchEdit *m_searchLine;
+protected:
+    QLabel *m_sizeValueLabel;
+    QProgressBar *m_sizeValueBar;
 
 };
 
-#endif // MUSICLOCALSONGSEARCHDIALOG_H
+#endif // MUSICCLOUDMANAGERWIDGET_H

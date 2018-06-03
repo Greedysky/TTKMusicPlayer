@@ -1,10 +1,8 @@
 #include "musicvideobarragestylepopwidget.h"
 #include "musicvideouiobject.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QPushButton>
 #include <QButtonGroup>
 
 MusicVideoBarrageStylePopWidget::MusicVideoBarrageStylePopWidget(QWidget *parent)

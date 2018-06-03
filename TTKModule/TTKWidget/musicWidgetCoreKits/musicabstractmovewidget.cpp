@@ -2,9 +2,9 @@
 #include "musicbackgroundmanager.h"
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrap.h"
+#include "musicwidgetheaders.h"
 
 #include <QPainter>
-#include <QBoxLayout>
 
 #define WIDTH  4
 #define HEIGHT 4

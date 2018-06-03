@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QTime>
-#include <QMenu>
+#include "musicwidgetheaders.h"
 #include "musicabstractmovedialog.h"
 #include "musicdatabaseobject.h"
 

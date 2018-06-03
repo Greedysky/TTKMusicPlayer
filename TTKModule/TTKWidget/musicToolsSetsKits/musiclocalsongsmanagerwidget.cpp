@@ -12,7 +12,6 @@
 #else
 #  include <QtConcurrentRun>
 #endif
-#include <QFileDialog>
 #include <QButtonGroup>
 #include <QFileSystemWatcher>
 #include <QStyledItemDelegate>

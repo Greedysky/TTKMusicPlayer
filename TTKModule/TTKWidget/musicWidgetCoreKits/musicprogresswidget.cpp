@@ -3,11 +3,9 @@
 #include "musicbackgroundconfigmanager.h"
 #include "musicextractwrap.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
 #include <QPainter>
-#include <QLabel>
-#include <QToolButton>
-#include <QProgressBar>
 
 #define WIDTH  4
 #define HEIGHT 4

@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStackedWidget>
+#include "musicwidgetheaders.h"
 #include "musicdatabaseobject.h"
 
 class MusicUserModel;

@@ -4,9 +4,7 @@
 #include "musicwebdjradiofoundwidget.h"
 #include "musicdownloadsourcethread.h"
 #include "musicsettingmanager.h"
-
-#include <QScrollBar>
-#include <QBoxLayout>
+#include "musicwidgetheaders.h"
 
 #define ROW_HEIGHT 40
 

@@ -3,8 +3,6 @@
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
 
-#include <QToolButton>
-
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     : QLabel(parent)
 {

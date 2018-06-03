@@ -17,8 +17,6 @@
 
 #include <QMovie>
 #include <QShortcut>
-#include <QBoxLayout>
-#include <QStackedWidget>
 
 MusicIdentifySongsWidget::MusicIdentifySongsWidget(QWidget *parent)
     : QWidget(parent)

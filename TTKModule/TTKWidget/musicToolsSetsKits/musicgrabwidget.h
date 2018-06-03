@@ -19,9 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 /*! @brief The class of the grab area widget.
  * @author Greedysky <greedysky@163.com>

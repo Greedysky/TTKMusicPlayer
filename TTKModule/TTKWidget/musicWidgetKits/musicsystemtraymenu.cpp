@@ -7,9 +7,6 @@
 #include "musicrightareawidget.h"
 #include "musictopareawidget.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QToolButton>
 #include <QWidgetAction>
 
 MusicSystemTrayMenu::MusicSystemTrayMenu(QWidget *parent)

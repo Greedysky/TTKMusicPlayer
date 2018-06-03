@@ -3,8 +3,6 @@
 #include "musicuiobject.h"
 #include "musicmessagebox.h"
 
-#include <QButtonGroup>
-
 #define MAX_LEGNTH 30
 
 MusicLrcErrorWidget::MusicLrcErrorWidget(QWidget *parent)

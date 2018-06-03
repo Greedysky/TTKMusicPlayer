@@ -3,10 +3,10 @@
 #include "musicmessagebox.h"
 #include "musicwidgetutils.h"
 #include "musiccoreutils.h"
+#include "musicwidgetheaders.h"
 
 #include <QSound>
 #include <QProcess>
-#include <QFileDialog>
 #include <QStyledItemDelegate>
 
 MusicTransformWidget::MusicTransformWidget(QWidget *parent)

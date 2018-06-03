@@ -21,13 +21,12 @@
 #include "musictopareawidget.h"
 #include "musicbackgroundmanager.h"
 #include "musictime.h"
+#include "musicwidgetheaders.h"
 
 #include <QPainter>
 #include <QClipboard>
 #include <QApplication>
 #include <QActionGroup>
-#include <QPushButton>
-#include <QTextEdit>
 
 #define LRC_CHANGED_OFFSET_LIMIT    20
 #define LRC_TIME_LABEL_POSITION     20

@@ -19,10 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLineEdit>
-#include <QLabel>
-
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 /*! @brief The class of the user lineedit.
  * @author Greedysky <greedysky@163.com>

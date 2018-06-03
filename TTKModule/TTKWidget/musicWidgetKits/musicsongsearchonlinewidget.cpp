@@ -15,10 +15,8 @@
 #include "musictoastlabel.h"
 #include "musictime.h"
 #include "musicapplication.h"
+#include "musicwidgetheaders.h"
 
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QCheckBox>
 #include <QButtonGroup>
 
 MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)

@@ -19,13 +19,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QMenu>
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
-class QLabel;
 class MusicClickedSlider;
-class QWidgetAction;
-class QToolButton;
 
 /*! @brief The class of the system tray menu widget.
  * @author Greedysky <greedysky@163.com>

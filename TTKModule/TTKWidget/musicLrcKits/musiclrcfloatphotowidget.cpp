@@ -2,13 +2,11 @@
 #include "musicbackgroundmanager.h"
 #include "musicinlinefloatuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicwidgetheaders.h"
 
 #include <qmath.h>
-#include <QMenu>
 #include <QTimer>
 #include <QPainter>
-#include <QCheckBox>
-#include <QPushButton>
 
 #define PHOTO_WIDTH     110
 #define PHOTO_HEIGHT    65

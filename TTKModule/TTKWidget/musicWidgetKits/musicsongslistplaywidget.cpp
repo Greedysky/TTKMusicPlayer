@@ -11,10 +11,9 @@
 #include "musicleftareawidget.h"
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
+#include "musicwidgetheaders.h"
 
-#include <QMenu>
 #include <QTimer>
-#include <QPushButton>
 
 MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     : QWidget(parent), m_renameLine(nullptr)

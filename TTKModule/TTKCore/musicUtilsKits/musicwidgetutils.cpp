@@ -1,10 +1,9 @@
 #include "musicwidgetutils.h"
+#include "musicwidgetheaders.h"
 
-#include <QComboBox>
 #include <QBitmap>
 #include <QPainter>
 #include <QBuffer>
-#include <QFileDialog>
 
 void MusicUtils::Widget::setLabelFontSize(QWidget *widget, int size)
 {

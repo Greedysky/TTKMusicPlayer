@@ -1,7 +1,6 @@
 #include "musicgrabwidget.h"
 #include "musicwidgetutils.h"
 
-#include <QMenu>
 #include <QScreen>
 #include <QPainter>
 #include <QMouseEvent>

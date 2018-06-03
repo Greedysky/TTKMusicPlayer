@@ -4,7 +4,6 @@
 #include "musiclrcdefines.h"
 
 #include <QTimer>
-#include <QPushButton>
 #include <QButtonGroup>
 
 MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)

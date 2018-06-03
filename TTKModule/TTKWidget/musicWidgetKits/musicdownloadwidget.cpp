@@ -8,9 +8,7 @@
 #include "musicmessagebox.h"
 #include "musicdownloadqueryfactory.h"
 #include "musicstringutils.h"
-
-#include <QLabel>
-#include <QFileDialog>
+#include "musicwidgetheaders.h"
 
 Q_DECLARE_METATYPE(MusicDownloadTableItemRole)
 

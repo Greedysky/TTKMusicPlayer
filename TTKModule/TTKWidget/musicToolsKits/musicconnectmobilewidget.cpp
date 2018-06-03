@@ -7,10 +7,7 @@
 
 #include "qrencode/qrcodewidget.h"
 
-#include <QLabel>
 #include <QPainter>
-#include <QBoxLayout>
-#include <QPushButton>
 
 MusicConnectMobileWidget::MusicConnectMobileWidget(QWidget *parent)
     : QWidget(parent)

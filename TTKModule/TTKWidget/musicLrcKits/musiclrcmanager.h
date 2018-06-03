@@ -19,13 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include <QMouseEvent>
-#include <QMenu>
 #include <QTimer>
 #include <QAction>
 #include <QPainter>
+#include <QMouseEvent>
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 #define LRC_PER_TIME        30
 #define LRC_COLOR_OFFSET    9

@@ -7,7 +7,6 @@
 #include "musicdatatagdownloadthread.h"
 
 #include <QTimer>
-#include <QComboBox>
 #include <QScrollBar>
 #include <QStyledItemDelegate>
 

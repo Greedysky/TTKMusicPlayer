@@ -9,9 +9,6 @@
 #include "musicuiobject.h"
 #include "musictime.h"
 
-#include <QPushButton>
-#include <QBoxLayout>
-
 MusicVideoControlWidget::MusicVideoControlWidget(QWidget *parent)
     : QWidget(parent)
 {

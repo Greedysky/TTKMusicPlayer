@@ -6,9 +6,8 @@
 #include "musicdownloadsourcethread.h"
 #include "musicregeditmanager.h"
 #include "musicotherdefine.h"
+#include "musicwidgetheaders.h"
 
-#include <QMenu>
-#include <QScrollBar>
 #ifdef MUSIC_GREATER_NEW
 #include <QStandardPaths>
 #else

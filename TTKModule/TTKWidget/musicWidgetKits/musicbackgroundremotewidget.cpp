@@ -1,11 +1,10 @@
 #include "musicbackgroundremotewidget.h"
 #include "musicdownloadqueuecache.h"
 #include "musicextractwrap.h"
+#include "musicwidgetheaders.h"
 
 #include <QDir>
-#include <QPushButton>
 #include <QButtonGroup>
-#include <QBoxLayout>
 
 MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     : QWidget(parent)

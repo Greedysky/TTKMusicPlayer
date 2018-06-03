@@ -19,13 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include <QCheckBox>
-#include <QBoxLayout>
-#include <QPushButton>
 #include <QButtonGroup>
-#include <QScrollArea>
-#include <QStackedWidget>
+#include "musicwidgetheaders.h"
 #include "musicsongsharingwidget.h"
 #include "musicqueryfoundtablewidget.h"
 

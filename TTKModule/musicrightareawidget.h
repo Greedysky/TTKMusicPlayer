@@ -60,8 +60,9 @@ public:
         RecommendWidget,        /*!< insert recommend found widget*/
         IndentifyWidget,        /*!< insert indentify songs widget*/
         KuiSheWidget,           /*!< insert kugou kuishe widget*/
-        WebDJRadio,             /*!< insert web dj radio widget*/
-        WebMVRadio              /*!< insert web mv radio widget*/
+        WebDJRadioWidget,       /*!< insert web dj radio widget*/
+        WebMVRadioWidget,       /*!< insert web mv radio widget*/
+        CloudManagerWidget      /*!< insert cloud manager widget*/
     };
 
     /*!
@@ -172,6 +173,10 @@ public Q_SLOTS:
      * Music function button clicked.
      */
     void musicFunctionClicked(int index);
+    /*!
+     * Music function button clicked by extra widget.
+     */
+    void musicFunctionClicked(int index, QWidget *widget);
     /*!
      * Music song comments widget.
      */
@@ -294,6 +299,11 @@ public Q_SLOTS:
     void musicChangeDownloadCustumWidget();
 
 protected:
+    /*!
+     * Music function parameter init.
+     */
+    void musicFunctionParameterInit(MusicFunction func);
+
     QVariant m_rawData;
     QWidget *m_stackedFuncWidget;
     Ui::MusicApplication *m_ui;

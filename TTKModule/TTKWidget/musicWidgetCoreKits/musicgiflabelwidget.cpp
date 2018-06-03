@@ -1,8 +1,8 @@
 #include "musicgiflabelwidget.h"
+#include "musicwidgetheaders.h"
 
 #include <QTimer>
 #include <QPainter>
-#include <QBoxLayout>
 
 #define GIF_BALLON_WHITE        35
 #define GIF_CICLE_BLUE          58

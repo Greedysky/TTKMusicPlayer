@@ -309,30 +309,8 @@ void MusicRightAreaWidget::getParameterSetting() const
 
 void MusicRightAreaWidget::musicFunctionClicked(int index)
 {
-    if(M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
-    {
-        MusicApplication::instance()->musicWindowConciseChanged();
-    }
-
     MusicFunction key = MStatic_cast(MusicFunction, index);
-    if(key == LrcWidget) ///lrc option
-    {
-        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(false);
-        m_ui->stackedFunctionWidget->transparent(true);
-    }
-    else
-    {
-        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(true);
-        m_ui->stackedFunctionWidget->transparent(false);
-    }
-
-    deleteStackedFuncWidget();
-    m_ui->songSearchWidget->auditionStop();
-    m_ui->lrcDisplayAllButton->setVisible(false);
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand() && key != LrcWidget)
-    {
-        musicLrcDisplayAllButtonClicked();
-    }
+    musicFunctionParameterInit(key);
 
     switch(key)
     {
@@ -526,7 +504,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
-        case WebDJRadio: //insert web dj radio widget
+        case WebDJRadioWidget: //insert web dj radio widget
             {
                 MusicWebDJRadioWidget *djRadio = new MusicWebDJRadioWidget(this);
                 djRadio->init();
@@ -535,7 +513,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 emit updateBackgroundTheme();
                 break;
             }
-        case WebMVRadio: //insert web mv radio widget
+        case WebMVRadioWidget: //insert web mv radio widget
             {
                 MusicWebMVRadioFoundWidget *mvRadio = new MusicWebMVRadioFoundWidget(this);
                 mvRadio->setSongName(QString());
@@ -546,6 +524,17 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             }
         default: break;
     }
+}
+
+void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
+{
+    MusicFunction key = MStatic_cast(MusicFunction, index);
+    musicFunctionParameterInit(key);
+
+    m_stackedFuncWidget = widget;
+    m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
+    m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+    emit updateBackgroundTheme();
 }
 
 void MusicRightAreaWidget::musicSongCommentsWidget()
@@ -845,4 +834,31 @@ void MusicRightAreaWidget::musicChangeDownloadCustumWidget()
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced, false);
     m_settingWidget->changeDownloadWidget();
     showSettingWidget();
+}
+
+void MusicRightAreaWidget::musicFunctionParameterInit(MusicFunction func)
+{
+    if(M_SETTING_PTR->value(MusicSettingManager::WindowConciseChoiced).toBool())
+    {
+        MusicApplication::instance()->musicWindowConciseChanged();
+    }
+
+    if(func == LrcWidget) ///lrc option
+    {
+        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(false);
+        m_ui->stackedFunctionWidget->transparent(true);
+    }
+    else
+    {
+        m_ui->stackedWidgetFunctionOption->musicButtonStyleClear(true);
+        m_ui->stackedFunctionWidget->transparent(false);
+    }
+
+    deleteStackedFuncWidget();
+    m_ui->songSearchWidget->auditionStop();
+    m_ui->lrcDisplayAllButton->setVisible(false);
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand() && func != LrcWidget)
+    {
+        musicLrcDisplayAllButtonClicked();
+    }
 }

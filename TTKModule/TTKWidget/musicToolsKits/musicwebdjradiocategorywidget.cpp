@@ -1,8 +1,7 @@
 #include "musicwebdjradiocategorywidget.h"
 #include "musicdjradiocategorythread.h"
 #include "musicdownloadsourcethread.h"
-
-#include <QScrollBar>
+#include "musicwidgetheaders.h"
 
 #define WIDTH_LABEL_SIZE   60
 #define HEIGHT_LABEL_SIZE  105

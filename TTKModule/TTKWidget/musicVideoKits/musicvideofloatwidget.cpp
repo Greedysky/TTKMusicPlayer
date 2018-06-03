@@ -1,7 +1,6 @@
 #include "musicvideofloatwidget.h"
 #include "musicvideofloatuiobject.h"
-
-#include <QPushButton>
+#include "musicwidgetheaders.h"
 
 MusicVideoFloatWidget::MusicVideoFloatWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)

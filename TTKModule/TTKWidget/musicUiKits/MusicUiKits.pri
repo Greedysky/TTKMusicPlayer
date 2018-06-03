@@ -33,7 +33,8 @@ HEADERS  += \
     $$PWD/musictinyuiobject.h \
     $$PWD/musictoolsetsuiobject.h \
     $$PWD/musicvideofloatuiobject.h \
-    $$PWD/musicvideouiobject.h
+    $$PWD/musicvideouiobject.h \
+    $$PWD/musicwidgetheaders.h
 }
 
 contains(CONFIG, MUSIC_BUILD_LIB){

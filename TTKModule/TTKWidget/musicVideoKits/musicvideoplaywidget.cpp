@@ -10,11 +10,6 @@
 #include "musicapplication.h"
 #include "musicotherdefine.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QToolButton>
-#include <QStackedWidget>
 #include <QParallelAnimationGroup>
 #ifdef Q_OS_UNIX
 #include <QApplication>

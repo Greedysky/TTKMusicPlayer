@@ -6,7 +6,6 @@
 #include "musicrightareawidget.h"
 
 #include <qmath.h>
-#include <QScrollBar>
 Q_DECLARE_METATYPE(MusicObject::MusicSongInformation)
 
 MusicWebMVRadioInfoTableWidget::MusicWebMVRadioInfoTableWidget(QWidget *parent)

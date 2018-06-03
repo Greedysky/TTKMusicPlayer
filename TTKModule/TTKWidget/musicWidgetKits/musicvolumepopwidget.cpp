@@ -3,9 +3,9 @@
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
 #include "musicclickedslider.h"
+#include "musicwidgetheaders.h"
 
 #include <QTimer>
-#include <QHBoxLayout>
 
 MusicVolumePopWidget::MusicVolumePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)

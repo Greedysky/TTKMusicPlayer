@@ -1,7 +1,6 @@
 #include "musiclocalsongsearchedit.h"
 #include "musicuiobject.h"
 
-#include <QMenu>
 #include <QKeyEvent>
 
 MusicLocalSongSearchEdit::MusicLocalSongSearchEdit(QWidget *parent)

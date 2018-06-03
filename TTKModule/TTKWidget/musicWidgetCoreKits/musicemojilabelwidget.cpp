@@ -2,10 +2,9 @@
 #include "musictinyuiobject.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
 #include <QFile>
-#include <QBoxLayout>
-#include <QToolButton>
 #include <QButtonGroup>
 #include <QSignalMapper>
 

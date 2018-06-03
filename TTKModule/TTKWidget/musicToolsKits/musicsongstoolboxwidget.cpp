@@ -12,12 +12,8 @@
 #include "musicotherdefine.h"
 #include "musictopareawidget.h"
 
-#include <QMenu>
 #include <QPainter>
-#include <QScrollBar>
-#include <QScrollArea>
 #include <QMouseEvent>
-#include <QPushButton>
 #include <QDrag>
 #include <QMimeData>
 

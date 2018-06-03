@@ -5,7 +5,6 @@
 #include "musicnumberdefine.h"
 #include "musicuiobject.h"
 
-#include <QMenu>
 #include <QMouseEvent>
 
 MusicViewWidget::MusicViewWidget(QWidget *parent)

@@ -19,9 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 #include "musicbarragerecordconfigmanager.h"
 
 class QPushButton;

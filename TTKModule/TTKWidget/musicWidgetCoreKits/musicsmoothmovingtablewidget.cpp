@@ -1,7 +1,7 @@
 #include "musicsmoothmovingtablewidget.h"
+#include "musicwidgetheaders.h"
 
 #include <QTimer>
-#include <QScrollBar>
 #include <QWheelEvent>
 #include <QPropertyAnimation>
 

@@ -4,9 +4,9 @@
 #include "musicuiobject.h"
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
+#include "musicwidgetheaders.h"
 
 #include <QProcess>
-#include <QFileDialog>
 
 #define GAIN_DEFAULT 89
 #define GAIN_TRACKDB "Recommended \"Track\" dB change:"

@@ -66,6 +66,8 @@ namespace MusicUIObject
 
     const QString MColorStyle12_S = "#323232";
 
+    const QString MColorStyle13 = " \
+            color:black;";
 
 ///Background
 //////////////////////////////////////////////////////

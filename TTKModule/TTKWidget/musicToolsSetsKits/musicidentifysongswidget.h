@@ -19,10 +19,9 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include <QPushButton>
 #include "musicobject.h"
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 class QMovie;
 class QStackedWidget;

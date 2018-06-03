@@ -19,7 +19,6 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
 #include "qiniu/qnsimplelistdata.h"
 #include "qiniu/qnsimpleuploaddata.h"
 #include "qiniu/qnsimpledeletedata.h"

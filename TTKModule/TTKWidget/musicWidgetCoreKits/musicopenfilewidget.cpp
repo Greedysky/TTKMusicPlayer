@@ -1,8 +1,7 @@
 #include "musicopenfilewidget.h"
 #include "musicclickedlabel.h"
 #include "musicwidgetutils.h"
-
-#include <QGridLayout>
+#include "musicwidgetheaders.h"
 
 MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
     : QWidget(parent)

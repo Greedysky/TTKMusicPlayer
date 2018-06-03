@@ -19,10 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QBoxLayout>
-#include <QToolButton>
-#include <QPushButton>
 #include "musiclrccontainer.h"
+#include "musicwidgetheaders.h"
 
 #define TOOLBAR_MAIN_HEIGHT     35
 #define TOOLBAR_HEIGHT          23

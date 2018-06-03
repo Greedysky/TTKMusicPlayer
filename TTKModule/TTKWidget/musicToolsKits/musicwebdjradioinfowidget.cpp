@@ -4,7 +4,6 @@
 #include "musicdownloadsourcethread.h"
 
 #include <qmath.h>
-#include <QScrollBar>
 
 MusicWebDJRadioInfoTableWidget::MusicWebDJRadioInfoTableWidget(QWidget *parent)
     : MusicQueryFoundTableWidget(parent)

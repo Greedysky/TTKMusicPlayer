@@ -19,12 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QDialog>
+#include <QFileInfo>
 #include <QMouseEvent>
 #include "musicobject.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 #include "musicabstractmovewidget.h"
-#include <QFileInfo>
 
 class QFileSystemWatcher;
 class MusicLocalSongsManagerThread;

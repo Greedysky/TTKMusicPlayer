@@ -13,17 +13,14 @@
 #include "musicsemaphoreloop.h"
 #include "musiccloudfileinformationwidget.h"
 #include "musicitemdelegate.h"
+#include "musicrightareawidget.h"
+#include "musiccloudmanagerwidget.h"
 
 #include "qiniu/qnconf.h"
 #///QJson import
 #include "qjson/parser.h"
 
-#include <QMenu>
 #include <QPainter>
-#include <QScrollBar>
-#include <QBoxLayout>
-#include <QFileDialog>
-#include <QPushButton>
 
 #define QN_BUCKET       "music"
 #define QN_PRFIX        "bkdIdE5FTXFpalU3MmxKMG5OOFVLS0lWZ0tCdDRzOGtQemJ6QnN3TlN2VUc3SGp4"

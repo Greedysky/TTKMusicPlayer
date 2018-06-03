@@ -4,10 +4,6 @@
 #include "musictinyuiobject.h"
 #include "musicapplication.h"
 
-#include <QLabel>
-#include <QBoxLayout>
-#include <QToolButton>
-
 MusicLocalSongSearchDialog::MusicLocalSongSearchDialog(QWidget *parent)
     : QDialog(parent)
 {

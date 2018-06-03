@@ -18,8 +18,9 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
-#include <QLineEdit>
+
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 /*! @brief The class of the local search line edit widget.
  * @author Greedysky <greedysky@163.com>

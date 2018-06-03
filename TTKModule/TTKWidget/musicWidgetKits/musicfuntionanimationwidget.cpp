@@ -3,12 +3,11 @@
 #include "musicfunctionlistuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
 #include "qmath.h"
 
 #include <QPainter>
-#include <QBoxLayout>
-#include <QToolButton>
 #include <QButtonGroup>
 #include <QPropertyAnimation>
 

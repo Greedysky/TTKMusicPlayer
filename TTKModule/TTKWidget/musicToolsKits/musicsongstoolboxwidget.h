@@ -19,9 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QLabel>
-#include <QBoxLayout>
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 
 class MusicSort;
 class MusicSongsToolItemRenamedWidget;

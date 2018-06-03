@@ -6,13 +6,9 @@
 #include "musicuiobject.h"
 #include "musicapplication.h"
 #include "musicplayedlist.h"
+#include "musicwidgetheaders.h"
 
-#include <QLabel>
 #include <QPainter>
-#include <QBoxLayout>
-#include <QPushButton>
-#include <QToolButton>
-#include <QScrollArea>
 
 #define MAX_SIZE    3
 

@@ -1,11 +1,8 @@
 #include "musicsoundkmicrosettingpopwidget.h"
 #include "musicaudiorecordercore.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
-#include <QLabel>
-#include <QSlider>
-#include <QCheckBox>
-#include <QComboBox>
 #include <QAudioDeviceInfo>
 #include <QAbstractItemView>
 #include <QStyledItemDelegate>

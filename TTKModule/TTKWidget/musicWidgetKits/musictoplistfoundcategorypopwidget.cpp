@@ -1,11 +1,9 @@
 #include "musictoplistfoundcategorypopwidget.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
-#include <QLabel>
-#include <QGridLayout>
 #include <QSignalMapper>
-#include <QScrollArea>
 
 #define ITEM_MAX_COLUMN     2
 #define ITEM_LABEL_WIDTH    20

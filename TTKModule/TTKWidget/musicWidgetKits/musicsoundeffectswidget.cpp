@@ -4,11 +4,11 @@
 #include "musicconnectionpool.h"
 #include "musicuiobject.h"
 #include "musicplayer.h"
+#include "musicwidgetheaders.h"
 ///qmmp incldue
 #include "effect.h"
 #include "effectfactory.h"
 ///
-#include <QBoxLayout>
 #include <QStyledItemDelegate>
 
 MusicSoundEffectsItemWidget::MusicSoundEffectsItemWidget(QWidget *parent)

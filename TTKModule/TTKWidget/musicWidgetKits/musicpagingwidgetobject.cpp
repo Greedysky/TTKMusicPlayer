@@ -1,8 +1,8 @@
 #include "musicpagingwidgetobject.h"
 #include "musicclickedlabel.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
-#include <QBoxLayout>
 #include <QSignalMapper>
 #include <QFontMetrics>
 

@@ -6,8 +6,6 @@
 #include "musicuserrecordwidget.h"
 #include "musicnumberdefine.h"
 
-#include <QMenu>
-
 MusicUserManagerDialog::MusicUserManagerDialog(QWidget *parent)
      : QDialog(parent),
        m_ui(new Ui::MusicUserManagerDialog)

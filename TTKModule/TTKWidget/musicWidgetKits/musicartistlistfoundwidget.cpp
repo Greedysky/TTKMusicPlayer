@@ -8,7 +8,6 @@
 #include "musicrightareawidget.h"
 
 #include <qmath.h>
-#include <QGridLayout>
 #include <QSignalMapper>
 
 #define WIDTH_LABEL_SIZE   150

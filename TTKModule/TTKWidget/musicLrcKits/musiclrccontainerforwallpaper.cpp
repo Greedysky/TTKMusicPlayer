@@ -7,8 +7,6 @@
 #include "musiclrcanalysis.h"
 #include "musicstringutils.h"
 
-#include <QBoxLayout>
-
 MusicLrcContainerForWallpaper::MusicLrcContainerForWallpaper(QWidget *parent)
     : MusicLrcContainer(parent)
 {

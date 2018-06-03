@@ -2,13 +2,9 @@
 #include "musicuiobject.h"
 #include "musicobject.h"
 #include "musicsongstoolitemrenamedwidget.h"
+#include "musicwidgetheaders.h"
 
-#include <QLabel>
 #include <QPainter>
-#include <QCheckBox>
-#include <QPushButton>
-#include <QRadioButton>
-#include <QProgressBar>
 
 MusicRadioButtonDelegate::MusicRadioButtonDelegate(QObject *parent)
     : QItemDelegate(parent)

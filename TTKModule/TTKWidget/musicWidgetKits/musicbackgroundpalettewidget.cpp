@@ -6,8 +6,8 @@
 #include "musicotherdefine.h"
 #include "musiccolordialog.h"
 #include "musicuiobject.h"
+#include "musicwidgetheaders.h"
 
-#include <QGridLayout>
 #include <QMouseEvent>
 
 #define COLOR_COL  10

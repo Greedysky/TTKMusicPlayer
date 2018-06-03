@@ -2,8 +2,7 @@
 #include "ui_musicsongchecktoolsitemselecteddialog.h"
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
-
-#include <QScrollBar>
+#include "musicwidgetheaders.h"
 
 MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)

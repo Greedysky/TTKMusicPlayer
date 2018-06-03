@@ -2,9 +2,7 @@
 #include "musicuiobject.h"
 #include "musicfunctionuiobject.h"
 #include "musicapplication.h"
-
-#include <QBoxLayout>
-#include <QToolButton>
+#include "musicwidgetheaders.h"
 
 MusicLrcFloatPlayWidget::MusicLrcFloatPlayWidget(QWidget *parent)
     : MusicFloatAbstractWidget(parent)

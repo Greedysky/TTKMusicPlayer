@@ -19,7 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QListWidget>
+#include "musicwidgetheaders.h"
 #include "musicabstractmovedialog.h"
 #include "musicfillitemtablewidget.h"
 

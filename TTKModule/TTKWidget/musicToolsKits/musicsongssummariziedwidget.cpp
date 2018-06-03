@@ -15,9 +15,6 @@
 #include "musictoastlabel.h"
 #include "musicotherdefine.h"
 
-#include <QScrollBar>
-#include <QScrollArea>
-
 #define  ITEM_MIN_COUNT             4
 #define  ITEM_MAX_COUNT             10
 #define  RECENT_ITEM_MAX_COUNT      50

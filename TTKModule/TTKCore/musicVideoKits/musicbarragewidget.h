@@ -20,10 +20,9 @@
  ================================================= */
 
 #include "musicglobaldefine.h"
+#include "musicwidgetheaders.h"
 #include "musicbarragerecordconfigmanager.h"
 
-#include <QLabel>
-#include <QLineEdit>
 #include <QPropertyAnimation>
 
 /*! @brief The class of the barrage animation.

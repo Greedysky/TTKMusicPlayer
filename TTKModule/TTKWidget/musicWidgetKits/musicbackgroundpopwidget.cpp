@@ -1,9 +1,7 @@
 #include "musicbackgroundpopwidget.h"
 #include "musicuiobject.h"
 #include "musicclickedslider.h"
-
-#include <QLabel>
-#include <QBoxLayout>
+#include "musicwidgetheaders.h"
 
 MusicBackgroundPopWidget::MusicBackgroundPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)

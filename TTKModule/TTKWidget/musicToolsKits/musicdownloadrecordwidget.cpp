@@ -1,7 +1,6 @@
 #include "musicdownloadrecordwidget.h"
 #include "musicitemdelegate.h"
-
-#include <QScrollBar>
+#include "musicwidgetheaders.h"
 
 MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)

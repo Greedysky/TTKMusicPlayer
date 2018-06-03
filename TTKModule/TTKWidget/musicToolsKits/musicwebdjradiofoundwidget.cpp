@@ -9,7 +9,6 @@
 #include "musicotherdefine.h"
 
 #include <qmath.h>
-#include <QGridLayout>
 
 #define WIDTH_LABEL_SIZE   150
 #define HEIGHT_LABEL_SIZE  200
