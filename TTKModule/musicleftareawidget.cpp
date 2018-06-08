@@ -221,30 +221,10 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     {
         m_cloudSharedSongWidget = new MusicCloudSharedSongWidget(this);
         m_ui->songsContainer->addWidget(m_cloudSharedSongWidget);
-        m_cloudSharedSongWidget->getKey();
     }
+    m_cloudSharedSongWidget->showMainWindow();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
-}
-
-void MusicLeftAreaWidget::cloudSharedSongUploadAllDone()
-{
-    if(m_currentIndex == 1)
-    {
-        return;
-    }
-
-    switch(m_currentIndex)
-    {
-        case 0: musicStackedSongListWidgetChanged(); break;
-        case 2: musicStackedRadioWidgetChanged(); break;
-        case 3: musicStackedMobileWidgetChanged(); break;
-        case 4: musicStackedMyDownWidgetChanged(); break;
-        default: break;
-    }
-
-    delete m_cloudSharedSongWidget;
-    m_cloudSharedSongWidget = nullptr;
 }
 
 void MusicLeftAreaWidget::lrcWidgetShowFullScreen()

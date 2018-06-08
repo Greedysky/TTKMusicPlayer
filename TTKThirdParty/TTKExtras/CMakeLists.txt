@@ -133,6 +133,7 @@ set(MUSIC_HEADERS
     qrencode/qrcodewidget.h
     qiniu/qnconf.h
     qiniu/qniohelper.h
+    qiniu/qndataitem.h
     qiniu/qnmac.h
     qiniu/qnputextra.h
     qiniu/qnputpolicy.h

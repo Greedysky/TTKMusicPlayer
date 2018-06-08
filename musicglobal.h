@@ -88,6 +88,8 @@
 #define TTK_RT const &
 #define TTK_RD &
 
+#define TTK_ERROR_STR       "NaN"
+
 #define TTK_DECLARE_PTR(Class)              \
 public:                                     \
     using Class##Ptr = Class *;             \

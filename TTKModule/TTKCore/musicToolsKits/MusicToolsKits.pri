@@ -22,7 +22,8 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/musicdownloadrecordconfigmanager.h \
     $$PWD/musicfilesenderserver.h \
-    $$PWD/musicfilereceiveserver.h
+    $$PWD/musicfilereceiveserver.h \
+    $$PWD/musicclouddataitem.h
 
 }
 

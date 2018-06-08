@@ -19,21 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtNetwork/QNetworkReply>
 #include "ttkprivate.h"
-#include "musicextrasglobaldefine.h"
+#include "qndataitem.h"
+#include <QtNetwork/QNetworkReply>
 
 class QNSimpleListDataPrivate;
-
-typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
-{
-    QString m_name;
-    QString m_hash;
-    QString m_mimeType;
-    int m_size;
-    qint64 m_putTime;
-}QNDataItem;
-TTK_DECLARE_LISTS(QNDataItem)
 
 /*! @brief The namespace of the qiniu simple list data.
  * @author Jemy Graw <jemygraw@gmail.com>

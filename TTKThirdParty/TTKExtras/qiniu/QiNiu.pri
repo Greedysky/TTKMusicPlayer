@@ -23,6 +23,7 @@ INCLUDEPATH += $$PWD
 HEADERS  += \
     $$PWD/qnconf.h \
     $$PWD/qniohelper.h \
+    $$PWD/qndataitem.h \
     $$PWD/qnmac.h \
     $$PWD/qnputextra.h \
     $$PWD/qnputpolicy.h \

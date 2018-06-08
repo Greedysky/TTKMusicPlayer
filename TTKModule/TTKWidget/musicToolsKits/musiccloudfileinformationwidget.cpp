@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicnumberutils.h"
 
-#include "qiniu/qnsimplelistdata.h"
+#include "qiniu/qndataitem.h"
 
 MusicCloudFileInformationWidget::MusicCloudFileInformationWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),

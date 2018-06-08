@@ -26,6 +26,7 @@
 #include "musicartistlistfoundwidget.h"
 #include "musicwebdjradiowidget.h"
 #include "musicwebmvradiofoundwidget.h"
+#include "musiccloudmanagerwidget.h"
 
 #include "qkugou/kugouwindow.h"
 
@@ -38,6 +39,7 @@ MusicRightAreaWidget::MusicRightAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_stackedFuncWidget = nullptr;
+    m_stackedAutoWidget = nullptr;
     m_musicLrcForDesktop = nullptr;
     m_musicLrcForWallpaper = nullptr;
     m_videoPlayerWidget = nullptr;
@@ -290,8 +292,11 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-
-    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
+    else if(MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
+    {
+        MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
+    }
+    else if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
     {
         m_videoPlayerWidget->resizeWindow();
     }
@@ -531,9 +536,9 @@ void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
     MusicFunction key = MStatic_cast(MusicFunction, index);
     musicFunctionParameterInit(key);
 
-    m_stackedFuncWidget = widget;
-    m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-    m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+    m_stackedAutoWidget = widget;
+    m_ui->surfaceStackedWidget->addWidget(m_stackedAutoWidget);
+    m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedAutoWidget);
     emit updateBackgroundTheme();
 }
 

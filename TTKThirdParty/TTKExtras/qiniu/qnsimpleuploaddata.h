@@ -41,7 +41,7 @@ public:
     /*!
      * Get uplaod data to server request.
      */
-    void uploadDataToServer(const QByteArray &data, const QString &bucket,
+    void uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket,
                             const QString &key, const QString &name);
     /*!
      * Get download url request.
@@ -52,7 +52,11 @@ Q_SIGNALS:
     /*!
      * Uplaod file finshed.
      */
-    void uploadFileFinished(const QString &name);
+    void uploadFileFinished(const QString &time);
+    /*!
+     * Show upload progress.
+     */
+    void uploadProgressChanged(const QString &time, qint64 bytesSent, qint64 bytesTotal);
 
 private Q_SLOTS:
     /*!
@@ -63,6 +67,10 @@ private Q_SLOTS:
      * Get handle error.
      */
     void handleError(QNetworkReply::NetworkError error);
+    /*!
+     * Show upload progress.
+     */
+    void uploadProgress(qint64 bytesSent, qint64 bytesTotal);
 
 private:
     TTK_DECLARE_PRIVATE(QNSimpleUploadData)

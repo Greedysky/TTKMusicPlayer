@@ -26,7 +26,8 @@
 
 #define MT_S            1
 #define MT_S2MS         1000
-#define MT_S2US         (MT_S2MS*MT_S2MS)
+#define MT_MS2US        1000
+#define MT_S2US         (MT_S2MS*MT_MS2US)
 
 #define MT_M            60
 #define MT_M2S          MT_M
@@ -60,13 +61,13 @@
 
 #define MH_GB           1024
 #define MH_GB2MB        MH_GB
-#define MH_GB2KB        (MH_GB2MB*MH_MB2KB)
-#define MH_GB2B         (MH_GB2KB*MH_KB2B)
-#define MH_GB2BS        (MH_GB2B*MH_B2BS)
+#define MH_GB2KB        qint64(MH_GB2MB*MH_MB2KB)
+#define MH_GB2B         qint64(MH_GB2KB*MH_KB2B)
+#define MH_GB2BS        qint64(MH_GB2B*MH_B2BS)
 
 #define MH_TB           1024
 #define MH_TB2GB        MH_TB
-#define MH_TB2MB        (MH_TB2GB*MH_GB2MB)
+#define MH_TB2MB        qint64(MH_TB2GB*MH_GB2MB)
 #define MH_TB2KB        qint64(MH_TB2MB*MH_MB2KB)
 #define MH_TB2B         qint64(MH_TB2KB*MH_KB2B)
 #define MH_TB2BS        qint64(MH_TB2B*MH_B2BS)

@@ -305,7 +305,7 @@ protected:
     void musicFunctionParameterInit(MusicFunction func);
 
     QVariant m_rawData;
-    QWidget *m_stackedFuncWidget;
+    QWidget *m_stackedFuncWidget, *m_stackedAutoWidget;
     Ui::MusicApplication *m_ui;
     MusicSettingWidget *m_settingWidget;
     MusicVideoPlayWidget *m_videoPlayerWidget;

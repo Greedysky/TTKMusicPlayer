@@ -19,8 +19,154 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicglobaldefine.h"
 #include "musicwidgetheaders.h"
+#include "musicclouddataitem.h"
+#include "musicabstracttablewidget.h"
+
+class QNSimpleListData;
+class QNSimpleDeleteData;
+class QNSimpleUploadData;
+class MusicOpenFileWidget;
+class MusicProgressBarDelegate;
+class QNetworkAccessManager;
+
+/*! @brief The class of the cloud shared song table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudManagerTableWidget : public MusicAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudManagerTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCloudManagerTableWidget(QWidget *parent = 0);
+
+    virtual ~MusicCloudManagerTableWidget();
+
+    /*!
+     * Get query cloud id keys.
+     */
+    bool getKey();
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    void resizeWindow();
+
+Q_SIGNALS:
+    /*!
+     * To update message label text.
+     */
+    void updateLabelMessage(const QString &text);
+    /*!
+     * Update size label.
+     */
+    void updataSizeLabel(qint64 size);
+    /*!
+     * Get key data from net finished.
+     */
+    void getKeyFinished();
+
+public Q_SLOTS:
+    /*!
+     * Table widget list cell click.
+     */
+    virtual void listCellClicked(int row, int column) override;
+    /*!
+     * Download key data from net finished.
+     */
+    void keyDownLoadFinished(const QByteArray &data);
+    /*!
+     * Receive data from qiniu finshed.
+     */
+    void receiveDataFinshed(const QNDataItems &items);
+    /*!
+     * Upload data to qiniu finshed.
+     */
+    void uploadFileFinished(const QString &time);
+    /*!
+     * Delete data to qiniu finshed.
+     */
+    void deleteFileFinished(bool state);
+
+    /*!
+     * Update list to server.
+     */
+    void updateListToServer();
+    /*!
+     * Delete file to server.
+     */
+    void deleteFileToServer();
+    /*!
+     * Delete files to server.
+     */
+    void deleteFilesToServer();
+    /*!
+     * Download file to server.
+     */
+    void downloadFileToServer();
+
+    /*!
+     * Upload file to server.
+     */
+    void uploadFileToServer();
+    /*!
+     * Upload files to server.
+     */
+    void uploadFilesToServer();
+
+    /*!
+     * Show upload progress.
+     */
+    void uploadProgress(const QString &time, qint64 bytesSent, qint64 bytesTotal);
+    /*!
+     * All files upload finsihed.
+     */
+    void uploadDone();
+    /*!
+     * Show file information widget.
+     */
+    void showFileInformationWidget();
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Create upload file widget.
+     */
+    void createUploadFileWidget();
+    /*!
+     * Start to upload files to server.
+     */
+    void startToUploadFile();
+    /*!
+     * Create table item.
+     */
+    void createItem(const MusicCloudDataItem &data);
+    /*!
+     * Find upload item row.
+     */
+    int FindUploadItemRow(const QString &time) const;
+    /*!
+     * Find waited item row.
+     */
+    MusicCloudDataItem FindWaitedItemRow() const;
+
+    bool m_uploading;
+    qint64 m_totalFileSzie;
+    QNSimpleListData *m_qnListData;
+    QNSimpleDeleteData *m_qnDeleteData;
+    QNSimpleUploadData *m_qnUploadData;
+    QNetworkAccessManager *m_networkManager;
+    MusicOpenFileWidget *m_openFileWidget;
+    MusicProgressBarDelegate *m_progressBarDelegate;
+
+};
+
+
 
 /*! @brief The class of the cloud manager widget.
  * @author Greedysky <greedysky@163.com>
@@ -37,9 +183,34 @@ public:
 
     ~MusicCloudManagerWidget();
 
+    /*!
+     * Resize window bound by widgte resize called.
+     */
+    void resizeWindow();
+
+public Q_SLOTS:
+    /*!
+     * Update size label.
+     */
+    void updataSizeLabel(qint64 size);
+    /*!
+     * Download file to server.
+     */
+    void downloadFileToServer();
+    /*!
+     * Delete file to server.
+     */
+    void deleteFileToServer();
+    /*!
+     * Upload file to server.
+     */
+    void uploadFileToServer();
+
 protected:
     QLabel *m_sizeValueLabel;
     QProgressBar *m_sizeValueBar;
+    QList<QWidget*> m_resizeLabels;
+    MusicCloudManagerTableWidget *m_managerTableWidget;
 
 };
 

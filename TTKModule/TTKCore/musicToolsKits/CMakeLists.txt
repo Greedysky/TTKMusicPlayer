@@ -4,6 +4,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_TOOLS_KITS_HEADERS
     ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicdownloadrecordconfigmanager.h
     ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicfilereceiveserver.h
     ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicfilesenderserver.h
+    ${MUSIC_CORE_TOOLSWIDGET_DIR}/musicclouddataitem.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_TOOLS_KITS_SOURCES

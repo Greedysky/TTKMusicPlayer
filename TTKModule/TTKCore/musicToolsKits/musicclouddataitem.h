@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDSHAREDSONGWIDGET_H
-#define MUSICCLOUDSHAREDSONGWIDGET_H
+#ifndef MUSICCLOUDFILEMANAGERDIALOG_H
+#define MUSICCLOUDFILEMANAGERDIALOG_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,39 +19,39 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
-#include "musicglobaldefine.h"
+#include "musicabstractmovedialog.h"
+#include "musicabstracttablewidget.h"
 
-class MusicCloudManagerWidget;
+#include "qiniu/qndataitem.h"
 
-/*! @brief The class of the cloud share song widget.
+/*! @brief The class of the cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudSharedSongWidget : public QWidget
+typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudSharedSongWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
+    enum State
+    {
+        Waited = 0,     /*!< 0 waited*/
+        Uploaded,       /*!< 1 Uploaded*/
+        Successed,      /*!< 2 successed*/
+        Errored         /*!< 3 error*/
+    };
 
-    ~MusicCloudSharedSongWidget();
+    QString m_id;
+    QString m_path;
+    State m_state;
+    QNDataItem m_dataItem;
 
-    /*!
-     * Show cloud main widget.
-     */
-    void showMainWindow();
+    inline bool isValid() const
+    {
+        return !m_dataItem.m_name.isEmpty();
+    }
 
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    inline bool operator==(const MusicCloudDataItem &other) const
+    {
+        return m_dataItem.m_name == other.m_dataItem.m_name;
+    }
+}MusicCloudDataItem;
+TTK_DECLARE_LISTS(MusicCloudDataItem)
 
-    MusicCloudManagerWidget *m_managerWidget;
-
-};
-
-#endif // MUSICCLOUDSHAREDSONGWIDGET_H
+#endif // MUSICCLOUDFILEMANAGERDIALOG_H

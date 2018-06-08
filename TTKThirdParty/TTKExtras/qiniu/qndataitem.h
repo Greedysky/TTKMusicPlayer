@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDSHAREDSONGWIDGET_H
-#define MUSICCLOUDSHAREDSONGWIDGET_H
+#ifndef QNDATAITEM_H
+#define QNDATAITEM_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,39 +19,25 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QWidget>
-#include "musicglobaldefine.h"
+#include "musicextrasglobaldefine.h"
 
-class MusicCloudManagerWidget;
-
-/*! @brief The class of the cloud share song widget.
+/*! @brief The class of the qiniu cloud data item.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicCloudSharedSongWidget : public QWidget
+typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudSharedSongWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
+    QString m_name;
+    QString m_hash;
+    QString m_mimeType;
+    int m_size;
+    qint64 m_putTime;
 
-    ~MusicCloudSharedSongWidget();
+    QNDataItem()
+    {
+        m_size = 0;
+        m_putTime = 0;
+    }
+}QNDataItem;
+TTK_DECLARE_LISTS(QNDataItem)
 
-    /*!
-     * Show cloud main widget.
-     */
-    void showMainWindow();
-
-protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void contextMenuEvent(QContextMenuEvent *event) override;
-
-    MusicCloudManagerWidget *m_managerWidget;
-
-};
-
-#endif // MUSICCLOUDSHAREDSONGWIDGET_H
+#endif // QNDATAITEM_H

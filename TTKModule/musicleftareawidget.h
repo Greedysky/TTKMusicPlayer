@@ -95,10 +95,6 @@ public Q_SLOTS:
      */
     void musicDownloadSongFinished();
     /*!
-     * All files upload finsihed.
-     */
-    void cloudSharedSongUploadAllDone();
-    /*!
      * Show full container or not.
      */
     void lrcWidgetShowFullScreen();

@@ -18,8 +18,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.h
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.h
   )
@@ -42,8 +41,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebmvradioinfowidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicwebradioview.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudsharedsongwidget.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfilemanagerdialog.cpp
-    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudmanagerwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.cpp
   )
