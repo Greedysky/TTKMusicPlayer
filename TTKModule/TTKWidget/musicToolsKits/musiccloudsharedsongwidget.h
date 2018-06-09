@@ -22,6 +22,7 @@
 #include <QWidget>
 #include "musicglobaldefine.h"
 
+class MusicCloudToolBoxWidget;
 class MusicCloudManagerWidget;
 
 /*! @brief The class of the cloud share song widget.
@@ -50,6 +51,7 @@ protected:
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
+    MusicCloudToolBoxWidget *m_toolBoxWidget;
     MusicCloudManagerWidget *m_managerWidget;
 
 };

@@ -1,5 +1,5 @@
-#ifndef MUSICCLOUDFILEMANAGERDIALOG_H
-#define MUSICCLOUDFILEMANAGERDIALOG_H
+#ifndef MUSICCLOUDDATAITEM_H
+#define MUSICCLOUDDATAITEM_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -54,4 +54,4 @@ typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
 }MusicCloudDataItem;
 TTK_DECLARE_LISTS(MusicCloudDataItem)
 
-#endif // MUSICCLOUDFILEMANAGERDIALOG_H
+#endif // MUSICCLOUDDATAITEM_H

@@ -3,7 +3,6 @@
 #include "musicsonglistsharingwidget.h"
 #include "musicsonglistenhancelosslesswidget.h"
 #include "musicsettingmanager.h"
-#include "musicclickedlabel.h"
 #include "musicuiobject.h"
 #include "musictinyuiobject.h"
 #include "musicsong.h"
@@ -13,35 +12,12 @@
 #include "musictopareawidget.h"
 
 #include <QPainter>
-#include <QMouseEvent>
-#include <QDrag>
-#include <QMimeData>
-
-#define DRAG_FORMAT     "Swap Item"
-#define RENAME_WIDTH    220
 
 MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent)
-    : QWidget(parent)
+    : MusicFunctionToolBoxTopWidget(index, text, parent)
 {
-    m_renameLine = nullptr;
-    m_index = index;
-    m_isDrawTopState = false;
-    m_isDrawMoveState = false;
-    m_isBlockMoveExpand = false;
     m_musicSort = nullptr;
-
-    setAcceptDrops(true);
-    setFixedHeight(40);
-
-    QHBoxLayout *topLayout = new QHBoxLayout(this);
-    topLayout->setContentsMargins(3, 0, 0, 0);
-    topLayout->setSpacing(0);
-    m_labelIcon = new QLabel(this);
-    m_labelIcon->setPixmap(QPixmap(":/tiny/lb_arrow_up_normal"));
-    m_labelText = new QLabel(this);
-    m_labelText->setStyleSheet(MusicUIObject::MColorStyle10);
-    m_labelText->setText(text);
-    MusicUtils::Widget::setLabelFontStyle(m_labelText, MusicObject::FT_Bold);
+    m_renameLine = nullptr;
 
     QPushButton *enhanceButton = new QPushButton(this);
     enhanceButton->setToolTip(tr("enhanceLossless"));
@@ -70,46 +46,11 @@ MusicSongsToolBoxTopWidget::MusicSongsToolBoxTopWidget(int index, const QString 
     menuButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    topLayout->addWidget(m_labelIcon);
-    topLayout->addWidget(m_labelText);
-    topLayout->addStretch(1);
-
-    setLayout(topLayout);
 }
 
 MusicSongsToolBoxTopWidget::~MusicSongsToolBoxTopWidget()
 {
     delete m_renameLine;
-    delete m_labelIcon;
-    delete m_labelText;
-}
-
-void MusicSongsToolBoxTopWidget::setItemExpand(bool expand)
-{
-    m_labelIcon->setPixmap(QPixmap(expand ? ":/tiny/lb_arrow_down_normal" : ":/tiny/lb_arrow_up_normal"));
-}
-
-bool MusicSongsToolBoxTopWidget::isItemExpand() const
-{
-    return m_labelIcon->pixmap()->cacheKey() == QPixmap(":/tiny/lb_arrow_down_normal").cacheKey();
-}
-
-void MusicSongsToolBoxTopWidget::setTitle(const QString &text)
-{
-    m_labelText->setText(MusicUtils::Widget::elidedText(m_labelText->font(), text, Qt::ElideRight, RENAME_WIDTH - 10));
-    m_labelText->setToolTip(text);
-}
-
-QString MusicSongsToolBoxTopWidget::getTitle(bool suffix)
-{
-    QString text = m_labelText->toolTip().trimmed();
-    if(!suffix)
-    {
-        const int index = text.lastIndexOf("[");
-        m_suffixString = text.right(text.count() - index);
-        text = text.left( index );
-    }
-    return text;
 }
 
 void MusicSongsToolBoxTopWidget::deleteRowItem()
@@ -249,109 +190,6 @@ bool MusicSongsToolBoxTopWidget::isItemEnable() const
              m_index == MUSIC_RECENT_LIST);
 }
 
-void MusicSongsToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)
-{
-    Q_UNUSED(event);
-    m_isDrawTopState = false;
-    m_isDrawMoveState = false;
-    update();
-}
-
-void MusicSongsToolBoxTopWidget::dragMoveEvent(QDragMoveEvent *event)
-{
-    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
-    {
-        m_isDrawMoveState = true;
-        m_isDrawTopState = event->pos().y() < height()/2;
-        update();
-    }
-}
-
-void MusicSongsToolBoxTopWidget::dragEnterEvent(QDragEnterEvent *event)
-{
-    if(event->mimeData()->hasFormat(DRAG_FORMAT))
-    {
-        event->setDropAction(Qt::MoveAction);
-        event->accept();
-    }
-    else
-    {
-        event->ignore();
-    }
-}
-
-void MusicSongsToolBoxTopWidget::dropEvent(QDropEvent *event)
-{
-    m_isDrawMoveState = false;
-    update();
-
-    if(event->mimeData()->hasFormat(DRAG_FORMAT) && isItemEnable())
-    {
-        emit swapDragItemIndex(event->mimeData()->data(DRAG_FORMAT).toInt(), m_index);
-    }
-}
-
-void MusicSongsToolBoxTopWidget::mousePressEvent(QMouseEvent *event)
-{
-    QWidget::mousePressEvent(event);
-
-    if(event->button() == Qt::LeftButton)
-    {
-        emit mousePressAt(m_index);
-        m_pressPosAt = event->pos();
-    }
-}
-
-void MusicSongsToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    QWidget::mouseMoveEvent(event);
-
-    QRect itemRect(m_pressPosAt.x() - 2, m_pressPosAt.y() - 2, m_pressPosAt.x() + 2, m_pressPosAt.y() + 2);
-    if(!itemRect.contains(event->pos()) && isItemEnable())
-    {
-        if(!m_isBlockMoveExpand && isItemExpand())
-        {
-            emit mousePressAt(m_index);
-        }
-
-        QMimeData *mimeData = new QMimeData;
-        mimeData->setData(DRAG_FORMAT, QByteArray::number(m_index));
-        mimeData->setText( getTitle(true) );
-
-        QDrag *drag = new QDrag(this);
-        drag->setMimeData(mimeData);
-        drag->setHotSpot(QPoint(0, height()/2));
-#ifdef MUSIC_GREATER_NEW
-        drag->setPixmap( grab(rect()) );
-#else
-        drag->setPixmap( QPixmap::grabWidget(this, rect()) );
-#endif
-        drag->exec(Qt::MoveAction);
-    }
-}
-
-void MusicSongsToolBoxTopWidget::paintEvent(QPaintEvent *event)
-{
-    QWidget::paintEvent(event);
-    QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
-    painter.drawLine(0, height(), width(), height());
-
-    if(m_isDrawMoveState)
-    {
-        painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 1, Qt::SolidLine));
-        if(m_isDrawTopState)
-        {
-            painter.drawLine(0, 0, width(), 0);
-        }
-        else
-        {
-            painter.drawLine(0, height() - 1, width(), height() - 1);
-        }
-    }
-}
-
 void MusicSongsToolBoxTopWidget::contextMenuEvent(QContextMenuEvent *event)
 {
 //    QWidget::contextMenuEvent(event);
@@ -407,10 +245,9 @@ void MusicSongsToolBoxMaskWidget::paintEvent(QPaintEvent *event)
 
 
 MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
-    : QWidget(parent)
+    : MusicFunctionToolBoxWidgetItem(parent)
 {
     m_topWidget = new MusicSongsToolBoxTopWidget(index, text, this);
-    connect(m_topWidget, SIGNAL(mousePressAt(int)), parent, SLOT(mousePressAt(int)));
     connect(m_topWidget, SIGNAL(addNewRowItem()), SIGNAL(addNewRowItem()));
     connect(m_topWidget, SIGNAL(deleteRowItem(int)), SIGNAL(deleteRowItem(int)));
     connect(m_topWidget, SIGNAL(deleteRowItemAll(int)), SIGNAL(deleteRowItemAll(int)));
@@ -418,317 +255,45 @@ MusicSongsToolBoxWidgetItem::MusicSongsToolBoxWidgetItem(int index, const QStrin
     connect(m_topWidget, SIGNAL(addNewFiles(int)), SIGNAL(addNewFiles(int)));
     connect(m_topWidget, SIGNAL(addNewDir(int)), SIGNAL(addNewDir(int)));
     connect(m_topWidget, SIGNAL(musicListSongSortBy(int)), SIGNAL(musicListSongSortBy(int)));
-    connect(m_topWidget, SIGNAL(swapDragItemIndex(int,int)), SIGNAL(swapDragItemIndex(int,int)));
     connect(m_topWidget, SIGNAL(addToPlayLater(int)), SIGNAL(addToPlayLater(int)));
     connect(m_topWidget, SIGNAL(addToPlayedList(int)), SIGNAL(addToPlayedList(int)));
 
-    m_layout = new QVBoxLayout(this);
-    m_layout->setContentsMargins(0, 0, 0, 0);
-    m_layout->setSpacing(0);
-    m_layout->addWidget(m_topWidget);
-    setLayout(m_layout);
-}
-
-MusicSongsToolBoxWidgetItem::~MusicSongsToolBoxWidgetItem()
-{
-    delete m_topWidget;
-    delete m_layout;
-}
-
-QWidget *MusicSongsToolBoxWidgetItem::item(int index)
-{
-    if(index < 0 || index >= m_itemList.count())
-    {
-        return nullptr;
-    }
-    return m_itemList[index];
-}
-
-void MusicSongsToolBoxWidgetItem::addItem(QWidget *item)
-{
-    m_itemList.append(item);
-    m_layout->addWidget(item);
-}
-
-void MusicSongsToolBoxWidgetItem::removeItem(QWidget *item)
-{
-    m_itemList.removeAll(item);
-    m_layout->removeWidget(item);
-}
-
-void MusicSongsToolBoxWidgetItem::setTitle(const QString &text)
-{
-    m_topWidget->setTitle(text);
-}
-
-QString MusicSongsToolBoxWidgetItem::getTitle() const
-{
-    return m_topWidget->getTitle();
+    init();
 }
 
 void MusicSongsToolBoxWidgetItem::setMusicSort(MusicSort *sort)
 {
-    m_topWidget->setMusicSort(sort);
+    MStatic_cast(MusicSongsToolBoxTopWidget*, m_topWidget)->setMusicSort(sort);
 }
 
-void MusicSongsToolBoxWidgetItem::setItemExpand(bool expand)
-{
-    m_topWidget->setItemExpand(expand);
-    foreach(QWidget *w, m_itemList)
-    {
-        w->setVisible(expand);
-    }
-}
-
-bool MusicSongsToolBoxWidgetItem::itemExpand() const
-{
-    if(!m_itemList.isEmpty())
-    {
-        return m_itemList.first()->isVisible();
-    }
-    return false;
-}
-
-int MusicSongsToolBoxWidgetItem::count() const
-{
-    return m_itemList.count();
-}
-
-void MusicSongsToolBoxWidgetItem::mousePressEvent(QMouseEvent *event)
-{
-    Q_UNUSED(event);
-}
-
-void MusicSongsToolBoxWidgetItem::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
 
 
 MusicSongsToolBoxWidget::MusicSongsToolBoxWidget(QWidget *parent)
-    : QWidget(parent)
+    : MusicFunctionToolBoxWidget(parent)
 {
-    setAttribute(Qt::WA_TranslucentBackground);
 
-    m_currentIndex = -1;
-    m_itemIndexRaise = 0;
-
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
-    mainLayout->setSpacing(0);
-
-    m_contentsWidget = new QWidget(this);
-    m_contentsWidget->setObjectName("contentsWidget");
-    m_contentsWidget->setStyleSheet(QString("#contentsWidget{%1}").arg(MusicUIObject::MBackgroundStyle01));
-
-    m_layout = new QVBoxLayout(m_contentsWidget);
-    m_layout->setContentsMargins(0, 0, 0 ,0);
-    m_layout->setSpacing(0);
-    m_contentsWidget->setLayout(m_layout);
-
-    m_scrollArea = new QScrollArea(this);
-    m_scrollArea->setWidgetResizable(true);
-    m_scrollArea->setFrameShape(QFrame::NoFrame);
-    m_scrollArea->setFrameShadow(QFrame::Plain);
-    m_scrollArea->setAlignment(Qt::AlignLeft);
-    m_scrollArea->setWidget(m_contentsWidget);
-
-    setTransparent(0);
-
-    mainLayout->addWidget(m_scrollArea);
-    setLayout(mainLayout);
-}
-
-MusicSongsToolBoxWidget::~MusicSongsToolBoxWidget()
-{
-    while(!m_itemList.isEmpty())
-    {
-        delete m_itemList.takeLast().m_widgetItem;
-    }
-    delete m_layout;
-    delete m_scrollArea;
-}
-
-void MusicSongsToolBoxWidget::addItem(QWidget *item, const QString &text)
-{
-    int count = m_layout->count();
-    if(count > 1)
-    {
-        m_layout->removeItem(m_layout->itemAt(count - 1));
-    }
-
-    //hide before widget
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        m_itemList[i].m_widgetItem->setItemExpand(false);
-    }
-
-    // Add item and make sure it stretches the remaining space.
-    MusicSongsToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemIndexRaise, text, this);
-    it->addItem(item);
-    it->setItemExpand(true);
-
-    MusicToolBoxWidgetItem widgetItem;
-    widgetItem.m_widgetItem = it;
-    widgetItem.m_itemIndex = m_itemIndexRaise++;
-    m_itemList.append(widgetItem);
-
-    m_currentIndex = m_itemList.count() - 1;
-
-    m_layout->addWidget(it);
-    m_layout->addStretch(5);
-}
-
-void MusicSongsToolBoxWidget::removeItem(QWidget *item)
-{
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
-        {
-            if(it->item(j) == item)
-            {
-                m_layout->removeWidget(item);
-                m_itemList.takeAt(i).m_widgetItem->deleteLater();
-                m_currentIndex = MUSIC_NORMAL_LIST;
-                return;
-            }
-        }
-    }
-}
-
-void MusicSongsToolBoxWidget::swapItem(int before, int after)
-{
-    MusicToolBoxWidgetItem widgetItem = m_itemList.takeAt(before);
-    m_itemList.insert(after, widgetItem);
-
-    m_layout->removeWidget(widgetItem.m_widgetItem);
-    int count = m_layout->count();
-    if(count > 1)
-    {
-        m_layout->removeItem(m_layout->itemAt(count - 1));
-    }
-    m_layout->insertWidget(after, widgetItem.m_widgetItem);
-    m_layout->addStretch(5);
-}
-
-void MusicSongsToolBoxWidget::setTitle(QWidget *item, const QString &text)
-{
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
-        {
-            if(it->item(j) == item)
-            {
-                it->setTitle(text);
-                return;
-            }
-        }
-    }
-}
-
-QString MusicSongsToolBoxWidget::getTitle(QWidget *item) const
-{
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
-        for(int j=0; j<it->count(); ++j)
-        {
-            if(it->item(j) == item)
-            {
-                return it->getTitle();
-            }
-        }
-    }
-    return QString();
 }
 
 void MusicSongsToolBoxWidget::setMusicSort(QWidget *item, MusicSort *sort)
 {
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        MusicSongsToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
+        MusicFunctionToolBoxWidgetItem *it = m_itemList[i].m_widgetItem;
         for(int j=0; j<it->count(); ++j)
         {
             if(it->item(j) == item)
             {
-                it->setMusicSort(sort);
+                MStatic_cast(MusicSongsToolBoxWidgetItem*, it)->setMusicSort(sort);
                 return;
             }
         }
     }
 }
 
-void MusicSongsToolBoxWidget::resizeScrollIndex(int index) const
+MusicFunctionToolBoxWidgetItem *MusicSongsToolBoxWidget::createItem(QWidget *item, const QString &text)
 {
-    QScrollBar *bar = m_scrollArea->verticalScrollBar();
-    if(bar)
-    {
-        bar->setSliderPosition(index);
-    }
-}
-
-int MusicSongsToolBoxWidget::currentIndex() const
-{
-    return m_currentIndex;
-}
-
-int MusicSongsToolBoxWidget::count() const
-{
-    return m_itemList.count();
-}
-
-
-void MusicSongsToolBoxWidget::setCurrentIndex(int index)
-{
-    m_currentIndex = index;
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        m_itemList[i].m_widgetItem->setItemExpand( i == index );
-    }
-}
-
-void MusicSongsToolBoxWidget::mousePressAt(int index)
-{
-    m_currentIndex = foundMappingIndex(index);
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
-        m_itemList[i].m_widgetItem->setItemExpand(hide);
-    }
-}
-
-void MusicSongsToolBoxWidget::setTransparent(int alpha)
-{
-    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
-    QWidget *view = m_scrollArea->viewport();
-    view->setObjectName("viewport");
-    view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));
-
-    m_scrollArea->setStyleSheet(MusicUIObject::MScrollBarStyle03);
-}
-
-void MusicSongsToolBoxWidget::mousePressEvent(QMouseEvent *event)
-{
-    Q_UNUSED(event);
-}
-
-void MusicSongsToolBoxWidget::contextMenuEvent(QContextMenuEvent *event)
-{
-    Q_UNUSED(event);
-}
-
-int MusicSongsToolBoxWidget::foundMappingIndex(int index)
-{
-    int id = -1;
-    for(int i=0; i<m_itemList.count(); ++i)
-    {
-        if(m_itemList[i].m_itemIndex == index)
-        {
-            id = i;
-            break;
-        }
-    }
-    return id;
+    MusicFunctionToolBoxWidgetItem *it = new MusicSongsToolBoxWidgetItem(m_itemIndexRaise, text, this);
+    it->addItem(item);
+    it->setItemExpand(true);
+    return it;
 }

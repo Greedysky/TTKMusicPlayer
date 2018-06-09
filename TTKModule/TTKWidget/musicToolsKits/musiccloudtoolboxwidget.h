@@ -1,0 +1,88 @@
+#ifndef MUSICCLOUDTOOLBOXWIDGET_H
+#define MUSICCLOUDTOOLBOXWIDGET_H
+
+/* =================================================
+ * This file is part of the TTK Music Player project
+ * Copyright (C) 2015 - 2018 Greedysky Studio
+
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License along
+ * with this program; If not, see <http://www.gnu.org/licenses/>.
+ ================================================= */
+
+#include "musicfunctiontoolboxwidget.h"
+#include "musicdownloadabstracttablewidget.h"
+
+/*! @brief The class of the cloud shared song download table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
+
+protected:
+    /*!
+     * Create item by index and name and size and time.
+     */
+    virtual void createItem(int index, const MusicDownloadRecord &record) override;
+
+};
+
+
+/*! @brief The class of the cloud tool box widget item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudToolBoxWidgetItem)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCloudToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+
+};
+
+
+/*! @brief The class of the cloud tool box widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudToolBoxWidget : public MusicFunctionToolBoxWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudToolBoxWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCloudToolBoxWidget(QWidget *parent = 0);
+
+    virtual ~MusicCloudToolBoxWidget();
+
+protected:
+    /*!
+     * Create item.
+     */
+    virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text);
+
+    MusicCloudDownloadTableWidget *m_downloadTable;
+
+};
+
+#endif // MUSICCLOUDTOOLBOXWIDGET_H

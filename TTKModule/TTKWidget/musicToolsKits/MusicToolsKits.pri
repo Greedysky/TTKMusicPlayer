@@ -39,7 +39,8 @@ HEADERS  += \
     $$PWD/musiccloudsharedsongwidget.h \
     $$PWD/musiccloudmanagerwidget.h \
     $$PWD/musicdownloadrecordwidget.h \
-    $$PWD/musiccloudfileinformationwidget.h
+    $$PWD/musiccloudfileinformationwidget.h \
+    $$PWD/musiccloudtoolboxwidget.h
 
 }
 
@@ -64,6 +65,7 @@ SOURCES += \
     $$PWD/musiccloudsharedsongwidget.cpp \
     $$PWD/musiccloudmanagerwidget.cpp \
     $$PWD/musicdownloadrecordwidget.cpp \
-    $$PWD/musiccloudfileinformationwidget.cpp
+    $$PWD/musiccloudfileinformationwidget.cpp \
+    $$PWD/musiccloudtoolboxwidget.cpp
 
 }

@@ -144,6 +144,7 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QNDataItems &items)
         data.m_path = item.m_name.trimmed();
         data.m_state = MusicCloudDataItem::Successed;
         data.m_dataItem = item;
+        m_totalFileSzie += item.m_size;
 
         createItem(data);
     }
@@ -163,6 +164,7 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
             MusicCloudDataItem data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
             data.m_state = MusicCloudDataItem::Successed;
             it->setData(MUSIC_DATAS_ROLE, QVariant::fromValue<MusicCloudDataItem>(data));
+            m_totalFileSzie += data.m_dataItem.m_size;
         }
         emit updataSizeLabel(m_totalFileSzie);
     }
@@ -441,7 +443,7 @@ void MusicCloudManagerTableWidget::createItem(const MusicCloudDataItem &data)
 {
     int row = rowCount();
     setRowCount(row + 1);
-    m_totalFileSzie += data.m_dataItem.m_size;
+
     QHeaderView *headerview = horizontalHeader();
 
     QTableWidgetItem *item = new QTableWidgetItem;

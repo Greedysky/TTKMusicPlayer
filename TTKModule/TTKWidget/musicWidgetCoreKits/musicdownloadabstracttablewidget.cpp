@@ -101,14 +101,13 @@ void MusicDownloadAbstractTableWidget::listCellDoubleClicked(int row, int column
 
 void MusicDownloadAbstractTableWidget::downloadProgressChanged(float percent, const QString &total, qint64 time)
 {
-    bool nor = (m_type == MusicDownloadRecordConfigManager::Normal);
     for(int i=0; i<rowCount(); ++i)
     {
-        QTableWidgetItem *it = item(i, nor ? 3 : 4);
+        QTableWidgetItem *it = item(i, 3);
         if(it && it->data(MUSIC_TIMES_ROLE).toLongLong() == time)
         {
-            item(i, nor ? 2 : 3)->setData(MUSIC_PROCS_ROLE, percent);
-            item(i, nor ? 3 : 4)->setText( total );
+            item(i, 2)->setData(MUSIC_PROCS_ROLE, percent);
+            item(i, 3)->setText( total );
 
             m_musicRecords[i].m_size = total;
             break;
