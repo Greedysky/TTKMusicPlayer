@@ -262,8 +262,10 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
 
     MusicCloudDataItem data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
     QString url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(QN_PRFIX, false), data.m_dataItem.m_name);
-    (new MusicDataDownloadThread(url, MusicUtils::Core::musicPrefix() + data.m_dataItem.m_name,
-         MusicDownLoadThreadAbstract::DownloadMusic, this))->startToDownload();
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::Core::musicPrefix() + data.m_dataItem.m_name,
+                                            MusicNetwork::DownloadMusic, this);
+    download->setRecordType(MusicNetwork::CloudDownload);
+    download->startToDownload();
 }
 
 void MusicCloudManagerTableWidget::uploadFileToServer()

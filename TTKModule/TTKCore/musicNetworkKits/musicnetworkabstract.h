@@ -21,6 +21,7 @@
 
 #include <QNetworkReply>
 #include <QSslConfiguration>
+#include "musicnetworkdefines.h"
 #include "musicalgorithmutils.h"
 
 /*! @brief The class of abstract downloading data.
@@ -31,14 +32,6 @@ class MUSIC_NETWORK_EXPORT MusicNetworkAbstract : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicNetworkAbstract)
 public:
-    typedef enum StateCode
-    {
-        Init = 0xFFFFF00,   /*!< Network state init*/
-        Success = 0,        /*!< Network state success*/
-        Error = -1,         /*!< Network state error*/
-        UnKnow = 2,         /*!< Network state unknow*/
-    }StateCode;
-
     /*!
      * Object contsructor.
      */
@@ -107,7 +100,7 @@ protected:
     void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m = QSslSocket::VerifyNone);
 
     QVariantMap m_rawData;
-    StateCode m_stateCode;
+    MusicNetwork::StateCode m_stateCode;
     volatile bool m_interrupt;
     QNetworkReply *m_reply;
     QNetworkAccessManager *m_manager;

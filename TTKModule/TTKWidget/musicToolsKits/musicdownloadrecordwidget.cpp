@@ -1,10 +1,13 @@
 #include "musicdownloadrecordwidget.h"
 #include "musicitemdelegate.h"
 #include "musicwidgetheaders.h"
+#include "musicconnectionpool.h"
 
 MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)
 {
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+
     setColumnCount(4);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
@@ -12,7 +15,7 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    m_type = MusicDownloadRecordConfigManager::Normal;
+    m_type = MusicNetwork::NormalDownload;
     setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -20,6 +23,11 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     musicSongsFileName();
+}
+
+MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
+{
+    M_CONNECTION_PTR->removeValue(getClassName());
 }
 
 void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord &record)

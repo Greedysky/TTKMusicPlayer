@@ -1,5 +1,5 @@
-#ifndef MUSICDOWNLOADRECORDWIDGET_H
-#define MUSICDOWNLOADRECORDWIDGET_H
+#ifndef MUSICCLOUDTABLEWIDGET_H
+#define MUSICCLOUDTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -21,20 +21,20 @@
 
 #include "musicdownloadabstracttablewidget.h"
 
-/*! @brief The class of the download record widget.
+/*! @brief The class of the cloud shared song download table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOL_EXPORT MusicDownloadRecordWidget : public MusicDownloadAbstractTableWidget
+class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicDownloadRecordWidget)
+    TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordWidget(QWidget *parent = 0);
+    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicDownloadRecordWidget();
+    virtual ~MusicCloudDownloadTableWidget();
 
 protected:
     /*!
@@ -44,4 +44,26 @@ protected:
 
 };
 
-#endif // MUSICDOWNLOADRECORDWIDGET_H
+
+/*! @brief The class of the cloud shared song upload table widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicCloudUploadTableWidget : public MusicDownloadAbstractTableWidget
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicCloudUploadTableWidget)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
+
+protected:
+    /*!
+     * Create item by index and name and size and time.
+     */
+    virtual void createItem(int index, const MusicDownloadRecord &record) override;
+
+};
+
+#endif // MUSICCLOUDTABLEWIDGET_H

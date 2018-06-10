@@ -148,6 +148,7 @@ HEADERS  += \
     $$PWD/ztl/musicdownloadbackgroundremotethread.h \
     $$PWD/ztl/musictranslationthreadabstract.h \
     $$PWD/ztl/musicauthenticationthread.h \
+    $$PWD/musicnetworkdefines.h.h \
     $$PWD/musicnetworkabstract.h \
     $$PWD/musicdownloadthreadabstract.h \
     $$PWD/musicdownloadqueryfactory.h \

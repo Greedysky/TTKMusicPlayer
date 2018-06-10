@@ -39,6 +39,11 @@ void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
 
 void MusicSmoothMovingTableWidget::timeToAnimation()
 {
+    if(!m_slowAnimation)
+    {
+        return;
+    }
+
     m_isFirstInit = true;
     m_animationTimer->stop();
 

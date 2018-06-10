@@ -20,29 +20,9 @@
  ================================================= */
 
 #include "musicfunctiontoolboxwidget.h"
-#include "musicdownloadabstracttablewidget.h"
 
-/*! @brief The class of the cloud shared song download table widget.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOL_EXPORT MusicCloudDownloadTableWidget : public MusicDownloadAbstractTableWidget
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudDownloadTableWidget)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
-
-protected:
-    /*!
-     * Create item by index and name and size and time.
-     */
-    virtual void createItem(int index, const MusicDownloadRecord &record) override;
-
-};
-
+class MusicCloudUploadTableWidget;
+class MusicCloudDownloadTableWidget;
 
 /*! @brief The class of the cloud tool box widget item.
  * @author Greedysky <greedysky@163.com>
@@ -81,6 +61,7 @@ protected:
      */
     virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text);
 
+    MusicCloudUploadTableWidget *m_uploadTable;
     MusicCloudDownloadTableWidget *m_downloadTable;
 
 };

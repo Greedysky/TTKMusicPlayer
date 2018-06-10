@@ -44,7 +44,7 @@ void MusicDownloadAbstractTableWidget::musicSongsFileName()
     {
         MusicDownloadRecord *r = &m_musicRecords[i];
         createItem(i, *r);
-        M_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPair(r->m_time.toULongLong(), this));
+        M_DOWNLOAD_MANAGER_PTR->reconnectMusicDownload(MusicDownLoadPair(r->m_time.toULongLong(), this, m_type));
     }
 }
 

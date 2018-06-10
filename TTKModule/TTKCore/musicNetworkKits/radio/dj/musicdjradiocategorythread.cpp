@@ -14,11 +14,11 @@ void MusicDJRadioCategoryThread::startToDownload()
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(DJ_CATEGORY_N_URL, false),
                QString("{}"));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);

@@ -171,7 +171,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
     ////////////////////////////////////////////////
     MusicDownloadRecords records;
-    MusicDownloadRecordConfigManager down(MusicDownloadRecordConfigManager::Normal, this);
+    MusicDownloadRecordConfigManager down(MusicNetwork::NormalDownload, this);
     if(!down.readDownloadXMLConfig())
     {
         return;
@@ -204,9 +204,10 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
         }
     }
     ////////////////////////////////////////////////
-    MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
-                                                                           MusicDownLoadThreadAbstract::DownloadMusic, this);
+    MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicNetwork::DownloadMusic, this);
+    downSong->setRecordType(MusicNetwork::NormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
+
     MusicSongTag tag;
     tag.setComment(m_songInfo.m_smallPicUrl);
     tag.setTitle(m_songInfo.m_songName);
@@ -249,8 +250,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
             }
         }
         ////////////////////////////////////////////////
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
-                                                                        MusicDownLoadThreadAbstract::DownloadVideo, this);
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicNetwork::DownloadVideo, this);
         download->startToDownload();
     }
 }

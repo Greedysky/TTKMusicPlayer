@@ -33,12 +33,17 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicDataDownloadThread(const QString &url, const QString &save,
-                            DownloadType type, QObject *parent = 0);
+                            MusicNetwork::DownloadType type, QObject *parent = 0);
 
     /*!
      * Start to download data.
      */
     virtual void startToDownload() override;
+
+    /*!
+     * Set record type.
+     */
+    void setRecordType(MusicNetwork::RecordType type);
 
 Q_SIGNALS:
     /*!
@@ -84,7 +89,7 @@ protected:
 
     qint64 m_createItemTime;
     bool m_redirection, m_needUpdate;
-
+    MusicNetwork::RecordType m_recordType;
 };
 
 #endif // MUSICDATADOWNLOADTHREAD_H

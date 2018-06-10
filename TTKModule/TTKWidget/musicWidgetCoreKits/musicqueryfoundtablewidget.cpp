@@ -344,13 +344,12 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
         QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
         MusicSemaphoreLoop loop(this);
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(attr.m_url, downloadName,
-                                                                        MusicDownLoadThreadAbstract::DownloadMusic, this);
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(attr.m_url, downloadName, MusicNetwork::DownloadMusic, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
         download->startToDownload();
         loop.exec();
 
-        emit muiscSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
+        emit musicSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
     }
 
     return true;

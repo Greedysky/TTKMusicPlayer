@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "musicsingleton.h"
+#include "musicnetworkdefines.h"
 
 #define M_DOWNLOAD_MANAGER_PTR (MusicSingleton<MusicDownLoadManager>::createInstance())
 
@@ -30,17 +31,25 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
 {
     qint64 m_time;
     QObject *m_object;
+    MusicNetwork::RecordType m_type;
 
     MusicDownLoadPair()
     {
         m_time = -1;
         m_object = nullptr;
+        m_type = MusicNetwork::NormalDownload;
     }
 
-    MusicDownLoadPair(qint64 t, QObject *object)
+    MusicDownLoadPair(qint64 t) : MusicDownLoadPair()
+    {
+        m_time = t;
+    }
+
+    MusicDownLoadPair(qint64 t, QObject *object, MusicNetwork::RecordType type)
     {
         m_time = t;
         m_object = object;
+        m_type = type;
     }
 
     bool operator< (const MusicDownLoadPair &other) const

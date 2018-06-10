@@ -6,7 +6,7 @@
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="
 
 MusicQQTextDownLoadThread::MusicQQTextDownLoadThread(const QString &url, const QString &save,
-                                                     DownloadType type, QObject *parent)
+                                                     MusicNetwork::DownloadType  type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 

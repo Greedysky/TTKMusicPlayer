@@ -42,11 +42,11 @@ void MusicDownLoadQueryXMThread::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_SONG_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_SONG_URL, false));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -66,11 +66,11 @@ void MusicDownLoadQueryXMThread::startToSingleSearch(const QString &text)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_SONG_DATA_INFO_URL, false).arg(text),
                       MusicUtils::Algorithm::mdII(XM_SONG_INFO_URL, false));
-    if(!m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
@@ -134,11 +134,11 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                         musicInfo.m_smallPicUrl = value["albumLogo"].toString();
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumName"].toString());
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
                         readFromMusicSongLrc(&musicInfo);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
                         readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -205,11 +205,11 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
                 musicInfo.m_discNumber = "0";
                 musicInfo.m_trackNumber = value["track"].toString();
 
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
                 readFromMusicSongLrc(&musicInfo);
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
                 readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
 
                 if(!musicInfo.m_songAttrs.isEmpty())
                 {

@@ -35,7 +35,7 @@ void MusicWebRadioObject::show()
     {
         MusicDataDownloadThread *download = new MusicDataDownloadThread(MusicUtils::Algorithm::mdII(DOWNLOAD_URL, false),
                                                 PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false),
-                                                MusicDownLoadThreadAbstract::DownloadOther, this);
+                                                MusicNetwork::DownloadOther, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
         download->startToDownload();
     }

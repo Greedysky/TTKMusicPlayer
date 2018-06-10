@@ -3,7 +3,8 @@
 #include "musicconnectionpool.h"
 #ifndef MUSIC_MOBILE
 #include "musicdownloadstatusobject.h"
-#include "musicdownloadabstracttablewidget.h"
+#include "musicdownloadrecordwidget.h"
+#include "musiccloudtablewidget.h"
 #endif
 
 void MusicDownLoadManager::connectNetworkMultiValue(QObject *object)
@@ -32,7 +33,15 @@ void MusicDownLoadManager::removeNetworkMultiValue(QObject *object)
 void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPair &pair)
 {
 #ifndef MUSIC_MOBILE
-    QObject *to = M_CONNECTION_PTR->value( MusicDownloadAbstractTableWidget::getClassName() );
+    QString className;
+    switch(pair.m_type)
+    {
+        case MusicNetwork::NormalDownload : className = MusicDownloadRecordWidget::getClassName(); break;
+        case MusicNetwork::CloudDownload : className = MusicCloudDownloadTableWidget::getClassName(); break;
+        case MusicNetwork::CloudUpload : className = MusicCloudUploadTableWidget::getClassName(); break;
+        default: break;
+    }
+    QObject *to = M_CONNECTION_PTR->value(className);
     if(to && pair.m_object)
     {
         QObject::connect(pair.m_object, SIGNAL(downloadProgressChanged(float, QString, qint64)), to, SLOT(downloadProgressChanged(float, QString, qint64)));
@@ -74,6 +83,6 @@ void MusicDownLoadManager::downloadProgressChanged(float percent, const QString 
     Q_UNUSED(total);
     if(percent >= 100)
     {
-        removeMusicDownload(MusicDownLoadPair(time, nullptr));
+        removeMusicDownload(MusicDownLoadPair(time));
     }
 }

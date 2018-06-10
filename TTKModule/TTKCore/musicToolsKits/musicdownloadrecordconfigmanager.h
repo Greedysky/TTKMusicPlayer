@@ -20,6 +20,7 @@
  ================================================= */
 
 #include "musicabstractxml.h"
+#include "musicnetworkdefines.h"
 
 /*! @brief The class of the local download record item.
  * @author Greedysky <greedysky@163.com>
@@ -41,25 +42,19 @@ class MUSIC_TOOL_EXPORT MusicDownloadRecordConfigManager : public MusicAbstractX
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicDownloadRecordConfigManager)
 public:
-    enum Type
-    {
-        Normal,         /*!< Local File Config*/
-        Cloud           /*!< Cloud File Config*/
-    };
-
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordConfigManager(Type type, QObject *parent = 0);
+    explicit MusicDownloadRecordConfigManager(MusicNetwork::RecordType type, QObject *parent = 0);
 
     /*!
      * Set config type.
      */
-    inline void setType(Type type) { m_type = type; }
+    inline void setType(MusicNetwork::RecordType type) { m_type = type; }
     /*!
      * Get config type.
      */
-    inline Type getType() const { return m_type; }
+    inline MusicNetwork::RecordType getType() const { return m_type; }
     /*!
      * Read history download datas from xml file by given name.
      */
@@ -79,7 +74,7 @@ protected:
      */
     QString mappingFilePathFromEnum() const;
 
-    Type m_type;
+    MusicNetwork::RecordType m_type;
 
 };
 

@@ -82,7 +82,7 @@ protected:
 
     MusicProgressBarDelegate *m_delegate;
     MusicDownloadRecords m_musicRecords;
-    MusicDownloadRecordConfigManager::Type m_type;
+    MusicNetwork::RecordType m_type;
 
 };
 

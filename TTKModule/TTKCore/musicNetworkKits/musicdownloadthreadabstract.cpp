@@ -12,7 +12,7 @@
 #include <QSslError>
 
 MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                                         DownloadType type, QObject *parent)
+                                                         MusicNetwork::DownloadType type, QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_url = url;
@@ -96,12 +96,12 @@ QString MusicDownLoadThreadAbstract::transferData() const
 {
     switch(m_downloadType)
     {
-        case DownloadMusic: return "DownloadMusic";
-        case DownloadLrc:   return "DownloadLrc";
-        case DownloadSmallBG: return "DownloadSmallBG";
-        case DownloadBigBG: return "DownloadBigBG";
-        case DownloadVideo: return "DownloadVideo";
-        case DownloadOther: return "DownloadOther";
+        case MusicNetwork::DownloadMusic: return "DownloadMusic";
+        case MusicNetwork::DownloadLrc:   return "DownloadLrc";
+        case MusicNetwork::DownloadSmallBG: return "DownloadSmallBG";
+        case MusicNetwork::DownloadBigBG: return "DownloadBigBG";
+        case MusicNetwork::DownloadVideo: return "DownloadVideo";
+        case MusicNetwork::DownloadOther: return "DownloadOther";
         default: return QString();
     }
 }

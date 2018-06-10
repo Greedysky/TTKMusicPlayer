@@ -58,12 +58,12 @@ QString MusicDownLoadQueryThreadAbstract::findTimeStringByAttrs(const MusicObjec
 
 bool MusicDownLoadQueryThreadAbstract::findUrlFileSize(MusicObject::MusicSongAttribute *attr)
 {
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return false;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return false;
     if(attr->m_size.isEmpty() || attr->m_size == "-")
     {
         attr->m_size = MusicUtils::Number::size2Label(getUrlFileSize(attr->m_url));
     }
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetworkAbstract::Init) return false;
+    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return false;
 
     return true;
 }

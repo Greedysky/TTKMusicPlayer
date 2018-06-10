@@ -42,18 +42,18 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadQueueCache(DownloadType type, QObject *parent = 0);
+    explicit MusicDownloadQueueCache(MusicNetwork::DownloadType  type, QObject *parent = 0);
 
     /*!
      * Object contsructor.
      */
     MusicDownloadQueueCache(const MusicDownloadQueueData &data,
-                            DownloadType type, QObject *parent = 0);
+                            MusicNetwork::DownloadType  type, QObject *parent = 0);
     /*!
      * Object contsructor.
      */
     MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas,
-                            DownloadType type, QObject *parent = 0);
+                            MusicNetwork::DownloadType  type, QObject *parent = 0);
 
     ~MusicDownloadQueueCache();
 

@@ -464,7 +464,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
             MusicDownloadRecords records;
-            MusicDownloadRecordConfigManager down(MusicDownloadRecordConfigManager::Normal, this);
+            MusicDownloadRecordConfigManager down(MusicNetwork::NormalDownload, this);
             if(!down.readDownloadXMLConfig())
             {
                 return;
@@ -498,9 +498,10 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             }
             ////////////////////////////////////////////////
             m_downloadTotal = 1;
-            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread( musicAttr.m_url, downloadName,
-                                                                                   MusicDownLoadThreadAbstract::DownloadMusic, this);
+            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicNetwork::DownloadMusic, this);
+            downSong->setRecordType(MusicNetwork::NormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
+
             MusicSongTag tag;
             tag.setComment(musicSongInfo.m_smallPicUrl);
             tag.setTitle(musicSongInfo.m_songName);
@@ -566,8 +567,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                     }
                 }
                 ////////////////////////////////////////////////
-                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName,
-                                                                                MusicDownLoadThreadAbstract::DownloadVideo, this);
+                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicNetwork::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
             }

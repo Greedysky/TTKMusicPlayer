@@ -36,7 +36,7 @@ public:
         SearchType,     /*!< search text type*/
         FreshType,      /*!< fresh text type*/
         FullscreenType, /*!< fullscreen text type*/
-        DownloadType,   /*!< download text type*/
+        DownloadType ,  /*!< download text type*/
         ShareType       /*!< share text type*/
     };
 

@@ -65,7 +65,7 @@ Q_SIGNALS:
     /*!
      * Add current network music to download to local.
      */
-    void muiscSongToPlayListChanged(const QString &name, const QString &time,
+    void musicSongToPlayListChanged(const QString &name, const QString &time,
                                     const QString &format, bool play);
     /*!
      * Show download state type.
