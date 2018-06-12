@@ -1,6 +1,7 @@
 #include "musiccloudtablewidget.h"
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
+#include "musicnumberutils.h"
 
 #include <QScrollBar>
 
@@ -63,21 +64,32 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)
 {
-    setColumnCount(4);
+    setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
-    headerview->resizeSection(1, 168);
-    headerview->resizeSection(2, 83);
-    headerview->resizeSection(3, 50);
+    headerview->resizeSection(1, 251);
+    headerview->resizeSection(2, 50);
 
     m_type = MusicNetwork::CloudUpload;
-    setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     musicSongsFileName();
+}
+
+void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)
+{
+    int c = rowCount() + 1;
+    setRowCount(c);
+
+    MusicDownloadRecord record;
+    record.m_name = item.m_dataItem.m_name;
+    record.m_path = item.m_path;
+    record.m_size = MusicUtils::Number::size2Label(item.m_dataItem.m_size);
+
+    createItem(c - 1, record);
 }
 
 void MusicCloudUploadTableWidget::createItem(int index, const MusicDownloadRecord &record)
@@ -93,15 +105,11 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicDownloadRecor
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(index, 1, item);
 
-                      item = new QTableWidgetItem;
-    item->setData(MUSIC_PROCS_ROLE, 100);
-    setItem(index, 2, item);
-
                       item = new QTableWidgetItem( record.m_size );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     item->setData(MUSIC_TIMES_ROLE, record.m_time);
-    setItem(index, 3, item);
+    setItem(index, 2, item);
 
     m_musicSongs->append(MusicSong(record.m_path));
     //just fix table widget size hint

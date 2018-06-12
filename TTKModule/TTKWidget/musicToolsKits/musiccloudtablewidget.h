@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicclouddataitem.h"
 #include "musicdownloadabstracttablewidget.h"
 
 /*! @brief The class of the cloud shared song download table widget.
@@ -57,6 +58,12 @@ public:
      * Object contsructor.
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
+
+public Q_SLOTS:
+    /*!
+     * Upload file error occurred.
+     */
+    void uploadFileError(const MusicCloudDataItem &item);
 
 protected:
     /*!

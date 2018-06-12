@@ -83,6 +83,8 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
         m_musicRecords.removeAt(index);
         m_musicSongs->removeAt(index);
     }
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
 }
 
 void MusicDownloadAbstractTableWidget::listCellClicked(int row, int column)

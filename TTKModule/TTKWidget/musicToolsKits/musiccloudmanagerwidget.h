@@ -67,6 +67,10 @@ Q_SIGNALS:
      * Get key data from net finished.
      */
     void getKeyFinished();
+    /*!
+     * Upload file error occurred.
+     */
+    void uploadFileError(const MusicCloudDataItem &item);
 
 public Q_SLOTS:
     /*!
@@ -162,6 +166,7 @@ protected:
     QNSimpleUploadData *m_qnUploadData;
     QNetworkAccessManager *m_networkManager;
     MusicOpenFileWidget *m_openFileWidget;
+    MusicCloudDataItem m_currentDataItem;
     MusicProgressBarDelegate *m_progressBarDelegate;
 
 };

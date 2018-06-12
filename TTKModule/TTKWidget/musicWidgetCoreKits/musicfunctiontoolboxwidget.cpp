@@ -75,7 +75,7 @@ QString MusicFunctionToolBoxTopWidget::getTitle(bool suffix)
 
 bool MusicFunctionToolBoxTopWidget::isItemEnable() const
 {
-    return true;
+    return false;
 }
 
 void MusicFunctionToolBoxTopWidget::dragLeaveEvent(QDragLeaveEvent *event)

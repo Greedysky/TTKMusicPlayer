@@ -37,6 +37,15 @@ typedef struct MUSIC_EXTRAS_EXPORT QNDataItem
         m_size = 0;
         m_putTime = 0;
     }
+
+    inline void clear()
+    {
+        m_name.clear();
+        m_hash.clear();
+        m_mimeType.clear();
+        m_size = 0;
+        m_putTime = 0;
+    }
 }QNDataItem;
 TTK_DECLARE_LISTS(QNDataItem)
 

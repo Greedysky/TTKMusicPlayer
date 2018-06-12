@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include "musicclouddataitem.h"
 #include "musicfunctiontoolboxwidget.h"
 
 class MusicCloudUploadTableWidget;
@@ -54,6 +55,11 @@ public:
     explicit MusicCloudToolBoxWidget(QWidget *parent = 0);
 
     virtual ~MusicCloudToolBoxWidget();
+
+    /*!
+     * Upload file error occurred.
+     */
+    void uploadFileError(const MusicCloudDataItem &item);
 
 protected:
     /*!

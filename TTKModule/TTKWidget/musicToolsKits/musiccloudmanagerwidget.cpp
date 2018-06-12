@@ -155,6 +155,11 @@ void MusicCloudManagerTableWidget::receiveDataFinshed(const QNDataItems &items)
 
 void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
 {
+    if(time == TTK_ERROR_STR)
+    {
+        emit uploadFileError(m_currentDataItem);
+    }
+
     int row = FindUploadItemRow(time);
     if(row != -1)
     {
@@ -167,6 +172,10 @@ void MusicCloudManagerTableWidget::uploadFileFinished(const QString &time)
             m_totalFileSzie += data.m_dataItem.m_size;
         }
         emit updataSizeLabel(m_totalFileSzie);
+    }
+    else
+    {
+        emit uploadFileError(m_currentDataItem);
     }
 
     startToUploadFile();
@@ -354,6 +363,7 @@ void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 by
 void MusicCloudManagerTableWidget::uploadDone()
 {
     m_uploading = false;
+    m_currentDataItem.clear();
     updateListToServer();
 }
 
@@ -423,21 +433,23 @@ void MusicCloudManagerTableWidget::startToUploadFile()
     m_uploading = true;
     emit updateLabelMessage(tr("Files Is Uploading!"));
 
-    MusicCloudDataItem data = FindWaitedItemRow();
-    if(!data.isValid())
+    m_currentDataItem = FindWaitedItemRow();
+    if(!m_currentDataItem.isValid())
     {
         uploadDone();
         return;
     }
 
-    QFile file(data.m_path);
+    QFile file(m_currentDataItem.m_path);
     if(!file.open(QIODevice::ReadOnly))
     {
         file.close();
         startToUploadFile();
     }
 
-    m_qnUploadData->uploadDataToServer(data.m_id, file.readAll(), QN_BUCKET, data.m_dataItem.m_name, data.m_dataItem.m_name);
+    m_qnUploadData->uploadDataToServer(m_currentDataItem.m_id, file.readAll(), QN_BUCKET,
+                                       m_currentDataItem.m_dataItem.m_name,
+                                       m_currentDataItem.m_dataItem.m_name);
     file.close();
 }
 
@@ -632,6 +644,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
 
     connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
     connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));
+    connect(m_managerTableWidget, SIGNAL(uploadFileError(MusicCloudDataItem)), parent, SLOT(uploadFileError(MusicCloudDataItem)));
 
     mainLayout->addWidget(m_managerTableWidget);
 }

@@ -19,9 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicabstractmovedialog.h"
-#include "musicabstracttablewidget.h"
-
+#include "musicglobaldefine.h"
 #include "qiniu/qndataitem.h"
 
 /*! @brief The class of the cloud data item.
@@ -45,6 +43,14 @@ typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
     inline bool isValid() const
     {
         return !m_dataItem.m_name.isEmpty();
+    }
+
+    inline void clear()
+    {
+        m_id.clear();
+        m_path.clear();
+        m_state = Waited;
+        m_dataItem.clear();
     }
 
     inline bool operator==(const MusicCloudDataItem &other) const

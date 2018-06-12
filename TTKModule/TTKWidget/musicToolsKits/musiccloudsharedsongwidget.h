@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include "musicglobaldefine.h"
+#include "musicclouddataitem.h"
 
 class MusicCloudToolBoxWidget;
 class MusicCloudManagerWidget;
@@ -44,6 +45,12 @@ public:
      * Show cloud main widget.
      */
     void showMainWindow();
+
+public Q_SLOTS:
+    /*!
+     * Upload file error occurred.
+     */
+    void uploadFileError(const MusicCloudDataItem &item);
 
 protected:
     /*!

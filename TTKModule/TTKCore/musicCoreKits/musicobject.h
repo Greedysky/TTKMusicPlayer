@@ -120,6 +120,7 @@
 #define MUSICPATH               "music.lis"
 #define NORMALDOWNPATH          "musicdown.ttk"
 #define CLOUDDOWNPATH           "musiccloud.ttk"
+#define CLOUDUPPATH             "musiccloudp.ttk"
 #define MUSICSEARCH             "musichistory.ttk"
 #define DARABASEPATH            "musicuser.dll"
 #define USERPATH                "musicuser.ttk"
@@ -151,6 +152,7 @@
 #define MUSICPATH_FULL          APPDATA_DIR_FULL + MUSICPATH
 #define NORMALDOWNPATH_FULL     APPDATA_DIR_FULL + NORMALDOWNPATH
 #define CLOUDDOWNPATH_FULL      APPDATA_DIR_FULL + CLOUDDOWNPATH
+#define CLOUDUPPATH_FULL        APPDATA_DIR_FULL + CLOUDUPPATH
 #define MUSICSEARCH_FULL        APPDATA_DIR_FULL + MUSICSEARCH
 #define DARABASEPATH_FULL       APPDATA_DIR_FULL + DARABASEPATH
 #define USERPATH_FULL           APPDATA_DIR_FULL + USERPATH

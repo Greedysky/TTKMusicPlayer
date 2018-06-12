@@ -49,6 +49,7 @@ QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const
     {
         case MusicNetwork::NormalDownload : return NORMALDOWNPATH_FULL;
         case MusicNetwork::CloudDownload  : return CLOUDDOWNPATH_FULL;
+        case MusicNetwork::CloudUpload    : return CLOUDUPPATH_FULL;
         default: return QString();
     }
 }
