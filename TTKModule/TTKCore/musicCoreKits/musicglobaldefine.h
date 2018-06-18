@@ -142,7 +142,7 @@
 
 //////////////////////////////////////
 #include "musiclogger.h"
-#include "musicobject.h"
+#include "musicglobal.h"
 //////////////////////////////////////
 
 #endif // MUSICGLOBALDEFINE_H
