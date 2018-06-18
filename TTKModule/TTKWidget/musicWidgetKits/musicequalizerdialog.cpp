@@ -9,6 +9,7 @@
 #include "musicplayer.h"
 
 #include <QSignalMapper>
+#include <QAbstractItemView>
 #include <QStyledItemDelegate>
 
 MusicEqualizerDialog::MusicEqualizerDialog(QWidget *parent)

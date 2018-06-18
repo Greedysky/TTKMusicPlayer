@@ -9,6 +9,7 @@
 #include "musictime.h"
 
 #include <QProcess>
+#include <QAbstractItemView>
 #include <QStyledItemDelegate>
 
 MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)

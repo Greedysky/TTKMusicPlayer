@@ -6,6 +6,7 @@
 #include "musictoastlabel.h"
 #include "musicwidgetheaders.h"
 
+#include <QButtonGroup>
 #include <QPluginLoader>
 
 ///qmmp incldue

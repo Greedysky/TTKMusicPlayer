@@ -8,6 +8,7 @@
 #include "musictoolsetsuiobject.h"
 
 #include <QButtonGroup>
+#include <QAbstractItemView>
 #include <QStyledItemDelegate>
 
 MusicTimerWidget::MusicTimerWidget(QWidget *parent)

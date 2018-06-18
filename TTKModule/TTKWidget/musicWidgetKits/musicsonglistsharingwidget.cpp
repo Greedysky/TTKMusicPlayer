@@ -6,6 +6,7 @@
 
 #include <QClipboard>
 #include <QApplication>
+#include <QButtonGroup>
 
 MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
