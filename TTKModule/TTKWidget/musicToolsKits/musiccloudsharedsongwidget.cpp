@@ -28,11 +28,6 @@ void MusicCloudSharedSongWidget::showMainWindow()
     MusicRightAreaWidget::instance()->musicFunctionClicked(MusicRightAreaWidget::CloudManagerWidget, m_managerWidget);
 }
 
-void MusicCloudSharedSongWidget::uploadFileError(const MusicCloudDataItem &item)
-{
-    m_toolBoxWidget->uploadFileError(item);
-}
-
 void MusicCloudSharedSongWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     Q_UNUSED(event);

@@ -58,6 +58,10 @@ public:
 
 public Q_SLOTS:
     /*!
+     * Media aution play error.
+     */
+    void mediaAutionPlayError(int code);
+    /*!
      * Set radio to play.
      */
     void radioPlay();
@@ -123,7 +127,6 @@ protected:
     Ui::MusicWebMusicRadioPlayWidget *m_ui;
     int m_currentPlayListIndex;
     bool m_isPlaying;
-    QTimer m_autoNextTimer;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
     MusicRadioPlayListThread *m_playListThread;

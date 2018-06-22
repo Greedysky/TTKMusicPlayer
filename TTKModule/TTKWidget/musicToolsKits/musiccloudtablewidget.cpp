@@ -2,8 +2,10 @@
 #include "musicitemdelegate.h"
 #include "musicconnectionpool.h"
 #include "musicnumberutils.h"
+#include "musicmessagebox.h"
 
 #include <QScrollBar>
+Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)
@@ -64,6 +66,8 @@ void MusicCloudDownloadTableWidget::createItem(int index, const MusicDownloadRec
 MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)
 {
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+
     setColumnCount(3);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
@@ -79,6 +83,11 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     musicSongsFileName();
 }
 
+MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
+{
+    M_CONNECTION_PTR->removeValue(getClassName());
+}
+
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)
 {
     int c = rowCount() + 1;
@@ -92,10 +101,66 @@ void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item
     createItem(c - 1, record);
 }
 
+void MusicCloudUploadTableWidget::reuploadFile()
+{
+    if(currentRow() < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    QTableWidgetItem *it = item(currentRow(), 0);
+    if(it == nullptr)
+    {
+        return;
+    }
+
+    QString data(it->data(MUSIC_DATAS_ROLE).toString());
+    if(!data.isEmpty())
+    {
+        emit reuploadFilesToServer(QStringList() << data);
+    }
+}
+
+void MusicCloudUploadTableWidget::reuploadFiles()
+{
+    if(currentRow() < 0)
+    {
+        MusicMessageBox message;
+        message.setText(tr("Please Select One Item First!"));
+        message.exec();
+        return;
+    }
+
+    QStringList datas;
+    foreach(int index, getMultiIndexSet())
+    {
+        QTableWidgetItem *it = item(index, 0);
+        if(it == nullptr)
+        {
+            continue;
+        }
+
+        QString data(it->data(MUSIC_DATAS_ROLE).toString());
+        if(!data.isEmpty())
+        {
+            datas << data;
+        }
+    }
+
+    if(!datas.isEmpty())
+    {
+        emit reuploadFilesToServer(datas);
+    }
+}
+
 void MusicCloudUploadTableWidget::createItem(int index, const MusicDownloadRecord &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
+    item->setData(MUSIC_DATAS_ROLE, record.m_path);
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
@@ -114,4 +179,27 @@ void MusicCloudUploadTableWidget::createItem(int index, const MusicDownloadRecor
     m_musicSongs->append(MusicSong(record.m_path));
     //just fix table widget size hint
     setFixedHeight( allRowsHeight() );
+}
+
+void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+    QMenu rightClickMenu(this);
+
+    rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    bool empty = !m_musicSongs->isEmpty();
+    rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.addAction(QIcon(":/contextMenu/btn_delete"), tr("delete"), this, SLOT(setDeleteItemAt()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("deleteAll"), this, SLOT(setDeleteItemAll()))->setEnabled(empty);
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.addAction(tr("reupload"), this, SLOT(reuploadFile()))->setEnabled(empty);
+    rightClickMenu.addAction(tr("reuploadAll"), this, SLOT(reuploadFiles()))->setEnabled(empty);
+    rightClickMenu.addSeparator();
+
+    rightClickMenu.exec(QCursor::pos());
 }

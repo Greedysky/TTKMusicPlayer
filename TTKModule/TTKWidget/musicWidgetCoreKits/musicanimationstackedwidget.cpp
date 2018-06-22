@@ -39,6 +39,11 @@ void MusicAnimationStackedWidget::paintEvent(QPaintEvent * event)
     }
 }
 
+void MusicAnimationStackedWidget::contextMenuEvent(QContextMenuEvent *event)
+{
+    Q_UNUSED(event);
+}
+
 void MusicAnimationStackedWidget::renderPreviousWidget(QPainter &painter)
 {
     QWidget *w = widget(m_previousIndex);

@@ -46,12 +46,6 @@ public:
      */
     void showMainWindow();
 
-public Q_SLOTS:
-    /*!
-     * Upload file error occurred.
-     */
-    void uploadFileError(const MusicCloudDataItem &item);
-
 protected:
     /*!
      * Override the widget event.

@@ -70,14 +70,8 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
        return;
     }
 
-    MusicObject::MIntSet deletedRow; //if selected multi rows
-    foreach(QTableWidgetItem *item, selectedItems())
-    {
-        deletedRow.insert(item->row());
-    }
+    MusicObject::MIntList deleteList(getMultiIndexSet());
 
-    MusicObject::MIntList deleteList = deletedRow.toList();
-    qSort(deleteList);
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
         int index = deleteList[i];

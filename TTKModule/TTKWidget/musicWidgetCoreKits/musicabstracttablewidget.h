@@ -63,6 +63,10 @@ protected:
      * Set selected item row color.
      */
     void setRowColor(int row, const QColor &color) const;
+    /*!
+     * Get multi index set.
+     */
+    MusicObject::MIntList getMultiIndexSet();
 
     QColor m_defaultBkColor;
     int m_previousColorRow;

@@ -56,11 +56,6 @@ public:
 
     virtual ~MusicCloudToolBoxWidget();
 
-    /*!
-     * Upload file error occurred.
-     */
-    void uploadFileError(const MusicCloudDataItem &item);
-
 protected:
     /*!
      * Create item.

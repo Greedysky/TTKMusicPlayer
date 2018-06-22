@@ -25,11 +25,6 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(9);
 
-    m_autoNextTimer.setInterval(3*MT_S2MS);
-    connect(&m_autoNextTimer, SIGNAL(timeout()), SLOT(radioNext()));
-    connect(m_ui->volumeSlider, SIGNAL(sliderMoved(int)), &m_autoNextTimer, SLOT(stop()));
-    connect(m_ui->volumeSlider, SIGNAL(sliderReleased()), &m_autoNextTimer, SLOT(start()));
-
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -77,7 +72,6 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
 
 MusicWebMusicRadioPlayWidget::~MusicWebMusicRadioPlayWidget()
 {
-    m_autoNextTimer.stop();
     delete m_analysis;
     delete m_mediaPlayer;
     delete m_songsThread;
@@ -87,7 +81,6 @@ MusicWebMusicRadioPlayWidget::~MusicWebMusicRadioPlayWidget()
 
 void MusicWebMusicRadioPlayWidget::closeEvent(QCloseEvent *event)
 {
-    m_autoNextTimer.stop();
     delete m_mediaPlayer;
     m_mediaPlayer = nullptr;
     QWidget::closeEvent(event);
@@ -109,6 +102,14 @@ void MusicWebMusicRadioPlayWidget::updateRadioList(const QString &category)
     if(m_playListThread)
     {
         m_playListThread->startToDownload(category);
+    }
+}
+
+void MusicWebMusicRadioPlayWidget::mediaAutionPlayError(int code)
+{
+    if(DEFAULT_LEVEL2 == code)
+    {
+        radioNext();
     }
 }
 
@@ -221,6 +222,7 @@ void MusicWebMusicRadioPlayWidget::createCoreModule()
     m_mediaPlayer = new MusicCoreMPlayer(this);
     connect(m_mediaPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_mediaPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
+    connect(m_mediaPlayer, SIGNAL(finished(int)), SLOT(mediaAutionPlayError(int)));
 }
 
 void MusicWebMusicRadioPlayWidget::startToPlay()
@@ -240,6 +242,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     {
         createCoreModule();
     }
+
     m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, info.m_songAttrs.first().m_url);
     m_mediaPlayer->play();
 
@@ -324,8 +327,6 @@ void MusicWebMusicRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    m_autoNextTimer.stop();
-    m_autoNextTimer.start();
     m_ui->positionLabel->setText(QString("%1").arg(MusicTime::msecTime2LabelJustified(position*MT_S2MS)));
 
     if(m_analysis->isEmpty())

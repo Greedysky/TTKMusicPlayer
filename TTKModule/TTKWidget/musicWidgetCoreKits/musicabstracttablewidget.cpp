@@ -79,3 +79,17 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
         }
     }
 }
+
+MusicObject::MIntList MusicAbstractTableWidget::getMultiIndexSet()
+{
+    MusicObject::MIntSet rows;
+    foreach(QTableWidgetItem *item, selectedItems())
+    {
+        rows.insert(item->row());
+    }
+
+    MusicObject::MIntList rowsList = rows.toList();
+    qSort(rowsList);
+
+    return rowsList;
+}

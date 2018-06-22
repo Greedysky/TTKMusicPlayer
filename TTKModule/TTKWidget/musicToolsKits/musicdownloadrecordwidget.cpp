@@ -53,5 +53,7 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
     item->setData(MUSIC_TIMES_ROLE, record.m_time);
     setItem(index, 3, item);
 
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
     m_musicSongs->append(MusicSong(record.m_path));
 }

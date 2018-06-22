@@ -21,6 +21,8 @@
 #include "musicsongchecktoolstablewidget.h"
 #include "musicqueryfoundtablewidget.h"
 #include "musicdownloadabstracttablewidget.h"
+#include "musiccloudtablewidget.h"
+#include "musiccloudmanagerwidget.h"
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
@@ -90,6 +92,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
             (from == MusicSongCheckToolsWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(getMusicLists(MusicSongItems&)), second, SLOT(getMusicLists(MusicSongItems&)));
+    }
+    else if((from == MusicCloudManagerTableWidget::getClassName() && to == MusicCloudUploadTableWidget::getClassName()))
+    {
+        QObject::connect(first, SIGNAL(uploadFileError(MusicCloudDataItem)), second, SLOT(uploadFileError(MusicCloudDataItem)));
+        QObject::connect(second, SIGNAL(reuploadFilesToServer(QStringList)), first, SLOT(reuploadFilesToServer(QStringList)));
     }
 #endif
 }

@@ -12,6 +12,8 @@
 #include "musicformats.h"
 #include "musictime.h"
 #include "musicmessagebox.h"
+#include "musicconnectionpool.h"
+#include "musiccloudtablewidget.h"
 #include <QThread>
 #if defined Q_OS_UNIX || defined Q_CC_MINGW
 # include <unistd.h>
@@ -33,6 +35,9 @@ Q_DECLARE_METATYPE(MusicCloudDataItem)
 MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
+    M_CONNECTION_PTR->setValue(getClassName(), this);
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicCloudUploadTableWidget::getClassName());
+
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(0, 10);
@@ -63,6 +68,7 @@ MusicCloudManagerTableWidget::MusicCloudManagerTableWidget(QWidget *parent)
 
 MusicCloudManagerTableWidget::~MusicCloudManagerTableWidget()
 {
+    M_CONNECTION_PTR->removeValue(getClassName());
     delete m_qnListData;
     delete m_qnDeleteData;
     delete m_qnUploadData;
@@ -225,15 +231,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-
-    MusicObject::MIntSet deletedRow; //if selected multi rows
-    foreach(QTableWidgetItem *item, selectedItems())
-    {
-        deletedRow.insert(item->row());
-    }
-
-    MusicObject::MIntList deleteList = deletedRow.toList();
-    qSort(deleteList);
+    MusicObject::MIntList deleteList(getMultiIndexSet());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {
@@ -277,43 +275,14 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     download->startToDownload();
 }
 
-void MusicCloudManagerTableWidget::uploadFileToServer()
+void MusicCloudManagerTableWidget::uploadFilesToServer()
 {
     QString filter(MusicFormats::supportFormatsFilterDialogString().join(";;"));
     QStringList paths = MusicUtils::Widget::getOpenFilesDialog(this, filter);
-    if(paths.isEmpty())
-    {
-        return;
-    }
-
-    delete m_openFileWidget;
-    m_openFileWidget = nullptr;
-
-    foreach(const QString &path, paths)
-    {
-        MusicCloudDataItem item;
-        QFileInfo info(path);
-        item.m_id = QString::number(MusicTime::timeStamp());
-        item.m_path = path;
-        item.m_state = MusicCloudDataItem::Waited;
-        item.m_dataItem.m_name = info.fileName().trimmed();
-        item.m_dataItem.m_putTime = item.m_id.toULongLong();
-        item.m_dataItem.m_size = info.size();
-#if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
-        QThread::msleep(MT_MS);
-#else
-        usleep(MT_MS2US);
-#endif
-        createItem(item);
-    }
-
-    if(!m_uploading)
-    {
-        startToUploadFile();
-    }
+    uploadFilesToServer(paths);
 }
 
-void MusicCloudManagerTableWidget::uploadFilesToServer()
+void MusicCloudManagerTableWidget::uploadFileDirToServer()
 {
     QString path = QFileDialog::getExistingDirectory(this, QString(), "./");
     if(!path.isEmpty())
@@ -341,6 +310,11 @@ void MusicCloudManagerTableWidget::uploadFilesToServer()
     }
 
     createUploadFileWidget();
+}
+
+void MusicCloudManagerTableWidget::reuploadFilesToServer(const QStringList &items)
+{
+    uploadFilesToServer(items);
 }
 
 void MusicCloudManagerTableWidget::uploadProgress(const QString &time, qint64 bytesSent, qint64 bytesTotal)
@@ -395,8 +369,8 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu uploadMenu(tr("upload"), &menu);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     uploadMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
-    uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFileToServer()));
-    uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFilesToServer()));
+    uploadMenu.addAction(tr("uploadFile"), this, SLOT(uploadFilesToServer()));
+    uploadMenu.addAction(tr("uploadFiles"), this, SLOT(uploadFileDirToServer()));
 
     menu.addMenu(&uploadMenu);
     menu.addAction(tr("deleteFile"), this, SLOT(deleteFileToServer()))->setEnabled(!m_uploading);
@@ -410,6 +384,40 @@ void MusicCloudManagerTableWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(QCursor::pos());
 }
 
+void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
+{
+    if(paths.isEmpty())
+    {
+        return;
+    }
+
+    delete m_openFileWidget;
+    m_openFileWidget = nullptr;
+
+    foreach(const QString &path, paths)
+    {
+        MusicCloudDataItem item;
+        QFileInfo info(path);
+        item.m_id = QString::number(MusicTime::timeStamp());
+        item.m_path = path;
+        item.m_state = MusicCloudDataItem::Waited;
+        item.m_dataItem.m_name = info.fileName().trimmed();
+        item.m_dataItem.m_putTime = item.m_id.toULongLong();
+        item.m_dataItem.m_size = info.size();
+#if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
+        QThread::msleep(MT_MS);
+#else
+        usleep(MT_MS2US);
+#endif
+        createItem(item);
+    }
+
+    if(!m_uploading)
+    {
+        startToUploadFile();
+    }
+}
+
 void MusicCloudManagerTableWidget::createUploadFileWidget()
 {
     if(rowCount() != 0)
@@ -420,8 +428,8 @@ void MusicCloudManagerTableWidget::createUploadFileWidget()
     if(m_openFileWidget == nullptr)
     {
         m_openFileWidget = new MusicOpenFileWidget(this);
-        connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFileToServer()));
-        connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFilesToServer()));
+        connect(m_openFileWidget, SIGNAL(uploadFileClicked()), SLOT(uploadFilesToServer()));
+        connect(m_openFileWidget, SIGNAL(uploadFilesClicked()), SLOT(uploadFileDirToServer()));
         m_openFileWidget->adjustRect(width(), height());
     }
     m_openFileWidget->raise();
@@ -612,7 +620,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     downloadButton->setFocusPolicy(Qt::NoFocus);
     deleteButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    connect(uploadButton, SIGNAL(clicked(bool)), SLOT(uploadFileToServer()));
+    connect(uploadButton, SIGNAL(clicked(bool)), SLOT(uploadFilesToServer()));
     connect(downloadButton, SIGNAL(clicked(bool)), SLOT(downloadFileToServer()));
     connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
     ////////////////////////////////////////////////////////////////////////////
@@ -644,7 +652,6 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
 
     connect(m_managerTableWidget, SIGNAL(updateLabelMessage(QString)), statusLabel, SLOT(setText(QString)));
     connect(m_managerTableWidget, SIGNAL(updataSizeLabel(qint64)), SLOT(updataSizeLabel(qint64)));
-    connect(m_managerTableWidget, SIGNAL(uploadFileError(MusicCloudDataItem)), parent, SLOT(uploadFileError(MusicCloudDataItem)));
 
     mainLayout->addWidget(m_managerTableWidget);
 }
@@ -682,7 +689,7 @@ void MusicCloudManagerWidget::deleteFileToServer()
     m_managerTableWidget->deleteFileToServer();
 }
 
-void MusicCloudManagerWidget::uploadFileToServer()
+void MusicCloudManagerWidget::uploadFilesToServer()
 {
-    m_managerTableWidget->uploadFileToServer();
+    m_managerTableWidget->uploadFilesToServer();
 }

@@ -112,13 +112,17 @@ public Q_SLOTS:
     void downloadFileToServer();
 
     /*!
-     * Upload file to server.
-     */
-    void uploadFileToServer();
-    /*!
      * Upload files to server.
      */
     void uploadFilesToServer();
+    /*!
+     * Upload file dir to server.
+     */
+    void uploadFileDirToServer();
+    /*!
+     * Reupload files to server.
+     */
+    void reuploadFilesToServer(const QStringList &items);
 
     /*!
      * Show upload progress.
@@ -138,6 +142,10 @@ protected:
      * Override the widget event.
      */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
+    /*!
+     * Upload files to server.
+     */
+    void uploadFilesToServer(const QStringList &paths);
     /*!
      * Create upload file widget.
      */
@@ -207,9 +215,9 @@ public Q_SLOTS:
      */
     void deleteFileToServer();
     /*!
-     * Upload file to server.
+     * Upload files to server.
      */
-    void uploadFileToServer();
+    void uploadFilesToServer();
 
 protected:
     QLabel *m_sizeValueLabel;

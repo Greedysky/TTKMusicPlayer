@@ -20,6 +20,7 @@ MusicRadioSongsThread::~MusicRadioSongsThread()
 
 void MusicRadioSongsThread::startToDownload(const QString &id)
 {
+    m_songInfo = MusicObject::MusicSongInformation();
     m_manager = new QNetworkAccessManager(this);
 
     QNetworkRequest request;

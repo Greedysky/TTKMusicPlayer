@@ -59,17 +59,37 @@ public:
      */
     explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
 
+    virtual ~MusicCloudUploadTableWidget();
+
+Q_SIGNALS:
+    /*!
+     * Reupload files to server.
+     */
+    void reuploadFilesToServer(const QStringList &items);
+
 public Q_SLOTS:
     /*!
      * Upload file error occurred.
      */
     void uploadFileError(const MusicCloudDataItem &item);
+    /*!
+     * Reupload failed file.
+     */
+    void reuploadFile();
+    /*!
+     * Reupload failed files.
+     */
+    void reuploadFiles();
 
 protected:
     /*!
      * Create item by index and name and size and time.
      */
     virtual void createItem(int index, const MusicDownloadRecord &record) override;
+    /*!
+     * Override the widget event.
+     */
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
 };
 

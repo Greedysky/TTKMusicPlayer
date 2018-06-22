@@ -435,23 +435,20 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     progress.setTitle(tr("Delete File Mode"));
     progress.setRange(0, selectedItems().count()/3*2);
 
-    MusicObject::MIntSet deletedRow; //if selected multi rows
-    for(int i=0; i<selectedIndexes().count(); ++i)
+    MusicObject::MIntList deleteList(getMultiIndexSet());
+    if(deleteList.isEmpty())
     {
-        deletedRow.insert(selectedIndexes()[i].row());
+        return;
+    }
+
+    for(int i=0; i<deleteList.count(); ++i)
+    {
         if(i%3 == 0)
         {
             progress.setValue(i/3);
         }
     }
 
-    MusicObject::MIntList deleteList = deletedRow.toList();
-    if(deleteList.count() == 0)
-    {
-        return;
-    }
-
-    qSort(deleteList);
     if(deleteList.contains(m_playRowIndex) || deleteList[0] < m_playRowIndex)
     {
         replacePlayWidgetRow();

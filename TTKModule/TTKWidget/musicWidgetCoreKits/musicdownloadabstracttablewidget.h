@@ -74,6 +74,9 @@ public Q_SLOTS:
     void createDownloadItem(const QString &name, qint64 time);
 
 protected:
+    /*!
+     * Override the widget event.
+     */
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Create item by index and name and size and time.

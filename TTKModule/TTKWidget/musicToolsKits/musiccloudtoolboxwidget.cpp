@@ -26,11 +26,6 @@ MusicCloudToolBoxWidget::~MusicCloudToolBoxWidget()
     delete m_downloadTable;
 }
 
-void MusicCloudToolBoxWidget::uploadFileError(const MusicCloudDataItem &item)
-{
-    m_uploadTable->uploadFileError(item);
-}
-
 MusicFunctionToolBoxWidgetItem *MusicCloudToolBoxWidget::createItem(QWidget *item, const QString &text)
 {
     MusicFunctionToolBoxWidgetItem *it = new MusicCloudToolBoxWidgetItem(m_itemIndexRaise, text, this);

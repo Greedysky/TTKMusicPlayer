@@ -92,6 +92,7 @@ protected:
      * Override the widget event.
      */
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
     /*!
      * Render previous widget.
      */
