@@ -185,11 +185,10 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data") && value["errorCode"].toInt() == 22000)
             {
-                readFromMusicMVCount();
-
+                m_pageTotal = DEFAULT_LEVEL4;
                 value = value["data"].toMap();
                 QString html = value["html"].toString();
-                QRegExp regx("data-mv=\\\"([^\"]+).*title=\\\"([^\"]+).*org_src=\\\"([^\"]+).*>");
+                QRegExp regx("<img src=\\\"([^\"]+).*>.*/playmv\\/([^\"]+)\\\".*title=\\\"([^\"]+).*a-tj='");
                 regx.setMinimal(true);
                 int pos = html.indexOf(regx);
                 while(pos != -1)
@@ -197,9 +196,9 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
                     if(m_interrupt) return;
 
                     MusicResultsItem info;
-                    info.m_id = regx.cap(1).remove("/playmv/");
-                    info.m_coverUrl = regx.cap(3).remove("@s_0,w_160,h_90");
-                    info.m_name = regx.cap(2).remove("MV");
+                    info.m_id = regx.cap(2);
+                    info.m_coverUrl = regx.cap(1).remove("@s_0,w_160,h_90");
+                    info.m_name = regx.cap(3);
                     info.m_updateTime.clear();
                     emit createMovieInfoItem(info);
 
@@ -249,43 +248,6 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
     emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
-}
-
-void MusicDownLoadQueryBDMovieThread::readFromMusicMVCount()
-{
-    if(!m_manager)
-    {
-        return;
-    }
-
-    M_LOGGER_INFO(QString("%1 readFromMusicMVCount").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_AR_MV_PG_URL, false).arg(m_searchText);
-    m_pageTotal = DEFAULT_LEVEL4;
-
-    QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(BD_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
-
-    MusicSemaphoreLoop loop;
-    QNetworkReply *reply = m_manager->get(request);
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-    QObject::connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), &loop, SLOT(quit()));
-    loop.exec();
-
-    if(!reply || reply->error() != QNetworkReply::NoError)
-    {
-        return;
-    }
-
-    QString html(reply->readAll());
-    QRegExp regx("<a class=\"list\" hidefocus=\"true\" href=\"#\">MV(.*)</a>");
-    regx.setMinimal(true);
-    if(html.indexOf(regx) != -1)
-    {
-        m_pageTotal = regx.cap(1).remove('(').remove(')').toInt();
-    }
 }
 
 void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::MusicSongInformation *info)

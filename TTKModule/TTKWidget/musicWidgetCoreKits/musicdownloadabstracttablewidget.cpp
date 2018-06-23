@@ -30,8 +30,6 @@ MusicDownloadAbstractTableWidget::~MusicDownloadAbstractTableWidget()
 
 void MusicDownloadAbstractTableWidget::musicSongsFileName()
 {
-    setFixedHeight(0);
-
     MusicDownloadRecordConfigManager xml(m_type, this);
     if(!xml.readDownloadXMLConfig())
     {

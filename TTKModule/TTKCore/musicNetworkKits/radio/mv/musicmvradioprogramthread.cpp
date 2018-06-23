@@ -28,8 +28,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
         QByteArray bytes = m_reply->readAll();
 
         bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
-        bytes.replace("\r\n", QByteArray());
-        bytes.chop(2);
+        bytes.chop(3);
 
         QJson::Parser parser;
         bool ok;

@@ -46,7 +46,7 @@ void MusicBDArtistSimilarThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QString html(m_reply->readAll());
-        QRegExp regx("<a href=\"/artist/(\\d+).*img class=\"avatar.*src=\"([^\"]+).*title=\"([^\"]+).*</a>");
+        QRegExp regx("<a href=\"/artist/(\\d+).*<img src=\"([^\"]+).*class=\"like-name overdd\".*>([^\"]+)</a>");
         regx.setMinimal(true);
         int pos = html.indexOf(regx);
         while(pos != -1)

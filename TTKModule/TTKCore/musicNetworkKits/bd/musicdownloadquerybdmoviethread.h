@@ -65,10 +65,6 @@ public Q_SLOTS:
 
 protected:
     /*!
-     * Read mv numbers.
-     */
-    void readFromMusicMVCount();
-    /*!
      * Read mv tags(size\bitrate\url) from query results.
      */
     void readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, bool more);
