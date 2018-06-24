@@ -107,7 +107,7 @@ void MusicWebMusicRadioPlayWidget::updateRadioList(const QString &category)
 
 void MusicWebMusicRadioPlayWidget::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LEVEL2 == code)
+    if(DEFAULT_LEVEL_NORMAL == code)
     {
         radioNext();
     }

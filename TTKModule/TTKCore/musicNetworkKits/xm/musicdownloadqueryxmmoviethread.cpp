@@ -224,7 +224,7 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
     {
         QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
 
-        m_pageTotal = DEFAULT_LEVEL4;
+        m_pageTotal = DEFAULT_LEVEL_HIGHER;
         QString html(bytes);
         QRegExp regx;
         regx.setMinimal(true);
@@ -421,7 +421,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             attr->m_multiPart = true;
         }
         attr->m_size = MusicUtils::Number::size2Label(attr->m_size.toLongLong());
-        attr->m_url = urls.join(STRING_SPLITER);
+        attr->m_url = urls.join(TTK_STR_SPLITER);
         attr->m_format = MusicUtils::Core::fileSuffix(attr->m_url);
     }
 }

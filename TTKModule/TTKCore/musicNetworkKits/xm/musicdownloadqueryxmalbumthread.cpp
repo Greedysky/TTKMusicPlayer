@@ -89,9 +89,9 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                 bool albumFlag = false;
                 MusicResultsItem info;
                 info.m_coverUrl = value["albumLogo"].toString();
-                info.m_description = value["albumName"].toString() + STRING_SPLITER +
-                                     value["language"].toString() + STRING_SPLITER +
-                                     value["company"].toString() + STRING_SPLITER +
+                info.m_description = value["albumName"].toString() + TTK_STR_SPLITER +
+                                     value["language"].toString() + TTK_STR_SPLITER +
+                                     value["company"].toString() + TTK_STR_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy-MM-dd");
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();

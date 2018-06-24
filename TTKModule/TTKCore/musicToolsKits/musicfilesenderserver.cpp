@@ -60,7 +60,7 @@ void MusicFileSenderServer::start()
         m_file->setFileName( str );
     }
 
-    QString filestr = QString::number(count) + STRING_SPLITER + m_file->fileName();
+    QString filestr = QString::number(count) + TTK_STR_SPLITER + m_file->fileName();
     m_sendSocket->writeDatagram( filestr.toLocal8Bit() , QHostAddress(m_receiveIp), RECEVIE_PORT);
 }
 

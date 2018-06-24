@@ -263,7 +263,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
     if(!attrs.isEmpty())
     {
         MusicObject::MusicSongAttribute attr = attrs.first();
-        QString url = attr.m_multiPart ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        QString url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = info.m_singerName + " - " + info.m_songName;
         data.m_url = url;

@@ -33,7 +33,7 @@ void MusicConnectTransferTableWidget::createAllItems(const MusicSongs &songs)
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setToolTip(song.getMusicTime());
+        item->setToolTip(song.getMusicPlayTime());
         item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(2) - 5));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 2, item);

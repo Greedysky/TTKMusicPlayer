@@ -152,7 +152,7 @@ void MusicVideoTableWidget::listCellClicked(int row, int column)
     {
         case 6:
         case 7:
-            itemDoubleClicked(row, DEFAULT_LEVEL3);
+            itemDoubleClicked(row, DEFAULT_LEVEL_HIGH);
             break;
         case 8:
             musicDownloadLocal(row);
@@ -234,7 +234,7 @@ void MusicVideoTableWidget::itemDoubleClicked(int row, int column)
     if(!attrs.isEmpty())
     {
         MusicObject::MusicSongAttribute attr = attrs.first();
-        QString url = attr.m_multiPart ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        QString url = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         MusicVideoItem data;
         data.m_name = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
         data.m_url = url;

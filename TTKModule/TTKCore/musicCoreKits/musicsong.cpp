@@ -1,5 +1,6 @@
 #include "musicsong.h"
 #include "musicstringutils.h"
+#include "musicnumberutils.h"
 
 #include <QFileInfo>
 #include <QDateTime>
@@ -28,6 +29,8 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicSize = info.size();
     m_musicType = info.suffix();
     m_musicAddTime = info.lastModified().currentMSecsSinceEpoch();
+    m_musicAddTimeStr = QString::number(m_musicAddTime);
+    m_musicSizeStr = MusicUtils::Number::size2Label(m_musicSize);
 }
 
 MusicSong::MusicSong(const QString &musicPath,
@@ -45,18 +48,18 @@ MusicSong::MusicSong(const QString &musicPath, const QString &type,
 }
 
 MusicSong::MusicSong(const QString &musicPath, const QString &type,
-                     const QString &time, int playCount,
+                     const QString &playTime, int playCount,
                      const QString &musicName)
     : MusicSong(musicPath, type, playCount, musicName)
 {
-    m_musicTime = time;
+    m_musicPlayTime = playTime;
 }
 
 MusicSong::MusicSong(const QString &musicPath, int playCount, const QString &time,
                      const QString &musicName)
     : MusicSong(musicPath, playCount, musicName)
 {
-    m_musicTime = time;
+    m_musicPlayTime = time;
 }
 
 QString MusicSong::getMusicArtistFront() const
@@ -82,7 +85,7 @@ bool MusicSong::operator< (const MusicSong &other) const
         case SortBySinger : return getMusicArtistFront() < other.getMusicArtistFront();
         case SortByFileSize : return m_musicSize < other.m_musicSize;
         case SortByAddTime : return m_musicAddTime < other.m_musicAddTime;
-        case SortByPlayTime : return m_musicTime < other.m_musicTime;
+        case SortByPlayTime : return m_musicPlayTime < other.m_musicPlayTime;
         case SortByPlayCount : return m_musicPlayCount < other.m_musicPlayCount;
         default: break;
     }

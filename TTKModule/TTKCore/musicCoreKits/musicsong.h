@@ -63,12 +63,12 @@ public:
      * Object contsructor by music path and name and playcout and format and time.
      */
     MusicSong(const QString &musicPath, const QString &type,
-              const QString &time, int playCount,
+              const QString &playTime, int playCount,
               const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and time.
      */
-    MusicSong(const QString &musicPath, int playCount, const QString &time,
+    MusicSong(const QString &musicPath, int playCount, const QString &playTime,
               const QString &musicName);
 
     /*!
@@ -76,9 +76,27 @@ public:
      */
     QString getMusicArtistFront() const;
     /*!
-     * Get music name.
+     * Get music song name.
      */
     QString getMusicArtistBack() const;
+
+    /*!
+     * Set music add time string.
+     */
+    inline void setMusicAddTimeStr(const QString &t) { m_musicAddTimeStr = t;}
+    /*!
+     * Get music add time string.
+     */
+    inline QString getMusicAddTimeStr() const { return m_musicAddTimeStr;}
+    /*!
+     * Set music size string.
+     */
+    inline void setMusicSizeStr(const QString s) { m_musicSizeStr = s;}
+    /*!
+     * Get music size string.
+     */
+    inline QString getMusicSizeStr() const { return m_musicSizeStr;}
+
     /*!
      * Set music name.
      */
@@ -106,11 +124,19 @@ public:
     /*!
      * Set music time.
      */
-    inline void setMusicTime(const QString &t) { m_musicTime = t;}
+    inline void setMusicPlayTime(const QString &t) { m_musicPlayTime = t;}
     /*!
      * Get music time.
      */
-    inline QString getMusicTime() const { return m_musicTime;}
+    inline QString getMusicPlayTime() const { return m_musicPlayTime;}
+    /*!
+     * Set music add time.
+     */
+    inline void setMusicAddTime(const qint64 &t) { m_musicAddTime = t;}
+    /*!
+     * Get music add time.
+     */
+    inline qint64 getMusicAddTime() const { return m_musicAddTime;}
     /*!
      * Set music size.
      */
@@ -146,9 +172,10 @@ public:
 
 protected:
     Sort m_sortType;
-    qint64  m_musicSize, m_musicAddTime;
+    qint64 m_musicSize, m_musicAddTime;
+    QString m_musicSizeStr, m_musicAddTimeStr;
     int m_musicPlayCount;
-    QString m_musicName, m_musicPath, m_musicType, m_musicTime;
+    QString m_musicName, m_musicPath, m_musicType, m_musicPlayTime;
 
 };
 TTK_DECLARE_LISTS(MusicSong)

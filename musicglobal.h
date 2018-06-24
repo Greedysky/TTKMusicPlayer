@@ -88,7 +88,15 @@
 #define TTK_RT const &
 #define TTK_RD &
 
-#define TTK_ERROR_STR       "NaN"
+#define TTK_ERROR_STR               "NaN"
+#define TTK_STR_SPLITER             "*|||*"
+///////////////////////////////////////
+#define DEFAULT_LEVEL_LOWER         -1
+#define DEFAULT_LEVEL_LOW           0
+#define DEFAULT_LEVEL_NORMAL        -999
+#define DEFAULT_LEVEL_HIGH          999
+#define DEFAULT_LEVEL_HIGHER        9999
+///////////////////////////////////////
 
 #define TTK_DECLARE_PTR(Class)              \
 public:                                     \

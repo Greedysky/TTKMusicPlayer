@@ -163,7 +163,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
     ///////////////////////////////////////////////////////////////////////////
-    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(STRING_SPLITER);
+    QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(TTK_STR_SPLITER);
     if(hotkeys.count() != M_HOTKEY_PTR->count())
     {
         hotkeys = M_HOTKEY_PTR->getDefaultKeys();
@@ -514,7 +514,7 @@ void MusicSettingWidget::commitTheResults()
         M_HOTKEY_PTR->setHotKey(5, m_ui->item_S12->text());
         M_HOTKEY_PTR->setHotKey(6, m_ui->item_S14->text());
         M_HOTKEY_PTR->setHotKey(7, m_ui->item_S16->text());
-        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(STRING_SPLITER));
+        M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced, M_HOTKEY_PTR->getKeys().join(TTK_STR_SPLITER));
     }
     M_HOTKEY_PTR->enabledAll(m_ui->globalHotkeyBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());

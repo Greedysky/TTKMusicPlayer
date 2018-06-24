@@ -45,7 +45,7 @@ void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, cons
         {
             writeDomElementMutil(seqDom, "media", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
                                  << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                 << MusicXmlAttribute("time", song.getMusicTime())
+                                 << MusicXmlAttribute("time", song.getMusicPlayTime())
                                  << MusicXmlAttribute("src", song.getMusicPath()));
         }
     }
@@ -146,7 +146,7 @@ void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, co
             QDomElement trackDom = writeDomElementMutil(trackListDom, "track", MusicXmlAttributes()
                                                         << MusicXmlAttribute("name", song.getMusicName())
                                                         << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                                        << MusicXmlAttribute("time", song.getMusicTime())
+                                                        << MusicXmlAttribute("time", song.getMusicPlayTime())
                                                         << MusicXmlAttribute("src", song.getMusicPath()));
             writeDomText(trackDom, "location", song.getMusicPath());
             writeDomText(trackDom, "title", song.getMusicArtistBack());
@@ -257,7 +257,7 @@ void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, cons
             writeDomElementMutil(trackDom, "ttkitem", MusicXmlAttributes()
                                                         << MusicXmlAttribute("name", song.getMusicName())
                                                         << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                                        << MusicXmlAttribute("time", song.getMusicTime())
+                                                        << MusicXmlAttribute("time", song.getMusicPlayTime())
                                                         << MusicXmlAttribute("src", song.getMusicPath()));
 
             writeDomElementMutil(trackDom, "ttklist", MusicXmlAttributes()
@@ -405,7 +405,7 @@ void MusicKGLConfigManager::readKGLXMLConfig(MusicSongItems &musics)
             QDomNode cNode = cNodes.at(i);
             if(cNode.nodeName() == "Duration")
             {
-                song.setMusicTime(MusicTime::msecTime2LabelJustified(cNode.toElement().text().toULongLong()));
+                song.setMusicPlayTime(MusicTime::msecTime2LabelJustified(cNode.toElement().text().toULongLong()));
             }
             else if(cNode.nodeName() == "FileName")
             {
@@ -570,7 +570,7 @@ void MusicPlayListManager::readM3UList(const QString &path, MusicSongItems &item
             else if(str.startsWith("#TTKTIT:"))
             {
                 str = str.remove("#TTKTIT:");
-                QStringList dds = str.split(STRING_SPLITER);
+                QStringList dds = str.split(TTK_STR_SPLITER);
                 if(dds.count() == 3)
                 {
                     item.m_itemIndex = dds[0].toInt();
@@ -581,7 +581,7 @@ void MusicPlayListManager::readM3UList(const QString &path, MusicSongItems &item
             else if(str.startsWith("#TTKINF:"))
             {
                 str = str.remove("#TTKINF:");
-                QStringList dds = str.split(STRING_SPLITER);
+                QStringList dds = str.split(TTK_STR_SPLITER);
                 if(dds.count() == 4)
                 {
                     item.m_songs << MusicSong(dds[3], dds[0].toInt(), dds[2], dds[1]);
@@ -610,12 +610,12 @@ void MusicPlayListManager::writeM3UList(const QString &path, const MusicSongItem
     QStringList data;
     data << QString("#TTKM3U");
     data << QString("#TTKNAME:%1").arg(item.m_itemName);
-    data << QString("#TTKTIT:%2%1%3%1%4").arg(STRING_SPLITER).arg(item.m_itemIndex)
+    data << QString("#TTKTIT:%2%1%3%1%4").arg(TTK_STR_SPLITER).arg(item.m_itemIndex)
                                          .arg(item.m_sort.m_index).arg(item.m_sort.m_sortType);
     foreach(const MusicSong &song, item.m_songs)
     {
-        data.append(QString("#TTKINF:%2%1%3%1%4%1%5").arg(STRING_SPLITER).arg(song.getMusicPlayCount())
-                                                     .arg(song.getMusicName()).arg(song.getMusicTime())
+        data.append(QString("#TTKINF:%2%1%3%1%4%1%5").arg(TTK_STR_SPLITER).arg(song.getMusicPlayCount())
+                                                     .arg(song.getMusicName()).arg(song.getMusicPlayTime())
                                                      .arg(song.getMusicPath()));
         data.append(song.getMusicPath());
     }
@@ -657,7 +657,7 @@ void MusicPlayListManager::readPLSList(const QString &path, MusicSongItems &item
                 else if(str.startsWith("#TTKTIT:"))
                 {
                     str = str.remove("#TTKTIT:");
-                    QStringList dds = str.split(STRING_SPLITER);
+                    QStringList dds = str.split(TTK_STR_SPLITER);
                     if(dds.count() == 3)
                     {
                         item.m_itemIndex = dds[0].toInt();
@@ -668,7 +668,7 @@ void MusicPlayListManager::readPLSList(const QString &path, MusicSongItems &item
                 else if(str.startsWith("#TTKINF:"))
                 {
                     str = str.remove("#TTKINF:");
-                    QStringList dds = str.split(STRING_SPLITER);
+                    QStringList dds = str.split(TTK_STR_SPLITER);
                     if(dds.count() == 4)
                     {
                         item.m_songs << MusicSong(dds[3], dds[0].toInt(), dds[2], dds[1]);
@@ -699,17 +699,17 @@ void MusicPlayListManager::writePLSList(const QString &path, const MusicSongItem
     data << QString("[playlist]");
     data << QString("#TTKPLS");
     data << QString("#TTKNAME:%1").arg(item.m_itemName);
-    data << QString("#TTKTIT:%2%1%3%1%4").arg(STRING_SPLITER).arg(item.m_itemIndex)
+    data << QString("#TTKTIT:%2%1%3%1%4").arg(TTK_STR_SPLITER).arg(item.m_itemIndex)
                                          .arg(item.m_sort.m_index).arg(item.m_sort.m_sortType);
     int count = 1;
     foreach(const MusicSong &song, item.m_songs)
     {
-        data.append(QString("#TTKINF:%2%1%3%1%4%1%5").arg(STRING_SPLITER).arg(song.getMusicPlayCount())
-                                                     .arg(song.getMusicName()).arg(song.getMusicTime())
+        data.append(QString("#TTKINF:%2%1%3%1%4%1%5").arg(TTK_STR_SPLITER).arg(song.getMusicPlayCount())
+                                                     .arg(song.getMusicName()).arg(song.getMusicPlayTime())
                                                      .arg(song.getMusicPath()));
         data.append(QString("File%1=%2").arg(count).arg(song.getMusicPath()));
         data.append(QString("Title%1=%2").arg(count).arg(song.getMusicName()));
-        data.append(QString("Length%1=%2").arg(count).arg(MusicTime::fromString(song.getMusicTime(), "mm:ss")
+        data.append(QString("Length%1=%2").arg(count).arg(MusicTime::fromString(song.getMusicPlayTime(), "mm:ss")
                                                           .getTimeStamp(MusicTime::All_Sec)));
         ++count;
     }

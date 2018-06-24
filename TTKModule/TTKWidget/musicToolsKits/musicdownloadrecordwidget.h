@@ -40,7 +40,7 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicDownloadRecord &record) override;
+    virtual void createItem(int index, const MusicSong &record) override;
 
 };
 

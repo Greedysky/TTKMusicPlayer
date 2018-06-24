@@ -8,7 +8,7 @@ MusicDownLoadQueryXMArtistListThread::MusicDownLoadQueryXMArtistListThread(QObje
     : MusicDownLoadQueryArtistListThread(parent)
 {
     m_pageSize = 100;
-    m_pageTotal = DEFAULT_LEVEL4;
+    m_pageTotal = DEFAULT_LEVEL_HIGHER;
     m_queryServer = "XiaMi";
 }
 
@@ -21,7 +21,7 @@ void MusicDownLoadQueryXMArtistListThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     QString catId = "class=1&type=1";
-    QStringList dds = m_searchText.split(STRING_SPLITER);
+    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];

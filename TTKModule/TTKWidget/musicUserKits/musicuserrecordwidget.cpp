@@ -36,7 +36,7 @@ QString MusicUserRecordWidget::avatarPixmapRender(const MusicUserUIDItem &item, 
 {
     QPixmap p(pix);
     QByteArray name(MusicUtils::Algorithm::md5(QString("%1%2%3").arg(item.m_uid)
-                                                                .arg(STRING_SPLITER)
+                                                                .arg(TTK_STR_SPLITER)
                                                                 .arg(item.m_server).toUtf8()));
     QString path = QString("%1%2").arg(AVATAR_DIR_FULL).arg(QString(name.toHex().toUpper()));
     p.save(path + JPG_FILE);

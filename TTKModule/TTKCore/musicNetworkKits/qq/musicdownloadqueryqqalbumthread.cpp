@@ -83,9 +83,9 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                 bool albumFlag = false;
                 value = value["data"].toMap();
                 MusicResultsItem info;
-                info.m_description = STRING_SPLITER +
-                                     value["lan"].toString() + STRING_SPLITER +
-                                     value["company_new"].toMap()["name"].toString() + STRING_SPLITER +
+                info.m_description = TTK_STR_SPLITER +
+                                     value["lan"].toString() + TTK_STR_SPLITER +
+                                     value["company_new"].toMap()["name"].toString() + TTK_STR_SPLITER +
                                      value["aDate"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["list"].toList();

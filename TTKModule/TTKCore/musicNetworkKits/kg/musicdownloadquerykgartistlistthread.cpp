@@ -5,8 +5,8 @@
 MusicDownLoadQueryKGArtistListThread::MusicDownLoadQueryKGArtistListThread(QObject *parent)
     : MusicDownLoadQueryArtistListThread(parent)
 {
-    m_pageSize = DEFAULT_LEVEL4;
-    m_pageTotal = DEFAULT_LEVEL4;
+    m_pageSize = DEFAULT_LEVEL_HIGHER;
+    m_pageTotal = DEFAULT_LEVEL_HIGHER;
     m_queryServer = "Kugou";
 }
 
@@ -20,7 +20,7 @@ void MusicDownLoadQueryKGArtistListThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     QString catId = "type=1&sextype=1";
     m_rawData["initial"] = "%E7%83%AD%E9%97%A8";
-    QStringList dds = m_searchText.split(STRING_SPLITER);
+    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];

@@ -373,7 +373,7 @@ void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
 
 void MusicSongSearchOnlineTableWidget::mediaAutionPlayError(int code)
 {
-    if(DEFAULT_LEVEL2 == code)
+    if(DEFAULT_LEVEL_NORMAL == code)
     {
         m_mediaPlayer->stop();
 

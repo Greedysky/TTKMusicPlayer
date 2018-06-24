@@ -32,7 +32,7 @@ void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
         {
             writeDomElementMutilText(pathDom, "value", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
                                      << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                     << MusicXmlAttribute("time", song.getMusicTime()), song.getMusicPath());
+                                     << MusicXmlAttribute("time", song.getMusicPlayTime()), song.getMusicPath());
         }
     }
 

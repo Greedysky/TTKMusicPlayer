@@ -223,6 +223,6 @@ void MusicArtistListFoundWidget::numberButtonClicked(int index)
     }
     m_categoryChanged = true;
 
-    QString v = QString("%1%2%3").arg(m_categoryId).arg(STRING_SPLITER).arg(index);
+    QString v = QString("%1%2%3").arg(m_categoryId).arg(TTK_STR_SPLITER).arg(index);
     m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, v);
 }

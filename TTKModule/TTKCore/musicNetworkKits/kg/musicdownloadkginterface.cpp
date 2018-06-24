@@ -178,9 +178,9 @@ void MusicDownLoadKGInterface::readFromMusicSongAlbumInfo(MusicResultsItem *info
         {
             value = value["data"].toMap();
             info->m_nickName = value["albumname"].toString();
-            info->m_description = info->m_nickName + STRING_SPLITER +
-                                  value["language"].toString() + STRING_SPLITER +
-                                  value["company"].toString() + STRING_SPLITER +
+            info->m_description = info->m_nickName + TTK_STR_SPLITER +
+                                  value["language"].toString() + TTK_STR_SPLITER +
+                                  value["company"].toString() + TTK_STR_SPLITER +
                                   value["publishtime"].toString().left(10);
 //            info->m_coverUrl = value["imgurl"].toString();
         }

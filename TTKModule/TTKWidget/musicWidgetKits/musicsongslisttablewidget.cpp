@@ -109,7 +109,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
         setItem(i, 3, item);
                           item = new QTableWidgetItem;
         setItem(i, 4, item);
-                          item = new QTableWidgetItem(songs[i].getMusicTime());
+                          item = new QTableWidgetItem(songs[i].getMusicPlayTime());
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 5, item);
@@ -241,7 +241,7 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
     setItem(m_playRowIndex, 4, new QTableWidgetItem);
 
-    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
+    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicPlayTime() );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 5, item);
@@ -309,7 +309,7 @@ void MusicSongsListTableWidget::listCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
+        it->setText((*m_musicSongs)[m_previousColorRow].getMusicPlayTime());
     }
 
     ///draw new table item state
@@ -554,7 +554,7 @@ void MusicSongsListTableWidget::musicSearchQuery(QAction *action)
 
     QString songName = getCurrentSongName();
     QStringList names(MusicUtils::String::splitString(songName));
-    switch(action->data().toInt() - DEFAULT_LEVEL2)
+    switch(action->data().toInt() - DEFAULT_LEVEL_NORMAL)
     {
         case 0 : MusicRightAreaWidget::instance()->musicSongSearchedFound(songName); break;
         SEARCH_ITEM_DEFINED(1, names);
@@ -827,7 +827,7 @@ void MusicSongsListTableWidget::startToDrag()
 
             QHeaderView *headerview = horizontalHeader();
             item(i, 1)->setText(MusicUtils::Widget::elidedText(font(), songs[i].getMusicName(), Qt::ElideRight, headerview->sectionSize(1) - 10));
-            item(i, 5)->setText(songs[i].getMusicTime());
+            item(i, 5)->setText(songs[i].getMusicPlayTime());
         }
 
         bool state;
@@ -845,8 +845,8 @@ void MusicSongsListTableWidget::createContextMenu(QMenu &menu)
     QStringList names(MusicUtils::String::splitString(songName));
     for(int i=1; i<=names.count(); ++i)
     {
-        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_LEVEL2);
+        menu.addAction(tr("search '%1'").arg(names[i - 1].trimmed()))->setData(i + DEFAULT_LEVEL_NORMAL);
     }
-    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_LEVEL2);
+    menu.addAction(tr("search '%1'").arg(songName))->setData(DEFAULT_LEVEL_NORMAL);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(musicSearchQuery(QAction*)));
 }

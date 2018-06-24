@@ -22,18 +22,6 @@
 #include "musicabstractxml.h"
 #include "musicnetworkdefines.h"
 
-/*! @brief The class of the local download record item.
- * @author Greedysky <greedysky@163.com>
- */
-typedef struct MUSIC_TOOL_EXPORT MusicDownloadRecord
-{
-    QString m_name;
-    QString m_path;
-    QString m_size;
-    QString m_time;
-}MusicDownloadRecord;
-TTK_DECLARE_LISTS(MusicDownloadRecord)
-
 /*! @brief The class of the download record manager.
  * @author Greedysky <greedysky@163.com>
  */
@@ -62,11 +50,11 @@ public:
     /*!
      * Write history download datas into xml file.
      */
-    void writeDownloadConfig(const MusicDownloadRecords &records);
+    void writeDownloadConfig(const MusicSongs &records);
     /*!
      * Read history download datas into xml file.
      */
-    void readDownloadConfig(MusicDownloadRecords &records);
+    void readDownloadConfig(MusicSongs &records);
 
 protected:
     /*!

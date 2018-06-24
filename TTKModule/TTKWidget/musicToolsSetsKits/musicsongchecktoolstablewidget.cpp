@@ -142,7 +142,7 @@ void MusicSongCheckToolsDuplicateTableWidget::createAllItems(const MusicSongChec
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.getMusicTime());
+        item->setText(song.m_song.getMusicPlayTime());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 2, item);
 
@@ -274,7 +274,7 @@ void MusicSongCheckToolsQualityTableWidget::createAllItems(const MusicSongCheckT
         setItem(i, 1, item);
 
                 item = new QTableWidgetItem;
-        item->setText(song.m_song.getMusicTime());
+        item->setText(song.m_song.getMusicPlayTime());
         item->setTextAlignment(Qt::AlignCenter);
         setItem(i, 2, item);
 

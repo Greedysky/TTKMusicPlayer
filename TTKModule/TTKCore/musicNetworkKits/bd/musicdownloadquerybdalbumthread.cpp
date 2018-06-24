@@ -84,9 +84,9 @@ void MusicDownLoadQueryBDAlbumThread::downLoadFinished()
                 QVariantMap albumInfo = value["albumInfo"].toMap();
                 MusicResultsItem info;
                 info.m_coverUrl = albumInfo["pic_small"].toString().replace("_90", "_500");
-                info.m_description = albumInfo["title"].toString() + STRING_SPLITER +
-                                     albumInfo["language"].toString() + STRING_SPLITER +
-                                     albumInfo["publishcompany"].toString() + STRING_SPLITER +
+                info.m_description = albumInfo["title"].toString() + TTK_STR_SPLITER +
+                                     albumInfo["language"].toString() + TTK_STR_SPLITER +
+                                     albumInfo["publishcompany"].toString() + TTK_STR_SPLITER +
                                      albumInfo["publishtime"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songlist"].toList();

@@ -30,14 +30,14 @@ MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
     M_CONNECTION_PTR->removeValue(getClassName());
 }
 
-void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord &record)
+void MusicDownloadRecordWidget::createItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
     setItem(index, 0, item);
 
                       item = new QTableWidgetItem;
-    item->setToolTip( record.m_name );
+    item->setToolTip( record.getMusicName() );
     item->setText(MusicUtils::Widget::elidedText(font(), item->toolTip(), Qt::ElideRight, headerview->sectionSize(1) - 20));
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
@@ -47,11 +47,9 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicDownloadRecord 
     item->setData(MUSIC_PROCS_ROLE, 100);
     setItem(index, 2, item);
 
-                      item = new QTableWidgetItem( record.m_size );
+                      item = new QTableWidgetItem( record.getMusicSizeStr() );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    item->setData(MUSIC_TIMES_ROLE, record.m_time);
+    item->setData(MUSIC_TIMES_ROLE, record.getMusicAddTimeStr());
     setItem(index, 3, item);
-
-    m_musicSongs->append(MusicSong(record.m_path));
 }

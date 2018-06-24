@@ -51,7 +51,7 @@ MusicSongRingtoneMaker::MusicSongRingtoneMaker(QWidget *parent)
     initControlParameter();
 
     m_startPos = 0;
-    m_stopPos = DEFAULT_LEVEL4;
+    m_stopPos = DEFAULT_LEVEL_HIGHER;
     m_playRingtone = false;
 
     m_ui->playSongButton->setEnabled(false);

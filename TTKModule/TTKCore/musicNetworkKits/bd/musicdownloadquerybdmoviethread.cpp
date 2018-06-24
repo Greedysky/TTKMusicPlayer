@@ -185,7 +185,7 @@ void MusicDownLoadQueryBDMovieThread::pageDownLoadFinished()
             QVariantMap value = data.toMap();
             if(value.contains("data") && value["errorCode"].toInt() == 22000)
             {
-                m_pageTotal = DEFAULT_LEVEL4;
+                m_pageTotal = DEFAULT_LEVEL_HIGHER;
                 value = value["data"].toMap();
                 QString html = value["html"].toString();
                 QRegExp regx("<img src=\\\"([^\"]+).*>.*/playmv\\/([^\"]+)\\\".*title=\\\"([^\"]+).*a-tj='");

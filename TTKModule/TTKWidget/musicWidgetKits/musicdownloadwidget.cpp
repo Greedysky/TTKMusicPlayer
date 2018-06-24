@@ -463,7 +463,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             QString downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
-            MusicDownloadRecords records;
+            MusicSongs records;
             MusicDownloadRecordConfigManager down(MusicNetwork::NormalDownload, this);
             if(!down.readDownloadXMLConfig())
             {
@@ -471,11 +471,11 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             }
 
             down.readDownloadConfig( records );
-            MusicDownloadRecord record;
-            record.m_name = musicSong;
-            record.m_path = QFileInfo(downloadName).absoluteFilePath();
-            record.m_size = musicAttr.m_size;
-            record.m_time = "-1";
+            MusicSong record;
+            record.setMusicName(musicSong);
+            record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
+            record.setMusicSizeStr(musicAttr.m_size);
+            record.setMusicAddTimeStr("-1");
             records << record;
             down.writeDownloadConfig( records );
             ////////////////////////////////////////////////
@@ -541,7 +541,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             QString downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
             ////////////////////////////////////////////////
-            QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
+            QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
             m_downloadTotal = urls.count();
             for(int ul=0; ul<m_downloadTotal; ++ul)
             {

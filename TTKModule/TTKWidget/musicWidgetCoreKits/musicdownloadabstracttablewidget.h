@@ -81,10 +81,9 @@ protected:
     /*!
      * Create item by index and name and size and time.
      */
-    virtual void createItem(int index, const MusicDownloadRecord &record) = 0;
+    virtual void createItem(int index, const MusicSong &record) = 0;
 
     MusicProgressBarDelegate *m_delegate;
-    MusicDownloadRecords m_musicRecords;
     MusicNetwork::RecordType m_type;
 
 };

@@ -90,9 +90,9 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                 {
                     info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_ALBUM_COVER_URL, false) + info.m_coverUrl;
                 }
-                info.m_description = albumName + STRING_SPLITER +
-                                     value["lang"].toString() + STRING_SPLITER +
-                                     value["company"].toString() + STRING_SPLITER +
+                info.m_description = albumName + TTK_STR_SPLITER +
+                                     value["lang"].toString() + TTK_STR_SPLITER +
+                                     value["company"].toString() + TTK_STR_SPLITER +
                                      value["pub"].toString();
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["musiclist"].toList();

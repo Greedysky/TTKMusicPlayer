@@ -18,7 +18,7 @@ void MusicDownLoadQueryBDArtistListThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     QString catId = "area=1&sex=1", initial = "%E7%83%AD%E9%97%A8";
-    QStringList dds = m_searchText.split(STRING_SPLITER);
+    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];

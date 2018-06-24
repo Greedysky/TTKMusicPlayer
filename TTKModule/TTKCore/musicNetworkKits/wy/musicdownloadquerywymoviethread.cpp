@@ -301,13 +301,13 @@ void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(int id)
         return;
     }
 
-    m_pageTotal = DEFAULT_LEVEL4;
+    m_pageTotal = DEFAULT_LEVEL_HIGHER;
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL4));
+               MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL_HIGHER));
     if(!m_manager || m_stateCode != MusicNetwork::Init) return;
     setSslConfiguration(&request);
 

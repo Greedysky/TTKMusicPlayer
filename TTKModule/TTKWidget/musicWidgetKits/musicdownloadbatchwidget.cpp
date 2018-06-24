@@ -170,7 +170,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     QString downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
     ////////////////////////////////////////////////
-    MusicDownloadRecords records;
+    MusicSongs records;
     MusicDownloadRecordConfigManager down(MusicNetwork::NormalDownload, this);
     if(!down.readDownloadXMLConfig())
     {
@@ -178,11 +178,11 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     }
 
     down.readDownloadConfig( records );
-    MusicDownloadRecord record;
-    record.m_name = musicSong;
-    record.m_path = QFileInfo(downloadName).absoluteFilePath();
-    record.m_size = musicAttr.m_size;
-    record.m_time = "-1";
+    MusicSong record;
+    record.setMusicName(musicSong);
+    record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
+    record.setMusicSizeStr(musicAttr.m_size);
+    record.setMusicAddTimeStr("-1");
     records << record;
     down.writeDownloadConfig( records );
     ////////////////////////////////////////////////
@@ -225,7 +225,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     QString downloadPrefix = MOVIE_DIR_FULL;
     ////////////////////////////////////////////////
-    QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(STRING_SPLITER) : QStringList(musicAttr.m_url);
+    QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
     for(int ul=0; ul<urls.count(); ++ul)
     {
         ////////////////////////////////////////////////

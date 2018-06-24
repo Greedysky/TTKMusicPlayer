@@ -86,7 +86,7 @@ void MusicSongsListPlayedTableWidget::updateSongsFileName(const MusicSongs &song
                           item = new QTableWidgetItem;
         setItem(i, 3, item);
 
-                          item = new QTableWidgetItem(songs[i].getMusicTime());
+                          item = new QTableWidgetItem(songs[i].getMusicPlayTime());
         item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
         item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
         setItem(i, 4, item);
@@ -177,7 +177,7 @@ void MusicSongsListPlayedTableWidget::replacePlayWidgetRow()
     setItem(m_playRowIndex, 2, new QTableWidgetItem);
     setItem(m_playRowIndex, 3, new QTableWidgetItem);
 
-    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicTime() );
+    item = new QTableWidgetItem( (*m_musicSongs)[m_playRowIndex].getMusicPlayTime() );
     item->setTextColor(QColor(MusicUIObject::MColorStyle12_S));
     item->setTextAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     setItem(m_playRowIndex, 4, item);
@@ -207,7 +207,7 @@ void MusicSongsListPlayedTableWidget::listCellEntered(int row, int column)
     if(it)
     {
         it->setIcon(QIcon());
-        it->setText((*m_musicSongs)[m_previousColorRow].getMusicTime());
+        it->setText((*m_musicSongs)[m_previousColorRow].getMusicPlayTime());
     }
 
     ///draw new table item state

@@ -87,7 +87,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
     {
         if(attr.m_bitrate == bitrate)
         {
-            return attr.m_multiPart ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+            return attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         }
     }
     return QString();
@@ -99,7 +99,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
     emit getMusicMvInfo(data);
     foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
-        QString aurl = attr.m_multiPart ? attr.m_url.split(STRING_SPLITER).first() : attr.m_url;
+        QString aurl = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
         if(aurl == url)
         {
             return attr.m_bitrate;

@@ -88,9 +88,9 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                 QVariantMap albumValue = value["album"].toMap();
                 MusicResultsItem info;
                 info.m_coverUrl = albumValue["picUrl"].toString();
-                info.m_description = albumValue["name"].toString() + STRING_SPLITER +
-                                     albumValue["language"].toString() + STRING_SPLITER +
-                                     albumValue["company"].toString() + STRING_SPLITER +
+                info.m_description = albumValue["name"].toString() + TTK_STR_SPLITER +
+                                     albumValue["language"].toString() + TTK_STR_SPLITER +
+                                     albumValue["company"].toString() + TTK_STR_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString("yyyy-MM-dd");
                 ////////////////////////////////////////////////////////////
                 QVariantList datas = value["songs"].toList();

@@ -181,14 +181,6 @@
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       690
 ///////////////////////////////////////
-#define DEFAULT_LEVEL0          -1
-#define DEFAULT_LEVEL1          0
-#define DEFAULT_LEVEL2          -999
-#define DEFAULT_LEVEL3           999
-#define DEFAULT_LEVEL4          9999
-///////////////////////////////////////
-#define STRING_SPLITER          "*|||*"
-///////////////////////////////////////
 
 
 /*! @brief The namespace of the application object.

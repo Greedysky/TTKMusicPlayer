@@ -264,6 +264,6 @@ void MusicCoreMPlayer::checkTimerout()
     if(m_process && m_process->state() == QProcess::NotRunning)
     {
         m_checkTimer.stop();
-        emit finished(DEFAULT_LEVEL2);
+        emit finished(DEFAULT_LEVEL_NORMAL);
     }
 }

@@ -55,7 +55,7 @@ public:
     /*!
      * Get music datas from container.
      */
-    inline const MusicSongItems& getMusicLists() const  { return m_songItems;}
+    inline const MusicSongItems& getMusicLists() const  { return m_songItems; }
     /*!
      * Input orther imported music datas into container.
      */
