@@ -14,6 +14,7 @@ MusicSongsListAbstractTableWidget::MusicSongsListAbstractTableWidget(QWidget *pa
 {
     m_playRowIndex = 0;
     m_parentToolIndex = -1;
+    m_musicSongs = nullptr;
     m_hasParentToolIndex = true;
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -76,7 +77,7 @@ void MusicSongsListAbstractTableWidget::setDeleteItemAll()
     setDeleteItemAt();
 
     bool state = false;
-    emit isCurrentIndexs(state);
+    emit isCurrentIndex(state);
     if(rowCount() == 0 && state)
     {
         MusicApplication::instance()->musicPlayIndex(-1);

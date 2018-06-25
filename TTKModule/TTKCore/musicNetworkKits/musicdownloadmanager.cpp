@@ -36,7 +36,7 @@ void MusicDownLoadManager::connectMusicDownload(const MusicDownLoadPair &pair)
     QString className;
     switch(pair.m_type)
     {
-        case MusicNetwork::NormalDownload : className = MusicDownloadRecordWidget::getClassName(); break;
+        case MusicNetwork::NormalDownload : className = MusicDownloadRecordTableWidget::getClassName(); break;
         case MusicNetwork::CloudDownload : className = MusicCloudDownloadTableWidget::getClassName(); break;
         case MusicNetwork::CloudUpload : className = MusicCloudUploadTableWidget::getClassName(); break;
         default: break;

@@ -19,27 +19,12 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicclouddataitem.h"
+#include "musicsong.h"
 #include "musicfunctiontoolboxwidget.h"
 
 class MusicCloudUploadTableWidget;
 class MusicCloudDownloadTableWidget;
-
-/*! @brief The class of the cloud tool box widget item.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_TOOL_EXPORT MusicCloudToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicCloudToolBoxWidgetItem)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicCloudToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
-
-};
-
+class MusicDownloadAbstractTableWidget;
 
 /*! @brief The class of the cloud tool box widget.
  * @author Greedysky <greedysky@163.com>
@@ -56,12 +41,23 @@ public:
 
     virtual ~MusicCloudToolBoxWidget();
 
+public Q_SLOTS:
+    /*!
+     * Update item title.
+     */
+    void updateItemTitle(int index);
+
 protected:
+    /*!
+     * Create widget item.
+     */
+    void createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index);
     /*!
      * Create item.
      */
     virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text);
 
+    MusicSongItems m_songItems;
     MusicCloudUploadTableWidget *m_uploadTable;
     MusicCloudDownloadTableWidget *m_downloadTable;
 

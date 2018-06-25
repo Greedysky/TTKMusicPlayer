@@ -3,6 +3,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
+#define HOST_URL    "ellnUHg0Um83L2x1U29LbWw1UjFtandwRHNIRUxPcnQ="
 #define REFER_URL   "YnZJaDZBVEFHSllTWlRualJFblR3U0NkYitRd1N1ZmNKaDZFQUdQVFRKND0="
 
 MusicQQTextDownLoadThread::MusicQQTextDownLoadThread(const QString &url, const QString &save,
@@ -24,7 +25,7 @@ void MusicQQTextDownLoadThread::startToDownload()
             QNetworkRequest request;
             request.setUrl(m_url);
             request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.setRawHeader("Host", "lyric.music.qq.com");
+            request.setRawHeader("Host", MusicUtils::Algorithm::mdII(HOST_URL, false).toUtf8());
             request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
 #ifndef QT_NO_SSL
             connect(m_manager, SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)), SLOT(sslErrors(QNetworkReply*,QList<QSslError>)));

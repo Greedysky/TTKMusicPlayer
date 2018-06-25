@@ -9,7 +9,6 @@
 MusicDownloadAbstractTableWidget::MusicDownloadAbstractTableWidget(QWidget *parent)
     : MusicSongsListAbstractTableWidget(parent)
 {
-    m_musicSongs = new MusicSongs;
     m_delegate = new MusicProgressBarDelegate(this);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -25,12 +24,12 @@ MusicDownloadAbstractTableWidget::~MusicDownloadAbstractTableWidget()
     xml.writeDownloadConfig(*m_musicSongs);
     clear();
 
-    delete m_musicSongs;
     delete m_delegate;
 }
 
-void MusicDownloadAbstractTableWidget::musicSongsFileName()
+void MusicDownloadAbstractTableWidget::updateSongsFileName(const MusicSongs &songs)
 {
+    Q_UNUSED(songs);
     MusicDownloadRecordConfigManager xml(m_type, this);
     if(!xml.readDownloadXMLConfig())
     {
@@ -78,6 +77,7 @@ void MusicDownloadAbstractTableWidget::setDeleteItemAt()
     }
     //just fix table widget size hint
     setFixedHeight( allRowsHeight() );
+    emit updateItemTitle(m_parentToolIndex);
 }
 
 void MusicDownloadAbstractTableWidget::listCellClicked(int row, int column)
@@ -124,6 +124,7 @@ void MusicDownloadAbstractTableWidget::createDownloadItem(const QString &name, q
     m_musicSongs->append(record);
 
     createItem(rowCount() - 1, record);
+    emit updateItemTitle(m_parentToolIndex);
 }
 
 void MusicDownloadAbstractTableWidget::contextMenuEvent(QContextMenuEvent *event)

@@ -487,7 +487,7 @@ void MusicSongsListTableWidget::showTimeOut()
         m_musicSongsInfoWidget->setMusicSongInformation( song );
         m_musicSongsInfoWidget->move(mapToGlobal(QPoint(width(), 0)).x() + 8, QCursor::pos().y());
         bool state;
-        emit isCurrentIndexs(state);
+        emit isCurrentIndex(state);
         m_musicSongsInfoWidget->setVisible( state ? (m_musicSongsPlayWidget &&
                                             !m_musicSongsPlayWidget->getItemRenameState()) : true);
     }
@@ -831,7 +831,7 @@ void MusicSongsListTableWidget::startToDrag()
         }
 
         bool state;
-        emit isCurrentIndexs(state);
+        emit isCurrentIndex(state);
         if(state)
         {
             selectRow(index);

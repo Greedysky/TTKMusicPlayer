@@ -184,7 +184,7 @@ void MusicLeftAreaWidget::musicStackedMyDownWidgetChanged()
     m_currentIndex = 4;
 
     delete m_stackedWidget;
-    m_stackedWidget = new MusicDownloadRecordWidget(this);
+    m_stackedWidget = new MusicDownloadToolBoxWidget(this);
     m_ui->songsContainer->insertWidget(1, m_stackedWidget);
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);

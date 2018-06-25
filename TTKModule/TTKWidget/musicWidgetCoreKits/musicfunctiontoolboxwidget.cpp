@@ -280,6 +280,16 @@ void MusicFunctionToolBoxWidgetItem::contextMenuEvent(QContextMenuEvent *event)
 
 
 
+MusicNormalToolBoxWidgetItem::MusicNormalToolBoxWidgetItem(int index, const QString &text, QWidget *parent)
+    : MusicFunctionToolBoxWidgetItem(parent)
+{
+    m_topWidget = new MusicFunctionToolBoxTopWidget(index, text, this);
+
+    init();
+}
+
+
+
 MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
     : QWidget(parent)
 {

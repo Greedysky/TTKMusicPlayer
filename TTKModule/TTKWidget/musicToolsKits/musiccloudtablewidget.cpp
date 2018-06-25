@@ -27,7 +27,6 @@ MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     setFixedHeight(0);
-    musicSongsFileName();
 }
 
 MusicCloudDownloadTableWidget::~MusicCloudDownloadTableWidget()
@@ -81,7 +80,6 @@ MusicCloudUploadTableWidget::MusicCloudUploadTableWidget(QWidget *parent)
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
 
     setFixedHeight(0);
-    musicSongsFileName();
 }
 
 MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()

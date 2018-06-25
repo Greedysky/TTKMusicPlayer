@@ -180,6 +180,22 @@ protected:
 };
 
 
+/*! @brief The class of the normal tool box widget item.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_TOOL_EXPORT MusicNormalToolBoxWidgetItem : public MusicFunctionToolBoxWidgetItem
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicNormalToolBoxWidgetItem)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicNormalToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+
+};
+
+
 class QScrollArea;
 
 /*! @brief The class of the tool box widget item.

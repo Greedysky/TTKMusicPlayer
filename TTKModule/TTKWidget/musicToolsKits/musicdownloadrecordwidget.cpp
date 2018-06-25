@@ -3,7 +3,7 @@
 #include "musicwidgetheaders.h"
 #include "musicconnectionpool.h"
 
-MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
+MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     : MusicDownloadAbstractTableWidget(parent)
 {
     M_CONNECTION_PTR->setValue(getClassName(), this);
@@ -21,16 +21,14 @@ MusicDownloadRecordWidget::MusicDownloadRecordWidget(QWidget *parent)
 
     MusicUtils::Widget::setTransparent(this, 0);
     verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
-
-    musicSongsFileName();
 }
 
-MusicDownloadRecordWidget::~MusicDownloadRecordWidget()
+MusicDownloadRecordTableWidget::~MusicDownloadRecordTableWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
 }
 
-void MusicDownloadRecordWidget::createItem(int index, const MusicSong &record)
+void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &record)
 {
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;
@@ -52,4 +50,51 @@ void MusicDownloadRecordWidget::createItem(int index, const MusicSong &record)
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     item->setData(MUSIC_TIMES_ROLE, record.getMusicAddTimeStr());
     setItem(index, 3, item);
+}
+
+
+
+MusicDownloadToolBoxWidget::MusicDownloadToolBoxWidget(QWidget *parent)
+    : MusicFunctionToolBoxWidget(parent)
+{
+    m_downloadTable = new MusicDownloadRecordTableWidget(this);
+    m_songItems << MusicSongItem();
+    createWidgetItem(m_downloadTable, tr("Download"), 0);
+
+    connect(m_downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
+}
+
+MusicDownloadToolBoxWidget::~MusicDownloadToolBoxWidget()
+{
+    delete m_downloadTable;
+}
+
+void MusicDownloadToolBoxWidget::updateItemTitle(int index)
+{
+    if(index == 0)
+    {
+        MusicSongItem *item = &m_songItems[index];
+        setTitle(m_downloadTable, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+    }
+}
+
+void MusicDownloadToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index)
+{
+    MusicSongItem *item = &m_songItems.last();
+    item->m_itemName = text;
+    item->m_itemIndex = index;
+    addItem(w, item->m_itemName);
+
+    w->setParentToolIndex(item->m_itemIndex);
+    w->setSongsFileName(&item->m_songs);
+
+    setTitle(w, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+}
+
+MusicFunctionToolBoxWidgetItem *MusicDownloadToolBoxWidget::createItem(QWidget *item, const QString &text)
+{
+    MusicFunctionToolBoxWidgetItem *it = new MusicNormalToolBoxWidgetItem(m_itemIndexRaise, text, this);
+    it->addItem(item);
+    it->setItemExpand(true);
+    return it;
 }

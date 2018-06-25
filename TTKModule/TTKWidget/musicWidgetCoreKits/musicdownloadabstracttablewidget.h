@@ -39,13 +39,17 @@ public:
     /*!
      * Read all config from file and insert items.
      */
-    void musicSongsFileName();
+    virtual void updateSongsFileName(const MusicSongs &songs) override;
 
 Q_SIGNALS:
     /*!
      * Add current selected song to play lists.
      */
     void addSongToPlay(const QStringList &list);
+    /*!
+     * Update item title.
+     */
+    void updateItemTitle(int index);
 
 public Q_SLOTS:
     /*!

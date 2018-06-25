@@ -201,7 +201,7 @@ public Q_SLOTS:
     /*!
      * Check is current play stack widget.
      */
-    void isCurrentIndexs(bool &state);
+    void isCurrentIndex(bool &state);
     /*!
      * Check current list is searched or not.
      */

@@ -755,7 +755,7 @@ void MusicSongsSummariziedWidget::setMusicIndexSwaped(int before, int after, int
     }
 }
 
-void MusicSongsSummariziedWidget::isCurrentIndexs(bool &state)
+void MusicSongsSummariziedWidget::isCurrentIndex(bool &state)
 {
     int cIndex = m_toolDeleteChanged ? m_currentDeleteIndex : m_currentIndex;
     state = ( cIndex == m_currentPlayToolIndex );
@@ -982,7 +982,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
     connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
     connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
-    connect(w, SIGNAL(isCurrentIndexs(bool&)), SLOT(isCurrentIndexs(bool&)));
+    connect(w, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
     connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
     connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));

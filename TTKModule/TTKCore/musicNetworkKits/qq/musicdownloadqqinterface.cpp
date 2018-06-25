@@ -12,6 +12,8 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
+#define REFER_URL   "M25YVkpIeHVOaVFRY0k3dmFWOFJsOE1tU013ZWV0Sy8="
+
 void MusicDownLoadQQInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
                                                           const QVariantMap &key, int bitrate)
 {
@@ -240,6 +242,7 @@ QString MusicDownLoadQQInterface::getMusicKey(const QString &time)
     QNetworkRequest request;
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();

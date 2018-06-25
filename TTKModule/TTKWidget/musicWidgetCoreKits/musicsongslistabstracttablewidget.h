@@ -72,7 +72,7 @@ Q_SIGNALS:
     /*!
      * Check is current play stack widget.
      */
-    void isCurrentIndexs(bool &state);
+    void isCurrentIndex(bool &state);
 
 public Q_SLOTS:
     /*!
