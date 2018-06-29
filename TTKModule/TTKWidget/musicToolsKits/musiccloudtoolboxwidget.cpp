@@ -4,36 +4,35 @@
 MusicCloudToolBoxWidget::MusicCloudToolBoxWidget(QWidget *parent)
     : MusicFunctionToolBoxWidget(parent)
 {
-    m_uploadTable = new MusicCloudUploadTableWidget(this);
+    MusicCloudUploadTableWidget *uploadTable = new MusicCloudUploadTableWidget(this);
     m_songItems << MusicSongItem();
-    createWidgetItem(m_uploadTable, tr("UploadFailed"), 0);
+    createWidgetItem(uploadTable, tr("UploadFailed"), 0);
 
-    m_downloadTable = new MusicCloudDownloadTableWidget(this);
+    MusicCloudDownloadTableWidget *downloadTable = new MusicCloudDownloadTableWidget(this);
     m_songItems << MusicSongItem();
-    createWidgetItem(m_downloadTable, tr("Download"), 1);
+    createWidgetItem(downloadTable, tr("Download"), 1);
 
-    connect(m_uploadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
-    connect(m_downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
+    connect(uploadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
+    connect(downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
 }
 
 MusicCloudToolBoxWidget::~MusicCloudToolBoxWidget()
 {
-    delete m_uploadTable;
-    delete m_downloadTable;
+    while(!m_songItems.isEmpty())
+    {
+        delete m_songItems.takeLast().m_itemObject;
+    }
 }
 
 void MusicCloudToolBoxWidget::updateItemTitle(int index)
 {
-    if(index == 0)
+    if(index < 0 || index >= m_songItems.count())
     {
-        MusicSongItem *item = &m_songItems[index];
-        setTitle(m_uploadTable, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        return;
     }
-    else if(index == 1)
-    {
-        MusicSongItem *item = &m_songItems[index];
-        setTitle(m_downloadTable, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
-    }
+
+    MusicSongItem *item = &m_songItems[index];
+    setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 
 void MusicCloudToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidget *w, const QString &text, int index)
@@ -41,6 +40,7 @@ void MusicCloudToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidget 
     MusicSongItem *item = &m_songItems.last();
     item->m_itemName = text;
     item->m_itemIndex = index;
+    item->m_itemObject = w;
     addItem(w, item->m_itemName);
 
     w->setParentToolIndex(item->m_itemIndex);

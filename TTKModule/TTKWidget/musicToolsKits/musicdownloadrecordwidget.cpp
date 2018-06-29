@@ -57,16 +57,19 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
 MusicDownloadToolBoxWidget::MusicDownloadToolBoxWidget(QWidget *parent)
     : MusicFunctionToolBoxWidget(parent)
 {
-    m_downloadTable = new MusicDownloadRecordTableWidget(this);
+    MusicDownloadRecordTableWidget *downloadTable = new MusicDownloadRecordTableWidget(this);
     m_songItems << MusicSongItem();
-    createWidgetItem(m_downloadTable, tr("Download"), 0);
+    createWidgetItem(downloadTable, tr("Download"), 0);
 
-    connect(m_downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
+    connect(downloadTable, SIGNAL(updateItemTitle(int)), SLOT(updateItemTitle(int)));
 }
 
 MusicDownloadToolBoxWidget::~MusicDownloadToolBoxWidget()
 {
-    delete m_downloadTable;
+    while(!m_songItems.isEmpty())
+    {
+        delete m_songItems.takeLast().m_itemObject;
+    }
 }
 
 void MusicDownloadToolBoxWidget::updateItemTitle(int index)
@@ -74,7 +77,7 @@ void MusicDownloadToolBoxWidget::updateItemTitle(int index)
     if(index == 0)
     {
         MusicSongItem *item = &m_songItems[index];
-        setTitle(m_downloadTable, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
+        setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
     }
 }
 
@@ -83,6 +86,7 @@ void MusicDownloadToolBoxWidget::createWidgetItem(MusicDownloadAbstractTableWidg
     MusicSongItem *item = &m_songItems.last();
     item->m_itemName = text;
     item->m_itemIndex = index;
+    item->m_itemObject = w;
     addItem(w, item->m_itemName);
 
     w->setParentToolIndex(item->m_itemIndex);

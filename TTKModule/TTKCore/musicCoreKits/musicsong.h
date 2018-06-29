@@ -181,7 +181,7 @@ protected:
 TTK_DECLARE_LISTS(MusicSong)
 
 ////////////////////////////////////////////////////////
-class MusicSongsListTableWidget;
+class MusicSongsListAbstractTableWidget;
 
 /*! @brief The class of the music song sort tag.
  * @author Greedysky <greedysky@163.com>
@@ -207,7 +207,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
     QString m_itemName;
     MusicSort m_sort;
     MusicSongs m_songs;
-    MusicSongsListTableWidget* m_itemObject;
+    MusicSongsListAbstractTableWidget* m_itemObject;
 
     MusicSongItem()
     {

@@ -58,8 +58,6 @@ protected:
     virtual MusicFunctionToolBoxWidgetItem* createItem(QWidget *item, const QString &text);
 
     MusicSongItems m_songItems;
-    MusicCloudUploadTableWidget *m_uploadTable;
-    MusicCloudDownloadTableWidget *m_downloadTable;
 
 };
 
