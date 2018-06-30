@@ -292,11 +292,13 @@ void MusicRightAreaWidget::resizeWindow()
     {
         MObject_cast(MusicWebMVRadioFoundWidget*, m_stackedFuncWidget)->resizeWindow();
     }
-    else if(MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
+
+    if(MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget))
     {
         MObject_cast(MusicCloudManagerWidget*, m_stackedAutoWidget)->resizeWindow();
     }
-    else if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
+
+    if(m_videoPlayerWidget && !m_videoPlayerWidget->isPopup())
     {
         m_videoPlayerWidget->resizeWindow();
     }
