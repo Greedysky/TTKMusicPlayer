@@ -20,7 +20,8 @@ MusicCloudToolBoxWidget::~MusicCloudToolBoxWidget()
 {
     while(!m_songItems.isEmpty())
     {
-        delete m_songItems.takeLast().m_itemObject;
+        delete m_songItems.last().m_itemObject;
+        m_songItems.pop_back();
     }
 }
 
