@@ -22,6 +22,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_HEADERS
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.h
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.h
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
@@ -46,5 +47,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_TOOLS_KITS_SOURCES
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musicdownloadrecordwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudfileinformationwidget.cpp
     ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtoolboxwidget.cpp
+    ${MUSIC_WIDGET_TOOLSWIDGET_DIR}/musiccloudtablewidget.cpp
   )
   
