@@ -4,14 +4,14 @@ MusicNetworkAbstract::MusicNetworkAbstract(QObject *parent)
     : QObject(parent)
 {
     m_interrupt = false;
-    m_stateCode = MusicNetwork::Init;
+    m_stateCode = MusicObject::NetworkInit;
     m_reply = nullptr;
     m_manager = nullptr;
 }
 
 MusicNetworkAbstract::~MusicNetworkAbstract()
 {
-    m_stateCode = MusicNetwork::Success;
+    m_stateCode = MusicObject::NetworkSuccess;
     deleteAll();
 }
 

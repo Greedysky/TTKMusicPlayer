@@ -37,11 +37,11 @@ void MusicDownLoadQueryWYPlaylistThread::startToPage(int offset)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_PL_N_URL, false),
                MusicUtils::Algorithm::mdII(WY_PL_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -60,11 +60,11 @@ void MusicDownLoadQueryWYPlaylistThread::startToSearch(const QString &playlist)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
                MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(playlist));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
@@ -82,11 +82,11 @@ void MusicDownLoadQueryWYPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
                MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(item.m_id));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
@@ -260,9 +260,9 @@ void MusicDownLoadQueryWYPlaylistThread::getDetailsFinished()
                     musicInfo.m_discNumber = value["cd"].toString();
                     musicInfo.m_trackNumber = value["no"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

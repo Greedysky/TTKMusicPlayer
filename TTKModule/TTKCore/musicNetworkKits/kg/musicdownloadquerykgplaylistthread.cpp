@@ -239,15 +239,15 @@ void MusicDownLoadQueryKGPlaylistThread::getDetailsFinished()
                     musicInfo.m_trackNumber = "0";
 
                     MusicResultsItem albumInfo;
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAlbumInfo(&albumInfo, musicInfo.m_albumId);
                     musicInfo.m_albumName = albumInfo.m_nickName;
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     readFromMusicSongLrcAndPic(&musicInfo);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

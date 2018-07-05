@@ -10,18 +10,18 @@ MusicDJRadioProgramThread::MusicDJRadioProgramThread(QObject *parent)
 
 }
 
-void MusicDJRadioProgramThread::startToDownload(Program::Type type)
+void MusicDJRadioProgramThread::startToDownload(MusicObject::Program type)
 {
     deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
-    QByteArray parameter = makeTokenQueryUrl(&request, type == Program::Recommed ?
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    QByteArray parameter = makeTokenQueryUrl(&request, type == MusicObject::Recommed ?
                MusicUtils::Algorithm::mdII(DJ_RECOMMEND_N_URL, false):
                MusicUtils::Algorithm::mdII(DJ_HOT_N_URL, false),
                MusicUtils::Algorithm::mdII(DJ_HOT_NDT_URL, false));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);

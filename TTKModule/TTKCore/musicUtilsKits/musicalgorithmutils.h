@@ -27,7 +27,7 @@
 #define ALG_LOW_KEY         "123asd"
 #define ALG_UA_KEY          "ua11.25.17"
 
-/*! @brief The class of the utils algorithm object namespace.
+/*! @brief The namespace of the utils algorithm.
  * @author Greedysky <greedysky@163.com>
  */
 namespace MusicUtils

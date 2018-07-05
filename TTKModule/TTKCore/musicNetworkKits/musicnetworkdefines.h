@@ -19,17 +19,17 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-/*! @brief The class of abstract downloading data.
+/*! @brief The namespace of the network data.
  * @author Greedysky <greedysky@163.com>
  */
-namespace MusicNetwork
+namespace MusicObject
 {
-    enum StateCode
+    enum NetworkCode
     {
-        Init = 0xFFFFF00,   /*!< Network state init*/
-        Success = 0,        /*!< Network state success*/
-        Error = -1,         /*!< Network state error*/
-        UnKnow = 2,         /*!< Network state unknow*/
+        NetworkInit = 0xFFFFF00,   /*!< Network state init*/
+        NetworkSuccess = 0,        /*!< Network state success*/
+        NetworkError = -1,         /*!< Network state error*/
+        NetworkUnKnow = 2,         /*!< Network state unknow*/
     };
 
     enum DownloadType
@@ -44,10 +44,10 @@ namespace MusicNetwork
 
     enum RecordType
     {
-        Null,               /*!< None File Config*/
-        NormalDownload,     /*!< Local Download File Config*/
-        CloudDownload,      /*!< Cloud Download File Config*/
-        CloudUpload         /*!< Cloud Upload Failed File Config*/
+        RecordNull,               /*!< None File Config*/
+        RecordNormalDownload,     /*!< Local Download File Config*/
+        RecordCloudDownload,      /*!< Cloud Download File Config*/
+        RecordCloudUpload         /*!< Cloud Upload Failed File Config*/
     };
 
 }

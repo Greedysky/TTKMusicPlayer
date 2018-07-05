@@ -100,7 +100,7 @@ protected:
     void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m = QSslSocket::VerifyNone);
 
     QVariantMap m_rawData;
-    MusicNetwork::StateCode m_stateCode;
+    MusicObject::NetworkCode m_stateCode;
     volatile bool m_interrupt;
     QNetworkReply *m_reply;
     QNetworkAccessManager *m_manager;

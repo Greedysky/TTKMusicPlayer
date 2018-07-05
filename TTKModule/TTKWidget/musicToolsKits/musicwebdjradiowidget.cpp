@@ -33,7 +33,7 @@ MusicWebDJRadioProgramTableWidget::~MusicWebDJRadioProgramTableWidget()
     delete m_programThread;
 }
 
-void MusicWebDJRadioProgramTableWidget::init(Program::Type type)
+void MusicWebDJRadioProgramTableWidget::init(MusicObject::Program type)
 {
     m_programThread->startToDownload(type);
 }
@@ -142,7 +142,7 @@ void MusicWebDJRadioProgramTableWidget::downLoadFinished(const QByteArray &data,
 
 
 
-MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(Program::Type type, QWidget *parent)
+MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent)
     : QWidget(parent), m_type(type)
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -155,7 +155,7 @@ MusicWebDJRadioProgramWidget::MusicWebDJRadioProgramWidget(Program::Type type, Q
     topLayout->setContentsMargins(10, 20, 10, 0);
     top->setLayout(topLayout);
 
-    QLabel *label = new QLabel(type == Program::Recommed ? tr("Recommend") : tr("Program"), this);
+    QLabel *label = new QLabel(type == MusicObject::Recommed ? tr("Recommend") : tr("Program"), this);
     QFont font = label->font();
     font.setPixelSize(20);
     font.setBold(true);
@@ -254,7 +254,7 @@ void MusicWebDJRadioWidget::backToMainMenu()
 void MusicWebDJRadioWidget::createRecommendWidget()
 {
     delete m_recommendWidget;
-    m_recommendWidget = new MusicWebDJRadioProgramWidget(Program::Recommed, this);
+    m_recommendWidget = new MusicWebDJRadioProgramWidget(MusicObject::Recommed, this);
     m_recommendWidget->init();
     addWidget(m_recommendWidget);
     setCurrentWidget(m_recommendWidget);
@@ -263,7 +263,7 @@ void MusicWebDJRadioWidget::createRecommendWidget()
 void MusicWebDJRadioWidget::createProgramWidget()
 {
     delete m_programWidget;
-    m_programWidget = new MusicWebDJRadioProgramWidget(Program::Rank, this);
+    m_programWidget = new MusicWebDJRadioProgramWidget(MusicObject::Rank, this);
     m_programWidget->init();
     addWidget(m_programWidget);
     setCurrentWidget(m_programWidget);

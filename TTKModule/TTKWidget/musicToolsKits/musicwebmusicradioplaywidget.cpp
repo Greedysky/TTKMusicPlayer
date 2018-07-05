@@ -255,7 +255,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     if(!QFile::exists(name))
     {
         MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
-                                                   MusicNetwork::DownloadLrc, this);
+                                                   MusicObject::DownloadLrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         lrcDownload->startToDownload();
     }
@@ -268,7 +268,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     if(!QFile::exists(name))
     {
         MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name,
-                                                MusicNetwork::DownloadSmallBG, this);
+                                                MusicObject::DownloadSmallBG, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }

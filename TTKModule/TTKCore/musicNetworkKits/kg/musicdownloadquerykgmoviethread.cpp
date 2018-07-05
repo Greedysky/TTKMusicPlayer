@@ -120,9 +120,9 @@ void MusicDownLoadQueryKGMovieThread::downLoadFinished()
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
                     musicInfo.m_songId = value["mvhash"].toString();
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicMVAttribute(&musicInfo, false);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -221,11 +221,11 @@ void MusicDownLoadQueryKGMovieThread::singleDownLoadFinished()
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
     readFromMusicMVInfo(&musicInfo);
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
     readFromMusicMVAttribute(&musicInfo, true);
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
     if(!musicInfo.m_songAttrs.isEmpty())
     {

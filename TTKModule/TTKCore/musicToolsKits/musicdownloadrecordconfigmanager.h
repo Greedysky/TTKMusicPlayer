@@ -33,16 +33,16 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordConfigManager(MusicNetwork::RecordType type, QObject *parent = 0);
+    explicit MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent = 0);
 
     /*!
      * Set config type.
      */
-    inline void setType(MusicNetwork::RecordType type) { m_type = type; }
+    inline void setType(MusicObject::RecordType type) { m_type = type; }
     /*!
      * Get config type.
      */
-    inline MusicNetwork::RecordType getType() const { return m_type; }
+    inline MusicObject::RecordType getType() const { return m_type; }
     /*!
      * Read history download datas from xml file by given name.
      */
@@ -62,7 +62,7 @@ protected:
      */
     QString mappingFilePathFromEnum() const;
 
-    MusicNetwork::RecordType m_type;
+    MusicObject::RecordType m_type;
 
 };
 

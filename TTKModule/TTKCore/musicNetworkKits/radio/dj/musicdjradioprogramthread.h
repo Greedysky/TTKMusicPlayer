@@ -24,9 +24,9 @@
 /*! @brief The namespace of the program type.
  * @author Greedysky <greedysky@163.com>
  */
-namespace Program
+namespace MusicObject
 {
-    enum Type
+    enum Program
     {
         Recommed,
         Rank
@@ -49,7 +49,7 @@ public:
     /*!
      * Start to download data.
      */
-    void startToDownload(Program::Type type);
+    void startToDownload(MusicObject::Program type);
 
 public Q_SLOTS:
     /*!

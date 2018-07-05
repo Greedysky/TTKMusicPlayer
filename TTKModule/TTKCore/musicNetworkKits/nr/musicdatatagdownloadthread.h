@@ -34,7 +34,7 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicDataTagDownloadThread(const QString &url, const QString &save,
-                               MusicNetwork::DownloadType type, QObject *parent = 0);
+                               MusicObject::DownloadType type, QObject *parent = 0);
 
     /*!
      * Set custom tags.

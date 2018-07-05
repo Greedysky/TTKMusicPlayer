@@ -1,6 +1,6 @@
 #include "musicdownloadrecordconfigmanager.h"
 
-MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicNetwork::RecordType type, QObject *parent)
+MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent)
     : MusicAbstractXml(parent)
 {
     m_type = type;
@@ -48,9 +48,9 @@ QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const
 {
     switch(m_type)
     {
-        case MusicNetwork::NormalDownload : return NORMALDOWNPATH_FULL;
-        case MusicNetwork::CloudDownload  : return CLOUDDOWNPATH_FULL;
-        case MusicNetwork::CloudUpload    : return CLOUDUPPATH_FULL;
+        case MusicObject::RecordNormalDownload : return NORMALDOWNPATH_FULL;
+        case MusicObject::RecordCloudDownload  : return CLOUDDOWNPATH_FULL;
+        case MusicObject::RecordCloudUpload    : return CLOUDUPPATH_FULL;
         default: return QString();
     }
 }

@@ -42,12 +42,12 @@ void MusicDownLoadQueryWYThread::startToPage(int offset)
     m_pageIndex = offset;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_N_URL, false),
                MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_NDT_URL, false)
                .arg(m_searchText).arg(m_pageSize).arg(offset*m_pageSize).toUtf8());
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
@@ -67,11 +67,11 @@ void MusicDownLoadQueryWYThread::startToSingleSearch(const QString &text)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_SG_DETAIL_N_URL, false),
                MusicUtils::Algorithm::mdII(WY_SG_DETAIL_NDT_URL, false).arg(text));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
@@ -140,9 +140,9 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 
                     if(!m_querySimplify)
                     {
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         readFromMusicSongAttributeNew(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -225,9 +225,9 @@ void MusicDownLoadQueryWYThread::singleDownLoadFinished()
                     musicInfo.m_discNumber = value["cd"].toString();
                     musicInfo.m_trackNumber = value["no"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, true);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(!musicInfo.m_songAttrs.isEmpty())
                     {

@@ -21,11 +21,11 @@ void MusicDownLoadQueryXMRecommendThread::startToSearch(const QString &id)
     m_interrupt = true;
 
     QNetworkRequest request;
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_RCM_DATA_URL, false),
                       MusicUtils::Algorithm::mdII(XM_RCM_URL, false));
-    if(!m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
@@ -85,9 +85,9 @@ void MusicDownLoadQueryXMRecommendThread::downLoadFinished()
                     musicInfo.m_discNumber = "0";
                     musicInfo.m_trackNumber = value["track"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttribute(&musicInfo, value["listenFiles"], m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

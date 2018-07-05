@@ -4,13 +4,13 @@
 #include "musictime.h"
 
 MusicDataDownloadThread::MusicDataDownloadThread(const QString &url, const QString &save,
-                                                 MusicNetwork::DownloadType type, QObject *parent)
+                                                 MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
     m_createItemTime = -1;
     m_redirection = false;
     m_needUpdate = true;
-    m_recordType = MusicNetwork::Null;
+    m_recordType = MusicObject::RecordNull;
 }
 
 void MusicDataDownloadThread::startToDownload()
@@ -35,7 +35,7 @@ void MusicDataDownloadThread::startToDownload()
     }
 }
 
-void MusicDataDownloadThread::setRecordType(MusicNetwork::RecordType type)
+void MusicDataDownloadThread::setRecordType(MusicObject::RecordType type)
 {
     m_recordType = type;
 }
@@ -58,7 +58,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
     connect(m_reply, SIGNAL(readyRead()),this, SLOT(downLoadReadyRead()));
     connect(m_reply, SIGNAL(downloadProgress(qint64, qint64)), SLOT(downloadProgress(qint64, qint64)));
     /// only download music data can that show progress
-    if(m_downloadType == MusicNetwork::DownloadMusic && !m_redirection)
+    if(m_downloadType == MusicObject::DownloadMusic && !m_redirection)
     {
         m_createItemTime = MusicTime::timeStamp();
         M_DOWNLOAD_MANAGER_PTR->connectMusicDownload(MusicDownLoadPair(m_createItemTime, this, m_recordType));
@@ -115,7 +115,7 @@ void MusicDataDownloadThread::downloadProgress(qint64 bytesReceived, qint64 byte
 {
     MusicDownLoadThreadAbstract::downloadProgress(bytesReceived, bytesTotal);
     /// only download music data or oather type can that show progress
-    if(m_downloadType == MusicNetwork::DownloadMusic || m_downloadType == MusicNetwork::DownloadOther)
+    if(m_downloadType == MusicObject::DownloadMusic || m_downloadType == MusicObject::DownloadOther)
     {
         QString total = MusicUtils::Number::size2Label(bytesTotal);
         emit downloadProgressChanged(bytesTotal != 0 ? bytesReceived*100.0/bytesTotal : 0, total, m_createItemTime);

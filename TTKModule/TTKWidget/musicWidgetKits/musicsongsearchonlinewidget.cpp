@@ -433,12 +433,12 @@ void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
     QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
     QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
     QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
-    MusicDataDownloadThread *download = new MusicDataDownloadThread(musicSongAttr.m_url, downloadName, MusicNetwork::DownloadMusic, this);
+    MusicDataDownloadThread *download = new MusicDataDownloadThread(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     download->startToDownload();
 
     M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                                    MusicNetwork::DownloadSmallBG, this)->startToDownload();
+                                                    MusicObject::DownloadSmallBG, this)->startToDownload();
     ///download big picture
     M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 

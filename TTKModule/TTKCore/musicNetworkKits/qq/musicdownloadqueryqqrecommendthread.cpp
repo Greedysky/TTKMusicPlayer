@@ -99,9 +99,9 @@ void MusicDownLoadQueryQQRecommendThread::downLoadFinished()
                     musicInfo.m_discNumber = value["index_cd"].toString();
                     musicInfo.m_trackNumber = value["index_album"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {

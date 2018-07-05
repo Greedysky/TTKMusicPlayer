@@ -44,7 +44,7 @@ public:
     /*!
      * Init widget.
      */
-    void init(Program::Type type);
+    void init(MusicObject::Program type);
     /*!
      * Resize window bound by widgte resize called.
      */
@@ -91,7 +91,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioProgramWidget(Program::Type type, QWidget *parent = 0);
+    explicit MusicWebDJRadioProgramWidget(MusicObject::Program type, QWidget *parent = 0);
 
     virtual ~MusicWebDJRadioProgramWidget();
 
@@ -105,7 +105,7 @@ public:
     void resizeWindow();
 
 protected:
-    Program::Type m_type;
+    MusicObject::Program m_type;
     MusicWebDJRadioProgramTableWidget *m_tableWidget;
 
 };

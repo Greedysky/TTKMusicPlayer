@@ -15,7 +15,7 @@ MusicDownloadRecordTableWidget::MusicDownloadRecordTableWidget(QWidget *parent)
     headerview->resizeSection(2, 83);
     headerview->resizeSection(3, 50);
 
-    m_type = MusicNetwork::NormalDownload;
+    m_type = MusicObject::RecordNormalDownload;
     setItemDelegateForColumn(2, m_delegate);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 

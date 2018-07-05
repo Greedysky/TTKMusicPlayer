@@ -33,7 +33,7 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicWYTextDownLoadThread(const QString &url, const QString &save,
-                              MusicNetwork::DownloadType type, QObject *parent = 0);
+                              MusicObject::DownloadType type, QObject *parent = 0);
 
     /*!
      * Start to download data.

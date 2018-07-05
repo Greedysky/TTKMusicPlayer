@@ -3,13 +3,13 @@
 
 #include <QStringList>
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(MusicNetwork::DownloadType  type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(MusicObject::DownloadType  type, QObject *parent)
     : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
 {
 
 }
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &data, MusicNetwork::DownloadType  type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &data, MusicObject::DownloadType  type, QObject *parent)
     : MusicDownLoadThreadAbstract(data.m_url, data.m_savePath, type, parent)
 {
     m_request = nullptr;
@@ -26,7 +26,7 @@ MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueData &d
 
 }
 
-MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, MusicNetwork::DownloadType  type, QObject *parent)
+MusicDownloadQueueCache::MusicDownloadQueueCache(const MusicDownloadQueueDatas &datas, MusicObject::DownloadType  type, QObject *parent)
     : MusicDownloadQueueCache(MusicDownloadQueueData(), type, parent)
 {
     addImageQueue(datas);

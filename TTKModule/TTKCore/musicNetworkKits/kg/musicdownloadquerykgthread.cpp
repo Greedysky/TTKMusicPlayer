@@ -125,15 +125,15 @@ void MusicDownLoadQueryKGThread::downLoadFinished()
                     musicInfo.m_discNumber = "1";
                     musicInfo.m_trackNumber = "0";
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongLrcAndPic(&musicInfo);
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(!m_querySimplify)
                     {
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -207,9 +207,9 @@ void MusicDownLoadQueryKGThread::singleDownLoadFinished()
                 musicInfo.m_discNumber = "1";
                 musicInfo.m_trackNumber = "0";
 
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                 readFromMusicSongAttribute(&musicInfo, value["extra"].toMap(), m_searchQuality, true);
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                 if(!musicInfo.m_songAttrs.isEmpty())
                 {

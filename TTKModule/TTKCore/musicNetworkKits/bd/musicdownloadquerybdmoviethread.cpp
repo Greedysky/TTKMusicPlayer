@@ -123,9 +123,9 @@ void MusicDownLoadQueryBDMovieThread::downLoadFinished()
                     if(value["has_mv"].toInt() == 1)
                     {
                         musicInfo.m_songId = value["song_id"].toString();
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         readFromMusicMVAttribute(&musicInfo, false);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     }
 
                     if(musicInfo.m_songAttrs.isEmpty())
@@ -224,9 +224,9 @@ void MusicDownLoadQueryBDMovieThread::singleDownLoadFinished()
 
     MusicObject::MusicSongInformation musicInfo;
     musicInfo.m_songId = m_searchText;
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
     readFromMusicMVAttribute(&musicInfo, true);
-    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
     /// found playmv url request
     if(musicInfo.m_songAttrs.isEmpty())
@@ -289,7 +289,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::M
             QVariantMap value = data.toMap();
             QString type = value["source"].toString();
 
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
             if(type == "yinyuetai")
             {
                 QString vars = QString("videoId=%1").arg(value["tvid"].toString());
@@ -314,7 +314,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::M
                 if(!findUrlFileSize(&attr)) return;
                 info->m_songAttrs.append(attr);
             }
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
         }
     }
 }
@@ -356,7 +356,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             QString type = value["source"].toString();
             QString vars = value["flashvars"].toString();
 
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
             if(type == "yinyuetai")
             {
                 readFromMusicMVAttributeYYT(info, vars, more);
@@ -365,7 +365,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             {
                 readFromMusicMVAttributeIQY(info, vars, more);
             }
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
         }
     }
 }
@@ -565,9 +565,9 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeIQY(MusicObject::M
 
                 value = fsDatas.first().toMap();
                 attr.m_url = prefix + value["l"].toString();
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                 readFromMusicMVAttributeIQY(&attr);
-                if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                 attr.m_duration = MusicTime::msecTime2LabelJustified(value["d"].toLongLong());
                 attr.m_format = "flv";
                 attr.m_size = MusicUtils::Number::size2Label(value["b"].toLongLong());

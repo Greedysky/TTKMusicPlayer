@@ -31,13 +31,13 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
 {
     qint64 m_time;
     QObject *m_object;
-    MusicNetwork::RecordType m_type;
+    MusicObject::RecordType m_type;
 
     MusicDownLoadPair()
     {
         m_time = -1;
         m_object = nullptr;
-        m_type = MusicNetwork::NormalDownload;
+        m_type = MusicObject::RecordNormalDownload;
     }
 
     MusicDownLoadPair(qint64 t) : MusicDownLoadPair()
@@ -45,7 +45,7 @@ typedef struct MUSIC_NETWORK_EXPORT MusicDownLoadPair
         m_time = t;
     }
 
-    MusicDownLoadPair(qint64 t, QObject *object, MusicNetwork::RecordType type)
+    MusicDownLoadPair(qint64 t, QObject *object, MusicObject::RecordType type)
     {
         m_time = t;
         m_object = object;

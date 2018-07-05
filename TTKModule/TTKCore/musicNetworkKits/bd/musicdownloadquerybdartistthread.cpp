@@ -86,9 +86,9 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                     musicInfo.m_discNumber = "1";
                     musicInfo.m_trackNumber = value["album_no"].toString();
 
-                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttribute(&musicInfo, value["all_rate"].toString(), m_searchQuality, m_queryAllRecords);
-                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
@@ -99,9 +99,9 @@ void MusicDownLoadQueryBDArtistThread::downLoadFinished()
                     {
                         artistFlag = true;
                         MusicResultsItem info;
-                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         getDownLoadIntro(&info);
-                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         info.m_id = m_searchText;
                         info.m_name = musicInfo.m_singerName;
                         info.m_coverUrl = musicInfo.m_smallPicUrl;

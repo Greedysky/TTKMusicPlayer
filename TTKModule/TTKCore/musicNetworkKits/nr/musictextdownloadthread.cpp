@@ -3,7 +3,7 @@
 #include "qjson/parser.h"
 
 MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
-                                                 MusicNetwork::DownloadType type, QObject *parent)
+                                                 MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 

@@ -143,9 +143,9 @@ void MusicDownLoadQueryQQThread::downLoadFinished()
                                     .arg(musicInfo.m_albumId.right(1)).arg(musicInfo.m_albumId);
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["albumname"].toString());
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         readFromMusicSongAttribute(&musicInfo, value, m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -231,9 +231,9 @@ void MusicDownLoadQueryQQThread::singleDownLoadFinished()
                     musicInfo.m_discNumber = value["cdIdx"].toString();
                     musicInfo.m_trackNumber = value["belongCD"].toString();
 
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttributePlus(&musicInfo, value["file"].toMap());
-                    if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                     if(!musicInfo.m_songAttrs.isEmpty())
                     {

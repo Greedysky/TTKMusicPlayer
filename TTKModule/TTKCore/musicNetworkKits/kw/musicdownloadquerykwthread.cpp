@@ -188,13 +188,13 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                     {
                         musicInfo.m_albumName = MusicUtils::String::illegalCharactersReplaced(value["ALBUM"].toString());
 
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         readFromMusicSongPic(&musicInfo);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                         musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
                         ///music normal songs urls
                         readFromMusicSongAttribute(&musicInfo, value["FORMATS"].toString(), m_searchQuality, m_queryAllRecords);
-                        if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+                        if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
                         if(musicInfo.m_songAttrs.isEmpty())
                         {
@@ -247,9 +247,9 @@ void MusicDownLoadQueryKWThread::singleDownLoadFinished()
             musicInfo.m_discNumber = "1";
             musicInfo.m_trackNumber = "0";
 
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
             readFromMusicSongPic(&musicInfo);
-            if(m_interrupt || !m_manager || m_stateCode != MusicNetwork::Init) return;
+            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
             ////////////////////////////////////////////////////////////
             if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;

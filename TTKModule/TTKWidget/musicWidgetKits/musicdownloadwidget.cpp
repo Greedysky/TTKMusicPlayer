@@ -464,7 +464,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
             ////////////////////////////////////////////////
             MusicSongs records;
-            MusicDownloadRecordConfigManager down(MusicNetwork::NormalDownload, this);
+            MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
             if(!down.readDownloadXMLConfig())
             {
                 return;
@@ -498,8 +498,8 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             }
             ////////////////////////////////////////////////
             m_downloadTotal = 1;
-            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicNetwork::DownloadMusic, this);
-            downSong->setRecordType(MusicNetwork::NormalDownload);
+            MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
+            downSong->setRecordType(MusicObject::RecordNormalDownload);
             connect(downSong, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
 
             MusicSongTag tag;
@@ -567,7 +567,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                     }
                 }
                 ////////////////////////////////////////////////
-                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicNetwork::DownloadVideo, this);
+                MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicObject::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();
             }
