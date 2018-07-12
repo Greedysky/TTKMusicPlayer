@@ -177,7 +177,7 @@ void MusicLrcPosterItemWidget::drawTheme3(QPainter *painter)
     int lineHeight = fm.height();
     int delta = 5*ITEM_BORDER + lineHeight;
     int offset = 0;
-    MusicObject::MIntList list;
+    MIntList list;
     //////////////////////////////////////////////////////////////////////////////
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2*ITEM_BORDER, pix.height());
@@ -210,7 +210,7 @@ void MusicLrcPosterItemWidget::drawTheme4(QPainter *painter)
     int lineHeight = fm.height();
     int delta = 5*ITEM_BORDER + lineHeight;
     int offset = ITEM_WIDTH - delta;
-    MusicObject::MIntList list;
+    MIntList list;
     //////////////////////////////////////////////////////////////////////////////
     painter->setPen(QColor(0x66, 0x66, 0x66));
     painter->translate(2*ITEM_BORDER, 0);
@@ -291,7 +291,7 @@ void MusicLrcPosterItemWidget::drawTheme6(QPainter *painter)
     int lineHeight = fm.height();
     int delta = 5*ITEM_BORDER + lineHeight;
     offset = ITEM_WIDTH - delta;
-    MusicObject::MIntList list;
+    MIntList list;
     //////////////////////////////////////////////////////////////////////////////
     painter->setPen(QColor(0xBB, 0xBB, 0xBB));
     painter->translate(2*ITEM_BORDER, pix.height());
@@ -801,7 +801,7 @@ void MusicLrcPosterItemWidget::drawTheme17(QPainter *painter)
     int lineHeight = fm.height();
     int delta = 5*ITEM_BORDER + lineHeight;
     int offset = delta;
-    MusicObject::MIntList list;
+    MIntList list;
     //////////////////////////////////////////////////////////////////////////////
     painter->translate(2*ITEM_BORDER, 0);
     painter->rotate(MA_90);

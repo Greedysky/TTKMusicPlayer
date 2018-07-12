@@ -231,7 +231,7 @@ void MusicCloudManagerTableWidget::deleteFilesToServer()
     }
 
     selectAll();
-    MusicObject::MIntList deleteList(getMultiIndexSet());
+    MIntList deleteList(getMultiIndexSet());
 
     for(int i=deleteList.count() - 1; i>=0; --i)
     {

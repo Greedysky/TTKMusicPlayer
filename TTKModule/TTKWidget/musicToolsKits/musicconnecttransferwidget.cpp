@@ -138,7 +138,7 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 QStringList MusicConnectTransferWidget::getSelectedFiles()
 {
     QStringList names;
-    MusicObject::MIntList list(m_ui->playListTableWidget->getSelectedItems());
+    MIntList list(m_ui->playListTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -288,7 +288,7 @@ void MusicConnectTransferWidget::switchDiffDevice()
 
 void MusicConnectTransferWidget::musicSearchIndexChanged(int, int index)
 {
-    MusicObject::MIntList searchResult;
+    MIntList searchResult;
     for(int j=0; j<m_currentSongs.count(); ++j)
     {
         if(m_currentSongs[j].getMusicName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))

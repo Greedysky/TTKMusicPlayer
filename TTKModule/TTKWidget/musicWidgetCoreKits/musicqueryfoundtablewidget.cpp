@@ -74,7 +74,7 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MIntList list = getSelectedItems();
+    MIntList list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -95,7 +95,7 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 void MusicQueryFoundTableWidget::downloadBatchData(bool music)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MIntList list = getSelectedItems();
+    MIntList list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;

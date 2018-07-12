@@ -382,7 +382,7 @@ void MusicLrcMakerWidget::setCurrentThirdWidget()
 
     if(m_times.count() == m_plainText.count())
     {
-        MusicObject::MIntStringMap data;
+        MIntStringMap data;
         for(int i=0; i<m_times.count(); ++i)
         {
             data.insert(m_times.value(i), m_plainText[i]);

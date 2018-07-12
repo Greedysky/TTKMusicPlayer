@@ -36,7 +36,7 @@ public:
     /*!
      * Get player supported formats.
      */
-    static MusicObject::MStringsListMap supportFormatsStringMap();
+    static MStringsListMap supportFormatsStringMap();
     /*!
      * Get player supported formats filter.
      */

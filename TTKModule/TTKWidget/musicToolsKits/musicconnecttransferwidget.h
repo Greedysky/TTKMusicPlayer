@@ -115,7 +115,7 @@ protected:
     int m_currentIndex;
     MusicSongs m_currentSongs;
     QButtonGroup *m_buttonGroup;
-    MusicObject::MIntsListMap m_searchfileListCache;
+    MIntsListMap m_searchfileListCache;
     MusicFileSenderServer *m_sendServer;
 
 };

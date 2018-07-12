@@ -53,7 +53,7 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
 
 bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
 {
-    MusicObject::MIntSet inDeed;
+    MIntSet inDeed;
     inDeed << MUSIC_NORMAL_LIST << MUSIC_LOVEST_LIST << MUSIC_NETWORK_LIST << MUSIC_RECENT_LIST;
     foreach(const MusicSongItem &item, names)
     {
@@ -236,7 +236,7 @@ QString MusicSongsSummariziedWidget::mapFilePathBySongIndex(int toolIndex, int i
 
 void MusicSongsSummariziedWidget::searchFileListCache(int index)
 {
-    MusicObject::MIntList searchResult;
+    MIntList searchResult;
     QStringList searchedSongs(getMusicSongsFileName(m_currentIndex));
     QString text;
     if(m_musicSongSearchWidget)
@@ -274,7 +274,7 @@ bool MusicSongsSummariziedWidget::searchFileListEmpty() const
 
 int MusicSongsSummariziedWidget::getSearchFileListIndex(int row)
 {
-    MusicObject::MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
+    MIntList list = m_searchfileListCache.value(m_searchFileListIndex);
     if(row >= list.count() || row < 0)
     {
         return -1;
@@ -692,7 +692,7 @@ void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
     MusicApplication::instance()->musicPlayIndexClicked(index, 0);
 }
 
-void MusicSongsSummariziedWidget::setDeleteItemAt(const MusicObject::MIntList &index, bool fileRemove)
+void MusicSongsSummariziedWidget::setDeleteItemAt(const MIntList &index, bool fileRemove)
 {
     if(index.count() == 0 || !searchFileListEmpty())
     {
@@ -987,7 +987,7 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(w, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));
     connect(w, SIGNAL(isSearchFileListEmpty(bool&)), SLOT(isSearchFileListEmpty(bool&)));
-    connect(w, SIGNAL(deleteItemAt(MusicObject::MIntList,bool)), SLOT(setDeleteItemAt(MusicObject::MIntList,bool)));
+    connect(w, SIGNAL(deleteItemAt(MIntList,bool)), SLOT(setDeleteItemAt(MIntList,bool)));
     connect(w, SIGNAL(getMusicIndexSwaped(int,int,int,MusicSongs&)), SLOT(setMusicIndexSwaped(int,int,int,MusicSongs&)));
     connect(w, SIGNAL(musicListSongToLovestListAt(bool,int)), SLOT(musicListSongToLovestListAt(bool,int)));
     connect(w, SIGNAL(showFloatWidget()), SLOT(showFloatWidget()));

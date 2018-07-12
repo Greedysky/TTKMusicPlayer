@@ -54,7 +54,7 @@ public:
     /*!
      * Set current searched file indexs.
      */
-    void setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs);
+    void setMusicSongsSearchedFileName(MusicSongs *songs, const MIntList &fileIndexs);
 
     /*!
      * Select the current play row.
@@ -102,7 +102,7 @@ Q_SIGNALS:
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void deleteItemAt(const MusicObject::MIntList &index, bool fileRemove);
+    void deleteItemAt(const MIntList &index, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */

@@ -193,7 +193,7 @@ public Q_SLOTS:
     /*!
      * Delete items from indexs and check remove file or not.
      */
-    void setDeleteItemAt(const MusicObject::MIntList &del, bool fileRemove);
+    void setDeleteItemAt(const MIntList &del, bool fileRemove);
     /*!
      * Swap the current play index when user drag and drop.
      */
@@ -289,7 +289,7 @@ protected:
     bool m_toolDeleteChanged;
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    MusicObject::MIntsListMap m_searchfileListCache;
+    MIntsListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;

@@ -893,7 +893,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
     if(current)
     {
         MusicPlayedItem item = m_musicPlayList->currentItem();
-        MusicObject::MIntList index;
+        MIntList index;
         foreach(const QString &p, path)
         {
             int idx = -1;

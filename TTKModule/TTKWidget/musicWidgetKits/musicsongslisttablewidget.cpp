@@ -133,7 +133,7 @@ void MusicSongsListTableWidget::clearAllItems()
     setColumnCount(6);
 }
 
-void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const MusicObject::MIntList &fileIndexs)
+void MusicSongsListTableWidget::setMusicSongsSearchedFileName(MusicSongs *songs, const MIntList &fileIndexs)
 {
     if(songs->count() == fileIndexs.count())
     {
@@ -435,7 +435,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     progress.setTitle(tr("Delete File Mode"));
     progress.setRange(0, selectedItems().count()/3*2);
 
-    MusicObject::MIntList deleteList(getMultiIndexSet());
+    MIntList deleteList(getMultiIndexSet());
     if(deleteList.isEmpty())
     {
         return;

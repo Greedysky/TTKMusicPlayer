@@ -180,7 +180,7 @@ void MusicPlayer::stop()
     m_state = MusicObject::PS_StoppedState;
 }
 
-void MusicPlayer::setEqEffect(const MusicObject::MIntList &hz)
+void MusicPlayer::setEqEffect(const MIntList &hz)
 {
     if(hz.count() != 11)
     {
@@ -201,7 +201,7 @@ void MusicPlayer::setEnaleEffect(bool enable)
 {
     if(enable == false)
     {
-        setEqEffect(MusicObject::MIntList()<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0);
+        setEqEffect(MIntList()<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0<< 0);
     }
 }
 
@@ -214,7 +214,7 @@ void MusicPlayer::setEqInformation()
         QStringList eqValue = M_SETTING_PTR->value(MusicSettingManager::EqualizerValueChoiced).toString().split(',');
         if(eqValue.count() == 11)
         {
-            MusicObject::MIntList hz;
+            MIntList hz;
             hz << eqValue[0].toInt() << eqValue[1].toInt() << eqValue[2].toInt()
                << eqValue[3].toInt() << eqValue[4].toInt() << eqValue[5].toInt()
                << eqValue[6].toInt() << eqValue[7].toInt() << eqValue[8].toInt()
@@ -294,16 +294,16 @@ void MusicPlayer::setMusicEnhancedCase()
     switch(m_musicEnhanced)
     {
         case EnhancedOff:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
+            setEqEffect(MIntList()<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0<<  0);
             break;
         case EnhancedVocal:
-            setEqEffect(MusicObject::MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
+            setEqEffect(MIntList()<<  0<<  0<<  4<<  1<< -5<< -1<<  2<< -2<< -4<< -4<<  0);
             break;
         case EnhancedNICAM:
-            setEqEffect(MusicObject::MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
+            setEqEffect(MIntList()<<  6<<-12<<-12<< -9<< -6<< -3<<-12<< -9<< -6<< -3<<-12);
             break;
         case EnhancedSubwoofer:
-            setEqEffect(MusicObject::MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
+            setEqEffect(MIntList()<<  6<<  6<<-10<<-10<<  0<<  0<< -3<< -5<< -7<< -9<<-11);
             break;
         default:
             break;

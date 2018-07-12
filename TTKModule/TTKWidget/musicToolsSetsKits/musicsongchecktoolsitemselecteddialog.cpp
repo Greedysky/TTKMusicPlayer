@@ -50,9 +50,9 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
     }
 }
 
-MusicObject::MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
+MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
 {
-    MusicObject::MIntList list;
+    MIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
         QTableWidgetItem *it = item(i, 0);

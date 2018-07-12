@@ -41,7 +41,7 @@ public:
     /*!
      * Get selected items.
      */
-    MusicObject::MIntList getSelectedItems() const;
+    MIntList getSelectedItems() const;
 
 public Q_SLOTS:
     /*!

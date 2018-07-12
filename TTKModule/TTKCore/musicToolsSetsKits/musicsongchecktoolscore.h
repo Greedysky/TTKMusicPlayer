@@ -31,7 +31,7 @@ public:
     /*!
      * Set item lists.
      */
-    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
+    inline void setItemLists(const MIntList &items) { m_itemIDs = items; }
 
     /*!
      * Set find file path by given path.
@@ -61,7 +61,7 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
-    MusicObject::MIntList m_itemIDs;
+    MIntList m_itemIDs;
     MusicSongCheckToolsRenames m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 
@@ -90,7 +90,7 @@ public:
     /*!
      * Get music song check tool mode.
      */
-    inline void setItemLists(const MusicObject::MIntList &items) { m_itemIDs = items; }
+    inline void setItemLists(const MIntList &items) { m_itemIDs = items; }
     /*!
      * Set item lists.
      */
@@ -123,7 +123,7 @@ public Q_SLOTS:
 protected:
     bool m_run;
     MusicSongs *m_songItems;
-    MusicObject::MIntList m_itemIDs;
+    MIntList m_itemIDs;
     MusicSongCheckToolsDuplicates m_datas;
     MusicObject::MusicSongCheckToolsMode m_operateMode;
 

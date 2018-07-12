@@ -294,7 +294,7 @@ void MusicLocalSongsManagerWidget::filterScanChanged(int index)
 
 void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
 {
-    MusicObject::MIntList searchResult;
+    MIntList searchResult;
     for(int j=0; j<m_fileNames.count(); ++j)
     {
         if(m_fileNames[j].fileName().contains(m_ui->searchLineEdit->text().trimmed(), Qt::CaseInsensitive))
@@ -471,7 +471,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 
 void MusicLocalSongsManagerWidget::itemsSelected()
 {
-    MusicObject::MIntSet auditionRow; //if selected multi rows
+    MIntSet auditionRow; //if selected multi rows
     foreach(QTableWidgetItem *item, m_ui->songlistsTable->selectedItems())
     {
         if(!m_searchfileListCache.isEmpty())
@@ -487,7 +487,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     m_ui->searchLineEdit->clear();
     m_searchfileListCache.clear();
 
-    MusicObject::MIntList auditionList = auditionRow.toList();
+    MIntList auditionList = auditionRow.toList();
     qSort(auditionList);
 
     QStringList names;

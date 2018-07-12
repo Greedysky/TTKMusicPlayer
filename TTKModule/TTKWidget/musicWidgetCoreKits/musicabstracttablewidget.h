@@ -66,7 +66,7 @@ protected:
     /*!
      * Get multi index set.
      */
-    MusicObject::MIntList getMultiIndexSet();
+    MIntList getMultiIndexSet();
 
     QColor m_defaultBkColor;
     int m_previousColorRow;

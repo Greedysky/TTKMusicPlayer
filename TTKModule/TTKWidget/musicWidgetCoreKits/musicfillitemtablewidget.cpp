@@ -17,9 +17,9 @@ MusicFillItemTableWidget::~MusicFillItemTableWidget()
     delete m_checkBoxDelegate;
 }
 
-MusicObject::MIntList MusicFillItemTableWidget::getSelectedItems() const
+MIntList MusicFillItemTableWidget::getSelectedItems() const
 {
-    MusicObject::MIntList list;
+    MIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
         if(item(i, 0)->data(MUSIC_CHECK_ROLE) == true)

@@ -25,7 +25,7 @@ public:
     /*!
      * Get selected items.
      */
-    MusicObject::MIntList getSelectedItems() const;
+    MIntList getSelectedItems() const;
 
 public Q_SLOTS:
     /*!
@@ -64,7 +64,7 @@ Q_SIGNALS:
     /*!
      * Item lists changed.
      */
-    void itemListsChanged(const MusicObject::MIntList &items);
+    void itemListsChanged(const MIntList &items);
 
 public Q_SLOTS:
     /*!

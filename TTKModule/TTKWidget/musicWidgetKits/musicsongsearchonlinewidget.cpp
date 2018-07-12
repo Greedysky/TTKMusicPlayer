@@ -529,7 +529,7 @@ void MusicSongSearchOnlineWidget::auditionStop()
 
 void MusicSongSearchOnlineWidget::buttonClicked(int index)
 {
-    MusicObject::MIntList list = m_searchTableWidget->getSelectedItems();
+    MIntList list = m_searchTableWidget->getSelectedItems();
     list.removeOne(m_searchTableWidget->rowCount() - 1);
     if(list.isEmpty())
     {

@@ -236,7 +236,7 @@ QString MusicSongTag::findPluginPath() const
 {
     QString suffix = QFileInfo(m_filePath).suffix().toLower();
 
-    MusicObject::MStringsListMap formats(MusicFormats::supportFormatsStringMap());
+    MStringsListMap formats(MusicFormats::supportFormatsStringMap());
     foreach(const QString &key, formats.keys())
     {
         if(formats.value(key).contains(suffix))

@@ -170,7 +170,7 @@ protected:
     void showPhoto() const;
 
     int m_currentIndex;
-    MusicObject::MIntSet m_selectNum;
+    MIntSet m_selectNum;
     QStringList m_artPath;
     QWidget *m_filmBGWidget;
     QCheckBox *m_checkBox;

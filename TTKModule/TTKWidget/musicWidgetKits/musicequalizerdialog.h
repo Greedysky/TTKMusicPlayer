@@ -50,7 +50,7 @@ Q_SIGNALS:
     /*!
      * Current equlizer parameters changed emit.
      */
-    void setEqEffect(const MusicObject::MIntList &effect);
+    void setEqEffect(const MIntList &effect);
     /*!
      * Set equlizer enable state changed emit.
      */
@@ -111,7 +111,7 @@ protected:
     Ui::MusicEqualizerDialog *m_ui;
     bool m_eable;
     bool m_eqChoiceSelected;
-    MusicObject::MIntList m_equalizeValue;
+    MIntList m_equalizeValue;
     QSignalMapper *m_signalMapper;
 
 };

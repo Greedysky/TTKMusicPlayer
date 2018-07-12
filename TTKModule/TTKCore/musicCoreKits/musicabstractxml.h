@@ -100,7 +100,7 @@ public:
     /*!
      * Read xml attributes by tagName and default name "value".
      */
-    MusicObject::MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
+    MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
      * Create processing instruction in header.
      */

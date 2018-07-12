@@ -350,7 +350,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem()
 void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget *item, const QString &dir, bool state)
 {
     QStringList files(QDir(dir).entryList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
-    MusicObject::MIntList data;
+    MIntList data;
     foreach(const QString &path, files)
     {
         QString fileName = QFileInfo(path).baseName();
@@ -380,7 +380,7 @@ void MusicBackgroundSkinDialog::cpoyFileFromLocal(const QString &path)
 int MusicBackgroundSkinDialog::cpoyFileToLocalIndex()
 {
     QList<QFileInfo> files(QDir(USER_THEME_DIR_FULL).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name));
-    MusicObject::MIntList data;
+    MIntList data;
     foreach(const QFileInfo &info, files)
     {
         QString fileName = info.baseName();
