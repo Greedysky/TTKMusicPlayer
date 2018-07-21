@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -117,21 +117,17 @@ QList<FileInfo *> DecoderSndFileFactory::createPlayList(const QString &fileName,
     list << new FileInfo(fileName);
     if (useMetaData)
     {
-        if (sf_get_string(sndfile, SF_STR_TITLE))
-        {
-            char* title = strdup(sf_get_string(sndfile, SF_STR_TITLE));
+        const char *title = sf_get_string(sndfile, SF_STR_TITLE);
+        if(title)
             list.at(0)->setMetaData(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-        }
-        if (sf_get_string(sndfile, SF_STR_ARTIST))
-        {
-            char* artist = strdup(sf_get_string(sndfile, SF_STR_ARTIST));
+
+        const char *artist = sf_get_string(sndfile, SF_STR_ARTIST);
+        if(artist)
             list.at(0)->setMetaData(Qmmp::ARTIST, QString::fromUtf8(artist).trimmed());
-        }
-        if (sf_get_string(sndfile, SF_STR_COMMENT))
-        {
-            char* comment = strdup(sf_get_string(sndfile, SF_STR_COMMENT));
+
+        const char *comment = sf_get_string(sndfile, SF_STR_COMMENT);
+        if(comment)
             list.at(0)->setMetaData(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
-        }
     }
 
     list.at(0)->setLength(int(snd_info.frames / snd_info.samplerate));

@@ -45,18 +45,18 @@
 #include "goom_graphic.h"
 
 void zoom_filter_xmmx (int prevX, int prevY,
-                       Pixel *expix1, Pixel *expix2,
+                       Pixel * volatile expix1, Pixel * volatile expix2,
                        int *lbruS, int *lbruD, int buffratio,
                        int precalCoef[16][16])
 {
-    int bufsize = prevX * prevY; /* taille du buffer */
+    volatile int bufsize = prevX * prevY; /* taille du buffer */
     volatile int loop;                    /* variable de boucle */
 
-    mmx_t *brutS = (mmx_t*)lbruS; /* buffer de transformation source */
-    mmx_t *brutD = (mmx_t*)lbruD; /* buffer de transformation dest */
+    volatile mmx_t *brutS = (mmx_t*)lbruS; /* buffer de transformation source */
+    volatile mmx_t *brutD = (mmx_t*)lbruD; /* buffer de transformation dest */
 
-    mmx_t prevXY;
-    mmx_t ratiox;
+    volatile mmx_t prevXY;
+    volatile mmx_t ratiox;
     /*	volatile mmx_t interpix; */
 
     expix1[0].val=expix1[prevX-1].val=expix1[prevX*prevY-1].val=expix1[prevX*prevY-prevX].val=0;
@@ -71,7 +71,7 @@ void zoom_filter_xmmx (int prevX, int prevY,
     ("\n\t movq  %0, %%mm6"
      "\n\t pslld $16,      %%mm6" /* mm6 = [rat16=buffratio<<16 | rat16=buffratio<<16] */
      "\n\t pxor  %%mm7,    %%mm7" /* mm7 = 0 */
-     ::"g"(ratiox));
+     ::"m"(ratiox));
 
     loop=0;
 
@@ -145,11 +145,19 @@ void zoom_filter_xmmx (int prevX, int prevY,
             "#2 \n\t shll $6,%%esi"
             "#2 \n\t movd %%mm1,%%eax"
 
+#ifdef ARCH_X86_64
+            "#2 \n\t addq %0,%%rsi"
+            "#2 \n\t andq $15,%%rax"
+
+            "#2 \n\t movq (%%rsi,%%rax,4),%%mm3"
+            ::"m"(precalCoef):"eax","esi", "rsi", "rax");
+#else
             "#2 \n\t addl %0,%%esi"
             "#2 \n\t andl $15,%%eax"
 
             "#2 \n\t movd (%%esi,%%eax,4),%%mm3"
             ::"m"(precalCoef):"eax","esi");
+#endif
 
         /*
          * extraction des coefficients... (Thread #3)

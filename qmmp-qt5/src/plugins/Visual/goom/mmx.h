@@ -72,7 +72,7 @@ void draw_line_mmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int sc
 void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int screenx, int screeny);
 void zoom_filter_mmx (int prevX, int prevY, Pixel *expix1, Pixel *expix2,
               int *brutS, int *brutD, int buffratio, int precalCoef[16][16]);
-void zoom_filter_xmmx (int prevX, int prevY, Pixel *expix1, Pixel *expix2,
+void zoom_filter_xmmx (int prevX, int prevY, Pixel * volatile expix1, Pixel * volatile expix2,
                        int *lbruS, int *lbruD, int buffratio, int precalCoef[16][16]);
 
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -92,9 +92,9 @@ void StateHandler::dispatch(qint64 length)
     m_mutex.unlock();
 }
 
-void StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
+bool StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
 {
-    m_mutex.lock();
+    QMutexLocker locker(&m_mutex);
     QMap<Qmmp::MetaData, QString> tmp = metaData;
     foreach(QString value, tmp.values()) //remove empty keys
     {
@@ -104,14 +104,12 @@ void StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
     if(tmp.isEmpty() || tmp.value(Qmmp::URL).isEmpty()) //skip empty tags
     {
         qWarning("StateHandler: empty metadata");
-        m_mutex.unlock();
-        return;
+        return false;
     }
     if(m_state != Qmmp::Playing && m_state != Qmmp::Paused)
     {
         qWarning("StateHandler: metadata is ignored");
-        m_mutex.unlock();
-        return;
+        return false;
     }
 
     if(m_metaData.isEmpty() || m_metaData.value(Qmmp::URL) == metaData.value(Qmmp::URL))
@@ -120,9 +118,10 @@ void StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
         {
             m_metaData = tmp;
             qApp->postEvent(parent(), new MetaDataChangedEvent(m_metaData));
+            return true;
         }
     }
-    m_mutex.unlock();
+    return false;
 }
 
 void StateHandler::dispatch(const QHash<QString, QString> &info)

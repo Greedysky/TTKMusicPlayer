@@ -389,15 +389,15 @@ void QmmpAudioEngine::run()
         {
             QMap<Qmmp::MetaData, QString> m = m_decoder->takeMetaData();
             m[Qmmp::URL] = m_inputs[m_decoder]->url();
-            StateHandler::instance()->dispatch(m);
-            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
+            if(StateHandler::instance()->dispatch(m))
+                m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
         }
         if(m_inputs[m_decoder]->hasMetaData())
         {
             QMap<Qmmp::MetaData, QString> m = m_inputs[m_decoder]->takeMetaData();
             m[Qmmp::URL] = m_inputs[m_decoder]->url();
-            StateHandler::instance()->dispatch(m);
-            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
+            if(StateHandler::instance()->dispatch(m))
+                m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
         }
         if(m_inputs[m_decoder]->hasStreamInfo())
             StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeStreamInfo());

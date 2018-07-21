@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -115,6 +115,8 @@ CUEParser::CUEParser(const QByteArray &array, const QString &fileName)
         m_tracks.last()->info.setLength(l - m_tracks.last()->offset);
     else
         m_tracks.last()->info.setLength(0);
+    qDeleteAll(f_list);
+    f_list.clear();
 }
 
 CUEParser::~CUEParser()

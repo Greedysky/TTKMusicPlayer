@@ -93,7 +93,8 @@ QList<FileInfo *> DecoderWavPackFactory::createPlayList(const QString &fileName,
         cue_len = WavpackGetTagItem (ctx, "cuesheet", NULL, 0);
         if (cue_len)
         {
-            char *value = (char*)malloc (cue_len * 2 + 1);
+            char value[cue_len + 1];
+            memset(value, 0, cue_len + 1);
             WavpackGetTagItem (ctx, "cuesheet", value, cue_len + 1);
             CUEParser parser(value, fileName);
             list = parser.createPlayList();
