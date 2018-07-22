@@ -2,6 +2,7 @@
 #include "musiclocalsongsmanagerwidget.h"
 #include "musicsettingmanager.h"
 #include "musicapplication.h"
+#include "musicsinglemanager.h"
 
 MusicMobileDevicesWidget::MusicMobileDevicesWidget(QWidget *parent)
     : QLabel(parent)
@@ -40,7 +41,7 @@ MusicMobileDevicesWidget::~MusicMobileDevicesWidget()
 void MusicMobileDevicesWidget::showMobileManager()
 {
     hide();
-    MusicLocalSongsManagerWidget *w = new MusicLocalSongsManagerWidget(MusicApplication::instance());
+    M_SINGLE_MANAGER_WIDGET_NEW(MusicLocalSongsManagerWidget);
 #ifdef Q_OS_WIN
     w->findExtraDevicePath(M_SETTING_PTR->value(MusicSettingManager::ExtraDevicePathChoiced).toString());
 #endif

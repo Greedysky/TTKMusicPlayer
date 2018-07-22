@@ -18,6 +18,7 @@
 #include "musicfunctionuiobject.h"
 #include "musicotherdefine.h"
 #include "musictoolsetswidget.h"
+#include "musicsinglemanager.h"
 
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
@@ -442,7 +443,7 @@ void MusicTopAreaWidget::musicRemoteTypeChanged(int type)
 
 void MusicTopAreaWidget::musicStackedToolsWidgetChanged()
 {
-    (new MusicToolSetsWidget(this))->show();
+    M_SINGLE_MANAGER_WIDGET_CLASS(MusicToolSetsWidget);
 }
 
 void MusicTopAreaWidget::createRemoteWidget()

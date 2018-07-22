@@ -20,12 +20,7 @@ MusicWebRadioObject::MusicWebRadioObject(QObject *parent)
 
 }
 
-void MusicWebRadioObject::raise()
-{
-
-}
-
-void MusicWebRadioObject::show()
+void MusicWebRadioObject::start()
 {
     QString fileName = PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false);
     if(QFile::exists(fileName))

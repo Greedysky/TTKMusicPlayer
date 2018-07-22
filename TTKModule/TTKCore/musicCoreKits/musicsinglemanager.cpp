@@ -20,7 +20,7 @@ QObject *MusicSingleManager::object(const QString &name)
     return m_parameter[name];
 }
 
-bool MusicSingleManager::catains(const QString &name) const
+bool MusicSingleManager::contains(const QString &name) const
 {
     return m_parameter.contains(name);
 }

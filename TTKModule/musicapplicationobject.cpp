@@ -267,7 +267,7 @@ void MusicApplicationObject::musicTimerWidget()
 
 void MusicApplicationObject::musicSpectrumWidget()
 {
-    M_SINGLE_MANAGER_CLASS(MusicSpectrumWidget);
+    M_SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
 }
 
 void MusicApplicationObject::musicSetWindowToTop()

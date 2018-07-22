@@ -50,6 +50,7 @@ MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
 
 MusicToolSetsWidget::~MusicToolSetsWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     clearAllItems();
     delete m_ui;
 }
@@ -102,12 +103,12 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
             {
-                M_SINGLE_MANAGER_CLASS(MusicLocalSongsManagerWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicLocalSongsManagerWidget);
                 break;
             }
         case 1:
             {
-                M_SINGLE_MANAGER_CLASS(MusicAudioRecorderWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicAudioRecorderWidget);
                 break;
             }
         case 2:
@@ -131,13 +132,13 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
-                M_SINGLE_MANAGER_CLASS(MusicSpectrumWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSpectrumWidget);
                 break;
             }
         case 6:
             {
 #ifdef Q_OS_WIN
-                M_SINGLE_MANAGER_CLASS(MusicDesktopWallpaperWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicDesktopWallpaperWidget);
 #else
                 MusicMessageBox message;
                 message.setText(tr("Not Supported On Current Plantform!"));
@@ -152,12 +153,12 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                M_SINGLE_MANAGER_CLASS(MusicNetworkConnectionTestWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 9:
             {
-                M_SINGLE_MANAGER_CLASS(MusicVolumeGainWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicVolumeGainWidget);
                 break;
             }
         case 10:
@@ -167,18 +168,18 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 11:
             {
-                M_SINGLE_MANAGER_CLASS(MusicSoundTouchWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundTouchWidget);
                 break;
             }
         case 12:
             {
-                M_SINGLE_MANAGER_CLASS(MusicGrabWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicGrabWidget);
                 break;
             }
         case 13:
             {
 #ifdef Q_OS_WIN
-                M_SINGLE_MANAGER_CLASS(MusicWebRadioObject);
+                M_SINGLE_MANAGER_CORE_CLASS(MusicWebRadioObject);
 #else
                 MusicMessageBox message;
                 message.setText(tr("Not Supported On Current Plantform!"));
@@ -188,7 +189,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 14:
             {
-                M_SINGLE_MANAGER_CLASS(MusicSoundKMicroWidget);
+                M_SINGLE_MANAGER_WIDGET_CLASS(MusicSoundKMicroWidget);
                 break;
             }
         default:

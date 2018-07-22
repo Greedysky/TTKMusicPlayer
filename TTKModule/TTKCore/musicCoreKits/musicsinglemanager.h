@@ -23,21 +23,68 @@
 #include "musicsingleton.h"
 
 #define M_SINGLE_MANAGER_PTR (MusicSingleton<MusicSingleManager>::createInstance())
+///////////////////////////////////////////////////////////////////////////////////
+#define M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                      \
+    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
+    if(!manager->contains(#name))                                       \
+    {                                                                   \
+        manager->createObject(#name, new name(parent));                 \
+    }                                                                   \
+    name *w = MStatic_cast(name*, manager->object(#name));
 
-#define M_SINGLE_MANAGER_CLASS2(name, parent)                   \
-{                                                               \
-    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;         \
-    if(!manager->catains(#name))                                \
-    {                                                           \
-        manager->createObject(#name, new name(parent));         \
-    }                                                           \
-    name *w = MStatic_cast(name*, manager->object(#name));      \
-    w->raise();                                                 \
-    w->show();                                                  \
+#define M_SINGLE_MANAGER_WIDGET_NEW(name)                               \
+    M_SINGLE_MANAGER_WIDGET_NEW2(name, MusicApplication::instance())
+
+#define M_SINGLE_MANAGER_WIDGET_CLASS2(name, parent)                    \
+{                                                                       \
+    M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                          \
+    w->raise();                                                         \
+    w->show();                                                          \
 }
 
-#define M_SINGLE_MANAGER_CLASS(name)                            \
-    M_SINGLE_MANAGER_CLASS2(name, MusicApplication::instance())
+#define M_SINGLE_MANAGER_WIDGET_CLASS(name)                             \
+    M_SINGLE_MANAGER_WIDGET_CLASS2(name, MusicApplication::instance())
+///////////////////////////////////////////////////////////////////////////////////
+#define M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                      \
+    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
+    if(!manager->contains(#name))                                       \
+    {                                                                   \
+        manager->createObject(#name, new name(parent));                 \
+    }                                                                   \
+    name *w = MStatic_cast(name*, manager->object(#name));
+
+#define M_SINGLE_MANAGER_DIALOG_NEW(name)                               \
+    M_SINGLE_MANAGER_DIALOG_NEW2(name, MusicApplication::instance())
+
+#define M_SINGLE_MANAGER_DIALOG_CLASS2(name, parent)                    \
+{                                                                       \
+    M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                          \
+    w->exec();                                                          \
+}
+
+#define M_SINGLE_MANAGER_DIALOG_CLASS(name)                             \
+    M_SINGLE_MANAGER_DIALOG_CLASS2(name, MusicApplication::instance())
+///////////////////////////////////////////////////////////////////////////////////
+#define M_SINGLE_MANAGER_CORE_NEW2(name, parent)                        \
+    MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
+    if(!manager->contains(#name))                                       \
+    {                                                                   \
+        manager->createObject(#name, new name(parent));                 \
+    }                                                                   \
+    name *w = MStatic_cast(name*, manager->object(#name));
+
+#define M_SINGLE_MANAGER_CORE_NEW(name)                                 \
+    M_SINGLE_MANAGER_CORE_NEW2(name, nullptr)
+
+#define M_SINGLE_MANAGER_CORE_CLASS2(name, parent)                      \
+{                                                                       \
+    M_SINGLE_MANAGER_CORE_NEW2(name, parent)                            \
+    w->start();                                                         \
+}
+
+#define M_SINGLE_MANAGER_CORE_CLASS(name)                               \
+    M_SINGLE_MANAGER_CORE_CLASS2(name, nullptr)
+///////////////////////////////////////////////////////////////////////////////////
 
 
 /*! @brief The class of the single object manager.
@@ -47,11 +94,22 @@ class MUSIC_CORE_EXPORT MusicSingleManager
 {
     TTK_DECLARE_MODULE(MusicSingleManager)
 public:
+    /*!
+     * Add object by type name.
+     */
     void createObject(const QString &name, QObject *object);
+    /*!
+     * Remove object by type name.
+     */
     void removeObject(const QString &name);
-
+    /*!
+     * Find object by name.
+     */
     QObject *object(const QString &name);
-    bool catains(const QString &name) const;
+    /*!
+     * Find object contains by name.
+     */
+    bool contains(const QString &name) const;
 
 protected:
     QMap<QString, QObject*> m_parameter;

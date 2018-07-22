@@ -36,13 +36,9 @@ public:
     explicit MusicWebRadioObject(QObject *parent = 0);
 
     /*!
-     * Null function.
-     */
-    void raise();
-    /*!
      * Start to run object.
      */
-    void show();
+    void start();
 
 public Q_SLOTS:
     /*!

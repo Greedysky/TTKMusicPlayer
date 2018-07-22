@@ -15,6 +15,8 @@
 #include "musicotherdefine.h"
 #include "musicversion.h"
 #include "musicsourceupdatewidget.h"
+#include "musicsinglemanager.h"
+#include "musicapplication.h"
 //qmmp
 #include "qmmpsettings.h"
 
@@ -471,8 +473,7 @@ void MusicSettingWidget::testNetworkConnection()
 
 void MusicSettingWidget::checkNetworkConnection()
 {
-    MusicNetworkConnectionTestWidget *w = new MusicNetworkConnectionTestWidget(this);
-    w->show();
+    M_SINGLE_MANAGER_WIDGET_CLASS2(MusicNetworkConnectionTestWidget, this);
 }
 
 void MusicSettingWidget::testNetworkConnectionStateChanged(const QString &name)

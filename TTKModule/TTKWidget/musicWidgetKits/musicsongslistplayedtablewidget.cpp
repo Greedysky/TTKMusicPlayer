@@ -1,5 +1,4 @@
 #include "musicsongslistplayedtablewidget.h"
-#include "musicfileinformationwidget.h"
 #include "musicsongsharingwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicsongslistplayedwidget.h"
