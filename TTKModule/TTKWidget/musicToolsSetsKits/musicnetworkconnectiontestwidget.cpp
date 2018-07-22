@@ -3,6 +3,7 @@
 #include "musicnetworktestthread.h"
 #include "musicuiobject.h"
 #include "musicglobal.h"
+#include "musicsinglemanager.h"
 
 #define CHECK_WWW_VISIT       "www.baidu.com"
 #define CHECK_NORMAL_VISIT    "github.com"
@@ -162,6 +163,7 @@ MusicNetworkConnectionTestWidget::MusicNetworkConnectionTestWidget(QWidget *pare
 
 MusicNetworkConnectionTestWidget::~MusicNetworkConnectionTestWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     qDeleteAll(m_connectionItems);
     delete m_ui;
 }
@@ -203,10 +205,4 @@ void MusicNetworkConnectionTestWidget::testFinshed()
         m_ui->iconLabel->stop();
         m_ui->startButton->setText(tr("startTest"));
     }
-}
-
-void MusicNetworkConnectionTestWidget::closeEvent(QCloseEvent *event)
-{
-    emit resetFlag(MusicObject::TT_ConnectionTest);
-    MusicAbstractMoveWidget::closeEvent(event);
 }

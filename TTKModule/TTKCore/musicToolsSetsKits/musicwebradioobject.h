@@ -44,12 +44,6 @@ public:
      */
     void show();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Send recieved data from net.

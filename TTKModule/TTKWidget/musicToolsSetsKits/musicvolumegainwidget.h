@@ -65,12 +65,6 @@ public:
 
     virtual ~MusicVolumeGainWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Override show function.
@@ -116,10 +110,6 @@ private Q_SLOTS:
     void applyOutput();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Create table item finished.
      */

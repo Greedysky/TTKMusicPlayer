@@ -5,6 +5,7 @@
 #include "musicsemaphoreloop.h"
 #include "musiccoreutils.h"
 #include "musicwidgetheaders.h"
+#include "musicsinglemanager.h"
 
 #include <QProcess>
 
@@ -106,14 +107,9 @@ MusicVolumeGainWidget::MusicVolumeGainWidget(QWidget *parent)
 
 MusicVolumeGainWidget::~MusicVolumeGainWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_process;
     delete m_ui;
-}
-
-void MusicVolumeGainWidget::closeEvent(QCloseEvent *event)
-{
-    MusicAbstractMoveWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_SoundGain);
 }
 
 void MusicVolumeGainWidget::createItemFinished(const QString &track, const QString &album)

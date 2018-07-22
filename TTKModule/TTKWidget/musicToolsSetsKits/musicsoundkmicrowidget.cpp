@@ -17,6 +17,7 @@
 #include "musiccodecutils.h"
 #include "musicotherdefine.h"
 #include "musictime.h"
+#include "musicsinglemanager.h"
 
 #ifdef Q_CC_GNU
     #pragma GCC diagnostic ignored "-Wparentheses"
@@ -312,7 +313,7 @@ void MusicSoundKMicroWidget::recordButtonClicked()
 void MusicSoundKMicroWidget::closeEvent(QCloseEvent *event)
 {
     MusicAbstractMoveWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_SoundKMicro);
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
 
     qDeleteAll(m_musicLrcContainer);
     delete m_analysis;

@@ -95,12 +95,6 @@ public:
 
     virtual ~MusicNetworkConnectionTestWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Override show function.
@@ -116,11 +110,6 @@ public Q_SLOTS:
     void testFinshed();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
-
     int m_countIndex;
     Ui::MusicNetworkConnectionTestWidget *m_ui;
     QList<MusicNetworkConnectionItem*> m_connectionItems;

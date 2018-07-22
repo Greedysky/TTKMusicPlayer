@@ -5,6 +5,7 @@
 #include "musicformats.h"
 #include "musictoastlabel.h"
 #include "musicwidgetheaders.h"
+#include "musicsinglemanager.h"
 
 #include <QButtonGroup>
 #include <QPluginLoader>
@@ -117,6 +118,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
 MusicSpectrumWidget::~MusicSpectrumWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     foreach(const MusicSpectrum &type, m_types)
     {
         showSpectrum(type.m_name, false);
@@ -255,12 +257,6 @@ void MusicSpectrumWidget::openFileButtonClicked()
             spek->open( path );
         }
     }
-}
-
-void MusicSpectrumWidget::closeEvent(QCloseEvent *event)
-{
-    emit resetFlag(MusicObject::TT_Spectrum);
-    MusicAbstractMoveWidget::closeEvent(event);
 }
 
 void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name, QLayout *layout)

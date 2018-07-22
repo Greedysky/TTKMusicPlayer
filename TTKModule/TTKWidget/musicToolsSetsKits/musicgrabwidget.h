@@ -36,11 +36,7 @@ public:
      */
     explicit MusicGrabWidget(QWidget *parent = 0);
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
+    ~MusicGrabWidget();
 
 private Q_SLOTS:
     /*!
@@ -56,7 +52,6 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void closeEvent(QCloseEvent *event) override;
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;

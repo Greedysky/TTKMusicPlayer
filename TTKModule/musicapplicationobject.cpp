@@ -20,6 +20,7 @@
 #include "musiccoreutils.h"
 #include "musicalgorithmutils.h"
 #include "musicdownloadcounterpvthread.h"
+#include "musicsinglemanager.h"
 
 #include "qdevicewatcher.h"
 
@@ -266,8 +267,7 @@ void MusicApplicationObject::musicTimerWidget()
 
 void MusicApplicationObject::musicSpectrumWidget()
 {
-    MusicSpectrumWidget *w = new MusicSpectrumWidget(MusicApplication::instance());
-    w->show();
+    M_SINGLE_MANAGER_CLASS(MusicSpectrumWidget);
 }
 
 void MusicApplicationObject::musicSetWindowToTop()

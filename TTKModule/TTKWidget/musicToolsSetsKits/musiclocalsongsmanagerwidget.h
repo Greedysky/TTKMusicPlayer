@@ -55,10 +55,6 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-    /*!
      * Add current selected song to play lists.
      */
     void addSongToPlay(const QStringList &names);
@@ -131,10 +127,6 @@ public Q_SLOTS:
     void show();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Clear All Items.
      */

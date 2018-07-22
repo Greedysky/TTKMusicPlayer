@@ -26,15 +26,14 @@
 #endif
 
 MusicConnectionPool::MusicConnectionPool()
-    : QObject(nullptr)
 {
 
 }
 
 void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 {
-    QObject *first = m_para.value(from);
-    QObject *second = m_para.value(to);
+    QObject *first = m_parameter.value(from);
+    QObject *second = m_parameter.value(to);
     if(first == nullptr || second == nullptr)
     {
         return;
@@ -108,12 +107,12 @@ void MusicConnectionPool::poolConnect(const QObject *from, const QObject *to)
 
 void MusicConnectionPool::removeValue(const QString &name)
 {
-    m_para.take(name);
+    m_parameter.take(name);
 }
 
 void MusicConnectionPool::removeValue(const QObject *object)
 {
-    QMapIterator<QString, QObject*> i(m_para);
+    QMapIterator<QString, QObject*> i(m_parameter);
     while(i.hasNext())
     {
         i.next();

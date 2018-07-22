@@ -43,12 +43,6 @@ public:
 
     virtual ~MusicSoundTouchWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Override show function.
@@ -99,10 +93,6 @@ private Q_SLOTS:
     void finished(int code);
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Set label text.
      */

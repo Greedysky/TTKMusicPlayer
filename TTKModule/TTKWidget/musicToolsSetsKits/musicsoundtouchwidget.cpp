@@ -4,6 +4,7 @@
 #include "musicmessagebox.h"
 #include "musicuiobject.h"
 #include "musicwidgetutils.h"
+#include "musicsinglemanager.h"
 
 #include <QSound>
 #include <QProcess>
@@ -75,6 +76,7 @@ MusicSoundTouchWidget::MusicSoundTouchWidget(QWidget *parent)
 
 MusicSoundTouchWidget::~MusicSoundTouchWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_recordCore;
     delete m_process;
     delete m_ui;
@@ -182,13 +184,6 @@ void MusicSoundTouchWidget::finished(int code)
     }
     m_ui->playWavButton->setEnabled(true);
 }
-
-void MusicSoundTouchWidget::closeEvent(QCloseEvent *event)
-{
-    MusicAbstractMoveWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_SoundTouch);
-}
-
 
 void MusicSoundTouchWidget::setText(const QString &text)
 {

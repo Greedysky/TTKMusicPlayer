@@ -71,12 +71,6 @@ public:
 
     ~MusicDesktopWallpaperWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Net button clicked.
@@ -116,10 +110,6 @@ public Q_SLOTS:
     void show();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Create all widget style in layout.
      */

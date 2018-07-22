@@ -7,6 +7,8 @@
 #include "musicconnectionpool.h"
 #include "musicsongtag.h"
 #include "musicotherdefine.h"
+#include "musicsinglemanager.h"
+
 #ifdef MUSIC_GREATER_NEW
 #  include <QtConcurrent/QtConcurrent>
 #else
@@ -123,7 +125,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
 MusicLocalSongsManagerWidget::~MusicLocalSongsManagerWidget()
 {
     m_runTypeChanged = false;
-    M_CONNECTION_PTR->removeValue(getClassName() );
+    M_CONNECTION_PTR->removeValue(getClassName());
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     clearAllItems();
     m_thread->stopAndQuitThread();
     delete m_thread;
@@ -425,12 +428,6 @@ void MusicLocalSongsManagerWidget::show()
 {
     setBackgroundPixmap(m_ui->background, size());
     MusicAbstractMoveWidget::show();
-}
-
-void MusicLocalSongsManagerWidget::closeEvent(QCloseEvent *event)
-{
-    MusicAbstractMoveWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_LocalManager);
 }
 
 void MusicLocalSongsManagerWidget::clearAllItems()

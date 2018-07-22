@@ -59,12 +59,6 @@ public:
      */
     void startSeachKMicro(const QString &name);
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Current volume changed.

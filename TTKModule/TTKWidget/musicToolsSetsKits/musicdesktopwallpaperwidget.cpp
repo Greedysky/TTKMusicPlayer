@@ -9,6 +9,7 @@
 #include "musicnumberdefine.h"
 #include "musiccoreutils.h"
 #include "musicwidgetheaders.h"
+#include "musicsinglemanager.h"
 
 #include <QStyledItemDelegate>
 
@@ -79,6 +80,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
 
 MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     QFile file(QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE));
     if(file.exists())
     {
@@ -88,12 +90,6 @@ MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
     delete m_wallThread;
     delete m_wallItem;
     delete m_ui;
-}
-
-void MusicDesktopWallpaperWidget::closeEvent(QCloseEvent *event)
-{
-    emit resetFlag(MusicObject::TT_Wallpaper);
-    MusicAbstractMoveWidget::closeEvent(event);
 }
 
 void MusicDesktopWallpaperWidget::initWidgetStyle() const

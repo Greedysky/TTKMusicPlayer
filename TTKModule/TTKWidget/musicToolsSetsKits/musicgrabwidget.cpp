@@ -1,5 +1,6 @@
 #include "musicgrabwidget.h"
 #include "musicwidgetutils.h"
+#include "musicsinglemanager.h"
 
 #include <QScreen>
 #include <QPainter>
@@ -33,6 +34,11 @@ MusicGrabWidget::MusicGrabWidget(QWidget *parent)
 #endif
 }
 
+MusicGrabWidget::~MusicGrabWidget()
+{
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
+}
+
 void MusicGrabWidget::mouseMoveEvent(QMouseEvent *event)
 {
     QWidget::mouseMoveEvent(event);
@@ -57,12 +63,6 @@ void MusicGrabWidget::musicCreateRightMenu(const QString &path)
         m_grabPixmap.save(path, 0, 100);
         close();
     }
-}
-
-void MusicGrabWidget::closeEvent(QCloseEvent *event)
-{
-    QWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_GrabWindow);
 }
 
 void MusicGrabWidget::paintEvent(QPaintEvent *event)

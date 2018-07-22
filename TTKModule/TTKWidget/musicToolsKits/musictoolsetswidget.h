@@ -52,10 +52,6 @@ public Q_SLOTS:
      */
     void addListWidgetItem();
     /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-    /*!
      * Override show function.
      */
     void show();
@@ -71,7 +67,6 @@ protected:
     virtual void contextMenuEvent(QContextMenuEvent *event) override;
 
     Ui::MusicToolSetsWidget *m_ui;
-    MusicObject::ToolsTypes m_toolsFlags;
 
 };
 

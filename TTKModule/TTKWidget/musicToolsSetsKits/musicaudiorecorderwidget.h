@@ -52,12 +52,6 @@ public:
 
     virtual ~MusicAudioRecorderWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Recorder play start.
@@ -101,10 +95,6 @@ public Q_SLOTS:
     void show();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * Apply volume to sample.
      */

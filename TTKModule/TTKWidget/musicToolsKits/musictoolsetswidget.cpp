@@ -18,16 +18,7 @@
 #include "musicmessagebox.h"
 #include "musicspectrumwidget.h"
 #include "musicwebradioobject.h"
-
-#define NEW_OPERATOR(flag, type)                                                                            \
-    if((m_toolsFlags & flag) != flag)                                                                       \
-    {                                                                                                       \
-        m_toolsFlags |= flag;                                                                               \
-        type *w = new type(MusicApplication::instance());                                                   \
-        connect(w, SIGNAL(resetFlag(MusicObject::ToolsType)), SLOT(resetFlag(MusicObject::ToolsType)));     \
-        w->raise();                                                                                         \
-        w->show();                                                                                          \
-    }
+#include "musicsinglemanager.h"
 
 MusicToolSetsWidget::MusicToolSetsWidget(QWidget *parent)
     : MusicAbstractMoveWidget(parent),
@@ -111,12 +102,12 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
     {
         case 0:
             {
-                NEW_OPERATOR(MusicObject::TT_LocalManager, MusicLocalSongsManagerWidget);
+                M_SINGLE_MANAGER_CLASS(MusicLocalSongsManagerWidget);
                 break;
             }
         case 1:
             {
-                NEW_OPERATOR(MusicObject::TT_AudioRecord, MusicAudioRecorderWidget);
+                M_SINGLE_MANAGER_CLASS(MusicAudioRecorderWidget);
                 break;
             }
         case 2:
@@ -140,13 +131,13 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 5:
             {
-                NEW_OPERATOR(MusicObject::TT_Spectrum, MusicSpectrumWidget);
+                M_SINGLE_MANAGER_CLASS(MusicSpectrumWidget);
                 break;
             }
         case 6:
             {
 #ifdef Q_OS_WIN
-                NEW_OPERATOR(MusicObject::TT_Wallpaper, MusicDesktopWallpaperWidget);
+                M_SINGLE_MANAGER_CLASS(MusicDesktopWallpaperWidget);
 #else
                 MusicMessageBox message;
                 message.setText(tr("Not Supported On Current Plantform!"));
@@ -161,12 +152,12 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 8:
             {
-                NEW_OPERATOR(MusicObject::TT_ConnectionTest, MusicNetworkConnectionTestWidget);
+                M_SINGLE_MANAGER_CLASS(MusicNetworkConnectionTestWidget);
                 break;
             }
         case 9:
             {
-                NEW_OPERATOR(MusicObject::TT_SoundGain, MusicVolumeGainWidget);
+                M_SINGLE_MANAGER_CLASS(MusicVolumeGainWidget);
                 break;
             }
         case 10:
@@ -176,18 +167,18 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 11:
             {
-                NEW_OPERATOR(MusicObject::TT_SoundTouch, MusicSoundTouchWidget);
+                M_SINGLE_MANAGER_CLASS(MusicSoundTouchWidget);
                 break;
             }
         case 12:
             {
-                NEW_OPERATOR(MusicObject::TT_GrabWindow, MusicGrabWidget);
+                M_SINGLE_MANAGER_CLASS(MusicGrabWidget);
                 break;
             }
         case 13:
             {
 #ifdef Q_OS_WIN
-                NEW_OPERATOR(MusicObject::TT_WebRadio, MusicWebRadioObject);
+                M_SINGLE_MANAGER_CLASS(MusicWebRadioObject);
 #else
                 MusicMessageBox message;
                 message.setText(tr("Not Supported On Current Plantform!"));
@@ -197,17 +188,12 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             }
         case 14:
             {
-                NEW_OPERATOR(MusicObject::TT_SoundKMicro, MusicSoundKMicroWidget);
+                M_SINGLE_MANAGER_CLASS(MusicSoundKMicroWidget);
                 break;
             }
         default:
             break;
     }
-}
-
-void MusicToolSetsWidget::resetFlag(MusicObject::ToolsType flag)
-{
-    m_toolsFlags &= ~flag;
 }
 
 void MusicToolSetsWidget::show()

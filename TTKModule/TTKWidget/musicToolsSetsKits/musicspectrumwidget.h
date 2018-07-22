@@ -54,12 +54,6 @@ public:
 
     virtual ~MusicSpectrumWidget();
 
-Q_SIGNALS:
-    /*!
-     * Reset window open flag.
-     */
-    void resetFlag(MusicObject::ToolsType flag);
-
 public Q_SLOTS:
     /*!
      * Tab Index Changed.
@@ -91,10 +85,6 @@ public Q_SLOTS:
     void openFileButtonClicked();
 
 protected:
-    /*!
-     * Override the widget event.
-     */
-    virtual void closeEvent(QCloseEvent *event) override;
     /*!
      * New spectrum widget.
      */

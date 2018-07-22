@@ -5,6 +5,7 @@
 #include "musicwidgetutils.h"
 #include "musicmessagebox.h"
 #include "musicaudiorecordercore.h"
+#include "musicsinglemanager.h"
 
 #include <QMovie>
 
@@ -91,6 +92,7 @@ MusicAudioRecorderWidget::MusicAudioRecorderWidget(QWidget *parent)
 
 MusicAudioRecorderWidget::~MusicAudioRecorderWidget()
 {
+    M_SINGLE_MANAGER_PTR->removeObject(getClassName());
     delete m_recordCore;
     delete m_mpAudioInputSound;
     delete m_mpAudioOutputSound;
@@ -209,12 +211,6 @@ void MusicAudioRecorderWidget::createAudioOutput()
 {
     QAudioDeviceInfo outputDevice(QAudioDeviceInfo::defaultOutputDevice());
     m_mpAudioOutputSound = new QAudioOutput(outputDevice, m_mFormatSound, this);
-}
-
-void MusicAudioRecorderWidget::closeEvent(QCloseEvent *event)
-{
-    MusicAbstractMoveWidget::closeEvent(event);
-    emit resetFlag(MusicObject::TT_AudioRecord);
 }
 
 int MusicAudioRecorderWidget::applyVolumeToSample(short iSample)

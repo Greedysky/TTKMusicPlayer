@@ -1,6 +1,7 @@
 #include "musicwebradioobject.h"
 #include "musicdatadownloadthread.h"
 #include "musicextractwrap.h"
+#include "musicsinglemanager.h"
 
 #include <QProcess>
 #ifdef MUSIC_GREATER_NEW
@@ -16,7 +17,7 @@
 MusicWebRadioObject::MusicWebRadioObject(QObject *parent)
     : QObject(parent)
 {
-    Q_UNUSED(qRegisterMetaType<MusicObject::ToolsType>("MusicObject::ToolsType"));
+
 }
 
 void MusicWebRadioObject::raise()
@@ -52,7 +53,7 @@ void MusicWebRadioObject::dataDownloadFinished()
             int code = QProcess::execute(QString("%1radio/%2").arg(PLUGINS_DIR_FULL).arg(MusicUtils::Algorithm::mdII(RADIO_NAME, false)));
             if(code != -2 && code != -1)
             {
-                emit resetFlag(MusicObject::TT_WebRadio);
+                M_SINGLE_MANAGER_PTR->removeObject(getClassName());
             }
         });
     }
