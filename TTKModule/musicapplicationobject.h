@@ -105,6 +105,10 @@ public Q_SLOTS:
      */
     void musicTimerWidget();
     /*!
+     * Show spectrum widget.
+     */
+    void musicSpectrumWidget();
+    /*!
      * Set current window to top.
      */
     void musicSetWindowToTop();

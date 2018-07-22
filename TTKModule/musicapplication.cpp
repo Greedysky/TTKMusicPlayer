@@ -832,6 +832,7 @@ void MusicApplication::musicCreateRightMenu()
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_equalizer"), tr("Equalizer"), m_applicationObject, SLOT(musicSetEqualizer()));
     rightClickMenu.addAction(tr("SoundEffect"), m_applicationObject, SLOT(musicSetSoundEffect()));
     rightClickMenu.addAction(tr("TimingSettings"), m_applicationObject, SLOT(musicTimerWidget()));
+    rightClickMenu.addAction(tr("MusicSpectrum"), m_applicationObject, SLOT(musicSpectrumWidget()));
     rightClickMenu.addSeparator();
 
     QAction *window = rightClickMenu.addAction(tr("windowTop"), m_applicationObject, SLOT(musicSetWindowToTop()));

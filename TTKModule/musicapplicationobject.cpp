@@ -1,6 +1,7 @@
 #include "musicapplicationobject.h"
 #include "musicmobiledeviceswidget.h"
 #include "musictimerwidget.h"
+#include "musicspectrumwidget.h"
 #include "musictimerautoobject.h"
 #include "musicmessagebox.h"
 #include "musicequalizerdialog.h"
@@ -261,6 +262,12 @@ void MusicApplicationObject::musicTimerWidget()
     MusicApplication::instance()->getCurrentPlayList(list);
     timer.setSongStringList(list);
     timer.exec();
+}
+
+void MusicApplicationObject::musicSpectrumWidget()
+{
+    MusicSpectrumWidget *w = new MusicSpectrumWidget(MusicApplication::instance());
+    w->show();
 }
 
 void MusicApplicationObject::musicSetWindowToTop()

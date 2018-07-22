@@ -272,9 +272,7 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
         QList<Visual *> *vs = Visual::visuals();
         if(before == vs->count())
         {
-            MusicToastLabel *toast = new MusicToastLabel(this);
-            toast->defaultLabel(this, tr("Spectrum Init Error!"));
-            box->setChecked(false);
+            showMessageBoxWidget(box);
             return;
         }
 
@@ -288,9 +286,7 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
         }
         else
         {
-            MusicToastLabel *toast = new MusicToastLabel(this);
-            toast->defaultLabel(this, tr("Spectrum Init Error!"));
-            box->setChecked(false);
+            showMessageBoxWidget(box);
         }
     }
     else
@@ -324,12 +320,6 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
                 m_types << sp;
                 layout->addWidget(spekWidget);
             }
-        }
-        else
-        {
-            MusicToastLabel *toast = new MusicToastLabel(this);
-            toast->defaultLabel(this, tr("Spectrum Init Error!"));
-            box->setChecked(false);
         }
     }
     else
@@ -396,4 +386,11 @@ void MusicSpectrumWidget::fspekStateChanged()
             spek->open( SoundCore::instance()->url() );
         }
     }
+}
+
+void MusicSpectrumWidget::showMessageBoxWidget(QCheckBox *box)
+{
+    MusicToastLabel *toast = new MusicToastLabel(this);
+    toast->defaultLabel(this, tr("Spectrum Init Error!"));
+    box->setChecked(false);
 }

@@ -119,6 +119,10 @@ protected:
      * FSpek state button clicked.
      */
     void fspekStateChanged();
+    /*!
+     * Show message box widget.
+     */
+    void showMessageBoxWidget(QCheckBox *box);
 
     MusicSpectrums m_types;
     Ui::MusicSpectrumWidget *m_ui;
