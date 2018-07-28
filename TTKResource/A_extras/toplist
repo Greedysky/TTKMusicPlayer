@@ -169,21 +169,4 @@
             <value key="307" value="虾米分享榜"/>
         </tag>
     </XiaMi>
-    <WuSing>
-        <tag value="排行榜">
-            <value key="yc" value="原创音乐榜"/>
-            <value key="fc" value="翻唱音乐榜"/>
-            <value key="list23" value="新歌top50"/>
-            <value key="list25" value="支持榜"/>
-        </tag>
-    </WuSing>
-    <Migu>
-        <tag value="排行榜">
-            <value key="365905/365918/469202/469231" value="咪咕音乐榜"/>
-            <value key="365905/365918/469202/472731" value="咪咕KTV榜"/>
-            <value key="365905/365918/469202/614523" value="咪咕网络榜"/>
-            <value key="365905/365918/469202/2782650" value="咪咕影视榜"/>
-            <value key="365905/365918/469202/2784353" value="咪咕原创榜"/>
-        </tag>
-    </Migu>
 <TTKMusicPlayer>

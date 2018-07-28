@@ -135,21 +135,4 @@
             <value key="class=3ntype=4" value="韩国组合"/>
         </tag>
     </XiaMi>
-    <Migu>
-        <tag value="华语">
-            <value key="1418/1551/1608" value="华语男歌手"/>
-            <value key="1418/1551/1623" value="华语女歌手"/>
-            <value key="1418/1551/6211" value="华语组合歌手"/>
-        </tag>
-        <tag value="日韩">
-            <value key="1418/1551/35075" value="日韩男歌手"/>
-            <value key="1418/1551/35240" value="日韩女歌手"/>
-            <value key="1418/1551/35268" value="日韩组合"/>
-        </tag>
-        <tag value="欧美">
-            <value key="1418/1551/6148" value="欧美男歌手"/>
-            <value key="1418/1551/6162" value="欧美女歌手"/>
-            <value key="1418/1551/6200" value="欧美组合"/>
-        </tag>
-    </Migu>
 <TTKMusicPlayer>

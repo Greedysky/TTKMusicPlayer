@@ -1,4 +1,6 @@
 #include "musicdownloadquerywyartistlistthread.h"
+#///QJson import
+#include "qjson/parser.h"
 
 MusicDownLoadQueryWYArtistListThread::MusicDownLoadQueryWYArtistListThread(QObject *parent)
     : MusicDownLoadQueryArtistListThread(parent)
@@ -29,7 +31,7 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
         int mIdx = dds[1].toInt();
         if(mIdx > -1 && mIdx < 26)
         {
-            mIdx += 65;
+            mIdx *= 10;
         }
         else if(mIdx >= 26)
         {
@@ -38,17 +40,19 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
 
         initial = QString::number(mIdx);
     }
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_AR_LIST_URL, false).arg(catId).arg(initial);
 
     deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    makeTokenQueryQequest(&request);
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
+    QByteArray parameter = makeTokenQueryUrl(&request,
+               MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
+               MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(initial).arg(10));
+    if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
-    m_reply = m_manager->get(request);
+    m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
     connect(m_reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
 }
@@ -74,25 +78,35 @@ void MusicDownLoadQueryWYArtistListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QString html(m_reply->readAll());
+        QByteArray bytes = m_reply->readAll();
 
-        QRegExp regx("<a href=\".?/artist\\?id=(\\d+).*>(.*)</a>");
-        regx.setMinimal(true);
-        int pos = html.indexOf(regx);
-        while(pos != -1)
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            if(m_interrupt) return;
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 200 && value.contains("artists"))
+            {
+                QVariantList datas = value["artists"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
 
-            MusicResultsItem info;
-            info.m_id = regx.cap(1);
-            info.m_name = regx.cap(2);
-            emit createArtistListItem(info);
+                    if(m_interrupt) return;
 
-            pos += regx.matchedLength();
-            pos = regx.indexIn(html, pos);
+                    value = var.toMap();
+                    MusicResultsItem info;
+                    info.m_id = value["id"].toString();
+                    info.m_name = value["name"].toString();
+                    emit createArtistListItem(info);
+                }
+            }
         }
     }
-
 //    emit downLoadDataChanged(QString());
     deleteAll();
     M_LOGGER_INFO(QString("%1 downLoadFinished deleteAll").arg(getClassName()));
