@@ -38,24 +38,24 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
     m_ui->mainViewWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01);
     m_ui->analyzerBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->analyzer2Box->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->ewaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->gwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->flowwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->histogramBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->xrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->pointxrayBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->lineBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->spacewaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->fwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->foldwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->monowaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->multiwaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->xraysBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->pointxraysBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->volumeWaveBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->fspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->envelopespekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->goomBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->flashgoomBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
-    m_ui->spekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->spekBox->hide();
+    m_ui->spectrumspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->spectrumspekBox->hide();
 
     m_ui->localFileButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->localFileButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -66,22 +66,22 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
 #ifdef Q_OS_UNIX
     m_ui->analyzerBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->analyzer2Box->setFocusPolicy(Qt::NoFocus);
     m_ui->ewaveBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->gwaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->flowwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->histogramBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->xrayBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->pointxrayBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->lineBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->spacewaveBox->setFocusPolicy(Qt::NoFocus);
 
-    m_ui->fwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->foldwaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->monowaveBox->setFocusPolicy(Qt::NoFocus);
     m_ui->multiwaveBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->fspekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->xraysBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->pointxraysBox->setFocusPolicy(Qt::NoFocus);
     m_ui->volumeWaveBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->envelopespekBox->setFocusPolicy(Qt::NoFocus);
 
-    m_ui->spekBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->goomBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->spectrumspekBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->flashgoomBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
@@ -90,27 +90,27 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     QButtonGroup *group = new QButtonGroup(this);
     group->setExclusive(false);
     group->addButton(m_ui->analyzerBox, 0);
-    group->addButton(m_ui->analyzer2Box, 1);
-    group->addButton(m_ui->ewaveBox, 2);
-    group->addButton(m_ui->gwaveBox, 3);
-    group->addButton(m_ui->histogramBox, 4);
-    group->addButton(m_ui->xrayBox, 5);
-    group->addButton(m_ui->pointxrayBox, 6);
+    group->addButton(m_ui->ewaveBox, 1);
+    group->addButton(m_ui->flowwaveBox, 2);
+    group->addButton(m_ui->histogramBox, 3);
+    group->addButton(m_ui->lineBox, 4);
+    group->addButton(m_ui->spacewaveBox, 5);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(spectrumTypeChanged(int)));
 
     QButtonGroup *group1 = new QButtonGroup(this);
     group1->setExclusive(false);
-    group1->addButton(m_ui->fwaveBox, 0);
-    group1->addButton(m_ui->foldwaveBox, 1);
-    group1->addButton(m_ui->monowaveBox, 2);
-    group1->addButton(m_ui->multiwaveBox, 3);
-    group1->addButton(m_ui->volumeWaveBox, 4);
-    group1->addButton(m_ui->fspekBox, 5);
+    group1->addButton(m_ui->foldwaveBox, 0);
+    group1->addButton(m_ui->monowaveBox, 1);
+    group1->addButton(m_ui->multiwaveBox, 2);
+    group1->addButton(m_ui->xraysBox, 3);
+    group1->addButton(m_ui->pointxraysBox, 4);
+    group1->addButton(m_ui->volumeWaveBox, 5);
+    group1->addButton(m_ui->envelopespekBox, 6);
     connect(group1, SIGNAL(buttonClicked(int)), SLOT(spectrumPlusTypeChanged(int)));
 
     QButtonGroup *group2 = new QButtonGroup(this);
     group2->setExclusive(false);
-    group2->addButton(m_ui->goomBox, 0);
+    group2->addButton(m_ui->flashgoomBox, 0);
     connect(group2, SIGNAL(buttonClicked(int)), SLOT(spectrumDazzleTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
@@ -152,25 +152,22 @@ void MusicSpectrumWidget::spectrumTypeChanged(int index)
     switch(index)
     {
         case 0:
-            newSpectrumWidget(m_ui->analyzerBox, "analyzer", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->analyzerBox, "normalanalyzer", m_ui->spectrumAreaLayout);
             break;
         case 1:
-            newSpectrumWidget(m_ui->analyzer2Box, "lineplus", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->ewaveBox, "normalewave", m_ui->spectrumAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->ewaveBox, "ewave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->flowwaveBox, "normalflowwave", m_ui->spectrumAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->gwaveBox, "gwave", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->histogramBox, "normalhistogram", m_ui->spectrumAreaLayout);
             break;
         case 4:
-            newSpectrumWidget(m_ui->histogramBox, "histogram", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->lineBox, "normalline", m_ui->spectrumAreaLayout);
             break;
         case 5:
-            newSpectrumWidget(m_ui->xrayBox, "xrays", m_ui->spectrumAreaLayout);
-            break;
-        case 6:
-            newSpectrumWidget(m_ui->pointxrayBox, "pointxrays", m_ui->spectrumAreaLayout);
+            newSpectrumWidget(m_ui->spacewaveBox, "normalspacewave", m_ui->spectrumAreaLayout);
             break;
         default:
             break;
@@ -184,22 +181,25 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
     switch(index)
     {
         case 0:
-            newSpectrumWidget(m_ui->fwaveBox, "fwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->foldwaveBox, "plusfoldwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 1:
-            newSpectrumWidget(m_ui->foldwaveBox, "foldwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->monowaveBox, "plusmonowave", m_ui->spectrumPlusAreaLayout);
             break;
         case 2:
-            newSpectrumWidget(m_ui->monowaveBox, "monowave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->multiwaveBox, "plusmultiwave", m_ui->spectrumPlusAreaLayout);
             break;
         case 3:
-            newSpectrumWidget(m_ui->multiwaveBox, "multiwave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->xraysBox, "plusxrays", m_ui->spectrumPlusAreaLayout);
             break;
         case 4:
-            newSpectrumWidget(m_ui->volumeWaveBox, "volumewave", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->pointxraysBox, "pluspointxrays", m_ui->spectrumPlusAreaLayout);
             break;
         case 5:
-            newSpekWidget(m_ui->fspekBox, "fspek", m_ui->spectrumPlusAreaLayout);
+            newSpectrumWidget(m_ui->volumeWaveBox, "plusvolumewave", m_ui->spectrumPlusAreaLayout);
+            break;
+        case 6:
+            newSpekWidget(m_ui->envelopespekBox, "envelopespek", m_ui->spectrumPlusAreaLayout);
             fspekStateChanged();
             break;
         default: break;
@@ -213,7 +213,7 @@ void MusicSpectrumWidget::spectrumDazzleTypeChanged(int index)
     switch(index)
     {
         case 0:
-            newSpectrumWidget(m_ui->goomBox, "goom", m_ui->dazzleAreaLayout);
+            newSpectrumWidget(m_ui->flashgoomBox, "flashgoom", m_ui->dazzleAreaLayout);
             break;
         default: break;
     }
@@ -229,9 +229,9 @@ void MusicSpectrumWidget::show()
 
 void MusicSpectrumWidget::localFileButtonClicked()
 {
-    newSpekWidget(m_ui->spekBox, "qspek", m_ui->spekAreaLayout);
+    newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout);
 
-    int index = findSpectrumWidget("qspek");
+    int index = findSpectrumWidget("spectrumspek");
     if(index != -1)
     {
         Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
@@ -241,7 +241,7 @@ void MusicSpectrumWidget::localFileButtonClicked()
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    newSpekWidget(m_ui->spekBox, "qspek", m_ui->spekAreaLayout);
+    newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout);
 
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
@@ -250,7 +250,7 @@ void MusicSpectrumWidget::openFileButtonClicked()
     if(dialog.exec())
     {
         QString path = dialog.selectedFiles().last();
-        int index = findSpectrumWidget("qspek");
+        int index = findSpectrumWidget("spectrumspek");
         if(index != -1 && !path.isEmpty())
         {
             Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
@@ -373,9 +373,9 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
 
 void MusicSpectrumWidget::fspekStateChanged()
 {
-    if(m_ui->fspekBox->isChecked())
+    if(m_ui->envelopespekBox->isChecked())
     {
-        int index = findSpectrumWidget("fspek");
+        int index = findSpectrumWidget("envelopespek");
         if(index != -1)
         {
             Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);

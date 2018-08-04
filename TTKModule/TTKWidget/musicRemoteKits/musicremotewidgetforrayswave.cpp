@@ -67,7 +67,7 @@ void MusicRemoteWidgetForRaysWave::enablePlugin(bool enable)
 {
     foreach(VisualFactory *v, Visual::factories())
     {
-        if(v->properties().shortName.contains("rayswave"))
+        if(v->properties().shortName.contains("outerrayswave"))
         {
             Visual::setEnabled(v, enable);
             break;

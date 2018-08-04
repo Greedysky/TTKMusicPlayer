@@ -67,7 +67,7 @@ void MusicRemoteWidgetForRipples::enablePlugin(bool enable)
 {
     foreach(VisualFactory *v, Visual::factories())
     {
-        if(v->properties().shortName.contains("ripples"))
+        if(v->properties().shortName.contains("outerripples"))
         {
             Visual::setEnabled(v, enable);
             break;

@@ -134,13 +134,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="analyzer2Box">
-           <property name="text">
-            <string>Analyzer2</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QCheckBox" name="ewaveBox">
            <property name="text">
             <string>EWave</string>
@@ -148,9 +141,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="gwaveBox">
+          <widget class="QCheckBox" name="flowwaveBox">
            <property name="text">
-            <string>GWave</string>
+            <string>FlowWave</string>
            </property>
           </widget>
          </item>
@@ -162,16 +155,16 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="xrayBox">
+          <widget class="QCheckBox" name="lineBox">
            <property name="text">
-            <string>XRay</string>
+            <string>Line</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="pointxrayBox">
+          <widget class="QCheckBox" name="spacewaveBox">
            <property name="text">
-            <string>PointXRay</string>
+            <string>SpaceWave</string>
            </property>
           </widget>
          </item>
@@ -246,13 +239,6 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="fwaveBox">
-           <property name="text">
-            <string>FWave</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QCheckBox" name="foldwaveBox">
            <property name="text">
             <string>FoldWave</string>
@@ -274,6 +260,20 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="xraysBox">
+           <property name="text">
+            <string>XRays</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="pointxraysBox">
+           <property name="text">
+            <string>PointXRays</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="volumeWaveBox">
            <property name="text">
             <string>VolumeWave</string>
@@ -281,9 +281,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="fspekBox">
+          <widget class="QCheckBox" name="envelopespekBox">
            <property name="text">
-            <string>FSpek</string>
+            <string>EnvelopeSpek</string>
            </property>
           </widget>
          </item>
@@ -358,7 +358,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="goomBox">
+          <widget class="QCheckBox" name="flashgoomBox">
            <property name="text">
             <string>Goom</string>
            </property>
@@ -451,9 +451,9 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="spekBox">
+          <widget class="QCheckBox" name="spectrumspekBox">
            <property name="text">
-            <string>Spek</string>
+            <string>SpectrumSpek</string>
            </property>
            <property name="checked">
             <bool>true</bool>
