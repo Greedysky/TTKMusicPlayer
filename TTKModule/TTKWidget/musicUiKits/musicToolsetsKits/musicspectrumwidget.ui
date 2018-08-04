@@ -77,7 +77,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="spectrumWidget">
      <attribute name="title">
@@ -368,17 +368,14 @@
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+          <widget class="QCheckBox" name="flashmeterBox">
+           <property name="text">
+            <string>Meter</string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
+           <property name="checked">
+            <bool>false</bool>
            </property>
-          </spacer>
+          </widget>
          </item>
         </layout>
        </widget>

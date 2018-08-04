@@ -92,7 +92,7 @@ protected:
     /*!
      * New spek widget.
      */
-    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout);
+    void newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url = QString());
     /*!
      * Adjust widget layout.
      */
@@ -105,10 +105,6 @@ protected:
      * Find spectrum widget index by name.
      */
     int findSpectrumWidget(const QString &name);
-    /*!
-     * FSpek state button clicked.
-     */
-    void fspekStateChanged();
     /*!
      * Show message box widget.
      */

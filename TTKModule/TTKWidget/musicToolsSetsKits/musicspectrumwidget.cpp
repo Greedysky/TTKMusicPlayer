@@ -53,6 +53,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     m_ui->envelopespekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->flashgoomBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->flashmeterBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
 
     m_ui->spectrumspekBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->spectrumspekBox->hide();
@@ -82,6 +83,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
 
     m_ui->spectrumspekBox->setFocusPolicy(Qt::NoFocus);
     m_ui->flashgoomBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->flashmeterBox->setFocusPolicy(Qt::NoFocus);
 
     m_ui->localFileButton->setFocusPolicy(Qt::NoFocus);
     m_ui->openFileButton->setFocusPolicy(Qt::NoFocus);
@@ -111,6 +113,7 @@ MusicSpectrumWidget::MusicSpectrumWidget(QWidget *parent)
     QButtonGroup *group2 = new QButtonGroup(this);
     group2->setExclusive(false);
     group2->addButton(m_ui->flashgoomBox, 0);
+    group2->addButton(m_ui->flashmeterBox, 1);
     connect(group2, SIGNAL(buttonClicked(int)), SLOT(spectrumDazzleTypeChanged(int)));
 
     connect(m_ui->mainViewWidget, SIGNAL(currentChanged(int)), SLOT(tabIndexChanged(int)));
@@ -200,7 +203,6 @@ void MusicSpectrumWidget::spectrumPlusTypeChanged(int index)
             break;
         case 6:
             newSpekWidget(m_ui->envelopespekBox, "envelopespek", m_ui->spectrumPlusAreaLayout);
-            fspekStateChanged();
             break;
         default: break;
     }
@@ -214,6 +216,9 @@ void MusicSpectrumWidget::spectrumDazzleTypeChanged(int index)
     {
         case 0:
             newSpectrumWidget(m_ui->flashgoomBox, "flashgoom", m_ui->dazzleAreaLayout);
+            break;
+        case 1:
+            newSpectrumWidget(m_ui->flashmeterBox, "flashmeter", m_ui->dazzleAreaLayout);
             break;
         default: break;
     }
@@ -230,32 +235,18 @@ void MusicSpectrumWidget::show()
 void MusicSpectrumWidget::localFileButtonClicked()
 {
     newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout);
-
-    int index = findSpectrumWidget("spectrumspek");
-    if(index != -1)
-    {
-        Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
-        spek->open( SoundCore::instance()->url() );
-    }
 }
 
 void MusicSpectrumWidget::openFileButtonClicked()
 {
-    newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout);
-
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setViewMode(QFileDialog::Detail);
     dialog.setNameFilters(MusicFormats::supportFormatsSpekString());
     if(dialog.exec())
     {
-        QString path = dialog.selectedFiles().last();
-        int index = findSpectrumWidget("spectrumspek");
-        if(index != -1 && !path.isEmpty())
-        {
-            Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
-            spek->open( path );
-        }
+        const QString &path = dialog.selectedFiles().last();
+        newSpekWidget(m_ui->spectrumspekBox, "spectrumspek", m_ui->spekAreaLayout, path);
     }
 }
 
@@ -297,7 +288,7 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
     }
 }
 
-void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout)
+void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLayout *layout, const QString &url)
 {
     if(box->isChecked())
     {
@@ -317,6 +308,10 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
                 layout->addWidget(spekWidget);
             }
         }
+
+        int index = findSpectrumWidget(name);
+        Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
+        spek->open( url.isEmpty() ? SoundCore::instance()->url() : url );
     }
     else
     {
@@ -369,19 +364,6 @@ int MusicSpectrumWidget::findSpectrumWidget(const QString &name)
     }
 
     return -1;
-}
-
-void MusicSpectrumWidget::fspekStateChanged()
-{
-    if(m_ui->envelopespekBox->isChecked())
-    {
-        int index = findSpectrumWidget("envelopespek");
-        if(index != -1)
-        {
-            Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
-            spek->open( SoundCore::instance()->url() );
-        }
-    }
 }
 
 void MusicSpectrumWidget::showMessageBoxWidget(QCheckBox *box)
