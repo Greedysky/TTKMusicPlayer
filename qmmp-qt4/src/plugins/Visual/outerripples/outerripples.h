@@ -19,7 +19,6 @@
 #ifndef OUTERRIPPLES_H
 #define OUTERRIPPLES_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;

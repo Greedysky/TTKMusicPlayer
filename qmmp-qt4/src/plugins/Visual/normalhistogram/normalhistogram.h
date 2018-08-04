@@ -19,7 +19,6 @@
 #ifndef NORMALHISTOGRAM_H
 #define NORMALHISTOGRAM_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 

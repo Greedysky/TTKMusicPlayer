@@ -19,7 +19,6 @@
 #ifndef PLUSFOLDWAVE_H
 #define PLUSFOLDWAVE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 

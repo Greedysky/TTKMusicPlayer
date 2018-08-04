@@ -19,7 +19,6 @@
 #ifndef NORMALANALYZER_H
 #define NORMALANALYZER_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 

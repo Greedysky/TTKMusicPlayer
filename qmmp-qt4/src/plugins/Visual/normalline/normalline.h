@@ -19,7 +19,6 @@
 #ifndef NORMALLINE_H
 #define NORMALLINE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 

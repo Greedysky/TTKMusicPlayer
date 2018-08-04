@@ -19,7 +19,6 @@
 #ifndef NORMALFLOWWAVE_H
 #define NORMALFLOWWAVE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 #include "colorwidget.h"
 

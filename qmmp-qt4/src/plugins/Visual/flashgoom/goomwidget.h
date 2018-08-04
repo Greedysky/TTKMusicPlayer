@@ -19,7 +19,6 @@
 #ifndef GOOMWIDGET_H
 #define GOOMWIDGET_H
 
-#include <QWidget>
 #include <QImage>
 #include <qmmp/visual.h>
 

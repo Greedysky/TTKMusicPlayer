@@ -16,11 +16,10 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef NORMALEWAVE_H
-#define NORMALEWAVE_H
+#ifndef FLASHMETER_H
+#define FLASHMETER_H
 
 #include <qmmp/visual.h>
-#include "colorwidget.h"
 
 class QTimer;
 class QPainter;
@@ -28,12 +27,12 @@ class QPaintEvent;
 class QHideEvent;
 class QShowEvent;
 
-class NormalEWave : public Visual
+class FlashMeter : public Visual
 {
     Q_OBJECT
 public:
-    NormalEWave( QWidget *parent = 0);
-    virtual ~NormalEWave();
+    FlashMeter( QWidget *parent = 0);
+    virtual ~FlashMeter();
 
 public slots:
     void start();
@@ -41,28 +40,17 @@ public slots:
 
 private slots:
     void timeout();
-    void starTimeout();
-    void readSettings();
-    void writeSettings();
-    void changeColor();
-    void changeStarState(bool state);
-    void changeStarColor();
 
 private:
     void clear();
     virtual void hideEvent (QHideEvent *e);
     virtual void showEvent (QShowEvent *e);
     void paintEvent(QPaintEvent *e);
-    void contextMenuEvent(QContextMenuEvent *e);
 
     void process();
     void draw(QPainter *p);
 
-    QList<QColor> m_colors;
-    QAction *m_starAction;
-    QColor m_starColor;
-    QList<StarPoint> m_starPoints;
-    QTimer *m_timer, *m_starTimer;
+    QTimer *m_timer;
     double *m_intern_vis_data;
     double m_analyzer_falloff;
     float m_left_buffer[QMMP_VISUAL_NODE_SIZE];

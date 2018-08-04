@@ -16,45 +16,26 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#ifndef OUTERRAYSWAVE_H
-#define OUTERRAYSWAVE_H
+#ifndef VISUALFLASHMETERFACTORY_H
+#define VISUALFLASHMETERFACTORY_H
 
+
+#include <QObject>
+
+#include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
-class QTimer;
-class QPainter;
-class QPaintEvent;
-class QHideEvent;
-class QShowEvent;
-
-class OuterRaysWave : public Visual
+/**
+    @author Ilya Kotov <forkotov02@hotmail.ru>
+*/
+class VisualFlashMeterFactory : public QObject, public VisualFactory
 {
-    Q_OBJECT
+Q_OBJECT
+Q_INTERFACES(VisualFactory)
+
 public:
-    OuterRaysWave( QWidget *parent = 0);
-    virtual ~OuterRaysWave();
-
-public slots:
-    void start();
-    void stop();
-
-private slots:
-    void timeout();
-
-private:
-    void clear();
-    virtual void hideEvent (QHideEvent *e);
-    virtual void showEvent (QShowEvent *e);
-    void paintEvent(QPaintEvent *e);
-
-    void process();
-    void draw(QPainter *p);
-
-    QTimer *m_timer;
-    float m_left_buffer[QMMP_VISUAL_NODE_SIZE];
-    float m_right_buffer[QMMP_VISUAL_NODE_SIZE];
-    bool m_running;
-    int *m_intern_vis_data, m_cols, m_rows;
+    const VisualProperties properties() const;
+    Visual *create(QWidget *parent);
 
 };
 

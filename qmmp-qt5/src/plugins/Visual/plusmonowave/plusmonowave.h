@@ -19,7 +19,6 @@
 #ifndef PLUSMONOWAVE_H
 #define PLUSMONOWAVE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;

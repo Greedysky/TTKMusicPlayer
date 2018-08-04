@@ -3,4 +3,4 @@ TEMPLATE = subdirs
 
 SUBDIRS += normalanalyzer normalewave normalhistogram normalline normalflowwave normalspacewave \
            plusfoldwave plusmonowave plusmultiwave plusvolumewave pluspointxrays plusxrays \
-           outerrayswave outerripples flashgoom
+           outerrayswave outerripples flashgoom flashmeter

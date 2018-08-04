@@ -19,7 +19,6 @@
 #ifndef OUTERRAYSWAVE_H
 #define OUTERRAYSWAVE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;

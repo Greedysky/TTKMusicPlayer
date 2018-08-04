@@ -23,7 +23,7 @@
 #include <QObject>
 #include <QString>
 #include <QIODevice>
-#include <QWidget>
+
 #include <qmmp/decoder.h>
 #include <qmmp/output.h>
 #include <qmmp/decoderfactory.h>

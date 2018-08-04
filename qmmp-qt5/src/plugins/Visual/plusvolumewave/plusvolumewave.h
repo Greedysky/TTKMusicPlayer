@@ -19,7 +19,6 @@
 #ifndef PLUSVOLUMEWAVE_H
 #define PLUSVOLUMEWAVE_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;

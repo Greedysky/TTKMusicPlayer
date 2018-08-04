@@ -19,7 +19,6 @@
 #ifndef PLUSPOINTXRAYS_H
 #define PLUSPOINTXRAYS_H
 
-#include <QWidget>
 #include <qmmp/visual.h>
 
 class QTimer;
