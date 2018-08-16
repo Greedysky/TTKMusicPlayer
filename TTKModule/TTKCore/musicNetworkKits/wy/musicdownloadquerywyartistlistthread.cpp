@@ -31,7 +31,7 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
         int mIdx = dds[1].toInt();
         if(mIdx > -1 && mIdx < 26)
         {
-            mIdx *= 10;
+            mIdx += 65;
         }
         else if(mIdx >= 26)
         {
@@ -48,7 +48,7 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     QByteArray parameter = makeTokenQueryUrl(&request,
                MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(initial).arg(10));
+               MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(0).arg(100).arg(initial));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
