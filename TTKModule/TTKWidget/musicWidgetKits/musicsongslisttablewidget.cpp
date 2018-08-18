@@ -433,7 +433,7 @@ void MusicSongsListTableWidget::setDeleteItemAt()
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Delete File Mode"));
-    progress.setRange(0, selectedItems().count()/3*2);
+    progress.setRange(0, getMultiIndexSet().count()/3*2);
 
     MIntList deleteList(getMultiIndexSet());
     if(deleteList.isEmpty())

@@ -83,9 +83,9 @@ void MusicAbstractTableWidget::setRowColor(int row, const QColor &color) const
 MIntList MusicAbstractTableWidget::getMultiIndexSet()
 {
     MIntSet rows;
-    foreach(QTableWidgetItem *item, selectedItems())
+    foreach(const QModelIndex& index, selectedIndexes())
     {
-        rows.insert(item->row());
+        rows.insert(index.row());
     }
 
     MIntList rowsList = rows.toList();
