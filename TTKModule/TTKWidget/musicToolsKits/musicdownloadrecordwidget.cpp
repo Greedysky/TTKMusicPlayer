@@ -50,6 +50,9 @@ void MusicDownloadRecordTableWidget::createItem(int index, const MusicSong &reco
     item->setTextAlignment(Qt::AlignRight | Qt::AlignVCenter);
     item->setData(MUSIC_TIMES_ROLE, record.getMusicAddTimeStr());
     setItem(index, 3, item);
+
+    //just fix table widget size hint
+    setFixedHeight( allRowsHeight() );
 }
 
 

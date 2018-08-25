@@ -38,8 +38,7 @@ void MusicDJRadioProgramCategoryThread::startToPage(int offset)
     m_interrupt = true;
 
     QNetworkRequest request;
-    QUrl musicUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false)
-                  .arg(m_searchText).arg(m_pageSize).arg(offset*m_pageSize));
+    QUrl musicUrl(MusicUtils::Algorithm::mdII(DJ_RADIO_LIST_URL, false).arg(m_searchText));
     request.setUrl(musicUrl);
     setSslConfiguration(&request);
 
@@ -132,39 +131,39 @@ void MusicDJRadioProgramCategoryThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QString html(m_reply->readAll());
+        m_pageTotal = m_pageSize;
+        QByteArray bytes = m_reply->readAll();
 
-        QRegExp regx("<a.*class=\"zpgi\".*>(\\d+)</a>");
-        regx.setMinimal(true);
-        int pos = html.indexOf(regx);
-        while(pos != -1)
+        QJson::Parser parser;
+        bool ok;
+        QVariant data = parser.parse(bytes, &ok);
+        if(ok)
         {
-            if(m_interrupt) return;
+            QVariantMap value = data.toMap();
+            if(value["code"].toInt() == 200 && value.contains("djRadios"))
+            {
+                QVariantList datas = value["djRadios"].toList();
+                foreach(const QVariant &var, datas)
+                {
+                    if(var.isNull())
+                    {
+                        continue;
+                    }
 
-            m_pageTotal = regx.cap(1).toInt()*m_pageSize;
+                    value = var.toMap();
+                    MusicResultsItem info;
+                    info.m_id = QString::number(value["id"].toInt());
 
-            pos += regx.matchedLength();
-            pos = regx.indexIn(html, pos);
-        }
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
+                    info.m_coverUrl = value["picUrl"].toString();
+                    info.m_name = value["name"].toString();
+                    value = value["dj"].toMap();
+                    info.m_nickName = value["nickname"].toString();
+                    if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
 
-        regx.setPattern("<a href=\".?/djradio\\?id=(\\d+).*title.*</a>");
-        pos = html.indexOf(regx);
-
-        while(pos != -1)
-        {
-            if(m_interrupt) return;
-
-            MusicResultsItem info;
-            info.m_id = regx.cap(1);
-
-            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-            getProgramInfo(info);
-            if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-
-            emit createProgramItem(info);
-
-            pos += regx.matchedLength();
-            pos = regx.indexIn(html, pos);
+                    emit createProgramItem(info);
+                }
+            }
         }
     }
 
