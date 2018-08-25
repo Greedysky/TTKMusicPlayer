@@ -13,7 +13,7 @@
 #include "musiclrclocallinkwidget.h"
 #include "musicsongslistplaywidget.h"
 #include "musicvideoqualitypopwidget.h"
-#include "musicvideotablewidget.h"
+#include "musicvideosearchtablewidget.h"
 #include "musicdownloadmgmtwidget.h"
 #include "musicconnecttransferwidget.h"
 #include "musicsoundeffectswidget.h"
@@ -70,11 +70,11 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
         QObject::connect(first, SIGNAL(volumeChanged(int)), second, SLOT(setSoundEffectVolume(int)));
         QObject::connect(first, SIGNAL(setEqInformation()), second, SLOT(setEqInformation()));
     }
-    else if(from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicDownloadStatusObject::getClassName())
+    else if(from == MusicSongSearchTableWidget::getClassName() && to == MusicDownloadStatusObject::getClassName())
     {
         QObject::connect(first, SIGNAL(showDownLoadInfoFor(MusicObject::DownLoadMode)), second, SLOT(showDownLoadInfoFor(MusicObject::DownLoadMode)));
     }
-    else if((from == MusicSongSearchOnlineTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
+    else if((from == MusicSongSearchTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()) ||
             (from == MusicQueryFoundTableWidget::getClassName() && to == MusicSongsSummariziedWidget::getClassName()))
     {
         QObject::connect(first, SIGNAL(musicSongToPlayListChanged(QString,QString,QString,bool)), second, SLOT(addNetMusicSongToList(QString,QString,QString,bool)));
@@ -83,7 +83,7 @@ void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
     {
         QObject::connect(first, SIGNAL(currentLrcChanged(QString)), second, SLOT(showDownLoadInfoFinished(QString)));
     }
-    else if(from == MusicVideoQualityPopWidget::getClassName() && to == MusicVideoTableWidget::getClassName())
+    else if(from == MusicVideoQualityPopWidget::getClassName() && to == MusicVideoSearchTableWidget::getClassName())
     {
         QObject::connect(first, SIGNAL(getMusicMvInfo(MusicObject::MusicSongAttributes&)), second, SLOT(getMusicMvInfo(MusicObject::MusicSongAttributes&)));
     }

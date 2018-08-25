@@ -19,8 +19,8 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "musicvideotablewidget.h"
 #include "musicabstractmovewidget.h"
+#include "musicvideosearchtablewidget.h"
 
 class QLabel;
 class QPushButton;
@@ -165,7 +165,7 @@ protected:
     QStackedWidget *m_stackedWidget;
     MusicVideoItem m_videoItem;
     MusicVideoView *m_videoView;
-    MusicVideoTableWidget *m_videoTable;
+    MusicVideoSearchTableWidget *m_videoTable;
     MusicLocalSongSearchEdit *m_searchEdit;
     MusicVideoFloatWidget *m_videoFloatWidget;
 

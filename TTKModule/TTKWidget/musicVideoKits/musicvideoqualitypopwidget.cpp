@@ -3,7 +3,7 @@
 #include "musicuiobject.h"
 #include "musicnumberdefine.h"
 #include "musicconnectionpool.h"
-#include "musicvideotablewidget.h"
+#include "musicvideosearchtablewidget.h"
 
 MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
@@ -14,7 +14,7 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
     setStyleSheet(MusicUIObject::MKGVideoBtnSDMode);
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(getClassName(), MusicVideoTableWidget::getClassName());
+    M_CONNECTION_PTR->poolConnect(getClassName(), MusicVideoSearchTableWidget::getClassName());
 
 }
 

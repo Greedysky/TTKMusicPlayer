@@ -56,17 +56,17 @@ class MusicCoreMPlayer;
 /*! @brief The class of the song search online table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicSongSearchOnlineTableWidget : public MusicQueryItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongSearchTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongSearchOnlineTableWidget)
+    TTK_DECLARE_MODULE(MusicSongSearchTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchOnlineTableWidget(QWidget *parent = 0);
+    explicit MusicSongSearchTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicSongSearchOnlineTableWidget();
+    virtual ~MusicSongSearchTableWidget();
 
     /*!
      * Set wheather query all quality of records.
@@ -238,7 +238,7 @@ protected:
     QLabel *m_textLabel;
     QPushButton *m_playButton;
     QList<QWidget*> m_resizeLabels;
-    MusicSongSearchOnlineTableWidget *m_searchTableWidget;
+    MusicSongSearchTableWidget *m_searchTableWidget;
 
 };
 

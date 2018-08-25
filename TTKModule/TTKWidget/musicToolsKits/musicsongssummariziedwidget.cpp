@@ -38,7 +38,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     m_musicSongSearchWidget = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
-    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
 }
 
 MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()

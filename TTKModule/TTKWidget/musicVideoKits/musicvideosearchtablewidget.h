@@ -1,5 +1,5 @@
-#ifndef MUSICVIDEOTABLEWIDGET_H
-#define MUSICVIDEOTABLEWIDGET_H
+#ifndef MUSICVIDEOSEARCHTABLEWIDGET_H
+#define MUSICVIDEOSEARCHTABLEWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -39,17 +39,17 @@ typedef struct MUSIC_VIDEO_EXPORT MusicVideoItem
 /*! @brief The class of the video search table widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_VIDEO_EXPORT MusicVideoTableWidget : public MusicQueryItemTableWidget
+class MUSIC_VIDEO_EXPORT MusicVideoSearchTableWidget : public MusicQueryItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicVideoTableWidget)
+    TTK_DECLARE_MODULE(MusicVideoSearchTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoTableWidget(QWidget *parent = 0);
+    explicit MusicVideoSearchTableWidget(QWidget *parent = 0);
 
-    virtual ~MusicVideoTableWidget();
+    virtual ~MusicVideoSearchTableWidget();
 
     /*!
      * Start search query by text.
@@ -123,4 +123,4 @@ protected:
 
 };
 
-#endif // MUSICVIDEOTABLEWIDGET_H
+#endif // MUSICVIDEOSEARCHTABLEWIDGET_H

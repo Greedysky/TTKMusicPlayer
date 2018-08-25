@@ -19,7 +19,7 @@
 
 #include <QButtonGroup>
 
-MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *parent)
+MusicSongSearchTableWidget::MusicSongSearchTableWidget(QWidget *parent)
     : MusicQueryItemTableWidget(parent), m_mediaPlayer(nullptr)
 {
     setColumnCount(9);
@@ -40,14 +40,14 @@ MusicSongSearchOnlineTableWidget::MusicSongSearchOnlineTableWidget(QWidget *pare
     M_CONNECTION_PTR->setValue(getClassName(), this);
 }
 
-MusicSongSearchOnlineTableWidget::~MusicSongSearchOnlineTableWidget()
+MusicSongSearchTableWidget::~MusicSongSearchTableWidget()
 {
     auditionStop();
     delete m_mediaPlayer;
     clearAllItems();
 }
 
-void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
+void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -85,7 +85,7 @@ void MusicSongSearchOnlineTableWidget::startSearchQuery(const QString &text)
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
 }
 
-void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &text)
+void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -110,7 +110,7 @@ void MusicSongSearchOnlineTableWidget::startSearchSingleQuery(const QString &tex
     m_downLoadManager->startToSingleSearch(text);
 }
 
-void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
+void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
@@ -123,7 +123,7 @@ void MusicSongSearchOnlineTableWidget::musicDownloadLocal(int row)
     download->show();
 }
 
-void MusicSongSearchOnlineTableWidget::auditionStop()
+void MusicSongSearchTableWidget::auditionStop()
 {
     if(m_mediaPlayer)
     {
@@ -131,7 +131,7 @@ void MusicSongSearchOnlineTableWidget::auditionStop()
     }
 }
 
-void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
+void MusicSongSearchTableWidget::auditionToMusic(int row)
 {
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0 || (row >= rowCount() - 1))
@@ -167,7 +167,7 @@ void MusicSongSearchOnlineTableWidget::auditionToMusic(int row)
     emit auditionIsPlaying(false);
 }
 
-void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
+void MusicSongSearchTableWidget::auditionToMusicStop(int row)
 {
     if(m_mediaPlayer)
     {
@@ -190,13 +190,13 @@ void MusicSongSearchOnlineTableWidget::auditionToMusicStop(int row)
     emit auditionIsPlaying(true);
 }
 
-void MusicSongSearchOnlineTableWidget::setSearchQuality(const QString &quality)
+void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 {
     MusicQueryItemTableWidget::startSearchQuery(QString());
     m_downLoadManager->setSearchQuality(quality);
 }
 
-void MusicSongSearchOnlineTableWidget::resizeWindow()
+void MusicSongSearchTableWidget::resizeWindow()
 {
     int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
@@ -217,7 +217,7 @@ void MusicSongSearchOnlineTableWidget::resizeWindow()
     }
 }
 
-void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
+void MusicSongSearchTableWidget::listCellEntered(int row, int column)
 {
     MusicQueryItemTableWidget::listCellEntered(row, column);
     if(column == 7 || column == 8)
@@ -230,7 +230,7 @@ void MusicSongSearchOnlineTableWidget::listCellEntered(int row, int column)
     }
 }
 
-void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
+void MusicSongSearchTableWidget::listCellClicked(int row, int column)
 {
     MusicQueryItemTableWidget::listCellClicked(row, column);
     switch(column)
@@ -252,13 +252,13 @@ void MusicSongSearchOnlineTableWidget::listCellClicked(int row, int column)
     }
 }
 
-void MusicSongSearchOnlineTableWidget::clearAllItems()
+void MusicSongSearchTableWidget::clearAllItems()
 {
     MusicQueryItemTableWidget::clearAllItems();
     setColumnCount(9);
 }
 
-void MusicSongSearchOnlineTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
+void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
     int count = rowCount();
     setRowCount(count + 1);
@@ -313,7 +313,7 @@ void MusicSongSearchOnlineTableWidget::createSearchedItem(const MusicSearchedIte
     setItem(count, 8, item);
 }
 
-void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
+void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
 {
     if(column <= 0 || row < 0|| (row >= rowCount() - 1))
     {
@@ -322,7 +322,7 @@ void MusicSongSearchOnlineTableWidget::itemDoubleClicked(int row, int column)
     addSearchMusicToPlayList(row);
 }
 
-void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
+void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
 //    MusicQueryItemTableWidget::actionGroupClick(action);
     int row = currentRow();
@@ -348,7 +348,7 @@ void MusicSongSearchOnlineTableWidget::actionGroupClick(QAction *action)
     }
 }
 
-void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
+void MusicSongSearchTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
@@ -358,7 +358,7 @@ void MusicSongSearchOnlineTableWidget::searchDataDwonloadFinished()
     m_downloadData.clear();
 }
 
-void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
+void MusicSongSearchTableWidget::musicSongDownload(int row)
 {
     if(row < 0)
     {
@@ -371,7 +371,7 @@ void MusicSongSearchOnlineTableWidget::musicSongDownload(int row)
     download->show();
 }
 
-void MusicSongSearchOnlineTableWidget::mediaAutionPlayError(int code)
+void MusicSongSearchTableWidget::mediaAutionPlayError(int code)
 {
     if(DEFAULT_LEVEL_NORMAL == code)
     {
@@ -382,13 +382,13 @@ void MusicSongSearchOnlineTableWidget::mediaAutionPlayError(int code)
     }
 }
 
-void MusicSongSearchOnlineTableWidget::resizeEvent(QResizeEvent *event)
+void MusicSongSearchTableWidget::resizeEvent(QResizeEvent *event)
 {
     MusicQueryItemTableWidget::resizeEvent(event);
     resizeWindow();
 }
 
-void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event)
+void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 {
     MusicQueryItemTableWidget::contextMenuEvent(event);
 
@@ -410,7 +410,7 @@ void MusicSongSearchOnlineTableWidget::contextMenuEvent(QContextMenuEvent *event
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicSongSearchOnlineTableWidget::addSearchMusicToPlayList(int row)
+void MusicSongSearchTableWidget::addSearchMusicToPlayList(int row)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {
@@ -464,7 +464,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
     toolWidget->setAutoFillBackground(true);
     toolWidget->setPalette(pal);
 
-    m_searchTableWidget = new  MusicSongSearchOnlineTableWidget(this);
+    m_searchTableWidget = new  MusicSongSearchTableWidget(this);
     boxLayout->addWidget(toolWidget);
     boxLayout->addWidget(m_searchTableWidget);
     setLayout(boxLayout);

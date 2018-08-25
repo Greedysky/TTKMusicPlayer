@@ -95,7 +95,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_topWidget->raise();
 
     m_videoFloatWidget = new MusicVideoFloatWidget(this);
-    m_videoTable = new MusicVideoTableWidget(this);
+    m_videoTable = new MusicVideoSearchTableWidget(this);
     m_videoView = new MusicVideoView(this);
     m_stackedWidget->addWidget(m_videoView);
     m_stackedWidget->addWidget(m_videoTable);

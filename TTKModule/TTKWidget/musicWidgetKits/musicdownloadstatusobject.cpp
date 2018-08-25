@@ -22,7 +22,7 @@ MusicDownloadStatusObject::MusicDownloadStatusObject(QObject *parent)
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
 #ifndef MUSIC_MOBILE
-    M_CONNECTION_PTR->poolConnect(MusicSongSearchOnlineTableWidget::getClassName(), getClassName());
+    M_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
 #endif
     M_CONNECTION_PTR->poolConnect(MusicNetworkThread::getClassName(), getClassName());
 }
