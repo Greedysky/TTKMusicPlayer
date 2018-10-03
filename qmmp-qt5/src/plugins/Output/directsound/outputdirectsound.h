@@ -21,6 +21,7 @@
 #ifndef OUTPUTDIRECTSOUND_H
 #define OUTPUTDIRECTSOUND_H
 
+#include <QTranslator>
 #include <stdio.h>
 #include <windows.h>
 #include <ksmedia.h>

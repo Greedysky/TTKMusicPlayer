@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -81,13 +81,13 @@ bool DecoderMADFactory::canDecode(QIODevice *input) const
                 return false;
 
             buf_at = sizeof(buf) - header.tagSize();
-            memmove(buf, buf + header.tagSize() + header.tagSize(), sizeof(buf) - header.tagSize());
+            memmove(buf, buf + header.tagSize(), buf_at);
         }
         else
         {
             input->seek(header.tagSize());
             buf_at = input->read(buf, sizeof(buf));
-            input->seek(0); //restore inital position
+            input->seek(0); //restore initial position
         }
     }
 

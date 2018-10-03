@@ -29,7 +29,9 @@
 #include "decoder_sndfile.h"
 #include "decodersndfilefactory.h"
 
+#ifndef WAVE_FORMAT_PCM
 #define WAVE_FORMAT_PCM 0x0001
+#endif
 #define WAVE_FORMAT_ADPCM 0x0002
 #define WAVE_FORMAT_IEEE_FLOAT 0x0003
 #define WAVE_FORMAT_ALAW 0x0006
@@ -38,13 +40,45 @@
 // DecoderSndFileFactory
 bool DecoderSndFileFactory::canDecode(QIODevice *input) const
 {
-    char buf[36];
+    char buf[36] = {0};
     if(input->peek(buf, sizeof(buf)) != sizeof(buf))
         return false;
 
     if(!memcmp(buf + 8, "WAVE", 4) && (!memcmp(buf, "RIFF", 4) || !memcmp(buf, "RIFX", 4)))
     {
-        quint16 subformat = (quint16(buf[21]) << 8) + buf[20];
+        quint16 subformat = 0;
+
+        if(!memcmp(buf + 12, "fmt ", 4))
+        {
+            subformat = (quint16(buf[21]) << 8) + buf[20];
+        }
+        else if(!input->isSequential())
+        {
+            input->seek(12);
+            //skip "JUNK" and "bext" chunks
+            while(!input->atEnd())
+            {
+                if(input->peek(buf, sizeof(buf)) != sizeof(buf))
+                    return false;
+
+                if(!memcmp(buf, "fmt ", 4))
+                {
+                    subformat = (quint16(buf[9]) << 8) + buf[8];
+                    break;
+                }
+                else if(!memcmp(buf, "JUNK", 4) || !memcmp(buf, "bext", 4))
+                {
+                    size_t size = buf[4] + (buf[5] << 8) + (buf[6] << 16) + (buf[7] << 24);
+                    if(!input->seek(input->pos() + size + 8))
+                        break;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            input->seek(0);
+        }
 
         switch (subformat)
         {

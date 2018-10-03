@@ -20,6 +20,7 @@
 
 #include <QObject>
 #include <QFile>
+#include <QtDebug>
 #include "replaygainreader.h"
 #include "decoder_ffmpeg.h"
 #if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1: 55.39.100
@@ -310,12 +311,8 @@ bool DecoderFFmpeg::initialize()
     if(c->bit_rate)
         m_bitrate = c->bit_rate/1000;
     qDebug("DecoderFFmpeg: initialize succes");
+    qDebug() << "DecoderFFmpeg: total time =" << m_totalTime;
 
-#ifdef Q_OS_WIN
-    qDebug("total time = %I64d", m_totalTime);
-#else
-    qDebug("total time = %lld ", m_totalTime);
-#endif
     return true;
 }
 

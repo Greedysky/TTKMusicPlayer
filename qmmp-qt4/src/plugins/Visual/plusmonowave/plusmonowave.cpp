@@ -105,17 +105,17 @@ void PlusMonoWave::process ()
             delete [] m_intern_vis_data;
         if(m_x_scale)
             delete [] m_x_scale;
-        m_intern_vis_data = new double[m_cols];
-        m_x_scale = new int[m_cols + 1];
+        m_intern_vis_data = new double[m_rows];
+        m_x_scale = new int[m_rows + 1];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
 
-        for(int i = 0; i < m_cols; ++i)
+        for(int i = 0; i < m_rows; ++i)
         {
             m_intern_vis_data[i] = 0;
         }
-        for(int i = 0; i < m_cols + 1; ++i)
-            m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        for(int i = 0; i < m_rows + 1; ++i)
+            m_x_scale[i] = pow(pow(255.0, 1.0 / m_rows), i);
     }
 
     short dest[256];
@@ -124,9 +124,9 @@ void PlusMonoWave::process ()
 
     calc_freq (dest, m_left_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    double y_scale = (double) 1.25 * m_cols / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for (int i = 0; i < m_rows; i++)
     {
         y = 0;
         magnitude = 0;
@@ -145,10 +145,10 @@ void PlusMonoWave::process ()
         if (y)
         {
             magnitude = int(log (y) * y_scale);
-            magnitude = qBound(0, magnitude, m_rows);
+            magnitude = qBound(0, magnitude, m_cols);
         }
 
-        m_intern_vis_data[i] -= m_analyzer_falloff * m_rows / 15;
+        m_intern_vis_data[i] -= m_analyzer_falloff * m_cols / 15;
         m_intern_vis_data[i] = magnitude > m_intern_vis_data[i] ? magnitude : m_intern_vis_data[i];
     }
 }

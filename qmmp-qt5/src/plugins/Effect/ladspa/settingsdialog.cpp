@@ -23,6 +23,7 @@
 #include <QStyle>
 #include <QStandardItemModel>
 #include <QFormLayout>
+#include <QWidget>
 #include <QLabel>
 #include <QIcon>
 #include <qmmp/qmmp.h>

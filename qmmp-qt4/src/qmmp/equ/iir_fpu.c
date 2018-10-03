@@ -33,16 +33,16 @@
 #include "iir_fpu.h"
 #include "iir.h"
 
-static sXYData data_history[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
-static sXYData data_history2[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
-float gain[EQ_MAX_BANDS][EQ_CHANNELS] __attribute__((aligned));
+static sXYData data_history[EQ_CHANNELS][EQ_MAX_BANDS] __attribute__((aligned));
+static sXYData data_history2[EQ_CHANNELS][EQ_MAX_BANDS] __attribute__((aligned));
+float gain[EQ_CHANNELS][EQ_MAX_BANDS] __attribute__((aligned));
 /* random noise */
-sample_t dither[256];
+//sample_t dither[256];
 //int di;
 
 void set_gain(int index, int chn, float val)
 {
-  gain[index][chn] = val;
+  gain[chn][index] = val;
 }
 
 void clean_history()
@@ -113,27 +113,27 @@ __inline__ int iir(float *d, int samples, int nch)
       for (band = 0; band < band_count; band++)
       {
           /* Optimization */
-        if(gain[band][channel] > -1.0e-10 && gain[band][channel] < 1.0e-10)
+        if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)
             continue;
 
         /* Store Xi(n) */
-        data_history[band][channel].x[i] = pcm[channel];
+        data_history[channel][band].x[i] = pcm[channel];
         /* Calculate and store Yi(n) */
-        data_history[band][channel].y[i] =
+        data_history[channel][band].y[i] =
           (
            /* 		= alpha * [x(n)-x(n-2)] */
-           iir_cf[band].alpha * ( data_history[band][channel].x[i]
-             -  data_history[band][channel].x[k])
+           iir_cf[band].alpha * ( data_history[channel][band].x[i]
+             -  data_history[channel][band].x[k])
            /* 		+ gamma * y(n-1) */
-           + iir_cf[band].gamma * data_history[band][channel].y[j]
+           + iir_cf[band].gamma * data_history[channel][band].y[j]
            /* 		- beta * y(n-2) */
-           - iir_cf[band].beta * data_history[band][channel].y[k]
+           - iir_cf[band].beta * data_history[channel][band].y[k]
           );
         /*
          * The multiplication by 2.0 was 'moved' into the coefficients to save
          * CPU cycles here */
         /* Apply the gain  */
-        out[channel] +=  data_history[band][channel].y[i]*gain[band][channel]; // * 2.0;
+        out[channel] +=  data_history[channel][band].y[i]*gain[channel][band]; // * 2.0;
       } /* For each band */
 
       //if (eqcfg.extra_filtering)
@@ -142,24 +142,24 @@ __inline__ int iir(float *d, int samples, int nch)
         for (band = 0; band < band_count; band++)
         {
             /* Optimization */
-          if(gain[band][channel] > -1.0e-10 && gain[band][channel] < 1.0e-10)
+          if(gain[channel][band] > -1.0e-10 && gain[channel][band] < 1.0e-10)
              continue;
 
           /* Store Xi(n) */
-          data_history2[band][channel].x[i] = out[channel];
+          data_history2[channel][band].x[i] = out[channel];
           /* Calculate and store Yi(n) */
-          data_history2[band][channel].y[i] =
+          data_history2[channel][band].y[i] =
             (
              /* y(n) = alpha * [x(n)-x(n-2)] */
-             iir_cf[band].alpha * (data_history2[band][channel].x[i]
-               -  data_history2[band][channel].x[k])
+             iir_cf[band].alpha * (data_history2[channel][band].x[i]
+               -  data_history2[channel][band].x[k])
              /* 	    + gamma * y(n-1) */
-             + iir_cf[band].gamma * data_history2[band][channel].y[j]
+             + iir_cf[band].gamma * data_history2[channel][band].y[j]
              /* 		- beta * y(n-2) */
-             - iir_cf[band].beta * data_history2[band][channel].y[k]
+             - iir_cf[band].beta * data_history2[channel][band].y[k]
             );
           /* Apply the gain */
-          out[channel] +=  data_history2[band][channel].y[i]*gain[band][channel];
+          out[channel] +=  data_history2[channel][band].y[i]*gain[channel][band];
         } /* For each band */
       }
 

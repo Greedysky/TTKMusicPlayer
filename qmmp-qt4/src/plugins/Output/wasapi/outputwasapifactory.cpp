@@ -27,7 +27,7 @@ const OutputProperties OutputWASAPIFactory::properties() const
     OutputProperties properties;
     properties.name = tr("WASAPI Plugin");
     properties.hasAbout = true;
-    properties.hasSettings = false;
+    properties.hasSettings = true;
     properties.shortName = "wasapi";
     return properties;
 }

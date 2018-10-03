@@ -18,6 +18,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
+#include <QtDebug>
 #include <string.h>
 #include "statehandler.h"
 #include "visual.h"
@@ -402,11 +403,7 @@ void OutputWriter::run()
     if(m_finish)
     {
         m_output->drain();
-#ifdef Q_OS_WIN
-        qDebug("OutputWriter: total written %I64d", m_totalWritten);
-#else
-        qDebug("OutputWriter: total written %lld", m_totalWritten);
-#endif
+        qDebug() << "OutputWriter: total written" << m_totalWritten;
     }
     dispatch(Qmmp::Stopped);
     stopVisualization();
