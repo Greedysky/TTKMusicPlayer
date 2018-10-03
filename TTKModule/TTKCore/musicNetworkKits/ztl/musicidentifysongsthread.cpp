@@ -2,13 +2,14 @@
 #include "musicdownloadsourcethread.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
+#include "musicsourceupdatethread.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #include <QFile>
 
 #define QUERY_URL     "VzBxZCtBUDBKK1R6aHNiTGxMdy84SzlIUVA5a3cvbjdKQ1ZIVGdYRThBS0hZMTlZSnhRQ0Y5N0lZdi9QQ3VveVEyVDdXbll3ZUZvPQ=="
-#define ACRUA_URL     "U0NDS2dzQVpNM3V3aGhtZmVOdW83d2VielBHdTcxTEk4QmpTSUxvQ2ZsdWVSaE1wWW5EOG8wMm83bitKVlJnZHZ1dlBSUT09"
+#define QN_ACRUA_URL  "acrcloud"
 
 MusicIdentifySongsThread::MusicIdentifySongsThread(QObject *parent)
     : MusicNetworkAbstract(parent)
@@ -36,7 +37,7 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(ACRUA_URL, false));
+    download->startToDownload(MusicUtils::Algorithm::mdII(QN_BUKET_URL, false) + QN_ACRUA_URL);
 
     loop.exec();
 

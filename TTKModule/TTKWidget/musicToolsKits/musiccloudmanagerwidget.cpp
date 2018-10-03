@@ -14,6 +14,7 @@
 #include "musicmessagebox.h"
 #include "musicconnectionpool.h"
 #include "musiccloudtablewidget.h"
+#include "musicsourceupdatethread.h"
 #include <QThread>
 #if defined Q_OS_UNIX || defined Q_CC_MINGW
 # include <unistd.h>
@@ -27,8 +28,8 @@
 #include "qjson/parser.h"
 
 #define QN_BUCKET       "music"
-#define QN_PRFIX        "bkdIdE5FTXFpalU3MmxKMG5OOFVLS0lWZ0tCdDRzOGtQemJ6QnN3TlN2VUc3SGp4"
-#define QN_UA_URL       "VlQxWWhUSjJzWjFTSkZRRFFqdnlPK3FJZ0JxbmlrcFoydjVCRlZ2a3hRdlBuRFhmOUZObW1STmxqNVVEWUJsdA=="
+#define QN_CLOUD        "cloud"
+#define QN_PRFIX        "UmN4K0hnbjlzNTlGK3k4V05Ceklobk9rdUNWUm1aMG5zbHlFM2xjMDJzK1hTY1JL"
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
@@ -84,7 +85,7 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_UA_URL, false));
+    download->startToDownload(MusicUtils::Algorithm::mdII(BASE_BUKET_URL, false) + QN_CLOUD);
 
     loop.exec();
     updateListToServer();
