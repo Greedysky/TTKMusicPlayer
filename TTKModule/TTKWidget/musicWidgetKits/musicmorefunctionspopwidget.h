@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMoreFunctionsPopWidget(QWidget *parent = 0);
+    explicit MusicMoreFunctionsPopWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current song name.

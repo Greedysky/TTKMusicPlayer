@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicColorPreviewLabel(QWidget *parent = 0);
+    explicit MusicColorPreviewLabel(QWidget *parent = nullptr);
 
     /*!
      * Set linear gradient and fg and bg.
@@ -72,7 +72,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPreviewLabel(QWidget *parent = 0);
+    explicit MusicPreviewLabel(QWidget *parent = nullptr);
 
     /*!
      * Set linear gradient item.

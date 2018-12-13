@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchTableWidget(QWidget *parent = 0);
+    explicit MusicSongSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongSearchTableWidget();
 
@@ -182,7 +182,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSearchOnlineWidget(QWidget *parent = 0);
+    explicit MusicSongSearchOnlineWidget(QWidget *parent = nullptr);
 
     ~MusicSongSearchOnlineWidget();
 

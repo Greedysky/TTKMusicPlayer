@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongListSharingWidget(QWidget *parent = 0);
+    explicit MusicSongListSharingWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongListSharingWidget();
 

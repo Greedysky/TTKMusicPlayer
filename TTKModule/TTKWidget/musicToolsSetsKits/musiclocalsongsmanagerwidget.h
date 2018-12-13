@@ -44,7 +44,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsManagerWidget(QWidget *parent = 0);
+    explicit MusicLocalSongsManagerWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLocalSongsManagerWidget();
 

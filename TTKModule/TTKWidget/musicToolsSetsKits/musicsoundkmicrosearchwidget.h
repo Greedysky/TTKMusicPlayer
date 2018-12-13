@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSoundKMicroSearchTableWidget();
 
@@ -106,7 +106,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroSearchWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroSearchWidget(QWidget *parent = nullptr);
 
     ~MusicSoundKMicroSearchWidget();
 

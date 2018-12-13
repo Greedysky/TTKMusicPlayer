@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlayedListTopContainerWidget(QWidget *parent = 0);
+    explicit MusicPlayedListTopContainerWidget(QWidget *parent = nullptr);
 
 protected:
     /*!
@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlayedListPopWidget(QWidget *parent = 0);
+    explicit MusicPlayedListPopWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlayedListPopWidget();
 

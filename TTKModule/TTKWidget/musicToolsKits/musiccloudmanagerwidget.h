@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudManagerTableWidget(QWidget *parent = 0);
+    explicit MusicCloudManagerTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudManagerTableWidget();
 
@@ -192,7 +192,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudManagerWidget(QWidget *parent = 0);
+    explicit MusicCloudManagerWidget(QWidget *parent = nullptr);
 
     ~MusicCloudManagerWidget();
 

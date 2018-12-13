@@ -73,7 +73,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinThunderConfigManager(QObject *parent = 0);
+    explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas into xml file.
@@ -94,7 +94,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundRemoteThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundRemoteThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -127,7 +127,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundThunderThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundThunderThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.
@@ -154,7 +154,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBackgroundBingThread(QObject *parent = 0);
+    explicit MusicDownloadBackgroundBingThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data from net.

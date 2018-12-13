@@ -62,7 +62,7 @@ class MUSIC_CORE_EXPORT MusicPlayedlist : public QObject
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicPlayedlist)
 public:
-    explicit MusicPlayedlist(QObject *parent = 0);
+    explicit MusicPlayedlist(QObject *parent = nullptr);
 
     /*!
      * Get current play mode.

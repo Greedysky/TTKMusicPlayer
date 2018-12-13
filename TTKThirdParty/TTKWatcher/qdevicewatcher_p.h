@@ -65,7 +65,7 @@ class MUSIC_EXTRAS_EXPORT QDeviceWatcherPrivate
 {
 	Q_OBJECT
 public:
-	QDeviceWatcherPrivate(QObject *parent = 0) :
+	QDeviceWatcherPrivate(QObject *parent = nullptr) :
 #if CONFIG_THREAD
 	QThread(parent)
 #else

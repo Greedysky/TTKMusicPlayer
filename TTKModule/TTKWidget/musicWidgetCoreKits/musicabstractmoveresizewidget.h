@@ -59,7 +59,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveResizeWidget(QWidget *parent = 0);
+    explicit MusicAbstractMoveResizeWidget(QWidget *parent = nullptr);
 
 protected:
     /*!

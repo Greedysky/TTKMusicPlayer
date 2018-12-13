@@ -74,7 +74,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSkinConfigManager(QObject *parent = 0);
+    explicit MusicSkinConfigManager(QObject *parent = nullptr);
 
     /*!
      * Write datas into xml file.

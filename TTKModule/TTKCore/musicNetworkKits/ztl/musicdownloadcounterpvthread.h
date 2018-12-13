@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadCounterPVThread(QObject *parent = 0);
+    explicit MusicDownloadCounterPVThread(QObject *parent = nullptr);
 
     virtual ~MusicDownloadCounterPVThread();
 

@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryBDArtistListThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryBDArtistListThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type bt paging.

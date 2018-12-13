@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerForInline(QWidget *parent = 0);
+    explicit MusicLrcContainerForInline(QWidget *parent = nullptr);
 
     virtual ~MusicLrcContainerForInline();
 

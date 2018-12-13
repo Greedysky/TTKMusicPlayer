@@ -51,11 +51,11 @@ public:
     /*!
      * Qiniu to sign request.
      */
-    QString signRequest(const QUrl &reqestUrl, const QByteArray &bodyData = 0) const;
+    QString signRequest(const QUrl &reqestUrl, const QByteArray &bodyData = QByteArray()) const;
     /*!
      * Qiniu to sign request.
      */
-    QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = 0) const;
+    QString signRequest(const QNetworkRequest &request, const QByteArray &bodyData = QByteArray()) const;
 
 private:
     TTK_DECLARE_PRIVATE(QNMac)

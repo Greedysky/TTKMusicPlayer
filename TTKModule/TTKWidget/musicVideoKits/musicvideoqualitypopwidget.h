@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoQualityPopWidget(QWidget *parent = 0);
+    explicit MusicVideoQualityPopWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVideoQualityPopWidget();
 

@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcMakerWidgetItem(QWidget *ui = 0, QObject *parent = 0);
+    explicit MusicLrcMakerWidgetItem(QWidget *ui = nullptr, QObject *parent = nullptr);
 
     /*!
      * Check the last index.
@@ -101,7 +101,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcMakerWidget(QWidget *parent = 0);
+    explicit MusicLrcMakerWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcMakerWidget();
 

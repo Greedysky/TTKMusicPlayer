@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundListItem(QWidget *parent = 0);
+    explicit MusicBackgroundListItem(QWidget *parent = nullptr);
 
     /*!
      * Set item file name.
@@ -143,7 +143,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundListWidget(QWidget *parent = 0);
+    explicit MusicBackgroundListWidget(QWidget *parent = nullptr);
 
     ~MusicBackgroundListWidget();
 

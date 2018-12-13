@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkConnectionItem(QWidget *parent = 0);
+    explicit MusicNetworkConnectionItem(QWidget *parent = nullptr);
 
     ~MusicNetworkConnectionItem();
 
@@ -91,7 +91,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkConnectionTestWidget(QWidget *parent = 0);
+    explicit MusicNetworkConnectionTestWidget(QWidget *parent = nullptr);
 
     virtual ~MusicNetworkConnectionTestWidget();
 

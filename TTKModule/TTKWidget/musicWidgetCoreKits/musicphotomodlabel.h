@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPhotoModLabel(QWidget *parent = 0);
+    explicit MusicPhotoModLabel(QWidget *parent = nullptr);
 
     /*!
      * Set song image path.

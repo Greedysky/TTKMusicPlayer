@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylist(QObject *parent = 0);
+    explicit MusicPlaylist(QObject *parent = nullptr);
 
     ~MusicPlaylist() = default;
 

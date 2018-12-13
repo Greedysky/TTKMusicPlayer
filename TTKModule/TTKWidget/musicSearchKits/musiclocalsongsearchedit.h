@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchEdit(QWidget *parent = 0);
+    explicit MusicLocalSongSearchEdit(QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!

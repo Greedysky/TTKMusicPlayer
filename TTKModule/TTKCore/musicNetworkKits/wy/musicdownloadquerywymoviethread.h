@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryWYMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYMovieThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicListConfigManager(QObject *parent = 0);
+    explicit MusicListConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read config datas from xml file by given name.

@@ -31,7 +31,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForCircle(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForCircle(QWidget *parent = nullptr);
 
 protected:
     /*!

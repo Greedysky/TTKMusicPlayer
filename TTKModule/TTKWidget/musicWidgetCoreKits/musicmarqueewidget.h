@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMarqueeWidget(QWidget *parent = 0);
+    explicit MusicMarqueeWidget(QWidget *parent = nullptr);
 
     /*!
      * Set effect on resize.

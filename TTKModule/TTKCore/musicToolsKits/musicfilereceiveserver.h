@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFileReceiveServer(QObject *parent = 0);
+    explicit MusicFileReceiveServer(QObject *parent = nullptr);
 
     ~MusicFileReceiveServer();
 

@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundSkinDialog(QWidget *parent = 0);
+    explicit MusicBackgroundSkinDialog(QWidget *parent = nullptr);
 
     virtual ~MusicBackgroundSkinDialog();
 

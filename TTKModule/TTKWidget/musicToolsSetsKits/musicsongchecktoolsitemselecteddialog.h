@@ -16,7 +16,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent = 0);
+    explicit MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.
@@ -51,7 +51,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsItemSelectedDialog(QWidget *parent = 0);
+    explicit MusicSongCheckToolsItemSelectedDialog(QWidget *parent = nullptr);
 
     virtual ~MusicSongCheckToolsItemSelectedDialog();
 

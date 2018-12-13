@@ -36,16 +36,16 @@ public:
      * Create put data multi part.
      */
     static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
-                                                  const QString &key = 0, const QString &fileName = 0,
-                                                  const QNPutExtra *putExtra = 0);
+                                                  const QString &key = QString(), const QString &fileName = QString(),
+                                                  const QNPutExtra *putExtra = nullptr);
     /*!
      * List request.
      */
-    static QNetworkRequest listRequest(const QString &bucket, const QNMac *mac = 0);
+    static QNetworkRequest listRequest(const QString &bucket, const QNMac *mac = nullptr);
     /*!
      * Delete requestt.
      */
-    static QNetworkRequest deleteRequest(const QString &bucket, const QString &key, const QNMac *mac = 0);
+    static QNetworkRequest deleteRequest(const QString &bucket, const QString &key, const QNMac *mac = nullptr);
 
 };
 

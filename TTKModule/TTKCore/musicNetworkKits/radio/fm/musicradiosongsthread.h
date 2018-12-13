@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioSongsThread(QObject *parent = 0, QNetworkCookieJar *cookie = 0);
+    explicit MusicRadioSongsThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
 
     virtual ~MusicRadioSongsThread();
 

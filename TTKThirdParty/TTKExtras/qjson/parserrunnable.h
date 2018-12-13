@@ -39,7 +39,7 @@ namespace QJson {
   {
     Q_OBJECT
     public:
-      explicit ParserRunnable(QObject* parent = 0);
+      explicit ParserRunnable(QObject* parent = nullptr);
 
       void setData( const QByteArray& data );
 

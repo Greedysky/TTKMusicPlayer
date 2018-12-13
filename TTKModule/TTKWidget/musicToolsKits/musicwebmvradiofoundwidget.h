@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioFoundItemWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundItemWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebMVRadioFoundItemWidget();
 
@@ -87,7 +87,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioFoundWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebMVRadioFoundWidget();
 

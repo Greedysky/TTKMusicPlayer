@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAdvancedSearchedWidget(QWidget *parent = 0);
+    explicit MusicAdvancedSearchedWidget(QWidget *parent = nullptr);
 
     virtual ~MusicAdvancedSearchedWidget();
 

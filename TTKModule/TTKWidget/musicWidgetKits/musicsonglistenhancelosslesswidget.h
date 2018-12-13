@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = 0);
+    explicit MusicSongListEnhanceLosslessWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongListEnhanceLosslessWidget();
 

@@ -37,7 +37,7 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                MusicObject::DownloadType type, QObject *parent = 0);
+                                MusicObject::DownloadType type, QObject *parent = nullptr);
 
     virtual ~MusicDownLoadThreadAbstract();
 

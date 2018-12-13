@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForRectangle(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForRectangle(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForRectangle();
 

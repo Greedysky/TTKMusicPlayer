@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundCommentsWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundCommentsWidget(QWidget *parent = nullptr);
 
     /*!
      * Init widget.

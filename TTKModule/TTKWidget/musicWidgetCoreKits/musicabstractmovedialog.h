@@ -34,11 +34,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveDialog(QWidget *parent = 0);
+    explicit MusicAbstractMoveDialog(QWidget *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = 0);
+    explicit MusicAbstractMoveDialog(bool transparent, QWidget *parent = nullptr);
 
     virtual ~MusicAbstractMoveDialog();
 

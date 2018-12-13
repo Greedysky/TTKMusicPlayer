@@ -31,7 +31,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundTableWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlaylistFoundTableWidget();
 

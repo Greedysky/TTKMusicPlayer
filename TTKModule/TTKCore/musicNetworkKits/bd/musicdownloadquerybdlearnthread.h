@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryBDLearnThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryBDLearnThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

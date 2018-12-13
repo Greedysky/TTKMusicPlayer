@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsListAbstractTableWidget(QWidget *parent = 0);
+    explicit MusicSongsListAbstractTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongsListAbstractTableWidget();
 

@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundPalette(QWidget *parent = 0);
+    explicit MusicBackgroundPalette(QWidget *parent = nullptr);
 
     ~MusicBackgroundPalette();
 
@@ -83,7 +83,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundPaletteWidget(QWidget *parent = 0);
+    explicit MusicBackgroundPaletteWidget(QWidget *parent = nullptr);
 
     ~MusicBackgroundPaletteWidget();
 

@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGSongSuggestThread(QObject *parent = 0);
+    explicit MusicKGSongSuggestThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

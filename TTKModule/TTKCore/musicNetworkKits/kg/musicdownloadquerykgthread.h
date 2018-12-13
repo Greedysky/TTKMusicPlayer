@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKGThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKGThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

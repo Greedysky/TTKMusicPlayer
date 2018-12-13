@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerForWallpaper(QWidget *parent = 0);
+    explicit MusicLrcContainerForWallpaper(QWidget *parent = nullptr);
 
     virtual ~MusicLrcContainerForWallpaper();
 

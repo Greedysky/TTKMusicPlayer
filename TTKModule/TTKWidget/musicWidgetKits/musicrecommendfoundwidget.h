@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRecommendFoundTableWidget(QWidget *parent = 0);
+    explicit MusicRecommendFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicRecommendFoundTableWidget();
 
@@ -62,7 +62,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRecommendFoundWidget(QWidget *parent = 0);
+    explicit MusicRecommendFoundWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current name to search founds.

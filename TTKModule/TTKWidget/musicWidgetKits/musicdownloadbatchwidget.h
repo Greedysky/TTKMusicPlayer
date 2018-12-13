@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchTableItem(QWidget *parent = 0);
+    explicit MusicDownloadBatchTableItem(QWidget *parent = nullptr);
 
     ~MusicDownloadBatchTableItem();
 
@@ -90,7 +90,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchTableWidget(QWidget *parent = 0);
+    explicit MusicDownloadBatchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadBatchTableWidget();
 
@@ -144,7 +144,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadBatchWidget(QWidget *parent = 0);
+    explicit MusicDownloadBatchWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadBatchWidget();
 

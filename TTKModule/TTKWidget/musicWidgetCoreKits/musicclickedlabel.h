@@ -33,8 +33,8 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicClickedLabel(QWidget *parent = 0);
-    explicit MusicClickedLabel(const QString &text, QWidget *parent = 0);
+    explicit MusicClickedLabel(QWidget *parent = nullptr);
+    explicit MusicClickedLabel(const QString &text, QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!

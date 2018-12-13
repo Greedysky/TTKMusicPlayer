@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioPlayWidget(QWidget *parent = 0);
+    explicit MusicWebMusicRadioPlayWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebMusicRadioPlayWidget();
 

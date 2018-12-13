@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoFloatWidget(QWidget *parent = 0);
+    explicit MusicVideoFloatWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVideoFloatWidget();
 

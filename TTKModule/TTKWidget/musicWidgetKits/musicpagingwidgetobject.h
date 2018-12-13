@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPagingWidgetObject(QObject *parent = 0);
+    explicit MusicPagingWidgetObject(QObject *parent = nullptr);
 
     virtual ~MusicPagingWidgetObject();
 

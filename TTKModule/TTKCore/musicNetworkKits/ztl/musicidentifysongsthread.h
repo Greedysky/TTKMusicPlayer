@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicIdentifySongsThread(QObject *parent = 0);
+    explicit MusicIdentifySongsThread(QObject *parent = nullptr);
 
     /*!
      * Release the network object.

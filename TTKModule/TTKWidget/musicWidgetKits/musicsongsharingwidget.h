@@ -95,7 +95,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongSharingWidget(QWidget *parent = 0);
+    explicit MusicSongSharingWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongSharingWidget();
 

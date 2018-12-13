@@ -43,7 +43,7 @@ class OutputWriter : public QThread
 {
     Q_OBJECT
 public:
-    explicit OutputWriter(QObject *parent = 0);
+    explicit OutputWriter(QObject *parent = nullptr);
 
     virtual ~OutputWriter();
     /*!

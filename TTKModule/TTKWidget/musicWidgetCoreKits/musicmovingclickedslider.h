@@ -32,11 +32,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMovingClickedSlider(QWidget *parent = 0);
+    explicit MusicMovingClickedSlider(QWidget *parent = nullptr);
     /*!
      * Object contsructor by slider orientation.
      */
-    explicit MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
+    explicit MusicMovingClickedSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
 
     /*!
      * Slider is now moving or not.

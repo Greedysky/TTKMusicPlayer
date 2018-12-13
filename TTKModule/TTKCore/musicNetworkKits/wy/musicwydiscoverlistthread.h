@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYDiscoverListThread(QObject *parent = 0);
+    explicit MusicWYDiscoverListThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from toplist.

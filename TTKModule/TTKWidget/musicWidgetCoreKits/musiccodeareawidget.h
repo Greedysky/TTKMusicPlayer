@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCodeAreaWidget(QWidget *parent = 0);
+    explicit MusicCodeAreaWidget(QWidget *parent = nullptr);
 
     /*!
      * Render the verify code picture.

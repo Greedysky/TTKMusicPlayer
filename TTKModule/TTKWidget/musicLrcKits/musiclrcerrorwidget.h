@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcErrorWidget(QWidget *parent = 0);
+    explicit MusicLrcErrorWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcErrorWidget();
 

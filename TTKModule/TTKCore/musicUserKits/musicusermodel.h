@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserModel(QObject *parent = 0,
+    explicit MusicUserModel(QObject *parent = nullptr,
                             QSqlDatabase db = QSqlDatabase::database("user-data"));
 
     /*!

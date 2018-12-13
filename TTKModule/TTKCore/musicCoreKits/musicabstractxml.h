@@ -54,7 +54,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractXml(QObject *parent = 0);
+    explicit MusicAbstractXml(QObject *parent = nullptr);
 
     ~MusicAbstractXml();
 

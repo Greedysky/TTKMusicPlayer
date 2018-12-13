@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAuthenticationThread(QObject *parent = 0);
+    explicit MusicAuthenticationThread(QObject *parent = nullptr);
 
     virtual ~MusicAuthenticationThread();
 

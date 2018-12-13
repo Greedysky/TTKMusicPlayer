@@ -33,7 +33,7 @@ public:
      * Object contsructor provide download URL\ save local path and download type.
      */
     MusicXMTextDownLoadThread(const QString &url, const QString &save,
-                              MusicObject::DownloadType  type, QObject *parent = 0);
+                              MusicObject::DownloadType  type, QObject *parent = nullptr);
 
     /*!
      * Start to download data.

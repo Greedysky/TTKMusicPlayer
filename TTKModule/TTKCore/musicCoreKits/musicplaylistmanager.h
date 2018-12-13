@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWPLConfigManager(QObject *parent = 0);
+    explicit MusicWPLConfigManager(QObject *parent = nullptr);
 
     /*!
      * Write datas into xml file.
@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXSPFConfigManager(QObject *parent = 0);
+    explicit MusicXSPFConfigManager(QObject *parent = nullptr);
 
     /*!
      * Write datas into xml file.
@@ -95,7 +95,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicASXConfigManager(QObject *parent = 0);
+    explicit MusicASXConfigManager(QObject *parent = nullptr);
 
     /*!
      * Write datas into xml file.
@@ -120,7 +120,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKWLConfigManager(QObject *parent = 0);
+    explicit MusicKWLConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas from xml file by given name.
@@ -145,7 +145,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGLConfigManager(QObject *parent = 0);
+    explicit MusicKGLConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read datas into xml file.

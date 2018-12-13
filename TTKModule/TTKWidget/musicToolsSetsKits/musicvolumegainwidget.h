@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVolumeGainTableWidget(QWidget *parent = 0);
+    explicit MusicVolumeGainTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVolumeGainTableWidget();
 
@@ -61,7 +61,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVolumeGainWidget(QWidget *parent = 0);
+    explicit MusicVolumeGainWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVolumeGainWidget();
 

@@ -64,7 +64,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcAnalysis(QObject *parent = 0);
+    explicit MusicLrcAnalysis(QObject *parent = nullptr);
 
     ~MusicLrcAnalysis();
 

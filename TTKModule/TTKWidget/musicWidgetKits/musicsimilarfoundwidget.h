@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSimilarFoundTableWidget(QWidget *parent = 0);
+    explicit MusicSimilarFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSimilarFoundTableWidget();
 
@@ -63,7 +63,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSimilarFoundWidget(QWidget *parent = 0);
+    explicit MusicSimilarFoundWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current name to search founds.

@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudSharedSongWidget(QWidget *parent = 0);
+    explicit MusicCloudSharedSongWidget(QWidget *parent = nullptr);
 
     ~MusicCloudSharedSongWidget();
 

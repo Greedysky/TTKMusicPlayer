@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebRadioView(QWidget *parent = 0);
+    explicit MusicWebRadioView(QWidget *parent = nullptr);
 
     ~MusicWebRadioView();
 

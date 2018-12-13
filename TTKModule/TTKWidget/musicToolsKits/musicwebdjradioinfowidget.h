@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = 0);
+    explicit MusicWebDJRadioInfoTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebDJRadioInfoTableWidget();
 
@@ -61,7 +61,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioInfoWidget(QWidget *parent = 0);
+    explicit MusicWebDJRadioInfoWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current name to search founds.

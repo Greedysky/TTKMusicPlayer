@@ -100,7 +100,7 @@ public:
      * @param parent Parent object.
      * @return MetaDataModel pointer.
      */
-    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0) = 0;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = nullptr) = 0;
 
 };
 

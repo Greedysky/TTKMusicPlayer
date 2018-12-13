@@ -52,7 +52,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserConfigManager(QObject *parent = 0);
+    explicit MusicUserConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read user datas from xml file by given name.

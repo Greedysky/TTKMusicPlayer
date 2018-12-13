@@ -32,7 +32,7 @@ class MUSIC_NETWORK_EXPORT MusicMVRadioThreadAbstract : public MusicDownLoadQuer
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMVRadioThreadAbstract)
 public:
-    explicit MusicMVRadioThreadAbstract(QObject *parent = 0);
+    explicit MusicMVRadioThreadAbstract(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

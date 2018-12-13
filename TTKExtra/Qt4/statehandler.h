@@ -39,7 +39,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    StateHandler(QObject *parent = 0);
+    StateHandler(QObject *parent = nullptr);
     /*!
      * Destructor.
      */

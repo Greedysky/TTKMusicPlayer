@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoControlWidget(QWidget *parent = 0);
+    explicit MusicVideoControlWidget(QWidget *parent = nullptr);
 
     ~MusicVideoControlWidget();
 

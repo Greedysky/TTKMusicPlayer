@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMusicRadioWidget(QWidget *parent = 0);
+    explicit MusicWebMusicRadioWidget(QWidget *parent = nullptr);
 
     ~MusicWebMusicRadioWidget();
 

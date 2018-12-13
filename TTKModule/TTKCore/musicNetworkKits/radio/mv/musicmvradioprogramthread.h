@@ -29,7 +29,7 @@ class MUSIC_NETWORK_EXPORT MusicMVRadioProgramThread : public MusicMVRadioThread
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicMVRadioProgramThread)
 public:
-    explicit MusicMVRadioProgramThread(QObject *parent = 0);
+    explicit MusicMVRadioProgramThread(QObject *parent = nullptr);
 
 public Q_SLOTS:
     /*!

@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserManagerDialog(QWidget *parent = 0);
+    explicit MusicUserManagerDialog(QWidget *parent = nullptr);
 
     ~MusicUserManagerDialog();
 

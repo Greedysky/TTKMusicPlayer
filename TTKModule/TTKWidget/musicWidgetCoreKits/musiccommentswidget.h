@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCommentsItem(QWidget *parent = 0);
+    explicit MusicCommentsItem(QWidget *parent = nullptr);
 
     ~MusicCommentsItem();
 
@@ -69,7 +69,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCommentsWidget(QWidget *parent = 0);
+    explicit MusicCommentsWidget(QWidget *parent = nullptr);
 
     ~MusicCommentsWidget();
 

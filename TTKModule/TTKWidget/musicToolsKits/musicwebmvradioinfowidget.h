@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioInfoTableWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioInfoTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebMVRadioInfoTableWidget();
 
@@ -71,7 +71,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioInfoWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioInfoWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current name to search founds.

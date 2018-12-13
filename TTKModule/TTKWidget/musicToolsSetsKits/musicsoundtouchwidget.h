@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundTouchWidget(QWidget *parent = 0);
+    explicit MusicSoundTouchWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSoundTouchWidget();
 

@@ -62,7 +62,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFunctionTableWidget(QWidget *parent = 0);
+    explicit MusicFunctionTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Add table list items by index and icons and paths.
@@ -108,7 +108,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSettingWidget(QWidget *parent = 0);
+    explicit MusicSettingWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSettingWidget();
 

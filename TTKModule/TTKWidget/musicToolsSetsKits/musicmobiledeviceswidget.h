@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMobileDevicesWidget(QWidget *parent = 0);
+    explicit MusicMobileDevicesWidget(QWidget *parent = nullptr);
 
     ~MusicMobileDevicesWidget();
 

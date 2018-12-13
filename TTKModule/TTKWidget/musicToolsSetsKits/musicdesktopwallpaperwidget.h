@@ -40,7 +40,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDesktopWallpaperItem(QWidget *parent = 0);
+    explicit MusicDesktopWallpaperItem(QWidget *parent = nullptr);
 
     ~MusicDesktopWallpaperItem();
 
@@ -67,7 +67,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDesktopWallpaperWidget(QWidget *parent = 0);
+    explicit MusicDesktopWallpaperWidget(QWidget *parent = nullptr);
 
     ~MusicDesktopWallpaperWidget();
 

@@ -40,7 +40,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsSummariziedWidget(QWidget *parent = 0);
+    explicit MusicSongsSummariziedWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongsSummariziedWidget();
 

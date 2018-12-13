@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryWYArtistListThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryWYArtistListThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type bt paging.

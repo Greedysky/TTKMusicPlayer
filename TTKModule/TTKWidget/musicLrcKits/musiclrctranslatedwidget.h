@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcTranslatedWidget(QWidget *parent = 0);
+    explicit MusicLrcTranslatedWidget(QWidget *parent = nullptr);
 
     ~MusicLrcTranslatedWidget();
 

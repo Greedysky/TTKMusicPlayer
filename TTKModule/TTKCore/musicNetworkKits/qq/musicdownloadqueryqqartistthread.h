@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQQArtistInfoConfigManager(QObject *parent = 0);
+    explicit MusicQQArtistInfoConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read artist info datas into xml file.
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryQQArtistThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryQQArtistThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

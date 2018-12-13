@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsManagerThread(QObject *parent = 0);
+    explicit MusicLocalSongsManagerThread(QObject *parent = nullptr);
 
     ~MusicLocalSongsManagerThread();
 

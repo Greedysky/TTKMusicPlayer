@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTranslationThreadAbstract(QObject *parent = 0);
+    explicit MusicTranslationThreadAbstract(QObject *parent = nullptr);
 
     /*!
      * Release the network object.

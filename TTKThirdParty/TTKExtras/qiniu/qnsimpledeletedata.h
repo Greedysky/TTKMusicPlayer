@@ -36,7 +36,7 @@ public:
      * Object contsructor.
      */
     explicit QNSimpleDeleteData(QNetworkAccessManager *networkManager,
-                                QObject *parent = 0);
+                                QObject *parent = nullptr);
     /*!
      * Delete data to server.
      */

@@ -31,7 +31,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadSourceThread(QObject *parent = 0);
+    explicit MusicDownloadSourceThread(QObject *parent = nullptr);
 
     ~MusicDownloadSourceThread();
 

@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDArtistSimilarThread(QObject *parent = 0);
+    explicit MusicBDArtistSimilarThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

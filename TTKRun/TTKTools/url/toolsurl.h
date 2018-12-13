@@ -11,7 +11,7 @@ class ToolsUrl : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ToolsUrl(QWidget *parent = 0);
+    explicit ToolsUrl(QWidget *parent = nullptr);
     ~ToolsUrl();
 
 private Q_SLOTS:

@@ -33,8 +33,8 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicClickedSlider(QWidget *parent = 0);
-    explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = 0);
+    explicit MusicClickedSlider(QWidget *parent = nullptr);
+    explicit MusicClickedSlider(Qt::Orientation orientation, QWidget *parent = nullptr);
 
 protected:
     /*!

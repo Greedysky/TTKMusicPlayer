@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManagerForDesktop(QWidget *parent = 0);
+    explicit MusicLrcManagerForDesktop(QWidget *parent = nullptr);
 
 };
 
@@ -48,7 +48,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = 0);
+    explicit MusicLrcManagerHorizontalDesktop(QWidget *parent = nullptr);
 
 protected:
     /*!
@@ -70,7 +70,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManagerVerticalDesktop(QWidget *parent = 0);
+    explicit MusicLrcManagerVerticalDesktop(QWidget *parent = nullptr);
 
 protected:
     /*!

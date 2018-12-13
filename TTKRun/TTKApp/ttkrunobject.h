@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit TTKRunObject(QObject *parent = 0);
+    explicit TTKRunObject(QObject *parent = nullptr);
 
     /*!
      * Check current setting file's validation.

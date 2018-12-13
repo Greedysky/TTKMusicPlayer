@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcCommentsWidget(QWidget *parent = 0);
+    explicit MusicLrcCommentsWidget(QWidget *parent = nullptr);
 
     /*!
      * Init widget.

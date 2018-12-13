@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForDiamond(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForDiamond(QWidget *parent = nullptr);
 
 protected:
     /*!

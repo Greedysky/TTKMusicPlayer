@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = 0);
+    explicit MusicLrcArtPhotoUploadWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcArtPhotoUploadWidget();
 

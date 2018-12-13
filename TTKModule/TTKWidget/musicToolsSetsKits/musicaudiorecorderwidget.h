@@ -48,7 +48,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAudioRecorderWidget(QWidget *parent = 0);
+    explicit MusicAudioRecorderWidget(QWidget *parent = nullptr);
 
     virtual ~MusicAudioRecorderWidget();
 

@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSplitItemClickedLabel(QWidget *parent = 0);
+    explicit MusicSplitItemClickedLabel(QWidget *parent = nullptr);
 
 private:
     /*!

@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicHlPalette(QWidget *parent = 0);
+    explicit MusicHlPalette(QWidget *parent = nullptr);
 
     /*!
      * Get color.
@@ -87,7 +87,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicHlSaturationPalette(QWidget *parent = 0);
+    explicit MusicHlSaturationPalette(QWidget *parent = nullptr);
 
     /*!
      * Get saturation.
@@ -140,14 +140,14 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicColorDialog(QWidget *parent = 0);
+    explicit MusicColorDialog(QWidget *parent = nullptr);
 
     virtual ~MusicColorDialog();
 
     /*!
      * Get color static function.
      */
-    static QColor getColor(QWidget *parent = 0);
+    static QColor getColor(QWidget *parent = nullptr);
     /*!
      * Get color.
      */

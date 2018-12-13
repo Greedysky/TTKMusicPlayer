@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadResetWidget(QWidget *parent = 0);
+    explicit MusicDownloadResetWidget(QWidget *parent = nullptr);
 
     ~MusicDownloadResetWidget();
 
@@ -90,7 +90,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadMgmtWidget(QObject *parent = 0);
+    explicit MusicDownloadMgmtWidget(QObject *parent = nullptr);
 
     /*!
      * Set current name to search and download musics.

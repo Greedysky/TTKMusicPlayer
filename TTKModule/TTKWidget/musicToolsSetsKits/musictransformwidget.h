@@ -47,7 +47,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTransformWidget(QWidget *parent = 0);
+    explicit MusicTransformWidget(QWidget *parent = nullptr);
 
     virtual ~MusicTransformWidget();
 

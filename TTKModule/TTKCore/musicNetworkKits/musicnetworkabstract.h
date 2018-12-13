@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkAbstract(QObject *parent = 0);
+    explicit MusicNetworkAbstract(QObject *parent = nullptr);
 
     virtual ~MusicNetworkAbstract();
 

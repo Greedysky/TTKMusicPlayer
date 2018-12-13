@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForStrip(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForStrip(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForStrip();
 

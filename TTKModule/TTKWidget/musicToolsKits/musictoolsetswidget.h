@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToolSetsWidget(QWidget *parent = 0);
+    explicit MusicToolSetsWidget(QWidget *parent = nullptr);
 
     virtual ~MusicToolSetsWidget();
 

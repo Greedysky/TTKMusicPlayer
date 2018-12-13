@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTimerSliderWidget(QWidget *parent = 0);
+    explicit MusicTimerSliderWidget(QWidget *parent = nullptr);
 
     ~MusicTimerSliderWidget();
 

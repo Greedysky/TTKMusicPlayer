@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForSquare(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForSquare(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForSquare();
 

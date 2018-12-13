@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = 0);
+    explicit MusicLocalSongSearchRecordConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read history search datas from xml file by given name.

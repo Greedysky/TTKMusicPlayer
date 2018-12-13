@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQueryFoundTableWidget(QWidget *parent = 0);
+    explicit MusicQueryFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicQueryFoundTableWidget();
 

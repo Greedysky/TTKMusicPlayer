@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToolMenu(QWidget *parent = 0);
+    explicit MusicToolMenu(QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!
@@ -63,7 +63,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToolMenuWidget(QWidget *parent = 0);
+    explicit MusicToolMenuWidget(QWidget *parent = nullptr);
 
     ~MusicToolMenuWidget();
 

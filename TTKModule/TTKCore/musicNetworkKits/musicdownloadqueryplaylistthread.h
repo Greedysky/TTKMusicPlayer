@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryPlaylistThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryPlaylistThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data.

@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = 0);
+    explicit MusicLrcFloatPhotoItem(int index, QWidget *parent = nullptr);
 
     virtual ~MusicLrcFloatPhotoItem();
 
@@ -106,7 +106,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatPhotoWidget(QWidget *parent = 0);
+    explicit MusicLrcFloatPhotoWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcFloatPhotoWidget();
 

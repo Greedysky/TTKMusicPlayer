@@ -34,7 +34,7 @@ public:
      * Object contsructor provide artist name and save local path.
      */
     MusicDownloadBackgroundThread(const QString &name, const QString &save,
-                                  QObject *parent = 0);
+                                  QObject *parent = nullptr);
 
     /*!
      * Start to download artist picture from net.

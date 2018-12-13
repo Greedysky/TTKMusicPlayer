@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryAlbumThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryAlbumThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

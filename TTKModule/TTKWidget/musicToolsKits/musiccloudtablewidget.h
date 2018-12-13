@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudDownloadTableWidget(QWidget *parent = 0);
+    explicit MusicCloudDownloadTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudDownloadTableWidget();
 
@@ -57,7 +57,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudUploadTableWidget(QWidget *parent = 0);
+    explicit MusicCloudUploadTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudUploadTableWidget();
 

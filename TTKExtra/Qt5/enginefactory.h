@@ -76,7 +76,7 @@ public:
      * Creates engine object.
      * @param parent Parent object File path
      */
-    virtual AbstractEngine *create(QObject *parent = 0) = 0;
+    virtual AbstractEngine *create(QObject *parent = nullptr) = 0;
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
@@ -92,7 +92,7 @@ public:
      * @param parent Parent object.
      * @return MetaDataModel pointer.
      */
-    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0) = 0;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = nullptr) = 0;
 
 };
 

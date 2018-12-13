@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadSimilarThread(QObject *parent = 0);
+    explicit MusicDownLoadSimilarThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

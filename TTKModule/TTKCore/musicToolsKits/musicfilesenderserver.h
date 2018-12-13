@@ -40,7 +40,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFileSenderServer(QObject *parent = 0);
+    explicit MusicFileSenderServer(QObject *parent = nullptr);
 
     ~MusicFileSenderServer();
 

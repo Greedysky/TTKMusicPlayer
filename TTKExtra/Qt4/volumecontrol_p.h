@@ -40,7 +40,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    VolumeControl(QObject *parent = 0);
+    VolumeControl(QObject *parent = nullptr);
     /*!
      * Destructor.
      */

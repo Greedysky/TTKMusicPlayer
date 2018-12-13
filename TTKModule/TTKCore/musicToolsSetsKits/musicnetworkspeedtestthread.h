@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkSpeedTestThread(QObject *parent = 0);
+    explicit MusicNetworkSpeedTestThread(QObject *parent = nullptr);
 
     ~MusicNetworkSpeedTestThread();
 

@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = 0);
+    explicit MusicLocalSongSearchInlineEdit(QWidget *parent = nullptr);
 
     virtual ~MusicLocalSongSearchInlineEdit();
 

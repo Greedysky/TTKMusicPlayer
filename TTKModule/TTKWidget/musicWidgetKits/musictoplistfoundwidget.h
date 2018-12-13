@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToplistFoundTableWidget(QWidget *parent = 0);
+    explicit MusicToplistFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicToplistFoundTableWidget();
 
@@ -58,7 +58,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToplistFoundWidget(QWidget *parent = 0);
+    explicit MusicToplistFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicToplistFoundWidget();
 

@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSourceUpdateNotifyWidget(QWidget *parent = 0);
+    explicit MusicSourceUpdateNotifyWidget(QWidget *parent = nullptr);
 
     ~MusicSourceUpdateNotifyWidget();
 
@@ -77,7 +77,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSourceUpdateWidget(QWidget *parent = 0);
+    explicit MusicSourceUpdateWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSourceUpdateWidget();
 

@@ -40,7 +40,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserRecordWidget(QWidget *parent = 0);
+    explicit MusicUserRecordWidget(QWidget *parent = nullptr);
 
     ~MusicUserRecordWidget();
 

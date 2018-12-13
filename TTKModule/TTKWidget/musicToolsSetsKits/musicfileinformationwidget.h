@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFileInformationWidget(QWidget *parent = 0);
+    explicit MusicFileInformationWidget(QWidget *parent = nullptr);
 
     virtual ~MusicFileInformationWidget();
 

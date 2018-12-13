@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForRipples(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForRipples(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForRipples();
 

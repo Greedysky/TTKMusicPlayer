@@ -70,7 +70,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicInitObject(QObject *parent = 0);
+    explicit MusicInitObject(QObject *parent = nullptr);
 
     /*!
      * Check current setting file's validation.

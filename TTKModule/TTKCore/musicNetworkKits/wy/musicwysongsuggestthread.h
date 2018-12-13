@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYSongSuggestThread(QObject *parent = 0);
+    explicit MusicWYSongSuggestThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

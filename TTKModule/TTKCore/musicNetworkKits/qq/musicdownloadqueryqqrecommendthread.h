@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryQQRecommendThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryQQRecommendThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

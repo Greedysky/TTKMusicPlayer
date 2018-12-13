@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcSearchTableWidget(QWidget *parent = 0);
+    explicit MusicLrcSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcSearchTableWidget();
 

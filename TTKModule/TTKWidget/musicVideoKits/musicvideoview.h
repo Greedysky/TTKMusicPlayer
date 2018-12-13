@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicViewWidget(QWidget *parent = 0);
+    explicit MusicViewWidget(QWidget *parent = nullptr);
     ~MusicViewWidget();
 
 Q_SIGNALS:
@@ -78,7 +78,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoView(QWidget *parent = 0);
+    explicit MusicVideoView(QWidget *parent = nullptr);
 
     ~MusicVideoView();
 

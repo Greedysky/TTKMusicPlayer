@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTransitionAnimationLabel(QWidget *parent = 0);
+    explicit MusicTransitionAnimationLabel(QWidget *parent = nullptr);
 
     ~MusicTransitionAnimationLabel();
 

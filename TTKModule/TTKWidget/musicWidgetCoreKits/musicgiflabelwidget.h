@@ -49,11 +49,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicGifLabelWidget(QWidget *parent = 0);
+    explicit MusicGifLabelWidget(QWidget *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    explicit MusicGifLabelWidget(Type type, QWidget *parent = 0);
+    explicit MusicGifLabelWidget(Type type, QWidget *parent = nullptr);
 
     ~MusicGifLabelWidget();
 
@@ -138,7 +138,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicGifLabelMaskWidget(QWidget *parent = 0);
+    explicit MusicGifLabelMaskWidget(QWidget *parent = nullptr);
 
     ~MusicGifLabelMaskWidget();
 

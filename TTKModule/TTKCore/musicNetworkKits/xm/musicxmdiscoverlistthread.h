@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXMDiscoverListThread(QObject *parent = 0);
+    explicit MusicXMDiscoverListThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from toplist.

@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBackgroundPopWidget(QWidget *parent = 0);
+    explicit MusicBackgroundPopWidget(QWidget *parent = nullptr);
 
     virtual ~MusicBackgroundPopWidget();
 

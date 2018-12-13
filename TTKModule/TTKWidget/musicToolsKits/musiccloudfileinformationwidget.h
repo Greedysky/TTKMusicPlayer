@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudFileInformationWidget(QWidget *parent = 0);
+    explicit MusicCloudFileInformationWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudFileInformationWidget();
 

@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYSongCommentsThread(QObject *parent = 0);
+    explicit MusicWYSongCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.
@@ -66,7 +66,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYPlaylistCommentsThread(QObject *parent = 0);
+    explicit MusicWYPlaylistCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

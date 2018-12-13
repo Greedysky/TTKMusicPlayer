@@ -50,7 +50,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlayer(QObject *parent = 0);
+    explicit MusicPlayer(QObject *parent = nullptr);
 
     ~MusicPlayer();
 

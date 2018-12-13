@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConsoleObject(QObject *parent = 0);
+    explicit MusicConsoleObject(QObject *parent = nullptr);
 
     ~MusicConsoleObject();
 

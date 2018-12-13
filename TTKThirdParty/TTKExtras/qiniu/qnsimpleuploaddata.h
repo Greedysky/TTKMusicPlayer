@@ -36,7 +36,7 @@ public:
      * Object contsructor.
      */
     explicit QNSimpleUploadData(QNetworkAccessManager *networkManager,
-                                QObject *parent = 0);
+                                QObject *parent = nullptr);
 
     /*!
      * Get uplaod data to server request.

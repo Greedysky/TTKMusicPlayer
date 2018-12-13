@@ -45,7 +45,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicApplication(QWidget *parent = 0);
+    explicit MusicApplication(QWidget *parent = nullptr);
 
     virtual ~MusicApplication();
 

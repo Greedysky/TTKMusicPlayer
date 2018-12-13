@@ -39,7 +39,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicApplicationObject(QObject *parent = 0);
+    explicit MusicApplicationObject(QObject *parent = nullptr);
 
     ~MusicApplicationObject();
 

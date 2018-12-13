@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcColorWidget(QWidget *parent = 0);
+    explicit MusicLrcColorWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcColorWidget();
 

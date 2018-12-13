@@ -44,7 +44,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDJRadioProgramThread(QObject *parent = 0);
+    explicit MusicDJRadioProgramThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data.

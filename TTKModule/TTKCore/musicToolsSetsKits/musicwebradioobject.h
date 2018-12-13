@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebRadioObject(QObject *parent = 0);
+    explicit MusicWebRadioObject(QObject *parent = nullptr);
 
     /*!
      * Start to run object.

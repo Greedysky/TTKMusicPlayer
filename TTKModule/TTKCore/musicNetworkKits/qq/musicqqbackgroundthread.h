@@ -33,7 +33,7 @@ public:
      * Object contsructor provide artist name and save local path.
      */
     MusicQQBackgroundThread(const QString &name, const QString &save,
-                            QObject *parent = 0);
+                            QObject *parent = nullptr);
 
     /*!
      * Release the network object.

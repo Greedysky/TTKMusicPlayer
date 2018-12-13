@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroSettingPopWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroSettingPopWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSoundKMicroSettingPopWidget();
 

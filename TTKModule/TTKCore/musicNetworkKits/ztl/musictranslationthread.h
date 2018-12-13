@@ -53,7 +53,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTranslationThread(QObject *parent = 0);
+    explicit MusicTranslationThread(QObject *parent = nullptr);
 
     virtual ~MusicTranslationThread();
 

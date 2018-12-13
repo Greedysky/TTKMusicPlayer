@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = 0);
+    QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent = nullptr);
 
     /*!
      * Set qr margin.

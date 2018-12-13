@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLayoutAnimationWidget(QWidget *parent = 0);
+    explicit MusicLayoutAnimationWidget(QWidget *parent = nullptr);
 
     ~MusicLayoutAnimationWidget();
 
@@ -60,7 +60,7 @@ public:
     /*!
      * Add widget to container.
      */
-    void addWidget(QWidget *widget, int stretch = 0, Qt::Alignment alignment = 0);
+    void addWidget(QWidget *widget, int stretch = 0, Qt::Alignment alignment = Qt::Alignment());
     /*!
      * Remove widget to container.
      */
@@ -97,7 +97,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVLayoutAnimationWidget(QWidget *parent = 0);
+    explicit MusicVLayoutAnimationWidget(QWidget *parent = nullptr);
 
     /*!
      * Start to anmiation.
@@ -124,7 +124,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicHLayoutAnimationWidget(QWidget *parent = 0);
+    explicit MusicHLayoutAnimationWidget(QWidget *parent = nullptr);
 
     /*!
      * Start to anmiation.

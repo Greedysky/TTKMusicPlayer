@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongRingtoneMaker(QWidget *parent = 0);
+    explicit MusicSongRingtoneMaker(QWidget *parent = nullptr);
 
     virtual ~MusicSongRingtoneMaker();
 

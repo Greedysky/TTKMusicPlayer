@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYTranslationThread(QObject *parent = 0);
+    explicit MusicWYTranslationThread(QObject *parent = nullptr);
 
     virtual ~MusicWYTranslationThread();
 

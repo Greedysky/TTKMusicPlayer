@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadPagingThread(QObject *parent = 0);
+    explicit MusicDownLoadPagingThread(QObject *parent = nullptr);
 
     virtual ~MusicDownLoadPagingThread();
 

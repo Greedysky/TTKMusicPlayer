@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConnectTransferTableWidget(QWidget *parent = 0);
+    explicit MusicConnectTransferTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.

@@ -45,7 +45,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDJRadioThreadAbstract(QObject *parent = 0);
+    explicit MusicDJRadioThreadAbstract(QObject *parent = nullptr);
 
     /*!
      * Release the network object.

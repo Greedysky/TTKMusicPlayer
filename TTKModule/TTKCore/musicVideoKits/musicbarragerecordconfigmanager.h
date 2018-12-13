@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageRecordConfigManager(QObject *parent = 0);
+    explicit MusicBarrageRecordConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read barrage datas from xml file by given name.

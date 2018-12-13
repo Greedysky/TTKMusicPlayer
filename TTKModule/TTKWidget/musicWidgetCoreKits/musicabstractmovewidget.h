@@ -34,11 +34,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveWidget(QWidget *parent = 0);
+    explicit MusicAbstractMoveWidget(QWidget *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = 0);
+    explicit MusicAbstractMoveWidget(bool transparent, QWidget *parent = nullptr);
 
     virtual ~MusicAbstractMoveWidget();
 
@@ -93,11 +93,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveSingleWidget(QWidget *parent = 0);
+    explicit MusicAbstractMoveSingleWidget(QWidget *parent = nullptr);
     /*!
      * Object contsructor.
      */
-    explicit MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent = 0);
+    explicit MusicAbstractMoveSingleWidget(bool transparent, QWidget *parent = nullptr);
 
     virtual ~MusicAbstractMoveSingleWidget();
 

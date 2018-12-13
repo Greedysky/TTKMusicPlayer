@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundCategoryItem(QWidget *parent = 0);
+    explicit MusicPlaylistFoundCategoryItem(QWidget *parent = nullptr);
 
     /*!
      * Set current category.
@@ -70,7 +70,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundCategoryPopWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current category by input server.

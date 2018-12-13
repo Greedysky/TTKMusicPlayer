@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAnimationStackedWidget(QWidget *parent = 0);
+    explicit MusicAnimationStackedWidget(QWidget *parent = nullptr);
 
     virtual ~MusicAnimationStackedWidget();
 

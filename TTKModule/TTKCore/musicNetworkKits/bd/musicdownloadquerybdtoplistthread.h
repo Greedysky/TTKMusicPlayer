@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryBDToplistThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryBDToplistThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

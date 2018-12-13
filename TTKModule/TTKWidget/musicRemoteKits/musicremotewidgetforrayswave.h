@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForRaysWave(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForRaysWave(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForRaysWave();
 

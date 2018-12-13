@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFloatAbstractWidget(QWidget *parent = 0);
+    explicit MusicFloatAbstractWidget(QWidget *parent = nullptr);
 
     virtual ~MusicFloatAbstractWidget();
 

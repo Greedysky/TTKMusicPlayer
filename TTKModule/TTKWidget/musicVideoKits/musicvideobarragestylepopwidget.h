@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = 0);
+    explicit MusicVideoBarrageStylePopWidget(QWidget *MusicToolMenuWidget = nullptr);
 
     virtual ~MusicVideoBarrageStylePopWidget();
 

@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSoundKMicroWidget(QWidget *parent = 0);
+    explicit MusicSoundKMicroWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSoundKMicroWidget();
 

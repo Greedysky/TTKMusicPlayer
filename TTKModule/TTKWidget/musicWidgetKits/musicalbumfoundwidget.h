@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAlbumFoundTableWidget(QWidget *parent = 0);
+    explicit MusicAlbumFoundTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicAlbumFoundTableWidget();
 
@@ -55,7 +55,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAlbumFoundWidget(QWidget *parent = 0);
+    explicit MusicAlbumFoundWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current name to search founds.

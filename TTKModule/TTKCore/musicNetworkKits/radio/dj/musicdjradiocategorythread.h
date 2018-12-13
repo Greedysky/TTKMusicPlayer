@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDJRadioCategoryThread(QObject *parent = 0);
+    explicit MusicDJRadioCategoryThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data.

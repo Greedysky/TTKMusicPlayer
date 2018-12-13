@@ -36,11 +36,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageAnimation(QObject *parent = 0);
+    explicit MusicBarrageAnimation(QObject *parent = nullptr);
     /*!
      * Object contsructor by tagrget and propertyName.
      */
-    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = 0);
+    MusicBarrageAnimation(QObject *target, const QByteArray &propertyName, QObject *parent = nullptr);
 
     /*!
      * Set animation region size.
@@ -74,7 +74,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBarrageWidget(QObject *parent = 0);
+    explicit MusicBarrageWidget(QObject *parent = nullptr);
 
     ~MusicBarrageWidget();
 

@@ -40,7 +40,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicConnectTransferWidget(QWidget *parent = 0);
+    explicit MusicConnectTransferWidget(QWidget *parent = nullptr);
 
     virtual ~MusicConnectTransferWidget();
 

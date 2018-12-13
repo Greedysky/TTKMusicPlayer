@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNetworkOperator(QObject *parent = 0);
+    explicit MusicNetworkOperator(QObject *parent = nullptr);
 
     /*!
      * Start to get current ip operator from net.

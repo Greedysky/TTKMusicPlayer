@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = 0);
+    explicit MusicRemoteWidgetForComplexStyle(QWidget *parent = nullptr);
 
     virtual ~MusicRemoteWidgetForComplexStyle();
 

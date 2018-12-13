@@ -57,7 +57,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTimerAutoObject(QObject *parent = 0);
+    explicit MusicTimerAutoObject(QObject *parent = nullptr);
 
     ~MusicTimerAutoObject();
 

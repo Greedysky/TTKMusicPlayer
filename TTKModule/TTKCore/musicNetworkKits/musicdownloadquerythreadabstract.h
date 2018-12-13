@@ -97,7 +97,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = 0);
+    explicit MusicDownLoadQueryThreadAbstract(QObject *parent = nullptr);
 
     virtual ~MusicDownLoadQueryThreadAbstract();
 

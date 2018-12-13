@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsTableWidget(QWidget *parent = 0);
+    explicit MusicLocalSongsTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLocalSongsTableWidget();
 
@@ -82,7 +82,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongsInfoTableWidget(QWidget *parent = 0);
+    explicit MusicLocalSongsInfoTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Clear current items.

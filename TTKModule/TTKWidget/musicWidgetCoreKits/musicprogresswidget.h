@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicProgressWidget(QWidget *parent = 0);
+    explicit MusicProgressWidget(QWidget *parent = nullptr);
 
     ~MusicProgressWidget();
 

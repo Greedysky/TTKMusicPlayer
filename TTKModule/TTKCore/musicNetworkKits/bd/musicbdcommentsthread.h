@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDSongCommentsThread(QObject *parent = 0);
+    explicit MusicBDSongCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.
@@ -63,7 +63,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBDPlaylistCommentsThread(QObject *parent = 0);
+    explicit MusicBDPlaylistCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

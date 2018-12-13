@@ -47,7 +47,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVideoSearchTableWidget(QWidget *parent = 0);
+    explicit MusicVideoSearchTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicVideoSearchTableWidget();
 

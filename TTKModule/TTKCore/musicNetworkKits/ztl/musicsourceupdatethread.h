@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSourceUpdateThread(QObject *parent = 0);
+    explicit MusicSourceUpdateThread(QObject *parent = nullptr);
 
     /*!
      * Start to download data.

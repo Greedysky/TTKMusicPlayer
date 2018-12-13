@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistListFoundItemWidget(QWidget *parent = 0);
+    explicit MusicArtistListFoundItemWidget(QWidget *parent = nullptr);
 
     /*!
      * Set music results item.
@@ -75,7 +75,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicArtistListFoundWidget(QWidget *parent = 0);
+    explicit MusicArtistListFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicArtistListFoundWidget();
 

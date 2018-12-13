@@ -15,7 +15,7 @@ QHttpMultiPart* QNIOHelper::createPutDataMultiPart(const QString &uploadToken, c
                         QVariant("form-data; name=\"token\""));
     tokenPart.setBody(uploadToken.toUtf8());
     //key
-    QHttpPart *keyPart = 0;
+    QHttpPart *keyPart = nullptr;
     if(!key.isEmpty())
     {
         keyPart = new QHttpPart;

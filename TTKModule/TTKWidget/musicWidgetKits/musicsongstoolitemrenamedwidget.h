@@ -33,8 +33,8 @@ public:
     /*!
      * Object contsructor by index and origin name.
      */
-    explicit MusicSongsToolItemRenamedWidget(QWidget *parent = 0);
-    explicit MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent = 0);
+    explicit MusicSongsToolItemRenamedWidget(QWidget *parent = nullptr);
+    explicit MusicSongsToolItemRenamedWidget(const QString &text, QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!

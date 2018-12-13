@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSystemTrayMenu(QWidget *parent = 0);
+    explicit MusicSystemTrayMenu(QWidget *parent = nullptr);
 
     ~MusicSystemTrayMenu();
 

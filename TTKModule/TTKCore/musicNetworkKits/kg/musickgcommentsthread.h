@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGSongCommentsThread(QObject *parent = 0);
+    explicit MusicKGSongCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.
@@ -63,7 +63,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKGPlaylistCommentsThread(QObject *parent = 0);
+    explicit MusicKGPlaylistCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

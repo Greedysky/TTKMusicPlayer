@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordTableWidget(QWidget *parent = 0);
+    explicit MusicDownloadRecordTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadRecordTableWidget();
 
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadToolBoxWidget(QWidget *parent = 0);
+    explicit MusicDownloadToolBoxWidget(QWidget *parent = nullptr);
 
     virtual ~MusicDownloadToolBoxWidget();
 

@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlayBackModePopWidget(QWidget *parent = 0);
+    explicit MusicPlayBackModePopWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all widget in layout.

@@ -34,11 +34,11 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicToastLabel(QWidget *parent = 0);
+    explicit MusicToastLabel(QWidget *parent = nullptr);
     /*!
      * Object contsructor by context text.
      */
-    explicit MusicToastLabel(const QString &text, QWidget *parent = 0);
+    explicit MusicToastLabel(const QString &text, QWidget *parent = nullptr);
 
     ~MusicToastLabel();
 

@@ -45,7 +45,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicResizeGrabItemWidget(QWidget *parent = 0);
+    explicit MusicResizeGrabItemWidget(QWidget *parent = nullptr);
 
     /*!
      * Set border rect.

@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPhotoGrabItem(QWidget *parent = 0);
+    explicit MusicPhotoGrabItem(QWidget *parent = nullptr);
 
     /*!
      * Set border rect.
@@ -54,7 +54,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPhotoGrabLabel(QWidget *parent = 0);
+    explicit MusicPhotoGrabLabel(QWidget *parent = nullptr);
 
     ~MusicPhotoGrabLabel();
 

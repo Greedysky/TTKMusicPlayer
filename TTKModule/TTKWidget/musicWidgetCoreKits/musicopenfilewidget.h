@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicOpenFileWidget(QWidget *parent = 0);
+    explicit MusicOpenFileWidget(QWidget *parent = nullptr);
 
     /*!
      * Adjust the widget rect in the parent widget.

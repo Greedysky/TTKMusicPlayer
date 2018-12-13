@@ -43,7 +43,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcLocalLinkTableWidget(QWidget *parent = 0);
+    explicit MusicLrcLocalLinkTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Check if current item has in.
@@ -78,7 +78,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcLocalLinkWidget(QWidget *parent = 0);
+    explicit MusicLrcLocalLinkWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcLocalLinkWidget();
 

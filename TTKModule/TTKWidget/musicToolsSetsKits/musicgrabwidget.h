@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicGrabWidget(QWidget *parent = 0);
+    explicit MusicGrabWidget(QWidget *parent = nullptr);
 
     ~MusicGrabWidget();
 

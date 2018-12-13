@@ -59,7 +59,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterItemWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterItemWidget(QWidget *parent = nullptr);
 
     /*!
      * Check widget has scroll or not.
@@ -177,7 +177,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterTableWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.
@@ -210,7 +210,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterThemeListWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterThemeListWidget(QWidget *parent = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -232,7 +232,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcPosterWidget(QWidget *parent = 0);
+    explicit MusicLrcPosterWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLrcPosterWidget();
 

@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicBottomAreaWidget(QWidget *parent = 0);
+    explicit MusicBottomAreaWidget(QWidget *parent = nullptr);
 
     ~MusicBottomAreaWidget();
 

@@ -44,7 +44,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicVoiceTtsThread(QObject *parent = 0);
+    explicit MusicVoiceTtsThread(QObject *parent = nullptr);
 
     ~MusicVoiceTtsThread();
 

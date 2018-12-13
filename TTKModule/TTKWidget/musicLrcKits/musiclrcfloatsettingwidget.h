@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcFloatSettingWidget(QWidget *parent = 0);
+    explicit MusicLrcFloatSettingWidget(QWidget *parent = nullptr);
 
     /*!
      * Resize window bound by given width and height.

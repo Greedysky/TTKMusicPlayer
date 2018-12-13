@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicIdentifySongsWidget(QWidget *parent = 0);
+    explicit MusicIdentifySongsWidget(QWidget *parent = nullptr);
 
     ~MusicIdentifySongsWidget();
 

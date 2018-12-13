@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQQDiscoverListThread(QObject *parent = 0);
+    explicit MusicQQDiscoverListThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from toplist.

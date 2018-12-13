@@ -41,7 +41,7 @@ namespace QJson {
   {
     Q_OBJECT
     public:
-      explicit SerializerRunnable(QObject* parent = 0);
+      explicit SerializerRunnable(QObject* parent = nullptr);
 
       /**
        * Sets the json object to serialize.

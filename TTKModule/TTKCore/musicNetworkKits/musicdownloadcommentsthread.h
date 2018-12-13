@@ -32,7 +32,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadCommentsThread(QObject *parent = 0);
+    explicit MusicDownLoadCommentsThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

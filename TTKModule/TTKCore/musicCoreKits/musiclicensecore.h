@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLicenseCore(QObject *parent = 0);
+    explicit MusicLicenseCore(QObject *parent = nullptr);
 
     /*!
      * Check license string.

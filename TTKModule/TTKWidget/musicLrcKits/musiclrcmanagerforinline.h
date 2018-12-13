@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManagerForInline(QWidget *parent = 0);
+    explicit MusicLrcManagerForInline(QWidget *parent = nullptr);
 
     /*!
      * Set lrc per width.

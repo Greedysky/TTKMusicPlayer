@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = 0);
+    explicit MusicWebDJRadioCategoryItemWidget(QWidget *parent = nullptr);
 
     ~MusicWebDJRadioCategoryItemWidget();
 
@@ -79,7 +79,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebDJRadioCategoryWidget(QWidget *parent = 0);
+    explicit MusicWebDJRadioCategoryWidget(QWidget *parent = nullptr);
 
     virtual ~MusicWebDJRadioCategoryWidget();
 

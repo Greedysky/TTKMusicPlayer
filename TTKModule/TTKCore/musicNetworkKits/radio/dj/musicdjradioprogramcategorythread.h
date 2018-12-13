@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDJRadioProgramCategoryThread(QObject *parent = 0);
+    explicit MusicDJRadioProgramCategoryThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name and type.

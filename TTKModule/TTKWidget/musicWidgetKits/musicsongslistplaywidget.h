@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor by index.
      */
-    explicit MusicSongsListPlayWidget(int index, QWidget *parent = 0);
+    explicit MusicSongsListPlayWidget(int index, QWidget *parent = nullptr);
 
     ~MusicSongsListPlayWidget();
 

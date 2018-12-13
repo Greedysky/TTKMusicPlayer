@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFoundAbstractWidget(QWidget *parent = 0);
+    explicit MusicFoundAbstractWidget(QWidget *parent = nullptr);
 
     ~MusicFoundAbstractWidget();
 

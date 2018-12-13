@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTimerWidget(QWidget *parent = 0);
+    explicit MusicTimerWidget(QWidget *parent = nullptr);
 
     virtual ~MusicTimerWidget();
 

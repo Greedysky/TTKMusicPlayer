@@ -50,7 +50,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSpectrumWidget(QWidget *parent = 0);
+    explicit MusicSpectrumWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSpectrumWidget();
 

@@ -91,7 +91,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcManager(QWidget *parent = 0);
+    explicit MusicLrcManager(QWidget *parent = nullptr);
 
     virtual ~MusicLrcManager();
 

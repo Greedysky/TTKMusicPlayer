@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundItemWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundItemWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlaylistFoundItemWidget();
 
@@ -83,7 +83,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPlaylistFoundWidget(QWidget *parent = 0);
+    explicit MusicPlaylistFoundWidget(QWidget *parent = nullptr);
 
     virtual ~MusicPlaylistFoundWidget();
 

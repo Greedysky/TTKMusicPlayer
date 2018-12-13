@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSmoothMovingTableWidget(QWidget *parent = 0);
+    explicit MusicSmoothMovingTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSmoothMovingTableWidget();
 

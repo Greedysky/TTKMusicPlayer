@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicEMOJILabelWidget(QWidget *parent = 0);
+    explicit MusicEMOJILabelWidget(QWidget *parent = nullptr);
 
     ~MusicEMOJILabelWidget();
 

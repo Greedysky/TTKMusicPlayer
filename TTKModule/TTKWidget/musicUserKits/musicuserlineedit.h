@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicUserLineEdit(QWidget *parent = 0);
+    explicit MusicUserLineEdit(QWidget *parent = nullptr);
 
     /*!
      * Set label and label type.

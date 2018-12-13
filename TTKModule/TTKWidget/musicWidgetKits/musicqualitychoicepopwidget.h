@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQualityChoiceTableWidget(QWidget *parent = 0);
+    explicit MusicQualityChoiceTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicQualityChoiceTableWidget();
 
@@ -65,7 +65,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQualityChoicePopWidget(QWidget *parent = 0);
+    explicit MusicQualityChoicePopWidget(QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!

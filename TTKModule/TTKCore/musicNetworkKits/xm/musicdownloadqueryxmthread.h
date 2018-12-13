@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryXMThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryXMThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent = 0);
+    explicit MusicDownloadRecordConfigManager(MusicObject::RecordType type, QObject *parent = nullptr);
 
     /*!
      * Set config type.

@@ -32,8 +32,13 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryMovieThread(QObject *parent = nullptr);
 
+    /*!
+     * Start to search data from name and type.
+     * Subclass should implement this function.
+     */
+    virtual void startToSearch(QueryType type, const QString &text) = 0;
     /*!
      * Start to Search data from name and type.
      */

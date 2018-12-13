@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicEqualizerDialog(QWidget *parent = 0);
+    explicit MusicEqualizerDialog(QWidget *parent = nullptr);
 
     virtual ~MusicEqualizerDialog();
 

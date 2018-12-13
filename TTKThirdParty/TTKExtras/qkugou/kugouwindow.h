@@ -46,7 +46,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit KugouWindow(KuGouType type, QWidget *parent = 0);
+    explicit KugouWindow(KuGouType type, QWidget *parent = nullptr);
 
     /*!
      * Set current web viewer url to show.

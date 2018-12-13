@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioFoundCategoryItem(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundCategoryItem(QWidget *parent = nullptr);
 
     /*!
      * Set current category.
@@ -70,7 +70,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWebMVRadioFoundCategoryPopWidget(QWidget *parent = 0);
+    explicit MusicWebMVRadioFoundCategoryPopWidget(QWidget *parent = nullptr);
 
     /*!
      * Set current category by input server.

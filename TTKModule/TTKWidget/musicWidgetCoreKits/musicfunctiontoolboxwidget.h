@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFunctionToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
+    explicit MusicFunctionToolBoxTopWidget(int index, const QString &text, QWidget *parent = nullptr);
 
     ~MusicFunctionToolBoxTopWidget();
 
@@ -115,8 +115,8 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFunctionToolBoxWidgetItem(QWidget *parent = 0);
-    explicit MusicFunctionToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+    explicit MusicFunctionToolBoxWidgetItem(QWidget *parent = nullptr);
+    explicit MusicFunctionToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
 
     ~MusicFunctionToolBoxWidgetItem();
 
@@ -191,7 +191,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicNormalToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+    explicit MusicNormalToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
 
 };
 
@@ -225,7 +225,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicFunctionToolBoxWidget(QWidget *parent = 0);
+    explicit MusicFunctionToolBoxWidget(QWidget *parent = nullptr);
 
     ~MusicFunctionToolBoxWidget();
 

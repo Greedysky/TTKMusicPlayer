@@ -47,7 +47,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioButtonDelegate(QObject* parent = 0);
+    explicit MusicRadioButtonDelegate(QObject* parent = nullptr);
 
     virtual ~MusicRadioButtonDelegate();
 
@@ -84,7 +84,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCheckBoxDelegate(QObject* parent = 0);
+    explicit MusicCheckBoxDelegate(QObject* parent = nullptr);
 
     virtual ~MusicCheckBoxDelegate();
 
@@ -121,7 +121,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQueryTableDelegate(QObject* parent = 0);
+    explicit MusicQueryTableDelegate(QObject* parent = nullptr);
 
     virtual ~MusicQueryTableDelegate();
 
@@ -146,7 +146,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicProgressBarDelegate(QObject* parent = 0);
+    explicit MusicProgressBarDelegate(QObject* parent = nullptr);
 
     ~MusicProgressBarDelegate();
 
@@ -184,7 +184,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLabelDelegate(QObject* parent = 0);
+    explicit MusicLabelDelegate(QObject* parent = nullptr);
 
     virtual ~MusicLabelDelegate();
 
@@ -222,7 +222,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicPushButtonDelegate(QObject* parent = 0);
+    explicit MusicPushButtonDelegate(QObject* parent = nullptr);
 
     virtual ~MusicPushButtonDelegate();
 

@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicXMMVInfoConfigManager(QObject *parent = 0);
+    explicit MusicXMMVInfoConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read mv info datas into xml file.
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryXMMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryXMMovieThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

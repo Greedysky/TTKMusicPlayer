@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYAuthenticationThread(QObject *parent = 0);
+    explicit MusicWYAuthenticationThread(QObject *parent = nullptr);
 
     /*!
      * Start to translation data.

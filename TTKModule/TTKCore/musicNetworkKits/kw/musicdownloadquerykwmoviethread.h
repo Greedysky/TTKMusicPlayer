@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKWMovieThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKWMovieThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

@@ -57,7 +57,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicAudioRecorderCore(QObject *parent = 0);
+    explicit MusicAudioRecorderCore(QObject *parent = nullptr);
 
     ~MusicAudioRecorderCore();
 

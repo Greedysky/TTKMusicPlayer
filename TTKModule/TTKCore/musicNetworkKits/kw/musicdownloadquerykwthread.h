@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicKWMusicInfoConfigManager(QObject *parent = 0);
+    explicit MusicKWMusicInfoConfigManager(QObject *parent = nullptr);
 
     /*!
      * Read music info datas into xml file.
@@ -56,7 +56,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicDownLoadQueryKWThread(QObject *parent = 0);
+    explicit MusicDownLoadQueryKWThread(QObject *parent = nullptr);
 
     /*!
      * Start to search data from name and type.

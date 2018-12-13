@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = 0);
+    explicit MusicSongsToolBoxTopWidget(int index, const QString &text, QWidget *parent = nullptr);
 
     virtual ~MusicSongsToolBoxTopWidget();
 
@@ -163,7 +163,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsToolBoxMaskWidget(QWidget *parent = 0);
+    explicit MusicSongsToolBoxMaskWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongsToolBoxMaskWidget();
 
@@ -189,7 +189,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = 0);
+    explicit MusicSongsToolBoxWidgetItem(int index, const QString &text, QWidget *parent = nullptr);
 
     /*!
      * Set music sort.
@@ -248,7 +248,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsToolBoxWidget(QWidget *parent = 0);
+    explicit MusicSongsToolBoxWidget(QWidget *parent = nullptr);
 
     /*!
      * Set music sort.

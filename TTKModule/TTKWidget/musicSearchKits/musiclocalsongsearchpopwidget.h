@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = 0);
+    explicit MusicLocalSongSearchPopTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicLocalSongSearchPopTableWidget();
 
@@ -73,7 +73,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLocalSongSearchPopWidget(QWidget *parent = 0);
+    explicit MusicLocalSongSearchPopWidget(QWidget *parent = nullptr);
 
     ~MusicLocalSongSearchPopWidget();
 

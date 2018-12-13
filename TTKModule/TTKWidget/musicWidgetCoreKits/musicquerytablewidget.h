@@ -38,7 +38,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQueryTableWidget(QWidget *parent = 0);
+    explicit MusicQueryTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicQueryTableWidget();
 
@@ -111,7 +111,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicQueryItemTableWidget(QWidget *parent = 0);
+    explicit MusicQueryItemTableWidget(QWidget *parent = nullptr);
 
     virtual ~MusicQueryItemTableWidget();
 

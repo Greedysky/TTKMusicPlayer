@@ -42,7 +42,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWindowExtras(QObject *parent = 0);
+    explicit MusicWindowExtras(QObject *parent = nullptr);
 
     ~MusicWindowExtras();
 

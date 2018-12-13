@@ -33,7 +33,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMoveButton(QWidget *parent = 0);
+    explicit MusicMoveButton(QWidget *parent = nullptr);
 
 Q_SIGNALS:
     /*!
@@ -70,7 +70,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCutSliderWidget(QWidget *parent = 0);
+    explicit MusicCutSliderWidget(QWidget *parent = nullptr);
 
     ~MusicCutSliderWidget();
 

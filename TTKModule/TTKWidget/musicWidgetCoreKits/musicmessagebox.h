@@ -36,16 +36,16 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicMessageBox(QWidget *parent = 0);
+    explicit MusicMessageBox(QWidget *parent = nullptr);
     /*!
      * Object contsructor by context text.
      */
-    explicit MusicMessageBox(const QString &text, QWidget *parent = 0);
+    explicit MusicMessageBox(const QString &text, QWidget *parent = nullptr);
     /*!
      * Object contsructor by context text and title.
      */
     MusicMessageBox(const QString &title, const QString &text,
-                    QWidget *parent = 0);
+                    QWidget *parent = nullptr);
 
     virtual ~MusicMessageBox();
 

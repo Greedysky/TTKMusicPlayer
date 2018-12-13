@@ -35,7 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicEnhancedToolButton(QWidget *parent = 0);
+    explicit MusicEnhancedToolButton(QWidget *parent = nullptr);
 
     virtual ~MusicEnhancedToolButton();
 
@@ -81,7 +81,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicEnhancedPopWidget(QWidget *parent = 0);
+    explicit MusicEnhancedPopWidget(QWidget *parent = nullptr);
 
     virtual ~MusicEnhancedPopWidget();
 

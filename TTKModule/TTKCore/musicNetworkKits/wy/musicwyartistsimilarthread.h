@@ -34,7 +34,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicWYArtistSimilarThread(QObject *parent = 0);
+    explicit MusicWYArtistSimilarThread(QObject *parent = nullptr);
 
     /*!
      * Start to Search data from name.

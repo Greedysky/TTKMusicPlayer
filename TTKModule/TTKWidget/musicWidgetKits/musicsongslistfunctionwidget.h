@@ -36,7 +36,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongsListFunctionWidget(QWidget *parent = 0);
+    explicit MusicSongsListFunctionWidget(QWidget *parent = nullptr);
 
     virtual ~MusicSongsListFunctionWidget();
 

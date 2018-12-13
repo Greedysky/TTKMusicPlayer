@@ -41,7 +41,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerForDesktop(QWidget *parent = 0);
+    explicit MusicLrcContainerForDesktop(QWidget *parent = nullptr);
 
     virtual ~MusicLrcContainerForDesktop();
 
@@ -166,7 +166,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerHorizontalDesktop(QWidget *parent = 0);
+    explicit MusicLrcContainerHorizontalDesktop(QWidget *parent = nullptr);
 
     /*!
      * Init current lrc when the first show.
@@ -199,7 +199,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicLrcContainerVerticalDesktop(QWidget *parent = 0);
+    explicit MusicLrcContainerVerticalDesktop(QWidget *parent = nullptr);
 
     /*!
      * Init current lrc when the first show.

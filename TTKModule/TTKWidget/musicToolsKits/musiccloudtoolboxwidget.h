@@ -37,7 +37,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit MusicCloudToolBoxWidget(QWidget *parent = 0);
+    explicit MusicCloudToolBoxWidget(QWidget *parent = nullptr);
 
     virtual ~MusicCloudToolBoxWidget();
 
