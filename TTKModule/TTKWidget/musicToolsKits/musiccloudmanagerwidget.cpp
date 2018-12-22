@@ -29,7 +29,7 @@
 
 #define QN_BUCKET       "music"
 #define QN_CLOUD        "cloud"
-#define QN_PRFIX        "UmN4K0hnbjlzNTlGK3k4V05Ceklobk9rdUNWUm1aMG5zbHlFM2xjMDJzK1hTY1JL"
+#define QN_PRFIX        "TGI1aVdVcDR5UWRWTjhSNnlnNmJyQndzL3g1QjZ1NENCVHQrbk8xUExybEpLZzMx"
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 

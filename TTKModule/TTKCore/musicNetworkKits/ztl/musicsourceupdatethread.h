@@ -23,7 +23,7 @@
 #include "musicversion.h"
 #include "musicglobaldefine.h"
 
-#define QN_BUKET_URL    "ZnVRQ1BoZW9TNXl4QXgvMzBmZU41MFA2YUJXWjdXdERDYjlLSkc0RFNkZFJTdUUwSUI3SVlBPT0="
+#define QN_BUKET_URL    "VFNvQmoxNFhYY1JneE9pcjhWRnhBcC9kQ05VdmdJQUV0L2U5d1I3a2padFQ4VXg2QWUzcVlRPT0="
 
 /*! @brief The class of source data query pdate thread.
  * @author Greedysky <greedysky@163.com>
