@@ -39,7 +39,7 @@ public:
      * Constructor.
      * @param parent Parent Object.
      */
-    MetaDataModel(QObject *parent = nullptr);
+    MetaDataModel(QObject *parent = 0);
     /*!
      * Destructor.
      */

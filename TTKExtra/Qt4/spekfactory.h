@@ -30,7 +30,7 @@ public:
     /*!
      * Constructor.
      */
-    explicit Spek(QWidget *parent = nullptr) : QWidget(parent) {}
+    explicit Spek(QWidget *parent = 0) : QWidget(parent) {}
     /*!
      * Destructor.
      */

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2018 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,7 +39,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    StateHandler(QObject *parent = nullptr);
+    StateHandler(QObject *parent = 0);
     /*!
      * Destructor.
      */
@@ -61,9 +61,10 @@ public:
      */
     void dispatch(qint64 length);
     /*!
-     * Sends metadata \b metaData
+     * Sends metadata \b metaData. Returns \b true if metadata has been
+     * accepted, otherwise returns \b false
      */
-    void dispatch(const QMap<Qmmp::MetaData, QString> &metaData);
+    bool dispatch(const QMap<Qmmp::MetaData, QString> &metaData);
     /*!
      * Sends stream information \b info
      */

@@ -30,7 +30,7 @@ class EmptyInputSource : public InputSource
 {
 Q_OBJECT
 public:
-    EmptyInputSource(const QString &url, QObject *parent = nullptr);
+    EmptyInputSource(const QString &url, QObject *parent = 0);
 
     QIODevice *ioDevice();
     bool initialize();

@@ -32,7 +32,7 @@ class FileInputSource : public InputSource
 {
 Q_OBJECT
 public:
-    FileInputSource(const QString &url, QObject *parent = nullptr);
+    FileInputSource(const QString &url, QObject *parent = 0);
 
     QIODevice *ioDevice();
     bool initialize();

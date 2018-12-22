@@ -65,7 +65,7 @@ public:
      * @param url URL of the stream.
      * @param parent Parent object.
      */
-    virtual InputSource *create(const QString &url, QObject *parent = nullptr) = 0;
+    virtual InputSource *create(const QString &url, QObject *parent = 0) = 0;
 
 };
 

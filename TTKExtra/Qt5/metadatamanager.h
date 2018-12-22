@@ -64,7 +64,7 @@ public:
      * @param parent Parent object.
      * @return MetaDataModel pointer or null pointer.
      */
-    MetaDataModel* createMetaDataModel(const QString &url, QObject *parent = nullptr) const;
+    MetaDataModel* createMetaDataModel(const QString &url, QObject *parent = 0) const;
     /*!
      * Returns a list of file name filters with description, i.e. "MPEG Files (*.mp3 *.mpg)"
      */
