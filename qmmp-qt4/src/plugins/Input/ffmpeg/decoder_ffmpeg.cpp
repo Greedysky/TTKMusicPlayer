@@ -285,7 +285,7 @@ bool DecoderFFmpeg::initialize()
     {
     case AV_SAMPLE_FMT_U8:
     case AV_SAMPLE_FMT_U8P:
-        format = Qmmp::PCM_S8;
+        format = Qmmp::PCM_U8;
         break;
     case AV_SAMPLE_FMT_S16:
     case AV_SAMPLE_FMT_S16P:
