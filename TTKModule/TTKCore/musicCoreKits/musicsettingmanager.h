@@ -137,6 +137,10 @@ public:
         HotkeyEnableChoiced,            /*!< Hotkey Enable Parameter*/
         HotkeyStringChoiced,            /*!< Hotkey String Parameter*/
 
+        QiNiuMusicConfigChoiced,        /*!< QiNiu Music Config Parameter*/
+        QiNiuDataConfigChoiced,         /*!< QiNiu Data Config Parameter*/
+        QiNiuTimeConfigChoiced,         /*!< QiNiu Time Config Parameter*/
+
         NetworkCookieChoiced            /*!< Network cookie Parameter*/
 
 #ifdef MUSIC_MOBILE

@@ -3,6 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
 #include "musicsourceupdatethread.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -37,7 +38,8 @@ bool MusicIdentifySongsThread::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_BUKET_URL, false) + QN_ACRUA_URL);
+    const QString& buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_ACRUA_URL);
 
     loop.exec();
 

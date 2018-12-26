@@ -20,6 +20,7 @@
 #include "musiccoreutils.h"
 #include "musicalgorithmutils.h"
 #include "musicdownloadcounterpvthread.h"
+#include "musicdownloadqnconfighread.h"
 #include "musicsinglemanager.h"
 
 #include "qdevicewatcher.h"
@@ -58,7 +59,7 @@ MusicApplicationObject::MusicApplicationObject(QObject *parent)
     m_deviceWatcher->start();
 
     m_counterPVThread = new MusicDownloadCounterPVThread(this);
-    m_counterPVThread->startToDownload();
+    m_qnConfigThread = new MusicDownloadQNConfighread(this);
 
     musicToolSetsParameter();
 }
@@ -75,11 +76,18 @@ MusicApplicationObject::~MusicApplicationObject()
     delete m_mobileDeviceWidget;
     delete m_quitContainer;
     delete m_counterPVThread;
+    delete m_qnConfigThread;
 }
 
 MusicApplicationObject *MusicApplicationObject::instance()
 {
     return m_instance;
+}
+
+void MusicApplicationObject::loadNetWorkSetting()
+{
+    m_counterPVThread->startToDownload();
+    m_qnConfigThread->startToDownload();
 }
 
 void MusicApplicationObject::getParameterSetting()

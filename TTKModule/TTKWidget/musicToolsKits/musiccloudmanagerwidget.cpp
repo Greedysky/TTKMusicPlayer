@@ -29,7 +29,6 @@
 
 #define QN_BUCKET       "music"
 #define QN_CLOUD        "cloud"
-#define QN_PRFIX        "TGI1aVdVcDR5UWRWTjhSNnlnNmJyQndzL3g1QjZ1NENCVHQrbk8xUExybEpLZzMx"
 
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
@@ -85,7 +84,8 @@ bool MusicCloudManagerTableWidget::getKey()
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(keyDownLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_BUKET_URL, false) + QN_CLOUD);
+    const QString& buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_CLOUD);
 
     loop.exec();
     updateListToServer();
@@ -269,7 +269,9 @@ void MusicCloudManagerTableWidget::downloadFileToServer()
     }
 
     MusicCloudDataItem data = it->data(MUSIC_DATAS_ROLE).value<MusicCloudDataItem>();
-    QString url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(QN_PRFIX, false), data.m_dataItem.m_name);
+    const QString& buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicConfigChoiced).toString();
+    QString url = m_qnUploadData->getDownloadUrl(MusicUtils::Algorithm::mdII(buketUrl, false), data.m_dataItem.m_name);
+    qDebug() << url;
     MusicDataDownloadThread *download = new MusicDataDownloadThread(url, MusicUtils::Core::musicPrefix() + data.m_dataItem.m_name,
                                             MusicObject::DownloadMusic, this);
     download->setRecordType(MusicObject::RecordCloudDownload);

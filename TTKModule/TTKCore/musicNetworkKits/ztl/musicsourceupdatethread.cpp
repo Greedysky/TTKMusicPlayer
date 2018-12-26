@@ -15,7 +15,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_BUKET_URL, false) + QN_VERSION);
+    download->startToDownload("https://raw.githubusercontent.com/Greedysky/TTKMusicplayer/master/TTKScript/qiniu.cfg");
 }
 
 QString MusicSourceUpdateThread::getLastedVersion() const
@@ -43,6 +43,7 @@ QString MusicSourceUpdateThread::getLastedVersionDes() const
 
 void MusicSourceUpdateThread::downLoadFinished(const QByteArray &data)
 {
+    qDebug() << data;
     QJson::Parser parser;
     bool ok;
     QVariant parseData = parser.parse(data, &ok);

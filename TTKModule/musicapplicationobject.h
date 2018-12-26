@@ -27,6 +27,7 @@ class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
 class QPropertyAnimation;
 class MusicDownloadCounterPVThread;
+class MusicDownloadQNConfighread;
 
 /*! @brief The class of the app object widget.
  * @author Greedysky <greedysky@163.com>
@@ -51,6 +52,11 @@ public:
      * Get current window is to top.
      */
     inline bool getWindowToTop() const { return m_setWindowToTop; }
+
+    /*!
+     * load network settings parameters.
+     */
+    void loadNetWorkSetting();
     /*!
      * Get settings parameters.
      */
@@ -159,6 +165,7 @@ protected:
     QDeviceWatcher *m_deviceWatcher;
     QWidget *m_quitContainer;
     MusicDownloadCounterPVThread *m_counterPVThread;
+    MusicDownloadQNConfighread *m_qnConfigThread;
 
     static MusicApplicationObject *m_instance;
 };

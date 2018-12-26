@@ -1140,6 +1140,7 @@ void MusicApplication::readXMLConfigFromText()
         return;
     }
     xml.readSysLoadConfig();
+    m_applicationObject->loadNetWorkSetting();
 
     //////////////////////////////////////////////////////////////
     switch( M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt() )

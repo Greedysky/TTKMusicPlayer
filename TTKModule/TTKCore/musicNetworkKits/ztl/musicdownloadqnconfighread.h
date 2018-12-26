@@ -1,5 +1,5 @@
-#ifndef MUSICSOURCEUPDATETHREAD_H
-#define MUSICSOURCEUPDATETHREAD_H
+#ifndef MUSICDOWNLOADQNCONFIGHREAD_H
+#define MUSICDOWNLOADQNCONFIGHREAD_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,56 +19,36 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QVariantMap>
-#include "musicversion.h"
-#include "musicglobaldefine.h"
+#include "musicnetworkabstract.h"
 
-/*! @brief The class of source data query pdate thread.
+const QString CONFIG_QURTY_URL  = "MDN2ZTFCbndoYkFzK2pQN2wzNVVKYWpwVTd2bXdKWjk0MmhLSjRuUFpROHpzWUhLcENKK2doUmVoa2NqMWFSaGdiaUwyTG5mL2tmelJSakJnT2dmcWJQYjRPTVR0SWROMGZWMkRkaEJtbWhFQ1loRFFSd3VReXl6bXFZPQ==";
+
+/*! @brief The class of get qiniu config.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicSourceUpdateThread : public QObject
+class MUSIC_NETWORK_EXPORT MusicDownloadQNConfighread : public MusicNetworkAbstract
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSourceUpdateThread)
+    TTK_DECLARE_MODULE(MusicDownloadQNConfighread)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSourceUpdateThread(QObject *parent = nullptr);
+    explicit MusicDownloadQNConfighread(QObject *parent = nullptr);
+
+    virtual ~MusicDownloadQNConfighread();
 
     /*!
-     * Start to download data.
+     * Start to download counter pv from net.
      */
     void startToDownload();
 
-    /*!
-     * Get lasted version.
-     */
-    QString getLastedVersion() const;
-    /*!
-     * Is lasted version.
-     */
-    bool isLastedVersion() const;
-    /*!
-     * Get lasted version description.
-     */
-    QString getLastedVersionDes() const;
-
-Q_SIGNALS:
-    /*!
-     * Send download data from net.
-     */
-    void downLoadDataChanged(const QVariant &data);
-
 public Q_SLOTS:
     /*!
-     * Download data from kuwo net finished.
+     * Download data from net finished.
      */
-    void downLoadFinished(const QByteArray &data);
-
-protected:
-    QVariantMap m_rawData;
+    virtual void downLoadFinished();
 
 };
 
-#endif // MUSICSOURCEUPDATETHREAD_H
+#endif // MUSICDOWNLOADQNCONFIGHREAD_H

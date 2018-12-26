@@ -118,6 +118,11 @@ void MusicSysConfigManager::writeXMLConfig()
     QString downloadULoadLimit = M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString();
     ///////////////////////////////////////////////////////////////////////////
 
+    QString qiniuMusicConfig = M_SETTING_PTR->value(MusicSettingManager::QiNiuMusicConfigChoiced).toString();
+    QString qiniuDataConfig = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    QString qiniuTimeConfig = M_SETTING_PTR->value(MusicSettingManager::QiNiuTimeConfigChoiced).toString();
+    ///////////////////////////////////////////////////////////////////////////
+
     //Open wirte file
     if(!writeConfig(COFIGPATH_FULL))
     {
@@ -137,6 +142,7 @@ void MusicSysConfigManager::writeXMLConfig()
     QDomElement equalizerSettingDom = writeDom(musicPlayerDom, "equalizerSetting");
     QDomElement timeSettingDom = writeDom(musicPlayerDom, "timeSetting");
     QDomElement downloadSettingDom = writeDom(musicPlayerDom, "downloadSetting");
+    QDomElement qiniuSettingDom = writeDom(musicPlayerDom, "qiniuSetting");
     //Class B
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playModeChoiced));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volumeChoiced));
@@ -243,6 +249,11 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(downloadSettingDom, "downloadServer", MusicXmlAttribute("value", downloadServer));
     writeDomElement(downloadSettingDom, "downloadDLoadLimit", MusicXmlAttribute("value", downloadDLoadLimit));
     writeDomElement(downloadSettingDom, "downloadULoadLimit", MusicXmlAttribute("value", downloadULoadLimit));
+
+    ///////////////////////////////////////////////
+    writeDomElement(qiniuSettingDom, "qiniuMusicConfig", MusicXmlAttribute("value", qiniuMusicConfig));
+    writeDomElement(qiniuSettingDom, "qiniuDataConfig", MusicXmlAttribute("value", qiniuDataConfig));
+    writeDomElement(qiniuSettingDom, "qiniuTimeConfig", MusicXmlAttribute("value", qiniuTimeConfig));
 
     //Write to file
     QTextStream out(m_file);
@@ -486,4 +497,12 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("downloadDLoadLimit"));
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
                      readXmlAttributeByTagNameValue("downloadULoadLimit"));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuMusicConfig"));
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuDataConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuDataConfig"));
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuTimeConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuTimeConfig"));
 }

@@ -46,8 +46,8 @@ void MusicDownloadCounterPVThread::downLoadFinished()
         QVariant data = parser.parse(value.toUtf8(), &ok);
         if(ok)
         {
-            QVariantMap valueMap = data.toMap();
-            emit downLoadDataChanged(valueMap["site_pv"].toString());
+            QVariantMap value = data.toMap();
+            emit downLoadDataChanged(value["site_pv"].toString());
         }
         else
         {
