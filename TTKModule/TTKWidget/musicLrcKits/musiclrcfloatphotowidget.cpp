@@ -82,7 +82,7 @@ void MusicLrcFloatPhotoItem::sendUserSelectArt()
 
 void MusicLrcFloatPhotoItem::exportArtPixmap()
 {
-    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         QPixmap pix(m_pixPath);
@@ -228,9 +228,14 @@ void MusicLrcFloatPhotoWidget::showPhoto() const
 {
     m_previous->setEnabled(m_currentIndex != 0);
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    m_next->setEnabled(m_currentIndex != (page = page < 0 ? 0 : page) );
+    if(page < 0)
+    {
+        page = 0;
+    }
 
-    int indexCheck = m_currentIndex * PHOTO_PERLINE;
+    m_next->setEnabled(m_currentIndex != page);
+
+    const int indexCheck = m_currentIndex * PHOTO_PERLINE;
     for(int i=0; i<m_planes.count(); ++i)
     {
         m_planes[i]->setPhoto( (indexCheck + i) < m_artPath.count() ? m_artPath[indexCheck + i] : QString() );
@@ -268,7 +273,12 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
 void MusicLrcFloatPhotoWidget::photoNext()
 {
     int page = ceil(m_artPath.count() *1.0 / PHOTO_PERLINE) - 1;
-    if(++m_currentIndex > (page = (page < 0) ? 0 : page))
+    if(page < 0)
+    {
+        page = 0;
+    }
+
+    if(++m_currentIndex > page)
     {
         m_currentIndex = page;
     }
@@ -326,7 +336,7 @@ void MusicLrcFloatPhotoWidget::paintEvent(QPaintEvent *event)
     MusicFloatAbstractWidget::paintEvent(event);
 
     QPainter painter(this);
-    for(int i=0; i<=ceil(width()/PHOTO_BG_WIDTH); ++i)
+    for(int i=0; i<= ceil(width()/PHOTO_BG_WIDTH); ++i)
     {
         painter.drawPixmap(PHOTO_BG_WIDTH*i, 0, QPixmap(":/lrc/lb_film_bg"));
     }

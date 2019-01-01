@@ -64,10 +64,11 @@ void MusicViewWidget::contextMenuEvent(QContextMenuEvent *event)
     QWidget::contextMenuEvent(event);
     QMenu menu(this);
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
+
     bool playing;
     emit mediaIsPlaying(playing);
-    menu.addAction(tr("videoPlay"), parent(), SLOT(play()))
-            ->setText(playing ? tr("videoPause") : tr("videoPlay"));
+
+    menu.addAction(tr("videoPlay"), parent(), SLOT(play()))->setText(playing ? tr("videoPause") : tr("videoPlay"));
     menu.addAction(tr("videoStop"), parent(), SLOT(stop()));
     menu.exec(QCursor::pos());
 }

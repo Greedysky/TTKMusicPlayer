@@ -20,8 +20,10 @@ void MusicDownLoadQueryXMArtistListThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
     QString catId = "class=1&type=1";
-    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -30,9 +32,7 @@ void MusicDownLoadQueryXMArtistListThread::startToPage(int offset)
             catId = "class=1&type=1";
         }
     }
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_AR_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize);
-
-    deleteAll();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_LIST_URL, false).arg(catId).arg(offset).arg(m_pageSize);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -69,18 +69,18 @@ void MusicDownLoadQueryXMArtistListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("data") && value["state"].toInt() == 0)
             {
                 value = value["data"].toMap();
-                QVariantList datas = value["artists"].toList();
+                const QVariantList &datas = value["artists"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

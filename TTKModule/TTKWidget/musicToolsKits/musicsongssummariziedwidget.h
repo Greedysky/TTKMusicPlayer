@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -184,8 +184,7 @@ public Q_SLOTS:
     /*!
      * Add current network music to download to local.
      */
-    void addNetMusicSongToList(const QString &name, const QString &time,
-                               const QString &format, bool play);
+    void addNetMusicSongToList(const QString &name, const QString &time, const QString &format, bool play);
     /*!
      * Add current selected song to play lists.
      */

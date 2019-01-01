@@ -71,8 +71,7 @@ void MusicSoundKMicroSearchTableWidget::musicDownloadLocal(int row)
 
     MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
-    download->setSongName(musicSongInfos[row], m_queryMovieMode ?
-                          MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
+    download->setSongName(musicSongInfos[row], m_queryMovieMode ? MusicDownLoadQueryThreadAbstract::MovieQuery : MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
 }
 
@@ -162,7 +161,7 @@ void MusicSoundKMicroSearchTableWidget::dataDownloadPlay(int row)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     foreach(const MusicObject::MusicSongAttribute &attr, musicSongInfos[row].m_songAttrs)
     {
         emit mediaUrlChanged(m_queryMovieMode, attr.m_url, m_queryMovieMode ? QString() : musicSongInfos[row].m_lrcUrl);

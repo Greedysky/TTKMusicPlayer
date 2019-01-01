@@ -32,8 +32,8 @@ MusicConnectionPool::MusicConnectionPool()
 
 void MusicConnectionPool::poolConnect(const QString &from, const QString &to)
 {
-    QObject *first = m_parameter.value(from);
-    QObject *second = m_parameter.value(to);
+    const QObject *first = m_parameter.value(from);
+    const QObject *second = m_parameter.value(to);
     if(first == nullptr || second == nullptr)
     {
         return;

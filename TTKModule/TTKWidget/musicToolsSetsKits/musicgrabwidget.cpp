@@ -26,11 +26,9 @@ MusicGrabWidget::MusicGrabWidget(QWidget *parent)
     m_isDrawing = false;
 
 #ifndef MUSIC_GREATER_NEW
-    m_originPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
-                                         0, 0, width(), height());
+    m_originPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, 0, width(), height());
 #else
-    m_originPixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
-                                         0, 0, width(), height());
+    m_originPixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(), 0, 0, width(), height());
 #endif
 }
 
@@ -49,7 +47,7 @@ void MusicGrabWidget::mouseMoveEvent(QMouseEvent *event)
 
 void MusicGrabWidget::musicCreateRightMenu()
 {
-    QString filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
+    const QString &filename = MusicUtils::Widget::getSaveFileDialog(this, "Jpeg(*.jpg)");
     if(!filename.isEmpty())
     {
         musicCreateRightMenu(filename);
@@ -136,7 +134,7 @@ void MusicGrabWidget::keyPressEvent(QKeyEvent *event)
     QWidget::keyPressEvent(event);
     if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
     {
-        QString filename = MusicObject::getAppDir() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + JPG_FILE;
+        const QString &filename = MusicObject::getAppDir() + QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + JPG_FILE;
         musicCreateRightMenu(filename);
     }
     else if(event->key() == Qt::Key_Escape)
@@ -158,10 +156,8 @@ void MusicGrabWidget::grabPixmap()
     int width = m_ptEnd.x() - m_ptStart.x();
     int height = m_ptEnd.y() - m_ptStart.y();
 #ifndef MUSIC_GREATER_NEW
-    m_grabPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(),
-                                       m_ptStart.x(), m_ptStart.y(), width, height);
+    m_grabPixmap = QPixmap::grabWindow(QApplication::desktop()->winId(), m_ptStart.x(), m_ptStart.y(), width, height);
 #else
-    m_grabPixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(),
-                                 m_ptStart.x(), m_ptStart.y(), width, height);
+    m_grabPixmap = QApplication::primaryScreen()->grabWindow(QApplication::desktop()->winId(), m_ptStart.x(), m_ptStart.y(), width, height);
 #endif
 }

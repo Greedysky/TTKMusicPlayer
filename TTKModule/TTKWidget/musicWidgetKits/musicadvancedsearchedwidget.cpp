@@ -248,31 +248,31 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
     {
         case 0:
             {
-                QRegExp regx("id=(\\d+)");
+                const QRegExp regx("id=(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 1:
             {
-                QRegExp regx("/(\\w+).html");
+                const QRegExp regx("/(\\w+).html");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 2:
             {
-                QRegExp regx(type == 4 ? "/mv/(\\w+)$" : "/(\\d+)");
+                const QRegExp regx(type == 4 ? "/mv/(\\w+)$" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 3:
             {
-                QRegExp regx("/(\\d+)");
+                const QRegExp regx("/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 4:
             {
-                QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
+                const QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }

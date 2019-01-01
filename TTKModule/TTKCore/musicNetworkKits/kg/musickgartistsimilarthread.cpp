@@ -17,8 +17,9 @@ void MusicKGArtistSimilarThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_AR_SIM_URL, false).arg(text);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_AR_SIM_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -45,16 +46,17 @@ void MusicKGArtistSimilarThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QString html(m_reply->readAll());
+        const QString html(m_reply->readAll());
         QRegExp regx("class=\"pic\" onclick=.*_src=\"([^\"]+).*href=\"(.*)\">(.*)</a></strong>");
         regx.setMinimal(true);
+
         int pos = html.indexOf(regx);
         while(pos != -1)
         {
             if(m_interrupt) return;
 
             MusicResultsItem info;
-            QRegExp idrx("/(\\d+)");
+            const QRegExp idrx("/(\\d+)");
             if(regx.cap(2).indexOf(idrx) != -1)
             {
                 info.m_id = idrx.cap(1);

@@ -5,8 +5,7 @@
 
 #include <QImage>
 
-MusicDataTagDownloadThread::MusicDataTagDownloadThread(const QString &url, const QString &save,
-                                                       MusicObject::DownloadType type, QObject *parent)
+MusicDataTagDownloadThread::MusicDataTagDownloadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDataDownloadThread(url, save, type, parent)
 {
     m_needUpdate = false;

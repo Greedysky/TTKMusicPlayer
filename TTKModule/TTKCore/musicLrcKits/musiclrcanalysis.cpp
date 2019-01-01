@@ -31,7 +31,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::setLrcData(const QByteArray &data)
     if(data.left(9) == MUSIC_TTKLRCF) //plain txt check
     {
         getAllText[0].clear();
-        int perTime = MusicApplication::instance()->duration()/getAllText.count();
+        const int perTime = MusicApplication::instance()->duration()/getAllText.count();
         foreach(const QString &oneLine, getAllText)
         {
             m_lrcContainer.insert(perTime*m_lrcContainer.count(), oneLine);
@@ -115,11 +115,9 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     {
         return OpenFileFail;
     }
-
-    State state = setLrcData(file.readAll());
     file.close();
 
-    return state;
+    return setLrcData(file.readAll());
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
@@ -136,7 +134,7 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
         return OpenFileFail;
     }
 
-    QString getAllText = QString(krc.getDecodeString());
+    const QString &getAllText = QString(krc.getDecodeString());
     //The lyrics by line into the lyrics list
 #ifdef Q_OS_WIN
     foreach(const QString &oneLine, getAllText.split("\r\n"))
@@ -182,100 +180,100 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcF
 
 void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
 {
-    QRegExp reg01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
-    QRegExp reg02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
-    QRegExp reg03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
-    QRegExp reg04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
-    QRegExp reg05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
-    QRegExp reg06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
-    QRegExp reg07("\\[\\d{2}:\\d{2}\\]");
-    QRegExp reg08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
-    QRegExp reg09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
-    QRegExp reg10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
-    QRegExp reg11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
-    QRegExp reg12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
-    QRegExp reg13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
-    QRegExp reg14("\\[\\d{2}\\.\\d{2}\\]");
+    const QRegExp regx01("\\[\\d{2}:\\d{2}\\.\\d{3}\\]");
+    const QRegExp regx02("\\[\\d{2}:\\d{2}\\.\\d{2}\\]");
+    const QRegExp regx03("\\[\\d{2}:\\d{2}\\.\\d{1}\\]");
+    const QRegExp regx04("\\[\\d{2}:\\d{2}:\\d{3}\\]");
+    const QRegExp regx05("\\[\\d{2}:\\d{2}:\\d{2}\\]");
+    const QRegExp regx06("\\[\\d{2}:\\d{2}:\\d{1}\\]");
+    const QRegExp regx07("\\[\\d{2}:\\d{2}\\]");
+    const QRegExp regx08("\\[\\d{2}\\.\\d{2}\\.\\d{3}\\]");
+    const QRegExp regx09("\\[\\d{2}\\.\\d{2}\\.\\d{2}\\]");
+    const QRegExp regx10("\\[\\d{2}\\.\\d{2}\\.\\d{1}\\]");
+    const QRegExp regx11("\\[\\d{2}\\.\\d{2}:\\d{3}\\]");
+    const QRegExp regx12("\\[\\d{2}\\.\\d{2}:\\d{2}\\]");
+    const QRegExp regx13("\\[\\d{2}\\.\\d{2}:\\d{1}\\]");
+    const QRegExp regx14("\\[\\d{2}\\.\\d{2}\\]");
 
     LrcFormat type = Type02;
-    QRegExp regex;
-    if(oneLine.contains(reg01))
+    QRegExp regx;
+    if(oneLine.contains(regx01))
     {
         type = Type01;
-        regex = reg01;
+        regx = regx01;
     }
-    else if(oneLine.contains(reg02))
+    else if(oneLine.contains(regx02))
     {
         type = Type02;
-        regex = reg02;
+        regx = regx02;
     }
-    else if(oneLine.contains(reg03))
+    else if(oneLine.contains(regx03))
     {
         type = Type03;
-        regex = reg03;
+        regx = regx03;
     }
-    else if(oneLine.contains(reg04))
+    else if(oneLine.contains(regx04))
     {
         type = Type04;
-        regex = reg04;
+        regx = regx04;
     }
-    else if(oneLine.contains(reg05))
+    else if(oneLine.contains(regx05))
     {
         type = Type05;
-        regex = reg05;
+        regx = regx05;
     }
-    else if(oneLine.contains(reg06))
+    else if(oneLine.contains(regx06))
     {
         type = Type06;
-        regex = reg06;
+        regx = regx06;
     }
-    else if(oneLine.contains(reg07))
+    else if(oneLine.contains(regx07))
     {
         type = Type07;
-        regex = reg07;
+        regx = regx07;
     }
-    else if(oneLine.contains(reg08))
+    else if(oneLine.contains(regx08))
     {
         type = Type08;
-        regex = reg08;
+        regx = regx08;
     }
-    else if(oneLine.contains(reg09))
+    else if(oneLine.contains(regx09))
     {
         type = Type09;
-        regex = reg09;
+        regx = regx09;
     }
-    else if(oneLine.contains(reg10))
+    else if(oneLine.contains(regx10))
     {
         type = Type10;
-        regex = reg10;
+        regx = regx10;
     }
-    else if(oneLine.contains(reg11))
+    else if(oneLine.contains(regx11))
     {
         type = Type11;
-        regex = reg11;
+        regx = regx11;
     }
-    else if(oneLine.contains(reg12))
+    else if(oneLine.contains(regx12))
     {
         type = Type12;
-        regex = reg12;
+        regx = regx12;
     }
-    else if(oneLine.contains(reg13))
+    else if(oneLine.contains(regx13))
     {
         type = Type13;
-        regex = reg13;
+        regx = regx13;
     }
     else
     {
         type = Type14;
-        regex = reg14;
+        regx = regx14;
     }
     /////////////////////////////////////////
     QString temp = oneLine;
-    temp.replace(regex, QString());
-    int pos = regex.indexIn(oneLine, 0);
+    temp.replace(regx, QString());
+    int pos = regx.indexIn(oneLine, 0);
     while(pos != -1)
     {   //That match
-        QString cap = regex.cap(0);
+        const QString &cap = regx.cap(0);
         //Return zeroth expression matching the content
         //The time tag into the time value, in milliseconds
         switch(type)
@@ -324,64 +322,67 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
                     break;
             default: break;
         }
-        pos += regex.matchedLength();
-        pos = regex.indexIn(oneLine, pos); //Matching all
+        pos += regx.matchedLength();
+        pos = regx.indexIn(oneLine, pos); //Matching all
     }
 }
 
-void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap,
-                                    const QString &first, const QString &second, const QString &third)
+void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second, const QString &third)
 {
-    QRegExp regexp;
-    regexp.setPattern(first);
-    regexp.indexIn(cap);
-    int minutes = regexp.cap(0).toInt();
-    regexp.setPattern(second);
-    regexp.indexIn(cap);
-    int seconds = regexp.cap(0).toInt();
-    regexp.setPattern(third);
-    regexp.indexIn(cap);
-    int milliseconds = regexp.cap(0).toInt();
-    int length = QString::number(milliseconds).length();
-    qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
+    QRegExp regx;
+    regx.setPattern(first);
+    regx.indexIn(cap);
+
+    const int minutes = regx.cap(0).toInt();
+    regx.setPattern(second);
+    regx.indexIn(cap);
+
+    const int seconds = regx.cap(0).toInt();
+    regx.setPattern(third);
+    regx.indexIn(cap);
+
+    const int milliseconds = regx.cap(0).toInt();
+    const int length = QString::number(milliseconds).length();
+    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, const QString &first,
-                                    const QString &second)
+void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, const QString &cap, const QString &first, const QString &second)
 {
-    QRegExp regexp;
-    regexp.setPattern(first);
-    regexp.indexIn(cap);
-    int minutes = regexp.cap(0).toInt();
-    regexp.setPattern(second);
-    regexp.indexIn(cap);
-    int seconds = regexp.cap(0).toInt();
-    qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS;
+    QRegExp regx;
+    regx.setPattern(first);
+    regx.indexIn(cap);
+
+    const int minutes = regx.cap(0).toInt();
+    regx.setPattern(second);
+    regx.indexIn(cap);
+
+    const int seconds = regx.cap(0).toInt();
+    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS;
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
-void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap,
-                                    const QString &splite)
+void MusicLrcAnalysis::matchLrcLine(const QString &oneLine, QString cap, const QString &splite)
 {
     cap.chop(1);
     cap.remove(0, 1);
-    QStringList lists(cap.split(splite));
+    const QStringList lists(cap.split(splite));
     if(lists.count() != 3)
     {
         return;
     }
-    int minutes = lists[0].toInt();
-    int seconds = lists[1].toInt();
-    int milliseconds = lists[2].toInt();
-    int length = QString::number(milliseconds).length();
-    qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
+
+    const int minutes = lists[0].toInt();
+    const int seconds = lists[1].toInt();
+    const int milliseconds = lists[2].toInt();
+    const int length = QString::number(milliseconds).length();
+    const qint64 totalTime = minutes * MT_M2MS + seconds * MT_S2MS + milliseconds * pow(10, 3 - length);
     m_lrcContainer.insert(totalTime, oneLine);
 }
 
 qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
 {
-    QList<qint64> keys(m_lrcContainer.keys());
+    const QList<qint64> keys(m_lrcContainer.keys());
     qint64 beforeTime = 0;
     int index = -1;
 
@@ -393,7 +394,7 @@ qint64 MusicLrcAnalysis::setSongSpeedChanged(qint64 time)
     for(int i=1; i<keys.count(); ++i)
     {
         index = i;
-        qint64 afterTime = keys[i];
+        const qint64 afterTime = keys[i];
         if(beforeTime <= time && time <= afterTime)
         {
             time = afterTime;
@@ -449,6 +450,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
     {
         return;
     }
+
     QTextStream outstream(&file);
     outstream.setCodec("utf-8");
     outstream << data << endl;
@@ -457,8 +459,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
 
 bool MusicLrcAnalysis::isValid() const
 {
-    return (!isEmpty()) &&
-           (m_currentLrcIndex + m_lineMax <= m_currentShowLrcContainer.count());
+    return (!isEmpty()) && (m_currentLrcIndex + m_lineMax <= m_currentShowLrcContainer.count());
 }
 
 bool MusicLrcAnalysis::isEmpty() const
@@ -486,8 +487,7 @@ QString MusicLrcAnalysis::getText(int index) const
     return m_currentShowLrcContainer[index];
 }
 
-bool MusicLrcAnalysis::findText(qint64 current, qint64 total,
-                                QString &pre, QString &last, qint64 &interval) const
+bool MusicLrcAnalysis::findText(qint64 current, qint64 total, QString &pre, QString &last, qint64 &interval) const
 {
     if(isEmpty())
     {
@@ -501,7 +501,7 @@ bool MusicLrcAnalysis::findText(qint64 current, qint64 total,
     qint64 previous = 0;
     qint64 later = 0;
     //Keys () method returns a list of lrcContainer
-    foreach(const qint64 &value, m_lrcContainer.keys())
+    foreach(const qint64 value, m_lrcContainer.keys())
     {
         if(current >= value)
         {
@@ -553,7 +553,7 @@ qint64 MusicLrcAnalysis::findTime(const QStringList &ts) const
         return -1;
     }
 
-    QStringList copy(m_currentShowLrcContainer);
+    const QStringList copy(m_currentShowLrcContainer);
     for(int i=0; i<copy.count() - ts.count(); ++i)
     {
         if(copy.mid(i, ts.count()) == ts)
@@ -585,8 +585,7 @@ void MusicLrcAnalysis::getTranslatedLrc()
     m_translationThread = M_DOWNLOAD_QUERY_PTR->getTranslationThread(this);
     if(parent()->metaObject()->indexOfSlot("getTranslatedLrcFinished(QString)") != -1)
     {
-        connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(),
-                                     SLOT(getTranslatedLrcFinished(QString)));
+        connect(m_translationThread, SIGNAL(downLoadDataChanged(QString)), parent(), SLOT(getTranslatedLrcFinished(QString)));
     }
 
     QString data;

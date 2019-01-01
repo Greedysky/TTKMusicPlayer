@@ -52,7 +52,7 @@ void QNSimpleListData::receiveDataFromServer()
         {
             QJson::Parser parser;
             bool ok;
-            QVariant data = parser.parse(reply->readAll(), &ok);
+            const QVariant &data = parser.parse(reply->readAll(), &ok);
             if(ok)
             {
                 QVariantMap value = data.toMap();

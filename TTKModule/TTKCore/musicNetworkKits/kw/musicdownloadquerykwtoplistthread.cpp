@@ -30,8 +30,9 @@ void MusicDownLoadQueryKWToplistThread::startToSearch(const QString &toplist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_TOPLIST_URL, false).arg(toplist);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_TOPLIST_URL, false).arg(toplist);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -61,11 +62,11 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
     M_LOGGER_INFO(QString("%1 downLoadFinished").arg(getClassName()));
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -79,7 +80,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                 info.m_updateTime = value["pub"].toString();
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["musiclist"].toList();
+                const QVariantList &datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

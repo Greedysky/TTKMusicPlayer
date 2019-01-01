@@ -29,8 +29,7 @@ void MusicUtils::Widget::setLabelFontStyle(QWidget *widget, MusicObject::FontSty
     widget->setFont(font);
 }
 
-QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text,
-                                       Qt::TextElideMode mode, int width)
+QString MusicUtils::Widget::elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width)
 {
     QFontMetrics ft(font);
     return ft.elidedText(text, mode, width);
@@ -150,7 +149,7 @@ void MusicUtils::Widget::reRenderImage(int delta, const QImage *input, QImage *o
     {
         for(int h=0; h<input->height(); h++)
         {
-            QRgb rgb = input->pixel(w, h);
+            const QRgb rgb = input->pixel(w, h);
             output->setPixel(w, h, qRgb(colorBurnTransform(qRed(rgb), delta),
                                         colorBurnTransform(qGreen(rgb), delta),
                                         colorBurnTransform(qBlue(rgb), delta)));
@@ -165,14 +164,14 @@ int MusicUtils::Widget::colorBurnTransform(int c, int delta)
         return c;
     }
 
-    int result = (c - (int)(c*delta)/(0xFF - delta));
+    const int result = (c - (int)(c*delta)/(0xFF - delta));
     if(result > 0xFF)
     {
-        result = 0xFF;
+        return 0xFF;
     }
     else if(result < 0)
     {
-        result = 0;
+        return 0;
     }
     return result;
 }

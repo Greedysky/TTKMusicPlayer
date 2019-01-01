@@ -254,9 +254,9 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
 {
     if(box->isChecked())
     {
-        int before = Visual::visuals()->count();
+        const int before = Visual::visuals()->count();
         showSpectrum(name, true);
-        QList<Visual *> *vs = Visual::visuals();
+        const QList<Visual *> *vs = Visual::visuals();
         if(before == vs->count())
         {
             showMessageBoxWidget(box);
@@ -278,7 +278,7 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
     }
     else
     {
-        int index = findSpectrumWidget(name);
+        const int index = findSpectrumWidget(name);
         if(index != -1)
         {
             MusicSpectrum t = m_types.takeAt(index);
@@ -296,7 +296,7 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
         {
             QPluginLoader loader;
             loader.setFileName(MusicUtils::QMMP::pluginPath("Spek", name));
-            QObject *obj = loader.instance();
+            const QObject *obj = loader.instance();
             SpekFactory *decoderfac = nullptr;
             if(obj && (decoderfac = MObject_cast(SpekFactory*, obj)))
             {
@@ -309,13 +309,13 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
             }
         }
 
-        int index = findSpectrumWidget(name);
+        const int index = findSpectrumWidget(name);
         Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
         spek->open( url.isEmpty() ? SoundCore::instance()->url() : url );
     }
     else
     {
-        int index = findSpectrumWidget(name);
+        const int index = findSpectrumWidget(name);
         if(index != -1)
         {
             MusicSpectrum t = m_types.takeAt(index);

@@ -30,8 +30,9 @@ void MusicDownLoadQueryBDToplistThread::startToSearch(const QString &toplist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(toplist).arg(m_pageSize).arg(0);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_TOPLIST_URL, false).arg(toplist).arg(m_pageSize).arg(0);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -60,17 +61,17 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["error_code"].toInt() == 22000 && value.contains("song_list"))
             {
-                QVariantMap topInfo = value["billboard"].toMap();
+                const QVariantMap &topInfo = value["billboard"].toMap();
                 MusicResultsItem info;
                 info.m_name = topInfo["name"].toString();
                 info.m_coverUrl = topInfo["pic_s192"].toString();
@@ -79,7 +80,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                 info.m_updateTime = topInfo["update_date"].toString();
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["song_list"].toList();
+                const QVariantList &datas = value["song_list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

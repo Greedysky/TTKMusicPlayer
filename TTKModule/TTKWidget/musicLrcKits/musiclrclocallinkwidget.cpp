@@ -31,8 +31,9 @@ bool MusicLrcLocalLinkTableWidget::contains(const QString &string)
 
 void MusicLrcLocalLinkTableWidget::createAllItems(const MusicLocalDataItems &items)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(count + items.count());
+
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items.count(); ++i)
     {
@@ -112,15 +113,15 @@ void MusicLrcLocalLinkWidget::setCurrentSongName(const QString &name)
 
 void MusicLrcLocalLinkWidget::searchInLocalMLrc()
 {
-    QString title = m_ui->titleEdit->text().trimmed();
+    const QString &title = m_ui->titleEdit->text().trimmed();
     if(title.isEmpty())
     {
         return;
     }
 
     m_ui->fuzzyButton->isChecked();
-    QStringList list = QDir(MusicUtils::Core::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden |
-                                                       QDir::NoSymLinks | QDir::NoDotAndDotDot);
+    const QStringList &list = QDir(MusicUtils::Core::lrcPrefix()).entryList(QDir::Files |  QDir::Hidden | QDir::NoSymLinks | QDir::NoDotAndDotDot);
+
     MusicLocalDataItems items;
     foreach(const QString &var, list)
     {
@@ -143,23 +144,22 @@ void MusicLrcLocalLinkWidget::fuzzyStateChanged()
 
 void MusicLrcLocalLinkWidget::findInLocalFile()
 {
-    QString picPath = MusicUtils::Widget::getOpenFileDialog(this, "LRC (*.lrc)");
+    const QString &picPath = MusicUtils::Widget::getOpenFileDialog(this, "LRC (*.lrc)");
     if(picPath.isEmpty() || m_ui->searchedTable->contains(picPath))
     {
         return;
     }
 
-    MusicLocalDataItems items;
     MusicLocalDataItem item;
     item.m_name = QFileInfo(picPath).fileName();
     item.m_path = picPath;
-    items << item;
-    m_ui->searchedTable->createAllItems(items);
+
+    m_ui->searchedTable->createAllItems(MusicLocalDataItems() << item);
 }
 
 void MusicLrcLocalLinkWidget::deleteFoundLrc()
 {
-    int row = m_ui->searchedTable->currentRow();
+    const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
         MusicMessageBox message;
@@ -173,7 +173,7 @@ void MusicLrcLocalLinkWidget::deleteFoundLrc()
 
 void MusicLrcLocalLinkWidget::confirmButtonClicked()
 {
-    int row = m_ui->searchedTable->currentRow();
+    const int row = m_ui->searchedTable->currentRow();
     if(row < 0)
     {
         MusicMessageBox message;
@@ -182,7 +182,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
         return;
     }
 
-    QString path = m_ui->searchedTable->item(row, 1)->toolTip();
+    const QString &path = m_ui->searchedTable->item(row, 1)->toolTip();
     QFile fileIn(path);
     if(!fileIn.open(QIODevice::ReadOnly))
     {
@@ -192,7 +192,7 @@ void MusicLrcLocalLinkWidget::confirmButtonClicked()
         return;
     }
 
-    QByteArray dataIn(fileIn.readAll());
+    const QByteArray dataIn(fileIn.readAll());
     fileIn.close();
 
     QFile fileOut(QString("%1%2%3").arg(MusicUtils::Core::lrcPrefix()).arg(m_currentName).arg(LRC_FILE));

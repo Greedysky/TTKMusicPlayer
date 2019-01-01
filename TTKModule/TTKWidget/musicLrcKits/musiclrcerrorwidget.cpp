@@ -67,11 +67,11 @@ void MusicLrcErrorWidget::buttonClicked(int index)
 void MusicLrcErrorWidget::textAreaChanged()
 {
     QString text = m_ui->textEdit->toPlainText();
-    int length = text.count();
+    const int length = text.count();
     if(length > MAX_LEGNTH)
     {
         QTextCursor textCursor = m_ui->textEdit->textCursor();
-        int position = textCursor.position();
+        const int position = textCursor.position();
         text.remove(position - (length - MAX_LEGNTH), length - MAX_LEGNTH);
         m_ui->textEdit->setText(text);
         textCursor.setPosition(position - (length - MAX_LEGNTH));
@@ -79,10 +79,10 @@ void MusicLrcErrorWidget::textAreaChanged()
     }
     else
     {
-        QString style = QString("<html><head/><body><p><span style=' font-size:10pt;'>%1"
-             "</span><span style=' font-size:10pt; color:#ff0000;'> %2 "
-             "</span><span style=' font-size:10pt;'>%3</span></p></body></html>")
-             .arg(tr("you can now input")).arg(MAX_LEGNTH - length).arg(tr("word"));
+        const QString &style = QString("<html><head/><body><p><span style=' font-size:10pt;'>%1"
+                                 "</span><span style=' font-size:10pt; color:#ff0000;'> %2 "
+                                 "</span><span style=' font-size:10pt;'>%3</span></p></body></html>")
+                                 .arg(tr("you can now input")).arg(MAX_LEGNTH - length).arg(tr("word"));
         m_ui->label->setText(style);
     }
 }

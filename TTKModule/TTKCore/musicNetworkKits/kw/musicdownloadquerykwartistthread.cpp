@@ -19,8 +19,9 @@ void MusicDownLoadQueryKWArtistThread::startToSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_URL, false).arg(artist).arg(0).arg(50);
     m_searchText = artist;
     m_interrupt = true;
 
@@ -54,7 +55,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -62,7 +63,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
             {
                 bool artistFlag = false;
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["abslist"].toList();
+                const QVariantList &datas = value["abslist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -139,7 +140,7 @@ void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicResultsItem *item)
     }
 
     QNetworkRequest request;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_searchText);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_ARTIST_INFO_URL, false).arg(m_searchText);
 
     request.setUrl(musicUrl);
     request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -159,10 +160,10 @@ void MusicDownLoadQueryKWArtistThread::getDownLoadIntro(MusicResultsItem *item)
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll().replace("'", "\""), &ok);
+    const QVariant &data = parser.parse(reply->readAll().replace("'", "\""), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         item->m_tags = value["country"].toString();
         item->m_updateTime = value["birthday"].toString();
         item->m_nickName = value["aartist"].toString();

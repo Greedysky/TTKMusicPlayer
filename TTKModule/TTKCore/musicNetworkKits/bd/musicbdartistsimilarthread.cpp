@@ -17,8 +17,9 @@ void MusicBDArtistSimilarThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_AR_SIM_URL, false).arg(text);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_AR_SIM_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -45,9 +46,10 @@ void MusicBDArtistSimilarThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QString html(m_reply->readAll());
+        const QString html(m_reply->readAll());
         QRegExp regx("<a href=\"/artist/(\\d+).*<img src=\"([^\"]+).*class=\"like-name overdd\".*>([^\"]+)</a>");
         regx.setMinimal(true);
+
         int pos = html.indexOf(regx);
         while(pos != -1)
         {

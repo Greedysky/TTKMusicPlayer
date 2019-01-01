@@ -32,7 +32,7 @@ void MusicCloudToolBoxWidget::updateItemTitle(int index)
         return;
     }
 
-    MusicSongItem *item = &m_songItems[index];
+    const MusicSongItem *item = &m_songItems[index];
     setTitle(item->m_itemObject, QString("%1[%2]").arg(item->m_itemName).arg(item->m_songs.count()));
 }
 

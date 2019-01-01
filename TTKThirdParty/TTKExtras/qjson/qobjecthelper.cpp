@@ -57,7 +57,7 @@ QVariantMap QObjectHelper::qobject2qvariant( const QObject* object,
   return result;
 }
 
-void QObjectHelper::qvariant2qobject(const QVariantMap& variant, QObject* object)
+void QObjectHelper::qvariant2qobject(const QVariantMap &variant, QObject* object)
 {
   const QMetaObject *metaobject = object->metaObject();
 

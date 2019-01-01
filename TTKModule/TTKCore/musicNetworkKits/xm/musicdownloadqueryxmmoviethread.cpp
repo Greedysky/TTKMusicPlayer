@@ -17,17 +17,17 @@ void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformat
 {
     info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
 
-    QDomNodeList resultlist = m_document->elementsByTagName("video");
+    const QDomNodeList &resultlist = m_document->elementsByTagName("video");
     for(int i=0; i<resultlist.count(); ++i)
     {
-        QDomNodeList infolist = resultlist.at(i).childNodes();
+        const QDomNodeList &infolist = resultlist.at(i).childNodes();
         MusicObject::MusicSongAttribute attr;
         for(int j=0; j<infolist.count(); ++j)
         {
-            QDomNode node = infolist.at(j);
+            const QDomNode &node = infolist.at(j);
             if(node.nodeName() == "bitrate")
             {
-                int bitRate = node.toElement().text().toInt();
+                const int bitRate = node.toElement().text().toInt();
                 if(bitRate <= 375)
                     attr.m_bitrate = MB_250;
                 else if(bitRate > 375 && bitRate <= 625)
@@ -71,9 +71,10 @@ void MusicDownLoadQueryXMMovieThread::startToSearch(QueryType type, const QStrin
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    deleteAll();
+
     m_searchText = text.trimmed();
     m_currentType = type;
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -97,10 +98,11 @@ void MusicDownLoadQueryXMMovieThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_MV_URL, false).arg(m_searchText).arg(offset + 1);
     m_pageTotal = 0;
     m_pageSize = 20;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_AR_MV_URL, false).arg(m_searchText).arg(offset + 1);
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -123,7 +125,6 @@ void MusicDownLoadQueryXMMovieThread::startToSingleSearch(const QString &text)
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
     m_searchText = text.trimmed();
-    deleteAll();
     m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
@@ -144,11 +145,11 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -156,7 +157,7 @@ void MusicDownLoadQueryXMMovieThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
-                QVariantList datas = value["songs"].toList();
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -222,10 +223,10 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         m_pageTotal = DEFAULT_LEVEL_HIGHER;
-        QString html(bytes);
+        const QString html(bytes);
         QRegExp regx;
         regx.setMinimal(true);
         ///////////////////////////////////////////////////////////////////
@@ -241,7 +242,7 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
         {
             if(m_interrupt) return;
 
-            QString cap = regx.cap(1);
+            const QString &cap = regx.cap(1);
             QRegExp partial(".*src=\"([^\"]+).*href=\"([^\"]+).*title=\"([^\"]+).*>");
             partial.setMinimal(true);
             int pos_p = cap.indexOf(partial);
@@ -307,7 +308,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_MV_ATTR_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -326,7 +327,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    QString text(reply->readAll());
+    const QString text(reply->readAll());
     QRegExp regx;
 
     if(more)
@@ -374,7 +375,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_MV_QUERY_URL, false).arg(vid).arg(uid);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_MV_QUERY_URL, false).arg(vid).arg(uid);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -400,7 +401,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     for(int i=0; i<info->m_songAttrs.count(); ++i)
     {
         MusicObject::MusicSongAttribute *attr = &info->m_songAttrs[i];
-        QString urlPrefix = attr->m_url;
+        const QString &urlPrefix = attr->m_url;
         QStringList urls;
         int round = attr->m_size.toLongLong()/20000000 + 1;
         int start = 0, end = 0;

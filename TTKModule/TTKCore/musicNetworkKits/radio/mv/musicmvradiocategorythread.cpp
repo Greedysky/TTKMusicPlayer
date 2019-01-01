@@ -21,16 +21,15 @@ void MusicMVRadioCategoryThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-
         bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
         bytes.chop(3);
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
-            QVariantList datas = data.toList();
+            const QVariantList &datas = data.toList();
             foreach(const QVariant &var, datas)
             {
                 if(m_interrupt) return;
@@ -43,7 +42,7 @@ void MusicMVRadioCategoryThread::downLoadFinished()
                 QVariantMap value = var.toMap();
                 if(value["classId"].toString() == m_searchText)
                 {
-                    QVariantList fmList = value["fm_list"].toList();
+                    const QVariantList &fmList = value["fm_list"].toList();
                     foreach(const QVariant &var, fmList)
                     {
                         if(m_interrupt) return;

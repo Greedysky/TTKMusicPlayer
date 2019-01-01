@@ -33,7 +33,7 @@ void MusicDownloadSourceThread::downLoadFinished()
     {
         if(m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).isValid())
         {
-            QString newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
+            const QString &newUrl = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toString();
             deleteAll();
             startToDownload(newUrl); ///redirection target url
         }

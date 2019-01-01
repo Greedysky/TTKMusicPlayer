@@ -36,8 +36,7 @@ void MusicDownLoadQueryBDThread::startToPage(int offset)
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false)
-                    .arg(m_searchText).arg(offset + 1).arg(m_pageSize);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_SONG_SEARCH_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize);
     m_interrupt = true;
     m_pageTotal = 0;
     m_pageIndex = offset;
@@ -61,7 +60,6 @@ void MusicDownLoadQueryBDThread::startToSingleSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -85,11 +83,11 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -98,7 +96,7 @@ void MusicDownLoadQueryBDThread::downLoadFinished()
                 value = value["result"].toMap();
                 value = value["song_info"].toMap();
                 m_pageTotal = value["total"].toInt();
-                QVariantList datas = value["song_list"].toList();
+                const QVariantList &datas = value["song_list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -166,11 +164,11 @@ void MusicDownLoadQueryBDThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

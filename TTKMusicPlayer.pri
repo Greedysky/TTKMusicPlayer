@@ -1,6 +1,6 @@
 # =================================================
 # * This file is part of the TTK Music Player project
-# * Copyright (C) 2015 - 2018 Greedysky Studio
+# * Copyright (C) 2015 - 2019 Greedysky Studio
 #
 # * This program is free software; you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ win32:{
 unix:!mac{
     QMMP_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libqmmp.so
 }
-!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
+#!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
 
 win32{
     LIBS += -lIphlpapi -lVersion -lole32 -luuid

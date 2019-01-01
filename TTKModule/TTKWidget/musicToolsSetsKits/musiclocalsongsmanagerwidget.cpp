@@ -49,10 +49,8 @@ MusicLocalSongsManagerWidget::MusicLocalSongsManagerWidget(QWidget *parent)
     m_ui->watchDirButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     connect(m_ui->watchDirButton, SIGNAL(clicked()), SLOT(watchDirSelected()));
 
-    m_ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
-                                      "QToolButton{ image:url(:/contextMenu/btn_audition); }");
-    m_ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 +
-                                 "QToolButton{ image:url(:/contextMenu/btn_add); }");
+    m_ui->auditionButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_audition); }");
+    m_ui->addButton->setStyleSheet(MusicUIObject::MToolButtonStyle01 + MusicUIObject::MToolButtonStyle02 + "QToolButton{ image:url(:/contextMenu/btn_add); }");
 
     m_ui->auditionButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->addButton->setCursor(QCursor(Qt::PointingHandCursor));
@@ -161,7 +159,7 @@ void MusicLocalSongsManagerWidget::watchDirEnable(bool enable)
     m_ui->watchDirButton->setEnabled(enable);
     m_ui->watchDirFrequenceEdit->setEnabled(enable);
 
-    QString path = m_ui->watchPathLabel->text();
+    const QString &path = m_ui->watchPathLabel->text();
     if(!path.isEmpty())
     {
         m_fileSystemWatcher->addPath(path);
@@ -218,6 +216,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
         itemsSelected();
         return;
     }
+
     if(m_ui->songlistsTable->rowCount() <= 0 || m_ui->songlistsTable->currentRow() < 0 )
     {
         MusicMessageBox message;
@@ -229,7 +228,7 @@ void MusicLocalSongsManagerWidget::addButtonClick()
     itemsSelected();
 }
 
-void MusicLocalSongsManagerWidget::itemCellOnClick(int row,int col)
+void MusicLocalSongsManagerWidget::itemCellOnClick(int row, int col)
 {
     switch(col)
     {
@@ -238,7 +237,7 @@ void MusicLocalSongsManagerWidget::itemCellOnClick(int row,int col)
            {
               if(!m_searchfileListCache.isEmpty())
               {
-                  int count = m_ui->searchLineEdit->text().trimmed().count();
+                  const int count = m_ui->searchLineEdit->text().trimmed().count();
                   row = m_searchfileListCache.value(count)[row];
                   m_ui->searchLineEdit->clear();
                   m_searchfileListCache.clear();
@@ -254,7 +253,7 @@ void MusicLocalSongsManagerWidget::itemDoubleClicked(int row, int)
 {
     if(!m_searchfileListCache.isEmpty())
     {
-        int count = m_ui->searchLineEdit->text().trimmed().count();
+        const int count = m_ui->searchLineEdit->text().trimmed().count();
         row = m_searchfileListCache.value(count)[row];
         m_ui->searchLineEdit->clear();
         m_searchfileListCache.clear();
@@ -309,7 +308,7 @@ void MusicLocalSongsManagerWidget::musicSearchIndexChanged(int, int index)
     clearAllItems();
 
     QFileInfoList names;
-    foreach(int index, searchResult)
+    foreach(const int index, searchResult)
     {
         names.append(m_fileNames[index]);
     }
@@ -458,7 +457,7 @@ void MusicLocalSongsManagerWidget::addDrivesList()
 {
     QStringList names;
     names << tr("Overall");
-    QFileInfoList drives = QDir::drives();
+    const QFileInfoList &drives = QDir::drives();
     foreach(const QFileInfo &driver, drives)
     {
        names << driver.absoluteDir().absolutePath();
@@ -473,7 +472,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     {
         if(!m_searchfileListCache.isEmpty())
         {
-            int count = m_ui->searchLineEdit->text().trimmed().count();
+            const int count = m_ui->searchLineEdit->text().trimmed().count();
             auditionRow.insert(m_searchfileListCache.value(count)[item->row()]);
         }
         else
@@ -488,7 +487,7 @@ void MusicLocalSongsManagerWidget::itemsSelected()
     qSort(auditionList);
 
     QStringList names;
-    foreach(int index, auditionList)
+    foreach(const int index, auditionList)
     {
         names << m_fileNames[index].absoluteFilePath();
     }
@@ -509,7 +508,7 @@ bool MusicLocalSongsManagerWidget::filterIndexChanged()
     if(m_ui->filterComboBox->currentIndex() == 0)
     {
         QStringList names;
-        QFileInfoList drives = QDir::drives();
+        const QFileInfoList &drives = QDir::drives();
         foreach(const QFileInfo &driver, drives)
         {
            names << driver.absoluteDir().absolutePath();

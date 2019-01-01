@@ -40,7 +40,7 @@ void MusicWebDJRadioProgramTableWidget::init(MusicObject::Program type)
 
 void MusicWebDJRadioProgramTableWidget::resizeWindow()
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(2, width - WINDOW_WIDTH_MIN + 315);
 
@@ -84,7 +84,7 @@ void MusicWebDJRadioProgramTableWidget::listCellClicked(int row, int column)
 
 void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem &data)
 {
-    int index = rowCount();
+    const int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ROW_HEIGHT);
 

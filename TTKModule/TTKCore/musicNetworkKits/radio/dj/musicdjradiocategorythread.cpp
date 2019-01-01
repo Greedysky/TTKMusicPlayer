@@ -15,9 +15,9 @@ void MusicDJRadioCategoryThread::startToDownload()
 
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(DJ_CATEGORY_N_URL, false),
-               QString("{}"));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(DJ_CATEGORY_N_URL, false),
+                      QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
@@ -39,17 +39,17 @@ void MusicDJRadioCategoryThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["code"].toInt() == 200 && value.contains("categories"))
             {
-                QVariantList datas = value["categories"].toList();
+                const QVariantList &datas = value["categories"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

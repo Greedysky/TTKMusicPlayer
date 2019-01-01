@@ -247,15 +247,14 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     m_mediaPlayer->play();
 
     /// fix current play volume temporary
-    int v = m_ui->volumeSlider->value();
+    const int v = m_ui->volumeSlider->value();
     m_ui->volumeSlider->setValue(0);
     m_ui->volumeSlider->setValue(v);
 
     QString name = MusicUtils::Core::lrcPrefix() + info.m_singerName + " - " + info.m_songName + LRC_FILE;
     if(!QFile::exists(name))
     {
-        MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name,
-                                                   MusicObject::DownloadLrc, this);
+        MusicTextDownLoadThread* lrcDownload = new MusicTextDownLoadThread(info.m_lrcUrl, name, MusicObject::DownloadLrc, this);
         connect(lrcDownload, SIGNAL(downLoadDataChanged(QString)), SLOT(lrcDownloadStateChanged()));
         lrcDownload->startToDownload();
     }
@@ -267,8 +266,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name,
-                                                MusicObject::DownloadSmallBG, this);
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name, MusicObject::DownloadSmallBG, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }
@@ -291,8 +289,7 @@ void MusicWebMusicRadioPlayWidget::lrcDownloadStateChanged()
         return;
     }
 
-    QString name = info.m_singerName + " - " + info.m_songName;
-    name = name.trimmed();
+    const QString &name = (info.m_singerName + " - " + info.m_songName).trimmed();
     m_ui->titleWidget->setText(name);
     m_analysis->transLrcFileToTime(MusicUtils::Core::lrcPrefix() + name + LRC_FILE);
 }
@@ -336,8 +333,8 @@ void MusicWebMusicRadioPlayWidget::positionChanged(qint64 position)
         return;
     }
 
-    int index = m_analysis->getCurrentIndex();
-    qint64 time = m_analysis->findTime(index);
+    const int index = m_analysis->getCurrentIndex();
+    const qint64 time = m_analysis->findTime(index);
 
     if(time < position*MT_S2MS && time != -1)
     {
@@ -356,7 +353,7 @@ void MusicWebMusicRadioPlayWidget::positionChanged(qint64 position)
             lrc += QString("</p>");
         }
         m_ui->lrcLabel->setText(lrc);
-        m_analysis->setCurrentIndex(++index);
+        m_analysis->setCurrentIndex(index + 1);
     }
 }
 

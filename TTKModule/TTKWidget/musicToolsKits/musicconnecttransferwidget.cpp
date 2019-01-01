@@ -109,8 +109,7 @@ void MusicConnectTransferWidget::initColumns()
     connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlayListSelected(int)));
     for(int i=0; i<songs.count(); ++i)
     {
-        QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName)
-                                              .arg(songs[i].m_songs.count()), this);
+        QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
         button->setStyleSheet(MusicUIObject::MPushButtonStyle04);
         button->setCursor(QCursor(Qt::PointingHandCursor));
         button->setFixedSize(90, 25);
@@ -138,7 +137,7 @@ void MusicConnectTransferWidget::createAllItems(const MusicSongs &songs)
 QStringList MusicConnectTransferWidget::getSelectedFiles()
 {
     QStringList names;
-    MIntList list(m_ui->playListTableWidget->getSelectedItems());
+    const MIntList list(m_ui->playListTableWidget->getSelectedItems());
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -156,7 +155,7 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
     {
         if(!m_searchfileListCache.value(0).isEmpty())
         {
-            int count = m_ui->searchLineEdit->text().trimmed().count();
+            const int count = m_ui->searchLineEdit->text().trimmed().count();
             index = m_searchfileListCache.value(count)[index];
         }
         names << m_currentSongs[index].getMusicPath();
@@ -168,10 +167,10 @@ QStringList MusicConnectTransferWidget::getSelectedFiles()
 QString MusicConnectTransferWidget::getRemovableDrive()
 {
 #ifdef Q_OS_WIN
-    QFileInfoList drives = QDir::drives();
+    const QFileInfoList &drives = QDir::drives();
     foreach(const QFileInfo &driver, drives)
     {
-        QString path = driver.absoluteDir().absolutePath();
+        const QString &path = driver.absoluteDir().absolutePath();
         if(GetDriveTypeW(path.toStdWString().c_str()) == DRIVE_REMOVABLE)
         {
             return path;
@@ -185,6 +184,7 @@ void MusicConnectTransferWidget::currentPlayListSelected(int index)
 {
     MusicSongItems songs;
     emit getMusicLists(songs);
+
     if(index >= songs.count() || index < 0)
     {
         return;
@@ -204,7 +204,7 @@ void MusicConnectTransferWidget::selectedAllItems(bool check)
 
 void MusicConnectTransferWidget::startToTransferUSBFiles()
 {
-    QStringList names = getSelectedFiles();
+    const QStringList &names = getSelectedFiles();
     if(names.isEmpty())
     {
         return;
@@ -216,6 +216,7 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
     {
         path = getRemovableDrive();
     }
+
     MusicProgressWidget progress;
     progress.show();
     progress.setTitle(tr("Copy File Mode"));
@@ -236,14 +237,14 @@ void MusicConnectTransferWidget::startToTransferUSBFiles()
 
 void MusicConnectTransferWidget::startToTransferWIFIFiles()
 {
-    QStringList names = getSelectedFiles();
+    const QStringList &names = getSelectedFiles();
     if(names.isEmpty())
     {
         return;
     }
 
-    QRegExp reg("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
-    QString address = m_ui->lineWIFIEdit->text();
+    const QRegExp reg("((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)");
+    const QString &address = m_ui->lineWIFIEdit->text();
     if(!address.contains(reg))
     {
         MusicMessageBox message;

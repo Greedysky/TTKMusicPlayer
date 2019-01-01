@@ -19,6 +19,7 @@ void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(artist));
     deleteAll();
+
     m_searchText = artist;
     m_interrupt = true;
 
@@ -50,11 +51,11 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -64,7 +65,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
                 ////////////////////////////////////////////////////////////
                 value = value["data"].toMap();
                 value = value["data"].toMap();
-                QVariantList datas = value["songs"].toList();
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -155,11 +156,11 @@ void MusicDownLoadQueryXMArtistThread::getDownLoadIntro(MusicResultsItem *item)
         return;
     }
 
-    QByteArray bytes = reply->readAll();
+    const QByteArray &bytes = reply->readAll();
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

@@ -47,6 +47,6 @@ void MusicRunTimeManager::run() const
 
 QString MusicRunTimeManager::translator() const
 {
-    int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
+    const int index = M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt();
     return MusicUtils::Core::getLanguageName(index);
 }

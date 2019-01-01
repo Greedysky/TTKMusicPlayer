@@ -63,7 +63,7 @@ void MusicWebDJRadioInfoWidget::resizeWindow()
     if(!m_resizeWidgets.isEmpty())
     {
         int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
-        width = width - WINDOW_WIDTH_MIN + 390;
+            width = width - WINDOW_WIDTH_MIN + 390;
 
         QLabel *label = m_resizeWidgets[0];
         label->setText(MusicUtils::Widget::elidedText(label->font(), label->toolTip(), Qt::ElideRight, width));

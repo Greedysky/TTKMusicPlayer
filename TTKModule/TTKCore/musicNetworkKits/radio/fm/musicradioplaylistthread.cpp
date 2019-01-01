@@ -49,16 +49,16 @@ void MusicRadioPlayListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         m_playList.clear();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
-            QVariantList channels = value["list"].toList();
+            const QVariantList &channels = value["list"].toList();
             foreach(const QVariant &channel, channels)
             {
                 value = channel.toMap();

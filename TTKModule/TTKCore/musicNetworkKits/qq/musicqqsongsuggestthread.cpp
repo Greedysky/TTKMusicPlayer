@@ -17,8 +17,9 @@ void MusicQQSongSuggestThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_SUGGEST_URL, false).arg(text);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_SUGGEST_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -46,11 +47,11 @@ void MusicQQSongSuggestThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -58,7 +59,7 @@ void MusicQQSongSuggestThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["song"].toMap();
-                QVariantList datas = value["itemlist"].toList();
+                const QVariantList &datas = value["itemlist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

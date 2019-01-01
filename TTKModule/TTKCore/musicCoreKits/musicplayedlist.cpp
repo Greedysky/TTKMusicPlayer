@@ -147,7 +147,7 @@ void MusicPlayedlist::insertLaterMedia(int toolIndex, const QString &content)
 {
     if(m_currentIndex != -1)
     {
-        int index = m_currentIndex + 1;
+        const int index = m_currentIndex + 1;
         (index != m_mediaList.count()) ? m_mediaList.insert(index, MusicPlayedItem(toolIndex, content))
                                        : m_mediaList.append(MusicPlayedItem(toolIndex, content));
         m_laterMediaList << MusicPlayedItem(index + m_laterMediaList.count(), content);
@@ -173,7 +173,7 @@ bool MusicPlayedlist::removeMedia(int pos)
 
 int MusicPlayedlist::removeMedia(int toolIndex, const QString &content)
 {
-    int index = find(toolIndex, content);
+    const int index = find(toolIndex, content);
     if(index != -1)
     {
         m_mediaList.removeAt(index);
@@ -217,7 +217,7 @@ void MusicPlayedlist::setCurrentIndex(int index)
 
     if(!m_laterMediaList.isEmpty())
     {
-        MusicPlayedItem item = m_laterMediaList.takeFirst();
+        const MusicPlayedItem &item = m_laterMediaList.takeFirst();
         m_currentIndex = item.m_toolIndex;
         if(m_currentIndex < 0 || m_currentIndex >= m_mediaList.count())
         {
@@ -230,6 +230,6 @@ void MusicPlayedlist::setCurrentIndex(int index)
 
 void MusicPlayedlist::setCurrentIndex(int toolIndex, const QString &path)
 {
-    int playIndex = mapItemIndex(MusicPlayedItem(toolIndex, path));
+    const int playIndex = mapItemIndex(MusicPlayedItem(toolIndex, path));
     setCurrentIndex(playIndex);
 }

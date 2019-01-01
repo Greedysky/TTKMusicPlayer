@@ -62,7 +62,7 @@ void MusicDownLoadQueryXMThread::startToSingleSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
-    deleteAll();
+
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -91,11 +91,11 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -104,10 +104,10 @@ void MusicDownLoadQueryXMThread::downLoadFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
 
-                QVariantMap pagingVO = value["pagingVO"].toMap();
+                const QVariantMap &pagingVO = value["pagingVO"].toMap();
                 m_pageTotal = pagingVO["count"].toInt();
 
-                QVariantList datas = value["songs"].toList();
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -175,11 +175,11 @@ void MusicDownLoadQueryXMThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();

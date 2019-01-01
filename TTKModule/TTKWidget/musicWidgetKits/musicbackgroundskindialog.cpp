@@ -361,7 +361,7 @@ void MusicBackgroundSkinDialog::addThemeListWidgetItem(MusicBackgroundListWidget
 
     foreach(const int index, data)
     {
-        QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TTS_FILE));
+        const QFileInfo info(QString("%1theme-%2%3").arg(dir).arg(index).arg(TTS_FILE));
         item->createItem(info.baseName(), info.filePath(), state);
     }
 }

@@ -30,6 +30,7 @@ void MusicDownLoadQueryXMToplistThread::startToSearch(const QString &toplist)
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
     deleteAll();
+
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -60,11 +61,11 @@ void MusicDownLoadQueryXMToplistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -81,7 +82,7 @@ void MusicDownLoadQueryXMToplistThread::downLoadFinished()
                 info.m_updateTime = value["time"].toString();
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["items"].toList();
+                const QVariantList &datas = value["items"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

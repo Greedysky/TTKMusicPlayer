@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,29 +47,23 @@ public:
     /*!
      * Object contsructor by music path and name.
      */
-    explicit MusicSong(const QString &musicPath,
-                       const QString &musicName = QString());
+    explicit MusicSong(const QString &musicPath, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout.
      */
-    MusicSong(const QString &musicPath, int playCount,
-              const QString &musicName = QString());
+    MusicSong(const QString &musicPath, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and format.
      */
-    MusicSong(const QString &musicPath, const QString &type,
-              int playCount, const QString &musicName = QString());
+    MusicSong(const QString &musicPath, const QString &type, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and format and time.
      */
-    MusicSong(const QString &musicPath, const QString &type,
-              const QString &playTime, int playCount,
-              const QString &musicName = QString());
+    MusicSong(const QString &musicPath, const QString &type, const QString &playTime, int playCount, const QString &musicName = QString());
     /*!
      * Object contsructor by music path and name and playcout and time.
      */
-    MusicSong(const QString &musicPath, int playCount, const QString &playTime,
-              const QString &musicName);
+    MusicSong(const QString &musicPath, int playCount, const QString &playTime, const QString &musicName);
 
     /*!
      * Get music artist name.

@@ -88,7 +88,7 @@ void MusicSongRingtoneMaker::initInputPath()
     }
     filter = filter.trimmed() + ")";
 
-    QString path = MusicUtils::Widget::getOpenFileDialog(this, filter);
+    const QString &path = MusicUtils::Widget::getOpenFileDialog(this, filter);
     if(path.isEmpty())
     {
         return;
@@ -101,8 +101,7 @@ void MusicSongRingtoneMaker::initInputPath()
         QString name = QFileInfo(m_inputFilePath).fileName();
         m_ui->songLabelValue->setToolTip( name );
         name = MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 220);
-        m_ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name)
-                .arg(tag.getLengthString()).arg(tag.getSamplingRate()).arg(tag.getBitrate()));
+        m_ui->songLabelValue->setText(tr("SongName: %1 ( %2, %3, %4)").arg(name).arg(tag.getLengthString()).arg(tag.getSamplingRate()).arg(tag.getBitrate()));
     }
     else
     {
@@ -122,7 +121,7 @@ void MusicSongRingtoneMaker::initInputPath()
 void MusicSongRingtoneMaker::initOutputPath()
 {
     QString value = QString("Files (*.%1 )").arg(m_ui->formatCombo->currentText().toLower());
-    value = MusicUtils::Widget::getSaveFileDialog(this, value);
+            value = MusicUtils::Widget::getSaveFileDialog(this, value);
     if(value.isEmpty())
     {
         return;
@@ -174,8 +173,7 @@ void MusicSongRingtoneMaker::posChanged(qint64 start, qint64 end)
     m_stopPos = end;
     m_ui->startTimeLabel->setText( tr("Begin: ") + MusicTime::toString(start, MusicTime::All_Sec, "mm:ss:zzz") );
     m_ui->stopTimeLabel->setText( tr("End: ") + MusicTime::toString(end, MusicTime::All_Sec, "mm:ss:zzz") );
-    m_ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1")
-                        .arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
+    m_ui->ringLabelValue->setText( tr("Ring Info.\tCut Length: %1").arg(MusicTime::toString(end - start, MusicTime::All_Sec, "mm:ss")));
 }
 
 void MusicSongRingtoneMaker::buttonReleaseChanged(qint64 pos)
@@ -205,7 +203,7 @@ void MusicSongRingtoneMaker::initControlParameter() const
 {
     m_ui->formatCombo->addItems(QStringList() << "MP3" << "WAV");
     m_ui->kbpsCombo->addItems(QStringList() << "32" << "48" << "56" << "64" << "80"
-                     << "96" << "112" << "128" << "192" << "224" << "256" << "320");
+                            << "96" << "112" << "128" << "192" << "224" << "256" << "320");
     m_ui->hzCombo->addItems(QStringList() << "8000" << "12050" << "16000" << "22050"
                             << "24000" << "32000" << "44100" << "48000");
     m_ui->msCombo->addItems(QStringList() << "Mono" << "Stereo");

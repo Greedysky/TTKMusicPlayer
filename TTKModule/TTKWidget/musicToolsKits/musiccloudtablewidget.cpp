@@ -5,6 +5,7 @@
 #include "musicmessagebox.h"
 
 #include <QScrollBar>
+
 Q_DECLARE_METATYPE(MusicCloudDataItem)
 
 MusicCloudDownloadTableWidget::MusicCloudDownloadTableWidget(QWidget *parent)
@@ -89,15 +90,15 @@ MusicCloudUploadTableWidget::~MusicCloudUploadTableWidget()
 
 void MusicCloudUploadTableWidget::uploadFileError(const MusicCloudDataItem &item)
 {
-    int c = rowCount() + 1;
-    setRowCount(c);
+    const int count = rowCount() + 1;
+    setRowCount(count);
 
     MusicSong record;
     record.setMusicName(item.m_dataItem.m_name);
     record.setMusicPath(item.m_path);
     record.setMusicSizeStr(MusicUtils::Number::size2Label(item.m_dataItem.m_size));
 
-    createItem(c - 1, record);
+    createItem(count - 1, record);
 }
 
 void MusicCloudUploadTableWidget::reuploadFile()
@@ -116,7 +117,7 @@ void MusicCloudUploadTableWidget::reuploadFile()
         return;
     }
 
-    QString data(it->data(MUSIC_DATAS_ROLE).toString());
+    const QString data(it->data(MUSIC_DATAS_ROLE).toString());
     if(!data.isEmpty())
     {
         emit reuploadFilesToServer(QStringList() << data);
@@ -142,7 +143,7 @@ void MusicCloudUploadTableWidget::reuploadFiles()
             continue;
         }
 
-        QString data(it->data(MUSIC_DATAS_ROLE).toString());
+        const QString data(it->data(MUSIC_DATAS_ROLE).toString());
         if(!data.isEmpty())
         {
             datas << data;
@@ -186,7 +187,7 @@ void MusicCloudUploadTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
-    bool empty = !m_musicSongs->isEmpty();
+    const bool empty = !m_musicSongs->isEmpty();
     rightClickMenu.addAction(tr("musicInfo..."), this, SLOT(musicFileInformation()))->setEnabled(empty);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_localFile"), tr("openFileDir"), this, SLOT(musicOpenFileDir()))->setEnabled(empty);
     rightClickMenu.addSeparator();

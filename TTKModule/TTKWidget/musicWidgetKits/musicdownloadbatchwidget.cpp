@@ -186,8 +186,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     records << record;
     down.writeDownloadConfig( records );
     ////////////////////////////////////////////////
-    QFile file(downloadName);
-    if(file.exists())
+    if(QFile::exists(downloadName))
     {
         for(int i=1; i<99; ++i)
         {
@@ -231,8 +230,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
         ////////////////////////////////////////////////
         QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
                                     : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
-        QFile file(downloadName);
-        if(file.exists())
+        if(QFile::exists(downloadName))
         {
             for(int i=1; i<99; ++i)
             {

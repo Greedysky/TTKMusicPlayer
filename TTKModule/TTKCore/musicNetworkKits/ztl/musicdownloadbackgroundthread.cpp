@@ -4,8 +4,7 @@
 #include "musictopareawidget.h"
 #endif
 
-MusicDownloadBackgroundThread::MusicDownloadBackgroundThread(const QString &name, const QString &save,
-                                                             QObject *parent)
+MusicDownloadBackgroundThread::MusicDownloadBackgroundThread(const QString &name, const QString &save, QObject *parent)
     : MusicNetworkAbstract(parent), m_index(0), m_counter(0), m_artName(name), m_savePath(save)
 {
 
@@ -19,7 +18,7 @@ void MusicDownloadBackgroundThread::downLoadFinished()
 #ifndef MUSIC_MOBILE
         MusicTopAreaWidget::instance()->musicBgThemeDownloadFinished();
 #else
-        QString path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
+        const QString &path = QString("%1%2%3%4").arg(BACKGROUND_DIR_FULL).arg(m_savePath).arg(0).arg(SKN_FILE);
         M_BACKGROUND_PTR->setMBackground(path);
         emit M_BACKGROUND_PTR->setUserSelectArtIndex(0);
 #endif

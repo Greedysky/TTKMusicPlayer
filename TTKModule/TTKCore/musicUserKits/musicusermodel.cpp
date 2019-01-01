@@ -12,8 +12,7 @@ MusicUserModel::MusicUserModel(QObject *parent,QSqlDatabase db)
     setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
-bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd,
-                             const QString &mail, bool pwdMask)
+bool MusicUserModel::addUser(const MusicUserUIDItem &uid, const QString &pwd, const QString &mail, bool pwdMask)
 {
     if(!databaseSelectedFilter(uid))
     {
@@ -78,9 +77,7 @@ bool MusicUserModel::addUser(const MusicUserInfoRecord &info)
     }
 }
 
-bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &pwd,
-                                const QString &mail, const QString &name,
-                                const QString &time, bool pwdMask)
+bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &pwd, const QString &mail, const QString &name, const QString &time, bool pwdMask)
 {
     MStriantMap map;
     map["USERNAME"] = name;
@@ -90,10 +87,7 @@ bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &pwd,
     return updateRecordData(uid, map);
 }
 
-bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &name,
-                                const QString &sex, const QString &birth,
-                                const QString &city, const QString &country,
-                                const QString &sign)
+bool MusicUserModel::updateUser(const MusicUserUIDItem &uid, const QString &name, const QString &sex, const QString &birth, const QString &city, const QString &country, const QString &sign)
 {
     MStriantMap map;
     map["USERNAME"] = name;
@@ -220,10 +214,10 @@ bool MusicUserModel::updateRecordData(const MusicUserUIDItem &uid, const MStrian
         return false;
     }
 
-    QStringList keys = data.keys();
+    const QStringList &keys = data.keys();
     foreach(const QString &key, keys)
     {
-        QString var = data[key].toString();
+        const QString &var = data[key].toString();
         if(!var.isEmpty())
         {
             setData(index(0, fieldIndex(key)), var);

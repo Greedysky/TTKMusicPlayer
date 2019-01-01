@@ -18,13 +18,13 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
 
 void MusicUtils::QMMP::midTransferFile()
 {
-    QString conf_path = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
+    const QString &confPath = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("Midi");
-    settings.setValue("conf_path", conf_path);
+    settings.setValue("conf_path", confPath);
     settings.endGroup();
 
-    QFile file(conf_path);
+    QFile file(confPath);
     if(file.open(QFile::ReadOnly))
     {
         QByteArray data = file.readAll();

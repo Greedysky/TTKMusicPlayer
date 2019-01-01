@@ -60,7 +60,7 @@ void MusicFileSenderServer::start()
         m_file->setFileName( str );
     }
 
-    QString filestr = QString::number(count) + TTK_STR_SPLITER + m_file->fileName();
+    const QString &filestr = QString::number(count) + TTK_STR_SPLITER + m_file->fileName();
     m_sendSocket->writeDatagram( filestr.toLocal8Bit() , QHostAddress(m_receiveIp), RECEVIE_PORT);
 }
 
@@ -68,7 +68,7 @@ void MusicFileSenderServer::sendData()
 {
     if(!m_file->atEnd())
     {
-        QByteArray data = m_file->read(MAX_DATA);
+        const QByteArray &data = m_file->read(MAX_DATA);
         m_sendSocket->writeDatagram(data , QHostAddress(m_receiveIp), RECEVIE_PORT);
         if(data.size() < MAX_DATA)
         {

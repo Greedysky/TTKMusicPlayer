@@ -12,16 +12,12 @@ MusicCryptographicHash::MusicCryptographicHash()
 
 QString MusicCryptographicHash::encrypt(const QString &data, const QString &key)
 {
-    QString d = data;
-    d = xxteaEncrypt(d, key).toUtf8().toBase64();
-    return d;
+    return xxteaEncrypt(data, key).toUtf8().toBase64();
 }
 
 QString MusicCryptographicHash::decrypt(const QString &data, const QString &key)
 {
-    QString d = data;
-    d = xxteaDecrypt(QByteArray::fromBase64(d.toUtf8()), key);
-    return d;
+    return xxteaDecrypt(QByteArray::fromBase64(data.toUtf8()), key);
 }
 
 std::string MusicCryptographicHash::xxteaEncrypt(std::string data, std::string key)
@@ -188,10 +184,12 @@ void MusicCryptographicHash::xxteaUintEncrypt(xxtea_uint *v, xxtea_uint len, xxt
     if(n < 1) {
         return;
     }
-    while (0 < q--) {
+    while (0 < q--)
+    {
         sum += XXTEA_DELTA;
         e = sum >> 2 & 3;
-        for (p = 0; p < n; p++) {
+        for (p = 0; p < n; p++)
+        {
             y = v[p + 1];
             z = v[p] += XXTEA_MX;
         }
@@ -207,9 +205,11 @@ void MusicCryptographicHash::xxteaUintDecrypt(xxtea_uint *v, xxtea_uint len, xxt
     if(n < 1) {
         return;
     }
-    while (sum != 0) {
+    while (sum != 0)
+    {
         e = sum >> 2 & 3;
-        for (p = n; p > 0; p--) {
+        for (p = n; p > 0; p--)
+        {
             z = v[p - 1];
             y = v[p] -= XXTEA_MX;
         }
@@ -233,16 +233,19 @@ xxtea_uint *MusicCryptographicHash::xxteaToUintArray(unsigned char *data, xxtea_
 
     n = len >> 2;
     n = (((len & 3) == 0) ? n : n + 1);
-    if(include_length) {
+    if(include_length)
+    {
         result = (xxtea_uint *)malloc((n + 1) << 2);
         result[n] = len;
         *ret_len = n + 1;
-    } else {
+    } else
+    {
         result = (xxtea_uint *)malloc(n << 2);
         *ret_len = n;
     }
     memset(result, 0, n << 2);
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < len; i++)
+    {
         result[i >> 2] |= (xxtea_uint)data[i] << ((i & 3) << 3);
     }
 
@@ -255,13 +258,18 @@ unsigned char *MusicCryptographicHash::xxteaToByteArray(xxtea_uint *data, xxtea_
     unsigned char *result;
 
     n = len << 2;
-    if(include_length) {
+    if(include_length)
+    {
         m = data[len - 1];
-        if((m < n - 7) || (m > n - 4)) return nullptr;
+        if((m < n - 7) || (m > n - 4))
+        {
+            return nullptr;
+        }
         n = m;
     }
     result = (unsigned char *)malloc(n + 1);
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n; i++)
+    {
         result[i] = (unsigned char)((data[i >> 2] >> ((i & 3) << 3)) & 0xFF);
     }
     result[n] = '\0';
@@ -306,7 +314,8 @@ unsigned char *MusicCryptographicHash::xxteaEncrypt(unsigned char *data, xxtea_u
 
     *ret_length = 0;
 
-    if(key_len < 16) {
+    if(key_len < 16)
+    {
         unsigned char *key2 = fixKeyLength(key, key_len);
         result = doXxteaEncrypt(data, data_len, key2, ret_length);
         free(key2);
@@ -325,7 +334,8 @@ unsigned char *MusicCryptographicHash::xxteaDecrypt(unsigned char *data, xxtea_u
 
     *ret_length = 0;
 
-    if(key_len < 16) {
+    if(key_len < 16)
+    {
         unsigned char *key2 = fixKeyLength(key, key_len);
         result = doXxteaDecrypt(data, data_len, key2, ret_length);
         free(key2);

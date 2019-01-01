@@ -34,14 +34,14 @@ void MusicDownloadQNConfighread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
-            QVariantMap value = data.toMap();
+            const QVariantMap &value = data.toMap();
             if(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd HH:mm:ss") >
                QDateTime::fromString(M_SETTING_PTR->value(MusicSettingManager::QiNiuTimeConfigChoiced).toString(), "yyyy-MM-dd HH:mm:ss").addMonths(1))
             {

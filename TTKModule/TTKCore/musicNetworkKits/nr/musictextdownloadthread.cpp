@@ -2,8 +2,7 @@
 #///QJson import
 #include "qjson/parser.h"
 
-MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save,
-                                                 MusicObject::DownloadType type, QObject *parent)
+MusicTextDownLoadThread::MusicTextDownLoadThread(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicDownLoadThreadAbstract(url, save, type, parent)
 {
 
@@ -51,7 +50,7 @@ void MusicTextDownLoadThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
        
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         if(!bytes.isEmpty())
         {
             QTextStream outstream(m_file);

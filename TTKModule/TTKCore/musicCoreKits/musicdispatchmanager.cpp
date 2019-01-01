@@ -41,8 +41,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2,
-                                    const QVariant &arg3)
+void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;
@@ -50,8 +49,7 @@ void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVaria
     m_observer << item;
 }
 
-void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2,
-                                    const QVariant &arg3, const QVariant &arg4)
+void MusicDispatchManager::dispatch(int type, const QVariant &arg1, const QVariant &arg2, const QVariant &arg3, const QVariant &arg4)
 {
     MusicDispatchItem *item = new MusicDispatchItem;
     item->m_type = type;

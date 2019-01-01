@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ class MusicTest
 public:
     QSharedPointer<T> m_child;
 
-    MusicTest(const QString& name) : m_child(new T)
+    MusicTest(const QString &name) : m_child(new T)
     {
         m_child->setObjectName(name);
         MusicAutoTest::addTest(m_child.data());

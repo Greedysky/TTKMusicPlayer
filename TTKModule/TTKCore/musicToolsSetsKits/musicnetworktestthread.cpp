@@ -43,8 +43,8 @@ void MusicNetworkTestThread::start()
 
 void MusicNetworkTestThread::run()
 {
-    QHostInfo info = QHostInfo::fromName(m_currentUrl);
-    int rand = qrand()%8 + 1;
+    const QHostInfo &info = QHostInfo::fromName(m_currentUrl);
+    const int rand = qrand()%8 + 1;
 #if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
     QThread::msleep(rand*MT_S2MS);
 #else

@@ -17,9 +17,7 @@ MusicAbstractTableWidget::MusicAbstractTableWidget(QWidget *parent)
     verticalHeader()->setVisible(false);
 
     setMouseTracking(true);  //Open the capture mouse function
-    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + \
-                  MusicUIObject::MScrollBarStyle01 + \
-                  MusicUIObject::MLineEditStyle01 );
+    setStyleSheet(MusicUIObject::MTableWidgetStyle01 + MusicUIObject::MScrollBarStyle01 + MusicUIObject::MLineEditStyle01);
 
     QFont f = font();
     f.setBold(false);

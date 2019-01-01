@@ -36,13 +36,12 @@ void MusicWebMVRadioInfoTableWidget::listCellClicked(int row, int column)
         case 5:
         case 6:
             {
-                MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+                const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
                 if(row < 0 || row >= musicSongInfos.count())
                 {
                     return;
                 }
-                MusicRightAreaWidget::instance()->musicMovieRadioSearch(
-                            QVariant::fromValue<MusicObject::MusicSongInformation>(musicSongInfos[row]));
+                MusicRightAreaWidget::instance()->musicMovieRadioSearch(QVariant::fromValue<MusicObject::MusicSongInformation>(musicSongInfos[row]));
             }
             break;
         case 7:
@@ -55,7 +54,7 @@ void MusicWebMVRadioInfoTableWidget::listCellClicked(int row, int column)
 
 void MusicWebMVRadioInfoTableWidget::musicDownloadLocal(int row)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;

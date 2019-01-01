@@ -29,8 +29,9 @@ void MusicDownLoadQueryKGToplistThread::startToSearch(const QString &toplist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch").arg(getClassName()));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(toplist);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_SONG_TOPLIST_URL, false).arg(toplist);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -59,11 +60,11 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -77,11 +78,11 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                 info.m_description = topInfo["intro"].toString();
 
                 value = value["songs"].toMap();
-                info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toULongLong()*1000).toString("yyyy-MM-dd");
+                info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong()*1000).toString("yyyy-MM-dd");
 
                 emit createToplistInfoItem(info);
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -89,14 +90,14 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                         continue;
                     }
 
-                    QVariantMap value = var.toMap();
+                    const QVariantMap &value = var.toMap();
                     MusicObject::MusicSongInformation musicInfo;
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["filename"].toString());
                     musicInfo.m_timeLength = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
 
                     if(musicInfo.m_songName.contains("-"))
                     {
-                        QStringList ll = musicInfo.m_songName.split("-");
+                        const QStringList &ll = musicInfo.m_songName.split("-");
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }

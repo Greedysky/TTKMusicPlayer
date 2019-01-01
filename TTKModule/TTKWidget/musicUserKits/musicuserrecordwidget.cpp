@@ -35,10 +35,8 @@ MusicUserRecordWidget::~MusicUserRecordWidget()
 QString MusicUserRecordWidget::avatarPixmapRender(const MusicUserUIDItem &item, const QPixmap &pix)
 {
     QPixmap p(pix);
-    QByteArray name(MusicUtils::Algorithm::md5(QString("%1%2%3").arg(item.m_uid)
-                                                                .arg(TTK_STR_SPLITER)
-                                                                .arg(item.m_server).toUtf8()));
-    QString path = QString("%1%2").arg(AVATAR_DIR_FULL).arg(QString(name.toHex().toUpper()));
+    const QByteArray name(MusicUtils::Algorithm::md5(QString("%1%2%3").arg(item.m_uid).arg(TTK_STR_SPLITER).arg(item.m_server).toUtf8()));
+    const QString &path = QString("%1%2").arg(AVATAR_DIR_FULL).arg(QString(name.toHex().toUpper()));
     p.save(path + JPG_FILE);
     QFile::rename(path + JPG_FILE, path);
 
@@ -97,8 +95,8 @@ void MusicUserRecordWidget::initTabF()
 
     string = m_userModel->getUserBirthday(m_userUID);
     m_ui->birthDateEdit_F->setDisplayFormat(QString("yyyy-MM-dd"));
-    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate() :
-                                                      QDate::fromString(string, QString("yyyy-MM-dd")));
+    m_ui->birthDateEdit_F->setDate(string.isEmpty() ? QDate::currentDate() : QDate::fromString(string, QString("yyyy-MM-dd")));
+
     string = m_userModel->getUserCity(m_userUID);
     if(!string.isEmpty())
     {
@@ -118,7 +116,7 @@ void MusicUserRecordWidget::initTabF()
 
 void MusicUserRecordWidget::initTabS()
 {
-    QString path = m_userModel->getUserIcon(m_userUID);
+    const QString &path = m_userModel->getUserIcon(m_userUID);
     m_ui->smlPixmapLabel_S->setPixmap(QPixmap(path).scaled(m_ui->smlPixmapLabel_S->size()));
     m_ui->openFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
     m_ui->saveFileButton_S->setStyleSheet(MusicUIObject::MPushButtonStyle06);
@@ -146,24 +144,21 @@ void MusicUserRecordWidget::initTabT()
 
 void MusicUserRecordWidget::cityComboBoxIndexChanged(const QString &city)
 {
-    QStringList country = m_userModel->getAllCountries(city);
+    const QStringList &country = m_userModel->getAllCountries(city);
     m_ui->countryComboBox_F->clear();
     m_ui->countryComboBox_F->addItems(country);
 }
 
 void MusicUserRecordWidget::confirmButtonClickedF()
 {
-    QString nickname(m_ui->nicknameEdit->text());
+    const QString nickname(m_ui->nicknameEdit->text());
     if(nickname != m_userModel->getUserName(m_userUID))
     {
         emit resetUserName(m_ui->nicknameEdit->text());
     }
-    m_userModel->updateUser(m_userUID, nickname,
-                            m_ui->maleRadioButton_F->isChecked() ? "0" : "1",
-                            m_ui->birthDateEdit_F->text(),
-                            m_ui->cityComboBox_F->currentText(),
-                            m_ui->countryComboBox_F->currentText(),
-                            m_ui->signatureEdit_F->toPlainText());
+    m_userModel->updateUser(m_userUID, nickname, m_ui->maleRadioButton_F->isChecked() ? "0" : "1",
+                            m_ui->birthDateEdit_F->text(), m_ui->cityComboBox_F->currentText(),
+                            m_ui->countryComboBox_F->currentText(), m_ui->signatureEdit_F->toPlainText());
     close();
 }
 
@@ -185,7 +180,7 @@ void MusicUserRecordWidget::saveFileButtonClickedS()
         return;
     }
 
-    QString path = avatarPixmapRender(m_userUID, m_ui->bigPixmapLabel_S->pixmap());
+    const QString &path = avatarPixmapRender(m_userUID, m_ui->bigPixmapLabel_S->pixmap());
     m_userModel->updateUserIcon(m_userUID, path);
 
     emit userIconChanged(m_userUID, path);
@@ -205,8 +200,7 @@ void MusicUserRecordWidget::changeVerificationCodeT()
 
 void MusicUserRecordWidget::confirmButtonClickedT()
 {
-    if(m_ui->originPwdEdit_T->getStrStatus() && m_ui->newPwdEdit_T->getStrStatus() &&
-       m_ui->newCPwdEdit_T->getStrStatus())
+    if(m_ui->originPwdEdit_T->getStrStatus() && m_ui->newPwdEdit_T->getStrStatus() && m_ui->newCPwdEdit_T->getStrStatus())
     {
         if(m_ui->verificationCode->getCheckCode() != m_ui->verificationCodeEdit_T->text().trimmed())
         {
@@ -254,8 +248,7 @@ void MusicUserRecordWidget::confirmButtonClickedT()
 
 void MusicUserRecordWidget::checkPwdStrength(int code)
 {
-    m_ui->pwdStrengthT1->setStyleSheet(code != -1 ? MusicUIObject::MBackgroundStyle14 :
-                                                  MusicUIObject::MBackgroundStyle15);
+    m_ui->pwdStrengthT1->setStyleSheet(code != -1 ? MusicUIObject::MBackgroundStyle14 : MusicUIObject::MBackgroundStyle15);
     m_ui->pwdStrengthT2->setStyleSheet(MusicUIObject::MBackgroundStyle15);
     m_ui->pwdStrengthT3->setStyleSheet(MusicUIObject::MBackgroundStyle15);
 

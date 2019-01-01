@@ -32,10 +32,10 @@ bool MusicLicenseCore::checkLicense(const QString &str)
 
 QString MusicLicenseCore::getCharacteristicString()
 {
-    QList<QNetworkInterface> nets = QNetworkInterface::allInterfaces();
+    const QList<QNetworkInterface> &nets = QNetworkInterface::allInterfaces();
     if(!nets.isEmpty())
     {
-        QString adds = nets.first().hardwareAddress();
+        const QString &adds = nets.first().hardwareAddress();
         return splitString(adds.toUtf8(), VALUE0);
     }
     return QString();
@@ -43,10 +43,10 @@ QString MusicLicenseCore::getCharacteristicString()
 
 QString MusicLicenseCore::getCharacteristicStringNormal()
 {
-    QList<QNetworkInterface> nets = QNetworkInterface::allInterfaces();
+    const QList<QNetworkInterface> &nets = QNetworkInterface::allInterfaces();
     if(!nets.isEmpty())
     {
-        QString adds = nets.first().hardwareAddress();
+        const QString &adds = nets.first().hardwareAddress();
         return MusicUtils::Algorithm::hmacSha1(adds.toUtf8(), VALUE0).toHex().mid(15, 10);
     }
     return QString();
@@ -65,7 +65,7 @@ QStringList MusicLicenseCore::getCharacteristicStrings()
 QString MusicLicenseCore::splitString(const QByteArray &data, const QByteArray &key)
 {
     QString value = MusicUtils::Algorithm::hmacSha1(data, key).toHex().mid(10, 20);
-    int count = value.count();
+    const int count = value.count();
     for(int i=1; i<count/5; ++i)
     {
         value.insert(count - 5*i, "-");

@@ -17,8 +17,9 @@ void MusicXMSongSuggestThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false).arg(text);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_SUGGEST_URL, false).arg(text);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -46,14 +47,14 @@ void MusicXMSongSuggestThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
-            QVariantList datas = data.toList();
+            const QVariantList &datas = data.toList();
             foreach(const QVariant &var, datas)
             {
                 if(m_interrupt) return;
@@ -63,7 +64,7 @@ void MusicXMSongSuggestThread::downLoadFinished()
                     continue;
                 }
 
-                QVariantMap value = var.toMap();
+                const QVariantMap &value = var.toMap();
                 MusicResultsItem item;
                 item.m_name = value["song_name"].toString();
                 item.m_nickName = value["artist_name"].toString();

@@ -20,9 +20,10 @@ void MusicDownLoadQueryKGAlbumThread::startToSearch(const QString &album)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
-    m_searchText = album;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album);
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_ALBUM_URL, false).arg(album);
+    m_searchText = album;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -44,8 +45,8 @@ void MusicDownLoadQueryKGAlbumThread::startToSingleSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_AR_ALBUM_URL, false).arg(artist);
-    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_AR_ALBUM_URL, false).arg(artist);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -74,11 +75,11 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -88,7 +89,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                 MusicResultsItem info;
                 ////////////////////////////////////////////////////////////
                 value = value["data"].toMap();
-                QVariantList datas = value["info"].toList();
+                const QVariantList &datas = value["info"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -103,7 +104,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
 
                     if(musicInfo.m_songName.contains("-"))
                     {
-                        QStringList ll = musicInfo.m_songName.split("-");
+                        const QStringList &ll = musicInfo.m_songName.split("-");
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }
@@ -166,18 +167,18 @@ void MusicDownLoadQueryKGAlbumThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                QVariantList datas = value["info"].toList();
+                const QVariantList &datas = value["info"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -193,8 +194,7 @@ void MusicDownLoadQueryKGAlbumThread::singleDownLoadFinished()
                     info.m_id = value["albumid"].toString();
                     info.m_coverUrl = value["imgurl"].toString().replace("{size}", "400");
                     info.m_name = value["albumname"].toString();
-                    info.m_updateTime = MusicUtils::String::splitString(
-                                        value["publishtime"].toString().replace('-', '.'), " ").first();
+                    info.m_updateTime = MusicUtils::String::splitString(value["publishtime"].toString().replace('-', '.'), " ").first();
                     emit createAlbumInfoItem(info);
                 }
             }

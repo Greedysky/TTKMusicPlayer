@@ -17,7 +17,7 @@ void MusicDownLoadQueryKGRecommendThread::startToSearch(const QString &id)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(id));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_RCM_URL, false).arg(117227).arg(50);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_RCM_URL, false).arg(117227).arg(50);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -46,18 +46,18 @@ void MusicDownLoadQueryKGRecommendThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value["errcode"].toInt() == 0 && value.contains("data"))
             {
                 value = value["data"].toMap();
-                QVariantList datas = value["info"].toList();
+                const QVariantList &datas = value["info"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -72,7 +72,7 @@ void MusicDownLoadQueryKGRecommendThread::downLoadFinished()
 
                     if(musicInfo.m_songName.contains("-"))
                     {
-                        QStringList ll = musicInfo.m_songName.split("-");
+                        const QStringList &ll = musicInfo.m_songName.split("-");
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(ll.front().trimmed());
                         musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(ll.back().trimmed());
                     }

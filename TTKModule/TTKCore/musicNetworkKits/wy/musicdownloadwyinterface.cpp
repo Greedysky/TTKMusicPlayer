@@ -42,7 +42,7 @@ QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request,
 
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, int bitrate)
 {
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(WY_SONG_INFO_URL, false).arg(bitrate*1000).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -66,7 +66,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -100,10 +100,9 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantMap &key, int bitrate)
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
-    qlonglong dfsId = /*key.value("dfsId").toLongLong()*/0;
+    const qlonglong dfsId = /*key.value("dfsId").toLongLong()*/0;
     if(key.isEmpty() || dfsId == 0)
     {
         readFromMusicSongAttribute(info, bitrate);
@@ -123,14 +122,13 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantMap &key, const QString &quality, bool all)
+void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_999;
-    QVariantMap privilege = key["privilege"].toMap();
+    const QVariantMap &privilege = key["privilege"].toMap();
     if(!privilege.isEmpty())
     {
-        QString brStr = privilege["maxbr"].toString();
+        const QString &brStr = privilege["maxbr"].toString();
         if(brStr == "999000")
         {
             maxBr = MB_999;
@@ -187,9 +185,9 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, int bitrate)
 {
     QNetworkRequest request;
-    QByteArray parameter = makeTokenQueryUrl(&request,
-               MusicUtils::Algorithm::mdII(WY_SONG_INFO_N_URL, false),
-               MusicUtils::Algorithm::mdII(WY_SONG_INFO_NDT_URL, false).arg(info->m_songId).arg(bitrate*1000));
+    const QByteArray &parameter = makeTokenQueryUrl(&request,
+                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_N_URL, false),
+                      MusicUtils::Algorithm::mdII(WY_SONG_INFO_NDT_URL, false).arg(info->m_songId).arg(bitrate*1000));
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request.sslConfiguration();
     sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
@@ -209,13 +207,13 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
         if(value["code"].toInt() == 200 && value.contains("data"))
         {
-            QVariantList datas = value["data"].toList();
+            const QVariantList &datas = value["data"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
@@ -240,10 +238,9 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info,
-                                                             const QVariantMap &key, int bitrate)
+void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
-    qlonglong fid = /*key.value("fid").toLongLong()*/0;
+    const qlonglong fid = /*key.value("fid").toLongLong()*/0;
     if(key.isEmpty() || fid == 0)
     {
         readFromMusicSongAttribute(info, bitrate);
@@ -263,14 +260,13 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
     }
 }
 
-void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info,
-                                                             const QVariantMap &key, const QString &quality, bool all)
+void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, const QString &quality, bool all)
 {
     int maxBr = MB_999;
-    QVariantMap privilege = key["privilege"].toMap();
+    const QVariantMap &privilege = key["privilege"].toMap();
     if(!privilege.isEmpty())
     {
-        QString brStr = privilege["maxbr"].toString();
+        const QString &brStr = privilege["maxbr"].toString();
         if(brStr == "999000")
         {
             maxBr = MB_999;
@@ -331,7 +327,7 @@ QString MusicDownLoadWYInterface::encryptedId(qint64 id)
 
 QString MusicDownLoadWYInterface::encryptedId(const QString &string)
 {
-    QByteArray array1(WY_ENCRYPT_STRING.toUtf8());
+    const QByteArray array1(WY_ENCRYPT_STRING.toUtf8());
     QByteArray array2 = string.toUtf8();
     int length = array1.length();
     for(int i=0; i<array2.length(); ++i)

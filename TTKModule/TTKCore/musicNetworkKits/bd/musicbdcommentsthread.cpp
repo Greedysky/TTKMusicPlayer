@@ -42,16 +42,17 @@ void MusicBDSongCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    const QString &time = "1494911685";
+    const QString &key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
+    const QString &data = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
+    QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
+    const QString &sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
+    MusicUtils::Url::urlEncode(eKey);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
+
     m_pageTotal = 0;
     m_interrupt = true;
-
-    QString time = "1494911685";
-    QString key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
-    QString data = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
-    QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
-    QString sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
-    MusicUtils::Url::urlEncode(eKey);
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -77,11 +78,11 @@ void MusicBDSongCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -90,7 +91,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
                 value = value["result"].toMap();
                 m_pageTotal = value["commentlist_last_nums"].toLongLong();
 
-                QVariantList comments = value["commentlist_last"].toList();
+                const QVariantList &comments = value["commentlist_last"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -106,7 +107,7 @@ void MusicBDSongCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
                     comment.m_description = value["comment"].toString();
 
-                    QVariantMap user = value["author"].toMap();
+                    const QVariantMap &user = value["author"].toMap();
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl = user["userpic"].toString();
 
@@ -146,18 +147,19 @@ void MusicBDPlaylistCommentsThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
     deleteAll();
-    m_pageTotal = 0;
-    m_interrupt = true;
 
-    QString time = "1494911685";
-    QString key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
-    QString data = MusicUtils::Algorithm::mdII(BD_PL_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
+    const QString &time = "1494911685";
+    const QString &key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
+    const QString &data = MusicUtils::Algorithm::mdII(BD_PL_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
     QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
-    QString sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
+    const QString &sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");
     eKey.replace('=', "%3D");
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
+
+    m_pageTotal = 0;
+    m_interrupt = true;
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -183,11 +185,11 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -196,7 +198,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
                 value = value["result"].toMap();
                 m_pageTotal = value["commentlist_last_nums"].toLongLong();
 
-                QVariantList comments = value["commentlist_last"].toList();
+                const QVariantList &comments = value["commentlist_last"].toList();
                 foreach(const QVariant &comm, comments)
                 {
                     if(comm.isNull())
@@ -212,7 +214,7 @@ void MusicBDPlaylistCommentsThread::downLoadFinished()
                     comment.m_updateTime = QString::number(value["ctime"].toLongLong()*1000);
                     comment.m_description = value["comment"].toString();
 
-                    QVariantMap user = value["author"].toMap();
+                    const QVariantMap &user = value["author"].toMap();
                     comment.m_nickName = user["username"].toString();
                     comment.m_coverUrl= user["userpic"].toString();
 

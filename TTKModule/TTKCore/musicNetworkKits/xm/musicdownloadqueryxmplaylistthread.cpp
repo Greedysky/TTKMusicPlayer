@@ -33,6 +33,7 @@ void MusicDownLoadQueryXMPlaylistThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
     m_pageTotal = 0;
     m_interrupt = true;
 
@@ -99,11 +100,11 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
         return;
     }
 
-    QByteArray bytes = reply->readAll();
+    const QByteArray &bytes = reply->readAll();
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -120,7 +121,7 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
             item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
             item.m_nickName = value["userName"].toString();
 
-            QVariantList tags = value["tags"].toList();
+            const QVariantList &tags = value["tags"].toList();
             item.m_tags.clear();
             foreach(const QVariant &var, tags)
             {
@@ -149,11 +150,11 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -163,7 +164,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toLongLong();
 
-                QVariantList datas = value["collects"].toList();
+                const QVariantList &datas = value["collects"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -183,7 +184,7 @@ void MusicDownLoadQueryXMPlaylistThread::downLoadFinished()
                     item.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["gmtModify"].toULongLong()).toString("yyyy-MM-dd");
                     item.m_nickName = value["userName"].toString();
 
-                    QVariantList tags = value["tags"].toList();
+                    const QVariantList &tags = value["tags"].toList();
                     item.m_tags.clear();
                     foreach(const QVariant &var, tags)
                     {
@@ -216,11 +217,11 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();
+        const QByteArray &bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -229,7 +230,7 @@ void MusicDownLoadQueryXMPlaylistThread::getDetailsFinished()
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 value = value["collectDetail"].toMap();
-                QVariantList datas = value["songs"].toList();
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

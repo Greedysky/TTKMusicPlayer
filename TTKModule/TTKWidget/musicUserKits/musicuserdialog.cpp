@@ -126,7 +126,7 @@ void MusicUserDialog::checkRegisterUser()
             return;
         }
         if(!m_userModel->addUser(MusicUserUIDItem(m_ui->registerUserLine->text(), m_ui->serverComboBox->currentIndex()),
-                                 m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
+                                                  m_ui->registerPwdLine->text(), m_ui->registerMailLine->text()))
         {
             MusicMessageBox message;
             message.setText(tr("The username is existed"));
@@ -155,8 +155,8 @@ void MusicUserDialog::userForgotPasswd()
 
 void MusicUserDialog::checkUserForgotPasswd()
 {
-     MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
-     QString mail = m_ui->mailLineEdit->text();
+     const MusicUserUIDItem user(m_ui->userLineEdit->text(), m_ui->serverComboBox->currentIndex());
+     const QString &mail = m_ui->mailLineEdit->text();
 
      if(user.m_uid.trimmed().isEmpty() || mail.trimmed().isEmpty())
      {
@@ -225,7 +225,7 @@ void MusicUserDialog::userEditTextChanged(const QString &uid)
 
 void MusicUserDialog::userServerComboBoxChanged(int index)
 {
-    bool s = (index <= 0);
+    const bool s = (index <= 0);
     m_ui->forgotPwdButton->setEnabled(s);
     m_ui->registerButton->setEnabled(s);
     m_userUID = MusicUserUIDItem(m_ui->userComboBox->currentText(), index);
@@ -281,7 +281,7 @@ void MusicUserDialog::downLoadFinished(const QByteArray &data)
     QPixmap pix;
     pix.loadFromData(data);
 
-    QString path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
+    const QString &path = MusicUserRecordWidget::avatarPixmapRender(m_userUID, pix);
     m_userModel->updateUserIcon(m_userUID, path);
     emit userLoginSuccess(m_userUID, m_userModel->getUserIcon(m_userUID));
 }
@@ -342,7 +342,7 @@ void MusicUserDialog::secondStatckWidget()
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(checkRegisterUser()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(userLogin()));
 
-    QRegExp userRx("[^\u4E00-\u9FA5]+$");
+    const QRegExp userRx("[^\u4E00-\u9FA5]+$");
     QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     m_ui->registerUserLine->setValidator(valid);
     m_ui->registerMailLine->setValidator(valid);
@@ -374,7 +374,7 @@ void MusicUserDialog::thirdStatckWidget()
     connect(m_ui->confirmButton_2, SIGNAL(clicked()), SLOT(checkUserForgotPasswd()));
     connect(m_ui->cancelButton_2, SIGNAL(clicked()), SLOT(userLogin()));
 
-    QRegExp userRx("[^\u4E00-\u9FA5]+$");
+    const QRegExp userRx("[^\u4E00-\u9FA5]+$");
     QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     m_ui->userLineEdit->setValidator(valid);
     m_ui->pwdLineEdit->setValidator(valid);
@@ -419,8 +419,8 @@ void MusicUserDialog::clearOriginData()
 
 void MusicUserDialog::localLoginMode()
 {
-    MusicUserUIDItem uid(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
-    QString pwd = m_ui->passwLineEdit->text();
+    const MusicUserUIDItem uid(m_ui->userComboBox->currentText(), m_ui->serverComboBox->currentIndex());
+    const QString &pwd = m_ui->passwLineEdit->text();
 
     if(!m_ui->rememberPwd->isChecked() || pwd != m_userModel->getUserPWDMD5(m_userUID))
     {
@@ -456,9 +456,9 @@ void MusicUserDialog::networkLoginMode()
         connect(m_loginThread, SIGNAL(downLoadDataChanged(QString)), SLOT(networkLoginChanged()));
     }
 
-    QString user = m_ui->userComboBox->currentText();
     QString pwd = m_ui->passwLineEdit->text();
-    QString ew = m_userModel->userPasswordEncryption(pwd);
+    const QString &user = m_ui->userComboBox->currentText();
+    const QString &ew = m_userModel->userPasswordEncryption(pwd);
 
     if(pwd.length() != ew.length())
     {
@@ -481,7 +481,6 @@ void MusicUserDialog::readFromUserConfig()
 
 int MusicUserDialog::findUserNameIndex(const MusicUserUIDItem &uid)
 {
-    int index = -1;
     for(int i=0; i<m_records.count(); ++i)
     {
         if(m_records[i].m_uid == uid.m_uid)
@@ -489,12 +488,12 @@ int MusicUserDialog::findUserNameIndex(const MusicUserUIDItem &uid)
             return i;
         }
     }
-    return index;
+    return -1;
 }
 
 void MusicUserDialog::readFromUserSettings()
 {
-    int index = findUserNameIndex(m_userUID);
+    const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
         m_ui->automaticLogin->setChecked( m_records[index].m_autoFlag );
@@ -521,7 +520,7 @@ void MusicUserDialog::writeToUserSettings()
         }
     }
 
-    int index = findUserNameIndex(m_userUID);
+    const int index = findUserNameIndex(m_userUID);
     if(index != -1)
     {
         m_records[index].m_autoFlag = m_ui->automaticLogin->isChecked();
@@ -545,6 +544,7 @@ void MusicUserDialog::windowRectChanged(int index, int height)
     clearOriginData();
     m_ui->stackedWidget->setCurrentIndex(index);
     m_ui->stackedWidget->setGeometry(QRect(4, 29, 381, height));
+
     QRect other = geometry();
     other.setHeight(height + 33);
     setGeometry(other);

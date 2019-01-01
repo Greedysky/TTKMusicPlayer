@@ -16,8 +16,8 @@ MusicLrcFloatSettingWidget::MusicLrcFloatSettingWidget(QWidget *parent)
     QLabel *sizeLabel = new QLabel(tr("Size"), this);
     QLabel *bgLabel = new QLabel(tr("Background"), this);
 
-    const QString labelStyle = MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle02 + "\
-                               image:url(:/lrc/lb_shadow);";
+    const QString &labelStyle = MusicUIObject::MColorStyle01 + MusicUIObject::MCustomStyle02 + "image:url(:/lrc/lb_shadow);";
+
     colorLabel->setStyleSheet(labelStyle);
     sizeLabel->setStyleSheet(labelStyle);
     bgLabel->setStyleSheet(labelStyle);
@@ -102,18 +102,18 @@ QPushButton *MusicLrcFloatSettingWidget::createPushButton(int index)
 void MusicLrcFloatSettingWidget::lrcSizeUpChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    MusicLrcDefines lrc;
+    const MusicLrcDefines lrc;
     int v = lrc.findInlineLrcIndex(line->getLrcSize());
-    v = lrc.findInlineNextSize(v);
+        v = lrc.findInlineNextSize(v);
     line->setLrcSize(v);
 }
 
 void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    MusicLrcDefines lrc;
+    const MusicLrcDefines lrc;
     int v = lrc.findInlineLrcIndex(line->getLrcSize());
-    v = lrc.findInlinePreSize(v);
+        v = lrc.findInlinePreSize(v);
     line->setLrcSize(v);
 }
 

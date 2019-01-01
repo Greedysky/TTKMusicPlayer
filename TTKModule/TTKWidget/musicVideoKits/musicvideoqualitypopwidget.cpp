@@ -15,7 +15,6 @@ MusicVideoQualityPopWidget::MusicVideoQualityPopWidget(QWidget *parent)
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(getClassName(), MusicVideoSearchTableWidget::getClassName());
-
 }
 
 MusicVideoQualityPopWidget::~MusicVideoQualityPopWidget()
@@ -83,6 +82,7 @@ QString MusicVideoQualityPopWidget::findMVUrlByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
+
     foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         if(attr.m_bitrate == bitrate)
@@ -97,6 +97,7 @@ int MusicVideoQualityPopWidget::findMVBitrateByUrl(const QString &url)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
+
     foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         QString aurl = attr.m_multiPart ? attr.m_url.split(TTK_STR_SPLITER).first() : attr.m_url;
@@ -112,6 +113,7 @@ bool MusicVideoQualityPopWidget::findExistByBitrate(int bitrate)
 {
     MusicObject::MusicSongAttributes data;
     emit getMusicMvInfo(data);
+
     foreach(const MusicObject::MusicSongAttribute &attr, data)
     {
         if(attr.m_bitrate == bitrate)

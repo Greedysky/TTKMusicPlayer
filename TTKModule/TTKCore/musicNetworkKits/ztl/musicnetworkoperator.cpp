@@ -17,7 +17,6 @@ MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
 void MusicNetworkOperator::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
-    ///Set search ip operator API
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
     download->startToDownload(MusicUtils::Algorithm::mdII(IP_CHECK_URL, false));
 }
@@ -31,13 +30,13 @@ void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 
     QJson::Parser parser;
     bool ok;
-    QVariant vdata = parser.parse(bytes, &ok);
+    const QVariant &vdata = parser.parse(bytes, &ok);
     QString line;
     if(ok)
     {
-        QVariantMap value = vdata.toMap();
+        const QVariantMap &value = vdata.toMap();
         line = value["address"].toString();
-        QStringList ls = line.split(" ");
+        const QStringList &ls = line.split(" ");
         if(ls.count() >= 2)
         {
             line = ls.last();

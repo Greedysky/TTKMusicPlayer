@@ -17,8 +17,10 @@ void MusicDownLoadQueryQQArtistListThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToPage %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
     QString catId = "cn_man_", initial = "all";
-    QStringList dds = m_searchText.split(TTK_STR_SPLITER);
+    const QStringList &dds = m_searchText.split(TTK_STR_SPLITER);
     if(dds.count() == 2)
     {
         catId = dds[0];
@@ -27,7 +29,7 @@ void MusicDownLoadQueryQQArtistListThread::startToPage(int offset)
             catId = "cn_man_";
         }
 
-        int mIdx = dds[1].toInt();
+        const int mIdx = dds[1].toInt();
         if(mIdx > -1 && mIdx < 26)
         {
             initial = QString(MStatic_cast(char, mIdx + 65));
@@ -38,9 +40,8 @@ void MusicDownLoadQueryQQArtistListThread::startToPage(int offset)
         }
     }
     catId += initial;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(QQ_AR_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1);
 
-    deleteAll();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_AR_LIST_URL, false).arg(catId).arg(m_pageSize).arg(offset + 1);
     m_pageTotal = 0;
     m_interrupt = true;
 
@@ -76,11 +77,11 @@ void MusicDownLoadQueryQQArtistListThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -88,7 +89,7 @@ void MusicDownLoadQueryQQArtistListThread::downLoadFinished()
             {
                 value = value["data"].toMap();
                 m_pageTotal = value["total"].toLongLong();
-                QVariantList datas = value["list"].toList();
+                const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;

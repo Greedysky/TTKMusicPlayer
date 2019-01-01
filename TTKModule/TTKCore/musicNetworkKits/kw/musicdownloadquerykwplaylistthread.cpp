@@ -34,10 +34,10 @@ void MusicDownLoadQueryKWPlaylistThread::startToPage(int offset)
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
     deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_URL, false).arg(m_searchText).arg(offset).arg(m_pageSize);
     m_pageTotal = 0;
     m_interrupt = true;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_URL, false)
-                    .arg(m_searchText).arg(offset).arg(m_pageSize);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -58,7 +58,7 @@ void MusicDownLoadQueryKWPlaylistThread::startToSearch(const QString &playlist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(playlist));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(playlist);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(playlist);
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -80,7 +80,7 @@ void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
     }
 
     M_LOGGER_INFO(QString("%1 getPlaylistInfo %2").arg(getClassName()).arg(item.m_id));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(item.m_id);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(item.m_id);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -101,10 +101,10 @@ void MusicDownLoadQueryKWPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         if(!value.isEmpty())
         {
             item.m_coverUrl = value["pic"].toString();
@@ -132,11 +132,11 @@ void MusicDownLoadQueryKWPlaylistThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -144,7 +144,7 @@ void MusicDownLoadQueryKWPlaylistThread::downLoadFinished()
             if(value.contains("child"))
             {
                 m_tags = value["ninfo"].toMap()["name"].toString();
-                QVariantList datas = value["child"].toList();
+                const QVariantList &datas = value["child"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(m_interrupt) return;
@@ -177,17 +177,17 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
 
     if(reply && m_manager && reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();
+        const QByteArray &bytes = reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(!value.isEmpty() && value.contains("musiclist"))
             {
-                QVariantList datas = value["musiclist"].toList();
+                const QVariantList &datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -246,14 +246,15 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetailsFinished()
 {
     M_LOGGER_INFO(QString("%1 getMorePlaylistDetailsFinished").arg(getClassName()));
     QNetworkReply *reply = MObject_cast(QNetworkReply*, QObject::sender());
+
     if(reply && reply->error() == QNetworkReply::NoError)
     {
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(reply->readAll(), &ok);
+        const QVariant &data = parser.parse(reply->readAll(), &ok);
         if(ok)
         {
-            QVariantMap value = data.toMap();
+            const QVariantMap &value = data.toMap();
             if(value["result"].toString() == "ok")
             {
                 MusicResultsItem item;
@@ -280,7 +281,7 @@ void MusicDownLoadQueryKWPlaylistThread::getMorePlaylistDetails(const QString &p
     }
 
     M_LOGGER_INFO(QString("%1 getMorePlaylistDetails %2").arg(getClassName()).arg(pid));
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(pid);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_PLAYLIST_ATTR_URL, false).arg(pid);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);

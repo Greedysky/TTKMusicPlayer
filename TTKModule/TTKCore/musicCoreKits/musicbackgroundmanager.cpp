@@ -8,14 +8,14 @@ MusicBackgroundManager::MusicBackgroundManager()
 
 void MusicBackgroundManager::setArtName(const QString &name)
 {
-    QString sName = MusicUtils::String::artistName(name);
+    const QString &sName = MusicUtils::String::artistName(name);
     if(!m_currentArtName.isEmpty() && m_currentArtName != sName)
     {
         return;
     }
 
     m_photos.clear();
-    QString filter = BACKGROUND_DIR_FULL + (m_currentArtName = sName) + "%1" + SKN_FILE;
+    const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtName = sName) + "%1" + SKN_FILE;
     for(int i=0; i<MAX_INDEX; ++i)
     {
         if(QFile::exists(filter.arg(i)))
@@ -60,7 +60,7 @@ QString MusicBackgroundManager::getArtPhotoPathNoIndex()
         return QString();
     }
 
-    int index = m_currentIndex - 1;
+    const int index = m_currentIndex - 1;
     if(-1 < index && index < m_photos.count())
     {
         return m_photos[index];
@@ -76,8 +76,7 @@ QString MusicBackgroundManager::getArtPhotoPathByIndex(int index) const
         M_LOGGER_ERROR("index out of range");
         return QString();
     }
-    return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0]
-                         : m_photos[index];
+    return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0] : m_photos[index];
 }
 
 QStringList MusicBackgroundManager::getArtPhotoPathList() const

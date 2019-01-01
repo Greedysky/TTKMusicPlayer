@@ -27,10 +27,11 @@ void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &t
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_URL, false).arg(text);
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_URL, false).arg(text);
-    deleteAll();
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -59,17 +60,17 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = m_reply->readAll();///Get all the data obtained by request
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("code") && value["code"].toInt() == 0 &&
                value.contains("msg") && value["msg"].toString() == "SUCCESS")
             {
-                QVariantList datas = value["data"].toList();
+                const QVariantList &datas = value["data"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -83,7 +84,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                     musicInfo.m_songId = QString::number(value["videoId"].toULongLong());
                     musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["title"].toString());
 
-                    QVariantList artistsList = value["artists"].toList();
+                    const QVariantList &artistsList = value["artists"].toList();
                     foreach(const QVariant &var, artistsList)
                     {
                         if(var.isNull())
@@ -91,7 +92,7 @@ void MusicDownLoadQueryYYTThread::downLoadFinished()
                             continue;
                         }
 
-                        QVariantMap artMap = var.toMap();
+                        const QVariantMap &artMap = var.toMap();
                         musicInfo.m_singerName = MusicUtils::String::illegalCharactersReplaced(artMap["artistName"].toString());
                     }
 
@@ -131,7 +132,7 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_MV_INFO_ATTR_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -154,7 +155,7 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -162,28 +163,24 @@ void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSon
            value.contains("msg") && value["msg"].toString() == "SUCCESS")
         {
             value = value["data"].toMap();
-            QString duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
+            const QString &duration = MusicTime::msecTime2LabelJustified(value["duration"].toInt()*1000);
             if(value.contains("hdUrl"))
             {
-                readFromMusicMVAttribute(info, value["hdUrl"].toString(),
-                                         MusicUtils::Number::size2Label(value["hdVideoSize"].toInt()), duration);
+                readFromMusicMVAttribute(info, value["hdUrl"].toString(), MusicUtils::Number::size2Label(value["hdVideoSize"].toInt()), duration);
             }
             if(value.contains("uhdUrl"))
             {
-                readFromMusicMVAttribute(info, value["uhdUrl"].toString(),
-                                         MusicUtils::Number::size2Label(value["uhdVideoSize"].toInt()), duration);
+                readFromMusicMVAttribute(info, value["uhdUrl"].toString(), MusicUtils::Number::size2Label(value["uhdVideoSize"].toInt()), duration);
             }
             if(value.contains("shdUrl"))
             {
-                readFromMusicMVAttribute(info, value["shdUrl"].toString(),
-                                         MusicUtils::Number::size2Label(value["shdVideoSize"].toInt()), duration);
+                readFromMusicMVAttribute(info, value["shdUrl"].toString(), MusicUtils::Number::size2Label(value["shdVideoSize"].toInt()), duration);
             }
         }
     }
 }
 
-void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info,
-                                                           const QString &url, const QString &size, const QString &duration)
+void MusicDownLoadQueryYYTThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &url, const QString &size, const QString &duration)
 {
     if(url.isEmpty())
     {

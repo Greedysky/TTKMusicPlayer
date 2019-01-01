@@ -43,7 +43,8 @@ void MusicFileReceiveServer::readPendingDatagrams()
                 M_LOGGER_ERROR("The Save Path Is Empty!");
                 return;
             }
-            QString path = QString(datagram).split(TTK_STR_SPLITER).first();
+
+            const QString &path = QString(datagram).split(TTK_STR_SPLITER).first();
             m_file->close();
             m_file->setFileName(m_saveDir + "/" + QFileInfo(path).fileName() );
             m_file->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Unbuffered);

@@ -98,6 +98,7 @@ void MusicFileInformationWidget::musicAdvanceClicked()
         {
             pix = tag.getCover();
         }
+
         QString text = QString("%1x%2").arg(pix.width()).arg(pix.height());
         if(pix.isNull())
         {
@@ -188,8 +189,8 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     //cache song should not allow open url
 
     MusicSongTag tag;
-    bool state = tag.read(m_path = name);
-    QFileInfo fin(name);
+    const bool state = tag.read(m_path = name);
+    const QFileInfo fin(name);
     QString check;
     m_ui->filePathEdit->setText( (check = name).isEmpty() ? "-" : check );
     m_ui->fileFormatEdit->setText( (check = fin.suffix() ).isEmpty() ? "-" : check );
@@ -207,8 +208,7 @@ void MusicFileInformationWidget::setFileInformation(const QString &name)
     m_ui->SamplingRateEdit->setText( state ? ((check = tag.getSamplingRate()).isEmpty() ? "-" : check) : "-" );
     m_ui->TrackNumEdit->setText( state ? ((check = tag.getTrackNum()).isEmpty() ? "-" : check) : "-" );
     m_ui->decoderLabel->setText( state ? ((check = tag.getDecoder()).isEmpty() ? "-" : check.toUpper()) : "-" );
-    m_ui->qualityEdit->setText(MusicUtils::Number::transfromBitrateToQuality(
-                               MusicUtils::Number::transfromBitrateToLevel( m_ui->BitrateEdit->text() ) ));
+    m_ui->qualityEdit->setText( MusicUtils::Number::transfromBitrateToQuality(MusicUtils::Number::transfromBitrateToLevel(m_ui->BitrateEdit->text())) );
 }
 
 void MusicFileInformationWidget::setEditLineEnable(bool enable)

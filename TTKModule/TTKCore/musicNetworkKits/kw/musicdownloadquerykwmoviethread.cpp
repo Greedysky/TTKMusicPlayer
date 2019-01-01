@@ -23,10 +23,11 @@ void MusicDownLoadQueryKWMovieThread::startToSearch(QueryType type, const QStrin
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
     m_searchText = text.trimmed();
     m_currentType = type;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_SEARCH_URL, false).arg(text).arg(0).arg(m_pageSize);
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -48,10 +49,11 @@ void MusicDownLoadQueryKWMovieThread::startToPage(int offset)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(offset));
+    deleteAll();
+
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_AR_MV_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset);
     m_pageTotal = 0;
     m_pageSize = 20;
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_AR_MV_URL, false).arg(m_searchText).arg(m_pageSize).arg(offset);
-    deleteAll();
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -73,8 +75,8 @@ void MusicDownLoadQueryKWMovieThread::startToSingleSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(text));
+
     m_searchText = text.trimmed();
-    deleteAll();
     m_interrupt = true;
 
     QTimer::singleShot(MT_MS, this, SLOT(singleDownLoadFinished()));
@@ -99,14 +101,14 @@ void MusicDownLoadQueryKWMovieThread::downLoadFinished()
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
 
         if(ok)
         {
             QVariantMap value = data.toMap();
             if(value.contains("abslist"))
             {
-                QVariantList datas = value["abslist"].toList();
+                const QVariantList &datas = value["abslist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -176,14 +178,14 @@ void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes.replace("'", "\""), &ok);
+        const QVariant &data = parser.parse(bytes.replace("'", "\""), &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
             m_pageTotal = value["total"].toString().toLongLong();
             if(value.contains("mvlist"))
             {
-                QVariantList datas = value["mvlist"].toList();
+                const QVariantList &datas = value["mvlist"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -275,8 +277,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     }
 }
 
-void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format,
-                                                               int bitrate)
+void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::MusicSongInformation *info, const QString &format, int bitrate)
 {
     if(info->m_songId.isEmpty() || !m_manager)
     {
@@ -284,9 +285,9 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     }
 
     QDesWrap des;
-    QByteArray parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
-                                       MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
+    const QByteArray &parameter = des.encrypt(MusicUtils::Algorithm::mdII(KW_MV_ATTR_URL, false).arg(info->m_songId).arg(format).toUtf8(),
+                                              MusicUtils::Algorithm::mdII(_SIGN, ALG_LOW_KEY, false).toUtf8());
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_URL, false).arg(QString(parameter));
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -305,11 +306,12 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
         return;
     }
 
-    QByteArray data = reply->readAll();
-    if(!data.isEmpty() && !data.contains("res not found"))
+    const QByteArray &bytes = reply->readAll();
+    if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
-        QString text(data);
-        QRegExp regx(".*url=(.*)\r\nsig=");
+        const QString text(bytes);
+        const QRegExp regx(".*url=(.*)\r\nsig=");
+
         if(text.indexOf(regx) != -1)
         {
             MusicObject::MusicSongAttribute attr;
@@ -334,7 +336,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
         return;
     }
 
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KW_MV_HOME_URL, false).arg(info->m_songId);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_MV_HOME_URL, false).arg(info->m_songId);
     info->m_songName = "Not Found";
     info->m_singerName = "Anonymous";
 
@@ -355,8 +357,9 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
         return;
     }
 
-    QString text(reply->readAll());
-    QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
+    const QString text(reply->readAll());
+    const QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
+
     if(text.indexOf(regx) != -1)
     {
         info->m_songName = regx.cap(1);

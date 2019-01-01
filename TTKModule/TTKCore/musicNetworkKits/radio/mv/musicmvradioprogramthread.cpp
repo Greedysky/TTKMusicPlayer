@@ -26,13 +26,12 @@ void MusicMVRadioProgramThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         QByteArray bytes = m_reply->readAll();
-
         bytes = QString(bytes).split("var mvfmdata = ").back().split("$img = ").front().toUtf8();
         bytes.chop(3);
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             bool contains = false;
@@ -83,7 +82,7 @@ void MusicMVRadioProgramThread::downLoadFinished()
                             musicInfo.m_songName = MusicUtils::String::illegalCharactersReplaced(value["name"].toString());
                             if(musicInfo.m_singerName.contains(" - "))
                             {
-                                QStringList ds = musicInfo.m_singerName.split(" - ");
+                                const QStringList &ds = musicInfo.m_singerName.split(" - ");
                                 if(ds.count() >= 2)
                                 {
                                     musicInfo.m_singerName = ds.front();
@@ -128,8 +127,8 @@ void MusicMVRadioProgramThread::readFromMusicMVAttribute(MusicObject::MusicSongI
         return;
     }
 
-    QByteArray encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8()).toHex().toLower();
-    QUrl musicUrl = MusicUtils::Algorithm::mdII(KG_MV_ATTR_URL, false).arg(QString(encodedData)).arg(info->m_songId);
+    const QByteArray &encodedData = MusicUtils::Algorithm::md5(QString("%1kugoumvcloud").arg(info->m_songId).toUtf8()).toHex().toLower();
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KG_MV_ATTR_URL, false).arg(QString(encodedData)).arg(info->m_songId);
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
@@ -150,7 +149,7 @@ void MusicMVRadioProgramThread::readFromMusicMVAttribute(MusicObject::MusicSongI
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(reply->readAll(), &ok);
+    const QVariant &data = parser.parse(reply->readAll(), &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();

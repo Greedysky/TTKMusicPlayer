@@ -13,13 +13,12 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
-                                                 const QString &query, const QString &type)
+void MusicDownLoadXMInterface::makeTokenQueryCookies(QString &tk, QString &encode)
 {
     QNetworkAccessManager manager;
-    QNetworkRequest re;
-    re.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
-    QNetworkReply *reply = manager.get(re);
+    QNetworkRequest request;
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
+    QNetworkReply *reply = manager.get(request);
     MusicSemaphoreLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
     loop.exec();
@@ -29,22 +28,27 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request,
         return;
     }
 
-    QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
-    QString tk, tk_enc;
+    const QList<QNetworkCookie> &cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
     if(cookies.count() >= 2)
     {
         tk = cookies[0].value();
-        tk_enc = cookies[1].value();
+        encode = cookies[1].value();
     }
+}
 
-    QString time = QString::number(MusicTime::timeStamp());
-    QString appkey = "12574478";
-    QString token = tk.split("_").front();
-    QString data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
-    QString sign = MusicUtils::Algorithm::md5((token + "&" + time + "&" + appkey + "&" + data).toUtf8()).toHex();
+void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
+{
+    QString tk, encode;
+    makeTokenQueryCookies(tk, encode);
+
+    const QString &time = QString::number(MusicTime::timeStamp());
+    const QString &appkey = "12574478";
+    const QString &token = tk.split("_").front();
+    const QString &data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
+    const QString &sign = MusicUtils::Algorithm::md5((token + "&" + time + "&" + appkey + "&" + data).toUtf8()).toHex();
 
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
-    request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tk_enc).toUtf8());
+    request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(encode).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
     request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 }
@@ -72,11 +76,11 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
         return;
     }
 
-    QByteArray bytes = reply->readAll();
+    const QByteArray &bytes = reply->readAll();
 
     QJson::Parser parser;
     bool ok;
-    QVariant data = parser.parse(bytes, &ok);
+    const QVariant &data = parser.parse(bytes, &ok);
     if(ok)
     {
         QVariantMap value = data.toMap();
@@ -84,7 +88,7 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
         {
             value = value["data"].toMap();
             value = value["data"].toMap();
-            QVariantList datas = value["lyrics"].toList();
+            const QVariantList &datas = value["lyrics"].toList();
             foreach(const QVariant &var, datas)
             {
                 if(var.isNull())
@@ -103,8 +107,7 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
     }
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariantMap &key, int bitrate)
+void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
     MusicObject::MusicSongAttribute attr;
     attr.m_url = key["listenFile"].toString();
@@ -124,13 +127,12 @@ void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSong
     info->m_songAttrs.append(attr);
 }
 
-void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info,
-                                                          const QVariant &key, const QString &quality, bool all)
+void MusicDownLoadXMInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariant &key, const QString &quality, bool all)
 {
     foreach(const QVariant &song, key.toList())
     {
-        QVariantMap data = song.toMap();
-        int bitrate = MusicUtils::Number::transfromBitrateToNormal(data["quality"].toString());
+        const QVariantMap &data = song.toMap();
+        const int bitrate = MusicUtils::Number::transfromBitrateToNormal(data["quality"].toString());
 
         if(all)
         {

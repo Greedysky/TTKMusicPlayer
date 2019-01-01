@@ -17,8 +17,9 @@ void MusicDownLoadQueryXMAlbumThread::startToSearch(const QString &album)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(album));
-    m_searchText = album;
     deleteAll();
+
+    m_searchText = album;
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -42,7 +43,7 @@ void MusicDownLoadQueryXMAlbumThread::startToSingleSearch(const QString &artist)
     }
 
     M_LOGGER_INFO(QString("%1 startToSingleSearch %2").arg(getClassName()).arg(artist));
-    deleteAll();
+
     m_interrupt = true;
 
     QNetworkRequest request;
@@ -73,11 +74,11 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -94,7 +95,7 @@ void MusicDownLoadQueryXMAlbumThread::downLoadFinished()
                                      value["company"].toString() + TTK_STR_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(value["gmtPublish"].toULongLong()).toString("yyyy-MM-dd");
                 ////////////////////////////////////////////////////////////
-                QVariantList datas = value["songs"].toList();
+                const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())
@@ -162,11 +163,11 @@ void MusicDownLoadQueryXMAlbumThread::singleDownLoadFinished()
 
     if(reply && m_manager &&reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = reply->readAll();///Get all the data obtained by request
+        const QByteArray &bytes = reply->readAll();///Get all the data obtained by request
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(bytes, &ok);
+        const QVariant &data = parser.parse(bytes, &ok);
         if(ok)
         {
             QVariantMap value = data.toMap();
@@ -174,7 +175,7 @@ void MusicDownLoadQueryXMAlbumThread::singleDownLoadFinished()
             {
                 value = value["data"].toMap();
                 value = value["data"].toMap();
-                QVariantList datas = value["albums"].toList();
+                const QVariantList &datas = value["albums"].toList();
                 foreach(const QVariant &var, datas)
                 {
                     if(var.isNull())

@@ -11,8 +11,7 @@
 #endif
 #include <QSslError>
 
-MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save,
-                                                         MusicObject::DownloadType type, QObject *parent)
+MusicDownLoadThreadAbstract::MusicDownLoadThreadAbstract(const QString &url, const QString &save, MusicObject::DownloadType type, QObject *parent)
     : MusicNetworkAbstract(parent)
 {
     m_url = url;
@@ -77,7 +76,7 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
     ///limit speed
     if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
     {
-        int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
+        const int limitValue = M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toInt();
         if(limitValue != 0 && delta > limitValue*MH_KB)
         {
 #if defined Q_OS_WIN && defined MUSIC_GREATER_NEW

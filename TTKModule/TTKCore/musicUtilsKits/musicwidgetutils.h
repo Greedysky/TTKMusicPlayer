@@ -3,7 +3,7 @@
 
 /* =================================================
  * This file is part of the TTK Music Player project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,8 +43,7 @@ namespace MusicUtils
         /*!
          * Set text elided text by font.
          */
-        MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text,
-                                             Qt::TextElideMode mode, int width);
+        MUSIC_UTILS_EXPORT QString elidedText(const QFont &font, const QString &text, Qt::TextElideMode mode, int width);
         /*!
          * Set widget transparent.
          */

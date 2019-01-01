@@ -36,7 +36,7 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
     QHeaderView *headerview = horizontalHeader();
     for(int i=0; i<items->count(); ++i)
     {
-        const MusicSongItem song = (*items)[i];
+        const MusicSongItem &song = (*items)[i];
         QTableWidgetItem *item = new QTableWidgetItem;
         item->setData(MUSIC_CHECK_ROLE, false);
         item->setData(MUSIC_DATAS_ROLE, song.m_itemIndex);
@@ -55,7 +55,7 @@ MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
     MIntList list;
     for(int i=0; i<rowCount(); ++i)
     {
-        QTableWidgetItem *it = item(i, 0);
+        const QTableWidgetItem *it = item(i, 0);
         if(it && it->data(MUSIC_CHECK_ROLE) == true)
         {
             list << it->data(MUSIC_DATAS_ROLE).toInt();

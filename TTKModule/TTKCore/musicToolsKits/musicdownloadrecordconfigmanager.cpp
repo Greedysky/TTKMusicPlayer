@@ -21,8 +21,7 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicSongs &rec
     {
         writeDomElementMutilText(download, "value", MusicXmlAttributes() << MusicXmlAttribute("name", record.getMusicName())
                                                  << MusicXmlAttribute("size", record.getMusicSizeStr())
-                                                 << MusicXmlAttribute("time", record.getMusicAddTimeStr()),
-                                                    record.getMusicPath());
+                                                 << MusicXmlAttribute("time", record.getMusicAddTimeStr()), record.getMusicPath());
     }
 
     //Write to file
@@ -32,7 +31,7 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicSongs &rec
 
 void MusicDownloadRecordConfigManager::readDownloadConfig(MusicSongs &records)
 {
-    QDomNodeList nodelist = m_document->elementsByTagName("value");
+    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
     for(int i=0; i<nodelist.count(); ++i)
     {
         MusicSong record;

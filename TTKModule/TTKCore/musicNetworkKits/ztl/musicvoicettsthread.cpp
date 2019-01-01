@@ -60,9 +60,9 @@ int MusicVoiceTtsThread::getPerson() const
 
 void MusicVoiceTtsThread::startToDownload(TranslationType type, const QString &data)
 {
-    m_parser->startToDownload( MusicUtils::Algorithm::mdII(VOICETTS_URL, false)
-                               .arg(mapTypeFromEnumToString(type)).arg(data)
-                               .arg(m_speed).arg(m_pitch).arg(m_volume).arg(m_person) );
+    m_parser->startToDownload(MusicUtils::Algorithm::mdII(VOICETTS_URL, false)
+                              .arg(mapTypeFromEnumToString(type)).arg(data)
+                              .arg(m_speed).arg(m_pitch).arg(m_volume).arg(m_person));
 }
 
 QString MusicVoiceTtsThread::mapTypeFromEnumToString(TranslationType type)

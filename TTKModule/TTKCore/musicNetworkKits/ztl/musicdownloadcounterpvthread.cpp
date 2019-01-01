@@ -36,17 +36,17 @@ void MusicDownloadCounterPVThread::downLoadFinished()
 {
     if(m_reply && m_reply->error() == QNetworkReply::NoError)
     {
-        QByteArray bytes = m_reply->readAll();
+        const QByteArray &bytes = m_reply->readAll();
         QString value(bytes);
         value.remove("try{BusuanziCallback_850915854978(");
         value.remove(");}catch(e){}");
 
         QJson::Parser parser;
         bool ok;
-        QVariant data = parser.parse(value.toUtf8(), &ok);
+        const QVariant &data = parser.parse(value.toUtf8(), &ok);
         if(ok)
         {
-            QVariantMap value = data.toMap();
+            const QVariantMap &value = data.toMap();
             emit downLoadDataChanged(value["site_pv"].toString());
         }
         else

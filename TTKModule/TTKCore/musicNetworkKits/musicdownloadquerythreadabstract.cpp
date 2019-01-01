@@ -24,7 +24,7 @@ void MusicDownLoadQueryThreadAbstract::startToSingleSearch(const QString &text)
 
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
 {
-    QString v = tr("Current Used Server Is %1");
+    const QString &v = tr("Current Used Server Is %1");
     if(m_queryServer.contains("Baidu"))
         return v.arg(tr("BD"));
     else if(m_queryServer.contains("Kugou"))
@@ -102,7 +102,7 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     }
 
     size = reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
-    QVariant redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
+    const QVariant &redirection = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
     if(!redirection.isNull())
     {
         size = getUrlFileSize(redirection.toString());

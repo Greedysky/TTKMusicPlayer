@@ -57,11 +57,10 @@ void MusicSongCheckToolsRenameCore::run()
                 }
 
                 if((!tag.getArtist().isEmpty() && !tag.getTitle().isEmpty()) &&
-                     (tag.getArtist() != song.getMusicArtistFront() ||
-                      tag.getTitle() != song.getMusicArtistBack()) )
+                    (tag.getArtist() != song.getMusicArtistFront() ||
+                     tag.getTitle() != song.getMusicArtistBack()) )
                 {
-                    m_datas << MusicSongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle(),
-                                                         song.getMusicPath());
+                    m_datas << MusicSongCheckToolsRename(song.getMusicName(), tag.getArtist() + " - " + tag.getTitle(), song.getMusicPath());
                 }
             }
         }
@@ -75,11 +74,9 @@ void MusicSongCheckToolsRenameCore::run()
                     return;
                 }
 
-                const MusicSongCheckToolsRename song = m_datas[index];
-                QFileInfo info(song.m_filePath);
-                QFile::rename(song.m_filePath, QString("%1%2%3.%4").arg(info.absolutePath())
-                                               .arg("/").arg(song.m_RecommendName)
-                                               .arg(info.suffix()));
+                const MusicSongCheckToolsRename &song = m_datas[index];
+                const QFileInfo info(song.m_filePath);
+                QFile::rename(song.m_filePath, QString("%1%2%3.%4").arg(info.absolutePath()).arg("/").arg(song.m_RecommendName).arg(info.suffix()));
             }
         }
     }
@@ -155,7 +152,7 @@ void MusicSongCheckToolsDuplicateCore::run()
                     return;
                 }
 
-                const MusicSongCheckToolsDuplicate song = m_datas[index];
+                const MusicSongCheckToolsDuplicate &song = m_datas[index];
                 QFile::remove(song.m_song.getMusicPath());
             }
         }

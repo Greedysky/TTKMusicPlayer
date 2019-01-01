@@ -4,6 +4,7 @@
 #include "qjson/parser.h"
 
 #define QN_VERSION       "version"
+#define QN_CONFIG_URL    "MDN2ZTFCbndoYkFzK2pQN2wzNVVKYWpwVTd2bXdKWjk0MmhLSjRuUFpROHpzWUhLcENKK2doUmVoa2NqMWFSaGdiaUwyTG5mL2tmelJSakJnT2dmcWJQYjRPTVR0SWROMGZWMkRkaEJtbWhFQ1loRFFSd3VReXl6bXFZPQ=="
 
 MusicSourceUpdateThread::MusicSourceUpdateThread(QObject *parent)
     : QObject(parent)
@@ -15,7 +16,7 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload("https://raw.githubusercontent.com/Greedysky/TTKMusicplayer/master/TTKScript/qiniu.cfg");
+    download->startToDownload(MusicUtils::Algorithm::mdII(QN_CONFIG_URL, false));
 }
 
 QString MusicSourceUpdateThread::getLastedVersion() const
@@ -25,7 +26,7 @@ QString MusicSourceUpdateThread::getLastedVersion() const
 
 bool MusicSourceUpdateThread::isLastedVersion() const
 {
-    QString v = getLastedVersion();
+    const QString &v = getLastedVersion();
     if(v.isEmpty())
     {
         return true;
@@ -43,10 +44,9 @@ QString MusicSourceUpdateThread::getLastedVersionDes() const
 
 void MusicSourceUpdateThread::downLoadFinished(const QByteArray &data)
 {
-    qDebug() << data;
     QJson::Parser parser;
     bool ok;
-    QVariant parseData = parser.parse(data, &ok);
+    const QVariant &parseData = parser.parse(data, &ok);
     if(!ok)
     {
         return;

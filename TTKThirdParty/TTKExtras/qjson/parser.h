@@ -60,7 +60,7 @@ namespace QJson {
       * @sa errorString
       * @sa errorLine
       */
-      QVariant parse(const QByteArray& jsonData, bool* ok = 0);
+      QVariant parse(const QByteArray &jsonData, bool* ok = 0);
 
       /**
       * This method returns the error message

@@ -30,7 +30,7 @@ void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecor
 
 void MusicBarrageRecordConfigManager::readBarrageConfig(MusicBarrageRecords &records)
 {
-    QDomNodeList nodelist = m_document->elementsByTagName("value");
+    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
     for(int i=0; i<nodelist.count(); ++i)
     {
         MusicBarrageRecord record;

@@ -22,7 +22,7 @@ MusicWebRadioObject::MusicWebRadioObject(QObject *parent)
 
 void MusicWebRadioObject::start()
 {
-    QString fileName = PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false);
+    const QString &fileName = PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false);
     if(QFile::exists(fileName))
     {
         dataDownloadFinished();
@@ -39,13 +39,13 @@ void MusicWebRadioObject::start()
 
 void MusicWebRadioObject::dataDownloadFinished()
 {
-    QString fileName = PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false);
+    const QString &fileName = PLUGINS_DIR_FULL + MusicUtils::Algorithm::mdII(DOWNLOAD_NAME, false);
     if(MusicExtractWrap::outputData(fileName))
     {
         QFile::remove(fileName);
         QtConcurrent::run([&]
         {
-            int code = QProcess::execute(QString("%1radio/%2").arg(PLUGINS_DIR_FULL).arg(MusicUtils::Algorithm::mdII(RADIO_NAME, false)));
+            const int code = QProcess::execute(QString("%1radio/%2").arg(PLUGINS_DIR_FULL).arg(MusicUtils::Algorithm::mdII(RADIO_NAME, false)));
             if(code != -2 && code != -1)
             {
                 M_SINGLE_MANAGER_PTR->removeObject(getClassName());
