@@ -115,9 +115,11 @@ MusicLrcAnalysis::State MusicLrcAnalysis::transLrcFileToTime(const QString &lrcF
     {
         return OpenFileFail;
     }
+
+    const State state = setLrcData(file.readAll());
     file.close();
 
-    return setLrcData(file.readAll());
+    return state;
 }
 
 MusicLrcAnalysis::State MusicLrcAnalysis::transKrcFileToTime(const QString &krcFileName)
