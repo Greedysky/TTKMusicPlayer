@@ -105,4 +105,9 @@
         <downloadDLoadLimit value="100"/>
         <downloadULoadLimit value="100"/>
     </downloadSetting>
+    <qiniuSetting>
+        <qiniuMusicConfig value=""/>
+        <qiniuDataConfig value=""/>
+        <qiniuTimeConfig value=""/>
+    </qiniuSetting>
 </TTKMusicPlayer>
