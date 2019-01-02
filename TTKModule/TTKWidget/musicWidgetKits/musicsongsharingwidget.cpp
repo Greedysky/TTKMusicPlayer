@@ -62,7 +62,7 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
     m_type = type;
     m_data = data;
 
-    QString name = data["songName"].toString();
+    const QString &name = data["songName"].toString();
 
     switch(m_type)
     {
@@ -72,10 +72,10 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
         case Album:
         case Playlist:
             {
-                QString smallUrl = data["smallUrl"].toString();
+                const QString &smallUrl = data["smallUrl"].toString();
                 MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
                 connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-                if(!smallUrl.isEmpty() && smallUrl != "null")
+                if(!smallUrl.isEmpty() && smallUrl != COVER_URL_NULL)
                 {
                     download->startToDownload(smallUrl);
                 }
@@ -88,11 +88,8 @@ void MusicSongSharingWidget::setData(Type type, const QVariantMap &data)
     m_ui->sharedName->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 200));
 
     QString path = ART_DIR_FULL + MusicUtils::String::artistName(name) + SKN_FILE;
-    m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path)
-                                    ? path : ":/image/lb_defaultArt").scaled(50, 50));
-
-    m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) +
-                            tr("and recommend it to you! (From #TTKMusicPlayer#)"));
+    m_ui->sharedNameIcon->setPixmap(QPixmap(QFile::exists(path) ? path : ":/image/lb_defaultArt").scaled(50, 50));
+    m_ui->textEdit->setText(tr("I used to listen music #%1# by TTKMusicPlayer,").arg(name) + tr("and recommend it to you! (From #TTKMusicPlayer#)"));
 }
 
 int MusicSongSharingWidget::exec()
@@ -116,7 +113,7 @@ void MusicSongSharingWidget::confirmButtonClicked()
 
                 if(!d->isEmpty())
                 {
-                    MusicObject::MusicSongInformation info(d->getMusicSongInfos().first());
+                    const MusicObject::MusicSongInformation info(d->getMusicSongInfos().first());
                     QString server = d->getQueryServer();
                     if(server == "WangYi")
                         server = MusicUtils::Algorithm::mdII(WY_SG_SHARE, ALG_LOW_KEY, false).arg(info.m_songId);
@@ -261,8 +258,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl)
-                               .arg(m_ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl).arg(m_ui->sharedName->text()).arg(tr(APPNAME));
     }
     else if(m_ui->renrenButton->isChecked())
     {
@@ -270,8 +266,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl)
-                                     .arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(tr(APPNAME)).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->qqblogButton->isChecked())
     {
@@ -309,7 +304,8 @@ void MusicSongSharingWidget::textAreaChanged()
 {
     const int max = 150;
     QString text = m_ui->textEdit->toPlainText();
-    int length = text.count();
+    const int length = text.count();
+
     if(length > max)
     {
         QTextCursor textCursor = m_ui->textEdit->textCursor();

@@ -133,9 +133,8 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
         return;
     }
 
-    QString name = m_songNameLabel->toolTip().trimmed();
-    if(!showArtPicture(MusicUtils::String::artistName(name)) &&
-       !showArtPicture(MusicUtils::String::songName(name)))
+    const QString &name = m_songNameLabel->toolTip().trimmed();
+    if(!showArtPicture(MusicUtils::String::artistName(name)) && !showArtPicture(MusicUtils::String::songName(name)))
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
@@ -175,9 +174,10 @@ bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
 void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path)
 {
     MusicSongTag tag;
-    bool state = tag.read(path);
+    const bool state = tag.read(path);
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, 198));
     m_songNameLabel->setToolTip(name);
+
     if(state)
     {
         m_totalTimeLabel = "/" + tag.getLengthString();
@@ -199,8 +199,7 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
         }
     }
 
-    if(!showArtPicture(MusicUtils::String::artistName(name)) &&
-       !showArtPicture(MusicUtils::String::songName(name)))
+    if(!showArtPicture(MusicUtils::String::artistName(name)) && !showArtPicture(MusicUtils::String::songName(name)))
     {
         m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
@@ -230,7 +229,7 @@ void MusicSongsListPlayWidget::setChangItemName(const QString &name)
 
 void MusicSongsListPlayWidget::currentLoveStateClicked()
 {
-    bool state = MusicApplication::instance()->musicLovestContains();
+    const bool state = MusicApplication::instance()->musicLovestContains();
     m_loveButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnLove : MusicUIObject::MKGTinyBtnUnLove);
 }
 

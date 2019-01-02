@@ -146,7 +146,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
 
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
-        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != "null")
+        if(!channel.m_coverUrl.isEmpty() && channel.m_coverUrl != COVER_URL_NULL)
         {
             QVariantMap map;
             map["id"] = index;

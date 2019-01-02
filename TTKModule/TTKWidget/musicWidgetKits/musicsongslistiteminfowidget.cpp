@@ -40,17 +40,12 @@ bool MusicSongsListItemInfoWidget::showArtPicture(const QString &name)
 
 void MusicSongsListItemInfoWidget::setMusicSongInformation(const MusicSong &info)
 {
-    QString musicArt = info.getMusicArtistFront();
-    m_ui->songNameValue->setText( info.getMusicName().isEmpty() ? "-" :
-                MusicUtils::Widget::elidedText(font(), info.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()) );
-    m_ui->artlistValue->setText( musicArt.isEmpty() ? "-" :
-                MusicUtils::Widget::elidedText(font(), musicArt, Qt::ElideRight, m_ui->artlistValue->width()) );
-    m_ui->sizeValue->setText( MusicUtils::Widget::elidedText(font(), QString::number(MusicUtils::Number::sizeByte2MByte(
-                            info.getMusicSize())).left(4) + "M", Qt::ElideRight, m_ui->sizeValue->width()) );
-    m_ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" :
-                MusicUtils::Widget::elidedText(font(), info.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()) );
-    m_ui->timeValue->setText(
-                MusicUtils::Widget::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()) );
+    const QString &musicArt = info.getMusicArtistFront();
+    m_ui->songNameValue->setText( info.getMusicName().isEmpty() ? "-" : MusicUtils::Widget::elidedText(font(), info.getMusicName(), Qt::ElideRight, m_ui->songNameValue->width()) );
+    m_ui->artlistValue->setText( musicArt.isEmpty() ? "-" : MusicUtils::Widget::elidedText(font(), musicArt, Qt::ElideRight, m_ui->artlistValue->width()) );
+    m_ui->sizeValue->setText( MusicUtils::Widget::elidedText(font(), QString::number(MusicUtils::Number::sizeByte2MByte(info.getMusicSize())).left(4) + "M", Qt::ElideRight, m_ui->sizeValue->width()) );
+    m_ui->typeValue->setText( info.getMusicType().isEmpty() ? "-" : MusicUtils::Widget::elidedText(font(), info.getMusicType(), Qt::ElideRight, m_ui->typeValue->width()) );
+    m_ui->timeValue->setText( MusicUtils::Widget::elidedText(font(), QString::number(info.getMusicPlayCount()), Qt::ElideRight, m_ui->timeValue->width()) );
 
     if(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toBool())
     {

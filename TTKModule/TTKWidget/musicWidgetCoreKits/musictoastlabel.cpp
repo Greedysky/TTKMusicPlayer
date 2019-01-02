@@ -80,15 +80,14 @@ bool MusicToastLabel::bold() const
 
 void MusicToastLabel::popup(QWidget *parent)
 {
-    QPoint globalPoint = parent->mapToGlobal(QPoint(0, 0));
-    move( globalPoint.x() + (parent->width() - width())/2,
-          globalPoint.y() + (parent->height() - height())/2);
+    const QPoint &globalPoint = parent->mapToGlobal(QPoint(0, 0));
+    move( globalPoint.x() + (parent->width() - width())/2, globalPoint.y() + (parent->height() - height())/2);
     show();
 }
 
 void MusicToastLabel::setText(const QString &text)
 {
-    QFontMetrics metrics = QFontMetrics(m_font);
+    const QFontMetrics &metrics = QFontMetrics(m_font);
     setFixedSize(metrics.width(text) + m_margin.x(), metrics.height() + m_margin.y());
     QLabel::setText(text);
 }

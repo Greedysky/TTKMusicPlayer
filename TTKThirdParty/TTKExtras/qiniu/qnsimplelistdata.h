@@ -35,8 +35,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit QNSimpleListData(QNetworkAccessManager *networkManager,
-                              QObject *parent = nullptr);
+    explicit QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
     /*!
      * List data to server.
      */

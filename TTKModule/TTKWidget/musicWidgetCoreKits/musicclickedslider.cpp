@@ -53,10 +53,10 @@ void MusicClickedSlider::mouseMoveEvent(QMouseEvent *event)
     {
         if(orientation() == Qt::Horizontal)
         {
-            int x = event->pos().x();
+            const int x = event->pos().x();
             if((x >= 0) && (x <= width()))
             {
-                double pos = event->pos().x()*1.0 / width();
+                const double pos = event->pos().x()*1.0 / width();
                 m_value = pos * (maximum() - minimum()) + minimum();
                 setValue(m_value);
             }
@@ -71,10 +71,10 @@ void MusicClickedSlider::mouseMoveEvent(QMouseEvent *event)
         }
         else
         {
-            int y = event->pos().y();
+            const int y = event->pos().y();
             if((y >= 0) && (y <= height()))
             {
-                double pos = event->pos().y()*1.0 / height();
+                const double pos = event->pos().y()*1.0 / height();
                 m_value = maximum() - pos * (maximum() - minimum());
                 setValue(m_value);
             }

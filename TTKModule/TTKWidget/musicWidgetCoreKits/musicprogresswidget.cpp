@@ -81,14 +81,10 @@ void MusicProgressWidget::paintEvent(QPaintEvent *event)
     painter.drawPixmap(0, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_left_bottom"));
     painter.drawPixmap(width() - WIDTH, height() - HEIGHT, WIDTH, HEIGHT, QPixmap(":/shadow/lb_right_bottom"));
 
-    painter.drawPixmap(0, WIDTH, HEIGHT, height() - 2*WIDTH,
-                       QPixmap(":/shadow/lb_left").scaled(WIDTH, height() - 2*HEIGHT));
-    painter.drawPixmap(width() - WIDTH, WIDTH, HEIGHT, height() - 2*HEIGHT,
-                       QPixmap(":/shadow/lb_right").scaled(WIDTH, height() - 2*HEIGHT));
-    painter.drawPixmap(HEIGHT, 0, width() - 2*WIDTH, HEIGHT,
-                       QPixmap(":/shadow/lb_top").scaled(width() - 2*WIDTH, HEIGHT));
-    painter.drawPixmap(WIDTH, height() - HEIGHT, width() - 2*WIDTH, HEIGHT,
-                       QPixmap(":/shadow/lb_bottom").scaled(width() - 2*WIDTH, HEIGHT));
+    painter.drawPixmap(0, WIDTH, HEIGHT, height() - 2*WIDTH, QPixmap(":/shadow/lb_left").scaled(WIDTH, height() - 2*HEIGHT));
+    painter.drawPixmap(width() - WIDTH, WIDTH, HEIGHT, height() - 2*HEIGHT, QPixmap(":/shadow/lb_right").scaled(WIDTH, height() - 2*HEIGHT));
+    painter.drawPixmap(HEIGHT, 0, width() - 2*WIDTH, HEIGHT, QPixmap(":/shadow/lb_top").scaled(width() - 2*WIDTH, HEIGHT));
+    painter.drawPixmap(WIDTH, height() - HEIGHT, width() - 2*WIDTH, HEIGHT, QPixmap(":/shadow/lb_bottom").scaled(width() - 2*WIDTH, HEIGHT));
 }
 
 void MusicProgressWidget::show()

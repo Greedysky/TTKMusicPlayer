@@ -181,6 +181,8 @@
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       690
 ///////////////////////////////////////
+#define COVER_URL_NULL          "null"
+///////////////////////////////////////
 
 
 /*! @brief The namespace of the application object.

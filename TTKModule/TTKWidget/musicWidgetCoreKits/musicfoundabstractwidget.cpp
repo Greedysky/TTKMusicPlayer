@@ -82,7 +82,8 @@ void MusicFoundAbstractWidget::shareButtonClicked()
     data["id"] = m_currentPlaylistItem.m_id;
     data["songName"] = m_currentPlaylistItem.m_name;
     data["smallUrl"] = m_currentPlaylistItem.m_coverUrl;
-    MusicDownLoadQueryThreadAbstract *th = m_foundTableWidget->getQueryInput();
+
+    const MusicDownLoadQueryThreadAbstract *th = m_foundTableWidget->getQueryInput();
     if(th)
     {
         data["queryServer"] = th->getQueryServer();
@@ -199,13 +200,13 @@ void MusicFoundAbstractWidget::initSecondWidget()
 
 void MusicFoundAbstractWidget::setSongCountText()
 {
-    MusicDownLoadQueryThreadAbstract *d = m_foundTableWidget->getQueryInput();
+    const MusicDownLoadQueryThreadAbstract *d = m_foundTableWidget->getQueryInput();
     if(!d)
     {
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(d->getMusicSongInfos());
     if(m_songButton)
     {
         m_songButton->setText(tr("songItems") + QString("(%1)").arg(musicSongInfos.count()));

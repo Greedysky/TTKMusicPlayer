@@ -47,7 +47,7 @@ public:
      * @param c Needs to be converted into phonetic characters
      * @return String Pinyin
      */
-    QStringList convertToPinyinArray(const QChar &c);
+    QStringList convertToPinyinArray(const QChar &c) const;
 
     /**
      * Convert the string into the corresponding format of the Pinyin
@@ -57,7 +57,7 @@ public:
      * @param pinyinFormat
      * @return String Pinyin
      */
-    QString convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat);
+    QString convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat) const;
 
     /**
      * Converts a string into a tone format
@@ -66,7 +66,7 @@ public:
      * @param separator Phonetic separator
      * @return Pinyin with tone after conversion
      */
-    QString convertToPinyinString(const QString &str, const QString &separator);
+    QString convertToPinyinString(const QString &str, const QString &separator) const;
 
     /**
      * A judge whether the Chinese Chinese characters
@@ -74,7 +74,7 @@ public:
      * @param c chinese characters
      * @return Judge the result, is the Chinese character returns true, otherwise returns false
      */
-    bool hasMultiPinyin(char c);
+    bool hasMultiPinyin(char c) const;
 
 private:
     /**
@@ -84,7 +84,7 @@ private:
      * @param pinyinFormat
      * @return Pinyin after format conversion
      */
-    QStringList formatPinyin(QString pinyinString, Format pinyinFormat);
+    QStringList formatPinyin(QString pinyinString, Format pinyinFormat) const;
 
     /**
      * Converting a single Chinese character into the corresponding format
@@ -93,7 +93,7 @@ private:
      * @param pinyinFormat
      * @return Pinyin of Chinese characters
      */
-    QStringList convertToPinyinArray(const QChar &c, Format pinyinFormat);
+    QStringList convertToPinyinArray(const QChar &c, Format pinyinFormat) const;
 
 
     TTK_DECLARE_PRIVATE(PinyinHelper)

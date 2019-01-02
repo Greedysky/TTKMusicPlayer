@@ -35,14 +35,12 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit QNSimpleUploadData(QNetworkAccessManager *networkManager,
-                                QObject *parent = nullptr);
+    explicit QNSimpleUploadData(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
     /*!
      * Get uplaod data to server request.
      */
-    void uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket,
-                            const QString &key, const QString &name);
+    void uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket, const QString &key, const QString &name);
     /*!
      * Get download url request.
      */

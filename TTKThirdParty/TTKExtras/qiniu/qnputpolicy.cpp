@@ -161,7 +161,8 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
     {
         d->m_deadline = QNUtils::expireInSeconds(3600);
     }
-    QByteArray putPolicyJson = toJSON();
+
+    const QByteArray &putPolicyJson = toJSON();
     QString uploadToken;
     if(mac != 0)
     {
@@ -169,7 +170,7 @@ QString QNPutPolicy::makeUploadToken(const QNMac *mac)
     }
     else
     {
-        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        const QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         uploadToken = macx.signWithData(putPolicyJson);
     }
     return uploadToken;
@@ -191,7 +192,7 @@ QString QNPutPolicy::makeDownloadToken(const QNMac *mac)
     }
     else
     {
-        QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+        const QNMac macx(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
         downloadToken = macx.signWithData2(d->m_scope.toUtf8());
     }
     return downloadToken;

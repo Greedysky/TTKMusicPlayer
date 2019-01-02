@@ -120,7 +120,7 @@ void MusicApplicationObject::windowCloseAnimation()
     else
     {
         float v = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
-        v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
+              v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, v);
         m_quitAnimation->stop();
         m_quitAnimation->setPropertyName("windowOpacity");
         m_quitAnimation->setDuration(MT_S2MS);
@@ -233,13 +233,14 @@ void MusicApplicationObject::windowCloseAnimationFinished()
         m_quitContainer = new QWidget;
         m_quitContainer->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
         m_quitContainer->setAttribute(Qt::WA_TranslucentBackground);
+
         MusicGifLabelWidget *gifWidget = new MusicGifLabelWidget(m_quitContainer);
         gifWidget->setType(MusicGifLabelWidget::Gif_Close_White);
         gifWidget->setInterval(25*MT_MS);
         gifWidget->setInfinited(false);
         m_quitContainer->resize(gifWidget->size());
 
-        QPoint center = w->geometry().center();
+        const QPoint &center = w->geometry().center();
         m_quitContainer->move(QPoint(center.x() - m_quitContainer->width()/2, center.y() - m_quitContainer->height()/2));
 
         m_quitContainer->raise();
@@ -282,8 +283,7 @@ void MusicApplicationObject::musicSetWindowToTop()
 {
     m_setWindowToTop = !m_setWindowToTop;
     Qt::WindowFlags flags = MusicApplication::instance()->windowFlags();
-    MusicApplication::instance()->setWindowFlags( m_setWindowToTop ?
-                              (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint) );
+    MusicApplication::instance()->setWindowFlags( m_setWindowToTop ? (flags | Qt::WindowStaysOnTopHint) : (flags & ~Qt::WindowStaysOnTopHint) );
     MusicApplication::instance()->show();
 }
 
@@ -301,8 +301,7 @@ void MusicApplicationObject::musicResetWindow()
     {
         w->showNormal();
     }
-    w->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2, (widget->height() - WINDOW_HEIGHT_MIN)/2,
-                    WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
+    w->setGeometry((widget->width() - WINDOW_WIDTH_MIN)/2, (widget->height() - WINDOW_HEIGHT_MIN)/2, WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
 }
 
 void MusicApplicationObject::musicToolSetsParameter()
@@ -310,7 +309,7 @@ void MusicApplicationObject::musicToolSetsParameter()
     m_musicTimerAutoObj->runTimerAutoConfig();
 #ifdef Q_OS_WIN
     MusicRegeditManager regeditManager;
-    int version = regeditManager.getLocalIEVersion();
+    const int version = regeditManager.getLocalIEVersion();
     if(version == -1 || version < 8)
     {
         MusicMessageBox message;
@@ -329,6 +328,7 @@ void MusicApplicationObject::musicDeviceChanged(bool state)
 {
     delete m_mobileDeviceWidget;
     m_mobileDeviceWidget = nullptr;
+
     if(state)
     {
         m_mobileDeviceWidget = new MusicMobileDevicesWidget;

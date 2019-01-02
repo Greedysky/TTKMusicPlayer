@@ -127,8 +127,8 @@ void MusicAnimationStackedWidget::start(int index)
     m_previousIndex = m_currentIndex;
     m_currentIndex = index;
 
-    int offsetx = frameRect().width();
-    int offsety = frameRect().height();
+    const int offsetx = frameRect().width();
+    const int offsety = frameRect().height();
     widget(m_currentIndex)->setGeometry(0, 0, offsetx, offsety);
 
     currentWidget()->hide();

@@ -336,7 +336,7 @@ MusicFunctionToolBoxWidget::~MusicFunctionToolBoxWidget()
 
 void MusicFunctionToolBoxWidget::addItem(QWidget *item, const QString &text)
 {
-    int count = m_layout->count();
+    const int count = m_layout->count();
     if(count > 1)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
@@ -380,11 +380,11 @@ void MusicFunctionToolBoxWidget::removeItem(QWidget *item)
 
 void MusicFunctionToolBoxWidget::swapItem(int before, int after)
 {
-    MusicToolBoxWidgetItem widgetItem = m_itemList.takeAt(before);
+    const MusicToolBoxWidgetItem &widgetItem = m_itemList.takeAt(before);
     m_itemList.insert(after, widgetItem);
 
     m_layout->removeWidget(widgetItem.m_widgetItem);
-    int count = m_layout->count();
+    const int count = m_layout->count();
     if(count > 1)
     {
         m_layout->removeItem(m_layout->itemAt(count - 1));
@@ -458,14 +458,14 @@ void MusicFunctionToolBoxWidget::mousePressAt(int index)
     m_currentIndex = foundMappingIndex(index);
     for(int i=0; i<m_itemList.count(); ++i)
     {
-        bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
+        const bool hide = (i == m_currentIndex) ? !m_itemList[i].m_widgetItem->itemExpand() : false;
         m_itemList[i].m_widgetItem->setItemExpand(hide);
     }
 }
 
 void MusicFunctionToolBoxWidget::setTransparent(int alpha)
 {
-    QString alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
+    const QString &alphaStr = QString("background:rgba(255, 255, 255, %1)").arg(alpha);
     QWidget *view = m_scrollArea->viewport();
     view->setObjectName("viewport");
     view->setStyleSheet(QString("#viewport{%1}").arg(alphaStr));

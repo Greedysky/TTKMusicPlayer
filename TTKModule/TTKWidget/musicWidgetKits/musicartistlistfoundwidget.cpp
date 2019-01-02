@@ -83,7 +83,7 @@ void MusicArtistListFoundWidget::resizeWindow()
             m_gridLayout->removeWidget(m_resizeWidgets[i]);
         }
 
-        int lineNumber = width()/LINE_SPACING_SIZE;
+        const int lineNumber = width()/LINE_SPACING_SIZE;
         for(int i=0; i<m_resizeWidgets.count(); ++i)
         {
             m_gridLayout->addWidget(m_resizeWidgets[i], i/lineNumber, i%lineNumber, Qt::AlignCenter);
@@ -159,7 +159,8 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
 
         m_pagingWidgetObject = new MusicPagingWidgetObject(m_mainWindow);
         connect(m_pagingWidgetObject, SIGNAL(mapped(int)), SLOT(buttonClicked(int)));
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+
+        const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         mainlayout->addWidget(m_pagingWidgetObject->createPagingWidget(m_mainWindow, total));
         mainlayout->addStretch(1);
     }
@@ -167,7 +168,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
     if(m_categoryChanged && m_pagingWidgetObject)
     {
         m_categoryChanged = false;
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+        const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         m_pagingWidgetObject->reset(total);
     }
 
@@ -175,7 +176,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
     connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentArtistListClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
-    int lineNumber = width()/LINE_SPACING_SIZE;
+    const int lineNumber = width()/LINE_SPACING_SIZE;
     m_gridLayout->addWidget(label, m_resizeWidgets.count()/lineNumber, m_resizeWidgets.count()%lineNumber, Qt::AlignCenter);
     m_resizeWidgets << label;
 }
@@ -208,7 +209,7 @@ void MusicArtistListFoundWidget::buttonClicked(int index)
         delete w;
     }
 
-    int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+    const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
     m_pagingWidgetObject->paging(index, total);
     m_downloadThread->startToPage(m_pagingWidgetObject->currentIndex() - 1);
 }
@@ -223,6 +224,6 @@ void MusicArtistListFoundWidget::numberButtonClicked(int index)
     }
     m_categoryChanged = true;
 
-    QString v = QString("%1%2%3").arg(m_categoryId).arg(TTK_STR_SPLITER).arg(index);
+    const QString &v = QString("%1%2%3").arg(m_categoryId).arg(TTK_STR_SPLITER).arg(index);
     m_downloadThread->startToSearch(MusicDownLoadQueryThreadAbstract::OtherQuery, v);
 }

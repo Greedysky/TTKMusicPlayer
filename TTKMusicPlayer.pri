@@ -59,7 +59,7 @@ win32:{
 unix:!mac{
     QMMP_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libqmmp.so
 }
-#!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
+!exists($$QMMP_DEPANDS): error("Could not find qmmp library, please download and put it to output dir")
 
 win32{
     LIBS += -lIphlpapi -lVersion -lole32 -luuid

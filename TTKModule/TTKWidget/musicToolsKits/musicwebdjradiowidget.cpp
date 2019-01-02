@@ -120,7 +120,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadExtDataChanged(QByteArray,QVariantMap)), SLOT(downLoadFinished(QByteArray,QVariantMap)));
-    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != "null")
+    if(!data.m_coverUrl.isEmpty() && data.m_coverUrl != COVER_URL_NULL)
     {
         QVariantMap map;
         map["id"] = index;

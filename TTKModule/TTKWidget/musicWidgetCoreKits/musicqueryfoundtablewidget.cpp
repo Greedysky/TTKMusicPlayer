@@ -60,7 +60,7 @@ void MusicQueryFoundTableWidget::startSearchQuery(const QString &text)
 
 void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -73,8 +73,8 @@ void MusicQueryFoundTableWidget::musicDownloadLocal(int row)
 
 void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MIntList list = getSelectedItems();
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -94,8 +94,8 @@ void MusicQueryFoundTableWidget::downloadDataFrom(bool play)
 
 void MusicQueryFoundTableWidget::downloadBatchData(bool music)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MIntList list = getSelectedItems();
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MIntList &list = getSelectedItems();
     if(list.isEmpty())
     {
         MusicMessageBox message;
@@ -122,7 +122,7 @@ void MusicQueryFoundTableWidget::downloadBatchData(bool music)
 
 void MusicQueryFoundTableWidget::resizeWindow()
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)*0.5 + 342);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)*0.5 + 110);
@@ -139,22 +139,22 @@ void MusicQueryFoundTableWidget::resizeWindow()
 
 void MusicQueryFoundTableWidget::searchChanged(QAction *action)
 {
-    int row = currentRow();
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const int row = currentRow();
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
     switch( action->data().toInt() )
     {
         case 0: addSearchMusicToPlayList(row, true); break;
         case 1: addSearchMusicToPlayList(row, false); break;
         case 2: musicDownloadLocal(row); break;
-        case 3: MusicRightAreaWidget::instance()->musicArtistFound(info->m_singerName, info->m_artistId); break;
-        case 4: MusicRightAreaWidget::instance()->musicSongSearchedFound(info->m_songName); break;
-        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
+        case 3: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
+        case 4: MusicRightAreaWidget::instance()->musicSongSearchedFound(info.m_songName); break;
+        case 5: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
         case 6: MusicRightAreaWidget::instance()->musicSongSearchedFound(item(row, 1)->toolTip()); break;
         default: break;
     }
@@ -173,8 +173,8 @@ void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QMenu menu;
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
 
-    int row = currentRow();
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const int row = currentRow();
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
@@ -186,11 +186,11 @@ void MusicQueryFoundTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     menu.addSeparator();
 
-    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
-    menu.addAction(tr("search '%1'").arg(info->m_singerName))->setData(3);
-    menu.addAction(tr("search '%1'").arg(info->m_songName))->setData(4);
-    menu.addAction(tr("search '%1'").arg(info->m_albumName))->setData(5);
-    menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName))->setData(6);
+    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
+    menu.addAction(tr("search '%1'").arg(info.m_singerName))->setData(3);
+    menu.addAction(tr("search '%1'").arg(info.m_songName))->setData(4);
+    menu.addAction(tr("search '%1'").arg(info.m_albumName))->setData(5);
+    menu.addAction(tr("search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName))->setData(6);
     connect(&menu, SIGNAL(triggered(QAction*)), SLOT(searchChanged(QAction*)));
 
     menu.exec(QCursor::pos());
@@ -240,7 +240,7 @@ void MusicQueryFoundTableWidget::clearAllItems()
 
 void MusicQueryFoundTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(count + 1);
 
     QHeaderView *headerview = horizontalHeader();
@@ -290,7 +290,7 @@ void MusicQueryFoundTableWidget::createSearchedItem(const MusicSearchedItem &son
 void MusicQueryFoundTableWidget::createFinishedItem()
 {
     setRowCount(rowCount() + 1);
-    int count = rowCount() - 1;
+    const int count = rowCount() - 1;
     for(int i=0; i<columnCount(); ++i)
     {
         setItem(count, i, new QTableWidgetItem);
@@ -317,7 +317,7 @@ void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row >= musicSongInfos.count())
     {
         return;
@@ -339,9 +339,9 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
 
     if(!attrs.isEmpty())
     {
-        const MusicObject::MusicSongAttribute attr = attrs.first();
-        QString musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
-        QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
+        const MusicObject::MusicSongAttribute &attr = attrs.first();
+        const QString &musicEnSong = MusicUtils::Algorithm::mdII(downloadInfo.m_singerName + " - " + downloadInfo.m_songName, ALG_DOWNLOAD_KEY, true);
+        const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(attr.m_format);
 
         MusicSemaphoreLoop loop(this);
         MusicDataDownloadThread *download = new MusicDataDownloadThread(attr.m_url, downloadName, MusicObject::DownloadMusic, this);

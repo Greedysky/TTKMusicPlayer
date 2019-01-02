@@ -120,30 +120,30 @@ PinyinHelper::PinyinHelper()
     TTK_INIT_PRIVATE;
 }
 
-QStringList PinyinHelper::convertToPinyinArray(const QChar &c)
+QStringList PinyinHelper::convertToPinyinArray(const QChar &c) const
 {
     return convertToPinyinArray(c, WITH_TONE_MARK);
 }
 
-QString PinyinHelper::convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat)
+QString PinyinHelper::convertToPinyinString(const QString &s, const QString &separator, Format pinyinFormat) const
 {
     TTK_D(PinyinHelper);
-    QString str = d->m_chineseHelper.convertToSimplifiedChinese(s);
+    const QString &str = d->m_chineseHelper.convertToSimplifiedChinese(s);
     QString sb;
     for(int i=0, len=str.length(); i<len; i++)
     {
-        QChar c = str[i];
+        const QChar &c = str[i];
         if(d->m_chineseHelper.isChinese(c)/* || c == CHINESE_LING*/)
         {
             bool isFoundFlag = false;
-            int rightMove = 3;
+            const int rightMove = 3;
 
             for(int rightIndex=(i + rightMove) < len ? (i + rightMove) : (len - 1); rightIndex>i; rightIndex--)
             {
-                QString cizu = str.mid(i, rightIndex + 1);
+                const QString &cizu = str.mid(i, rightIndex + 1);
                 if(d->m_mutliPinyinTable.keys().indexOf(cizu) != -1)
                 {
-                    QStringList pinyinArray = formatPinyin(d->m_mutliPinyinTable.value(cizu), pinyinFormat);
+                    const QStringList &pinyinArray = formatPinyin(d->m_mutliPinyinTable.value(cizu), pinyinFormat);
                     for(int j=0, l=pinyinArray.length(); j<l; j++)
                     {
                         sb.append(pinyinArray[j]);
@@ -160,7 +160,7 @@ QString PinyinHelper::convertToPinyinString(const QString &s, const QString &sep
 
             if(!isFoundFlag)
             {
-                QStringList pinyinArray = convertToPinyinArray(str[i], pinyinFormat);
+                const QStringList &pinyinArray = convertToPinyinArray(str[i], pinyinFormat);
                 if(!pinyinArray.isEmpty())
                 {
                     sb.append(pinyinArray[0]);
@@ -188,14 +188,14 @@ QString PinyinHelper::convertToPinyinString(const QString &s, const QString &sep
     return sb;
 }
 
-QString PinyinHelper::convertToPinyinString(const QString &str, const QString &separator)
+QString PinyinHelper::convertToPinyinString(const QString &str, const QString &separator) const
 {
     return convertToPinyinString(str, separator, WITH_TONE_MARK);
 }
 
-bool PinyinHelper::hasMultiPinyin(char c)
+bool PinyinHelper::hasMultiPinyin(char c) const
 {
-    QStringList pinyinArray = convertToPinyinArray(c);
+    const QStringList &pinyinArray = convertToPinyinArray(c);
     if(!pinyinArray.isEmpty() && pinyinArray.length() > 1)
     {
         return true;
@@ -203,7 +203,7 @@ bool PinyinHelper::hasMultiPinyin(char c)
     return false;
 }
 
-QStringList PinyinHelper::formatPinyin(QString pinyinString, Format pinyinFormat)
+QStringList PinyinHelper::formatPinyin(QString pinyinString, Format pinyinFormat) const
 {
     TTK_D(PinyinHelper);
     switch(pinyinFormat)
@@ -215,10 +215,10 @@ QStringList PinyinHelper::formatPinyin(QString pinyinString, Format pinyinFormat
     }
 }
 
-QStringList PinyinHelper::convertToPinyinArray(const QChar &c, Format pinyinFormat)
+QStringList PinyinHelper::convertToPinyinArray(const QChar &c, Format pinyinFormat) const
 {
     TTK_D(PinyinHelper);
-    QString pinyin = d->m_pinyinTable.value(QString(c));
+    const QString &pinyin = d->m_pinyinTable.value(QString(c));
     if(!pinyin.isEmpty())
     {
         return formatPinyin(pinyin, pinyinFormat);

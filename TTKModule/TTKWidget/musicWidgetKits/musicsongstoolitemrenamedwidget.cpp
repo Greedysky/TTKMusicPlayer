@@ -34,8 +34,7 @@ void MusicSongsToolItemRenamedWidget::textChanged(const QString &text)
         m_focusBlock = true;
 
         MusicToastLabel *toast = new MusicToastLabel(this);
-        toast->defaultLabel(MusicApplication::instance(),
-                            tr("Illegal Chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
+        toast->defaultLabel(MusicApplication::instance(), tr("Illegal Chars %1").arg(MusicUtils::String::illegalCharacters().join("")));
         connect(toast, SIGNAL(animationCloseChanged()), SLOT(animationCloseChanged()));
     }
 }

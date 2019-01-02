@@ -56,8 +56,8 @@ int MusicVolumePopWidget::value() const
 
 void MusicVolumePopWidget::leaveEvent(QEvent *event)
 {
-     MusicToolMenuWidget::leaveEvent(event);
-     QTimer::singleShot(500*MT_MS, m_menu, SLOT(close()));
+    MusicToolMenuWidget::leaveEvent(event);
+    QTimer::singleShot(500*MT_MS, m_menu, SLOT(close()));
 }
 
 void MusicVolumePopWidget::enterEvent(QEvent *event)

@@ -33,8 +33,11 @@ QMap<QString, QString> PinyinResource::getResource(const QString &resourceName)
     QString line;
     while((line = in.readLine()) != QString())
     {
-        QStringList tokens = line.trimmed().split("=");
-        map.insert(tokens[0], tokens[1]);
+        const QStringList &tokens = line.trimmed().split("=");
+        if(tokens.count() >= 2)
+        {
+            map.insert(tokens[0], tokens[1]);
+        }
     }
 
     file.close();

@@ -29,8 +29,8 @@ void MusicResizeGrabItemWidget::onMouseChange(int x, int y)
         return;
     }
 
-    int rx = (x >= m_originPoint.x()) ? m_originPoint.x() : x;
-    int ry = (y >= m_originPoint.y()) ? m_originPoint.y() : y;
+    const int rx = (x >= m_originPoint.x()) ? m_originPoint.x() : x;
+    const int ry = (y >= m_originPoint.y()) ? m_originPoint.y() : y;
     int rw = abs(x - m_originPoint.x());
     int rh = abs(y - m_originPoint.y());
 
@@ -94,15 +94,15 @@ void MusicResizeGrabItemWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
 {
 //    QWidget::mouseMoveEvent(event);
-    QPoint gloPoint = mapToParent(event->pos());
+    const QPoint &gloPoint = mapToParent(event->pos());
     // left upper
-    QPoint pt_lu = mapToParent(rect().topLeft());
+    const QPoint &pt_lu = mapToParent(rect().topLeft());
     // left lower
-    QPoint pt_ll = mapToParent(rect().bottomLeft());
+    const QPoint &pt_ll = mapToParent(rect().bottomLeft());
     // right lower
-    QPoint pt_rl = mapToParent(rect().bottomRight());
+    const QPoint &pt_rl = mapToParent(rect().bottomRight());
     // right upper
-    QPoint pt_ru = mapToParent(rect().topRight());
+    const QPoint &pt_ru = mapToParent(rect().topRight());
 
     if(!m_isPressed)
     {
@@ -205,9 +205,9 @@ MusicResizeGrabItemWidget::Direction MusicResizeGrabItemWidget::getRegion(const 
 {
     Direction ret_dir = Direction_No;
     // left upper
-    QPoint pt_lu = mapToParent(rect().topLeft());
+    const QPoint &pt_lu = mapToParent(rect().topLeft());
     // right lower
-    QPoint pt_rl = mapToParent(rect().bottomRight());
+    const QPoint &pt_rl = mapToParent(rect().bottomRight());
 
     int x = cursor.x();
     int y = cursor.y();

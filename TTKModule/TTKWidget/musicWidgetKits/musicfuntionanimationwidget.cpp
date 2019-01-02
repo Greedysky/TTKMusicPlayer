@@ -112,7 +112,7 @@ void MusicBaseAnimationWidget::paintEvent(QPaintEvent *event)
         painter.setPen(QPen(QBrush(QColor(0, 0, 0)), 0.1, Qt::SolidLine));
 
         int offset =  m_perWidth - (m_container[0]->width() + m_pix.width()) / 2;
-        offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
+            offset = m_isAnimation ? (offset + m_x) : (offset + m_curIndex * m_perWidth);
         if(m_showLine)
         {
             painter.drawLine(0, height(), offset, height());
@@ -153,8 +153,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
     QHBoxLayout *ly = MStatic_cast(QHBoxLayout*, layout());
 
     QStringList names;
-    names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio")
-          << tr("musicMobile") << tr("musicMydownl");
+    names << tr("musicPlaylist") << tr("musicCloud") << tr("musicRadio") << tr("musicMobile") << tr("musicMydownl");
     for(int i=0; i<names.count(); ++i)
     {
         QToolButton *btn = new QToolButton(this);

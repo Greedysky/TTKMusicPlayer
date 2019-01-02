@@ -200,7 +200,7 @@ void MusicDownLoadQueryKWMovieThread::pageDownLoadFinished()
                     MusicResultsItem info;
                     info.m_id = value["musicid"].toString();
                     info.m_coverUrl = value["pic"].toString();
-                    if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains("null"))
+                    if(!info.m_coverUrl.contains("http://") && !info.m_coverUrl.contains(COVER_URL_NULL))
                     {
                         info.m_coverUrl = MusicUtils::Algorithm::mdII(KW_MV_COVER_URL, false) + info.m_coverUrl;
                     }

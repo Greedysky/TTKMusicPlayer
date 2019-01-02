@@ -93,14 +93,14 @@ void MusicQueryItemTableWidget::clearAllItems()
 
 void MusicQueryItemTableWidget::actionGroupClick(QAction *action)
 {
-    int row = currentRow();
+    const int row = currentRow();
     if(row < 0 || (row >= rowCount() - 1))
     {
         return;
     }
 
-    QString songName = (row != -1 && rowCount() > 0) ? item(row, 1)->toolTip() : QString();
-    QString artistName = (row != -1 && rowCount() > 0) ? item(row, 2)->toolTip() : QString();
+    const QString &songName = (row != -1 && rowCount() > 0) ? item(row, 1)->toolTip() : QString();
+    const QString &artistName = (row != -1 && rowCount() > 0) ? item(row, 2)->toolTip() : QString();
 
     switch( action->data().toInt() )
     {
@@ -117,7 +117,7 @@ void MusicQueryItemTableWidget::createFinishedItem()
     m_loadingLabel->run(false);
 
     setRowCount(rowCount() + 1);
-    int count = rowCount() - 1;
+    const int count = rowCount() - 1;
     for(int i=0; i<columnCount(); ++i)
     {
         setItem(count, i, new QTableWidgetItem);
@@ -127,8 +127,8 @@ void MusicQueryItemTableWidget::createFinishedItem()
     QTableWidgetItem *it = item(count, 0);
     if(it)
     {
-        int total = ceil(m_downLoadManager->getPageTotal()*1.0/m_downLoadManager->getPageSize());
-        bool more = (total > m_downLoadManager->getPageIndex() + 1);
+        const int total = ceil(m_downLoadManager->getPageTotal()*1.0/m_downLoadManager->getPageSize());
+        const bool more = (total > m_downLoadManager->getPageIndex() + 1);
         it->setData(MUSIC_TEXTS_ROLE, more ? tr("More Data") : tr("No More Data"));
         setItemDelegateForRow(count, m_labelDelegate);
     }
@@ -141,17 +141,17 @@ void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
 
     menu.addSeparator();
 
-    int row = currentRow();
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const int row = currentRow();
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || row >= musicSongInfos.count())
     {
         return;
     }
 
-    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info->m_songName)))->setData(1);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info->m_singerName)))->setData(2);
-    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(info->m_singerName).arg(info->m_songName)))->setData(3);
+    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info.m_songName)))->setData(1);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1'").arg(info.m_singerName)))->setData(2);
+    m_actionGroup->addAction(menu.addAction(tr("search '%1 - %2'").arg(info.m_singerName).arg(info.m_songName)))->setData(3);
 }
 
 void MusicQueryItemTableWidget::resizeEvent(QResizeEvent *event)

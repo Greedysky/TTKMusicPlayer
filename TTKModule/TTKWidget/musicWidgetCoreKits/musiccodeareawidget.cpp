@@ -19,8 +19,7 @@ MusicCodeAreaWidget::MusicCodeAreaWidget(QWidget *parent)
        "A" << "B" << "C" << "D" << "E" << "F" << "G" << "H" << "I" << "J" << "K" << "L" << "M" << "N" <<
        "O" << "P" << "Q" << "R" << "S" << "T" << "U" << "V" << "W" << "X" << "Y" << "Z";
 
-    m_lCodeColor << Qt::darkRed << Qt::darkGreen << Qt::darkBlue << Qt::darkCyan
-                 << Qt::darkMagenta << Qt::darkYellow << Qt::darkGray;
+    m_lCodeColor << Qt::darkRed << Qt::darkGreen << Qt::darkBlue << Qt::darkCyan << Qt::darkMagenta << Qt::darkYellow << Qt::darkGray;
 
     m_nNoisyPointCount = DEF_NOISYPOINTCOUNT;
     m_nConverseRotate = DEF_CONVERSEROTATE;
@@ -100,6 +99,7 @@ void MusicCodeAreaWidget::drawNoisyPoint(QPainter &painter)
     painter.setPen(Qt::red);
     painter.setPen(Qt::DotLine);
     painter.setBrush(Qt::NoBrush);
+
     for(int i=0; i<m_nNoisyPointCount; i++)
     {
         painter.drawPoint(QPointF(qrand() % size().width(), qrand() % size().height()));
@@ -116,6 +116,5 @@ void MusicCodeAreaWidget::drawConversion(QPainter &painter)
     {
         painter.rotate(-(qrand() % m_nConverseRotate));
     }
-    painter.scale((qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0 , 
-                  (qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0);
+    painter.scale((qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0, (qrand() % m_nConverseScale + (100 - m_nConverseScale)) / 100.0);
 }

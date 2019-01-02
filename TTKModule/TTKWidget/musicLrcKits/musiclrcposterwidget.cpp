@@ -121,7 +121,7 @@ void MusicLrcPosterItemWidget::drawTheme1(QPainter *painter)
     offset += v;
     //////////////////////////////////////////////////////////////////////////////
     offset += 3*ITEM_BORDER;
-    painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, lineHeight, Qt::AlignCenter, tr("TTKMusicPlayer"));
+    painter->drawText(2*ITEM_BORDER, offset, ITEM_WIDTH - 4*ITEM_BORDER, lineHeight, Qt::AlignCenter, tr(APPNAME));
     offset += 3*ITEM_BORDER;
     //////////////////////////////////////////////////////////////////////////////
     setFixedHeight(offset >= ITEM_HEIGHT ? offset + 2*lineHeight : ITEM_HEIGHT);

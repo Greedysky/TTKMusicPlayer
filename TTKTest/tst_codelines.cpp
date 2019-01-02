@@ -36,7 +36,7 @@ void CodeLinesTest::codeLines()
 {
     int fileCount = 0, lineCount = 0;
 
-    QString currentPath = "../";
+    const QString currentPath = "../";
     if(currentPath.isEmpty())
     {
         return;

@@ -7,7 +7,7 @@ TEST_MAIN
 // Or supply your own main function
 int main(int argc, char *argv[])
 {
-    int failures = AutoTest::run(argc, argv);
+    const int failures = AutoTest::run(argc, argv);
     if(failures == 0)
     {
         qDebug() << "ALL TESTS PASSED";

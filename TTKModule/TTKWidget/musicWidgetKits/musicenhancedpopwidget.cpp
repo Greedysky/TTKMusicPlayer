@@ -98,8 +98,7 @@ MusicEnhancedPopWidget::MusicEnhancedPopWidget(QWidget *parent)
 
     initWidget();
 
-    connect(MusicApplicationObject::instance(), SIGNAL(enhancedMusicChanged(int)),
-                                                SLOT(setEnhancedMusicConfig(int)));
+    connect(MusicApplicationObject::instance(), SIGNAL(enhancedMusicChanged(int)), SLOT(setEnhancedMusicConfig(int)));
     connect(m_menu, SIGNAL(windowStateChanged(bool)), SLOT(buttonAnimationChanged(bool)));
 }
 
@@ -124,7 +123,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     }
     setStyleSheet( style );
 
-    QString prfix = QString("background-image:url(':/enhance/lb_%1')");
+    const QString &prfix = QString("background-image:url(':/enhance/lb_%1')");
     m_caseButton->setStyleSheet(type ? MusicUIObject::MKGEnhanceOn : MusicUIObject::MKGEnhanceOff);
     m_buttons[0]->setStyleSheet(prfix.arg(type == 1 ? "3dOn" : "3dOff"), type == 1);
     m_buttons[1]->setStyleSheet(prfix.arg(type == 2 ? "NICAMOn" : "NICAMOff"), type == 2);
@@ -157,7 +156,7 @@ void MusicEnhancedPopWidget::caseButtonOnAndOff()
 
 void MusicEnhancedPopWidget::buttonAnimationChanged(bool state)
 {
-    int index = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
+    const int index = M_SETTING_PTR->value(MusicSettingManager::EnhancedMusicChoiced).toInt();
     if(index < 1 || index > m_buttons.count())
     {
         return;
@@ -179,8 +178,7 @@ void MusicEnhancedPopWidget::initWidget()
 
     m_containWidget->setFixedSize(272, 370);
     m_containWidget->setObjectName("containWidget");
-    m_containWidget->setStyleSheet(QString("#containWidget{%1%2}").arg(MusicUIObject::MBorderStyle01)
-                                   .arg("background:url(':/enhance/lb_background')"));
+    m_containWidget->setStyleSheet(QString("#containWidget{%1%2}").arg(MusicUIObject::MBorderStyle01).arg("background:url(':/enhance/lb_background')"));
 
     QToolButton *labelButton = new QToolButton(m_containWidget);
     labelButton->setGeometry(80, 20, 126, 40);

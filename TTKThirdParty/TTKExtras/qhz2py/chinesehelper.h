@@ -40,7 +40,7 @@ public:
      * @param c Need to convert the traditional Chinese characters
      * @return After the conversion of the simplified Chinese characters
      */
-    QChar convertToSimplifiedChinese(const QChar &c);
+    QChar convertToSimplifiedChinese(const QChar &c) const;
 
     /**
      * The individual characters converted to traditional Chinese characters
@@ -48,7 +48,7 @@ public:
      * @param c The need to convert simplified Chinese characters
      * @return Converted to numerous fonts
      */
-    QChar convertToTraditionalChinese(const QChar &c);
+    QChar convertToTraditionalChinese(const QChar &c) const;
 
     /**
      * The traditional Chinese characters into simplified Chinese characters
@@ -56,7 +56,7 @@ public:
      * @param str Need to convert the traditional Chinese characters
      * @return Converted to simplified
      */
-    QString convertToSimplifiedChinese(const QString &str);
+    QString convertToSimplifiedChinese(const QString &str) const;
 
     /**
      * Convert the simplified traditional characters
@@ -64,7 +64,7 @@ public:
      * @param str The need to convert simplified Chinese characters
      * @return Converted to numerous fonts
      */
-    QString convertToTraditionalChinese(const QString &str);
+    QString convertToTraditionalChinese(const QString &str) const;
 
     /**
      * To determine whether a character is a traditional character
@@ -72,7 +72,7 @@ public:
      * @param c Character needed to be judged
      * @return Is the traditional character returns true, otherwise returns false
      */
-    bool isTraditionalChinese(const QChar &c);
+    bool isTraditionalChinese(const QChar &c) const;
 
     /**
      * To determine whether a character is a Chinese character
@@ -80,14 +80,14 @@ public:
      * @param c Character needed to be judged
      * @return Is the Chinese character returns true, otherwise returns false
      */
-    bool isChinese(const QChar &c);
+    bool isChinese(const QChar &c) const;
 
     /**
      * Determine whether the string contains Chinese
      * @param str character string
      * @return Contains the Chinese characters to return to true, or return to false
      */
-    bool containsChinese(const QString &str);
+    bool containsChinese(const QString &str) const;
 
 private:
     TTK_DECLARE_PRIVATE(ChineseHelper)

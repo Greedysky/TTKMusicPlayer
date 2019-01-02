@@ -45,8 +45,7 @@ void MusicMessageAboutDialog::musicGetCounterFinished(const QString &data)
 int MusicMessageAboutDialog::exec()
 {
     m_ui->iconLabel->setPixmap(QPixmap(":/image/lb_logo"));
-    m_ui->textLabel->setText(QString("TTKMusicplayer Version: %1\n").arg(TTKMUSIC_VERSION_STR) +
-                             m_ui->textLabel->text());
+    m_ui->textLabel->setText(QString("TTKMusicplayer Version: %1\n").arg(TTKMUSIC_VERSION_STR) + m_ui->textLabel->text());
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();
 }

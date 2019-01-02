@@ -35,9 +35,7 @@ public:
     /*!
      * Create put data multi part.
      */
-    static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data,
-                                                  const QString &key = QString(), const QString &fileName = QString(),
-                                                  const QNPutExtra *putExtra = nullptr);
+    static QHttpMultiPart* createPutDataMultiPart(const QString &uploadToken, const QByteArray &data, const QString &key = QString(), const QString &fileName = QString(), const QNPutExtra *putExtra = nullptr);
     /*!
      * List request.
      */

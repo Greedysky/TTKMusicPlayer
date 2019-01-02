@@ -35,7 +35,7 @@ void MusicFillItemTableWidget::listCellClicked(int row, int column)
     if(column == 0)
     {
         QTableWidgetItem *it = item(row, 0);
-        bool status = it->data(MUSIC_CHECK_ROLE).toBool();
+        const bool status = it->data(MUSIC_CHECK_ROLE).toBool();
         it->setData(MUSIC_CHECK_ROLE, !status);
     }
     else

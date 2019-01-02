@@ -59,7 +59,7 @@ void MusicWebDJRadioFoundItemWidget::setMusicResultsItem(const MusicResultsItem 
 
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != "null")
+    if(!item.m_coverUrl.isEmpty() && item.m_coverUrl != COVER_URL_NULL)
     {
         download->startToDownload(item.m_coverUrl);
     }
@@ -202,7 +202,7 @@ void MusicWebDJRadioFoundWidget::createProgramItem(const MusicResultsItem &item)
 
     if(m_pagingWidgetObject)
     {
-        int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
+        const int total = ceil(m_downloadThread->getPageTotal()*1.0/m_downloadThread->getPageSize());
         m_pagingWidgetObject->reset(total);
     }
 

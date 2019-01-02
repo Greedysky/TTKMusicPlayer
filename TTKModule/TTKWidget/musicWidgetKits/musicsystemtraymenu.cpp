@@ -119,7 +119,7 @@ void MusicSystemTrayMenu::setVolumeValue(int value) const
 
 void MusicSystemTrayMenu::showDesktopLrc()
 {
-    bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
+    const bool show = m_showLrcAction->text().trimmed() == tr("showDeskLrc").trimmed();
     m_showLrcAction->setText(show ? tr("hideDeskLrc") : tr("showDeskLrc"));
     m_lockLrcAction->setEnabled(show);
     MusicRightAreaWidget::instance()->setDestopLrcVisible(show);
@@ -129,7 +129,7 @@ void MusicSystemTrayMenu::showEvent(QShowEvent *event)
 {
     QMenu::showEvent(event);
 #ifndef Q_OS_UNIX
-    bool state = MusicTopAreaWidget::instance()->getUserLoginState();
+    const bool state = MusicTopAreaWidget::instance()->getUserLoginState();
     m_loginAction->setText(state ? tr("logout") : tr("login"));
 #endif
 }

@@ -64,10 +64,10 @@ void MusicTimerSliderWidget::setRange(int min, int max)
 
 void MusicTimerSliderWidget::sliderMovedAt(int pos) const
 {
-    int max = m_slider->maximum();
+    const int max = m_slider->maximum();
     if(max > 0)
     {
-        float delta = m_slider->width()*(-0.015/800) + 0.0275;
+        const float delta = m_slider->width()*(-0.015/800) + 0.0275;
         m_label->move(ceil(qint64(pos)*m_slider->width()*(1.0 - delta)/max) - 1, 5);
     }
 }
@@ -83,8 +83,8 @@ void MusicTimerSliderWidget::setSliderStyleByType(int type)
         case 4: rgba1 = "rgb(255, 179, 249)"; rgba2 = "rgb(247, 246, 200)"; break;
         default: break;
     }
-    QString prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
-                     "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
+    const QString &prefix = "QSlider::sub-page:Horizontal{background-color:qlineargradient("
+                            "spread:pad,x1:0,y1:0,x2:1,y2:0,stop:0 " + rgba1 + ", stop:1 " + rgba2 + ");}";
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle07 + prefix);
 }
 

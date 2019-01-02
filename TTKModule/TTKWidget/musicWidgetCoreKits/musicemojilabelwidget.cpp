@@ -39,8 +39,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         {
             MusicClickedLabel *l = new MusicClickedLabel(labelWidget);
             l->setAlignment(Qt::AlignCenter);
-            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MBorderStyle04)
-                                                                  .arg(MusicUIObject::MBorderStyle05));
+            l->setStyleSheet(QString("QLabel{%1}QLabel:hover{%2}").arg(MusicUIObject::MBorderStyle04).arg(MusicUIObject::MBorderStyle05));
             l->setFixedSize(32, 32);
             connect(l, SIGNAL(clicked()), mapper, SLOT(map()));
             mapper->setMapping(l, i*7 + j);
@@ -98,17 +97,15 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
     m_currentPage = index;
     foreach(QToolButton *button, m_buttonItems)
     {
-        button->setStyleSheet(MusicUIObject::MBackgroundStyle01 +
-                              MusicUIObject::MBorderStyle01);
+        button->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MBorderStyle01);
     }
-    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() +
-                                        MusicUIObject::MBorderStyle04);
+    m_buttonItems[index]->setStyleSheet(m_buttonItems[index]->styleSheet() + MusicUIObject::MBorderStyle04);
 
     for(int i=0; i<3; ++i)
     {
         for(int j=0; j<7; ++j)
         {
-            int in = i*7 + j;
+            const int in = i*7 + j;
             m_labelItems[in]->setPixmap(QPixmap(QString(":/emoji/%1").arg(21*index + in + 1)));
         }
     }
@@ -116,7 +113,7 @@ void MusicEMOJILabelWidget::buttonClicked(int index)
 
 void MusicEMOJILabelWidget::labelClicked(int index)
 {
-    int offset = index + m_currentPage*21;
+    const int offset = index + m_currentPage*21;
     if(offset < 0 || offset >= m_datas.count())
     {
         return;

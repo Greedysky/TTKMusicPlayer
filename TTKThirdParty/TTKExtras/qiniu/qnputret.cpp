@@ -32,7 +32,7 @@ QNPutRet* QNPutRet::fromJSON(const QByteArray &jsonData)
     const QVariant &data = parser.parse(jsonData, &ok);
     if(ok)
     {
-        QVariantMap value = data.toMap();
+        const QVariantMap &value = data.toMap();
         putRet->setHash(value["hash"].toString());
         putRet->setKey(value["key"].toString());
     }

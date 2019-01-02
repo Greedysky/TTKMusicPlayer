@@ -44,8 +44,7 @@ public:
     /*!
      * Object contsructor by context text and title.
      */
-    MusicMessageBox(const QString &title, const QString &text,
-                    QWidget *parent = nullptr);
+    MusicMessageBox(const QString &title, const QString &text, QWidget *parent = nullptr);
 
     virtual ~MusicMessageBox();
 

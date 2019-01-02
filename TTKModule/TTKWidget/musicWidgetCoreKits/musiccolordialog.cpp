@@ -42,8 +42,8 @@ void MusicHlPalette::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setBrush(Qt::NoBrush);
 
-    int ntRight = rect().right();
-    int ntBottm = rect().bottom();
+    const int ntRight = rect().right();
+    const int ntBottm = rect().bottom();
     QColor colorStart, colorDatum, colorFinal;
     for(int it=0; it< ntRight + 1; it++)
     {
@@ -106,16 +106,15 @@ void MusicHlPalette::mouseMoveEvent(QMouseEvent *event)
         path.addEllipse(m_ptVernierPos, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
-                               QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this, QRect(m_ptVernierPos - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }
 
 void MusicHlPalette::calculateColor()
 {
-    m_ptfVernierPercentPos.setX(m_ptVernierPos.x()/double(rect().right()));
-    m_ptfVernierPercentPos.setY(m_ptVernierPos.y()/double(rect().bottom()));
+    m_ptfVernierPercentPos.setX(m_ptVernierPos.x() / static_cast<double>(rect().right()));
+    m_ptfVernierPercentPos.setY(m_ptVernierPos.y() / static_cast<double>(rect().bottom()));
     m_color.setHslF(m_ptfVernierPercentPos.rx(), m_dblSaturation, 1 - m_ptfVernierPercentPos.ry());
     emit colorChanged(m_color);
 }
@@ -154,8 +153,8 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setBrush(Qt::NoBrush);
 
-    int ntRight = rect().right();
-    int ntBottm = rect().bottom();
+    const int ntRight = rect().right();
+    const int ntBottm = rect().bottom();
 
     double dblVH, dblVS, dblVL = -100.0;
     m_color.getHslF(&dblVH, &dblVS, &dblVL);
@@ -172,7 +171,7 @@ void MusicHlSaturationPalette::paintEvent(QPaintEvent *event)
     QBrush brush(linearGradient);
     painter.fillRect(rect(), brush);
 
-    QPointF ptfCenter(m_dblVernierX, ntBottm/2.0);
+    const QPointF ptfCenter(m_dblVernierX, ntBottm/2.0);
     painter.setPen(QPen(Qt::black, 2));
     painter.drawEllipse(ptfCenter, 5, 5);
 
@@ -210,13 +209,12 @@ void MusicHlSaturationPalette::mouseMoveEvent(QMouseEvent *event)
     }
     else
     {
-        QPointF ptfCenter(m_dblVernierX, rect().bottom()/2.0);
+        const QPointF ptfCenter(m_dblVernierX, rect().bottom()/2.0);
         QPainterPath path;
         path.addEllipse(ptfCenter, 7, 7);
         if(path.contains(event->pos()))
         {
-            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this,
-                               QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
+            QToolTip::showText(mapToGlobal(event->pos()) + QPoint(0, 5), tr("Adjust Hue And Brightness"), this, QRect(event->pos() - QPoint(8, 8), QSize(16, 16)));
         }
     }
 }

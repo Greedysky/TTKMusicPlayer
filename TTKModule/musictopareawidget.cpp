@@ -247,11 +247,11 @@ void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileNam
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    QString art_path = M_BACKGROUND_PTR->getArtPhotoPath();
-    if(!art_path.isEmpty())
+    const QString &artPath = M_BACKGROUND_PTR->getArtPhotoPath();
+    if(!artPath.isEmpty())
     {
         M_BACKGROUND_PTR->indexIncrease();
-        drawWindowBackgroundRectString(art_path);
+        drawWindowBackgroundRectString(artPath);
     }
     else
     {
@@ -266,8 +266,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1  &&
-       m_ui->musiclrccontainerforinline->artBackgroundIsShow() )
+    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artBackgroundIsShow())
     {
         musicBackgroundChanged();
         m_pictureCarouselTimer.start();
@@ -491,10 +490,10 @@ void MusicTopAreaWidget::drawWindowBackgroundRect(const QImage &image)
 
 void MusicTopAreaWidget::drawWindowBackgroundRectString()
 {
-    float v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, m_backgroundAlpha);
+    const float v = MusicUtils::Widget::reRenderValue<float>(1, 0.35, m_backgroundAlpha);
     MusicApplication::instance()->setWindowOpacity(v);
 
-    QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
+    const QSize size(M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize());
     QPixmap after(size);
     after.fill(Qt::transparent);
     QPainter paint(&after);

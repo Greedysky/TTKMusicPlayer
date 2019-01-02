@@ -119,7 +119,7 @@ void MusicDownloadBatchTableItem::setCurrentQuality(int bitrate)
     int index = -1;
     for(int i=0; i<m_qulity->count(); ++i)
     {
-        MusicObject::MusicSongAttribute attr = m_qulity->itemData(i).value<MusicObject::MusicSongAttribute>();
+        const MusicObject::MusicSongAttribute &attr = m_qulity->itemData(i).value<MusicObject::MusicSongAttribute>();
         if(attr.m_bitrate == bitrate || (bitrate > MB_320 && attr.m_bitrate > MB_320))
         {
             index = i;
@@ -140,7 +140,7 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
         return;
     }
 
-    MusicObject::MusicSongAttribute attr = m_qulity->itemData(index).value<MusicObject::MusicSongAttribute>();
+    const MusicObject::MusicSongAttribute &attr = m_qulity->itemData(index).value<MusicObject::MusicSongAttribute>();
     if(attr.m_bitrate == MB_32)         ///st
     {
         m_information->setText(QString("%1/%2KBPS/%3").arg(attr.m_size).arg(attr.m_bitrate).arg(attr.m_format.toUpper()));
@@ -165,9 +165,9 @@ void MusicDownloadBatchTableItem::currentQualityChanged(int index)
 
 void MusicDownloadBatchTableItem::startToDownloadMusic()
 {
-    MusicObject::MusicSongAttribute musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
+    const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    QString downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
+    const QString &downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
     ////////////////////////////////////////////////
     MusicSongs records;
@@ -220,16 +220,16 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
 
 void MusicDownloadBatchTableItem::startToDownloadMovie()
 {
-    MusicObject::MusicSongAttribute musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
+    const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
+    const QString &downloadPrefix = MOVIE_DIR_FULL;
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    QString downloadPrefix = MOVIE_DIR_FULL;
     ////////////////////////////////////////////////
-    QStringList urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
+    const QStringList &urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
     for(int ul=0; ul<urls.count(); ++ul)
     {
         ////////////////////////////////////////////////
         QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
-                                    : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
+                                                   : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
         if(QFile::exists(downloadName))
         {
             for(int i=1; i<99; ++i)
@@ -244,7 +244,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
                 }
                 musicSong += QString("(%1)").arg(i);
                 downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
-                                  : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
+                                                   : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
             }
         }
         ////////////////////////////////////////////////
@@ -292,7 +292,7 @@ void MusicDownloadBatchTableWidget::clearAllItems()
 
 void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInformation &info)
 {
-    int index = rowCount();
+    const int index = rowCount();
     setRowCount(index + 1);
     setRowHeight(index, ROW_HEIGHT);
 

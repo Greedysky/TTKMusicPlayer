@@ -17,8 +17,7 @@ void MusicPhotoGrabItem::setBorderRect(const QRect &rect)
 {
     MusicResizeGrabItemWidget::setBorderRect(rect);
     move(m_borderRect.topLeft());
-    int v = (m_borderRect.width() < m_borderRect.height()) ?
-             m_borderRect.width() : m_borderRect.height();
+    const int v = (m_borderRect.width() < m_borderRect.height()) ? m_borderRect.width() : m_borderRect.height();
     resize(v, v);
 }
 
@@ -65,9 +64,7 @@ void MusicPhotoGrabLabel::setImagePath(const QString &path)
 QPixmap MusicPhotoGrabLabel::pixmap()
 {
     QPixmap img(m_path);
-    return img.copy(
-            QRect((m_grabItem->geometry().topLeft() - m_imgRect.topLeft())*m_ratio,
-                   m_grabItem->geometry().size()*m_ratio));
+    return img.copy(QRect((m_grabItem->geometry().topLeft() - m_imgRect.topLeft())*m_ratio, m_grabItem->geometry().size()*m_ratio));
 }
 
 void MusicPhotoGrabLabel::rectChanged()

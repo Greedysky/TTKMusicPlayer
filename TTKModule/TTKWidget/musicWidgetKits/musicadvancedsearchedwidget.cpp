@@ -111,7 +111,7 @@ MusicAdvancedSearchedWidget::~MusicAdvancedSearchedWidget()
 
 void MusicAdvancedSearchedWidget::searchButtonClicked()
 {
-    int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
+    const int server = M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt();
     if(server > 5 || server < 0)
     {
         MusicMessageBox message;
@@ -125,35 +125,35 @@ void MusicAdvancedSearchedWidget::searchButtonClicked()
         case 0:
             {
                 QString key = !m_songEdit->text().isEmpty() ? m_songEdit->text() : m_songEdit->placeholderText();
-                key = getSearchedKeyWork(0, key);
+                        key = getSearchedKeyWork(0, key);
                 MusicRightAreaWidget::instance()->musicSingleSearchedFound(key);
                 break;
             }
         case 1:
             {
                 QString key = !m_artistEdit->text().isEmpty() ? m_artistEdit->text() : m_artistEdit->placeholderText();
-                key = getSearchedKeyWork(1, key);
+                        key = getSearchedKeyWork(1, key);
                 MusicRightAreaWidget::instance()->musicArtistFound(QString(), key);
                 break;
             }
         case 2:
             {
                 QString key = !m_albumEdit->text().isEmpty() ? m_albumEdit->text() : m_albumEdit->placeholderText();
-                key = getSearchedKeyWork(2, key);
+                        key = getSearchedKeyWork(2, key);
                 MusicRightAreaWidget::instance()->musicAlbumFound(QString(), key);
                 break;
             }
         case 3:
             {
                 QString key = !m_playlistEdit->text().isEmpty() ? m_playlistEdit->text() : m_playlistEdit->placeholderText();
-                key = getSearchedKeyWork(3, key);
+                        key = getSearchedKeyWork(3, key);
                 MusicRightAreaWidget::instance()->musicPlaylistFound(key);
                 break;
             }
         case 4:
             {
                 QString key = !m_movieEdit->text().isEmpty() ? m_movieEdit->text() : m_movieEdit->placeholderText();
-                key = getSearchedKeyWork(4, key);
+                        key = getSearchedKeyWork(4, key);
                 MusicRightAreaWidget::instance()->musicVideoButtonSearched(QString(), key);
                 break;
             }

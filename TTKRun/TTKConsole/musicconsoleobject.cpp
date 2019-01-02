@@ -99,7 +99,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
 
     if(parser.isSet(op1))
     {
-        QString url = parser.value(op1);
+        const QString &url = parser.value(op1);
         if(url.isEmpty())
         {
             qDebug() << "Music play url path is empty!";
@@ -114,7 +114,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     }
     else if(parser.isSet(op2))
     {
-        QString url = parser.value(op2);
+        const QString &url = parser.value(op2);
         if(url.isEmpty())
         {
             qDebug() << "Music play dir path is empty!";
@@ -136,7 +136,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
     }
     else if(parser.isSet(op3))
     {
-        QString url = parser.value(op3);
+        const QString &url = parser.value(op3);
         if(url.isEmpty())
         {
             qDebug() << "Music playlist path is empty!";

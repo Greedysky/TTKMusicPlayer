@@ -99,7 +99,7 @@ bool MusicSoundEffectsItemWidget::pluginEnable() const
 
 void MusicSoundEffectsItemWidget::soundEffectChanged(Type type, bool enable)
 {
-    QString plugin( transformQStringFromEnum(type) );
+    const QString plugin( transformQStringFromEnum(type) );
     foreach(EffectFactory *factory, Effect::factories())
     {
         if(factory->properties().name.contains(plugin))
@@ -137,7 +137,7 @@ void MusicSoundEffectsItemWidget::soundEffectCheckBoxChanged(bool state)
 
 void MusicSoundEffectsItemWidget::soundEffectValueChanged()
 {
-    QString plugin( transformQStringFromEnum(m_type) );
+    const QString plugin( transformQStringFromEnum(m_type) );
     foreach(EffectFactory *factory, Effect::factories())
     {
         if(factory->properties().name.contains(plugin))
@@ -261,7 +261,7 @@ void MusicSoundEffectsWidget::equalizerButtonChanged(bool state)
 
 void MusicSoundEffectsWidget::equalizerButtonChanged()
 {
-    int state = !M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
+    const int state = !M_SETTING_PTR->value(MusicSettingManager::EqualizerEnableChoiced).toInt();
     equalizerButtonChanged(state);
 
     M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, state);

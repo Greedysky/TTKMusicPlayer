@@ -182,8 +182,7 @@ void MusicSettingWidget::initControllerParameter()
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
     ////////////////////////////////////////////////
-    M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toBool() ?
-                     m_ui->otherHerImgRadioBox->click() : m_ui->otherNorImgRadioBox->click();
+    M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toBool() ? m_ui->otherHerImgRadioBox->click() : m_ui->otherNorImgRadioBox->click();
     m_ui->otherUpdateCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool());
     m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toBool());
     m_ui->otherAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toBool());
@@ -197,13 +196,11 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
     m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ?
-                     m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
+    M_SETTING_PTR->value(MusicSettingManager::DownloadCacheLimitChoiced).toInt() == 1 ? m_ui->downloadCacheAutoRadioBox->click() : m_ui->downloadCacheManRadioBox->click();
 
     MusicUtils::Widget::setComboBoxText(m_ui->downloadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadDLoadLimitChoiced).toString());
     MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
-    M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ?
-                     m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
+    M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
     ////////////////////////////////////////////////
     //Set init parameter
@@ -327,8 +324,8 @@ void MusicSettingWidget::downloadDirSelected(int index)
     dialog.setViewMode(QFileDialog::Detail);
     if(dialog.exec())
     {
-        QString path;
-        if(!(path = dialog.directory().absolutePath()).isEmpty())
+        const QString &path = dialog.directory().absolutePath();
+        if(!path.isEmpty())
         {
             index == 0 ? m_ui->downloadDirEdit->setText(path + "/") : m_ui->downloadLrcDirEdit->setText(path + "/");
         }
@@ -500,6 +497,7 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced, m_ui->quitWindowRadioBox->isChecked());
     M_NETWORK_PTR->setBlockNetWork( m_ui->closeNetWorkCheckBox->isChecked() );
     M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced, m_ui->setDefaultPlayerCheckBox->isChecked());
+
     if(m_ui->setDefaultPlayerCheckBox->isChecked())
     {
         m_ui->setDefaultPlayerCheckBox->setEnabled(false);
@@ -779,8 +777,8 @@ void MusicSettingWidget::initDesktopLrcWidget()
     m_ui->DfontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->DfontSizeComboBox->addItems(MusicLrcDefines().getDesktopLrcSize());
     m_ui->DfontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed")
-                                                    << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
+    m_ui->DfontDefaultColorComboBox->addItems(QStringList() << tr("DWhite") << tr("DBlue") << tr("DRed") << tr("DBlack") << tr("DYellow") << tr("DPurple") << tr("DGreen"));
+
     connect(m_ui->DfontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
     connect(m_ui->DfontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showDesktopLrcDemo()));
@@ -823,9 +821,8 @@ void MusicSettingWidget::initInlineLrcWidget()
     m_ui->fontComboBox->addItems(QFontDatabase().families(QFontDatabase::Any));
     m_ui->fontSizeComboBox->addItems(MusicLrcDefines().getInlineLrcSize());
     m_ui->fontTypeComboBox->addItems(QStringList() << "1" << "2" << "3" << "4");
-    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray")
-                                                << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple")
-                                                << tr("IOrange") << tr("IIndigo"));
+    m_ui->fontDefaultColorComboBox->addItems(QStringList() << tr("IYellow") << tr("IBlue") << tr("IGray") << tr("IPink") << tr("IGreen") << tr("IRed") << tr("IPurple") << tr("IOrange") << tr("IIndigo"));
+
     connect(m_ui->fontComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(m_ui->fontSizeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
     connect(m_ui->fontTypeComboBox, SIGNAL(currentIndexChanged(int)), SLOT(showInlineLrcDemo()));
@@ -854,6 +851,7 @@ void MusicSettingWidget::initSoundEffectWidget()
     m_ui->outputTypeComboBox->setItemDelegate(new QStyledItemDelegate(m_ui->outputTypeComboBox));
     m_ui->outputTypeComboBox->setStyleSheet(MusicUIObject::MComboBoxStyle01 + MusicUIObject::MItemView01);
     m_ui->outputTypeComboBox->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
+
     foreach(const QAudioDeviceInfo &info, QAudioDeviceInfo::availableDevices(QAudio::AudioOutput))
     {
         m_ui->outputTypeComboBox->addItem(info.deviceName());
@@ -945,8 +943,7 @@ void MusicSettingWidget::initNetworkWidget()
     m_ui->netCheckTypeButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") <<
-                 tr("NoProxy") << tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
+    m_ui->proxyTypeComboBox->addItems(QStringList() << tr("DefaultProxy") << tr("Socks5Proxy") << tr("NoProxy") << tr("HttpProxy") << tr("HttpCachingProxy") << tr("FtpCachingProxy"));
 
     connect(m_ui->proxyTypeTestButton, SIGNAL(clicked()), SLOT(testNetworkProxy()));
     connect(m_ui->netConnectionTypeButton, SIGNAL(clicked()), SLOT(testNetworkConnection()));
@@ -958,8 +955,8 @@ void MusicSettingWidget::initNetworkWidget()
 
 void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *obj)
 {
-    key == Inline ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1)
-                  : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
+    key == Inline ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
+
     MusicLrcColorWidget getColor(this);
     if(type == "DLRCFGCOLORCHOICED") getColor.setColors(m_DlrcSelectedFg);
     if(type == "DLRCBGCOLORCHOICED") getColor.setColors(m_DlrcSelectedBg);
@@ -968,8 +965,9 @@ void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *ob
 
     if(getColor.exec())
     {
-        QList<QColor> colors = getColor.getColors();
+        const QList<QColor> &colors = getColor.getColors();
         MStatic_cast(MusicColorPreviewLabel*, obj)->setLinearGradient(colors);
+
         if(type == "DLRCFGCOLORCHOICED") m_DlrcSelectedFg = colors;
         if(type == "DLRCBGCOLORCHOICED") m_DlrcSelectedBg = colors;
         if(type == "LRCFGCOLORCHOICED") m_lrcSelectedFg = colors;
@@ -1037,6 +1035,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
     MusicNetworkProxy proxy;
     connect(&proxy, SIGNAL(testProxyStateChanged(bool)), SLOT(testProxyStateChanged(bool)));
     proxy.setType(m_ui->proxyTypeComboBox->currentIndex());
+
     QString value = m_ui->proxyIpEdit->text().trimmed();
     if(value.isEmpty())
     {
@@ -1046,6 +1045,7 @@ bool MusicSettingWidget::setNetworkProxyByType(int type)
         return false;
     }
     proxy.setHostName(value);
+
     value = m_ui->proxyPortEdit->text().trimmed();
     if(value.isEmpty())
     {

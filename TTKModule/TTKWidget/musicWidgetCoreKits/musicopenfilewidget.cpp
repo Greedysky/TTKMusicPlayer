@@ -34,7 +34,7 @@ MusicOpenFileWidget::MusicOpenFileWidget(QWidget *parent)
 
 void MusicOpenFileWidget::adjustRect(int w, int h)
 {
-    int x = (w - width() - 60)/2;
-    int y = (h - height())/2;
+    const int x = (w - width() - 60)/2;
+    const int y = (h - height())/2;
     move(x, y);
 }

@@ -47,8 +47,7 @@ MusicMessageBox::MusicMessageBox(const QString &text, QWidget *parent)
     setText(text);
 }
 
-MusicMessageBox::MusicMessageBox(const QString &title, const QString &text,
-                                 QWidget *parent)
+MusicMessageBox::MusicMessageBox(const QString &title, const QString &text, QWidget *parent)
     : MusicMessageBox(text, parent)
 {
     setTitle(title);

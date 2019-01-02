@@ -60,10 +60,9 @@ MusicCutSliderWidget::MusicCutSliderWidget(QWidget *parent)
 {
     m_leftControl = new MusicMoveButton(this);
     m_rightControl = new MusicMoveButton(this);
-    m_leftControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT,
-                                PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
-    m_rightControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT,
-                                PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
+    m_leftControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
+    m_rightControl->setGeometry(-PAINT_BUTTON_WIDTH/2, PAINT_BUTTON_HEIGHT, PAINT_BUTTON_WIDTH, PAINT_BUTTON_HEIGHT);
+
     connect(m_leftControl, SIGNAL(moveChanged()), SLOT(buttonMoveUpdate()));
     connect(m_rightControl, SIGNAL(moveChanged()), SLOT(buttonMoveUpdate()));
     connect(m_leftControl, SIGNAL(buttonRelease()), SLOT(buttonReleaseLeft()));
@@ -99,6 +98,7 @@ void MusicCutSliderWidget::resizeWindow(int width, int height)
 {
     m_width = width;
     m_height = height;
+
     if(height < 30)
     {
         return;
@@ -113,6 +113,7 @@ void MusicCutSliderWidget::buttonMoveUpdate()
 {
     int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
     int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
+
     if(leftX < 0)
     {
         m_leftControl->move(-PAINT_BUTTON_WIDTH/2, m_leftControl->geometry().y());
@@ -151,14 +152,14 @@ void MusicCutSliderWidget::buttonMoveUpdate()
 void MusicCutSliderWidget::buttonReleaseLeft()
 {
     int leftX = m_leftControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
-    leftX = leftX*m_duration/m_width;
+        leftX = leftX*m_duration/m_width;
     emit buttonReleaseChanged(leftX);
 }
 
 void MusicCutSliderWidget::buttonReleaseRight()
 {
     int rightX = m_rightControl->geometry().x() + PAINT_BUTTON_WIDTH/2;
-    rightX = rightX*m_duration/m_width;
+        rightX = rightX*m_duration/m_width;
     emit buttonReleaseChanged(rightX);
 }
 
@@ -167,7 +168,7 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
     QPainter painter(this);
 
-    int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH))/2;
+    const int lineStartHeight = (m_height - (PAINT_SLIDER_HEIGHT + PAINT_BUTTON_WIDTH))/2;
     painter.setBrush(QBrush(QColor(220, 220, 220)));
     painter.drawRect(0, lineStartHeight, m_width, PAINT_SLIDER_HEIGHT);
 
@@ -175,13 +176,11 @@ void MusicCutSliderWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(0, lineStartHeight, m_position, PAINT_SLIDER_HEIGHT);
 
     painter.setBrush(QBrush(QColor(MusicUIObject::MColorStyle12_S)));
-    int leftX = m_leftControl->geometry().x();
-    int rightX = m_rightControl->geometry().x();
-    painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH/2 : rightX + PAINT_BUTTON_WIDTH/2,
-                     lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);
+    const int leftX = m_leftControl->geometry().x();
+    const int rightX = m_rightControl->geometry().x();
+    painter.drawRect(leftX < rightX ? leftX + PAINT_BUTTON_WIDTH/2 : rightX + PAINT_BUTTON_WIDTH/2, lineStartHeight, abs(leftX -rightX), PAINT_SLIDER_HEIGHT);
 
     painter.setBrush(QBrush(QColor(0, 0, 0)));
-    painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER)/2,
-                     PAINT_HANDER, PAINT_HANDER);
+    painter.drawRect(m_position - PAINT_HANDER/2, lineStartHeight + (PAINT_SLIDER_HEIGHT - PAINT_HANDER)/2, PAINT_HANDER, PAINT_HANDER);
 
 }

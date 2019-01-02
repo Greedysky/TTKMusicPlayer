@@ -21,6 +21,7 @@ MusicAbstractMoveResizeWidget::MusicAbstractMoveResizeWidget(QWidget *parent)
 bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 {
     QWidget::eventFilter(object, event);
+
     if(QEvent::MouseMove == event->type())
     {
         QMouseEvent *mouseEvent = MStatic_cast(QMouseEvent*, event);
@@ -32,6 +33,7 @@ bool MusicAbstractMoveResizeWidget::eventFilter(QObject *object, QEvent *event)
 void MusicAbstractMoveResizeWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
     QWidget::mouseDoubleClickEvent(event);
+
     if(event->buttons() == Qt::LeftButton)
     {
         if(isMaximized())
@@ -56,8 +58,7 @@ void MusicAbstractMoveResizeWidget::mousePressEvent(QMouseEvent *event)
     if(event->button() == Qt::LeftButton)
     {
         m_struct.m_windowPos = pos();
-        if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1)*2,
-                 height() - (DISTANCE + 1)*2).contains(event->pos()))
+        if(QRect(DISTANCE + 1, DISTANCE + 1, width() - (DISTANCE + 1)*2, height() - (DISTANCE + 1)*2).contains(event->pos()))
         {
             m_struct.m_mousePos = event->globalPos();
             m_struct.m_mouseLeftPress = true;
@@ -83,6 +84,7 @@ void MusicAbstractMoveResizeWidget::mouseMoveEvent(QMouseEvent *event)
 void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     QWidget::mouseReleaseEvent(event);
+
     m_struct.m_isPressBorder = false;
     m_struct.m_mouseLeftPress = false;
     setCursor(QCursor(Qt::ArrowCursor));
@@ -90,27 +92,23 @@ void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicAbstractMoveResizeWidget::sizeDirection()
 {
-    QPoint point = mapFromGlobal(QCursor::pos());
-    if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE &&
-       point.y() > DISTANCE)//right side
+    const QPoint &point = mapFromGlobal(QCursor::pos());
+    if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)//right side
     {
         setCursor(Qt::SizeHorCursor);
         m_direction = Direction_Right;
     }
-    else if(point.x() < DISTANCE && point.y() < height() - DISTANCE &&
-            point.y() > DISTANCE)
+    else if(point.x() < DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
         m_direction = Direction_Left;
     }
-    else if(point.y() > height() - DISTANCE && point.x() > DISTANCE &&
-            point.x() < width() - DISTANCE)
+    else if(point.y() > height() - DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
         m_direction = Direction_Bottom;
     }
-    else if(point.y() < DISTANCE && point.x() > DISTANCE &&
-            point.x() < width() - DISTANCE)
+    else if(point.y() < DISTANCE && point.x() > DISTANCE && point.x() < width() - DISTANCE)
     {
         setCursor(Qt::SizeVerCursor);
         m_direction = Direction_Top;
@@ -148,7 +146,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
     {
         case Direction_Right:
         {
-            int wValue = QCursor::pos().x() - x();
+            const int wValue = QCursor::pos().x() - x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
             {
                 setGeometry(x(), y(), wValue, height());
@@ -157,7 +155,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         }
         case Direction_Left:
         {
-            int wValue = x() + width() - QCursor::pos().x();
+            const int wValue = x() + width() - QCursor::pos().x();
             if(minimumWidth() <= wValue && wValue <= maximumWidth())
             {
                 setGeometry(QCursor::pos().x(), y(), wValue, height());
@@ -166,7 +164,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         }
         case Direction_Bottom:
         {
-            int hValue = QCursor::pos().y() - y();
+            const int hValue = QCursor::pos().y() - y();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
             {
                 setGeometry(x(), y(), width(), hValue);
@@ -175,7 +173,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         }
         case Direction_Top:
         {
-            int hValue = y() - QCursor::pos().y() + height();
+            const int hValue = y() - QCursor::pos().y() + height();
             if(minimumHeight() <= hValue && hValue <= maximumHeight())
             {
                 setGeometry(x(), QCursor::pos().y(), width(), hValue);
@@ -185,7 +183,7 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         case Direction_RightTop:
         {
             int hValue = y() + height() - QCursor::pos().y();
-            int wValue = QCursor::pos().x() - x();
+            const int wValue = QCursor::pos().x() - x();
             int yValue = QCursor::pos().y();
             if(hValue >= maximumHeight())
             {
@@ -207,8 +205,9 @@ void MusicAbstractMoveResizeWidget::moveDirection()
 
             int wValue = pos().x() + width( )- xValue;
             int hValue = pos().y() + height() - yValue;
-            int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
-            int thValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height();
+
+            const int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
+            const int thValue = m_struct.m_windowPos.y() + m_struct.m_pressedSize.height();
 
             if(twValue - xValue >= maximumWidth())
             {
@@ -235,17 +234,18 @@ void MusicAbstractMoveResizeWidget::moveDirection()
         }
         case Direction_RightBottom:
         {
-            int wValue = QCursor::pos().x() - x();
-            int hValue = QCursor::pos().y() - y();
+            const int wValue = QCursor::pos().x() - x();
+            const int hValue = QCursor::pos().y() - y();
             setGeometry(m_struct.m_windowPos.x(), m_struct.m_windowPos.y(), wValue, hValue);
             break;
         }
         case Direction_LeftBottom:
         {
             int wValue = x() + width() - QCursor::pos().x();
-            int hValue = QCursor::pos().y() - m_struct.m_windowPos.y();
+            const int hValue = QCursor::pos().y() - m_struct.m_windowPos.y();
             int xValue = QCursor::pos().x();
-            int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
+            const int twValue = m_struct.m_windowPos.x() + m_struct.m_pressedSize.width();
+
             if(twValue - xValue >= maximumWidth())
             {
                 xValue = twValue - maximumWidth();

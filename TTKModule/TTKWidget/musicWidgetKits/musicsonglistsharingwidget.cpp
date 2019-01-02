@@ -19,18 +19,15 @@ MusicSongListSharingWidget::MusicSongListSharingWidget(QWidget *parent)
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_ui->mainLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MFontStyle05 + \
-                                   MusicUIObject::MFontStyle01 + MusicUIObject::MColorStyle03);
+    m_ui->mainLabel->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MFontStyle05 + MusicUIObject::MFontStyle01 + MusicUIObject::MColorStyle03);
     m_ui->mainOutputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->mainInputButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
 
     m_ui->mainOutputButton->setIcon(QIcon(":/toolSets/btn_kukou_output"));
     m_ui->mainInputButton->setIcon(QIcon(":/toolSets/btn_kukou_input"));
 
-    m_ui->writeBackButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + \
-                                         MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
-    m_ui->readBackButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + \
-                                        MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
+    m_ui->writeBackButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
+    m_ui->readBackButton->setStyleSheet(MusicUIObject::MBackgroundStyle01 + MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle02);
 #ifdef Q_OS_UNIX
     m_ui->mainOutputButton->setFocusPolicy(Qt::NoFocus);
     m_ui->mainInputButton->setFocusPolicy(Qt::NoFocus);
@@ -84,6 +81,5 @@ void MusicSongListSharingWidget::readMainButtonClicked()
 void MusicSongListSharingWidget::createWriteKey()
 {
     MusicLicenseCore core;
-    QString key = core.getCharacteristicStringNormal();
-    m_ui->writeMainLabel2->setText(key);
+    m_ui->writeMainLabel2->setText(core.getCharacteristicStringNormal());
 }

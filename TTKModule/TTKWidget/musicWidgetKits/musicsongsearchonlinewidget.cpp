@@ -75,7 +75,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     }
     else
     {
-        QString quality = m_downLoadManager->getSearchQuality();
+        const QString &quality = m_downLoadManager->getSearchQuality();
         MusicQueryItemTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
@@ -100,7 +100,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
     }
     else
     {
-        QString quality = m_downLoadManager->getSearchQuality();
+        const QString &quality = m_downLoadManager->getSearchQuality();
         MusicQueryItemTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
@@ -112,7 +112,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
 
 void MusicSongSearchTableWidget::musicDownloadLocal(int row)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(row < 0 || (row >= rowCount() - 1) || row >= musicSongInfos.count())
     {
         return;
@@ -133,7 +133,7 @@ void MusicSongSearchTableWidget::auditionStop()
 
 void MusicSongSearchTableWidget::auditionToMusic(int row)
 {
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     if(musicSongInfos.isEmpty() || row < 0 || (row >= rowCount() - 1))
     {
         MusicMessageBox message;
@@ -198,7 +198,7 @@ void MusicSongSearchTableWidget::setSearchQuality(const QString &quality)
 
 void MusicSongSearchTableWidget::resizeWindow()
 {
-    int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
+    const int width = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().width();
     QHeaderView *headerview = horizontalHeader();
     headerview->resizeSection(1, (width - WINDOW_WIDTH_MIN)/3.0 + 273);
     headerview->resizeSection(2, (width - WINDOW_WIDTH_MIN)/3.0 + 105);
@@ -245,7 +245,7 @@ void MusicSongSearchTableWidget::listCellClicked(int row, int column)
             break;
     }
 
-    QTableWidgetItem *it = item(row, 0);
+    const QTableWidgetItem *it = item(row, 0);
     if(it)
     {
         emit auditionIsPlaying(it->data(MUSIC_AUDIT_ROLE).toInt() == AUDITION_STOP);
@@ -260,7 +260,7 @@ void MusicSongSearchTableWidget::clearAllItems()
 
 void MusicSongSearchTableWidget::createSearchedItem(const MusicSearchedItem &songItem)
 {
-    int count = rowCount();
+    const int count = rowCount();
     setRowCount(count + 1);
 
     QHeaderView *headerview = horizontalHeader();
@@ -325,25 +325,25 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
 {
 //    MusicQueryItemTableWidget::actionGroupClick(action);
-    int row = currentRow();
+    const int row = currentRow();
     if(!m_downLoadManager || row < 0 || (row >= rowCount() - 1))
     {
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MusicSongInformation *info = &musicSongInfos[row];
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformation &info = musicSongInfos[row];
 
     switch( action->data().toInt() )
     {
         case 0: musicDownloadLocal(row); break;
-        case 1: emit restartSearchQuery(info->m_songName); break;
-        case 2: MusicRightAreaWidget::instance()->musicArtistFound(info->m_singerName, info->m_artistId); break;
-        case 3: emit restartSearchQuery(info->m_singerName + " - " + info->m_songName); break;
+        case 1: emit restartSearchQuery(info.m_songName); break;
+        case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
+        case 3: emit restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
         case 4: auditionToMusic(row); break;
         case 5: addSearchMusicToPlayList(row); break;
         case 6: musicSongDownload(row); break;
-        case 7: MusicRightAreaWidget::instance()->musicAlbumFound(info->m_albumName, info->m_albumId); break;
+        case 7: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
     }
 }
@@ -352,8 +352,7 @@ void MusicSongSearchTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
-        emit musicSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time,
-                                        m_downloadData.m_format, true);
+        emit musicSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
     }
     m_downloadData.clear();
 }
@@ -365,7 +364,7 @@ void MusicSongSearchTableWidget::musicSongDownload(int row)
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
     MusicDownloadWidget *download = new MusicDownloadWidget(this);
     download->setSongName(musicSongInfos[row], MusicDownLoadQueryThreadAbstract::MusicQuery);
     download->show();
@@ -401,7 +400,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
 
     if(!m_actionGroup->actions().isEmpty())
     {
-        QString albumName = currentRow() != -1 && rowCount() > 0 ? item(currentRow(), 3)->toolTip() : QString();
+        const QString &albumName = (currentRow() != -1 && rowCount() > 0) ? item(currentRow(), 3)->toolTip() : QString();
         QAction *lastAction = m_actionGroup->actions().last();
         QAction *action = m_actionGroup->addAction(tr("search '%1'").arg(albumName));
         action->setData(7);
@@ -427,12 +426,14 @@ void MusicSongSearchTableWidget::addSearchMusicToPlayList(int row)
     }
     emit showDownLoadInfoFor(MusicObject::DW_DownLoading);
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
-    MusicObject::MusicSongInformation musicSongInfo = musicSongInfos[row];
-    MusicObject::MusicSongAttribute musicSongAttr = musicSongInfo.m_songAttrs.first();
-    QString musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
-    QString musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
-    QString downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
+    const MusicObject::MusicSongInformations musicSongInfos(m_downLoadManager->getMusicSongInfos());
+    const MusicObject::MusicSongInformation &musicSongInfo = musicSongInfos[row];
+    const MusicObject::MusicSongAttribute &musicSongAttr = musicSongInfo.m_songAttrs.first();
+
+    const QString &musicSong = item(row, 2)->toolTip() + " - " + item(row, 1)->toolTip();
+    const QString &musicEnSong = MusicUtils::Algorithm::mdII(musicSong, ALG_DOWNLOAD_KEY, true);
+    const QString &downloadName = QString("%1%2.%3").arg(CACHE_DIR_FULL).arg(musicEnSong).arg(musicSongAttr.m_format);
+
     MusicDataDownloadThread *download = new MusicDataDownloadThread(musicSongAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(searchDataDwonloadFinished()));
     download->startToDownload();
@@ -471,8 +472,7 @@ MusicSongSearchOnlineWidget::MusicSongSearchOnlineWidget(QWidget *parent)
 
     createToolWidget(toolWidget);
     connect(m_searchTableWidget, SIGNAL(auditionIsPlaying(bool)), SLOT(auditionIsPlaying(bool)));
-    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(),
-                                 SLOT(musicSongSearchedFound(QString)));
+    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), MusicRightAreaWidget::instance(), SLOT(musicSongSearchedFound(QString)));
 }
 
 MusicSongSearchOnlineWidget::~MusicSongSearchOnlineWidget()
@@ -544,8 +544,7 @@ void MusicSongSearchOnlineWidget::buttonClicked(int index)
         switch(index)
         {
             case 0:
-                m_playButton->text() == tr("Play") ? m_searchTableWidget->auditionToMusic(row)
-                                                   : m_searchTableWidget->auditionToMusicStop(row);
+                m_playButton->text() == tr("Play") ? m_searchTableWidget->auditionToMusic(row) : m_searchTableWidget->auditionToMusicStop(row);
                 break;
             case 1:
                 m_searchTableWidget->listCellClicked(row, 7);
@@ -701,7 +700,6 @@ void MusicSongSearchOnlineWidget::setResizeLabelText(const QString &name)
     }
 
     width = width - WINDOW_WIDTH_MIN + 240;
-    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result")
-                         .arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
+    m_textLabel->setText(tr("&nbsp;find <font color=#158FE1> %1 </font> result").arg(MusicUtils::Widget::elidedText(font(), name, Qt::ElideRight, width)));
     m_textLabel->setToolTip(name);
 }

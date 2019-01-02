@@ -77,10 +77,8 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
     {
 #ifndef MUSIC_MOBILE
         MusicBottomAreaWidget *w = MusicBottomAreaWidget::instance();
-        m_previousState ? w->showMessage(tr("TTKMusicPlayer"),
-                                         tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
-                        : w->showMessage(tr("TTKMusicPlayer"),
-                                         tr("Network Connection Has Been Restored."));
+        m_previousState ? w->showMessage(tr(APPNAME), tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
+                        : w->showMessage(tr(APPNAME), tr("Network Connection Has Been Restored."));
 #endif
     }
     m_previousState = state;
@@ -89,8 +87,7 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
 
 bool MusicDownloadStatusObject::checkSettingParameterValue() const
 {
-    return ( M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() ||
-             M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool() );
+    return M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool() || M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
 }
 
 void MusicDownloadStatusObject::musicCheckHasLrcAlready()
@@ -108,10 +105,9 @@ void MusicDownloadStatusObject::musicCheckHasLrcAlready()
            return;
        }
 
-       QString filename = m_parentWidget->getCurrentFileName();
+       const QString &filename = m_parentWidget->getCurrentFileName();
        ///Check if the file exists
-       if(QFile::exists(MusicUtils::Core::lrcPrefix() + filename + LRC_FILE) ||
-          QFile::exists(MusicUtils::Core::lrcPrefix() + filename + KRC_FILE))
+       if(QFile::exists(MusicUtils::Core::lrcPrefix() + filename + LRC_FILE) || QFile::exists(MusicUtils::Core::lrcPrefix() + filename + KRC_FILE))
        {
            return;
        }
@@ -137,19 +133,18 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         return;
     }
 
-    MusicObject::MusicSongInformations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
+    const MusicObject::MusicSongInformations musicSongInfos(m_downloadLrcThread->getMusicSongInfos());
     if(!musicSongInfos.isEmpty())
     {
-        QString filename = m_parentWidget->getCurrentFileName();
-        int count = MusicUtils::String::splitString(filename).count();
-        QString artistName = MusicUtils::String::artistName(filename);
-        QString songName = MusicUtils::String::songName(filename);
+        const QString &filename = m_parentWidget->getCurrentFileName();
+        const int count = MusicUtils::String::splitString(filename).count();
+        const QString &artistName = MusicUtils::String::artistName(filename);
+        const QString &songName = MusicUtils::String::songName(filename);
 
         MusicObject::MusicSongInformation musicSongInfo = musicSongInfos.first();
         foreach(const MusicObject::MusicSongInformation &var, musicSongInfos)
         {
-            if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) &&
-               var.m_songName.contains(songName, Qt::CaseInsensitive))
+            if(var.m_singerName.contains(artistName, Qt::CaseInsensitive) && var.m_songName.contains(songName, Qt::CaseInsensitive))
             {
                 musicSongInfo = var;
                 break;
@@ -157,11 +152,9 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         }
 
         ///download lrc
-        M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE,
-                                                   MusicObject::DownloadLrc, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE,
-                                                        MusicObject::DownloadSmallBG, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBG, this)->startToDownload();
         ///download big picture
         M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }

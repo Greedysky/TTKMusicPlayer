@@ -209,7 +209,7 @@ void MusicBackgroundPaletteWidget::paletteColorClicked()
 
 void MusicBackgroundPaletteWidget::showPaletteDialog()
 {
-    QColor paletteColor = MusicColorDialog::getColor(this);
+    const QColor &paletteColor = MusicColorDialog::getColor(this);
     if(!paletteColor.isValid())
     {
         return;

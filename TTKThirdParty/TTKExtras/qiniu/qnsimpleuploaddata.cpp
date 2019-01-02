@@ -36,15 +36,14 @@ QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager, QO
     d->m_networkManager = networkManager;
 }
 
-void QNSimpleUploadData::uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket,
-                                            const QString &key, const QString &name)
+void QNSimpleUploadData::uploadDataToServer(const QString &time, const QByteArray &data, const QString &bucket, const QString &key, const QString &name)
 {
     TTK_D(QNSimpleUploadData);
     d->m_uploadTime = time;
 
-    QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+    const QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     QNPutPolicy policy(bucket);
-    QString uploadToken = policy.makeUploadToken(&mac);
+    const QString &uploadToken = policy.makeUploadToken(&mac);
     QHttpMultiPart *multiPart = QNIOHelper::createPutDataMultiPart(uploadToken, data, key, name);
     QNetworkRequest request;
     request.setUrl(QUrl(QNConf::UPLOAD_HOST));
@@ -61,14 +60,14 @@ void QNSimpleUploadData::uploadDataToServer(const QString &time, const QByteArra
 
 QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString &key)
 {
-    QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
-    int deadline = QNUtils::expireInSeconds(3600);
+    const QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
+    const int deadline = QNUtils::expireInSeconds(3600);
 #ifdef MUSIC_GREATER_NEW
-    QString encodeKey = QUrl(key).toString(QUrl::FullyEncoded);
+    const QString encodeKey = QUrl(key).toString(QUrl::FullyEncoded);
 #else
-    QString encodeKey = QUrl(key).toEncoded();
+    const QString encodeKey = QUrl(key).toEncoded();
 #endif
-    QString baseUrl = QString("%1/%2?e=%3").arg(domain).arg(encodeKey).arg(deadline);
+    const QString &baseUrl = QString("%1/%2?e=%3").arg(domain).arg(encodeKey).arg(deadline);
 
     QNPutPolicy policy(baseUrl);
     return QString("%1&token=%2").arg(baseUrl).arg(policy.makeDownloadToken(&mac));

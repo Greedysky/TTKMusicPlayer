@@ -78,6 +78,7 @@ void MusicSongsListAbstractTableWidget::setDeleteItemAll()
 
     bool state = false;
     emit isCurrentIndex(state);
+
     if(rowCount() == 0 && state)
     {
         MusicApplication::instance()->musicPlayIndex(-1);
@@ -91,7 +92,7 @@ void MusicSongsListAbstractTableWidget::musicOpenFileDir()
         return;
     }
 
-    QString path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
+    const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(currentRow()).getMusicPath() : QString();
     if(QFileInfo(path).baseName() == MusicUtils::Algorithm::mdII(getCurrentSongName(), ALG_DOWNLOAD_KEY, true))
     {
         //cache song should not allow open url

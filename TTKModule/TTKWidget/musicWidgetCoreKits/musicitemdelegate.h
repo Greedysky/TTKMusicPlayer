@@ -58,14 +58,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option,
-                           const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
     QRadioButton *m_radioButton;
@@ -95,14 +92,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option,
-                           const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
     QCheckBox *m_checkBox;
@@ -128,9 +122,7 @@ public:
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 };
 
@@ -158,14 +150,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option,
-                           const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 private:
     QProgressBar *m_progress;
@@ -196,14 +185,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option,
-                           const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
     QLabel *m_label;
@@ -234,14 +220,11 @@ public:
     /*!
      * Override size hint.
      */
-    virtual QSize sizeHint(const QStyleOptionViewItem &option,
-                           const QModelIndex &) const override;
+    virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &) const override;
     /*!
      * Override paint.
      */
-    virtual void paint(QPainter *painter,
-                       const QStyleOptionViewItem &option,
-                       const QModelIndex &index) const override;
+    virtual void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 protected:
     QPushButton *m_pushButton;
@@ -265,9 +248,7 @@ public:
     /*!
      * Override createEditor.
      */
-    virtual QWidget *createEditor(QWidget *parent,
-                                  const QStyleOptionViewItem &option,
-                                  const QModelIndex &index) const override;
+    virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 };
 
