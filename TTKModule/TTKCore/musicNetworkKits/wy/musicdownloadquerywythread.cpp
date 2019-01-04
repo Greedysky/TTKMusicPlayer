@@ -73,8 +73,6 @@ void MusicDownLoadQueryWYThread::startToSingleSearch(const QString &text)
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
     setSslConfiguration(&request);
 
-    qDebug() << MusicUtils::Algorithm::mdII(WY_SG_DETAIL_N_URL, false);
-    qDebug() << MusicUtils::Algorithm::mdII(WY_SG_DETAIL_NDT_URL, false).arg(text);
     QNetworkReply *reply = m_manager->post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));
     connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(replyError(QNetworkReply::NetworkError)));
@@ -93,7 +91,6 @@ void MusicDownLoadQueryWYThread::downLoadFinished()
 
     if(m_reply->error() == QNetworkReply::NoError)
     {
-        qDebug() << m_reply->readAll();
         QJson::Parser parser;
         bool ok;
         const QVariant &data = parser.parse(m_reply->readAll(), &ok); 

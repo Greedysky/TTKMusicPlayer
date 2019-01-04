@@ -240,7 +240,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
         default: break;
     }
 }
-#include <QDebug>
+
 QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
 {
     QString key;
