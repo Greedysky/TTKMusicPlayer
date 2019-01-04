@@ -17,7 +17,7 @@ void MusicXMArtistSimilarThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
+    const QUrl &musicUrl =  MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
     deleteAll();
 
     m_interrupt = true;
@@ -69,6 +69,10 @@ void MusicXMArtistSimilarThread::downLoadFinished()
                 info.m_coverUrl = value["artist_logo"].toString();
                 info.m_name = value["name"].toString();
                 info.m_updateTime.clear();
+                if(!info.m_coverUrl.contains("http:"))
+                {
+                  info.m_coverUrl = "http:" + info.m_coverUrl;
+                }
                 emit createSimilarItem(info);
             }
         }

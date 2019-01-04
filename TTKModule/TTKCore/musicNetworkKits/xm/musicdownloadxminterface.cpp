@@ -13,11 +13,19 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadXMInterface::makeTokenQueryCookies(QString &tk, QString &encode)
+bool MusicDownLoadXMInterface::makeTokenQueryCookies(QString &tk, QString &tke)
 {
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_COOKIE_URL, false)));
+    const QString &time = QString::number(MusicTime::timeStamp());
+    const QString &appkey = "12574478";
+    const QString &sign = MusicUtils::Algorithm::md5((time + "&" + appkey).toUtf8()).toHex();
+    const QString &base = MusicUtils::Algorithm::mdII(XM_COOKIE_DATA_URL, false);
+
+    request.setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(base).arg(time).arg(appkey).arg(sign)));
+    request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
+
     QNetworkReply *reply = manager.get(request);
     MusicSemaphoreLoop loop;
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -25,30 +33,36 @@ void MusicDownLoadXMInterface::makeTokenQueryCookies(QString &tk, QString &encod
 
     if(!reply || reply->error() != QNetworkReply::NoError)
     {
-        return;
+        return false;
     }
 
     const QList<QNetworkCookie> &cookies = QNetworkCookie::parseCookies(reply->rawHeader("Set-Cookie"));
     if(cookies.count() >= 2)
     {
         tk = cookies[0].value();
-        encode = cookies[1].value();
+        tke = cookies[1].value();
+        return true;
     }
+    return false;
 }
 
 void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
 {
-    QString tk, encode;
-    makeTokenQueryCookies(tk, encode);
+    QString tk, tke;
+    if(!makeTokenQueryCookies(tk, tke))
+    {
+        return;
+    }
 
-    const QString &time = QString::number(MusicTime::timeStamp());
-    const QString &appkey = "12574478";
-    const QString &token = tk.split("_").front();
-    const QString &data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
-    const QString &sign = MusicUtils::Algorithm::md5((token + "&" + time + "&" + appkey + "&" + data).toUtf8()).toHex();
+    const QString time = QString::number(MusicTime::timeStamp());
+    const QString appkey = "12574478";
+    const QString token = tk.split("_").front();
+    const QString data = MusicUtils::Algorithm::mdII(XM_QUERY_DATA_URL, false).arg(query);
+    const QString encode = QString("%1&%2&%3&%4").arg(token).arg(time).arg(appkey).arg(data);
+    const QString sign = MusicUtils::Algorithm::md5(encode.toUtf8()).toHex();
 
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
-    request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(encode).toUtf8());
+    request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tke).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
     request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 }

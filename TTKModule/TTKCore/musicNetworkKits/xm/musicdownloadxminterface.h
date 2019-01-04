@@ -25,11 +25,12 @@
 ///////////////////////////////////////////////////////////////////////////
 const QString XM_UA_URL_1              = "TzVnZHRZRDZUWmxoeXA3aG5xai9Ib2JUZUdCTlhiZUVqWVR1QndjMU9WcGs0c3lUSGpoUHZZVzdnYWFpUUJ1NG1obktHQndrblVDUTdxNS9jcnZCY3kvNE9TRjlHai9mZHlLbU02VHdiOFpzZWZJa3hqcHpCaGpvUmJjTGJmelBjb3hmL2pzMmlVeEV3RFFoc2x3Szh4TFVXUnRkSlBQYlI3S3A1L3JJRkZFR1dYbTNDL1Z0aVRIVFZoU3pWVWtxMW5MSVhGbTFVemM9";
 ///////////////////////////////////////////////////////////////////////////
-const QString XM_COOKIE_URL            = "UTZNdnlVUzlVcmd4U0xWRFZmRTNuRE5NM0NaallXZ2t6RTlpOXI4NGRyVHNSY1ZLNXBkVFFaNU5wZFdFL1pzTkdFUnFMSk54dTZwVnU4N0VTREdhbE5vU1ZWbkZ0WVRaU1E2enhtZkkyQlBwcVpwbCtNejJRUT09";
+const QString XM_COOKIE_URL            = "cFJQbVQzb0JoUTdmYVhObVRlZlMwSmo2aEhZRHNRQ1JFaldJQzdESFp5WXZoaGJIKzEzbFJQNnI0UExUS2tuVFh5QmJmNkF4djJVY1dtc2NFdGRoY1NBQ1MyRjIvQm5aeTNDQkNUQXNVNnpHdi9VUjkrK3VzQytycjE4PQ==";
+const QString XM_COOKIE_DATA_URL       = "TytOTG5sWnJSOGlrS1p0T1ZzOEpOUThsZHRaU1hvdWZFNmUxZGdWcWZ6QWNGbStNV2E5UU5NQjNGaEZhcE4xVzk1dDdKSkdFSU1VPQ==";
 const QString XM_QUERY_DATA_URL        = "c2VVR0g1YU44QkhlRnlHT3pkM1hvL0ZpMW0zMW40TGtCRWR1Ti9ta1lBL3AvU2hHcHFVMWlaK3FIaWhDY1JPVXhkL2pGc0ZFNEJQR2t6cFB5SXQ1VGw0V2JYR1hIcnNCdDhKQmxEeVU1V2lhclhHb0hDN3JPNTliNmRpU1crcVVIcHdyKzEyOHdqRWpMcThKOG8yeFNuWkVDMitaMEdSdVc5eC9sTG1le"
                                          "DdPZG42b0xYT1hsVFc0Wld1NzA0TERqRWk0L0R6cjJSd29iT3VwbC80bEhTajNUcTJrZGJ3bDIrV0NScGM2UzZ4U25LZUszZjk2ZjdzV3p0b3hUUkhVZzZCLzczNUdZNG05NGJ3NGVlRldQL3BnVnBGaExZZTc2VXRRSUNLMk0weHIrcTl2VWtjMWNmMWdWSXAyTVFMcEw5Q1JQV1BDM25aYVBCUnZtMT"
                                          "ZRZkZsVWhQa0RrZE5iUWhGODk1YkFpdUpxcEdCM2NmTEpBQkl5U3hkRWZZZWJyVXJNV0ZCQ01MR2V6ZmJlMWhrVTV5T21mVmg3ak41ZG1DRkYzaXRhRmlWOHd1Q0hHSXdpQVpVWFUwN21tTnVKY1VQajhMZ3lZTHF4WUllR2NJMXAxaGZEY3dWTT0=";
-const QString XM_QUERY_URL             = "SHBBcmMwS21NSkk4SnM3L3pIdXZsSGpuSk8ySlUyZGFXWDFwNUR1Tkp2bzgwckRUemVZdWh3czF0bDA3R2NLM2c2ZzJ5S0hvbVVUemR6RjBkOUtUZXAzc3l0Sk5lMkgwV210U0dSejEzZWJER0R6UHlRd1BQZWhVc2I5STN6K0VQeVVZTXg5MTFEdk5NcUZrOHBoMDk2eUxFNWZXc3BaUHZ5R0NUUT09";
+const QString XM_QUERY_URL             = "Y3VIQlFKcUY3aXhLVTB4N25CWGJFK09YbldPZlptekRSNnN5T25pU3E1b3A3aVZlQk5DbGVjbm5NN010UEpsek0xRWtJc1RQSjBLOVRzSFprbzRyc2xUam56aWpKUmRwMHVuendYZkhETEZNYmk5UStMODk1SkxLdjlFRFR0K2JoazY4QXgrRCtwZE9jb1RORStEK3lEU0Y5Z2E3bkhVNDYvOTRLZz09";
 ///////////////////////////////////////////////////////////////////////////
 const QString XM_LRC_DATA_URL          = "Vis5ZDJwQmFVSEN2RkR1VGRBaHNINTdnREFyd3dqZUM=";
 const QString XM_LRC_URL               = "WUIweEdQZHRXSjhxVWo5VVd3ZjRDNkhib2hXdkw4bjBkRjJWUE1aZWZaLzF5emxpZ2xOeUx6V2tFbUEwdmpJTTl3SFEzZz09";
@@ -49,10 +50,10 @@ const QString XM_ARTIST_INFO_URL       = "N3FVa3VLTVV3YVUraXJmTnZvRVN4Y0FDSTJwaH
 const QString XM_AR_ALBUM_DATA_URL     = "VWNnTTQzQWdvQytVM2xJNU5OV00zOWVPT1l6ZmxNZUphdVlzM3hvYVNTa1VxZzc2WUF0UG85d2VDa3hYellxRU04dmd2OTNNRlZaSmR2aXVPdVZGNXYrZ09rWHBFdThS";
 const QString XM_AR_ALBUM_URL          = "S0JOVUZHOUVnaEpwY2NvUDFKZEdmaVEvenIrUGdDV29zS2M2N2xmZVBlNFFkZ3RwdUVoZDdZcHRSVnJ4Um10RExMRjZldz09";
 const QString XM_AR_MV_URL             = "ZTFwMTFrV0Q2YTNUVVdNWHlDRGJWdktkV1pNQ1dUVUVzVjlLaUN1NVh4QnRHSFh2K2RnTWEyalNaWGFYOE1MNg==";
-const QString XM_AR_SIM_URL            = "aGp2a1NNMmRZTEN5N212WmhBMDExNElwZU1vRVFINjRpUEJiUUlHU1ZlKzZpT1pRTC9IVkw0SlU1S3VVL2ptYWFxUXppdz09";
+const QString XM_AR_SIM_URL            = "c0J4d3JUREduOXJwQlovNzlXV0pGQnZvOERDOGg1MHhORUM1SHIrOEcyYUtITWZIbWhQYmZnRUc1VXovaDlDay83clppZz09";
 const QString XM_AR_LIST_URL           = "UTVmTDdLdmJBMGlROWhGaFpCOE8yMS9HbmtwVHNoM0grNHRJVXdYdmNIWkFpUjJyb3l6V0NCQmI1dkNpVUxqYno0QTNTNlE3MmJGRTVaV21GVXpVamJ6VGpLU3poKzk5MEhudjErOHZqNzVMR0RkSQ==";
 ///////////////////////////////////////////////////////////////////////////
-const QString XM_MV_ATTR_URL           = "MXRLejY5SHk3QlI4WjY5eS84dDJQOUM1YWdXWHJpWWhzQjd2TEJTY2RhYz0=";
+const QString XM_MV_ATTR_URL           = "UGN6RDlxNDdUMmltZi8rUCtrakc4YzRxV1NLZnpIeFNFdkIwdVlwMVRuZz0=";
 const QString XM_MV_QUERY_URL          = "Y2FxZjF5a2xFZXBvN1F3eThTRnZpZk9ZMHNjWDVveE95MTFEdXUySHpzRXRKakJuNm9JSnJNQy9ROHhYVzdoQU10V1BLZXBkWHMxamNoU0h5WGpVVjdJTUcvbz0=";
 ///////////////////////////////////////////////////////////////////////////
 const QString XM_SG_COMMIT_DATA_URL    = "bWJNaVZaUC9UQkRudjZYTCt3QjIxR1hrck9UN1FDWWFjbm5LN1RzanV6Q3NqREtmZ0NQL0RFZWYzR0hNZDZ4aW1KMGU1bzVBaWRJT0kzb3BTaWhKTjhlZllWV3E2OEZkT0hYS2pqSHkwSXU5QmRsUjVPdmdzUCtWNi9nY3BhK3c=";
@@ -86,7 +87,7 @@ public:
     /*!
      * Make token query cookies string.
      */
-    void makeTokenQueryCookies(QString &tk, QString &encode);
+    bool makeTokenQueryCookies(QString &tk, QString &tke);
     /*!
      * Make token query url string.
      */
