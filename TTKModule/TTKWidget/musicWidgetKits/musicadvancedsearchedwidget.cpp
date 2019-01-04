@@ -240,7 +240,7 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
         default: break;
     }
 }
-
+#include <QDebug>
 QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString &url)
 {
     QString key;
@@ -248,31 +248,31 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
     {
         case 0:
             {
-                const QRegExp regx("id=(\\d+)");
+                QRegExp regx("id=(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 1:
             {
-                const QRegExp regx("/(\\w+).html");
+                QRegExp regx("/(\\w+).html");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 2:
             {
-                const QRegExp regx(type == 4 ? "/mv/(\\w+)$" : "/(\\d+)");
+                QRegExp regx(type == 4 ? "/mv/(\\w+)$" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 3:
             {
-                const QRegExp regx("/(\\d+)");
+                QRegExp regx("/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
         case 4:
             {
-                const QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
+                QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }

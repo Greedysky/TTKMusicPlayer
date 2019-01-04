@@ -310,7 +310,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVAttribute(MusicObject::Musi
     if(!bytes.isEmpty() && !bytes.contains("res not found"))
     {
         const QString text(bytes);
-        const QRegExp regx(".*url=(.*)\r\nsig=");
+        QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
         {
@@ -358,7 +358,7 @@ void MusicDownLoadQueryKWMovieThread::readFromMusicMVInfo(MusicObject::MusicSong
     }
 
     const QString text(reply->readAll());
-    const QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
+    QRegExp regx("<h1 title=\"([^<]+)\">[^>]+>([^<]+)</span></h1>");
 
     if(text.indexOf(regx) != -1)
     {

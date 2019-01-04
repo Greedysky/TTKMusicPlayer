@@ -103,7 +103,7 @@ void MusicQQBackgroundThread::downLoadUrlFinished()
     {
         QStringList datas;
         const QString text(m_reply->readAll());
-        const QRegExp regx(QString("<url>([^<]+)</url>"));
+        QRegExp regx(QString("<url>([^<]+)</url>"));
 
         int pos = text.indexOf(regx);
         while(pos != -1)

@@ -342,7 +342,7 @@ void MusicUserDialog::secondStatckWidget()
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(checkRegisterUser()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(userLogin()));
 
-    const QRegExp userRx("[^\u4E00-\u9FA5]+$");
+    QRegExp userRx("[^\u4E00-\u9FA5]+$");
     QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     m_ui->registerUserLine->setValidator(valid);
     m_ui->registerMailLine->setValidator(valid);
@@ -374,7 +374,7 @@ void MusicUserDialog::thirdStatckWidget()
     connect(m_ui->confirmButton_2, SIGNAL(clicked()), SLOT(checkUserForgotPasswd()));
     connect(m_ui->cancelButton_2, SIGNAL(clicked()), SLOT(userLogin()));
 
-    const QRegExp userRx("[^\u4E00-\u9FA5]+$");
+    QRegExp userRx("[^\u4E00-\u9FA5]+$");
     QRegExpValidator *valid = new QRegExpValidator(userRx, this);
     m_ui->userLineEdit->setValidator(valid);
     m_ui->pwdLineEdit->setValidator(valid);

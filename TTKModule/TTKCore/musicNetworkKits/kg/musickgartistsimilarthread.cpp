@@ -56,7 +56,7 @@ void MusicKGArtistSimilarThread::downLoadFinished()
             if(m_interrupt) return;
 
             MusicResultsItem info;
-            const QRegExp idrx("/(\\d+)");
+            QRegExp idrx("/(\\d+)");
             if(regx.cap(2).indexOf(idrx) != -1)
             {
                 info.m_id = idrx.cap(1);

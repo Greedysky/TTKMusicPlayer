@@ -50,7 +50,7 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     if(!data.isEmpty() && !data.contains("res not found"))
     {
         const QString text(data);
-        const QRegExp regx(".*url=(.*)\r\nsig=");
+        QRegExp regx(".*url=(.*)\r\nsig=");
 
         if(text.indexOf(regx) != -1)
         {

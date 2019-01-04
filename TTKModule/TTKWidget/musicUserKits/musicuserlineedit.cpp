@@ -81,7 +81,7 @@ void MusicUserLineEdit::showLabel(int s, int e)
 
 void MusicUserLineEdit::showLabel()
 {
-    const QRegExp mailRx("([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)");
+    QRegExp mailRx("([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)");
     labelCheck(m_mailContains = (text().contains(mailRx)));
 }
 
