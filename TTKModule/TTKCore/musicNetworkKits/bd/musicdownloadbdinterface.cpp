@@ -55,6 +55,12 @@ void MusicDownLoadBDInterface::readFromMusicSongAttribute(MusicObject::MusicSong
         QVariantMap value = data.toMap();
         if(value["error_code"].toInt() == 22000 && value.contains("songurl"))
         {
+            const QVariantMap &infoMap = value["songinfo"].toMap();
+            if(info->m_lrcUrl.isEmpty())
+            {
+                info->m_lrcUrl = infoMap["lrclink"].toString();
+            }
+
             value = value["songurl"].toMap();
             const QVariantList &datas = value["url"].toList();
             foreach(const QVariant &var, datas)
@@ -181,6 +187,11 @@ void MusicDownLoadBDInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
                 }
 
                 value = var.toMap();
+                if(info->m_lrcUrl.isEmpty())
+                {
+                    info->m_lrcUrl = value["lrcLink"].toString();
+                }
+
                 value = value["linkinfo"].toMap();
                 if(!value.keys().isEmpty())
                 {
@@ -241,6 +252,11 @@ void MusicDownLoadBDInterface::readFromMusicPayAttribute(MusicObject::MusicSongI
                 }
 
                 value = var.toMap();
+                if(info->m_lrcUrl.isEmpty())
+                {
+                    info->m_lrcUrl = value["lrcLink"].toString();
+                }
+
                 MusicObject::MusicSongAttribute attr;
                 attr.m_url = value["songLink"].toString();
                 attr.m_url.replace(MusicUtils::Algorithm::mdII(BD_SONG_YYDOWN_URL, false), MusicUtils::Algorithm::mdII(BD_SONG_SSDOWN_URL, false));

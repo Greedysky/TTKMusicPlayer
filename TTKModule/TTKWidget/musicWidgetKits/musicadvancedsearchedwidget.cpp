@@ -212,11 +212,11 @@ void MusicAdvancedSearchedWidget::updateServerPlaceholderText()
             }
         case 3:
             {
-                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_SG_SHARE, ALG_LOW_KEY, false).arg("2132406"));
-                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AR_SHARE, ALG_LOW_KEY, false).arg("1342"));
-                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AL_SHARE, ALG_LOW_KEY, false).arg("541808131"));
-                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_PL_SHARE, ALG_LOW_KEY, false).arg("7136"));
-                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_MV_SHARE, ALG_LOW_KEY, false).arg("12285475"));
+                m_songEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_SG_SHARE, ALG_LOW_KEY, false).arg("589759196"));
+                m_artistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AR_SHARE, ALG_LOW_KEY, false).arg("2517"));
+                m_albumEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_AL_SHARE, ALG_LOW_KEY, false).arg("611662508"));
+                m_playlistEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_PL_SHARE, ALG_LOW_KEY, false).arg("557963176"));
+                m_movieEdit->setPlaceholderText(MusicUtils::Algorithm::mdII(BD_MV_SHARE, ALG_LOW_KEY, false).arg("611661931"));
                 break;
             }
         case 4:

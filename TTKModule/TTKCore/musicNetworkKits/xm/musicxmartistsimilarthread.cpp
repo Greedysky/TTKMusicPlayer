@@ -17,7 +17,7 @@ void MusicXMArtistSimilarThread::startToSearch(const QString &text)
     }
 
     M_LOGGER_INFO(QString("%1 startToSearch %2").arg(getClassName()).arg(text));
-    const QUrl &musicUrl =  MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
+    const QUrl &musicUrl = MusicUtils::Algorithm::mdII(XM_AR_SIM_URL, false).arg(text);
     deleteAll();
 
     m_interrupt = true;
