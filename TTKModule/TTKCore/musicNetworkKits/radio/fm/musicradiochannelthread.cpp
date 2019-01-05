@@ -62,11 +62,8 @@ void MusicRadioChannelThread::downLoadFinished()
 
             QFile arcFile(":/data/fmarclist");
             arcFile.open(QFile::ReadOnly);
-#ifdef Q_OS_WIN
-            QStringList arcs = QString(arcFile.readAll()).split("\r\n");
-#else
-            QStringList arcs = QString(arcFile.readAll()).split("\n");
-#endif
+
+            QStringList arcs = QString(arcFile.readAll()).remove("\r").split("\n");
             arcFile.close();
 
             while(channels.count() > arcs.count())
