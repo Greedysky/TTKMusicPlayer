@@ -77,8 +77,8 @@ void MusicDownloadStatusObject::networkConnectionStateChanged(bool state)
     {
 #ifndef MUSIC_MOBILE
         MusicBottomAreaWidget *w = MusicBottomAreaWidget::instance();
-        m_previousState ? w->showMessage(tr(APPNAME), tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
-                        : w->showMessage(tr(APPNAME), tr("Network Connection Has Been Restored."));
+        m_previousState ? w->showMessage(tr("TTKMusicPlayer"), tr("The Internet Seems To Be A Problem, Let's Listen To The Local Music."))
+                        : w->showMessage(tr("TTKMusicPlayer"), tr("Network Connection Has Been Restored."));
 #endif
     }
     m_previousState = state;

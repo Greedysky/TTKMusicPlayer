@@ -258,7 +258,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     QString url;
     if(m_ui->qqButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl).arg(m_ui->sharedName->text()).arg(tr(APPNAME));
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(m_ui->textEdit->toPlainText()).arg(imageUrl).arg(m_ui->sharedName->text()).arg(tr("TTKMusicPlayer"));
     }
     else if(m_ui->renrenButton->isChecked())
     {
@@ -266,7 +266,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
     }
     else if(m_ui->qqspaceButton->isChecked())
     {
-        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(tr(APPNAME)).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
+        url = QString(MusicUtils::Algorithm::mdII(QQ_SPACE_SHARE, ALG_LOW_KEY, false)).arg(playUrl).arg(tr("TTKMusicPlayer")).arg(imageUrl).arg(m_ui->textEdit->toPlainText());
     }
     else if(m_ui->qqblogButton->isChecked())
     {
