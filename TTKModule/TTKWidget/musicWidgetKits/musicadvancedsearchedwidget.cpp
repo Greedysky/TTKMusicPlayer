@@ -272,7 +272,14 @@ QString MusicAdvancedSearchedWidget::getSearchedKeyWork(int type, const QString 
             }
         case 4:
             {
-                QRegExp regx(type == 3 ? "pid=(\\d+)" : "/(\\d+)");
+                QRegExp regx;
+                if(type == 1)
+                    regx.setPattern("id=(\\d+)");
+                else if(type == 3)
+                    regx.setPattern("pid=(\\d+)");
+                else
+                    regx.setPattern("/(\\d+)");
+
                 key = (url.indexOf(regx) != -1) ? regx.cap(1) : url;
                 break;
             }
