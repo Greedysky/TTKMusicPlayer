@@ -8,7 +8,7 @@ MusicDownLoadQueryXMPlaylistThread::MusicDownLoadQueryXMPlaylistThread(QObject *
     : MusicDownLoadQueryPlaylistThread(parent)
 {
     m_pageSize = 30;
-    m_queryServer = "XiaMi";
+    m_queryServer = QUERY_XM_INTERFACE;
 }
 
 void MusicDownLoadQueryXMPlaylistThread::startToSearch(QueryType type, const QString &playlist)
@@ -43,7 +43,7 @@ void MusicDownLoadQueryXMPlaylistThread::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_DATA_URL, false).arg(m_searchText).arg(offset + 1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -66,7 +66,7 @@ void MusicDownLoadQueryXMPlaylistThread::startToSearch(const QString &playlist)
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_DATA_URL, false).arg(playlist).arg(1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->get(request);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
@@ -87,7 +87,7 @@ void MusicDownLoadQueryXMPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_DATA_URL, false).arg(item.m_id).arg(1).arg(m_pageSize),
                       MusicUtils::Algorithm::mdII(XM_PLAYLIST_A_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);

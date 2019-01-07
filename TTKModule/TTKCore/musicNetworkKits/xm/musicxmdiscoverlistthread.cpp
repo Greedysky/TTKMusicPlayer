@@ -28,7 +28,7 @@ void MusicXMDiscoverListThread::startToSearch()
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg(103),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

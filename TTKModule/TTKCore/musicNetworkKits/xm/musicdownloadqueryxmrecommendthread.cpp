@@ -6,7 +6,7 @@
 MusicDownLoadQueryXMRecommendThread::MusicDownLoadQueryXMRecommendThread(QObject *parent)
     : MusicDownLoadQueryRecommendThread(parent)
 {
-    m_queryServer = "XiaMi";
+    m_queryServer = QUERY_XM_INTERFACE;
 }
 
 void MusicDownLoadQueryXMRecommendThread::startToSearch(const QString &id)
@@ -27,7 +27,7 @@ void MusicDownLoadQueryXMRecommendThread::startToSearch(const QString &id)
                       MusicUtils::Algorithm::mdII(XM_RCM_DATA_URL, false),
                       MusicUtils::Algorithm::mdII(XM_RCM_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

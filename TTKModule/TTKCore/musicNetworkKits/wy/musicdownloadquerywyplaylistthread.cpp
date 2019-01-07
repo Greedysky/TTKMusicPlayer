@@ -8,7 +8,7 @@ MusicDownLoadQueryWYPlaylistThread::MusicDownLoadQueryWYPlaylistThread(QObject *
     : MusicDownLoadQueryPlaylistThread(parent)
 {
     m_pageSize = 30;
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYPlaylistThread::startToSearch(QueryType type, const QString &playlist)
@@ -43,7 +43,7 @@ void MusicDownLoadQueryWYPlaylistThread::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_PL_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PL_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(m_pageSize*offset));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -67,7 +67,7 @@ void MusicDownLoadQueryWYPlaylistThread::startToSearch(const QString &playlist)
                       MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(playlist));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(getDetailsFinished()));
@@ -89,7 +89,7 @@ void MusicDownLoadQueryWYPlaylistThread::getPlaylistInfo(MusicResultsItem &item)
                       MusicUtils::Algorithm::mdII(WY_PL_ATTR_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_PL_ATTR_NDT_URL, false).arg(item.m_id));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);

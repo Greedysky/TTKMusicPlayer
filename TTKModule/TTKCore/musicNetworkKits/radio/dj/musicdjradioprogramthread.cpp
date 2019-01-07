@@ -22,7 +22,7 @@ void MusicDJRadioProgramThread::startToDownload(MusicObject::Program type)
                       MusicUtils::Algorithm::mdII(DJ_HOT_N_URL, false),
                       MusicUtils::Algorithm::mdII(DJ_HOT_NDT_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

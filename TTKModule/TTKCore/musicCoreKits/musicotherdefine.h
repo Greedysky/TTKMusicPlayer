@@ -36,7 +36,7 @@
 
 #define MUSIC_NETWORK_TEST_FILE     "netwotk_test.tt"
 
-#define MUSIC_MOVIE_RADIO           "Kugou"
+#define MUSIC_MOVIE_RADIO           QUERY_KG_INTERFACE
 
 #define MUSIC_OUTER_OPEN            "-Open"
 #define MUSIC_OUTER_LIST            "-List"

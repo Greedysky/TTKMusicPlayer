@@ -86,7 +86,7 @@ void MusicIdentifySongsThread::startToDownload(const QString &path)
     QNetworkRequest request;
     request.setUrl(QUrl(MusicUtils::Algorithm::mdII(QUERY_URL, false)));
     request.setHeader(QNetworkRequest::ContentTypeHeader, contentType);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, content);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

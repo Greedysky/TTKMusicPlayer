@@ -7,7 +7,7 @@
 MusicDownLoadQueryKGArtistThread::MusicDownLoadQueryKGArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
 {
-    m_queryServer = "Kugou";
+    m_queryServer = QUERY_KG_INTERFACE;
 }
 
 void MusicDownLoadQueryKGArtistThread::startToSearch(const QString &artist)
@@ -26,9 +26,8 @@ void MusicDownLoadQueryKGArtistThread::startToSearch(const QString &artist)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -148,9 +147,8 @@ void MusicDownLoadQueryKGArtistThread::getDownLoadIntro(MusicResultsItem *item)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KG_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);

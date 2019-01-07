@@ -8,7 +8,7 @@
 MusicDownLoadQueryWYAlbumThread::MusicDownLoadQueryWYAlbumThread(QObject *parent)
     : MusicDownLoadQueryAlbumThread(parent)
 {
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
@@ -29,7 +29,7 @@ void MusicDownLoadQueryWYAlbumThread::startToSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(WY_ALBUM_N_URL, false).arg(album),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -53,7 +53,7 @@ void MusicDownLoadQueryWYAlbumThread::startToSingleSearch(const QString &album)
                       MusicUtils::Algorithm::mdII(WY_AR_ALBUM_N_URL, false).arg(album),
                       MusicUtils::Algorithm::mdII(WY_AR_ALBUM_DATA_N_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     QNetworkReply *reply = m_manager->post(request, parameter);
     connect(reply, SIGNAL(finished()), SLOT(singleDownLoadFinished()));

@@ -7,7 +7,7 @@
 MusicDownLoadQueryWYArtistThread::MusicDownLoadQueryWYArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
 {
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYArtistThread::startToSearch(const QString &artist)
@@ -29,7 +29,7 @@ void MusicDownLoadQueryWYArtistThread::startToSearch(const QString &artist)
                       MusicUtils::Algorithm::mdII(WY_AR_N_URL, false).arg(artist),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -157,7 +157,7 @@ void MusicDownLoadQueryWYArtistThread::getDownLoadIntro(MusicResultsItem *item)
                       MusicUtils::Algorithm::mdII(WY_AR_INFO_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_AR_INFO_NDT_URL, false).arg(m_searchText));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);

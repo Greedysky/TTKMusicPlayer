@@ -9,7 +9,7 @@
 MusicDownLoadQueryWYMovieThread::MusicDownLoadQueryWYMovieThread(QObject *parent)
     : MusicDownLoadQueryMovieThread(parent)
 {
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
     m_pageSize = 40;
 }
 
@@ -33,7 +33,7 @@ void MusicDownLoadQueryWYMovieThread::startToSearch(QueryType type, const QStrin
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_SEARCH_NDT_URL, false).arg(m_searchText).arg(m_pageSize).arg(0).toUtf8());
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -60,7 +60,7 @@ void MusicDownLoadQueryWYMovieThread::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(m_searchText).arg(m_pageSize*offset).arg(m_pageSize));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(pageDownLoadFinished()));
@@ -230,7 +230,7 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
                       MusicUtils::Algorithm::mdII(WY_SONG_MV_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_MV_NDT_URL, false).arg(id));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);
@@ -309,7 +309,7 @@ void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(int id)
                       MusicUtils::Algorithm::mdII(WY_AR_MV_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_AR_MV_DATA_N_URL, false).arg(id).arg(0).arg(DEFAULT_LEVEL_HIGHER));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->post(request, parameter);

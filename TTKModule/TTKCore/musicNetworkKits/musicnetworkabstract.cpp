@@ -61,14 +61,17 @@ void MusicNetworkAbstract::sslErrorsString(QNetworkReply *reply, const QList<QSs
 }
 #endif
 
-void MusicNetworkAbstract::setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m)
+namespace MusicObject {
+void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode)
 {
+    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
 #ifndef QT_NO_SSL
     QSslConfiguration sslConfig = request->sslConfiguration();
-    sslConfig.setPeerVerifyMode(m);
+    sslConfig.setPeerVerifyMode(mode);
     request->setSslConfiguration(sslConfig);
 #else
     Q_UNUSED(request);
     Q_UNUSED(m);
 #endif
+}
 }

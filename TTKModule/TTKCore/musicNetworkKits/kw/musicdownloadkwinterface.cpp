@@ -2,6 +2,7 @@
 #include "musicnumberutils.h"
 #include "musicsemaphoreloop.h"
 #include "musicalgorithmutils.h"
+#include "musicnetworkabstract.h"
 #include "musictime.h"
 
 #///QJson import
@@ -28,13 +29,9 @@ void MusicDownLoadKWInterface::readFromMusicLLAttribute(MusicObject::MusicSongIn
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
@@ -225,14 +222,10 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.setUrl(musicUrl);;
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    MusicObject::setSslConfiguration(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);

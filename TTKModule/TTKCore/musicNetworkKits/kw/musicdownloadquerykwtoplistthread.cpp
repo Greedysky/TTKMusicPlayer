@@ -7,7 +7,7 @@
 MusicDownLoadQueryKWToplistThread::MusicDownLoadQueryKWToplistThread(QObject *parent)
     : MusicDownLoadQueryToplistThread(parent)
 {
-    m_queryServer = "Kuwo";
+    m_queryServer = QUERY_KW_INTERFACE;
 }
 
 void MusicDownLoadQueryKWToplistThread::startToSearch(QueryType type, const QString &toplist)
@@ -37,9 +37,8 @@ void MusicDownLoadQueryKWToplistThread::startToSearch(const QString &toplist)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

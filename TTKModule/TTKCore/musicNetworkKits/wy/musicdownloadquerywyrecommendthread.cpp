@@ -6,7 +6,7 @@
 MusicDownLoadQueryWYRecommendThread::MusicDownLoadQueryWYRecommendThread(QObject *parent)
     : MusicDownLoadQueryRecommendThread(parent)
 {
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYRecommendThread::startToSearch(const QString &id)
@@ -28,7 +28,7 @@ void MusicDownLoadQueryWYRecommendThread::startToSearch(const QString &id)
                       MusicUtils::Algorithm::mdII(WY_RCM_N_URL, false),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

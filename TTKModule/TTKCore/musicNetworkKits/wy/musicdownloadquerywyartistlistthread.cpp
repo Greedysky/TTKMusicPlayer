@@ -7,7 +7,7 @@ MusicDownLoadQueryWYArtistListThread::MusicDownLoadQueryWYArtistListThread(QObje
 {
     m_pageSize = DEFAULT_LEVEL_HIGHER;
     m_pageTotal = DEFAULT_LEVEL_HIGHER;
-    m_queryServer = "WangYi";
+    m_queryServer = QUERY_WY_INTERFACE;
 }
 
 void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
@@ -50,7 +50,7 @@ void MusicDownLoadQueryWYArtistListThread::startToPage(int offset)
                       MusicUtils::Algorithm::mdII(WY_AR_LIST_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_AR_LIST_DATA_N_URL, false).arg(catId).arg(0).arg(100).arg(initial));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

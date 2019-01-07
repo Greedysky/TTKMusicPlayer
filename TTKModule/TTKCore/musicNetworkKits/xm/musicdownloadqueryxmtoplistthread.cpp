@@ -6,7 +6,7 @@
 MusicDownLoadQueryXMToplistThread::MusicDownLoadQueryXMToplistThread(QObject *parent)
     : MusicDownLoadQueryToplistThread(parent)
 {
-    m_queryServer = "XiaMi";
+    m_queryServer = QUERY_XM_INTERFACE;
 }
 
 void MusicDownLoadQueryXMToplistThread::startToSearch(QueryType type, const QString &toplist)
@@ -39,7 +39,7 @@ void MusicDownLoadQueryXMToplistThread::startToSearch(const QString &toplist)
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_DATA_URL, false).arg(toplist),
                       MusicUtils::Algorithm::mdII(XM_SONG_TOPLIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

@@ -94,11 +94,6 @@ public Q_SLOTS:
 #endif
 
 protected:
-    /*!
-     * Set request ssl configuration.
-     */
-    void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode m = QSslSocket::VerifyNone);
-
     QVariantMap m_rawData;
     MusicObject::NetworkCode m_stateCode;
     volatile bool m_interrupt;
@@ -106,5 +101,13 @@ protected:
     QNetworkAccessManager *m_manager;
 
 };
+
+namespace MusicObject {
+    /*!
+     * Set request ssl configuration.
+     */
+    MUSIC_NETWORK_EXPORT void setSslConfiguration(QNetworkRequest *request, QSslSocket::PeerVerifyMode mode = QSslSocket::VerifyNone);
+
+}
 
 #endif // MUSICNETWORKABSTRACT_H

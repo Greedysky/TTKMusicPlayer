@@ -25,17 +25,17 @@ void MusicDownLoadQueryThreadAbstract::startToSingleSearch(const QString &text)
 QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
 {
     const QString &v = tr("Current Used Server Is %1");
-    if(m_queryServer.contains("Baidu"))
+    if(m_queryServer.contains(QUERY_BD_INTERFACE))
         return v.arg(tr("BD"));
-    else if(m_queryServer.contains("Kugou"))
+    else if(m_queryServer.contains(QUERY_KG_INTERFACE))
         return v.arg(tr("KG"));
-    else if(m_queryServer.contains("Kuwo"))
+    else if(m_queryServer.contains(QUERY_KW_INTERFACE))
         return v.arg(tr("KW"));
-    else if(m_queryServer.contains("QQ"))
-        return v.arg(tr("QQ"));
-    else if(m_queryServer.contains("WangYi"))
+    else if(m_queryServer.contains(QUERY_QQ_INTERFACE))
+        return v.arg(tr(QUERY_QQ_INTERFACE));
+    else if(m_queryServer.contains(QUERY_WY_INTERFACE))
         return v.arg(tr("WY"));
-    else if(m_queryServer.contains("XiaMi"))
+    else if(m_queryServer.contains(QUERY_XM_INTERFACE))
         return v.arg(tr("XM"));
     else if(m_queryServer.contains("YinYueTai"))
         return v.arg(tr("YYT"));
@@ -88,7 +88,7 @@ qint64 MusicDownLoadQueryThreadAbstract::getUrlFileSize(const QString &url)
     QNetworkAccessManager manager;
     QNetworkRequest request;
     request.setUrl(url);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.head(request);

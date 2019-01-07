@@ -78,6 +78,13 @@ typedef struct MUSIC_NETWORK_EXPORT MusicResultsItem
 }MusicResultsItem;
 TTK_DECLARE_LISTS(MusicResultsItem)
 
+#define QUERY_WY_INTERFACE      "WangYi"
+#define QUERY_QQ_INTERFACE      "QQ"
+#define QUERY_XM_INTERFACE      "XiaMi"
+#define QUERY_BD_INTERFACE      "Baidu"
+#define QUERY_KW_INTERFACE      "Kuwo"
+#define QUERY_KG_INTERFACE      "Kugou"
+
 /*! @brief The class to abstract query download data from net.
  * @author Greedysky <greedysky@163.com>
  */

@@ -92,7 +92,7 @@ public:
     /*!
      * Make token query url string.
      */
-    void makeTokenQueryQequest(QNetworkRequest *request);
+    void makeTokenQueryRequest(QNetworkRequest *request);
     /*!
      * Make token query url string.
      */

@@ -26,7 +26,7 @@ void MusicWYSongSuggestThread::startToSearch(const QString &text)
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SUGGEST_NDT_URL, false).arg(text));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

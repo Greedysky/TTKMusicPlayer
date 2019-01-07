@@ -3,7 +3,7 @@
 #include "musicsemaphoreloop.h"
 #include "musictime.h"
 #include "musicalgorithmutils.h"
-
+#include "musicnetworkabstract.h"
 #///QJson import
 #include "qjson/parser.h"
 
@@ -64,7 +64,7 @@ void MusicDownLoadXMInterface::makeTokenQueryUrl(QNetworkRequest *request, const
     request->setUrl(QUrl(MusicUtils::Algorithm::mdII(XM_QUERY_URL, false).arg(type).arg(time).arg(appkey).arg(sign).arg(data)));
     request->setRawHeader("Cookie", QString("_m_h5_tk=%1; _m_h5_tk_enc=%2").arg(tk).arg(tke).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(XM_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    MusicObject::setSslConfiguration(request);
 }
 
 void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInformation *info)
@@ -74,11 +74,7 @@ void MusicDownLoadXMInterface::readFromMusicSongLrc(MusicObject::MusicSongInform
     makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(XM_LRC_DATA_URL, false).arg(info->m_songId),
                       MusicUtils::Algorithm::mdII(XM_LRC_URL, false));
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
     QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));

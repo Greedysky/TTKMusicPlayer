@@ -50,7 +50,7 @@ void MusicDataDownloadThread::startRequest(const QUrl &url)
 
     QNetworkRequest request;
     request.setUrl(url);
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), this, SLOT(downLoadFinished()));

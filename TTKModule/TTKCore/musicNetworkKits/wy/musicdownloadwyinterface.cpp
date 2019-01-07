@@ -4,6 +4,7 @@
 #include "musicalgorithmutils.h"
 #include "musicurlutils.h"
 #include "musicsettingmanager.h"
+#include "musicnetworkabstract.h"
 #///QJson import
 #include "qjson/parser.h"
 #include "qalg/qaeswrap.h"
@@ -13,9 +14,8 @@
 #include <QSslConfiguration>
 #include <QNetworkAccessManager>
 
-void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
+void MusicDownLoadWYInterface::makeTokenQueryRequest(QNetworkRequest *request)
 {
-    request->setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request->setRawHeader("Referer", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("Origin", MusicUtils::Algorithm::mdII(WY_BASE_URL, false).toUtf8());
     request->setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(WY_UA_URL_1, ALG_UA_KEY, false).toUtf8());
@@ -26,6 +26,7 @@ void MusicDownLoadWYInterface::makeTokenQueryQequest(QNetworkRequest *request)
                                             .arg(MusicUtils::Algorithm::mdII(WY_NUID_URL, ALG_UA_KEY, false))
                                             .arg(MusicUtils::Algorithm::mdII(WY_NNID_URL, ALG_UA_KEY, false))
                                             .arg(WY_WYYY_URL).toUtf8());
+    MusicObject::setSslConfiguration(request);
 }
 
 QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request, const QString &query, const QString &type)
@@ -35,7 +36,7 @@ QByteArray MusicDownLoadWYInterface::makeTokenQueryUrl(QNetworkRequest *request,
     MusicUtils::Url::urlEncode(parameter);
 
     request->setUrl(QUrl(query));
-    makeTokenQueryQequest(request);
+    makeTokenQueryRequest(request);
 
     return "params=" + parameter + "&encSecKey=" + WY_SECKRY.toUtf8();
 }
@@ -46,12 +47,8 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    makeTokenQueryQequest(&request);
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+    makeTokenQueryRequest(&request);
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.get(request);
@@ -188,11 +185,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
     const QByteArray &parameter = makeTokenQueryUrl(&request,
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_SONG_INFO_NDT_URL, false).arg(info->m_songId).arg(bitrate*1000));
-#ifndef QT_NO_SSL
-    QSslConfiguration sslConfig = request.sslConfiguration();
-    sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
-    request.setSslConfiguration(sslConfig);
-#endif
+
     QNetworkAccessManager manager;
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = manager.post(request, parameter);

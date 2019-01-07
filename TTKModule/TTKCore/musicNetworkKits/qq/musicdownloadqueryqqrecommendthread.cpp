@@ -7,7 +7,7 @@
 MusicDownLoadQueryQQRecommendThread::MusicDownLoadQueryQQRecommendThread(QObject *parent)
     : MusicDownLoadQueryRecommendThread(parent)
 {
-    m_queryServer = "QQ";
+    m_queryServer = QUERY_QQ_INTERFACE;
 }
 
 void MusicDownLoadQueryQQRecommendThread::startToSearch(const QString &id)
@@ -26,9 +26,8 @@ void MusicDownLoadQueryQQRecommendThread::startToSearch(const QString &id)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

@@ -7,7 +7,7 @@
 MusicDownLoadQueryXMArtistThread::MusicDownLoadQueryXMArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
 {
-    m_queryServer = "XiaMi";
+    m_queryServer = QUERY_XM_INTERFACE;
 }
 
 void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
@@ -29,7 +29,7 @@ void MusicDownLoadQueryXMArtistThread::startToSearch(const QString &artist)
                       MusicUtils::Algorithm::mdII(XM_ARTIST_DATA_URL, false).arg(artist).arg(1).arg(30),
                       MusicUtils::Algorithm::mdII(XM_ARTIST_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -143,7 +143,7 @@ void MusicDownLoadQueryXMArtistThread::getDownLoadIntro(MusicResultsItem *item)
                       MusicUtils::Algorithm::mdII(XM_ARTIST_DATA_INFO_URL, false).arg(m_searchText),
                       MusicUtils::Algorithm::mdII(XM_ARTIST_INFO_URL, false));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);

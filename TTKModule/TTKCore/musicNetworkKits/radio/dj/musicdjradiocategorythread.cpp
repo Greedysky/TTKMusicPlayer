@@ -19,7 +19,7 @@ void MusicDJRadioCategoryThread::startToDownload()
                       MusicUtils::Algorithm::mdII(DJ_CATEGORY_N_URL, false),
                       QString("{}"));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

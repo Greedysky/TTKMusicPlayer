@@ -23,7 +23,7 @@ void MusicWYAuthenticationThread::startToDownload(const QString &usr, const QStr
                       MusicUtils::Algorithm::mdII(WY_AUT_N_URL, false),
                       MusicUtils::Algorithm::mdII(WY_AUT_NDT_URL, false).arg(usr).arg(pwd));
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->post(request, parameter);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));

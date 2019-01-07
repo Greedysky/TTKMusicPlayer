@@ -70,7 +70,7 @@ void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item
 MusicDownLoadQueryQQArtistThread::MusicDownLoadQueryQQArtistThread(QObject *parent)
     : MusicDownLoadQueryArtistThread(parent)
 {
-    m_queryServer = "QQ";
+    m_queryServer = QUERY_QQ_INTERFACE;
 }
 
 void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)
@@ -89,9 +89,8 @@ void MusicDownLoadQueryQQArtistThread::startToSearch(const QString &artist)
 
     QNetworkRequest request;
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     m_reply = m_manager->get(request);
     connect(m_reply, SIGNAL(finished()), SLOT(downLoadFinished()));
@@ -214,10 +213,9 @@ void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicResultsItem *item)
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(QQ_ARTIST_INFO_URL, false).arg(m_searchText);
 
     request.setUrl(musicUrl);
-    request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
     request.setRawHeader("Referer", MusicUtils::Algorithm::mdII(REFER_URL, false).toUtf8());
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(QQ_UA_URL_1, ALG_UA_KEY, false).toUtf8());
-    setSslConfiguration(&request);
+    MusicObject::setSslConfiguration(&request);
 
     MusicSemaphoreLoop loop;
     QNetworkReply *reply = m_manager->get(request);
