@@ -25,8 +25,7 @@ SOURCES += \
     $$PWD/cbc128.cpp \
     $$PWD/base64.cpp \
     $$PWD/qaeswrap.cpp \
-    $$PWD/qdeswrap.cpp \
-    $$PWD/qgrywrap.cpp
+    $$PWD/qdeswrap.cpp
     
 HEADERS += \
     $$PWD/aes.h \
@@ -34,5 +33,4 @@ HEADERS += \
     $$PWD/cbc128.h \
     $$PWD/base64.h \
     $$PWD/qaeswrap.h \
-    $$PWD/qdeswrap.h \
-    $$PWD/qgrywrap.h
+    $$PWD/qdeswrap.h
