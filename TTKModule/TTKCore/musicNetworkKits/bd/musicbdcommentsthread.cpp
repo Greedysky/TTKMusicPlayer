@@ -46,7 +46,7 @@ void MusicBDSongCommentsThread::startToPage(int offset)
     const QString &time = "1494911685";
     const QString &key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
     const QString &data = MusicUtils::Algorithm::mdII(BD_SG_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
-    QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
+    QString eKey = QAesWrap().encryptCBC(data.toUtf8(), key.toUtf8(), key.toUtf8());
     const QString &sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
     MusicUtils::Url::urlEncode(eKey);
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(BD_COMMIT_URL, false).arg(time).arg(sign).arg(eKey);
@@ -150,7 +150,7 @@ void MusicBDPlaylistCommentsThread::startToPage(int offset)
     const QString &time = "1494911685";
     const QString &key = MusicUtils::Algorithm::md5(QString("baidu_taihe_music_secret_key" + time).toUtf8()).toHex().mid(8, 16);
     const QString &data = MusicUtils::Algorithm::mdII(BD_PL_COMMIT_DATA_URL, false).arg(m_pageSize*offset).arg(m_pageSize).arg(m_rawData["songID"].toInt());
-    QString eKey = QAesWrap::encrypt(data.toUtf8(), key.toUtf8(), key.toUtf8());
+    QString eKey = QAesWrap().encryptCBC(data.toUtf8(), key.toUtf8(), key.toUtf8());
     const QString &sign = MusicUtils::Algorithm::md5(QString("baidu_taihe_music" + eKey + time).toUtf8()).toHex();
     eKey.replace('+', "%2B");
     eKey.replace('/', "%2F");

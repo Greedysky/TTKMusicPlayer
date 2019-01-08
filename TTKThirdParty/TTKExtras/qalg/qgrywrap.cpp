@@ -1,10 +1,15 @@
 #include "qgrywrap.h"
 
-#define FLAG    "Gry"
-#define END     "="
+#define GRY_FLAG    "Gry"
+#define GRY_END     "="
 
 const std::string in_data = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const std::string out_data = "nIbGF4v+5w8WBaNfYOyAXSRzrh9D7cZKPUixsl0C/pmtguMjLkdV3E21qe6QHToJ";
+
+QGryWrap::QGryWrap()
+{
+
+}
 
 QString QGryWrap::encrypt(const QString &in)
 {
@@ -13,7 +18,7 @@ QString QGryWrap::encrypt(const QString &in)
 
     while(true)
     {
-        if(d.endsWith(END))
+        if(d.endsWith(GRY_END))
         {
             ++sCount;
             d.chop(1);
@@ -36,10 +41,10 @@ QString QGryWrap::encrypt(const QString &in)
     }
     for(int i=0; i<sCount; ++i)
     {
-        v.append(END);
+        v.append(GRY_END);
     }
 
-    v.insert(0, FLAG);
+    v.insert(0, GRY_FLAG);
 
     return v;
 }
@@ -51,7 +56,7 @@ QString QGryWrap::decrypt(const QString &in)
 
     while(true)
     {
-        if(d.endsWith(END))
+        if(d.endsWith(GRY_END))
         {
             ++sCount;
             d.chop(1);
@@ -76,7 +81,7 @@ QString QGryWrap::decrypt(const QString &in)
     }
     for(int i=0; i<sCount; ++i)
     {
-        v.append(END);
+        v.append(GRY_END);
     }
 
     return v;

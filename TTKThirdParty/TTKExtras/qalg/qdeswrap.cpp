@@ -206,7 +206,7 @@ void QDesWrapPrivate::DESSubKeys(qint64 key, qint64* K, QDesWrap::Mode mode)
         K[j] = bitTransform(ARRAYPC_2, 64, temp);
     }
 
-    if (mode == QDesWrap::DECRYPT)
+    if(mode == QDesWrap::DECRYPT)
     {
         qint64 t;
         for (int j = 0; j < 8; j++)

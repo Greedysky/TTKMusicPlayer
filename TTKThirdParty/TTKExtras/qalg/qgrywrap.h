@@ -28,13 +28,18 @@ class MUSIC_EXTRAS_EXPORT QGryWrap
 {
 public:
     /*!
+     * Object contsructor.
+     */
+    QGryWrap();
+
+    /*!
      * Encrypt gry by input.
      */
-    static QString encrypt(const QString &in);
+    QString encrypt(const QString &in);
     /*!
      * Decrypt gry by input.
      */
-    static QString decrypt(const QString &in);
+    QString decrypt(const QString &in);
 
 };
 
