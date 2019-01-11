@@ -105,17 +105,17 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-//update time 2018.07.01
-#define TTKMUSIC_VERSION_STR    "2.7.0.0"
-#define TTKMUSIC_VERSION_WSTR   L"2.7.0.0"
-#define TTKMUSIC_VER_TIME_STR   "(2018/07/01)"
+//update time 2019.01.11
+#define TTKMUSIC_VERSION_STR    "2.8.0.0"
+#define TTKMUSIC_VERSION_WSTR   L"2.8.0.0"
+#define TTKMUSIC_VER_TIME_STR   "(2019/01/11)"
 
 #define TTKMUSIC_MAJOR_VERSION 2
-#define TTKMUSIC_MIDLE_VERSION 7
+#define TTKMUSIC_MIDLE_VERSION 8
 #define TTKMUSIC_MINOR_VERSION 0
 #define TTKMUSIC_PATCH_VERSION 0
 
-#define TTKMUSIC_VERSION 0x02700
+#define TTKMUSIC_VERSION 0x02800
 
 #define TTKMUSIC_VERSION_CHECK(major, middle, minor, patch) ((major<<12)|(middle<<8)|(minor<<4)|(patch))
 

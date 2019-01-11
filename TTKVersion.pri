@@ -16,5 +16,5 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-# update time 2018.07.01
-TTKMusicPlayer = 2.7.0.0
+# update time 2019.01.11
+TTKMusicPlayer = 2.8.0.0

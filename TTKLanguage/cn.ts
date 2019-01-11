@@ -3577,7 +3577,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../TTKModule/TTKWidget/musicUiKits/musicWidgetKits/musicmessageaboutdialog.ui" line="106"/>
         <source>Mail:Greedysky@163.com greedyskyplus@google.com
-Copyright© 2015-2018 Greedysky All Rights Reserved
+Copyright© 2015-2019 Greedysky All Rights Reserved
 本软件仅供学习交流，不可用于商业用途，否则后果自负。</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,6 +1,6 @@
 #!/bin/sh
 APP="TTKMusicplayer"
-APP_VER="2.7.0.0"
+APP_VER="2.8.0.0"
 
 DEV_PATH="$1"
 PACK_PATH="ttkmusicplayer"
