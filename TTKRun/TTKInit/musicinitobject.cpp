@@ -72,7 +72,7 @@ void MusicInitObject::checkTheFileNeededExist()
     copyFile(":/data/musicbarrage.ttk", S_BARRAGEPATH_FULL);
 
 #ifdef Q_OS_UNIX
-    copyLinuxShellFile(":/data/TTKInit.sh", S_TTKINIT_FULL));
+    copyLinuxShellFile(":/data/TTKInit.sh", S_TTKINIT_FULL);
     copyLinuxShellFile(":/data/TTKMusicPlayer.sh", S_TTKMUSICPLAYER_FULL);
     copyLinuxShellFile(":/data/TTKConsole.sh", S_TTKCONSOLE_FULL);
     copyLinuxShellFile(":/data/TTKService.sh", S_TTKSERVICE_FULL);
