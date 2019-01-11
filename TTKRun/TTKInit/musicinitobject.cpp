@@ -104,7 +104,7 @@ void MusicInitObject::copyLinuxShellFile(const QString &name, const QString &pat
 {
     if(!QFile::exists(path))
     {
-        QFile::copy(name, S_TTKROUTINECOPY_FULL);
+        QFile::copy(name, path);
         QFile::setPermissions(path, QFile::ReadOwner | QFile::WriteOwner);
         QProcess::execute("chmod", QStringList() << "+x" << path);
     }
