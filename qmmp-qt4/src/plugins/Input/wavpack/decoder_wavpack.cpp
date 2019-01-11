@@ -130,12 +130,22 @@ bool DecoderWavPack::initialize()
     case 8:
         configure(freq, chmap, Qmmp::PCM_S8);
         break;
+    case 12:
     case 16:
         configure(freq, chmap, Qmmp::PCM_S16LE);
         break;
+    case 20:
     case 24:
     case 32:
+#ifdef MODE_FLOAT
+        configure(freq, chmap, (WavpackGetMode(m_context) & MODE_FLOAT) ? Qmmp::PCM_FLOAT : Qmmp::PCM_S32LE);
+#else
         configure(freq, chmap, Qmmp::PCM_S32LE);
+#endif
+        break;
+    default:
+        qWarning("DecoderWavPack: unsupported bit depth");
+        return false;
     }
     if(!m_parser)
         m_totalTime = (qint64) WavpackGetNumSamples(m_context) * 1000 / freq;
@@ -244,10 +254,12 @@ qint64 DecoderWavPack::wavpack_decode(unsigned char *data, qint64 size)
         for (i = 0;  i < len * m_chan; ++i)
             data8[i] = m_output_buf[i];
         return len * m_chan;
+    case 12:
     case 16:
         for (i = 0;  i < len * m_chan; ++i)
             data16[i] = m_output_buf[i];
         return len * m_chan * 2;
+    case 20:
     case 24:
         for (i = 0;  i < len * m_chan; ++i)
             data32[i] = m_output_buf[i] << 8;
