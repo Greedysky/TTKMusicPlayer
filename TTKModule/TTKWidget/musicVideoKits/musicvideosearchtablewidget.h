@@ -76,7 +76,7 @@ Q_SIGNALS:
     /*!
      * Set current media name and url to play.
      */
-    void mvURLNameChanged(const MusicVideoItem &item);
+    void mediaUrlNameChanged(const MusicVideoItem &item);
 
 public Q_SLOTS:
     /*!
@@ -100,9 +100,9 @@ public Q_SLOTS:
      */
     virtual void itemDoubleClicked(int row, int column) override;
     /*!
-     * Get music mv information data.
+     * Get music media information data.
      */
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
+    void getMusicMediaInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Download current mv by controller.
      */

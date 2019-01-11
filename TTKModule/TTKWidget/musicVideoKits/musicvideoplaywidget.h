@@ -113,7 +113,7 @@ public Q_SLOTS:
     /*!
      * Set current media name and url to play.
      */
-    void mvURLNameChanged(const MusicVideoItem &item);
+    void mediaUrlNameChanged(const MusicVideoItem &item);
 
     /*!
      * Fresh button clicked.

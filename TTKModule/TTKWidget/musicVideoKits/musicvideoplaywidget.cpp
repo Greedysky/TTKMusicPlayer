@@ -111,7 +111,7 @@ MusicVideoPlayWidget::MusicVideoPlayWidget(QWidget *parent)
     m_leaverAnimation->addAnimation(ctrlAnimation);
 
     connect(m_searchButton, SIGNAL(clicked(bool)), SLOT(searchButtonClicked()));
-    connect(m_videoTable, SIGNAL(mvURLNameChanged(MusicVideoItem)), SLOT(mvURLNameChanged(MusicVideoItem)));
+    connect(m_videoTable, SIGNAL(mediaUrlNameChanged(MusicVideoItem)), SLOT(mediaUrlNameChanged(MusicVideoItem)));
     connect(m_videoTable, SIGNAL(restartSearchQuery(QString)), SLOT(videoResearchButtonSearched(QString)));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(videoResearchButtonSearched(QString)));
 
@@ -267,7 +267,7 @@ void MusicVideoPlayWidget::videoResearchButtonSearched(const QVariant &data)
         data.m_url = url;
         data.m_id = info.m_songId;
         data.m_server = MUSIC_MOVIE_RADIO;
-        mvURLNameChanged(data);
+        mediaUrlNameChanged(data);
     }
 }
 
@@ -279,6 +279,11 @@ void MusicVideoPlayWidget::startSearchSingleQuery(const QString &name)
 
 void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
 {
+    if(url.isEmpty())
+    {
+        return;
+    }
+
     MusicApplication *w = MusicApplication::instance();
     if(w->isPlaying())
     {
@@ -291,7 +296,7 @@ void MusicVideoPlayWidget::mediaUrlChanged(const QString &url)
     switchToPlayView();
 }
 
-void MusicVideoPlayWidget::mvURLNameChanged(const MusicVideoItem &item)
+void MusicVideoPlayWidget::mediaUrlNameChanged(const MusicVideoItem &item)
 {
     m_videoItem = item;
     setTitleText(item.m_name);

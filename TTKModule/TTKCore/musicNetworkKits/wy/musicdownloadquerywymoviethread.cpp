@@ -115,7 +115,7 @@ void MusicDownLoadQueryWYMovieThread::downLoadFinished()
                     }
 
                     value = var.toMap();
-                    const int mvid = value["mv"].toLongLong();
+                    const qint64 mvid = value["mv"].toLongLong();
                     if(mvid == 0)
                     {
                         continue;

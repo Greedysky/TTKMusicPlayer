@@ -1,12 +1,10 @@
 #include "musicnetworkoperator.h"
 #include "musicdownloadsourcethread.h"
 #include "musicobject.h"
-#///QJson import
-#include "qjson/parser.h"
 
 #include <QStringList>
 
-const QString IP_CHECK_URL = "d2luWkp3WFhkRU1FL3JxWWV0VW9FREcvODhCZjI3OTNES0hBZm5EMlhLQnBRQXpL";
+#define IP_CHECK_URL    "bmdLQytSMnlXb2JUV1FPQ2tnenlBNWZWckZKK3FFYUt1eUQ3Ulg5cUptYz0="
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
@@ -23,24 +21,18 @@ void MusicNetworkOperator::startToDownload()
 
 void MusicNetworkOperator::downLoadFinished(const QByteArray &data)
 {
-    QByteArray bytes(data);
-    bytes.replace("'", "\"");
-    bytes.replace("ip", "\"ip\"");
-    bytes.replace("address", "\"address\"");
+    QTextStream in(MConst_cast(QByteArray*, &data));
+    in.setCodec("gb2312");
 
-    QJson::Parser parser;
-    bool ok;
-    const QVariant &vdata = parser.parse(bytes, &ok);
-    QString line;
-    if(ok)
+    QString line, text(in.readAll());
+    QRegExp regx("<center>([^<]+)</center>");
+    int pos = text.indexOf(regx);
+    while(pos != -1)
     {
-        const QVariantMap &value = vdata.toMap();
-        line = value["address"].toString();
-        const QStringList &ls = line.split(" ");
-        if(ls.count() >= 2)
-        {
-            line = ls.last();
-        }
+        line = regx.cap(0).remove("<center>").remove("</center>").trimmed();
+        line = line.right(2);
+        pos += regx.matchedLength();
+        pos = regx.indexIn(text, pos);
     }
 
     emit getNetworkOperatorFinished(line);

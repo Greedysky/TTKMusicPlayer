@@ -127,7 +127,7 @@ void MusicVideoView::contextMenuEvent(QContextMenuEvent *event)
 
 void MusicVideoView::setMedia(const QString &data)
 {
-    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data, (int)m_videoWidget->winId());
+    m_mediaPlayer->setMedia(MusicCoreMPlayer::VideoCategory, data, MStatic_cast(int, m_videoWidget->winId()));
     m_videoControl->setQualityActionState();
 }
 

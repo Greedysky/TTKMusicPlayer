@@ -242,6 +242,7 @@ MusicSoundKMicroSearchWidget::MusicSoundKMicroSearchWidget(QWidget *parent)
 
     connect(searchButton, SIGNAL(clicked()), SLOT(startToSearch()));
     connect(m_searchEdit, SIGNAL(enterFinished(QString)), SLOT(startToSearch()));
+    connect(m_searchTableWidget, SIGNAL(restartSearchQuery(QString)), SLOT(setCurrentSongName(QString)));
 }
 
 MusicSoundKMicroSearchWidget::~MusicSoundKMicroSearchWidget()
@@ -269,4 +270,12 @@ void MusicSoundKMicroSearchWidget::startToSearch()
 void MusicSoundKMicroSearchWidget::setQueryMovieFlag(int flag)
 {
     m_queryMovieMode = (flag == 0);
+}
+
+void MusicSoundKMicroSearchWidget::setCurrentSongName(const QString &name)
+{
+    Q_UNUSED(name);
+    MusicMessageBox message;
+    message.setText(tr("Search Not Supported!"));
+    message.exec();
 }

@@ -100,7 +100,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSong
 
 void MusicDownLoadWYInterface::readFromMusicSongAttribute(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
-    const qlonglong dfsId = /*key.value("dfsId").toLongLong()*/0;
+    const qint64 dfsId = /*key.value("dfsId").toLongLong()*/0;
     if(key.isEmpty() || dfsId == 0)
     {
         readFromMusicSongAttribute(info, bitrate);
@@ -234,7 +234,7 @@ void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicS
 
 void MusicDownLoadWYInterface::readFromMusicSongAttributeNew(MusicObject::MusicSongInformation *info, const QVariantMap &key, int bitrate)
 {
-    const qlonglong fid = /*key.value("fid").toLongLong()*/0;
+    const qint64 fid = /*key.value("fid").toLongLong()*/0;
     if(key.isEmpty() || fid == 0)
     {
         readFromMusicSongAttribute(info, bitrate);

@@ -58,7 +58,7 @@ void MusicUserManagerDialog::setUserModel(MusicUserModel *model)
 
 void MusicUserManagerDialog::createUserTime() const
 {
-    qlonglong time = m_userModel->getUserLogTime(m_userUID).toLongLong();
+    const qint64 time = m_userModel->getUserLogTime(m_userUID).toLongLong();
     m_ui->totalTimeLabel->setText(QString::number(time));
 }
 

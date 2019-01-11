@@ -128,6 +128,10 @@ public Q_SLOTS:
      * Set query MV flag.
      */
     void setQueryMovieFlag(int flag);
+    /*!
+     * Set current search song name.
+     */
+    void setCurrentSongName(const QString &name);
 
 protected:
     bool m_queryMovieMode;

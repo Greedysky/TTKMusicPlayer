@@ -237,11 +237,11 @@ void MusicVideoSearchTableWidget::itemDoubleClicked(int row, int column)
         data.m_url = url;
         data.m_id = musicSongInfo.m_songId;
         data.m_server = m_downLoadManager->getQueryServer();
-        emit mvURLNameChanged(data);
+        emit mediaUrlNameChanged(data);
     }
 }
 
-void MusicVideoSearchTableWidget::getMusicMvInfo(MusicObject::MusicSongAttributes &data)
+void MusicVideoSearchTableWidget::getMusicMediaInfo(MusicObject::MusicSongAttributes &data)
 {
     if(!m_downLoadManager)
     {

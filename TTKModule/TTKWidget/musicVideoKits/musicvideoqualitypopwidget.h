@@ -48,9 +48,9 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Get music mv information data.
+     * Get music media information data.
      */
-    void getMusicMvInfo(MusicObject::MusicSongAttributes &data);
+    void getMusicMediaInfo(MusicObject::MusicSongAttributes &data);
     /*!
      * Set current media url by selected quality.
      */
