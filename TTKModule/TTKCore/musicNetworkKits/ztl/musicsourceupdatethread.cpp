@@ -1,10 +1,10 @@
 #include "musicsourceupdatethread.h"
 #include "musicdownloadsourcethread.h"
+#include "musicsettingmanager.h"
 #///QJson import
 #include "qjson/parser.h"
 
 #define QN_VERSION       "version"
-#define QN_CONFIG_URL    "MDN2ZTFCbndoYkFzK2pQN2wzNVVKYWpwVTd2bXdKWjk0MmhLSjRuUFpROHpzWUhLcENKK2doUmVoa2NqMWFSaGdiaUwyTG5mL2tmelJSakJnT2dmcWJQYjRPTVR0SWROMGZWMkRkaEJtbWhFQ1loRFFSd3VReXl6bXFZPQ=="
 
 MusicSourceUpdateThread::MusicSourceUpdateThread(QObject *parent)
     : QObject(parent)
@@ -16,7 +16,8 @@ void MusicSourceUpdateThread::startToDownload()
 {
     MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
     connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
-    download->startToDownload(MusicUtils::Algorithm::mdII(QN_CONFIG_URL, false));
+    const QString &buketUrl = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
+    download->startToDownload(MusicUtils::Algorithm::mdII(buketUrl, false) + QN_VERSION);
 }
 
 QString MusicSourceUpdateThread::getLastedVersion() const
