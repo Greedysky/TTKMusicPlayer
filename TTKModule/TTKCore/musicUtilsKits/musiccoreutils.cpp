@@ -38,14 +38,35 @@ QString MusicUtils::Core::musicPrefix()
     return path;
 }
 
-QString MusicUtils::Core::fileSuffix(const QString &name)
+QString MusicUtils::Core::StringPrefix(const QString &name)
 {
-    return fileSuffix(name, ".");
+    return StringPrefix(name, ".");
 }
 
-QString MusicUtils::Core::fileSuffix(const QString &name, const QString &prefix)
+QString MusicUtils::Core::StringPrefix(const QString &name, const QString &prefix)
 {
-    return name.right(name.length() - name.lastIndexOf(prefix) - 1);
+    return name.left(name.indexOf(prefix));
+}
+
+QString MusicUtils::Core::StringSuffix(const QString &name)
+{
+    return StringSuffix(name, ".");
+}
+
+QString MusicUtils::Core::StringSuffix(const QString &name, const QString &suffix)
+{
+    return name.right(name.length() - name.lastIndexOf(suffix) - 1);
+}
+
+QString MusicUtils::Core::StringSplite(const QString &name)
+{
+    return StringSplite(name, ".", "?");
+}
+
+QString MusicUtils::Core::StringSplite(const QString &name, const QString &prefix, const QString &suffix)
+{
+    const QString &data = StringSuffix(name, prefix);
+    return StringPrefix(data, suffix);
 }
 
 quint64 MusicUtils::Core::dirSize(const QString &dirName)

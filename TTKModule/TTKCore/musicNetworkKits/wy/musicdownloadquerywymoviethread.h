@@ -67,11 +67,11 @@ protected:
     /*!
      * Start to search mv list by id.
      */
-    void startMVListQuery(int id);
+    void startMVListQuery(qint64 id);
     /*!
      * Get artist mvs count.
      */
-    void getArtistMvsCount(int id);
+    void getArtistMvsCount(qint64 id);
 
 };
 

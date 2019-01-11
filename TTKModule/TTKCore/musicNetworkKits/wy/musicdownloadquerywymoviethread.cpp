@@ -209,7 +209,7 @@ void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()
     m_musicSongInfos.clear();
     m_interrupt = false;
 
-    const int mvid = m_searchText.toLongLong();
+    const qint64 mvid = m_searchText.toLongLong();
     if(mvid != 0)
     {
         if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
@@ -222,7 +222,7 @@ void MusicDownLoadQueryWYMovieThread::singleDownLoadFinished()
     M_LOGGER_INFO(QString("%1 singleDownLoadFinished deleteAll").arg(getClassName()));
 }
 
-void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
+void MusicDownLoadQueryWYMovieThread::startMVListQuery(qint64 id)
 {
     QNetworkRequest request;
     if(!m_manager || m_stateCode != MusicObject::NetworkInit) return;
@@ -273,7 +273,7 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
                     attr.m_bitrate = MB_1000;
 
                 attr.m_url = value[key].toString();
-                attr.m_format = MusicUtils::Core::fileSuffix(attr.m_url);
+                attr.m_format = MusicUtils::Core::StringSplite(attr.m_url);
                 if(!findUrlFileSize(&attr)) return;
                 musicInfo.m_songAttrs.append(attr);
             }
@@ -294,7 +294,7 @@ void MusicDownLoadQueryWYMovieThread::startMVListQuery(int id)
     }
 }
 
-void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(int id)
+void MusicDownLoadQueryWYMovieThread::getArtistMvsCount(qint64 id)
 {
     if(!m_manager)
     {
