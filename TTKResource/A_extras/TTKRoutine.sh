@@ -1,7 +1,6 @@
 #!/bin/sh
 
-routine="../TTKRoutine.sh"
-appname=`basename $0 | sed s,\.sh$,,`  
+appname=$1
 
 if [ -z "$appname" ]; then
   echo "No Run App Name Input!"
@@ -11,11 +10,12 @@ fi
 dirpath=`dirname $0`
 tmp="${dirpath#?}"  
 
-dirname=$dirpath
-dirname=${dirname##*/}
-
 if [ "${dirpath%$tmp}" != "/" ]; then  
   dirpath=$PWD/$dirpath  
 fi  
+LD_LIBRARY_PATH=$dirpath  
 
-$dirpath/$routine "$dirname/$appname"
+export LD_LIBRARY_PATH=$dirpath:$dirpath/lib:$dirpath/2.7.0.0:$LD_LIBRARY_PATH
+export QT_PLUGIN_PATH=$dirpath/plugins:$QT_PLUGIN_PATH
+
+$dirpath/$appname "$@"

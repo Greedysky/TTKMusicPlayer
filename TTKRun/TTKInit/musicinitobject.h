@@ -55,8 +55,12 @@
 #ifdef Q_OS_WIN
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"
 #else
-#define S_TTKDD_FULL              MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKLDD.sh"
+#define S_TTKINIT_FULL            MusicObject::getAppDir() + "TTKInit.sh"
+#define S_TTKMUSICPLAYER_FULL     MusicObject::getAppDir() + "TTKMusicPlayer.sh"
+#define S_TTKROUTINE_FULL         MusicObject::getAppDir() + "TTKRoutine.sh"
+#define S_TTKCONSOLE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKConsole.sh"
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.sh"
+#define S_TTKROUTINECOPY_FULL     MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKRoutineCopy.sh"
 #endif
 
 
@@ -101,6 +105,10 @@ public:
      * Copy file.
      */
     void copyFile(const QString &origin, const QString &des);
+    /*!
+     * Copy linux shell file.
+     */
+    void copyLinuxShellFile(const QString &name, const QString &path);
 
 };
 
