@@ -136,6 +136,11 @@ void MusicQueryItemTableWidget::createFinishedItem()
 
 void MusicQueryItemTableWidget::createContextMenu(QMenu &menu)
 {
+    if(!m_downLoadManager)
+    {
+        return;
+    }
+
     menu.setStyleSheet(MusicUIObject::MMenuStyle02);
     m_actionGroup->addAction(menu.addAction(tr("musicDownload")))->setData(0);
 
