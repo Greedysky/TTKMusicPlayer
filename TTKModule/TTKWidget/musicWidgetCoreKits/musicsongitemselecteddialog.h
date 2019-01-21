@@ -1,22 +1,22 @@
-#ifndef MUSICSONGCHECKTOOLSITEMSELECTEDDIALOG_H
-#define MUSICSONGCHECKTOOLSITEMSELECTEDDIALOG_H
+#ifndef MUSICSONGITEMSELECTEDDIALOG_H
+#define MUSICSONGITEMSELECTEDDIALOG_H
 
 #include "musicsong.h"
 #include "musicabstractmovedialog.h"
 #include "musicfillitemtablewidget.h"
 
-/*! @brief The class of the song check tools item selected table widget
+/*! @brief The class of the song item selected table widget
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsItemSelectedTableWidget : public MusicFillItemTableWidget
+class MUSIC_WIDGET_EXPORT MusicSongItemSelectedTableWidget : public MusicFillItemTableWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsItemSelectedTableWidget)
+    TTK_DECLARE_MODULE(MusicSongItemSelectedTableWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent = nullptr);
+    explicit MusicSongItemSelectedTableWidget(QWidget *parent = nullptr);
 
     /*!
      * Create all items.
@@ -37,23 +37,23 @@ public Q_SLOTS:
 
 
 namespace Ui {
-class MusicSongCheckToolsItemSelectedDialog;
+class MusicSongItemSelectedDialog;
 }
 
-/*! @brief The class of the song check tools item selected dialog widget.
+/*! @brief The class of the song item selected dialog widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_TOOLSET_EXPORT MusicSongCheckToolsItemSelectedDialog : public MusicAbstractMoveDialog
+class MUSIC_WIDGET_EXPORT MusicSongItemSelectedDialog : public MusicAbstractMoveDialog
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicSongCheckToolsItemSelectedDialog)
+    TTK_DECLARE_MODULE(MusicSongItemSelectedDialog)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicSongCheckToolsItemSelectedDialog(QWidget *parent = nullptr);
+    explicit MusicSongItemSelectedDialog(QWidget *parent = nullptr);
 
-    virtual ~MusicSongCheckToolsItemSelectedDialog();
+    virtual ~MusicSongItemSelectedDialog();
 
     /*!
      * Create all items.
@@ -77,8 +77,8 @@ public Q_SLOTS:
     virtual int exec();
 
 protected:
-    Ui::MusicSongCheckToolsItemSelectedDialog *m_ui;
+    Ui::MusicSongItemSelectedDialog *m_ui;
 
 };
 
-#endif // MUSICSONGCHECKTOOLSITEMSELECTEDDIALOG_H
+#endif // MUSICSONGITEMSELECTEDDIALOG_H

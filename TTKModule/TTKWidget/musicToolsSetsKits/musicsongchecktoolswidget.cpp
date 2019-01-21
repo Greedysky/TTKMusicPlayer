@@ -6,7 +6,7 @@
 #include "musicconnectionpool.h"
 #include "musicmessagebox.h"
 #include "musicsongssummariziedwidget.h"
-#include "musicsongchecktoolsitemselecteddialog.h"
+#include "musicsongitemselecteddialog.h"
 #include "musicotherdefine.h"
 
 MusicSongCheckToolsWidget::MusicSongCheckToolsWidget(QWidget *parent)
@@ -53,7 +53,7 @@ void MusicSongCheckToolsWidget::modifiedItemButtonClicked()
     emit getMusicLists(songs);
 
     m_selectedItemIdFlag = true;
-    MusicSongCheckToolsItemSelectedDialog dialog;
+    MusicSongItemSelectedDialog dialog;
     connect(&dialog, SIGNAL(itemListsChanged(MIntList)), SLOT(itemListsChanged(MIntList)));
     dialog.createAllItems(&songs);
     dialog.exec();

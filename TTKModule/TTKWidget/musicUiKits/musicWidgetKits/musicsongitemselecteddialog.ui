@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MusicSongCheckToolsItemSelectedDialog</class>
- <widget class="QWidget" name="MusicSongCheckToolsItemSelectedDialog">
+ <class>MusicSongItemSelectedDialog</class>
+ <widget class="QWidget" name="MusicSongItemSelectedDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -96,7 +96,7 @@
      <string>全选</string>
     </property>
    </widget>
-   <widget class="MusicSongCheckToolsItemSelectedTableWidget" name="itemTableWidget">
+   <widget class="MusicSongItemSelectedTableWidget" name="itemTableWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -114,9 +114,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MusicSongCheckToolsItemSelectedTableWidget</class>
+   <class>MusicSongItemSelectedTableWidget</class>
    <extends>QTableWidget</extends>
-   <header>musicsongchecktoolsitemselecteddialog.h</header>
+   <header>musicsongitemselecteddialog.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

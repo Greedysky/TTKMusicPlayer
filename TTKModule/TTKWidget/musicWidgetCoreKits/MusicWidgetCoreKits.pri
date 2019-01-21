@@ -59,7 +59,8 @@ HEADERS  += \
     $$PWD/musiclayoutanimationwidget.h \
     $$PWD/musiccommentswidget.h \
     $$PWD/musicdownloadabstracttablewidget.h \
-    $$PWD/musicfunctiontoolboxwidget.h
+    $$PWD/musicfunctiontoolboxwidget.h \
+    $$PWD/musicsongitemselecteddialog.h
 
 }
 
@@ -104,6 +105,7 @@ SOURCES += \
     $$PWD/musiclayoutanimationwidget.cpp \
     $$PWD/musiccommentswidget.cpp \
     $$PWD/musicdownloadabstracttablewidget.cpp \
-    $$PWD/musicfunctiontoolboxwidget.cpp
+    $$PWD/musicfunctiontoolboxwidget.cpp \
+    $$PWD/musicsongitemselecteddialog.cpp
 
 }

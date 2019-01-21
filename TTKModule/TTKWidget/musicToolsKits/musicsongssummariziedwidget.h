@@ -28,6 +28,7 @@ class MusicSongsListWidget;
 class MusicSongCheckToolsWidget;
 class MusicSongsListFunctionWidget;
 class MusicLocalSongSearchDialog;
+class MusicLrcDownloadBatchWidget;
 
 /*! @brief The class of the songs summarizied widget.
  * @author Greedysky <greedysky@163.com>
@@ -168,6 +169,10 @@ public Q_SLOTS:
      * Open music songs check test tools.
      */
     void musicSongsCheckTestTools();
+    /*!
+     * Open lrc batch download.
+     */
+    void musicLrcBatchDownload();
 
     /*!
      * Set current play index from config file.
@@ -292,6 +297,7 @@ protected:
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;
+    MusicLrcDownloadBatchWidget *m_lrcBatchDownloadWidget;
 
 };
 

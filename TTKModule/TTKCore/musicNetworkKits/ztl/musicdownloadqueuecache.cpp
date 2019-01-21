@@ -64,6 +64,11 @@ void MusicDownloadQueueCache::abort()
     }
 }
 
+void MusicDownloadQueueCache::clear()
+{
+    m_imageQueue.clear();
+}
+
 void MusicDownloadQueueCache::addImageQueue(const MusicDownloadQueueDatas &datas)
 {
     m_imageQueue = datas;

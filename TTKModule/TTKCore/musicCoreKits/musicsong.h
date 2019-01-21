@@ -85,7 +85,7 @@ public:
     /*!
      * Set music size string.
      */
-    inline void setMusicSizeStr(const QString s) { m_musicSizeStr = s;}
+    inline void setMusicSizeStr(const QString &s) { m_musicSizeStr = s;}
     /*!
      * Get music size string.
      */
@@ -126,7 +126,7 @@ public:
     /*!
      * Set music add time.
      */
-    inline void setMusicAddTime(const qint64 &t) { m_musicAddTime = t;}
+    inline void setMusicAddTime(const qint64 t) { m_musicAddTime = t;}
     /*!
      * Get music add time.
      */
@@ -201,7 +201,7 @@ typedef struct MUSIC_CORE_EXPORT MusicSongItem
     QString m_itemName;
     MusicSort m_sort;
     MusicSongs m_songs;
-    MusicSongsListAbstractTableWidget* m_itemObject;
+    MusicSongsListAbstractTableWidget *m_itemObject;
 
     MusicSongItem()
     {

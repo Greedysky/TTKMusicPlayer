@@ -1,10 +1,10 @@
-#include "musicsongchecktoolsitemselecteddialog.h"
-#include "ui_musicsongchecktoolsitemselecteddialog.h"
+#include "musicsongitemselecteddialog.h"
+#include "ui_musicsongitemselecteddialog.h"
 #include "musicitemdelegate.h"
 #include "musicuiobject.h"
 #include "musicwidgetheaders.h"
 
-MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTableWidget(QWidget *parent)
+MusicSongItemSelectedTableWidget::MusicSongItemSelectedTableWidget(QWidget *parent)
     : MusicFillItemTableWidget(parent)
 {
     setAttribute(Qt::WA_TranslucentBackground, false);
@@ -23,7 +23,7 @@ MusicSongCheckToolsItemSelectedTableWidget::MusicSongCheckToolsItemSelectedTable
 #endif
 }
 
-void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *items)
+void MusicSongItemSelectedTableWidget::createAllItems(MusicSongItems *items)
 {
     if(items->count() >= 4)
     {
@@ -50,7 +50,7 @@ void MusicSongCheckToolsItemSelectedTableWidget::createAllItems(MusicSongItems *
     }
 }
 
-MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
+MIntList MusicSongItemSelectedTableWidget::getSelectedItems() const
 {
     MIntList list;
     for(int i=0; i<rowCount(); ++i)
@@ -64,7 +64,7 @@ MIntList MusicSongCheckToolsItemSelectedTableWidget::getSelectedItems() const
     return list;
 }
 
-void MusicSongCheckToolsItemSelectedTableWidget::selectedAllItems(bool check)
+void MusicSongItemSelectedTableWidget::selectedAllItems(bool check)
 {
     for(int i=0; i<rowCount(); ++i)
     {
@@ -84,9 +84,9 @@ void MusicSongCheckToolsItemSelectedTableWidget::selectedAllItems(bool check)
 
 
 
-MusicSongCheckToolsItemSelectedDialog::MusicSongCheckToolsItemSelectedDialog(QWidget *parent)
+MusicSongItemSelectedDialog::MusicSongItemSelectedDialog(QWidget *parent)
     : MusicAbstractMoveDialog(parent),
-      m_ui(new Ui::MusicSongCheckToolsItemSelectedDialog)
+      m_ui(new Ui::MusicSongItemSelectedDialog)
 {
     m_ui->setupUi(this);
 
@@ -107,23 +107,23 @@ MusicSongCheckToolsItemSelectedDialog::MusicSongCheckToolsItemSelectedDialog(QWi
     connect(m_ui->selectAllCheckButton, SIGNAL(clicked(bool)), m_ui->itemTableWidget, SLOT(selectedAllItems(bool)));
 }
 
-MusicSongCheckToolsItemSelectedDialog::~MusicSongCheckToolsItemSelectedDialog()
+MusicSongItemSelectedDialog::~MusicSongItemSelectedDialog()
 {
     delete m_ui;
 }
 
-void MusicSongCheckToolsItemSelectedDialog::createAllItems(MusicSongItems *items)
+void MusicSongItemSelectedDialog::createAllItems(MusicSongItems *items)
 {
     m_ui->itemTableWidget->createAllItems(items);
 }
 
-void MusicSongCheckToolsItemSelectedDialog::confirmButtonClicked()
+void MusicSongItemSelectedDialog::confirmButtonClicked()
 {
     emit itemListsChanged( m_ui->itemTableWidget->getSelectedItems() );
     accept();
 }
 
-int MusicSongCheckToolsItemSelectedDialog::exec()
+int MusicSongItemSelectedDialog::exec()
 {
     setBackgroundPixmap(m_ui->background, size());
     return MusicAbstractMoveDialog::exec();

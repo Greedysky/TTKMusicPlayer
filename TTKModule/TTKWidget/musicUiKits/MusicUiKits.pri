@@ -47,6 +47,7 @@ FORMS    += \
     $$PWD/musicLrcKits/musiclrclocallinkwidget.ui \
     $$PWD/musicLrcKits/musiclrccolorwidget.ui \
     $$PWD/musicLrcKits/musiclrcposterwidget.ui \
+    $$PWD/musicLrcKits/musiclrcdownloadbatchwidget.ui \
     $$PWD/musicToolsetsKits/musicaudiorecorderwidget.ui \
     $$PWD/musicToolsetsKits/musicdesktopwallpaperwidget.ui \
     $$PWD/musicToolsetsKits/musicfileinformationwidget.ui \
@@ -58,7 +59,6 @@ FORMS    += \
     $$PWD/musicToolsetsKits/musicsoundtouchwidget.ui \
     $$PWD/musicToolsetsKits/musicsongchecktoolswidget.ui \
     $$PWD/musicToolsetsKits/musicsongringtonemakerwidget.ui \
-    $$PWD/musicToolsetsKits/musicsongchecktoolsitemselecteddialog.ui \
     $$PWD/musicToolsetsKits/musicsoundkmicrowidget.ui \
     $$PWD/musicToolsetsKits/musicspectrumwidget.ui \
     $$PWD/musicToolsKits/musicwebmusicradioplaywidget.ui \
@@ -85,5 +85,6 @@ FORMS    += \
     $$PWD/musicWidgetKits/musicsoundeffectswidget.ui \
     $$PWD/musicWidgetKits/musicmessageaboutdialog.ui \
     $$PWD/musicWidgetKits/musicsonglistenhancelosslesswidget.ui \
-    $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui
+    $$PWD/musicWidgetKits/musicdownloadbatchwidget.ui \
+    $$PWD/musicWidgetKits/musicsongitemselecteddialog.ui
 }

@@ -69,6 +69,10 @@ public:
      * Abort current download thread.
      */
     void abort();
+    /*!
+     * Clear image download url queue.
+     */
+    void clear();
 
 public Q_SLOTS:
     /*!

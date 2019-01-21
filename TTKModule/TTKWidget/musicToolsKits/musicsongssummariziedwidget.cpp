@@ -11,6 +11,7 @@
 #include "musicsongsearchonlinewidget.h"
 #include "musicsongchecktoolswidget.h"
 #include "musicplayedlistpopwidget.h"
+#include "musiclrcdownloadbatchwidget.h"
 #include "musicapplication.h"
 #include "musictoastlabel.h"
 #include "musicotherdefine.h"
@@ -36,6 +37,7 @@ MusicSongsSummariziedWidget::MusicSongsSummariziedWidget(QWidget *parent)
     m_songCheckToolsWidget = nullptr;
     m_listFunctionWidget = nullptr;
     m_musicSongSearchWidget = nullptr;
+    m_lrcBatchDownloadWidget = nullptr;
 
     M_CONNECTION_PTR->setValue(getClassName(), this);
     M_CONNECTION_PTR->poolConnect(MusicSongSearchTableWidget::getClassName(), getClassName());
@@ -47,6 +49,7 @@ MusicSongsSummariziedWidget::~MusicSongsSummariziedWidget()
     delete m_songCheckToolsWidget;
     delete m_listFunctionWidget;
     delete m_musicSongSearchWidget;
+    delete m_lrcBatchDownloadWidget;
     M_CONNECTION_PTR->removeValue(getClassName());
     clearAllLists();
 }
@@ -570,6 +573,13 @@ void MusicSongsSummariziedWidget::musicSongsCheckTestTools()
     m_songCheckToolsWidget->show();
 }
 
+void MusicSongsSummariziedWidget::musicLrcBatchDownload()
+{
+    delete m_lrcBatchDownloadWidget;
+    m_lrcBatchDownloadWidget = new MusicLrcDownloadBatchWidget(this);
+    m_lrcBatchDownloadWidget->show();
+}
+
 void MusicSongsSummariziedWidget::setCurrentIndex()
 {
     const QStringList &keyList = M_SETTING_PTR->value(MusicSettingManager::LastPlayIndexChoiced).toStringList();
@@ -1074,6 +1084,7 @@ void MusicSongsSummariziedWidget::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("addNewItem"), this, SLOT(addNewRowItem()));
     menu.addAction(tr("importItem"), MusicApplication::instance(), SLOT(musicImportSongsItemList()));
     menu.addAction(tr("musicTest"), this, SLOT(musicSongsCheckTestTools()));
+    menu.addAction(tr("lrcBatch"), this, SLOT(musicLrcBatchDownload()));
     menu.addAction(tr("deleteAllItem"), this, SLOT(deleteRowItems()))->setEnabled(m_songItems.count() > ITEM_MIN_COUNT);
     menu.exec(QCursor::pos());
 }

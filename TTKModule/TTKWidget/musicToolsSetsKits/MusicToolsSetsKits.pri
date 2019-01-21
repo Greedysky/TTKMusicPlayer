@@ -35,7 +35,6 @@ HEADERS  += \
     $$PWD/musicnetworkconnectiontestwidget.h \
     $$PWD/musicsongchecktoolswidget.h \
     $$PWD/musicsongchecktoolstablewidget.h \
-    $$PWD/musicsongchecktoolsitemselecteddialog.h \
     $$PWD/musicgrabwidget.h \
     $$PWD/musicsoundkmicrowidget.h \
     $$PWD/musicsoundkmicrosearchwidget.h \
@@ -61,7 +60,6 @@ SOURCES += \
     $$PWD/musicnetworkconnectiontestwidget.cpp \
     $$PWD/musicsongchecktoolswidget.cpp \
     $$PWD/musicsongchecktoolstablewidget.cpp \
-    $$PWD/musicsongchecktoolsitemselecteddialog.cpp \
     $$PWD/musicgrabwidget.cpp \
     $$PWD/musicsoundkmicrowidget.cpp \
     $$PWD/musicsoundkmicrosearchwidget.cpp \
