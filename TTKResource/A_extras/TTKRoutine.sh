@@ -18,4 +18,4 @@ LD_LIBRARY_PATH=$dirpath
 export LD_LIBRARY_PATH=$dirpath:$dirpath/lib:$dirpath/2.8.0.0:$LD_LIBRARY_PATH
 export QT_PLUGIN_PATH=$dirpath/plugins:$QT_PLUGIN_PATH
 
-$dirpath/$appname "$@"
+$appname "$@"

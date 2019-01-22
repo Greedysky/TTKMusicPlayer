@@ -11,11 +11,8 @@ fi
 dirpath=`dirname $0`
 tmp="${dirpath#?}"  
 
-dirname=$dirpath
-dirname=${dirname##*/}
-
 if [ "${dirpath%$tmp}" != "/" ]; then  
   dirpath=$PWD/$dirpath  
 fi  
 
-$dirpath/$routine "$dirname/$appname"
+$dirpath/$routine "$dirpath/$appname"

@@ -15,4 +15,4 @@ if [ "${dirpath%$tmp}" != "/" ]; then
   dirpath=$PWD/$dirpath  
 fi  
 
-$dirpath/$routine "$appname"
+$dirpath/$routine "$dirpath/$appname"
