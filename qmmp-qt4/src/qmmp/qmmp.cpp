@@ -25,10 +25,6 @@
 #include <QFile>
 #include <QByteArray>
 
-#ifndef LIB_DIR
-#define LIB_DIR "/lib/2.8.0.0"
-#endif
-
 #define DEV_SUFFIX "dev"
 
 #include "qmmp.h"
@@ -97,7 +93,7 @@ const QString Qmmp::pluginsPath()
 #elif defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
     QDir dir(qApp->applicationDirPath() + "/plugins");
 #else
-    QDir dir(qApp->applicationDirPath() + "/../../"LIB_DIR"/qmmp");
+    QDir dir(qApp->applicationDirPath() + "/qmmp");
 #endif
     return dir.canonicalPath();
 }
