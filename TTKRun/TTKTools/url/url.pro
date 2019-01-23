@@ -33,16 +33,20 @@ TARGET = toolsurl
 TEMPLATE = app
 DEFINES += MUSIC_LIBRARY
 
-INCLUDEPATH += $$PWD/../../../ \
-               $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
-               $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
+INCLUDEPATH += \
+    $$PWD/../../../ \
+    $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
+    $$PWD/../../../TTKModule/TTKCore/musicUtilsKits
 
 win32:LIBS += -L../../../bin/$$TTKMusicPlayer -lTTKCore
 unix:LIBS += -L../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
-SOURCES += mainurl.cpp\
-           toolsurl.cpp
+SOURCES += \
+    mainurl.cpp\
+    toolsurl.cpp
 
-HEADERS  += toolsurl.h
+HEADERS  += \
+    toolsurl.h
 
-FORMS   += toolsurl.ui
+FORMS   += \
+    toolsurl.ui

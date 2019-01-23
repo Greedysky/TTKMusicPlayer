@@ -715,6 +715,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
         return;
     }
 
+    musicFunctionParameterInit(MusicRightAreaWidget::SearchWidget);
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
     m_ui->surfaceStackedWidget->setCurrentIndex(APP_WINDOW_INDEX_0);
     emit updateBackgroundTheme();

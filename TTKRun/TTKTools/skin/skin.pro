@@ -33,17 +33,21 @@ TARGET = toolsskin
 TEMPLATE = app
 DEFINES += MUSIC_LIBRARY
 
-INCLUDEPATH += $$PWD/../../../ \
-               $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
-               $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
-               $$PWD/../../../TTKModule/TTKWidget/musicWidgetCoreKits \
+INCLUDEPATH += \
+    $$PWD/../../../ \
+    $$PWD/../../../TTKModule/TTKCore/musicCoreKits \
+    $$PWD/../../../TTKModule/TTKCore/musicUtilsKits \
+    $$PWD/../../../TTKModule/TTKWidget/musicWidgetCoreKits \
 
 win32:LIBS += -L../../../bin/$$TTKMusicPlayer -lTTKCore
 unix:LIBS += -L../../../lib/$$TTKMusicPlayer -lTTKCore -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 
-SOURCES += mainskin.cpp\
-           toolsskin.cpp
+SOURCES += \
+    mainskin.cpp \
+    toolsskin.cpp
 
-HEADERS  += toolsskin.h
+HEADERS  += \
+    toolsskin.h
 
-FORMS   += toolsskin.ui
+FORMS   += \
+    toolsskin.ui
