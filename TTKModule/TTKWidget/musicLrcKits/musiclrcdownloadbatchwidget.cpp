@@ -176,7 +176,8 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
         const QString &path = QString("%1/%2%3").arg(prefix).arg(song->getMusicName()).arg(LRC_FILE);
         if(skip && QFile::exists(path))
         {
-            it->setText(tr("Finish"));
+            it->setTextColor(QColor(100, 100, 100));
+            it->setText(tr("Skip"));
             continue;
         }
 
@@ -192,10 +193,12 @@ void MusicLrcDownloadBatchWidget::downloadButtonClicked()
             MusicDownLoadThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(info.m_lrcUrl, path, MusicObject::DownloadLrc, this);
             d->startToDownload();
             loop.exec();
+            it->setTextColor(QColor(0, 0xFF, 0));
             it->setText(tr("Finish"));
         }
         else
         {
+            it->setTextColor(QColor(0xFF, 0, 0));
             it->setText(tr("Error"));
         }
     }

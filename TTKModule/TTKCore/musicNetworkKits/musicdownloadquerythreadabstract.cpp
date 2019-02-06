@@ -32,12 +32,12 @@ QString MusicDownLoadQueryThreadAbstract::mapQueryServerString() const
     else if(m_queryServer.contains(QUERY_KW_INTERFACE))
         return v.arg(tr("KW"));
     else if(m_queryServer.contains(QUERY_QQ_INTERFACE))
-        return v.arg(tr(QUERY_QQ_INTERFACE));
+        return v.arg(tr("QQ"));
     else if(m_queryServer.contains(QUERY_WY_INTERFACE))
         return v.arg(tr("WY"));
     else if(m_queryServer.contains(QUERY_XM_INTERFACE))
         return v.arg(tr("XM"));
-    else if(m_queryServer.contains("YinYueTai"))
+    else if(m_queryServer.contains(QUERY_YYT_INTERFACE))
         return v.arg(tr("YYT"));
     else
         return QString();

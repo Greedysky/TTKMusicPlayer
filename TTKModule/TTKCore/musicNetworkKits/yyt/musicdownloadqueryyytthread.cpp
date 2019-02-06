@@ -16,7 +16,7 @@ const QString BD_MV_INFO_DV        = "cEoxTGtxZW9qQ1d0UHhZZWpabnNnSlBLTWV5Z055RT
 MusicDownLoadQueryYYTThread::MusicDownLoadQueryYYTThread(QObject *parent)
     : MusicDownLoadQueryMovieThread(parent)
 {
-    m_queryServer = "YinYueTai";
+    m_queryServer = QUERY_YYT_INTERFACE;
 }
 
 void MusicDownLoadQueryYYTThread::startToSearch(QueryType type, const QString &text)

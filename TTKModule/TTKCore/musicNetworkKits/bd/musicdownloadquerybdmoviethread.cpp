@@ -293,7 +293,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttributeWeb(MusicObject::M
             const QString &type = value["source"].toString();
 
             if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-            if(type == "yinyuetai")
+            if(type == QUERY_YYT_INTERFACE)
             {
                 const QString &vars = QString("videoId=%1").arg(value["tvid"].toString());
                 readFromMusicMVAttributeYYT(info, vars, true);
@@ -359,7 +359,7 @@ void MusicDownLoadQueryBDMovieThread::readFromMusicMVAttribute(MusicObject::Musi
             const QString &vars = value["flashvars"].toString();
 
             if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-            if(type == "yinyuetai")
+            if(type == QUERY_YYT_INTERFACE)
             {
                 readFromMusicMVAttributeYYT(info, vars, more);
             }

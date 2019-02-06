@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>网络连接测试</string>
+   <string>歌词批量下载</string>
   </property>
   <widget class="QLabel" name="background">
    <property name="geometry">
@@ -241,7 +241,7 @@ font-weight:bold;</string>
      <rect>
       <x>520</x>
       <y>147</y>
-      <width>31</width>
+      <width>43</width>
       <height>20</height>
      </rect>
     </property>
@@ -250,6 +250,9 @@ font-weight:bold;</string>
     </property>
     <property name="text">
      <string>状态</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QLabel" name="functionBottomLabel">
@@ -302,7 +305,7 @@ font-weight:bold;</string>
      <rect>
       <x>385</x>
       <y>147</y>
-      <width>41</width>
+      <width>55</width>
       <height>20</height>
      </rect>
     </property>
