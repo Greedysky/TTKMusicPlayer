@@ -316,6 +316,7 @@ MusicFunctionToolBoxWidget::MusicFunctionToolBoxWidget(QWidget *parent)
     m_scrollArea->setFrameShape(QFrame::NoFrame);
     m_scrollArea->setFrameShadow(QFrame::Plain);
     m_scrollArea->setAlignment(Qt::AlignLeft);
+    m_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_scrollArea->setWidget(m_contentsWidget);
 
     setTransparent(0);

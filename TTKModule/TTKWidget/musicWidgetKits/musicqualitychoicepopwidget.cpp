@@ -137,11 +137,11 @@ MusicQualityChoicePopWidget::MusicQualityChoicePopWidget(QWidget *parent)
     : MusicToolMenuWidget(parent)
 {
     setToolTip(tr("Quality Choice"));
-    setFixedSize(45, 20);
+    setFixedSize(48, 20);
 
     initWidget();
 
-    setStyleSheet(MusicUIObject::MToolButtonStyle05 + MusicUIObject::MKGBtnQuality + "QToolButton{ margin-left:-45px;}" );
+    setStyleSheet(MusicUIObject::MToolButtonStyle05 + MusicUIObject::MKGBtnQuality + "QToolButton{ margin-left:-48px;}" );
 }
 
 void MusicQualityChoicePopWidget::initWidget()
@@ -176,25 +176,25 @@ void MusicQualityChoicePopWidget::listCellClicked(int row)
             }
         case 1:
             {
-                style = "QToolButton{ margin-left:-45px; }";
+                style = "QToolButton{ margin-left:-48px; }";
                 m_currentQuality = tr("SD");
                 break;
             }
         case 2:
             {
-                style = "QToolButton{ margin-left:-90px; }";
+                style = "QToolButton{ margin-left:-96px; }";
                 m_currentQuality = tr("HQ");
                 break;
             }
         case 3:
             {
-                style = "QToolButton{ margin-left:-135px; }";
+                style = "QToolButton{ margin-left:-144px; }";
                 m_currentQuality = tr("SQ");
                 break;
             }
         case 4:
             {
-                style = "QToolButton{ margin-left:-180px; }";
+                style = "QToolButton{ margin-left:-192px; }";
                 m_currentQuality = tr("CD");
                 break;
             }
