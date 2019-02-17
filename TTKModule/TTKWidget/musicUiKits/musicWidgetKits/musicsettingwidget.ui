@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>618</width>
-    <height>458</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>4</x>
      <y>4</y>
      <width>610</width>
-     <height>450</height>
+     <height>462</height>
     </rect>
    </property>
    <property name="text">
@@ -59,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>144</x>
-     <y>29</y>
+     <y>39</y>
      <width>461</width>
      <height>370</height>
     </rect>
@@ -2532,7 +2532,7 @@ font-weight:bold;</string>
      <x>4</x>
      <y>29</y>
      <width>125</width>
-     <height>425</height>
+     <height>437</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -2630,7 +2630,7 @@ font-weight:bold;;</string>
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>410</y>
+     <y>420</y>
      <width>80</width>
      <height>25</height>
     </rect>
@@ -2643,7 +2643,7 @@ font-weight:bold;;</string>
    <property name="geometry">
     <rect>
      <x>505</x>
-     <y>410</y>
+     <y>420</y>
      <width>80</width>
      <height>25</height>
     </rect>
@@ -2658,13 +2658,37 @@ font-weight:bold;;</string>
      <x>128</x>
      <y>29</y>
      <width>486</width>
-     <height>425</height>
+     <height>437</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background:white;</string>
    </property>
   </widget>
+  <widget class="QScrollArea" name="scrollAreaWidget">
+   <property name="geometry">
+    <rect>
+     <x>144</x>
+     <y>39</y>
+     <width>461</width>
+     <height>370</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetArea">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>459</width>
+      <height>368</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <zorder>scrollAreaWidget</zorder>
   <zorder>background</zorder>
   <zorder>functionAreaDisplay</zorder>
   <zorder>topTitleName</zorder>

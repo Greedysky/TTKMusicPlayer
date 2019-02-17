@@ -253,11 +253,25 @@ public Q_SLOTS:
      */
     virtual int exec();
 
+private Q_SLOTS:
+    /*!
+     * Set scroll widget page index.
+     */
+    void setScrollWidgetPageIndex(int index);
+    /*!
+     * Scroll widget index changed.
+     */
+    void scrollWidgetValueChanged(int value);
+
 protected:
     /*!
      * Select function table index.
      */
     void selectFunctionTableIndex(int row, int col);
+    /*!
+     * Init scroll widget page widget.
+     */
+    void initScrollWidgetPage();
     /*!
      * Init normal setting stack widget.
      */

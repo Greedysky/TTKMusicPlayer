@@ -26,6 +26,8 @@
 #include <QAudioDeviceInfo>
 #include <QStyledItemDelegate>
 
+#define SCROLL_ITEM_HEIGHT 370
+
 MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -113,27 +115,16 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
     m_ui->confirmButton->setFocusPolicy(Qt::NoFocus);
     m_ui->cancelButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    connect(m_ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), m_ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(m_ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
     connect(m_ui->normalFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
-    connect(m_ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), m_ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(m_ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
     connect(m_ui->lrcFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
-    connect(m_ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), m_ui->stackedWidget, SLOT(setCurrentIndex(int)));
+    connect(m_ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(setScrollWidgetPageIndex(int)));
     connect(m_ui->supperFunTableWidget, SIGNAL(currentIndexChanged(int)), SLOT(clearFunctionTableSelection()));
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(commitTheResults()));
     connect(m_ui->cancelButton, SIGNAL(clicked()), SLOT(close()));
 
-    ////////////////////////////////////////////////
-    initNormalSettingWidget();
-    initDownloadWidget();
-    initOtherSettingWidget();
-    initDesktopLrcWidget();
-    initInlineLrcWidget();
-    initSoundEffectWidget();
-    initAudioSettingWidget();
-    initNetworkWidget();
-    ////////////////////////////////////////////////
-    selectFunctionTableIndex(0, 0);
-
+    initScrollWidgetPage();
 }
 
 MusicSettingWidget::~MusicSettingWidget()
@@ -340,19 +331,19 @@ void MusicSettingWidget::otherVersionUpdateChanged()
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
-    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_4);
+    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_4);
 }
 
 void MusicSettingWidget::changeInlineLrcWidget()
 {
     selectFunctionTableIndex(1, 1);
-    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_5);
+    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_5);
 }
 
 void MusicSettingWidget::changeDownloadWidget()
 {
     selectFunctionTableIndex(0, 2);
-    m_ui->stackedWidget->setCurrentIndex(SETTING_WINDOW_INDEX_2);
+    setScrollWidgetPageIndex(SETTING_WINDOW_INDEX_2);
 }
 
 void MusicSettingWidget::inlineLrcFgChanged()
@@ -597,6 +588,28 @@ int MusicSettingWidget::exec()
     return MusicAbstractMoveDialog::exec();
 }
 
+void MusicSettingWidget::setScrollWidgetPageIndex(int index)
+{
+    m_ui->scrollAreaWidget->verticalScrollBar()->setValue(index * SCROLL_ITEM_HEIGHT);
+}
+
+void MusicSettingWidget::scrollWidgetValueChanged(int value)
+{
+    int index = value / SCROLL_ITEM_HEIGHT;
+    if(index < 4)
+    {
+        selectFunctionTableIndex(0, index);
+    }
+    else if(index < 6)
+    {
+        selectFunctionTableIndex(1, index - 4);
+    }
+    else if(index < 9)
+    {
+        selectFunctionTableIndex(2, index - 6);
+    }
+}
+
 void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
 {
     clearFunctionTableSelection();
@@ -610,6 +623,56 @@ void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
             m_ui->supperFunTableWidget->selectRow(col); break;
         default: break;
     }
+}
+
+void MusicSettingWidget::initScrollWidgetPage()
+{
+    ////////////////////////////////////////////////
+    initNormalSettingWidget();
+    initDownloadWidget();
+    initOtherSettingWidget();
+    initDesktopLrcWidget();
+    initInlineLrcWidget();
+    initSoundEffectWidget();
+    initAudioSettingWidget();
+    initNetworkWidget();
+    ////////////////////////////////////////////////
+    QVBoxLayout *scrollAreaWidgetAreaLayout = new QVBoxLayout(m_ui->scrollAreaWidgetArea);
+    scrollAreaWidgetAreaLayout->setSpacing(0);
+    scrollAreaWidgetAreaLayout->setContentsMargins(0, 0, 0, 0);
+    m_ui->scrollAreaWidgetArea->setLayout(scrollAreaWidgetAreaLayout);
+    m_ui->scrollAreaWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    m_ui->scrollAreaWidget->setWidgetResizable(true);
+    m_ui->scrollAreaWidget->setFrameShape(QFrame::NoFrame);
+    m_ui->scrollAreaWidget->setAlignment(Qt::AlignLeft);
+    connect(m_ui->scrollAreaWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(scrollWidgetValueChanged(int)));
+    ////////////////////////////////////////////////
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->first);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->second);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->third);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->four);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->five);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->six);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->seven);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->eight);
+    scrollAreaWidgetAreaLayout->addWidget(m_ui->nine);
+    ////////////////////////////////////////////////
+    m_ui->scrollAreaWidgetArea->setFixedHeight(9 * SCROLL_ITEM_HEIGHT);
+    ////////////////////////////////////////////////
+    m_ui->stackedWidget->hide();
+    m_ui->scrollAreaWidget->raise();
+    m_ui->first->show();
+    m_ui->second->show();
+    m_ui->third->show();
+    m_ui->four->show();
+    m_ui->five->show();
+    m_ui->six->show();
+    m_ui->seven->show();
+    m_ui->eight->show();
+    m_ui->nine->show();
+    ////////////////////////////////////////////////
+    selectFunctionTableIndex(0, 0);
+    ////////////////////////////////////////////////
 }
 
 void MusicSettingWidget::initNormalSettingWidget()
