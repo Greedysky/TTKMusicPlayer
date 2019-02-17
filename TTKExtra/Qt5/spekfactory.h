@@ -20,17 +20,18 @@
 #define SPEKFACTORY_H
 
 #include <QWidget>
+#include "qmmp_export.h"
 
 /*! @brief Helper class to spek widget.
  * @author Greedysky <greedysky@163.com>
  */
-class Spek : public QWidget
+class QMMP_EXPORT Spek : public QWidget
 {
 public:
     /*!
      * Constructor.
      */
-    explicit Spek(QWidget *parent = 0) : QWidget(parent) {}
+    explicit Spek(QWidget *parent = nullptr) : QWidget(parent) {}
     /*!
      * Destructor.
      */
@@ -56,7 +57,7 @@ public:
 /*! @brief Helper class to store spek plugin properies.
  * @author Greedysky <greedysky@163.com>
  */
-class SpekProperties
+class QMMP_EXPORT SpekProperties
 {
 public:
     /*!
@@ -64,18 +65,16 @@ public:
      */
     SpekProperties()
     {
-        hasAbout = false;
         hasSettings = false;
     }
     QString name;      /*!< Spek plugin full name */
     QString shortName; /*!< Spek plugin short name for internal usage */
-    bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
     bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief Spek plugin interface (Spek factory).
  * @author Greedysky <greedysky@163.com>
  */
-class SpekFactory
+class QMMP_EXPORT SpekFactory
 {
 public:
     /*!

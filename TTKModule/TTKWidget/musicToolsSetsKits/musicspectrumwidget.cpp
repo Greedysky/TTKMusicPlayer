@@ -311,7 +311,7 @@ void MusicSpectrumWidget::newSpekWidget(QCheckBox *box, const QString &name, QLa
 
         const int index = findSpectrumWidget(name);
         Spek *spek = MStatic_cast(Spek*, m_types[index].m_obj);
-        spek->open( url.isEmpty() ? SoundCore::instance()->url() : url );
+        spek->open(url.isEmpty() ? SoundCore::instance()->path() : url );
     }
     else
     {

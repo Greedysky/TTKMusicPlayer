@@ -55,7 +55,7 @@ MusicPlayedlist *MusicPlayer::playlist() const
 
 qint64 MusicPlayer::duration() const
 {
-    return m_music->totalTime();
+    return m_music->duration();
 }
 
 qint64 MusicPlayer::position() const

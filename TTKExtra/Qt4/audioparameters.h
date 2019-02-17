@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,7 +28,7 @@
 /*! @brief The AudioParameters class keeps information about audio settings.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class AudioParameters
+class QMMP_EXPORT AudioParameters
 {
 public:
 

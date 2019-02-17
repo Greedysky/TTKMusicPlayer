@@ -24,6 +24,7 @@
 #include <QString>
 #include <QObject>
 #include <QSettings>
+#include "qmmp_export.h"
 
 class DecoderFactory;
 class OutputFactory;
@@ -34,7 +35,7 @@ class InputSourceFactory;
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QmmpPluginCache
+class QMMP_EXPORT QmmpPluginCache
 {
 public:
     QmmpPluginCache(const QString &file, QSettings *settings);

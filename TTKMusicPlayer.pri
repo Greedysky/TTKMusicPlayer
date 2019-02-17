@@ -108,6 +108,7 @@ unix:!mac{
 }
 
 DEFINES += MUSIC_LIBRARY
+DEFINES += QMMP_LIBRARY
 
 #########################################
 HEADERS += $$PWD/musicglobal.h

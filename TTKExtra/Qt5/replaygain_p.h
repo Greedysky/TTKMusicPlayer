@@ -30,7 +30,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class ReplayGain : public Effect
+class QMMP_EXPORT ReplayGain : public Effect
 {
 public:
     ReplayGain();
@@ -39,10 +39,11 @@ public:
     void updateSettings(QmmpSettings::ReplayGainMode mode, double preamp,
                         double default_gain, bool clip);
     void setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &info);
-    void applyEffect(Buffer *b);
+    virtual void applyEffect(Buffer *b) override;
 
 private:
     void updateScale();
+
     QMap<Qmmp::ReplayGainKey, double> m_info;
     QmmpSettings::ReplayGainMode m_mode;
     double m_scale;

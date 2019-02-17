@@ -28,15 +28,15 @@ class QFile;
 /** @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class FileInputSource : public InputSource
+class QMMP_EXPORT FileInputSource : public InputSource
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    FileInputSource(const QString &url, QObject *parent = 0);
+    FileInputSource(const QString &path, QObject *parent = nullptr);
 
-    QIODevice *ioDevice();
-    bool initialize();
-    bool isReady();
+    virtual QIODevice *ioDevice() override;
+    virtual bool initialize() override;
+    virtual bool isReady() override;
 
 private:
     QFile *m_file;

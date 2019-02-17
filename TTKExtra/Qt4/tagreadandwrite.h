@@ -21,11 +21,12 @@
 
 #include <QMap>
 #include <QString>
+#include "qmmp_export.h"
 
 /*! @brief The class of the file tag read and write.
  * @author Greedysky <greedysky@163.com>
  */
-class TagReadAndWrite
+class QMMP_EXPORT TagReadAndWrite
 {
 public:
     enum MusicTag
@@ -59,7 +60,7 @@ public:
     bool readFile(const QString &path);
 
     bool writeMusicTag(MusicTag tag, const QString &value, int id3v2Version);
-    QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
+    inline QMap<MusicTag, QString> getMusicTags() const { return m_parameters; }
 
 protected:
     QString m_path;

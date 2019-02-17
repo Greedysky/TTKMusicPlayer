@@ -27,7 +27,7 @@ MStringsListMap MusicFormats::supportFormatsStringMap()
     formats.insert("sndfile", QStringList() << "wav" << "au" << "snd" << "aif" << "aiff" << "8svx"
                                             << "sph" << "sf" << "voc" << "w64");
     formats.insert("cue", QStringList() << "cue");
-    formats.insert("mad", QStringList() << "mp1" << "mp2" << "mp3"/* << "wav"*/);
+    formats.insert("mpeg", QStringList() << "mp1" << "mp2" << "mp3"/* << "wav"*/);
     formats.insert("gme", QStringList() << "ay" << "gms" << "gym" << "hes" << "kss" << "nsf" << "nsfe"
                                         << "sap" << "spc" << "vgm" << "vgz)");
     formats.insert("flac", QStringList() << "flac" << "oga");

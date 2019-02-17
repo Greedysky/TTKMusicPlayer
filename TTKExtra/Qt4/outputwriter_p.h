@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,7 +39,7 @@ class ChannelConverter;
     @brief Output thread.
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class OutputWriter : public QThread
+class QMMP_EXPORT OutputWriter : public QThread
 {
     Q_OBJECT
 public:
@@ -88,19 +88,6 @@ public:
      * Returns selected audio parameters.
      */
     AudioParameters audioParameters() const;
-    /*!
-     * Returns samplerate.
-     */
-    quint32 sampleRate();
-    /*!
-     * Returns channels number.
-     */
-    int channels();
-    /*!
-     * Returns input audio format.
-     */
-    Qmmp::AudioFormat format() const;
-    const ChannelMap channelMap() const;
     /*!
      * Returns sample size in bytes.
      */

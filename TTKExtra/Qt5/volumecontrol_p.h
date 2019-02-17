@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef VOLUMECONTROL_P_H
 #define VOLUMECONTROL_P_H
 
@@ -32,7 +33,7 @@ class SoftwareVolume;
  * @brief The VolumeControl class provides volume control access
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class VolumeControl : public QObject
+class QMMP_EXPORT VolumeControl : public QObject
 {
     Q_OBJECT
 public:
@@ -40,7 +41,7 @@ public:
      * Object constructor.
      * @param parent Parent object.
      */
-    VolumeControl(QObject *parent = 0);
+    VolumeControl(QObject *parent = nullptr);
     /*!
      * Destructor.
      */
@@ -83,7 +84,6 @@ public:
      */
     int balance() const;
 
-
 signals:
     /*!
      * Emitted when volume is changed.
@@ -123,14 +123,14 @@ private:
  * @brief The SoftwareVolume class provides access to the software volume control.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class SoftwareVolume : public Volume
+class QMMP_EXPORT SoftwareVolume : public Volume
 {
 public:
     SoftwareVolume();
     ~SoftwareVolume();
 
-    void setVolume(const VolumeSettings &v);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &v) override;
+    virtual VolumeSettings volume() const override;
     void changeVolume(Buffer *b, int chan);
 
     static SoftwareVolume *instance();

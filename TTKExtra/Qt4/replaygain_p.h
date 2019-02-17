@@ -30,7 +30,7 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class ReplayGain : public Effect
+class QMMP_EXPORT ReplayGain : public Effect
 {
 public:
     ReplayGain();
@@ -43,6 +43,7 @@ public:
 
 private:
     void updateScale();
+
     QMap<Qmmp::ReplayGainKey, double> m_info;
     QmmpSettings::ReplayGainMode m_mode;
     double m_scale;

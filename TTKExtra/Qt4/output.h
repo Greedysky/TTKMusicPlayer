@@ -13,6 +13,7 @@
 #include <QMap>
 #include "outputfactory.h"
 #include "audioparameters.h"
+#include "trackinfo.h"
 #include "channelmap.h"
 
 class QTimer;
@@ -23,7 +24,7 @@ class QmmpPluginCache;
  * @author Brad Hughes <bhughes@trolltech.com>
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Output
+class QMMP_EXPORT Output
 {
 public:
     /*!
@@ -76,11 +77,11 @@ public:
      */
     virtual void resume();
     /*!
-     * Sets metadata for output.
+     * Sets track information for output.
      * Default implementation does nothing.
      * Reimplement this function to receive metadata.
      */
-    virtual void setMetaData(const QMap<Qmmp::MetaData, QString> &metaData);
+    virtual void setTrackInfo(const TrackInfo &info);
     /*!
      * Returns selected audio parameters.
      */

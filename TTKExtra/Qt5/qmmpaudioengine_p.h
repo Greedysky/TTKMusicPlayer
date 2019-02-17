@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,8 +23,10 @@
 
 #include <QQueue>
 #include <QHash>
+#include <atomic>
 #include <QSharedPointer>
 #include "abstractengine.h"
+#include "trackinfo.h"
 #include "audioparameters.h"
 
 class QIODevice;
@@ -43,19 +45,19 @@ class Dithering;
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class QmmpAudioEngine : public AbstractEngine
+class QMMP_EXPORT QmmpAudioEngine : public AbstractEngine
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     QmmpAudioEngine(QObject *parent);
-    ~QmmpAudioEngine();
+    virtual ~QmmpAudioEngine();
 
-    bool play();
-    bool enqueue(InputSource *source);
-    void seek(qint64 time);
-    void stop();
-    void pause();
-    void setMuted(bool muted);
+    virtual bool play() override;
+    virtual bool enqueue(InputSource *source) override;
+    virtual void seek(qint64 time) override;
+    virtual void stop() override;
+    virtual void pause() override;
+    virtual void setMuted(bool muted) override;
     void addEffect(EffectFactory *factory);
     void removeEffect(EffectFactory *factory);
 
@@ -68,22 +70,22 @@ private slots:
     void updateEqSettings();
 
 private:
-    void run();
+    virtual void run() override;
     void reset();
     void clearDecoders();
     void flush(bool = false);
     void addOffset();
     qint64 produceSound(unsigned char *data, qint64 size, quint32 brate);
-    void sendMetaData();
+    void attachMetaData(Decoder *decoder, DecoderFactory *factory, InputSource *source);
     OutputWriter *createOutput();
     void prepareEffects(Decoder *d);
 
     DecoderFactory *m_factory;
-    QList <Effect*> m_effects;
-    QList <Effect*> m_blockedEffects;
+	QList<Effect*> m_effects;
+    QList<Effect*> m_blockedEffects;
     OutputWriter *m_output;
 
-    bool m_done, m_finish, m_user_stop;
+    std::atomic_bool m_done, m_finish, m_user_stop;
     uint m_bks, m_sample_size;
     qint64 m_seekTime;
     quint64 m_output_at, m_output_size;
@@ -95,7 +97,7 @@ private:
     AudioParameters m_ap;
     bool m_next;
     bool m_muted;
-    QSharedPointer<QMap<Qmmp::MetaData, QString> > m_metaData;
+    QSharedPointer<TrackInfo> m_trackInfo;
     static QmmpAudioEngine *m_instance;
     ReplayGain *m_replayGain;
     QmmpSettings *m_settings;

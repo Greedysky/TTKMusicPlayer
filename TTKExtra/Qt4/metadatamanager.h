@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include <QPixmap>
 #include <QDir>
 #include <QMutex>
-#include "fileinfo.h"
+#include "trackinfo.h"
 #include "metadatamodel.h"
 
 class DecoderFactory;
@@ -38,7 +38,7 @@ class QmmpSettings;
 /*! @brief The MetaDataManager class is the base class for metadata access.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class MetaDataManager
+class QMMP_EXPORT MetaDataManager
 {
 public:
     /*!
@@ -52,19 +52,19 @@ public:
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
      * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
-     * @param path Source file path.
-     * @param useMetaData Metadata usage (\b true - use, \b - do not use)
+     * @param path Local file path or URL.
+     * @param parts parts of metadata which should be extracted from file.
      * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
      * (useful to exclude cue data files from playlist)
      */
-    QList <FileInfo *> createPlayList(const QString &path, bool useMetaData = true, QStringList *ignoredPaths = 0) const;
+    QList <TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts = TrackInfo::AllParts, QStringList *ignoredPaths = 0) const;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param url File path or URL.
-     * @param parent Parent object.
+     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer or null pointer.
      */
-    MetaDataModel* createMetaDataModel(const QString &url, QObject *parent = 0) const;
+    MetaDataModel* createMetaDataModel(const QString &url, bool readOnly) const;
     /*!
      * Returns a list of file name filters with description, i.e. "MPEG Files (*.mp3 *.mpg)"
      */

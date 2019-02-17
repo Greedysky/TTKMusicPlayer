@@ -26,15 +26,15 @@
 /*! @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class EmptyInputSource : public InputSource
+class QMMP_EXPORT EmptyInputSource : public InputSource
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    EmptyInputSource(const QString &url, QObject *parent = 0);
+    EmptyInputSource(const QString &path, QObject *parent = nullptr);
 
-    QIODevice *ioDevice();
-    bool initialize();
-    bool isReady();
+    virtual QIODevice *ioDevice() override;
+    virtual bool initialize() override;
+    virtual bool isReady() override;
 
 private:
     bool m_ok;
