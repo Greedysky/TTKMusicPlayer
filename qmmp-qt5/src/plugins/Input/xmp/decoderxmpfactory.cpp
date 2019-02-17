@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015 by Ilya Kotov                                      *
+ *   Copyright (C) 2015-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ bool DecoderXmpFactory::canDecode(QIODevice *) const
     return false;
 }
 
-const DecoderProperties DecoderXmpFactory::properties() const
+DecoderProperties DecoderXmpFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("XMP Plugin");
@@ -50,9 +50,7 @@ const DecoderProperties DecoderXmpFactory::properties() const
     properties.filters << "*.itz" << "*.itr" << "*.itgz";
     properties.filters << "*.xmr" << "*.xmgz" << "*.xmz";
     properties.description = tr("Module Files");
-    //properties.contentType = ;
     properties.shortName = "xmp";
-    properties.hasAbout = true;
     properties.hasSettings = true;
     properties.noInput = true;
     properties.protocols << "file";
@@ -66,14 +64,14 @@ Decoder *DecoderXmpFactory::create(const QString &path, QIODevice *input)
     return new DecoderXmp(path);
 }
 
-QList<FileInfo *> DecoderXmpFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderXmpFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <FileInfo*> list;
-    FileInfo *info = new FileInfo(fileName);
-    if(useMetaData)
+    QList <TrackInfo*> list;
+    TrackInfo *info = new TrackInfo(path);
+    if(parts & (TrackInfo::MetaData | TrackInfo::Properties))
     {
         xmp_context ctx = xmp_create_context();
-        if(xmp_load_module(ctx, fileName.toLocal8Bit().data()) != 0)
+        if(xmp_load_module(ctx, path.toLocal8Bit().data()) != 0)
         {
             qWarning("DecoderXmpFactory: unable to load module");
             xmp_free_context(ctx);
@@ -82,8 +80,9 @@ QList<FileInfo *> DecoderXmpFactory::createPlayList(const QString &fileName, boo
         }
         xmp_module_info mi;
         xmp_get_module_info(ctx, &mi);
-        info->setMetaData(Qmmp::TITLE, mi.mod->name);
-        info->setLength(mi.seq_data[0].duration / 1000);
+        info->setValue(Qmmp::TITLE, mi.mod->name);
+        info->setValue(Qmmp::FORMAT_NAME, mi.mod->type);
+        info->setDuration(mi.seq_data[0].duration);
         xmp_release_module(ctx);
         xmp_free_context(ctx);
     }
@@ -91,7 +90,8 @@ QList<FileInfo *> DecoderXmpFactory::createPlayList(const QString &fileName, boo
     return list;
 }
 
-MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderXmpFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    return new XmpMetaDataModel(path, parent);
+    Q_UNUSED(readOnly);
+    return new XmpMetaDataModel(path);
 }

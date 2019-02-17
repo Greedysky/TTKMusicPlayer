@@ -5,17 +5,16 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "plusfoldwave.h"
 
 PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
@@ -25,20 +24,20 @@ PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
         m_starPoints << StarPoint();
     }
 
-    setWindowTitle (tr("Plus FoldWave Widget"));
+    setWindowTitle(tr("Plus FoldWave Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_starTimer = new QTimer (this);
-    connect(m_starTimer, SIGNAL (timeout()), this, SLOT (starTimeout()));
+    m_starTimer = new QTimer(this);
+    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
     m_starAction = new QAction(tr("Star"), this);
     m_starAction->setCheckable(true);
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(10);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(3, 2);
 
@@ -148,13 +147,13 @@ void PlusFoldWave::changeStarColor()
     }
 }
 
-void PlusFoldWave::hideEvent (QHideEvent *)
+void PlusFoldWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
     m_starTimer->stop();
 }
 
-void PlusFoldWave::showEvent (QShowEvent *)
+void PlusFoldWave::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -163,9 +162,9 @@ void PlusFoldWave::showEvent (QShowEvent *)
     }
 }
 
-void PlusFoldWave::paintEvent (QPaintEvent * e)
+void PlusFoldWave::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -183,9 +182,9 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusFoldWave::process ()
+void PlusFoldWave::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -219,7 +218,7 @@ void PlusFoldWave::process ()
     calc_freq (dest_l, m_left_buffer);
     calc_freq (dest_r, m_right_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
@@ -260,7 +259,7 @@ void PlusFoldWave::process ()
     }
 }
 
-void PlusFoldWave::draw (QPainter *p)
+void PlusFoldWave::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
@@ -281,13 +280,8 @@ void PlusFoldWave::draw (QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
 
-    int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+    const float maxed = maxRange();
 
     int x = 0, x1 = 0;
     for (int j = 0; j < m_cols * 2; ++j)
@@ -297,7 +291,7 @@ void PlusFoldWave::draw (QPainter *p)
         {
             x += rdx; //correct right part position
         }
-        int hh = m_intern_vis_data[j] * l * m_cell_size.height()/2;
+        int hh = m_intern_vis_data[j] * maxed * m_cell_size.height()/2;
         if(abs(hh) > height()/2)
         {
             hh = height()/2;
@@ -315,7 +309,7 @@ void PlusFoldWave::draw (QPainter *p)
         {
             x1 += rdx; //correct right part position
         }
-        int hh1 = m_intern_vis_data[j+1] * l * m_cell_size.height()/2;
+        int hh1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height()/2;
         if(abs(hh1) > height()/2)
         {
             hh1 = height()/2;

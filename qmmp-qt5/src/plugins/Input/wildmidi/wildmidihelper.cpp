@@ -26,7 +26,7 @@ extern "C"{
 #include <qmmp/qmmp.h>
 #include "wildmidihelper.h"
 
-WildMidiHelper *WildMidiHelper::m_instance = 0;
+WildMidiHelper *WildMidiHelper::m_instance = nullptr;
 
 WildMidiHelper::WildMidiHelper(QObject *parent) :
     QObject(parent)
@@ -40,7 +40,7 @@ WildMidiHelper::~WildMidiHelper()
 {
     if(m_inited)
         WildMidi_Shutdown();
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 bool WildMidiHelper::initialize()
@@ -113,7 +113,7 @@ void WildMidiHelper::removePtr(void *t)
 
 QStringList WildMidiHelper::configFiles() const
 {
-    QStringList files = QStringList() << Qmmp::pluginsPath() + "/../MPlugins/config/wildmidi.cfg";
+    QStringList files = QStringList() << Qmmp::pluginPath() + "/../MPlugins/config/wildmidi.cfg";
     foreach(QString path, files)
     {
         if(!QFile::exists(path))

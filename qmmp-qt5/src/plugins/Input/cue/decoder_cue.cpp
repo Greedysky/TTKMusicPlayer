@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,38 +22,37 @@
 #include <QStringList>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <qmmp/fileinfo.h>
+#include <qmmp/trackinfo.h>
 #include <qmmp/decoderfactory.h>
 #include <qmmp/soundcore.h>
 #include "cueparser.h"
 #include "decoder_cue.h"
 
-
 DecoderCUE::DecoderCUE(const QString &url)
         : Decoder()
 {
     m_path = url;
-    m_decoder = 0;
-    m_parser = 0;
+    m_decoder = nullptr;
+    m_parser = nullptr;
     m_track = 0;
-    m_buf = 0;
-    m_input = 0;
+    m_buf = nullptr;
+    m_input = nullptr;
 }
 
 DecoderCUE::~DecoderCUE()
 {
     if(m_decoder)
         delete m_decoder;
-    m_decoder = 0;
+    m_decoder = nullptr;
     if(m_parser)
         delete m_parser;
-    m_parser = 0;
+    m_parser = nullptr;
     if(m_buf)
         delete [] m_buf;
-    m_buf = 0;
+    m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();
-    m_input = 0;
+    m_input = nullptr;
 }
 
 bool DecoderCUE::initialize()
@@ -77,7 +76,7 @@ bool DecoderCUE::initialize()
         qWarning("DecoderCUE: unsupported file format");
         return false;
     }
-    m_length = m_parser->length(m_track);
+    m_length = m_parser->duration(m_track);
     m_offset = m_parser->offset(m_track);
     if(!df->properties().noInput)
     {
@@ -134,7 +133,7 @@ qint64 DecoderCUE::read(unsigned char *data, qint64 size)
         if(size >= m_buf_size)
         {
             delete[] m_buf;
-            m_buf = 0;
+            m_buf = nullptr;
             m_buf_size = 0;
         }
         else
@@ -182,7 +181,7 @@ void DecoderCUE::next()
     if(m_track +1 <= m_parser->count())
     {
         m_track++;
-        m_length = m_parser->length(m_track);
+        m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;

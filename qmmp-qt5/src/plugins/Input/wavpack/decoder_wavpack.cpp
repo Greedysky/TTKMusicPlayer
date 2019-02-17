@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,9 +38,9 @@ DecoderWavPack::DecoderWavPack(const QString &path)
     m_path = path;
     m_totalTime = 0.0;
     m_chan = 0;
-    m_context = 0;
-    m_parser = 0;
-    m_output_buf = 0;
+    m_context = nullptr;
+    m_parser = nullptr;
+    m_output_buf = nullptr;
     m_length_in_bytes = 0;
     m_totalBytes = 0;
     m_frame_size = 0;
@@ -54,7 +54,7 @@ DecoderWavPack::~DecoderWavPack()
     deinit();
     if (m_output_buf)
         delete [] m_output_buf;
-    m_output_buf = 0;
+    m_output_buf = nullptr;
 }
 
 bool DecoderWavPack::initialize()
@@ -79,7 +79,7 @@ bool DecoderWavPack::initialize()
             qWarning("DecoderWavPack: error: %s", err);
             return false;
         }
-        int cue_len = WavpackGetTagItem (m_context, "cuesheet", NULL, 0);
+        int cue_len = WavpackGetTagItem (m_context, "cuesheet", nullptr, 0);
         char *value;
         if (cue_len)
         {
@@ -151,7 +151,7 @@ bool DecoderWavPack::initialize()
         m_totalTime = (qint64) WavpackGetNumSamples(m_context) * 1000 / freq;
     else
     {
-        m_length = m_parser->length(m_track);
+        m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;
@@ -183,10 +183,10 @@ void DecoderWavPack::deinit()
     m_chan = 0;
     if (m_context)
         WavpackCloseFile (m_context);
-    m_context = 0;
+    m_context = nullptr;
     if(m_parser)
         delete m_parser;
-    m_parser = 0;
+    m_parser = nullptr;
 }
 
 void DecoderWavPack::seek(qint64 time)
@@ -228,8 +228,8 @@ void DecoderWavPack::next()
     if(m_parser && m_track +1 <= m_parser->count())
     {
         m_track++;
-        m_offset = m_parser->length(m_track);
-        m_length = m_parser->length(m_track);
+        m_offset = m_parser->duration(m_track);
+        m_length = m_parser->duration(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
                           audioParameters().sampleSize() * m_length/1000;

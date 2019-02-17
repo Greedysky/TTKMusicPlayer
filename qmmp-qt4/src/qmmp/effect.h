@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef EFFECT_H
 #define EFFECT_H
 
@@ -32,7 +33,7 @@ class QmmpPluginCache;
 /*! @brief The Effect class provides the base interface class of audio effects.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class Effect
+class QMMP_EXPORT Effect
 {
 public:
     /*!

@@ -274,7 +274,7 @@ void SpectrumSpek::typeChanged(QAction *action)
 
 void SpectrumSpek::urlChanged()
 {
-    open(SoundCore::instance()->url());
+    open(SoundCore::instance()->path());
 }
 
 void SpectrumSpek::create_palette()

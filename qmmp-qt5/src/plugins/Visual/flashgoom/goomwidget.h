@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,12 +40,12 @@ class GoomWidget : public Visual
     Q_OBJECT
 
 public:
-    GoomWidget(QWidget *parent = 0);
+    GoomWidget(QWidget *parent = nullptr);
     virtual ~GoomWidget();
 
 public slots:
-    void start();
-    void stop();
+    virtual void start() override;
+    virtual void stop() override;
 
 private slots:
     void timeout();
@@ -54,10 +54,10 @@ private slots:
 
 private:
     void clear();
-    virtual void hideEvent (QHideEvent *);
-    virtual void showEvent (QShowEvent *);
-    void paintEvent(QPaintEvent *);
-    void mousePressEvent(QMouseEvent *e);
+    virtual void hideEvent(QHideEvent *) override;
+    virtual void showEvent(QShowEvent *) override;
+    virtual void paintEvent(QPaintEvent *)  override;
+    virtual void mousePressEvent(QMouseEvent *e) override;
     void createMenu();
 
     QTimer *m_timer;
@@ -72,6 +72,5 @@ private:
     int m_fps;
 
 };
-
 
 #endif

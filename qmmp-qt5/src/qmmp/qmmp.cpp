@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,25 +35,25 @@ QString Qmmp::m_langID;
 QString Qmmp::m_appDir;
 #endif
 
-const QString Qmmp::configFile()
+QString Qmmp::configFile()
 {
-    return configDir() + "qmmprc";
+    return configDir() + "/qmmprc";
 }
 
-const QString Qmmp::configDir()
+QString Qmmp::configDir()
 {
 #ifdef Q_OS_WIN
     if(m_configDir.isEmpty())
     {
         if(isPortable())
-            return m_appDir + "/.qmmp/";
+            return m_appDir + "/.qmmp";
         else
-            return  QDir::homePath() +"/.qmmp/";
+            return  QDir::homePath() +"/.qmmp";
     }
     else
         return m_configDir;
 #else
-    return m_configDir.isEmpty() ? QDir::homePath() +"/.qmmp/" : m_configDir;
+    return m_configDir.isEmpty() ? QDir::homePath() +"/.qmmp" : m_configDir;
 #endif
 }
 
@@ -64,7 +64,7 @@ void Qmmp::setConfigDir(const QString &path)
         m_configDir.append('/');
 }
 
-const QString Qmmp::strVersion()
+QString Qmmp::strVersion()
 {
     QString ver = QString("%1.%2.%3")
             .arg(QMMP_VERSION_MAJOR)
@@ -80,15 +80,12 @@ const QString Qmmp::strVersion()
     return ver;
 }
 
-const QString Qmmp::pluginsPath()
+QString Qmmp::pluginPath()
 {
     QByteArray path = qgetenv("QMMP_PLUGINS");
-    if (!path.isEmpty())
-       return path;
-#ifdef QMMP_INSTALL_PREFIX
-    QDir dir(QMMP_INSTALL_PREFIX "/" LIB_DIR "/qmmp");
-    //qDebug(QMMP_INSTALL_PREFIX"/"LIB_DIR"/qmmp");
-#else
+    if(!path.isEmpty())
+        return path;
+		
 #if defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
     QDir dir(qApp->applicationDirPath() + "/plugins");
 #else
@@ -98,8 +95,16 @@ const QString Qmmp::pluginsPath()
         QDir dir(qApp->applicationDirPath());
     #endif
 #endif
-#endif
     return dir.canonicalPath();
+}
+
+QStringList Qmmp::findPlugins(const QString &prefix)
+{
+    QDir pluginDir(pluginPath() + "/" + prefix);
+    QStringList paths;
+    foreach (QFileInfo info, pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
+        paths << info.canonicalFilePath();
+    return paths;
 }
 
 QString Qmmp::systemLanguageID()
@@ -138,6 +143,15 @@ void Qmmp::setUiLanguageID(const QString &code)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("General/locale", code);
     m_langID.clear();
+}
+
+QString Qmmp::dataPath()
+{
+//#if defined(Q_OS_WIN) && !defined(Q_OS_CYGWIN)
+    return qApp->applicationDirPath();
+//#else
+//    return QDir(qApp->applicationDirPath() + "/../share/qmmp" APP_NAME_SUFFIX).absolutePath();
+//#endif
 }
 
 #ifdef Q_OS_WIN

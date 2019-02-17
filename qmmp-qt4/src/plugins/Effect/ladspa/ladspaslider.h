@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef LADSPASLIDER_H
 #define LADSPASLIDER_H
 
@@ -31,7 +32,7 @@ class QSlider;
 */
 class LADSPASlider : public QWidget
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     LADSPASlider(double min,
                  double max,

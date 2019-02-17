@@ -30,7 +30,6 @@ const EffectProperties EffectSoXRFactory::properties() const
     properties.name = tr("SoX Resampler Plugin");
     properties.shortName = "soxr";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     properties.priority = EffectProperties::EFFECT_PRIORITY_HIGH;
     return properties;
 }

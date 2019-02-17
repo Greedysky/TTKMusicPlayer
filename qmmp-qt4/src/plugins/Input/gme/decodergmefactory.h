@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,18 +17,11 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef DECODERGMEFACTORY_H
 #define DECODERGMEFACTORY_H
 
-#include <QObject>
-#include <QString>
-#include <QIODevice>
-#include <QWidget>
-
-#include <qmmp/decoder.h>
-#include <qmmp/output.h>
 #include <qmmp/decoderfactory.h>
-#include <qmmp/fileinfo.h>
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
@@ -37,13 +30,12 @@ class DecoderGmeFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
     Q_INTERFACES(DecoderFactory)
-
 public:
     bool canDecode(QIODevice *input) const;
-    const DecoderProperties properties() const;
+    DecoderProperties properties() const;
     Decoder *create(const QString &path, QIODevice *input);
-    QList<FileInfo *> createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredFiles);
-    MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0);
+    QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles);
+    MetaDataModel* createMetaDataModel(const QString &path, bool readOnly);
 
 };
 

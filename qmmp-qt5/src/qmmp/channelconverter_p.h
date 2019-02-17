@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,13 +26,14 @@
 /*! @internal
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class ChannelConverter : public Effect
+class QMMP_EXPORT ChannelConverter : public Effect
 {
 public:
     ChannelConverter(ChannelMap out_map);
     ~ChannelConverter();
-    void configure(quint32 srate, ChannelMap in_map);
-    void applyEffect(Buffer *b);
+
+    virtual void configure(quint32 srate, ChannelMap in_map) override;
+    virtual void applyEffect(Buffer *b) override;
 
 private:
     bool m_disabled;

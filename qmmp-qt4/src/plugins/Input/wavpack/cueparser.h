@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef CUEPARSER_H
 #define CUEPARSER_H
 
@@ -26,8 +27,7 @@
 #include <QStringList>
 #include <QUrl>
 #include <qmmp/qmmp.h>
-#include <qmmp/fileinfo.h>
-
+#include <qmmp/trackinfo.h>
 
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
@@ -35,27 +35,25 @@
 class CUEParser
 {
 public:
-    CUEParser(const QByteArray &array, const QString &fileName);
-
+    CUEParser(const QByteArray &array, const QString &path);
     ~CUEParser();
 
-    QList<FileInfo*> createPlayList();
+    QList<TrackInfo *> createPlayList();
     const QString filePath() const;
     qint64 offset(int track) const;
-    qint64 length(int track) const;
+    qint64 duration(int track) const;
     int count() const;
-    FileInfo *info(int track);
+    TrackInfo *info(int track);
     const QString trackURL(int track) const;
     const QMap<Qmmp::ReplayGainKey, double> replayGain(int track) const;
 
 private:
     struct CUETrack
     {
-        FileInfo info;
+        TrackInfo info;
         qint64 offset;
-        QMap<Qmmp::ReplayGainKey, double> replayGain;
     };
-    QList <CUETrack * > m_tracks;
+    QList <CUETrack *> m_tracks;
     QStringList splitLine(const QString &line);
     qint64 getLength(const QString &str);
     QString m_filePath;

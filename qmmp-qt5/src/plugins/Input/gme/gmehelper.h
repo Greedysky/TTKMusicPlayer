@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2012 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 #include <QString>
 #include <QList>
 #include <gme/gme.h>
-#include <qmmp/fileinfo.h>
+#include <qmmp/trackinfo.h>
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
@@ -34,8 +34,9 @@ class GmeHelper
 public:
     GmeHelper();
     ~GmeHelper();
+
     Music_Emu *load(const QString &url, int sample_rate = 44100);
-    QList <FileInfo*> createPlayList(bool meta);
+    QList<TrackInfo*> createPlayList(TrackInfo::Parts parts);
     int fadeLength();
 
 private:

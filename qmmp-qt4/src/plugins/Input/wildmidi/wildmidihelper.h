@@ -27,10 +27,11 @@
 
 class WildMidiHelper : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     explicit WildMidiHelper(QObject *parent = 0);
     ~WildMidiHelper();
+
     bool initialize();
     void readSettings();
     quint32 sampleRate();

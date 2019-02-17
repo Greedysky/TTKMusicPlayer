@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,7 +28,6 @@
 #include <sndfile.h>
 #include <qmmp/decoder.h>
 
-
 class DecoderSndFile : public Decoder
 {
 public:
@@ -36,14 +35,13 @@ public:
     virtual ~DecoderSndFile();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *audio, qint64 maxSize);
-    void seek(qint64 time);
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *audio, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
-
     // helper functions
     void deinit();
 
@@ -53,6 +51,5 @@ private:
     qint64 m_totalTime;
     SF_VIRTUAL_IO m_vio;
 };
-
 
 #endif // DECODER_SNDFILE_H

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -65,13 +65,13 @@ public:
     virtual ~DecoderFLAC();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *data, qint64 maxSize);
-    void seek(qint64 time);
-    const QString nextURL() const;
-    void next();
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
+    virtual const QString nextURL() const override;
+    virtual void next() override;
 
 private:
 
@@ -92,6 +92,5 @@ private:
     qint64 m_buf_size;
     qint64 m_sz; //sample size
 };
-
 
 #endif // __decoder_flac_h

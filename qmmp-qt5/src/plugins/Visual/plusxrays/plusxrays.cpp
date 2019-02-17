@@ -5,9 +5,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "plusxrays.h"
@@ -15,16 +14,16 @@
 
 PlusXRays::PlusXRays (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
+    m_intern_vis_data = nullptr;
     m_running = false;
     m_cols = 0;
     m_rows = 0;
 
-    setWindowTitle (tr("Plus XRays Widget"));
+    setWindowTitle(tr("Plus XRays Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_timer->setInterval(10);
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
     m_gridAction = new QAction(tr("Grid"), this);
     m_gridAction->setCheckable(true);
@@ -103,20 +102,20 @@ void PlusXRays::changeGridState(bool state)
     update();
 }
 
-void PlusXRays::hideEvent (QHideEvent *)
+void PlusXRays::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusXRays::showEvent (QShowEvent *)
+void PlusXRays::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void PlusXRays::paintEvent (QPaintEvent * e)
+void PlusXRays::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -133,9 +132,9 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusXRays::process ()
+void PlusXRays::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -158,7 +157,7 @@ void PlusXRays::process ()
     }
 }
 
-void PlusXRays::draw (QPainter *p)
+void PlusXRays::draw(QPainter *p)
 {
     if(m_gridAction->isChecked())
     {
@@ -184,11 +183,7 @@ void PlusXRays::draw (QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 1));
 
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const float maxed = maxRange();
 
     for (int i = 0; i<m_cols; ++i)
     {
@@ -197,8 +192,8 @@ void PlusXRays::draw (QPainter *p)
             break;
         }
 
-        int h1 = m_rows/2 - m_intern_vis_data[i]*l;
-        int h2 = m_rows/2 - m_intern_vis_data[i+1]*l;
+        int h1 = m_rows/2 - m_intern_vis_data[i] * maxed;
+        int h2 = m_rows/2 - m_intern_vis_data[i + 1] * maxed;
         if (h1 > h2)
         {
             qSwap(h1, h2);

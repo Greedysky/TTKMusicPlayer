@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2015-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,13 +26,13 @@
 
 // Decoder class
 
-DecoderXmp *DecoderXmp::m_instance = 0;
+DecoderXmp *DecoderXmp::m_instance = nullptr;
 
-DecoderXmp::DecoderXmp(const QString &path) : Decoder(0)
+DecoderXmp::DecoderXmp(const QString &path) : Decoder(nullptr)
 {
     m_instance = this;
     m_path = path;
-    m_ctx = 0;
+    m_ctx = nullptr;
     m_srate = 44100;
     m_totalTime = 0;
 }
@@ -40,7 +40,7 @@ DecoderXmp::DecoderXmp(const QString &path) : Decoder(0)
 DecoderXmp::~DecoderXmp()
 {
     if(m_instance == this)
-        m_instance = 0;
+        m_instance = nullptr;
     deinit();
 }
 
@@ -58,7 +58,7 @@ bool DecoderXmp::initialize()
     {
         qWarning("DecoderXmp: unable to load module file, error = %d", err);
         xmp_free_context(m_ctx);
-        m_ctx = 0;
+        m_ctx = nullptr;
         return false;
     }
 
@@ -111,7 +111,7 @@ void DecoderXmp::deinit()
         xmp_end_player(m_ctx);
         xmp_release_module(m_ctx);
         xmp_free_context(m_ctx);
-        m_ctx = 0;
+        m_ctx = nullptr;
     }
 }
 

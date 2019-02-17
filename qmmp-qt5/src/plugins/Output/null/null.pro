@@ -8,26 +8,9 @@ SOURCES += outputnullfactory.cpp \
 
 
 TARGET=$$PLUGINS_PREFIX/Output/null
-
-INCLUDEPATH += ../../../
-QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
-
-CONFIG += warn_on \
-          thread \
-          plugin
-
-TEMPLATE = lib
-
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Output/libnull.so
 
 unix {
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
     target.path = $$LIB_DIR/qmmp/Output
     INSTALLS += target
-    LIBS += -lqmmp
-    QMAKE_CLEAN =$$PLUGINS_PREFIX/Output/libnull.so
-}
-
-win32 {
-    LIBS += -lqmmp1
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
 }

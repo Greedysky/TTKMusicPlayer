@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,23 +23,33 @@
 
 #include <taglib/opusfile.h>
 #include <taglib/xiphcomment.h>
+#include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
+
+#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
+#define HAS_PICTURE_LIST
+#endif
 
 class OpusMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
+    Q_DECLARE_TR_FUNCTIONS(OpusMetaDataModel)
 public:
-    OpusMetaDataModel(const QString &path, QObject *parent);
+    OpusMetaDataModel(const QString &path, bool readOnly);
     ~OpusMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
-    QPixmap cover();
+
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<TagModel* > tags() const override;
+    virtual QPixmap cover() const override;
+#ifdef HAS_PICTURE_LIST
+    virtual void setCover(const QPixmap &pix) override;
+    virtual void removeCover() override;
+#endif
 
 private:
     QString m_path;
     QList<TagModel* > m_tags;
     TagLib::Ogg::Opus::File *m_file;
-    ulong readPictureBlockField(QByteArray data, int offset);
+    TagLib::FileStream *m_stream;
 };
 
 class VorbisCommentModel : public TagModel
@@ -47,10 +57,11 @@ class VorbisCommentModel : public TagModel
 public:
     VorbisCommentModel(TagLib::Ogg::Opus::File *file);
     ~VorbisCommentModel();
-    const QString name();
-    const QString value(Qmmp::MetaData key);
-    void setValue(Qmmp::MetaData key, const QString &value);
-    void save();
+
+    virtual QString name() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual void save() override;
 
 private:
     TagLib::Ogg::Opus::File *m_file;

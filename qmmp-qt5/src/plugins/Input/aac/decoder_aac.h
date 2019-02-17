@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,11 +21,8 @@
 #ifndef DECODER_AAC_H
 #define DECODER_AAC_H
 
-
 #include <neaacdec.h>
-
 #include <qmmp/decoder.h>
-
 
 struct aac_data
 {
@@ -38,17 +35,16 @@ public:
     DecoderAAC(QIODevice *);
     virtual ~DecoderAAC();
 
-
     struct aac_data *data()
     {
         return m_data;
     }
       // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *audio, qint64 maxSize);
-    void seek(qint64 time);
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *audio, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     struct aac_data *m_data;

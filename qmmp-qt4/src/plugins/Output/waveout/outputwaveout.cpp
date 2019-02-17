@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2018 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,8 +35,6 @@ static HWAVEOUT          dev                    = NULL;
 static unsigned int      ScheduledBlocks        = 0;
 static int               PlayedWaveHeadersCount = 0;          // free index
 static WAVEHDR*          PlayedWaveHeaders [MAX_WAVEBLOCKS];
-
-
 
 static void CALLBACK wave_callback (HWAVE hWave, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
 {

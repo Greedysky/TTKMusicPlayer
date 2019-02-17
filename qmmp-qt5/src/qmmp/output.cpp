@@ -65,16 +65,16 @@ void Output::suspend()
 void Output::resume()
 {}
 
-void Output::setMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
+void Output::setTrackInfo(const TrackInfo &info)
 {
-    Q_UNUSED(metaData);
+    Q_UNUSED(info);
 }
 
 Output::~Output()
 {}
 
 // static methods
-QList<QmmpPluginCache*> *Output::m_cache = 0;
+QList<QmmpPluginCache*> *Output::m_cache = nullptr;
 
 void Output::loadPlugins()
 {
@@ -83,21 +83,9 @@ void Output::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-#ifndef Q_OS_ANDROID
-    pluginsDir.cd("Output");
-#endif
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Output"))
     {
-#ifdef Q_OS_ANDROID
-        if(!fileName.contains("_output_"))
-        {
-            continue;
-        }
-#endif
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;
@@ -110,7 +98,7 @@ void Output::loadPlugins()
 Output *Output::create ()
 {
     loadPlugins();
-    Output *output = 0;
+    Output *output = nullptr;
     if (m_cache->isEmpty ())
     {
         qDebug("Output: unable to find output plugins");
@@ -179,5 +167,5 @@ OutputFactory *Output::currentFactory()
     }
     if (!m_cache->isEmpty())
         return m_cache->at(0)->outputFactory();
-    return 0;
+    return nullptr;
 }

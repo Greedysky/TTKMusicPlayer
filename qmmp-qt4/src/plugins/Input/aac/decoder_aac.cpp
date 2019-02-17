@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
 
 #include <QObject>
 #include <QIODevice>
@@ -90,7 +89,7 @@ bool DecoderAAC::initialize()
         input()->read(data, aac_file.offset());
     }
 
-    m_totalTime = aac_file.length() * 1000;
+    m_totalTime = aac_file.duration();
     m_bitrate = aac_file.bitrate();
 
     if (!m_data)

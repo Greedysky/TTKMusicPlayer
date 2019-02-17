@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -38,14 +38,14 @@ public:
     OutputALSA();
     ~OutputALSA();
 
-    bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format);
-    //output api
-    qint64 latency();
-    qint64 writeAudio(unsigned char *data, qint64 maxSize);
-    void drain();
-    void reset();
-    void suspend();
-    void resume();
+    virtual bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format) override;
+
+    virtual qint64 latency() override;
+    virtual qint64 writeAudio(unsigned char *data, qint64 maxSize) override;
+    virtual void drain() override;
+    virtual void reset() override;
+    virtual void suspend() override;
+    virtual void resume() override;
 
 private:
     // helper functions
@@ -64,9 +64,7 @@ private:
     qint64 m_prebuf_fill;
     bool m_can_pause;
     //channel conversions
-#if (SND_LIB_VERSION >= 0x01001B)
     QHash <quint16, Qmmp::ChannelPosition> m_alsa_channels;
-#endif
 };
 
 class VolumeALSA : public Volume
@@ -76,10 +74,10 @@ public:
     VolumeALSA();
     virtual ~VolumeALSA();
 
-    void setVolume(const VolumeSettings &vol);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &vol) override;
+    virtual VolumeSettings volume() const override;
 
-    bool hasNotifySignal() const;
+    virtual bool hasNotifySignal() const override;
 
 private:
     //alsa mixer

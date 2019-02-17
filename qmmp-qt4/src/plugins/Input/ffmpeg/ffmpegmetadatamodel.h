@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,27 +21,18 @@
 #ifndef FFMPEGMETADATAMODEL_H
 #define FFMPEGMETADATAMODEL_H
 
-extern "C"{
-#include <libavformat/avformat.h>
-#include <libavcodec/avcodec.h>
-#if (LIBAVUTIL_VERSION_INT >= AV_VERSION_INT(51,32,0))
-#include <libavutil/dict.h>
-#endif
-}
-
 #include <qmmp/metadatamodel.h>
 
 class FFmpegMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
 public:
-    FFmpegMetaDataModel(const QString &path, QObject *parent);
+    FFmpegMetaDataModel(const QString &path);
     ~FFmpegMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QPixmap cover();
+
+    QPixmap cover() const;
 
 private:
-    AVFormatContext *m_in;
+    QPixmap m_pixmap;
 };
 
 #endif // FFMPEGMETADATAMODEL_H

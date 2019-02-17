@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -151,7 +151,7 @@ bool DecoderWavPack::initialize()
         m_totalTime = (qint64) WavpackGetNumSamples(m_context) * 1000 / freq;
     else
     {
-        m_length = m_parser->length(m_track);
+        m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;
@@ -228,8 +228,8 @@ void DecoderWavPack::next()
     if(m_parser && m_track +1 <= m_parser->count())
     {
         m_track++;
-        m_offset = m_parser->length(m_track);
-        m_length = m_parser->length(m_track);
+        m_offset = m_parser->duration(m_track);
+        m_length = m_parser->duration(m_track);
         m_length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
                           audioParameters().sampleSize() * m_length/1000;

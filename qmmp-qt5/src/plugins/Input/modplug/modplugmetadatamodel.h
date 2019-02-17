@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,19 +21,20 @@
 #ifndef MODPLUGMETADATAMODEL_H
 #define MODPLUGMETADATAMODEL_H
 
-
 #include <qmmp/metadatamodel.h>
 
 class CSoundFile;
 
 class ModPlugMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
+    Q_DECLARE_TR_FUNCTIONS(ModPlugMetaDataModel)
 public:
-    ModPlugMetaDataModel(const QString &path, QObject *parent);
+    ModPlugMetaDataModel(const QString &path);
     ~ModPlugMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QHash<QString, QString> descriptions();
+
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<MetaDataItem> descriptions() const override;
+    static QString getTypeName(quint32 type);
 
 private:
     CSoundFile* m_soundFile;

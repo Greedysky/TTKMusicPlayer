@@ -3,8 +3,7 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
+
 #include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
@@ -12,19 +11,19 @@
 
 PlusVolumeWave::PlusVolumeWave (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle (tr("Plus VolumeWave Widget"));
+    setWindowTitle(tr("Plus VolumeWave Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(40);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
     clear();
 }
@@ -67,27 +66,27 @@ void PlusVolumeWave::timeout()
     }
 }
 
-void PlusVolumeWave::hideEvent (QHideEvent *)
+void PlusVolumeWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusVolumeWave::showEvent (QShowEvent *)
+void PlusVolumeWave::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void PlusVolumeWave::paintEvent (QPaintEvent * e)
+void PlusVolumeWave::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusVolumeWave::process ()
+void PlusVolumeWave::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -121,7 +120,7 @@ void PlusVolumeWave::process ()
     calc_freq (dest_l, m_left_buffer);
     calc_freq (dest_r, m_right_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     yl = yr = 0;
     magnitude_l = magnitude_r = 0;
@@ -159,7 +158,7 @@ void PlusVolumeWave::process ()
 
 }
 
-void PlusVolumeWave::draw (QPainter *p)
+void PlusVolumeWave::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
@@ -175,15 +174,15 @@ void PlusVolumeWave::draw (QPainter *p)
 
     if(m_intern_vis_data)
     {
-        float l = 1.0f, r = 1.0f;
+        float left = 1.0f, right = 1.0f;
         if(SoundCore::instance())
         {
-            l = SoundCore::instance()->leftVolume()*1.0/100;
-            r = SoundCore::instance()->rightVolume()*1.0/100;
+            left = SoundCore::instance()->leftVolume()*1.0/100;
+            right = SoundCore::instance()->rightVolume()*1.0/100;
         }
         int wid = ceil(m_rows/2);
-        p->fillRect(0, 0, m_intern_vis_data[0]*l*m_cols/m_rows, wid, line);
-        p->fillRect(0, wid, m_intern_vis_data[1]*r*m_cols/m_rows, wid, line);
+        p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
+        p->fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
     }
 
     p->setPen(Qt::white);

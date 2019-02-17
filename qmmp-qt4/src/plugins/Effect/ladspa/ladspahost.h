@@ -18,6 +18,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef LADSPAHOST_H
 #define LADSPAHOST_H
 
@@ -75,7 +76,7 @@ public:
 
 class LADSPAHost : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     LADSPAHost(QObject *parent);
 

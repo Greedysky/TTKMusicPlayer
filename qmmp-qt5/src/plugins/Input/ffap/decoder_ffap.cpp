@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
 
 #include <stdio.h>
 #include <qmmp/buffer.h>
@@ -68,7 +67,7 @@ DecoderFFap::DecoderFFap(const QString &path, QIODevice *i)
 {
     //m_data = 0;
     m_path = path;
-    m_ffap_decoder = 0;
+    m_ffap_decoder = nullptr;
     ffap_load();
 }
 
@@ -136,7 +135,7 @@ void DecoderFFap::deinit()
 {
     if (m_ffap_decoder)
         ffap_free(m_ffap_decoder);
-    m_ffap_decoder = 0;
+    m_ffap_decoder = nullptr;
 }
 
 

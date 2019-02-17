@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,9 +23,7 @@
 #include <taglib/fileref.h>
 #include <taglib/mpcfile.h>
 #include <taglib/apetag.h>
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
 #include <taglib/tfilestream.h>
-#endif
 #include "mpcmetadatamodel.h"
 #include "decoder_mpc.h"
 #include "decodermpcfactory.h"
@@ -37,26 +35,19 @@ bool DecoderMPCFactory::canDecode(QIODevice *input) const
     if (input->peek(buf, 4) != 4)
         return false;
 
-    if(!memcmp(buf, "MP+", 3))
-            return true;
-
-#ifndef MPC_OLD_API
-    if(!memcmp(buf, "MPCK", 4))
+    if(!memcmp(buf, "MP+", 3) || !memcmp(buf, "MPCK", 4))
         return true;
-#endif
 
     return false;
 }
 
-const DecoderProperties DecoderMPCFactory::properties() const
+DecoderProperties DecoderMPCFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("Musepack Plugin");
     properties.filters << "*.mpc";
     properties.description = tr("Musepack Files");
-    //properties.contentType = ;
     properties.shortName = "mpc";
-    properties.hasAbout = true;
     properties.hasSettings = false;
     return properties;
 }
@@ -66,55 +57,50 @@ Decoder *DecoderMPCFactory::create(const QString &, QIODevice *i)
     return new DecoderMPC(i);
 }
 
-QList<FileInfo *> DecoderMPCFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderMPCFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    FileInfo *info = new FileInfo(fileName);
+    TrackInfo *info = new TrackInfo(path);
 
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
-    TagLib::FileStream stream(QStringToFileName(fileName), true);
+    if(parts == TrackInfo::NoParts)
+        return QList<TrackInfo*>() << info;
+
+    TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::MPC::File fileRef(&stream);
-#else
-    TagLib::MPC::File fileRef(QStringToFileName(fileName));
-#endif
 
-    TagLib::APE::Tag *tag = useMetaData ? fileRef.APETag() : 0;
-    if (tag && !tag->isEmpty())
+    if((parts & TrackInfo::MetaData) && fileRef.APETag() && !fileRef.APETag()->isEmpty())
     {
-        info->setMetaData(Qmmp::ALBUM,
-                       QString::fromUtf8(tag->album().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::ARTIST,
-                       QString::fromUtf8(tag->artist().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::COMMENT,
-                       QString::fromUtf8(tag->comment().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::GENRE,
-                       QString::fromUtf8(tag->genre().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::TITLE,
-                       QString::fromUtf8(tag->title().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::YEAR, tag->year());
-        info->setMetaData(Qmmp::TRACK, tag->track());
-    }
-    if (fileRef.audioProperties())
-        info->setLength(fileRef.audioProperties()->length());
-    //additional metadata
-    if(tag)
-    {
+        TagLib::APE::Tag *tag = fileRef.APETag();
+        info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
+        info->setValue(Qmmp::ARTIST, TStringToQString(tag->artist()));
+        info->setValue(Qmmp::COMMENT, TStringToQString(tag->comment()));
+        info->setValue(Qmmp::GENRE, TStringToQString(tag->genre()));
+        info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
+        info->setValue(Qmmp::YEAR, tag->year());
+        info->setValue(Qmmp::TRACK, tag->track());
         TagLib::APE::Item fld;
         if(!(fld = tag->itemListMap()["ALBUM ARTIST"]).isEmpty())
-            info->setMetaData(Qmmp::ALBUMARTIST,
-                              QString::fromUtf8(fld.toString().toCString(true)).trimmed());
+            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.toString()));
         if(!(fld = tag->itemListMap()["COMPOSER"]).isEmpty())
-            info->setMetaData(Qmmp::COMPOSER,
-                              QString::fromUtf8(fld.toString().toCString(true)).trimmed());
+            info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
 
-    QList <FileInfo*> list;
-    list << info;
-    return list;
+    TagLib::MPC::Properties *ap = fileRef.audioProperties();
+    if((parts & TrackInfo::Properties) && ap)
+    {
+        info->setValue(Qmmp::BITRATE, ap->bitrate());
+        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
+        info->setValue(Qmmp::CHANNELS, ap->channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
+        info->setValue(Qmmp::FORMAT_NAME, QString("Musepack SV%1").arg(ap->mpcVersion()));
+        info->setDuration(ap->lengthInMilliseconds());
+    }
+
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderMPCFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    return new MPCMetaDataModel(path, parent);
+    return new MPCMetaDataModel(path, readOnly);
 }
 
 Q_EXPORT_PLUGIN2(mpc,DecoderMPCFactory)

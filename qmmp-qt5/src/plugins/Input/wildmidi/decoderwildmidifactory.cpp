@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,7 +18,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QApplication>
 #include "wildmidihelper.h"
 #include "decoder_wildmidi.h"
 #include "decoderwildmidifactory.h"
@@ -42,7 +41,7 @@ bool DecoderWildMidiFactory::canDecode(QIODevice *input) const
 #endif
 }
 
-const DecoderProperties DecoderWildMidiFactory::properties() const
+DecoderProperties DecoderWildMidiFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("WildMidi Plugin");
@@ -51,9 +50,7 @@ const DecoderProperties DecoderWildMidiFactory::properties() const
     properties.filters << "*.mus" << "*.xmi";
 #endif
     properties.description = tr("Midi Files");
-    //properties.contentType = ;
     properties.shortName = "wildmidi";
-    properties.hasAbout = true;
     properties.hasSettings = true;
     properties.noInput = true;
     properties.protocols << "file";
@@ -66,32 +63,30 @@ Decoder *DecoderWildMidiFactory::create(const QString &path, QIODevice *input)
     return new DecoderWildMidi(path);
 }
 
-QList<FileInfo *> DecoderWildMidiFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderWildMidiFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    Q_UNUSED(useMetaData);
-    QList <FileInfo*> list;
-    FileInfo *info = new FileInfo(fileName);
+    TrackInfo *info = new TrackInfo(path);
+    WildMidiHelper *helper = WildMidiHelper::instance();
 
-    if(WildMidiHelper::instance()->initialize() && WildMidiHelper::instance()->sampleRate())
+    if((parts & TrackInfo::Properties) && helper->initialize() && helper->sampleRate())
     {
-        void *midi_ptr = WildMidi_Open (fileName.toLocal8Bit().constData());
+        void *midi_ptr = WildMidi_Open (path.toLocal8Bit().constData());
         if(midi_ptr)
         {
             WildMidiHelper::instance()->addPtr(midi_ptr);
             _WM_Info *wm_info = WildMidi_GetInfo(midi_ptr);
-            info->setLength((qint64)wm_info->approx_total_samples
-                            / WildMidiHelper::instance()->sampleRate());
+            info->setValue(Qmmp::SAMPLERATE, helper->sampleRate());
+            info->setDuration((qint64)wm_info->approx_total_samples * 1000 / helper->sampleRate());
             WildMidi_Close(midi_ptr);
             WildMidiHelper::instance()->removePtr(midi_ptr);
         }
     }
-    list << info;
-    return list;
+    return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderWildMidiFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     Q_UNUSED(path);
-    Q_UNUSED(parent);
-    return 0;
+    Q_UNUSED(readOnly);
+    return nullptr;
 }

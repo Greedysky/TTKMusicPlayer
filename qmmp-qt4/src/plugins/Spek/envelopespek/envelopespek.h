@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #define ENVELOPESPEK_H
 
 #include <QThread>
-
 #include <qmmp/spekfactory.h>
 #include <qmmp/inputsource.h>
 #include <qmmp/decoderfactory.h>
@@ -34,21 +33,22 @@ class EnvelopeSpekThead : public QThread
 {
     Q_OBJECT
 public:
-    explicit EnvelopeSpekThead(QObject *parent = 0);
+    explicit EnvelopeSpekThead(QObject *parent = nullptr);
     ~EnvelopeSpekThead();
 
     bool init(const QString &path);
     void stopAndQuitThread();
 
 signals:
-    void bufferChanged(Buffer *buffer, int chans);
+    void finished();
+    void bufferChanged(Buffer *buffer, int chans, quint64 size);
 
 public slots:
     void start();
     virtual void run() override;
 
 protected:
-    qint64 produceSound(unsigned char *data, qint64 size, quint32 brate);
+    qint64 produceSound(unsigned char *data, quint64 size, quint32 brate);
     void flush(bool final);
     void free();
     void init();
@@ -57,7 +57,6 @@ protected:
     bool m_finish, m_run;
     quint64 m_output_at, m_output_size, m_bks;
     unsigned char *m_output_buf;
-    unsigned int buffer_count;
     AudioConverter m_converter;
     Recycler m_recycler;
     QMutex m_mutex;
@@ -70,7 +69,7 @@ class EnvelopeSpek : public Spek
 {
     Q_OBJECT
 public:
-    explicit EnvelopeSpek(QWidget *parent = 0);
+    explicit EnvelopeSpek(QWidget *parent = nullptr);
     ~EnvelopeSpek();
 
     virtual void open(const QString &path) override;
@@ -78,21 +77,23 @@ public:
     virtual void stop() override;
 
 public slots:
-    void bufferChanged(Buffer *buffer, int chans);
-    void urlChanged();
+    void bufferChanged(Buffer *buffer, int chans, quint64 size);
+    void finished();
+    void mediaUrlChanged();
 
 protected:
-    void paintEvent(QPaintEvent *e);
+    virtual void paintEvent(QPaintEvent *e) override;
     void init();
     void process(float *buffer);
     void draw(QPainter *p);
 
     QImage m_backgroundImage;
     EnvelopeSpekThead *m_fspekThread;
-    double m_intern_vis_data, m_analyzer_falloff;
-    int *m_x_scale, m_buffer_at, m_cols, m_rows, m_pixPos;
+    double m_vis_data, m_analyzer_falloff;
+    int *m_x_scale, m_buffer_at, m_cols, m_rows;
     float *m_buffer;
     QMutex m_mutex;
+    quint64 m_pixPos, m_output_size;
 
 };
 

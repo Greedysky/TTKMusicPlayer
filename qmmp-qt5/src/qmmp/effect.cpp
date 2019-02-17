@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,7 @@ Effect::Effect()
 {
     m_freq = 0;
     m_channels = 0;
-    m_factory = 0;
+    m_factory = nullptr;
 }
 
 Effect::~Effect()
@@ -75,7 +75,7 @@ bool _effectCacheCompareFunc(QmmpPluginCache *e1, QmmpPluginCache *e2)
 }
 
 //static members
-QList<QmmpPluginCache*> *Effect::m_cache = 0;
+QList<QmmpPluginCache*> *Effect::m_cache = nullptr;
 QStringList Effect::m_enabledNames;
 
 void Effect::loadPlugins()
@@ -85,21 +85,9 @@ void Effect::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-#ifndef Q_OS_ANDROID
-    pluginsDir.cd("Effect");
-#endif
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach(QString filePath, Qmmp::findPlugins("Effect"))
     {
-#ifdef Q_OS_ANDROID
-        if(!fileName.contains("_effect_"))
-        {
-            continue;
-        }
-#endif
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;
@@ -197,5 +185,5 @@ EffectFactory *Effect::findFactory(const QString &shortName)
         if(shortName == f->properties().shortName)
             return f;
     }
-    return 0;
+    return nullptr;
 }

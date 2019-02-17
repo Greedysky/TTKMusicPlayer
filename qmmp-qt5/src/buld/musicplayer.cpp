@@ -8,8 +8,8 @@
 MusicPlayer::MusicPlayer(QObject *parent)
     : QObject(parent)
 {
-    m_playlist = 0;
-    m_music = 0;
+    m_playlist = nullptr;
+    m_music = nullptr;
     m_state = StoppedState;
     m_musicEnhanced = EnhancedOff;
     m_music = new SoundCore(this);
@@ -35,7 +35,7 @@ MusicPlaylist *MusicPlayer::playlist() const
 
 qint64 MusicPlayer::duration() const
 {
-    return m_music->totalTime();
+    return m_music->duration();
 }
 
 qint64 MusicPlayer::position() const

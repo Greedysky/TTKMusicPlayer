@@ -69,5 +69,4 @@ void ffap_free(FFap_decoder *decoder);
 }
 #endif
 
-
 #endif

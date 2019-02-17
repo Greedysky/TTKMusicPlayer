@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef OUTPUTDIRECTSOUNDFACTORY_H
 #define OUTPUTDIRECTSOUNDFACTORY_H
 
@@ -29,14 +30,13 @@
 
 class OutputDirectSoundFactory : public QObject, OutputFactory
 {
-Q_OBJECT
-Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")
-Q_INTERFACES(OutputFactory)
-
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")
+    Q_INTERFACES(OutputFactory)
 public:
-    const OutputProperties properties() const;
-    Output* create();
-    Volume *createVolume();
+    virtual OutputProperties properties() const override;
+    virtual Output* create() override;
+    virtual Volume *createVolume() override;
 
 };
 

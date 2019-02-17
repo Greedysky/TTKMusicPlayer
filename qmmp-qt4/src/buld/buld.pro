@@ -16,9 +16,9 @@ win32:{
 unix:{
     TARGET = ../../lib/$$TTKMusicPlayer/app
     LIBS += -L../../lib/$$TTKMusicPlayer -lqmmp
+    LIBS += -L../../../extra/gcc/libtaglib/lib -ltag
 }
 TEMPLATE = app
-
 
 SOURCES += main.cpp\
         mainwindow.cpp \

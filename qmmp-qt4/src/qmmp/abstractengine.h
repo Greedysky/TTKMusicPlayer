@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,14 +30,14 @@
 class QIODevice;
 class InputSource;
 class QmmpPluginCache;
-
+class EngineFactory;
 
 /*! @brief The AbstractEngine class provides the base interface class of audio audio engines.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class AbstractEngine : public QThread
+class QMMP_EXPORT AbstractEngine : public QThread
 {
- Q_OBJECT
+    Q_OBJECT
 public:
     /*!
      * Object constructor.
@@ -76,10 +76,6 @@ public:
      */
     virtual void setMuted(bool muted) = 0;
     /*!
-     * Returns mutex pointer.
-     */
-    QMutex *mutex();
-    /*!
      * Creates Engine object.
      * @param s InputSource object.
      * @param parent Parent object.
@@ -95,7 +91,7 @@ public:
      */
     static QList<EngineFactory*> enabledFactories();
     /*!
-     * Returns EngineFactory pointer which supports file \b path or 0 if file \b path is unsupported
+     * Returns EngineFactory pointer which supports file \b path or 0 if file \b path is unsupported.
      */
     static EngineFactory *findByFilePath(const QString &path);
     /*!
@@ -103,12 +99,18 @@ public:
      * @param factory Engine plugin factory.
      * @param enable Plugin enable state (\b true - enable, \b false - disable)
      */
-    static void setEnabled(EngineFactory* factory, bool enable = true);
+    static void setEnabled(EngineFactory *factory, bool enable = true);
     /*!
      * Returns \b true if engine is enabled, otherwise returns \b false
+     * This function uses \b QObject::objectName() function.
      * @param factory Engine plugin factory.
      */
-    static bool isEnabled(EngineFactory* factory);
+    static bool isEnabled(EngineFactory *factory);
+    /*!
+     * Returns \b true if engine is enabled, otherwise returns \b false
+     * @param engine Engine object.
+     */
+    static bool isEnabled(AbstractEngine *engine);
     /*!
      * Returns plugin file path.
      * @param factory Engine plugin factory.
@@ -119,6 +121,12 @@ public:
      * This fuction ignores disabled engines.
      */
     static QStringList protocols();
+
+protected:
+    /*!
+     * Returns mutex pointer.
+     */
+    QMutex *mutex();
 
 private:
     QMutex m_mutex;

@@ -3,28 +3,27 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "plusmonowave.h"
 
 PlusMonoWave::PlusMonoWave (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
-    setWindowTitle (tr("Plus MonoWave Widget"));
+    setWindowTitle(tr("Plus MonoWave Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    m_timer->setInterval(40);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     clear();
 }
@@ -67,28 +66,28 @@ void PlusMonoWave::timeout()
     }
 }
 
-void PlusMonoWave::hideEvent (QHideEvent *)
+void PlusMonoWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusMonoWave::showEvent (QShowEvent *)
+void PlusMonoWave::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void PlusMonoWave::paintEvent (QPaintEvent * e)
+void PlusMonoWave::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusMonoWave::process ()
+void PlusMonoWave::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -153,19 +152,15 @@ void PlusMonoWave::process ()
     }
 }
 
-void PlusMonoWave::draw (QPainter *p)
+void PlusMonoWave::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const float maxed = maxRange();
 
     for (int j = 1; j < m_rows; ++j)
     {
-        int v = m_intern_vis_data[j - 1] * l;
+        int v = m_intern_vis_data[j - 1] * maxed;
         if(m_pixPos >= m_cols)
         {
             m_pixPos = m_cols - 1;

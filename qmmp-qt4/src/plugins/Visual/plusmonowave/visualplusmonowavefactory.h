@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,7 @@
 #ifndef VISUALPLUSMONOWAVEFACTORY_H
 #define VISUALPLUSMONOWAVEFACTORY_H
 
-
 #include <QObject>
-
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
@@ -30,14 +28,12 @@
 */
 class VisualPlusMonoWaveFactory : public QObject, public VisualFactory
 {
-Q_OBJECT
-Q_INTERFACES(VisualFactory)
-
+    Q_OBJECT
+    Q_INTERFACES(VisualFactory)
 public:
-    const VisualProperties properties() const;
+    VisualProperties properties() const;
     Visual *create(QWidget *parent);
 
 };
-
 
 #endif

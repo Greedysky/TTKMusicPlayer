@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,7 +20,7 @@
 
 #include "tagmodel.h"
 
-TagModel::TagModel(int f)
+TagModel::TagModel(ModelCaps f)
 {
     m_f = f;
 }
@@ -33,7 +33,7 @@ void TagModel::setValue(Qmmp::MetaData key, int value)
     setValue(key, QString::number(value));
 }
 
-QList<Qmmp::MetaData> TagModel::keys()
+QList<Qmmp::MetaData> TagModel::keys() const
 {
     QList<Qmmp::MetaData> list;
     list << Qmmp::TITLE;
@@ -49,12 +49,12 @@ QList<Qmmp::MetaData> TagModel::keys()
     return list;
 }
 
-int TagModel::caps()
+TagModel::ModelCaps TagModel::caps() const
 {
     return m_f;
 }
 
-bool TagModel::exists()
+bool TagModel::exists() const
 {
     return true;
 }

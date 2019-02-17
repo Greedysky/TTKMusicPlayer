@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,7 +18,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-
 #include <QObject>
 #include <QIODevice>
 #include <QtGlobal>
@@ -36,10 +35,10 @@ DecoderAAC::DecoderAAC(QIODevice *i)
 {
     m_bitrate = 0;
     m_totalTime = 0;
-    m_data = 0;
-    m_input_buf = 0;
+    m_data = nullptr;
+    m_input_buf = nullptr;
     m_input_at = 0;
-    m_sample_buf = 0;
+    m_sample_buf = nullptr;
     m_sample_buf_at = 0;
     m_sample_buf_size = 0;
 }
@@ -52,11 +51,11 @@ DecoderAAC::~DecoderAAC()
         if (data()->handle)
             NeAACDecClose (data()->handle);
         delete data();
-        m_data = 0;
+        m_data = nullptr;
     }
     if (m_input_buf)
         delete [] m_input_buf;
-    m_input_buf = 0;
+    m_input_buf = nullptr;
     m_bitrate = 0;
 }
 
@@ -90,7 +89,7 @@ bool DecoderAAC::initialize()
         input()->read(data, aac_file.offset());
     }
 
-    m_totalTime = aac_file.length() * 1000;
+    m_totalTime = aac_file.duration();
     m_bitrate = aac_file.bitrate();
 
     if (!m_data)

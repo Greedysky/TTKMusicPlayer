@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,7 +18,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-
 #include <QObject>
 #include <QIODevice>
 #include <qmmp/buffer.h>
@@ -28,63 +27,33 @@
 
 // mpc callbacks
 
-#ifdef MPC_OLD_API
-static mpc_int32_t mpc_callback_read (void *data, void *buffer, mpc_int32_t size)
-{
-    DecoderMPC *dmpc = (DecoderMPC *) data;
-#else
 static mpc_int32_t mpc_callback_read (mpc_reader *reader, void *buffer, mpc_int32_t size)
 {
     DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-#endif
-    qint64 res;
-
-    res = dmpc->input()->read((char *)buffer, size);
-
-    return res;
+    return dmpc->input()->read((char *)buffer, size);
 }
-#ifdef MPC_OLD_API
-static mpc_bool_t mpc_callback_seek (void *data, mpc_int32_t offset)
-{
-    DecoderMPC *dmpc = (DecoderMPC *) data;
-#else
+
 static mpc_bool_t mpc_callback_seek (mpc_reader *reader, mpc_int32_t offset)
 {
     DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-#endif
     return dmpc->input()->seek(offset);
 }
-#ifdef MPC_OLD_API
-static mpc_int32_t mpc_callback_tell (void *data)
-{
-    DecoderMPC *dmpc = (DecoderMPC *) data;
-#else
+
 static mpc_int32_t mpc_callback_tell (mpc_reader *reader)
 {
     DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-#endif
     return dmpc->input()->pos ();
 }
-#ifdef MPC_OLD_API
-static mpc_bool_t  mpc_callback_canseek (void *data)
-{
-    DecoderMPC *dmpc = (DecoderMPC *) data;
-#else
+
 static mpc_bool_t  mpc_callback_canseek (mpc_reader *reader)
 {
     DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-#endif
     return !dmpc->input()->isSequential () ;
 }
-#ifdef MPC_OLD_API
-static mpc_int32_t mpc_callback_get_size (void *data)
-{
-    DecoderMPC *dmpc = (DecoderMPC *) data;
-#else
+
 static mpc_int32_t mpc_callback_get_size (mpc_reader *reader)
 {
     DecoderMPC *dmpc = (DecoderMPC *) reader->data;
-#endif
     return dmpc->input()->size();
 }
 
@@ -96,21 +65,18 @@ DecoderMPC::DecoderMPC(QIODevice *i)
     m_len = 0;
     m_bitrate = 0;
     m_totalTime = 0.0;
-    m_data = 0;
+    m_data = nullptr;
 }
 
 DecoderMPC::~DecoderMPC()
 {
     m_len = 0;
-    if (data())
+    if(m_data)
     {
-#ifndef MPC_OLD_API
-        if (data()->demuxer)
-            mpc_demux_exit (data()->demuxer);
-        data()->demuxer = 0;
-#endif
-        delete data();
-        m_data = 0;
+        if(m_data->demuxer)
+            mpc_demux_exit(m_data->demuxer);
+        delete m_data;
+        m_data = nullptr;
     }
 }
 
@@ -138,40 +104,19 @@ bool DecoderMPC::initialize()
     m_data->reader.get_size = mpc_callback_get_size;
     m_data->reader.data = this;
 
-#ifdef MPC_OLD_API
-    mpc_streaminfo_init (&m_data->info);
-    if (mpc_streaminfo_read (&m_data->info, &m_data->reader) != ERROR_CODE_OK)
-        return false;
-#else
     m_data->demuxer = mpc_demux_init (&m_data->reader);
 
     if (!m_data->demuxer)
         return false;
     mpc_demux_get_info (m_data->demuxer, &m_data->info);
-#endif
 
     int chan = data()->info.channels;
     configure(data()->info.sample_freq, chan, Qmmp::PCM_FLOAT);
     QMap<Qmmp::ReplayGainKey, double> rg_info; //replay gain information
-#ifdef MPC_OLD_API
-    mpc_decoder_setup (&data()->decoder, &data()->reader);
-
-    //mpc_decoder_scale_output (&data()->decoder, 3.0);
-    if (!mpc_decoder_initialize (&data()->decoder, &data()->info))
-    {
-        qWarning("DecoderMPC: cannot get info.");
-        return false;
-    }
-    rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album/100.0;
-    rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title/100.0;
-    rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = data()->info.peak_album/32768.0;
-    rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = data()->info.peak_title/32768.0;
-#else
     rg_info[Qmmp::REPLAYGAIN_ALBUM_GAIN] = data()->info.gain_album/256.0;
     rg_info[Qmmp::REPLAYGAIN_TRACK_GAIN] = data()->info.gain_title/256.0;
     rg_info[Qmmp::REPLAYGAIN_ALBUM_PEAK] = pow(10, data()->info.peak_album/256.0/20.0);
     rg_info[Qmmp::REPLAYGAIN_TRACK_PEAK] = pow(10, data()->info.peak_title/256.0/20.0);
-#endif
     setReplayGainInfo(rg_info);
 
     m_totalTime = mpc_streaminfo_get_length(&data()->info) * 1000;
@@ -191,15 +136,6 @@ int DecoderMPC::bitrate() const
 
 qint64 DecoderMPC::read(unsigned char *audio, qint64 maxSize)
 {
-#ifdef MPC_OLD_API
-    mpc_uint32_t vbrAcc = 0;
-    mpc_uint32_t vbrUpd = 0;
-    MPC_SAMPLE_FORMAT buffer[MPC_DECODER_BUFFER_LENGTH];
-    m_len = mpc_decoder_decode (&data()->decoder, buffer, &vbrAcc, &vbrUpd);
-    m_len *= data()->info.channels;
-    memcpy(audio, buffer, qMin(qint64(m_len * sizeof(float)), maxSize));
-    m_bitrate = vbrUpd * data()->info.sample_freq / 1152000;
-#else
     mpc_frame_info frame;
     mpc_status err;
     MPC_SAMPLE_FORMAT buffer[MPC_DECODER_BUFFER_LENGTH];
@@ -221,15 +157,10 @@ qint64 DecoderMPC::read(unsigned char *audio, qint64 maxSize)
         }
     }
     m_bitrate = frame.bits * data()->info.sample_freq / 1152000;
-#endif
     return m_len * sizeof(float);
 }
 
 void DecoderMPC::seek(qint64 pos)
 {
-#ifdef MPC_OLD_API
-    mpc_decoder_seek_seconds(&data()->decoder, pos/1000);
-#else
     mpc_demux_seek_second(data()->demuxer, (double)pos/1000);
-#endif
 }

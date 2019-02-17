@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,6 +25,7 @@
 #include <cdio/cdio.h>
 #include <QMultiHash>
 #include <qmmp/decoder.h>
+#include <qmmp/trackinfo.h>
 
 class CDATrack
 {
@@ -35,7 +36,7 @@ public:
         last_sector = 0;
     }
 
-    FileInfo info;
+    TrackInfo info;
     lsn_t first_sector;
     lsn_t last_sector;
 };
@@ -46,16 +47,16 @@ public:
     DecoderCDAudio(const QString &url);
     virtual ~DecoderCDAudio();
 
-    static QList <CDATrack> generateTrackList(const QString &device);
+    static QList <CDATrack> generateTrackList(const QString &device, TrackInfo::Parts parts = TrackInfo::AllParts);
     static qint64 calculateTrackLength(lsn_t startlsn, lsn_t endlsn);
     static void clearTrackCache();
 
      // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *audio, qint64 maxSize);
-    void seek(qint64 time);
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *audio, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
     //helper functions

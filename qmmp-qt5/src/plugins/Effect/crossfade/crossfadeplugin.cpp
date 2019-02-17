@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov <forkotov02@ya.ru>         *
+ *   Copyright (C) 2009-2019 by Ilya Kotov <forkotov02@ya.ru>              *
  *   Copyright (C) 2009 by Sebastian Pipping <sebastian@pipping.org>       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 
 CrossfadePlugin::CrossfadePlugin() : Effect()
 {
-    m_buffer = 0;
+    m_buffer = nullptr;
     m_buffer_at = 0;
     m_buffer_size = 0;
     m_core = SoundCore::instance() ;
@@ -47,8 +47,8 @@ void CrossfadePlugin::applyEffect(Buffer *b)
     switch (m_state)
     {
     case WAITING:
-        if((m_core->totalTime() > m_overlap + 2000)
-                && (m_core->totalTime() - m_handler->elapsed() < m_overlap + 2000))
+        if((m_core->duration() > m_overlap + 2000)
+                && (m_core->duration() - m_handler->elapsed() < m_overlap + 2000))
         {
             StateHandler::instance()->sendNextTrackRequest();
             m_state = CHECKING;
@@ -60,16 +60,28 @@ void CrossfadePlugin::applyEffect(Buffer *b)
             m_state = PREPARING;
         break;
     case PREPARING:
-        if(m_core->totalTime() && (m_core->totalTime() - m_handler->elapsed() <  m_overlap))
+        if(m_core->duration() && (m_core->duration() - m_handler->elapsed() <  m_overlap))
         {
             if(m_buffer_at + b->samples > m_buffer_size)
             {
                 m_buffer_size = m_buffer_at + b->samples;
+                float *tmp = m_buffer;
                 m_buffer = (float *)realloc(m_buffer, m_buffer_size * sizeof(float));
+                if(!m_buffer)
+                {
+                    qWarning("CrossfadePlugin: unable to allocate  %zu bytes", m_buffer_size);
+                    m_buffer_size = 0;
+                    if(tmp)
+                        free(tmp);
+                }
             }
-            memcpy(m_buffer + m_buffer_at, b->data, b->samples * sizeof(float));
-            m_buffer_at += b->samples;
-            b->samples = 0;
+
+            if(m_buffer)
+            {
+                memcpy(m_buffer + m_buffer_at, b->data, b->samples * sizeof(float));
+                m_buffer_at += b->samples;
+                b->samples = 0;
+            }
         }
         else if(m_buffer_at > 0)
             m_state = PROCESSING;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,12 +18,10 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-#include <QRegExp>
 #include <cdio/version.h>
 #include <cddb/version.h>
 #include "decoder_cdaudio.h"
 #include "decodercdaudiofactory.h"
-
 
 // DecoderCDAudioFactory
 
@@ -32,13 +30,12 @@ bool DecoderCDAudioFactory::canDecode(QIODevice *) const
     return false;
 }
 
-const DecoderProperties DecoderCDAudioFactory::properties() const
+DecoderProperties DecoderCDAudioFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("CD Audio Plugin");
     properties.shortName = "cdaudio";
     properties.protocols << "cdda";
-    properties.hasAbout = true;
     properties.noInput = true;
     properties.hasSettings = true;
     return properties;
@@ -50,24 +47,26 @@ Decoder *DecoderCDAudioFactory::create(const QString &url, QIODevice *input)
     return new DecoderCDAudio(url);
 }
 
-QList<FileInfo *> DecoderCDAudioFactory::createPlayList(const QString &url, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderCDAudioFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    Q_UNUSED(useMetaData);
-    QList <FileInfo*> list;
-    QString device_path = url;
+    QList<TrackInfo*> list;
+
+    if(path.contains("#"))
+        return list;
+
+    QString device_path = path;
     device_path.remove("cdda://");
-    device_path.remove(QRegExp("#\\d+$"));
-    QList <CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path);
+    QList <CDATrack> tracks = DecoderCDAudio::generateTrackList(device_path, parts);
     foreach(CDATrack t, tracks)
     {
-        list << new FileInfo(t.info);
+        list << new TrackInfo(t.info);
     }
     return list;
 }
 
-MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderCDAudioFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(parent);
+    Q_UNUSED(readOnly);
     Q_UNUSED(path);
-    return 0;
+    return nullptr;
 }

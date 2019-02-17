@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,13 +28,14 @@ extern "C"{
 
 class WavPackMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
+    Q_DECLARE_TR_FUNCTIONS(WavPackMetaDataModel)
 public:
-    WavPackMetaDataModel(const QString &path, QObject *parent);
+    WavPackMetaDataModel(const QString &path, bool readOnly);
     ~WavPackMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
-    QString coverPath();
+
+    QList<MetaDataItem> extraProperties() const;
+    QList<TagModel* > tags() const;
+    QString coverPath() const;
 
 private:
     WavpackContext *m_ctx;
@@ -47,8 +48,9 @@ class WavPackFileTagModel : public TagModel
 public:
     WavPackFileTagModel(WavpackContext *ctx);
     ~WavPackFileTagModel();
-    const QString name();
-    const QString value(Qmmp::MetaData key);
+
+    QString name() const;
+    QString value(Qmmp::MetaData key) const;
     void setValue(Qmmp::MetaData key, const QString &value);
     void save();
 

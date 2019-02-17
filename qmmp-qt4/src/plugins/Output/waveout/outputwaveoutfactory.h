@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef OUTPUTWAVEOUTFACTORY_H
 #define OUTPUTWAVEOUTFACTORY_H
 
@@ -24,17 +25,16 @@
 #include <QString>
 #include <QIODevice>
 #include <QWidget>
+
 #include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
-
 class OutputWaveOutFactory : public QObject, OutputFactory
 {
-Q_OBJECT
-Q_INTERFACES(OutputFactory)
-
+    Q_OBJECT
+    Q_INTERFACES(OutputFactory)
 public:
-    const OutputProperties properties() const;
+    OutputProperties properties() const;
     Output* create();
     Volume *createVolume();
 

@@ -8,7 +8,6 @@ const SpekProperties VisualSpectrumSpekFactory::properties() const
     properties.name = tr("Spectrum Spek Plugin");
     properties.shortName = "spectrumspek";
     properties.hasSettings = false;
-    properties.hasAbout = false;
     return properties;
 }
 

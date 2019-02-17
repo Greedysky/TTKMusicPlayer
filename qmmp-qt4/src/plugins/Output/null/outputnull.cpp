@@ -21,7 +21,6 @@
 #include <unistd.h>
 #include "outputnull.h"
 
-
 OutputNull::OutputNull() : Output()
 {
    m_bytes_per_second = 0;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013 by Ilya Kotov                                      *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,12 +33,12 @@
 QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
 {
     m_error = false;
-    m_instance = 0;
-    m_decoderFactory = 0;
-    m_outputFactory = 0;
-    m_engineFactory = 0;
-    m_effectFactory = 0;
-    m_inputSourceFactory = 0;
+    m_instance = nullptr;
+    m_decoderFactory = nullptr;
+    m_outputFactory = nullptr;
+    m_engineFactory = nullptr;
+    m_effectFactory = nullptr;
+    m_inputSourceFactory = nullptr;
     m_priority = 0;
     bool update = false;
     QFileInfo info(file);
@@ -181,7 +181,7 @@ bool QmmpPluginCache::hasError() const
 QObject *QmmpPluginCache::instance()
 {
     if(m_error)
-        return 0;
+        return nullptr;
     if(m_instance)
         return m_instance;
     QPluginLoader loader(m_path);

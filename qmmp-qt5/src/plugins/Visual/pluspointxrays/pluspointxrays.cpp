@@ -5,9 +5,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "pluspointxrays.h"
@@ -15,16 +14,16 @@
 
 PlusPointXRays::PlusPointXRays (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
+    m_intern_vis_data = nullptr;
     m_running = false;
     m_cols = 0;
     m_rows = 0;
 
-    setWindowTitle (tr("Plus PointXRays Widget"));
+    setWindowTitle(tr("Plus PointXRays Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
-    m_timer->setInterval(10);
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
 
     m_gridAction = new QAction(tr("Grid"), this);
     m_gridAction->setCheckable(true);
@@ -103,20 +102,20 @@ void PlusPointXRays::changeGridState(bool state)
     update();
 }
 
-void PlusPointXRays::hideEvent (QHideEvent *)
+void PlusPointXRays::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusPointXRays::showEvent (QShowEvent *)
+void PlusPointXRays::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void PlusPointXRays::paintEvent (QPaintEvent * e)
+void PlusPointXRays::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -133,9 +132,9 @@ void PlusPointXRays::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void PlusPointXRays::process ()
+void PlusPointXRays::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -158,7 +157,7 @@ void PlusPointXRays::process ()
     }
 }
 
-void PlusPointXRays::draw (QPainter *p)
+void PlusPointXRays::draw(QPainter *p)
 {
     if(m_gridAction->isChecked())
     {
@@ -184,18 +183,14 @@ void PlusPointXRays::draw (QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     p->setPen(QPen(line, 3));
 
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const float maxed = maxRange();
 
     for (int i = 0; i<m_cols; ++i)
     {
-        int v = m_intern_vis_data[i]*l;
+        int v = m_intern_vis_data[i] * maxed;
         if(v != 0 && i%5 == 0)
         {
-            p->drawPoint(i, m_rows/2 - m_intern_vis_data[i]*l);
+            p->drawPoint(i, m_rows/2 - m_intern_vis_data[i] * maxed);
         }
     }
 }

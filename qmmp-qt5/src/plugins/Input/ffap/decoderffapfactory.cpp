@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,6 @@
 #include <taglib/apefile.h>
 #include <taglib/apetag.h>
 #include <taglib/tfilestream.h>
-#include "replaygainreader.h"
 #include "ffapmetadatamodel.h"
 #include "decoderffapfactory.h"
 #include "decoder_ffap.h"
@@ -37,15 +36,13 @@ bool DecoderFFapFactory::canDecode(QIODevice *input) const
     return (input->peek(buf, 3) == 3 && !memcmp(buf, "MAC", 3));
 }
 
-const DecoderProperties DecoderFFapFactory::properties() const
+DecoderProperties DecoderFFapFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("FFap Plugin");
     properties.filters << "*.ape";
     properties.description = tr("Monkey's Audio Files");
-    //properties.contentType = ;
     properties.shortName = "ffap";
-    properties.hasAbout = true;
     properties.hasSettings = false;
     properties.noInput = false;
     properties.protocols << "ape";
@@ -55,88 +52,96 @@ const DecoderProperties DecoderFFapFactory::properties() const
 
 Decoder *DecoderFFapFactory::create(const QString &url, QIODevice *i)
 {
-    Decoder *d;
     if(url.contains("://"))
-        d = new DecoderFFapCUE(url);
+        return new DecoderFFapCUE(url);
     else
-    {
-        d = new DecoderFFap(url, i);
-        ReplayGainReader rg(url);
-        d->setReplayGainInfo(rg.replayGainInfo());
-    }
-    return d;
+        return new DecoderFFap(url, i);
 }
 
-QList<FileInfo *> DecoderFFapFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <FileInfo*> list;
-    TagLib::APE::Tag *tag = 0;
-    TagLib::APE::File *file = 0;
-    TagLib::APE::Properties *ap = 0;
-
     //extract metadata of one cue track
-    if(fileName.contains("://"))
+    if(path.contains("://"))
     {
-        QString path = fileName;
-        path.remove("ape://");
-        path.remove(QRegExp("#\\d+$"));
-        int track = fileName.section("#", -1).toInt();
-        list = createPlayList(path, true, 0);
+        QString filePath = path;
+        filePath.remove("ape://");
+        filePath.remove(QRegExp("#\\d+$"));
+        int track = filePath.section("#", -1).toInt();
+        QList<TrackInfo *> list = createPlayList(filePath, parts, nullptr);
         if (list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
             list.clear();
             return list;
         }
-        FileInfo *info = list.takeAt(track - 1);
+        TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
-        return QList<FileInfo *>() << info;
+        return QList<TrackInfo *>() << info;
     }
 
-    TagLib::FileStream stream(QStringToFileName(fileName), true);
-    file = new TagLib::APE::File(&stream);
-    tag = useMetaData ? file->APETag() : 0;
-    ap = file->audioProperties();
+    TrackInfo *info = new TrackInfo(path);
 
-    FileInfo *info = new FileInfo(fileName);
+    if(parts == TrackInfo::NoParts)
+        return QList<TrackInfo *>() << info;
 
-    if (tag && !tag->isEmpty())
+    TagLib::FileStream stream(QStringToFileName(path), true);
+    TagLib::APE::File file(&stream);
+    TagLib::APE::Tag *tag = file.APETag();
+
+    if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
-        info->setMetaData(Qmmp::ALBUM,
-                          QString::fromUtf8(tag->album().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::ARTIST,
-                          QString::fromUtf8(tag->artist().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::COMMENT,
-                          QString::fromUtf8(tag->comment().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::GENRE,
-                          QString::fromUtf8(tag->genre().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::TITLE,
-                          QString::fromUtf8(tag->title().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::YEAR, tag->year());
-        info->setMetaData(Qmmp::TRACK, tag->track());
-
         if (tag->itemListMap().contains("CUESHEET"))
         {
-            CUEParser parser(tag->itemListMap()["CUESHEET"].toString().toCString(true), fileName);
-            list = parser.createPlayList();
             delete info;
-            delete file;
-            return list;
+
+            QByteArray data(tag->itemListMap()["CUESHEET"].toString().toCString(true));
+            CUEParser parser(data, path);
+            return parser.createPlayList();
         }
 
+        info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
+        info->setValue(Qmmp::ARTIST, TStringToQString(tag->artist()));
+        info->setValue(Qmmp::COMMENT, TStringToQString(tag->comment()));
+        info->setValue(Qmmp::GENRE, TStringToQString(tag->genre()));
+        info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
+        info->setValue(Qmmp::YEAR, tag->year());
+        info->setValue(Qmmp::TRACK, tag->track());
         //additional metadata
         TagLib::APE::Item fld;
+        if(!(fld = tag->itemListMap()["ALBUM ARTIST"]).isEmpty())
+            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.toString()));
         if(!(fld = tag->itemListMap()["COMPOSER"]).isEmpty())
-            info->setMetaData(Qmmp::COMPOSER, QString::fromUtf8(fld.toString().toCString(true)).trimmed());
+            info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
-    if(ap)
-        info->setLength(ap->length());
-    list << info;
-    delete file;
-    return list;
+
+    TagLib::APE::Properties *ap = file.audioProperties();
+    if((parts & TrackInfo::Properties) && ap)
+    {
+        info->setValue(Qmmp::BITRATE, ap->bitrate());
+        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
+        info->setValue(Qmmp::CHANNELS, ap->channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, ap->bitsPerSample());
+        info->setValue(Qmmp::FORMAT_NAME, "Monkey's Audio");
+        info->setDuration(ap->lengthInMilliseconds());
+    }
+
+    if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
+    {
+        TagLib::APE::ItemListMap items = tag->itemListMap();
+        if (items.contains("REPLAYGAIN_TRACK_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].values()[0]));
+        if (items.contains("REPLAYGAIN_TRACK_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].values()[0]));
+        if (items.contains("REPLAYGAIN_ALBUM_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].values()[0]));
+        if (items.contains("REPLAYGAIN_ALBUM_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].values()[0]));
+    }
+
+    return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderFFapFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderFFapFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    return new FFapMetaDataModel(path, parent);
+    return new FFapMetaDataModel(path, readOnly);
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,11 +21,8 @@
 #ifndef DECODER_AAC_H
 #define DECODER_AAC_H
 
-
 #include <neaacdec.h>
-
 #include <qmmp/decoder.h>
-
 
 struct aac_data
 {
@@ -37,7 +34,6 @@ class DecoderAAC : public Decoder
 public:
     DecoderAAC(QIODevice *);
     virtual ~DecoderAAC();
-
 
     struct aac_data *data()
     {

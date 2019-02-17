@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,6 @@
 #include <QIODevice>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <qmmp/fileinfo.h>
 #include "decoder_opus.h"
 
 // ic functions for libopusfile
@@ -68,7 +67,7 @@ static opus_int64  opustell(void *src)
 DecoderOpus::DecoderOpus(const QString &url, QIODevice *i) : Decoder(i)
 {
     m_totalTime = 0;
-    m_opusfile = 0;
+    m_opusfile = nullptr;
     m_chan = 0;
     m_bitrate = 0;
     m_url = url;
@@ -78,7 +77,7 @@ DecoderOpus::~DecoderOpus()
 {
     if (m_opusfile)
         op_free(m_opusfile);
-    m_opusfile = 0;
+    m_opusfile = nullptr;
 }
 
 bool DecoderOpus::initialize()
@@ -98,9 +97,9 @@ bool DecoderOpus::initialize()
         opusread,
         opusseek,
         opustell,
-        0,
+        nullptr,
     };
-    m_opusfile = op_open_callbacks(this, &opuscb, 0, 0, 0);
+    m_opusfile = op_open_callbacks(this, &opuscb, nullptr, 0, nullptr);
 
     if (!m_opusfile)
     {
@@ -151,7 +150,7 @@ void DecoderOpus::seek(qint64 time)
 
 qint64 DecoderOpus::read(unsigned char *data, qint64 maxSize)
 {
-    int frames = op_read_float(m_opusfile, (float*) data, maxSize / sizeof(float), 0);
+    int frames = op_read_float(m_opusfile, (float*) data, maxSize / sizeof(float), nullptr);
     m_bitrate = op_bitrate_instant(m_opusfile) / 1000;
     return frames * m_chan * sizeof(float);
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,9 +24,10 @@
 #include <taglib/apetag.h>
 #include "mpcmetadatamodel.h"
 
-MPCMetaDataModel::MPCMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+MPCMetaDataModel::MPCMetaDataModel(const QString &path, bool readOnly) : MetaDataModel(readOnly)
 {
-    m_file = new TagLib::MPC::File (QStringToFileName(path));
+    m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
+    m_file = new TagLib::MPC::File(m_stream);
     m_tags << new MPCFileTagModel(m_file, TagLib::MPC::File::ID3v1);
     m_tags << new MPCFileTagModel(m_file, TagLib::MPC::File::APE);
 }
@@ -35,29 +36,11 @@ MPCMetaDataModel::~MPCMetaDataModel()
 {
     while(!m_tags.isEmpty())
         delete m_tags.takeFirst();
-     delete m_file;
+    delete m_file;
+    delete m_stream;
 }
 
-QHash<QString, QString> MPCMetaDataModel::audioProperties()
-{
-    QHash<QString, QString> ap;
-    TagLib::MPC::Properties *property = m_file->audioProperties();
-    if(!property)
-    {
-        return ap;
-    }
-
-    QString text = QString("%1").arg(property->length()/60);
-    text +=":"+QString("%1").arg(property->length()%60,2,10,QChar('0'));
-    ap.insert(tr("Length"), text);
-    ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(property->sampleRate()));
-    ap.insert(tr("Channels"), QString("%1").arg(property->channels()));
-    ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(property->bitrate()));
-    ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(m_file->length()/1024));
-    return ap;
-}
-
-QList<TagModel* > MPCMetaDataModel::tags()
+QList<TagModel* > MPCMetaDataModel::tags() const
 {
     return m_tags;
 }
@@ -82,14 +65,14 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
 MPCFileTagModel::~MPCFileTagModel()
 {}
 
-const QString MPCFileTagModel::name()
+QString MPCFileTagModel::name() const
 {
     if (m_tagType == TagLib::MPC::File::ID3v1)
         return "ID3v1";
     return "APE";
 }
 
-QList<Qmmp::MetaData> MPCFileTagModel::keys()
+QList<Qmmp::MetaData> MPCFileTagModel::keys() const
 {
     QList<Qmmp::MetaData> list = TagModel::keys();
     list.removeAll(Qmmp::DISCNUMBER);
@@ -101,7 +84,7 @@ QList<Qmmp::MetaData> MPCFileTagModel::keys()
     return list;
 }
 
-const QString MPCFileTagModel::value(Qmmp::MetaData key)
+QString MPCFileTagModel::value(Qmmp::MetaData key) const
 {
     if (m_tag)
     {
@@ -189,9 +172,9 @@ void MPCFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
     }
 }
 
-bool MPCFileTagModel::exists()
+bool MPCFileTagModel::exists() const
 {
-    return (m_tag != 0);
+    return (m_tag != nullptr);
 }
 
 void MPCFileTagModel::create()
@@ -206,7 +189,7 @@ void MPCFileTagModel::create()
 
 void MPCFileTagModel::remove()
 {
-    m_tag = 0;
+    m_tag = nullptr;
 }
 
 void MPCFileTagModel::save()

@@ -281,6 +281,8 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
             QString("%1: %2").arg(error_string.c_str()).arg(desc.c_str()).toUtf8().data()
         );
     }
+
+    return desc;
 }
 
 int spek_pipeline_streams(const struct spek_pipeline *pipeline)

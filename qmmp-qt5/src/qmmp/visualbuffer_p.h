@@ -24,10 +24,11 @@
 #include <QtGlobal>
 #include <QTime>
 #include <QMutex>
+#include "qmmp_export.h"
 
 #define VISUAL_BUFFER_SIZE 128 //number of nodes
 
-class VisualNode
+class QMMP_EXPORT VisualNode
 {
 public:
     float data[2][512];
@@ -41,7 +42,7 @@ public:
     }
 };
 
-class VisualBuffer
+class QMMP_EXPORT VisualBuffer
 {
 public:
     VisualBuffer();

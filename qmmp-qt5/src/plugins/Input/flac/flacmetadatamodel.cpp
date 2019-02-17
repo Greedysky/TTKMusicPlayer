@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,16 +19,28 @@
  ***************************************************************************/
 
 #include <QPixmap>
+#include <QBuffer>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
 #include <taglib/tmap.h>
+#include <taglib/id3v2framefactory.h>
+#include <taglib/flacpicture.h>
+#ifndef IS_COVER_EDITABLE
 #include <FLAC/all.h>
+#endif
 #include <qmmp/metadatamanager.h>
 #include "flacmetadatamodel.h"
 
-FLACMetaDataModel::FLACMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+FLACMetaDataModel::FLACMetaDataModel(const QString &path, bool readOnly)
+#ifdef HAS_PICTURE_LIST
+    : MetaDataModel(true, MetaDataModel::IS_COVER_EDITABLE)
+#else
+    : MetaDataModel(true)
+#endif
 {
-    m_file = 0;
+    m_file = nullptr;
+    m_stream = nullptr;
+    m_tag = nullptr;
 
     if(path.startsWith("flac://"))
     {
@@ -40,23 +52,26 @@ FLACMetaDataModel::FLACMetaDataModel(const QString &path, QObject *parent) : Met
     else
         m_path = path;
 
-    TagLib::Ogg::XiphComment *tag = 0;
-
     if(m_path.endsWith(".flac", Qt::CaseInsensitive))
     {
-        TagLib::FLAC::File *f = new TagLib::FLAC::File(QStringToFileName(m_path));
-        tag = f->xiphComment();
+        m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
+        TagLib::FLAC::File *f = new TagLib::FLAC::File(m_stream, TagLib::ID3v2::FrameFactory::instance());
+        m_tag = f->xiphComment();
         m_file = f;
     }
     else if(m_path.endsWith(".oga", Qt::CaseInsensitive))
     {
-        TagLib::Ogg::FLAC::File *f = new TagLib::Ogg::FLAC::File(QStringToFileName(m_path));
-        tag = f->tag();
+        m_stream = new TagLib::FileStream(QStringToFileName(m_path), readOnly);
+        TagLib::Ogg::FLAC::File *f = new TagLib::Ogg::FLAC::File(m_stream);
+        m_tag = f->tag();
         m_file = f;
     }
 
     if(m_file && m_file->isValid() && !path.startsWith("flac://"))
-        m_tags << new VorbisCommentModel(tag, m_file);
+    {
+        setReadOnly(readOnly);
+        m_tags << new VorbisCommentModel(m_tag, m_file);
+    }
 }
 
 FLACMetaDataModel::~FLACMetaDataModel()
@@ -66,117 +81,99 @@ FLACMetaDataModel::~FLACMetaDataModel()
     if(m_file)
     {
         delete m_file;
-        m_file = 0;
+        m_file = nullptr;
     }
+    if(m_stream)
+        delete m_stream;
 }
 
-QHash<QString, QString> FLACMetaDataModel::audioProperties()
-{
-    QHash<QString, QString> ap;
-    TagLib::AudioProperties *taglib_ap = 0;
-    qint64 size = 0;
-
-    if(m_file && m_file->isValid())
-    {
-        taglib_ap =  m_file->audioProperties();
-        size = m_file->length();
-    }
-
-    if(taglib_ap)
-    {
-        QString text = QString("%1").arg(taglib_ap->length()/60);
-        text +=":"+QString("%1").arg(taglib_ap->length()%60,2,10,QChar('0'));
-        ap.insert(tr("Length"), text);
-        ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(taglib_ap->sampleRate()));
-        ap.insert(tr("Channels"), QString("%1").arg(taglib_ap->channels()));
-        ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(taglib_ap->bitrate()));
-        ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(size/1000));
-    }
-    return ap;
-}
-
-QList<TagModel* > FLACMetaDataModel::tags()
+QList<TagModel* > FLACMetaDataModel::tags() const
 {
     return m_tags;
 }
 
-QPixmap FLACMetaDataModel::cover()
+QPixmap FLACMetaDataModel::cover() const
 {
-    //embedded cover
-    FLAC__StreamMetadata *metadata;
-    FLAC__metadata_get_picture (qPrintable(m_path),
-                                &metadata,
-                                FLAC__STREAM_METADATA_PICTURE_TYPE_FRONT_COVER,
-                                0,0, -1,-1,-1,-1);
-    if(metadata)
+#ifdef HAS_PICTURE_LIST
+    if(!m_tag || m_tag->isEmpty())
+        return QPixmap();
+
+    TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
+    for(uint i = 0; i < list.size(); ++i)
     {
-        FLAC__StreamMetadata_Picture *pict = &metadata->data.picture;
-        QPixmap cover;
-        cover.loadFromData(QByteArray((char *)pict->data, (int) pict->data_length));
-        FLAC__metadata_object_delete(metadata);
-        return cover;
+        if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
+        {
+            QPixmap cover;
+            cover.loadFromData(QByteArray(list[i]->data().data(), list[i]->data().size())); //read binary picture data
+            return cover;
+        }
     }
-	
-    QString cPath = coverPath();
-    return cPath.isEmpty() ? QPixmap() : QPixmap(cPath);
+    return QPixmap();
+#else
+    //embedded cover
+     QPixmap cover;
+     FLAC__StreamMetadata *metadata;
+     FLAC__metadata_get_picture (qPrintable(m_path),
+                                 &metadata,
+                                 FLAC__STREAM_METADATA_PICTURE_TYPE_FRONT_COVER,
+                                 0,0, -1,-1,-1,-1);
+     if(metadata)
+     {
+         FLAC__StreamMetadata_Picture *pict = &metadata->data.picture;
+         cover.loadFromData(QByteArray((char *)pict->data, (int) pict->data_length));
+         FLAC__metadata_object_delete(metadata);
+     }
+     return cover;
+#endif
 }
 
-QString FLACMetaDataModel::coverPath()
+QString FLACMetaDataModel::coverPath() const
 {
     return MetaDataManager::instance()->findCoverFile(m_path);
 }
 
-bool FLACMetaDataModel::setCover(const QByteArray &data)
+#ifdef HAS_PICTURE_LIST
+void FLACMetaDataModel::setCover(const QPixmap &pix)
 {
-    FLAC__Metadata_Chain *chain = FLAC__metadata_chain_new();
-    FLAC__metadata_chain_read(chain, qPrintable(m_path));
-    FLAC__Metadata_Iterator *iterator = FLAC__metadata_iterator_new();
-    FLAC__metadata_iterator_init(iterator, chain);
-    FLAC__StreamMetadata* metadata = 0;
-
-    do
+    removeCover();
+    if(m_tag && !m_tag->isEmpty())
     {
-        FLAC__MetadataType block = FLAC__metadata_iterator_get_block_type(iterator);
-        if(block == FLAC__METADATA_TYPE_PICTURE)
-        {
-            metadata = FLAC__metadata_iterator_get_block(iterator);
-            break;
-        }
-    }while(FLAC__metadata_iterator_next(iterator));
+        TagLib::FLAC::Picture *picture = new TagLib::FLAC::Picture();
+        picture->setType(TagLib::FLAC::Picture::FrontCover);
 
-    if(!metadata)
-    {
-        metadata = FLAC__metadata_object_new(FLAC__METADATA_TYPE_PICTURE);
+        QByteArray data;
+        QBuffer buffer(&data);
+        buffer.open(QIODevice::WriteOnly);
+        pix.save(&buffer, "JPEG");
+        picture->setMimeType("image/jpeg");
+        picture->setDescription("TTK");
+        picture->setData(TagLib::ByteVector(data.constData(), data.size()));
+        m_tag->addPicture(picture);
+        m_file->save();
     }
-
-    if(metadata)
-    {
-        FLAC__metadata_object_picture_set_description(metadata, (FLAC__byte*)"TTK", true);
-        FLAC__metadata_object_picture_set_mime_type(metadata, "image/jpeg", true);
-        FLAC__metadata_object_picture_set_data(metadata, (FLAC__byte*)data.data(), data.length(), true);
-
-        if(!FLAC__metadata_iterator_set_block(iterator, metadata))
-        {
-            if(metadata)
-                FLAC__metadata_object_delete(metadata);
-            if(iterator)
-                FLAC__metadata_iterator_delete(iterator);
-            if(chain)
-                FLAC__metadata_chain_delete(chain);
-            return false;
-        }
-    }
-
-    bool state = FLAC__metadata_chain_write(chain, false, FLAC__metadata_chain_status(chain));
-    if(metadata)
-        FLAC__metadata_object_delete(metadata);
-    if(iterator)
-        FLAC__metadata_iterator_delete(iterator);
-    if(chain)
-        FLAC__metadata_chain_delete(chain);
-
-    return state;
 }
+
+void FLACMetaDataModel::removeCover()
+{
+    if(m_tag && !m_tag->isEmpty())
+    {
+        bool save = false;
+        TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
+        for(uint i = 0; i < list.size(); ++i)
+        {
+            if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
+            {
+                m_tag->removePicture(list[i], false);
+                save = true;
+            }
+        }
+        if(save)
+        {
+            m_file->save();
+        }
+    }
+}
+#endif
 
 VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file) : TagModel(TagModel::Save)
 {
@@ -187,12 +184,12 @@ VorbisCommentModel::VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::Fi
 VorbisCommentModel::~VorbisCommentModel()
 {}
 
-const QString VorbisCommentModel::name()
+QString VorbisCommentModel::name() const
 {
     return "Vorbis Comment";
 }
 
-const QString VorbisCommentModel::value(Qmmp::MetaData key)
+QString VorbisCommentModel::value(Qmmp::MetaData key) const
 {
     if(!m_tag)
         return QString();
@@ -236,7 +233,7 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
     if(!m_tag)
         return;
 
-    TagLib::String str = TagLib::String(value.toUtf8().data(), TagLib::String::UTF8);
+    TagLib::String str = QStringToTString(value);
 
     switch((int) key)
     {

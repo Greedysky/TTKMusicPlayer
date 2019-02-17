@@ -1,11 +1,11 @@
 include(../../../qmmp.pri)
 
 TEMPLATE = subdirs
+SUBDIRS += null
+
 win32:{
     SUBDIRS += waveout directsound wasapi
 }
-
-SUBDIRS += null
 
 unix{
   contains(CONFIG, ALSA_PLUGIN){

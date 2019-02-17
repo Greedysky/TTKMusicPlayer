@@ -73,10 +73,10 @@ VisualNode *VisualBuffer::take()
         m_take_index %= VISUAL_BUFFER_SIZE;
     }
     if(m_buffer[m_take_index].ts < t) //unable to find node
-        return 0;
+        return nullptr;
 
     if(m_buffer[m_take_index].ts > t + 100) //node is more than 100 ms in the future. So, ignore it.
-        return 0;
+        return nullptr;
 
     return &m_buffer[m_take_index];
 }

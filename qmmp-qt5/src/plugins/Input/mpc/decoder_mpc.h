@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,21 +21,12 @@
 #ifndef DECODER_MPC_H
 #define DECODER_MPC_H
 
-#ifdef MPC_OLD_API
-#include <mpcdec/mpcdec.h>
-#else
 #include <mpc/mpcdec.h>
-#endif
-
 #include <qmmp/decoder.h>
 
 struct mpc_data
 {
-#ifdef MPC_OLD_API
-    mpc_decoder decoder;
-#else
     mpc_demux *demuxer;
-#endif
     mpc_reader reader;
     mpc_streaminfo info;
 };
@@ -52,11 +43,11 @@ public:
     }
 
      // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
-    qint64 read(unsigned char *audio, qint64 maxSize);
-    void seek(qint64 time);
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
+    virtual qint64 read(unsigned char *audio, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
 private:
 
@@ -65,6 +56,5 @@ private:
     int m_bitrate;
     qint64 m_totalTime;
 };
-
 
 #endif // __decoder_mpc_h

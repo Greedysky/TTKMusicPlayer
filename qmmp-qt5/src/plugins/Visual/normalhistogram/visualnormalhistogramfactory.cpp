@@ -2,13 +2,12 @@
 #include "visualnormalhistogramfactory.h"
 #include "normalhistogram.h"
 
-const VisualProperties VisualNormalHistogramFactory::properties() const
+VisualProperties VisualNormalHistogramFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("Normal Histogram Plugin");
     properties.shortName = "normalhistogram";
     properties.hasSettings = true;
-    properties.hasAbout = false;
     return properties;
 }
 

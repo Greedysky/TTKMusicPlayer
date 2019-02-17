@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -84,13 +84,9 @@ void Effect::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-    pluginsDir.cd("Effect");
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach(QString filePath, Qmmp::findPlugins("Effect"))
     {
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;

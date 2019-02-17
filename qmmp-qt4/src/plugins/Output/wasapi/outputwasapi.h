@@ -41,7 +41,6 @@ public:
 
     bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format);
 
-    //output api
     qint64 latency();
     qint64 writeAudio(unsigned char *data, qint64 size);
     void drain();
@@ -53,7 +52,6 @@ public:
     ISimpleAudioVolume *simpleAudioVolume();
     static OutputWASAPI *instance;
     static VolumeWASAPI *volumeControl;
-
 
 private:
     // helper functions
@@ -69,6 +67,7 @@ private:
     UINT32 m_bufferFrames;
     int m_frameSize;
     QString m_id;
+    bool m_exclusive;
 
     typedef struct
     {
@@ -95,6 +94,5 @@ public:
 private:
     VolumeSettings m_volume;
 };
-
 
 #endif // OUTPUTWASAPI_H

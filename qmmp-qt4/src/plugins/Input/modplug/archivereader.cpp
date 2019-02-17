@@ -19,7 +19,6 @@
  ***************************************************************************/
 
 #include <QProcess>
-
 #include "archivereader.h"
 
 ArchiveReader::ArchiveReader(QObject *parent)

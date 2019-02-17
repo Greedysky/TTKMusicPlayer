@@ -24,7 +24,7 @@
 #include <qmmp/qmmp.h>
 #include "bs2bplugin.h"
 
-Bs2bPlugin *Bs2bPlugin::m_instance = 0;
+Bs2bPlugin *Bs2bPlugin::m_instance = nullptr;
 
 Bs2bPlugin::Bs2bPlugin() : Effect()
 {
@@ -37,7 +37,7 @@ Bs2bPlugin::Bs2bPlugin() : Effect()
 
 Bs2bPlugin::~Bs2bPlugin()
 {
-    m_instance = 0;
+    m_instance = nullptr;
     bs2b_close(m_bs2b_handler);
 }
 

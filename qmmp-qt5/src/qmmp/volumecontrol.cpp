@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,7 @@ VolumeControl::VolumeControl(QObject *parent)
     m_left = 0;
     m_right = 0;
     m_prev_block = false;
-    m_volume = 0;
+    m_volume = nullptr;
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), SLOT(checkVolume()));
     reload();
@@ -125,7 +125,7 @@ void VolumeControl::reload()
     if(m_volume)
     {
         delete m_volume;
-        m_volume = 0;
+        m_volume = nullptr;
     }
     if(!QmmpSettings::instance()->useSoftVolume() && Output::currentFactory())
     {
@@ -150,7 +150,7 @@ void VolumeControl::reload()
     }
 }
 
-SoftwareVolume *SoftwareVolume::m_instance = 0;
+SoftwareVolume *SoftwareVolume::m_instance = nullptr;
 
 SoftwareVolume::SoftwareVolume()
 {
@@ -167,7 +167,7 @@ SoftwareVolume::~SoftwareVolume()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("Volume/left", m_left);
     settings.setValue("Volume/right", m_right);
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 void SoftwareVolume::setVolume(const VolumeSettings &v)

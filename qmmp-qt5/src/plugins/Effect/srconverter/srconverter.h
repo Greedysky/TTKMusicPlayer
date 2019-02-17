@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SRCONVERTER_H
 #define SRCONVERTER_H
 
@@ -33,11 +34,12 @@ public:
     SRConverter();
     virtual ~SRConverter();
 
-    void applyEffect(Buffer *b);
-    void configure(quint32 freq, ChannelMap map);
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
     void freeSRC();
+
     SRC_STATE *m_src_state;
     SRC_DATA m_src_data;
     quint32 m_overSamplingFs;

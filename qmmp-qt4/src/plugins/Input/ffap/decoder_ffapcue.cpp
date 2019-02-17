@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,13 +23,10 @@
 #include <QRegExp>
 #include <taglib/apefile.h>
 #include <taglib/apetag.h>
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
 #include <taglib/tfilestream.h>
-#endif
 #include "cueparser.h"
 #include "decoder_ffap.h"
 #include "decoder_ffapcue.h"
-
 
 DecoderFFapCUE::DecoderFFapCUE(const QString &url)
     : Decoder()
@@ -75,13 +72,8 @@ bool DecoderFFapCUE::initialize()
     p.remove("ape://");
     p.remove(QRegExp("#\\d+$"));
 
-
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
     TagLib::FileStream stream(QStringToFileName(p), true);
     TagLib::APE::File file(&stream);
-#else
-    TagLib::APE::File file(QStringToFileName(p));
-#endif
 
     TagLib::APE::Tag *tag = file.APETag();
 
@@ -111,7 +103,7 @@ bool DecoderFFapCUE::initialize()
     QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
     addMetaData(metaData); //send metadata
 
-    m_length = m_parser->length(m_track);
+    m_length = m_parser->duration(m_track);
     m_offset = m_parser->offset(m_track);
 
     m_decoder = new DecoderFFap(p, m_input);
@@ -213,7 +205,7 @@ void DecoderFFapCUE::next()
     if(m_track +1 <= m_parser->count())
     {
         m_track++;
-        m_length = m_parser->length(m_track);
+        m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                 audioParameters().channels() *

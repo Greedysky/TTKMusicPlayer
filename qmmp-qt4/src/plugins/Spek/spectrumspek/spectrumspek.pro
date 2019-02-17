@@ -3,7 +3,6 @@ include(../../plugins.pri)
 TARGET=$$PLUGINS_PREFIX/Spek/spectrumspek
 QMAKE_CLEAN =$$PLUGINS_PREFIX/Spek/libspectrumspek.so
 
-
 SOURCES += \
         spek-ruler.cc \
         spek-spectrogram.cc \
@@ -22,25 +21,15 @@ HEADERS  += \
         spek-spectrogram.h \
         visualspectrumspekfactory.h
 
-INCLUDEPATH += ../../../ \
-               $$EXTRA_PREFIX/libav/include
-
-CONFIG += warn_on \
-            plugin
-
-TEMPLATE = lib
-QMAKE_CXXFLAGS += -std=c++11
+INCLUDEPATH += $$EXTRA_PREFIX/libav/include
 
 win32:{
     INCLUDEPATH += ./
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
-    LIBS += -L$$EXTRA_PREFIX/libav/lib -lqmmp0 -lavcodec.dll -lavformat.dll -lavutil.dll
+    LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec.dll -lavformat.dll -lavutil.dll
 }
 
 unix{
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libav/lib -lqmmp -lavcodec -lavformat -lavutil
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
+    LIBS += -L$$EXTRA_PREFIX/libav/lib -lavcodec -lavformat -lavutil
 }

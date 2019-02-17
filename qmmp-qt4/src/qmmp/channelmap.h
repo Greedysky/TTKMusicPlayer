@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014 by Ilya Kotov                                      *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 #include <QList>
 #include "qmmp.h"
 
-class ChannelMap : public QList<Qmmp::ChannelPosition>
+class QMMP_EXPORT ChannelMap : public QList<Qmmp::ChannelPosition>
 {
 public:
     ChannelMap();

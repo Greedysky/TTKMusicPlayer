@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,7 @@ bool DecoderCUEFactory::canDecode(QIODevice *) const
     return false;
 }
 
-const DecoderProperties DecoderCUEFactory::properties() const
+DecoderProperties DecoderCUEFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("CUE Plugin");
@@ -38,7 +38,6 @@ const DecoderProperties DecoderCUEFactory::properties() const
     properties.filters << "*.cue";
     properties.description = tr("CUE Files");
     properties.protocols << "cue";
-    properties.hasAbout = true;
     properties.hasSettings = true;
     properties.noInput = true;
     return properties;
@@ -50,20 +49,20 @@ Decoder *DecoderCUEFactory::create(const QString &path, QIODevice *input)
     return new DecoderCUE(path);
 }
 
-QList<FileInfo *> DecoderCUEFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredPaths)
+QList<TrackInfo *> DecoderCUEFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths)
 {
-    Q_UNUSED(useMetaData);
-    CUEParser parser(fileName);
-    if(fileName.contains("://"))
+    Q_UNUSED(parts);
+    CUEParser parser(path);
+    if(path.contains("://"))
     {
-        QList<FileInfo *> list;
-        int track = fileName.section("#", -1).toInt();
+        QList<TrackInfo *> list;
+        int track = path.section("#", -1).toInt();
         if (!parser.count() || track <= 0 || track > parser.count())
             return list;
         list = parser.createPlayList();
-        FileInfo *info = list.takeAt(track - 1);
+        TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
-        return QList<FileInfo *>() << info;
+        return QList<TrackInfo *>() << info;
     }
     else
     {
@@ -72,7 +71,8 @@ QList<FileInfo *> DecoderCUEFactory::createPlayList(const QString &fileName, boo
     }
 }
 
-MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderCUEFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    return path.startsWith("cue://") ? new CUEMetaDataModel(path, parent) : 0;
+    Q_UNUSED(readOnly);
+    return path.startsWith("cue://") ? new CUEMetaDataModel(path) : nullptr;
 }

@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ public:
     /*!
      * Object contsructor.
      */
-    explicit ColorWidget(QWidget *parent = 0);
+    explicit ColorWidget(QWidget *parent = nullptr);
 
     virtual ~ColorWidget();
 
@@ -108,14 +108,13 @@ protected:
     /*!
      * Override the widget event.
      */
-    virtual void mousePressEvent(QMouseEvent *event);
-    virtual void mouseMoveEvent(QMouseEvent *event);
-    virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void mouseReleaseEvent(QMouseEvent *event) override;
 
     Ui::ColorWidget *m_ui;
     QPoint m_pressAt;
     bool m_leftButtonPress;
-
 };
 
 #endif // ColorWidget_H

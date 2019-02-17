@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,23 +26,27 @@
 #include <qmmp/metadatamanager.h>
 #include "ffapmetadatamodel.h"
 
-FFapMetaDataModel::FFapMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+FFapMetaDataModel::FFapMetaDataModel(const QString &path, bool readOnly) : MetaDataModel(true)
 {
+    m_stream = 0;
+    m_file = 0;
     if(path.contains("://"))
     {
         QString p = path;
         p.remove("ape://");
         p.remove(QRegExp("#\\d+$"));
         m_path = p;
+        m_stream = new TagLib::FileStream(QStringToFileName(p), true);
+        m_file = new TagLib::APE::File(m_stream);
     }
     else
-        m_path = path;
-
-    m_file = new TagLib::APE::File (QStringToFileName(m_path));
-    if(!path.contains("://"))
     {
+        m_path = path;
+        m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
+        m_file = new TagLib::APE::File(m_stream);
         m_tags << new FFapFileTagModel(m_file, TagLib::APE::File::ID3v1);
         m_tags << new FFapFileTagModel(m_file, TagLib::APE::File::APE);
+        setReadOnly(readOnly);
     }
 }
 
@@ -50,28 +54,28 @@ FFapMetaDataModel::~FFapMetaDataModel()
 {
     while(!m_tags.isEmpty())
         delete m_tags.takeFirst();
-     delete m_file;
+    delete m_file;
+    delete m_stream;
 }
 
-QHash<QString, QString> FFapMetaDataModel::audioProperties()
+QList<MetaDataItem> FFapMetaDataModel::extraProperties() const
 {
-    QHash<QString, QString> ap;
-    QString text = QString("%1").arg(m_file->audioProperties()->length()/60);
-    text +=":"+QString("%1").arg(m_file->audioProperties()->length()%60,2,10,QChar('0'));
-    ap.insert(tr("Length"), text);
-    ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(m_file->audioProperties()->sampleRate()));
-    ap.insert(tr("Channels"), QString("%1").arg(m_file->audioProperties()->channels()));
-    ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(m_file->audioProperties()->bitrate()));
-    ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(m_file->length()/1024));
-    return ap;
+    QList<MetaDataItem> ep;
+    TagLib::APE::Properties *ap = m_file->audioProperties();
+    if(ap)
+    {
+        ep << MetaDataItem(tr("Samples"), ap->sampleFrames());
+        ep << MetaDataItem(tr("Version"), ap->version());
+    }
+    return ep;
 }
 
-QList<TagModel* > FFapMetaDataModel::tags()
+QList<TagModel* > FFapMetaDataModel::tags() const
 {
     return m_tags;
 }
 
-QString FFapMetaDataModel::coverPath()
+QString FFapMetaDataModel::coverPath() const
 {
     return MetaDataManager::instance()->findCoverFile(m_path);
 }
@@ -96,14 +100,14 @@ FFapFileTagModel::FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::T
 FFapFileTagModel::~FFapFileTagModel()
 {}
 
-const QString FFapFileTagModel::name()
+QString FFapFileTagModel::name() const
 {
     if (m_tagType == TagLib::APE::File::ID3v1)
         return "ID3v1";
     return "APE";
 }
 
-QList<Qmmp::MetaData> FFapFileTagModel::keys()
+QList<Qmmp::MetaData> FFapFileTagModel::keys() const
 {
     QList<Qmmp::MetaData> list = TagModel::keys();
     list.removeAll(Qmmp::COMPOSER);
@@ -111,7 +115,7 @@ QList<Qmmp::MetaData> FFapFileTagModel::keys()
     return list;
 }
 
-const QString FFapFileTagModel::value(Qmmp::MetaData key)
+QString FFapFileTagModel::value(Qmmp::MetaData key) const
 {
     if (m_tag)
     {
@@ -185,7 +189,7 @@ void FFapFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
     }
 }
 
-bool FFapFileTagModel::exists()
+bool FFapFileTagModel::exists() const
 {
     return (m_tag != 0);
 }

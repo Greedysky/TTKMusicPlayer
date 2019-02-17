@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -161,26 +161,6 @@ AudioParameters OutputWriter::audioParameters() const
     return AudioParameters(m_frequency, m_chan_map, Qmmp::PCM_FLOAT);
 }
 
-quint32 OutputWriter::sampleRate()
-{
-    return m_frequency;
-}
-
-int OutputWriter::channels()
-{
-    return m_channels;
-}
-
-Qmmp::AudioFormat OutputWriter::format() const
-{
-    return m_format;
-}
-
-const ChannelMap OutputWriter::channelMap() const
-{
-    return m_chan_map;
-}
-
 int OutputWriter::sampleSize() const
 {
     return AudioParameters::sampleSize(m_format);
@@ -321,8 +301,8 @@ void OutputWriter::run()
             {
                 if(b->rate)
                     m_kbps = b->rate;
-                if(b->metaData)
-                    m_output->setMetaData(*b->metaData);
+                if(b->trackInfo)
+                    m_output->setTrackInfo(*b->trackInfo);
             }
         }
 

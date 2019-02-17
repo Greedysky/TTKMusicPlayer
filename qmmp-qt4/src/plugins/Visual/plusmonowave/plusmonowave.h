@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,21 +31,21 @@ class PlusMonoWave : public Visual
 {
     Q_OBJECT
 public:
-    PlusMonoWave( QWidget *parent = 0);
+    PlusMonoWave(QWidget *parent = nullptr);
     virtual ~PlusMonoWave();
 
 public slots:
-    void start();
-    void stop();
+    virtual void start() override;
+    virtual void stop() override;
 
 private slots:
     void timeout();
 
 private:
     void clear();
-    virtual void hideEvent (QHideEvent *e);
-    virtual void showEvent (QShowEvent *e);
-    void paintEvent(QPaintEvent *e);
+    virtual void hideEvent(QHideEvent *e) override;
+    virtual void showEvent(QShowEvent *e) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     void process();
     void draw(QPainter *p);

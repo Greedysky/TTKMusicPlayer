@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2012 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,11 +21,12 @@
 #ifndef OUTPUTFACTORY_H
 #define OUTPUTFACTORY_H
 
+#include "qmmp_export.h"
+
 class QObject;
 class QString;
 class QIODevice;
 class QWidget;
-class QTranslator;
 class Volume;
 class Decoder;
 class Output;
@@ -33,7 +34,7 @@ class Output;
 /*! @brief Helper class to store output plugin properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class OutputProperties
+class QMMP_EXPORT OutputProperties
 {
 public:
     /*!
@@ -41,18 +42,16 @@ public:
      */
     OutputProperties()
     {
-        hasAbout = false;
         hasSettings = false;
     }
-    QString name;      /*!< Effect plugin full name */
-    QString shortName; /*!< Effect plugin short name for internal usage */
-    bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
-    bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    QString name;        /*!< Effect plugin full name */
+    QString shortName;   /*!< Effect plugin short name for internal usage */
+    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief %Output plugin interface (output factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class OutputFactory
+class QMMP_EXPORT OutputFactory
 {
 public:
     /*!
@@ -62,7 +61,7 @@ public:
     /*!
      * Returns output plugin properties.
      */
-    virtual const OutputProperties properties() const = 0;
+    virtual OutputProperties properties() const = 0;
     /*!
      * Creates output provided by plugin.
      */

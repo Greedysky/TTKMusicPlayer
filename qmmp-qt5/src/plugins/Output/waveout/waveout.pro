@@ -9,17 +9,9 @@ SOURCES += outputwaveoutfactory.cpp \
 HEADERS += ../../../../src/qmmp/output.h
 
 TARGET=$$PLUGINS_PREFIX/Output/waveout
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Output/libwaveout.so
 
-INCLUDEPATH += ../../../
-QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
+LIBS += -lwinmm
 
-CONFIG += warn_on \
-          thread \
-          plugin
-
-TEMPLATE = lib
-LIBS += -lqmmp1 -lwinmm
-
-isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
 target.path = $$LIB_DIR/qmmp/Output
 INSTALLS += target

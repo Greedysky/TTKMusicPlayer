@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,21 +24,22 @@
 #include <qmmp/metadatamodel.h>
 #include <taglib/tag.h>
 #include <taglib/mpcfile.h>
+#include <taglib/tfilestream.h>
 
 class QTextCodec;
 
 class MPCMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
 public:
-    MPCMetaDataModel(const QString &path, QObject *parent);
+    MPCMetaDataModel(const QString &path, bool readOnly);
     ~MPCMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
+
+    QList<TagModel* > tags() const;
 
 private:
     QList<TagModel* > m_tags;
     TagLib::MPC::File *m_file;
+    TagLib::FileStream *m_stream;
 };
 
 class MPCFileTagModel : public TagModel
@@ -46,11 +47,12 @@ class MPCFileTagModel : public TagModel
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType);
     ~MPCFileTagModel();
-    const QString name();
-    QList<Qmmp::MetaData> keys();
-    const QString value(Qmmp::MetaData key);
+
+    QString name() const;
+    QList<Qmmp::MetaData> keys() const;
+    QString value(Qmmp::MetaData key) const;
     void setValue(Qmmp::MetaData key, const QString &value);
-    bool exists();
+    bool exists() const;
     void create();
     void remove();
     void save();

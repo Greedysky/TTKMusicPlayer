@@ -22,7 +22,7 @@
 
 ReplayGainReader::ReplayGainReader(AVFormatContext *ic)
 {
-    AVDictionaryEntry *t = 0;
+    AVDictionaryEntry *t = nullptr;
     while((t = av_dict_get(ic->metadata, "", t, AV_DICT_IGNORE_SUFFIX)))
     {
         if(!strcmp(t->key, "replaygain_album_gain"))

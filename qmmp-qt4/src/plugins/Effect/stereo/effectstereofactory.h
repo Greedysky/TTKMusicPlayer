@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011 by Ilya Kotov                                      *
+ *   Copyright (C) 2011-2015 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef EFFECTSTEREOFACTORY_H
 #define EFFECTSTEREOFACTORY_H
 
@@ -29,15 +30,13 @@
 */
 class EffectStereoFactory : public QObject, public EffectFactory
 {
-Q_OBJECT
-Q_INTERFACES(EffectFactory);
-
+    Q_OBJECT
+    Q_INTERFACES(EffectFactory)
 public:
     const EffectProperties properties() const;
     Effect *create();
     void showSettings(QWidget *parent);
 
 };
-
 
 #endif

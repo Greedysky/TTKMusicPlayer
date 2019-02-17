@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,16 +21,17 @@
 #ifndef VISUALFACTORY_H
 #define VISUALFACTORY_H
 
+#include "qmmp_export.h"
+
 class QObject;
 class QWidget;
-class QTranslator;
 class QDialog;
 class Visual;
 
 /*! @brief Helper class to store visual plugin properies.
  *  @author Ilya Kotov <forkotov02@ya.ru>
  */
-class VisualProperties
+class QMMP_EXPORT VisualProperties
 {
 public:
     /*!
@@ -38,18 +39,16 @@ public:
      */
     VisualProperties()
     {
-        hasAbout = false;
         hasSettings = false;
     }
-    QString name;      /*!< Effect plugin full name */
-    QString shortName; /*!< Effect plugin short name for internal usage */
-    bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
-    bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    QString name;        /*!< Effect plugin full name */
+    QString shortName;   /*!< Effect plugin short name for internal usage */
+    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief %Visual plugin interface (visual factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class VisualFactory
+class QMMP_EXPORT VisualFactory
 {
 public:
     /*!
@@ -59,7 +58,7 @@ public:
      /*!
      * Returns visual plugin properties.
      */
-    virtual const VisualProperties properties() const = 0;
+    virtual VisualProperties properties() const = 0;
     /*!
      * Creates visualization provided by plugin.
      * @param parent Parent object.

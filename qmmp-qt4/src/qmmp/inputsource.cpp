@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,7 +28,7 @@
 
 InputSource::InputSource(const QString &source, QObject *parent) : QObject(parent)
 {
-    m_url = source;
+    m_path = source;
     m_offset = -1;
     m_hasMetaData = false;
     m_hasStreamInfo = false;
@@ -44,9 +44,9 @@ QString InputSource::contentType() const
     return QString();
 }
 
-const QString InputSource::url() const
+const QString InputSource::path() const
 {
-    return m_url;
+    return m_path;
 }
 
 qint64 InputSource::offset() const
@@ -214,13 +214,9 @@ void InputSource::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-    pluginsDir.cd("Transports");
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Transports"))
     {
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;

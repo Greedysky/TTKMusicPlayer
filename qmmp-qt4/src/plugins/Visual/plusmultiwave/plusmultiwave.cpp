@@ -3,29 +3,28 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "plusmultiwave.h"
 
 PlusMultiWave::PlusMultiWave (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_vis_data = 0;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_pixPos = 0;
 
-    setWindowTitle (tr("Plus MultiWave Widget"));
+    setWindowTitle(tr("Plus MultiWave Widget"));
     setMinimumSize(2*300-30, 105);
 
-    m_timer = new QTimer (this);
-    m_timer->setInterval(40);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     clear();
 }
@@ -66,28 +65,28 @@ void PlusMultiWave::timeout()
     }
 }
 
-void PlusMultiWave::hideEvent (QHideEvent *)
+void PlusMultiWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void PlusMultiWave::showEvent (QShowEvent *)
+void PlusMultiWave::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void PlusMultiWave::paintEvent (QPaintEvent * e)
+void PlusMultiWave::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void PlusMultiWave::process ()
+void PlusMultiWave::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -102,7 +101,7 @@ void PlusMultiWave::process ()
 
         if(m_x_scale)
             delete [] m_x_scale;
-        m_intern_vis_data = 0;
+        m_vis_data = 0;
         m_x_scale = new int[2];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
@@ -121,7 +120,7 @@ void PlusMultiWave::process ()
     short y = 0;
     int k, magnitude = 0;
     calc_freq (dest, m_left_buffer);
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     if(m_x_scale[0] == m_x_scale[1])
     {
@@ -140,19 +139,15 @@ void PlusMultiWave::process ()
         magnitude = qBound(0, magnitude, m_rows);
     }
 
-    m_intern_vis_data -= m_analyzer_falloff * m_rows / 15;
-    m_intern_vis_data = magnitude > m_intern_vis_data ? magnitude : m_intern_vis_data;
+    m_vis_data -= m_analyzer_falloff * m_rows / 15;
+    m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
 }
 
-void PlusMultiWave::draw (QPainter *p)
+void PlusMultiWave::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const float maxed = maxRange();
 
     if(m_cols != 0)
     {
@@ -161,7 +156,7 @@ void PlusMultiWave::draw (QPainter *p)
             m_pixPos = m_cols - 1;
             m_backgroundImage = m_backgroundImage.copy(1, 0, m_cols, m_rows);
         }
-        for(int i=0; i<m_intern_vis_data*l/2; ++i)
+        for(int i=0; i<m_vis_data*maxed/2; ++i)
         {
             int r = qMin(0x5f + i*3, 0xff);
             m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(r, 0, 0));

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,10 +21,12 @@
 #ifndef EQSETTINGS_H
 #define EQSETTINGS_H
 
+#include "qmmp_export.h"
+
 /*! @brief The EqSettings class helps to work with equalizer settings.
      * @author Ilya Kotov <forkotov02@ya.ru>
      */
-class EqSettings
+class QMMP_EXPORT EqSettings
 {
 public:
     /*!

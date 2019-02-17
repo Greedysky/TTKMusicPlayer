@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -79,7 +79,7 @@ DecoderSndFile::DecoderSndFile(QIODevice *input) : Decoder(input)
     //m_path = input;
     m_bitrate = 0;
     m_totalTime = 0;
-    m_sndfile = 0;
+    m_sndfile = nullptr;
     m_freq = 0;
 }
 
@@ -118,7 +118,7 @@ bool DecoderSndFile::initialize()
     m_bitrate =  input()->size () * 8.0 / m_totalTime + 0.5;
 
     if((snd_info.format & SF_FORMAT_SUBMASK) == SF_FORMAT_FLOAT)
-        sf_command (m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, NULL, SF_TRUE);
+        sf_command (m_sndfile, SFC_SET_SCALE_FLOAT_INT_READ, nullptr, SF_TRUE);
 
     configure(m_freq, chan, Qmmp::PCM_S16LE);
     qDebug("DecoderSndFile: detected format: %08X", snd_info.format);
@@ -133,7 +133,7 @@ void DecoderSndFile::deinit()
     m_freq = 0;
     if (m_sndfile)
         sf_close(m_sndfile);
-    m_sndfile = 0;
+    m_sndfile = nullptr;
 }
 
 qint64 DecoderSndFile::totalTime() const

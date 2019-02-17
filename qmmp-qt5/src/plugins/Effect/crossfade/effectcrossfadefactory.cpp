@@ -29,7 +29,6 @@ const EffectProperties EffectCrossfadeFactory::properties() const
     properties.name = tr("Crossfade Plugin");
     properties.shortName = "crossfade";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     properties.priority = EffectProperties::EFFECT_PRIORITY_LOW;
     return properties;
 }

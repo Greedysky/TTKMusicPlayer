@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef BS2BPLUGIN_H
 #define BS2BPLUGIN_H
 
@@ -27,12 +28,10 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-
 class Bs2bPlugin : public Effect
 {
 public:
     Bs2bPlugin();
-
     virtual ~Bs2bPlugin();
 
     void applyEffect(Buffer *b);

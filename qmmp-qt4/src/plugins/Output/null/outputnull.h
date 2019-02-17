@@ -33,7 +33,7 @@ public:
     ~OutputNull();
 
     bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format);
-    //output api
+
     qint64 latency();
     qint64 writeAudio(unsigned char *data, qint64 maxSize);
     void drain();
@@ -42,6 +42,5 @@ public:
 private:
     qint64 m_bytes_per_second;
 };
-
 
 #endif // OutputNull_H

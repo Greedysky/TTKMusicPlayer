@@ -27,7 +27,7 @@ EmptyInputSource::EmptyInputSource(const QString &url, QObject *parent) : InputS
 
 QIODevice *EmptyInputSource::ioDevice()
 {
-    return 0;
+    return nullptr;
 }
 
 bool EmptyInputSource::initialize()

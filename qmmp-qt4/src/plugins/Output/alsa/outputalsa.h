@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2014 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,7 +39,7 @@ public:
     ~OutputALSA();
 
     bool initialize(quint32, ChannelMap map, Qmmp::AudioFormat format);
-    //output api
+
     qint64 latency();
     qint64 writeAudio(unsigned char *data, qint64 maxSize);
     void drain();

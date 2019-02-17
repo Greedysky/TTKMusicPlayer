@@ -29,21 +29,21 @@ bool EnvelopeSpekThead::init(const QString &path)
     if(m_source->ioDevice() && !m_source->ioDevice()->isOpen() && !m_source->ioDevice()->open(QIODevice::ReadOnly))
     {
         m_source->deleteLater();
-        m_source = 0;
+        m_source = nullptr;
         return false;
     }
 
-    DecoderFactory *factory = 0;
-    if(!m_source->url().contains("://"))
-        factory = Decoder::findByFilePath(m_source->url(), QmmpSettings::instance()->determineFileTypeByContent());
+    DecoderFactory *factory = nullptr;
+    if(!m_source->path().contains("://"))
+        factory = Decoder::findByFilePath(m_source->path(), QmmpSettings::instance()->determineFileTypeByContent());
     if(!factory)
         factory = Decoder::findByMime(m_source->contentType());
-    if(factory && !factory->properties().noInput && m_source->ioDevice() && m_source->url().contains("://"))
+    if(factory && !factory->properties().noInput && m_source->ioDevice() && m_source->path().contains("://"))
         factory = (factory->canDecode(m_source->ioDevice()) ? factory : 0);
-    if(!factory && m_source->ioDevice() && m_source->url().contains("://")) //ignore content of local files
+    if(!factory && m_source->ioDevice() && m_source->path().contains("://")) //ignore content of local files
         factory = Decoder::findByContent(m_source->ioDevice());
-    if(!factory && m_source->url().contains("://"))
-        factory = Decoder::findByProtocol(m_source->url().section("://",0,0));
+    if(!factory && m_source->path().contains("://"))
+        factory = Decoder::findByProtocol(m_source->path().section("://",0,0));
     if(!factory)
     {
         qDebug("EnvelopeSpekThead: unsupported file format");
@@ -54,7 +54,7 @@ bool EnvelopeSpekThead::init(const QString &path)
     if(factory->properties().noInput && m_source->ioDevice())
         m_source->ioDevice()->close();
 
-    Decoder *decoder = factory->create(m_source->url(), m_source->ioDevice());
+    Decoder *decoder = factory->create(m_source->path(), m_source->ioDevice());
     if(!decoder->initialize())
     {
         qDebug("EnvelopeSpekThead: invalid file format");
@@ -70,7 +70,6 @@ bool EnvelopeSpekThead::init(const QString &path)
     m_sample_size = ap.sampleSize();
     m_output_buf = new unsigned char[m_output_size];
     memset(m_output_buf, 0, sizeof(unsigned char)*m_output_size);
-    buffer_count = ap.sampleRate() * QmmpSettings::instance()->bufferSize() / 1000 / QMMP_BLOCK_FRAMES;
 
     m_converter.configure(ap.format());
     m_recycler.configure(ap.sampleRate(), ap.channels());
@@ -106,25 +105,25 @@ void EnvelopeSpekThead::run()
             m_bitrate = m_decoder->bitrate();
             m_output_at += len;
             flush(false);
-            emit bufferChanged(m_recycler.next(), m_decoder->audioParameters().channels());
+            emit bufferChanged(m_recycler.next(), m_decoder->audioParameters().channels(), m_output_size);
         }
         else if (len == 0)
         {
             flush(true);
             m_finish = true;
+            emit finished();
         }
         m_mutex.unlock();
     }
 }
 
-qint64 EnvelopeSpekThead::produceSound(unsigned char *data, qint64 size, quint32 brate)
+qint64 EnvelopeSpekThead::produceSound(unsigned char *data, quint64 size, quint32 brate)
 {
     Buffer *b = m_recycler.get();
-    size_t sz = size < m_bks ? size : m_bks;
+    quint64 sz = size < m_bks ? size : m_bks;
     size_t samples = sz / m_sample_size;
 
     m_converter.toFloat(data, b->data, samples);
-
     b->samples = samples;
     b->rate = brate;
     memmove(data, data + sz, size - sz);
@@ -172,8 +171,7 @@ void EnvelopeSpekThead::init()
     m_output_at = 0;
     m_output_size = 0;
     m_bks = 0;
-    m_output_buf = 0;
-    buffer_count = 0;
+    m_output_buf = nullptr;
     m_source = nullptr;
     m_decoder = nullptr;
 }
@@ -185,16 +183,17 @@ EnvelopeSpek::EnvelopeSpek(QWidget *parent) :
     init();
 
     m_analyzer_falloff = 2.2;
-    setWindowTitle (tr("EnvelopeSpek"));
+    setWindowTitle(tr("EnvelopeSpek"));
     setMinimumSize(2*300-30, 105);
 
     m_buffer = new float[VISUAL_BUFFER_SIZE];
-    m_intern_vis_data = 0;
+    m_vis_data = 0;
     m_x_scale = new int[2];
 
     m_fspekThread = new EnvelopeSpekThead(this);
-    connect(m_fspekThread, SIGNAL(bufferChanged(Buffer*,int)), SLOT(bufferChanged(Buffer*,int)));
-    connect(SoundCore::instance(), SIGNAL(metaDataChanged()), SLOT(urlChanged()));
+    connect(m_fspekThread, SIGNAL(bufferChanged(Buffer*,int,quint64)), SLOT(bufferChanged(Buffer*,int,quint64)));
+    connect(m_fspekThread, SIGNAL(finished()), SLOT(finished()));
+    connect(SoundCore::instance(), SIGNAL(streamInfoChanged()), SLOT(mediaUrlChanged()));
 }
 
 EnvelopeSpek::~EnvelopeSpek()
@@ -230,13 +229,14 @@ void EnvelopeSpek::stop()
     m_fspekThread->stopAndQuitThread();
 }
 
-void EnvelopeSpek::bufferChanged(Buffer *buffer, int chans)
+void EnvelopeSpek::bufferChanged(Buffer *buffer, int chans, quint64 size)
 {
     if(!buffer)
     {
         return;
     }
 
+    m_output_size = size;
     if(VISUAL_BUFFER_SIZE == m_buffer_at)
     {
         m_buffer_at -= VISUAL_NODE_SIZE;
@@ -265,15 +265,21 @@ void EnvelopeSpek::bufferChanged(Buffer *buffer, int chans)
     update();
 }
 
-void EnvelopeSpek::urlChanged()
+void EnvelopeSpek::finished()
 {
-    open(SoundCore::instance()->url());
+    m_backgroundImage = m_backgroundImage.copy(0, 0, m_pixPos, m_rows);
+    update();
 }
 
-void EnvelopeSpek::paintEvent (QPaintEvent * e)
+void EnvelopeSpek::mediaUrlChanged()
+{
+    open(SoundCore::instance()->path());
+}
+
+void EnvelopeSpek::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -284,10 +290,16 @@ void EnvelopeSpek::init()
     m_buffer_at = 0;
     m_rows = 0;
     m_cols = 0;
+    m_output_size = 0;
 }
 
 void EnvelopeSpek::process(float *buffer)
 {
+    if(m_pixPos >= m_output_size)
+    {
+        return;
+    }
+
     int rows = height();
     int cols = width();
 
@@ -295,28 +307,25 @@ void EnvelopeSpek::process(float *buffer)
     {
         m_rows = rows;
         m_cols = cols;
-        m_backgroundImage = QImage(1024*4, m_rows, QImage::Format_RGB32);
+        m_backgroundImage = QImage(m_output_size, m_rows, QImage::Format_RGB32);
         m_backgroundImage.fill(Qt::black);
         for(int i=0; i<m_cols; ++i)
+        {
             m_backgroundImage.setPixel(i, m_rows/2, qRgb(0xff, 0xff, 0xff));
+        }
 
-        m_intern_vis_data = 0;
+        m_vis_data = 0;
         for(int i = 0; i < 2; ++i)
         {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
         }
     }
 
-    if(m_pixPos >= 1024*4)
-    {
-        return;
-    }
-
     short dest[256];
     short y = 0;
     int k, magnitude = 0;
     calc_freq (dest, buffer);
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     if(m_x_scale[0] == m_x_scale[1])
     {
@@ -335,21 +344,20 @@ void EnvelopeSpek::process(float *buffer)
         magnitude = qBound(0, magnitude, m_rows);
     }
 
-    m_intern_vis_data -= m_analyzer_falloff * m_rows / 15;
-    m_intern_vis_data = magnitude > m_intern_vis_data ? magnitude : m_intern_vis_data;
+    m_vis_data -= m_analyzer_falloff * m_rows / 15;
+    m_vis_data = magnitude > m_vis_data ? magnitude : m_vis_data;
 
-    for(int i=0; i<m_intern_vis_data/2; ++i)
+    for(int i=0; i<m_vis_data/2; ++i)
     {
         int g = qMin(0x5f + i*3, 0xff);
         m_backgroundImage.setPixel(m_pixPos, qMax(m_rows/2 - i, 0), qRgb(0, g, 0));
         m_backgroundImage.setPixel(m_pixPos, qMin(m_rows/2 + i, m_rows), qRgb(0, g, 0));
     }
     m_backgroundImage.setPixel(m_pixPos, m_rows/2, qRgb(0xff, 0xff, 0xff));
-
-    ++m_pixPos;
+    m_pixPos++;
 }
 
-void EnvelopeSpek::draw (QPainter *p)
+void EnvelopeSpek::draw(QPainter *p)
 {
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     if(!m_backgroundImage.isNull())

@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef CROSSFADEPLUGIN_H
 #define CROSSFADEPLUGIN_H
 
@@ -38,8 +39,8 @@ public:
 
     virtual ~CrossfadePlugin();
 
-    void applyEffect(Buffer *b);
-    void configure(quint32 freq, ChannelMap map);
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
     enum State

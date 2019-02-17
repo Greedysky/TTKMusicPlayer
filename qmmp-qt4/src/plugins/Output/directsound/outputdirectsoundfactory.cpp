@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,11 +22,10 @@
 #include "outputdirectsound.h"
 #include "outputdirectsoundfactory.h"
 
-const OutputProperties OutputDirectSoundFactory::properties() const
+OutputProperties OutputDirectSoundFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("DirectSound Plugin");
-    properties.hasAbout = true;
     properties.hasSettings = false;
     properties.shortName = "directsound";
     return properties;

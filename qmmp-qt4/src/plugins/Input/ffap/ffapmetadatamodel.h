@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,6 +24,7 @@
 #include <qmmp/metadatamodel.h>
 #include <taglib/tag.h>
 #include <taglib/apefile.h>
+#include <taglib/tfilestream.h>
 
 class QTextCodec;
 
@@ -32,18 +33,20 @@ class QTextCodec;
 */
 class FFapMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
+    Q_DECLARE_TR_FUNCTIONS(FFapMetaDataModel)
 public:
-    FFapMetaDataModel(const QString &path, QObject *parent);
+    FFapMetaDataModel(const QString &path, bool readOnly);
     ~FFapMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
-    QString coverPath();
+
+    QList<MetaDataItem> extraProperties() const;
+    QList<TagModel* > tags() const;
+    QString coverPath() const;
 
 private:
+    QString m_path;
     QList<TagModel* > m_tags;
     TagLib::APE::File *m_file;
-    QString m_path;
+    TagLib::FileStream *m_stream;
 };
 
 class FFapFileTagModel : public TagModel
@@ -51,11 +54,12 @@ class FFapFileTagModel : public TagModel
 public:
     FFapFileTagModel(TagLib::APE::File *file, TagLib::APE::File::TagTypes tagType);
     ~FFapFileTagModel();
-    const QString name();
-    QList<Qmmp::MetaData> keys();
-    const QString value(Qmmp::MetaData key);
+
+    QString name() const;
+    QList<Qmmp::MetaData> keys() const;
+    QString value(Qmmp::MetaData key) const;
     void setValue(Qmmp::MetaData key, const QString &value);
-    bool exists();
+    bool exists() const;
     void create();
     void remove();
     void save();

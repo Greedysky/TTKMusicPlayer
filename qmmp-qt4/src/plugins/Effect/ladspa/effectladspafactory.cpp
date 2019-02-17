@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,6 @@ const EffectProperties EffectLADSPAFactory::properties() const
     properties.name = tr("LADSPA Plugin");
     properties.shortName = "ladspa";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     return properties;
 }
 

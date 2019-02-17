@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SRCONVERTER_H
 #define SRCONVERTER_H
 
@@ -38,6 +39,7 @@ public:
 
 private:
     void freeSoXR();
+
     quint32 m_overSamplingFs;
     float *m_out;
     size_t m_out_samples;

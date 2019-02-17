@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,10 +21,8 @@
 #include <QFile>
 #include <QtPlugin>
 #include "aacfile.h"
-#include "aacmetadatamodel.h"
 #include "decoder_aac.h"
 #include "decoderaacfactory.h"
-
 
 // DecoderAACFactory
 
@@ -34,7 +32,7 @@ bool DecoderAACFactory::canDecode(QIODevice *input) const
     return aac_file.isValid();
 }
 
-const DecoderProperties DecoderAACFactory::properties() const
+DecoderProperties DecoderAACFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("AAC Plugin");
@@ -42,7 +40,6 @@ const DecoderProperties DecoderAACFactory::properties() const
     properties.description = tr("AAC Files");
     properties.contentTypes << "audio/aacp" << "audio/aac";
     properties.shortName = "aac";
-    properties.hasAbout = true;
     properties.hasSettings = false;
     return properties;
 }
@@ -52,26 +49,48 @@ Decoder *DecoderAACFactory::create(const QString &, QIODevice *input)
     return new DecoderAAC(input);
 }
 
-QList<FileInfo *> DecoderAACFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderAACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    FileInfo *info = new FileInfo(fileName);
+    TrackInfo *info = new TrackInfo(path);
 
-    QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly))
+    if(parts == TrackInfo::NoParts)
+        return QList<TrackInfo*>() << info;
+
+    QFile file(path);
+    if(!file.open(QIODevice::ReadOnly))
     {
-        AACFile aac_file(&file, useMetaData);
-        if (useMetaData)
-            info->setMetaData(aac_file.metaData());
-        info->setLength(aac_file.length());
+        delete info;
+        return QList<TrackInfo*>() << info;
     }
-    QList <FileInfo*> list;
-    list << info;
-    return list;
+
+    AACFile aac_file(&file, parts & TrackInfo::MetaData);
+
+    if(!aac_file.isValid())
+    {
+        delete info;
+        return QList<TrackInfo *>();
+    }
+
+    if(parts & TrackInfo::MetaData)
+        info->setValues(aac_file.metaData());
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, aac_file.bitrate());
+        info->setValue(Qmmp::SAMPLERATE, aac_file.samplerate());
+        //info->setValue(Qmmp::CHANNELS, aac_file.
+        info->setValue(Qmmp::FORMAT_NAME, "AAC");
+        info->setDuration(aac_file.duration());
+    }
+
+    return QList<TrackInfo*>() << info;
 }
 
-MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderAACFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    return new AACMetaDataModel(path, parent);
+    Q_UNUSED(path);
+    Q_UNUSED(readOnly);
+    return 0;
 }
 
 Q_EXPORT_PLUGIN2(aac,DecoderAACFactory)

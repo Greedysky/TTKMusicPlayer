@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,24 +24,33 @@
 #include <taglib/flacfile.h>
 #include <taglib/oggflacfile.h>
 #include <taglib/xiphcomment.h>
+#include <taglib/tfilestream.h>
 #include <qmmp/metadatamodel.h>
+
+#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
+#define HAS_PICTURE_LIST
+#endif
 
 class FLACMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
 public:
-    FLACMetaDataModel(const QString &path, QObject *parent);
+    FLACMetaDataModel(const QString &path, bool readOnly);
     ~FLACMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
-    QPixmap cover();
-    QString coverPath();
-    bool setCover(const QByteArray &data);
+
+    QList<TagModel* > tags() const;
+    QPixmap cover() const;
+    QString coverPath() const;
+#ifdef HAS_PICTURE_LIST
+    void setCover(const QPixmap &pix);
+    void removeCover();
+#endif
 
 private:
     QString m_path;
     QList<TagModel* > m_tags;
     TagLib::File *m_file;
+    TagLib::FileStream *m_stream;
+    TagLib::Ogg::XiphComment *m_tag;
 };
 
 class VorbisCommentModel : public TagModel
@@ -49,8 +58,9 @@ class VorbisCommentModel : public TagModel
 public:
     VorbisCommentModel(TagLib::Ogg::XiphComment *tag, TagLib::File *file);
     ~VorbisCommentModel();
-    const QString name();
-    const QString value(Qmmp::MetaData key);
+
+    QString name() const;
+    QString value(Qmmp::MetaData key) const;
     void setValue(Qmmp::MetaData key, const QString &value);
     void save();
 

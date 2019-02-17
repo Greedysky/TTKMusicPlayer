@@ -9,27 +9,15 @@ SOURCES += bs2bplugin.cpp \
            settingsdialog.cpp
 
 TARGET =$$PLUGINS_PREFIX/Effect/bs2b
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Effect/libbs2b.so
 
-INCLUDEPATH += ../../../ \
-               $$EXTRA_PREFIX/libbs2b/include
-               
-CONFIG += warn_on \
-          plugin \
-          link_pkgconfig
-
-TEMPLATE = lib
+INCLUDEPATH += $$EXTRA_PREFIX/libbs2b/include
 
 FORMS += settingsdialog.ui
 
 unix {
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
     target.path = $$LIB_DIR/qmmp/Effect
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b -lqmmp
 }
 
-win32 {
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
-    LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b -lqmmp1
-}
+LIBS += -L$$EXTRA_PREFIX/libbs2b/lib -lbs2b

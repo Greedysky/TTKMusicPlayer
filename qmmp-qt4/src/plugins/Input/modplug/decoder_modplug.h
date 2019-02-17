@@ -41,7 +41,6 @@ public:
     void seek(qint64 time);
 
 private:
-
     //helper function
     void deinit();
 

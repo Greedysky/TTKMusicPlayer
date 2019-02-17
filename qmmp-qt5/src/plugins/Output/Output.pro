@@ -1,20 +1,14 @@
 include(../../../qmmp.pri)
 
 TEMPLATE = subdirs
-unix:android{
-    contains(CONFIG, QTMULTIMEDIA_PLUGIN){
-     SUBDIRS += qtmultimedia
-    }
-}else{
-    win32:{
-        SUBDIRS += waveout directsound wasapi
-    }
+SUBDIRS += null
 
-    SUBDIRS += null
+win32:{
+    SUBDIRS += waveout directsound wasapi
+}
 
-    unix{
-      contains(CONFIG, ALSA_PLUGIN){
-          SUBDIRS += alsa
-      }
-    }
+unix{
+  contains(CONFIG, ALSA_PLUGIN){
+      SUBDIRS += alsa
+  }
 }

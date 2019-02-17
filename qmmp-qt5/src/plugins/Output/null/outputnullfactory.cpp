@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,12 +22,10 @@
 #include "outputnull.h"
 #include "outputnullfactory.h"
 
-
-const OutputProperties OutputNullFactory::properties() const
+OutputProperties OutputNullFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("Null Plugin");
-    properties.hasAbout = true;
     properties.hasSettings = false;
     properties.shortName = "null";
     return properties;
@@ -40,5 +38,5 @@ Output* OutputNullFactory::create()
 
 Volume *OutputNullFactory::createVolume()
 {
-    return 0;
+    return nullptr;
 }

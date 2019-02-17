@@ -15,9 +15,9 @@ Recycler::Recycler ()
     m_done_index = 0;
     m_current_count = 0;
     m_buffer_count = 0;
-    m_blocked = 0;
+    m_blocked = nullptr;
     m_block_samples = 0;
-    m_buffers = 0;
+    m_buffers = nullptr;
 }
 
 Recycler::~Recycler()
@@ -25,11 +25,11 @@ Recycler::~Recycler()
     for (unsigned int i = 0; i < m_buffer_count; i++)
     {
         delete m_buffers[i];
-        m_buffers[i] = 0;
+        m_buffers[i] = nullptr;
     }
     if(m_buffer_count)
         delete [] m_buffers;
-    m_blocked = 0;
+    m_blocked = nullptr;
 }
 
 void Recycler::configure(quint32 freq, int chan)
@@ -42,14 +42,14 @@ void Recycler::configure(quint32 freq, int chan)
     for (unsigned int i = 0; i < m_buffer_count; i++)
     {
         delete m_buffers[i];
-        m_buffers[i] = 0;
+        m_buffers[i] = nullptr;
     }
     if(m_buffer_count)
         delete [] m_buffers;
     m_add_index = 0;
     m_done_index = 0;
     m_current_count = 0;
-    m_blocked = 0;
+    m_blocked = nullptr;
     m_block_samples = block_samples;
     m_buffer_count = buffer_count;
 
@@ -94,7 +94,7 @@ int Recycler::used() const
 Buffer *Recycler::get()
 {
     if (full())
-        return 0;
+        return nullptr;
     return m_buffers[m_add_index];
 }
 
@@ -114,12 +114,12 @@ Buffer *Recycler::next()
         m_blocked = m_buffers[m_done_index];
         return m_blocked;
     }
-    return 0;
+    return nullptr;
 }
 
 void Recycler::done()
 {
-    m_blocked = 0;
+    m_blocked = nullptr;
     if (m_current_count)
     {
         m_current_count--;

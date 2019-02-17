@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,15 +35,14 @@ public:
     OutputWaveOut();
     ~OutputWaveOut();
 
-    bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format);
+    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override;
 
-    //output api
-    qint64 latency();
-    qint64 writeAudio(unsigned char *data, qint64 size);
-    void drain();
-    void suspend();
-    void resume();
-    void reset();
+    virtual qint64 latency() override;
+    virtual qint64 writeAudio(unsigned char *data, qint64 size) override;
+    virtual void drain() override;
+    virtual void suspend() override;
+    virtual void resume() override;
+    virtual void reset() override;
 
 private:
     // helper functions
@@ -59,8 +58,8 @@ public:
     VolumeWaveOut();
     ~VolumeWaveOut();
 
-    void setVolume(const VolumeSettings &vol);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &vol) override;
+    virtual VolumeSettings volume() const override;
 
     bool isSupported() const;
 };

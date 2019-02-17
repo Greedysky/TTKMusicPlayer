@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,21 +31,21 @@ class OuterRipples : public Visual
 {
     Q_OBJECT
 public:
-    OuterRipples( QWidget *parent = 0);
+    OuterRipples(QWidget *parent = nullptr);
     virtual ~OuterRipples();
 
 public slots:
-    void start();
-    void stop();
+    virtual void start() override;
+    virtual void stop() override;
 
 private slots:
     void timeout();
 
 private:
     void clear();
-    virtual void hideEvent (QHideEvent *);
-    virtual void showEvent (QShowEvent *);
-    void paintEvent(QPaintEvent *);
+    virtual void hideEvent(QHideEvent *) override;
+    virtual void showEvent(QShowEvent *) override;
+    virtual void paintEvent(QPaintEvent *) override;
 
     void process();
     void draw(QPainter *p);

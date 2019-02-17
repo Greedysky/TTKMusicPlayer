@@ -28,10 +28,9 @@
 */
 class SettingsDialog : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 public:
     SettingsDialog(QWidget *parent = 0);
-
     ~SettingsDialog();
 
 public slots:

@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class SpectrumSpek : public Spek
 {
     Q_OBJECT
 public:
-    explicit SpectrumSpek(QWidget *parent = 0);
+    explicit SpectrumSpek(QWidget *parent = nullptr);
     ~SpectrumSpek();
 
     virtual void open(const QString &path) override;
@@ -44,7 +44,7 @@ public:
     inline QImage *getPaintImage() { return &image; }
     inline int getURange() const { return urange; }
     inline int getLRange() const { return lrange; }
-    Palette getPalette() const { return palette; }
+    inline Palette getPalette() const { return palette; }
 
 private slots:
     void typeChanged(QAction *action);
@@ -77,7 +77,6 @@ private:
     int fft_bits;
     int urange;
     int lrange;
-
 
 };
 

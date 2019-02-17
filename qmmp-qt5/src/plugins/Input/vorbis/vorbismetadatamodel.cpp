@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,17 +19,25 @@
  ***************************************************************************/
 
 #include <QtGlobal>
+#include <QBuffer>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
 #include <taglib/vorbisfile.h>
 #include <taglib/xiphcomment.h>
 #include <taglib/tmap.h>
+#include <taglib/flacpicture.h>
 #include "vorbismetadatamodel.h"
 
-VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+VorbisMetaDataModel::VorbisMetaDataModel(const QString &path, bool readOnly)
+#ifdef HAS_PICTURE_LIST
+    : MetaDataModel(readOnly, MetaDataModel::IS_COVER_EDITABLE)
+#else
+    : MetaDataModel(readOnly)
+#endif
 {
     m_path = path;
-    m_file = new TagLib::Ogg::Vorbis::File(QStringToFileName(path));
+    m_stream = new TagLib::FileStream(QStringToFileName(path), readOnly);
+    m_file = new TagLib::Ogg::Vorbis::File(m_stream);
     m_tag = m_file->tag();
     m_tags << new VorbisCommentModel(this);
 }
@@ -39,79 +47,92 @@ VorbisMetaDataModel::~VorbisMetaDataModel()
     while(!m_tags.isEmpty())
         delete m_tags.takeFirst();
 
-    if(m_file)
-    {
-        delete m_file;
-        m_file = 0;
-    }
+    delete m_file;
+    delete m_stream;
 }
 
-QHash<QString, QString> VorbisMetaDataModel::audioProperties()
-{
-    QHash<QString, QString> ap;
-    TagLib::Vorbis::Properties *property = m_file->audioProperties();
-    if(property)
-    {
-        QString text = QString("%1").arg(property->length()/60);
-        text +=":"+QString("%1").arg(property->length()%60,2,10,QChar('0'));
-        ap.insert(tr("Length"), text);
-        ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg(property->sampleRate()));
-        ap.insert(tr("Channels"), QString("%1").arg(property->channels()));
-        ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps")).arg(property->bitrate()));
-        ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(m_file->length()/1024));
-    }
-    return ap;
-}
-
-QList<TagModel* > VorbisMetaDataModel::tags()
+QList<TagModel* > VorbisMetaDataModel::tags() const
 {
     return m_tags;
 }
 
-QPixmap VorbisMetaDataModel::cover()
+QPixmap VorbisMetaDataModel::cover() const
 {
     if(!m_tag || m_tag->isEmpty())
         return QPixmap();
+
+#ifdef HAS_PICTURE_LIST
+    TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
+    for(uint i = 0; i < list.size(); ++i)
+    {
+        if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
+        {
+            QPixmap cover;
+            cover.loadFromData(QByteArray(list[i]->data().data(), list[i]->data().size())); //read binary picture data
+            return cover;
+        }
+    }
+#else
     TagLib::StringList list = m_tag->fieldListMap()["METADATA_BLOCK_PICTURE"];
     if(list.isEmpty())
         return QPixmap();
     for(uint i = 0; i < list.size(); ++i)
     {
+        TagLib::FLAC::Picture pict;
         TagLib::String value = list[i];
         QByteArray block = QByteArray::fromBase64(TStringToQString(value).toLatin1());
-        if(block.size() < 32)
-            continue;
-        qint64 pos = 0;
-        if(readPictureBlockField(block, pos) != 3) //picture type, use front cover only
-            continue;
-        pos += 4;
-        int mimeLength = readPictureBlockField(block, pos); //mime type length
-        pos += 4;
-        pos += mimeLength; //skip mime type
-        int descLength = readPictureBlockField(block, pos); //description length
-        pos += 4;
-        pos += descLength; //skip description
-        pos += 4; //width
-        pos += 4; //height
-        pos += 4; //color depth
-        pos += 4; //the number of colors used
-        int length = readPictureBlockField(block, pos); //picture size
-        pos += 4;
+        pict.parse(TagLib::ByteVector(block.constData(), block.size()));
         QPixmap cover;
-        cover.loadFromData(block.mid(pos, length)); //read binary picture data
+        cover.loadFromData(QByteArray(pict.data().data(), pict.data().size())); //read binary picture data
         return cover;
     }
+#endif
+
     return QPixmap();
 }
 
-ulong VorbisMetaDataModel::readPictureBlockField(QByteArray data, int offset)
+#ifdef HAS_PICTURE_LIST
+void VorbisMetaDataModel::setCover(const QPixmap &pix)
 {
-    return (((uchar)data.data()[offset] & 0xff) << 24) |
-           (((uchar)data.data()[offset+1] & 0xff) << 16) |
-           (((uchar)data.data()[offset+2] & 0xff) << 16) |
-           ((uchar)data.data()[offset+3] & 0xff);
+    removeCover();
+    if(m_tag)
+    {
+        TagLib::FLAC::Picture *picture = new TagLib::FLAC::Picture();
+        picture->setType(TagLib::FLAC::Picture::FrontCover);
 
+        QByteArray data;
+        QBuffer buffer(&data);
+        buffer.open(QIODevice::WriteOnly);
+        pix.save(&buffer, "JPEG");
+        picture->setMimeType("image/jpeg");
+        picture->setDescription("TTK");
+        picture->setData(TagLib::ByteVector(data.constData(), data.size()));
+        m_tag->addPicture(picture);
+        m_file->save();
+    }
 }
+
+void VorbisMetaDataModel::removeCover()
+{
+    if(m_tag && !m_tag->isEmpty())
+    {
+        bool save = false;
+        TagLib::List<TagLib::FLAC::Picture *> list = m_tag->pictureList();
+        for(uint i = 0; i < list.size(); ++i)
+        {
+            if(list[i]->type() == TagLib::FLAC::Picture::FrontCover)
+            {
+                m_tag->removePicture(list[i], false);
+                save = true;
+            }
+        }
+        if(save)
+        {
+            m_file->save();
+        }
+    }
+}
+#endif
 
 VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model) : TagModel(TagModel::Save)
 {
@@ -121,12 +142,12 @@ VorbisCommentModel::VorbisCommentModel(VorbisMetaDataModel *model) : TagModel(Ta
 VorbisCommentModel::~VorbisCommentModel()
 {}
 
-const QString VorbisCommentModel::name()
+QString VorbisCommentModel::name() const
 {
     return "Vorbis Comment";
 }
 
-const QString VorbisCommentModel::value(Qmmp::MetaData key)
+QString VorbisCommentModel::value(Qmmp::MetaData key) const
 {
     if(!m_model->m_tag || m_model->m_tag->isEmpty())
         return QString();
@@ -174,7 +195,7 @@ void VorbisCommentModel::setValue(Qmmp::MetaData key, const QString &value)
 
     TagLib::Ogg::XiphComment *tag = m_model->m_tag;
 
-    TagLib::String str = TagLib::String(value.toUtf8().data(), TagLib::String::UTF8);
+    TagLib::String str = QStringToTString(value);
 
     switch((int) key)
     {

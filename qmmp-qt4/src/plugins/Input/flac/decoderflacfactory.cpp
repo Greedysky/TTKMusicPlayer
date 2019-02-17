@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -25,10 +25,8 @@
 #include <taglib/oggflacfile.h>
 #include <taglib/xiphcomment.h>
 #include <taglib/tmap.h>
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
 #include <taglib/tfilestream.h>
 #include <taglib/id3v2framefactory.h>
-#endif
 #include "cueparser.h"
 #include "decoder_flac.h"
 #include "flacmetadatamodel.h"
@@ -48,7 +46,7 @@ bool DecoderFLACFactory::canDecode(QIODevice *input) const
     return false;
 }
 
-const DecoderProperties DecoderFLACFactory::properties() const
+DecoderProperties DecoderFLACFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("FLAC Plugin");
@@ -57,7 +55,6 @@ const DecoderProperties DecoderFLACFactory::properties() const
     properties.contentTypes << "audio/x-flac" << "audio/flac";
     properties.shortName = "flac";
     properties.protocols << "flac";
-    properties.hasAbout = true;
     properties.hasSettings = false;
     return properties;
 }
@@ -67,124 +64,140 @@ Decoder *DecoderFLACFactory::create(const QString &path, QIODevice *i)
     return new DecoderFLAC(path, i);
 }
 
-QList<FileInfo *> DecoderFLACFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredFiles)
+QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredFiles)
 {
-    QList <FileInfo*> list;
-    TagLib::Ogg::XiphComment *tag = 0;
-    TagLib::FLAC::Properties *ap = 0;
-
-    TagLib::FLAC::File *flacFile = 0;
-    TagLib::Ogg::FLAC::File *oggFlacFile = 0;
-
     //extract metadata of the one cue track
-    if(fileName.contains("://"))
+    if(path.contains("://"))
     {
-        QString path = fileName;
-        path.remove("flac://");
-        path.remove(QRegExp("#\\d+$"));
-        int track = fileName.section("#", -1).toInt();
-        list = createPlayList(path, true, ignoredFiles);
+        QString filePath = path;
+        filePath.remove("flac://");
+        filePath.remove(QRegExp("#\\d+$"));
+        int track = filePath.section("#", -1).toInt();
+        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::Properties, ignoredFiles);
         if (list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
             list.clear();
             return list;
         }
-        FileInfo *info = list.takeAt(track - 1);
+        TrackInfo *info = list.takeAt(track - 1);
         qDeleteAll(list);
-        return QList<FileInfo *>() << info;
+        return QList<TrackInfo *>() << info;
     }
 
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
-    TagLib::FileStream stream(QStringToFileName(fileName), true);
-#endif
+    TrackInfo *info = new TrackInfo(path);
 
-    if(fileName.endsWith(".flac", Qt::CaseInsensitive))
+    if(parts == TrackInfo::NoParts)
+        return QList<TrackInfo *>() << info;
+
+    TagLib::Ogg::XiphComment *tag = 0;
+    TagLib::FLAC::Properties *ap = 0;
+
+    TagLib::FLAC::File *flacFile = 0;
+    TagLib::Ogg::FLAC::File *oggFlacFile = 0;
+
+    TagLib::FileStream stream(QStringToFileName(path), true);
+
+    if(path.endsWith(".flac", Qt::CaseInsensitive))
     {
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
         flacFile = new TagLib::FLAC::File(&stream, TagLib::ID3v2::FrameFactory::instance());
-#else
-        flacFile = new TagLib::FLAC::File(QStringToFileName(fileName));
-#endif
-        tag = useMetaData ? flacFile->xiphComment() : 0;
+        tag = flacFile->xiphComment();
         ap = flacFile->audioProperties();
     }
-    else if(fileName.endsWith(".oga", Qt::CaseInsensitive))
+    else if(path.endsWith(".oga", Qt::CaseInsensitive))
     {
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 8))
         oggFlacFile = new TagLib::Ogg::FLAC::File(&stream);
-#else
-        oggFlacFile = new TagLib::Ogg::FLAC::File(QStringToFileName(fileName));
-#endif
-        tag = useMetaData ? oggFlacFile->tag() : 0;
+        tag = oggFlacFile->tag();
         ap = oggFlacFile->audioProperties();
     }
     else
-        return list;
-
-    FileInfo *info = new FileInfo(fileName);
-    if (tag && !tag->isEmpty())
     {
-        info->setMetaData(Qmmp::ALBUM,
-                          QString::fromUtf8(tag->album().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::ARTIST,
-                          QString::fromUtf8(tag->artist().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::COMMENT,
-                          QString::fromUtf8(tag->comment().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::GENRE,
-                          QString::fromUtf8(tag->genre().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::TITLE,
-                          QString::fromUtf8(tag->title().toCString(true)).trimmed());
-        info->setMetaData(Qmmp::YEAR, tag->year());
-        info->setMetaData(Qmmp::TRACK, tag->track());
+        delete info;
+        return QList<TrackInfo *>();
+    }
 
+    if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
+    {
         if (tag->fieldListMap().contains("CUESHEET"))
         {
-            CUEParser parser(tag->fieldListMap()["CUESHEET"].toString().toCString(true), fileName);
+            delete info;
+
+            QByteArray data(tag->fieldListMap()["CUESHEET"].toString().toCString(true));
+            QString diskNumber;
+
             if(tag->contains("DISCNUMBER") && !tag->fieldListMap()["DISCNUMBER"].isEmpty())
             {
                 TagLib::StringList fld = tag->fieldListMap()["DISCNUMBER"];
-                for(int i = 1; i <= parser.count(); i++)
-                {
-                    parser.info(i)->setMetaData(Qmmp::DISCNUMBER,
-                              QString::fromUtf8(fld.toString().toCString(true)).trimmed());
-                }
+                diskNumber = TStringToQString(fld.toString()).trimmed();
             }
-            list = parser.createPlayList();
-            delete info;
+
             if(flacFile)
                 delete flacFile;
             if(oggFlacFile)
                 delete oggFlacFile;
-            return list;
+
+            CUEParser parser(data, path);
+            if(!diskNumber.isEmpty())
+            {
+                for(int i = 1; i <= parser.count(); ++i)
+                    parser.info(i)->setValue(Qmmp::DISCNUMBER, diskNumber);
+            }
+
+            return parser.createPlayList();
         }
 
+        info->setValue(Qmmp::ALBUM, TStringToQString(tag->album()));
+        info->setValue(Qmmp::ARTIST, TStringToQString(tag->artist()));
+        info->setValue(Qmmp::COMMENT, TStringToQString(tag->comment()));
+        info->setValue(Qmmp::GENRE, TStringToQString(tag->genre()));
+        info->setValue(Qmmp::TITLE, TStringToQString(tag->title()));
+        info->setValue(Qmmp::YEAR, tag->year());
+        info->setValue(Qmmp::TRACK, tag->track());
         //additional metadata
         TagLib::StringList fld;
         if(!(fld = tag->fieldListMap()["ALBUMARTIST"]).isEmpty())
-            info->setMetaData(Qmmp::ALBUMARTIST,
-                              QString::fromUtf8(fld.front().toCString(true)).trimmed());
+            info->setValue(Qmmp::ALBUMARTIST, TStringToQString(fld.front()));
         if(!(fld = tag->fieldListMap()["COMPOSER"]).isEmpty())
-            info->setMetaData(Qmmp::COMPOSER,
-                              QString::fromUtf8(fld.front().toCString(true)).trimmed());
+            info->setValue(Qmmp::COMPOSER, TStringToQString(fld.front()));
         if(!(fld = tag->fieldListMap()["DISCNUMBER"]).isEmpty())
-            info->setMetaData(Qmmp::DISCNUMBER,
-                              QString::fromUtf8(fld.front().toCString(true)).trimmed());
+            info->setValue(Qmmp::DISCNUMBER, TStringToQString(fld.front()));
+
     }
-    if(ap)
-        info->setLength(ap->length());
-    list << info;
+
+    if((parts & TrackInfo::Properties) && ap)
+    {
+        info->setValue(Qmmp::BITRATE, ap->bitrate());
+        info->setValue(Qmmp::SAMPLERATE, ap->sampleRate());
+        info->setValue(Qmmp::CHANNELS, ap->channels());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, ap->bitsPerSample());
+        info->setDuration(ap->lengthInMilliseconds());
+        info->setValue(Qmmp::FORMAT_NAME, flacFile ? "FLAC" : "Ogg FLAC");
+    }
+
+    if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
+    {
+        TagLib::Ogg::FieldListMap items = tag->fieldListMap();
+        if (items.contains("REPLAYGAIN_TRACK_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
+        if (items.contains("REPLAYGAIN_TRACK_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].front()));
+        if (items.contains("REPLAYGAIN_ALBUM_GAIN"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].front()));
+        if (items.contains("REPLAYGAIN_ALBUM_PEAK"))
+            info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
+    }
+
     if(flacFile)
         delete flacFile;
     if(oggFlacFile)
         delete oggFlacFile;
-    return list;
+    return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel*DecoderFLACFactory::createMetaDataModel(const QString &path, QObject *parent)
+MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
     if (!path.contains("://") || path.startsWith("flac://"))
-        return new FLACMetaDataModel(path, parent);
+        return new FLACMetaDataModel(path, readOnly);
     else
         return 0;
 }

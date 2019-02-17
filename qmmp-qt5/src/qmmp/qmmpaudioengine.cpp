@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,17 +39,17 @@
 #define TRANSPORT_TIMEOUT 5000 //ms
 
 QmmpAudioEngine::QmmpAudioEngine(QObject *parent)
-        : AbstractEngine(parent), m_factory(0), m_output(0)
+        : AbstractEngine(parent), m_factory(nullptr), m_output(nullptr)
 {
-    m_output_buf = 0;
+    m_output_buf = nullptr;
     m_output_size = 0;
     m_bks = 0;
     m_sample_size = 0;
-    m_decoder = 0;
-    m_output = 0;
+    m_decoder = nullptr;
+    m_output = nullptr;
     m_muted = false;
-    m_replayGain = 0;
-    m_dithering = 0;
+    m_replayGain = nullptr;
+    m_dithering = nullptr;
     m_converter = new AudioConverter;
 
     m_settings = QmmpSettings::instance();
@@ -66,9 +66,9 @@ QmmpAudioEngine::~QmmpAudioEngine()
     reset();
     if(m_output_buf)
         delete [] m_output_buf;
-    m_output_buf = 0;
+    m_output_buf = nullptr;
     qDeleteAll(m_effects);
-    m_instance = 0;
+    m_instance = nullptr;
     delete m_converter;
 }
 
@@ -89,7 +89,7 @@ void QmmpAudioEngine::clearDecoders()
     {
         m_inputs.take(m_decoder)->deleteLater ();
         delete m_decoder;
-        m_decoder = 0;
+        m_decoder = nullptr;
     }
     while(!m_decoders.isEmpty())
     {
@@ -119,7 +119,7 @@ bool QmmpAudioEngine::play()
 bool QmmpAudioEngine::enqueue(InputSource *source)
 {
     mutex()->lock();
-    if(m_decoder && m_decoder->nextURL() == source->url())
+    if(m_decoder && m_decoder->nextURL() == source->path())
     {
         m_inputs.value(m_decoder)->setOffset(source->offset());
         delete source;
@@ -129,18 +129,18 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
     }
     mutex()->unlock();
 
-    DecoderFactory *factory = 0;
+    DecoderFactory *factory = nullptr;
 
-    if(!source->url().contains("://"))
-        factory = Decoder::findByFilePath(source->url(), m_settings->determineFileTypeByContent());
+    if(!source->path().contains("://"))
+        factory = Decoder::findByFilePath(source->path(), m_settings->determineFileTypeByContent());
     if(!factory)
         factory = Decoder::findByMime(source->contentType());
-    if(factory && !factory->properties().noInput && source->ioDevice() && source->url().contains("://"))
-        factory = (factory->canDecode(source->ioDevice()) ? factory : 0);
-    if(!factory && source->ioDevice() && source->url().contains("://")) //ignore content of local files
+    if(factory && !factory->properties().noInput && source->ioDevice() && source->path().contains("://"))
+        factory = (factory->canDecode(source->ioDevice()) ? factory : nullptr);
+    if(!factory && source->ioDevice() && source->path().contains("://")) //ignore content of local files
         factory = Decoder::findByContent(source->ioDevice());
-    if(!factory && source->url().contains("://"))
-        factory = Decoder::findByProtocol(source->url().section("://",0,0));
+    if(!factory && source->path().contains("://"))
+        factory = Decoder::findByProtocol(source->path().section("://",0,0));
     if(!factory)
     {
         qWarning("QmmpAudioEngine: unsupported file format");
@@ -149,13 +149,14 @@ bool QmmpAudioEngine::enqueue(InputSource *source)
     qDebug("QmmpAudioEngine: selected decoder: %s",qPrintable(factory->properties().shortName));
     if(factory->properties().noInput && source->ioDevice())
         source->ioDevice()->close();
-    Decoder *decoder = factory->create(source->url(), source->ioDevice());
+    Decoder *decoder = factory->create(source->path(), source->ioDevice());
     if(!decoder->initialize())
     {
         qWarning("QmmpAudioEngine: invalid file format");
         delete decoder;
         return false;
     }
+    attachMetaData(decoder, factory, source);
     mutex()->lock();
     m_decoders.enqueue(decoder);
     m_inputs.insert(decoder, source);
@@ -199,7 +200,7 @@ void QmmpAudioEngine::addEffect(EffectFactory *factory)
 
 void QmmpAudioEngine::removeEffect(EffectFactory *factory)
 {
-    Effect *effect = 0;
+    Effect *effect = nullptr;
     foreach(Effect *e, m_effects)
     {
         if(e->factory() == factory)
@@ -225,9 +226,7 @@ void QmmpAudioEngine::seek(qint64 time)
 {
     if (m_output && m_output->isRunning())
     {
-        m_output->mutex()->lock ();
         m_output->seek(time, true);
-        m_output->mutex()->unlock();
         if (isRunning())
         {
             mutex()->lock ();
@@ -255,17 +254,13 @@ void QmmpAudioEngine::setMuted(bool muted)
     m_muted = muted;
     if(m_output)
     {
-        m_output->mutex()->lock();
         m_output->setMuted(muted);
-        m_output->mutex()->unlock();
     }
 }
 
 void QmmpAudioEngine::stop()
 {
-    mutex()->lock ();
     m_user_stop = true;
-    mutex()->unlock();
 
     if (m_output)
         m_output->recycler()->cond()->wakeAll();
@@ -276,21 +271,21 @@ void QmmpAudioEngine::stop()
     if (m_output)
     {
         delete m_output;
-        m_output = 0;
+        m_output = nullptr;
     }
 
     clearDecoders();
     reset();
     while(!m_effects.isEmpty()) //delete effects
         delete m_effects.takeFirst();
-    m_replayGain = 0;
+    m_replayGain = nullptr;
 }
 
 qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 brate)
 {
     Buffer *b = m_output->recycler()->get();
-    b->metaData = m_metaData;
-    m_metaData.clear();
+    b->trackInfo = m_trackInfo;
+    m_trackInfo.clear();
     size_t sz = size < m_bks ? size : m_bks;
     size_t samples = sz / m_sample_size;
 
@@ -309,11 +304,9 @@ qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 b
 
 void QmmpAudioEngine::finish()
 {
-    if (m_output)
+    if(m_output)
     {
-        m_output->mutex()->lock ();
         m_output->finish();
-        m_output->mutex()->unlock();
     }
     StateHandler::instance()->sendFinished();
 }
@@ -353,7 +346,7 @@ void QmmpAudioEngine::run()
 {
     mutex()->lock ();
     m_next = false;
-    m_metaData.clear();
+    m_trackInfo.clear();
     qint64 len = 0;
     int delay = 0;
     if(m_decoders.isEmpty())
@@ -365,11 +358,9 @@ void QmmpAudioEngine::run()
     addOffset(); //offset
     mutex()->unlock();
     m_output->start();
-    m_dithering->setFormats(m_decoder->audioParameters().format(), m_output->format());
     StateHandler::instance()->dispatch(Qmmp::Buffering);
     StateHandler::instance()->dispatch(m_decoder->totalTime());
     StateHandler::instance()->dispatch(Qmmp::Playing);
-    sendMetaData();
 
     while (!m_done && !m_finish)
     {
@@ -385,31 +376,29 @@ void QmmpAudioEngine::run()
             m_output_at = 0;
         }
         //metadata
+        if(m_inputs[m_decoder]->hasMetaData())
+            m_decoder->addMetaData(m_inputs[m_decoder]->takeMetaData());
+
+        if(m_inputs[m_decoder]->hasStreamInfo())
+            StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeStreamInfo());
+
         if(m_decoder->hasMetaData())
         {
             QMap<Qmmp::MetaData, QString> m = m_decoder->takeMetaData();
-            m[Qmmp::URL] = m_inputs[m_decoder]->url();
-            if(StateHandler::instance()->dispatch(m))
-                m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
+            TrackInfo info(m_inputs[m_decoder]->path());
+            info.setValues(m);
+            info.setValues(m_decoder->properties());
+            info.setDuration(m_decoder->totalTime());
+            if(StateHandler::instance()->dispatch(info))
+                m_trackInfo = QSharedPointer<TrackInfo>(new TrackInfo(info));
         }
-        if(m_inputs[m_decoder]->hasMetaData())
-        {
-            QMap<Qmmp::MetaData, QString> m = m_inputs[m_decoder]->takeMetaData();
-            m[Qmmp::URL] = m_inputs[m_decoder]->url();
-            if(StateHandler::instance()->dispatch(m))
-                m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(m));
-        }
-        if(m_inputs[m_decoder]->hasStreamInfo())
-            StateHandler::instance()->dispatch(m_inputs[m_decoder]->takeStreamInfo());
         //wait more data
         if(m_inputs[m_decoder]->isWaiting())
         {
             mutex()->unlock();
             msleep(5);
             delay += 5;
-            mutex()->lock();
-            m_done = m_user_stop;
-            mutex()->unlock();
+            m_done = m_user_stop.load();
             if(delay > TRANSPORT_TIMEOUT)
             {
                 qWarning("QmmpAudioEngine: unable to receive more data");
@@ -445,9 +434,7 @@ void QmmpAudioEngine::run()
                 m_decoder->next();
                 StateHandler::instance()->dispatch(m_decoder->totalTime());
                 m_replayGain->setReplayGainInfo(m_decoder->replayGainInfo());
-                m_output->mutex()->lock();
                 m_output->seek(0); //reset counter
-                m_output->mutex()->unlock();
                 addOffset(); //offset
                 StateHandler::instance()->dispatch(Qmmp::Playing);
                 mutex()->unlock();
@@ -468,12 +455,9 @@ void QmmpAudioEngine::run()
                     StateHandler::instance()->dispatch(Qmmp::Stopped); //fake stop/start cycle
                     StateHandler::instance()->dispatch(Qmmp::Buffering);
                     StateHandler::instance()->dispatch(m_decoder->totalTime());
-                    m_output->mutex()->lock();
                     m_output->seek(0); //reset counter
-                    m_output->mutex()->unlock();
                     StateHandler::instance()->dispatch(Qmmp::Playing);
                     mutex()->unlock();
-                    sendMetaData();
                     addOffset(); //offset
                 }
                 else
@@ -493,20 +477,18 @@ void QmmpAudioEngine::run()
                         m_output->start();
                         StateHandler::instance()->dispatch(Qmmp::Playing);
                         StateHandler::instance()->dispatch(m_decoder->totalTime());
-                        sendMetaData();
                         addOffset(); //offset
                     }
                 }
-                if(m_output)
-                {
-                    m_dithering->setFormats(m_decoder->audioParameters().format(), m_output->format());
-                    continue;
-                }
+                if(!m_output)
+                    m_done = true;
+
+                continue;
             }
 
-            flush(true);
             if (m_output)
             {
+                flush(true);
                 m_output->recycler()->mutex()->lock ();
                 // end of stream
                 while (!m_output->recycler()->empty() && !m_user_stop)
@@ -536,21 +518,16 @@ void QmmpAudioEngine::run()
     if (m_finish)
         finish();
     if(m_output)
-    {
-        m_output->mutex()->lock();
         m_output->recycler()->cond()->wakeAll();
-        m_output->mutex()->unlock();
-    }
+
     mutex()->unlock();
 
     if (m_output)
     {
         if(m_user_stop || (m_done && !m_finish))
         {
-            m_output->mutex()->lock ();
             m_output->stop();
             m_output->recycler()->cond()->wakeAll();
-            m_output->mutex()->unlock();
         }
 
         if(m_output->isRunning())
@@ -579,7 +556,7 @@ void QmmpAudioEngine::flush(bool final)
             mutex()->unlock();
             m_output->recycler()->cond()->wait(m_output->recycler()->mutex());
             mutex()->lock ();
-            m_done = m_user_stop;
+            m_done = m_user_stop.load();
         }
 
         if (m_user_stop || m_finish)
@@ -608,33 +585,49 @@ void QmmpAudioEngine::addOffset()
     }
 }
 
-void QmmpAudioEngine::sendMetaData()
+void QmmpAudioEngine::attachMetaData(Decoder *decoder, DecoderFactory *factory, InputSource *source)
 {
-    if(!m_decoder || m_inputs.isEmpty())
-        return;
-    QString url = m_inputs.value(m_decoder)->url();
-    if (QFile::exists(url)) //send metadata for local files only
+    QString path = source->path();
+    QString scheme = path.section("://",0,0);
+    QFileInfo fileInfo(path);
+
+    if(fileInfo.isFile() || factory->properties().protocols.contains(scheme))
     {
-        QList <FileInfo *> list = MetaDataManager::instance()->createPlayList(url, true);
-        if (!list.isEmpty())
+        QStringList ignoredPaths;
+        QList<TrackInfo *> list = factory->createPlayList(path, TrackInfo::AllParts, &ignoredPaths);
+        if(!list.isEmpty())
         {
-            StateHandler::instance()->dispatch(list[0]->metaData());
-            m_metaData = QSharedPointer<QMap<Qmmp::MetaData, QString> >(new QMap<Qmmp::MetaData, QString>(list[0]->metaData()));
-            while (!list.isEmpty())
-                delete list.takeFirst();
+            TrackInfo *info = list.takeFirst();
+            qDeleteAll(list);
+            list.clear();
+            decoder->addMetaData(info->metaData());
+            if(info->parts() & TrackInfo::ReplayGainInfo)
+                decoder->setReplayGainInfo(info->replayGainInfo());
+            info->updateValues(decoder->properties());
+            info->setValue(Qmmp::DECODER, factory->properties().shortName);
+            if(fileInfo.isFile() && info->value(Qmmp::FILE_SIZE).isEmpty())
+                info->setValue(Qmmp::FILE_SIZE, fileInfo.size());
+            decoder->setProperties(info->properties());
+            delete info;
         }
+    }
+    else
+    {
+        decoder->setProperty(Qmmp::DECODER, factory->properties().shortName);
+        if(!decoder->hasMetaData())
+            decoder->addMetaData(QMap<Qmmp::MetaData, QString>()); //add empty metadata to trigger track info update
     }
 }
 
 OutputWriter *QmmpAudioEngine::createOutput()
 {
-    OutputWriter *output = new OutputWriter(0);
+    OutputWriter *output = new OutputWriter(nullptr);
     output->setMuted(m_muted);
     if (!output->initialize(m_ap.sampleRate(), m_ap.channelMap()))
     {
         delete output;
         StateHandler::instance()->dispatch(Qmmp::FatalError);
-        return 0;
+        return nullptr;
     }
     return output;
 }
@@ -661,8 +654,8 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
             m_blockedEffects.removeAll(e);
         }
     }
-    m_replayGain = 0;
-    m_dithering = 0;
+    m_replayGain = nullptr;
+    m_dithering = nullptr;
     QList <Effect *> tmp_effects = m_effects;
     m_effects.clear();
 
@@ -693,7 +686,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
 
     foreach(EffectFactory *factory, Effect::enabledFactories())
     {
-        Effect *effect = 0;
+        Effect *effect = nullptr;
         foreach(Effect *e, tmp_effects) //find effect
         {
             if(e->factory() == factory)
@@ -706,7 +699,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
             m_blockedEffects.removeAll(effect);
             tmp_effects.removeAll(effect);
             delete effect;
-            effect = 0;
+            effect = nullptr;
         }
         if(!effect)
         {
@@ -721,10 +714,12 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
         m_effects << effect;
         tmp_effects.removeAll(effect);
     }
+
+    m_dithering->setFormats(d->audioParameters().format(), m_ap.format());
 }
 
 //static members
-QmmpAudioEngine *QmmpAudioEngine::m_instance = 0;
+QmmpAudioEngine *QmmpAudioEngine::m_instance = nullptr;
 
 QmmpAudioEngine *QmmpAudioEngine::instance()
 {

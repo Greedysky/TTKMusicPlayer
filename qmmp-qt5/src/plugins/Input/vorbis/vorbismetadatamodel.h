@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,27 +24,35 @@
 #include <qmmp/metadatamodel.h>
 #include <taglib/vorbisfile.h>
 #include <taglib/xiphcomment.h>
+#include <taglib/tfilestream.h>
+
+#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
+#define HAS_PICTURE_LIST
+#endif
 
 class VorbisCommentModel;
 
 class VorbisMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
 public:
-    VorbisMetaDataModel(const QString &path, QObject *parent);
+    VorbisMetaDataModel(const QString &path, bool readOnly);
     ~VorbisMetaDataModel();
+
     friend class VorbisCommentModel;
 
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
-    QPixmap cover();
+    virtual QList<TagModel* > tags() const override;
+    virtual QPixmap cover() const override;
+#ifdef HAS_PICTURE_LIST
+    virtual void setCover(const QPixmap &pix) override;
+    virtual void removeCover() override;
+#endif
 
 private:
     QString m_path;
     TagLib::Ogg::Vorbis::File *m_file;
     TagLib::Ogg::XiphComment *m_tag;
     QList<TagModel* > m_tags;
-    ulong readPictureBlockField(QByteArray data, int offset);
+    TagLib::FileStream *m_stream;
 };
 
 class VorbisCommentModel : public TagModel
@@ -52,10 +60,11 @@ class VorbisCommentModel : public TagModel
 public:
     VorbisCommentModel(VorbisMetaDataModel *model);
     ~VorbisCommentModel();
-    const QString name();
-    const QString value(Qmmp::MetaData key);
-    void setValue(Qmmp::MetaData key, const QString &value);
-    void save();
+
+    virtual QString name() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual void save() override;
 
 private:
     VorbisMetaDataModel *m_model;

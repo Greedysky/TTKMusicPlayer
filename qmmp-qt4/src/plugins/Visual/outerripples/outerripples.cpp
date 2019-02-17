@@ -3,9 +3,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "outerripples.h"
@@ -15,18 +14,18 @@ OuterRipples::OuterRipples (QWidget *parent) : Visual (parent)
     setAttribute(Qt::WA_DeleteOnClose, false);
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
     m_analyzer_falloff = 2.2;
     m_cell_size = QSize(15, 6);
 
-    setWindowTitle (tr("Outer Ripples Widget"));
-    m_timer = new QTimer (this);
-    m_timer->setInterval(40);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    setWindowTitle(tr("Outer Ripples Widget"));
+    m_timer = new QTimer(this);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     clear();
 }
@@ -69,27 +68,27 @@ void OuterRipples::timeout()
     }
 }
 
-void OuterRipples::hideEvent (QHideEvent *)
+void OuterRipples::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void OuterRipples::showEvent (QShowEvent *)
+void OuterRipples::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void OuterRipples::paintEvent (QPaintEvent * e)
+void OuterRipples::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
-    QPainter painter (this);
+    QPainter painter(this);
     draw(&painter);
 }
 
-void OuterRipples::process ()
+void OuterRipples::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -121,7 +120,7 @@ void OuterRipples::process ()
 
     calc_freq (dest, m_left_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
@@ -150,17 +149,13 @@ void OuterRipples::process ()
     }
 }
 
-void OuterRipples::draw (QPainter *p)
+void OuterRipples::draw(QPainter *p)
 {
     QBrush brush(Qt::SolidPattern);
-    int x = 0;
-    int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
 
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    int x = 0;
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+    const float maxed = maxRange();
 
     for (int j = 0; j < m_cols; ++j)
     {
@@ -170,7 +165,7 @@ void OuterRipples::draw (QPainter *p)
             x += rdx; //correct right part position
         }
 
-        for (int i = 0; i <= m_intern_vis_data[j]*l; ++i)
+        for (int i = 0; i <= m_intern_vis_data[j]*maxed; ++i)
         {
             brush.setColor(Qt::white);
             p->fillRect (x, height() - i * m_cell_size.height() + 1,

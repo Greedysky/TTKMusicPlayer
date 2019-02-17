@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,12 +24,13 @@
 #include <QObject>
 #include <QList>
 #include <QMetaObject>
-#include <QDialog>
+#include <QApplication>
 #include <QPluginLoader>
 #include "statehandler.h"
 #include "visualfactory.h"
 #include "visualbuffer_p.h"
 #include "visual.h"
+#include "soundcore.h"
 
 Visual::Visual(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f)
 {
@@ -81,17 +82,27 @@ bool Visual::takeData(float *left, float *right)
         }
     }
     m_buffer.mutex()->unlock();
-    return node != 0;
+    return node != nullptr;
+}
+
+float Visual::maxRange() const
+{
+    float range = 1.0f;
+    if(SoundCore::instance())
+    {
+        range = SoundCore::instance()->volume() * 1.0 / 100;
+    }
+    return range;
 }
 
 //static members
-QList<VisualFactory*> *Visual::m_factories = 0;
-QHash <VisualFactory*, QString> *Visual::m_files = 0;
+QList<VisualFactory*> *Visual::m_factories = nullptr;
+QHash <VisualFactory*, QString> *Visual::m_files = nullptr;
 QList<Visual*> Visual::m_visuals;
 QHash<VisualFactory*, Visual*> Visual::m_vis_map;
-QWidget *Visual::m_parentWidget = 0;
-QObject *Visual::m_receiver = 0;
-const char *Visual::m_member = 0;
+QWidget *Visual::m_parentWidget = nullptr;
+QObject *Visual::m_receiver = nullptr;
+const char *Visual::m_member = nullptr;
 VisualBuffer Visual::m_buffer;
 
 QList<VisualFactory *> Visual::factories()
@@ -221,35 +232,23 @@ void Visual::checkFactories()
         m_factories = new QList<VisualFactory *>;
         m_files = new QHash <VisualFactory*, QString>;
 
-        QDir pluginsDir (Qmmp::pluginsPath());
-#ifndef Q_OS_ANDROID
-        pluginsDir.cd("Visual");
-#endif
-        QStringList filters;
-        filters << "*.dll" << "*.so";
-        foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+        foreach (QString filePath, Qmmp::findPlugins("Visual"))
         {
-#ifdef Q_OS_ANDROID
-            if(!fileName.contains("_visual_"))
-            {
-                continue;
-            }
-#endif
-            QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+            QPluginLoader loader(filePath);
             QObject *plugin = loader.instance();
             if (loader.isLoaded())
-                qDebug("Visual: loaded plugin %s", qPrintable(fileName));
+                qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
             else
                 qWarning("Visual: %s", qPrintable(loader.errorString ()));
 
-            VisualFactory *factory = 0;
+            VisualFactory *factory = nullptr;
             if (plugin)
                 factory = qobject_cast<VisualFactory *>(plugin);
 
             if (factory)
             {
                 m_factories->append(factory);
-                m_files->insert(factory, pluginsDir.absoluteFilePath(fileName));
+                m_files->insert(factory, filePath);
             }
         }
     }

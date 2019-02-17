@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2013 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,7 +35,7 @@
 #include "qmmpsettings.h"
 #include "soundcore.h"
 
-SoundCore *SoundCore::m_instance = 0;
+SoundCore *SoundCore::m_instance = nullptr;
 
 SoundCore::SoundCore(QObject *parent)
         : QObject(parent)
@@ -44,7 +44,7 @@ SoundCore::SoundCore(QObject *parent)
         qFatal("SoundCore: only one instance is allowed");
     qRegisterMetaType<Qmmp::State>("Qmmp::State");
     m_instance = this;
-    m_engine = 0;
+    m_engine = nullptr;
     m_nextState = NO_ENGINE;
     m_muted = false;
     m_handler = new StateHandler(this);
@@ -64,7 +64,7 @@ SoundCore::~SoundCore()
 {
     stop();
     MetaDataManager::destroy();
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 bool SoundCore::play(const QString &source, bool queue, qint64 offset)
@@ -97,7 +97,7 @@ bool SoundCore::play(const QString &source, bool queue, qint64 offset)
 void SoundCore::stop()
 {
     qApp->sendPostedEvents(this, 0);
-    m_url.clear();
+    m_path.clear();
     qDeleteAll(m_sources);
     m_sources.clear();
     m_nextState = NO_ENGINE;
@@ -125,9 +125,9 @@ void SoundCore::seek(qint64 pos)
         m_engine->seek(pos);
 }
 
-const QString SoundCore::url() const
+const QString SoundCore::path() const
 {
-    return m_url;
+    return m_path;
 }
 
 bool SoundCore::nextTrackAccepted() const
@@ -135,9 +135,9 @@ bool SoundCore::nextTrackAccepted() const
     return m_nextState == SAME_ENGINE;
 }
 
-qint64 SoundCore::totalTime() const
+qint64 SoundCore::duration() const
 {
-    return m_handler->totalTime();
+    return m_handler->duration();
 }
 
 EqSettings SoundCore::eqSettings() const
@@ -240,19 +240,24 @@ Qmmp::State SoundCore::state() const
     return m_handler->state();
 }
 
-QMap <Qmmp::MetaData, QString> SoundCore::metaData() const
+const QMap<Qmmp::MetaData, QString> &SoundCore::metaData() const
 {
-    return m_metaData;
+    return m_info.metaData();
 }
 
 QString SoundCore::metaData(Qmmp::MetaData key) const
 {
-    return m_metaData[key];
+    return m_info.value(key);
 }
 
 QHash<QString, QString> SoundCore::streamInfo() const
 {
     return m_streamInfo;
+}
+
+const TrackInfo &SoundCore::trackInfo() const
+{
+    return m_info;
 }
 
 void SoundCore::startNextSource()
@@ -261,12 +266,12 @@ void SoundCore::startNextSource()
         return;
 
     InputSource *s = m_sources.dequeue();
-    m_url = s->url();
+    m_path = s->path();
 
     if(s->ioDevice() && !s->ioDevice()->isOpen() && !s->ioDevice()->open(QIODevice::ReadOnly))
     {
         qWarning("SoundCore: input error: %s", qPrintable(s->ioDevice()->errorString()));
-        m_url.clear();
+        m_path.clear();
         s->deleteLater();
         m_nextState = INVALID_SOURCE;
         if(m_handler->state() == Qmmp::Stopped || m_handler->state() == Qmmp::Buffering)
@@ -290,7 +295,7 @@ void SoundCore::startNextSource()
             return;
         }
     }
-    else if(m_engine->enqueue(s))
+    else if(AbstractEngine::isEnabled(m_engine) && m_engine->enqueue(s))
     {
         if(state() == Qmmp::Stopped || state() == Qmmp::Buffering)
         {
@@ -330,7 +335,7 @@ void SoundCore::startNextEngine()
         if(m_engine)
         {
             m_engine->deleteLater();
-            m_engine = 0;
+            m_engine = nullptr;
         }
         if(!m_sources.isEmpty())
         {
@@ -361,15 +366,15 @@ bool SoundCore::event(QEvent *e)
             startNextEngine();
         }
     }
-    else if(e->type() == EVENT_METADATA_CHANGED)
-    {
-        m_metaData = ((MetaDataChangedEvent *) e)->metaData();
-        emit metaDataChanged();
-    }
     else if(e->type() == EVENT_STREAM_INFO_CHANGED)
     {
         m_streamInfo = ((StreamInfoChangedEvent *) e)->streamInfo();
         emit streamInfoChanged();
+    }
+    else if(e->type() == EVENT_TRACK_INFO_CHANGED)
+    {
+        m_info = ((TrackInfoEvent *) e)->trackInfo();
+        emit trackInfoChanged();
     }
     else if(e->type() == EVENT_NEXT_TRACK_REQUEST)
         emit nextTrackRequest();

@@ -34,18 +34,21 @@ void Decoder::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &rg)
 
 void Decoder::configure(quint32 srate, const ChannelMap &map, Qmmp::AudioFormat format)
 {
-    m_parameters = AudioParameters(srate, map, format);
+    configure(AudioParameters(srate, map, format));
 }
 
 void Decoder::configure(quint32 srate, int channels, Qmmp::AudioFormat f)
 {
     qDebug("Decoder: using internal channel order");
-    m_parameters = AudioParameters(srate, ChannelMap(channels), f);
+    configure(AudioParameters(srate, ChannelMap(channels), f));
 }
 
 void Decoder::configure(const AudioParameters &p)
 {
     m_parameters = p;
+    setProperty(Qmmp::SAMPLERATE, m_parameters.sampleRate());
+    setProperty(Qmmp::CHANNELS, m_parameters.channels());
+    setProperty(Qmmp::BITS_PER_SAMPLE, m_parameters.validBitsPerSample());
 }
 
 void Decoder::next()
@@ -88,9 +91,31 @@ QMap<Qmmp::MetaData, QString> Decoder::takeMetaData()
     return m_metaData;
 }
 
+void Decoder::setProperty(Qmmp::TrackProperty key, const QVariant &value)
+{
+    QString strValue = value.toString();
+    if(strValue.isEmpty() || strValue == "0")
+        m_properties.remove(key);
+    else
+        m_properties[key] = strValue;
+}
+
+void Decoder::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
+{
+    foreach(Qmmp::TrackProperty key, properties.keys())
+    {
+        setProperty(key, properties.value(key));
+    }
+}
+
+const QMap<Qmmp::TrackProperty, QString> &Decoder::properties() const
+{
+    return m_properties;
+}
+
 // static methods
 QStringList Decoder::m_disabledNames;
-QList<QmmpPluginCache*> *Decoder::m_cache = 0;
+QList<QmmpPluginCache*> *Decoder::m_cache = nullptr;
 
 //sort cache items by priority
 static bool _pluginCacheLessComparator(QmmpPluginCache* f1, QmmpPluginCache* f2)
@@ -105,21 +130,9 @@ void Decoder::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-#ifndef Q_OS_ANDROID
-    pluginsDir.cd("Input");
-#endif
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Input"))
     {
-#ifdef Q_OS_ANDROID
-        if(!fileName.contains("_input_"))
-        {
-            continue;
-        }
-#endif
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;
@@ -162,7 +175,7 @@ QStringList Decoder::protocols()
 DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
 {
     loadPlugins();
-    DecoderFactory *fact = 0;
+    DecoderFactory *fact = nullptr;
     //detect by content if enabled
     if(useContent)
     {
@@ -170,7 +183,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
         if(!file.open(QIODevice::ReadOnly))
         {
             qWarning("Decoder: file open error: %s", qPrintable(file.errorString()));
-            return 0;
+            return nullptr;
         }
 
         foreach(QmmpPluginCache *item, *m_cache)
@@ -187,13 +200,13 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
             if (fact->canDecode(&file))
                 return fact;
         }
-        fact = 0;
+        fact = nullptr;
     }
 
     QList<DecoderFactory*> filtered = findByFileExtension(path);
 
     if(filtered.isEmpty())
-        return 0;
+        return nullptr;
 
     if(filtered.size() == 1)
         return filtered.at(0);
@@ -204,7 +217,7 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
     if(!file.open(QIODevice::ReadOnly))
     {
         qWarning("Decoder: file open error: %s", qPrintable(file.errorString()));
-        return 0;
+        return nullptr;
     }
 
     foreach (fact, filtered)
@@ -216,13 +229,13 @@ DecoderFactory *Decoder::findByFilePath(const QString &path, bool useContent)
     if(!filtered.isEmpty() && !useContent) //fallback
         return filtered.first();
 
-    return 0;
+    return nullptr;
 }
 
 DecoderFactory *Decoder::findByMime(const QString& type)
 {
     if(type.isEmpty())
-        return 0;
+        return nullptr;
     loadPlugins();
     foreach (QmmpPluginCache *item, *m_cache)
     {
@@ -232,7 +245,7 @@ DecoderFactory *Decoder::findByMime(const QString& type)
         if(fact && !fact->properties().noInput && fact->properties().contentTypes.contains(type))
             return fact;
     }
-    return 0;
+    return nullptr;
 }
 
 DecoderFactory *Decoder::findByContent(QIODevice *input)
@@ -246,7 +259,7 @@ DecoderFactory *Decoder::findByContent(QIODevice *input)
         if(fact && !fact->properties().noInput && fact->canDecode(input))
             return fact;
     }
-    return 0;
+    return nullptr;
 }
 
 DecoderFactory *Decoder::findByProtocol(const QString &p)
@@ -260,13 +273,13 @@ DecoderFactory *Decoder::findByProtocol(const QString &p)
         if (item->decoderFactory() && item->decoderFactory()->properties().protocols.contains(p))
             return item->decoderFactory();
     }
-    return 0;
+    return nullptr;
 }
 
 QList<DecoderFactory *> Decoder::findByFileExtension(const QString &path)
 {
     QList<DecoderFactory*> filtered;
-    DecoderFactory *fact = 0;
+    DecoderFactory *fact = nullptr;
     foreach (QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))

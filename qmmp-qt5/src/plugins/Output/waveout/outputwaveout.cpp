@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2018 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,8 +35,6 @@ static HWAVEOUT          dev                    = NULL;
 static unsigned int      ScheduledBlocks        = 0;
 static int               PlayedWaveHeadersCount = 0;          // free index
 static WAVEHDR*          PlayedWaveHeaders [MAX_WAVEBLOCKS];
-
-
 
 static void CALLBACK wave_callback (HWAVE hWave, UINT uMsg, DWORD dwInstance, DWORD dwParam1, DWORD dwParam2)
 {
@@ -244,7 +242,7 @@ void OutputWaveOut::uninitialize()
 
         waveOutReset (dev);      // reset the device
         waveOutClose (dev);      // close the device
-        dev = 0;
+        dev = nullptr;
     }
 
     DeleteCriticalSection (&cs);
@@ -262,14 +260,14 @@ VolumeWaveOut::~VolumeWaveOut()
 void VolumeWaveOut::setVolume(const VolumeSettings &vol)
 {
     DWORD data = (vol.right*0xFFFF/100 << 16) | vol.left*0xFFFF/100;
-    waveOutSetVolume(0, data);
+    waveOutSetVolume(nullptr, data);
 }
 
 VolumeSettings VolumeWaveOut::volume() const
 {
     VolumeSettings vol;
     DWORD data;
-    waveOutGetVolume(0, (PDWORD)&data);
+    waveOutGetVolume(nullptr, (PDWORD)&data);
     vol.left = (long)LOWORD(data) * 100 / 0xFFFF + 1;
     vol.right = (long)HIWORD(data) * 100 / 0xFFFF + 1;
     return vol;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,13 +22,11 @@
 #include "outputalsa.h"
 #include "outputalsafactory.h"
 
-
-const OutputProperties OutputALSAFactory::properties() const
+OutputProperties OutputALSAFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("ALSA Plugin");
     properties.shortName = "alsa";
-    properties.hasAbout = true;
     properties.hasSettings = true;
     return properties;
 }

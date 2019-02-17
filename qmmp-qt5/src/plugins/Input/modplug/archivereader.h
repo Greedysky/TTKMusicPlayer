@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef ARCHIVEREADER_H
 #define ARCHIVEREADER_H
 
@@ -30,10 +31,9 @@ class QProcess;
 */
 class ArchiveReader : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    ArchiveReader(QObject *parent = 0);
-
+    ArchiveReader(QObject *parent = nullptr);
     ~ArchiveReader();
 
     bool isSupported(const QString &path);

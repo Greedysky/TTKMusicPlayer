@@ -5,9 +5,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "normalline.h"
@@ -15,9 +14,9 @@
 
 NormalLine::NormalLine (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_peaks = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_peaks = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
@@ -27,13 +26,13 @@ NormalLine::NormalLine (QWidget *parent) : Visual (parent)
         m_starPoints << StarPoint();
     }
 
-    setWindowTitle (tr("Normal Line Widget"));
+    setWindowTitle(tr("Normal Line Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_starTimer = new QTimer (this);
-    connect(m_starTimer, SIGNAL (timeout()), this, SLOT (starTimeout()));
+    m_starTimer = new QTimer(this);
+    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
     m_starAction = new QAction(tr("Star"), this);
     m_starAction->setCheckable(true);
@@ -41,7 +40,7 @@ NormalLine::NormalLine (QWidget *parent) : Visual (parent)
 
     m_peaks_falloff = 0.2;
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(40);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(3, 2);
 
@@ -154,13 +153,13 @@ void NormalLine::changeStarColor()
     }
 }
 
-void NormalLine::hideEvent (QHideEvent *)
+void NormalLine::hideEvent(QHideEvent *)
 {
     m_timer->stop();
     m_starTimer->stop();
 }
 
-void NormalLine::showEvent (QShowEvent *)
+void NormalLine::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -169,9 +168,9 @@ void NormalLine::showEvent (QShowEvent *)
     }
 }
 
-void NormalLine::paintEvent (QPaintEvent * e)
+void NormalLine::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -189,9 +188,9 @@ void NormalLine::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalLine::process ()
+void NormalLine::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -229,7 +228,7 @@ void NormalLine::process ()
     calc_freq (dest_l, m_left_buffer);
     calc_freq (dest_r, m_right_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
@@ -276,7 +275,7 @@ void NormalLine::process ()
     }
 }
 
-void NormalLine::draw (QPainter *p)
+void NormalLine::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
@@ -297,13 +296,8 @@ void NormalLine::draw (QPainter *p)
     p->setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     int x = 0;
-    int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+    const float maxed = maxRange();
 
     for (int j = 0; j < m_cols * 2; ++j)
     {
@@ -313,10 +307,10 @@ void NormalLine::draw (QPainter *p)
             x += rdx; //correct right part position
         }
 
-        int hh = m_intern_vis_data[j] * l *m_cell_size.height();
+        int hh = m_intern_vis_data[j] * maxed *m_cell_size.height();
         p->fillRect (x, height() - hh, m_cell_size.width() - 1, hh, line);
 
-        p->fillRect (x, height() - int(m_peaks[j] * l) * m_cell_size.height(),
+        p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height(),
                      m_cell_size.width() - 1, m_cell_size.height(), "Cyan");
     }
 }

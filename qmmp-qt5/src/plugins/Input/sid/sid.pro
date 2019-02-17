@@ -11,26 +11,16 @@ SOURCES += decoder_sid.cpp \
 TARGET = $$PLUGINS_PREFIX/Input/sid
 QMAKE_CLEAN = $$PLUGINS_PREFIX/Input/libsid.so
 
-INCLUDEPATH += ../../../ \
-                $$EXTRA_PREFIX/libsidplayfp/include
-                
-CONFIG += warn_on \
-          plugin \
-          link_pkgconfig
-          
-TEMPLATE = lib
+INCLUDEPATH += $$EXTRA_PREFIX/libsidplayfp/include
 
-unix{
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
+unix {
     target.path = $$LIB_DIR/qmmp/Input
     INSTALLS += target
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
-    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp -lqmmp
+    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp
 }
 
 win32 {
     HEADERS += ../../../../src/qmmp/metadatamodel.h \
                ../../../../src/qmmp/decoderfactory.h
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
-    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp -lqmmp1
+    LIBS += -L$$EXTRA_PREFIX/libsidplayfp/lib -lsidplayfp
 }

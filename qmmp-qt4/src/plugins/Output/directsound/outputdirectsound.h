@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -42,7 +42,6 @@ public:
 
     bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format);
 
-    //output api
     qint64 latency();
     qint64 writeAudio(unsigned char *data, qint64 size);
     void drain();
@@ -54,7 +53,6 @@ public:
     static OutputDirectSound *instance;
     static VolumeDirectSound *volumeControl;
     IDirectSoundBuffer8 *secondaryBuffer();
-
 
 private:
     // helper functions
@@ -95,6 +93,5 @@ public:
 private:
     VolumeSettings m_volume;
 };
-
 
 #endif // OUTPUTDIRECTSOUND_H

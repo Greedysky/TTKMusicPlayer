@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,6 @@
 #include <qmmp/visual.h>
 #include <qmmp/statehandler.h>
 #include "outputalsa.h"
-
 
 OutputALSA::OutputALSA() : m_inited(false)
 {

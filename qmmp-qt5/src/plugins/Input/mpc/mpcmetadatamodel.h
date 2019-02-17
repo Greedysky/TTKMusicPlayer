@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,21 +24,22 @@
 #include <qmmp/metadatamodel.h>
 #include <taglib/tag.h>
 #include <taglib/mpcfile.h>
+#include <taglib/tfilestream.h>
 
 class QTextCodec;
 
 class MPCMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
 public:
-    MPCMetaDataModel(const QString &path, QObject *parent);
+    MPCMetaDataModel(const QString &path, bool readOnly);
     ~MPCMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QList<TagModel* > tags();
+
+    virtual QList<TagModel* > tags() const override;
 
 private:
     QList<TagModel* > m_tags;
     TagLib::MPC::File *m_file;
+    TagLib::FileStream *m_stream;
 };
 
 class MPCFileTagModel : public TagModel
@@ -46,14 +47,15 @@ class MPCFileTagModel : public TagModel
 public:
     MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::TagTypes tagType);
     ~MPCFileTagModel();
-    const QString name();
-    QList<Qmmp::MetaData> keys();
-    const QString value(Qmmp::MetaData key);
-    void setValue(Qmmp::MetaData key, const QString &value);
-    bool exists();
-    void create();
-    void remove();
-    void save();
+
+    virtual QString name() const override;
+    virtual QList<Qmmp::MetaData> keys() const override;
+    virtual QString value(Qmmp::MetaData key) const override;
+    virtual void setValue(Qmmp::MetaData key, const QString &value) override;
+    virtual bool exists() const override;
+    virtual void create() override;
+    virtual void remove() override;
+    virtual void save() override;
 
 private:
     QTextCodec *m_codec;

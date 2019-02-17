@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -34,13 +34,13 @@ public:
     virtual ~DecoderOpus();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
 
 private:
-    virtual qint64 read(unsigned char *data, qint64 maxSize);
-    virtual void seek(qint64 time);
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
     // helper functions
     ChannelMap findChannelMap(int channels);
@@ -50,6 +50,5 @@ private:
     int m_chan;
     QString m_url;
 };
-
 
 #endif // DECODER_OPUS_H

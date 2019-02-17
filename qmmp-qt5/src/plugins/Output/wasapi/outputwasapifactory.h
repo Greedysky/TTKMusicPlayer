@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef OUTPUTWASAPIFACTORY_H
 #define OUTPUTWASAPIFACTORY_H
 
@@ -24,19 +25,19 @@
 #include <QString>
 #include <QIODevice>
 #include <QWidget>
+
 #include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
 class OutputWASAPIFactory : public QObject, OutputFactory
 {
-Q_OBJECT
-Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")
-Q_INTERFACES(OutputFactory)
-
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.OutputFactoryInterface.1.0")
+    Q_INTERFACES(OutputFactory)
 public:
-    const OutputProperties properties() const;
-    Output* create();
-    Volume *createVolume();
+    virtual OutputProperties properties() const override;
+    virtual Output* create() override;
+    virtual Volume *createVolume() override;
 
 };
 

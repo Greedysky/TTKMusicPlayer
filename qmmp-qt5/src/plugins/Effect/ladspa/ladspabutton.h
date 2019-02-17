@@ -31,9 +31,9 @@ class LADSPAHost;
 */
 class LADSPAButton : public QCheckBox
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    LADSPAButton(LADSPA_Data *value, QWidget *parent = 0);
+    LADSPAButton(LADSPA_Data *value, QWidget *parent = nullptr);
 
 private slots:
     void enable(bool yes);

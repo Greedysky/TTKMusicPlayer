@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,16 +39,16 @@
 
 // Decoder class
 
-DecoderModPlug* DecoderModPlug::m_instance = 0;
+DecoderModPlug* DecoderModPlug::m_instance = nullptr;
 
-DecoderModPlug::DecoderModPlug(const QString &path) : Decoder(0)
+DecoderModPlug::DecoderModPlug(const QString &path) : Decoder(nullptr)
 {
     m_path = path;
     m_freq = 0;
     m_bitrate = 0;
     m_totalTime = 0;
     m_chan = 0;
-    m_soundFile = 0;
+    m_soundFile = nullptr;
     m_sampleSize = 0;
     m_instance = this;
     m_bps = 0;
@@ -60,7 +60,7 @@ DecoderModPlug::~DecoderModPlug()
 {
     deinit();
     if(m_instance == this)
-        m_instance = 0;
+        m_instance = nullptr;
 }
 
 bool DecoderModPlug::initialize()
@@ -166,7 +166,7 @@ void DecoderModPlug::deinit()
     {
         m_soundFile->Destroy();
         delete m_soundFile;
-        m_soundFile = 0;
+        m_soundFile = nullptr;
     }
     m_input_buf.clear();
 }

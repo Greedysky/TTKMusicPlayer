@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,6 @@
 #ifndef OUTPUTDIRECTSOUND_H
 #define OUTPUTDIRECTSOUND_H
 
-#include <QTranslator>
 #include <stdio.h>
 #include <windows.h>
 #include <ksmedia.h>
@@ -41,21 +40,19 @@ public:
     OutputDirectSound();
     ~OutputDirectSound();
 
-    bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format);
+    virtual bool initialize(quint32, ChannelMap map,  Qmmp::AudioFormat format) override;
 
-    //output api
-    qint64 latency();
-    qint64 writeAudio(unsigned char *data, qint64 size);
-    void drain();
-    void suspend();
-    void resume();
-    void reset();
+    virtual qint64 latency() override;
+    virtual qint64 writeAudio(unsigned char *data, qint64 size) override;
+    virtual void drain() override;
+    virtual void suspend() override;
+    virtual void resume() override;
+    virtual void reset() override;
 
     //volume control
     static OutputDirectSound *instance;
     static VolumeDirectSound *volumeControl;
     IDirectSoundBuffer8 *secondaryBuffer();
-
 
 private:
     // helper functions
@@ -89,13 +86,12 @@ public:
     VolumeDirectSound();
     ~VolumeDirectSound();
 
-    void setVolume(const VolumeSettings &vol);
-    VolumeSettings volume() const;
+    virtual void setVolume(const VolumeSettings &vol) override;
+    virtual VolumeSettings volume() const override;
     void restore();
 
 private:
     VolumeSettings m_volume;
 };
-
 
 #endif // OUTPUTDIRECTSOUND_H

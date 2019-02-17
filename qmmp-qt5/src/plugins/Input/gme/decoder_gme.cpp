@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2010-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 DecoderGme::DecoderGme(const QString &path) : Decoder()
 {
     m_path = path;
-    m_emu = 0;
+    m_emu = nullptr;
 }
 
 DecoderGme::~DecoderGme()
@@ -44,7 +44,7 @@ bool DecoderGme::initialize()
     {
         qWarning("DecoderGme: track number is out of range");
         gme_delete(m_emu);
-        m_emu = 0;
+        m_emu = nullptr;
         return false;
     }
     gme_start_track(m_emu, track - 1);
@@ -69,7 +69,6 @@ bool DecoderGme::initialize()
     metadata.insert(Qmmp::ARTIST, track_info->author);
     metadata.insert(Qmmp::COMMENT, track_info->comment);
     metadata.insert(Qmmp::TRACK, QString("%1").arg(track));
-    metadata.insert(Qmmp::URL, m_path);
     addMetaData(metadata);
     m_totalTime = track_info->length;
     gme_free_info(track_info);

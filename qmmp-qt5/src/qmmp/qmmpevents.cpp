@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011 by Ilya Kotov                                      *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,24 +39,6 @@ Qmmp::State StateChangedEvent::previousState() const
     return m_prevState;
 }
 
-MetaDataChangedEvent::MetaDataChangedEvent(const QMap<Qmmp::MetaData, QString> &metaData)
-    : QEvent (EVENT_METADATA_CHANGED)
-{
-    m_metaData = metaData;
-}
-
-MetaDataChangedEvent::~MetaDataChangedEvent(){}
-
-QMap<Qmmp::MetaData, QString>MetaDataChangedEvent::metaData() const
-{
-    return m_metaData;
-}
-
-QString MetaDataChangedEvent::metaData(Qmmp::MetaData key) const
-{
-    return m_metaData.value(key);
-}
-
 StreamInfoChangedEvent::StreamInfoChangedEvent(const QHash<QString, QString> &info)
     : QEvent (EVENT_STREAM_INFO_CHANGED)
 {
@@ -68,4 +50,16 @@ StreamInfoChangedEvent::~StreamInfoChangedEvent(){}
 QHash<QString, QString>StreamInfoChangedEvent::streamInfo() const
 {
     return m_streamInfo;
+}
+
+TrackInfoEvent::TrackInfoEvent(const TrackInfo &info) : QEvent(EVENT_TRACK_INFO_CHANGED)
+{
+    m_info = info;
+}
+
+TrackInfoEvent::~TrackInfoEvent(){}
+
+const TrackInfo &TrackInfoEvent::trackInfo() const
+{
+    return m_info;
 }

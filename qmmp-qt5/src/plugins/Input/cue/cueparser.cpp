@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,10 +31,10 @@
 #endif
 #include "cueparser.h"
 
-CUEParser::CUEParser(const QString &url)
+CUEParser::CUEParser(const QString &path)
 {
-    QString fileName = url;
-    if(url.contains("://"))
+    QString fileName = path;
+    if(path.contains("://"))
     {
         fileName.remove("cue://");
         fileName.remove(QRegExp("#\\d+$"));
@@ -49,9 +49,9 @@ CUEParser::CUEParser(const QString &url)
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("CUE");
     m_dirty = settings.value("dirty_cue", false).toBool();
-    QTextCodec *codec = 0;
+    QTextCodec *codec = nullptr;
 #ifdef WITH_ENCA
-    EncaAnalyser analyser = 0;
+    EncaAnalyser analyser = nullptr;
     if(settings.value("use_enca", false).toBool())
     {
         analyser = enca_analyser_alloc(settings.value("enca_lang").toByteArray ().constData());
@@ -98,32 +98,32 @@ CUEParser::CUEParser(const QString &url)
             if(m_tracks.isEmpty())
                 artist = words[1];
             else
-                m_tracks.last()->info.setMetaData(Qmmp::ARTIST, words[1]);
+                m_tracks.last()->info.setValue(Qmmp::ARTIST, words[1]);
         }
         else if (words[0] == "TITLE")
         {
             if(m_tracks.isEmpty())
                 album = words[1];
             else
-                m_tracks.last()->info.setMetaData(Qmmp::TITLE, words[1]);
+                m_tracks.last()->info.setValue(Qmmp::TITLE, words[1]);
         }
         else if (words[0] == "TRACK")
         {
             QString path = fileName;
-            FileInfo info("cue://" + path + QString("#%1").arg(words[1].toInt()));
-            info.setMetaData(Qmmp::TRACK, words[1].toInt());
-            info.setMetaData(Qmmp::ALBUM, album);
-            info.setMetaData(Qmmp::GENRE, genre);
-            info.setMetaData(Qmmp::YEAR, date);
-            info.setMetaData(Qmmp::COMMENT, comment);
-            info.setMetaData(Qmmp::ARTIST, artist);
-            info.setMetaData(Qmmp::ALBUMARTIST, artist);
+            TrackInfo info("cue://" + path + QString("#%1").arg(words[1].toInt()));
+            info.setValue(Qmmp::TRACK, words[1].toInt());
+            info.setValue(Qmmp::ALBUM, album);
+            info.setValue(Qmmp::GENRE, genre);
+            info.setValue(Qmmp::YEAR, date);
+            info.setValue(Qmmp::COMMENT, comment);
+            info.setValue(Qmmp::ARTIST, artist);
+            info.setValue(Qmmp::ALBUMARTIST, artist);
+            info.setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN, album_gain);
+            info.setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK, album_peak);
 
             m_tracks << new CUETrack;
             m_tracks.last()->info = info;
             m_tracks.last()->offset = 0;
-            m_tracks.last()->replayGain.insert(Qmmp::REPLAYGAIN_ALBUM_GAIN, album_gain);
-            m_tracks.last()->replayGain.insert(Qmmp::REPLAYGAIN_ALBUM_PEAK, album_peak);
         }
         else if (words[0] == "INDEX" && words[1] == "01")
         {
@@ -147,9 +147,9 @@ CUEParser::CUEParser(const QString &url)
             else if (words[1] == "REPLAYGAIN_ALBUM_PEAK")
                 album_peak = words[2].toDouble();
             else if (words[1] == "REPLAYGAIN_TRACK_GAIN" && !m_tracks.isEmpty())
-                m_tracks.last()->replayGain.insert(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
+                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
             else if (words[1] == "REPLAYGAIN_TRACK_PEAK" && !m_tracks.isEmpty())
-                m_tracks.last()->replayGain.insert(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
+                m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
         }
     }
     file.close();
@@ -173,23 +173,24 @@ CUEParser::CUEParser(const QString &url)
         }
     }
     //calculate lengths
+    QList<TrackInfo *> f_list;
     for(int i = 0; i < m_tracks.count(); ++i)
     {
-        QString file_path = m_tracks[i]->file;
-        if((i < m_tracks.count() - 1) && (file_path == m_tracks[i+1]->file))
-            m_tracks[i]->info.setLength(m_tracks[i+1]->offset - m_tracks[i]->offset);
-        else
+        if(i == 0 || m_tracks[i - 1]->file != m_tracks[i]->file)
         {
-            QList <FileInfo *> f_list = MetaDataManager::instance()->createPlayList(file_path, false);
-            qint64 l = f_list.isEmpty() ? 0 : f_list.at(0)->length() * 1000;
-            if (l > m_tracks[i]->offset)
-                m_tracks[i]->info.setLength(l - m_tracks[i]->offset);
-            else
-                m_tracks[i]->info.setLength(0);
             qDeleteAll(f_list);
-            f_list.clear();
+            f_list = MetaDataManager::instance()->createPlayList(m_tracks[i]->file, TrackInfo::Properties);
         }
+        if(!f_list.isEmpty())
+            m_tracks[i]->info.setValues(f_list.first()->properties());
+
+        if((i < m_tracks.count() - 1) && (m_tracks[i]->file == m_tracks[i+1]->file))
+            m_tracks[i]->info.setDuration(m_tracks[i+1]->offset - m_tracks[i]->offset);
+        else if(!f_list.isEmpty())
+            m_tracks[i]->info.setDuration(qMax(0LL, f_list.first()->duration() - m_tracks[i]->offset));
     }
+    qDeleteAll(f_list);
+    f_list.clear();
 }
 
 CUEParser::~CUEParser()
@@ -198,13 +199,12 @@ CUEParser::~CUEParser()
     m_tracks.clear();
 }
 
-QList<FileInfo*> CUEParser::createPlayList()
+QList<TrackInfo *> CUEParser::createPlayList()
 {
-    QList<FileInfo*> list;
+    QList<TrackInfo*> list;
     foreach(CUETrack *track, m_tracks)
     {
-        list << new FileInfo(track->info);
-        list.last()->setLength(track->info.length()/1000);
+        list << new TrackInfo(track->info);
     }
     return list;
 }
@@ -236,9 +236,9 @@ qint64 CUEParser::offset(int track) const
     return m_tracks.at(track - 1)->offset;
 }
 
-qint64 CUEParser::length(int track) const
+qint64 CUEParser::duration(int track) const
 {
-    return m_tracks.at(track - 1)->info.length();
+    return m_tracks.at(track - 1)->info.duration();
 }
 
 int CUEParser::count() const
@@ -246,7 +246,7 @@ int CUEParser::count() const
     return m_tracks.count();
 }
 
-FileInfo *CUEParser::info(int track)
+TrackInfo *CUEParser::info(int track)
 {
     return &m_tracks.at(track - 1)->info;
 }
@@ -258,7 +258,7 @@ const QString CUEParser::trackURL(int track) const
 
 const QMap<Qmmp::ReplayGainKey, double>  CUEParser::replayGain(int track) const
 {
-    return m_tracks.at(track - 1)->replayGain;
+    return m_tracks.at(track - 1)->info.replayGainInfo();
 }
 
 QStringList CUEParser::splitLine(const QString &line)

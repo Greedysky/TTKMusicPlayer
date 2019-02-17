@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Ilya Kotov                                      *
+ *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,6 @@ const EffectProperties EffectBs2bFactory::properties() const
     properties.name = tr("BS2B Plugin");
     properties.shortName = "bs2b";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     return properties;
 }
 

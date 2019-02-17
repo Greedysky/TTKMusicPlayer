@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2011-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2011-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -47,6 +47,5 @@ private:
     FFap_decoder *m_ffap_decoder;
     QString m_path;
 };
-
 
 #endif // DECODER_FFAP_H

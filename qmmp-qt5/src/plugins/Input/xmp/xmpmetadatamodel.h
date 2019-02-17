@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015 by Ilya Kotov                                      *
+ *   Copyright (C) 2015-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,12 +27,13 @@
 
 class XmpMetaDataModel : public MetaDataModel
 {
-Q_OBJECT
+    Q_DECLARE_TR_FUNCTIONS(XmpMetaDataModel)
 public:
-    XmpMetaDataModel(const QString &path, QObject *parent);
+    XmpMetaDataModel(const QString &path);
     ~XmpMetaDataModel();
-    QHash<QString, QString> audioProperties();
-    QHash<QString, QString> descriptions();
+
+    virtual QList<MetaDataItem> extraProperties() const override;
+    virtual QList<MetaDataItem> descriptions() const override;
 
 private:
     xmp_context m_ctx;

@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,14 +26,12 @@
 */
 class VisualEnvelopeSpekFactory : public QObject, public SpekFactory
 {
-Q_OBJECT
-Q_INTERFACES(SpekFactory)
-
+    Q_OBJECT
+    Q_INTERFACES(SpekFactory)
 public:
     const SpekProperties properties() const;
     Spek *create(QWidget *parent);
 
 };
-
 
 #endif

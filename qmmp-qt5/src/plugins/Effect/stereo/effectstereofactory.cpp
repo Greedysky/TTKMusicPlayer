@@ -29,7 +29,6 @@ const EffectProperties EffectStereoFactory::properties() const
     properties.name = tr("Extra Stereo Plugin");
     properties.shortName = "stereo";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     return properties;
 }
 

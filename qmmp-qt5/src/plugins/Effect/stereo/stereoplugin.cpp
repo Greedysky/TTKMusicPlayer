@@ -26,7 +26,7 @@
 #include <qmmp/qmmp.h>
 #include "stereoplugin.h"
 
-StereoPlugin *StereoPlugin::m_instance = 0;
+StereoPlugin *StereoPlugin::m_instance = nullptr;
 
 StereoPlugin::StereoPlugin() : Effect()
 {
@@ -43,7 +43,7 @@ StereoPlugin::StereoPlugin() : Effect()
 
 StereoPlugin::~StereoPlugin()
 {
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
 void StereoPlugin::applyEffect(Buffer *b)

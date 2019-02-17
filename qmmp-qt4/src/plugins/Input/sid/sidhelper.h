@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013 by Ilya Kotov                                      *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 #include <sidplayfp/SidTune.h>
 #include <sidplayfp/SidTuneInfo.h>
 #include <sidplayfp/SidDatabase.h>
-#include <qmmp/fileinfo.h>
+#include <qmmp/trackinfo.h>
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
@@ -36,8 +36,9 @@ class SIDHelper
 public:
     SIDHelper(SidDatabase *db);
     ~SIDHelper();
+
     SidTune *load(const QString &url);
-    QList <FileInfo*> createPlayList(bool meta);
+    QList<TrackInfo *> createPlayList(TrackInfo::Parts parts);
 
 private:
     QString m_path;

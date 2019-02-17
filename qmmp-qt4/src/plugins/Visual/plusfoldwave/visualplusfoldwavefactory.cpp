@@ -3,13 +3,12 @@
 #include "visualplusfoldwavefactory.h"
 #include "plusfoldwave.h"
 
-const VisualProperties VisualPlusFoldWaveFactory::properties() const
+VisualProperties VisualPlusFoldWaveFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("Plus FoldWave Plugin");
     properties.shortName = "plusfoldwave";
     properties.hasSettings = true;
-    properties.hasAbout = false;
     return properties;
 }
 

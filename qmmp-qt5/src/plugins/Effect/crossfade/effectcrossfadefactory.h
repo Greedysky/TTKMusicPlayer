@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef EFFECTCROSSFADEFACTORY_H
 #define EFFECTCROSSFADEFACTORY_H
 
@@ -29,16 +30,14 @@
 */
 class EffectCrossfadeFactory : public QObject, public EffectFactory
 {
-Q_OBJECT
-Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
-Q_INTERFACES(EffectFactory)
-
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.EffectFactoryInterface.1.0")
+    Q_INTERFACES(EffectFactory)
 public:
-    const EffectProperties properties() const;
-    Effect *create();
-    void showSettings(QWidget *parent);
+    virtual const EffectProperties properties() const override;
+    virtual Effect *create() override;
+    virtual void showSettings(QWidget *parent) override;
 
 };
-
 
 #endif

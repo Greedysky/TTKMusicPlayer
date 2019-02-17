@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,11 +28,11 @@ SRConverter::SRConverter() : Effect()
 {
     int converter_type_array[] = {SRC_SINC_BEST_QUALITY, SRC_SINC_MEDIUM_QUALITY, SRC_SINC_FASTEST,
                                   SRC_ZERO_ORDER_HOLD,  SRC_LINEAR};
-    m_src_state = 0;
+    m_src_state = nullptr;
     m_srcError = 0;
     m_sz = 0;
-    m_src_data.data_in = 0;
-    m_src_data.data_out = 0;
+    m_src_data.data_in = nullptr;
+    m_src_data.data_out = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_overSamplingFs = settings.value("SRC/sample_rate",48000).toInt();
     m_converter_type = converter_type_array[settings.value("SRC/engine", 0).toInt()];
@@ -59,7 +59,7 @@ void SRConverter::applyEffect(Buffer *b)
         }
 
         b->samples = m_src_data.output_frames_gen * channels();
-        m_src_data.data_in = 0;
+        m_src_data.data_in = nullptr;
         m_src_data.input_frames = 0;
 
         if(b->samples > b->size)
@@ -100,17 +100,17 @@ void SRConverter::freeSRC()
         src_reset(m_src_state);
         src_delete(m_src_state);
     }
-    m_src_state = 0;
+    m_src_state = nullptr;
 
     if(m_src_data.data_in)
     {
         delete [] m_src_data.data_in;
-        m_src_data.data_in = 0;
+        m_src_data.data_in = nullptr;
     }
     if(m_src_data.data_out)
     {
         delete [] m_src_data.data_out;
-        m_src_data.data_out = 0;
+        m_src_data.data_out = nullptr;
     }
 
     m_src_data.end_of_input = 0;

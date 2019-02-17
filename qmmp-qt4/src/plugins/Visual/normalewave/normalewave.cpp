@@ -5,17 +5,16 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
+
+#include <qmmp/qmmp.h>
 #include "fft.h"
 #include "inlines.h"
 #include "normalewave.h"
 
 NormalEWave::NormalEWave (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
@@ -25,20 +24,20 @@ NormalEWave::NormalEWave (QWidget *parent) : Visual (parent)
         m_starPoints << StarPoint();
     }
 
-    setWindowTitle (tr("Normal EWave Widget"));
+    setWindowTitle(tr("Normal EWave Widget"));
     setMinimumSize(2*300-30, 105);
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
-    m_starTimer = new QTimer (this);
-    connect(m_starTimer, SIGNAL (timeout()), this, SLOT (starTimeout()));
+    m_starTimer = new QTimer(this);
+    connect(m_starTimer, SIGNAL(timeout()), this, SLOT(starTimeout()));
 
     m_starAction = new QAction(tr("Star"), this);
     m_starAction->setCheckable(true);
     connect(m_starAction, SIGNAL(triggered(bool)), this, SLOT(changeStarState(bool)));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(10);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_starTimer->setInterval(1000);
     m_cell_size = QSize(6, 2);
 
@@ -148,13 +147,13 @@ void NormalEWave::changeStarColor()
     }
 }
 
-void NormalEWave::hideEvent (QHideEvent *)
+void NormalEWave::hideEvent(QHideEvent *)
 {
     m_timer->stop();
     m_starTimer->stop();
 }
 
-void NormalEWave::showEvent (QShowEvent *)
+void NormalEWave::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -163,9 +162,9 @@ void NormalEWave::showEvent (QShowEvent *)
     }
 }
 
-void NormalEWave::paintEvent (QPaintEvent * e)
+void NormalEWave::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
@@ -183,9 +182,9 @@ void NormalEWave::contextMenuEvent(QContextMenuEvent *)
     menu.exec(QCursor::pos());
 }
 
-void NormalEWave::process ()
+void NormalEWave::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -219,7 +218,7 @@ void NormalEWave::process ()
     calc_freq (dest_l, m_left_buffer);
     calc_freq (dest_r, m_right_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
@@ -260,7 +259,7 @@ void NormalEWave::process ()
     }
 }
 
-void NormalEWave::draw (QPainter *p)
+void NormalEWave::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
@@ -282,13 +281,8 @@ void NormalEWave::draw (QPainter *p)
     p->setBrush(line);
 
     int x = 0;
-    int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
-
-    float l = 1.0f;
-    if(SoundCore::instance())
-    {
-        l = SoundCore::instance()->volume()*1.0/100;
-    }
+    const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
+    const float maxed = maxRange();
 
     QPolygon psx;
     psx << QPoint(0, height());
@@ -299,8 +293,7 @@ void NormalEWave::draw (QPainter *p)
         {
             x += rdx; //correct right part position
         }
-
-        psx << QPoint(x, height() - m_intern_vis_data[j] * l * m_cell_size.height());
+        psx << QPoint(x, height() - m_intern_vis_data[j] * maxed * m_cell_size.height());
     }
     psx << QPoint(width(), height());
     p->drawPolygon(psx);

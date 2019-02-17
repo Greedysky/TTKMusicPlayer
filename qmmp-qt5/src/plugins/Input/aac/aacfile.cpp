@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,7 +20,6 @@
 
 #include <QIODevice>
 #include <QBuffer>
-#include <QTextCodec>
 #include <taglib/id3v2tag.h>
 #include <neaacdec.h>
 
@@ -34,7 +33,7 @@ static int adts_sample_rates[] = {96000,88200,64000,48000,44100,32000,24000,2205
 AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
 {
     m_isValid = false;
-    m_length = 0;
+    m_duration = 0;
     m_bitrate = 0;
     m_samplerate = 0;
     m_input = input;
@@ -121,9 +120,9 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
                 (buf[7 + skip_size] & 0xE0);
 
         if (!input->isSequential ())
-            m_length = (qint64) (((float)input->size()*8.f)/((float)m_bitrate) + 0.5f);
+            m_duration = (qint64) (((float)input->size()*8000.f)/((float)m_bitrate) + 0.5f);
         else
-            m_length = 0;
+            m_duration = 0;
         m_bitrate = (int)((float)m_bitrate/1000.0f + 0.5f);
         m_isValid = true;
     }
@@ -132,17 +131,17 @@ AACFile::AACFile(QIODevice *input, bool metaData, bool adts)
 AACFile::~AACFile()
 {}
 
-qint64 AACFile::length()
+qint64 AACFile::duration() const
 {
-    return m_length;
+    return m_duration;
 }
 
-quint32 AACFile::bitrate()
+quint32 AACFile::bitrate() const
 {
     return m_bitrate;
 }
 
-quint32 AACFile::samplerate()
+quint32 AACFile::samplerate() const
 {
     return m_samplerate;
 }
@@ -152,12 +151,12 @@ int AACFile::offset() const
     return m_offset;
 }
 
-bool AACFile::isValid()
+bool AACFile::isValid() const
 {
     return m_isValid;
 }
 
-const QMap<Qmmp::MetaData, QString> AACFile::metaData()
+const QMap<Qmmp::MetaData, QString> &AACFile::metaData()
 {
     return m_metaData;
 }
@@ -228,9 +227,9 @@ void AACFile::parseADTS()
     m_bitrate = (quint32)(8. * bytes_per_frame * frames_per_sec + 0.5);
 
     if (frames_per_sec != 0)
-        m_length = frames/frames_per_sec;
+        m_duration = frames * 1000 / frames_per_sec;
     else
-        m_length = 1;
+        m_duration = 1000;
 
      m_input->seek(0); //restore inital position
 }
@@ -247,23 +246,13 @@ void AACFile::parseID3v2(const QByteArray &data)
     TagLib::String genre = taglib_tag.genre();
     TagLib::String title = taglib_tag.title();
 
-    QTextCodec *codec = QTextCodec::codecForName ("UTF-8");
-    bool utf = true;
-
-    m_metaData.insert(Qmmp::ALBUM,
-                      codec->toUnicode(album.toCString(utf)).trimmed());
-    m_metaData.insert(Qmmp::ARTIST,
-                      codec->toUnicode(artist.toCString(utf)).trimmed());
-    m_metaData.insert(Qmmp::COMMENT,
-                      codec->toUnicode(comment.toCString(utf)).trimmed());
-    m_metaData.insert(Qmmp::GENRE,
-                      codec->toUnicode(genre.toCString(utf)).trimmed());
-    m_metaData.insert(Qmmp::TITLE,
-                      codec->toUnicode(title.toCString(utf)).trimmed());
-    m_metaData.insert(Qmmp::YEAR,
-                      QString::number(taglib_tag.year()));
-    m_metaData.insert(Qmmp::TRACK,
-                      QString::number(taglib_tag.track()));
+    m_metaData.insert(Qmmp::ALBUM, TStringToQString(album).trimmed());
+    m_metaData.insert(Qmmp::ARTIST, TStringToQString(artist).trimmed());
+    m_metaData.insert(Qmmp::COMMENT, TStringToQString(comment).trimmed());
+    m_metaData.insert(Qmmp::GENRE, TStringToQString(genre).trimmed());
+    m_metaData.insert(Qmmp::TITLE, TStringToQString(title).trimmed());
+    m_metaData.insert(Qmmp::YEAR, QString::number(taglib_tag.year()));
+    m_metaData.insert(Qmmp::TRACK, QString::number(taglib_tag.track()));
 }
 
 ID3v2Tag::ID3v2Tag(const QByteArray &array) : TagLib::ID3v2::Tag()

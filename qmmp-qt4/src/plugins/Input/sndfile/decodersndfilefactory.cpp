@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2018 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,10 +17,10 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #include <QRegExp>
-#include <QMessageBox>
-#include <QTranslator>
 #include <QtPlugin>
+#include <QFileInfo>
 #ifdef Q_OS_WIN
 #include <windows.h>
 #define ENABLE_SNDFILE_WINDOWS_PROTOTYPES 1
@@ -113,16 +113,14 @@ bool DecoderSndFileFactory::canDecode(QIODevice *input) const
     return false;
 }
 
-const DecoderProperties DecoderSndFileFactory::properties() const
+DecoderProperties DecoderSndFileFactory::properties() const
 {
     DecoderProperties properties;
     properties.name = tr("Sndfile Plugin");
     properties.filters << "*.wav" << "*.au" << "*.snd" << "*.aif" << "*.aiff" << "*.8svx";
     properties.filters << "*.sph" << "*.sf" << "*.voc" << "*.w64";
     properties.description = tr("PCM Files");
-    //properties.contentType = "";
     properties.shortName = "sndfile";
-    properties.hasAbout = true;
     properties.hasSettings = false;
     properties.noInput = false;
     return properties;
@@ -133,44 +131,84 @@ Decoder *DecoderSndFileFactory::create(const QString &, QIODevice *input)
     return new DecoderSndFile(input);
 }
 
-QList<FileInfo *> DecoderSndFileFactory::createPlayList(const QString &fileName, bool useMetaData, QStringList *)
+QList<TrackInfo *> DecoderSndFileFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
-    QList <FileInfo *> list;
+    TrackInfo *info = new TrackInfo(path);
+
+    if(parts == TrackInfo::NoParts)
+        return QList<TrackInfo*>() << info;
+
     SF_INFO snd_info;
     SNDFILE *sndfile = 0;
-    memset (&snd_info, 0, sizeof(snd_info));
+    memset(&snd_info, 0, sizeof(snd_info));
     snd_info.format = 0;
 #ifdef Q_OS_WIN
-        sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(fileName.utf16()), SFM_READ, &snd_info);
+        sndfile = sf_wchar_open(reinterpret_cast<LPCWSTR>(path.utf16()), SFM_READ, &snd_info);
 #else
-        sndfile = sf_open(fileName.toLocal8Bit().constData(), SFM_READ, &snd_info);
+        sndfile = sf_open(path.toLocal8Bit().constData(), SFM_READ, &snd_info);
 #endif
-    if (!sndfile)
-        return list;
-
-    list << new FileInfo(fileName);
-    if (useMetaData)
+    if(!sndfile)
     {
-        const char *title = sf_get_string(sndfile, SF_STR_TITLE);
-        if(title)
-            list.at(0)->setMetaData(Qmmp::TITLE, QString::fromUtf8(title).trimmed());
-
-        const char *artist = sf_get_string(sndfile, SF_STR_ARTIST);
-        if(artist)
-            list.at(0)->setMetaData(Qmmp::ARTIST, QString::fromUtf8(artist).trimmed());
-
-        const char *comment = sf_get_string(sndfile, SF_STR_COMMENT);
-        if(comment)
-            list.at(0)->setMetaData(Qmmp::COMMENT, QString::fromUtf8(comment).trimmed());
+        delete info;
+        return QList<TrackInfo *>();
     }
 
-    list.at(0)->setLength(int(snd_info.frames / snd_info.samplerate));
+    if(parts & TrackInfo::MetaData)
+    {
+        const char *title = sf_get_string(sndfile, SF_STR_TITLE);
+        info->setValue(Qmmp::TITLE, title ? QString::fromUtf8(title) : QString());
+        const char *date = sf_get_string(sndfile, SF_STR_DATE);
+        info->setValue(Qmmp::YEAR, date ? QString::fromUtf8(date) : QString());
+        const char *album = sf_get_string(sndfile, SF_STR_ALBUM);
+        info->setValue(Qmmp::ALBUM, album ? QString::fromUtf8(album) : QString());
+        const char *track = sf_get_string(sndfile, SF_STR_TRACKNUMBER);
+        info->setValue(Qmmp::TRACK, track ? QString::fromUtf8(track) : QString());
+        const char *artist = sf_get_string(sndfile, SF_STR_ARTIST);
+        info->setValue(Qmmp::ARTIST, artist ? QString::fromUtf8(artist) : QString());
+        const char *comment = sf_get_string(sndfile, SF_STR_COMMENT);
+        info->setValue(Qmmp::COMMENT, comment ? QString::fromUtf8(comment) : QString());
+        const char *genre = sf_get_string(sndfile, SF_STR_GENRE);
+        info->setValue(Qmmp::COMMENT, genre ? QString::fromUtf8(genre) : QString());
+    }
+
+    if(parts & TrackInfo::Properties)
+    {
+        info->setValue(Qmmp::BITRATE, QFileInfo(path).size() * 8000.0 / info->duration() + 0.5);
+        info->setValue(Qmmp::SAMPLERATE, snd_info.samplerate);
+        info->setValue(Qmmp::CHANNELS, snd_info.channels);
+        switch(snd_info.format & SF_FORMAT_SUBMASK)
+        {
+        case SF_FORMAT_PCM_S8:
+        case SF_FORMAT_PCM_U8:
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 8);
+            break;
+        case SF_FORMAT_PCM_16:
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 16);
+            break;
+        case SF_FORMAT_PCM_24:
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 24);
+            break;
+        case SF_FORMAT_PCM_32:
+        case SF_FORMAT_FLOAT:
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 32);
+            break;
+        case SF_FORMAT_DOUBLE:
+            info->setValue(Qmmp::BITS_PER_SAMPLE, 64);
+            break;
+        }
+        SF_FORMAT_INFO format_info;
+        memset(&format_info, 0, sizeof(format_info));
+        format_info.format = (snd_info.format & SF_FORMAT_TYPEMASK);
+        sf_command(0, SFC_GET_FORMAT_INFO, &format_info, sizeof(format_info));
+        info->setValue(Qmmp::FORMAT_NAME, QString::fromLatin1(format_info.name));
+        info->setDuration(int(snd_info.frames * 1000 / snd_info.samplerate));
+    }
 
     sf_close(sndfile);
-    return list;
+    return QList<TrackInfo *>() << info;
 }
 
-MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString&, QObject *)
+MetaDataModel* DecoderSndFileFactory::createMetaDataModel(const QString&, bool)
 {
     return 0;
 }

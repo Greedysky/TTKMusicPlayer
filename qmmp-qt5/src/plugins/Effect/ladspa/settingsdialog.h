@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
@@ -33,14 +34,13 @@ class SettingsDialog;
 */
 class SettingsDialog : public QDialog
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    SettingsDialog(QWidget *parent = 0);
-
+    SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
 public slots:
-    virtual void accept();
+    virtual void accept() override;
 
 private slots:
     void on_loadButton_clicked();
@@ -49,6 +49,7 @@ private slots:
 
 private:
     void updateRunningPlugins();
+
     Ui::SettingsDialog *m_ui;
     QStandardItemModel *m_model;
 };

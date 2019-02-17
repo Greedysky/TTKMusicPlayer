@@ -1,5 +1,4 @@
-unix:include(../../qmmp.pri)
-win32:include(../../qmmp.pri)
+include(../../qmmp.pri)
 
 HEADERS += \
     buffer.h \
@@ -17,7 +16,6 @@ HEADERS += \
     effectfactory.h \
     statehandler.h \
     qmmp.h \
-    fileinfo.h \
     metadatamodel.h \
     tagmodel.h \
     abstractengine.h \
@@ -44,8 +42,9 @@ HEADERS += \
     dithering_p.h \
     visualbuffer_p.h \
     spekfactory.h \
-    tagreadandwrite.h
-
+    tagreadandwrite.h \
+    qmmp_export.h \
+    trackinfo.h
 
 SOURCES += recycler.cpp \
     decoder.cpp \
@@ -58,7 +57,6 @@ SOURCES += recycler.cpp \
     effect.cpp \
     statehandler.cpp \
     qmmp.cpp \
-    fileinfo.cpp \
     volumecontrol.cpp \
     metadatamodel.cpp \
     tagmodel.cpp \
@@ -81,18 +79,15 @@ SOURCES += recycler.cpp \
     volume.cpp \
     dithering.cpp \
     visualbuffer.cpp \
-    tagreadandwrite.cpp
-
+    tagreadandwrite.cpp \
+    trackinfo.cpp
 
 unix:TARGET = ../../lib/$$TTKMusicPlayer/qmmp
 win32:TARGET = ../../../bin/$$TTKMusicPlayer/qmmp
 
-CONFIG += shared \
-          warn_on \
-          qt \
-          thread
-
+CONFIG += shared warn_on qt thread
 TEMPLATE = lib
+
 VERSION = $$QMMP_VERSION
 
 unix {
@@ -103,43 +98,55 @@ unix {
 unix {
     target.path = $$LIB_DIR
     devel.files += \
-        abstractengine.h \
-        audioconverter.h \
-        audioparameters.h \
-        buffer.h \
-        channelmap.h \
-        decoderfactory.h \
-        decoder.h \
-        effectfactory.h \
-        effect.h \
-        enginefactory.h \
-        eqsettings.h \
-        fileinfo.h \
-        inputsourcefactory.h \
-        inputsource.h \
-        metadatamanager.h \
-        metadatamodel.h \
-        outputfactory.h \
-        output.h \
-        qmmp.h \
-        qmmpsettings.h \
-        soundcore.h \
-        statehandler.h \
-        tagmodel.h \
-        visualfactory.h \
-        visual.h \
-        volume.h \
-        tagreadandwrite.h
+      buffer.h \
+      decoder.h \
+      output.h \
+      outputfactory.h \
+      decoderfactory.h \
+      soundcore.h \
+      visual.h \
+      visualfactory.h \
+      effect.h \
+      effectfactory.h \
+      statehandler.h \
+      qmmp.h \
+      metadatamodel.h \
+      tagmodel.h \
+      abstractengine.h \
+      qmmpaudioengine_p.h \
+      audioparameters.h \
+      inputsource.h \
+      fileinputsource_p.h \
+      emptyinputsource_p.h \
+      inputsourcefactory.h \
+      enginefactory.h \
+      metadatamanager.h \
+      replaygain_p.h \
+      qmmpsettings.h \
+      eqsettings.h \
+      qmmpevents_p.h \
+      volume.h \
+      volumecontrol_p.h \
+      outputwriter_p.h \
+      recycler_p.h \
+      qmmpplugincache_p.h \
+      channelmap.h \
+      channelconverter_p.h \
+      audioconverter.h \
+      dithering_p.h \
+      visualbuffer_p.h \
+      spekfactory.h \
+      tagreadandwrite.h \
+      qmmp_export.h \
+      trackinfo.h
 
     devel.path = /include/qmmp
-    INSTALLS += target \
-        devel
+    INSTALLS += target devel
     DESTDIR = .
 }
 
-INCLUDEPATH += ./ \
-               ../../../extra/gcc/libtaglib/include
-               
+INCLUDEPATH += ./ ../../../extra/gcc/libtaglib/include
+
 win32:{
     LIBS += -L../../../extra/gcc/libtaglib/lib -ltag.dll
 }

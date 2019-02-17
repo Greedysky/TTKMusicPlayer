@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,11 +21,10 @@
 #include "outputwaveout.h"
 #include "outputwaveoutfactory.h"
 
-const OutputProperties OutputWaveOutFactory::properties() const
+OutputProperties OutputWaveOutFactory::properties() const
 {
     OutputProperties properties;
     properties.name = tr("WaveOut Plugin");
-    properties.hasAbout = true;
     properties.hasSettings = false;
     properties.shortName = "waveout";
     return properties;
@@ -43,7 +42,7 @@ Volume *OutputWaveOutFactory::createVolume()
     {
         qDebug("OutputWaveOutFactory: device doesn't support volume control");
         delete vol;
-        return 0;
+        return nullptr;
     }
     return vol;
 }

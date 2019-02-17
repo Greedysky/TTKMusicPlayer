@@ -3,13 +3,12 @@
 #include "visualgoomfactory.h"
 #include "goomwidget.h"
 
-const VisualProperties VisualGoomFactory::properties() const
+VisualProperties VisualGoomFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("Flash Goom Plugin");
     properties.shortName = "flashgoom";
     properties.hasSettings = false;
-    properties.hasAbout = true;
     return properties;
 }
 

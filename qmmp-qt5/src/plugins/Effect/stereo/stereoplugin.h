@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef STEREOPLUGIN_H
 #define STEREOPLUGIN_H
 
@@ -30,11 +31,10 @@ class StereoPlugin : public Effect
 {
 public:
     StereoPlugin();
-
     virtual ~StereoPlugin();
 
-    void applyEffect(Buffer *b);
-    void configure(quint32 freq, ChannelMap map);
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
     void setIntensity(double level);
     static StereoPlugin* instance();
 

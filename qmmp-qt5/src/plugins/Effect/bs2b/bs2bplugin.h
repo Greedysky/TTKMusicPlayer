@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef BS2BPLUGIN_H
 #define BS2BPLUGIN_H
 
@@ -27,16 +28,14 @@
 /**
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-
 class Bs2bPlugin : public Effect
 {
 public:
     Bs2bPlugin();
-
     virtual ~Bs2bPlugin();
 
-    void applyEffect(Buffer *b);
-    void configure(quint32 freq, ChannelMap map);
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
     void setCrossfeedLevel(uint32_t level);
     static Bs2bPlugin* instance();
 

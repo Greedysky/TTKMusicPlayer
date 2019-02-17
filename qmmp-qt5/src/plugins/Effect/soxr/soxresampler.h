@@ -17,6 +17,7 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef SRCONVERTER_H
 #define SRCONVERTER_H
 
@@ -33,11 +34,12 @@ public:
     SoXResampler();
     virtual ~SoXResampler();
 
-    void applyEffect(Buffer *b);
-    void configure(quint32 freq, ChannelMap map);
+    virtual void applyEffect(Buffer *b) override;
+    virtual void configure(quint32 freq, ChannelMap map) override;
 
 private:
     void freeSoXR();
+
     quint32 m_overSamplingFs;
     float *m_out;
     size_t m_out_samples;

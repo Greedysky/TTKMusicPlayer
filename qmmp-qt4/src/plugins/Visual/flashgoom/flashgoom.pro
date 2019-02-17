@@ -65,12 +65,6 @@ SOURCES += goomwidget.cpp \
 
 DEFINES += YY_NO_INPUT
 
-INCLUDEPATH += ../../../
-CONFIG += warn_on \
-            plugin
-
-TEMPLATE = lib
-
 contains(QT_ARCH, i386){
     DEFINES += CPU_X86 ARCH_X86_32
     message(Architecture is x86)
@@ -90,14 +84,10 @@ QMAKE_CFLAGS += -Werror=implicit-function-declaration
 win32:{
     HEADERS += ../../../../src/qmmp/visual.h
     INCLUDEPATH += ./
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
-    LIBS += -lqmmp0
 }
 
 unix{
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
     target.path = $$LIB_DIR/qmmp/Visual
     INSTALLS += target
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
-    LIBS += -lqmmp -L/usr/lib -I/usr/include
+    LIBS += -L/usr/lib -I/usr/include
 }

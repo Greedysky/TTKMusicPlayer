@@ -3,9 +3,6 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <qmmp/soundcore.h>
 #include "fft.h"
 #include "inlines.h"
 #include "flashmeter.h"
@@ -14,18 +11,18 @@
 
 FlashMeter::FlashMeter (QWidget *parent) : Visual (parent)
 {
-    m_intern_vis_data = 0;
-    m_x_scale = 0;
+    m_intern_vis_data = nullptr;
+    m_x_scale = nullptr;
     m_running = false;
     m_rows = 0;
     m_cols = 0;
 
-    setWindowTitle (tr("Flash Meter Widget"));
-    m_timer = new QTimer (this);
-    connect(m_timer, SIGNAL (timeout()), this, SLOT (timeout()));
+    setWindowTitle(tr("Flash Meter Widget"));
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
     m_analyzer_falloff = 1.2;
-    m_timer->setInterval(10);
+    m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     m_cell_size = QSize(6, 2);
 
     clear();
@@ -71,12 +68,12 @@ void FlashMeter::timeout()
     }
 }
 
-void FlashMeter::hideEvent (QHideEvent *)
+void FlashMeter::hideEvent(QHideEvent *)
 {
     m_timer->stop();
 }
 
-void FlashMeter::showEvent (QShowEvent *)
+void FlashMeter::showEvent(QShowEvent *)
 {
     if(m_running)
     {
@@ -84,16 +81,16 @@ void FlashMeter::showEvent (QShowEvent *)
     }
 }
 
-void FlashMeter::paintEvent (QPaintEvent * e)
+void FlashMeter::paintEvent(QPaintEvent *e)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
 }
 
-void FlashMeter::process ()
+void FlashMeter::process()
 {
-    static fft_state *state = 0;
+    static fft_state *state = nullptr;
     if (!state)
         state = fft_init();
 
@@ -125,7 +122,7 @@ void FlashMeter::process ()
 
     calc_freq (dest, m_left_buffer);
 
-    double y_scale = (double) 1.25 * m_rows / log(256);
+    const double y_scale = (double) 1.25 * m_rows / log(256);
 
     for (int i = 0; i < m_cols; i++)
     {
@@ -154,7 +151,7 @@ void FlashMeter::process ()
     }
 }
 
-void FlashMeter::draw (QPainter *p)
+void FlashMeter::draw(QPainter *p)
 {
     if(m_cols == 0)
     {

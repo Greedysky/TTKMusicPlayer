@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,8 @@
 #include <qmmp/metadatamanager.h>
 #include "wavpackmetadatamodel.h"
 
-WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, bool readOnly)
+    : MetaDataModel(readOnly)
 {
     if(path.contains("://"))
     {
@@ -34,13 +35,16 @@ WavPackMetaDataModel::WavPackMetaDataModel(const QString &path, QObject *parent)
     else
         m_path = path;
 
-    char err[80];
+    char err[80] = {0};
+    int flags = OPEN_WVC | OPEN_TAGS;
+    if(!readOnly)
+        flags |= OPEN_EDIT_TAGS;
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
     m_ctx = WavpackOpenFileInput (m_path.toUtf8().constData(),
-                                  err, OPEN_WVC | OPEN_TAGS | OPEN_FILE_UTF8, 0);
+                                  err, flags | OPEN_FILE_UTF8, 0);
 #else
     m_ctx = WavpackOpenFileInput (m_path.toLocal8Bit().constData(), err,
-                                  OPEN_WVC | OPEN_EDIT_TAGS, 0);
+                                  flags, 0);
 #endif
     if (!m_ctx)
     {
@@ -59,37 +63,24 @@ WavPackMetaDataModel::~WavPackMetaDataModel()
         WavpackCloseFile (m_ctx);
 }
 
-QHash<QString, QString> WavPackMetaDataModel::audioProperties()
+QList<MetaDataItem> WavPackMetaDataModel::extraProperties() const
 {
-    QHash<QString, QString> ap;
+    QList<MetaDataItem> ep;
+
     if(!m_ctx)
-        return ap;
-    int length = (int) WavpackGetNumSamples(m_ctx)/WavpackGetSampleRate(m_ctx);
-    QString text = QString("%1").arg(length/60);
-    text +=":"+QString("%1").arg(length % 60, 2, 10, QChar('0'));
-    ap.insert(tr("Length"), text);
-    ap.insert(tr("Sample rate"), QString("%1 " + tr("Hz")).arg((int) WavpackGetSampleRate(m_ctx)));
-    ap.insert(tr("Channels"), QString("%1").arg((int) WavpackGetNumChannels(m_ctx)));
-    ap.insert(tr("Bitrate"), QString("%1 " + tr("kbps"))
-           .arg((int) WavpackGetAverageBitrate(m_ctx, WavpackGetNumChannels(m_ctx))/1000));
-    ap.insert(tr("File size"), QString("%1 "+tr("KB")).arg(WavpackGetFileSize(m_ctx)/1024));
-    ap.insert(tr("Ratio"), QString("%1").arg(WavpackGetRatio(m_ctx)));
-    ap.insert(tr("Version"), QString("%1").arg(WavpackGetVersion(m_ctx)));
-    return ap;
+        return ep;
+
+    ep << MetaDataItem(tr("Ratio"), WavpackGetRatio(m_ctx));
+    ep << MetaDataItem(tr("Version"), WavpackGetVersion(m_ctx));
+    return ep;
 }
 
-QList<TagModel* > WavPackMetaDataModel::tags()
+QList<TagModel* > WavPackMetaDataModel::tags() const
 {
     return m_tags;
 }
 
-QPixmap WavPackMetaDataModel::cover()
-{
-    QString cPath = coverPath();
-    return cPath.isEmpty() ? QPixmap() : QPixmap(cPath);
-}
-
-QString WavPackMetaDataModel::coverPath()
+QString WavPackMetaDataModel::coverPath() const
 {
     return MetaDataManager::instance()->findCoverFile(m_path);
 }
@@ -102,12 +93,12 @@ WavPackFileTagModel::WavPackFileTagModel(WavpackContext *ctx) : TagModel(TagMode
 WavPackFileTagModel::~WavPackFileTagModel()
 {}
 
-const QString WavPackFileTagModel::name()
+QString WavPackFileTagModel::name() const
 {
     return "ID3v1/APEv2";
 }
 
-const QString WavPackFileTagModel::value(Qmmp::MetaData key)
+QString WavPackFileTagModel::value(Qmmp::MetaData key) const
 {
     char value[200];
     memset(value,0,sizeof(value));

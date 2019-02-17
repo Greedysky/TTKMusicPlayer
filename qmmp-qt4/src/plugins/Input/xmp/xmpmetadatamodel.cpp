@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2015 by Ilya Kotov                                      *
+ *   Copyright (C) 2015-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,7 +21,7 @@
 #include <QFile>
 #include "xmpmetadatamodel.h"
 
-XmpMetaDataModel::XmpMetaDataModel(const QString &path, QObject *parent) : MetaDataModel(parent)
+XmpMetaDataModel::XmpMetaDataModel(const QString &path) : MetaDataModel(true)
 {
     m_path = path;
     m_ctx = xmp_create_context();
@@ -43,31 +43,29 @@ XmpMetaDataModel::~XmpMetaDataModel()
     }
 }
 
-QHash<QString, QString> XmpMetaDataModel::audioProperties()
+QList<MetaDataItem> XmpMetaDataModel::extraProperties() const
 {
-    QHash<QString, QString> ap;
-    ap.insert(tr("File name"), m_path.section('/',-1));
+    QList<MetaDataItem> ep;
 
     xmp_module_info mi;
     xmp_get_module_info(m_ctx, &mi);
 
-    ap.insert(tr("Format"), mi.mod->type);
-    ap.insert(tr("Volume scale"), QString::number(mi.vol_base));
-    ap.insert(tr("Number of patterns"), QString::number(mi.mod->pat));
-    ap.insert(tr("Number of tracks"), QString::number(mi.mod->trk));
-    ap.insert(tr("Tracks per pattern"), QString::number(mi.mod->chn));
-    ap.insert(tr("Number of instruments"), QString::number(mi.mod->ins));
-    ap.insert(tr("Number of samples"), QString::number(mi.mod->smp));
-    ap.insert(tr("Initial speed"), QString::number(mi.mod->spd));
-    ap.insert(tr("Initial BPM"), QString::number(mi.mod->bpm));
-    ap.insert(tr("Module length in patterns"), QString::number(mi.mod->len));
+    ep << MetaDataItem(tr("Volume scale"), mi.vol_base);
+    ep << MetaDataItem(tr("Number of patterns"), mi.mod->pat);
+    ep << MetaDataItem(tr("Number of tracks"), mi.mod->trk);
+    ep << MetaDataItem(tr("Tracks per pattern"), mi.mod->chn);
+    ep << MetaDataItem(tr("Number of instruments"), mi.mod->ins);
+    ep << MetaDataItem(tr("Number of samples"),mi.mod->smp);
+    ep << MetaDataItem(tr("Initial speed"), mi.mod->spd);
+    ep << MetaDataItem(tr("Initial BPM"), mi.mod->bpm);
+    ep << MetaDataItem(tr("Module length in patterns"), mi.mod->len);
 
-    return ap;
+    return ep;
 }
 
-QHash<QString, QString> XmpMetaDataModel::descriptions()
+QList<MetaDataItem> XmpMetaDataModel::descriptions() const
 {
-    QHash<QString, QString> desc;
+    QList<MetaDataItem> desc;
     QString text;
 
     xmp_module_info mi;
@@ -79,7 +77,7 @@ QHash<QString, QString> XmpMetaDataModel::descriptions()
     }
     text = text.trimmed();
     if(!text.isEmpty())
-        desc.insert(tr("Samples"), text);
+        desc << MetaDataItem(tr("Samples"), text);
     text.clear();
     for(int i = 0; i < mi.mod->ins; i++)
     {
@@ -87,11 +85,11 @@ QHash<QString, QString> XmpMetaDataModel::descriptions()
     }
     text = text.trimmed();
     if(!text.isEmpty())
-        desc.insert(tr("Instruments"), text);
+        desc << MetaDataItem(tr("Instruments"), text);
     text.clear();
 
     text = QString::fromUtf8(mi.comment).trimmed();
     if(!text.isEmpty())
-        desc.insert(tr("Comment"), text);
+        desc << MetaDataItem(tr("Comment"), text);
     return desc;
 }

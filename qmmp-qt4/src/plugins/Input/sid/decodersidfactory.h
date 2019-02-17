@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,18 +17,13 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef DECODERSIDFACTORY_H
 #define DECODERSIDFACTORY_H
 
-#include <QObject>
-#include <QString>
-#include <QIODevice>
-#include <QWidget>
 #include <sidplayfp/SidDatabase.h>
-#include <qmmp/decoder.h>
-#include <qmmp/output.h>
 #include <qmmp/decoderfactory.h>
-#include <qmmp/fileinfo.h>
+
 
 /**
    @author Ilya Kotov <forkotov02@ya.ru>
@@ -37,15 +32,17 @@ class DecoderSIDFactory : public QObject, DecoderFactory
 {
     Q_OBJECT
     Q_INTERFACES(DecoderFactory)
-
 public:
     DecoderSIDFactory();
 
     bool canDecode(QIODevice *input) const;
-    const DecoderProperties properties() const;
+    DecoderProperties properties() const;
     Decoder *create(const QString &path, QIODevice *input);
-    QList<FileInfo *> createPlayList(const QString &fileName, bool useMetaData, QStringList *);
-    MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0);
+    QList<TrackInfo *> createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *);
+    MetaDataModel* createMetaDataModel(const QString &path, bool readOnly);
+    void showSettings(QWidget *parent);
+    void showAbout(QWidget *parent);
+    QString translation() const;
 
 private:
     SidDatabase m_db;

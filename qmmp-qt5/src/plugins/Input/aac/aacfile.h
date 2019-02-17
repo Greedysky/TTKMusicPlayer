@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,9 +17,9 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef AACFILE_H
 #define AACFILE_H
-
 
 #include <QMap>
 #include <QString>
@@ -43,20 +43,19 @@ class AACFile
 {
 public:
     AACFile(QIODevice *input, bool metaData = true, bool adts = true);
-
     ~AACFile();
 
-    qint64 length();
-    quint32 bitrate();
-    quint32 samplerate();
+    qint64 duration() const;
+    quint32 bitrate() const;
+    quint32 samplerate() const;
     int offset() const;
-    bool isValid();
-    const QMap<Qmmp::MetaData, QString> metaData();
+    bool isValid() const;
+    const QMap<Qmmp::MetaData, QString> &metaData();
 
 private:
     void parseADTS();
     void parseID3v2(const QByteArray &data);
-    qint64 m_length;
+    qint64 m_duration;
     quint32 m_bitrate;
     int m_offset;
     QIODevice *m_input;
@@ -71,7 +70,7 @@ public:
     ID3v2Tag(const QByteArray &array);
 
 protected:
-    void read ();
+    void read();
 
 private:
     QByteArray m_buf;

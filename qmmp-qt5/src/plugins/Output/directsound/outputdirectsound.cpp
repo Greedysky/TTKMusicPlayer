@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2014-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2014-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,7 +20,6 @@
 
 #include <QObject>
 #include <QSettings>
-#include <QMessageBox>
 #include <string.h>
 #include <iostream>
 #include <unistd.h>
@@ -30,8 +29,8 @@
 
 #define DS_BUFSIZE (128*1024)
 
-OutputDirectSound *OutputDirectSound::instance = 0;
-VolumeDirectSound *OutputDirectSound::volumeControl = 0;
+OutputDirectSound *OutputDirectSound::instance = nullptr;
+VolumeDirectSound *OutputDirectSound::volumeControl = nullptr;
 OutputDirectSound::DSoundChannels OutputDirectSound::m_dsound_pos[10]  = {
    {Qmmp::CHAN_FRONT_LEFT, SPEAKER_FRONT_LEFT},
    {Qmmp::CHAN_FRONT_RIGHT, SPEAKER_FRONT_RIGHT},
@@ -47,9 +46,9 @@ OutputDirectSound::DSoundChannels OutputDirectSound::m_dsound_pos[10]  = {
 
 OutputDirectSound::OutputDirectSound() : Output()
 {
-    m_ds = 0;
-    m_primaryBuffer = 0;
-    m_dsBuffer = 0;
+    m_ds = nullptr;
+    m_primaryBuffer = nullptr;
+    m_dsBuffer = nullptr;
     m_dsBufferAt = 0;
     m_latency = 0;
     m_bytesPerSecond = 0;
@@ -59,7 +58,7 @@ OutputDirectSound::OutputDirectSound() : Output()
 
 OutputDirectSound::~OutputDirectSound()
 {
-    instance = 0;
+    instance = nullptr;
     uninitialize();
 }
 
@@ -69,11 +68,11 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
     DSBUFFERDESC bufferDesc;
 
 
-    HRESULT result = DirectSoundCreate8(0, &m_ds, 0);
+    HRESULT result = DirectSoundCreate8(nullptr, &m_ds, nullptr);
     if(result != DS_OK)
     {
         qWarning("OutputDirectSound: DirectSoundCreate8 failed, error code = 0x%lx", result);
-        m_ds = 0;
+        m_ds = nullptr;
         return false;
     }
 
@@ -91,7 +90,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
 
     if((result = m_ds->CreateSoundBuffer(&bufferDesc, &m_primaryBuffer, NULL)) != DS_OK)
     {
-        m_primaryBuffer = 0;
+        m_primaryBuffer = nullptr;
         qWarning("OutputDirectSound: CreateSoundBuffer failed, error code = 0x%lx", result);
         return false;
     }
@@ -172,7 +171,7 @@ bool OutputDirectSound::initialize(quint32 freq, ChannelMap map, Qmmp::AudioForm
 
     if((result = pDSB->QueryInterface(IID_IDirectSoundBuffer8, (void**)&m_dsBuffer)) != DS_OK)
     {
-        m_dsBuffer = 0;
+        m_dsBuffer = nullptr;
         qWarning("OutputDirectSound: QueryInterface failed, error code = 0x%lx", result);
         pDSB->Release();
         return false;
@@ -195,7 +194,7 @@ qint64 OutputDirectSound::latency()
 
 qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
 {
-    unsigned char *ptr = 0, *ptr2 = 0;
+    unsigned char *ptr = nullptr, *ptr2 = nullptr;
     DWORD size = 0, size2 = 0;
     DWORD available = bytesToWrite(); //available bytes
     m_latency = (DS_BUFSIZE - available) * 1000 / m_bytesPerSecond;
@@ -255,15 +254,15 @@ qint64 OutputDirectSound::writeAudio(unsigned char *data, qint64 len)
 void OutputDirectSound::drain()
 {
     DWORD dsCurrentPlayCursor = 0;
-    m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, 0);
+    m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
 
     while(dsCurrentPlayCursor >= m_dsBufferAt)
     {
-        m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, 0);
+        m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
     }
     while (dsCurrentPlayCursor <= m_dsBufferAt)
     {
-        m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, 0);
+        m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
     }
 }
 
@@ -299,25 +298,25 @@ void OutputDirectSound::uninitialize()
     {
         m_dsBuffer->Stop();
         m_dsBuffer->Release();
-        m_dsBuffer = 0;
+        m_dsBuffer = nullptr;
     }
     if(m_primaryBuffer)
     {
         m_primaryBuffer->Stop();
         m_primaryBuffer->Release();
-        m_primaryBuffer = 0;
+        m_primaryBuffer = nullptr;
     }
     if(m_ds)
     {
         m_ds->Release();
-        m_ds = 0;
+        m_ds = nullptr;
     }
 }
 
 DWORD OutputDirectSound::bytesToWrite()
 {
     DWORD dsCurrentPlayCursor = 0;
-    m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, 0);
+    m_dsBuffer->GetCurrentPosition((DWORD*)&dsCurrentPlayCursor, nullptr);
     long available = dsCurrentPlayCursor - m_dsBufferAt; //available bytes
 
     if(available < 0)
@@ -342,7 +341,7 @@ VolumeDirectSound::~VolumeDirectSound()
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue("DirectSound/left_volume", m_volume.left);
     settings.setValue("DirectSound/right_volume", m_volume.right);
-    OutputDirectSound::volumeControl = 0;
+    OutputDirectSound::volumeControl = nullptr;
 }
 
 void VolumeDirectSound::setVolume(const VolumeSettings &vol)

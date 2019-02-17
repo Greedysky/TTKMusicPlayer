@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013 by Ilya Kotov                                      *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 
 SIDHelper::SIDHelper(SidDatabase *db)
 {
-    m_tune = 0;
+    m_tune = nullptr;
     m_db = db;
 }
 
@@ -32,7 +32,7 @@ SIDHelper::~SIDHelper()
 {
     if(m_tune)
         delete m_tune;
-    m_tune = 0;
+    m_tune = nullptr;
 }
 
 SidTune *SIDHelper::load(const QString &url)
@@ -40,7 +40,7 @@ SidTune *SIDHelper::load(const QString &url)
     if(m_tune)
     {
         delete m_tune;
-        m_tune = 0;
+        m_tune = nullptr;
     }
     QString path = url;
     int track = 1;
@@ -56,9 +56,9 @@ SidTune *SIDHelper::load(const QString &url)
     return m_tune;
 }
 
-QList <FileInfo*> SIDHelper::createPlayList(bool meta)
+QList<TrackInfo *> SIDHelper::createPlayList(TrackInfo::Parts parts)
 {
-    QList <FileInfo*> list;
+    QList<TrackInfo *> list;
     if(!m_tune || !m_tune->getInfo())
         return list;
     int count = m_tune->getInfo()->songs();
@@ -69,19 +69,19 @@ QList <FileInfo*> SIDHelper::createPlayList(bool meta)
     for(int i = 1; i <= count; ++i)
     {
         m_tune->selectSong(i+1);
-        FileInfo *info = new FileInfo();
+        TrackInfo *info = new TrackInfo();
 
-        if(meta)
+        if(parts & TrackInfo::MetaData)
         {
             const SidTuneInfo *tune_info = m_tune->getInfo();
-            info->setMetaData(Qmmp::TITLE, tune_info->infoString(0));
-            info->setMetaData(Qmmp::ARTIST, tune_info->infoString(1));
-            info->setMetaData(Qmmp::COMMENT, tune_info->commentString(0));
-            info->setMetaData(Qmmp::TRACK, i);
+            info->setValue(Qmmp::TITLE, tune_info->infoString(0));
+            info->setValue(Qmmp::ARTIST, tune_info->infoString(1));
+            info->setValue(Qmmp::COMMENT, tune_info->commentString(0));
+            info->setValue(Qmmp::TRACK, i);
         }
         int length = m_db->length(md5, i);
         if(length > -1)
-            info->setLength(length);
+            info->setDuration(length * 1000);
 
         info->setPath("sid://" + m_path + QString("#%1").arg(i));
         list << info;

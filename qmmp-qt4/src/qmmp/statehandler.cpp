@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2018 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -39,7 +39,7 @@ StateHandler::StateHandler(QObject *parent)
     qRegisterMetaType<AudioParameters>("AudioParameters");
     m_instance = this;
     m_elapsed = -1;
-    m_length = 0;
+    m_duration = 0;
     m_bitrate = 0;
     m_sendAboutToFinish = true;
     m_state = Qmmp::Stopped;
@@ -62,12 +62,12 @@ void StateHandler::dispatch(qint64 elapsed, int bitrate)
             m_bitrate = bitrate;
             emit (bitrateChanged(bitrate));
         }
-        if((SoundCore::instance()->totalTime() > PREFINISH_TIME)
-                 && (m_length - m_elapsed < PREFINISH_TIME)
+        if((SoundCore::instance()->duration() > PREFINISH_TIME)
+                 && (m_duration - m_elapsed < PREFINISH_TIME)
                  && m_sendAboutToFinish)
         {
             m_sendAboutToFinish = false;
-            if(m_length - m_elapsed > PREFINISH_TIME/2)
+            if(m_duration - m_elapsed > PREFINISH_TIME/2)
                 qApp->postEvent(parent(), new QEvent(EVENT_NEXT_TRACK_REQUEST));
         }
     }
@@ -88,20 +88,14 @@ void StateHandler::dispatch(const AudioParameters &p)
 void StateHandler::dispatch(qint64 length)
 {
     m_mutex.lock();
-    m_length = length;
+    m_duration = length;
     m_mutex.unlock();
 }
 
-bool StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
+bool StateHandler::dispatch(const TrackInfo &info)
 {
     QMutexLocker locker(&m_mutex);
-    QMap<Qmmp::MetaData, QString> tmp = metaData;
-    foreach(QString value, tmp.values()) //remove empty keys
-    {
-        if (value.isEmpty() || value == "0")
-            tmp.remove(tmp.key(value));
-    }
-    if(tmp.isEmpty() || tmp.value(Qmmp::URL).isEmpty()) //skip empty tags
+    if(info.isEmpty())
     {
         qWarning("StateHandler: empty metadata");
         return false;
@@ -112,12 +106,23 @@ bool StateHandler::dispatch(const QMap<Qmmp::MetaData, QString> &metaData)
         return false;
     }
 
-    if(m_metaData.isEmpty() || m_metaData.value(Qmmp::URL) == metaData.value(Qmmp::URL))
+    if(m_info.isEmpty() || m_info.path() == info.path())
     {
-        if (m_metaData != tmp)
+        TrackInfo tmp = m_info;
+        tmp.setPath(info.path());
+        if(info.parts() & TrackInfo::MetaData)
+            tmp.setValues(info.metaData());
+        if(info.parts() & TrackInfo::Properties)
+            tmp.setValues(info.properties());
+        if(info.parts() & TrackInfo::ReplayGainInfo)
+            tmp.setValues(info.replayGainInfo());
+        if(info.duration() > 0)
+            tmp.setDuration(info.duration());
+
+        if(m_info != tmp)
         {
-            m_metaData = tmp;
-            qApp->postEvent(parent(), new MetaDataChangedEvent(m_metaData));
+            m_info = tmp;
+            qApp->postEvent(parent(), new TrackInfoEvent(m_info));
             return true;
         }
     }
@@ -151,6 +156,7 @@ void StateHandler::dispatch(Qmmp::State state)
     {
         m_elapsed = -1;
         m_bitrate = 0;
+        m_info.clear();
         m_metaData.clear();
         m_streamInfo.clear();
         m_sendAboutToFinish = true;
@@ -180,10 +186,10 @@ qint64 StateHandler::elapsed() const
     return m_elapsed;
 }
 
-qint64 StateHandler::totalTime() const
+qint64 StateHandler::duration() const
 {
     QMutexLocker locker(&m_mutex);
-    return m_length;
+    return m_duration;
 }
 
 int StateHandler::bitrate() const

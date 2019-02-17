@@ -1,6 +1,6 @@
 /* =================================================
  * This file is part of the TTK Music Player qmmp plugin project
- * Copyright (C) 2015 - 2018 Greedysky Studio
+ * Copyright (C) 2015 - 2019 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,9 +19,7 @@
 #ifndef VISUALGOOMFACTORY_H
 #define VISUALGOOMFACTORY_H
 
-
 #include <QObject>
-
 #include <qmmp/visualfactory.h>
 #include <qmmp/visual.h>
 
@@ -30,15 +28,13 @@
 */
 class VisualGoomFactory : public QObject, public VisualFactory
 {
-Q_OBJECT
-Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
-Q_INTERFACES(VisualFactory)
-
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qmmp.qmmp.VisualFactoryInterface.1.0")
+    Q_INTERFACES(VisualFactory)
 public:
-    const VisualProperties properties() const;
-    Visual *create(QWidget *parent);
+    virtual VisualProperties properties() const override;
+    virtual Visual *create(QWidget *parent) override;
 
 };
-
 
 #endif

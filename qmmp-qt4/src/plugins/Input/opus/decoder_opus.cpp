@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2013-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2013-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,7 +22,6 @@
 #include <QIODevice>
 #include <qmmp/buffer.h>
 #include <qmmp/output.h>
-#include <qmmp/fileinfo.h>
 #include "decoder_opus.h"
 
 // ic functions for libopusfile

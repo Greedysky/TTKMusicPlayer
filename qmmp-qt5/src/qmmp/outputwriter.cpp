@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2012-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2012-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,7 +37,7 @@ OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
     m_handler = StateHandler::instance();
     m_frequency = 0;
     m_channels = 0;
-    m_output = 0;
+    m_output = nullptr;
     m_format = Qmmp::PCM_UNKNOWM;
     m_totalWritten = 0;
     m_currentMilliseconds = -1;
@@ -51,9 +51,9 @@ OutputWriter::OutputWriter (QObject* parent) : QThread (parent)
     m_useEq = false;
     m_muted = false;
     m_settings = QmmpSettings::instance();
-    m_format_converter = 0;
-    m_channel_converter = 0;
-    m_output_buf = 0;
+    m_format_converter = nullptr;
+    m_channel_converter = nullptr;
+    m_output_buf = nullptr;
     m_output_size = 0;
 }
 
@@ -83,7 +83,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
     {
         qWarning("OutputWriter: unable to initialize output");
         delete m_output;
-        m_output = 0;
+        m_output = nullptr;
         return false;
     }
     m_frequency = m_output->sampleRate();
@@ -99,7 +99,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
     {
         qWarning("OutputWriter: unable to convert audio");
         delete m_output;
-        m_output = 0;
+        m_output = nullptr;
         return false;
     }
 
@@ -117,9 +117,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
 
 void OutputWriter::pause()
 {
-    mutex()->lock();
     m_pause = !m_pause;
-    mutex()->unlock();
     Qmmp::State state = m_pause ? Qmmp::Paused: Qmmp::Playing;
     dispatch(state);
 }
@@ -141,9 +139,11 @@ void OutputWriter::finish()
 
 void OutputWriter::seek(qint64 pos, bool reset)
 {
+    m_mutex.lock();
     m_totalWritten = pos * m_bytesPerMillisecond;
     m_currentMilliseconds = -1;
     m_skip = isRunning() && reset;
+    m_mutex.unlock();
 }
 
 Recycler *OutputWriter::recycler()
@@ -151,34 +151,9 @@ Recycler *OutputWriter::recycler()
     return &m_recycler;
 }
 
-QMutex *OutputWriter::mutex()
-{
-    return &m_mutex;
-}
-
 AudioParameters OutputWriter::audioParameters() const
 {
     return AudioParameters(m_frequency, m_chan_map, Qmmp::PCM_FLOAT);
-}
-
-quint32 OutputWriter::sampleRate()
-{
-    return m_frequency;
-}
-
-int OutputWriter::channels()
-{
-    return m_channels;
-}
-
-Qmmp::AudioFormat OutputWriter::format() const
-{
-    return m_format;
-}
-
-const ChannelMap OutputWriter::channelMap() const
-{
-    return m_chan_map;
 }
 
 int OutputWriter::sampleSize() const
@@ -200,12 +175,12 @@ bool OutputWriter::prepareConverters()
     if(m_format_converter)
     {
         delete m_format_converter;
-        m_format_converter = 0;
+        m_format_converter = nullptr;
     }
     if(m_channel_converter)
     {
         delete m_channel_converter;
-        m_channel_converter = 0;
+        m_channel_converter = nullptr;
     }
 
     if(m_channels != m_output->channels())
@@ -265,21 +240,21 @@ void OutputWriter::dispatch(const AudioParameters &p)
 
 void OutputWriter::run()
 {
-    mutex()->lock ();
+    m_mutex.lock ();
     if (!m_bytesPerMillisecond)
     {
         qWarning("OutputWriter: invalid audio parameters");
-        mutex()->unlock ();
+        m_mutex.unlock ();
         return;
     }
-    mutex()->unlock ();
+    m_mutex.unlock ();
 
     bool done = false;
-    Buffer *b = 0;
+    Buffer *b = nullptr;
     quint64 l;
     qint64 m = 0;
     size_t output_at = 0;
-    unsigned char *tmp = 0;
+    unsigned char *tmp = nullptr;
 
     dispatch(Qmmp::Playing);
     dispatch(m_output->audioParameters());
@@ -287,14 +262,14 @@ void OutputWriter::run()
 
     while (!done)
     {
-        mutex()->lock ();
+        m_mutex.lock ();
         if(m_pause != m_prev_pause)
         {
             if(m_pause)
             {
                 Visual::clearBuffer();
                 m_output->suspend();
-                mutex()->unlock();
+                m_mutex.unlock();
                 m_prev_pause = m_pause;
                 continue;
             }
@@ -308,9 +283,9 @@ void OutputWriter::run()
         while (!done && (recycler()->empty() || m_pause))
         {
             recycler()->cond()->wakeOne();
-            mutex()->unlock();
+            m_mutex.unlock();
             recycler()->cond()->wait(recycler()->mutex());
-            mutex()->lock ();
+            m_mutex.lock ();
             done = m_user_stop || m_finish;
         }
 
@@ -321,22 +296,22 @@ void OutputWriter::run()
             {
                 if(b->rate)
                     m_kbps = b->rate;
-                if(b->metaData)
-                    m_output->setMetaData(*b->metaData);
+                if(b->trackInfo)
+                    m_output->setTrackInfo(*b->trackInfo);
             }
         }
 
         recycler()->cond()->wakeOne();
         recycler()->mutex()->unlock();
-        mutex()->unlock();
+        m_mutex.unlock();
         if (b)
         {
-            mutex()->lock();
+            m_mutex.lock();
             if (m_useEq)
             {
                 iir(b->data, b->samples, m_channels);
             }
-            mutex()->unlock();
+            m_mutex.unlock();
             dispatchVisual(b);
             if (SoftwareVolume::instance())
                 SoftwareVolume::instance()->changeVolume(b, m_channels);
@@ -368,16 +343,16 @@ void OutputWriter::run()
 
             while (l < output_at && !m_pause && !m_prev_pause)
             {
-                mutex()->lock();
+                m_mutex.lock();
                 if(m_skip)
                 {
                     m_skip = false;
                     Visual::clearBuffer();
                     m_output->reset();
-                    mutex()->unlock();
+                    m_mutex.unlock();
                     break;
                 }
-                mutex()->unlock();
+                m_mutex.unlock();
                 m = m_output->writeAudio(tmp + l, output_at - l);
                 if(m >= 0)
                 {
@@ -390,15 +365,15 @@ void OutputWriter::run()
             if(m < 0)
                 break;
         }
-        mutex()->lock();
+        m_mutex.lock();
         //force buffer change
         recycler()->mutex()->lock ();
         recycler()->done();
         recycler()->mutex()->unlock();
-        b = 0;
-        mutex()->unlock();
+        b = nullptr;
+        m_mutex.unlock();
     }
-    mutex()->lock ();
+    m_mutex.lock();
     //write remaining data
     if(m_finish)
     {
@@ -407,7 +382,7 @@ void OutputWriter::run()
     }
     dispatch(Qmmp::Stopped);
     stopVisualization();
-    mutex()->unlock();
+    m_mutex.unlock();
 }
 
 void OutputWriter::status()
@@ -426,7 +401,7 @@ void OutputWriter::status()
 
 void OutputWriter::updateEqSettings()
 {
-    mutex()->lock();
+    m_mutex.lock();
     if(m_settings->eqSettings().isEnabled())
     {
         double preamp = m_settings->eqSettings().preamp();
@@ -444,5 +419,5 @@ void OutputWriter::updateEqSettings()
         }
     }
     m_useEq = m_settings->eqSettings().isEnabled();
-    mutex()->unlock();
+    m_mutex.unlock();
 }

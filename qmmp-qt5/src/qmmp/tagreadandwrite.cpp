@@ -75,7 +75,7 @@ bool TagReadAndWrite::readFile(const QString &path)
         m_parameters[TAG_BITRATE] = QString("%1 kbps").arg(properties->bitrate());
         m_parameters[TAG_SAMPLERATE] = QString("%1 Hz").arg(properties->sampleRate());
         m_parameters[TAG_CHANNEL] = QString::number(properties->channels());
-        m_parameters[TAG_LENGTH] = QString::number(properties->length()*1000);
+        m_parameters[TAG_LENGTH] = QString::number(properties->lengthInMilliseconds());
     }
 
     return true;

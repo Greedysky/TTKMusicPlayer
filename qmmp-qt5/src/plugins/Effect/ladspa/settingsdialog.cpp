@@ -102,9 +102,9 @@ void SettingsDialog::on_configureButton_clicked()
     QDialog *dialog = new QDialog(this);
     dialog->setWindowTitle(effect->plugin->desc->Name);
     QFormLayout *formLayout = new QFormLayout(dialog);
-    LADSPAButton *button = 0;
-    LADSPASlider *slider = 0;
-    QLabel *label = 0;
+    LADSPAButton *button = nullptr;
+    LADSPASlider *slider = nullptr;
+    QLabel *label = nullptr;
 
     foreach(LADSPAControl *c, effect->controls)
     {

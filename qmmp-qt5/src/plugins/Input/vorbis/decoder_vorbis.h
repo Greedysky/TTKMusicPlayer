@@ -8,24 +8,22 @@
 #define DECODER_VORBIS_H
 
 #include <qmmp/decoder.h>
-
 #include <vorbis/vorbisfile.h>
-
 
 class DecoderVorbis : public Decoder
 {
 public:
-    DecoderVorbis(const QString &url, QIODevice *i);
+    DecoderVorbis(QIODevice *i);
     virtual ~DecoderVorbis();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    int bitrate() const;
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual int bitrate() const override;
 
 private:
-    virtual qint64 read(unsigned char *data, qint64 maxSize);
-    virtual void seek(qint64 time);
+    virtual qint64 read(unsigned char *data, qint64 maxSize) override;
+    virtual void seek(qint64 time) override;
 
     // helper functions
     void deinit();
@@ -39,8 +37,6 @@ private:
     int m_last_section;
     int m_bitrate;
     bool m_inited;
-    QString m_url;
 };
-
 
 #endif // __decoder_vorbis_h

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,7 +17,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
-
 
 #include <QObject>
 #include <QRegExp>
@@ -87,7 +86,7 @@ DecoderCDAudio::DecoderCDAudio(const QString &url) : Decoder()
     m_last_sector  = -1;
     m_current_sector  = -1;
     m_url = url;
-    m_cdio = 0;
+    m_cdio = nullptr;
     m_buffer_at = 0;
     m_buffer = new char[CDDA_BUFFER_SIZE];
 }
@@ -98,12 +97,12 @@ DecoderCDAudio::~DecoderCDAudio()
     if (m_cdio)
     {
         cdio_destroy(m_cdio);
-        m_cdio = 0;
+        m_cdio = nullptr;
     }
     delete [] m_buffer;
 }
 
-QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
+QList<CDATrack> DecoderCDAudio::generateTrackList(const QString &device, TrackInfo::Parts parts)
 {
     //read settings
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -111,13 +110,13 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
     bool use_cd_text = settings.value("cdaudio/cdtext", true).toBool();
     QList <CDATrack> tracks;
     cdio_log_set_handler(log_handler); //setup cdio log handler
-    CdIo_t *cdio = 0;
+    CdIo_t *cdio = nullptr;
     QString device_path = device;
     if (device_path.isEmpty() || device_path == "/")
         device_path = settings.value("cdaudio/device").toString();
     if (device_path.isEmpty() || device_path == "/")
     {
-        char **cd_drives = cdio_get_devices_with_cap(0, CDIO_FS_AUDIO, true); //get drive list with CDA disks
+        char **cd_drives = cdio_get_devices_with_cap(nullptr, CDIO_FS_AUDIO, true); //get drive list with CDA disks
         // open first audio capable cd drive
         if (cd_drives && *cd_drives)
         {
@@ -164,7 +163,7 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
             qWarning("DecoderCDAudio: unable to set drive speed to %dX.", cd_speed);
     }
 
-    cdrom_drive_t *pcdrom_drive = cdio_cddap_identify_cdio(cdio, 1, 0); //create paranoya CD-ROM object
+    cdrom_drive_t *pcdrom_drive = cdio_cddap_identify_cdio(cdio, 1, nullptr); //create paranoya CD-ROM object
     //get first and last track numbers
     int first_track_number = cdio_get_first_track_num(pcdrom_drive->p_cdio);
     int last_track_number = cdio_get_last_track_num(pcdrom_drive->p_cdio);
@@ -173,7 +172,7 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
     {
         qWarning("DecoderCDAudio: invalid first (last) track number.");
         cdio_destroy(cdio);
-        cdio = 0;
+        cdio = nullptr;
         return tracks;
     }
     bool use_cddb = true;
@@ -183,39 +182,49 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
         CDATrack t;
         t.first_sector = cdio_get_track_lsn(pcdrom_drive->p_cdio, i);
         t.last_sector = cdio_get_track_last_lsn(pcdrom_drive->p_cdio, i);
-        t.info.setLength((t.last_sector - t.first_sector +1) / 75);
-        t.info.setMetaData(Qmmp::TRACK, i);
+        t.info.setDuration((t.last_sector - t.first_sector +1) * 1000 / 75);
+        t.info.setValue(Qmmp::TRACK, i);
         t.info.setPath(QString("cdda://%1#%2").arg(device_path).arg(i));
+
+        if(parts & TrackInfo::Properties)
+        {
+            t.info.setValue(Qmmp::BITRATE, 1411);
+            t.info.setValue(Qmmp::SAMPLERATE, 44100);
+            t.info.setValue(Qmmp::CHANNELS, 2);
+            t.info.setValue(Qmmp::BITS_PER_SAMPLE, 16);
+            t.info.setValue(Qmmp::FORMAT_NAME, "CDDA");
+        }
+
         if ((t.first_sector == CDIO_INVALID_LSN) || (t.last_sector== CDIO_INVALID_LSN))
         {
             qWarning("DecoderCDAudio: invalid stard(end) lsn for the track %d.", i);
             tracks.clear();
             cdio_destroy(cdio);
-            cdio = 0;
+            cdio = nullptr;
             return tracks;
         }
         //cd text
 #if LIBCDIO_VERSION_NUM <= 83
-        cdtext_t *cdtext = use_cd_text ? cdio_get_cdtext(pcdrom_drive->p_cdio, i) : 0;
+        cdtext_t *cdtext = use_cd_text ? cdio_get_cdtext(pcdrom_drive->p_cdio, i) : nullptr;
         if (cdtext && cdtext->field[CDTEXT_TITLE])
         {
-            t.info.setMetaData(Qmmp::TITLE, QString::fromLocal8Bit(cdtext->field[CDTEXT_TITLE]));
-            t.info.setMetaData(Qmmp::ARTIST, QString::fromLocal8Bit(cdtext->field[CDTEXT_PERFORMER]));
-            t.info.setMetaData(Qmmp::GENRE, QString::fromLocal8Bit(cdtext->field[CDTEXT_GENRE]));
+            t.info.setValue(Qmmp::TITLE, QString::fromLocal8Bit(cdtext->field[CDTEXT_TITLE]));
+            t.info.setValue(Qmmp::ARTIST, QString::fromLocal8Bit(cdtext->field[CDTEXT_PERFORMER]));
+            t.info.setValue(Qmmp::GENRE, QString::fromLocal8Bit(cdtext->field[CDTEXT_GENRE]));
             use_cddb = false;
         }
 #else
-        cdtext_t *cdtext = use_cd_text ? cdio_get_cdtext(pcdrom_drive->p_cdio) : 0;
+        cdtext_t *cdtext = use_cd_text ? cdio_get_cdtext(pcdrom_drive->p_cdio) : nullptr;
         if (cdtext)
         {
-            t.info.setMetaData(Qmmp::TITLE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_TITLE,i)));
-            t.info.setMetaData(Qmmp::ARTIST, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_PERFORMER,i)));
-            t.info.setMetaData(Qmmp::GENRE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_GENRE,i)));
+            t.info.setValue(Qmmp::TITLE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_TITLE,i)));
+            t.info.setValue(Qmmp::ARTIST, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_PERFORMER,i)));
+            t.info.setValue(Qmmp::GENRE, QString::fromUtf8(cdtext_get_const(cdtext,CDTEXT_FIELD_GENRE,i)));
             use_cddb = false;
         }
 #endif
         else
-            t.info.setMetaData(Qmmp::TITLE, QString("CDA Track %1").arg(i, 2, 10, QChar('0')));
+            t.info.setValue(Qmmp::TITLE, QString("CDA Track %1").arg(i, 2, 10, QChar('0')));
         tracks  << t;
     }
     qDebug("DecoderCDAudio: found %d audio tracks", tracks.size());
@@ -293,14 +302,14 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
                     {
                         cddb_track_t *cddb_track = cddb_disc_get_track (cddb_disc, i - 1);
                         int t = i - first_track_number;
-                        tracks[t].info.setMetaData(Qmmp::ARTIST,
-                                                   QString::fromUtf8(cddb_track_get_artist(cddb_track)));
-                        tracks[t].info.setMetaData(Qmmp::TITLE,
-                                                   QString::fromUtf8(cddb_track_get_title(cddb_track)));
-                        tracks[t].info.setMetaData(Qmmp::GENRE,
-                                                   QString::fromUtf8(cddb_disc_get_genre(cddb_disc)));
-                        tracks[t].info.setMetaData(Qmmp::ALBUM,
-                                                   QString::fromUtf8(cddb_disc_get_title(cddb_disc)));
+                        tracks[t].info.setValue(Qmmp::ARTIST,
+                                                QString::fromUtf8(cddb_track_get_artist(cddb_track)));
+                        tracks[t].info.setValue(Qmmp::TITLE,
+                                                QString::fromUtf8(cddb_track_get_title(cddb_track)));
+                        tracks[t].info.setValue(Qmmp::GENRE,
+                                                QString::fromUtf8(cddb_disc_get_genre(cddb_disc)));
+                        tracks[t].info.setValue(Qmmp::ALBUM,
+                                                QString::fromUtf8(cddb_disc_get_title(cddb_disc)));
                     }
                     saveToCache(tracks,  id);
                 }
@@ -319,7 +328,7 @@ QList <CDATrack> DecoderCDAudio::generateTrackList(const QString &device)
     }
 
     cdio_destroy(cdio);
-    cdio = 0;
+    cdio = nullptr;
     m_track_cache = tracks;
     return tracks;
 }
@@ -357,10 +366,10 @@ bool DecoderCDAudio::readFromCache(QList <CDATrack> *tracks, uint disc_id)
         return false;
     for(int i = 0; i < count; ++i)
     {
-        (*tracks)[i].info.setMetaData(Qmmp::ARTIST, settings.value(QString("artist%1").arg(i)).toString());
-        (*tracks)[i].info.setMetaData(Qmmp::TITLE, settings.value(QString("title%1").arg(i)).toString());
-        (*tracks)[i].info.setMetaData(Qmmp::GENRE, settings.value(QString("genre%1").arg(i)).toString());
-        (*tracks)[i].info.setMetaData(Qmmp::ALBUM, settings.value(QString("album%1").arg(i)).toString());
+        (*tracks)[i].info.setValue(Qmmp::ARTIST, settings.value(QString("artist%1").arg(i)).toString());
+        (*tracks)[i].info.setValue(Qmmp::TITLE, settings.value(QString("title%1").arg(i)).toString());
+        (*tracks)[i].info.setValue(Qmmp::GENRE, settings.value(QString("genre%1").arg(i)).toString());
+        (*tracks)[i].info.setValue(Qmmp::ALBUM, settings.value(QString("album%1").arg(i)).toString());
     }
     return true;
 }
@@ -395,7 +404,7 @@ bool DecoderCDAudio::initialize()
     //find track by number
     int track_at = -1;
     for (int i = 0; i < tracks.size(); ++i)
-        if (tracks[i].info.metaData(Qmmp::TRACK).toInt() == track_number)
+        if (tracks[i].info.value(Qmmp::TRACK).toInt() == track_number)
         {
             track_at = i;
             break;
@@ -415,7 +424,7 @@ bool DecoderCDAudio::initialize()
 
     if (device_path.isEmpty() || device_path == "/")
     {
-        char **cd_drives = cdio_get_devices_with_cap(0, CDIO_FS_AUDIO, true); //get drive list with CDA disks
+        char **cd_drives = cdio_get_devices_with_cap(nullptr, CDIO_FS_AUDIO, true); //get drive list with CDA disks
         // open first audio capable cd drive
         if (cd_drives && *cd_drives)
         {
@@ -447,15 +456,16 @@ bool DecoderCDAudio::initialize()
     }
     configure(44100, 2, Qmmp::PCM_S16LE);
     m_bitrate = 1411;
-    m_totalTime = tracks[track_at].info.length() * 1000;
+    m_totalTime = tracks[track_at].info.duration();
     m_first_sector = tracks[track_at].first_sector;
     m_current_sector = tracks[track_at].first_sector;
     m_last_sector = tracks[track_at].last_sector;
     addMetaData(tracks[track_at].info.metaData()); //send metadata
+    setProperty(Qmmp::FORMAT_NAME, "CDDA");
+    setProperty(Qmmp::BITRATE, m_bitrate);
     qDebug("DecoderCDAudio: initialize succes");
     return true;
 }
-
 
 qint64 DecoderCDAudio::totalTime() const
 {

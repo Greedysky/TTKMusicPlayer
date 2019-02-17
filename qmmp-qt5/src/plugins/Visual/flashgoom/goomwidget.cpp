@@ -6,9 +6,8 @@
 #include <QPaintEvent>
 #include <math.h>
 #include <stdlib.h>
-#include <qmmp/buffer.h>
-#include <qmmp/output.h>
-#include <QTime>
+
+#include <qmmp/qmmp.h>
 #include "goomwidget.h"
 
 GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
@@ -20,13 +19,12 @@ GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
 
     setWindowTitle ("Flash Goom Widget");
     setMinimumSize(150,150);
-    m_timer = new QTimer (this);
+    m_timer = new QTimer(this);
     connect(m_timer, SIGNAL (timeout()), SLOT(timeout()));
 
     clear();
     createMenu();
     readSettings();
-
 }
 
 GoomWidget::~GoomWidget()
@@ -101,21 +99,21 @@ void GoomWidget::writeSettings()
     settings.endGroup();
 }
 
-void GoomWidget::hideEvent (QHideEvent *)
+void GoomWidget::hideEvent(QHideEvent *)
 {
     m_timer->stop();
     clear();
 }
 
-void GoomWidget::showEvent (QShowEvent *)
+void GoomWidget::showEvent(QShowEvent *)
 {
     if(m_running)
         m_timer->start();
 }
 
-void GoomWidget::paintEvent (QPaintEvent *)
+void GoomWidget::paintEvent(QPaintEvent *)
 {
-    QPainter painter (this);
+    QPainter painter(this);
     painter.drawImage(0,0, m_image);
 }
 

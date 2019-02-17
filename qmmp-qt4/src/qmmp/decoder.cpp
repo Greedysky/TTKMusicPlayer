@@ -33,18 +33,21 @@ void Decoder::setReplayGainInfo(const QMap<Qmmp::ReplayGainKey, double> &rg)
 
 void Decoder::configure(quint32 srate, const ChannelMap &map, Qmmp::AudioFormat format)
 {
-    m_parameters = AudioParameters(srate, map, format);
+    configure(AudioParameters(srate, map, format));
 }
 
 void Decoder::configure(quint32 srate, int channels, Qmmp::AudioFormat f)
 {
     qDebug("Decoder: using internal channel order");
-    m_parameters = AudioParameters(srate, ChannelMap(channels), f);
+    configure(AudioParameters(srate, ChannelMap(channels), f));
 }
 
 void Decoder::configure(const AudioParameters &p)
 {
     m_parameters = p;
+    setProperty(Qmmp::SAMPLERATE, m_parameters.sampleRate());
+    setProperty(Qmmp::CHANNELS, m_parameters.channels());
+    setProperty(Qmmp::BITS_PER_SAMPLE, m_parameters.validBitsPerSample());
 }
 
 void Decoder::next()
@@ -87,6 +90,28 @@ QMap<Qmmp::MetaData, QString> Decoder::takeMetaData()
     return m_metaData;
 }
 
+void Decoder::setProperty(Qmmp::TrackProperty key, const QVariant &value)
+{
+    QString strValue = value.toString();
+    if(strValue.isEmpty() || strValue == "0")
+        m_properties.remove(key);
+    else
+        m_properties[key] = strValue;
+}
+
+void Decoder::setProperties(const QMap<Qmmp::TrackProperty, QString> &properties)
+{
+    foreach(Qmmp::TrackProperty key, properties.keys())
+    {
+        setProperty(key, properties.value(key));
+    }
+}
+
+const QMap<Qmmp::TrackProperty, QString> &Decoder::properties() const
+{
+    return m_properties;
+}
+
 // static methods
 QStringList Decoder::m_disabledNames;
 QList<QmmpPluginCache*> *Decoder::m_cache = 0;
@@ -104,13 +129,9 @@ void Decoder::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-    pluginsDir.cd("Input");
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Input"))
     {
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;

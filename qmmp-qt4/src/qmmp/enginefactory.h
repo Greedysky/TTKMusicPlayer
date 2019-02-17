@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2015 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,20 +21,22 @@
 #ifndef EMGINEFACTORY_H
 #define EMGINEFACTORY_H
 
-class QObject;
-class QString;
-class QIODevice;
-class QWidget;
-class QTranslator;
-class QStringList;
-class MetaDataModel;
-class FileInfo;
+#include <QStringList>
+#include <QList>
+#include <QMap>
+#include <QIODevice>
+#include "qmmp_export.h"
+#include "qmmp.h"
+#include "trackinfo.h"
+#include "abstractengine.h"
+#include "metadatamodel.h"
+
 class AbstractEngine;
 
 /*! @brief Helper class to store custom audio engine properies.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class EngineProperties
+class QMMP_EXPORT EngineProperties
 {
 public:
     /*!
@@ -42,22 +44,20 @@ public:
      */
     EngineProperties()
     {
-        hasAbout = false;
         hasSettings = false;
     }
-    QString name;          /*!< Input plugin full name */
-    QString shortName;     /*!< Input plugin short name for internal usage */
-    QStringList filters;   /*!< File filters (example: "*.mp3,*.ogg") */
-    QString description;   /*!< File filter description */
+    QString name;             /*!< Input plugin full name */
+    QString shortName;        /*!< Input plugin short name for internal usage */
+    QStringList filters;      /*!< File filters (example: "*.mp3,*.ogg") */
+    QString description;      /*!< File filter description */
     QStringList contentTypes; /*!< Supported content types */
-    QStringList protocols; /*!< Supported protocols. Should be empty if plugin uses stream input. */
-    bool hasAbout;         /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
-    bool hasSettings;   /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    QStringList protocols;    /*!< Supported protocols. Should be empty if plugin uses stream input. */
+    bool hasSettings;         /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
 };
 /*! @brief Engine plugin interface.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class EngineFactory
+class QMMP_EXPORT EngineFactory
 {
 public:
     /*!
@@ -71,7 +71,7 @@ public:
     /*!
      * Returns general plugin properties.
      */
-    virtual const EngineProperties properties() const = 0;
+    virtual EngineProperties properties() const = 0;
     /*!
      * Creates engine object.
      * @param parent Parent object File path
@@ -79,20 +79,20 @@ public:
     virtual AbstractEngine *create(QObject *parent = 0) = 0;
     /*!
      * Extracts metadata and audio information from file \b path and returns a list of FileInfo items.
-     * One file may contain several playlist items (for example: cda disk or flac with embedded cue)
+     * One file may contain several playlist items (for example: cda disk or flac with embedded cue).
      * @param fileName File path.
-     * @param useMetaData Metadata usage (\b true - use, \b - do not use)
-     * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search
-     * (useful to exclude cue data files from playlist)
+     * @param ignoredPaths Pointer to a list of the files which should be ignored by the recursive search.
+     * @param parts parts of metadata which should be extracted from file.
+     * (useful to exclude cue data files from playlist).
      */
-    virtual QList<FileInfo *> createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredPaths) = 0;
+    virtual QList<TrackInfo *> createPlayList(const QString &fileName, TrackInfo::Parts parts, QStringList *ignoredPaths) = 0;
     /*!
      * Creats metadata object, which provides full access to file tags.
      * @param path File path.
-     * @param parent Parent object.
+     * @param readOnly Open file in read-only mode (\b true - enabled, \b false - disable).
      * @return MetaDataModel pointer.
      */
-    virtual MetaDataModel* createMetaDataModel(const QString &path, QObject *parent = 0) = 0;
+    virtual MetaDataModel* createMetaDataModel(const QString &path, bool readOnly) = 0;
 
 };
 

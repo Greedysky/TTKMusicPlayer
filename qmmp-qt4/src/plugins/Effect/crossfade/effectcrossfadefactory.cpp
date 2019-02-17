@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2010 by Ilya Kotov                                      *
+ *   Copyright (C) 2010-2015 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,7 +30,6 @@ const EffectProperties EffectCrossfadeFactory::properties() const
     properties.name = tr("Crossfade Plugin");
     properties.shortName = "crossfade";
     properties.hasSettings = true;
-    properties.hasAbout = true;
     properties.priority = EffectProperties::EFFECT_PRIORITY_LOW;
     return properties;
 }

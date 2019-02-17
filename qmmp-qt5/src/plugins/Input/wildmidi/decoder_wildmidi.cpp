@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@
 DecoderWildMidi::DecoderWildMidi(const QString &path) : Decoder()
 {
     m_path = path;
-    midi_ptr =  0;
+    midi_ptr = nullptr;
     m_sample_rate = 0;
 }
 

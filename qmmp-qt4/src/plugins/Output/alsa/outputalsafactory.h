@@ -17,27 +17,23 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef OUTPUTALSAFACTORY_H
 #define OUTPUTALSAFACTORY_H
-
 
 #include <QObject>
 #include <QString>
 #include <QIODevice>
 #include <QWidget>
-
 #include <qmmp/output.h>
 #include <qmmp/outputfactory.h>
 
-
-class OutputALSAFactory : public QObject,
-                          OutputFactory
+class OutputALSAFactory : public QObject, OutputFactory
 {
-Q_OBJECT
-Q_INTERFACES(OutputFactory)
-
+    Q_OBJECT
+    Q_INTERFACES(OutputFactory)
 public:
-    const OutputProperties properties() const;
+    OutputProperties properties() const;
     Output* create();
     Volume *createVolume();
 

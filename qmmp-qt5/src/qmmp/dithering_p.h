@@ -20,7 +20,6 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-
 #ifndef DITHERING_P_H
 #define DITHERING_P_H
 
@@ -29,14 +28,14 @@
 /** @internal
     @author Ilya Kotov <forkotov02@ya.ru>
 */
-class Dithering : public Effect
+class QMMP_EXPORT Dithering : public Effect
 {
 public:
     Dithering();
 
-    void configure(quint32 srate, ChannelMap map);
+    virtual void configure(quint32 srate, ChannelMap map) override;
     void setFormats(Qmmp::AudioFormat in, Qmmp::AudioFormat out);
-    void applyEffect(Buffer *b);
+    virtual void applyEffect(Buffer *b) override;
     void setEnabled(bool enabled);
 
 private:
@@ -53,7 +52,6 @@ private:
     AudioDither m_dither[9];
     float m_lsb;
     bool m_required, m_enabled;
-
 
     quint32 prng(quint32 state);
     float audioLinearDither(float sample, AudioDither *dither);

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,7 @@
 
 #define COVER_CACHE_SIZE 10
 
-MetaDataManager* MetaDataManager::m_instance = 0;
+MetaDataManager* MetaDataManager::m_instance = nullptr;
 
 MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 {
@@ -44,77 +44,90 @@ MetaDataManager::MetaDataManager() : m_mutex(QMutex::Recursive)
 MetaDataManager::~MetaDataManager()
 {
     clearCoverCache();
-    m_instance = 0;
+    m_instance = nullptr;
 }
 
-QList <FileInfo *> MetaDataManager::createPlayList(const QString &fileName, bool useMetaData, QStringList *ignoredPaths) const
+QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *ignoredPaths) const
 {
-    QList <FileInfo *> list;
-    DecoderFactory *fact = 0;
-    EngineFactory *efact = 0;
+    QList <TrackInfo *> list;
+    DecoderFactory *fact = nullptr;
+    EngineFactory *efact = nullptr;
     QStringList dummyList;
     if(!ignoredPaths)
         ignoredPaths = &dummyList;
 
-    if (!fileName.contains("://")) //local file
-    {
-        if(!QFile::exists(fileName))
-            return list;
-        else if((fact = Decoder::findByFilePath(fileName, m_settings->determineFileTypeByContent())))
-            return fact->createPlayList(fileName, useMetaData, ignoredPaths);
-        else if((efact = AbstractEngine::findByFilePath(fileName)))
-            return efact->createPlayList(fileName, useMetaData, ignoredPaths);
-        return list;
-    }
-    else
-    {
-        QString scheme = fileName.section("://",0,0);
-        if(InputSource::protocols().contains(scheme))
-        {
-            list << new FileInfo(fileName);
-            return list;
-        }
-        foreach(fact, Decoder::factories())
-        {
-            if(fact->properties().protocols.contains(scheme) && Decoder::isEnabled(fact))
-                return fact->createPlayList(fileName, useMetaData, ignoredPaths);
-        }
-    }
-    return list;
-}
-
-MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, QObject *parent) const
-{
-    DecoderFactory *fact = 0;
-    EngineFactory *efact = 0;
-
     if (!path.contains("://")) //local file
     {
         if(!QFile::exists(path))
-            return 0;
-        else if((fact = Decoder::findByFilePath(path, m_settings->determineFileTypeByContent())))
-            return fact->createMetaDataModel(path, parent);
-        else if((efact = AbstractEngine::findByFilePath(path)))
-            return efact->createMetaDataModel(path, parent);
-        return 0;
+            return list;
+
+        if(!(fact = Decoder::findByFilePath(path, m_settings->determineFileTypeByContent())))
+            efact = AbstractEngine::findByFilePath(path);
     }
     else
     {
         QString scheme = path.section("://",0,0);
-        MetaDataModel *model = 0;
+        if(InputSource::protocols().contains(scheme))
+        {
+            list << new TrackInfo(path);
+        }
+        else
+        {
+            foreach(fact, Decoder::factories())
+            {
+                if(fact->properties().protocols.contains(scheme) && Decoder::isEnabled(fact))
+                    break;
+            }
+        }
+    }
+
+    if(fact)
+        list = fact->createPlayList(path, parts, ignoredPaths);
+    else if(efact)
+        list = efact->createPlayList(path, parts, ignoredPaths);
+
+    foreach(TrackInfo *info, list)
+    {
+        if(info->value(Qmmp::DECODER).isEmpty() && (fact || efact))
+            info->setValue(Qmmp::DECODER, fact ? fact->properties().shortName : efact->properties().shortName);
+        if(info->value(Qmmp::FILE_SIZE).isEmpty() && !path.contains("://"))
+            info->setValue(Qmmp::FILE_SIZE, QFileInfo(path).size());
+    }
+    return list;
+}
+
+MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool readOnly) const
+{
+    DecoderFactory *fact = nullptr;
+    EngineFactory *efact = nullptr;
+
+    if (!path.contains("://")) //local file
+    {
+        if(!QFile::exists(path))
+            return nullptr;
+        else if((fact = Decoder::findByFilePath(path, m_settings->determineFileTypeByContent())))
+            return fact->createMetaDataModel(path, readOnly);
+        else if((efact = AbstractEngine::findByFilePath(path)))
+            return efact->createMetaDataModel(path, readOnly);
+        return nullptr;
+    }
+    else
+    {
+        QString scheme = path.section("://",0,0);
+        MetaDataModel *model = nullptr;
         if((fact = Decoder::findByProtocol(scheme)))
         {
-            return fact->createMetaDataModel(path, parent);
+            return fact->createMetaDataModel(path, readOnly);
         }
         foreach(efact, AbstractEngine::enabledFactories())
         {
             if(efact->properties().protocols.contains(scheme))
-                model = efact->createMetaDataModel(path, parent);
+                model = efact->createMetaDataModel(path, readOnly);
             if(model)
                 return model;
         }
     }
-    return 0;
+    return nullptr;
 }
 
 QStringList MetaDataManager::filters() const
@@ -164,8 +177,8 @@ QStringList MetaDataManager::protocols() const
 
 bool MetaDataManager::supports(const QString &fileName) const
 {
-    DecoderFactory *fact = 0;
-    EngineFactory *efact = 0;
+    DecoderFactory *fact = nullptr;
+    EngineFactory *efact = nullptr;
     if (!fileName.contains("://")) //local file
     {
         if (!QFile::exists(fileName))
@@ -260,7 +273,7 @@ MetaDataManager::CoverCacheItem *MetaDataManager::createCoverCacheItem(const QSt
 {
     CoverCacheItem *item = new CoverCacheItem;
     item->url = url;
-    MetaDataModel *model = createMetaDataModel(url);
+    MetaDataModel *model = createMetaDataModel(url, true);
     if(model)
     {
         item->coverPath = model->coverPath();

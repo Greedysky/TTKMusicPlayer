@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,21 +32,19 @@
 #include <qmmp/statehandler.h>
 #include "outputalsa.h"
 
-
 OutputALSA::OutputALSA() : m_inited(false)
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QString dev_name = settings.value("ALSA/device","default").toString();
     m_use_mmap = settings.value("ALSA/use_mmap", false).toBool();
     pcm_name = strdup(dev_name.toLatin1().data());
-    pcm_handle = 0;
-    m_prebuf = 0;
+    pcm_handle = nullptr;
+    m_prebuf = nullptr;
     m_prebuf_size = 0;
     m_prebuf_fill = 0;
     m_can_pause = false;
     m_chunk_size = 0;
-#if (SND_LIB_VERSION >= 0x01001B)
-    m_alsa_channels[SND_CHMAP_NA] =   Qmmp::CHAN_NULL;
+    m_alsa_channels[SND_CHMAP_NA]   = Qmmp::CHAN_NULL;
     m_alsa_channels[SND_CHMAP_MONO] = Qmmp::CHAN_FRONT_CENTER;
     m_alsa_channels[SND_CHMAP_FL]   = Qmmp::CHAN_FRONT_LEFT;
     m_alsa_channels[SND_CHMAP_FR]   = Qmmp::CHAN_FRONT_RIGHT;
@@ -57,7 +55,6 @@ OutputALSA::OutputALSA() : m_inited(false)
     m_alsa_channels[SND_CHMAP_SL]   = Qmmp::CHAN_SIDE_LEFT;
     m_alsa_channels[SND_CHMAP_SR]   = Qmmp::CHAN_SIDE_RIGHT;
     m_alsa_channels[SND_CHMAP_RC]   = Qmmp::CHAN_REAR_CENTER;
-#endif
 }
 
 OutputALSA::~OutputALSA()
@@ -92,8 +89,8 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     bool use_pause =  settings.value("use_snd_pcm_pause", false).toBool();
     settings.endGroup();
 
-    snd_pcm_hw_params_t *hwparams = 0;
-    snd_pcm_sw_params_t *swparams = 0;
+    snd_pcm_hw_params_t *hwparams = nullptr;
+    snd_pcm_sw_params_t *swparams = nullptr;
     int err; //alsa error code
 
     //hw params
@@ -145,7 +142,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     }
     exact_rate = rate;
 
-    if ((err = snd_pcm_hw_params_set_rate_near(pcm_handle, hwparams, &exact_rate, 0)) < 0)
+    if ((err = snd_pcm_hw_params_set_rate_near(pcm_handle, hwparams, &exact_rate, nullptr)) < 0)
     {
         qWarning("OutputALSA: Error setting rate: %s", snd_strerror(err));
         return false;
@@ -166,12 +163,12 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
         qWarning("OutputALSA: The channel number %d is not supported by your hardware", map.count());
         qWarning("==> Using %d instead.", c);
     }
-    if ((err = snd_pcm_hw_params_set_period_time_near(pcm_handle, hwparams, &period_time ,0)) < 0)
+    if ((err = snd_pcm_hw_params_set_period_time_near(pcm_handle, hwparams, &period_time, nullptr)) < 0)
     {
         qWarning("OutputALSA: Error setting period time: %s", snd_strerror(err));
         return false;
     }
-    if ((err = snd_pcm_hw_params_set_buffer_time_near(pcm_handle, hwparams, &buffer_time ,0)) < 0)
+    if ((err = snd_pcm_hw_params_set_buffer_time_near(pcm_handle, hwparams, &buffer_time, nullptr)) < 0)
     {
         qWarning("OutputALSA: Error setting buffer time: %s", snd_strerror(err));
         return false;
@@ -189,7 +186,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
         qWarning("OutputALSA: Error reading buffer size: %s", snd_strerror(err));
         return false;
     }
-    if ((err = snd_pcm_hw_params_get_period_size(hwparams, &period_size, 0)) < 0)
+    if ((err = snd_pcm_hw_params_get_period_size(hwparams, &period_size, nullptr)) < 0)
     {
         qWarning("OutputALSA: Error reading period size: %s", snd_strerror(err));
         return false;
@@ -211,7 +208,6 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     qDebug("OutputALSA: can pause: %d", m_can_pause);
 
     ChannelMap out_map = map;
-#if (SND_LIB_VERSION >= 0x01001B)
     //channel map configuration
     snd_pcm_chmap_t *chmap = snd_pcm_get_chmap(pcm_handle);
     if(chmap)
@@ -233,7 +229,7 @@ bool OutputALSA::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat form
     }
     else
         qWarning("OutputALSA: Unable to receive current channel map");
-#endif
+
     configure(exact_rate, out_map, format); //apply configuration
     //create alsa prebuffer;
     m_prebuf_size = 2 * snd_pcm_frames_to_bytes(pcm_handle, m_chunk_size); //buffer for two periods
@@ -392,18 +388,18 @@ void OutputALSA::uninitialize()
         snd_pcm_drop(pcm_handle);
         qDebug("OutputALSA: closing pcm_handle");
         snd_pcm_close(pcm_handle);
-        pcm_handle = 0;
+        pcm_handle = nullptr;
     }
     if (m_prebuf)
         free(m_prebuf);
-    m_prebuf = 0;
+    m_prebuf = nullptr;
 }
 /* ****** MIXER ******* */
 
 VolumeALSA::VolumeALSA()
 {
     //alsa mixer
-    m_mixer = 0;
+    m_mixer = nullptr;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QString card = settings.value("ALSA/mixer_card","hw:0").toString();
     QString dev = settings.value("ALSA/mixer_device", "PCM").toString();
@@ -446,7 +442,7 @@ int VolumeALSA::setupMixer(QString card, QString device)
 {
     char *name;
     int err, index;
-    pcm_element = 0;
+    pcm_element = nullptr;
 
     qDebug("OutputALSA: setupMixer()");
 
@@ -546,7 +542,7 @@ int VolumeALSA::getMixer(snd_mixer_t **mixer, QString card)
                  qPrintable(card), snd_strerror(-err));
         return -1;
     }
-    if ((err = snd_mixer_selem_register(*mixer, NULL, NULL)) < 0)
+    if ((err = snd_mixer_selem_register(*mixer, nullptr, nullptr)) < 0)
     {
         qWarning("OutputALSA: Failed to register mixer: %s",
                  snd_strerror(-err));

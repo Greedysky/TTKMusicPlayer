@@ -2,13 +2,12 @@
 #include "visualnormalflowwavefactory.h"
 #include "normalflowwave.h"
 
-const VisualProperties VisualNormalFlowWaveFactory::properties() const
+VisualProperties VisualNormalFlowWaveFactory::properties() const
 {
     VisualProperties properties;
     properties.name = tr("Normal FlowWave Plugin");
     properties.shortName = "normalflowwave";
     properties.hasSettings = true;
-    properties.hasAbout = false;
     return properties;
 }
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2006-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -18,10 +18,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
-
 /* The code is based on MOC by Damian Pietras <daper@daper.net>
    and libxmms-flac written by Josh Coalson. */
-
 
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
@@ -34,7 +32,6 @@
 #include <QIODevice>
 #include <FLAC/all.h>
 #include <stdint.h>
-#include "replaygainreader.h"
 #include "cueparser.h"
 #include "decoder_flac.h"
 
@@ -267,13 +264,13 @@ DecoderFLAC::DecoderFLAC(const QString &path, QIODevice *i)
 {
     m_path = path;
     m_data = new flac_data;
-    m_data->decoder = NULL;
+    m_data->decoder = nullptr;
     m_data->input = i;
-    m_parser = 0;
+    m_parser = nullptr;
     length_in_bytes = 0;
     m_totalBytes = 0;
     m_sz = 0;
-    m_buf = 0;
+    m_buf = nullptr;
     m_offset = 0;
     m_track = 0;
 }
@@ -287,11 +284,11 @@ DecoderFLAC::~DecoderFLAC()
         if (m_data->decoder)
             FLAC__stream_decoder_delete(m_data->decoder);
         delete m_data;
-        m_data = 0;
+        m_data = nullptr;
     }
     if(m_buf)
         delete[] m_buf;
-    m_buf = 0;
+    m_buf = nullptr;
 }
 
 bool DecoderFLAC::initialize()
@@ -325,8 +322,7 @@ bool DecoderFLAC::initialize()
                     TagLib::StringList fld = xiph_comment->fieldListMap()["DISCNUMBER"];
                     for(int i = 1; i <= m_parser->count(); i++)
                     {
-                        m_parser->info(i)->setMetaData(Qmmp::DISCNUMBER,
-                                  QString::fromUtf8(fld.toString().toCString(true)).trimmed());
+                        m_parser->info(i)->setValue(Qmmp::DISCNUMBER, TStringToQString(fld.toString()));
                     }
                 }
                 QMap<Qmmp::MetaData, QString> metaData = m_parser->info(m_track)->metaData();
@@ -451,15 +447,10 @@ bool DecoderFLAC::initialize()
     default:
         return false;
     }
-    if(!m_path.contains("://"))
-    {
-        ReplayGainReader rg(m_path);
-        setReplayGainInfo(rg.replayGainInfo());
-    }
 
     if(m_parser)
     {
-        m_length = m_parser->length(m_track);
+        m_length = m_parser->duration(m_track);
         m_offset = m_parser->offset(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().frameSize() * m_length/1000;
@@ -513,7 +504,7 @@ qint64 DecoderFLAC::read(unsigned char *buf, qint64 size)
             if(size >= m_buf_size)
             {
                 delete[] m_buf;
-                m_buf = 0;
+                m_buf = nullptr;
                 m_buf_size = 0;
             }
             else
@@ -554,11 +545,11 @@ void DecoderFLAC::deinit()
     {
         m_data->input->close();
         delete m_data->input;
-        m_data->input = 0;
+        m_data->input = nullptr;
     };
     if(m_parser)
         delete m_parser;
-    m_parser = 0;
+    m_parser = nullptr;
 }
 
 const QString DecoderFLAC::nextURL() const
@@ -574,8 +565,8 @@ void DecoderFLAC::next()
     if(m_parser && m_track +1 <= m_parser->count())
     {
         m_track++;
-        m_offset = m_parser->length(m_track);
-        m_length = m_parser->length(m_track);
+        m_offset = m_parser->duration(m_track);
+        m_length = m_parser->duration(m_track);
         length_in_bytes = audioParameters().sampleRate() *
                           audioParameters().channels() *
                           audioParameters().sampleSize() * m_length/1000;

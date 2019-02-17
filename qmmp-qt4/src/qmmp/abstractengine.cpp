@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2009-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2009-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -53,13 +53,9 @@ void AbstractEngine::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-    pluginsDir.cd("Engines");
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Engines"))
     {
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;
@@ -91,6 +87,7 @@ AbstractEngine *AbstractEngine::create(InputSource *s, QObject *parent)
         if(!fact)
             continue;
         engine = fact->create(parent); //engine plugin
+        engine->setObjectName(item->shortName());
         if(!engine->enqueue(s))
         {
             engine->deleteLater();
@@ -142,7 +139,7 @@ EngineFactory *AbstractEngine::findByFilePath(const QString& source)
     return 0;
 }
 
-void AbstractEngine::setEnabled(EngineFactory* factory, bool enable)
+void AbstractEngine::setEnabled(EngineFactory *factory, bool enable)
 {
     loadPlugins();
     if (!factories().contains(factory))
@@ -161,10 +158,19 @@ void AbstractEngine::setEnabled(EngineFactory* factory, bool enable)
     settings.setValue("Engine/disabled_plugins", m_disabledNames);
 }
 
-bool AbstractEngine::isEnabled(EngineFactory* factory)
+bool AbstractEngine::isEnabled(EngineFactory *factory)
 {
     loadPlugins();
     return !m_disabledNames.contains(factory->properties().shortName);
+}
+
+bool AbstractEngine::isEnabled(AbstractEngine *engine)
+{
+    if(engine->objectName().isEmpty()) //qmmp engine
+        return true;
+
+    loadPlugins();
+    return !m_disabledNames.contains(engine->objectName());
 }
 
 QString AbstractEngine::file(EngineFactory *factory)

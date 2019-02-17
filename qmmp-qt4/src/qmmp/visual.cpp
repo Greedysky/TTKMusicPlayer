@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,6 +31,7 @@
 #include "visualfactory.h"
 #include "visualbuffer_p.h"
 #include "visual.h"
+#include "soundcore.h"
 
 Visual::Visual(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f)
 {
@@ -83,6 +84,16 @@ bool Visual::takeData(float *left, float *right)
     }
     m_buffer.mutex()->unlock();
     return node != 0;
+}
+
+float Visual::maxRange() const
+{
+    float range = 1.0f;
+    if(SoundCore::instance())
+    {
+        range = SoundCore::instance()->volume() * 1.0 / 100;
+    }
+    return range;
 }
 
 //static members
@@ -222,16 +233,12 @@ void Visual::checkFactories()
         m_factories = new QList<VisualFactory *>;
         m_files = new QHash <VisualFactory*, QString>;
 
-        QDir pluginsDir (Qmmp::pluginsPath());
-        pluginsDir.cd("Visual");
-        QStringList filters;
-        filters << "*.dll" << "*.so";
-        foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+        foreach (QString filePath, Qmmp::findPlugins("Visual"))
         {
-            QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+            QPluginLoader loader(filePath);
             QObject *plugin = loader.instance();
             if (loader.isLoaded())
-                qDebug("Visual: loaded plugin %s", qPrintable(fileName));
+                qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
             else
                 qWarning("Visual: %s", qPrintable(loader.errorString ()));
 
@@ -242,7 +249,7 @@ void Visual::checkFactories()
             if (factory)
             {
                 m_factories->append(factory);
-                m_files->insert(factory, pluginsDir.absoluteFilePath(fileName));
+                m_files->insert(factory, filePath);
             }
         }
     }

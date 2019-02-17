@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    Visual::initialize(this);
 //    foreach (VisualFactory *var, Visual::factories())
 //    {
-//        if(var->properties().shortName == "flashmeter")
+//        if(var->properties().shortName == "outerewave")
 //        {
 //            Visual::setEnabled(var, true);
 //        }

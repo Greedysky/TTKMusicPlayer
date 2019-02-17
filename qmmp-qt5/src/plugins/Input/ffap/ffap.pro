@@ -5,7 +5,6 @@ HEADERS += decoderffapfactory.h \
            decoder_ffap.h \
            cueparser.h \
            ffapmetadatamodel.h \
-           replaygainreader.h \
            decoder_ffapcue.h
 
 SOURCES += decoderffapfactory.cpp \
@@ -13,19 +12,12 @@ SOURCES += decoderffapfactory.cpp \
            decoder_ffap.cpp \
            cueparser.cpp \
            ffapmetadatamodel.cpp \
-           replaygainreader.cpp \
            decoder_ffapcue.cpp
 
 TARGET = $$PLUGINS_PREFIX/Input/ffap
+QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libffap.so
 
-INCLUDEPATH += ../../../ \
-               $$EXTRA_PREFIX/libtaglib/include
-
-CONFIG += warn_on \
-          plugin \
-          link_pkgconfig
-
-TEMPLATE = lib
+INCLUDEPATH += $$EXTRA_PREFIX/libtaglib/include
 
 #contains(QT_ARCH, i386)|contains(QT_ARCH, x86_64)|contains(QT_ARCH, windows) {
 #    ASM_SOURCES += dsputil_yasm.asm x86inc.asm
@@ -59,18 +51,13 @@ TEMPLATE = lib
 #}
 
 unix {
-    isEmpty(LIB_DIR):LIB_DIR = /lib/$$TTKMusicPlayer
-    QMAKE_CLEAN =$$PLUGINS_PREFIX/Input/libffap.so
     target.path = $$LIB_DIR/qmmp/Input
-
     INSTALLS += target
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag -lqmmp
-    QMAKE_LIBDIR += ../../../../lib/$$TTKMusicPlayer
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag
 }
 
 win32 {
     HEADERS += ../../../../src/qmmp/metadatamodel.h \
                ../../../../src/qmmp/decoderfactory.h
-    QMAKE_LIBDIR += ../../../../bin/$$TTKMusicPlayer
-    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll -lqmmp1
+    LIBS += -L$$EXTRA_PREFIX/libtaglib/lib -ltag.dll
 }

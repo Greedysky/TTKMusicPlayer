@@ -23,7 +23,7 @@
 ChannelConverter::ChannelConverter(ChannelMap out_map)
 {
     m_disabled = true;
-    m_tmp_buf = 0;
+    m_tmp_buf = nullptr;
     m_channels = 0;
     m_out_map = out_map;
     memset(m_reorder_array, 0, sizeof(m_reorder_array));
@@ -34,7 +34,7 @@ ChannelConverter::~ChannelConverter()
     if(m_tmp_buf)
     {
         delete [] m_tmp_buf;
-        m_tmp_buf = 0;
+        m_tmp_buf = nullptr;
     }
 }
 

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2016-2017 by Ilya Kotov                                 *
+ *   Copyright (C) 2016-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -64,6 +64,7 @@ OutputWASAPI::OutputWASAPI() : Output()
     instance = this;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     m_id = settings.value("WASAPI/device", "default").toString();
+    m_exclusive = settings.value("WASAPI/exclusive_mode", false).toBool();
 }
 
 OutputWASAPI::~OutputWASAPI()
@@ -162,15 +163,16 @@ bool OutputWASAPI::initialize(quint32 freq, ChannelMap map, Qmmp::AudioFormat fo
     wfex.dwChannelMask = mask;
     wfex.SubFormat = KSDATAFORMAT_SUBTYPE_PCM;
 
+    AUDCLNT_SHAREMODE mode = m_exclusive ? AUDCLNT_SHAREMODE_EXCLUSIVE :  AUDCLNT_SHAREMODE_SHARED;
     DWORD streamFlags = 0;
     //enable channel matrixer and a sample rate converter if format is unsupported
-    if(m_pAudioClient->IsFormatSupported(AUDCLNT_SHAREMODE_SHARED, (WAVEFORMATEX *)&wfex, 0) != S_OK)
+    if(m_pAudioClient->IsFormatSupported(mode, (WAVEFORMATEX *)&wfex, 0) != S_OK)
     {
         streamFlags |= AUDCLNT_STREAMFLAGS_AUTOCONVERTPCM;
         qDebug("OutputWASAPI: format is not supported, using converter");
     }
 
-    if((result = m_pAudioClient->Initialize(AUDCLNT_SHAREMODE_SHARED, streamFlags, WASAPI_BUFSIZE, 0, (WAVEFORMATEX *)&wfex, NULL)) != S_OK)
+    if((result = m_pAudioClient->Initialize(mode, streamFlags, WASAPI_BUFSIZE, 0, (WAVEFORMATEX *)&wfex, NULL)) != S_OK)
     {
         qWarning("OutputWASAPI: IAudioClient::Initialize failed, error code = 0x%lx", result);
         return false;

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2008-2016 by Ilya Kotov                                 *
+ *   Copyright (C) 2008-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -35,13 +35,13 @@ public:
     virtual ~DecoderCUE();
 
     // Standard Decoder API
-    bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64);
-    qint64 read(unsigned char *data, qint64 size);
-    int bitrate() const;
-    const QString nextURL() const;
-    void next();
+    virtual bool initialize() override;
+    virtual qint64 totalTime() const override;
+    virtual void seek(qint64) override;
+    virtual qint64 read(unsigned char *data, qint64 size) override;
+    virtual int bitrate() const override;
+    virtual const QString nextURL() const override;
+    virtual void next() override;
 
 private:
     Decoder *m_decoder;

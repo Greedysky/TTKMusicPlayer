@@ -65,9 +65,9 @@ void Output::suspend()
 void Output::resume()
 {}
 
-void Output::setMetaData(const QMap<Qmmp::MetaData, QString> &metaData)
+void Output::setTrackInfo(const TrackInfo &info)
 {
-    Q_UNUSED(metaData);
+    Q_UNUSED(info);
 }
 
 Output::~Output()
@@ -83,13 +83,9 @@ void Output::loadPlugins()
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    QDir pluginsDir (Qmmp::pluginsPath());
-    pluginsDir.cd("Output");
-    QStringList filters;
-    filters << "*.dll" << "*.so";
-    foreach (QString fileName, pluginsDir.entryList(filters, QDir::Files))
+    foreach (QString filePath, Qmmp::findPlugins("Output"))
     {
-        QmmpPluginCache *item = new QmmpPluginCache(pluginsDir.absoluteFilePath(fileName), &settings);
+        QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
         {
             delete item;

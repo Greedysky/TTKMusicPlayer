@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2007-2012 by Ilya Kotov                                 *
+ *   Copyright (C) 2007-2019 by Ilya Kotov                                 *
  *   forkotov02@ya.ru                                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -17,20 +17,21 @@
  *   Free Software Foundation, Inc.,                                       *
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
+
 #ifndef EFFECTFACTORY_H
 #define EFFECTFACTORY_H
 
 #include <QObject>
+#include "qmmp_export.h"
 
 class QObject;
 class QWidget;
-class QTranslator;
 class Effect;
 
 /*! @brief Helper class to store effect plugin properties.
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class EffectProperties
+class QMMP_EXPORT EffectProperties
 {
 public:
     /*!
@@ -47,20 +48,18 @@ public:
      */
     EffectProperties()
     {
-        hasAbout = false;
         hasSettings = false;
         priority = EFFECT_PRIORITY_DEFAULT;
     }
-    QString name;      /*!< Effect plugin full name */
-    QString shortName; /*!< Effect plugin short name for internal usage */
-    bool hasAbout;     /*!< Should be \b true if plugin has about dialog, otherwise returns \b false */
-    bool hasSettings;  /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
-    int priority;      /*!< Effect priority. Effecs with higher priority will be applied first */
+    QString name;        /*!< Effect plugin full name */
+    QString shortName;   /*!< Effect plugin short name for internal usage */
+    bool hasSettings;    /*!< Should be \b true if plugin has settings dialog, otherwise returns \b false */
+    int priority;        /*!< Effect priority. Effecs with higher priority will be applied first */
 };
 /*! @brief Effect plugin interface (effect factory).
  * @author Ilya Kotov <forkotov02@ya.ru>
  */
-class EffectFactory
+class QMMP_EXPORT EffectFactory
 {
 public:
     /*!
@@ -79,6 +78,6 @@ public:
 
 };
 
-Q_DECLARE_INTERFACE(EffectFactory, "EffectFactory/1.0");
+Q_DECLARE_INTERFACE(EffectFactory, "EffectFactory/1.0")
 
 #endif
