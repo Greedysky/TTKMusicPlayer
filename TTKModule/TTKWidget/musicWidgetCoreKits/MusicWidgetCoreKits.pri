@@ -45,7 +45,6 @@ HEADERS  += \
     $$PWD/musictransitionanimationlabel.h \
     $$PWD/musicfloatabstractwidget.h \
     $$PWD/musicfoundabstractwidget.h \
-    $$PWD/musictimersliderwidget.h \
     $$PWD/musiccutsliderwidget.h \
     $$PWD/musictoolmenuwidget.h \
     $$PWD/musicgiflabelwidget.h \
@@ -60,7 +59,8 @@ HEADERS  += \
     $$PWD/musiccommentswidget.h \
     $$PWD/musicdownloadabstracttablewidget.h \
     $$PWD/musicfunctiontoolboxwidget.h \
-    $$PWD/musicsongitemselecteddialog.h
+    $$PWD/musicsongitemselecteddialog.h \
+    $$PWD/musictimesliderwidget.h
 
 }
 
@@ -91,7 +91,6 @@ SOURCES += \
     $$PWD/musictransitionanimationlabel.cpp \
     $$PWD/musicfloatabstractwidget.cpp \
     $$PWD/musicfoundabstractwidget.cpp \
-    $$PWD/musictimersliderwidget.cpp \
     $$PWD/musiccutsliderwidget.cpp \
     $$PWD/musictoolmenuwidget.cpp \
     $$PWD/musicgiflabelwidget.cpp \
@@ -106,6 +105,7 @@ SOURCES += \
     $$PWD/musiccommentswidget.cpp \
     $$PWD/musicdownloadabstracttablewidget.cpp \
     $$PWD/musicfunctiontoolboxwidget.cpp \
-    $$PWD/musicsongitemselecteddialog.cpp
+    $$PWD/musicsongitemselecteddialog.cpp \
+    $$PWD/musictimesliderwidget.cpp
 
 }

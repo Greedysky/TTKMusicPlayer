@@ -182,7 +182,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
 
 void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
     {
         return;
     }
@@ -197,7 +197,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
 
 void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
     {
         return;
     }
@@ -237,7 +237,7 @@ void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 
 void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileName)
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1)
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
     {
         return;
     }
@@ -266,7 +266,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
 
 void MusicTopAreaWidget::musicBgThemeDownloadFinished()
 {
-    if(m_ui->surfaceStackedWidget->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artBackgroundIsShow())
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artBackgroundIsShow())
     {
         musicBackgroundChanged();
         m_pictureCarouselTimer.start();

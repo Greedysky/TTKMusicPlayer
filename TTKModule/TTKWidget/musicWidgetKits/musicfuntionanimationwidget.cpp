@@ -159,6 +159,7 @@ MusicFuntionAnimationWidget::MusicFuntionAnimationWidget(QWidget *parent)
         QToolButton *btn = new QToolButton(this);
         btn->setToolTip(names[i]);
         btn->setFixedSize(20, 20);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;
@@ -209,6 +210,7 @@ MusicOptionAnimationWidget::MusicOptionAnimationWidget(QWidget *parent)
     {
         QToolButton *btn = new QToolButton(this);
         btn->setFixedSize(54, 23);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;
@@ -268,6 +270,7 @@ MusicSkinAnimationWidget::MusicSkinAnimationWidget(QWidget *parent)
         QToolButton *btn = new QToolButton(this);
         btn->setText(names[i]);
         btn->setFixedSize(80, 30);
+        btn->setCursor(Qt::PointingHandCursor);
         ly->addWidget(btn);
         m_group->addButton(btn, i);
         m_container << btn;

@@ -66,7 +66,7 @@ MusicRightAreaWidget *MusicRightAreaWidget::instance()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    ui->musiclrccontainerforinline->resize(ui->surfaceStackedWidget->size());
+    ui->musiclrccontainerforinline->resize(ui->functionsContainer->size());
 
     ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
     ui->musicRefreshButton->setStyleSheet(MusicUIObject::MKGBtnBackFresh);
@@ -321,8 +321,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case KugGouSongWidget: //insert kugou song widget
             {
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouSong, this);
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(0);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
@@ -331,8 +331,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case KugGouRadioWidget: //insert kugou radio widget
             {
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouRadio, this);
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(1);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
@@ -341,8 +341,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case kugouListWidget: //insert kugou list widget
             {
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KuGouList, this);
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(2);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
@@ -361,8 +361,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 QWidget *background = new QWidget(this);
                 background->setStyleSheet(MusicUIObject::MBackgroundStyle17);
                 m_stackedFuncWidget = background;
-                m_ui->surfaceStackedWidget->addWidget(m_videoPlayerWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_videoPlayerWidget);
+                m_ui->functionsContainer->addWidget(m_videoPlayerWidget);
+                m_ui->functionsContainer->setCurrentWidget(m_videoPlayerWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(3);
                 emit updateBackgroundTheme();
                 break;
@@ -370,8 +370,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case kugouLiveWidget: //insert kugou live widget
             {
                 m_stackedFuncWidget = new KugouWindow(KugouWindow::KugouMv, this);
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(4);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
@@ -380,7 +380,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case LrcWidget: //insert lrc display widget
             {
                 m_ui->stackedWidgetFunctionOption->musicButtonStyle(5);
-                m_ui->surfaceStackedWidget->setCurrentIndex(1);
+                m_ui->functionsContainer->setCurrentIndex(1);
                 m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcCollapse);
                 m_ui->lrcDisplayAllButton->setVisible(true);
                 emit updateBgThemeDownload();
@@ -406,21 +406,21 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                     break;
                 }
 
-                m_ui->surfaceStackedWidget->setCurrentIndex(0);
+                m_ui->functionsContainer->setCurrentIndex(0);
                 emit updateBackgroundTheme();
                 break;
             }
         case SearchSingleWidget: //insert search display widget
             {
-                m_ui->surfaceStackedWidget->setCurrentIndex(0);
+                m_ui->functionsContainer->setCurrentIndex(0);
                 emit updateBackgroundTheme();
                 break;
             }
         case SimilarWidget: //insert similar found widget
             {
                 MusicSimilarFoundWidget *similarFoundWidget = new MusicSimilarFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(similarFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(similarFoundWidget);
+                m_ui->functionsContainer->addWidget(similarFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(similarFoundWidget);
                 m_stackedFuncWidget = similarFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -428,8 +428,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case AlbumWidget: //insert album found widget
             {
                 MusicAlbumFoundWidget *albumFoundWidget = new MusicAlbumFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(albumFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(albumFoundWidget);
+                m_ui->functionsContainer->addWidget(albumFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(albumFoundWidget);
                 m_stackedFuncWidget = albumFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -437,8 +437,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case ArtistWidget: //insert artist found widget
             {
                 MusicArtistFoundWidget *artistFoundWidget = new MusicArtistFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(artistFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(artistFoundWidget);
+                m_ui->functionsContainer->addWidget(artistFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(artistFoundWidget);
                 m_stackedFuncWidget = artistFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -446,8 +446,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case ArtistCategoryWidget: //insert artist category found widget
             {
                 MusicArtistListFoundWidget *artistlistFoundWidget = new MusicArtistListFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(artistlistFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(artistlistFoundWidget);
+                m_ui->functionsContainer->addWidget(artistlistFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(artistlistFoundWidget);
                 m_stackedFuncWidget = artistlistFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -455,8 +455,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case ToplistWidget: //insert toplist found widget
             {
                 MusicToplistFoundWidget *toplistFoundWidget = new MusicToplistFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(toplistFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(toplistFoundWidget);
+                m_ui->functionsContainer->addWidget(toplistFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(toplistFoundWidget);
                 m_stackedFuncWidget = toplistFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -464,8 +464,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case PlaylistWidget: //insert playlist found widget
             {
                 MusicPlaylistFoundWidget *playlistFoundWidget = new MusicPlaylistFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(playlistFoundWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(playlistFoundWidget);
+                m_ui->functionsContainer->addWidget(playlistFoundWidget);
+                m_ui->functionsContainer->setCurrentWidget(playlistFoundWidget);
                 m_stackedFuncWidget = playlistFoundWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -473,8 +473,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case RecommendWidget: //insert recommend found widget
             {
                 MusicRecommendFoundWidget *recommendWidget = new MusicRecommendFoundWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(recommendWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(recommendWidget);
+                m_ui->functionsContainer->addWidget(recommendWidget);
+                m_ui->functionsContainer->setCurrentWidget(recommendWidget);
                 m_stackedFuncWidget = recommendWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -482,8 +482,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case AdvancedSearchWidget: //insert advanced search widget
             {
                 MusicAdvancedSearchedWidget *advancedWidget = new MusicAdvancedSearchedWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(advancedWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(advancedWidget);
+                m_ui->functionsContainer->addWidget(advancedWidget);
+                m_ui->functionsContainer->setCurrentWidget(advancedWidget);
                 m_stackedFuncWidget = advancedWidget;
                 emit updateBackgroundTheme();
                 break;
@@ -491,8 +491,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
         case IndentifyWidget: //insert indentify songs widget
             {
                 MusicIdentifySongsWidget *songsIdentifyWidget = new MusicIdentifySongsWidget(this);
-                m_ui->surfaceStackedWidget->addWidget(songsIdentifyWidget);
-                m_ui->surfaceStackedWidget->setCurrentWidget(songsIdentifyWidget);
+                m_ui->functionsContainer->addWidget(songsIdentifyWidget);
+                m_ui->functionsContainer->setCurrentWidget(songsIdentifyWidget);
                 songsIdentifyWidget->getKey();
                 m_stackedFuncWidget = songsIdentifyWidget;
                 emit updateBackgroundTheme();
@@ -502,8 +502,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             {
                 KugouWindow *kugouWindow = new KugouWindow(KugouWindow::KuGouSingle, this);
                 kugouWindow->setUrl(KugouUrl::getKuiSheUrl());
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = kugouWindow);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget = kugouWindow);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 connect(m_ui->musicBackButton, SIGNAL(clicked()), m_stackedFuncWidget, SLOT(goBack()));
                 emit updateBackgroundTheme();
                 break;
@@ -512,8 +512,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             {
                 MusicWebDJRadioWidget *djRadio = new MusicWebDJRadioWidget(this);
                 djRadio->init();
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = djRadio);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget = djRadio);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -521,8 +521,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
             {
                 MusicWebMVRadioFoundWidget *mvRadio = new MusicWebMVRadioFoundWidget(this);
                 mvRadio->setSongName(QString());
-                m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget = mvRadio);
-                m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+                m_ui->functionsContainer->addWidget(m_stackedFuncWidget = mvRadio);
+                m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
                 emit updateBackgroundTheme();
                 break;
             }
@@ -536,8 +536,8 @@ void MusicRightAreaWidget::musicFunctionClicked(int index, QWidget *widget)
     musicFunctionParameterInit(key);
 
     m_stackedAutoWidget = widget;
-    m_ui->surfaceStackedWidget->addWidget(m_stackedAutoWidget);
-    m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedAutoWidget);
+    m_ui->functionsContainer->addWidget(m_stackedAutoWidget);
+    m_ui->functionsContainer->setCurrentWidget(m_stackedAutoWidget);
     emit updateBackgroundTheme();
 }
 
@@ -547,7 +547,7 @@ void MusicRightAreaWidget::musicSongCommentsWidget()
     {
         MusicApplication::instance()->musicWindowConciseChanged();
     }
-    if(m_ui->surfaceStackedWidget->currentIndex() != APP_WINDOW_INDEX_1)
+    if(m_ui->functionsContainer->currentIndex() != APP_WINDOW_INDEX_1)
     {
         musicFunctionClicked(MusicRightAreaWidget::LrcWidget);
     }
@@ -717,7 +717,7 @@ void MusicRightAreaWidget::researchQueryByQuality(const QString &quality)
 
     musicFunctionParameterInit(MusicRightAreaWidget::SearchWidget);
     m_ui->songSearchWidget->researchQueryByQuality(text, quality);
-    m_ui->surfaceStackedWidget->setCurrentIndex(APP_WINDOW_INDEX_0);
+    m_ui->functionsContainer->setCurrentIndex(APP_WINDOW_INDEX_0);
     emit updateBackgroundTheme();
 }
 
@@ -745,8 +745,8 @@ void MusicRightAreaWidget::musicVideoSetPopup(bool popup)
     m_videoPlayerWidget->popup(popup);
     if(popup)
     {
-        m_ui->surfaceStackedWidget->addWidget(m_stackedFuncWidget);
-        m_ui->surfaceStackedWidget->setCurrentWidget(m_stackedFuncWidget);
+        m_ui->functionsContainer->addWidget(m_stackedFuncWidget);
+        m_ui->functionsContainer->setCurrentWidget(m_stackedFuncWidget);
 
         MusicRegeditManager().setLeftWinEnable();
         QTimer::singleShot(10*MT_MS, this, SLOT(musicVideoActiveWindow()));

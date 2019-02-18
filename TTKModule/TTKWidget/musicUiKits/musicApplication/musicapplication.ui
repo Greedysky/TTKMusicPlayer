@@ -20,7 +20,7 @@
    <string>天天酷音</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
     <normaloff>:/image/lb_player_logo</normaloff>:/image/lb_player_logo</iconset>
   </property>
   <layout class="QHBoxLayout" name="mainLayout">
@@ -676,7 +676,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QStackedWidget" name="surfaceStackedWidget">
+             <widget class="QStackedWidget" name="functionsContainer">
               <property name="minimumSize">
                <size>
                 <width>678</width>
@@ -684,7 +684,7 @@
                </size>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="MusicSongSearchOnlineWidget" name="songSearchWidget"/>
               <widget class="MusicLrcContainerForInline" name="musiclrccontainerforinline">
@@ -895,7 +895,7 @@
              <number>0</number>
             </property>
             <item row="3" column="0" colspan="6">
-             <widget class="MusicTimerSliderWidget" name="musicTimeWidget" native="true">
+             <widget class="MusicTimeSliderWidget" name="musicTimeWidget" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -1348,9 +1348,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicTimerSliderWidget</class>
+   <class>MusicTimeSliderWidget</class>
    <extends>QWidget</extends>
-   <header>musictimersliderwidget.h</header>
+   <header>musictimesliderwidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

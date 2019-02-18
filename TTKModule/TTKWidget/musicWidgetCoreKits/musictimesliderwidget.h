@@ -1,5 +1,5 @@
-#ifndef MUSICTIMERSLIDERWIDGET_H
-#define MUSICTIMERSLIDERWIDGET_H
+#ifndef MUSICTIMESLIDERWIDGET_H
+#define MUSICTIMESLIDERWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -27,20 +27,20 @@
 class MusicGifLabelWidget;
 class MusicMovingLabelSlider;
 
-/*! @brief The class of the timer slider widget.
+/*! @brief The class of the time slider widget.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_WIDGET_EXPORT MusicTimerSliderWidget : public QWidget
+class MUSIC_WIDGET_EXPORT MusicTimeSliderWidget : public QWidget
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicTimerSliderWidget)
+    TTK_DECLARE_MODULE(MusicTimeSliderWidget)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicTimerSliderWidget(QWidget *parent = nullptr);
+    explicit MusicTimeSliderWidget(QWidget *parent = nullptr);
 
-    ~MusicTimerSliderWidget();
+    ~MusicTimeSliderWidget();
 
     /*!
      * Set current play state.
@@ -80,4 +80,4 @@ protected:
 
 };
 
-#endif // MUSICTIMERSLIDERWIDGET_H
+#endif // MUSICTIMESLIDERWIDGET_H

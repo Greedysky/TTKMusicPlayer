@@ -657,10 +657,7 @@ void MusicSettingWidget::initScrollWidgetPage()
     scrollAreaWidgetAreaLayout->addWidget(m_ui->eight);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->nine);
     ////////////////////////////////////////////////
-    m_ui->scrollAreaWidgetArea->setFixedHeight(9 * SCROLL_ITEM_HEIGHT);
-    ////////////////////////////////////////////////
     m_ui->stackedWidget->hide();
-    m_ui->scrollAreaWidget->raise();
     m_ui->first->show();
     m_ui->second->show();
     m_ui->third->show();
@@ -671,6 +668,8 @@ void MusicSettingWidget::initScrollWidgetPage()
     m_ui->eight->show();
     m_ui->nine->show();
     ////////////////////////////////////////////////
+    m_ui->scrollAreaWidgetArea->setFixedHeight(9 * SCROLL_ITEM_HEIGHT);
+    m_ui->scrollAreaWidget->raise();
     selectFunctionTableIndex(0, 0);
     ////////////////////////////////////////////////
 }

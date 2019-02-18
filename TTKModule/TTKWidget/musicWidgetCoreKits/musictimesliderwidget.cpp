@@ -1,11 +1,11 @@
-#include "musictimersliderwidget.h"
+#include "musictimesliderwidget.h"
 #include "musicuiobject.h"
 #include "musicmovinglabelslider.h"
 #include "musicgiflabelwidget.h"
 
 #include <qmath.h>
 
-MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
+MusicTimeSliderWidget::MusicTimeSliderWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_label = new MusicGifLabelWidget(this);
@@ -21,19 +21,19 @@ MusicTimerSliderWidget::MusicTimerSliderWidget(QWidget *parent)
     m_slider->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void MusicTimerSliderWidget::setObject(QObject *object) const
+void MusicTimeSliderWidget::setObject(QObject *object) const
 {
     connect(m_slider, SIGNAL(sliderMoved(int)), SLOT(sliderMovedAt(int)));
     connect(m_slider, SIGNAL(sliderReleasedAt(int)), object, SLOT(musicPlayAnyTimeAt(int)));
 }
 
-MusicTimerSliderWidget::~MusicTimerSliderWidget()
+MusicTimeSliderWidget::~MusicTimeSliderWidget()
 {
     delete m_label;
     delete m_slider;
 }
 
-void MusicTimerSliderWidget::setPlayState(bool state)
+void MusicTimeSliderWidget::setPlayState(bool state)
 {
     if(!state)
     {
@@ -48,7 +48,7 @@ void MusicTimerSliderWidget::setPlayState(bool state)
     }
 }
 
-void MusicTimerSliderWidget::setValue(qint64 value) const
+void MusicTimeSliderWidget::setValue(qint64 value) const
 {
     if(!m_slider->isMoving())
     {
@@ -57,12 +57,12 @@ void MusicTimerSliderWidget::setValue(qint64 value) const
     }
 }
 
-void MusicTimerSliderWidget::setRange(int min, int max)
+void MusicTimeSliderWidget::setRange(int min, int max)
 {
     m_slider->setRange(min, max);
 }
 
-void MusicTimerSliderWidget::sliderMovedAt(int pos) const
+void MusicTimeSliderWidget::sliderMovedAt(int pos) const
 {
     const int max = m_slider->maximum();
     if(max > 0)
@@ -72,7 +72,7 @@ void MusicTimerSliderWidget::sliderMovedAt(int pos) const
     }
 }
 
-void MusicTimerSliderWidget::setSliderStyleByType(int type)
+void MusicTimeSliderWidget::setSliderStyleByType(int type)
 {
     QString rgba1 = "rgb(231, 80, 229)", rgba2 = "rgb(7, 208, 255)";
     switch(type)
@@ -88,7 +88,7 @@ void MusicTimerSliderWidget::setSliderStyleByType(int type)
     m_slider->setStyleSheet(MusicUIObject::MSliderStyle07 + prefix);
 }
 
-void MusicTimerSliderWidget::resizeEvent(QResizeEvent *event)
+void MusicTimeSliderWidget::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
     m_slider->setFixedWidth(width() - m_label->width());
