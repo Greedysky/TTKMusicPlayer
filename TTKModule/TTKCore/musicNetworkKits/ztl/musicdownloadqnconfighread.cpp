@@ -42,7 +42,7 @@ void MusicDownloadQNConfighread::downLoadFinished()
         if(ok)
         {
             const QVariantMap &value = data.toMap();
-            if(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd HH:mm:ss") >
+            if(QDateTime::fromString(value["time"].toString(), "yyyy-MM-dd HH:mm:ss") >=
                QDateTime::fromString(M_SETTING_PTR->value(MusicSettingManager::QiNiuTimeConfigChoiced).toString(), "yyyy-MM-dd HH:mm:ss").addMonths(1))
             {
                 M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicConfigChoiced, value["music_buket"]);
