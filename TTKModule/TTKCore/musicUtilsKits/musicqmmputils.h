@@ -36,7 +36,10 @@ namespace MusicUtils
          * Mid config file transfer operator.
          */
         MUSIC_UTILS_EXPORT void midTransferFile();
-
+        /*!
+         * Enable visual wave control.
+         */
+        MUSIC_UTILS_EXPORT void enableVisualPlugin(const QString &name, bool enable);
     }
 }
 

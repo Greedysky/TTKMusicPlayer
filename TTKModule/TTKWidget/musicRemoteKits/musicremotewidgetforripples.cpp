@@ -2,6 +2,7 @@
 #include "musictinyuiobject.h"
 #include "musicwidgetutils.h"
 #include "musicmarqueewidget.h"
+#include "musicqmmputils.h"
 ///qmmp incldue
 #include "visual.h"
 #include "visualfactory.h"
@@ -18,7 +19,7 @@ MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
     hbox->addWidget(m_mainWidget);
     setLayout(hbox);
 
-    enablePlugin(true);
+    MusicUtils::QMMP::enableVisualPlugin("outerripples", true);
 
     QWidget *bottomWidget = new QWidget(m_mainWidget);
     QVBoxLayout *mhbox = new QVBoxLayout(m_mainWidget);
@@ -55,23 +56,11 @@ MusicRemoteWidgetForRipples::MusicRemoteWidgetForRipples(QWidget *parent)
 
 MusicRemoteWidgetForRipples::~MusicRemoteWidgetForRipples()
 {
-    enablePlugin(false);
+    MusicUtils::QMMP::enableVisualPlugin("outerripples", false);
     delete m_songNameLabel;
 }
 
 void MusicRemoteWidgetForRipples::setLabelText(const QString &value)
 {
     m_songNameLabel->setText(MusicUtils::Widget::elidedText(font(), value, Qt::ElideRight, 350));
-}
-
-void MusicRemoteWidgetForRipples::enablePlugin(bool enable)
-{
-    foreach(VisualFactory *v, Visual::factories())
-    {
-        if(v->properties().shortName.contains("outerripples"))
-        {
-            Visual::setEnabled(v, enable);
-            break;
-        }
-    }
 }

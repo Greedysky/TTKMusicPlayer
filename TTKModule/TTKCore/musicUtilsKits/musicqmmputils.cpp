@@ -4,6 +4,8 @@
 #include <QSettings>
 ///qmmp incldue
 #include "qmmp.h"
+#include "visual.h"
+#include "visualfactory.h"
 
 QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &format)
 {
@@ -38,4 +40,16 @@ void MusicUtils::QMMP::midTransferFile()
         }
     }
     file.close();
+}
+
+void MusicUtils::QMMP::enableVisualPlugin(const QString &name, bool enable)
+{
+    foreach(VisualFactory *v, Visual::factories())
+    {
+        if(v->properties().shortName == name)
+        {
+            Visual::setEnabled(v, enable);
+            break;
+        }
+    }
 }

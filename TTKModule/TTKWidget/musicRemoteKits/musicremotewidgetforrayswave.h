@@ -44,11 +44,6 @@ public:
     virtual void setLabelText(const QString &value) override;
 
 protected:
-    /*!
-     * Enable rayswave control.
-     */
-    void enablePlugin(bool enable);
-
     MusicMarqueeWidget *m_songNameLabel;
 
 };

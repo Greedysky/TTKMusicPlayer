@@ -13,8 +13,6 @@
 #include "musicsoundkmicrowidget.h"
 #include "musicsongssummariziedwidget.h"
 #include "musicrightareawidget.h"
-///qmmp incldue
-#include "visual.h"
 
 MusicLeftAreaWidget *MusicLeftAreaWidget::m_instance = nullptr;
 
@@ -28,8 +26,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
     m_lrcWidgetShowFullScreen = true;
-
-    Visual::initialize(MusicApplication::instance());
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()

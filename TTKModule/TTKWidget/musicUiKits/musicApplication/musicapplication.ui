@@ -1348,12 +1348,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>MusicTimeSliderWidget</class>
-   <extends>QWidget</extends>
-   <header>musictimesliderwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>MusicLocalSongSearchInlineEdit</class>
    <extends>QWidget</extends>
    <header>musiclocalsongsearchinlineedit.h</header>
@@ -1411,6 +1405,12 @@
    <class>MusicLineBackgroundWidget</class>
    <extends>QWidget</extends>
    <header>musicfuntionanimationwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicTimeSliderWidget</class>
+   <extends>QWidget</extends>
+   <header>musictimesliderwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

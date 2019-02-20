@@ -98,10 +98,6 @@ protected:
      */
     void adjustWidgetLayout(int offset);
     /*!
-     * Show spectrum by name and state.
-     */
-    void showSpectrum(const QString &name, bool state);
-    /*!
      * Find spectrum widget index by name.
      */
     int findSpectrumWidget(const QString &name);

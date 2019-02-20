@@ -20,6 +20,9 @@
 #include "musictoolsetswidget.h"
 #include "musicsinglemanager.h"
 
+///qmmp incldue
+#include "visual.h"
+
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
@@ -34,6 +37,8 @@ MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
 
     m_backgroundAListlpha = 40;
     m_lastRemoteBeforeWallpaper = -1;
+
+    Visual::initialize(MusicApplication::instance());
 }
 
 MusicTopAreaWidget::~MusicTopAreaWidget()
