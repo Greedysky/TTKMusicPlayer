@@ -21,7 +21,7 @@
 
 #include <QMenu>
 #include "musicsong.h"
-#include "musicsmoothmovingtablewidget.h"
+#include "musicsmoothmovingwidget.h"
 
 /*! @brief The class of the songs list abstract table widget.
  * @author Greedysky <greedysky@163.com>

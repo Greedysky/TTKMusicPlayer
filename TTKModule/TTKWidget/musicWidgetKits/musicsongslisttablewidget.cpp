@@ -23,7 +23,6 @@
 #include <QPainter>
 #include <QMouseEvent>
 
-#define ROW_HIGHT   30
 #define SEARCH_ITEM_DEFINED(index, names)                                                   \
     case index:                                                                             \
     {                                                                                       \
@@ -125,7 +124,7 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
 void MusicSongsListTableWidget::clearAllItems()
 {
     //Remove play widget
-    setRowHeight(m_playRowIndex, ROW_HIGHT);
+    setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
     removeCellWidget(m_playRowIndex, 0);
 
     delete m_musicSongsPlayWidget;
@@ -195,7 +194,7 @@ void MusicSongsListTableWidget::selectRow(int index)
 
     setSpan(index, 0, 1, 6);
     setCellWidget(index, 0, m_musicSongsPlayWidget);
-    setRowHeight(index, 2*ROW_HIGHT);
+    setRowHeight(index, ITEM_ROW_HEIGHT_XL);
     m_playRowIndex = index;
 
     //just fix table widget size hint
@@ -227,7 +226,7 @@ void MusicSongsListTableWidget::replacePlayWidgetRow()
 
     const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(m_playRowIndex).getMusicName() : QString();
 
-    setRowHeight(m_playRowIndex, ROW_HIGHT);
+    setRowHeight(m_playRowIndex, ITEM_ROW_HEIGHT_M);
 
     removeCellWidget(m_playRowIndex, 0);
     delete takeItem(m_playRowIndex, 0);

@@ -1,5 +1,5 @@
-#ifndef MUSICSMOOTHMOVINGTABLEWIDGET_H
-#define MUSICSMOOTHMOVINGTABLEWIDGET_H
+#ifndef MUSICSMOOTHMOVINGWIDGET_H
+#define MUSICSMOOTHMOVINGWIDGET_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,6 +19,7 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
+#include <QScrollArea>
 #include "musicabstracttablewidget.h"
 
 class QPropertyAnimation;
@@ -67,4 +68,49 @@ protected:
 
 };
 
-#endif // MUSICSMOOTHMOVINGTABLEWIDGET_H
+
+/*! @brief The class of the slider smooth moving scroll area widget.
+ * @author Greedysky <greedysky@163.com>
+ */
+class MUSIC_WIDGET_EXPORT MusicSmoothMovingScrollArea : public QScrollArea
+{
+    Q_OBJECT
+    TTK_DECLARE_MODULE(MusicSmoothMovingScrollArea)
+public:
+    /*!
+     * Object contsructor.
+     */
+    explicit MusicSmoothMovingScrollArea(QWidget *parent = nullptr);
+
+    virtual ~MusicSmoothMovingScrollArea();
+
+    /*!
+     * Set current moved scroll bar.
+     */
+    void setMovedScrollBar(QScrollBar *bar = nullptr);
+
+public Q_SLOTS:
+    /*!
+     * Time out to start animation.
+     */
+    void timeToAnimation();
+    /*!
+     * Current scroll bar value changed.
+     */
+    void valueChanged(int value);
+
+protected:
+    /*!
+     * Override the widget event.
+     */
+    virtual void wheelEvent(QWheelEvent *event) override;
+
+    bool m_firstInit;
+    int m_previousValue, m_deltaValue;
+    QScrollBar *m_scrollBar;
+    QTimer *m_animationTimer;
+    QPropertyAnimation *m_slowAnimation;
+
+};
+
+#endif // MUSICSMOOTHMOVINGWIDGET_H

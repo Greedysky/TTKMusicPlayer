@@ -1,7 +1,6 @@
 #include "musiclocalsongstablewidget.h"
 #include "musicnumberutils.h"
 
-#define ROW_HEIGHT          60
 #define MUSIC_INFO_ROLE     Qt::UserRole + 1000
 
 Q_DECLARE_METATYPE(QFileInfoList)
@@ -128,7 +127,7 @@ void MusicLocalSongsInfoTableWidget::addItems(const MusicInfoData &data)
     while(it.hasNext())
     {
         it.next();
-        setRowHeight(i, ROW_HEIGHT);
+        setRowHeight(i, ITEM_ROW_HEIGHT_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         QPixmap pix(ART_DIR_FULL + it.key() + SKN_FILE);

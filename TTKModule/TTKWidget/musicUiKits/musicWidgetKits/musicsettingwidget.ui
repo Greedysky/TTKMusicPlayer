@@ -2665,7 +2665,7 @@ font-weight:bold;;</string>
     <string notr="true">background:white;</string>
    </property>
   </widget>
-  <widget class="QScrollArea" name="scrollAreaWidget">
+  <widget class="MusicSmoothMovingScrollArea" name="scrollAreaWidget">
    <property name="geometry">
     <rect>
      <x>144</x>
@@ -2728,6 +2728,12 @@ font-weight:bold;;</string>
    <class>MusicColorPreviewLabel</class>
    <extends>QLabel</extends>
    <header>musicpreviewlabel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSmoothMovingScrollArea</class>
+   <extends>QScrollArea</extends>
+   <header>musicsmoothmovingwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

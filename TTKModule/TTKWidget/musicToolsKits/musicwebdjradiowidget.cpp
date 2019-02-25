@@ -6,12 +6,10 @@
 #include "musicsettingmanager.h"
 #include "musicwidgetheaders.h"
 
-#define ROW_HEIGHT 40
-
 MusicWebDJRadioProgramTableWidget::MusicWebDJRadioProgramTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
-    setIconSize(QSize(ROW_HEIGHT, ROW_HEIGHT));
+    setIconSize(QSize(ITEM_ROW_HEIGHT_L, ITEM_ROW_HEIGHT_L));
     setColumnCount(6);
 
     QHeaderView *headerview = horizontalHeader();
@@ -86,7 +84,7 @@ void MusicWebDJRadioProgramTableWidget::createProgramItem(const MusicResultsItem
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, ROW_HEIGHT);
+    setRowHeight(index, ITEM_ROW_HEIGHT_L);
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem;

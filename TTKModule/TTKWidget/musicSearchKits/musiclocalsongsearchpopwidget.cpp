@@ -5,8 +5,6 @@
 
 #include <QPainter>
 
-#define ROW_HEIGHT 30
-
 MusicLocalSongSearchPopTableWidget::MusicLocalSongSearchPopTableWidget(QWidget *parent)
     : MusicAbstractTableWidget(parent)
 {
@@ -30,7 +28,7 @@ void MusicLocalSongSearchPopTableWidget::clearAllItems()
 
 void MusicLocalSongSearchPopTableWidget::createItems(int index, const QString &name, const QString &time)
 {
-    setRowHeight(index, ROW_HEIGHT);
+    setRowHeight(index, ITEM_ROW_HEIGHT_M);
 
     QHeaderView *headerview = horizontalHeader();
     QTableWidgetItem *item = new QTableWidgetItem(MusicUtils::Widget::elidedText(font(), "  " + name, Qt::ElideRight, headerview->sectionSize(0) - 20));
@@ -109,7 +107,7 @@ void MusicLocalSongSearchPopWidget::createItems()
     search.readSearchConfig( records );
 
     const int count = records.count();
-    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 45 : 7*ROW_HEIGHT + 8) );
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ITEM_ROW_HEIGHT_M + 45 : 7*ITEM_ROW_HEIGHT_M + 8) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)
@@ -124,7 +122,7 @@ void MusicLocalSongSearchPopWidget::createSuggestItems(const QStringList &names)
     m_popTableWidget->clearAllItems();
 
     const int count = names.count();
-    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ROW_HEIGHT + 8 : 6*ROW_HEIGHT + 8) );
+    resize(m_popTableWidget->width() + 2, count == 0 ? 0 : (count < 6 ? count*ITEM_ROW_HEIGHT_M + 8 : 6*ITEM_ROW_HEIGHT_M + 8) );
 
     m_popTableWidget->setRowCount( count );
     for(int i=0; i<count; ++i)

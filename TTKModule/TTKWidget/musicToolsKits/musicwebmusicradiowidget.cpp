@@ -123,7 +123,7 @@ void MusicWebMusicRadioWidget::addListWidgetItem()
     {
         const int index = rowCount();
         setRowCount(index + 1);
-        setRowHeight(index, 60);
+        setRowHeight(index, ITEM_ROW_HEIGHT_XL);
 
         QTableWidgetItem *item = new QTableWidgetItem;
         setItem(index, 0, item);

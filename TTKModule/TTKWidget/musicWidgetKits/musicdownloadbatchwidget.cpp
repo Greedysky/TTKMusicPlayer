@@ -10,7 +10,6 @@
 #include <QScrollBar>
 #include <QStyledItemDelegate>
 
-#define ROW_HEIGHT  25
 Q_DECLARE_METATYPE(MusicObject::MusicSongAttribute)
 
 MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
@@ -26,10 +25,10 @@ MusicDownloadBatchTableItem::MusicDownloadBatchTableItem(QWidget *parent)
     m_qulity->setStyleSheet(MusicUIObject::MComboBoxStyle02 + MusicUIObject::MItemView01);
     m_qulity->view()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
-    m_songName->setGeometry(0, 0, 190, ROW_HEIGHT);
-    m_singer->setGeometry(180, 0, 120, ROW_HEIGHT);
-    m_qulity->setGeometry(300, 0, 80, ROW_HEIGHT);
-    m_information->setGeometry(380, 0, 150, ROW_HEIGHT);
+    m_songName->setGeometry(0, 0, 190, ITEM_ROW_HEIGHT_S);
+    m_singer->setGeometry(180, 0, 120, ITEM_ROW_HEIGHT_S);
+    m_qulity->setGeometry(300, 0, 80, ITEM_ROW_HEIGHT_S);
+    m_information->setGeometry(380, 0, 150, ITEM_ROW_HEIGHT_S);
 
     connect(m_qulity, SIGNAL(currentIndexChanged(int)), SLOT(currentQualityChanged(int)));
 }
@@ -294,7 +293,7 @@ void MusicDownloadBatchTableWidget::createItem(const MusicObject::MusicSongInfor
 {
     const int index = rowCount();
     setRowCount(index + 1);
-    setRowHeight(index, ROW_HEIGHT);
+    setRowHeight(index, ITEM_ROW_HEIGHT_S);
 
     QTableWidgetItem *it = new QTableWidgetItem;
     setItem(index, 0,  it);
