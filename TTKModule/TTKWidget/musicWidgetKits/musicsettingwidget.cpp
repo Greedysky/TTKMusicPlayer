@@ -641,7 +641,7 @@ void MusicSettingWidget::initScrollWidgetPage()
     scrollAreaWidgetAreaLayout->setSpacing(0);
     scrollAreaWidgetAreaLayout->setContentsMargins(0, 0, 0, 0);
     m_ui->scrollAreaWidgetArea->setLayout(scrollAreaWidgetAreaLayout);
-    m_ui->scrollAreaWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    m_ui->scrollAreaWidget->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     m_ui->scrollAreaWidget->setWidgetResizable(true);
     m_ui->scrollAreaWidget->setFrameShape(QFrame::NoFrame);
     m_ui->scrollAreaWidget->setAlignment(Qt::AlignLeft);

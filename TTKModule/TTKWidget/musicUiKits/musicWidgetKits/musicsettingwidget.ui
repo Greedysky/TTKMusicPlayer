@@ -162,7 +162,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="languageComboBox">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>280</y>
        <width>251</width>
        <height>22</height>
@@ -651,7 +651,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>50</y>
-       <width>51</width>
+       <width>55</width>
        <height>16</height>
       </rect>
      </property>
@@ -690,7 +690,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>80</y>
-       <width>51</width>
+       <width>55</width>
        <height>16</height>
       </rect>
      </property>
@@ -920,7 +920,7 @@ font-weight:bold;</string>
       <rect>
        <x>25</x>
        <y>220</y>
-       <width>101</width>
+       <width>110</width>
        <height>16</height>
       </rect>
      </property>
@@ -931,7 +931,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="downloadServerComboBox">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>138</x>
        <y>217</y>
        <width>150</width>
        <height>22</height>
@@ -1728,7 +1728,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="outputTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>50</y>
        <width>321</width>
        <height>22</height>
@@ -1830,7 +1830,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="sizeTipLabel">
      <property name="geometry">
       <rect>
-       <x>162</x>
+       <x>167</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -1843,7 +1843,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeInSpinBox">
      <property name="geometry">
       <rect>
-       <x>57</x>
+       <x>65</x>
        <y>198</y>
        <width>101</width>
        <height>22</height>
@@ -1866,7 +1866,7 @@ font-weight:bold;</string>
     <widget class="QSpinBox" name="fadeOutSpinBox">
      <property name="geometry">
       <rect>
-       <x>242</x>
+       <x>245</x>
        <y>198</y>
        <width>101</width>
        <height>22</height>
@@ -1876,7 +1876,7 @@ font-weight:bold;</string>
     <widget class="QLabel" name="fadeOutLabel">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>203</x>
        <y>200</y>
        <width>40</width>
        <height>20</height>
@@ -2250,7 +2250,7 @@ font-weight:bold;</string>
     <widget class="QComboBox" name="proxyTypeComboBox">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>50</y>
        <width>121</width>
        <height>22</height>
@@ -2305,7 +2305,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyIpEdit">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>90</y>
        <width>121</width>
        <height>22</height>
@@ -2357,7 +2357,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyUsernameEdit">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>120</y>
        <width>121</width>
        <height>22</height>
@@ -2517,7 +2517,7 @@ font-weight:bold;</string>
     <widget class="QLineEdit" name="proxyAreaEdit">
      <property name="geometry">
       <rect>
-       <x>85</x>
+       <x>88</x>
        <y>150</y>
        <width>121</width>
        <height>22</height>
@@ -2673,6 +2673,9 @@ font-weight:bold;;</string>
      <width>461</width>
      <height>370</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#444444;background:white;</string>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>

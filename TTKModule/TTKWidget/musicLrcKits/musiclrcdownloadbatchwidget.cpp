@@ -18,7 +18,7 @@ MusicLrcDownloadBatchTableWidget::MusicLrcDownloadBatchTableWidget(QWidget *pare
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
     setColumnCount(5);
     QHeaderView *headerview = horizontalHeader();

@@ -21,7 +21,7 @@
     ui->setFrameShadow(QFrame::Plain);                                          \
     ui->setAlignment(Qt::AlignVCenter);                                         \
     ui->setWidget(list);                                                        \
-    ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    ui->verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
 
 
 MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)

@@ -10,7 +10,7 @@ MusicSmoothMovingTableWidget::MusicSmoothMovingTableWidget(QWidget *parent)
 {
     m_deltaValue = 0;
     m_previousValue = 0;
-    m_isFirstInit = true;
+    m_firstInit = true;
     m_slowAnimation = nullptr;
     m_scrollBar = nullptr;
     m_animationTimer = new QTimer(this);
@@ -30,7 +30,7 @@ MusicSmoothMovingTableWidget::~MusicSmoothMovingTableWidget()
 
 void MusicSmoothMovingTableWidget::setMovedScrollBar(QScrollBar *bar)
 {
-    m_scrollBar = bar;
+    m_scrollBar = (bar == nullptr) ? verticalScrollBar() : bar;
     delete m_slowAnimation;
     m_slowAnimation = new QPropertyAnimation(m_scrollBar, "value", this);
     m_slowAnimation->setDuration(MT_S2MS);
@@ -44,7 +44,7 @@ void MusicSmoothMovingTableWidget::timeToAnimation()
         return;
     }
 
-    m_isFirstInit = true;
+    m_firstInit = true;
     m_animationTimer->stop();
 
     const float delta = (rowCount() > 0) ? (height()*1.0/rowCount()) : 0;
@@ -71,11 +71,11 @@ void MusicSmoothMovingTableWidget::wheelEvent(QWheelEvent *event)
 
     m_animationTimer->stop();
     m_slowAnimation->stop();
-    if(m_isFirstInit)
+    if(m_firstInit)
     {
         m_deltaValue = 0;
         m_previousValue = m_scrollBar->value();
-        m_isFirstInit = false;
+        m_firstInit = false;
     }
     m_deltaValue += event->delta();
     m_animationTimer->start();

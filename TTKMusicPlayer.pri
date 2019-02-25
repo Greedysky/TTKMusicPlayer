@@ -39,7 +39,7 @@ include(TTKVersion.pri)
 win32:{
     SSL_DEPANDS = $$OUT_PWD/../bin/$$TTKMusicPlayer/ssleay32.dll
     SSL_DEPANDS = $$replace(SSL_DEPANDS, /, \\)
-    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
+#    exists($$SSL_DEPANDS):LIBS += -L../bin/$$TTKMusicPlayer -lssl
 }
 unix:!mac{
     SSL_DEPANDS = $$OUT_PWD/../lib/$$TTKMusicPlayer/libssleay32.so

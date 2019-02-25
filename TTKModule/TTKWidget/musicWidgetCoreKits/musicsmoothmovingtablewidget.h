@@ -41,7 +41,7 @@ public:
     /*!
      * Set current moved scroll bar.
      */
-    void setMovedScrollBar(QScrollBar *bar);
+    void setMovedScrollBar(QScrollBar *bar = nullptr);
 
 public Q_SLOTS:
     /*!
@@ -59,7 +59,7 @@ protected:
      */
     virtual void wheelEvent(QWheelEvent *event) override;
 
-    bool m_isFirstInit;
+    bool m_firstInit;
     int m_previousValue, m_deltaValue;
     QScrollBar *m_scrollBar;
     QTimer *m_animationTimer;

@@ -266,7 +266,7 @@ MusicDownloadBatchTableWidget::MusicDownloadBatchTableWidget(QWidget *parent)
     headerview->resizeSection(0, 530);
 
     MusicUtils::Widget::setTransparent(this, 255);
-    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle03);
+    verticalScrollBar()->setStyleSheet(MusicUIObject::MScrollBarStyle01);
     setStyleSheet(styleSheet() + MusicUIObject::MTableWidgetStyle02);
 
 }
