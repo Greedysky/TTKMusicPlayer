@@ -120,7 +120,7 @@ Q_SIGNALS:
     /*!
      * The art background state has changed emit.
      */
-    void artBgHasChanged();
+    void artBackgroundHasChanged();
 
 public Q_SLOTS:
     /*!

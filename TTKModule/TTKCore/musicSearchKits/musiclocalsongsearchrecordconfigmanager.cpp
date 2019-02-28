@@ -15,7 +15,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearc
 
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APPNAME);
+    QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDom(musicPlayer, "searchRecord");
 
     foreach(const MusicSearchRecord &record, records)

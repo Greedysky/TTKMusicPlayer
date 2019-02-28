@@ -439,7 +439,7 @@ void MusicLrcAnalysis::saveLrcTimeChanged()
 {
     MIntStringMapIterator it(m_lrcContainer);
     QByteArray data;
-    data.append(QString("[by: %1]\n[offset:0]\n").arg(APPNAME));
+    data.append(QString("[by: %1]\n[offset:0]\n").arg(APP_NAME));
     while(it.hasNext())
     {
         it.next();

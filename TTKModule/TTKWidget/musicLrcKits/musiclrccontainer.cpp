@@ -141,8 +141,8 @@ void MusicLrcContainer::setSettingParameter(const QString &t)
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFgColorChoiced").toString()),
-                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBgColorChoiced").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcFrontgroundColorChoiced").toString()),
+                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value(t + "LrcBackgroundColorChoiced").toString()));
         setLinearGradientColor(cl);
     }
 }

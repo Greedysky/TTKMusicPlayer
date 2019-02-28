@@ -14,7 +14,7 @@ void MusicBarrageRecordConfigManager::writeBarrageConfig(const MusicBarrageRecor
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APPNAME);
+    QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDom(musicPlayer, "barrageRecord");
 
     foreach(const MusicBarrageRecord &record, records)

@@ -302,14 +302,14 @@ void MusicLrcContainerForInline::saveLrcTimeChanged()
 void MusicLrcContainerForInline::artBackgroundChanged()
 {
     m_showArtBackground = !m_showArtBackground;
-    emit artBgHasChanged();
+    emit artBackgroundHasChanged();
 }
 
 void MusicLrcContainerForInline::showArtBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtBackground = true;
-    emit artBgHasChanged();
+    emit artBackgroundHasChanged();
 }
 
 void MusicLrcContainerForInline::lrcOpenFileDir() const
@@ -482,8 +482,8 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
     //////////////////////////////////////////////////
-    QAction *artBgAc = menu.addAction(tr("artbgoff"), this, SLOT(artBackgroundChanged()));
-    m_showArtBackground ? artBgAc->setText(tr("artbgoff")) : artBgAc->setText(tr("artbgon")) ;
+    QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artBackgroundChanged()));
+    m_showArtBackground ? artAction->setText(tr("artbgoff")) : artAction->setText(tr("artbgon"));
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
     menu.addAction(tr("artbgupload"), this, SLOT(showArtBackgroundUploadedWidget()));
@@ -843,8 +843,8 @@ void MusicLrcContainerForInline::setItemStyleSheet(int index, int size, int tran
     }
     else
     {
-        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFgColorChoiced").toString()),
-                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBgColorChoiced").toString()));
+        const MusicLrcColor cl(MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcFrontgroundColorChoiced").toString()),
+                               MusicUtils::String::readColorConfig(M_SETTING_PTR->value("LrcBackgroundColorChoiced").toString()));
         setLinearGradientColor(cl);
     }
 }

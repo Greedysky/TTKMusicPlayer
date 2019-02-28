@@ -44,6 +44,7 @@ MusicLeftAreaWidget *MusicLeftAreaWidget::instance()
 void MusicLeftAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+
     m_qualityChoiceWidget = new MusicQualityChoicePopWidget(this);
     m_ui->musicQualityWindow->addWidget(m_qualityChoiceWidget);
     m_ui->songsContainer->setLength(320, MusicAnimationStackedWidget::LeftToRight);
@@ -119,7 +120,7 @@ bool MusicLeftAreaWidget::isLrcWidgetShowFullScreen() const
 
 void MusicLeftAreaWidget::setTransparent(int index)
 {
-    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, index);
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced, index);
     m_ui->centerLeftWidget->setTransparent(index);
 }
 

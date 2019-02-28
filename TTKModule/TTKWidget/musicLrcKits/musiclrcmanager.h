@@ -66,15 +66,15 @@ public:
     /*!
      * Object contsructor.
      */
-    MusicLrcColor(const QList<QColor> &fg, const QList<QColor> &bg, MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
+    MusicLrcColor(const QList<QColor> &front, const QList<QColor> &back, MusicLrcColor::LrcColorType index = MusicLrcColor::Null);
 
     /*!
      * Map index to color.
      */
     static MusicLrcColor mapIndexToColor(MusicLrcColor::LrcColorType index);
 
-    QList<QColor> m_fgColor;
-    QList<QColor> m_bgColor;
+    QList<QColor> m_frontColor;
+    QList<QColor> m_backColor;
     MusicLrcColor::LrcColorType m_index;
 
 };

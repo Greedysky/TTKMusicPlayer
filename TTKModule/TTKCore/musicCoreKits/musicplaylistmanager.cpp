@@ -29,7 +29,7 @@ void MusicWPLConfigManager::writeWPLXMLConfig(const MusicSongItems &musics, cons
     QDomElement bodySettingDom = writeDom(musicPlayerDom, "body");
     //Class B
     writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
-                         MusicXmlAttribute("content", QString("%1 %2").arg(APPNAME).arg(TTKMUSIC_VERSION_STR)));
+                         MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR)));
 //    writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "ItemCount") <<
 //                         MusicXmlAttribute("content", QString("%1").arg(musics.count())));
     for(int i=0; i<musics.count(); ++i)
@@ -65,7 +65,7 @@ void MusicWPLConfigManager::readWPLXMLConfig(MusicSongItems &musics)
         for(int i=0; i<nodelist.count(); ++i)
         {
             const QDomElement &element = nodelist.at(i).toElement();
-            state = element.attribute("content").contains(APPNAME);
+            state = element.attribute("content").contains(APP_NAME);
             break;
         }
     }
@@ -130,7 +130,7 @@ void MusicXSPFConfigManager::writeXSPFXMLConfig(const MusicSongItems &musics, co
     ///////////////////////////////////////////////////////
     QDomElement musicPlayerDom = createRoot("playlist");
     //Class A
-    writeDomText(musicPlayerDom, "creator", APPNAME);
+    writeDomText(musicPlayerDom, "creator", APP_NAME);
     for(int i=0; i<musics.count(); ++i)
     {
         const MusicSongItem &item = musics[i];
@@ -177,7 +177,7 @@ void MusicXSPFConfigManager::readXSPFXMLConfig(MusicSongItems &musics)
             if(node.nodeName() == "creator")
             {
                 const QDomElement &element = node.toElement();
-                state = element.text().contains(APPNAME);
+                state = element.text().contains(APP_NAME);
                 break;
             }
         }
@@ -255,7 +255,7 @@ void MusicASXConfigManager::writeASXXMLConfig(const MusicSongItems &musics, cons
             writeDomText(trackDom, "title", song.getMusicArtistBack());
             writeDomElement(trackDom, "ref", MusicXmlAttribute("href", song.getMusicPath()));
 
-            writeDomText(trackDom, "author", APPNAME);
+            writeDomText(trackDom, "author", APP_NAME);
             writeDomElementMutil(trackDom, "ttkitem", MusicXmlAttributes()
                                  << MusicXmlAttribute("name", song.getMusicName())
                                  << MusicXmlAttribute("playCount", song.getMusicPlayCount())
@@ -285,7 +285,7 @@ void MusicASXConfigManager::readASXXMLConfig(MusicSongItems &musics)
         if(node.nodeName() == "author")
         {
             const QDomElement &element = node.toElement();
-            state = element.text().contains(APPNAME);
+            state = element.text().contains(APP_NAME);
             break;
         }
     }

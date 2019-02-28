@@ -266,7 +266,7 @@ void MusicWebMusicRadioPlayWidget::startToPlay()
     name = ART_DIR_FULL + info.m_singerName + SKN_FILE;
     if(!QFile::exists(name))
     {
-        MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name, MusicObject::DownloadSmallBG, this);
+        MusicDataDownloadThread *download = new MusicDataDownloadThread(info.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
         connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(picDownloadStateChanged()));
         download->startToDownload();
     }

@@ -26,10 +26,12 @@
 MusicTopAreaWidget *MusicTopAreaWidget::m_instance = nullptr;
 
 MusicTopAreaWidget::MusicTopAreaWidget(QWidget *parent)
-    : QWidget(parent), m_musicBackgroundWidget(nullptr), m_musicRemoteWidget(nullptr)
+    : QWidget(parent)
 {
     m_instance = this;
-    m_musicUserWindow = new MusicUserWindow(this);
+    m_musicUserWindow = nullptr;
+    m_musicBackgroundWidget = nullptr;
+    m_musicRemoteWidget = nullptr;
 
     m_pictureCarouselTimer.setInterval(10*MT_S2MS);
     connect(&m_pictureCarouselTimer, SIGNAL(timeout()), SLOT(musicBackgroundChanged()));
@@ -56,7 +58,9 @@ MusicTopAreaWidget *MusicTopAreaWidget::instance()
 void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
-    ui->background->setNoAnimation(true);
+
+    musicBackgroundSliderStateChanged(true);
+    m_musicUserWindow = new MusicUserWindow(this);
     ui->userWindow->addWidget(m_musicUserWindow);
 
     ui->musicSongSearchLine->initWidget(MusicApplication::instance());
@@ -105,11 +109,12 @@ void MusicTopAreaWidget::setupUi(Ui::MusicApplication* ui)
     connect(ui->windowClose, SIGNAL(clicked()), MusicApplication::instance(), SLOT(close()));
 }
 
-void MusicTopAreaWidget::setParameters(const QString &skin, int alpha, int list)
+void MusicTopAreaWidget::setBackgroundParams(const QString &skin, int alpha, int list)
 {
     m_backgroundImagePath = skin;
     m_backgroundAListlpha = list;
     m_backgroundAlpha = alpha;
+
     drawWindowBackgroundRect();
 }
 
@@ -176,7 +181,7 @@ void MusicTopAreaWidget::musicShowSkinChangedWindow()
     {
         m_musicBackgroundWidget = new MusicBackgroundSkinDialog(this);
     }
-    m_musicBackgroundWidget->setCurrentBgTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundAListlpha);
+    m_musicBackgroundWidget->setCurrentBackgroundTheme(m_backgroundImagePath, m_backgroundAlpha, m_backgroundAListlpha);
     m_musicBackgroundWidget->exec();
 }
 
@@ -185,7 +190,7 @@ void MusicTopAreaWidget::musicUserContextLogin()
     m_musicUserWindow->musicUserContextLogin();
 }
 
-void MusicTopAreaWidget::musicBgTransparentChanged(int index)
+void MusicTopAreaWidget::musicBackgroundTransparentChanged(int index)
 {
     if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
     {
@@ -200,7 +205,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged(int index)
     drawWindowBackgroundRectString();
 }
 
-void MusicTopAreaWidget::musicBgTransparentChanged(const QString &fileName)
+void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileName)
 {
     if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1)
     {
@@ -229,7 +234,7 @@ void MusicTopAreaWidget::musicSetAsArtBackground()
     }
 }
 
-void MusicTopAreaWidget::musicBgTransparentChanged()
+void MusicTopAreaWidget::musicBackgroundTransparentChanged()
 {
     drawWindowBackgroundRect();
 }
@@ -237,7 +242,7 @@ void MusicTopAreaWidget::musicBgTransparentChanged()
 void MusicTopAreaWidget::musicBackgroundSkinChanged(const QString &fileName)
 {
     m_backgroundImagePath = fileName;
-    musicBgTransparentChanged();
+    musicBackgroundTransparentChanged();
 }
 
 void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileName)
@@ -269,7 +274,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
     m_ui->background->setNoAnimation(state);
 }
 
-void MusicTopAreaWidget::musicBgThemeDownloadFinished()
+void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 {
     if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artBackgroundIsShow())
     {
@@ -282,11 +287,11 @@ void MusicTopAreaWidget::musicBgThemeDownloadFinished()
     }
 }
 
-void MusicTopAreaWidget::musicBgThemeChangedByResize()
+void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
 {
-    m_ui->background->setNoAnimation(true);
+    musicBackgroundSliderStateChanged(true);
     drawWindowBackgroundRectString();
-    m_ui->background->setNoAnimation(false);
+    musicBackgroundSliderStateChanged(false);
 }
 
 void MusicTopAreaWidget::musicPlayListTransparent(int index)

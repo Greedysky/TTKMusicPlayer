@@ -65,13 +65,13 @@ public:
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.
      */
-    void setCurrentBgTheme(const QString &theme, int alpha, int listAlpha);
+    void setCurrentBackgroundTheme(const QString &theme, int alpha, int listAlpha);
     /*!
-     * Get list bg skin alpha.
+     * Get list background skin alpha.
      */
     int getBackgroundListAlpha() const;
     /*!
-     * Get bg window skin enable.
+     * Get background window skin enable.
      */
     bool getBackgroundTransparentEnable() const;
 
@@ -86,7 +86,7 @@ public:
 
 Q_SIGNALS:
     /*!
-     * Update app bg when user change the current bg emit.
+     * Update app background when user change the current background emit.
      */
     void currentTextChanged(const QString &text);
 
@@ -124,7 +124,7 @@ public Q_SLOTS:
      */
     void remoteBackgroundListWidgetItemClicked(const QString &name);
     /*!
-     * Update app bg when user change the current bg emit.
+     * Update app background when user change the current background emit.
      */
     void currentColorChanged(const QString &path);
     /*!

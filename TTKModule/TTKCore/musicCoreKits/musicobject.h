@@ -30,10 +30,58 @@
 #define DOT                     "."
 
 ///////////////////////////////////////
-#define APPNAME                 "TTKMusicPlayer"
-#define APPDOT                  "TTKMusicPlayer."
-#define APPCOME                 "TTKMusicPlayer.com"
-#define APPEXE                  "TTKMusicPlayer.exe"
+#define TTS_FILE_PREFIX         "ttks"
+#define SKN_FILE_PREFIX         "skn"
+#define JPG_FILE_PREFIX         "jpg"
+#define BMP_FILE_PREFIX         "bmp"
+#define PNG_FILE_PREFIX         "png"
+#define LRC_FILE_PREFIX         "lrc"
+#define KRC_FILE_PREFIX         "krc"
+#define CFG_FILE_PREFIX         "ttk"
+#define LST_FILE_PREFIX         "lis"
+#define EXE_FILE_PREFIX         "exe"
+#define XML_FILE_PREFIX         "xml"
+#define COM_FILE_PREFIX         "com"
+
+//music ext
+#define AAC_FILE_PREFIX         "aac"
+#define WMA_FILE_PREFIX         "wma"
+#define MP3_FILE_PREFIX         "mp3"
+#define OGG_FILE_PREFIX         "ogg"
+#define APE_FILE_PREFIX         "ape"
+#define FLC_FILE_PREFIX         "flac"
+
+
+#define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
+#define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
+#define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
+#define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
+#define PNG_FILE                STRCAT(DOT, PNG_FILE_PREFIX)
+#define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
+#define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
+#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
+#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
+#define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
+#define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
+#define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
+#define COM_FILE                STRCAT(DOT, COM_FILE_PREFIX)
+
+//music ext
+#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
+#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
+#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
+#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
+#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
+#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
+
+
+///////////////////////////////////////
+#define APP_NAME                "TTKMusicPlayer"
+#define APP_DOT_NAME            STRCAT(APP_NAME, DOT)
+#define APP_COME_NAME           STRCAT(APP_NAME, COM_FILE)
+#define APP_EXE_NAME            STRCAT(APP_NAME, EXE_FILE)
+
+
 ///////////////////////////////////////
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"
@@ -55,54 +103,11 @@
 #define TEMPORARY_DIR           "temporary"
 
 
-#define TTS_FILE_PREFIX         "ttks"
-#define SKN_FILE_PREFIX         "skn"
-#define JPG_FILE_PREFIX         "jpg"
-#define BMP_FILE_PREFIX         "bmp"
-#define PNG_FILE_PREFIX         "png"
-#define LRC_FILE_PREFIX         "lrc"
-#define KRC_FILE_PREFIX         "krc"
-#define CFG_FILE_PREFIX         "ttk"
-#define LST_FILE_PREFIX         "lis"
-#define EXE_FILE_PREFIX         "exe"
-#define XML_FILE_PREFIX         "xml"
-
-//music ext
-#define AAC_FILE_PREFIX         "aac"
-#define WMA_FILE_PREFIX         "wma"
-#define MP3_FILE_PREFIX         "mp3"
-#define OGG_FILE_PREFIX         "ogg"
-#define APE_FILE_PREFIX         "ape"
-#define FLC_FILE_PREFIX         "flac"
-
-
 #define MAKE_TRANSFORM_PREFIX   "avconv.dll"
 #define MAKE_KRC2LRC_PREFIX     "avk2l.dll"
 #define MAKE_PLAYER_PREFIX      "avplayer.dll"
 #define MAKE_GAIN_PREFIX        "avgain.dll"
 #define MAKE_SOUNDTOUCH_PREFIX  "avm2v.dll"
-
-
-#define TTS_FILE                STRCAT(DOT, TTS_FILE_PREFIX)
-#define SKN_FILE                STRCAT(DOT, SKN_FILE_PREFIX)
-#define JPG_FILE                STRCAT(DOT, JPG_FILE_PREFIX)
-#define BMP_FILE                STRCAT(DOT, BMP_FILE_PREFIX)
-#define PNG_FILE                STRCAT(DOT, PNG_FILE_PREFIX)
-#define LRC_FILE                STRCAT(DOT, LRC_FILE_PREFIX)
-#define KRC_FILE                STRCAT(DOT, KRC_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define CFG_FILE                STRCAT(DOT, CFG_FILE_PREFIX)
-#define LST_FILE                STRCAT(DOT, LST_FILE_PREFIX)
-#define EXE_FILE                STRCAT(DOT, EXE_FILE_PREFIX)
-#define XML_FILE                STRCAT(DOT, XML_FILE_PREFIX)
-
-//music ext
-#define AAC_FILE                STRCAT(DOT, AAC_FILE_PREFIX)
-#define WMA_FILE                STRCAT(DOT, WMA_FILE_PREFIX)
-#define MP3_FILE                STRCAT(DOT, MP3_FILE_PREFIX)
-#define OGG_FILE                STRCAT(DOT, OGG_FILE_PREFIX)
-#define APE_FILE                STRCAT(DOT, APE_FILE_PREFIX)
-#define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
 
 
 #define MAKE_CONFIG_DIR         STRCAT(PLUGINS_DIR, "config/")

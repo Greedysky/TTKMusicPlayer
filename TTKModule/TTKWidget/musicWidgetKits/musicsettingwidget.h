@@ -167,11 +167,11 @@ public Q_SLOTS:
     /*!
      * Inline lrc foreground change.
      */
-    void inlineLrcFgChanged();
+    void inlineLrcFrontgroundChanged();
     /*!
      * Inline lrc background change.
      */
-    void inlineLrcBgChanged();
+    void inlineLrcBackgroundChanged();
     /*!
      * Default lrc color change by index.
      */
@@ -192,11 +192,11 @@ public Q_SLOTS:
     /*!
      * Desktop lrc foreground change.
      */
-    void desktopFgChanged();
+    void desktopFrontgroundChanged();
     /*!
      * Desktop lrc background change.
      */
-    void desktopBgChanged();
+    void desktopBackgroundChanged();
     /*!
      * Default desktop lrc color change by index.
      */
@@ -326,8 +326,8 @@ protected:
     bool setNetworkProxyByType(int type);
 
     Ui::MusicSettingWidget *m_ui;
-    QList<QColor> m_lrcSelectedFg, m_lrcSelectedBg;
-    QList<QColor> m_DlrcSelectedFg, m_DlrcSelectedBg;
+    QList<QColor> m_lrcSelectedFrontground, m_lrcSelectedBackground;
+    QList<QColor> m_DlrcSelectedFrontground, m_DlrcSelectedBackground;
 
 };
 

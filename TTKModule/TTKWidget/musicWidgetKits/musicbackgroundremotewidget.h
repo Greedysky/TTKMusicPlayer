@@ -108,7 +108,7 @@ public:
 
 public Q_SLOTS:
     /*!
-     * Remote bg type selected by index.
+     * Remote background type selected by index.
      */
     void buttonClicked(int index);
     /*!

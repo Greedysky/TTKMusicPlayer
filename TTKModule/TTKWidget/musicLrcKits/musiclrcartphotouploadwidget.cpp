@@ -83,7 +83,7 @@ void MusicLrcArtPhotoUploadWidget::selectButtonClicked()
 
 void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
 {
-    const QDir bgDir(BACKGROUND_DIR_FULL);
+    const QDir dir(BACKGROUND_DIR_FULL);
     int count = 0;
     const QString &name = m_ui->artSearchEdit->text().trimmed();
     if(name.isEmpty())
@@ -94,7 +94,7 @@ void  MusicLrcArtPhotoUploadWidget::uploadButtonClicked()
         return;
     }
 
-    foreach(const QFileInfo &f, bgDir.entryInfoList())
+    foreach(const QFileInfo &f, dir.entryInfoList())
     {
         if(f.fileName().contains( name ))
         {

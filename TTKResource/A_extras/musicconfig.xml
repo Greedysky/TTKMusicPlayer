@@ -17,7 +17,7 @@
         <windowQuitMode value="0"/>
     </plusSetting>
     <otherSetting>
-        <otherBgLossless value="0"/>
+        <otherBackgroundLossless value="0"/>
         <otherUpdate value="0"/>
         <otherSearch value="0"/>
         <otherAlbumCover value="1"/>
@@ -29,10 +29,10 @@
         <otherLrcKTV value="1"/>
     </otherSetting>
     <backgroundSetting>
-        <bgTheme value="theme-7"/>
-        <bgTransparent value="100"/>
-        <bgListTransparent value="33"/>
-        <bgTransparentEnable value="1"/>
+        <backgroundTheme value="theme-7"/>
+        <backgroundTransparent value="100"/>
+        <backgroundListTransparent value="33"/>
+        <backgroundTransparentEnable value="1"/>
     </backgroundSetting>
     <hotkeySetting>
         <hotkeyEnable value="0"/>
@@ -45,8 +45,8 @@
         <lrcFamily value="0"/>
         <lrcType value="1"/>
         <lrcTransparent value="99"/>
-        <lrcFgColor value="250,218,131;250,218,131;250,218,131;"/>
-        <lrcBgColor value="255,255,255;255,255,255;255,255,255;"/>
+        <lrcFrontgroundColor value="250,218,131;250,218,131;250,218,131;"/>
+        <lrcBackgroundColor value="255,255,255;255,255,255;255,255,255;"/>
     </inlineLrcSetting>
     <desktopLrcSetting>
         <showDesktopLrc value="0"/>
@@ -55,8 +55,8 @@
         <lrcDFamily value="0"/>
         <lrcDType value="1"/>
         <lrcDTransparent value="99"/>
-        <lrcDFgColor value="130,247,253;255,255,255;3,233,252;"/>
-        <lrcDBgColor value="0,52,138;0,128,192;3,202,252;"/>
+        <lrcDFrontgroundColor value="130,247,253;255,255,255;3,233,252;"/>
+        <lrcDBackgroundColor value="0,52,138;0,128,192;3,202,252;"/>
         <lrcDWindowType value="1"/>
         <lrcDSingleLineType value="0"/>
         <lrcDLocked value="0"/>

@@ -162,7 +162,7 @@ Q_SIGNALS:
     /*!
      * Current background skin download.
      */
-    void updateBgThemeDownload();
+    void updateBackgroundThemeDownload();
     /*!
      * Current background transparent changed.
      */

@@ -88,7 +88,7 @@ public:
     ~MusicBackgroundPaletteWidget();
 
     /*!
-     * Update this bg when user change the current bg.
+     * Update this background when user change the current background.
      */
     void updateBackground(const QString &text);
 

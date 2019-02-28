@@ -63,16 +63,16 @@ void MusicUtils::Widget::widgetToRound(QWidget *w, int ratioX, int ratioY)
     w->setMask( getBitmapMask(w->rect(), ratioX, ratioY) );
 }
 
-void MusicUtils::Widget::fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt)
+void MusicUtils::Widget::fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt)
 {
-    if(fg.isNull())
+    if(front.isNull())
     {
         return;
     }
 
-    QPainter painter(&bg);
+    QPainter painter(&back);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-    painter.drawPixmap(pt.x(), pt.y(), fg);
+    painter.drawPixmap(pt.x(), pt.y(), front);
     painter.end();
 }
 

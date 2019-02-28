@@ -59,7 +59,7 @@ namespace MusicUtils
         /*!
          * Set fusion two image.
          */
-        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &bg, const QPixmap &fg, const QPoint &pt);
+        MUSIC_UTILS_EXPORT void fusionPixmap(QPixmap &back, const QPixmap &front, const QPoint &pt);
         /*!
          * Set pixmap to round by ratio.
          */
@@ -84,7 +84,7 @@ namespace MusicUtils
         /*!
          * Rerender the custum value.
          */
-        template<class T>
+        template <typename T>
         MUSIC_UTILS_EXPORT T reRenderValue(const T &key, const T &alpha, const T &value)
         {
             if(alpha < 0) return 0;

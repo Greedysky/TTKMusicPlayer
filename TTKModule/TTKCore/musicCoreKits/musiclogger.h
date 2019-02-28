@@ -152,7 +152,7 @@ private:
     /*!
      * Output debug data into local file.
      */
-    template <class T>
+    template <typename T>
     MusicLogger &debugData(const T &data)
     {
 #ifdef MUSIC_DEBUG

@@ -20,7 +20,7 @@ MusicBackgroundRemoteWidget::MusicBackgroundRemoteWidget(QWidget *parent)
     m_currentIndex = -1;
     m_queryThread = nullptr;
 
-    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBG, this);
+    m_downloadQueue = new MusicDownloadQueueCache(MusicObject::DownloadBigBackground, this);
     connect(m_downloadQueue, SIGNAL(downLoadDataChanged(QString)), SLOT(downLoadDataChanged(QString)));
 
 }

@@ -147,7 +147,7 @@ public Q_SLOTS:
     /*!
      * User selected the plane pic.
      */
-    void sendUserSelectArtBg(int index);
+    void sendUserSelectArtBackground(int index);
     /*!
      * User select check box checked by index.
      */
@@ -172,7 +172,7 @@ protected:
     int m_currentIndex;
     MIntSet m_selectNum;
     QStringList m_artPath;
-    QWidget *m_filmBGWidget;
+    QWidget *m_filmBackgroundWidget;
     QCheckBox *m_checkBox;
     QPushButton *m_previous, *m_next, *m_confirmButton;
     QList<MusicLrcFloatPhotoItem*> m_planes;

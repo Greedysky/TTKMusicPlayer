@@ -57,10 +57,10 @@ private:
     ///                                                           //
     ////////////////////////////////////////////////////////////////
 
-template<typename T> QMutex MusicSingleton<T>::m_mutex;
-template<typename T> QScopedPointer<T> MusicSingleton<T>::m_instance;
+template <typename T> QMutex MusicSingleton<T>::m_mutex;
+template <typename T> QScopedPointer<T> MusicSingleton<T>::m_instance;
 
-template<typename T>
+template <typename T>
 T* MusicSingleton<T>::createInstance()
 {
     if(m_instance.isNull())

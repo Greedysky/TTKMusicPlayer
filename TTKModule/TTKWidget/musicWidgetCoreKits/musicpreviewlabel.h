@@ -35,7 +35,7 @@ public:
     explicit MusicColorPreviewLabel(QWidget *parent = nullptr);
 
     /*!
-     * Set linear gradient and fg and bg.
+     * Set linear gradient and front and back.
      */
     void setLinearGradient(const QList<QColor> &colors);
 
@@ -57,8 +57,8 @@ typedef struct MUSIC_WIDGET_EXPORT MusicPreviewLabelItem
     QString m_family;
     int m_size;
     int m_type;
-    QList<QColor> m_fg;
-    QList<QColor> m_bg;
+    QList<QColor> m_frontground;
+    QList<QColor> m_background;
 }MusicPreviewLabelItem;
 
 /*! @brief The class of the lrc setting preview label.
@@ -79,9 +79,9 @@ public:
      */
     void setLinearGradient(const MusicPreviewLabelItem &item);
     /*!
-     * Set linear gradient and fg and bg.
+     * Set linear gradient and front and back.
      */
-    void setLinearGradient(const QList<QColor> &fg, const QList<QColor> &bg);
+    void setLinearGradient(const QList<QColor> &front, const QList<QColor> &back);
     /*!
      * Set current transparent.
      */

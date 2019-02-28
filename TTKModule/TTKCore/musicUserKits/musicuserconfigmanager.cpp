@@ -14,7 +14,7 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APPNAME);
+    QDomElement musicPlayer = createRoot(APP_NAME);
 
     foreach(const MusicUserRecord &record, records)
     {

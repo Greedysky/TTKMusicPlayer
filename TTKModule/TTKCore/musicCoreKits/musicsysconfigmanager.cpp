@@ -29,7 +29,7 @@ void MusicSysConfigManager::writeXMLConfig()
     const int windowQuitModeChoiced = M_SETTING_PTR->value(MusicSettingManager::WindowQuitModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
-    const int otherBgLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBgLosslessChoiced).toInt();
+    const int otherBackgroundLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toInt();
     const int otherUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toInt();
     const int otherSearchChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toInt();
     const int otherAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toInt();
@@ -41,10 +41,10 @@ void MusicSysConfigManager::writeXMLConfig()
     const int otherLrcKTVModeChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
-    const QString &bgThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString();
-    const int bgTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt();
-    const int bgListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt();
-    const int bgTransparentEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toInt();
+    const QString &backgroundThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BackgroundThemeChoiced).toString();
+    const int backgroundTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentChoiced).toInt();
+    const int backgroundListTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparentChoiced).toInt();
+    const int backgroundTransparentEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnableChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     const int hotkeyEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toInt();
@@ -57,8 +57,8 @@ void MusicSysConfigManager::writeXMLConfig()
     const int lrcSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcSizeChoiced).toInt();
     const int lrcTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcTypeChoiced).toInt();
     const int lrcFamilyChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFamilyChoiced).toInt();
-    const QString &lrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFgColorChoiced).toString();
-    const QString &lrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcBgColorChoiced).toString();
+    const QString &lrcFrontgroundColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColorChoiced).toString();
+    const QString &lrcBackgroundColorChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColorChoiced).toString();
     const int lrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
@@ -66,8 +66,8 @@ void MusicSysConfigManager::writeXMLConfig()
     const int DLrcSizeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcSizeChoiced).toInt();
     const int DLrcTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcTypeChoiced).toInt();
     const int DLrcFamilyChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt();
-    const QString &DLrcFgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFgColorChoiced).toString();
-    const QString &DLrcBgColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBgColorChoiced).toString();
+    const QString &DLrcFrontgroundColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColorChoiced).toString();
+    const QString &DLrcBackgroundColorChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColorChoiced).toString();
     const int DLrcTransparentChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt();
     const int DLrcWindowTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcWindowTypeChoiced).toInt();
     const int DLrcSingleLineTypeChoiced = M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toInt();
@@ -130,7 +130,7 @@ void MusicSysConfigManager::writeXMLConfig()
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayerDom = createRoot(APPNAME);
+    QDomElement musicPlayerDom = createRoot(APP_NAME);
     //Class A
     QDomElement musicSettingDom = writeDom(musicPlayerDom, "musicSetting");
     QDomElement plusSettingDom = writeDom(musicPlayerDom, "plusSetting");
@@ -162,7 +162,7 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(plusSettingDom, "windowQuitMode", MusicXmlAttribute("value", windowQuitModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(otherSettingDom, "otherBgLossless", MusicXmlAttribute("value", otherBgLosslessChoiced));
+    writeDomElement(otherSettingDom, "otherBackgroundLossless", MusicXmlAttribute("value", otherBackgroundLosslessChoiced));
     writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherUpdateChoiced));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearchChoiced));
     writeDomElement(otherSettingDom, "otherAlbumCover", MusicXmlAttribute("value", otherAlbumCoverChoiced));
@@ -174,10 +174,10 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVModeChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
-    writeDomElement(backgroundSettingDom, "bgTheme", MusicXmlAttribute("value", bgThemeChoiced));
-    writeDomElement(backgroundSettingDom, "bgTransparent", MusicXmlAttribute("value", bgTransparentChoiced));
-    writeDomElement(backgroundSettingDom, "bgListTransparent", MusicXmlAttribute("value", bgListTransparentChoiced));
-    writeDomElement(backgroundSettingDom, "bgTransparentEnable", MusicXmlAttribute("value", bgTransparentEnableChoiced));
+    writeDomElement(backgroundSettingDom, "backgroundTheme", MusicXmlAttribute("value", backgroundThemeChoiced));
+    writeDomElement(backgroundSettingDom, "backgroundTransparent", MusicXmlAttribute("value", backgroundTransparentChoiced));
+    writeDomElement(backgroundSettingDom, "backgroundListTransparent", MusicXmlAttribute("value", backgroundListTransparentChoiced));
+    writeDomElement(backgroundSettingDom, "backgroundTransparentEnable", MusicXmlAttribute("value", backgroundTransparentEnableChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(hotkeySettingDom, "hotkeyEnable", MusicXmlAttribute("value", hotkeyEnableChoiced));
@@ -190,8 +190,8 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(inlineLrcSettingDom, "lrcFamily", MusicXmlAttribute("value", lrcFamilyChoiced));
     writeDomElement(inlineLrcSettingDom, "lrcType", MusicXmlAttribute("value", lrcTypeChoiced));
     writeDomElement(inlineLrcSettingDom, "lrcTransparent", MusicXmlAttribute("value", lrcTransparentChoiced));
-    writeDomElement(inlineLrcSettingDom, "lrcFgColor", MusicXmlAttribute("value", lrcFgColorChoiced));
-    writeDomElement(inlineLrcSettingDom, "lrcBgColor", MusicXmlAttribute("value", lrcBgColorChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcFrontgroundColor", MusicXmlAttribute("value", lrcFrontgroundColorChoiced));
+    writeDomElement(inlineLrcSettingDom, "lrcBackgroundColor", MusicXmlAttribute("value", lrcBackgroundColorChoiced));
 
     ///////////////////////////////////////////////
     writeDomElement(desktopLrcSettingDom, "showDesktopLrc", MusicXmlAttribute("value", showDesktopLrcChoiced));
@@ -200,8 +200,8 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(desktopLrcSettingDom, "lrcDFamily", MusicXmlAttribute("value", DLrcFamilyChoiced));
     writeDomElement(desktopLrcSettingDom, "lrcDType", MusicXmlAttribute("value", DLrcTypeChoiced));
     writeDomElement(desktopLrcSettingDom, "lrcDTransparent", MusicXmlAttribute("value", DLrcTransparentChoiced));
-    writeDomElement(desktopLrcSettingDom, "lrcDFgColor", MusicXmlAttribute("value", DLrcFgColorChoiced));
-    writeDomElement(desktopLrcSettingDom, "lrcDBgColor", MusicXmlAttribute("value", DLrcBgColorChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDFrontgroundColor", MusicXmlAttribute("value", DLrcFrontgroundColorChoiced));
+    writeDomElement(desktopLrcSettingDom, "lrcDBackgroundColor", MusicXmlAttribute("value", DLrcBackgroundColorChoiced));
     writeDomElement(desktopLrcSettingDom, "lrcDWindowType", MusicXmlAttribute("value", DLrcWindowTypeChoiced));
     writeDomElement(desktopLrcSettingDom, "lrcDSingleLineType", MusicXmlAttribute("value", DLrcSingleLineTypeChoiced));
     writeDomElement(desktopLrcSettingDom, "lrcDLocked", MusicXmlAttribute("value", DLrcLockedChoiced));
@@ -336,8 +336,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("windowQuitMode").toInt());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherBgLosslessChoiced,
-                     readXmlAttributeByTagNameValue("otherBgLossless").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced,
+                     readXmlAttributeByTagNameValue("otherBackgroundLossless").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced,
                      readXmlAttributeByTagNameValue("otherUpdate").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
@@ -358,14 +358,14 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced,
-                     readXmlAttributeByTagNameValue("bgTheme"));
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced,
-                     readXmlAttributeByTagNameValue("bgTransparent").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced,
-                     readXmlAttributeByTagNameValue("bgTransparentEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced,
-                     readXmlAttributeByTagNameValue("bgListTransparent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTheme"));
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTransparent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTransparentEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced,
+                     readXmlAttributeByTagNameValue("backgroundListTransparent").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced,
@@ -382,10 +382,10 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("lrcSize").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced,
                      readXmlAttributeByTagNameValue("lrcFamily"));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFgColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcFgColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBgColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcBgColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcFrontgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcBackgroundColor"));
     M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced,
                      readXmlAttributeByTagNameValue("lrcType").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced,
@@ -400,10 +400,10 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("lrcDSize").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced,
                      readXmlAttributeByTagNameValue("lrcDFamily"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFgColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcDFgColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBgColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcDBgColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcDFrontgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcDBackgroundColor"));
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced,
                      readXmlAttributeByTagNameValue("lrcDType").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced,

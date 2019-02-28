@@ -36,8 +36,8 @@ namespace MusicObject
     {
         DownloadMusic,            /*!< type of dwonlaod music*/
         DownloadLrc,              /*!< type of dwonlaod lrc*/
-        DownloadSmallBG,          /*!< type of dwonlaod small background*/
-        DownloadBigBG,            /*!< type of dwonlaod big background*/
+        DownloadSmallBackground,  /*!< type of dwonlaod small background*/
+        DownloadBigBackground,    /*!< type of dwonlaod big background*/
         DownloadVideo,            /*!< type of dwonlaod video*/
         DownloadOther             /*!< type of dwonlaod other user mod*/
     };

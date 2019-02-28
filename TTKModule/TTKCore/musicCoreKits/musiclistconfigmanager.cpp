@@ -20,7 +20,7 @@ void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
-    QDomElement musicPlayer = createRoot(APPNAME);
+    QDomElement musicPlayer = createRoot(APP_NAME);
     for(int i=0; i<musics.count(); ++i)
     {
         const MusicSongItem &item = musics[i];

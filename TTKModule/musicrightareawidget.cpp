@@ -66,6 +66,7 @@ MusicRightAreaWidget *MusicRightAreaWidget::instance()
 void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+
     ui->musiclrccontainerforinline->resize(ui->functionsContainer->size());
 
     ui->musicBackButton->setStyleSheet(MusicUIObject::MKGBtnBackBack);
@@ -84,7 +85,7 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ///////////////////////////////////////////////////////
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInlineLrcWidget()));
     connect(ui->musiclrccontainerforinline, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
-    connect(ui->musiclrccontainerforinline, SIGNAL(artBgHasChanged()), SIGNAL(updateBgThemeDownload()));
+    connect(ui->musiclrccontainerforinline, SIGNAL(artBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorSetting()), MusicApplication::instance(), SLOT(musicSetting()));
     connect(ui->musiclrccontainerforinline, SIGNAL(updateCurrentTime(qint64)), MusicApplication::instance(), SLOT(updateCurrentTime(qint64)));
     connect(ui->musicSongSearchLine, SIGNAL(enterFinished(QString)), SLOT(musicSongSearchedFound(QString)));
@@ -383,7 +384,7 @@ void MusicRightAreaWidget::musicFunctionClicked(int index)
                 m_ui->functionsContainer->setCurrentIndex(1);
                 m_ui->lrcDisplayAllButton->setStyleSheet(MusicUIObject::MKGTinyBtnLrcCollapse);
                 m_ui->lrcDisplayAllButton->setVisible(true);
-                emit updateBgThemeDownload();
+                emit updateBackgroundThemeDownload();
                 break;
             }
         case SearchWidget: //insert search display widget

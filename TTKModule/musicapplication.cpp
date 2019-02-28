@@ -64,8 +64,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_topAreaWidget->musicBackgroundSliderStateChanged(false);
 
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_leftAreaWidget, SLOT(setTransparent(int)));
-    connect(m_rightAreaWidget, SIGNAL(updateBgThemeDownload()), m_topAreaWidget, SLOT(musicBgThemeDownloadFinished()));
-    connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBgTransparentChanged()));
+    connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(musicBackgroundThemeDownloadFinished()));
+    connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBackgroundTransparentChanged()));
 
     setAcceptDrops(true);
 
@@ -164,7 +164,7 @@ bool MusicApplication::checkMusicListCurrentIndex() const
 void MusicApplication::musicLoadCurrentSongLrc()
 {
     //display current ArtTheme pic
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->musicBackgroundThemeDownloadFinished();
     //Loading the current song lrc
     if(checkMusicListCurrentIndex())
     {
@@ -410,7 +410,7 @@ void MusicApplication::showCurrentSong(int index)
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
     M_BACKGROUND_PTR->setArtName( getCurrentFileName() );
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
 
 void MusicApplication::musicStatePlay()
@@ -426,7 +426,7 @@ void MusicApplication::musicStatePlay()
         m_ui->musicKey->setStyleSheet(concise ? MusicUIObject::MKGTinyBtnPause : MusicUIObject::MKGBtnPause);
         m_playControl = false;
         m_musicPlayer->play();
-        m_topAreaWidget->musicBgThemeDownloadFinished();
+        m_topAreaWidget->musicBackgroundThemeDownloadFinished();
         m_rightAreaWidget->startTimerClock();
     }
     else
@@ -773,7 +773,7 @@ void MusicApplication::musicAddSongToLovestListAt(bool state)
 void MusicApplication::musicWindowConciseChanged()
 {
     m_bottomAreaWidget->setWindowConcise();
-    m_topAreaWidget->musicBgThemeDownloadFinished();
+    m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
 
 void MusicApplication::musicEnhancedMusicChanged(int type)
@@ -1021,7 +1021,7 @@ void MusicApplication::resizeEvent(QResizeEvent *event)
     if(!m_quitWindowClose)
     {
         M_SETTING_PTR->setValue(MusicSettingManager::WidgetSize, size());
-        m_topAreaWidget->musicBgThemeChangedByResize();
+        m_topAreaWidget->musicBackgroundThemeChangedByResize();
         m_rightAreaWidget->resizeWindow();
         m_bottomAreaWidget->resizeWindow();
         m_ui->musicPlayedList->resizeWindow();
@@ -1205,9 +1205,9 @@ void MusicApplication::readXMLConfigFromText()
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcGeometryChoiced, xml.readShowDLrcGeometry());
 
     //Set the current background color and alpha value
-    m_topAreaWidget->setParameters(M_SETTING_PTR->value(MusicSettingManager::BgThemeChoiced).toString(),
-                                   M_SETTING_PTR->value(MusicSettingManager::BgTransparentChoiced).toInt(),
-                                   M_SETTING_PTR->value(MusicSettingManager::BgListTransparentChoiced).toInt());
+    m_topAreaWidget->setBackgroundParams(M_SETTING_PTR->value(MusicSettingManager::BackgroundThemeChoiced).toString(),
+                                         M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentChoiced).toInt(),
+                                         M_SETTING_PTR->value(MusicSettingManager::BackgroundListTransparentChoiced).toInt());
 
     //Configuration from next time also stopped at the last record.
     QStringList keyList;
@@ -1292,10 +1292,10 @@ void MusicApplication::writeXMLConfigToText()
         lastPlayIndexChoiced[2] = QString::number(m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path));
     }
     M_SETTING_PTR->setValue(MusicSettingManager::LastPlayIndexChoiced, lastPlayIndexChoiced);
-    M_SETTING_PTR->setValue(MusicSettingManager::BgThemeChoiced, m_topAreaWidget->getBackgroundPath());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgListTransparentChoiced, m_topAreaWidget->getBackgroundListAlpha());
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced, m_topAreaWidget->getBackgroundTransparentEnable());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeChoiced, m_topAreaWidget->getBackgroundPath());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentChoiced, m_topAreaWidget->getBackgroundAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced, m_topAreaWidget->getBackgroundListAlpha());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced, m_topAreaWidget->getBackgroundTransparentEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
     xml.writeXMLConfig();
 

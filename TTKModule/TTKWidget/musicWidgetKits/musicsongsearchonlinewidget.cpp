@@ -439,7 +439,7 @@ void MusicSongSearchTableWidget::addSearchMusicToPlayList(int row)
     download->startToDownload();
 
     M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + musicSongInfo.m_singerName + SKN_FILE,
-                                                    MusicObject::DownloadSmallBG, this)->startToDownload();
+                                                    MusicObject::DownloadSmallBackground, this)->startToDownload();
     ///download big picture
     M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread(musicSongInfo.m_singerName, musicSongInfo.m_singerName, this)->startToDownload();
 

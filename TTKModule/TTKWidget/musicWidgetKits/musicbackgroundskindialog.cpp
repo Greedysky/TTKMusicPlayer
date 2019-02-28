@@ -72,7 +72,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_ui->listTransparentLabel->setStyleSheet(MusicUIObject::MColorStyle03);
 
     connect(m_ui->skinTransparentLabelBox, SIGNAL(clicked(bool)), SLOT(windowTransparentChanged(bool)));
-    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBgTransparentChanged(int)));
+    connect(m_ui->skinTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundTransparentChanged(int)));
     connect(m_ui->skinTransparentButton, SIGNAL(sliderStateChanged(bool)), MusicTopAreaWidget::instance(), SLOT(musicBackgroundSliderStateChanged(bool)));
     connect(m_ui->listTransparentButton, SIGNAL(valueChanged(int)), MusicTopAreaWidget::instance(), SLOT(musicPlayListTransparent(int)));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
@@ -136,7 +136,7 @@ void MusicBackgroundSkinDialog::updateArtFileTheme(const QString &theme)
     m_myBackgroundList->updateLastedItem();
 }
 
-void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alpha, int listAlpha)
+void MusicBackgroundSkinDialog::setCurrentBackgroundTheme(const QString &theme, int alpha, int listAlpha)
 {
     m_backgroundList->setCurrentItemName(theme);
     m_myBackgroundList->setCurrentItemName(theme);
@@ -144,7 +144,7 @@ void MusicBackgroundSkinDialog::setCurrentBgTheme(const QString &theme, int alph
     m_ui->listTransparentButton->setValue(listAlpha);
     setListTransToolText(listAlpha);
 
-    const bool state = M_SETTING_PTR->value(MusicSettingManager::BgTransparentEnableChoiced).toBool();
+    const bool state = M_SETTING_PTR->value(MusicSettingManager::BackgroundTransparentEnableChoiced).toBool();
     m_ui->skinTransparentButton->setValue(state ? alpha : 100);
     m_ui->skinTransparentButton->setEnabled(state);
     setSkinTransToolText(state ? alpha : 100);
@@ -271,7 +271,7 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 {
     if(path.contains(MUSIC_COLOR_FILE))
     {
-        MusicTopAreaWidget::instance()->musicBgTransparentChanged(path);
+        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(path);
     }
     else
     {
@@ -284,11 +284,11 @@ void MusicBackgroundSkinDialog::currentColorChanged(const QString &path)
 void MusicBackgroundSkinDialog::windowTransparentChanged(bool state)
 {
     m_ui->skinTransparentButton->setEnabled(state);
-    M_SETTING_PTR->setValue(MusicSettingManager::BgTransparentEnableChoiced, state);
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced, state);
     if(!state)
     {
         m_ui->skinTransparentButton->setValue(100);
-        MusicTopAreaWidget::instance()->musicBgTransparentChanged(100);
+        MusicTopAreaWidget::instance()->musicBackgroundTransparentChanged(100);
     }
 }
 

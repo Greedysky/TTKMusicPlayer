@@ -64,7 +64,7 @@ void MusicDownloadStatusObject::showDownLoadInfoFinished(const QString &type)
     {
         m_parentWidget->musicLoadCurrentSongLrc();
     }
-    else if(type == "DownloadSmallBG")
+    else if(type == "DownloadSmallBackground")
     {
         m_parentWidget->updateCurrentArtist();
     }
@@ -154,7 +154,7 @@ void MusicDownloadStatusObject::musicHaveNoLrcAlready()
         ///download lrc
         M_DOWNLOAD_QUERY_PTR->getDownloadLrcThread(musicSongInfo.m_lrcUrl, MusicUtils::Core::lrcPrefix() + filename + LRC_FILE, MusicObject::DownloadLrc, this)->startToDownload();
         ///download art picture
-        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBG, this)->startToDownload();
+        M_DOWNLOAD_QUERY_PTR->getDownloadSmallPicThread(musicSongInfo.m_smallPicUrl, ART_DIR_FULL + artistName + SKN_FILE, MusicObject::DownloadSmallBackground, this)->startToDownload();
         ///download big picture
         M_DOWNLOAD_QUERY_PTR->getDownloadBigPicThread( count == 1 ? musicSongInfo.m_singerName : artistName, artistName, this)->startToDownload();
     }

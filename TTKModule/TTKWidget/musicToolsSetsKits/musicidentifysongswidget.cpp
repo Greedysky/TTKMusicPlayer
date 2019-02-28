@@ -310,7 +310,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
         const QString &name = ART_DIR_FULL + m_currentSong.m_singerName + SKN_FILE;
         if(!QFile::exists(name))
         {
-            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBG, this);
+            MusicDataDownloadThread *download = new MusicDataDownloadThread(m_currentSong.m_smallPicUrl, name, MusicObject::DownloadSmallBackground, this);
             connect(download, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
             download->startToDownload();
             loop.exec();
