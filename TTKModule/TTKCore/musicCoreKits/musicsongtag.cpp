@@ -180,11 +180,7 @@ void MusicSongTag::setCover(const QByteArray &data)
 #if TTKMUSIC_VERSION >= TTKMUSIC_VERSION_CHECK(2,5,3,0)
     QPixmap pix;
     pix.loadFromData(data);
-    if(pix.width() > 500 || pix.height() > 500)
-    {
-        pix = pix.scaled(500, 500, Qt::KeepAspectRatio);
-    }
-    m_parameters[TagReadAndWrite::TAG_COVER] = pix;
+    setCover(pix);
 #else
     Q_UNUSED(data);
 #endif
@@ -200,7 +196,7 @@ QPixmap MusicSongTag::getCover() const
 }
 
 /////////////////////////////////////////////
-QString MusicSongTag::getSamplingRate() const
+QString MusicSongTag::getSampleRate() const
 {
     return m_parameters[TagReadAndWrite::TAG_SAMPLERATE].toString();
 }

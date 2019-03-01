@@ -51,7 +51,7 @@
  *
  *  ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
  *
- *  Playlist formats(ttklis, m3u, m3u8, pls, wpl, xspf)
+ *  Playlist formats(ttklist, m3u, m3u8, pls, wpl, xspf)
  *
  *  Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing Screenshots.
  *

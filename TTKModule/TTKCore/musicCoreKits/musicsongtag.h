@@ -152,7 +152,7 @@ public:
     /*!
      * Get song sample rate.
      */
-    QString getSamplingRate() const;
+    QString getSampleRate() const;
     /*!
      * Get song format.
      */
