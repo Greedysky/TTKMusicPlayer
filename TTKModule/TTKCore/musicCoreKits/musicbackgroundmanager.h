@@ -37,11 +37,11 @@ public:
     /*!
      * Set current artist name.
      */
-    void setArtName(const QString &name);
+    void setArtistName(const QString &name);
     /*!
      * Remove current artist name.
      */
-    void clearArtName();
+    void clearArtistName();
 
     /*!
      * Get artist photo current index.
@@ -72,28 +72,28 @@ public:
     /*!
      * Get artist photo path.
      */
-    QString getArtPhotoPath();
+    QString getArtistPhotoPath();
     /*!
      * Get artist photo path no index.
      */
-    QString getArtPhotoPathNoIndex();
+    QString getArtistPhotoPathNoIndex();
     /*!
      * Get artist photo path by given index.
      */
-    QString getArtPhotoPathByIndex(int index = -1) const;
+    QString getArtistPhotoPathByIndex(int index = -1) const;
 
     /*!
      * Get artist photo path list.
      */
-    QStringList getArtPhotoPathList() const;
+    QStringList getArtistPhotoPathList() const;
     /*!
      * Set artist photo path by given path list.
      */
-    void setArtPhotoPathList(const QStringList &list);
+    void setArtistPhotoPathList(const QStringList &list);
     /*!
      * Set user select current index.
      */
-    void setUserSelectArtIndex(int index);
+    void setUserSelectArtistIndex(int index);
 
     /*!
      * Add observer.
@@ -124,7 +124,7 @@ Q_SIGNALS:
      */
     void backgroundChanged();
     /*!
-     * New art has been set emit.
+     * New artist has been set emit.
      */
     void artistNameChanged();
     /*!
@@ -141,7 +141,7 @@ protected:
     int m_currentIndex;
     QStringList m_photos;
     QList<QObject*> m_observer;
-    QString m_currentArtName, m_background;
+    QString m_currentArtistName, m_background;
 
     DECLARE_SINGLETON_CLASS(MusicBackgroundManager)
 };

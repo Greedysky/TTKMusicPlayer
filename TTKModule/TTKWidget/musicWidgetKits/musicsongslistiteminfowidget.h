@@ -51,7 +51,7 @@ protected:
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
-    bool showArtPicture(const QString &name);
+    bool showArtistPicture(const QString &name);
 
     Ui::MusicSongsListItemInfoWidget *m_ui;
 

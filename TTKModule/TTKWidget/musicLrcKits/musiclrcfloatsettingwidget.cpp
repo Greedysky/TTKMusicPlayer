@@ -120,18 +120,18 @@ void MusicLrcFloatSettingWidget::lrcSizeLowChanged()
 void MusicLrcFloatSettingWidget::lrcMusicBackgroundChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    if(line->artBackgroundIsShow())
+    if(line->artistBackgroundIsShow())
     {
-        line->artBackgroundChanged();
+        line->artistBackgroundChanged();
     }
 }
 
 void MusicLrcFloatSettingWidget::lrcArtBackgroundChanged()
 {
     MusicLrcContainerForInline* line = MStatic_cast(MusicLrcContainerForInline*, parent());
-    if(!line->artBackgroundIsShow())
+    if(!line->artistBackgroundIsShow())
     {
-        line->artBackgroundChanged();
+        line->artistBackgroundChanged();
     }
 }
 

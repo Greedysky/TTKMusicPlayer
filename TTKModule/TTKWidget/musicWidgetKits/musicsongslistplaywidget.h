@@ -112,12 +112,12 @@ protected:
     /*!
      * Show artist small picture, if no exsit there is default pic.
      */
-    bool showArtPicture(const QString &name) const;
+    bool showArtistPicture(const QString &name) const;
 
     bool m_noCover;
     int m_currentPlayIndex;
     QString m_totalTimeLabel;
-    QLabel *m_artPictureLabel, *m_timeLabel;
+    QLabel *m_artistPictureLabel, *m_timeLabel;
     MusicSplitItemClickedLabel *m_songNameLabel;
     QPushButton *m_loveButton, *m_deleteButton,* m_showMVButton;
     QPushButton *m_downloadButton, *m_moreButton;

@@ -123,13 +123,13 @@ bool MusicBackgroundSkinDialog::themeValidCheck(QString &name, QString &path)
     return true;
 }
 
-QString MusicBackgroundSkinDialog::cpoyArtFileToLocal(const QString &path)
+QString MusicBackgroundSkinDialog::cpoyArtistFileToLocal(const QString &path)
 {
     const int index = cpoyFileToLocal(path);
     return (index != -1) ? QString("theme-%1").arg(index + 1) : QString();
 }
 
-void MusicBackgroundSkinDialog::updateArtFileTheme(const QString &theme)
+void MusicBackgroundSkinDialog::updateArtistFileTheme(const QString &theme)
 {
     const QString &des = QString("%1%2%3").arg(USER_THEME_DIR_FULL).arg(theme).arg(TTS_FILE);
     m_myBackgroundList->createItem(theme, des, true);

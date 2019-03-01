@@ -122,9 +122,9 @@ public Q_SLOTS:
      */
     void musicUserContextLogin();
     /*!
-     * Set background as art big picture.
+     * Set background as artist big picture.
      */
-    void musicSetAsArtBackground();
+    void musicSetAsArtistBackground();
     /*!
      * Current background transparent changed.
      */

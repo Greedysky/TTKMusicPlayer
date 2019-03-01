@@ -215,12 +215,12 @@ void MusicTopAreaWidget::musicBackgroundTransparentChanged(const QString &fileNa
     drawWindowBackgroundRectString(fileName);
 }
 
-void MusicTopAreaWidget::musicSetAsArtBackground()
+void MusicTopAreaWidget::musicSetAsArtistBackground()
 {
-    QString path = M_BACKGROUND_PTR->getArtPhotoPathNoIndex();
+    QString path = M_BACKGROUND_PTR->getArtistPhotoPathNoIndex();
     if(!path.isEmpty())
     {
-        path = MusicBackgroundSkinDialog::cpoyArtFileToLocal(path);
+        path = MusicBackgroundSkinDialog::cpoyArtistFileToLocal(path);
         if(path.isEmpty())
         {
             return;
@@ -228,7 +228,7 @@ void MusicTopAreaWidget::musicSetAsArtBackground()
 
         if(m_musicBackgroundWidget)
         {
-            m_musicBackgroundWidget->updateArtFileTheme(path);
+            m_musicBackgroundWidget->updateArtistFileTheme(path);
         }
         musicBackgroundSkinChanged(path);
     }
@@ -257,11 +257,11 @@ void MusicTopAreaWidget::musicBackgroundSkinCustumChanged(const QString &fileNam
 
 void MusicTopAreaWidget::musicBackgroundChanged()
 {
-    const QString &artPath = M_BACKGROUND_PTR->getArtPhotoPath();
-    if(!artPath.isEmpty())
+    const QString &artistPath = M_BACKGROUND_PTR->getArtistPhotoPath();
+    if(!artistPath.isEmpty())
     {
         M_BACKGROUND_PTR->indexIncrease();
-        drawWindowBackgroundRectString(artPath);
+        drawWindowBackgroundRectString(artistPath);
     }
     else
     {
@@ -276,7 +276,7 @@ void MusicTopAreaWidget::musicBackgroundSliderStateChanged(bool state)
 
 void MusicTopAreaWidget::musicBackgroundThemeDownloadFinished()
 {
-    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artBackgroundIsShow())
+    if(m_ui->functionsContainer->currentIndex() == APP_WINDOW_INDEX_1 && m_ui->musiclrccontainerforinline->artistBackgroundIsShow())
     {
         musicBackgroundChanged();
         m_pictureCarouselTimer.start();

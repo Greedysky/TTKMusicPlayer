@@ -64,8 +64,8 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_topAreaWidget->musicBackgroundSliderStateChanged(false);
 
     connect(m_topAreaWidget, SIGNAL(setTransparent(int)), m_leftAreaWidget, SLOT(setTransparent(int)));
-    connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(musicBackgroundThemeDownloadFinished()));
     connect(m_rightAreaWidget, SIGNAL(updateBackgroundTheme()), m_topAreaWidget, SLOT(musicBackgroundTransparentChanged()));
+    connect(m_rightAreaWidget, SIGNAL(updateBackgroundThemeDownload()), m_topAreaWidget, SLOT(musicBackgroundThemeDownloadFinished()));
 
     setAcceptDrops(true);
 
@@ -404,12 +404,12 @@ void MusicApplication::showCurrentSong(int index)
     m_ui->showCurrentSong->setText(name);
     m_ui->musicMoreFunction->setCurrentSongName(name);
     //Show the current play song information
-    M_BACKGROUND_PTR->clearArtName();
+    M_BACKGROUND_PTR->clearArtistName();
     m_rightAreaWidget->musicCheckHasLrcAlready();
     m_bottomAreaWidget->setLabelText(name);
     m_topAreaWidget->setLabelText(name);
     //display current ArtTheme pic
-    M_BACKGROUND_PTR->setArtName( getCurrentFileName() );
+    M_BACKGROUND_PTR->setArtistName( getCurrentFileName() );
     m_topAreaWidget->musicBackgroundThemeDownloadFinished();
 }
 

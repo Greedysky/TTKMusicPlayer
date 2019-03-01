@@ -224,7 +224,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         }
         case 2:
         {
-            m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtPhotoPathList());
+            m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtistPhotoPathList());
             parameterFinished();
             break;
         }

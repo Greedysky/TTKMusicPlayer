@@ -220,7 +220,7 @@ void MusicLrcFloatPhotoWidget::confirmButtonClicked()
     {
        list << m_artPath[i];
     }
-    M_BACKGROUND_PTR->setArtPhotoPathList(list);
+    M_BACKGROUND_PTR->setArtistPhotoPathList(list);
     close();
 }
 
@@ -263,7 +263,7 @@ void MusicLrcFloatPhotoWidget::artistNameChanged()
     }
 
     m_selectNum.clear();
-    m_artPath = M_BACKGROUND_PTR->getArtPhotoPathList();
+    m_artPath = M_BACKGROUND_PTR->getArtistPhotoPathList();
     for(int i=0; i<m_artPath.count(); ++i)
     {
         m_selectNum << i;
@@ -287,7 +287,7 @@ void MusicLrcFloatPhotoWidget::photoNext()
 
 void MusicLrcFloatPhotoWidget::sendUserSelectArtBackground(int index)
 {
-    M_BACKGROUND_PTR->setUserSelectArtIndex(m_currentIndex * PHOTO_PERLINE + index);
+    M_BACKGROUND_PTR->setUserSelectArtistIndex(m_currentIndex * PHOTO_PERLINE + index);
 }
 
 void MusicLrcFloatPhotoWidget::userSelectCheckBoxChecked(int index)

@@ -119,7 +119,7 @@ void MusicLrcContainerForWallpaper::start(bool immediate)
 {
     if(m_wallThread)
     {
-        m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtPhotoPathList());
+        m_wallThread->setImagePath(M_BACKGROUND_PTR->getArtistPhotoPathList());
 
         if(!m_wallThread->isRunning())
         {

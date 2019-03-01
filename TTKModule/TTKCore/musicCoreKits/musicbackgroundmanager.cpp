@@ -6,16 +6,16 @@ MusicBackgroundManager::MusicBackgroundManager()
     m_currentIndex = 0;
 }
 
-void MusicBackgroundManager::setArtName(const QString &name)
+void MusicBackgroundManager::setArtistName(const QString &name)
 {
     const QString &sName = MusicUtils::String::artistName(name);
-    if(!m_currentArtName.isEmpty() && m_currentArtName != sName)
+    if(!m_currentArtistName.isEmpty() && m_currentArtistName != sName)
     {
         return;
     }
 
     m_photos.clear();
-    const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtName = sName) + "%1" + SKN_FILE;
+    const QString &filter = BACKGROUND_DIR_FULL + (m_currentArtistName = sName) + "%1" + SKN_FILE;
     for(int i=0; i<MAX_INDEX; ++i)
     {
         if(QFile::exists(filter.arg(i)))
@@ -26,9 +26,9 @@ void MusicBackgroundManager::setArtName(const QString &name)
     emit artistNameChanged();
 }
 
-void MusicBackgroundManager::clearArtName()
+void MusicBackgroundManager::clearArtistName()
 {
-    m_currentArtName.clear();
+    m_currentArtistName.clear();
 }
 
 void MusicBackgroundManager::indexIncrease()
@@ -41,7 +41,7 @@ void MusicBackgroundManager::indexDecrease()
     m_currentIndex--;
 }
 
-QString MusicBackgroundManager::getArtPhotoPath()
+QString MusicBackgroundManager::getArtistPhotoPath()
 {
     if(!m_photos.isEmpty())
     {
@@ -53,7 +53,7 @@ QString MusicBackgroundManager::getArtPhotoPath()
     }
 }
 
-QString MusicBackgroundManager::getArtPhotoPathNoIndex()
+QString MusicBackgroundManager::getArtistPhotoPathNoIndex()
 {
     if(m_photos.isEmpty())
     {
@@ -69,7 +69,7 @@ QString MusicBackgroundManager::getArtPhotoPathNoIndex()
     return QString();
 }
 
-QString MusicBackgroundManager::getArtPhotoPathByIndex(int index) const
+QString MusicBackgroundManager::getArtistPhotoPathByIndex(int index) const
 {
     if((0 < index && index != -1) || index > m_photos.count() || m_photos.isEmpty())
     {
@@ -79,17 +79,17 @@ QString MusicBackgroundManager::getArtPhotoPathByIndex(int index) const
     return (index == -1) ? m_photos[m_currentIndex < m_photos.count() ? m_currentIndex : 0] : m_photos[index];
 }
 
-QStringList MusicBackgroundManager::getArtPhotoPathList() const
+QStringList MusicBackgroundManager::getArtistPhotoPathList() const
 {
     return m_photos;
 }
 
-void MusicBackgroundManager::setArtPhotoPathList(const QStringList &list)
+void MusicBackgroundManager::setArtistPhotoPathList(const QStringList &list)
 {
     m_photos = list;
 }
 
-void MusicBackgroundManager::setUserSelectArtIndex(int index)
+void MusicBackgroundManager::setUserSelectArtistIndex(int index)
 {
     m_currentIndex = index;
     emit userSelectIndexChanged();

@@ -56,11 +56,11 @@ public:
     /*!
      * Copy art file to local themes dir path.
      */
-    static QString cpoyArtFileToLocal(const QString &path);
+    static QString cpoyArtistFileToLocal(const QString &path);
     /*!
-     * Update art file theme.
+     * Update artist file theme.
      */
-    void updateArtFileTheme(const QString &theme);
+    void updateArtistFileTheme(const QString &theme);
 
     /*!
      * Select current item by name\alpha\listAlpha when the widget show.

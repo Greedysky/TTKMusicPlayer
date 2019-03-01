@@ -137,15 +137,15 @@ public:
     void setGenre(const QString &genre);
     /////////////////////////////////////////////
     /*!
-     * Set song image cover art.
+     * Set song image cover artist.
      */
     void setCover(const QPixmap &pix);
     /*!
-     * Set song image cover art.
+     * Set song image cover artist.
      */
     void setCover(const QByteArray &data);
     /*!
-     * Get song image cover art.
+     * Get song image cover artist.
      */
     QPixmap getCover() const;
     /////////////////////////////////////////////

@@ -33,10 +33,10 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
     addButton->setCursor(QCursor(Qt::PointingHandCursor));
     addButton->setToolTip(tr("playLater"));
 
-    m_artPictureLabel = new QLabel(this);
-    m_artPictureLabel->setFixedSize(60, 60);
-    m_artPictureLabel->setAttribute(Qt::WA_TranslucentBackground);
-    m_artPictureLabel->setGeometry(20, 0, 60, 60);
+    m_artistPictureLabel = new QLabel(this);
+    m_artistPictureLabel->setFixedSize(60, 60);
+    m_artistPictureLabel->setAttribute(Qt::WA_TranslucentBackground);
+    m_artistPictureLabel->setGeometry(20, 0, 60, 60);
 
     m_songNameLabel = new MusicSplitItemClickedLabel(this);
     m_songNameLabel->setAttribute(Qt::WA_TranslucentBackground);
@@ -107,7 +107,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 {
     delete m_renameLine;
-    delete m_artPictureLabel;
+    delete m_artistPictureLabel;
     delete m_songNameLabel;
     delete m_timeLabel;
     delete m_loveButton;
@@ -134,9 +134,9 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     }
 
     const QString &name = m_songNameLabel->toolTip().trimmed();
-    if(!showArtPicture(MusicUtils::String::artistName(name)) && !showArtPicture(MusicUtils::String::songName(name)))
+    if(!showArtistPicture(MusicUtils::String::artistName(name)) && !showArtistPicture(MusicUtils::String::songName(name)))
     {
-        m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
+        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
 }
 
@@ -160,12 +160,12 @@ void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
     menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), parent(), SLOT(musicSongKMicroWidgetPy()));
 }
 
-bool MusicSongsListPlayWidget::showArtPicture(const QString &name) const
+bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const
 {
     QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
     if(!originPath.isNull())
     {
-        m_artPictureLabel->setPixmap(originPath.scaled(60, 60));
+        m_artistPictureLabel->setPixmap(originPath.scaled(60, 60));
         return true;
     }
     return false;
@@ -194,14 +194,14 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
         else
         {
             m_noCover = false;
-            m_artPictureLabel->setPixmap(pix.scaled(60, 60));
+            m_artistPictureLabel->setPixmap(pix.scaled(60, 60));
             return;
         }
     }
 
-    if(!showArtPicture(MusicUtils::String::artistName(name)) && !showArtPicture(MusicUtils::String::songName(name)))
+    if(!showArtistPicture(MusicUtils::String::artistName(name)) && !showArtistPicture(MusicUtils::String::songName(name)))
     {
-        m_artPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
+        m_artistPictureLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(60, 60));
     }
 }
 
