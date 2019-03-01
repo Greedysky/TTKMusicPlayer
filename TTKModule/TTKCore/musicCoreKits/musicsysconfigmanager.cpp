@@ -32,13 +32,16 @@ void MusicSysConfigManager::writeXMLConfig()
     const int otherBackgroundLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toInt();
     const int otherUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toInt();
     const int otherSearchChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toInt();
-    const int otherAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverChoiced).toInt();
-    const int otherInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoChoiced).toInt();
-    const int otherAlbumCoverWChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherAlbumCoverWChoiced).toInt();
-    const int otherInfoWChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherInfoWChoiced).toInt();
+    const int otherUseAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toInt();
+    const int otherUseInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toInt();
+    const int otherWriteAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCoverChoiced).toInt();
+    const int otherWriteInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfoChoiced).toInt();
     const int otherSideByChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toInt();
     const int otherSongFormatChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSongFormat).toInt();
     const int otherLrcKTVModeChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toInt();
+    const int otherRippleSpectrumEnableChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toInt();
+    const QString &otherRippleSpectrumColorChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColorChoiced).toString();
+    const int otherRippleSpectrumOpacityChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacityChoiced).toInt();
 
     ///////////////////////////////////////////////////////////////////////////
     const QString &backgroundThemeChoiced = M_SETTING_PTR->value(MusicSettingManager::BackgroundThemeChoiced).toString();
@@ -165,13 +168,16 @@ void MusicSysConfigManager::writeXMLConfig()
     writeDomElement(otherSettingDom, "otherBackgroundLossless", MusicXmlAttribute("value", otherBackgroundLosslessChoiced));
     writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherUpdateChoiced));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearchChoiced));
-    writeDomElement(otherSettingDom, "otherAlbumCover", MusicXmlAttribute("value", otherAlbumCoverChoiced));
-    writeDomElement(otherSettingDom, "otherInfo", MusicXmlAttribute("value", otherInfoChoiced));
-    writeDomElement(otherSettingDom, "otherAlbumCoverW", MusicXmlAttribute("value", otherAlbumCoverWChoiced));
-    writeDomElement(otherSettingDom, "otherInfoW", MusicXmlAttribute("value", otherInfoWChoiced));
+    writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCoverChoiced));
+    writeDomElement(otherSettingDom, "otherUseInfo", MusicXmlAttribute("value", otherUseInfoChoiced));
+    writeDomElement(otherSettingDom, "otherWriteAlbumCover", MusicXmlAttribute("value", otherWriteAlbumCoverChoiced));
+    writeDomElement(otherSettingDom, "otherWriteInfo", MusicXmlAttribute("value", otherWriteInfoChoiced));
     writeDomElement(otherSettingDom, "otherSideBy", MusicXmlAttribute("value", otherSideByChoiced));
     writeDomElement(otherSettingDom, "otherSongFormat", MusicXmlAttribute("value", otherSongFormatChoiced));
     writeDomElement(otherSettingDom, "otherLrcKTV", MusicXmlAttribute("value", otherLrcKTVModeChoiced));
+    writeDomElement(otherSettingDom, "otherRippleSpectrumEnable", MusicXmlAttribute("value", otherRippleSpectrumEnableChoiced));
+    writeDomElement(otherSettingDom, "otherRippleSpectrumColor", MusicXmlAttribute("value", otherRippleSpectrumColorChoiced));
+    writeDomElement(otherSettingDom, "otherRippleSpectrumOpacity", MusicXmlAttribute("value", otherRippleSpectrumOpacityChoiced));
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(backgroundSettingDom, "backgroundTheme", MusicXmlAttribute("value", backgroundThemeChoiced));
@@ -342,20 +348,26 @@ void MusicSysConfigManager::readSysLoadConfig() const
                      readXmlAttributeByTagNameValue("otherUpdate").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
                      readXmlAttributeByTagNameValue("otherSearch").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumCoverChoiced,
-                     readXmlAttributeByTagNameValue("otherAlbumCover").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoChoiced,
-                     readXmlAttributeByTagNameValue("otherInfo").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherAlbumCoverWChoiced,
-                     readXmlAttributeByTagNameValue("otherAlbumCoverW").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherInfoWChoiced,
-                     readXmlAttributeByTagNameValue("otherInfoW").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced,
+                     readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced,
+                     readXmlAttributeByTagNameValue("otherUseInfo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced,
+                     readXmlAttributeByTagNameValue("otherWriteAlbumCover").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced,
+                     readXmlAttributeByTagNameValue("otherWriteInfo").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced,
                      readXmlAttributeByTagNameValue("otherSideBy").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
                      readXmlAttributeByTagNameValue("otherSongFormat").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced,
                      readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumOpacity").toInt());
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeChoiced,

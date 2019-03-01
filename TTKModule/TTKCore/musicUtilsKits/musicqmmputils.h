@@ -33,13 +33,17 @@ namespace MusicUtils
          */
         MUSIC_UTILS_EXPORT QString pluginPath(const QString &module, const QString &format);
         /*!
-         * Mid config file transfer operator.
+         * Update mid config file transfer.
          */
-        MUSIC_UTILS_EXPORT void midTransferFile();
+        MUSIC_UTILS_EXPORT void updateMidConfigFile();
         /*!
          * Enable visual wave control.
          */
         MUSIC_UTILS_EXPORT void enableVisualPlugin(const QString &name, bool enable);
+        /*!
+         * Update ripple spectrum config file transfer.
+         */
+        MUSIC_UTILS_EXPORT void updateRippleSpectrumConfigFile();
     }
 }
 

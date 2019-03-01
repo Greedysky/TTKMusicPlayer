@@ -6,6 +6,7 @@
 #include "musicwindowextras.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
+#include "musicripplespecturmobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
 
@@ -18,6 +19,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
     createSystemTrayIcon();
 
     m_musicWindowExtras = new MusicWindowExtras(parent);
+    m_musicRipplesObject = new MusicRippleSpecturmObject(this);
 }
 
 MusicBottomAreaWidget::~MusicBottomAreaWidget()
@@ -25,6 +27,7 @@ MusicBottomAreaWidget::~MusicBottomAreaWidget()
     delete m_systemTrayMenu;
     delete m_systemTray;
     delete m_musicWindowExtras;
+    delete m_musicRipplesObject;
 }
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
@@ -35,6 +38,8 @@ MusicBottomAreaWidget *MusicBottomAreaWidget::instance()
 void MusicBottomAreaWidget::setupUi(Ui::MusicApplication* ui)
 {
     m_ui = ui;
+
+    m_musicRipplesObject->init(ui->backgroundLayout, ui->bottomWidget);
 
     ui->resizeLabelWidget->setPixmap(QPixmap(":/tiny/lb_resize_normal"));
     ui->showCurrentSong->setEffectOnResize(true);
@@ -203,6 +208,16 @@ void MusicBottomAreaWidget::resizeWindow()
     int h = M_SETTING_PTR->value(MusicSettingManager::WidgetSize).toSize().height() - 155;
         h = h - m_ui->lrcDisplayAllButton->height() - 40;
     m_ui->lrcDisplayAllButton->move(m_ui->lrcDisplayAllButton->x(), h/2);
+}
+
+void MusicBottomAreaWidget::getParameterSetting()
+{
+    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
+    setSystemCloseConfig(config);
+         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
+    setDestopLrcVisible(config);
+
+    m_musicRipplesObject->update();
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

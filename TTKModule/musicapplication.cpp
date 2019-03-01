@@ -875,10 +875,7 @@ void MusicApplication::getParameterSetting()
     //This attribute is effective immediately.
     m_applicationObject->getParameterSetting();
     m_rightAreaWidget->getParameterSetting();
-    bool config = M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toBool();
-    m_bottomAreaWidget->setSystemCloseConfig(config);
-         config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
-    m_bottomAreaWidget->setDestopLrcVisible(config);
+    m_bottomAreaWidget->getParameterSetting();
 }
 
 void MusicApplication::setLoveDeleteItemAt(const QString &path, bool current)

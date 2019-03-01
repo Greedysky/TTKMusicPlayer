@@ -63,14 +63,17 @@ public:
         OtherBackgroundLosslessChoiced,         /*!< Other Background Lossless Parameter*/
         OtherUpdateChoiced,                     /*!< Other Update Check Parameter*/
         OtherSearchChoiced,                     /*!< Other Search Optimzied Parameter*/
-        OtherAlbumCoverChoiced,                 /*!< Other Use File Album Parameter*/
-        OtherInfoChoiced,                       /*!< Other Use File Info Parameter*/
-        OtherAlbumCoverWChoiced,                /*!< Other Write File Album Parameter*/
-        OtherInfoWChoiced,                      /*!< Other Write File Info Parameter*/
+        OtherUseAlbumCoverChoiced,              /*!< Other Use File Album Parameter*/
+        OtherUseInfoChoiced,                    /*!< Other Use File Info Parameter*/
+        OtherWriteAlbumCoverChoiced,            /*!< Other Write File Album Parameter*/
+        OtherWriteInfoChoiced,                  /*!< Other Write File Info Parameter*/
         OtherSongFormat,                        /*!< Other Song Format Parameter*/
         OtherSideByChoiced,                     /*!< Other App Side By Mode Parameter*/
         OtherSideByInChoiced,                   /*!< Other App Side By In Mode Parameter*/
         OtherLrcKTVModeChoiced,                 /*!< Other Lrc KTV Mode Mode Parameter*/
+        OtherRippleSpectrumEnableChoiced,       /*!< Other Ripple Spectrum Enable Parameter*/
+        OtherRippleSpectrumColorChoiced,        /*!< Other Ripple Spectrum Color Parameter*/
+        OtherRippleSpectrumOpacityChoiced,      /*!< Other Ripple Spectrum Opacity Parameter*/
 
         ShowInlineLrcChoiced,                   /*!< Show Inline Lrc Parameter*/
         LrcColorChoiced,                        /*!< Lrc Color Parameter*/

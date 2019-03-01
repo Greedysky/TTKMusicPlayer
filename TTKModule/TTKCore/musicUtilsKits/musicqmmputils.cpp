@@ -1,5 +1,6 @@
 #include "musicqmmputils.h"
 #include "musicobject.h"
+#include "musicstringutils.h"
 
 #include <QSettings>
 ///qmmp incldue
@@ -18,7 +19,7 @@ QString MusicUtils::QMMP::pluginPath(const QString &module, const QString &forma
     return path;
 }
 
-void MusicUtils::QMMP::midTransferFile()
+void MusicUtils::QMMP::updateMidConfigFile()
 {
     const QString &confPath = MAKE_CONFIG_DIR_FULL + QString("wildmidi.cfg");
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
@@ -52,4 +53,13 @@ void MusicUtils::QMMP::enableVisualPlugin(const QString &name, bool enable)
             break;
         }
     }
+}
+
+void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
+{
+    QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
+    settings.beginGroup("OuterEWave");
+    settings.setValue("colors", MusicUtils::String::writeColorConfig(QColor(12, 12, 12)));
+    settings.setValue("opacity", 0.2);
+    settings.endGroup();
 }

@@ -25,6 +25,7 @@
 
 class MusicSystemTrayMenu;
 class MusicWindowExtras;
+class MusicRippleSpecturmObject;
 
 namespace Ui {
     class MusicApplication;
@@ -105,6 +106,10 @@ public:
      * Resize window bound by widgte resize called.
      */
     void resizeWindow();
+    /*!
+     * Get setting parameter.
+     */
+    void getParameterSetting();
 
 public Q_SLOTS:
     /*!
@@ -131,6 +136,7 @@ protected:
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;
+    MusicRippleSpecturmObject *m_musicRipplesObject;
 
     static MusicBottomAreaWidget *m_instance;
 };

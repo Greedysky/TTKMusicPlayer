@@ -20,13 +20,16 @@
         <otherBackgroundLossless value="0"/>
         <otherUpdate value="0"/>
         <otherSearch value="0"/>
-        <otherAlbumCover value="1"/>
-        <otherInfo value="1"/>
-        <otherAlbumCoverW value="1"/>
-        <otherInfoW value="1"/>
+        <otherUseAlbumCover value="1"/>
+        <otherUseInfo value="1"/>
+        <otherWriteAlbumCover value="1"/>
+        <otherWriteInfo value="1"/>
         <otherSideBy value="0"/>
         <otherSongFormat value="0"/>
         <otherLrcKTV value="1"/>
+        <otherRippleSpectrumEnable value="1"/>
+        <otherRippleSpectrumColor value="250,218,131"/>
+        <otherRippleSpectrumOpacity value="100"/>
     </otherSetting>
     <backgroundSetting>
         <backgroundTheme value="theme-7"/>

@@ -69,7 +69,8 @@ HEADERS  += \
     $$PWD/musicadvancedsearchedwidget.h \
     $$PWD/musicrecommendfoundwidget.h \
     $$PWD/musicartistlistfoundwidget.h \
-    $$PWD/musicartistlistfoundcategorypopwidget.h
+    $$PWD/musicartistlistfoundcategorypopwidget.h \
+    $$PWD/musicripplespecturmobject.h
 
 }
 
@@ -124,6 +125,7 @@ SOURCES += \
     $$PWD/musicadvancedsearchedwidget.cpp \
     $$PWD/musicrecommendfoundwidget.cpp \
     $$PWD/musicartistlistfoundwidget.cpp \
-    $$PWD/musicartistlistfoundcategorypopwidget.cpp
+    $$PWD/musicartistlistfoundcategorypopwidget.cpp \
+    $$PWD/musicripplespecturmobject.cpp
 
 }

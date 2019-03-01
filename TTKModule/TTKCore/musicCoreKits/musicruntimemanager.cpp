@@ -16,7 +16,7 @@ void MusicRunTimeManager::run() const
 #ifndef MUSIC_GREATER_NEW
     MusicUtils::Codec::setLocalCodec();
 #endif
-    MusicUtils::QMMP::midTransferFile();
+    MusicUtils::QMMP::updateMidConfigFile();
 
     ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
