@@ -26,7 +26,7 @@ MusicRemoteWidgetForRaysWave::MusicRemoteWidgetForRaysWave(QWidget *parent)
     mhbox->setContentsMargins(5, 0, 5, 0);
     mhbox->setSpacing(0);
 
-    const QList<Visual *> *vs = Visual::visuals();
+    const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
     {
         mhbox->addWidget(vs->last());

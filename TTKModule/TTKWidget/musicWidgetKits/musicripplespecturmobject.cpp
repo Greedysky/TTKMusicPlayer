@@ -23,14 +23,14 @@ void MusicRippleSpecturmObject::setVisible(bool v)
 
 void MusicRippleSpecturmObject::show()
 {
-    if(!m_topLayout || !m_topWidget)
+    if(!m_topLayout || !m_topWidget || m_visualWidget)
     {
         return;
     }
 
     MusicUtils::QMMP::enableVisualPlugin("outerewave", true);
 
-    const QList<Visual *> *vs = Visual::visuals();
+    const QList<Visual*> *vs = Visual::visuals();
     if(!vs->isEmpty() && vs->last())
     {
         m_visualWidget = vs->last();

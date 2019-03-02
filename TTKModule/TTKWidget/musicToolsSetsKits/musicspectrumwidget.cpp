@@ -257,7 +257,7 @@ void MusicSpectrumWidget::newSpectrumWidget(QCheckBox *box, const QString &name,
     {
         const int before = Visual::visuals()->count();
         MusicUtils::QMMP::enableVisualPlugin(name, true);
-        const QList<Visual *> *vs = Visual::visuals();
+        const QList<Visual*> *vs = Visual::visuals();
         if(before == vs->count())
         {
             showMessageBoxWidget(box);
