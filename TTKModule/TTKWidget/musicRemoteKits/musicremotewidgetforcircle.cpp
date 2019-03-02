@@ -25,6 +25,7 @@ MusicRemoteWidgetForCircle::MusicRemoteWidgetForCircle(QWidget *parent)
 void MusicRemoteWidgetForCircle::paintEvent(QPaintEvent* event)
 {
     MusicRemoteWidget::paintEvent(event);
+
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     QPainterPath path;
@@ -33,5 +34,4 @@ void MusicRemoteWidgetForCircle::paintEvent(QPaintEvent* event)
     path.setFillRule(Qt::OddEvenFill);
     painter.translate(-2, -2);
     painter.fillPath(path, QBrush(QColor(0, 0, 0, 50)));
-    painter.end();
 }

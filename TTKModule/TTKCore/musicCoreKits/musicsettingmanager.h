@@ -61,7 +61,7 @@ public:
         BackgroundTransparentEnableChoiced,     /*!< Background Transparent Enable Parameter*/
 
         OtherBackgroundLosslessChoiced,         /*!< Other Background Lossless Parameter*/
-        OtherUpdateChoiced,                     /*!< Other Update Check Parameter*/
+        OtherCheckUpdateChoiced,                /*!< Other Check Update Parameter*/
         OtherSearchChoiced,                     /*!< Other Search Optimzied Parameter*/
         OtherUseAlbumCoverChoiced,              /*!< Other Use File Album Parameter*/
         OtherUseInfoChoiced,                    /*!< Other Use File Info Parameter*/

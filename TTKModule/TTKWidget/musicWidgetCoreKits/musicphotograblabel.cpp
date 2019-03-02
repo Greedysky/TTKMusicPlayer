@@ -88,5 +88,4 @@ void MusicPhotoGrabLabel::paintEvent(QPaintEvent *event)
 
     QPixmap img(m_path);
     painter.drawPixmap(m_imgRect, img);
-    painter.end();
 }

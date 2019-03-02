@@ -51,7 +51,6 @@ void MusicPhotoModLabel::paintEvent(QPaintEvent *event)
 
     const QRect imageRect(m_imagePos.x(), m_imagePos.y(), m_width, m_height);
     painter.drawPixmap(imageRect, m_showPix);
-    painter.end();
 }
 
 void MusicPhotoModLabel::wheelEvent(QWheelEvent *event)

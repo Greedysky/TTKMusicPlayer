@@ -1,6 +1,7 @@
 #include "musicqmmputils.h"
 #include "musicobject.h"
 #include "musicstringutils.h"
+#include "musicsettingmanager.h"
 
 #include <QSettings>
 ///qmmp incldue
@@ -59,7 +60,11 @@ void MusicUtils::QMMP::updateRippleSpectrumConfigFile()
 {
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("OuterEWave");
-    settings.setValue("colors", MusicUtils::String::writeColorConfig(QColor(12, 12, 12)));
-    settings.setValue("opacity", 0.2);
+
+    QString colors = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColorChoiced).toString();
+    settings.setValue("colors", colors.remove(";"));
+    const double opacity = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacityChoiced).toInt()/100.0;
+    settings.setValue("opacity", opacity);
+
     settings.endGroup();
 }

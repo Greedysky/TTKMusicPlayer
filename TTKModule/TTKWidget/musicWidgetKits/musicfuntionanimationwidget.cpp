@@ -25,11 +25,10 @@ void MusicBackgroundWidget::setTransparent(int alpha)
 
 void MusicBackgroundWidget::paintEvent(QPaintEvent *event)
 {
+    QWidget::paintEvent(event);
+
     QPainter painter(this);
     painter.fillRect(rect(), QColor(255, 255, 255, m_backgroundAlpha));
-    painter.end();
-
-    QWidget::paintEvent(event);
 }
 
 

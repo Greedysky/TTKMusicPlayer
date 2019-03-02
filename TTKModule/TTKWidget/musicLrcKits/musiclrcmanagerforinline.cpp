@@ -54,6 +54,4 @@ void MusicLrcManagerForInline::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(ttplus < 0 ? m_intervalCount : ttplus, 0,
                      offsetValue, m_geometry.y(), Qt::AlignLeft, text());
-
-    painter.end();
 }

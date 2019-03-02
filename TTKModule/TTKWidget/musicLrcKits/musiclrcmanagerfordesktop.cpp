@@ -50,7 +50,6 @@ void MusicLrcManagerHorizontalDesktop::paintEvent(QPaintEvent *)
     //Set lyrics mask
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(m_intervalCount, begin, offsetValue, 60, Qt::AlignLeft, text());
-    painter.end();
 }
 
 
@@ -95,5 +94,4 @@ void MusicLrcManagerVerticalDesktop::paintEvent(QPaintEvent *)
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(m_intervalCount, 0, offsetValue, 60, Qt::AlignLeft, text());
     painter.translate(-m_geometry.y(), 0);
-    painter.end();
 }

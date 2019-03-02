@@ -54,7 +54,6 @@ void MusicMarqueeWidget::paintEvent(QPaintEvent *event)
         painter.drawText(x, 0, textWidth, height(), Qt::AlignLeft | Qt::AlignVCenter, m_myText);
         x += textWidth;
     }
-    painter.end();
 }
 
 void MusicMarqueeWidget::showEvent(QShowEvent *event)

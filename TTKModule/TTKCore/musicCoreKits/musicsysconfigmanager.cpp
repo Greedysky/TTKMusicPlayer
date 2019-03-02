@@ -30,7 +30,7 @@ void MusicSysConfigManager::writeXMLConfig()
 
     ///////////////////////////////////////////////////////////////////////////
     const int otherBackgroundLosslessChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toInt();
-    const int otherUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toInt();
+    const int otherCheckUpdateChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateChoiced).toInt();
     const int otherSearchChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toInt();
     const int otherUseAlbumCoverChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toInt();
     const int otherUseInfoChoiced = M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toInt();
@@ -166,7 +166,7 @@ void MusicSysConfigManager::writeXMLConfig()
 
     ///////////////////////////////////////////////////////////////////////////
     writeDomElement(otherSettingDom, "otherBackgroundLossless", MusicXmlAttribute("value", otherBackgroundLosslessChoiced));
-    writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherUpdateChoiced));
+    writeDomElement(otherSettingDom, "otherUpdate", MusicXmlAttribute("value", otherCheckUpdateChoiced));
     writeDomElement(otherSettingDom, "otherSearch", MusicXmlAttribute("value", otherSearchChoiced));
     writeDomElement(otherSettingDom, "otherUseAlbumCover", MusicXmlAttribute("value", otherUseAlbumCoverChoiced));
     writeDomElement(otherSettingDom, "otherUseInfo", MusicXmlAttribute("value", otherUseInfoChoiced));
@@ -344,8 +344,8 @@ void MusicSysConfigManager::readSysLoadConfig() const
 
     M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced,
                      readXmlAttributeByTagNameValue("otherBackgroundLossless").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced,
-                     readXmlAttributeByTagNameValue("otherUpdate").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateChoiced,
+                     readXmlAttributeByTagNameValue("otherCheckUpdate").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
                      readXmlAttributeByTagNameValue("otherSearch").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced,
@@ -365,7 +365,7 @@ void MusicSysConfigManager::readSysLoadConfig() const
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced,
                      readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor").toInt());
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor"));
     M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced,
                      readXmlAttributeByTagNameValue("otherRippleSpectrumOpacity").toInt());
 

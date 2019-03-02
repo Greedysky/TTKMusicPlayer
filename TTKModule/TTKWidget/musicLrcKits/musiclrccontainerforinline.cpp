@@ -305,7 +305,7 @@ void MusicLrcContainerForInline::artistBackgroundChanged()
     emit artistBackgroundHasChanged();
 }
 
-void MusicLrcContainerForInline::showArtBackgroundUploadedWidget()
+void MusicLrcContainerForInline::showArtistBackgroundUploadedWidget()
 {
     MusicLrcArtPhotoUploadWidget(this).exec();
     m_showArtistBackground = true;
@@ -482,12 +482,12 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
     //////////////////////////////////////////////////
-    QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artBackgroundChanged()));
+    QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artistBackgroundChanged()));
     m_showArtistBackground ? artAction->setText(tr("artbgoff")) : artAction->setText(tr("artbgon"));
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
     m_linkLocalLrc ? showLrc->setText(tr("lrcoff")) : showLrc->setText(tr("lrcon"));
-    menu.addAction(tr("artbgupload"), this, SLOT(showArtBackgroundUploadedWidget()));
-    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtBackground()))->setEnabled(!M_BACKGROUND_PTR->isEmpty());
+    menu.addAction(tr("artbgupload"), this, SLOT(showArtistBackgroundUploadedWidget()));
+    menu.addAction(tr("artbgsetting"), MusicTopAreaWidget::instance(), SLOT(musicSetAsArtistBackground()))->setEnabled(!M_BACKGROUND_PTR->isEmpty());
     menu.addSeparator();
 
     const QString &fileName = m_lrcAnalysis->getCurrentFileName();
@@ -529,8 +529,6 @@ void MusicLrcContainerForInline::paintEvent(QPaintEvent *event)
         }
         v = m_lrcAnalysis->findTime(v);
         painter.drawText(LRC_TIME_LABEL_POSITION, line - LRC_TIME_LABEL_POSITION/2, MusicTime::msecTime2LabelJustified(v));
-
-        painter.end();
     }
 }
 

@@ -216,7 +216,9 @@ void MusicBottomAreaWidget::getParameterSetting()
     setSystemCloseConfig(config);
          config = M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool();
     setDestopLrcVisible(config);
+         config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool();
 
+    m_musicRipplesObject->setVisible(config);
     m_musicRipplesObject->update();
 }
 

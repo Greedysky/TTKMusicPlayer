@@ -139,7 +139,6 @@ void MusicLrcMakerWidgetItem::paintEvent(QPaintEvent *event)
 
     painter.setPen(QColor(144, 184, 214));
     painter.drawText(m_intervalCount, -10, m_paintIndex, 60, Qt::AlignLeft | Qt::AlignVCenter, text());
-    painter.end();
 }
 
 

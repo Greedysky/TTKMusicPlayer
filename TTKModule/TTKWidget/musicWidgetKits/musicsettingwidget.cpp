@@ -17,6 +17,7 @@
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
 #include "musicapplication.h"
+#include "musiccolordialog.h"
 //qmmp
 #include "qmmpsettings.h"
 
@@ -173,16 +174,22 @@ void MusicSettingWidget::initControllerParameter()
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
     ////////////////////////////////////////////////
-    M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toBool() ? m_ui->otherHerImgRadioBox->click() : m_ui->otherNorImgRadioBox->click();
-    m_ui->otherUpdateCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool());
+    M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
+    m_ui->otherCheckUpdateBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateChoiced).toBool());
     m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toBool());
-    m_ui->otherAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toBool());
-    m_ui->otherInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toBool());
-    m_ui->otherAlbumCoverWCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCoverChoiced).toBool());
-    m_ui->otherInfoWCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfoChoiced).toBool());
+    m_ui->otherUseAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toBool());
+    m_ui->otherUseInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherUseInfoChoiced).toBool());
+    m_ui->otherWriteAlbumCoverCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteAlbumCoverChoiced).toBool());
+    m_ui->otherWriteInfoCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherWriteInfoChoiced).toBool());
     m_ui->otherSideByCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSideByChoiced).toBool());
     m_ui->otherLrcKTVCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherLrcKTVModeChoiced).toBool());
     m_ui->otherVersionValue->setText(QString("V") + TTKMUSIC_VERSION_STR);
+
+    m_ui->ripplesSpectrumOpacitySlider->setValue(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumOpacityChoiced).toInt());
+    m_ui->ripplesSpectrumEnableBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool());
+    m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColorChoiced).toString()));
+    ripplesSpectrumOpacityEnableClicked(m_ui->ripplesSpectrumEnableBox->isChecked());
+
     ////////////////////////////////////////////////
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
@@ -208,10 +215,8 @@ void MusicSettingWidget::initControllerParameter()
     }
     else
     {
-        m_lrcSelectedFrontground = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColorChoiced).toString());
-        m_lrcSelectedBackground = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColorChoiced).toString());
-        m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFrontground);
-        m_ui->noPlayedPushButton->setLinearGradient(m_lrcSelectedBackground);
+        m_ui->playedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcFrontgroundColorChoiced).toString()));
+        m_ui->noPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::LrcBackgroundColorChoiced).toString()));
         showInlineLrcDemo();
     }
     m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
@@ -229,10 +234,8 @@ void MusicSettingWidget::initControllerParameter()
     }
     else
     {
-        m_DlrcSelectedFrontground = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColorChoiced).toString());
-        m_DlrcSelectedBackground = MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColorChoiced).toString());
-        m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFrontground);
-        m_ui->DnoPlayedPushButton->setLinearGradient(m_DlrcSelectedBackground);
+        m_ui->DplayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcFrontgroundColorChoiced).toString()));
+        m_ui->DnoPlayedPushButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::DLrcBackgroundColorChoiced).toString()));
         showDesktopLrcDemo();
     }
     m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
@@ -328,6 +331,27 @@ void MusicSettingWidget::otherVersionUpdateChanged()
     MusicSourceUpdateWidget(this).exec();
 }
 
+void MusicSettingWidget::ripplesSpectrumColorChanged()
+{
+    MusicColorDialog getColor(this);
+    if(getColor.exec())
+    {
+        const QColor &color = getColor.color();
+        m_ui->ripplesSpectrumColorButton->setColors(QList<QColor>() << color);
+    }
+}
+
+void MusicSettingWidget::ripplesSpectrumOpacityChanged(int value)
+{
+    m_ui->ripplesSpectrumOpacityValueLabel->setText(QString::number(value) + "%");
+}
+
+void MusicSettingWidget::ripplesSpectrumOpacityEnableClicked(bool state)
+{
+    m_ui->ripplesSpectrumColorButton->setEnabled(state);
+    m_ui->ripplesSpectrumOpacitySlider->setEnabled(state);
+}
+
 void MusicSettingWidget::changeDesktopLrcWidget()
 {
     selectFunctionTableIndex(1, 0);
@@ -356,15 +380,15 @@ void MusicSettingWidget::inlineLrcBackgroundChanged()
     lcrColorValue(Inline, "LRCBACKGROUNDCOLOR", m_ui->noPlayedPushButton);
 }
 
-void MusicSettingWidget::defaultLrcColorChanged(int index)
+void MusicSettingWidget::defaultLrcColorChanged(int value)
 {
-    lrcColorByDefault(Inline, index);
+    lrcColorByDefault(Inline, value);
 }
 
-void MusicSettingWidget::inlineLrcTransChanged(int index)
+void MusicSettingWidget::inlineLrcTransChanged(int value)
 {
-    lrcTransparentValue(Inline, index);
-    m_ui->fontTransValueLabel->setText(QString::number(index) + "%");
+    lrcTransparentValue(Inline, value);
+    m_ui->fontTransValueLabel->setText(QString::number(value) + "%");
 }
 
 void MusicSettingWidget::showInlineLrcDemo()
@@ -373,8 +397,8 @@ void MusicSettingWidget::showInlineLrcDemo()
     item.m_family = m_ui->fontComboBox->currentText();
     item.m_size = m_ui->fontSizeComboBox->currentText().toInt();
     item.m_type = m_ui->fontTypeComboBox->currentIndex();
-    item.m_frontground = m_lrcSelectedFrontground;
-    item.m_background = m_lrcSelectedBackground;
+    item.m_frontground = m_ui->playedPushButton->getColors();
+    item.m_background = m_ui->noPlayedPushButton->getColors();
     m_ui->showLabel->setLinearGradient(item);
     m_ui->showLabel->update();
 }
@@ -398,15 +422,15 @@ void MusicSettingWidget::desktopBackgroundChanged()
     lcrColorValue(Desktop, "DLRCBACKGROUNDCOLOR", m_ui->DnoPlayedPushButton);
 }
 
-void MusicSettingWidget::defaultDesktopLrcColorChanged(int index)
+void MusicSettingWidget::defaultDesktopLrcColorChanged(int value)
 {
-    lrcColorByDefault(Desktop, index);
+    lrcColorByDefault(Desktop, value);
 }
 
-void MusicSettingWidget::desktopLrcTransChanged(int index)
+void MusicSettingWidget::desktopLrcTransChanged(int value)
 {
-    lrcTransparentValue(Desktop, index);
-    m_ui->DfontTransValueLabel->setText(QString::number(index) + "%");
+    lrcTransparentValue(Desktop, value);
+    m_ui->DfontTransValueLabel->setText(QString::number(value) + "%");
 }
 
 void MusicSettingWidget::showDesktopLrcDemo()
@@ -415,8 +439,8 @@ void MusicSettingWidget::showDesktopLrcDemo()
     item.m_family = m_ui->DfontComboBox->currentText();
     item.m_size = m_ui->DfontSizeComboBox->currentText().toInt();
     item.m_type = m_ui->DfontTypeComboBox->currentIndex();
-    item.m_frontground = m_DlrcSelectedFrontground;
-    item.m_background = m_DlrcSelectedBackground;
+    item.m_frontground = m_ui->DplayedPushButton->getColors();
+    item.m_background = m_ui->DnoPlayedPushButton->getColors();
     m_ui->DshowLabel->setLinearGradient(item);
     m_ui->DshowLabel->update();
 }
@@ -510,16 +534,19 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced, m_ui->globalHotkeyBox->isChecked());
 
 
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced, m_ui->otherHerImgRadioBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUpdateChoiced, m_ui->otherUpdateCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced, m_ui->otherHeighImageRadioBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateChoiced, m_ui->otherCheckUpdateBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced, m_ui->otherSearchCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced, m_ui->otherAlbumCoverCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced, m_ui->otherInfoCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced, m_ui->otherAlbumCoverWCheckBox->isChecked());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced, m_ui->otherInfoWCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced, m_ui->otherUseAlbumCoverCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced, m_ui->otherUseInfoCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced, m_ui->otherWriteAlbumCoverCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced, m_ui->otherWriteInfoCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced, m_ui->otherSideByCheckBox->isChecked());
     M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat, /*m_ui->otherSongFormatComboBox->currentIndex()*/0);
     M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced, m_ui->otherLrcKTVCheckBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced, m_ui->ripplesSpectrumOpacitySlider->value());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced, m_ui->ripplesSpectrumEnableBox->isChecked());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced, MusicUtils::String::writeColorConfig(m_ui->ripplesSpectrumColorButton->getColors()));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced, m_ui->showInlineCheckBox->isChecked());
@@ -528,8 +555,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced, m_ui->fontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced, m_ui->fontTypeComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced, m_ui->transparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedFrontground));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_lrcSelectedBackground));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->playedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->noPlayedPushButton->getColors()));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_ui->showDesktopCheckBox->isChecked());
@@ -540,8 +567,8 @@ void MusicSettingWidget::commitTheResults()
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced, m_ui->DfontSizeComboBox->currentText());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced, m_ui->DfontTypeComboBox->currentIndex());
     M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced, m_ui->DtransparentSlider->value());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedFrontground));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_DlrcSelectedBackground));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->DplayedPushButton->getColors()));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced, MusicUtils::String::writeColorConfig(m_ui->DnoPlayedPushButton->getColors()));
 
 
     M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced, m_ui->downloadDirEdit->text());
@@ -556,14 +583,13 @@ void MusicSettingWidget::commitTheResults()
 
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
     int i = m_ui->replayGainModeComboBox->currentIndex();
-    qmmpSettings->setReplayGainSettings((QmmpSettings::ReplayGainMode)
-                                         m_ui->replayGainModeComboBox->itemData(i).toInt(),
-                                         m_ui->preampSpinBox->value(),
-                                         m_ui->defaultGainSpinBox->value(),
-                                         m_ui->clippingCheckBox->isChecked());
+    qmmpSettings->setReplayGainSettings(MStatic_cast(QmmpSettings::ReplayGainMode, m_ui->replayGainModeComboBox->itemData(i).toInt()),
+                                        m_ui->preampSpinBox->value(),
+                                        m_ui->defaultGainSpinBox->value(),
+                                        m_ui->clippingCheckBox->isChecked());
     i = m_ui->bitDepthComboBox->currentIndex();
     qmmpSettings->setAudioSettings(m_ui->softVolumeCheckBox->isChecked(),
-                                  (Qmmp::AudioFormat)m_ui->bitDepthComboBox->itemData(i).toInt(),
+                                   MStatic_cast(Qmmp::AudioFormat, m_ui->bitDepthComboBox->itemData(i).toInt()),
                                    m_ui->ditheringCheckBox->isChecked());
     qmmpSettings->setBufferSize(m_ui->bufferSizeSpinBox->value());
     qmmpSettings->setVolumeStep(m_ui->volumeStepSpinBox->value());
@@ -717,23 +743,30 @@ void MusicSettingWidget::initNormalSettingWidget()
 
 void MusicSettingWidget::initOtherSettingWidget()
 {
-    m_ui->otherNorImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->otherHerImgRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
-    m_ui->otherUpdateCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherNormalImageRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->otherHeighImageRadioBox->setStyleSheet(MusicUIObject::MRadioButtonStyle01);
+    m_ui->otherCheckUpdateBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSearchCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherAlbumCoverWCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
-    m_ui->otherInfoWCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherUseAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherUseInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherWriteAlbumCoverCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->otherWriteInfoCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherSideByCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
     m_ui->otherLrcKTVCheckBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+    m_ui->ripplesSpectrumEnableBox->setStyleSheet(MusicUIObject::MCheckBoxStyle01);
+
+    m_ui->ripplesSpectrumColorButton->setText(tr("Effect"));
+    m_ui->ripplesSpectrumOpacitySlider->setStyleSheet(MusicUIObject::MSliderStyle06);
+    connect(m_ui->ripplesSpectrumColorButton, SIGNAL(clicked()), SLOT(ripplesSpectrumColorChanged()));
+    connect(m_ui->ripplesSpectrumOpacitySlider, SIGNAL(valueChanged(int)), SLOT(ripplesSpectrumOpacityChanged(int)));
+    connect(m_ui->ripplesSpectrumEnableBox, SIGNAL(clicked(bool)), SLOT(ripplesSpectrumOpacityEnableClicked(bool)));
 
     m_ui->otherVersionUpdateButton->setStyleSheet(MusicUIObject::MPushButtonStyle04);
     m_ui->otherVersionUpdateButton->setCursor(QCursor(Qt::PointingHandCursor));
     connect(m_ui->otherVersionUpdateButton, SIGNAL(clicked()), SLOT(otherVersionUpdateChanged()));
 #ifdef Q_OS_UNIX
-    m_ui->otherNorImgRadioBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherHerImgRadioBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherUpdateCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSearchCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
@@ -742,10 +775,11 @@ void MusicSettingWidget::initOtherSettingWidget()
     m_ui->otherInfoWCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->ripplesSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherVersionUpdateButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    m_ui->otherNorImgRadioBox->click();
+    m_ui->otherNormalImageRadioBox->click();
 }
 
 void MusicSettingWidget::initDownloadWidget()
@@ -1017,20 +1051,15 @@ void MusicSettingWidget::lcrColorValue(Type key, const QString &type, QLabel *ob
     key == Inline ? m_ui->fontDefaultColorComboBox->setCurrentIndex(-1) : m_ui->DfontDefaultColorComboBox->setCurrentIndex(-1);
 
     MusicLrcColorWidget getColor(this);
-    if(type == "DLRCFRONTGROUNDGCOLOR") getColor.setColors(m_DlrcSelectedFrontground);
-    if(type == "DLRCBACKGROUNDCOLOR") getColor.setColors(m_DlrcSelectedBackground);
-    if(type == "LRCFRONTGROUNDGCOLOR") getColor.setColors(m_lrcSelectedFrontground);
-    if(type == "LRCBACKGROUNDCOLOR") getColor.setColors(m_lrcSelectedBackground);
+    if(type == "DLRCFRONTGROUNDGCOLOR") getColor.setColors(m_ui->DplayedPushButton->getColors());
+    if(type == "DLRCBACKGROUNDCOLOR") getColor.setColors(m_ui->DnoPlayedPushButton->getColors());
+    if(type == "LRCFRONTGROUNDGCOLOR") getColor.setColors(m_ui->playedPushButton->getColors());
+    if(type == "LRCBACKGROUNDCOLOR") getColor.setColors(m_ui->noPlayedPushButton->getColors());
 
     if(getColor.exec())
     {
         const QList<QColor> &colors = getColor.getColors();
-        MStatic_cast(MusicColorPreviewLabel*, obj)->setLinearGradient(colors);
-
-        if(type == "DLRCFRONTGROUNDGCOLOR") m_DlrcSelectedFrontground = colors;
-        if(type == "DLRCBACKGROUNDCOLOR") m_DlrcSelectedBackground = colors;
-        if(type == "LRCFRONTGROUNDGCOLOR") m_lrcSelectedFrontground = colors;
-        if(type == "LRCBACKGROUNDCOLOR") m_lrcSelectedBackground = colors;
+        MStatic_cast(MusicColorPreviewLabel*, obj)->setColors(colors);
     }
     key == Inline ? showInlineLrcDemo() : showDesktopLrcDemo();
 }
@@ -1045,19 +1074,15 @@ void MusicSettingWidget::lrcColorByDefault(Type key, int index)
     if(key == Inline)
     {
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(MStatic_cast(MusicLrcColor::LrcColorType, index));
-        m_lrcSelectedFrontground = cl.m_frontColor;
-        m_lrcSelectedBackground = cl.m_backColor;
-        m_ui->playedPushButton->setLinearGradient(m_lrcSelectedFrontground);
-        m_ui->noPlayedPushButton->setLinearGradient(m_lrcSelectedBackground);
+        m_ui->playedPushButton->setColors(cl.m_frontColor);
+        m_ui->noPlayedPushButton->setColors(cl.m_backColor);
         showInlineLrcDemo();
     }
     else
     {
         const MusicLrcColor &cl = MusicLrcColor::mapIndexToColor(MStatic_cast(MusicLrcColor::LrcColorType, index + LRC_COLOR_OFFSET));
-        m_DlrcSelectedFrontground = cl.m_frontColor;
-        m_DlrcSelectedBackground = cl.m_backColor;
-        m_ui->DplayedPushButton->setLinearGradient(m_DlrcSelectedFrontground);
-        m_ui->DnoPlayedPushButton->setLinearGradient(m_DlrcSelectedBackground);
+        m_ui->DplayedPushButton->setColors(cl.m_frontColor);
+        m_ui->DnoPlayedPushButton->setColors(cl.m_backColor);
         showDesktopLrcDemo();
     }
 }
@@ -1069,13 +1094,13 @@ void MusicSettingWidget::lrcTransparentValue(Type key, int value) const
     {
         label = m_ui->showLabel;
         label->setTransparent(2.55*value);
-        label->setLinearGradient(m_lrcSelectedFrontground, m_lrcSelectedBackground);
+        label->setLinearGradient(m_ui->playedPushButton->getColors(), m_ui->noPlayedPushButton->getColors());
     }
     else
     {
         label = m_ui->DshowLabel;
         label->setTransparent(2.55*value);
-        label->setLinearGradient(m_DlrcSelectedFrontground, m_DlrcSelectedBackground);
+        label->setLinearGradient(m_ui->DplayedPushButton->getColors(), m_ui->DnoPlayedPushButton->getColors());
     }
     label->update();
 }

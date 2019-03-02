@@ -150,6 +150,18 @@ public Q_SLOTS:
      * Version update check changed.
      */
     void otherVersionUpdateChanged();
+    /*!
+     * Ripples spectrum color changed.
+     */
+    void ripplesSpectrumColorChanged();
+    /*!
+     * Ripples spectrum opacity changed.
+     */
+    void ripplesSpectrumOpacityChanged(int value);
+    /*!
+     * Ripples spectrum opacity enable changed.
+     */
+    void ripplesSpectrumOpacityEnableClicked(bool state);
 
     /*!
      * Change to desktop lrc widget.
@@ -175,11 +187,11 @@ public Q_SLOTS:
     /*!
      * Default lrc color change by index.
      */
-    void defaultLrcColorChanged(int index);
+    void defaultLrcColorChanged(int value);
     /*!
      * Inline lrc transparent changed by index.
      */
-    void inlineLrcTransChanged(int index);
+    void inlineLrcTransChanged(int value);
     /*!
      * Show inline lrc preview.
      */
@@ -200,11 +212,11 @@ public Q_SLOTS:
     /*!
      * Default desktop lrc color change by index.
      */
-    void defaultDesktopLrcColorChanged(int index);
+    void defaultDesktopLrcColorChanged(int value);
     /*!
      * Desktop lrc transparent changed by index.
      */
-    void desktopLrcTransChanged(int index);
+    void desktopLrcTransChanged(int value);
     /*!
      * Show desktop lrc preview.
      */
@@ -326,8 +338,6 @@ protected:
     bool setNetworkProxyByType(int type);
 
     Ui::MusicSettingWidget *m_ui;
-    QList<QColor> m_lrcSelectedFrontground, m_lrcSelectedBackground;
-    QList<QColor> m_DlrcSelectedFrontground, m_DlrcSelectedBackground;
 
 };
 

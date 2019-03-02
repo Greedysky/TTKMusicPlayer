@@ -18,7 +18,7 @@
     </plusSetting>
     <otherSetting>
         <otherBackgroundLossless value="0"/>
-        <otherUpdate value="0"/>
+        <otherCheckUpdate value="0"/>
         <otherSearch value="0"/>
         <otherUseAlbumCover value="1"/>
         <otherUseInfo value="1"/>

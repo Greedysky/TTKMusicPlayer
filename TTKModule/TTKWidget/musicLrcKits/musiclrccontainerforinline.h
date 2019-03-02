@@ -144,9 +144,9 @@ public Q_SLOTS:
      */
     void artistBackgroundChanged();
     /*!
-     * The art background has uploaded.
+     * The artist background has uploaded.
      */
-    void showArtBackgroundUploadedWidget();
+    void showArtistBackgroundUploadedWidget();
     /*!
      * Open current lrc file location.
      */

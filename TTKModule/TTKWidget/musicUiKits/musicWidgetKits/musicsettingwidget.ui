@@ -976,11 +976,11 @@ font-weight:bold;</string>
       <string>基本设置</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="otherNorImgRadioBox">
+    <widget class="QRadioButton" name="otherNormalImageRadioBox">
      <property name="geometry">
       <rect>
        <x>135</x>
-       <y>50</y>
+       <y>48</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -989,11 +989,11 @@ font-weight:bold;</string>
       <string>普清</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="otherHerImgRadioBox">
+    <widget class="QRadioButton" name="otherHeighImageRadioBox">
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>50</y>
+       <y>48</y>
        <width>80</width>
        <height>16</height>
       </rect>
@@ -1006,7 +1006,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>50</y>
+       <y>48</y>
        <width>101</width>
        <height>16</height>
       </rect>
@@ -1015,12 +1015,12 @@ font-weight:bold;</string>
       <string>写真图片质量</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherUpdateCheckBox">
+    <widget class="QCheckBox" name="otherCheckUpdateBox">
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>175</y>
-       <width>271</width>
+       <y>160</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1032,8 +1032,8 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>200</y>
-       <width>271</width>
+       <y>188</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1041,11 +1041,11 @@ font-weight:bold;</string>
       <string>开启左右靠边停靠模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherAlbumCoverCheckBox">
+    <widget class="QCheckBox" name="otherUseAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>80</y>
+       <y>76</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1054,11 +1054,11 @@ font-weight:bold;</string>
       <string>从文件中读取专辑封面</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherInfoCheckBox">
+    <widget class="QCheckBox" name="otherUseInfoCheckBox">
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>110</y>
+       <y>104</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1071,7 +1071,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>145</y>
+       <y>132</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1088,9 +1088,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherSearchCheckBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>230</y>
-       <width>271</width>
+       <x>215</x>
+       <y>160</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1101,9 +1101,9 @@ font-weight:bold;</string>
     <widget class="QCheckBox" name="otherLrcKTVCheckBox">
      <property name="geometry">
       <rect>
-       <x>25</x>
-       <y>260</y>
-       <width>271</width>
+       <x>215</x>
+       <y>188</y>
+       <width>190</width>
        <height>20</height>
       </rect>
      </property>
@@ -1111,11 +1111,11 @@ font-weight:bold;</string>
       <string>开启歌词KTV模式</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherAlbumCoverWCheckBox">
+    <widget class="QCheckBox" name="otherWriteAlbumCoverCheckBox">
      <property name="geometry">
       <rect>
        <x>215</x>
-       <y>80</y>
+       <y>76</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1124,11 +1124,11 @@ font-weight:bold;</string>
       <string>下载文件写入专辑封面</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="otherInfoWCheckBox">
+    <widget class="QCheckBox" name="otherWriteInfoCheckBox">
      <property name="geometry">
       <rect>
        <x>215</x>
-       <y>110</y>
+       <y>104</y>
        <width>190</width>
        <height>20</height>
       </rect>
@@ -1141,7 +1141,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>290</y>
+       <y>312</y>
        <width>60</width>
        <height>20</height>
       </rect>
@@ -1159,7 +1159,7 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>25</x>
-       <y>320</y>
+       <y>337</y>
        <width>70</width>
        <height>21</height>
       </rect>
@@ -1175,13 +1175,112 @@ font-weight:bold;</string>
      <property name="geometry">
       <rect>
        <x>105</x>
-       <y>320</y>
+       <y>337</y>
        <width>71</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
       <string>更新</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="setRipplesSpectrumWidget">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>220</y>
+       <width>60</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:transparent;
+font-size:13px;
+font-weight:bold;</string>
+     </property>
+     <property name="text">
+      <string>特效设置</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="ripplesSpectrumEnableBox">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>250</y>
+       <width>230</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启音频波纹特效</string>
+     </property>
+    </widget>
+    <widget class="MusicClickedSlider" name="ripplesSpectrumOpacitySlider">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>282</y>
+       <width>180</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumOpacityValueLabel">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>282</y>
+       <width>35</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100%</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumOpacityLabel">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>282</y>
+       <width>41</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>透明度</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ripplesSpectrumColorLabel">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>282</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>颜色</string>
+     </property>
+    </widget>
+    <widget class="MusicColorPreviewLabel" name="ripplesSpectrumColorButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>277</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

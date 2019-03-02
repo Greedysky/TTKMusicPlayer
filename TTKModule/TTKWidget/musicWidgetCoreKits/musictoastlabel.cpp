@@ -118,5 +118,4 @@ void MusicToastLabel::paintEvent(QPaintEvent *event)
 
     painter.setPen(QColor(255, 255, 255));
     painter.drawText(rect(), Qt::AlignCenter, text());
-    painter.end();
 }

@@ -35,9 +35,17 @@ public:
     explicit MusicColorPreviewLabel(QWidget *parent = nullptr);
 
     /*!
-     * Set linear gradient and front and back.
+     * Set linear gradient colors.
      */
-    void setLinearGradient(const QList<QColor> &colors);
+    void setColors(const QList<QColor> &colors);
+    /*!
+     * Get linear gradient colors.
+     */
+    QList<QColor> getColors() const;
+    /*!
+     * Get linear gradient color.
+     */
+    QColor getColor() const;
 
 protected:
     /*!
@@ -45,6 +53,7 @@ protected:
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
+    QList<QColor> m_gradientColors;
     QLinearGradient m_linearGradient;
 
 };

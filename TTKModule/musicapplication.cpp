@@ -1239,9 +1239,6 @@ void MusicApplication::readXMLConfigFromText()
     m_rightAreaWidget->showPlayStatus(m_playControl);
     m_topAreaWidget->showPlayStatus(m_playControl);
 
-    //When the configuration is close to the direct exit
-    m_bottomAreaWidget->setSystemCloseConfig(M_SETTING_PTR->value(MusicSettingManager::CloseEventChoiced).toInt());
-
     //Set the lrc color the user set
     m_bottomAreaWidget->lockDesktopLrc(M_SETTING_PTR->value(MusicSettingManager::DLrcLockedChoiced).toInt());
     m_rightAreaWidget->setSettingParameter();
@@ -1261,10 +1258,12 @@ void MusicApplication::readXMLConfigFromText()
     }
 
     //Update check on
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherUpdateChoiced).toBool())
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateChoiced).toBool())
     {
         m_applicationObject->soureUpdateCheck();
     }
+
+    m_bottomAreaWidget->getParameterSetting();
 
 }
 

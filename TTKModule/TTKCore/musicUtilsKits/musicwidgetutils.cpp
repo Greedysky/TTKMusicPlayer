@@ -73,7 +73,6 @@ void MusicUtils::Widget::fusionPixmap(QPixmap &back, const QPixmap &front, const
     QPainter painter(&back);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(pt.x(), pt.y(), front);
-    painter.end();
 }
 
 QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QSize &size, int ratioX, int ratioY)
@@ -105,7 +104,6 @@ QPixmap MusicUtils::Widget::pixmapToRound(const QPixmap &src, const QPixmap &mas
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.drawPixmap(0, 0, src.scaled(size));
-    painter.end();
 
     return image;
 }

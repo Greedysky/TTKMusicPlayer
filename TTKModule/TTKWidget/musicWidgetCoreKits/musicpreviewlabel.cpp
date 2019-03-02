@@ -8,15 +8,27 @@ MusicColorPreviewLabel::MusicColorPreviewLabel(QWidget *parent)
     m_linearGradient.setStart(0, 0);
 }
 
-void MusicColorPreviewLabel::setLinearGradient(const QList<QColor> &colors)
+void MusicColorPreviewLabel::setColors(const QList<QColor> &colors)
 {
     QLinearGradient linearGradient;
     for(int i=0; i<colors.count(); ++i)
     {
         linearGradient.setColorAt((i+1)*1.0/colors.count(), colors[i]);
     }
+
+    m_gradientColors = colors;
     m_linearGradient = linearGradient;
     update();
+}
+
+QList<QColor> MusicColorPreviewLabel::getColors() const
+{
+    return m_gradientColors;
+}
+
+QColor MusicColorPreviewLabel::getColor() const
+{
+    return !m_gradientColors.empty() ? m_gradientColors.first() :  QColor();
 }
 
 void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
@@ -38,8 +50,6 @@ void MusicColorPreviewLabel::paintEvent(QPaintEvent *)
 
     painter.setPen(QPen(Qt::black, 0));
     painter.drawText(h + 2*4, 4, width() - h - 3*4, h, Qt::AlignCenter, text());
-
-    painter.end();
 }
 
 
@@ -101,5 +111,4 @@ void MusicPreviewLabel::paintEvent(QPaintEvent *)
 
     painter.setPen(QPen(m_maskLinearGradient, 0));
     painter.drawText(1, 1, 60, rect().height(), Qt::AlignLeft | Qt::AlignVCenter, "This is TTKMusicPlayer");
-    painter.end();
 }
