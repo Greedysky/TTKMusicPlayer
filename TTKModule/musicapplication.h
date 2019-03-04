@@ -161,7 +161,7 @@ public Q_SLOTS:
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlayListLoop();
+    void musicPlaylistLoop();
     /*!
      * Set current play mdoe to single loop.
      */
@@ -301,7 +301,7 @@ public Q_SLOTS:
     /*!
      * Get current play lists.
      */
-    void getCurrentPlayList(QStringList &list);
+    void getCurrentPlaylist(QStringList &list);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -334,7 +334,7 @@ private:
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;
-    MusicPlayedlist* m_musicPlayList;
+    MusicPlayedlist* m_musicPlaylist;
     MusicSongsSummariziedWidget *m_musicSongTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;

@@ -26,7 +26,7 @@ class QNetworkCookieJar;
 class MusicLrcAnalysis;
 class MusicCoreMPlayer;
 class MusicRadioSongsThread;
-class MusicRadioPlayListThread;
+class MusicRadioPlaylistThread;
 
 namespace Ui {
 class MusicWebMusicRadioPlayWidget;
@@ -84,7 +84,7 @@ public Q_SLOTS:
     /*!
      * Get playList finished.
      */
-    void getPlayListFinished();
+    void getPlaylistFinished();
     /*!
      * Get song information finished.
      */
@@ -125,11 +125,11 @@ protected:
     void startToPlay();
 
     Ui::MusicWebMusicRadioPlayWidget *m_ui;
-    int m_currentPlayListIndex;
+    int m_currentPlaylistIndex;
     bool m_isPlaying;
     MusicLrcAnalysis *m_analysis;
     MusicCoreMPlayer *m_mediaPlayer;
-    MusicRadioPlayListThread *m_playListThread;
+    MusicRadioPlaylistThread *m_playListThread;
     MusicRadioSongsThread *m_songsThread;
     QStringList m_playListIds;
 

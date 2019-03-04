@@ -120,7 +120,7 @@ void MusicToolSetsWidget::itemHasClicked(QListWidgetItem *item)
             {
                 MusicTimerWidget timer(this);
                 QStringList songlist;
-                MusicApplication::instance()->getCurrentPlayList(songlist);
+                MusicApplication::instance()->getCurrentPlaylist(songlist);
                 timer.setSongStringList(songlist);
                 timer.exec();
                 break;

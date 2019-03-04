@@ -20,160 +20,27 @@
  ================================================= */
 
 #include "musicsong.h"
-#include "musicabstractxml.h"
-
-/*! @brief The class of the wpl XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicWPLConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicWPLConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicWPLConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Write datas into xml file.
-     */
-    void writeWPLXMLConfig(const MusicSongItems &musics, const QString &path);
-    /*!
-     * Read datas into xml file.
-     */
-    void readWPLXMLConfig(MusicSongItems &musics);
-
-protected:
-    /*!
-     * Read Music File Path.
-     */
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
-
-};
-
-
-/*! @brief The class of the xspf XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicXSPFConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicXSPFConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicXSPFConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Write datas into xml file.
-     */
-    void writeXSPFXMLConfig(const MusicSongItems &musics, const QString &path);
-    /*!
-     * Read datas into xml file.
-     */
-    void readXSPFXMLConfig(MusicSongItems &musics);
-
-protected:
-    /*!
-     * Read Music File Path.
-     */
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
-
-};
-
-
-/*! @brief The class of the asx XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicASXConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicASXConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicASXConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Write datas into xml file.
-     */
-    void writeASXXMLConfig(const MusicSongItems &musics, const QString &path);
-    /*!
-     * Read datas into xml file.
-     */
-    void readASXXMLConfig(MusicSongItems &musics);
-
-};
-
-
-/*! @brief The class of the kuwo XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicKWLConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKWLConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicKWLConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas from xml file by given name.
-     */
-    bool readConfig(const QString &name);
-    /*!
-     * Read datas into xml file.
-     */
-    void readKWLXMLConfig(MusicSongItems &musics);
-
-};
-
-
-/*! @brief The class of the kugou XML Config Manager.
- * @author Greedysky <greedysky@163.com>
- */
-class MUSIC_CORE_EXPORT MusicKGLConfigManager : public MusicAbstractXml
-{
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicKGLConfigManager)
-public:
-    /*!
-     * Object contsructor.
-     */
-    explicit MusicKGLConfigManager(QObject *parent = nullptr);
-
-    /*!
-     * Read datas into xml file.
-     */
-    void readKGLXMLConfig(MusicSongItems &musics);
-
-};
-
 
 /*! @brief The class of the playlist manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicPlayListManager
+class MUSIC_CORE_EXPORT MusicPlaylistManager
 {
-    TTK_DECLARE_MODULE(MusicPlayListManager)
+    TTK_DECLARE_MODULE(MusicPlaylistManager)
 public:
     /*!
      * Import error message alert.
      */
     static void messageAlert();
+
     /*!
      * Write music playlist data to file.
      */
-    void setMusicSongItem(const QString &save, const MusicSongItem &item);
+    void setMusicSongItem(const QString &path, const MusicSongItem &item);
     /*!
      * Read music playlist data from file.
      */
-    void getMusicSongItems(const QStringList &open, MusicSongItems &items);
+    void getMusicSongItems(const QStringList &paths, MusicSongItems &items);
 
 protected:
     /*!
@@ -184,6 +51,7 @@ protected:
      * Write ttk music playlist data to file.
      */
     void writeLisList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read m3u music playlist data from file.
      */
@@ -192,6 +60,7 @@ protected:
      * Write m3u music playlist data to file.
      */
     void writeM3UList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read pls music playlist data from file.
      */
@@ -200,6 +69,7 @@ protected:
      * Write pls music playlist data to file.
      */
     void writePLSList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read wpl music playlist data from file.
      */
@@ -208,6 +78,7 @@ protected:
      * Write wpl music playlist data to file.
      */
     void writeWPLList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read xspf music playlist data from file.
      */
@@ -216,6 +87,7 @@ protected:
      * Write xspf music playlist data to file.
      */
     void writeXSPFList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read asx music playlist data from file.
      */
@@ -224,6 +96,7 @@ protected:
      * Write asx music playlist data to file.
      */
     void writeASXList(const QString &path, const MusicSongItem &item);
+
     /*!
      * Read kuwo music playlist data from file.
      */

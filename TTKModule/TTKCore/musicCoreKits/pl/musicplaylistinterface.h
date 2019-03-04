@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOPLAYLISTTHREAD_H
-#define MUSICRADIOPLAYLISTTHREAD_H
+#ifndef MUSICPLAYLISTINTERFACE_H
+#define MUSICPLAYLISTINTERFACE_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,42 +19,23 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStringList>
-#include "musicradiothreadabstract.h"
+#include "musicsong.h"
 
-/*! @brief The class of music radio thread of playlist.
+/*! @brief The class of the playlist interface.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicRadioPlaylistThread : public MusicRadioThreadAbstract
+class MUSIC_CORE_EXPORT MusicPlaylistInterface
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioPlaylistThread)
 public:
     /*!
-     * Object contsructor.
+     * Read datas from config file.
      */
-    explicit MusicRadioPlaylistThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
-
-    virtual ~MusicRadioPlaylistThread();
-
+    virtual void readPlaylistConfig(MusicSongItems &musics) = 0;
     /*!
-     * Start to download data.
+     * Write datas into config file.
      */
-    virtual void startToDownload(const QString &id) override;
-    /*!
-     * Get music playlist.
-     */
-    inline const QStringList &getMusicPlaylist() const { return m_playlist; }
-
-public Q_SLOTS:
-    /*!
-     * Download data from net finished.
-     */
-    virtual void downLoadFinished() override;
-
-protected:
-    QStringList m_playlist;
+    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) = 0;
 
 };
 
-#endif // MUSICRADIOPLAYLISTTHREAD_H
+#endif // MUSICPLAYLISTINTERFACE_H

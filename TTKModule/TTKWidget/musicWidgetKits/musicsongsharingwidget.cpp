@@ -296,7 +296,7 @@ void MusicSongSharingWidget::downLoadDataChanged(const QString &playUrl, const Q
 void MusicSongSharingWidget::close()
 {
     ///remove temp file path
-    QFile::remove(ART_DIR_FULL + TEMPORARY_DIR);
+    QFile::remove(ART_DIR_FULL + TEMPPATH);
     MusicAbstractMoveDialog::close();
 }
 

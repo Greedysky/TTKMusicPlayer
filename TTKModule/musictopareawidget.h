@@ -164,7 +164,7 @@ public Q_SLOTS:
     /*!
      * Current list background transparent changed.
      */
-    void musicPlayListTransparent(int index);
+    void musicPlaylistTransparent(int index);
     /*!
      * Changed current remote to circle mode.
      */

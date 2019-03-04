@@ -682,7 +682,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.setStyleSheet(MusicUIObject::MMenuStyle02);
     rightClickMenu.addAction(QIcon(":/contextMenu/btn_play"), tr("musicPlay"), this, SLOT(musicPlayClicked()));
     rightClickMenu.addAction(tr("playLater"), this, SLOT(musicAddToPlayLater()));
-    rightClickMenu.addAction(tr("addToPlayList"), this, SLOT(musicAddToPlayedList()));
+    rightClickMenu.addAction(tr("addToPlaylist"), this, SLOT(musicAddToPlayedList()));
     rightClickMenu.addAction(tr("downloadMore..."), this, SLOT(musicSongDownload()));
     rightClickMenu.addSeparator();
 
@@ -690,7 +690,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     QList<QAction*> actions;
     actions << musicPlaybackMode.addAction(tr("OrderPlay"), MusicApplication::instance(), SLOT(musicPlayOrder()));
     actions << musicPlaybackMode.addAction(tr("RandomPlay"), MusicApplication::instance(), SLOT(musicPlayRandom()));
-    actions << musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlayListLoop()));
+    actions << musicPlaybackMode.addAction(tr("ListCycle"), MusicApplication::instance(), SLOT(musicPlaylistLoop()));
     actions << musicPlaybackMode.addAction(tr("SingleCycle"), MusicApplication::instance(), SLOT(musicPlayOneLoop()));
     actions << musicPlaybackMode.addAction(tr("PlayOnce"), MusicApplication::instance(), SLOT(musicPlayItemOnce()));
 
@@ -700,7 +700,7 @@ void MusicSongsListTableWidget::contextMenuEvent(QContextMenuEvent *event)
     {
         case MusicObject::PM_PlayOrder: index = 0; break;
         case MusicObject::PM_PlayRandom: index = 1; break;
-        case MusicObject::PM_PlayListLoop: index = 2; break;
+        case MusicObject::PM_PlaylistLoop: index = 2; break;
         case MusicObject::PM_PlayOneLoop: index = 3; break;
         case MusicObject::PM_PlayOnce: index = 4; break;
         default: break;

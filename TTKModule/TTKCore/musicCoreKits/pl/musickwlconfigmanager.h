@@ -1,5 +1,5 @@
-#ifndef MUSICLISTCONFIGMANAGER_H
-#define MUSICLISTCONFIGMANAGER_H
+#ifndef MUSICKWLCONFIGMANAGER_H
+#define MUSICKWLCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -20,44 +20,35 @@
  ================================================= */
 
 #include "musicabstractxml.h"
+#include "musicplaylistinterface.h"
 
-/*! @brief The class of the music list xml config manager.
+/*! @brief The class of the kuwo playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicListConfigManager : public MusicAbstractXml
+class MUSIC_CORE_EXPORT MusicKWLConfigManager : public MusicAbstractXml, public MusicPlaylistInterface
 {
     Q_OBJECT
-    TTK_DECLARE_MODULE(MusicListConfigManager)
+    TTK_DECLARE_MODULE(MusicKWLConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicListConfigManager(QObject *parent = nullptr);
+    explicit MusicKWLConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read config datas from xml file by given name.
+     * Read datas from xml file by given name.
      */
-    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
+    bool readConfig(const QString &name);
 
     /*!
-     * Write music datas into xml file.
+     * Read datas from config file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics);
+    virtual void readPlaylistConfig(MusicSongItems &musics) override;
     /*!
-     * Write music datas into xml file.
+     * Write datas into config file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics, const QString &path);
-    /*!
-     * Read music datas into xml file.
-     */
-    void readMusicSongsConfig(MusicSongItems &musics);
-
-protected:
-    /*!
-     * Read Music File Path.
-     */
-    MusicSongs readMusicFilePath(const QDomNode &node) const;
+    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) override;
 
 };
 
-#endif // MUSICLISTCONFIGMANAGER_H
+#endif // MUSICKWLCONFIGMANAGER_H

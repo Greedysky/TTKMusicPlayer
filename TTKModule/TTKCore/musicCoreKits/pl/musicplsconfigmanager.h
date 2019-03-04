@@ -1,5 +1,5 @@
-#ifndef MUSICRADIOPLAYLISTTHREAD_H
-#define MUSICRADIOPLAYLISTTHREAD_H
+#ifndef MUSICPLSCONFIGMANAGER_H
+#define MUSICPLSCONFIGMANAGER_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,42 +19,37 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QStringList>
-#include "musicradiothreadabstract.h"
+#include "musicplaylistinterface.h"
 
-/*! @brief The class of music radio thread of playlist.
+/*! @brief The class of the pls playlist Config Manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_NETWORK_EXPORT MusicRadioPlaylistThread : public MusicRadioThreadAbstract
+class MUSIC_CORE_EXPORT MusicPLSConfigManager : public MusicPlaylistInterface
 {
-    Q_OBJECT
-    TTK_DECLARE_MODULE(MusicRadioPlaylistThread)
+    TTK_DECLARE_MODULE(MusicPLSConfigManager)
 public:
     /*!
      * Object contsructor.
      */
-    explicit MusicRadioPlaylistThread(QObject *parent = nullptr, QNetworkCookieJar *cookie = nullptr);
-
-    virtual ~MusicRadioPlaylistThread();
+    explicit MusicPLSConfigManager();
 
     /*!
-     * Start to download data.
+     * Read datas from xml file by given name.
      */
-    virtual void startToDownload(const QString &id) override;
-    /*!
-     * Get music playlist.
-     */
-    inline const QStringList &getMusicPlaylist() const { return m_playlist; }
+    bool readConfig(const QString &name);
 
-public Q_SLOTS:
     /*!
-     * Download data from net finished.
+     * Read datas from config file.
      */
-    virtual void downLoadFinished() override;
+    virtual void readPlaylistConfig(MusicSongItems &musics) override;
+    /*!
+     * Write datas into config file.
+     */
+    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) override;
 
-protected:
-    QStringList m_playlist;
+private:
+    QFile m_file;
 
 };
 
-#endif // MUSICRADIOPLAYLISTTHREAD_H
+#endif // MUSICPLSCONFIGMANAGER_H

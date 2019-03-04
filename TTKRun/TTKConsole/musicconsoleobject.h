@@ -97,7 +97,7 @@ private Q_SLOTS:
     /*!
      * Set current play mdoe to list loop.
      */
-    void musicPlayListLoop();
+    void musicPlaylistLoop();
     /*!
      * Set current play mdoe to single loop.
      */
@@ -135,7 +135,7 @@ protected:
     void print(qint64 position, qint64 duration);
 
     MusicPlayer* m_musicPlayer;
-    MusicPlayedlist* m_musicPlayList;
+    MusicPlayedlist* m_musicPlaylist;
     int m_volume;
     QString m_playbackMode, m_enhanced;
 

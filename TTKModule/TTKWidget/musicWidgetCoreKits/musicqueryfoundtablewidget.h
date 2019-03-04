@@ -97,7 +97,7 @@ protected:
     /*!
      * Add search music to play list by index.
      */
-    void addSearchMusicToPlayList(int row, bool play);
+    void addSearchMusicToPlaylist(int row, bool play);
     /*!
      * Download data from net and just play or not.
      */

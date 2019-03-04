@@ -6,18 +6,18 @@
 #include <QNetworkRequest>
 #include <QNetworkCookieJar>
 
-MusicRadioPlayListThread::MusicRadioPlayListThread(QObject *parent, QNetworkCookieJar *cookie)
+MusicRadioPlaylistThread::MusicRadioPlaylistThread(QObject *parent, QNetworkCookieJar *cookie)
     : MusicRadioThreadAbstract(parent, cookie)
 {
 
 }
 
-MusicRadioPlayListThread::~MusicRadioPlayListThread()
+MusicRadioPlaylistThread::~MusicRadioPlaylistThread()
 {
     deleteAll();
 }
 
-void MusicRadioPlayListThread::startToDownload(const QString &id)
+void MusicRadioPlaylistThread::startToDownload(const QString &id)
 {
     m_manager = new QNetworkAccessManager(this);
 
@@ -39,7 +39,7 @@ void MusicRadioPlayListThread::startToDownload(const QString &id)
 
 }
 
-void MusicRadioPlayListThread::downLoadFinished()
+void MusicRadioPlaylistThread::downLoadFinished()
 {
     if(!m_reply)
     {
@@ -50,7 +50,7 @@ void MusicRadioPlayListThread::downLoadFinished()
     if(m_reply->error() == QNetworkReply::NoError)
     {
         const QByteArray &bytes = m_reply->readAll();
-        m_playList.clear();
+        m_playlist.clear();
 
         QJson::Parser parser;
         bool ok;
@@ -62,7 +62,7 @@ void MusicRadioPlayListThread::downLoadFinished()
             foreach(const QVariant &channel, channels)
             {
                 value = channel.toMap();
-                m_playList << QString::number(value["id"].toInt());
+                m_playlist << QString::number(value["id"].toInt());
             }
         }
     }

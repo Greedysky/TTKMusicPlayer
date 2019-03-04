@@ -81,7 +81,7 @@ MusicDesktopWallpaperWidget::MusicDesktopWallpaperWidget(QWidget *parent)
 MusicDesktopWallpaperWidget::~MusicDesktopWallpaperWidget()
 {
     M_SINGLE_MANAGER_PTR->removeObject(getClassName());
-    QFile file(QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE));
+    QFile file(QString("%1%2").arg(TEMPPATH).arg(JPG_FILE));
     if(file.exists())
     {
         file.remove();
@@ -201,7 +201,7 @@ void MusicDesktopWallpaperWidget::confirmButtonPressed()
         case 0:
         {
             QStringList imgs;
-            imgs << QString("%1%2").arg(TEMPORARY_DIR).arg(JPG_FILE);
+            imgs << QString("%1%2").arg(TEMPPATH).arg(JPG_FILE);
             m_wallThread->setImagePath(imgs);
 
             MusicDataDownloadThread *download = new MusicDataDownloadThread(m_ui->urlLineEdit->text().trimmed(), imgs[0], MusicObject::DownloadBigBackground, this);

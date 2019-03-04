@@ -149,8 +149,8 @@ void MusicQueryFoundTableWidget::searchChanged(QAction *action)
     const MusicObject::MusicSongInformation &info = musicSongInfos[row];
     switch( action->data().toInt() )
     {
-        case 0: addSearchMusicToPlayList(row, true); break;
-        case 1: addSearchMusicToPlayList(row, false); break;
+        case 0: addSearchMusicToPlaylist(row, true); break;
+        case 1: addSearchMusicToPlaylist(row, false); break;
         case 2: musicDownloadLocal(row); break;
         case 3: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
         case 4: MusicRightAreaWidget::instance()->musicSongSearchedFound(info.m_songName); break;
@@ -215,10 +215,10 @@ void MusicQueryFoundTableWidget::listCellClicked(int row, int column)
     switch(column)
     {
         case 5:
-            addSearchMusicToPlayList(row, true);
+            addSearchMusicToPlaylist(row, true);
             break;
         case 6:
-            addSearchMusicToPlayList(row, false);
+            addSearchMusicToPlaylist(row, false);
             break;
         case 7:
             musicDownloadLocal(row);
@@ -307,7 +307,7 @@ void MusicQueryFoundTableWidget::createFinishedItem()
     }
 }
 
-void MusicQueryFoundTableWidget::addSearchMusicToPlayList(int row, bool play)
+void MusicQueryFoundTableWidget::addSearchMusicToPlaylist(int row, bool play)
 {
     if(row < 0)
     {
@@ -349,7 +349,7 @@ bool MusicQueryFoundTableWidget::downloadDataFrom(const MusicObject::MusicSongIn
         download->startToDownload();
         loop.exec();
 
-        emit musicSongToPlayListChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
+        emit musicSongToPlaylistChanged(musicEnSong, downloadInfo.m_timeLength, attr.m_format, play);
     }
 
     return true;

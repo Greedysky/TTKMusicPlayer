@@ -154,7 +154,7 @@ void MusicPlaylistFoundWidget::setSongNameById(const QString &id)
 
     MusicResultsItem item;
     item.m_id = id;
-    currentPlayListClicked(item);
+    currentPlaylistClicked(item);
 }
 
 void MusicPlaylistFoundWidget::resizeWindow()
@@ -245,7 +245,7 @@ void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
     }
 
     MusicPlaylistFoundItemWidget *label = new MusicPlaylistFoundItemWidget(this);
-    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentPlayListClicked(MusicResultsItem)));
+    connect(label, SIGNAL(currentItemClicked(MusicResultsItem)), SLOT(currentPlaylistClicked(MusicResultsItem)));
     label->setMusicResultsItem(item);
 
     const int lineNumber = width()/LINE_SPACING_SIZE;
@@ -253,7 +253,7 @@ void MusicPlaylistFoundWidget::createPlaylistItem(const MusicResultsItem &item)
     m_resizeWidgets << label;
 }
 
-void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicResultsItem &item)
+void MusicPlaylistFoundWidget::currentPlaylistClicked(const MusicResultsItem &item)
 {
     delete m_infoWidget;
     m_infoWidget = new MusicPlaylistFoundInfoWidget(this);
@@ -269,7 +269,7 @@ void MusicPlaylistFoundWidget::currentPlayListClicked(const MusicResultsItem &it
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_1);
 }
 
-void MusicPlaylistFoundWidget::backToPlayListMenu()
+void MusicPlaylistFoundWidget::backToPlaylistMenu()
 {
     m_container->setCurrentIndex(PLAYLIST_WINDOW_INDEX_0);
 }

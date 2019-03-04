@@ -20,7 +20,7 @@ MusicWebMusicRadioPlayWidget::MusicWebMusicRadioPlayWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    m_currentPlayListIndex = 0;
+    m_currentPlaylistIndex = 0;
     m_isPlaying = false;
     m_analysis = new MusicLrcAnalysis(this);
     m_analysis->setLineMax(9);
@@ -90,8 +90,8 @@ void MusicWebMusicRadioPlayWidget::setNetworkCookie(QNetworkCookieJar *jar)
 {
     if(m_songsThread == nullptr || m_playListThread == nullptr)
     {
-        m_playListThread = new MusicRadioPlayListThread(this, jar);
-        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlayListFinished()));
+        m_playListThread = new MusicRadioPlaylistThread(this, jar);
+        connect(m_playListThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getPlaylistFinished()));
         m_songsThread = new MusicRadioSongsThread(this, jar);
         connect(m_songsThread, SIGNAL(downLoadDataChanged(QString)), SLOT(getSongInfoFinished()));
     }
@@ -132,17 +132,17 @@ void MusicWebMusicRadioPlayWidget::radioPrevious()
         return;
     }
 
-    --m_currentPlayListIndex;
-    if(m_currentPlayListIndex > m_playListIds.count())
+    --m_currentPlaylistIndex;
+    if(m_currentPlaylistIndex > m_playListIds.count())
     {
-        m_currentPlayListIndex = m_playListIds.count() - 1;
+        m_currentPlaylistIndex = m_playListIds.count() - 1;
     }
-    else if(m_currentPlayListIndex < 0)
+    else if(m_currentPlaylistIndex < 0)
     {
-        m_currentPlayListIndex = 0;
+        m_currentPlaylistIndex = 0;
     }
 
-    m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
+    m_songsThread->startToDownload(m_playListIds[m_currentPlaylistIndex]);
 
     if(!m_isPlaying)
     {
@@ -157,17 +157,17 @@ void MusicWebMusicRadioPlayWidget::radioNext()
         return;
     }
 
-    ++m_currentPlayListIndex;
-    if(m_currentPlayListIndex > m_playListIds.count())
+    ++m_currentPlaylistIndex;
+    if(m_currentPlaylistIndex > m_playListIds.count())
     {
-        m_currentPlayListIndex = m_playListIds.count() - 1;
+        m_currentPlaylistIndex = m_playListIds.count() - 1;
     }
-    else if(m_currentPlayListIndex < 0)
+    else if(m_currentPlaylistIndex < 0)
     {
-        m_currentPlayListIndex = 0;
+        m_currentPlaylistIndex = 0;
     }
 
-    m_songsThread->startToDownload(m_playListIds[m_currentPlayListIndex]);
+    m_songsThread->startToDownload(m_playListIds[m_currentPlaylistIndex]);
 
     if(!m_isPlaying)
     {
@@ -201,10 +201,10 @@ void MusicWebMusicRadioPlayWidget::radioResourceDownload()
     download->show();
 }
 
-void MusicWebMusicRadioPlayWidget::getPlayListFinished()
+void MusicWebMusicRadioPlayWidget::getPlaylistFinished()
 {
-    m_playListIds = m_playListThread->getMusicPlayList();
-    m_currentPlayListIndex = 0;
+    m_playListIds = m_playListThread->getMusicPlaylist();
+    m_currentPlaylistIndex = 0;
     if(m_songsThread && !m_playListIds.isEmpty())
     {
         m_songsThread->startToDownload(m_playListIds.first());

@@ -49,6 +49,7 @@ INCLUDEPATH += \
     $$PWD/../ \
     $$PWD/../../ \
     $$PWD/../../TTKModule/TTKCore/musicCoreKits \
+    $$PWD/../../TTKModule/TTKCore/musicCoreKits/pl \
     $$PWD/../../TTKModule/TTKCore/musicUtilsKits
 
 SOURCES += \

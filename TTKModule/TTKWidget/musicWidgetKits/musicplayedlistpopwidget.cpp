@@ -81,7 +81,7 @@ void MusicPlayedListPopWidget::clear()
 {
     m_songLists.clear();
     m_playedListWidget->clearAllItems();
-    setPlayListCount(0);
+    setPlaylistCount(0);
 }
 
 void MusicPlayedListPopWidget::resetToolIndex(const PlayedPairList &indexs)
@@ -232,7 +232,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(int index)
 
         if(m_playlist->isEmpty())
         {
-            setPlayEmpty();
+            setPlaylistEmpty();
         }
     }
     else
@@ -240,7 +240,7 @@ void MusicPlayedListPopWidget::setDeleteItemAt(int index)
         m_playedListWidget->selectRow(id);
     }
 
-    setPlayListCount(m_songLists.count());
+    setPlaylistCount(m_songLists.count());
 }
 
 void MusicPlayedListPopWidget::setDeleteItemAll()
@@ -257,7 +257,7 @@ void MusicPlayedListPopWidget::setDeleteItemAll()
         m_playedListWidget->removeRow(0);
     }
 
-    setPlayEmpty();
+    setPlaylistEmpty();
 }
 
 void MusicPlayedListPopWidget::cellDoubleClicked(int row, int)
@@ -369,11 +369,11 @@ QWidget *MusicPlayedListPopWidget::createContainerWidget()
 
 void MusicPlayedListPopWidget::updateSongsFileName()
 {
-    setPlayListCount(m_songLists.count());
+    setPlaylistCount(m_songLists.count());
     m_playedListWidget->updateSongsFileName(m_songLists);
 }
 
-void MusicPlayedListPopWidget::setPlayListCount(int count)
+void MusicPlayedListPopWidget::setPlaylistCount(int count)
 {
     if(count >= 1000)
     {
@@ -392,11 +392,11 @@ void MusicPlayedListPopWidget::setPlayListCount(int count)
     }
 }
 
-void MusicPlayedListPopWidget::setPlayEmpty()
+void MusicPlayedListPopWidget::setPlaylistEmpty()
 {
     m_playedListWidget->setPlayRowIndex(-1);
     m_songLists.clear();
-    setPlayListCount(0);
+    setPlaylistCount(0);
 
     MusicApplication::instance()->musicPlayIndex(-1);
 }

@@ -236,7 +236,7 @@ void MusicSongSearchTableWidget::listCellClicked(int row, int column)
     switch(column)
     {
         case 7:
-            addSearchMusicToPlayList(row);
+            addSearchMusicToPlaylist(row);
             break;
         case 8:
             musicDownloadLocal(row);
@@ -319,7 +319,7 @@ void MusicSongSearchTableWidget::itemDoubleClicked(int row, int column)
     {
         return;
     }
-    addSearchMusicToPlayList(row);
+    addSearchMusicToPlaylist(row);
 }
 
 void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
@@ -341,7 +341,7 @@ void MusicSongSearchTableWidget::actionGroupClick(QAction *action)
         case 2: MusicRightAreaWidget::instance()->musicArtistFound(info.m_singerName, info.m_artistId); break;
         case 3: emit restartSearchQuery(info.m_singerName + " - " + info.m_songName); break;
         case 4: auditionToMusic(row); break;
-        case 5: addSearchMusicToPlayList(row); break;
+        case 5: addSearchMusicToPlaylist(row); break;
         case 6: musicSongDownload(row); break;
         case 7: MusicRightAreaWidget::instance()->musicAlbumFound(info.m_albumName, info.m_albumId); break;
         default: break;
@@ -352,7 +352,7 @@ void MusicSongSearchTableWidget::searchDataDwonloadFinished()
 {
     if(m_downloadData.isValid())
     {
-        emit musicSongToPlayListChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
+        emit musicSongToPlaylistChanged(m_downloadData.m_songName, m_downloadData.m_time, m_downloadData.m_format, true);
     }
     m_downloadData.clear();
 }
@@ -409,7 +409,7 @@ void MusicSongSearchTableWidget::contextMenuEvent(QContextMenuEvent *event)
     rightClickMenu.exec(QCursor::pos());
 }
 
-void MusicSongSearchTableWidget::addSearchMusicToPlayList(int row)
+void MusicSongSearchTableWidget::addSearchMusicToPlaylist(int row)
 {
     if(!M_NETWORK_PTR->isOnline())   //no network connection
     {

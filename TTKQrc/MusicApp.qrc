@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/data">
-        <file alias="music.lis">../TTKResource/A_extras/music.lis</file>
+        <file alias="music.tkpl">../TTKResource/A_extras/music.tkpl</file>
         <file alias="musicbarrage.ttk">../TTKResource/A_extras/musicbarrage.ttk</file>
         <file alias="musicconfig.xml">../TTKResource/A_extras/musicconfig.xml</file>
         <file alias="musicdown.ttk">../TTKResource/A_extras/musicdown.ttk</file>

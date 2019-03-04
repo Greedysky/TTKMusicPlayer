@@ -675,7 +675,7 @@ void MusicSongsSummariziedWidget::addNetMusicSongToList(const QString &name, con
     }
 }
 
-void MusicSongsSummariziedWidget::addSongToPlayList(const QStringList &items)
+void MusicSongsSummariziedWidget::addSongToPlaylist(const QStringList &items)
 {
     if(items.isEmpty())
     {

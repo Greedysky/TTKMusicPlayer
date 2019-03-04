@@ -193,7 +193,7 @@ public Q_SLOTS:
     /*!
      * Add current selected song to play lists.
      */
-    void addSongToPlayList(const QStringList &items);
+    void addSongToPlaylist(const QStringList &items);
     /*!
      * Delete items from indexs and check remove file or not.
      */

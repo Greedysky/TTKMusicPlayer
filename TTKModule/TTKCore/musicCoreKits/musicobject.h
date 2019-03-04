@@ -38,10 +38,21 @@
 #define LRC_FILE_PREFIX         "lrc"
 #define KRC_FILE_PREFIX         "krc"
 #define CFG_FILE_PREFIX         "ttk"
-#define LST_FILE_PREFIX         "lis"
 #define EXE_FILE_PREFIX         "exe"
 #define XML_FILE_PREFIX         "xml"
 #define COM_FILE_PREFIX         "com"
+
+//playlist ext
+#define LST_FILE_PREFIX         "tkpl"
+#define M3U_FILE_PREFIX         "m3u"
+#define M3U8_FILE_PREFIX        "m3u8"
+#define PLS_FILE_PREFIX         "pls"
+#define WPL_FILE_PREFIX         "wpl"
+#define XSPF_FILE_PREFIX        "xspf"
+#define ASX_FILE_PREFIX         "asx"
+#define FPL_FILE_PREFIX         "fpl"
+#define KWL_FILE_PREFIX         "kwl"
+#define KGL_FILE_PREFIX         "kgl"
 
 //music ext
 #define AAC_FILE_PREFIX         "aac"
@@ -100,7 +111,6 @@
 #define PLUGINS_DIR             "MPlugins/"
 #define BACKGROUND_DIR          "MArt/background/"
 #define LANGUAGE_DIR            "MLanguage/"
-#define TEMPORARY_DIR           "temporary"
 
 
 #define MAKE_TRANSFORM_PREFIX   "avconv.dll"
@@ -121,8 +131,9 @@
 #endif
 
 
+#define TEMPPATH                "musictemp"
 #define COFIGPATH               "musicconfig.xml"
-#define MUSICPATH               "music.lis"
+#define MUSICPATH               "music.tkpl"
 #define NORMALDOWNPATH          "musicdown.ttk"
 #define CLOUDDOWNPATH           "musiccloud.ttk"
 #define CLOUDUPPATH             "musiccloudp.ttk"
@@ -146,7 +157,6 @@
 #define LRC_DIR_FULL            DOWNLOADS_DIR_FULL + LRC_DIR
 #define MUSIC_DIR_FULL          DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define MOVIE_DIR_FULL          DOWNLOADS_DIR_FULL + MOVIE_DIR
-#define TEMPORARY_DIR_FULL      DOWNLOADS_DIR_FULL + TEMPORARY_DIR
 #define CACHE_DIR_FULL          DOWNLOADS_DIR_FULL + CACHE_DIR
 #define ART_DIR_FULL            DOWNLOADS_DIR_FULL + ART_DIR
 #define BACKGROUND_DIR_FULL     DOWNLOADS_DIR_FULL + BACKGROUND_DIR
@@ -166,6 +176,7 @@
 #define USER_THEME_DIR_FULL     APPDATA_DIR_FULL + USER_THEME_DIR
 
 
+#define TEMPPATH_FULL           MusicObject::getAppDir() + TEMPPATH
 #define THEME_DIR_FULL          MusicObject::getAppDir() + THEME_DIR
 #define PLUGINS_DIR_FULL        MusicObject::getAppDir() + PLUGINS_DIR
 #define LANGUAGE_DIR_FULL       MusicObject::getAppDir() + LANGUAGE_DIR
@@ -260,7 +271,7 @@ namespace MusicObject
     {
         PM_PlayOrder = 1,              /*!< play order*/
         PM_PlayRandom,                 /*!< play random*/
-        PM_PlayListLoop,               /*!< play list loop*/
+        PM_PlaylistLoop,               /*!< play list loop*/
         PM_PlayOneLoop,                /*!< play single loop*/
         PM_PlayOnce                    /*!< play just once*/
     };

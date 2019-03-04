@@ -16,10 +16,20 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD \
+               $$PWD/pl
 
 !contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
+    $$PWD/pl/musicplaylistinterface.h \
+    $$PWD/pl/musicasxconfigmanager.h \
+    $$PWD/pl/musickglconfigmanager.h \
+    $$PWD/pl/musickwlconfigmanager.h \
+    $$PWD/pl/musicm3uconfigmanager.h \
+    $$PWD/pl/musicplsconfigmanager.h \
+    $$PWD/pl/musictkplconfigmanager.h \
+    $$PWD/pl/musicwplconfigmanager.h \
+    $$PWD/pl/musicxspfconfigmanager.h \
     $$PWD/musiclogger.h \
     $$PWD/musicobject.h \
     $$PWD/musicformats.h \
@@ -51,13 +61,20 @@ HEADERS  += \
     $$PWD/musicextractwrap.h \
     $$PWD/musicbackgroundconfigmanager.h \
     $$PWD/musicsysconfigmanager.h \
-    $$PWD/musiclistconfigmanager.h \
     $$PWD/musicsinglemanager.h
 
 }
 
 contains(CONFIG, MUSIC_BUILD_LIB){
 SOURCES += \
+    $$PWD/pl/musicasxconfigmanager.cpp \
+    $$PWD/pl/musickglconfigmanager.cpp \
+    $$PWD/pl/musickwlconfigmanager.cpp \
+    $$PWD/pl/musicm3uconfigmanager.cpp \
+    $$PWD/pl/musicplsconfigmanager.cpp \
+    $$PWD/pl/musictkplconfigmanager.cpp \
+    $$PWD/pl/musicwplconfigmanager.cpp \
+    $$PWD/pl/musicxspfconfigmanager.cpp \
     $$PWD/musicformats.cpp \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
@@ -82,7 +99,6 @@ SOURCES += \
     $$PWD/musicextractwrap.cpp \
     $$PWD/musicbackgroundconfigmanager.cpp \
     $$PWD/musicsysconfigmanager.cpp \
-    $$PWD/musiclistconfigmanager.cpp \
     $$PWD/musicsinglemanager.cpp
 
 }

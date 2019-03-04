@@ -24,17 +24,19 @@
 #include "musicversion.h"
 #include "musicrunglobaldefine.h"
 
+
 #define S_APPDATA_DIR_FULL        MusicObject::getAppDir() + APPDATA_DIR
 #define S_DOWNLOADS_DIR_FULL      MusicObject::getAppDir() + DOWNLOADS_DIR
+
 
 #define S_LRC_DIR_FULL            S_DOWNLOADS_DIR_FULL + LRC_DIR
 #define S_MUSIC_DIR_FULL          S_DOWNLOADS_DIR_FULL + MUSIC_DIR
 #define S_MOVIE_DIR_FULL          S_DOWNLOADS_DIR_FULL + MOVIE_DIR
-#define S_TEMPORARY_DIR_FULL      S_DOWNLOADS_DIR_FULL + TEMPORARY_DIR
 #define S_CACHE_DIR_FULL          S_DOWNLOADS_DIR_FULL + CACHE_DIR
 #define S_ART_DIR_FULL            S_DOWNLOADS_DIR_FULL + ART_DIR
 #define S_BACKGROUND_DIR_FULL     S_DOWNLOADS_DIR_FULL + BACKGROUND_DIR
 #define S_UPDATE_DIR_FULL         S_DOWNLOADS_DIR_FULL + UPDATE_DIR
+
 
 #define S_COFIGPATH_FULL          S_APPDATA_DIR_FULL + COFIGPATH
 #define S_MUSICPATH_FULL          S_APPDATA_DIR_FULL + MUSICPATH
@@ -48,9 +50,12 @@
 #define S_AVATAR_DIR_FULL         S_APPDATA_DIR_FULL + AVATAR_DIR
 #define S_USER_THEME_DIR_FULL     S_APPDATA_DIR_FULL + USER_THEME_DIR
 
+
+#define S_TEMPPATH_FULL           MusicObject::getAppDir() + TEMPPATH
 #define S_THEME_DIR_FULL          MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + THEME_DIR
 #define S_PLUGINS_DIR_FULL        MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + PLUGINS_DIR
 #define S_LANGUAGE_DIR_FULL       MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/" + LANGUAGE_DIR
+
 
 #ifdef Q_OS_WIN
 #define S_TTKSERVICE_FULL         MusicObject::getAppDir() + TTKMUSIC_VERSION_STR + "/TTKService.exe"

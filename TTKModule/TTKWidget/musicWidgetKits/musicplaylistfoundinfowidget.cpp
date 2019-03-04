@@ -89,7 +89,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     backButton->setFixedSize(90, 30);
     backButton->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     backButton->setCursor(QCursor(Qt::PointingHandCursor));
-    connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlayListMenu()));
+    connect(backButton, SIGNAL(clicked()), obj, SLOT(backToPlaylistMenu()));
     firstTopFuncLayout->addWidget(firstLabel);
     firstTopFuncLayout->addWidget(backButton);
     grid->addWidget(firstTopFuncWidget);

@@ -196,7 +196,7 @@ void MusicPlayedlist::setCurrentIndex(int index)
                     m_currentIndex = -1;
                 }
                 break;
-            case MusicObject::PM_PlayListLoop:
+            case MusicObject::PM_PlaylistLoop:
                 if(++m_currentIndex >= m_mediaList.count())
                 {
                     m_currentIndex = 0;

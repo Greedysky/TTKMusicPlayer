@@ -294,7 +294,7 @@ void MusicTopAreaWidget::musicBackgroundThemeChangedByResize()
     musicBackgroundSliderStateChanged(false);
 }
 
-void MusicTopAreaWidget::musicPlayListTransparent(int index)
+void MusicTopAreaWidget::musicPlaylistTransparent(int index)
 {
     if(m_musicBackgroundWidget)
     {

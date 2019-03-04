@@ -95,7 +95,7 @@ void MusicConnectTransferWidget::redirectToCurrentSong(int toolIndex, int songIn
         return;
     }
 
-    currentPlayListSelected(toolIndex);
+    currentPlaylistSelected(toolIndex);
     m_ui->playListTableWidget->listCellClicked(songIndex, 0);
 }
 
@@ -106,7 +106,7 @@ void MusicConnectTransferWidget::initColumns()
 
     m_ui->playListLayoutWidget->setStyleSheet(MusicUIObject::MBackgroundStyle01);
     m_buttonGroup = new QButtonGroup(this);
-    connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlayListSelected(int)));
+    connect(m_buttonGroup, SIGNAL(buttonClicked(int)), SLOT(currentPlaylistSelected(int)));
     for(int i=0; i<songs.count(); ++i)
     {
         QPushButton *button = new QPushButton(QString("%1(%2)").arg(songs[i].m_itemName).arg(songs[i].m_songs.count()), this);
@@ -180,7 +180,7 @@ QString MusicConnectTransferWidget::getRemovableDrive()
     return QString();
 }
 
-void MusicConnectTransferWidget::currentPlayListSelected(int index)
+void MusicConnectTransferWidget::currentPlaylistSelected(int index)
 {
     MusicSongItems songs;
     emit getMusicLists(songs);

@@ -19,7 +19,7 @@ void MusicInitObject::init()
     checkTheFileNeededExist();
 
     copyFileOverwrite(":/data/musicconfig.xml", S_COFIGPATH_FULL);
-    copyFileOverwrite(":/data/music.lis", S_MUSICPATH_FULL);
+    copyFileOverwrite(":/data/music.tkpl", S_MUSICPATH_FULL);
     copyFileOverwrite(":/data/musicdown.ttk", S_NORMALDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloud.ttk", S_CLOUDDOWNPATH_FULL);
     copyFileOverwrite(":/data/musiccloudp.ttk", S_CLOUDUPPATH_FULL);
@@ -62,7 +62,7 @@ void MusicInitObject::checkTheDirectoryExist()
 void MusicInitObject::checkTheFileNeededExist()
 {
     copyFile(":/data/musicconfig.xml", S_COFIGPATH_FULL);
-    copyFile(":/data/music.lis", S_MUSICPATH_FULL);
+    copyFile(":/data/music.tkpl", S_MUSICPATH_FULL);
     copyFile(":/data/musicdown.ttk", S_NORMALDOWNPATH_FULL);
     copyFile(":/data/musiccloud.ttk", S_CLOUDDOWNPATH_FULL);
     copyFile(":/data/musiccloudp.ttk", S_CLOUDUPPATH_FULL);

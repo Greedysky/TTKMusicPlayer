@@ -169,11 +169,11 @@ protected:
     /*!
      * Set play list count.
      */
-    void setPlayListCount(int count);
+    void setPlaylistCount(int count);
     /*!
      * Set play state to pause or stop.
      */
-    void setPlayEmpty();
+    void setPlaylistEmpty();
 
     QList<QLabel*> m_labels;
     MusicPlayedlist *m_playlist;

@@ -3,7 +3,7 @@
 #include "musicplayedlist.h"
 #include "musiccoreutils.h"
 #include "musicformats.h"
-#include "musiclistconfigmanager.h"
+#include "musictkplconfigmanager.h"
 #include "musichotkeymanager.h"
 #include "musictime.h"
 
@@ -16,18 +16,18 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
     : QObject(parent)
 {
     m_musicPlayer = new MusicPlayer(this);
-    m_musicPlayList = new MusicPlayedlist(this);
+    m_musicPlaylist = new MusicPlayedlist(this);
 
     m_volume = 100;
     m_playbackMode = "Order";
     m_enhanced = "Off";
 
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOrder);
-    m_musicPlayer->setPlaylist(m_musicPlayList);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_musicPlayer->setPlaylist(m_musicPlaylist);
 
     connect(m_musicPlayer, SIGNAL(positionChanged(qint64)), SLOT(positionChanged(qint64)));
     connect(m_musicPlayer, SIGNAL(durationChanged(qint64)), SLOT(durationChanged(qint64)));
-    connect(m_musicPlayList, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
+    connect(m_musicPlaylist, SIGNAL(currentIndexChanged(int)), SLOT(currentIndexChanged(int)));
 
     M_HOTKEY_PTR->addHotKey("Ctrl+B");
     M_HOTKEY_PTR->addHotKey("Ctrl+Left");
@@ -54,7 +54,7 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
 
     connect(M_HOTKEY_PTR->getHotKey(5), SIGNAL(activated()), SLOT(musicPlayOrder()));
     connect(M_HOTKEY_PTR->getHotKey(6), SIGNAL(activated()), SLOT(musicPlayRandom()));
-    connect(M_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlayListLoop()));
+    connect(M_HOTKEY_PTR->getHotKey(7), SIGNAL(activated()), SLOT(musicPlaylistLoop()));
     connect(M_HOTKEY_PTR->getHotKey(8), SIGNAL(activated()), SLOT(musicPlayOneLoop()));
     connect(M_HOTKEY_PTR->getHotKey(9), SIGNAL(activated()), SLOT(musicPlayItemOnce()));
 
@@ -72,7 +72,7 @@ MusicConsoleObject::~MusicConsoleObject()
 {
     qDebug() << "\nRelease all!";
     delete m_musicPlayer;
-    delete m_musicPlayList;
+    delete m_musicPlaylist;
 }
 
 bool MusicConsoleObject::init(const QCoreApplication &app)
@@ -108,8 +108,8 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         else
         {
             qDebug() << "Add play url path: " << url;
-            m_musicPlayList->addMedia(0, url);
-            m_musicPlayList->setCurrentIndex(0);
+            m_musicPlaylist->addMedia(0, url);
+            m_musicPlaylist->setCurrentIndex(0);
         }
     }
     else if(parser.isSet(op2))
@@ -125,12 +125,12 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
             foreach(const QFileInfo &file, MusicUtils::Core::getFileListByDir(url, MusicFormats::supportFormatsFilterString(), true))
             {
                 qDebug() << "Add play url path: " << file.absoluteFilePath();
-                m_musicPlayList->appendMedia(0, file.absoluteFilePath());
+                m_musicPlaylist->appendMedia(0, file.absoluteFilePath());
             }
 
-            if(!m_musicPlayList->isEmpty())
+            if(!m_musicPlaylist->isEmpty())
             {
-                m_musicPlayList->setCurrentIndex(0);
+                m_musicPlaylist->setCurrentIndex(0);
             }
         }
     }
@@ -144,14 +144,14 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         }
         else
         {
-            if(QFileInfo(url).suffix().toLower() != "lis")
+            if(QFileInfo(url).suffix().toLower() != LST_FILE_PREFIX)
             {
                 qDebug() << "Music playlist format not support!";
                 return false;
             }
 
             MusicSongItems items;
-            MusicListConfigManager manager;
+            MusicTKPLConfigManager manager;
             if(!manager.readConfig(url))
             {
                 qDebug() << "Music playlist read error!";
@@ -164,13 +164,13 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
                 foreach(const MusicSong &song, item.m_songs)
                 {
                     qDebug() << "Add play url path: " << song.getMusicPath();
-                    m_musicPlayList->appendMedia(0, song.getMusicPath());
+                    m_musicPlaylist->appendMedia(0, song.getMusicPath());
                 }
             }
 
-            if(!m_musicPlayList->isEmpty())
+            if(!m_musicPlaylist->isEmpty())
             {
-                m_musicPlayList->setCurrentIndex(0);
+                m_musicPlaylist->setCurrentIndex(0);
             }
         }
     }
@@ -180,7 +180,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
         return false;
     }
 
-    qDebug() << "\nMusic Files count: " << m_musicPlayList->mediaCount() << "\n";
+    qDebug() << "\nMusic Files count: " << m_musicPlaylist->mediaCount() << "\n";
 
     m_musicPlayer->play();
     m_musicPlayer->setVolume(m_volume);
@@ -209,7 +209,7 @@ void MusicConsoleObject::currentIndexChanged(int index)
 
 void MusicConsoleObject::musicStatePlay()
 {
-    if(m_musicPlayList->isEmpty())
+    if(m_musicPlaylist->isEmpty())
     {
         return;
     }
@@ -227,14 +227,14 @@ void MusicConsoleObject::musicStatePlay()
 
 void MusicConsoleObject::musicPlayPrevious()
 {
-    if(m_musicPlayList->isEmpty())
+    if(m_musicPlaylist->isEmpty())
     {
         return;
     }
 
-    if(m_musicPlayList->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
     {
-        m_musicPlayList->setCurrentIndex();
+        m_musicPlaylist->setCurrentIndex();
     }
     else
     {
@@ -247,14 +247,14 @@ void MusicConsoleObject::musicPlayPrevious()
 
 void MusicConsoleObject::musicPlayNext()
 {
-    if(m_musicPlayList->isEmpty())
+    if(m_musicPlaylist->isEmpty())
     {
         return;
     }
 
-    if(m_musicPlayList->playbackMode() == MusicObject::PM_PlayRandom)
+    if(m_musicPlaylist->playbackMode() == MusicObject::PM_PlayRandom)
     {
-        m_musicPlayList->setCurrentIndex();
+        m_musicPlaylist->setCurrentIndex();
     }
     else
     {
@@ -296,31 +296,31 @@ void MusicConsoleObject::musicActionVolumePlus()
 
 void MusicConsoleObject::musicPlayOrder()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOrder);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOrder);
     m_playbackMode = "Order";
 }
 
 void MusicConsoleObject::musicPlayRandom()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayRandom);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayRandom);
     m_playbackMode = "Random";
 }
 
-void MusicConsoleObject::musicPlayListLoop()
+void MusicConsoleObject::musicPlaylistLoop()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayListLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlaylistLoop);
     m_playbackMode = "ListLoop";
 }
 
 void MusicConsoleObject::musicPlayOneLoop()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOneLoop);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOneLoop);
     m_playbackMode = "OneLoop";
 }
 
 void MusicConsoleObject::musicPlayItemOnce()
 {
-    m_musicPlayList->setPlaybackMode(MusicObject::PM_PlayOnce);
+    m_musicPlaylist->setPlaybackMode(MusicObject::PM_PlayOnce);
     m_playbackMode = "Once";
 }
 
@@ -357,7 +357,7 @@ void MusicConsoleObject::musicEnhancedVocal()
 void MusicConsoleObject::print(qint64 position, qint64 duration)
 {
     qDebug() << QString("Music Name: %1, Time:[%2/%3], Volume:%4, PlaybackMode:%5, Enhance:%6")
-                .arg(m_musicPlayList->currentMediaString())
+                .arg(m_musicPlaylist->currentMediaString())
                 .arg(MusicTime::msecTime2LabelJustified(position))
                 .arg(MusicTime::msecTime2LabelJustified(duration))
                 .arg(m_musicPlayer->volume())

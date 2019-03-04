@@ -269,7 +269,7 @@ void MusicApplicationObject::musicTimerWidget()
 {
     MusicTimerWidget timer;
     QStringList list;
-    MusicApplication::instance()->getCurrentPlayList(list);
+    MusicApplication::instance()->getCurrentPlaylist(list);
     timer.setSongStringList(list);
     timer.exec();
 }
@@ -412,7 +412,7 @@ bool MusicApplicationObject::closeCurrentEqualizer()
 
 void MusicApplicationObject::cleanUp()
 {
-    QFile::remove(TEMPORARY_DIR);
+    QFile::remove(TEMPPATH);
     QFile::remove(MUSIC_COLOR_FILE);
     QFile::remove(MUSIC_IMAGE_FILE);
     QFile::remove(MUSIC_RECORD_FILE);

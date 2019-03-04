@@ -109,11 +109,11 @@ public Q_SLOTS:
     /*!
      * Current play list clicked.
      */
-    void currentPlayListClicked(const MusicResultsItem &item);
+    void currentPlaylistClicked(const MusicResultsItem &item);
     /*!
      * Set current index to playlist menu page.
      */
-    void backToPlayListMenu();
+    void backToPlaylistMenu();
     /*!
      * Current category changed.
      */

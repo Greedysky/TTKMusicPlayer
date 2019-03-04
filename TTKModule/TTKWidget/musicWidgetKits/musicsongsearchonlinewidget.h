@@ -160,7 +160,7 @@ protected:
     /*!
      * Add search music to play list by index.
      */
-    void addSearchMusicToPlayList(int row);
+    void addSearchMusicToPlaylist(int row);
 
     bool m_queryAllRecords;
     int m_previousAuditionRow;

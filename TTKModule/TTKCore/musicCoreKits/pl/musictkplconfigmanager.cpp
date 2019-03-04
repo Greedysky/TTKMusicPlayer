@@ -1,17 +1,17 @@
-#include "musiclistconfigmanager.h"
+#include "musictkplconfigmanager.h"
 
-MusicListConfigManager::MusicListConfigManager(QObject *parent)
+MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
 {
 
 }
 
-void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
+void MusicTKPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
 {
     writeMusicSongsConfig(musics, MUSICPATH_FULL);
 }
 
-void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
+void MusicTKPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
@@ -42,7 +42,7 @@ void MusicListConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
     m_document->save(out, 4);
 }
 
-void MusicListConfigManager::readMusicSongsConfig(MusicSongItems &musics)
+void MusicTKPLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -62,7 +62,7 @@ void MusicListConfigManager::readMusicSongsConfig(MusicSongItems &musics)
     }
 }
 
-MusicSongs MusicListConfigManager::readMusicFilePath(const QDomNode &node) const
+MusicSongs MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const
 {
     const QDomNodeList &nodelist = node.childNodes();
 

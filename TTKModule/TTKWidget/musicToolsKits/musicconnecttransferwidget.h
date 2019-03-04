@@ -63,7 +63,7 @@ public Q_SLOTS:
     /*!
      * Current playList selected.
      */
-    void currentPlayListSelected(int index);
+    void currentPlaylistSelected(int index);
     /*!
      * Select all items.
      */

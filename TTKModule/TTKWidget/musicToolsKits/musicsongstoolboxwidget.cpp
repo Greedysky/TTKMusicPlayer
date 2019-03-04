@@ -112,7 +112,7 @@ void MusicSongsToolBoxTopWidget::showMenu()
     musicAddNewFiles.addAction(tr("openOnlyDir"), this, SLOT(addNewDir()));
 
     menu.addAction(tr("playLater"), this, SLOT(addToPlayLater()));
-    menu.addAction(tr("addToPlayList"), this, SLOT(addToPlayedList()));
+    menu.addAction(tr("addToPlaylist"), this, SLOT(addToPlayedList()));
 
     QMenu musicSortFiles(tr("sort"), &menu);
     musicSortFiles.addAction(tr("sortByFileName"))->setData(0);

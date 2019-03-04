@@ -767,12 +767,12 @@ void MusicSettingWidget::initOtherSettingWidget()
 #ifdef Q_OS_UNIX
     m_ui->otherNormalImageRadioBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherHeighImageRadioBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherUpdateCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherCheckUpdateBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSearchCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherInfoCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherAlbumCoverWCheckBox->setFocusPolicy(Qt::NoFocus);
-    m_ui->otherInfoWCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherUseAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherUseInfoCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherWriteAlbumCoverCheckBox->setFocusPolicy(Qt::NoFocus);
+    m_ui->otherWriteInfoCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherSideByCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->otherLrcKTVCheckBox->setFocusPolicy(Qt::NoFocus);
     m_ui->ripplesSpectrumEnableBox->setFocusPolicy(Qt::NoFocus);
