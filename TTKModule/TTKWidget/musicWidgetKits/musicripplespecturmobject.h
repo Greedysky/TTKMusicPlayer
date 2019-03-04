@@ -53,7 +53,7 @@ public:
     /*!
      * Update ripples spectrum paramters.
      */
-    void update();
+    void update(bool up);
     /*!
      * Init ripples spectrum paramters.
      */

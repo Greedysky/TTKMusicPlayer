@@ -6,6 +6,7 @@
 #include "musicwindowextras.h"
 #include "musicfunctionuiobject.h"
 #include "musictinyuiobject.h"
+#include "musicrightareawidget.h"
 #include "musicripplespecturmobject.h"
 
 MusicBottomAreaWidget *MusicBottomAreaWidget::m_instance = nullptr;
@@ -15,6 +16,7 @@ MusicBottomAreaWidget::MusicBottomAreaWidget(QWidget *parent)
 {
     m_instance = this;
     m_systemCloseConfig = false;
+    m_lrcWidgetShowFullScreen = true;
 
     createSystemTrayIcon();
 
@@ -218,8 +220,38 @@ void MusicBottomAreaWidget::getParameterSetting()
     setDestopLrcVisible(config);
          config = M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumEnableChoiced).toBool();
 
-    m_musicRipplesObject->setVisible(config);
-    m_musicRipplesObject->update();
+    m_musicRipplesObject->update(config);
+}
+
+bool MusicBottomAreaWidget::isLrcWidgetShowFullScreen() const
+{
+    return !m_lrcWidgetShowFullScreen;
+}
+
+void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
+{
+    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
+    {
+        return;
+    }
+
+    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
+    {
+        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
+    }
+
+    m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
+    m_musicRipplesObject->setVisible(m_lrcWidgetShowFullScreen);
+
+    m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->centerLeftWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->songsContainer->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
+    m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
+
+    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
+    m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
+    m_ui->musiclrccontainerforinline->lrcWidgetShowFullScreen();
 }
 
 void MusicBottomAreaWidget::lockDesktopLrc(bool lock)

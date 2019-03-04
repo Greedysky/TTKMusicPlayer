@@ -18,7 +18,12 @@ MusicRippleSpecturmObject::~MusicRippleSpecturmObject()
 
 void MusicRippleSpecturmObject::setVisible(bool v)
 {
-    v ? show() : close();
+    if(!m_topLayout || !m_topWidget)
+    {
+        return;
+    }
+
+    m_visualWidget ? m_visualWidget->setVisible(v) : m_topWidget->setVisible(v);
 }
 
 void MusicRippleSpecturmObject::show()
@@ -61,8 +66,10 @@ void MusicRippleSpecturmObject::close()
     removeSpectrum();
 }
 
-void MusicRippleSpecturmObject::update()
+void MusicRippleSpecturmObject::update(bool up)
 {
+    up ? show() : close();
+
     MusicUtils::QMMP::updateRippleSpectrumConfigFile();
 
     if(m_visualWidget)

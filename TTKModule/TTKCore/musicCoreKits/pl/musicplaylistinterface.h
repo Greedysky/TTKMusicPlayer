@@ -27,6 +27,13 @@
 class MUSIC_CORE_EXPORT MusicPlaylistInterface
 {
 public:
+    explicit MusicPlaylistInterface()
+    {
+    }
+
+    virtual ~MusicPlaylistInterface()
+    {
+    }
     /*!
      * Read datas from config file.
      */

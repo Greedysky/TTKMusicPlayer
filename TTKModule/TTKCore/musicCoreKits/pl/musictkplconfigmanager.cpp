@@ -2,16 +2,37 @@
 
 MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
+    , MusicPlaylistInterface()
 {
 
 }
 
-void MusicTKPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics)
+void MusicTKPLConfigManager::readPlaylistConfig(MusicSongItems &musics)
 {
-    writeMusicSongsConfig(musics, MUSICPATH_FULL);
+    const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
+    for(int i=0; i<nodes.count(); ++i)
+    {
+        const QDomNode &node = nodes.at(i);
+        MusicSongItem item;
+        item.m_songs = readMusicFilePath(node);
+
+        const QDomElement &element = node.toElement();
+        item.m_itemIndex = element.attribute("index").toInt();
+        item.m_itemName = element.attribute("name");
+
+        const QString &string = element.attribute("sortIndex");
+        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
+        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
+        musics << item;
+    }
 }
 
-void MusicTKPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics, const QString &path)
+void MusicTKPLConfigManager::writePlaylistConfig(const MusicSongItems &musics)
+{
+    writePlaylistConfig(musics, MUSICPATH_FULL);
+}
+
+void MusicTKPLConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
@@ -40,26 +61,6 @@ void MusicTKPLConfigManager::writeMusicSongsConfig(const MusicSongItems &musics,
     //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
-}
-
-void MusicTKPLConfigManager::readMusicSongsConfig(MusicSongItems &musics)
-{
-    const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
-    for(int i=0; i<nodes.count(); ++i)
-    {
-        const QDomNode &node = nodes.at(i);
-        MusicSongItem item;
-        item.m_songs = readMusicFilePath(node);
-
-        const QDomElement &element = node.toElement();
-        item.m_itemIndex = element.attribute("index").toInt();
-        item.m_itemName = element.attribute("name");
-
-        const QString &string = element.attribute("sortIndex");
-        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
-        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
-        musics << item;
-    }
 }
 
 MusicSongs MusicTKPLConfigManager::readMusicFilePath(const QDomNode &node) const

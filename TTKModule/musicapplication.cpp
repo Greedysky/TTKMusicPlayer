@@ -1125,9 +1125,9 @@ void MusicApplication::readXMLConfigFromText()
     //Path configuration song
     MusicSongItems songs;
     MusicTKPLConfigManager listXml;
-    if(listXml.readMusicXMLConfig())//open music file
+    if(listXml.readMusicConfig())
     {
-        listXml.readMusicSongsConfig(songs);
+        listXml.readPlaylistConfig(songs);
     }
     const bool success = m_musicSongTreeWidget->addMusicLists(songs);
     //////////////////////////////////////////////////////////////
@@ -1296,5 +1296,5 @@ void MusicApplication::writeXMLConfigToText()
     xml.writeXMLConfig();
 
     MusicTKPLConfigManager listXml;
-    listXml.writeMusicSongsConfig( m_musicSongTreeWidget->getMusicLists() );
+    listXml.writePlaylistConfig(m_musicSongTreeWidget->getMusicLists());
 }

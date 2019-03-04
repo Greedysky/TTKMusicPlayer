@@ -25,7 +25,6 @@ MusicLeftAreaWidget::MusicLeftAreaWidget(QWidget *parent)
     m_qualityChoiceWidget = nullptr;
     m_cloudSharedSongWidget = nullptr;
     m_currentIndex = 0;
-    m_lrcWidgetShowFullScreen = true;
 }
 
 MusicLeftAreaWidget::~MusicLeftAreaWidget()
@@ -111,11 +110,6 @@ void MusicLeftAreaWidget::createSoundKMicroWidget(const QString &name)
     }
     m_soundKMicroWidget->startSeachKMicro(name);
     m_soundKMicroWidget->show();
-}
-
-bool MusicLeftAreaWidget::isLrcWidgetShowFullScreen() const
-{
-    return !m_lrcWidgetShowFullScreen;
 }
 
 void MusicLeftAreaWidget::setTransparent(int index)
@@ -220,31 +214,6 @@ void MusicLeftAreaWidget::musicStackedCloudWidgetChanged()
     m_cloudSharedSongWidget->showMainWindow();
     m_ui->songsContainer->setIndex(0, 0);
     m_ui->songsContainer->start(1);
-}
-
-void MusicLeftAreaWidget::lrcWidgetShowFullScreen()
-{
-    if(M_SETTING_PTR->value(MusicSettingManager::OtherSideByInChoiced).toBool())
-    {
-        return;
-    }
-
-    if(m_ui->musiclrccontainerforinline->lrcDisplayExpand())
-    {
-        MusicRightAreaWidget::instance()->musicLrcDisplayAllButtonClicked();
-    }
-
-    m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
-    m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->centerLeftWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->songsContainer->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->stackedFunctionWidget->setVisible(m_lrcWidgetShowFullScreen);
-    m_ui->lrcDisplayAllButton->setVisible(m_lrcWidgetShowFullScreen);
-
-    m_ui->musiclrccontainerforinline->createFloatPlayWidget();
-    m_lrcWidgetShowFullScreen ? MusicApplication::instance()->showNormal() : MusicApplication::instance()->showFullScreen();
-    m_ui->musiclrccontainerforinline->lrcWidgetShowFullScreen();
 }
 
 void MusicLeftAreaWidget::switchToSelectedItemStyle(int index)

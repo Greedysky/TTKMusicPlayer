@@ -110,8 +110,16 @@ public:
      * Get setting parameter.
      */
     void getParameterSetting();
+    /*!
+     * Current is show full container.
+     */
+    bool isLrcWidgetShowFullScreen() const;
 
 public Q_SLOTS:
+    /*!
+     * Show full container or not.
+     */
+    void lrcWidgetShowFullScreen();
     /*!
      * Lock or not current desktop lrc.
      */
@@ -133,6 +141,7 @@ protected:
 
     Ui::MusicApplication *m_ui;
     bool m_systemCloseConfig;
+    bool m_lrcWidgetShowFullScreen;
     QSystemTrayIcon *m_systemTray;
     MusicSystemTrayMenu *m_systemTrayMenu;
     MusicWindowExtras *m_musicWindowExtras;

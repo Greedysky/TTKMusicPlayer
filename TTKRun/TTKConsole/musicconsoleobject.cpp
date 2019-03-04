@@ -157,7 +157,7 @@ bool MusicConsoleObject::init(const QCoreApplication &app)
                 qDebug() << "Music playlist read error!";
                 return false;
             }
-            manager.readMusicSongsConfig(items);
+            manager.readPlaylistConfig(items);
 
             foreach(const MusicSongItem &item, items)
             {

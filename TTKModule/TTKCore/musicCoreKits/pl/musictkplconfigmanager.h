@@ -20,11 +20,12 @@
  ================================================= */
 
 #include "musicabstractxml.h"
+#include "musicplaylistinterface.h"
 
 /*! @brief The class of the tkpl config manager.
  * @author Greedysky <greedysky@163.com>
  */
-class MUSIC_CORE_EXPORT MusicTKPLConfigManager : public MusicAbstractXml
+class MUSIC_CORE_EXPORT MusicTKPLConfigManager : public MusicAbstractXml, public MusicPlaylistInterface
 {
     Q_OBJECT
     TTK_DECLARE_MODULE(MusicTKPLConfigManager)
@@ -37,20 +38,20 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readMusicXMLConfig() { return readConfig(MUSICPATH_FULL); }
+    inline bool readMusicConfig() { return readConfig(MUSICPATH_FULL); }
 
     /*!
-     * Write music datas into xml file.
+     * Read datas from config file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics);
+    virtual void readPlaylistConfig(MusicSongItems &musics) override;
     /*!
      * Write music datas into xml file.
      */
-    void writeMusicSongsConfig(const MusicSongItems &musics, const QString &path);
+    void writePlaylistConfig(const MusicSongItems &musics);
     /*!
-     * Read music datas into xml file.
+     * Write datas into config file.
      */
-    void readMusicSongsConfig(MusicSongItems &musics);
+    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) override;
 
 protected:
     /*!

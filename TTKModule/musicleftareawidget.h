@@ -66,10 +66,6 @@ public:
      * Create sound KMicro widget.
      */
     void createSoundKMicroWidget(const QString &name);
-    /*!
-     * Current is show full container.
-     */
-    bool isLrcWidgetShowFullScreen() const;
 
 Q_SIGNALS:
     /*!
@@ -94,10 +90,6 @@ public Q_SLOTS:
      * To download music data from net finished.
      */
     void musicDownloadSongFinished();
-    /*!
-     * Show full container or not.
-     */
-    void lrcWidgetShowFullScreen();
     /*!
      * Switch to selected item style.
      */
@@ -127,7 +119,6 @@ protected:
     Ui::MusicApplication *m_ui;
 
     int m_currentIndex;
-    bool m_lrcWidgetShowFullScreen;
     QWidget *m_stackedWidget;
     MusicSoundKMicroWidget *m_soundKMicroWidget;
     MusicQualityChoicePopWidget *m_qualityChoiceWidget;

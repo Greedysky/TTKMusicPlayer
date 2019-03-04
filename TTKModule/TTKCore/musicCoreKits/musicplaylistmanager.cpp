@@ -94,14 +94,14 @@ void MusicPlaylistManager::readLisList(const QString &path, MusicSongItems &item
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readMusicSongsConfig(items);
+        manager.readPlaylistConfig(items);
     }
 }
 
 void MusicPlaylistManager::writeLisList(const QString &path, const MusicSongItem &item)
 {
     MusicTKPLConfigManager manager;
-    manager.writeMusicSongsConfig(MusicSongItems() << item, path);
+    manager.writePlaylistConfig(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems &items)
