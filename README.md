@@ -17,9 +17,9 @@ Compiler tutorial I have written in the wiki.(See here <u>https://github.com/Gre
  
 ## CI Status
  * Qt develop version be tested on Qt4.8.7 for windows-mingw 32bit
- * Qt develop version be tested on Qt4.8.7 for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt4.8.7 for linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-mingw 32bit
- * Qt develop version be tested on Qt5.x for ubuntu-linux-gcc 64bit
+ * Qt develop version be tested on Qt5.x for linux-gcc 64bit
  * Qt develop version be tested on Qt5.x for windows-msvc
  
 | Platform | Qt & Compiler       | Status                                                                                      |
@@ -84,7 +84,7 @@ TTKMusicPlayer can meet your most demands
  * ModPlug File(*.mod *.s3m *.xm *.it *.669 *.amf *.ams *.dbm *.dmf *.dsm *.far,mdl *.med *.mtm 
                 *.okt *.ptm *.stm *.ult *.umx *.mt2 *.psm *.mdz *.s3z *.xmz *.itz *.mdr *.s3r
                 *.xmr *.itr *.dgz *.s3gz *.xmgz *.itgz)
- * Playlist formats(ttklis, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl)
+ * Playlist formats(ttklist, m3u, m3u8, pls, wpl, xspf, asx, kwl, kgl)
  * Junior fans interface. Interface cool, gorgeous pop. Maintaining a perfect performance under Vista and XP, refreshing
 Screenshots.
  * Search and high-speed downloads. Song search accuracy optimization, intelligent save bandwidth, you can disable the network function, 8 source download speed.
