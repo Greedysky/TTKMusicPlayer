@@ -47,15 +47,16 @@ public:
     /*!
      * Read history search datas from xml file by given name.
      */
-    inline bool readSearchXMLConfig(){ return readConfig(MUSICSEARCH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(MUSICSEARCH_FULL); }
+
     /*!
-     * Write history search datas into xml file.
+     * Read datas from config file.
      */
-    void writeSearchConfig(const MusicSearchRecords &records);
+    void readSearchData(MusicSearchRecords &records);
     /*!
-     * Read history search datas into xml file.
+     * Write datas into config file.
      */
-    void readSearchConfig(MusicSearchRecords &records);
+    void writeSearchData(const MusicSearchRecords &records);
 
 };
 

@@ -38,11 +38,16 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readXMLConfig() { return readConfig(COFIGPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(COFIGPATH_FULL); }
+
     /*!
-     * Write datas into xml file.
+     * Read datas from config file.
      */
-    void writeXMLConfig();
+    void readSysConfigData() const;
+    /*!
+     * Write datas into config file.
+     */
+    void writeSysConfigData();
 
     /*!
      * Read System Last Play Index Config.
@@ -56,10 +61,6 @@ public:
      * Read Show Desktop Lrc Geometry Config.
      */
     QPoint readShowDLrcGeometry() const;
-    /*!
-     * Read Sys Load Config.
-     */
-    void readSysLoadConfig() const;
 
 };
 

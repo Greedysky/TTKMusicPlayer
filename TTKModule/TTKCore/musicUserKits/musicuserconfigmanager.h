@@ -57,15 +57,16 @@ public:
     /*!
      * Read user datas from xml file by given name.
      */
-    inline bool readUserXMLConfig(){ return readConfig(USERPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(USERPATH_FULL); }
+
     /*!
-     * Write user datas into xml file.
+     * Read datas from config file.
      */
-    void writeUserXMLConfig(const MusicUserRecords &records);
+    void readUserData(MusicUserRecords &records);
     /*!
-     * Read user datas into xml file.
+     * Write datas into config file.
      */
-    void readUserConfig(MusicUserRecords &records);
+    void writeUserData(const MusicUserRecords &records);
 
 };
 

@@ -13,7 +13,7 @@ MusicXMMVInfoConfigManager::MusicXMMVInfoConfigManager(QObject *parent)
 
 }
 
-void MusicXMMVInfoConfigManager::readMVInfoConfig(MusicObject::MusicSongInformation *info)
+void MusicXMMVInfoConfigManager::readMovieInfoData(MusicObject::MusicSongInformation *info)
 {
     info->m_timeLength = MusicTime::msecTime2LabelJustified(readXmlTextByTagName("duration").toInt()*1000);
 
@@ -395,7 +395,7 @@ void MusicDownLoadQueryXMMovieThread::readFromMusicMVAttribute(MusicObject::Musi
 
     MusicXMMVInfoConfigManager xml;
     xml.fromByteArray(reply->readAll());
-    xml.readMVInfoConfig(info);
+    xml.readMovieInfoData(info);
 
     for(int i=0; i<info->m_songAttrs.count(); ++i)
     {

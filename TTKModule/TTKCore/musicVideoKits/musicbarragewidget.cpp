@@ -177,19 +177,19 @@ void MusicBarrageWidget::createAnimation(QLabel *label)
 void MusicBarrageWidget::readBarrage()
 {
     MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readBarrageXMLConfig())
+    if(!manager.readConfig())
     {
         return;
     }
-    manager.readBarrageConfig(m_barrageRecords);
+    manager.readBarrageData(m_barrageRecords);
 }
 
 void MusicBarrageWidget::writeBarrage()
 {
     MusicBarrageRecordConfigManager manager(this);
-    if(!manager.readBarrageXMLConfig())
+    if(!manager.readConfig())
     {
         return;
     }
-    manager.writeBarrageConfig(m_barrageRecords);
+    manager.readBarrageData(m_barrageRecords);
 }

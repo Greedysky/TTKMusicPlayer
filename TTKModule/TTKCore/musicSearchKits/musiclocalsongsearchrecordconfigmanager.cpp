@@ -6,7 +6,19 @@ MusicLocalSongSearchRecordConfigManager::MusicLocalSongSearchRecordConfigManager
 
 }
 
-void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearchRecords &records)
+void MusicLocalSongSearchRecordConfigManager::readSearchData(MusicSearchRecords &records)
+{
+    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
+    for(int i=0; i<nodelist.count(); ++i)
+    {
+        MusicSearchRecord record;
+        record.m_name = nodelist.at(i).toElement().attribute("name");
+        record.m_time = nodelist.at(i).toElement().text();
+        records << record;
+    }
+}
+
+void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchRecords &records)
 {
     if(!writeConfig(MUSICSEARCH_FULL))
     {
@@ -26,16 +38,4 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchConfig(const MusicSearc
     //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
-}
-
-void MusicLocalSongSearchRecordConfigManager::readSearchConfig(MusicSearchRecords &records)
-{
-    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
-    for(int i=0; i<nodelist.count(); ++i)
-    {
-        MusicSearchRecord record;
-        record.m_name = nodelist.at(i).toElement().attribute("name");
-        record.m_time = nodelist.at(i).toElement().text();
-        records << record;
-    }
 }

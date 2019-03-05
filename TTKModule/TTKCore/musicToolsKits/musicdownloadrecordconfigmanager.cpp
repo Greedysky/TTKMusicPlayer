@@ -6,7 +6,21 @@ MusicDownloadRecordConfigManager::MusicDownloadRecordConfigManager(MusicObject::
     m_type = type;
 }
 
-void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicSongs &records)
+void MusicDownloadRecordConfigManager::readDownloadData(MusicSongs &records)
+{
+    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
+    for(int i=0; i<nodelist.count(); ++i)
+    {
+        MusicSong record;
+        record.setMusicName(nodelist.at(i).toElement().attribute("name"));
+        record.setMusicSizeStr(nodelist.at(i).toElement().attribute("size"));
+        record.setMusicAddTimeStr(nodelist.at(i).toElement().attribute("time"));
+        record.setMusicPath(nodelist.at(i).toElement().text());
+        records << record;
+    }
+}
+
+void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &records)
 {
     if(!writeConfig(mappingFilePathFromEnum()))
     {
@@ -27,20 +41,6 @@ void MusicDownloadRecordConfigManager::writeDownloadConfig(const MusicSongs &rec
     //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
-}
-
-void MusicDownloadRecordConfigManager::readDownloadConfig(MusicSongs &records)
-{
-    const QDomNodeList &nodelist = m_document->elementsByTagName("value");
-    for(int i=0; i<nodelist.count(); ++i)
-    {
-        MusicSong record;
-        record.setMusicName(nodelist.at(i).toElement().attribute("name"));
-        record.setMusicSizeStr(nodelist.at(i).toElement().attribute("size"));
-        record.setMusicAddTimeStr(nodelist.at(i).toElement().attribute("time"));
-        record.setMusicPath(nodelist.at(i).toElement().text());
-        records << record;
-    }
 }
 
 QString MusicDownloadRecordConfigManager::mappingFilePathFromEnum() const

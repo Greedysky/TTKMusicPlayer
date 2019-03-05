@@ -9,7 +9,7 @@ MusicKGLConfigManager::MusicKGLConfigManager(QObject *parent)
 
 }
 
-void MusicKGLConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicKGLConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
@@ -68,7 +68,7 @@ void MusicKGLConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicKGLConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicKGLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     Q_UNUSED(musics);
     Q_UNUSED(path);

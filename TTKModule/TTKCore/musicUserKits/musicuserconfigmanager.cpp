@@ -6,7 +6,23 @@ MusicUserConfigManager::MusicUserConfigManager(QObject *parent)
 
 }
 
-void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
+void MusicUserConfigManager::readUserData(MusicUserRecords &records)
+{
+    QDomNodeList nodelist = m_document->elementsByTagName("userName");
+    for(int i=0; i<nodelist.count(); ++i)
+    {
+        MusicUserRecord record;
+        const QDomElement &element = nodelist.at(i).toElement();
+        record.m_uid = element.attribute("name");
+        record.m_rememberFlag = (element.attribute("remember") == "1");
+        record.m_autoFlag = (element.attribute("auto") == "1");
+        record.m_server = element.attribute("type").toInt();
+        record.m_password =  element.text();
+        records << record;
+    }
+}
+
+void MusicUserConfigManager::writeUserData(const MusicUserRecords &records)
 {
     if(!writeConfig(USERPATH_FULL))
     {
@@ -28,20 +44,4 @@ void MusicUserConfigManager::writeUserXMLConfig(const MusicUserRecords &records)
     //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
-}
-
-void MusicUserConfigManager::readUserConfig(MusicUserRecords &records)
-{
-    QDomNodeList nodelist = m_document->elementsByTagName("userName");
-    for(int i=0; i<nodelist.count(); ++i)
-    {
-        MusicUserRecord record;
-        const QDomElement &element = nodelist.at(i).toElement();
-        record.m_uid = element.attribute("name");
-        record.m_rememberFlag = (element.attribute("remember") == "1");
-        record.m_autoFlag = (element.attribute("auto") == "1");
-        record.m_server = element.attribute("type").toInt();
-        record.m_password =  element.text();
-        records << record;
-    }
 }

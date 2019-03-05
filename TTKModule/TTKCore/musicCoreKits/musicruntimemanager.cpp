@@ -31,8 +31,8 @@ void MusicRunTimeManager::run() const
 
     M_LOGGER_INFO("Load Translation");
     MusicSysConfigManager *xml = new MusicSysConfigManager;
-    xml->readXMLConfig();
-    xml->readSysLoadConfig();
+    xml->readConfig();
+    xml->readSysConfigData();
 
     MusicUtils::Core::checkCacheSize(
                 M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt()*MH_MB2B,

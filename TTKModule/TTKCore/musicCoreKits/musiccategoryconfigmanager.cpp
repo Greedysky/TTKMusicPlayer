@@ -6,7 +6,7 @@ MusicCategoryConfigManager::MusicCategoryConfigManager(QObject *parent)
 
 }
 
-bool MusicCategoryConfigManager::readCategoryConfig(Type type)
+bool MusicCategoryConfigManager::readConfig(Type type)
 {
     QString v;
     switch(type)
@@ -18,10 +18,10 @@ bool MusicCategoryConfigManager::readCategoryConfig(Type type)
         default: break;
     }
 
-    return readConfig(v);
+    return MusicAbstractXml::readConfig(v);
 }
 
-void MusicCategoryConfigManager::readCategoryConfig(MusicResultsCategorys &records, const QString &key)
+void MusicCategoryConfigManager::readCategoryData(MusicResultsCategorys &records, const QString &key)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName(key);
     for(int i=0; i<nodes.count(); ++i)

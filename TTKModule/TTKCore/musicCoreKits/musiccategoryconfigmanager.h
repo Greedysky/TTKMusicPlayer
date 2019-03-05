@@ -77,11 +77,12 @@ public:
     /*!
      * Read user datas from xml file by given name.
      */
-    bool readCategoryConfig(Type type);
+    bool readConfig(Type type);
+
     /*!
-     * Read user datas from xml file.
+     * Read datas from config file.
      */
-    void readCategoryConfig(MusicResultsCategorys &records, const QString &key);
+    void readCategoryData(MusicResultsCategorys &records, const QString &key);
 
 };
 

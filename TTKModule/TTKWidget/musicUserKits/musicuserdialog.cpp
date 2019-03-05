@@ -471,11 +471,11 @@ void MusicUserDialog::networkLoginMode()
 void MusicUserDialog::readFromUserConfig()
 {
     MusicUserConfigManager xml;
-    if(!xml.readUserXMLConfig())
+    if(!xml.readConfig())
     {
         return;
     }
-    xml.readUserConfig(m_records);
+    xml.readUserData(m_records);
     readFromUserSettings();
 }
 
@@ -507,7 +507,7 @@ void MusicUserDialog::writeToUserConfig()
 {
     MusicUserConfigManager xml;
     writeToUserSettings();
-    xml.writeUserXMLConfig(m_records);
+    xml.writeUserData(m_records);
 }
 
 void MusicUserDialog::writeToUserSettings()

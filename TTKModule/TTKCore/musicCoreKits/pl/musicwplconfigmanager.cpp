@@ -9,7 +9,7 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 }
 
-void MusicWPLConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicWPLConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     bool state = false;
     const QDomNodeList &nodes = m_document->elementsByTagName("head");
@@ -48,7 +48,7 @@ void MusicWPLConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicWPLConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))

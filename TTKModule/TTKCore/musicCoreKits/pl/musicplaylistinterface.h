@@ -37,11 +37,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistConfig(MusicSongItems &musics) = 0;
+    virtual void readPlaylistData(MusicSongItems &musics) = 0;
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) = 0;
+    virtual void writePlaylistData(const MusicSongItems &musics, const QString &path) = 0;
 
 };
 

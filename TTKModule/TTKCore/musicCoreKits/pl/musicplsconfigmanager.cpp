@@ -14,7 +14,7 @@ bool MusicPLSConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicPLSConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     bool state = false;
     MusicSongItem item;
@@ -71,7 +71,7 @@ void MusicPLSConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicPLSConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     if(musics.isEmpty())
     {

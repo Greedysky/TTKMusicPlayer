@@ -13,7 +13,7 @@ bool MusicM3UConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicM3UConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicM3UConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     bool state = false;
     MusicSongItem item;
@@ -67,7 +67,7 @@ void MusicM3UConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicM3UConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicM3UConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     if(musics.isEmpty())
     {

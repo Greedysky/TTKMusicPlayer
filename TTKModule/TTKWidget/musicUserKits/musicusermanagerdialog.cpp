@@ -77,12 +77,12 @@ void MusicUserManagerDialog::musicUserLogoff()
                             QString::number(m_userModel->getUserLogTime(m_userUID).toLongLong() + m_time.elapsed()/(MT_S2MS*30) ));
 
     MusicUserConfigManager xml;
-    if(!xml.readUserXMLConfig())
+    if(!xml.readConfig())
     {
         return;
     }
     MusicUserRecords records;
-    xml.readUserConfig( records );
+    xml.readUserData( records );
 
     int index = -1;
     for(int i=0; i<records.count(); ++i)
@@ -96,7 +96,7 @@ void MusicUserManagerDialog::musicUserLogoff()
     {
         records[index].m_autoFlag = false;  //auto login flag
     }
-    xml.writeUserXMLConfig( records );
+    xml.writeUserData( records );
 
     m_userUID.m_uid.clear();
     emit userStateChanged(MusicUserUIDItem(), QString());

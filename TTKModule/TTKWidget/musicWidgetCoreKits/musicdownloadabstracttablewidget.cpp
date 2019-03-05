@@ -21,7 +21,7 @@ MusicDownloadAbstractTableWidget::~MusicDownloadAbstractTableWidget()
 {
     M_CONNECTION_PTR->removeValue(getClassName());
     MusicDownloadRecordConfigManager xml(m_type, this);
-    xml.writeDownloadConfig(*m_musicSongs);
+    xml.writeDownloadData(*m_musicSongs);
     clear();
 
     delete m_delegate;
@@ -31,11 +31,11 @@ void MusicDownloadAbstractTableWidget::updateSongsFileName(const MusicSongs &son
 {
     Q_UNUSED(songs);
     MusicDownloadRecordConfigManager xml(m_type, this);
-    if(!xml.readDownloadXMLConfig())
+    if(!xml.readConfig())
     {
         return;
     }
-    xml.readDownloadConfig(*m_musicSongs);
+    xml.readDownloadData(*m_musicSongs);
 
     setRowCount(m_musicSongs->count()); //reset row count
 

@@ -171,19 +171,19 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     ////////////////////////////////////////////////
     MusicSongs records;
     MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
-    if(!down.readDownloadXMLConfig())
+    if(!down.readConfig())
     {
         return;
     }
 
-    down.readDownloadConfig( records );
+    down.readDownloadData( records );
     MusicSong record;
     record.setMusicName(musicSong);
     record.setMusicPath(QFileInfo(downloadName).absoluteFilePath());
     record.setMusicSizeStr(musicAttr.m_size);
     record.setMusicAddTimeStr("-1");
     records << record;
-    down.writeDownloadConfig( records );
+    down.writeDownloadData( records );
     ////////////////////////////////////////////////
     if(QFile::exists(downloadName))
     {

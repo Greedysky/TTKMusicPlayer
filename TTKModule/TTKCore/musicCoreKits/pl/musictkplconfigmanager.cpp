@@ -7,7 +7,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
 
 }
 
-void MusicTKPLConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -27,12 +27,12 @@ void MusicTKPLConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicTKPLConfigManager::writePlaylistConfig(const MusicSongItems &musics)
+void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics)
 {
-    writePlaylistConfig(musics, MUSICPATH_FULL);
+    writePlaylistData(musics, MUSICPATH_FULL);
 }
 
-void MusicTKPLConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))

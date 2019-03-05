@@ -38,20 +38,20 @@ public:
     /*!
      * Read config datas from xml file by given name.
      */
-    inline bool readMusicConfig() { return readConfig(MUSICPATH_FULL); }
+    inline bool readConfig(const QString &name = MUSICPATH_FULL) { return MusicAbstractXml::readConfig(name); }
 
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistConfig(MusicSongItems &musics) override;
+    virtual void readPlaylistData(MusicSongItems &musics) override;
     /*!
      * Write music datas into xml file.
      */
-    void writePlaylistConfig(const MusicSongItems &musics);
+    void writePlaylistData(const MusicSongItems &musics);
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) override;
+    virtual void writePlaylistData(const MusicSongItems &musics, const QString &path) override;
 
 protected:
     /*!

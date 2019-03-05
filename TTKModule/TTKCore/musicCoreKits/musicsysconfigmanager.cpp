@@ -10,7 +10,210 @@ MusicSysConfigManager::MusicSysConfigManager(QObject *parent)
 
 }
 
-void MusicSysConfigManager::writeXMLConfig()
+void MusicSysConfigManager::readSysConfigData() const
+{
+    M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced,
+                     readXmlAttributeByTagNameValue("playMode").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced,
+                     readXmlAttributeByTagNameValue("playVolume").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced,
+                     readXmlAttributeByTagNameValue("language").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced,
+                     readXmlAttributeByTagNameValue("autoPlay").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced,
+                     readXmlAttributeByTagNameValue("closeEvent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkChoiced,
+                     readXmlAttributeByTagNameValue("closeNetwork").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced,
+                     readXmlAttributeByTagNameValue("fileAssociation").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced,
+                     readXmlAttributeByTagNameValue("windowConcise").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced,
+                     readXmlAttributeByTagNameValue("remoteWidgetMode").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced,
+                     readXmlAttributeByTagNameValue("windowQuitMode").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced,
+                     readXmlAttributeByTagNameValue("otherBackgroundLossless").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateChoiced,
+                     readXmlAttributeByTagNameValue("otherCheckUpdate").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
+                     readXmlAttributeByTagNameValue("otherSearch").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced,
+                     readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced,
+                     readXmlAttributeByTagNameValue("otherUseInfo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced,
+                     readXmlAttributeByTagNameValue("otherWriteAlbumCover").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced,
+                     readXmlAttributeByTagNameValue("otherWriteInfo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced,
+                     readXmlAttributeByTagNameValue("otherSideBy").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
+                     readXmlAttributeByTagNameValue("otherSongFormat").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced,
+                     readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced,
+                     readXmlAttributeByTagNameValue("otherRippleSpectrumOpacity").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTheme"));
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTransparent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced,
+                     readXmlAttributeByTagNameValue("backgroundTransparentEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced,
+                     readXmlAttributeByTagNameValue("backgroundListTransparent").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced,
+                     readXmlAttributeByTagNameValue("hotkeyEnable"));
+    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced,
+                     readXmlAttributeByTagNameValue("hotkeyString"));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced,
+                     readXmlAttributeByTagNameValue("showInlineLrc").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcColor").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced,
+                     readXmlAttributeByTagNameValue("lrcSize").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced,
+                     readXmlAttributeByTagNameValue("lrcFamily"));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcFrontgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcBackgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced,
+                     readXmlAttributeByTagNameValue("lrcType").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced,
+                     readXmlAttributeByTagNameValue("lrcTransparent").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced,
+                     readXmlAttributeByTagNameValue("showDesktopLrc").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcDColor").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced,
+                     readXmlAttributeByTagNameValue("lrcDSize").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced,
+                     readXmlAttributeByTagNameValue("lrcDFamily"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcDFrontgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced,
+                     readXmlAttributeByTagNameValue("lrcDBackgroundColor"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced,
+                     readXmlAttributeByTagNameValue("lrcDType").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced,
+                     readXmlAttributeByTagNameValue("lrcDTransparent").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced,
+                     readXmlAttributeByTagNameValue("lrcDWindowType").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced,
+                     readXmlAttributeByTagNameValue("lrcDSingleLineType").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced,
+                     readXmlAttributeByTagNameValue("lrcDLocked").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced,
+                     readXmlAttributeByTagNameValue("enhancedMusic").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced,
+                     readXmlAttributeByTagNameValue("equalizerIndex").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced,
+                     readXmlAttributeByTagNameValue("equalizerEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced,
+                     readXmlAttributeByTagNameValue("equalizerValue"));
+//    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced,
+//                     readXmlAttributeByTagNameValue("enhancedBalance").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, 0);
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced,
+                     readXmlAttributeByTagNameValue("enhancedFadeEnable").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced,
+                     readXmlAttributeByTagNameValue("enhancedFadeInValue").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced,
+                     readXmlAttributeByTagNameValue("enhancedFadeOutValue").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced,
+                     readXmlAttributeByTagNameValue("enhancedBS2B").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced,
+                     readXmlAttributeByTagNameValue("enhancedCrossfade").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced,
+                     readXmlAttributeByTagNameValue("enhancedStereo").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced,
+                     readXmlAttributeByTagNameValue("enhancedLADSPA").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced,
+                     readXmlAttributeByTagNameValue("enhancedSOX").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced,
+                     readXmlAttributeByTagNameValue("enhancedSRC").toInt());
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoIndexChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoIndex").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlay").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlayHour").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlaySecond").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlayRepeat").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlayItemIndex").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoPlaySongIndex").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoStop").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopHourChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoStopHour").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoStopSecond").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoStopRepeat").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoShutdown").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoShutdownHour").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoShutdownSecond").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
+                     readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
+
+
+    QString path = readXmlAttributeByTagNameValue("downloadMusicPath");
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
+                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::musicPrefix() : path);
+    path = readXmlAttributeByTagNameValue("downloadLrcPath");
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
+                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::lrcPrefix() : path);
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadCacheLimit").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced,
+                     readXmlAttributeByTagNameValue("downloadCacheSize").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadLimit").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
+                     readXmlAttributeByTagNameValue("downloadServer").toInt());
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadDLoadLimit"));
+    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
+                     readXmlAttributeByTagNameValue("downloadULoadLimit"));
+
+
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuMusicConfig"));
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuDataConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuDataConfig"));
+    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuTimeConfigChoiced,
+                     readXmlAttributeByTagNameValue("qiniuTimeConfig"));
+}
+
+void MusicSysConfigManager::writeSysConfigData()
 {
     const int playModeChoiced = M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt();
     const int volumeChoiced = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
@@ -314,207 +517,4 @@ QPoint MusicSysConfigManager::readShowDLrcGeometry() const
         return QPoint();
     }
     return QPoint(point[0].toInt(), point[1].toInt());
-}
-
-void MusicSysConfigManager::readSysLoadConfig() const
-{
-    M_SETTING_PTR->setValue(MusicSettingManager::PlayModeChoiced,
-                     readXmlAttributeByTagNameValue("playMode").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::VolumeChoiced,
-                     readXmlAttributeByTagNameValue("playVolume").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::CurrentLanIndexChoiced,
-                     readXmlAttributeByTagNameValue("language").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::AutoPlayChoiced,
-                     readXmlAttributeByTagNameValue("autoPlay").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseEventChoiced,
-                     readXmlAttributeByTagNameValue("closeEvent").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::CloseNetWorkChoiced,
-                     readXmlAttributeByTagNameValue("closeNetwork").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::FileAssociationChoiced,
-                     readXmlAttributeByTagNameValue("fileAssociation").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowConciseChoiced,
-                     readXmlAttributeByTagNameValue("windowConcise").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::RemoteWidgetModeChoiced,
-                     readXmlAttributeByTagNameValue("remoteWidgetMode").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::WindowQuitModeChoiced,
-                     readXmlAttributeByTagNameValue("windowQuitMode").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherBackgroundLosslessChoiced,
-                     readXmlAttributeByTagNameValue("otherBackgroundLossless").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherCheckUpdateChoiced,
-                     readXmlAttributeByTagNameValue("otherCheckUpdate").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSearchChoiced,
-                     readXmlAttributeByTagNameValue("otherSearch").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseAlbumCoverChoiced,
-                     readXmlAttributeByTagNameValue("otherUseAlbumCover").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherUseInfoChoiced,
-                     readXmlAttributeByTagNameValue("otherUseInfo").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteAlbumCoverChoiced,
-                     readXmlAttributeByTagNameValue("otherWriteAlbumCover").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherWriteInfoChoiced,
-                     readXmlAttributeByTagNameValue("otherWriteInfo").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSideByChoiced,
-                     readXmlAttributeByTagNameValue("otherSideBy").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherSongFormat,
-                     readXmlAttributeByTagNameValue("otherSongFormat").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherLrcKTVModeChoiced,
-                     readXmlAttributeByTagNameValue("otherLrcKTV").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumEnableChoiced,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumColorChoiced,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::OtherRippleSpectrumOpacityChoiced,
-                     readXmlAttributeByTagNameValue("otherRippleSpectrumOpacity").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundThemeChoiced,
-                     readXmlAttributeByTagNameValue("backgroundTheme"));
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentChoiced,
-                     readXmlAttributeByTagNameValue("backgroundTransparent").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced,
-                     readXmlAttributeByTagNameValue("backgroundTransparentEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced,
-                     readXmlAttributeByTagNameValue("backgroundListTransparent").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyEnableChoiced,
-                     readXmlAttributeByTagNameValue("hotkeyEnable"));
-    M_SETTING_PTR->setValue(MusicSettingManager::HotkeyStringChoiced,
-                     readXmlAttributeByTagNameValue("hotkeyString"));
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowInlineLrcChoiced,
-                     readXmlAttributeByTagNameValue("showInlineLrc").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcColor").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcSizeChoiced,
-                     readXmlAttributeByTagNameValue("lrcSize").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFamilyChoiced,
-                     readXmlAttributeByTagNameValue("lrcFamily"));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcFrontgroundColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcFrontgroundColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcBackgroundColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcBackgroundColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcTypeChoiced,
-                     readXmlAttributeByTagNameValue("lrcType").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::LrcColorTransChoiced,
-                     readXmlAttributeByTagNameValue("lrcTransparent").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced,
-                     readXmlAttributeByTagNameValue("showDesktopLrc").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcDColor").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSizeChoiced,
-                     readXmlAttributeByTagNameValue("lrcDSize").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFamilyChoiced,
-                     readXmlAttributeByTagNameValue("lrcDFamily"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcFrontgroundColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcDFrontgroundColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcBackgroundColorChoiced,
-                     readXmlAttributeByTagNameValue("lrcDBackgroundColor"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcTypeChoiced,
-                     readXmlAttributeByTagNameValue("lrcDType").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcColorTransChoiced,
-                     readXmlAttributeByTagNameValue("lrcDTransparent").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcWindowTypeChoiced,
-                     readXmlAttributeByTagNameValue("lrcDWindowType").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcSingleLineTypeChoiced,
-                     readXmlAttributeByTagNameValue("lrcDSingleLineType").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DLrcLockedChoiced,
-                     readXmlAttributeByTagNameValue("lrcDLocked").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced,
-                     readXmlAttributeByTagNameValue("enhancedMusic").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerIndexChoiced,
-                     readXmlAttributeByTagNameValue("equalizerIndex").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced,
-                     readXmlAttributeByTagNameValue("equalizerEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EqualizerValueChoiced,
-                     readXmlAttributeByTagNameValue("equalizerValue"));
-//    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced,
-//                     readXmlAttributeByTagNameValue("enhancedBalance").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBalanceChoiced, 0);
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeEnableChoiced,
-                     readXmlAttributeByTagNameValue("enhancedFadeEnable").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeInValueChoiced,
-                     readXmlAttributeByTagNameValue("enhancedFadeInValue").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedFadeOutValueChoiced,
-                     readXmlAttributeByTagNameValue("enhancedFadeOutValue").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedBS2BChoiced,
-                     readXmlAttributeByTagNameValue("enhancedBS2B").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedCrossfadeChoiced,
-                     readXmlAttributeByTagNameValue("enhancedCrossfade").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedStereoChoiced,
-                     readXmlAttributeByTagNameValue("enhancedStereo").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedLADSPAChoiced,
-                     readXmlAttributeByTagNameValue("enhancedLADSPA").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSOXChoiced,
-                     readXmlAttributeByTagNameValue("enhancedSOX").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::EnhancedSRCChoiced,
-                     readXmlAttributeByTagNameValue("enhancedSRC").toInt());
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoIndexChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoIndex").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlay").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayHourChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlayHour").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlaySecondChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlaySecond").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayRepeatChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlayRepeat").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlayItemIndexChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlayItemIndex").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoPlaySongIndexChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoPlaySongIndex").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoStop").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopHourChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoStopHour").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopSecondChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoStopSecond").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoStopRepeatChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoStopRepeat").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoShutdown").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownHourChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoShutdownHour").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownSecondChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoShutdownSecond").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::TimerAutoShutdownRepeatChoiced,
-                     readXmlAttributeByTagNameValue("timeAutoShutdownRepeat").toInt());
-
-
-    QString path = readXmlAttributeByTagNameValue("downloadMusicPath");
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadMusicPathDirChoiced,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::musicPrefix() : path);
-    path = readXmlAttributeByTagNameValue("downloadLrcPath");
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLrcPathDirChoiced,
-                           (path.isEmpty() || !QFile::exists(path)) ? MusicUtils::Core::lrcPrefix() : path);
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadCacheLimit").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadCacheSizeChoiced,
-                     readXmlAttributeByTagNameValue("downloadCacheSize").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadLimit").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadServerChoiced,
-                     readXmlAttributeByTagNameValue("downloadServer").toInt());
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadDLoadLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadDLoadLimit"));
-    M_SETTING_PTR->setValue(MusicSettingManager::DownloadULoadLimitChoiced,
-                     readXmlAttributeByTagNameValue("downloadULoadLimit"));
-
-
-    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuMusicConfigChoiced,
-                     readXmlAttributeByTagNameValue("qiniuMusicConfig"));
-    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuDataConfigChoiced,
-                     readXmlAttributeByTagNameValue("qiniuDataConfig"));
-    M_SETTING_PTR->setValue(MusicSettingManager::QiNiuTimeConfigChoiced,
-                     readXmlAttributeByTagNameValue("qiniuTimeConfig"));
 }

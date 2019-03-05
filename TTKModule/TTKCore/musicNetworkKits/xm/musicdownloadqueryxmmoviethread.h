@@ -37,9 +37,9 @@ public:
     explicit MusicXMMVInfoConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read mv info datas into xml file.
+     * Read datas from config file.
      */
-    void readMVInfoConfig(MusicObject::MusicSongInformation *info);
+    void readMovieInfoData(MusicObject::MusicSongInformation *info);
 
 };
 

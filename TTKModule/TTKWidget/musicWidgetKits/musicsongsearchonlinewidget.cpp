@@ -58,16 +58,16 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     ////////////////////////////////////////////////
     MusicSearchRecords records;
     MusicLocalSongSearchRecordConfigManager search(this);
-    if(!search.readSearchXMLConfig())
+    if(!search.readConfig())
     {
         return;
     }
-    search.readSearchConfig( records );
+    search.readSearchData( records );
     MusicSearchRecord record;
     record.m_name = text;
     record.m_time = QString::number(MusicTime::timeStamp());
     records.insert(0, record);
-    search.writeSearchConfig( records );
+    search.writeSearchData( records );
     ////////////////////////////////////////////////
     if(!m_downLoadManager)
     {

@@ -8,7 +8,7 @@ MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
 
 }
 
-void MusicXSPFConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicXSPFConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     bool state = false;
     const QDomNodeList &nodes = m_document->elementsByTagName("playlist");
@@ -51,7 +51,7 @@ void MusicXSPFConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicXSPFConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))

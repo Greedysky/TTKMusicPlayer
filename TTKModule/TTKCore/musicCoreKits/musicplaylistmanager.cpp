@@ -94,14 +94,14 @@ void MusicPlaylistManager::readLisList(const QString &path, MusicSongItems &item
     MusicTKPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writeLisList(const QString &path, const MusicSongItem &item)
 {
     MusicTKPLConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems &items)
@@ -109,14 +109,14 @@ void MusicPlaylistManager::readM3UList(const QString &path, MusicSongItems &item
     MusicM3UConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writeM3UList(const QString &path, const MusicSongItem &item)
 {
     MusicM3UConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems &items)
@@ -124,14 +124,14 @@ void MusicPlaylistManager::readPLSList(const QString &path, MusicSongItems &item
     MusicPLSConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writePLSList(const QString &path, const MusicSongItem &item)
 {
     MusicPLSConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems &items)
@@ -139,14 +139,14 @@ void MusicPlaylistManager::readWPLList(const QString &path, MusicSongItems &item
     MusicWPLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writeWPLList(const QString &path, const MusicSongItem &item)
 {
     MusicWPLConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems &items)
@@ -154,14 +154,14 @@ void MusicPlaylistManager::readXSPFList(const QString &path, MusicSongItems &ite
     MusicXSPFConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writeXSPFList(const QString &path, const MusicSongItem &item)
 {
     MusicXSPFConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readASXList(const QString &path, MusicSongItems &items)
@@ -169,14 +169,14 @@ void MusicPlaylistManager::readASXList(const QString &path, MusicSongItems &item
     MusicASXConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
 void MusicPlaylistManager::writeASXList(const QString &path, const MusicSongItem &item)
 {
     MusicASXConfigManager manager;
-    manager.writePlaylistConfig(MusicSongItems() << item, path);
+    manager.writePlaylistData(MusicSongItems() << item, path);
 }
 
 void MusicPlaylistManager::readKWLList(const QString &path, MusicSongItems &items)
@@ -184,7 +184,7 @@ void MusicPlaylistManager::readKWLList(const QString &path, MusicSongItems &item
     MusicKWLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }
 
@@ -193,6 +193,6 @@ void MusicPlaylistManager::readKGLList(const QString &path, MusicSongItems &item
     MusicKGLConfigManager manager;
     if(manager.readConfig(path))
     {
-        manager.readPlaylistConfig(items);
+        manager.readPlaylistData(items);
     }
 }

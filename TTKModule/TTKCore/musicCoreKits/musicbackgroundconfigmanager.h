@@ -77,13 +77,13 @@ public:
     explicit MusicSkinConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Write datas into xml file.
+     * Read datas from config file.
      */
-    void writeSkinXMLConfig(const MusicSkinConfigItem &item, const QString &path);
+    void readSkinData(MusicSkinConfigItem &item);
     /*!
-     * Read datas into xml file.
+     * Write datas into config file.
      */
-    void readSkinXMLConfig(MusicSkinConfigItem &item);
+    void writeSkinData(const MusicSkinConfigItem &item, const QString &path);
 
 };
 

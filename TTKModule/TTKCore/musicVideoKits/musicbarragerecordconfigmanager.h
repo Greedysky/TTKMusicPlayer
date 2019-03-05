@@ -48,15 +48,16 @@ public:
     /*!
      * Read barrage datas from xml file by given name.
      */
-    inline bool readBarrageXMLConfig(){ return readConfig(BARRAGEPATH_FULL); }
+    inline bool readConfig() { return MusicAbstractXml::readConfig(BARRAGEPATH_FULL); }
+
     /*!
-     * Write barrage datas into xml file.
+     * Read datas from config file.
      */
-    void writeBarrageConfig(const MusicBarrageRecords &records);
+    void readBarrageData(MusicBarrageRecords &records);
     /*!
-     * Read barrage datas into xml file.
+     * Write datas into config file.
      */
-    void readBarrageConfig(MusicBarrageRecords &records);
+    void writeBarrageData(const MusicBarrageRecords &records);
 
 };
 

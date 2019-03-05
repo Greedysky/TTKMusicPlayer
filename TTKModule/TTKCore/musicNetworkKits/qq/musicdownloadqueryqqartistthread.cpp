@@ -12,7 +12,7 @@ MusicQQArtistInfoConfigManager::MusicQQArtistInfoConfigManager(QObject *parent)
 
 }
 
-void MusicQQArtistInfoConfigManager::readArtistInfoConfig(MusicResultsItem *item)
+void MusicQQArtistInfoConfigManager::readArtistInfoData(MusicResultsItem *item)
 {
     const QDomNodeList &resultlist = m_document->elementsByTagName("info");
     for(int i=0; i<resultlist.count(); ++i)
@@ -230,6 +230,6 @@ void MusicDownLoadQueryQQArtistThread::getDownLoadIntro(MusicResultsItem *item)
 
     MusicQQArtistInfoConfigManager xml;
     xml.fromByteArray(reply->readAll());
-    xml.readArtistInfoConfig(item);
+    xml.readArtistInfoData(item);
 
 }

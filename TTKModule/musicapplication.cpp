@@ -1125,18 +1125,18 @@ void MusicApplication::readXMLConfigFromText()
     //Path configuration song
     MusicSongItems songs;
     MusicTKPLConfigManager listXml;
-    if(listXml.readMusicConfig())
+    if(listXml.readConfig())
     {
-        listXml.readPlaylistConfig(songs);
+        listXml.readPlaylistData(songs);
     }
     const bool success = m_musicSongTreeWidget->addMusicLists(songs);
     //////////////////////////////////////////////////////////////
     MusicSysConfigManager xml;
-    if(!xml.readXMLConfig())//open file
+    if(!xml.readConfig())
     {
         return;
     }
-    xml.readSysLoadConfig();
+    xml.readSysConfigData();
     m_applicationObject->loadNetWorkSetting();
 
     //////////////////////////////////////////////////////////////
@@ -1293,8 +1293,8 @@ void MusicApplication::writeXMLConfigToText()
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundListTransparentChoiced, m_topAreaWidget->getBackgroundListAlpha());
     M_SETTING_PTR->setValue(MusicSettingManager::BackgroundTransparentEnableChoiced, m_topAreaWidget->getBackgroundTransparentEnable());
     M_SETTING_PTR->setValue(MusicSettingManager::ShowDesktopLrcChoiced, m_rightAreaWidget->getDestopLrcVisible());
-    xml.writeXMLConfig();
+    xml.writeSysConfigData();
 
     MusicTKPLConfigManager listXml;
-    listXml.writePlaylistConfig(m_musicSongTreeWidget->getMusicLists());
+    listXml.writePlaylistData(m_musicSongTreeWidget->getMusicLists());
 }

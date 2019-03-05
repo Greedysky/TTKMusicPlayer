@@ -37,9 +37,9 @@ public:
     explicit MusicQQArtistInfoConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read artist info datas into xml file.
+     * Read datas from config file.
      */
-    void readArtistInfoConfig(MusicResultsItem *item);
+    void readArtistInfoData(MusicResultsItem *item);
 
 };
 

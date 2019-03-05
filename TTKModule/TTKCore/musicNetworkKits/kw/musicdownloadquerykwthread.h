@@ -37,7 +37,7 @@ public:
     explicit MusicKWMusicInfoConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read music info datas into xml file.
+     * Read datas from config file.
      */
     void readMusicInfoConfig(MusicObject::MusicSongInformation *info);
 

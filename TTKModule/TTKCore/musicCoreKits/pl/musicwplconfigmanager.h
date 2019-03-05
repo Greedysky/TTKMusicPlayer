@@ -38,11 +38,11 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistConfig(MusicSongItems &musics) override;
+    virtual void readPlaylistData(MusicSongItems &musics) override;
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistConfig(const MusicSongItems &musics, const QString &path) override;
+    virtual void writePlaylistData(const MusicSongItems &musics, const QString &path) override;
 
 protected:
     /*!

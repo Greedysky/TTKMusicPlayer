@@ -215,7 +215,7 @@ bool MusicExtractWrap::outputSkin(MusicBackgroundImage *image, const QString &pa
             MusicSkinConfigItem item;
             if(manager.fromByteArray(arrayData))
             {
-                manager.readSkinXMLConfig(item);
+                manager.readSkinData(item);
                 image->m_item = item;
             }
         }
@@ -252,7 +252,7 @@ bool MusicExtractWrap::inputSkin(MusicBackgroundImage *image, const QString &pat
     zipCloseFileInZip(zFile);
 
     MusicSkinConfigManager manager;
-    manager.writeSkinXMLConfig(image->m_item, MUSIC_IMAGE_FILE);
+    manager.writeSkinData(image->m_item, MUSIC_IMAGE_FILE);
     data = manager.toByteArray();
 
     zipOpenNewFileInZip(zFile, (nPrefix + XML_FILE).toLocal8Bit().constData(), &fileInfo, nullptr, 0, nullptr, 0, nullptr, Z_DEFLATED, level);

@@ -76,9 +76,9 @@ public:
     explicit MusicSkinThunderConfigManager(QObject *parent = nullptr);
 
     /*!
-     * Read datas into xml file.
+     * Read datas from config file.
      */
-    void readSkinRemoteXMLConfig(MusicSkinRemoteGroups &items);
+    void readSkinRemoteData(MusicSkinRemoteGroups &items);
 
 };
 

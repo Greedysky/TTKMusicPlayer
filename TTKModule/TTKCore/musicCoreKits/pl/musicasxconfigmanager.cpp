@@ -8,7 +8,7 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 
 }
 
-void MusicASXConfigManager::readPlaylistConfig(MusicSongItems &musics)
+void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
 {
     bool state = false;
     const QDomNodeList &nodes = m_document->elementsByTagName("author");
@@ -54,7 +54,7 @@ void MusicASXConfigManager::readPlaylistConfig(MusicSongItems &musics)
     }
 }
 
-void MusicASXConfigManager::writePlaylistConfig(const MusicSongItems &musics, const QString &path)
+void MusicASXConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
     //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
