@@ -44,6 +44,7 @@ set(MUSIC_CORE_VIDEOKITS_DIR "${MUSIC_LIB_CORE_DIR}/musicVideoKits")
 
 include_directories(
     ${MUSIC_CORE_DIR}
+    ${MUSIC_CORE_DIR}/pl
     ${MUSIC_CORE_LRCMANAGER_DIR}
     ${MUSIC_CORE_NETWORK_DIR}
     ${MUSIC_CORE_NETWORK_DIR}/bd

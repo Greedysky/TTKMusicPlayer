@@ -26,6 +26,7 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrclocallinkwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrccolorwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcposterwidget.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicLrcKits/musiclrcdownloadbatchwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicaudiorecorderwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicdesktopwallpaperwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicfileinformationwidget.ui
@@ -37,7 +38,6 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsoundtouchwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongringtonemakerwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongchecktoolswidget.ui
-    ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsongchecktoolsitemselecteddialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicsoundkmicrowidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsetsKits/musicspectrumwidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicToolsKits/musiccloudfileinformationwidget.ui
@@ -65,4 +65,5 @@ set_property(GLOBAL PROPERTY MUSIC_UIS
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsonglistenhancelosslesswidget.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicmessageaboutdialog.ui
     ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musiccolordialog.ui
+    ${MUSIC_WIDGET_UI_DIR}/musicWidgetKits/musicsongitemselecteddialog.ui
 )

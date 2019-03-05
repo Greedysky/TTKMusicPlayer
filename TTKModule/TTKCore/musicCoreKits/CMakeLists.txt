@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
+    ${MUSIC_CORE_DIR}/pl/musicasxconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musickglconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musickwlconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musicm3uconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musicplaylistinterface.h
+    ${MUSIC_CORE_DIR}/pl/musicplsconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musictkplconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musicwplconfigmanager.h
+    ${MUSIC_CORE_DIR}/pl/musicxspfconfigmanager.h
     ${MUSIC_CORE_DIR}/musicobject.h
     ${MUSIC_CORE_DIR}/musicformats.h
     ${MUSIC_CORE_DIR}/musicglobaldefine.h
@@ -28,10 +37,18 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicruntimemanager.h
     ${MUSIC_CORE_DIR}/musicdispatchmanager.h
     ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.h
-    ${MUSIC_CORE_DIR}/musiclistconfigmanager.h
+    ${MUSIC_CORE_DIR}/musicsinglemanager.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
+    ${MUSIC_CORE_DIR}/pl/musicasxconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musickglconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musickwlconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musicm3uconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musicplsconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musictkplconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musicwplconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/pl/musicxspfconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musichotkeymanager.cpp
     ${MUSIC_CORE_DIR}/musicformats.cpp
     ${MUSIC_CORE_DIR}/musictime.cpp
@@ -55,6 +72,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musicruntimemanager.cpp
     ${MUSIC_CORE_DIR}/musicdispatchmanager.cpp
     ${MUSIC_CORE_DIR}/musicbackgroundconfigmanager.cpp
-    ${MUSIC_CORE_DIR}/musiclistconfigmanager.cpp
+    ${MUSIC_CORE_DIR}/musicsinglemanager.cpp
   )
   

@@ -104,6 +104,7 @@ endif()
 set(MUSIC_HEADERS
     ../musicextrasglobaldefine.h
     qalg/aes.h
+    qalg/aes_locl.h
     qalg/base64.h
     qalg/cbc128.h
     qalg/qdeswrap.h
@@ -153,6 +154,7 @@ set(MUSIC_HEADERS
 set(MUSIC_SOURCES
     qalg/aes_cbc.cpp
     qalg/aes_core.cpp
+    qalg/aes_ecb.cpp
     qalg/base64.cpp
     qalg/cbc128.cpp
     qalg/qdeswrap.cpp

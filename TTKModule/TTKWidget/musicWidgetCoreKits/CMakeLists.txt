@@ -8,7 +8,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicqueryfoundtablewidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingtablewidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicitemdelegate.h
     ${MUSIC_WIDGET_CORE_DIR}/musicmarqueewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.h
@@ -22,7 +22,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musicroundanimationlabel.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccodeareawidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfloatabstractwidget.h
-    ${MUSIC_WIDGET_CORE_DIR}/musictimersliderwidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiccutsliderwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicanimationstackedwidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.h
@@ -41,6 +41,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_HEADERS
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.h
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.h
+    ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselecteddialog.h
   )
 
 set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
@@ -51,7 +52,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicfillitemtablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicquerytablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicqueryfoundtablewidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingtablewidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicsmoothmovingwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicitemdelegate.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicmarqueewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicpreviewlabel.cpp
@@ -65,7 +66,7 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musicroundanimationlabel.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccodeareawidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicfloatabstractwidget.cpp
-    ${MUSIC_WIDGET_CORE_DIR}/musictimersliderwidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musictimesliderwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiccutsliderwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicanimationstackedwidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musiclayoutanimationwidget.cpp
@@ -84,5 +85,6 @@ set_property(GLOBAL PROPERTY MUSIC_WIDGET_CORE_KITS_SOURCES
     ${MUSIC_WIDGET_CORE_DIR}/musiccommentswidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicdownloadabstracttablewidget.cpp
     ${MUSIC_WIDGET_CORE_DIR}/musicfunctiontoolboxwidget.cpp
+    ${MUSIC_WIDGET_CORE_DIR}/musicsongitemselecteddialog.cpp
   )
   
