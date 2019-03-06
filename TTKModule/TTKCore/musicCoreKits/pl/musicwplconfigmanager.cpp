@@ -50,7 +50,6 @@ void MusicWPLConfigManager::readPlaylistData(MusicSongItems &musics)
 
 void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
-    //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
     {
         return;
@@ -61,13 +60,11 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, cons
     ///////////////////////////////////////////////////////
     QDomElement musicPlayerDom = createRoot("smil");
     //Class A
-    QDomElement headSettingDom = writeDom(musicPlayerDom, "head");
-    QDomElement bodySettingDom = writeDom(musicPlayerDom, "body");
+    QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");
+    QDomElement bodySettingDom = writeDomNode(musicPlayerDom, "body");
     //Class B
     writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
                          MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR)));
-//    writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "ItemCount") <<
-//                         MusicXmlAttribute("content", QString("%1").arg(musics.count())));
     for(int i=0; i<musics.count(); ++i)
     {
         const MusicSongItem &item = musics[i];
@@ -86,7 +83,6 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, cons
         }
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

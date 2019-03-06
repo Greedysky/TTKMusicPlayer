@@ -18,7 +18,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_HEADERS
     ${MUSIC_CORE_DIR}/musicsysconfigmanager.h
     ${MUSIC_CORE_DIR}/musicplayer.h
     ${MUSIC_CORE_DIR}/musicplaylist.h
-    ${MUSIC_CORE_DIR}/musicplayedlist.h
     ${MUSIC_CORE_DIR}/musicabstractxml.h
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.h
     ${MUSIC_CORE_DIR}/musicsettingmanager.h
@@ -54,7 +53,6 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_KITS_SOURCES
     ${MUSIC_CORE_DIR}/musictime.cpp
     ${MUSIC_CORE_DIR}/musicplayer.cpp
     ${MUSIC_CORE_DIR}/musicplaylist.cpp
-    ${MUSIC_CORE_DIR}/musicplayedlist.cpp
     ${MUSIC_CORE_DIR}/musicabstractxml.cpp
     ${MUSIC_CORE_DIR}/musicsysconfigmanager.cpp
     ${MUSIC_CORE_DIR}/musicbackgroundmanager.cpp

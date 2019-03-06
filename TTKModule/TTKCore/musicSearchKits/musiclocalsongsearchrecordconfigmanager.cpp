@@ -28,14 +28,13 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchR
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDom(musicPlayer, "searchRecord");
+    QDomElement download = writeDomNode(musicPlayer, "searchRecord");
 
     foreach(const MusicSearchRecord &record, records)
     {
         writeDomElementText(download, "value", MusicXmlAttribute("name", record.m_name), record.m_time);
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

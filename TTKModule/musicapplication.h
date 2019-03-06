@@ -22,7 +22,7 @@
 #include "musicabstractmoveresizewidget.h"
 
 class MusicPlayer;
-class MusicPlayedlist;
+class MusicPlaylist;
 class MusicSongsSummariziedWidget;
 class MusicBottomAreaWidget;
 class MusicTopAreaWidget;
@@ -334,7 +334,7 @@ private:
     int m_currentMusicSongTreeIndex;
 
     MusicPlayer* m_musicPlayer;
-    MusicPlayedlist* m_musicPlaylist;
+    MusicPlaylist* m_musicPlaylist;
     MusicSongsSummariziedWidget *m_musicSongTreeWidget;
     MusicBottomAreaWidget *m_bottomAreaWidget;
     MusicTopAreaWidget *m_topAreaWidget;

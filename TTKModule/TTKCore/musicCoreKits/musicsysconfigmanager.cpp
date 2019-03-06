@@ -328,8 +328,6 @@ void MusicSysConfigManager::writeSysConfigData()
     const QString &qiniuDataConfig = M_SETTING_PTR->value(MusicSettingManager::QiNiuDataConfigChoiced).toString();
     const QString &qiniuTimeConfig = M_SETTING_PTR->value(MusicSettingManager::QiNiuTimeConfigChoiced).toString();
     ///////////////////////////////////////////////////////////////////////////
-
-    //Open wirte file
     if(!writeConfig(COFIGPATH_FULL))
     {
         return;
@@ -338,17 +336,17 @@ void MusicSysConfigManager::writeSysConfigData()
     createProcessingInstruction();
     QDomElement musicPlayerDom = createRoot(APP_NAME);
     //Class A
-    QDomElement musicSettingDom = writeDom(musicPlayerDom, "musicSetting");
-    QDomElement plusSettingDom = writeDom(musicPlayerDom, "plusSetting");
-    QDomElement otherSettingDom = writeDom(musicPlayerDom, "otherSetting");
-    QDomElement backgroundSettingDom = writeDom(musicPlayerDom, "backgroundSetting");
-    QDomElement hotkeySettingDom = writeDom(musicPlayerDom, "hotkeySetting");
-    QDomElement inlineLrcSettingDom = writeDom(musicPlayerDom, "inlineLrcSetting");
-    QDomElement desktopLrcSettingDom = writeDom(musicPlayerDom, "desktopLrcSetting");
-    QDomElement equalizerSettingDom = writeDom(musicPlayerDom, "equalizerSetting");
-    QDomElement timeSettingDom = writeDom(musicPlayerDom, "timeSetting");
-    QDomElement downloadSettingDom = writeDom(musicPlayerDom, "downloadSetting");
-    QDomElement qiniuSettingDom = writeDom(musicPlayerDom, "qiniuSetting");
+    QDomElement musicSettingDom = writeDomNode(musicPlayerDom, "musicSetting");
+    QDomElement plusSettingDom = writeDomNode(musicPlayerDom, "plusSetting");
+    QDomElement otherSettingDom = writeDomNode(musicPlayerDom, "otherSetting");
+    QDomElement backgroundSettingDom = writeDomNode(musicPlayerDom, "backgroundSetting");
+    QDomElement hotkeySettingDom = writeDomNode(musicPlayerDom, "hotkeySetting");
+    QDomElement inlineLrcSettingDom = writeDomNode(musicPlayerDom, "inlineLrcSetting");
+    QDomElement desktopLrcSettingDom = writeDomNode(musicPlayerDom, "desktopLrcSetting");
+    QDomElement equalizerSettingDom = writeDomNode(musicPlayerDom, "equalizerSetting");
+    QDomElement timeSettingDom = writeDomNode(musicPlayerDom, "timeSetting");
+    QDomElement downloadSettingDom = writeDomNode(musicPlayerDom, "downloadSetting");
+    QDomElement qiniuSettingDom = writeDomNode(musicPlayerDom, "qiniuSetting");
     //Class B
     writeDomElement(musicSettingDom, "playMode", MusicXmlAttribute("value", playModeChoiced));
     writeDomElement(musicSettingDom, "playVolume", MusicXmlAttribute("value", volumeChoiced));
@@ -464,7 +462,6 @@ void MusicSysConfigManager::writeSysConfigData()
     writeDomElement(qiniuSettingDom, "qiniuDataConfig", MusicXmlAttribute("value", qiniuDataConfig));
     writeDomElement(qiniuSettingDom, "qiniuTimeConfig", MusicXmlAttribute("value", qiniuTimeConfig));
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

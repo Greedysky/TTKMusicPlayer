@@ -30,7 +30,7 @@ void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
     }
 
     MusicSongItem item;
-    const QDomNodeList &itemNodes = m_document->elementsByTagName("ttkitem");
+    const QDomNodeList &itemNodes = m_document->elementsByTagName("ttkItem");
     for(int i=0; i<itemNodes.count(); ++i)
     {
         const QDomElement &element = itemNodes.at(i).toElement();
@@ -40,7 +40,7 @@ void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
                                   element.attribute("name"));
     }
 
-    const QDomNodeList &listNodes = m_document->elementsByTagName("ttklist");
+    const QDomNodeList &listNodes = m_document->elementsByTagName("ttkList");
     if(!listNodes.isEmpty())
     {
         const QDomElement &element = listNodes.at(0).toElement();
@@ -56,7 +56,6 @@ void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
 
 void MusicASXConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
-    //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
     {
         return;
@@ -73,19 +72,19 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &musics, cons
         foreach(const MusicSong &song, musics[i].m_songs)
         {
             //Class B
-            QDomElement trackDom = writeDom(musicPlayerDom, "entry");
+            QDomElement trackDom = writeDomNode(musicPlayerDom, "entry");
 
             writeDomText(trackDom, "title", song.getMusicArtistBack());
             writeDomElement(trackDom, "ref", MusicXmlAttribute("href", song.getMusicPath()));
 
             writeDomText(trackDom, "author", APP_NAME);
-            writeDomElementMutil(trackDom, "ttkitem", MusicXmlAttributes()
+            writeDomElementMutil(trackDom, "ttkItem", MusicXmlAttributes()
                                  << MusicXmlAttribute("name", song.getMusicName())
                                  << MusicXmlAttribute("playCount", song.getMusicPlayCount())
                                  << MusicXmlAttribute("time", song.getMusicPlayTime())
                                  << MusicXmlAttribute("src", song.getMusicPath()));
 
-            writeDomElementMutil(trackDom, "ttklist", MusicXmlAttributes()
+            writeDomElementMutil(trackDom, "ttkList", MusicXmlAttributes()
                                  << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                                  << MusicXmlAttribute("count", item.m_songs.count())
                                  << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
@@ -93,7 +92,6 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &musics, cons
         }
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

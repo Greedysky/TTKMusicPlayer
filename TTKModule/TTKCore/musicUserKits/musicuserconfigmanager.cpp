@@ -41,7 +41,6 @@ void MusicUserConfigManager::writeUserData(const MusicUserRecords &records)
                                  MusicXmlAttribute("type", record.m_server), record.m_password);
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

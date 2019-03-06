@@ -34,7 +34,6 @@ void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics)
 
 void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
 {
-    //Open wirte file
     if(musics.isEmpty() || !writeConfig(path))
     {
         return;
@@ -58,7 +57,6 @@ void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics, con
         }
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

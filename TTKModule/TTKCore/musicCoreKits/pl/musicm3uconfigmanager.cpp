@@ -34,9 +34,9 @@ void MusicM3UConfigManager::readPlaylistData(MusicSongItems &musics)
         {
             item.m_itemName = str.remove("#TTKNAME:");
         }
-        else if(str.startsWith("#TTKTIT:"))
+        else if(str.startsWith("#TTKTLE:"))
         {
-            str = str.remove("#TTKTIT:");
+            str = str.remove("#TTKTLE:");
             const QStringList &dds = str.split(TTK_STR_SPLITER);
             if(dds.count() == 3)
             {
@@ -78,7 +78,7 @@ void MusicM3UConfigManager::writePlaylistData(const MusicSongItems &musics, cons
     QStringList data;
     data << QString("#TTKM3U");
     data << QString("#TTKNAME:%1").arg(item.m_itemName);
-    data << QString("#TTKTIT:%2%1%3%1%4").arg(TTK_STR_SPLITER).arg(item.m_itemIndex)
+    data << QString("#TTKTLE:%2%1%3%1%4").arg(TTK_STR_SPLITER).arg(item.m_itemIndex)
                                          .arg(item.m_sort.m_index).arg(item.m_sort.m_sortType);
     foreach(const MusicSong &song, item.m_songs)
     {

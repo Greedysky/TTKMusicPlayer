@@ -1,6 +1,6 @@
 #include "musicconsoleobject.h"
 #include "musicplayer.h"
-#include "musicplayedlist.h"
+#include "musicplaylist.h"
 #include "musiccoreutils.h"
 #include "musicformats.h"
 #include "musictkplconfigmanager.h"
@@ -16,7 +16,7 @@ MusicConsoleObject::MusicConsoleObject(QObject *parent)
     : QObject(parent)
 {
     m_musicPlayer = new MusicPlayer(this);
-    m_musicPlaylist = new MusicPlayedlist(this);
+    m_musicPlaylist = new MusicPlaylist(this);
 
     m_volume = 100;
     m_playbackMode = "Order";

@@ -119,7 +119,7 @@ public:
     /*!
      * Append xml element nodes by node name.
      */
-    QDomElement writeDom(QDomElement &element, const QString &node);
+    QDomElement writeDomNode(QDomElement &element, const QString &node);
     /*!
      * Append xml element nodes by node name\ key name and value.
      */

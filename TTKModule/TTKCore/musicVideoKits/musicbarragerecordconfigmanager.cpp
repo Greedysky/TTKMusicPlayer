@@ -28,7 +28,7 @@ void MusicBarrageRecordConfigManager::writeBarrageData(const MusicBarrageRecords
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDom(musicPlayer, "barrageRecord");
+    QDomElement download = writeDomNode(musicPlayer, "barrageRecord");
 
     foreach(const MusicBarrageRecord &record, records)
     {
@@ -36,7 +36,6 @@ void MusicBarrageRecordConfigManager::writeBarrageData(const MusicBarrageRecords
                                  << MusicXmlAttribute("size", record.m_size), record.m_value);
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

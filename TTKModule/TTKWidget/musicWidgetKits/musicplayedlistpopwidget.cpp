@@ -5,7 +5,7 @@
 #include "musictinyuiobject.h"
 #include "musicuiobject.h"
 #include "musicapplication.h"
-#include "musicplayedlist.h"
+#include "musicplaylist.h"
 #include "musicwidgetheaders.h"
 
 #include <QPainter>
@@ -66,13 +66,13 @@ MusicPlayedListPopWidget *MusicPlayedListPopWidget::instance()
     return m_instance;
 }
 
-void MusicPlayedListPopWidget::setPlaylist(MusicPlayedlist *playlist)
+void MusicPlayedListPopWidget::setPlaylist(MusicPlaylist *playlist)
 {
     delete m_playlist;
     m_playlist = playlist;
 }
 
-MusicPlayedlist *MusicPlayedListPopWidget::playlist() const
+MusicPlaylist *MusicPlayedListPopWidget::playlist() const
 {
     return m_playlist;
 }
@@ -86,7 +86,7 @@ void MusicPlayedListPopWidget::clear()
 
 void MusicPlayedListPopWidget::resetToolIndex(const PlayedPairList &indexs)
 {
-    MusicPlayedItems *items = m_playlist->mediaList();
+    MusicPlayItems *items = m_playlist->mediaList();
     for(int s=0; s<items->count(); ++s)
     {
         for(int i=0; i<indexs.count(); ++i)
@@ -176,7 +176,7 @@ void MusicPlayedListPopWidget::insert(int toolIndex, int index, const MusicSong 
     m_playedListWidget->setPlayRowIndex(row);
     m_playedListWidget->selectPlayedRow();
 
-    foreach(const MusicPlayedItem &item, m_playlist->laterListConst())
+    foreach(const MusicPlayItem &item, m_playlist->laterListConst())
     {
         m_playedListWidget->setPlayLaterState(item.m_toolIndex);
     }

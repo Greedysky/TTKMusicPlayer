@@ -29,7 +29,7 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &recor
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    QDomElement download = writeDom(musicPlayer, "download");
+    QDomElement download = writeDomNode(musicPlayer, "download");
 
     foreach(const MusicSong &record, records)
     {
@@ -38,7 +38,6 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &recor
                                                  << MusicXmlAttribute("time", record.getMusicAddTimeStr()), record.getMusicPath());
     }
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

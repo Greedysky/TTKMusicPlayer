@@ -5,7 +5,7 @@
 #include "musicsysconfigmanager.h"
 #include "musicplayer.h"
 #include "musicformats.h"
-#include "musicplayedlist.h"
+#include "musicplaylist.h"
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
 #include "musicversion.h"
@@ -53,7 +53,7 @@ MusicApplication::MusicApplication(QWidget *parent)
     ////////////////////////////////////////////////
 
     m_musicPlayer = new MusicPlayer(this);
-    m_musicPlaylist = new MusicPlayedlist(this);
+    m_musicPlaylist = new MusicPlaylist(this);
     m_musicSongTreeWidget = new MusicSongsSummariziedWidget(this);
     m_ui->songsContainer->addWidget(m_musicSongTreeWidget);
 
@@ -247,7 +247,7 @@ QString MusicApplication::musicDownloadContains(bool &contains) const
     QString path;
     if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_LEVEL_LOWER)
     {
-        const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+        const MusicPlayItem &item = m_musicPlaylist->currentItem();
         if(item.isValid())
         {
             const MusicSong currentSong(item.m_path);
@@ -263,7 +263,7 @@ bool MusicApplication::musicLovestContains() const
 {
     if(m_musicSongTreeWidget->getCurrentPlayToolIndex() != DEFAULT_LEVEL_LOWER)
     {
-        const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+        const MusicPlayItem &item = m_musicPlaylist->currentItem();
         const MusicSongItems items(m_musicSongTreeWidget->getMusicLists());
         if(item.isValid() && item.m_toolIndex < items.count())
         {
@@ -361,7 +361,7 @@ void MusicApplication::stateChanged()
 void MusicApplication::showCurrentSong(int index)
 {
     QString name;
-    const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+    const MusicPlayItem &item = m_musicPlaylist->currentItem();
     index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     m_currentMusicSongTreeIndex = item.m_toolIndex;
     m_musicSongTreeWidget->setCurrentMusicSongTreeIndex(item.m_toolIndex);
@@ -726,7 +726,7 @@ void MusicApplication::musicCurrentPlayLocation()
         return;
     }
 
-    const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+    const MusicPlayItem &item = m_musicPlaylist->currentItem();
     const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     m_musicSongTreeWidget->playLocation(index);
 }
@@ -738,7 +738,7 @@ void MusicApplication::musicAddSongToLovestListAt()
 
 void MusicApplication::musicAddSongToLovestListAt(bool state)
 {
-    const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+    const MusicPlayItem &item = m_musicPlaylist->currentItem();
     const int index = m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path);
     if(m_musicPlaylist->isEmpty() || index < 0)
     {
@@ -892,7 +892,7 @@ void MusicApplication::setDeleteItemAt(const QStringList &path, bool remove, boo
 
     if(current)
     {
-        const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+        const MusicPlayItem &item = m_musicPlaylist->currentItem();
         MIntList index;
         foreach(const QString &p, path)
         {
@@ -1283,7 +1283,7 @@ void MusicApplication::writeXMLConfigToText()
     }
     else
     {
-        const MusicPlayedItem &item = m_musicPlaylist->currentItem();
+        const MusicPlayItem &item = m_musicPlaylist->currentItem();
         lastPlayIndexChoiced[1] = QString::number(item.m_toolIndex);
         lastPlayIndexChoiced[2] = QString::number(m_musicSongTreeWidget->mapSongIndexByFilePath(item.m_toolIndex, item.m_path));
     }

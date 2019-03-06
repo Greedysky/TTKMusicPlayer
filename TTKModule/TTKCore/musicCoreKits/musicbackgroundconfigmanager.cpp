@@ -14,7 +14,6 @@ void MusicSkinConfigManager::readSkinData(MusicSkinConfigItem &item)
 
 void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, const QString &path)
 {
-    //Open wirte file
     if(!writeConfig( path ))
     {
         return;
@@ -28,7 +27,6 @@ void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, cons
     writeDomElement(musicPlayerDom, "name", MusicXmlAttribute("value", item.m_name));
     writeDomElement(musicPlayerDom, "useCount", MusicXmlAttribute("value", item.m_useCount));
 
-    //Write to file
     QTextStream out(m_file);
     m_document->save(out, 4);
 }

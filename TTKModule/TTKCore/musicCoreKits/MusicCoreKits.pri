@@ -39,7 +39,6 @@ HEADERS  += \
     $$PWD/musictime.h \
     $$PWD/musicplayer.h \
     $$PWD/musicplaylist.h \
-    $$PWD/musicplayedlist.h \
     $$PWD/musicabstractxml.h \
     $$PWD/musicsettingmanager.h \
     $$PWD/musicconnectionpool.h \
@@ -50,7 +49,6 @@ HEADERS  += \
     $$PWD/musicsongtag.h \
     $$PWD/musiccryptographichash.h \
     $$PWD/musicbackgroundmanager.h \
-    $$PWD/musicsystemenvironment.h \
     $$PWD/musicsemaphoreloop.h \
     $$PWD/musiccategoryconfigmanager.h \
     $$PWD/musiclicensecore.h \
@@ -79,7 +77,6 @@ SOURCES += \
     $$PWD/musictime.cpp \
     $$PWD/musicplayer.cpp \
     $$PWD/musicplaylist.cpp \
-    $$PWD/musicplayedlist.cpp \
     $$PWD/musicabstractxml.cpp \
     $$PWD/musicconnectionpool.cpp \
     $$PWD/musicregeditmanager.cpp \
@@ -88,7 +85,6 @@ SOURCES += \
     $$PWD/musicsongtag.cpp \
     $$PWD/musiccryptographichash.cpp \
     $$PWD/musicbackgroundmanager.cpp \
-    $$PWD/musicsystemenvironment.cpp \
     $$PWD/musicsemaphoreloop.cpp \
     $$PWD/musiccategoryconfigmanager.cpp \
     $$PWD/musiclicensecore.cpp \
