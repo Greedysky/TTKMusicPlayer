@@ -212,17 +212,15 @@ typedef QList<MIntList>                    MIntLists;               /* intlists 
 typedef QSet<QVariant>                     MVariantSet;             /* variantset */
 typedef QSet<int>                          MIntSet;                 /* intset */
 typedef QSet<MIntSet>                      MIntSets;                /* intsets */
-typedef QMap<QVariant, QVariant>           MVariantsMap;            /* variantsmap */
-typedef QMap<QString, QVariant>            MStriantMap;             /* stringVariantMap */
-typedef QMap<QString, QString>             MStringsMap;             /* stringsMap */
-typedef QMap<QString, QStringList>         MStringsListMap;         /* stringStrlistsMap */
-typedef QMap<int, MIntList>                MIntsListMap;            /* intIntlistMap */
+typedef QMap<QString, QVariant>            MVariantMap;             /* stringVariantMap */
+typedef QMap<QString, QString>             MStringMap;              /* stringsMap */
+typedef QMap<QString, QStringList>         MStringListMap;          /* stringStrlistsMap */
+typedef QMap<int, MIntList>                MIntListMap;             /* intIntlistMap */
 typedef QMap<qint64, QString>              MIntStringMap;           /* intStrMap */
-typedef QMapIterator<QVariant, QVariant>   MVariantsMapIterator;    /* variantsmMapIterator */
-typedef QMapIterator<QString, QVariant>    MStriantMapIterator;     /* stringVariantMapIterator */
-typedef QMapIterator<QString, QString>     MStringsMapIterator;     /* stringsMapIterator */
-typedef QMapIterator<QString, QStringList> MStringsListMapIterator; /* stringStrlistsMapIterator */
-typedef QMapIterator<int, MIntList>        MIntsListMapIterator;    /* intIntlistMapIterator */
+typedef QMapIterator<QString, QVariant>    MVariantMapIterator;     /* stringVariantMapIterator */
+typedef QMapIterator<QString, QString>     MStringMapterator;       /* stringsMapIterator */
+typedef QMapIterator<QString, QStringList> MStringListMapIterator;  /* stringStrlistsMapIterator */
+typedef QMapIterator<int, MIntList>        MIntListMapIterator;     /* intIntlistMapIterator */
 typedef QMapIterator<qint64, QString>      MIntStringMapIterator;   /* intStrMapIterator */
 ///////////////////////////////////////
 

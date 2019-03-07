@@ -293,7 +293,7 @@ protected:
     bool m_toolDeleteChanged;
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
-    MIntsListMap m_searchfileListCache;
+    MIntListMap m_searchfileListCache;
     MusicSongCheckToolsWidget *m_songCheckToolsWidget;
     MusicSongsListFunctionWidget *m_listFunctionWidget;
     MusicLocalSongSearchDialog *m_musicSongSearchWidget;

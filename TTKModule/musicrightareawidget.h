@@ -42,7 +42,7 @@ class MUSIC_GUI_EXPORT MusicRightAreaWidget : public QWidget
 public:
     enum MusicFunction
     {
-        KugGouSongWidget = 0,   /*!< insert kugou song widget*/
+        KugGouSongWidget,       /*!< insert kugou song widget*/
         KugGouRadioWidget,      /*!< insert kugou radio widget*/
         kugouListWidget,        /*!< insert kugou list widget*/
         VideoWidget,            /*!< insert video widget*/

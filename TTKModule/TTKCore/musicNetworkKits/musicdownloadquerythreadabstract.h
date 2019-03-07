@@ -96,10 +96,10 @@ class MUSIC_NETWORK_EXPORT MusicDownLoadQueryThreadAbstract : public MusicDownLo
 public:
     enum QueryType
     {
-        MusicQuery, /*!< query music*/
-        MovieQuery, /*!< query movie*/
-        LrcQuery,   /*!< query lrc*/
-        OtherQuery, /*!< query external*/
+        MusicQuery,     /*!< query music*/
+        MovieQuery,     /*!< query movie*/
+        LrcQuery,       /*!< query lrc*/
+        OtherQuery,     /*!< query external*/
     };
 
     /*!

@@ -19,13 +19,11 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include <QtXml/QDomDocument>
-#include <QTextStream>
 #include <QFile>
+#include <QTextStream>
+#include <QtXml/QDomDocument>
 
-#include "musicglobaldefine.h"
 #include "musicsong.h"
-#include "musicobject.h"
 
 /*! @brief The class of the xml attribute.
  * @author Greedysky <greedysky@163.com>
@@ -99,7 +97,7 @@ public:
     /*!
      * Read xml attributes by tagName and default name "value".
      */
-    MStriantMap readXmlAttributesByTagName(const QString &tagName) const;
+    MVariantMap readXmlAttributesByTagName(const QString &tagName) const;
     /*!
      * Create processing instruction in header.
      */

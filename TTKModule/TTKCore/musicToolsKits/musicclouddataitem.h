@@ -29,7 +29,7 @@ typedef struct MUSIC_TOOL_EXPORT MusicCloudDataItem
 {
     enum State
     {
-        Waited = 0,     /*!< 0 waited*/
+        Waited,         /*!< 0 waited*/
         Uploaded,       /*!< 1 Uploaded*/
         Successed,      /*!< 2 successed*/
         Errored         /*!< 3 error*/

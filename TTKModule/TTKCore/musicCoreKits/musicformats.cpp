@@ -17,9 +17,9 @@ QStringList MusicFormats::supportFormatsString()
                         << "aac";
 }
 
-MStringsListMap MusicFormats::supportFormatsStringMap()
+MStringListMap MusicFormats::supportFormatsStringMap()
 {
-    MStringsListMap formats;
+    MStringListMap formats;
     formats.insert("mpc", QStringList() << "mpc");
     formats.insert("wavpack", QStringList() << "wv");
     formats.insert("vorbis", QStringList() << "ogg");

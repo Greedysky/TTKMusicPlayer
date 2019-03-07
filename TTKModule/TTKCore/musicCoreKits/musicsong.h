@@ -31,12 +31,12 @@ class MUSIC_CORE_EXPORT MusicSong
 public:
     enum Sort
     {
-        SortByFileName = 0,      /*!< Sort by file name*/
-        SortBySinger,            /*!< Sort by singer name*/
-        SortByFileSize,          /*!< Sort by file size*/
-        SortByAddTime,           /*!< Sort by add time*/
-        SortByPlayTime,          /*!< Sort by play time*/
-        SortByPlayCount          /*!< Sort by play count*/
+        SortByFileName,      /*!< Sort by file name*/
+        SortBySinger,        /*!< Sort by singer name*/
+        SortByFileSize,      /*!< Sort by file size*/
+        SortByAddTime,       /*!< Sort by add time*/
+        SortByPlayTime,      /*!< Sort by play time*/
+        SortByPlayCount      /*!< Sort by play count*/
     };
 
     /*!

@@ -164,7 +164,7 @@ protected:
     Ui::MusicLocalSongsManagerWidget *m_ui;
     QFileInfoList m_fileNames;
     MusicLocalSongsManagerThread *m_thread;
-    MIntsListMap m_searchfileListCache;
+    MIntListMap m_searchfileListCache;
     QFileSystemWatcher *m_fileSystemWatcher;
 
 };

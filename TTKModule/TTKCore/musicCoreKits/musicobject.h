@@ -269,7 +269,7 @@ namespace MusicObject
 
     enum PlayMode
     {
-        PM_PlayOrder = 1,              /*!< play order*/
+        PM_PlayOrder,                  /*!< play order*/
         PM_PlayRandom,                 /*!< play random*/
         PM_PlaylistLoop,               /*!< play list loop*/
         PM_PlayOneLoop,                /*!< play single loop*/
