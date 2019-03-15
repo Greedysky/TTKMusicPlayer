@@ -23,9 +23,9 @@
 #include "musicglobaldefine.h"
 
 class QDeviceWatcher;
+class QPropertyAnimation;
 class MusicTimerAutoObject;
 class MusicMobileDevicesWidget;
-class QPropertyAnimation;
 class MusicDownloadCounterPVThread;
 class MusicDownloadQNConfighread;
 

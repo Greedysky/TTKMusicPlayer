@@ -9,7 +9,7 @@ class ChineseHelperPrivate : public TTKPrivate<ChineseHelper>
 public:
     ChineseHelperPrivate();
 
-    QMap<QString, QString> m_data;
+    MStringMap m_data;
 
 };
 

@@ -31,21 +31,21 @@ class MUSIC_EXTRAS_EXPORT PinyinResource
 {
 public:
 
-    static QMap<QString, QString> getPinyinResource();
+    static MStringMap getPinyinResource();
     /*!
      * Get mutil pinyin resource.
      */
-    static QMap<QString, QString> getMutilPinyinResource();
+    static MStringMap getMutilPinyinResource();
     /*!
      * Get chinese resource.
      */
-    static QMap<QString, QString> getChineseResource();
+    static MStringMap getChineseResource();
 
 private:
     /*!
      * Get resource.
      */
-    static QMap<QString, QString> getResource(const QString &resourceName);
+    static MStringMap getResource(const QString &resourceName);
 
 };
 

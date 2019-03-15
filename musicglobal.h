@@ -189,15 +189,16 @@ public:                                     \
 #define MUSIC_END_NAMESPACE
 #define MUSIC_USE_NAMESPACE
 #endif //MUSIC_NAMESPACE_SUPPORT
+
 //////////////////////////////////////
 typedef signed char                        MInt8;         /* 8 bit signed */
-typedef unsigned char                      MUint8;        /* 8 bit unsigned */
+typedef unsigned char                      MUInt8;        /* 8 bit unsigned */
 typedef short                              MInt16;        /* 16 bit signed */
-typedef unsigned short                     MUint16;       /* 16 bit unsigned */
+typedef unsigned short                     MUInt16;       /* 16 bit unsigned */
 typedef int                                MInt32;        /* 32 bit signed */
-typedef unsigned int                       MUint32;       /* 32 bit unsigned */
+typedef unsigned int                       MUInt32;       /* 32 bit unsigned */
 typedef long long                          MInt64;        /* 64 bit signed */
-typedef unsigned long long                 MUint64;       /* 64 bit unsigned */
+typedef unsigned long long                 MUInt64;       /* 64 bit unsigned */
 ///////////////////////////////////////
 
 typedef double                             MDouble;       /* double */
@@ -206,12 +207,9 @@ typedef bool                               MBool;         /* bool */
 ///////////////////////////////////////
 
 typedef QList<QVariant>                    MVariantList;            /* variantlist */
-typedef QList<QStringList>                 MStringLists;            /* stringlists */
 typedef QList<int>                         MIntList;                /* intlist */
-typedef QList<MIntList>                    MIntLists;               /* intlists */
 typedef QSet<QVariant>                     MVariantSet;             /* variantset */
 typedef QSet<int>                          MIntSet;                 /* intset */
-typedef QSet<MIntSet>                      MIntSets;                /* intsets */
 typedef QMap<QString, QVariant>            MVariantMap;             /* stringVariantMap */
 typedef QMap<QString, QString>             MStringMap;              /* stringsMap */
 typedef QMap<QString, QStringList>         MStringListMap;          /* stringStrlistsMap */

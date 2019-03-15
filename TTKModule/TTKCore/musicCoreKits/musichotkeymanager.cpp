@@ -115,8 +115,8 @@ void MusicHotKeyManager::enabledAll(bool enabled)
 
 QString MusicHotKeyManager::toString(int key, int modifiers)
 {
-    const QString strModList[] = { "Ctrl", "Shift", "Alt"};
-    const quint32 modList[] = { Qt::ControlModifier, Qt::ShiftModifier, Qt::AltModifier};
+    const QString strModList[] = {"Ctrl", "Shift", "Alt"};
+    const quint32 modList[] = {Qt::ControlModifier, Qt::ShiftModifier, Qt::AltModifier};
 
     QString keyStr;
     for(int j=0; j<3; j++)

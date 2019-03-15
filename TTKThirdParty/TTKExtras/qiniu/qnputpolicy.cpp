@@ -60,7 +60,7 @@ QNPutPolicyPrivate::QNPutPolicyPrivate()
 
 QByteArray QNPutPolicyPrivate::toJSON(bool compact)
 {
-    QMap<QString, QVariant> json;
+    MVariantMap json;
     json["scope"] = m_scope;
     json["deadline"] = m_deadline;
 
