@@ -114,9 +114,8 @@ set(MUSIC_HEADERS
     qhz2py/pinyinhelper.h
     qimage/gaussianblur.h
     qimage/qimagewrap.h
-    qshortcut/qxtglobal.h
-    qshortcut/qxtglobalshortcut.h
-    qshortcut/qxtglobalshortcut_p.h
+    qshortcut/qglobalshortcut.h
+    qshortcut/qglobalshortcut_p.h
     qkugou/kugouurl.h
     qkugou/kugouwindow.h
     qkugou/kugouuiobject.h
@@ -159,7 +158,7 @@ set(MUSIC_SOURCES
     qalg/cbc128.cpp
     qalg/qdeswrap.cpp
     qalg/qaeswrap.cpp
-    qshortcut/qxtglobalshortcut.cpp
+    qshortcut/qglobalshortcut.cpp
     qhz2py/pinyinresource.cpp
     qhz2py/chinesehelper.cpp
     qhz2py/pinyinhelper.cpp
@@ -198,9 +197,9 @@ set(MUSIC_SOURCES
   )
 
 if(WIN32)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_win.cpp ${TARGET_NAME}.rc)
+    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_win.cpp ${TARGET_NAME}.rc)
 else(UNIX)
-    list(APPEND MUSIC_SOURCES qshortcut/qxtglobalshortcut_x11.cpp)
+    list(APPEND MUSIC_SOURCES qshortcut/qglobalshortcut_x11.cpp)
 endif()
 
 if(TTK_QT_VERSION VERSION_GREATER "4")

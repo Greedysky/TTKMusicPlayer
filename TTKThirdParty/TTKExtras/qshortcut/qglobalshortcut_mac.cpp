@@ -1,29 +1,5 @@
-/****************************************************************************
- **
- ** Copyright (C) Qxt Foundation. Some rights reserved.
- **
- ** This file is part of the QxtGui module of the Qxt library.
- **
- ** This library is free software; you can redistribute it and/or modify it
- ** under the terms of the Common Public License, version 1.0, as published
- ** by IBM, and/or under the terms of the GNU Lesser General Public License,
- ** version 2.1, as published by the Free Software Foundation.
- **
- ** This file is provided "AS IS", without WARRANTIES OR CONDITIONS OF ANY
- ** KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY
- ** WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR
- ** FITNESS FOR A PARTICULAR PURPOSE.
- **
- ** You should have received a copy of the CPL and the LGPL along with this
- ** file. See the LICENSE file and the cpl1.0.txt/lgpl-2.1.txt files
- ** included with the source distribution for more information.
- ** If you did not receive a copy of the licenses, contact the Qxt Foundation.
- **
- ** <http://libqxt.org>  <foundation@libqxt.org>
- **
- ****************************************************************************/
 #include <Carbon/Carbon.h>
-#include "qxtglobalshortcut_p.h"
+#include "qglobalshortcut_p.h"
 #include <QMap>
 #include <QHash>
 #include <QtDebug>
@@ -33,18 +9,19 @@ typedef QPair<uint, uint> Identifier;
 static QMap<quint32, EventHotKeyRef> keyRefs;
 static QHash<Identifier, quint32> keyIDs;
 static quint32 hotKeySerial = 0;
-static bool qxt_mac_handler_installed = false;
+static bool q_mac_handler_installed = false;
 
-OSStatus qxt_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void* data)
+OSStatus q_mac_handle_hot_key(EventHandlerCallRef nextHandler, EventRef event, void* data)
 {
     // pass event to the app event filter
     Q_UNUSED(data);
     qApp->macEventFilter(nextHandler, event);
     return noErr;
 }
+
 #if(QT_VERSION<0x050000)
-bool QxtGlobalShortcutPrivate::eventFilter(void* message)
-//bool QxtGlobalShortcutPrivate::macEventFilter(EventHandlerCallRef caller, EventRef event)
+bool QGlobalShortcutPrivate::eventFilter(void* message)
+//bool QGlobalShortcutPrivate::macEventFilter(EventHandlerCallRef caller, EventRef event)
 {
     EventRef event = (EventRef) message;
     if (GetEventClass(event) == kEventClassKeyboard && GetEventKind(event) == kEventHotKeyPressed)
@@ -57,7 +34,7 @@ bool QxtGlobalShortcutPrivate::eventFilter(void* message)
     return false;
 }
 #else
-bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
+bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
 {
     EventRef event = (EventRef) message;
     if (GetEventClass(event) == kEventClassKeyboard && GetEventKind(event) == kEventHotKeyPressed)
@@ -70,11 +47,12 @@ bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *messa
     return false;
 }
 #endif
-quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
+
+quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {
     quint32 native = 0;
     if (modifiers & Qt::ShiftModifier)
-        native |= shiftKeyBit;
+        native |= shiftKey;
     if (modifiers & Qt::ControlModifier)
         native |= cmdKey;
     if (modifiers & Qt::AltModifier)
@@ -86,7 +64,7 @@ quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifier
     return native;
 }
 
-quint32 QxtGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
+quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
 {
     UTF16Char ch;
     // Constants found in NSEvent.h from AppKit.framework
@@ -184,14 +162,14 @@ quint32 QxtGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
     return 0;
 }
 
-bool QxtGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
+bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
 {
-    if (!qxt_mac_handler_installed)
+    if (!q_mac_handler_installed)
     {
         EventTypeSpec t;
         t.eventClass = kEventClassKeyboard;
         t.eventKind = kEventHotKeyPressed;
-        InstallApplicationEventHandler(&qxt_mac_handle_hot_key, 1, &t, nullptr, nullptr);
+        InstallApplicationEventHandler(&q_mac_handle_hot_key, 1, &t, nullptr, nullptr);
     }
 
     EventHotKeyID keyID;
@@ -209,7 +187,7 @@ bool QxtGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativ
     return rv;
 }
 
-bool QxtGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
+bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     Identifier id(nativeMods, nativeKey);
     if (!keyIDs.contains(id)) return false;

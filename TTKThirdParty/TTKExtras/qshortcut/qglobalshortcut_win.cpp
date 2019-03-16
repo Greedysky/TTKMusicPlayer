@@ -1,33 +1,9 @@
-/****************************************************************************
- **
- ** Copyright (C) Qxt Foundation. Some rights reserved.
- **
- ** This file is part of the QxtGui module of the Qxt library.
- **
- ** This library is free software; you can redistribute it and/or modify it
- ** under the terms of the Common Public License, version 1.0, as published
- ** by IBM, and/or under the terms of the GNU Lesser General Public License,
- ** version 2.1, as published by the Free Software Foundation.
- **
- ** This file is provided "AS IS", without WARRANTIES OR CONDITIONS OF ANY
- ** KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY
- ** WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR
- ** FITNESS FOR A PARTICULAR PURPOSE.
- **
- ** You should have received a copy of the CPL and the LGPL along with this
- ** file. See the LICENSE file and the cpl1.0.txt/lgpl-2.1.txt files
- ** included with the source distribution for more information.
- ** If you did not receive a copy of the licenses, contact the Qxt Foundation.
- **
- ** <http://libqxt.org>  <foundation@libqxt.org>
- **
- ****************************************************************************/
-#include "qxtglobalshortcut_p.h"
+#include "qglobalshortcut_p.h"
 #include <qt_windows.h>
 #include <QtDebug>
 
 #if(QT_VERSION<0x050000)
-bool QxtGlobalShortcutPrivate::eventFilter(void* message)
+bool QGlobalShortcutPrivate::eventFilter(void* message)
 {
     MSG* msg = MStatic_cast(MSG*, message);
     if (msg->message == WM_HOTKEY)
@@ -39,7 +15,7 @@ bool QxtGlobalShortcutPrivate::eventFilter(void* message)
     return false;
 }
 #else
-bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
+bool QGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *message, long *)
 {
     MSG* msg = MStatic_cast(MSG*, message);
     if (msg->message == WM_HOTKEY)
@@ -51,7 +27,8 @@ bool QxtGlobalShortcutPrivate::nativeEventFilter(const QByteArray &, void *messa
     return false;
 }
 #endif
-quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
+
+quint32 QGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifiers)
 {
     // MOD_ALT, MOD_CONTROL, (MOD_KEYUP), MOD_SHIFT, MOD_WIN
     quint32 native = 0;
@@ -69,7 +46,7 @@ quint32 QxtGlobalShortcutPrivate::nativeModifiers(Qt::KeyboardModifiers modifier
     return native;
 }
 
-quint32 QxtGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
+quint32 QGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
 {
     switch (key)
     {
@@ -217,12 +194,12 @@ quint32 QxtGlobalShortcutPrivate::nativeKeycode(Qt::Key key)
     }
 }
 
-bool QxtGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
+bool QGlobalShortcutPrivate::registerShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     return RegisterHotKey(0, nativeMods ^ nativeKey, nativeMods, nativeKey);
 }
 
-bool QxtGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
+bool QGlobalShortcutPrivate::unregisterShortcut(quint32 nativeKey, quint32 nativeMods)
 {
     return UnregisterHotKey(0, nativeMods ^ nativeKey);
 }

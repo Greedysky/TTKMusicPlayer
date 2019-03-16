@@ -23,7 +23,7 @@
 
 #define M_HOTKEY_PTR (MusicSingleton<MusicHotKeyManager>::createInstance())
 
-class QxtGlobalShortcut;
+class QGlobalShortcut;
 
 /*! @brief The class of the global hotkey setting manager.
  * @author Greedysky <greedysky@163.com>
@@ -105,7 +105,7 @@ protected:
      */
     void setDefaultKey();
 
-    QList<QxtGlobalShortcut*> m_hotkeys;
+    QList<QGlobalShortcut*> m_hotkeys;
 
     DECLARE_SINGLETON_CLASS(MusicHotKeyManager)
 };

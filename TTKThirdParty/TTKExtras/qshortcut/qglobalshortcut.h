@@ -1,5 +1,5 @@
-#ifndef QXTGLOBALSHORTCUT_H
-#define QXTGLOBALSHORTCUT_H
+#ifndef QGLOBALSHORTCUT_H
+#define QGLOBALSHORTCUT_H
 
 /* =================================================
  * This file is part of the TTK Music Player project
@@ -19,26 +19,27 @@
  * with this program; If not, see <http://www.gnu.org/licenses/>.
  ================================================= */
 
-#include "qxtglobal.h"
 #include <QObject>
 #include <QKeySequence>
+#include "ttkprivate.h"
+#include "musicextrasglobaldefine.h"
 
-class QxtGlobalShortcutPrivate;
+class QGlobalShortcutPrivate;
 
-/*! @brief The namespace of the qxt global shortcut.
+/*! @brief The namespace of the qglobal shortcut.
  * @author libqxt <foundation@libqxt.org>
  */
-class MUSIC_EXTRAS_EXPORT QxtGlobalShortcut : public QObject
+class MUSIC_EXTRAS_EXPORT QGlobalShortcut : public QObject
 {
     Q_OBJECT
-    QXT_DECLARE_PRIVATE(QxtGlobalShortcut)
+    TTK_DECLARE_PRIVATE(QGlobalShortcut)
     Q_PROPERTY(bool enabled READ isEnabled WRITE setEnabled)
     Q_PROPERTY(QKeySequence shortcut READ shortcut WRITE setShortcut)
 public:
-    explicit QxtGlobalShortcut(QObject* parent = nullptr);
-    explicit QxtGlobalShortcut(const QKeySequence& shortcut, QObject* parent = nullptr);
+    explicit QGlobalShortcut(QObject* parent = nullptr);
+    explicit QGlobalShortcut(const QKeySequence& shortcut, QObject* parent = nullptr);
 
-    virtual ~QxtGlobalShortcut();
+    virtual ~QGlobalShortcut();
 
     QKeySequence shortcut() const;
     bool setShortcut(const QKeySequence& shortcut);
@@ -54,4 +55,4 @@ public Q_SLOTS:
 
 };
 
-#endif // QXTGLOBALSHORTCUT_H
+#endif // QGLOBALSHORTCUT_H

@@ -25,17 +25,16 @@ unix:!mac{
 INCLUDEPATH += $$PWD
 
 HEADERS  += \
-    $$PWD/qxtglobal.h \
-    $$PWD/qxtglobalshortcut.h \
-    $$PWD/qxtglobalshortcut_p.h
+    $$PWD/qglobalshortcut.h \
+    $$PWD/qglobalshortcut_p.h
 
 win32{
-    SOURCES += $$PWD/qxtglobalshortcut_win.cpp
+    SOURCES += $$PWD/qglobalshortcut_win.cpp
     LIBS += -luser32
 }
-unix:SOURCES += $$PWD/qxtglobalshortcut_x11.cpp
-mac:SOURCES += $$PWD/qxtglobalshortcut_mac.cpp
+unix:SOURCES += $$PWD/qglobalshortcut_x11.cpp
+mac:SOURCES += $$PWD/qglobalshortcut_mac.cpp
 
 SOURCES += \
-    $$PWD/qxtglobalshortcut.cpp
+    $$PWD/qglobalshortcut.cpp
 

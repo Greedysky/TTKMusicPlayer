@@ -1,5 +1,5 @@
 #include "musichotkeymanager.h"
-#include "qshortcut/qxtglobalshortcut.h"
+#include "qshortcut/qglobalshortcut.h"
 
 #include <QStringList>
 
@@ -7,7 +7,7 @@ void MusicHotKeyManager::connectParentObject(QObject *object)
 {
     for(int i=0; i<8; ++i)
     {
-        m_hotkeys << (new QxtGlobalShortcut(object));
+        m_hotkeys << (new QGlobalShortcut(object));
     }
 
     connect(m_hotkeys[0], SIGNAL(activated()), object, SLOT(musicStatePlay()));
@@ -79,12 +79,12 @@ QObject* MusicHotKeyManager::getHotKey(int index)
 
 void MusicHotKeyManager::addHotKey(const QString &key)
 {
-    m_hotkeys << (new QxtGlobalShortcut(QKeySequence(key)));
+    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
 void MusicHotKeyManager::addHotKey(int key)
 {
-    m_hotkeys << (new QxtGlobalShortcut(QKeySequence(key)));
+    m_hotkeys << (new QGlobalShortcut(QKeySequence(key)));
 }
 
 void MusicHotKeyManager::setEnabled(int index, bool enabled)
@@ -107,7 +107,7 @@ bool MusicHotKeyManager::enabled(int index)
 
 void MusicHotKeyManager::enabledAll(bool enabled)
 {
-    foreach(QxtGlobalShortcut *key, m_hotkeys)
+    foreach(QGlobalShortcut *key, m_hotkeys)
     {
         key->setEnabled(enabled);
     }
@@ -152,7 +152,7 @@ QStringList MusicHotKeyManager::getDefaultKeys() const
 QStringList MusicHotKeyManager::getKeys() const
 {
     QStringList keys;
-    foreach(QxtGlobalShortcut *key, m_hotkeys)
+    foreach(QGlobalShortcut *key, m_hotkeys)
     {
         keys << key->shortcut().toString();
     }
