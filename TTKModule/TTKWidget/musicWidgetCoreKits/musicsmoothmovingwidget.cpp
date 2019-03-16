@@ -47,7 +47,7 @@ void MusicSmoothMovingTableWidget::timeToAnimation()
     m_firstInit = true;
     m_animationTimer->stop();
 
-    const float delta = (rowCount() > 0) ? (height()*1.0/rowCount()) : 0;
+    const float delta = ITEM_ROW_HEIGHT_M;
     m_deltaValue = (m_deltaValue/480.0)*(m_deltaValue < 0 ? m_deltaValue + 120 : -m_deltaValue + 120);
 
     m_slowAnimation->setStartValue(m_previousValue);

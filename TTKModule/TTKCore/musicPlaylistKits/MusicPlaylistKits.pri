@@ -16,13 +16,31 @@
 # * with this program; If not, see <http://www.gnu.org/licenses/>.
 # =================================================
 
-include($$PWD/musicCoreKits/MusicCoreKits.pri)
-include($$PWD/musicLrcKits/MusicLrcKits.pri)
-include($$PWD/musicNetworkKits/MusicNetworkKits.pri)
-include($$PWD/musicPlaylistKits/MusicPlaylistKits.pri)
-include($$PWD/musicSearchKits/MusicSearchKits.pri)
-include($$PWD/musicToolsKits/MusicToolsKits.pri)
-include($$PWD/musicToolsSetsKits/MusicToolsSetsKits.pri)
-include($$PWD/musicUserKits/MusicUserKits.pri)
-include($$PWD/musicUtilsKits/MusicUtilsKits.pri)
-include($$PWD/musicVideoKits/MusicVideoKits.pri)
+INCLUDEPATH += $$PWD
+
+!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+HEADERS  += \
+    $$PWD/musicplaylistinterface.h \
+    $$PWD/musicasxconfigmanager.h \
+    $$PWD/musickglconfigmanager.h \
+    $$PWD/musickwlconfigmanager.h \
+    $$PWD/musicm3uconfigmanager.h \
+    $$PWD/musicplsconfigmanager.h \
+    $$PWD/musictkplconfigmanager.h \
+    $$PWD/musicwplconfigmanager.h \
+    $$PWD/musicxspfconfigmanager.h
+
+}
+
+contains(CONFIG, MUSIC_BUILD_LIB){
+SOURCES += \
+    $$PWD/musicasxconfigmanager.cpp \
+    $$PWD/musickglconfigmanager.cpp \
+    $$PWD/musickwlconfigmanager.cpp \
+    $$PWD/musicm3uconfigmanager.cpp \
+    $$PWD/musicplsconfigmanager.cpp \
+    $$PWD/musictkplconfigmanager.cpp \
+    $$PWD/musicwplconfigmanager.cpp \
+    $$PWD/musicxspfconfigmanager.cpp
+
+}
