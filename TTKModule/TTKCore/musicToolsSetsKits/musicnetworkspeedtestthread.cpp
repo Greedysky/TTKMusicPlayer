@@ -89,7 +89,7 @@ QStringList MusicNetworkSpeedTestThread::getNewtworkNames() const
     for(UINT i = 0; i < pTable->dwNumEntries; i++)
     {
         const MIB_IFROW Row = pTable->table[i];
-        std::string s(MReinterpret_cast(char const*, Row.bDescr));
+        MString s(MReinterpret_cast(char const*, Row.bDescr));
         const QString &qs = QString::fromStdString(s);
         if((Row.dwType == 71 || Row.dwType == 6) && !names.contains(qs))
         {
@@ -169,7 +169,7 @@ void MusicNetworkSpeedTestThread::run()
         for(UINT i = 0; i < pTable->dwNumEntries; i++)
         {
             const MIB_IFROW& Row = pTable->table[i];
-            const std::string s(MReinterpret_cast(char const*, Row.bDescr));
+            const MString s(MReinterpret_cast(char const*, Row.bDescr));
             if((Row.dwType == 71 || Row.dwType == 6) &&
                m_names.contains(QString::fromStdString(s)))
             {

@@ -40,18 +40,18 @@ public:
     typedef struct MUSIC_TOOLSET_EXPORT HEADER
     {
         char RIFFNAME[4];
-        unsigned long nRIFFLength;
+        ulong nRIFFLength;
         char WAVNAME[4];
         char FMTNAME[4];
-        unsigned long nFMTLength;
-        unsigned short nAudioFormat;
-        unsigned short nChannleNumber;
-        unsigned long nSampleRate;
-        unsigned long nBytesPerSecond;
-        unsigned short nBytesPerSample;
-        unsigned short    nBitsPerSample;
-        char    DATANAME[4];
-        unsigned long   nDataLength;
+        ulong nFMTLength;
+        ushort nAudioFormat;
+        ushort nChannleNumber;
+        ulong nSampleRate;
+        ulong nBytesPerSecond;
+        ushort nBytesPerSample;
+        ushort nBitsPerSample;
+        char DATANAME[4];
+        ulong nDataLength;
     }HEADER;
 
     /*!

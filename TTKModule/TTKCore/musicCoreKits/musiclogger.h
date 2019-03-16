@@ -96,11 +96,11 @@ public:
     }
     inline MusicLogger &operator<<(char t) { return debugData<char>(t); }
     inline MusicLogger &operator<<(signed short t) { return debugData<short>(t);}
-    inline MusicLogger &operator<<(unsigned short t) { return debugData<ushort>(t); }
+    inline MusicLogger &operator<<(ushort t) { return debugData<ushort>(t); }
     inline MusicLogger &operator<<(signed int t) { return debugData<int>(t); }
-    inline MusicLogger &operator<<(unsigned int t) { return debugData<uint>(t); }
+    inline MusicLogger &operator<<(uint t) { return debugData<uint>(t); }
     inline MusicLogger &operator<<(signed long t) { return debugData<long>(t); }
-    inline MusicLogger &operator<<(unsigned long t) { return debugData<ulong>(t); }
+    inline MusicLogger &operator<<(ulong t) { return debugData<ulong>(t); }
     inline MusicLogger &operator<<(qint64 t) { return debugData<qint64>(t); }
     inline MusicLogger &operator<<(quint64 t) { return debugData<quint64>(t); }
     inline MusicLogger &operator<<(float t) { return debugData<float>(t); }

@@ -199,11 +199,12 @@ typedef int                                MInt32;        /* 32 bit signed */
 typedef unsigned int                       MUInt32;       /* 32 bit unsigned */
 typedef long long                          MInt64;        /* 64 bit signed */
 typedef unsigned long long                 MUInt64;       /* 64 bit unsigned */
-///////////////////////////////////////
 
 typedef double                             MDouble;       /* double */
 typedef float                              MFloat;        /* float */
 typedef bool                               MBool;         /* bool */
+
+typedef std::string                        MString;       /* string */
 ///////////////////////////////////////
 
 typedef QList<QVariant>                    MVariantList;            /* variantlist */

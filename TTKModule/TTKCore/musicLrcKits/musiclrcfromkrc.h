@@ -52,7 +52,7 @@ protected:
     /*!
      * Decompress the krc file data to normal data.
      */
-    int decompression(unsigned char *src, size_t srcsize, size_t *dstsize);
+    int decompression(uchar *src, size_t srcsize, size_t *dstsize);
     /*!
      * Check the input string is filtered or not.
      */
@@ -60,7 +60,7 @@ protected:
     /*!
      * Create lrc by input data and length.
      */
-    void createLrc(unsigned char *lrc, int lrclen);
+    void createLrc(uchar *lrc, int lrclen);
 
     uchar *m_resultBytes;
     QByteArray m_data;

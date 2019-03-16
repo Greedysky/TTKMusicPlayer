@@ -61,18 +61,18 @@ public:
 
 protected:
     /*!
-     * XXTEA encrypt by std::string data.
+     * XXTEA encrypt by MString data.
      */
-    std::string xxteaEncrypt(std::string data,  std::string key);
+    MString xxteaEncrypt(const MString &data, const MString &key);
     /*!
      * XXTEA encrypt by QString data.
      */
     QString xxteaEncrypt(const QString &data, const QString &key);
 
     /*!
-     * XXTEA decrypt by std::string data.
+     * XXTEA decrypt by MString data.
      */
-    std::string xxteaDecrypt(std::string data,  std::string key);
+    MString xxteaDecrypt(const MString &data, const MString &key);
     /*!
      * XXTEA decrypt by QString data.
      */
@@ -81,15 +81,15 @@ protected:
     /*!
      * Check current char is base64.
      */
-    bool isBase64(unsigned char c);
+    bool isBase64(uchar c);
     /*!
      * Do XXTEA encrypt.
      */
-    unsigned char *doXxteaEncrypt(unsigned char *data, xxtea_uint len, unsigned char *key, xxtea_uint *ret_len);
+    uchar *doXxteaEncrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *ret_len);
     /*!
      * Do XXTEA decrypt.
      */
-    unsigned char *doXxteaDecrypt(unsigned char *data, xxtea_uint len, unsigned char *key, xxtea_uint *ret_len);
+    uchar *doXxteaDecrypt(uchar *data, xxtea_uint len, uchar *key, xxtea_uint *ret_len);
     /*!
      * XXTEA uint encrypt.
      */
@@ -101,35 +101,35 @@ protected:
     /*!
      * Fix key length.
      */
-    unsigned char *fixKeyLength(unsigned char *key, xxtea_uint key_len);
+    uchar *fixKeyLength(uchar *key, xxtea_uint key_len);
     /*!
      * XXTEA to uint array.
      */
-    xxtea_uint *xxteaToUintArray(unsigned char *data, xxtea_uint len, int include_length, xxtea_uint *ret_len);
+    xxtea_uint *xxteaToUintArray(uchar *data, xxtea_uint len, int include_length, xxtea_uint *ret_len);
     /*!
      * XXTEA to byte array.
      */
-    unsigned char *xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int include_length, xxtea_uint *ret_len);
+    uchar *xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int include_length, xxtea_uint *ret_len);
 
     //////////////////////////////////////////////////////////////////////////
     /*!
      * Base64 encode.
      */
-    std::string base64Encode(unsigned char const* , unsigned int len);
+    MString base64Encode(uchar const *bytes_to_encode, uint len);
     /*!
      * Base64 dncode.
      */
-    std::string base64Decode(std::string const& s);
+    MString base64Decode(const MString &s);
 
     //////////////////////////////////////////////////////////////////////////
     /*!
-     * XXTEA encrypt by unsigned char * data.
+     * XXTEA encrypt by uchar * data.
      */
-    unsigned char *xxteaEncrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length);
+    uchar *xxteaEncrypt(uchar *data, xxtea_uint data_len, uchar *key, xxtea_uint key_len, xxtea_uint *ret_length);
     /*!
-     * XXTEA decrypt by unsigned char * data.
+     * XXTEA decrypt by uchar * data.
      */
-    unsigned char *xxteaDecrypt(unsigned char *data, xxtea_uint data_len, unsigned char *key, xxtea_uint key_len, xxtea_uint *ret_length);
+    uchar *xxteaDecrypt(uchar *data, xxtea_uint data_len, uchar *key, xxtea_uint key_len, xxtea_uint *ret_length);
     //////////////////////////////////////////////////////////////////////////
 
 };
