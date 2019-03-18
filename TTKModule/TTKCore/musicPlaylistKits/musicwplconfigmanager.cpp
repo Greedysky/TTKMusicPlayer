@@ -8,7 +8,7 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 }
 
-void MusicWPLConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     const QDomNodeList &sepNodes = m_document->elementsByTagName("seq");
     for(int i=0; i<sepNodes.count(); ++i)
@@ -24,13 +24,13 @@ void MusicWPLConfigManager::readPlaylistData(MusicSongItems &musics)
         const QString &string = element.attribute("sortIndex");
         item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
         item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
-        musics << item;
+        items << item;
     }
 }
 
-void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    if(musics.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !writeConfig(path))
     {
         return;
     }
@@ -45,16 +45,16 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &musics, cons
     //Class B
     writeDomElementMutil(headSettingDom, "meta", MusicXmlAttributes() << MusicXmlAttribute("name", "Generator") <<
                          MusicXmlAttribute("content", QString("%1 %2").arg(APP_NAME).arg(TTKMUSIC_VERSION_STR)));
-    for(int i=0; i<musics.count(); ++i)
+    for(int i=0; i<items.count(); ++i)
     {
-        const MusicSongItem &item = musics[i];
+        const MusicSongItem &item = items[i];
         //Class C
         QDomElement seqDom = writeDomElementMutil(bodySettingDom, "seq", MusicXmlAttributes()
                                               << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                                               << MusicXmlAttribute("count", item.m_songs.count())
                                               << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
                                               << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
-        foreach(const MusicSong &song, musics[i].m_songs)
+        foreach(const MusicSong &song, items[i].m_songs)
         {
             writeDomElementMutil(seqDom, "media", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
                                  << MusicXmlAttribute("playCount", song.getMusicPlayCount())

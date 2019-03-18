@@ -14,7 +14,7 @@ bool MusicFPLConfigManager::readConfig(const QString &name)
     return true;
 }
 
-void MusicFPLConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicFPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_fileName).baseName();
@@ -63,12 +63,12 @@ void MusicFPLConfigManager::readPlaylistData(MusicSongItems &musics)
 
     if(!item.m_songs.isEmpty())
     {
-        musics << item;
+        items << item;
     }
 }
 
-void MusicFPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicFPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    Q_UNUSED(musics);
+    Q_UNUSED(items);
     Q_UNUSED(path);
 }

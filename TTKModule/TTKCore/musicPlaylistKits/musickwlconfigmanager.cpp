@@ -30,7 +30,7 @@ bool MusicKWLConfigManager::readConfig(const QString &name)
     return MusicAbstractXml::readConfig(name);
 }
 
-void MusicKWLConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicKWLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     item.m_itemName = QFileInfo(m_file->fileName()).baseName();
@@ -58,12 +58,12 @@ void MusicKWLConfigManager::readPlaylistData(MusicSongItems &musics)
 
     if(!item.m_songs.isEmpty())
     {
-        musics << item;
+        items << item;
     }
 }
 
-void MusicKWLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicKWLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    Q_UNUSED(musics);
+    Q_UNUSED(items);
     Q_UNUSED(path);
 }

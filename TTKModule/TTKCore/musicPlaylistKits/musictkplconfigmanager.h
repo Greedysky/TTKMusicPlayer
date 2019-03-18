@@ -43,15 +43,15 @@ public:
     /*!
      * Read datas from config file.
      */
-    virtual void readPlaylistData(MusicSongItems &musics) override;
+    virtual void readPlaylistData(MusicSongItems &items) override;
     /*!
      * Write music datas into xml file.
      */
-    void writePlaylistData(const MusicSongItems &musics);
+    void writePlaylistData(const MusicSongItems &items);
     /*!
      * Write datas into config file.
      */
-    virtual void writePlaylistData(const MusicSongItems &musics, const QString &path) override;
+    virtual void writePlaylistData(const MusicSongItems &items, const QString &path) override;
 
 protected:
     /*!

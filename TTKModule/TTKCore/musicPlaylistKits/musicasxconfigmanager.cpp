@@ -7,7 +7,7 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 
 }
 
-void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     const QDomNodeList &itemNodes = m_document->elementsByTagName("ttkItem");
@@ -30,26 +30,26 @@ void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
         const QString &string = element.attribute("sortIndex");
         item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
         item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
-        musics << item;
+        items << item;
     }
 }
 
-void MusicASXConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    if(musics.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !writeConfig(path))
     {
         return;
     }
     ///////////////////////////////////////////////////////
     QDomElement musicPlayerDom = createRoot(ASX_FILE_PREFIX, MusicXmlAttribute("version ", "3.0"));
     //Class A
-    for(int i=0; i<musics.count(); ++i)
+    for(int i=0; i<items.count(); ++i)
     {
-        const MusicSongItem &item = musics[i];
+        const MusicSongItem &item = items[i];
 
         writeDomText(musicPlayerDom, "title", item.m_itemName);
 
-        foreach(const MusicSong &song, musics[i].m_songs)
+        foreach(const MusicSong &song, items[i].m_songs)
         {
             //Class B
             QDomElement trackDom = writeDomNode(musicPlayerDom, "entry");

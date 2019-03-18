@@ -13,7 +13,7 @@ bool MusicPLSConfigManager::readConfig(const QString &name)
     return m_file.open(QFile::ReadOnly);
 }
 
-void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
     QStringList data(QString(m_file.readAll()).split("\n"));
@@ -56,18 +56,18 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
 
     if(!item.m_songs.isEmpty())
     {
-        musics << item;
+        items << item;
     }
 }
 
-void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    if(musics.isEmpty())
+    if(items.isEmpty())
     {
         return;
     }
 
-    const MusicSongItem &item = musics.first();
+    const MusicSongItem &item = items.first();
     QStringList data;
     data << QString("[playlist]");
     data << QString("#TTKPLS");

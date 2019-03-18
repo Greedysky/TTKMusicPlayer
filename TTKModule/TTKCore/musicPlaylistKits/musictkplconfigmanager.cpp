@@ -7,7 +7,7 @@ MusicTKPLConfigManager::MusicTKPLConfigManager(QObject *parent)
 
 }
 
-void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &musics)
+void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &items)
 {
     const QDomNodeList &nodes = m_document->elementsByTagName("musicList");
     for(int i=0; i<nodes.count(); ++i)
@@ -23,27 +23,27 @@ void MusicTKPLConfigManager::readPlaylistData(MusicSongItems &musics)
         const QString &string = element.attribute("sortIndex");
         item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
         item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
-        musics << item;
+        items << item;
     }
 }
 
-void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics)
+void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items)
 {
-    writePlaylistData(musics, MUSICPATH_FULL);
+    writePlaylistData(items, MUSICPATH_FULL);
 }
 
-void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &musics, const QString &path)
+void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, const QString &path)
 {
-    if(musics.isEmpty() || !writeConfig(path))
+    if(items.isEmpty() || !writeConfig(path))
     {
         return;
     }
     ///////////////////////////////////////////////////////
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
-    for(int i=0; i<musics.count(); ++i)
+    for(int i=0; i<items.count(); ++i)
     {
-        const MusicSongItem &item = musics[i];
+        const MusicSongItem &item = items[i];
         QDomElement pathDom = writeDomElementMutil(musicPlayer, "musicList", MusicXmlAttributes()
                               << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
                               << MusicXmlAttribute("count", item.m_songs.count()) << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
