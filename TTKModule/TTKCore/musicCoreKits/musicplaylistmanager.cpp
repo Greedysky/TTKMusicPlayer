@@ -10,13 +10,6 @@
 #include "musicfplconfigmanager.h"
 #include "musicmessagebox.h"
 
-void MusicPlaylistManager::messageAlert()
-{
-  MusicMessageBox message;
-  message.setText(QObject::tr("Unrecognized Playlist File!"));
-  message.exec();
-}
-
 void MusicPlaylistManager::setMusicSongItem(const QString& path, const MusicSongItem& item)
 {
   const QFileInfo info(path);

@@ -1,5 +1,4 @@
 #include "musicwplconfigmanager.h"
-#include "musicplaylistmanager.h"
 #include "musicversion.h"
 
 MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
@@ -11,25 +10,6 @@ MusicWPLConfigManager::MusicWPLConfigManager(QObject *parent)
 
 void MusicWPLConfigManager::readPlaylistData(MusicSongItems &musics)
 {
-    bool state = false;
-    const QDomNodeList &nodes = m_document->elementsByTagName("head");
-    for(int i=0; i<nodes.count(); ++i)
-    {
-        const QDomNodeList &nodelist = nodes.at(i).childNodes();
-        for(int i=0; i<nodelist.count(); ++i)
-        {
-            const QDomElement &element = nodelist.at(i).toElement();
-            state = element.attribute("content").contains(APP_NAME);
-            break;
-        }
-    }
-
-    if(!state)
-    {
-        MusicPlaylistManager::messageAlert();
-        return;
-    }
-
     const QDomNodeList &sepNodes = m_document->elementsByTagName("seq");
     for(int i=0; i<sepNodes.count(); ++i)
     {

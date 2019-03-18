@@ -1,5 +1,4 @@
 #include "musicasxconfigmanager.h"
-#include "musicplaylistmanager.h"
 
 MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -10,25 +9,6 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 
 void MusicASXConfigManager::readPlaylistData(MusicSongItems &musics)
 {
-    bool state = false;
-    const QDomNodeList &nodes = m_document->elementsByTagName("author");
-    for(int i=0; i<nodes.count(); ++i)
-    {
-        const QDomNode &node = nodes.at(i);
-        if(node.nodeName() == "author")
-        {
-            const QDomElement &element = node.toElement();
-            state = element.text().contains(APP_NAME);
-            break;
-        }
-    }
-
-    if(!state)
-    {
-        MusicPlaylistManager::messageAlert();
-        return;
-    }
-
     MusicSongItem item;
     const QDomNodeList &itemNodes = m_document->elementsByTagName("ttkItem");
     for(int i=0; i<itemNodes.count(); ++i)

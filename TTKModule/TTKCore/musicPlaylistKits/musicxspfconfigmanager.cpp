@@ -1,5 +1,4 @@
 #include "musicxspfconfigmanager.h"
-#include "musicplaylistmanager.h"
 
 MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -10,29 +9,6 @@ MusicXSPFConfigManager::MusicXSPFConfigManager(QObject *parent)
 
 void MusicXSPFConfigManager::readPlaylistData(MusicSongItems &musics)
 {
-    bool state = false;
-    const QDomNodeList &nodes = m_document->elementsByTagName("playlist");
-    for(int i=0; i<nodes.count(); ++i)
-    {
-        const QDomNodeList &nodelist = nodes.at(i).childNodes();
-        for(int i=0; i<nodelist.count(); ++i)
-        {
-            const QDomNode &node = nodelist.at(i);
-            if(node.nodeName() == "creator")
-            {
-                const QDomElement &element = node.toElement();
-                state = element.text().contains(APP_NAME);
-                break;
-            }
-        }
-    }
-
-    if(!state)
-    {
-        MusicPlaylistManager::messageAlert();
-        return;
-    }
-
     const QDomNodeList &trackNodes = m_document->elementsByTagName("trackList");
     for(int i=0; i<trackNodes.count(); ++i)
     {

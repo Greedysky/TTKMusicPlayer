@@ -1,5 +1,4 @@
 #include "musicm3uconfigmanager.h"
-#include "musicplaylistmanager.h"
 
 MusicM3UConfigManager::MusicM3UConfigManager()
     : MusicPlaylistInterface()
@@ -15,7 +14,6 @@ bool MusicM3UConfigManager::readConfig(const QString &name)
 
 void MusicM3UConfigManager::readPlaylistData(MusicSongItems &musics)
 {
-    bool state = false;
     MusicSongItem item;
     const QStringList data(QString(m_file.readAll()).split("\n"));
     foreach(QString str, data)
@@ -23,11 +21,6 @@ void MusicM3UConfigManager::readPlaylistData(MusicSongItems &musics)
         str = str.trimmed();
         if(str.isEmpty())
         {
-            continue;
-        }
-        else if(str.startsWith("#TTKM3U"))
-        {
-            state = true;
             continue;
         }
         else if(str.startsWith("#TTKNAME:"))
@@ -57,13 +50,9 @@ void MusicM3UConfigManager::readPlaylistData(MusicSongItems &musics)
     }
     m_file.close();
 
-    if(state)
+    if(!item.m_songs.isEmpty())
     {
         musics << item;
-    }
-    else
-    {
-        MusicPlaylistManager::messageAlert();
     }
 }
 

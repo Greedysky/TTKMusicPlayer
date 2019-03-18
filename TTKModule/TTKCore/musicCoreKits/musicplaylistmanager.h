@@ -29,11 +29,6 @@ class MUSIC_CORE_EXPORT MusicPlaylistManager
     TTK_DECLARE_MODULE(MusicPlaylistManager)
 public:
     /*!
-     * Import error message alert.
-     */
-    static void messageAlert();
-
-    /*!
      * Write music playlist data to file.
      */
     void setMusicSongItem(const QString &path, const MusicSongItem &item);

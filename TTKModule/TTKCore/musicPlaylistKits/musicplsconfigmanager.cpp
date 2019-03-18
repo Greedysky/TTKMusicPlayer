@@ -1,5 +1,4 @@
 #include "musicplsconfigmanager.h"
-#include "musicplaylistmanager.h"
 #include "musictime.h"
 
 MusicPLSConfigManager::MusicPLSConfigManager()
@@ -16,7 +15,6 @@ bool MusicPLSConfigManager::readConfig(const QString &name)
 
 void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
 {
-    bool state = false;
     MusicSongItem item;
     QStringList data(QString(m_file.readAll()).split("\n"));
     if(!data.isEmpty() && data.takeFirst().toLower().contains("[playlist]"))
@@ -26,11 +24,6 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
             str = str.trimmed();
             if(str.isEmpty())
             {
-                continue;
-            }
-            else if(str.startsWith("#TTKPLS"))
-            {
-                state = true;
                 continue;
             }
             else if(str.startsWith("#TTKNAME:"))
@@ -61,13 +54,9 @@ void MusicPLSConfigManager::readPlaylistData(MusicSongItems &musics)
     }
     m_file.close();
 
-    if(state)
+    if(!item.m_songs.isEmpty())
     {
         musics << item;
-    }
-    else
-    {
-        MusicPlaylistManager::messageAlert();
     }
 }
 

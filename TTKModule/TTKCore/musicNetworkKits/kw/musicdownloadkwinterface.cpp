@@ -222,7 +222,7 @@ void MusicDownLoadKWInterface::readFromMusicSongPic(MusicObject::MusicSongInform
     const QUrl &musicUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(info->m_songId);
 
     QNetworkRequest request;
-    request.setUrl(musicUrl);;
+    request.setUrl(musicUrl);
     request.setRawHeader("User-Agent", MusicUtils::Algorithm::mdII(KW_UA_URL_1, ALG_UA_KEY, false).toUtf8());
     MusicObject::setSslConfiguration(&request);
 
