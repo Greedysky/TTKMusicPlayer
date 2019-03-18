@@ -15,15 +15,8 @@ void MusicWPLConfigManager::readPlaylistData(MusicSongItems &items)
     {
         const QDomNode &node = sepNodes.at(i);
         MusicSongItem item;
+        item.m_itemName = QFileInfo(m_file->fileName()).baseName();
         item.m_songs = readMusicFilePath(node);
-
-        const QDomElement &element = node.toElement();
-        item.m_itemIndex = element.attribute("index").toInt();
-        item.m_itemName = element.attribute("name");
-
-        const QString &string = element.attribute("sortIndex");
-        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
-        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         items << item;
     }
 }
@@ -49,17 +42,10 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     {
         const MusicSongItem &item = items[i];
         //Class C
-        QDomElement seqDom = writeDomElementMutil(bodySettingDom, "seq", MusicXmlAttributes()
-                                              << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
-                                              << MusicXmlAttribute("count", item.m_songs.count())
-                                              << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
-                                              << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
-        foreach(const MusicSong &song, items[i].m_songs)
+        QDomElement seqDom = writeDomNode(bodySettingDom, "seq");
+        foreach(const MusicSong &song, item.m_songs)
         {
-            writeDomElementMutil(seqDom, "media", MusicXmlAttributes() << MusicXmlAttribute("name", song.getMusicName())
-                                 << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                 << MusicXmlAttribute("time", song.getMusicPlayTime())
-                                 << MusicXmlAttribute("src", song.getMusicPath()));
+            writeDomElementMutil(seqDom, "media", MusicXmlAttributes() << MusicXmlAttribute("src", song.getMusicPath()));
         }
     }
 
@@ -75,10 +61,7 @@ MusicSongs MusicWPLConfigManager::readMusicFilePath(const QDomNode &node) const
     for(int i=0; i<nodelist.count(); i++)
     {
         const QDomElement &element = nodelist.at(i).toElement();
-        songs << MusicSong(element.attribute("src"),
-                           element.attribute("playCount").toInt(),
-                           element.attribute("time"),
-                           element.attribute("name"));
+        songs << MusicSong(element.attribute("src"), 0, QString(), QString());
     }
     return songs;
 }

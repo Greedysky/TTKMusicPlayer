@@ -167,6 +167,10 @@ public:
     static void timeSRand();
     //////////////////////////////////////////////
     /*!
+     * Transform string format(mm:ss) to msec time.
+     */
+    static qint64 labelJustified2MsecTime(const QString &time);
+    /*!
      * Transform msec time to string format(mm:ss).
      */
     QString msecTime2LabelJustified();

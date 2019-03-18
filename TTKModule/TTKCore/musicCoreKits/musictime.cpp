@@ -97,6 +97,12 @@ void MusicTime::timeSRand()
     qsrand( timeStamp() );
 }
 
+qint64 MusicTime::labelJustified2MsecTime(const QString &time)
+{
+    MusicTime t = MusicTime::fromString(time, "mm:ss");
+    return t.getTimeStamp(MusicTime::All_Msec);
+}
+
 QString MusicTime::msecTime2LabelJustified()
 {
     if(!m_greedyMode)

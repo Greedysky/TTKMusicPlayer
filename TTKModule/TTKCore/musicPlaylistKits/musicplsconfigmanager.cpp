@@ -16,40 +16,55 @@ bool MusicPLSConfigManager::readConfig(const QString &name)
 void MusicPLSConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
+    item.m_itemName = QFileInfo(m_file.fileName()).baseName();
+
     QStringList data(QString(m_file.readAll()).split("\n"));
-    if(!data.isEmpty() && data.takeFirst().toLower().contains("[playlist]"))
+
+    if(data.isEmpty())
     {
-        foreach(QString str, data)
+        return;
+    }
+
+    if(!data.takeFirst().toLower().contains("[playlist]"))
+    {
+        return;
+    }
+
+    QRegExp fileRegExp("^File(\\d+)=(.+)");
+    QRegExp lengthRegExp("^Length(\\d+)=(-{0,1}\\d+)");
+
+    int number = 0;
+    bool error = false;
+
+    foreach(QString line, data)
+    {
+        if(fileRegExp.indexIn(line) > -1)
         {
-            str = str.trimmed();
-            if(str.isEmpty())
+            if((number = fileRegExp.cap(1).toInt()) > 0)
             {
-                continue;
+                item.m_songs << MusicSong(fileRegExp.cap(2), 0, QString(), QString());
             }
-            else if(str.startsWith("#TTKNAME:"))
+            else
             {
-                item.m_itemName = str.remove("#TTKNAME:");
+                error = true;
             }
-            else if(str.startsWith("#TTKTLE:"))
+        }
+        else if(lengthRegExp.indexIn(line) > -1)
+        {
+            if((number = lengthRegExp.cap(1).toInt()) > 0)
             {
-                str = str.remove("#TTKTLE:");
-                const QStringList &dds = str.split(TTK_STR_SPLITER);
-                if(dds.count() == 3)
-                {
-                    item.m_itemIndex = dds[0].toInt();
-                    item.m_sort.m_index = dds[1].toInt();
-                    item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, dds[2].toInt());
-                }
+                item.m_songs.last().setMusicPlayTime(MusicTime::msecTime2LabelJustified(lengthRegExp.cap(2).toInt() * 1000));
             }
-            else if(str.startsWith("#TTKINF:"))
+            else
             {
-                str = str.remove("#TTKINF:");
-                const QStringList &dds = str.split(TTK_STR_SPLITER);
-                if(dds.count() == 4)
-                {
-                    item.m_songs << MusicSong(dds[3], dds[0].toInt(), dds[2], dds[1]);
-                }
+                error = true;
             }
+        }
+
+        if(error)
+        {
+            M_LOGGER_ERROR("read pls format playlist error!");
+            break;
         }
     }
     m_file.close();
@@ -70,22 +85,17 @@ void MusicPLSConfigManager::writePlaylistData(const MusicSongItems &items, const
     const MusicSongItem &item = items.first();
     QStringList data;
     data << QString("[playlist]");
-    data << QString("#TTKPLS");
-    data << QString("#TTKNAME:%1").arg(item.m_itemName);
-    data << QString("#TTKTLE:%2%1%3%1%4").arg(TTK_STR_SPLITER).arg(item.m_itemIndex)
-                                         .arg(item.m_sort.m_index).arg(item.m_sort.m_sortType);
+
     int count = 1;
     foreach(const MusicSong &song, item.m_songs)
     {
-        data.append(QString("#TTKINF:%2%1%3%1%4%1%5").arg(TTK_STR_SPLITER).arg(song.getMusicPlayCount())
-                                                     .arg(song.getMusicName()).arg(song.getMusicPlayTime())
-                                                     .arg(song.getMusicPath()));
-        data.append(QString("File%1=%2").arg(count).arg(song.getMusicPath()));
-        data.append(QString("Title%1=%2").arg(count).arg(song.getMusicName()));
-        data.append(QString("Length%1=%2").arg(count).arg(MusicTime::fromString(song.getMusicPlayTime(), "mm:ss").getTimeStamp(MusicTime::All_Sec)));
+        data << QString("File%1=%2").arg(count).arg(song.getMusicPath());
+        data << QString("Title%1=%2").arg(count).arg(song.getMusicName());
+        data << QString("Length%1=%2").arg(count).arg(MusicTime::MusicTime::labelJustified2MsecTime(song.getMusicPlayTime())/1000);
         ++count;
     }
     data << "NumberOfEntries=" + QString::number(item.m_songs.count());
+    data << "Version=2";
 
     m_file.setFileName(path);
     if(m_file.open(QFile::WriteOnly))

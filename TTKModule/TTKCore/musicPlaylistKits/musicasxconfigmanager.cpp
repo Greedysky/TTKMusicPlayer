@@ -10,26 +10,37 @@ MusicASXConfigManager::MusicASXConfigManager(QObject *parent)
 void MusicASXConfigManager::readPlaylistData(MusicSongItems &items)
 {
     MusicSongItem item;
-    const QDomNodeList &itemNodes = m_document->elementsByTagName("ttkItem");
+    item.m_itemName = QFileInfo(m_file->fileName()).baseName();
+
+    const QDomNodeList &itemNodes = m_document->elementsByTagName("Entry");
     for(int i=0; i<itemNodes.count(); ++i)
     {
-        const QDomElement &element = itemNodes.at(i).toElement();
-        item.m_songs << MusicSong(element.attribute("src"),
-                                  element.attribute("playCount").toInt(),
-                                  element.attribute("time"),
-                                  element.attribute("name"));
+        const QDomNode &node = itemNodes.at(i);
+        const QDomNodeList &paramNodes = node.childNodes();
+
+        QString duration, path;
+        for(int j=0; j<paramNodes.count(); ++j)
+        {
+            const QDomNode &paramNode = paramNodes.at(j);
+            if(paramNode.nodeName() == "Duration")
+            {
+                duration = paramNode.toElement().attribute("value");
+                duration = duration.mid(3, 5);
+            }
+            else if(paramNode.nodeName() == "Ref")
+            {
+                path = paramNode.toElement().attribute("href");
+            }
+        }
+
+        if(!path.isEmpty())
+        {
+            item.m_songs << MusicSong(path, 0, duration, QString());
+        }
     }
 
-    const QDomNodeList &listNodes = m_document->elementsByTagName("ttkList");
-    if(!listNodes.isEmpty())
+    if(!item.m_songs.isEmpty())
     {
-        const QDomElement &element = listNodes.at(0).toElement();
-        item.m_itemIndex = element.attribute("index").toInt();
-        item.m_itemName = element.attribute("name");
-
-        const QString &string = element.attribute("sortIndex");
-        item.m_sort.m_index = string.isEmpty() ? -1 : string.toInt();
-        item.m_sort.m_sortType = MStatic_cast(Qt::SortOrder, element.attribute("sortType").toInt());
         items << item;
     }
 }
@@ -41,34 +52,23 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
         return;
     }
     ///////////////////////////////////////////////////////
-    QDomElement musicPlayerDom = createRoot(ASX_FILE_PREFIX, MusicXmlAttribute("version ", "3.0"));
+    QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
     //Class A
     for(int i=0; i<items.count(); ++i)
     {
         const MusicSongItem &item = items[i];
 
-        writeDomText(musicPlayerDom, "title", item.m_itemName);
+        writeDomText(musicPlayerDom, "Title", item.m_itemName);
 
         foreach(const MusicSong &song, items[i].m_songs)
         {
             //Class B
-            QDomElement trackDom = writeDomNode(musicPlayerDom, "entry");
+            QDomElement trackDom = writeDomNode(musicPlayerDom, "Entry");
 
-            writeDomText(trackDom, "title", song.getMusicArtistBack());
-            writeDomElement(trackDom, "ref", MusicXmlAttribute("href", song.getMusicPath()));
-
-            writeDomText(trackDom, "author", APP_NAME);
-            writeDomElementMutil(trackDom, "ttkItem", MusicXmlAttributes()
-                                 << MusicXmlAttribute("name", song.getMusicName())
-                                 << MusicXmlAttribute("playCount", song.getMusicPlayCount())
-                                 << MusicXmlAttribute("time", song.getMusicPlayTime())
-                                 << MusicXmlAttribute("src", song.getMusicPath()));
-
-            writeDomElementMutil(trackDom, "ttkList", MusicXmlAttributes()
-                                 << MusicXmlAttribute("name", item.m_itemName) << MusicXmlAttribute("index", i)
-                                 << MusicXmlAttribute("count", item.m_songs.count())
-                                 << MusicXmlAttribute("sortIndex", item.m_sort.m_index)
-                                 << MusicXmlAttribute("sortType", item.m_sort.m_sortType));
+            writeDomText(trackDom, "Title", song.getMusicArtistBack());
+            writeDomElement(trackDom, "Ref", MusicXmlAttribute("href", song.getMusicPath()));
+            writeDomElement(trackDom, "Duration", MusicXmlAttribute("value", "00:" + song.getMusicPlayTime() + ".000"));
+            writeDomText(trackDom, "Author", APP_NAME);
         }
     }
 
