@@ -30,12 +30,11 @@ MusicLrcFromKrc::~MusicLrcFromKrc()
 
 bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
 {
-    FILE *fp;
+    FILE *fp = nullptr;
     struct stat st;
     size_t dstsize;
 
-    fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb");
-    if(!fp)
+    if((fp = fopen(MusicUtils::Codec::toLocal8Bit(input), "rb")) == nullptr)
     {
         M_LOGGER_ERROR("open file error !");
         return false;
@@ -77,7 +76,6 @@ bool MusicLrcFromKrc::decode(const QString &input, const QString &output)
     delete[] src;
     fclose(fp);
 
-    ///write data to file
     if(!output.isEmpty())
     {
         QFile file(output);

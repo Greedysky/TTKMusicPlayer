@@ -21,6 +21,8 @@ MusicSong::MusicSong(const QString &musicPath, const QString &musicName)
     m_musicPath = musicPath;
     m_musicName = musicName;
 
+    m_musicPath.replace("\\", "/");
+
     const QFileInfo info(m_musicPath);
     if(m_musicName.isEmpty())
     {

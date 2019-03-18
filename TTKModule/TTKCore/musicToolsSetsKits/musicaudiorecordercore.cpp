@@ -89,54 +89,52 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
     int nFileLen = 0;
     int nSize = sizeof(destionFileHeader);
 
-    FILE *fp_s = nullptr;
-    FILE *fp_d = nullptr;
-    fp_s = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb");
-    if(fp_s == nullptr)
+    FILE *fpInput = nullptr;
+    FILE *fpOutput = nullptr;
+    if((fpInput = fopen(MusicUtils::Codec::toLocal8Bit(m_mpOutputFile->fileName()), "rb")) == nullptr)
     {
         return OPEN_FILE_ERROR;
     }
-    fp_d = fopen(filename, "wb+");
 
-    if(fp_d == nullptr)
+    if((fpOutput = fopen(MusicUtils::Codec::toLocal8Bit(filename), "wb+")) == nullptr)
     {
         return SAVE_FILE_ERROR;
     }
 
-    int nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+    int nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
     if(nWrite != nSize)
     {
-        fclose(fp_s);
-        fclose(fp_d);
+        fclose(fpInput);
+        fclose(fpOutput);
         return WRITE_FILE_ERROR;
     }
 
-    while(!feof(fp_s))
+    while(!feof(fpInput))
     {
         char readBuf[4096];
-        const int nRead = fread(readBuf, 1, 4096, fp_s);
+        const int nRead = fread(readBuf, 1, 4096, fpInput);
         if(nRead > 0)
         {
-            fwrite(readBuf, 1, nRead, fp_d);
+            fwrite(readBuf, 1, nRead, fpOutput);
         }
 
         nFileLen += nRead;
     }
 
-    fseek(fp_d, 0L, SEEK_SET);
+    fseek(fpOutput, 0L, SEEK_SET);
     destionFileHeader.nRIFFLength = nFileLen - 8 + nSize;
     destionFileHeader.nDataLength = nFileLen;
 
-    nWrite = fwrite(&destionFileHeader, 1, nSize, fp_d);
+    nWrite = fwrite(&destionFileHeader, 1, nSize, fpOutput);
     if(nWrite != nSize)
     {
-        fclose(fp_s);
-        fclose(fp_d);
+        fclose(fpInput);
+        fclose(fpOutput);
         return REWRITE_FILE_ERROR;
     }
 
-    fclose(fp_s);
-    fclose(fp_d);
+    fclose(fpInput);
+    fclose(fpOutput);
 
     return nFileLen;
 }

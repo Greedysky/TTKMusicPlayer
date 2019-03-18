@@ -2,6 +2,7 @@
 
 MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
+    , MusicPlaylistInterface()
 {
 
 }

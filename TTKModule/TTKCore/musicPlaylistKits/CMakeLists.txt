@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_PLAYLIST_KITS_HEADERS
     ${MUSIC_CORE_PLAYLIST_DIR}/musicasxconfigmanager.h
+    ${MUSIC_CORE_PLAYLIST_DIR}/musicfplconfigmanager.h
     ${MUSIC_CORE_PLAYLIST_DIR}/musickglconfigmanager.h
     ${MUSIC_CORE_PLAYLIST_DIR}/musickwlconfigmanager.h
     ${MUSIC_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.h
@@ -14,6 +15,7 @@ set_property(GLOBAL PROPERTY MUSIC_CORE_PLAYLIST_KITS_HEADERS
 
 set_property(GLOBAL PROPERTY MUSIC_CORE_PLAYLIST_KITS_SOURCES
     ${MUSIC_CORE_PLAYLIST_DIR}/musicasxconfigmanager.cpp
+    ${MUSIC_CORE_PLAYLIST_DIR}/musicfplconfigmanager.cpp
     ${MUSIC_CORE_PLAYLIST_DIR}/musickglconfigmanager.cpp
     ${MUSIC_CORE_PLAYLIST_DIR}/musickwlconfigmanager.cpp
     ${MUSIC_CORE_PLAYLIST_DIR}/musicm3uconfigmanager.cpp

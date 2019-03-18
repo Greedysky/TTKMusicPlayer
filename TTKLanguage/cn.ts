@@ -6437,7 +6437,6 @@ Copyright© 2015-2019 Greedysky All Rights Reserved
         <translation>稍后播</translation>
     </message>
     <message>
-    <message>
         <location filename="../TTKModule/TTKWidget/musicToolsKits/musicsongstoolboxwidget.cpp" line="115"/>
         <source>addToPlaylist</source>
         <translation>添加到播放队列</translation>

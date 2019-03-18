@@ -21,6 +21,7 @@ INCLUDEPATH += $$PWD
 !contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicplaylistinterface.h \
+    $$PWD/musicfplconfigmanager.h \
     $$PWD/musicasxconfigmanager.h \
     $$PWD/musickglconfigmanager.h \
     $$PWD/musickwlconfigmanager.h \
@@ -35,6 +36,7 @@ HEADERS  += \
 contains(CONFIG, MUSIC_BUILD_LIB){
 SOURCES += \
     $$PWD/musicasxconfigmanager.cpp \
+    $$PWD/musicfplconfigmanager.cpp \
     $$PWD/musickglconfigmanager.cpp \
     $$PWD/musickwlconfigmanager.cpp \
     $$PWD/musicm3uconfigmanager.cpp \

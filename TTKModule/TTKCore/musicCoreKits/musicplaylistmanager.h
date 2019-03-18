@@ -101,10 +101,16 @@ protected:
      * Read kuwo music playlist data from file.
      */
     void readKWLList(const QString &path, MusicSongItems &items);
+
     /*!
      * Read kugou music playlist data from file.
      */
     void readKGLList(const QString &path, MusicSongItems &items);
+
+    /*!
+     * Read foobar2k music playlist data from file.
+     */
+    void readFPLList(const QString &path, MusicSongItems &items);
 
 };
 
