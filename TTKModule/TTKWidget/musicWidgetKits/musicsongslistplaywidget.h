@@ -53,7 +53,7 @@ public:
     /*!
      * Update item artist label by name.
      */
-    void setParameter(const QString &name, const QString &path);
+    void setParameter(const QString &name, const QString &path, QString &time);
     /*!
      * Rename item artist label name.
      */

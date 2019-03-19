@@ -326,7 +326,7 @@ void MusicApplication::positionChanged(qint64 position)
 
     if(m_musicPlaylist->isEmpty())
     {
-        m_ui->playCurrentTime->setText("00:00");
+        m_ui->playCurrentTime->setText(MUSIC_TIME_INIT);
     }
     else
     {

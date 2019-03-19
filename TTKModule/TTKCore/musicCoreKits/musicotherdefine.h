@@ -42,6 +42,8 @@
 #define MUSIC_OUTER_LIST            "-List"
 #define MUSIC_OUTER_RADIO           "-Radio"
 
+#define MUSIC_TIME_INIT             "00:00"
+
 //MusicLrcMakerWidget
 #define LRC_MAKER_INDEX_0           0
 #define LRC_MAKER_INDEX_1           1

@@ -146,7 +146,7 @@ void MusicSoundKMicroWidget::durationChanged(qint64 duration)
 {
     m_ui->loadingLabel->run(false);
     m_ui->timeSlider->setRange(0, duration*MT_S2MS);
-    m_ui->timeLabel->setText(QString("00:00/%1").arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
+    m_ui->timeLabel->setText(QString("%1/%2").arg(MUSIC_TIME_INIT).arg(MusicTime::msecTime2LabelJustified(duration*MT_S2MS)));
 
     multiMediaChanged();
 }

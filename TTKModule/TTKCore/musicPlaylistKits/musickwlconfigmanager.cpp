@@ -1,4 +1,5 @@
 #include "musickwlconfigmanager.h"
+#include "musicotherdefine.h"
 
 MusicKWLConfigManager::MusicKWLConfigManager(QObject *parent)
     : MusicAbstractXml(parent)
@@ -49,7 +50,7 @@ void MusicKWLConfigManager::readPlaylistData(MusicSongItems &items)
         {
             const QDomElement &resElement = reslist.at(i).toElement();
             item.m_songs << MusicSong(resElement.attribute("p2pcachepath"),
-                                      element.attribute("playedtimes").toInt(), "00:00",
+                                      element.attribute("playedtimes").toInt(), MUSIC_TIME_INIT,
                                       element.attribute("artist") + " - " +
                                       element.attribute("name"));
             break;

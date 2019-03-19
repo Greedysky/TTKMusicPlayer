@@ -72,7 +72,7 @@ bool MusicDownLoadQueryThreadAbstract::findUrlFileSize(MusicObject::MusicSongAtt
 {
     for(int i=0; i<attrs->count(); ++i)
     {
-        if(!findUrlFileSize( &(*attrs)[i] ))
+        if(!findUrlFileSize(&(*attrs)[i]))
         {
             return false;
         }

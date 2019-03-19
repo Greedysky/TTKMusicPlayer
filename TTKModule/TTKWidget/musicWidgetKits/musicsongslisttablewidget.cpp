@@ -66,6 +66,7 @@ MusicSongsListTableWidget::MusicSongsListTableWidget(int index, QWidget *parent)
 
     connect(&m_timerShow, SIGNAL(timeout()), SLOT(showTimeOut()));
     connect(&m_timerStay, SIGNAL(timeout()), SLOT(stayTimeOut()));
+    connect(this, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
 }
 
 MusicSongsListTableWidget::~MusicSongsListTableWidget()
@@ -188,9 +189,19 @@ void MusicSongsListTableWidget::selectRow(int index)
 
     const QString &name = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicName() : QString();
     const QString &path = !m_musicSongs->isEmpty() ? m_musicSongs->at(index).getMusicPath() : QString();
+    QString timeLabel;
 
     m_musicSongsPlayWidget = new MusicSongsListPlayWidget(index, this);
-    m_musicSongsPlayWidget->setParameter(name, path);
+    m_musicSongsPlayWidget->setParameter(name, path, timeLabel);
+
+    if(!m_musicSongs->isEmpty())
+    {
+        MusicSong *song = &(*m_musicSongs)[index];
+        if(song->getMusicPlayTime().isEmpty() || song->getMusicPlayTime() == MUSIC_TIME_INIT)
+        {
+            song->setMusicPlayTime(timeLabel);
+        }
+    }
 
     setSpan(index, 0, 1, 6);
     setCellWidget(index, 0, m_musicSongsPlayWidget);

@@ -291,6 +291,7 @@ protected:
     int m_currentPlayToolIndex, m_searchFileListIndex;
     int m_currentImportIndex, m_currentDeleteIndex;
     bool m_toolDeleteChanged;
+
     MusicSongItems m_songItems;
     MusicSongsToolBoxMaskWidget *m_listMaskWidget;
     MIntListMap m_searchfileListCache;

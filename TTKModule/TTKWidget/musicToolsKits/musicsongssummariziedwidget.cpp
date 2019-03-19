@@ -805,7 +805,7 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     }
 
     MusicSongItem *item = &m_songItems[MUSIC_RECENT_LIST];
-    MusicSong music( (*songs)[index] );
+    MusicSong music((*songs)[index]);
     MusicSongs *musics = &item->m_songs;
     MusicSongsListTableWidget *w = MStatic_cast(MusicSongsListTableWidget*, item->m_itemObject);
     if(!musics->contains(music))
@@ -827,10 +827,10 @@ void MusicSongsSummariziedWidget::setRecentMusicSongs(int index)
     {
         for(int i=0; i<musics->count(); ++i)
         {
-            MusicSong *m = &(*musics)[i];
-            if(music == *m)
+            MusicSong *song = &(*musics)[i];
+            if(music == *song)
             {
-                m->setMusicPlayCount(m->getMusicPlayCount() + 1);
+                song->setMusicPlayCount(song->getMusicPlayCount() + 1);
                 break;
             }
         }
@@ -991,7 +991,6 @@ void MusicSongsSummariziedWidget::createWidgetItem(MusicSongItem *item)
     setMusicSort(w, &item->m_sort);
     w->setParentToolIndex(foundMappingIndex(item->m_itemIndex));
 
-    connect(w, SIGNAL(cellDoubleClicked(int,int)), MusicApplication::instance(), SLOT(musicPlayIndexClicked(int,int)));
     connect(w, SIGNAL(musicAddNewFiles()), SLOT(musicImportSongsOnlyFile()));
     connect(w, SIGNAL(musicAddNewDir()), SLOT(musicImportSongsOnlyDir()));
     connect(w, SIGNAL(isCurrentIndex(bool&)), SLOT(isCurrentIndex(bool&)));

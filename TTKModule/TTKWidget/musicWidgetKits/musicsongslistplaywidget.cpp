@@ -12,6 +12,7 @@
 #include "musictinyuiobject.h"
 #include "musicsplititemclickedlabel.h"
 #include "musicwidgetheaders.h"
+#include "musicotherdefine.h"
 
 #include <QTimer>
 
@@ -25,7 +26,7 @@ MusicSongsListPlayWidget::MusicSongsListPlayWidget(int index, QWidget *parent)
 
     m_noCover = false;
     m_currentPlayIndex = index;
-    m_totalTimeLabel = "/00:00";
+    m_totalTimeLabel = QString("/") + MUSIC_TIME_INIT;
 
     QPushButton *addButton = new QPushButton(this);
     addButton->setGeometry(2, 25, 16, 16);
@@ -119,7 +120,7 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
 
 void MusicSongsListPlayWidget::insertTimerLabel(const QString &time, const QString &total)
 {
-    if(m_totalTimeLabel.contains("00:00"))
+    if(m_totalTimeLabel.contains(MUSIC_TIME_INIT))
     {
         m_totalTimeLabel = total;
     }
@@ -140,38 +141,7 @@ void MusicSongsListPlayWidget::updateCurrentArtist()
     }
 }
 
-void MusicSongsListPlayWidget::enterEvent(QEvent *event)
-{
-    QWidget::enterEvent(event);
-    emit enterChanged(m_currentPlayIndex, -1);
-}
-
-void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
-{
-    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
-
-    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
-    addMenu->addAction(tr("musicCloud"));
-
-    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), parent(), SLOT(musicSongTransferWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), parent(), SLOT(musicSongTransferWidget()));
-    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicSimilarFoundWidgetPy()));
-    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongSharedWidgetPy()));
-    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), parent(), SLOT(musicSongKMicroWidgetPy()));
-}
-
-bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const
-{
-    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
-    if(!originPath.isNull())
-    {
-        m_artistPictureLabel->setPixmap(originPath.scaled(60, 60));
-        return true;
-    }
-    return false;
-}
-
-void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path)
+void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &path, QString &time)
 {
     MusicSongTag tag;
     const bool state = tag.read(path);
@@ -180,9 +150,10 @@ void MusicSongsListPlayWidget::setParameter(const QString &name, const QString &
 
     if(state)
     {
-        m_totalTimeLabel = "/" + tag.getLengthString();
+        time = tag.getLengthString();
+        m_totalTimeLabel = "/" + time;
     }
-    m_timeLabel->setText("00:00" + m_totalTimeLabel);
+    m_timeLabel->setText(MUSIC_TIME_INIT + m_totalTimeLabel);
 
     if(state && M_SETTING_PTR->value(MusicSettingManager::OtherUseAlbumCoverChoiced).toBool())
     {
@@ -238,4 +209,35 @@ void MusicSongsListPlayWidget::currentDownloadStateClicked()
     bool state = false;
     MusicApplication::instance()->musicDownloadContains(state);
     m_downloadButton->setStyleSheet(state ? MusicUIObject::MKGTinyBtnDownload : MusicUIObject::MKGTinyBtnUnDownload);
+}
+
+void MusicSongsListPlayWidget::enterEvent(QEvent *event)
+{
+    QWidget::enterEvent(event);
+    emit enterChanged(m_currentPlayIndex, -1);
+}
+
+void MusicSongsListPlayWidget::createMoreMenu(QMenu *menu)
+{
+    menu->setStyleSheet(MusicUIObject::MMenuStyle02);
+
+    QMenu *addMenu = menu->addMenu(QIcon(":/contextMenu/btn_add"), tr("addToList"));
+    addMenu->addAction(tr("musicCloud"));
+
+    menu->addAction(QIcon(":/contextMenu/btn_mobile"), tr("songToMobile"), parent(), SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_ring"), tr("ringToMobile"), parent(), SLOT(musicSongTransferWidget()));
+    menu->addAction(QIcon(":/contextMenu/btn_similar"), tr("similar"), parent(), SLOT(musicSimilarFoundWidgetPy()));
+    menu->addAction(QIcon(":/contextMenu/btn_share"), tr("songShare"), parent(), SLOT(musicSongSharedWidgetPy()));
+    menu->addAction(QIcon(":/contextMenu/btn_kmicro"), tr("KMicro"), parent(), SLOT(musicSongKMicroWidgetPy()));
+}
+
+bool MusicSongsListPlayWidget::showArtistPicture(const QString &name) const
+{
+    QPixmap originPath(QString(ART_DIR_FULL + name + SKN_FILE));
+    if(!originPath.isNull())
+    {
+        m_artistPictureLabel->setPixmap(originPath.scaled(60, 60));
+        return true;
+    }
+    return false;
 }
