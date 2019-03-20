@@ -114,7 +114,7 @@ public:
     /*!
      * Update item time label time.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    void updateTimeLabel(const QString &current, const QString &total) const;
 
 public Q_SLOTS:
     /*!

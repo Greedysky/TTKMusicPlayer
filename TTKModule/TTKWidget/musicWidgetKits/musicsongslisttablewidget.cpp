@@ -212,11 +212,11 @@ void MusicSongsListTableWidget::selectRow(int index)
     setFixedHeight( allRowsHeight() );
 }
 
-void MusicSongsListTableWidget::setTimerLabel(const QString &time, const QString &total) const
+void MusicSongsListTableWidget::updateTimeLabel(const QString &current, const QString &total) const
 {
     if(m_musicSongsPlayWidget)
     {
-        m_musicSongsPlayWidget->insertTimerLabel(time, total);
+        m_musicSongsPlayWidget->updateTimeLabel(current, total);
     }
 }
 

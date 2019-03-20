@@ -118,13 +118,13 @@ MusicSongsListPlayWidget::~MusicSongsListPlayWidget()
     delete m_moreButton;
 }
 
-void MusicSongsListPlayWidget::insertTimerLabel(const QString &time, const QString &total)
+void MusicSongsListPlayWidget::updateTimeLabel(const QString &current, const QString &total)
 {
     if(m_totalTimeLabel.contains(MUSIC_TIME_INIT))
     {
         m_totalTimeLabel = total;
     }
-    m_timeLabel->setText(time + m_totalTimeLabel);
+    m_timeLabel->setText(current + m_totalTimeLabel);
 }
 
 void MusicSongsListPlayWidget::updateCurrentArtist()

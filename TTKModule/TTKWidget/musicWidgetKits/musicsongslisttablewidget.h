@@ -71,7 +71,7 @@ public:
     /*!
      * Update item time label time.
      */
-    void setTimerLabel(const QString &time, const QString &total) const;
+    void updateTimeLabel(const QString &current, const QString &total) const;
     /*!
      * Update current artist when it download finished.
      */

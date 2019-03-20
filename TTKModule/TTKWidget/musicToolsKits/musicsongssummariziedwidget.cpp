@@ -330,13 +330,13 @@ void MusicSongsSummariziedWidget::selectRow(int index)
     m_songItems[m_currentPlayToolIndex].m_itemObject->selectRow(index);
 }
 
-void MusicSongsSummariziedWidget::setTimerLabel(const QString &time, const QString &total) const
+void MusicSongsSummariziedWidget::updateTimeLabel(const QString &current, const QString &total) const
 {
     if(m_currentPlayToolIndex < 0)
     {
         return;
     }
-    MStatic_cast(MusicSongsListTableWidget*, m_songItems[m_currentPlayToolIndex].m_itemObject)->setTimerLabel(time, total);
+    MStatic_cast(MusicSongsListTableWidget*, m_songItems[m_currentPlayToolIndex].m_itemObject)->updateTimeLabel(current, total);
 }
 
 void MusicSongsSummariziedWidget::addNewRowItem()

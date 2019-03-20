@@ -333,7 +333,7 @@ void MusicApplication::positionChanged(qint64 position)
         m_ui->playCurrentTime->setText(MusicTime::msecTime2LabelJustified(position));
     }
     //Show the current play time
-    m_musicSongTreeWidget->setTimerLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
+    m_musicSongTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
 #if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
     m_bottomAreaWidget->setValue(position);
 #endif
