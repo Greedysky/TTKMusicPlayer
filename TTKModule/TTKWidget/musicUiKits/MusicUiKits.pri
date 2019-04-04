@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicuiobject.h \
     $$PWD/musiccontextuiobject.h \
@@ -37,7 +37,7 @@ HEADERS  += \
     $$PWD/musicwidgetheaders.h
 }
 
-contains(CONFIG, MUSIC_BUILD_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
 FORMS    += \
     $$PWD/musicApplication/musicapplication.ui \
     $$PWD/musicLrcKits/musiclrcartphotouploadwidget.ui \

@@ -18,14 +18,14 @@
 
 TEMPLATE = app
 
-contains(CONFIG, MUSIC_BUILD_LIB){
-    CONFIG -= MUSIC_BUILD_LIB
+contains(CONFIG, TTK_BUILD_LIB){
+    CONFIG -= TTK_BUILD_LIB
 }
 
-CONFIG += MUSIC_NO_MSVC_LINK_NEED
+CONFIG += TTK_NO_MSVC_LINK_NEED
 win32{
     msvc{
-        CONFIG -= MUSIC_NO_MSVC_LINK_NEED
+        CONFIG -= TTK_NO_MSVC_LINK_NEED
     }
 }
 include(../TTKMusicPlayer.pri)
@@ -43,7 +43,7 @@ unix{
 
 INCLUDEPATH += ../TTKModule
 
-!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     ../TTKModule/musicapplication.h \
     ../TTKModule/musicleftareawidget.h \

@@ -18,7 +18,7 @@
 
 INCLUDEPATH += $$PWD
 
-!contains(CONFIG, MUSIC_NO_MSVC_LINK_NEED){
+!contains(CONFIG, TTK_NO_MSVC_LINK_NEED){
 HEADERS  += \
     $$PWD/musicuserdialog.h \
     $$PWD/musicuserlineedit.h \
@@ -28,7 +28,7 @@ HEADERS  += \
     
 }
 
-contains(CONFIG, MUSIC_BUILD_LIB){
+contains(CONFIG, TTK_BUILD_LIB){
 SOURCES += \
     $$PWD/musicuserdialog.cpp \
     $$PWD/musicuserlineedit.cpp \

@@ -17,7 +17,7 @@
 # =================================================
 
 TEMPLATE = lib
-CONFIG += MUSIC_BUILD_LIB
+CONFIG += TTK_BUILD_LIB
 
 include(../TTKMusicPlayer.pri)
 unix:VERSION += $$TTKMusicPlayer
