@@ -28,7 +28,7 @@ MOC_DIR = ./.build/moc
 OBJECTS_DIR = ./.build/obj
 RCC_DIR = ./.build/rcc
 
-DEFINES += MUSIC_LIBRARY
+DEFINES += TTK_LIBRARY
 
 win32{
     TARGET = ../../../bin/$$TTKMusicPlayer/TTKConsole

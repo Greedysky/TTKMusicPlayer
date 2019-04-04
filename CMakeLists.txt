@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-add_definitions(-DMUSIC_LIBRARY)
+add_definitions(-DTTK_LIBRARY)
 
 set(TTK_VERSION "2.8.0.0")
 

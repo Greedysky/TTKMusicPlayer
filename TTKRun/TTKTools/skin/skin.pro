@@ -31,7 +31,7 @@ win32:msvc{
 
 TARGET = toolsskin
 TEMPLATE = app
-DEFINES += MUSIC_LIBRARY
+DEFINES += TTK_LIBRARY
 
 INCLUDEPATH += \
     $$PWD/../../../ \

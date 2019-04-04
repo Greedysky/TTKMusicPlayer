@@ -22,7 +22,7 @@
 #include <QtCore/qglobal.h>
 
 //////////////////////////////////////
-#ifdef MUSIC_LIBRARY
+#ifdef TTK_LIBRARY
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
 #  define MUSIC_WIDGET

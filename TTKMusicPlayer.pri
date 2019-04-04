@@ -107,7 +107,7 @@ unix:!mac{
     LIBS += -L../lib/$$TTKMusicPlayer -lqmmp -lTTKUi -lTTKExtras -lTTKWatcher -lzlib -lTTKZip
 }
 
-DEFINES += MUSIC_LIBRARY
+DEFINES += TTK_LIBRARY
 DEFINES += QMMP_LIBRARY
 
 #########################################
