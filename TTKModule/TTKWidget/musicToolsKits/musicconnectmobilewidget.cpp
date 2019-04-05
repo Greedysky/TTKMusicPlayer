@@ -135,7 +135,7 @@ void MusicConnectMobileWidget::initThirdWidget()
 
     QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(130, 130), this);
     code->setMargin(8);
-    code->setIcon(":/image/lb_player_logo", 0.23);
+    code->setIcon(":/image/lb_app_logo", 0.23);
 
     QLabel *label2 = new QLabel(tr("\t1. client and app must in the same wifi"), thirdWidget);
     label2->setStyleSheet(MusicUIObject::MFontStyle03);

@@ -17,7 +17,7 @@
         <file alias="lb_noAlbum">../TTKResource/lb_no_album_found.png</file>
         <file alias="lb_noArtist">../TTKResource/lb_no_artist_found.png</file>
         <file alias="lb_noSimilar">../TTKResource/lb_no_similar_found.png</file>
-        <file alias="lb_player_logo">../TTKResource/lb_player_logo.ico</file>
+        <file alias="lb_app_logo">../TTKResource/lb_app_logo.ico</file>
         <file alias="lb_slider">../TTKResource/lb_slider.png</file>
         <file alias="lb_noneImage">../TTKResource/lb_noneImage.png</file>
         <file alias="lb_recmd_daily">../TTKResource/lb_recmd_daily.jpg</file>

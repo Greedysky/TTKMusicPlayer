@@ -193,7 +193,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
 
     QRCodeQWidget *code = new QRCodeQWidget(QByteArray(), QSize(90, 90), topRightWidget);
     code->setMargin(2);
-    code->setIcon(":/image/lb_player_logo", 0.23);
+    code->setIcon(":/image/lb_app_logo", 0.23);
     topRightLayout->addWidget(code, 3, 2, 1, 6);
 
     topFuncLayout->addWidget(m_iconLabel);

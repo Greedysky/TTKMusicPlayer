@@ -9,7 +9,7 @@
 #define OutputPath "D:\Qt"
 #define SourceMain "D:\Qt\TTKMusicPlayer\TTKMusicPlayer.exe"
 #define SourceFolder "D:\Qt\TTKMusicPlayer\*"
-#define SetupIconFilePath "resource\lb_player_logo.ico"
+#define SetupIconFilePath "resource\lb_app_logo.ico"
 #define ResourcesPath "resource\*"
 
 [setup]
@@ -380,7 +380,7 @@ procedure InitializeWizard();
     ExtractTemporaryFile('btn_custom.png');
     ExtractTemporaryFile('label_shellLink.png');
     ExtractTemporaryFile('label_taskbarpin.png');
-    ExtractTemporaryFile('lb_player_logo.ico');
+    ExtractTemporaryFile('lb_app_logo.ico');
 
     // 关闭按钮样式
     CancelBtn:=BtnCreate(WizardForm.Handle,627,8,12,12,ExpandConstant('{tmp}\btn_close.png'),1,False)
@@ -525,7 +525,7 @@ procedure CurPageChanged(CurPageID: Integer);
             DeleteFile('{commondesktop}\{#MyAppNameZh}.lnk');
           end
           CreateShellLink(ExpandConstant('{commondesktop}\{#MyAppNameZh}.lnk'),
-            '快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\lb_player_logo.ico'),0,SW_SHOWNORMAL);
+            '快捷方式',ExpandConstant('{app}\{#MyAppExeName}'),ExpandConstant(''),ExpandConstant('{app}'),ExpandConstant('{tmp}\lb_app_logo.ico'),0,SW_SHOWNORMAL);
         end
 
         // 固定到任务栏

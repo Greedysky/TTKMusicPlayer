@@ -279,7 +279,7 @@ void MusicLrcContainerForDesktop::creatToolBarWidget()
     connect(toolCloseButton, SIGNAL(clicked()), SLOT(close()));
     m_toolBarLayout->addStretch(1);
 
-    showMainWindow->setIcon(QIcon(":/image/lb_player_logo"));
+    showMainWindow->setIcon(QIcon(":/image/lb_app_logo"));
 
     showMainWindow->setCursor(QCursor(Qt::PointingHandCursor));
     toolWindowTypeButton->setCursor(QCursor(Qt::PointingHandCursor));

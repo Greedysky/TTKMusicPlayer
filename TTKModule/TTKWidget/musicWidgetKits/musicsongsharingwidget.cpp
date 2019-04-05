@@ -31,7 +31,7 @@ MusicSongSharingWidget::MusicSongSharingWidget(QWidget *parent)
 
     m_qrCodeWidget = new QRCodeQWidget(QByteArray(), QSize(90, 90), this);
     m_qrCodeWidget->setMargin(2);
-    m_qrCodeWidget->setIcon(":/image/lb_player_logo", 0.23);
+    m_qrCodeWidget->setIcon(":/image/lb_app_logo", 0.23);
     m_ui->QRCodeIconWidgetLayout->addWidget(m_qrCodeWidget);
 
 #ifdef Q_OS_UNIX

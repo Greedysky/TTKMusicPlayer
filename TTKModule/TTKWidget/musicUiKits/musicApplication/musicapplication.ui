@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../../TTKQrc/MusicPlayer.qrc">
-    <normaloff>:/image/lb_player_logo</normaloff>:/image/lb_player_logo</iconset>
+    <normaloff>:/image/lb_app_logo</normaloff>:/image/lb_app_logo</iconset>
   </property>
   <layout class="QHBoxLayout" name="mainLayout">
    <property name="spacing">

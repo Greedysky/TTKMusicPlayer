@@ -72,7 +72,7 @@ void MusicBottomAreaWidget::iconActivated(QSystemTrayIcon::ActivationReason reas
 void MusicBottomAreaWidget::createSystemTrayIcon()
 {
     m_systemTray = new QSystemTrayIcon(MusicApplication::instance());
-    m_systemTray->setIcon(QIcon(":/image/lb_player_logo"));
+    m_systemTray->setIcon(QIcon(":/image/lb_app_logo"));
     m_systemTray->setToolTip(tr("TTKMusicPlayer"));
 
     m_systemTrayMenu = new MusicSystemTrayMenu(MusicApplication::instance());
