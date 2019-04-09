@@ -37,6 +37,9 @@ MusicFunctionTableWidget::MusicFunctionTableWidget(QWidget *parent)
     headerview->resizeSection(1, 20);
     headerview->resizeSection(2, 85);
 
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     setRowCount(3);
     m_listIndex = 0;
 }
