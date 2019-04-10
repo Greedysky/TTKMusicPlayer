@@ -23,7 +23,7 @@
 #include <QtDebug>
 #include "replaygainreader.h"
 #include "decoder_ffmpeg.h"
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1: 55.39.100
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1: 55.39.100
 extern "C"{
 #include <libavutil/channel_layout.h>
 #include <libavutil/frame.h>
@@ -93,14 +93,14 @@ DecoderFFmpeg::~DecoderFFmpeg()
 {
     m_bitrate = 0;
     m_temp_pkt.size = 0;
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
     if(c)
         avcodec_free_context(&c);
 #endif
-    if (ic)
+    if(ic)
         avformat_free_context(ic);
     if(m_pkt.data)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
         av_packet_unref(&m_pkt);
 #else
         av_free_packet(&m_pkt);
@@ -109,7 +109,7 @@ DecoderFFmpeg::~DecoderFFmpeg()
         av_free(m_stream);
 
     if(m_decoded_frame)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
         av_frame_free(&m_decoded_frame);
 #else
         av_free(m_decoded_frame);
@@ -164,7 +164,7 @@ bool DecoderFFmpeg::initialize()
     if(ic->pb)
         ic->pb->eof_reached = 0;
 
-    if (input()->isSequential())
+    if(input()->isSequential())
     {
         QMap<Qmmp::MetaData, QString> metaData;
         AVDictionaryEntry *album = av_dict_get(ic->metadata,"album",nullptr,0);
@@ -208,7 +208,7 @@ bool DecoderFFmpeg::initialize()
     ReplayGainReader rg(ic);
     setReplayGainInfo(rg.replayGainInfo());
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,4,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,4,0)) //ffmpeg-3.1:  57.48.101
     c = avcodec_alloc_context3(nullptr);
 #endif
 
@@ -221,14 +221,14 @@ bool DecoderFFmpeg::initialize()
         return false;
     }
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
     avcodec_parameters_to_context(c, ic->streams[audioIndex]->codecpar);
 #else
     c = ic->streams[audioIndex]->codec;
 #endif
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
-    if (c->channels == 1)
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
+    if(c->channels == 1)
     {
         c->request_channel_layout = AV_CH_LAYOUT_MONO;
         m_channels = c->channels;
@@ -239,7 +239,7 @@ bool DecoderFFmpeg::initialize()
         m_channels = 2;
     }
 #else
-    if (c->channels > 0)
+    if(c->channels > 0)
          c->request_channels = qMin(2, c->channels);
     else
          c->request_channels = 2;
@@ -250,19 +250,19 @@ bool DecoderFFmpeg::initialize()
 
     AVCodec *codec = avcodec_find_decoder(c->codec_id);
 
-    if (!codec)
+    if(!codec)
     {
         qWarning("DecoderFFmpeg: unsupported codec for output stream");
         return false;
     }
 
-    if (avcodec_open2(c, codec, nullptr) < 0)
+    if(avcodec_open2(c, codec, nullptr) < 0)
     {
         qWarning("DecoderFFmpeg: error while opening codec for output stream");
         return false;
     }
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
     m_decoded_frame = av_frame_alloc();
 #else
     m_decoded_frame = avcodec_alloc_frame();
@@ -365,13 +365,13 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
     if(m_pkt.stream_index == audioIndex)
     {
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav-10: 55.34.1; ffmpeg-2.1:  55.39.100
 
 #else
         avcodec_get_frame_defaults(m_decoded_frame);
 #endif
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
         int err = 0;
         if(m_temp_pkt.data)
             err = avcodec_send_packet(c, &m_temp_pkt);
@@ -410,8 +410,8 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
         m_temp_pkt.data += l;
         m_temp_pkt.size -= l;
     }
-    if (!m_temp_pkt.size && m_pkt.data)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+    if(!m_temp_pkt.size && m_pkt.data)
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
         av_packet_unref(&m_pkt);
 #else
         av_free_packet(&m_pkt);
@@ -423,12 +423,12 @@ qint64 DecoderFFmpeg::ffmpeg_decode()
 void DecoderFFmpeg::seek(qint64 pos)
 {
    int64_t timestamp = int64_t(pos)*AV_TIME_BASE/1000;
-    if (ic->start_time != (qint64)AV_NOPTS_VALUE)
+    if(ic->start_time != (qint64)AV_NOPTS_VALUE)
         timestamp += ic->start_time;
     m_seekTime = timestamp;
     av_seek_frame(ic, -1, timestamp, AVSEEK_FLAG_BACKWARD);
     avcodec_flush_buffers(c);
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
     av_packet_unref(&m_pkt);
 #else
     av_free_packet(&m_pkt);
@@ -442,7 +442,7 @@ void DecoderFFmpeg::fillBuffer()
     {
         if(!m_temp_pkt.size)
         {
-            if (av_read_frame(ic, &m_pkt) < 0)
+            if(av_read_frame(ic, &m_pkt) < 0)
             {
                 m_temp_pkt.size = 0;
                 m_temp_pkt.data = nullptr;
@@ -453,7 +453,7 @@ void DecoderFFmpeg::fillBuffer()
             if(m_pkt.stream_index != audioIndex)
             {
                 if(m_pkt.data)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
                     av_packet_unref(&m_pkt);
 #else
                     av_free_packet(&m_pkt);
@@ -515,7 +515,7 @@ void DecoderFFmpeg::fillBuffer()
             if(c->codec_id == AV_CODEC_ID_SHORTEN || c->codec_id == AV_CODEC_ID_TWINVQ)
             {
                 if(m_pkt.data)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
                     av_packet_unref(&m_pkt);
 #else
                     av_free_packet(&m_pkt);
@@ -533,7 +533,7 @@ void DecoderFFmpeg::fillBuffer()
         else if(m_output_at == 0)
         {
             if(m_pkt.data)
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,24,102)) //ffmpeg-3.0
                 av_packet_unref(&m_pkt);
 #else
                 av_free_packet(&m_pkt);

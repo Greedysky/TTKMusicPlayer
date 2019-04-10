@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sound->setPlaylist(list);
 
 //    Visual::initialize(this);
-//    foreach (VisualFactory *var, Visual::factories())
+//    foreach(VisualFactory *var, Visual::factories())
 //    {
 //        if(var->properties().shortName == "flashmeter")
 //        {

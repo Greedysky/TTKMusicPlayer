@@ -8,23 +8,23 @@ static uint32_t spectrum(double level)
 {
     level *= 0.6625;
     double r = 0.0, g = 0.0, b = 0.0;
-    if (level >= 0 && level < 0.15) {
+    if(level >= 0 && level < 0.15) {
         r = (0.15 - level) / (0.15 + 0.075);
         g = 0.0;
         b = 1.0;
-    } else if (level >= 0.15 && level < 0.275) {
+    } else if(level >= 0.15 && level < 0.275) {
         r = 0.0;
         g = (level - 0.15) / (0.275 - 0.15);
         b = 1.0;
-    } else if (level >= 0.275 && level < 0.325) {
+    } else if(level >= 0.275 && level < 0.325) {
         r = 0.0;
         g = 1.0;
         b = (0.325 - level) / (0.325 - 0.275);
-    } else if (level >= 0.325 && level < 0.5) {
+    } else if(level >= 0.325 && level < 0.5) {
         r = (level - 0.325) / (0.5 - 0.325);
         g = 1.0;
         b = 0.0;
-    } else if (level >= 0.5 && level < 0.6625) {
+    } else if(level >= 0.5 && level < 0.6625) {
         r = 1.0;
         g = (0.6625 - level) / (0.6625 - 0.5f);
         b = 0.0;
@@ -32,7 +32,7 @@ static uint32_t spectrum(double level)
 
     // Intensity correction.
     double cf = 1.0;
-    if (level >= 0.0 && level < 0.1) {
+    if(level >= 0.0 && level < 0.1) {
         cf = level / 0.1;
     }
     cf *= 255.0;
@@ -48,23 +48,23 @@ static uint32_t spectrum(double level)
 static uint32_t sox(double level)
 {
     double r = 0.0;
-    if (level >= 0.13 && level < 0.73) {
+    if(level >= 0.13 && level < 0.73) {
         r = sin((level - 0.13) / 0.60 * M_PI / 2.0);
-    } else if (level >= 0.73) {
+    } else if(level >= 0.73) {
         r = 1.0;
     }
 
     double g = 0.0;
-    if (level >= 0.6 && level < 0.91) {
+    if(level >= 0.6 && level < 0.91) {
         g = sin((level - 0.6) / 0.31 * M_PI / 2.0);
-    } else if (level >= 0.91) {
+    } else if(level >= 0.91) {
         g = 1.0;
     }
 
     double b = 0.0;
-    if (level < 0.60) {
+    if(level < 0.60) {
         b = 0.5 * sin(level / 0.6 * M_PI);
-    } else if (level >= 0.78) {
+    } else if(level >= 0.78) {
         b = (level - 0.78) / 0.22;
     }
 

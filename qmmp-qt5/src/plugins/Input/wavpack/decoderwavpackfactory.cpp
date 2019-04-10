@@ -58,7 +58,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
         filePath.remove(QRegExp("#\\d+$"));
         int track = filePath.section("#", -1).toInt();
         QList<TrackInfo *> list = createPlayList(filePath, parts, ignoredFiles);
-        if (list.isEmpty() || track <= 0 || track > list.count())
+        if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
             list.clear();
@@ -84,7 +84,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
     WavpackContext *ctx = WavpackOpenFileInput (path.toLocal8Bit().constData(),
                                                 err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
-    if (!ctx)
+    if(!ctx)
     {
         qWarning("DecoderWavPackFactory: error: %s", err);
         delete info;
@@ -94,7 +94,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
     if(parts & TrackInfo::MetaData)
     {
         cue_len = WavpackGetTagItem (ctx, "cuesheet", nullptr, 0);
-        if (cue_len)
+        if(cue_len)
         {
             delete info;
             char value[cue_len + 1];
@@ -159,7 +159,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
 
 MetaDataModel* DecoderWavPackFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    if (!path.contains("://") || path.startsWith("wvpack://"))
+    if(!path.contains("://") || path.startsWith("wvpack://"))
         return new WavPackMetaDataModel(path, readOnly);
     else
         return nullptr;

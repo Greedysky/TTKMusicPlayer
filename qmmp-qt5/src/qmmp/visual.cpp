@@ -46,7 +46,7 @@ Visual::~Visual()
 void Visual::closeEvent (QCloseEvent *event)
 {
     m_visuals.removeAll(this);
-    if (event->spontaneous () && m_vis_map.key(this))
+    if(event->spontaneous () && m_vis_map.key(this))
     {
         VisualFactory *factory = m_vis_map.key(this);
         m_vis_map.remove(factory);
@@ -55,7 +55,7 @@ void Visual::closeEvent (QCloseEvent *event)
     }
     else
     {
-        if (m_vis_map.key(this))
+        if(m_vis_map.key(this))
         {
             VisualFactory *factory = m_vis_map.key(this);
             m_vis_map.remove(factory);
@@ -120,21 +120,21 @@ QString Visual::file(VisualFactory *factory)
 void Visual::setEnabled(VisualFactory* factory, bool enable)
 {
     checkFactories();
-    if (!m_factories->contains(factory))
+    if(!m_factories->contains(factory))
         return;
 
     QString name = factory->properties().shortName;
     QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
     QStringList visList = settings.value("Visualization/enabled_plugins").toStringList();
 
-    if (enable)
+    if(enable)
     {
-        if (!visList.contains(name))
+        if(!visList.contains(name))
             visList << name;
-        if (!m_vis_map.value(factory) && m_parentWidget)
+        if(!m_vis_map.value(factory) && m_parentWidget)
         {
             Visual* visual = factory->create(m_parentWidget);
-            if (m_receiver && m_member)
+            if(m_receiver && m_member)
                 connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
             visual->setWindowFlags(Qt::Window);
             m_vis_map.insert (factory, visual);
@@ -148,7 +148,7 @@ void Visual::setEnabled(VisualFactory* factory, bool enable)
     else
     {
         visList.removeAll(name);
-        if (m_vis_map.value(factory))
+        if(m_vis_map.value(factory))
         {
             m_visuals.removeAll(m_vis_map.value(factory));
             m_vis_map.value(factory)->close();
@@ -161,7 +161,7 @@ void Visual::setEnabled(VisualFactory* factory, bool enable)
 bool Visual::isEnabled(VisualFactory* factory)
 {
     checkFactories();
-    if (!m_factories->contains(factory))
+    if(!m_factories->contains(factory))
         return false;
     QString name = factory->properties().shortName;
     QSettings settings ( Qmmp::configFile(), QSettings::IniFormat );
@@ -171,7 +171,7 @@ bool Visual::isEnabled(VisualFactory* factory)
 
 void Visual::add(Visual *visual)
 {
-    if (!m_visuals.contains(visual))
+    if(!m_visuals.contains(visual))
     {
         Qmmp::State st = StateHandler::instance()->state();
         if(st == Qmmp::Playing || st == Qmmp::Buffering || st == Qmmp::Paused)
@@ -192,10 +192,10 @@ void Visual::initialize(QWidget *parent , QObject *receiver, const char *member)
     m_parentWidget = parent;
     foreach(VisualFactory* factory, factories())
     {
-        if (isEnabled(factory))
+        if(isEnabled(factory))
         {
             Visual* visual = factory->create(parent);
-            if (m_receiver && m_member)
+            if(m_receiver && m_member)
                 connect(visual, SIGNAL(closedByUser()), m_receiver, m_member);
             visual->setWindowFlags(visual->windowFlags() | Qt::Window);
             qDebug("Visual: added visualization: %s", qPrintable(factory->properties().name));
@@ -227,25 +227,25 @@ void Visual::clearBuffer()
 
 void Visual::checkFactories()
 {
-    if (!m_factories)
+    if(!m_factories)
     {
         m_factories = new QList<VisualFactory *>;
         m_files = new QHash <VisualFactory*, QString>;
 
-        foreach (QString filePath, Qmmp::findPlugins("Visual"))
+        foreach(QString filePath, Qmmp::findPlugins("Visual"))
         {
             QPluginLoader loader(filePath);
             QObject *plugin = loader.instance();
-            if (loader.isLoaded())
+            if(loader.isLoaded())
                 qDebug("Visual: loaded plugin %s", qPrintable(QFileInfo(filePath).fileName()));
             else
                 qWarning("Visual: %s", qPrintable(loader.errorString ()));
 
             VisualFactory *factory = nullptr;
-            if (plugin)
+            if(plugin)
                 factory = qobject_cast<VisualFactory *>(plugin);
 
-            if (factory)
+            if(factory)
             {
                 m_factories->append(factory);
                 m_files->insert(factory, filePath);

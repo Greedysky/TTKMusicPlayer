@@ -65,7 +65,7 @@ QmmpAudioEngine::~QmmpAudioEngine()
     stop();
     reset();
     if(m_output_buf)
-        delete [] m_output_buf;
+        delete[] m_output_buf;
     m_output_buf = 0;
     qDeleteAll(m_effects);
     m_instance = 0;
@@ -224,12 +224,12 @@ void QmmpAudioEngine::removeEffect(EffectFactory *factory)
 
 void QmmpAudioEngine::seek(qint64 time)
 {
-    if (m_output && m_output->isRunning())
+    if(m_output && m_output->isRunning())
     {
         m_output->mutex()->lock ();
         m_output->seek(time, true);
         m_output->mutex()->unlock();
-        if (isRunning())
+        if(isRunning())
         {
             mutex()->lock ();
             m_seekTime = time;
@@ -240,10 +240,10 @@ void QmmpAudioEngine::seek(qint64 time)
 
 void QmmpAudioEngine::pause()
 {
-    if (m_output)
+    if(m_output)
         m_output->pause();
 
-    if (m_output)
+    if(m_output)
     {
         m_output->recycler()->mutex()->lock ();
         m_output->recycler()->cond()->wakeAll();
@@ -268,13 +268,13 @@ void QmmpAudioEngine::stop()
     m_user_stop = true;
     mutex()->unlock();
 
-    if (m_output)
+    if(m_output)
         m_output->recycler()->cond()->wakeAll();
 
     if(isRunning())
         wait();
 
-    if (m_output)
+    if(m_output)
     {
         delete m_output;
         m_output = 0;
@@ -310,7 +310,7 @@ qint64 QmmpAudioEngine::produceSound(unsigned char *data, qint64 size, quint32 b
 
 void QmmpAudioEngine::finish()
 {
-    if (m_output)
+    if(m_output)
     {
         m_output->mutex()->lock ();
         m_output->finish();
@@ -374,7 +374,7 @@ void QmmpAudioEngine::run()
     {
         mutex()->lock ();
         //seek
-        if (m_seekTime >= 0)
+        if(m_seekTime >= 0)
         {
             m_decoder->seek(m_seekTime);
             m_seekTime = -1;
@@ -426,13 +426,13 @@ void QmmpAudioEngine::run()
             len = m_decoder->read((m_output_buf + m_output_at), m_output_size - m_output_at);
         }
 
-        if (len > 0)
+        if(len > 0)
         {
             m_bitrate = m_decoder->bitrate();
             m_output_at += len;
             flush();
         }
-        else if (len == 0)
+        else if(len == 0)
         {
             if(m_next) //decoder can play next track without initialization
             {
@@ -500,7 +500,7 @@ void QmmpAudioEngine::run()
                 continue;
             }
 
-            if (m_output)
+            if(m_output)
             {
                 flush(true);
                 m_output->recycler()->mutex()->lock ();
@@ -529,7 +529,7 @@ void QmmpAudioEngine::run()
     clearDecoders();
     mutex()->lock ();
     m_next = false;
-    if (m_finish)
+    if(m_finish)
         finish();
     if(m_output)
     {
@@ -539,7 +539,7 @@ void QmmpAudioEngine::run()
     }
     mutex()->unlock();
 
-    if (m_output)
+    if(m_output)
     {
         if(m_user_stop || (m_done && !m_finish))
         {
@@ -578,14 +578,14 @@ void QmmpAudioEngine::flush(bool final)
             m_done = m_user_stop;
         }
 
-        if (m_user_stop || m_finish)
+        if(m_user_stop || m_finish)
             m_done = true;
         else
         {
             m_output_at -= produceSound(m_output_buf, m_output_at, m_bitrate);
         }
 
-        if (!m_output->recycler()->empty())
+        if(!m_output->recycler()->empty())
         {
             m_output->recycler()->cond()->wakeOne();
         }
@@ -642,7 +642,7 @@ OutputWriter *QmmpAudioEngine::createOutput()
 {
     OutputWriter *output = new OutputWriter(0);
     output->setMuted(m_muted);
-    if (!output->initialize(m_ap.sampleRate(), m_ap.channelMap()))
+    if(!output->initialize(m_ap.sampleRate(), m_ap.channelMap()))
     {
         delete output;
         StateHandler::instance()->dispatch(Qmmp::FatalError);
@@ -656,7 +656,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
     m_ap = d->audioParameters();
     //output buffer for decoder
     if(m_output_buf)
-        delete [] m_output_buf;
+        delete[] m_output_buf;
     m_bks = QMMP_BLOCK_FRAMES * m_ap.frameSize(); //block size
     m_output_size = m_bks * 4;
     m_sample_size = m_ap.sampleSize();
@@ -724,7 +724,7 @@ void QmmpAudioEngine::prepareEffects(Decoder *d)
         {
             effect = Effect::create(factory);
             effect->configure(m_ap.sampleRate(), m_ap.channelMap());
-            if (m_ap != effect->audioParameters())
+            if(m_ap != effect->audioParameters())
             {
                 m_blockedEffects << effect; //list of effects which require restart
                 m_ap = effect->audioParameters();

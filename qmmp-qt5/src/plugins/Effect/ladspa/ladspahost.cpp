@@ -68,7 +68,7 @@ LADSPAHost::LADSPAHost(QObject *parent) : QObject(parent)
             continue;
 
         LADSPAEffect *effect = createEffect(plugin);
-        foreach (LADSPAControl *c, effect->controls)
+        foreach(LADSPAControl *c, effect->controls)
             c->value = settings.value(QString("port%1").arg(c->port), c->value).toFloat();
 
         m_effects.append(effect);
@@ -92,7 +92,7 @@ LADSPAHost::~LADSPAHost()
 
         settings.setValue("id", (quint64)m_effects[i]->plugin->desc->UniqueID);
 
-        foreach (LADSPAControl *c, m_effects[i]->controls)
+        foreach(LADSPAControl *c, m_effects[i]->controls)
             settings.setValue(QString("port%1").arg(c->port), c->value);
 
         settings.endGroup();
@@ -105,7 +105,7 @@ void LADSPAHost::configure(quint32 freq, int chan)
     m_chan = chan;
     m_freq = freq;
 
-    foreach (LADSPAEffect *e, m_effects)
+    foreach(LADSPAEffect *e, m_effects)
     {
         //deactivate effect
         deactivateEffect(e);
@@ -139,7 +139,7 @@ void LADSPAHost::loadModules()
     QString ladspa_path = qgetenv("LADSPA_PATH");
     QStringList directories;
 
-    if (ladspa_path.isEmpty())
+    if(ladspa_path.isEmpty())
     {
         /* Fallback, look in obvious places */
         directories << "/usr/lib/ladspa";
@@ -163,11 +163,11 @@ void LADSPAHost::findModules(const QString &path)
     foreach(QFileInfo file, files)
     {
         void *library = dlopen(qPrintable(file.absoluteFilePath ()), RTLD_LAZY);
-        if (!library)
+        if(!library)
             continue;
 
         LADSPA_Descriptor_Function descriptor_fn = (LADSPA_Descriptor_Function) dlsym(library, "ladspa_descriptor");
-        if (!descriptor_fn)
+        if(!descriptor_fn)
         {
             dlclose(library);
             continue;
@@ -218,7 +218,7 @@ LADSPAEffect *LADSPAHost::createEffect(LADSPAPlugin *plugin)
     for(unsigned long port = 0; port < plugin->desc->PortCount; port++)
     {
         LADSPA_PortDescriptor d = plugin->desc->PortDescriptors[port];
-        if (LADSPA_IS_PORT_CONTROL(d))
+        if(LADSPA_IS_PORT_CONTROL(d))
         {
             effect->controls << createControl(plugin->desc, port);
         }
@@ -242,7 +242,7 @@ LADSPAControl *LADSPAHost::createControl(const LADSPA_Descriptor *desc, unsigned
     c->name = QString(desc->PortNames[port]);
     c->port = port;
 
-    if (LADSPA_IS_HINT_TOGGLED(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_TOGGLED(hint.HintDescriptor))
     {
         c->type = LADSPAControl::BUTTON;
         c->min = 0;
@@ -252,59 +252,59 @@ LADSPAControl *LADSPAHost::createControl(const LADSPA_Descriptor *desc, unsigned
         return c;
     }
 
-    if (LADSPA_IS_HINT_SAMPLE_RATE(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_SAMPLE_RATE(hint.HintDescriptor))
         fact = m_freq;
     else
         fact = 1.0f;
 
-    if (LADSPA_IS_HINT_BOUNDED_BELOW(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_BOUNDED_BELOW(hint.HintDescriptor))
         min = hint.LowerBound * fact;
     else
         min = -10000.0f;
 
-    if (LADSPA_IS_HINT_BOUNDED_ABOVE(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_BOUNDED_ABOVE(hint.HintDescriptor))
         max = hint.UpperBound * fact;
     else
         max = 10000.0f;
 
-    if (10000.0f <= max - min)   // infinity
+    if(10000.0f <= max - min)   // infinity
         step = 5.0f;
-    else if (100.0f < max - min) // 100.0 ... lots
+    else if(100.0f < max - min) // 100.0 ... lots
         step = 5.0f;
-    else if (10.0f < max - min)  // 10.0 ... 100.0
+    else if(10.0f < max - min)  // 10.0 ... 100.0
         step = 0.5f;
-    else if (1.0f < max - min)   // 1.0 ... 10.0
+    else if(1.0f < max - min)   // 1.0 ... 10.0
         step = 0.05f;
     else  // 0.0 ... 1.0
         step = 0.005f;
 
-    if (LADSPA_IS_HINT_INTEGER(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_INTEGER(hint.HintDescriptor))
     {
-        if (step < 1.0f)
+        if(step < 1.0f)
             step = 1.0f;
     }
 
-    if (LADSPA_IS_HINT_DEFAULT_MINIMUM(hint.HintDescriptor))
+    if(LADSPA_IS_HINT_DEFAULT_MINIMUM(hint.HintDescriptor))
         start = min;
-    else if (LADSPA_IS_HINT_DEFAULT_LOW(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_LOW(hint.HintDescriptor))
         start = min * 0.75f + max * 0.25f;
-    else if (LADSPA_IS_HINT_DEFAULT_MIDDLE(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_MIDDLE(hint.HintDescriptor))
         start = min * 0.5f + max * 0.5f;
-    else if (LADSPA_IS_HINT_DEFAULT_HIGH(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_HIGH(hint.HintDescriptor))
         start = min * 0.25f + max * 0.75f;
-    else if (LADSPA_IS_HINT_DEFAULT_MAXIMUM(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_MAXIMUM(hint.HintDescriptor))
         start = max;
-    else if (LADSPA_IS_HINT_DEFAULT_0(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_0(hint.HintDescriptor))
         start = 0.0f;
-    else if (LADSPA_IS_HINT_DEFAULT_1(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_1(hint.HintDescriptor))
         start = 1.0f;
-    else if (LADSPA_IS_HINT_DEFAULT_100(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_100(hint.HintDescriptor))
         start = 100.0f;
-    else if (LADSPA_IS_HINT_DEFAULT_440(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_DEFAULT_440(hint.HintDescriptor))
         start = 440.0f;
-    else if (LADSPA_IS_HINT_INTEGER(hint.HintDescriptor))
+    else if(LADSPA_IS_HINT_INTEGER(hint.HintDescriptor))
         start = min;
-    else if (max >= 0.0f && min <= 0.0f)
+    else if(max >= 0.0f && min <= 0.0f)
         start = 0.0f;
     else
         start = min * 0.5f + max * 0.5f;
@@ -359,15 +359,15 @@ void LADSPAHost::activateEffect(LADSPAEffect *e)
     {
         LADSPA_Handle handle = desc->instantiate(desc, m_freq);
 
-        foreach (LADSPAControl *c, e->controls)
+        foreach(LADSPAControl *c, e->controls)
         {
             desc->connect_port(handle, c->port, &c->value);
         }
-        foreach (int port, e->in_ports)
+        foreach(int port, e->in_ports)
         {
             desc->connect_port(handle, port, m_buf[in_at++]);
         }
-        foreach (int port, e->out_ports)
+        foreach(int port, e->out_ports)
         {
             desc->connect_port(handle, port, m_buf[out_at++]);
         }
@@ -381,7 +381,7 @@ void LADSPAHost::activateEffect(LADSPAEffect *e)
 void LADSPAHost::deactivateEffect(LADSPAEffect *e)
 {
     const LADSPA_Descriptor *desc = e->plugin->desc;
-    foreach (LADSPA_Handle handle, e->handles)
+    foreach(LADSPA_Handle handle, e->handles)
     {
         if(desc->deactivate)
             desc->deactivate(handle);
@@ -416,7 +416,7 @@ void LADSPAHost::unload(LADSPAEffect *effect)
 
 int LADSPAHost::applyEffect(float *data, size_t samples)
 {
-    if (m_effects.isEmpty())
+    if(m_effects.isEmpty())
         return samples;
 
     size_t frames = samples / m_chan;

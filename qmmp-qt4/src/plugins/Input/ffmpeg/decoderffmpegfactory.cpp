@@ -36,7 +36,7 @@ extern "C"{
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
-#if (LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
+#if(LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
@@ -80,7 +80,7 @@ bool DecoderFFmpegFactory::canDecode(QIODevice *i) const
         return true;
     else if(filters.contains("*.m4a") && (formats.contains("m4a") || formats.contains("mp4")))
         return true;
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(53,2,0)) //libav 9
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(53,2,0)) //libav 9
     else if(filters.contains("*.tak"))
         return true;
 #endif
@@ -92,13 +92,13 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     QStringList filters;
     filters << "*.wma" << "*.ape" << "*.tta" << "*.m4a" << "*.aac" << "*.ra" << "*.shn" << "*.vqf" << "*.ac3";
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(53,2,0)) //libav 9
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(53,2,0)) //libav 9
     filters << "*.tak";
 #endif
     filters = settings.value("FFMPEG/filters", filters).toStringList();
 
     //remove unsupported filters
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54,51,100)) //libav 10
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54,51,100)) //libav 10
     if(!avcodec_find_decoder(AV_CODEC_ID_WMAV1))
         filters.removeAll("*.wma");
     if(!avcodec_find_decoder(AV_CODEC_ID_APE))
@@ -149,7 +149,7 @@ DecoderProperties DecoderFFmpegFactory::properties() const
     if(!avcodec_find_decoder(CODEC_ID_TWINVQ))
         filters.removeAll("*.vqf");
 #endif
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54,35,0)) //libav 9
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54,35,0)) //libav 9
     if(!avcodec_find_decoder(AV_CODEC_ID_TAK))
         filters.removeAll("*.tak");
 #endif
@@ -255,7 +255,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
         int idx = av_find_best_stream(in, AVMEDIA_TYPE_AUDIO, -1, -1, 0, 0);
         if(idx >= 0)
         {
-    #if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+    #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
             AVCodecParameters *c = in->streams[idx]->codecpar;
     #else
             AVCodecContext *c = in->streams[idx]->codec;

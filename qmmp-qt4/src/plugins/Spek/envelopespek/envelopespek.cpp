@@ -100,14 +100,14 @@ void EnvelopeSpekThead::run()
     {
         m_mutex.lock ();
         len = m_decoder->read((m_output_buf + m_output_at), m_output_size - m_output_at);
-        if (len > 0)
+        if(len > 0)
         {
             m_bitrate = m_decoder->bitrate();
             m_output_at += len;
             flush(false);
             emit bufferChanged(m_recycler.next(), m_decoder->audioParameters().channels(), m_output_size);
         }
-        else if (len == 0)
+        else if(len == 0)
         {
             flush(true);
             m_finish = true;
@@ -145,7 +145,7 @@ void EnvelopeSpekThead::flush(bool final)
         }
         m_output_at -= produceSound(m_output_buf, m_output_at, m_bitrate);
 
-        if (!m_recycler.empty())
+        if(!m_recycler.empty())
         {
             m_recycler.cond()->wakeOne();
         }
@@ -199,8 +199,8 @@ EnvelopeSpek::EnvelopeSpek(QWidget *parent) :
 EnvelopeSpek::~EnvelopeSpek()
 {
     qDebug() << "~EnvelopeSpek";
-    delete [] m_buffer;
-    delete [] m_x_scale;
+    delete[] m_buffer;
+    delete[] m_x_scale;
 
     this->stop();
     delete m_fspekThread;
@@ -278,7 +278,6 @@ void EnvelopeSpek::mediaUrlChanged()
 
 void EnvelopeSpek::paintEvent(QPaintEvent *e)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
@@ -300,8 +299,8 @@ void EnvelopeSpek::process(float *buffer)
         return;
     }
 
-    int rows = height();
-    int cols = width();
+    const int rows = height();
+    const int cols = width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -331,14 +330,14 @@ void EnvelopeSpek::process(float *buffer)
     {
         y = dest[0];
     }
-    for (k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         y = qMax(dest[k], y);
     }
 
     y >>= 7; //256
 
-    if (y)
+    if(y)
     {
         magnitude = int(log (y) * y_scale);
         magnitude = qBound(0, magnitude, m_rows);

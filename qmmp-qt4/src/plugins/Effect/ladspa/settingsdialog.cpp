@@ -127,7 +127,7 @@ void SettingsDialog::on_configureButton_clicked()
             formLayout->addRow(c->name, label);
         }
     }
-    if (effect->controls.isEmpty())
+    if(effect->controls.isEmpty())
     {
         QLabel *label = new QLabel(tr("This LADSPA plugin has no user controls"), dialog);
         formLayout->addRow(label);

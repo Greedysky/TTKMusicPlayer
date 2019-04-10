@@ -33,7 +33,7 @@ ChannelConverter::~ChannelConverter()
 {
     if(m_tmp_buf)
     {
-        delete [] m_tmp_buf;
+        delete[] m_tmp_buf;
         m_tmp_buf = 0;
     }
 }

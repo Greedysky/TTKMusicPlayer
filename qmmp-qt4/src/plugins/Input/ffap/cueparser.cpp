@@ -40,24 +40,24 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
     {
         QString line = textStream.readLine().trimmed();
         QStringList words = splitLine(line);
-        if (words.size() < 2)
+        if(words.size() < 2)
             continue;
 
-        if (words[0] == "PERFORMER")
+        if(words[0] == "PERFORMER")
         {
             if(m_tracks.isEmpty())
                 artist = words[1];
             else
                 m_tracks.last()->info.setValue(Qmmp::ARTIST, words[1]);
         }
-        else if (words[0] == "TITLE")
+        else if(words[0] == "TITLE")
         {
             if(m_tracks.isEmpty())
                 album = words[1];
             else
                 m_tracks.last()->info.setValue(Qmmp::TITLE, words[1]);
         }
-        else if (words[0] == "TRACK")
+        else if(words[0] == "TRACK")
         {
             TrackInfo info("ape://" + path + QString("#%1").arg(words[1].toInt()));
             info.setValue(Qmmp::TRACK, words[1].toInt());
@@ -74,32 +74,32 @@ CUEParser::CUEParser(const QByteArray &array, const QString &path)
             m_tracks.last()->info = info;
             m_tracks.last()->offset = 0;
         }
-        else if (words[0] == "INDEX" && words[1] == "01")
+        else if(words[0] == "INDEX" && words[1] == "01")
         {
-            if (m_tracks.isEmpty())
+            if(m_tracks.isEmpty())
                 continue;
             m_tracks.last()->offset = getLength(words[2]);
             int c = m_tracks.count();
             if(c > 1)
                 m_tracks[c - 2]->info.setDuration(m_tracks[c - 1]->offset - m_tracks[c - 2]->offset);
         }
-        else if (words[0] == "REM")
+        else if(words[0] == "REM")
         {
-            if (words.size() < 3)
+            if(words.size() < 3)
                 continue;
-            if (words[1] == "GENRE")
+            if(words[1] == "GENRE")
                 genre = words[2];
-            else if (words[1] == "DATE")
+            else if(words[1] == "DATE")
                 date = words[2];
-            else if (words[1] == "COMMENT")
+            else if(words[1] == "COMMENT")
                 comment = words[2];
-            else if (words[1] == "REPLAYGAIN_ALBUM_GAIN")
+            else if(words[1] == "REPLAYGAIN_ALBUM_GAIN")
                 album_gain = words[2].toDouble();
-            else if (words[1] == "REPLAYGAIN_ALBUM_PEAK")
+            else if(words[1] == "REPLAYGAIN_ALBUM_PEAK")
                 album_peak = words[2].toDouble();
-            else if (words[1] == "REPLAYGAIN_TRACK_GAIN" && !m_tracks.isEmpty())
+            else if(words[1] == "REPLAYGAIN_TRACK_GAIN" && !m_tracks.isEmpty())
                 m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_GAIN, words[2].toDouble());
-            else if (words[1] == "REPLAYGAIN_TRACK_PEAK" && !m_tracks.isEmpty())
+            else if(words[1] == "REPLAYGAIN_TRACK_PEAK" && !m_tracks.isEmpty())
                 m_tracks.last()->info.setValue(Qmmp::REPLAYGAIN_TRACK_PEAK, words[2].toDouble());
         }
     }
@@ -178,12 +178,12 @@ QStringList CUEParser::splitLine(const QString &line)
     //qDebug("raw string = %s",qPrintable(line));
     QStringList list;
     QString buf = line.trimmed();
-    if (buf.isEmpty())
+    if(buf.isEmpty())
         return list;
     while (!buf.isEmpty())
     {
         //qDebug(qPrintable(buf));
-        if (buf.startsWith('"'))
+        if(buf.startsWith('"'))
         {
             int end = buf.indexOf('"',1);
             if(end == -1) //ignore invalid line
@@ -198,7 +198,7 @@ QStringList CUEParser::splitLine(const QString &line)
         else
         {
             int end = buf.indexOf(' ', 0);
-            if (end < 0)
+            if(end < 0)
                 end = buf.size();
             list << buf.mid (0, end);
             buf.remove (0, end);
@@ -211,9 +211,9 @@ QStringList CUEParser::splitLine(const QString &line)
 qint64 CUEParser::getLength(const QString &str)
 {
     QStringList list = str.split(":");
-    if (list.size() == 2)
+    if(list.size() == 2)
         return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000;
-    else if (list.size() == 3)
+    else if(list.size() == 3)
         return (qint64)list.at(0).toInt()*60000 + list.at(1).toInt()*1000 + list.at(2).toInt()*1000/75;
     return 0;
 }

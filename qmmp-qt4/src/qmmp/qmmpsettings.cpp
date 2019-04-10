@@ -194,7 +194,7 @@ void QmmpSettings::readEqSettings(int bands)
     m_eq_settings = EqSettings(bands);
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup(QString("Equalizer_%1").arg(bands));
-    for (int i = 0; i < bands; ++i)
+    for(int i = 0; i < bands; ++i)
         m_eq_settings.setGain(i, settings.value("band_"+ QString("%1").arg(i), 0).toDouble());
     m_eq_settings.setPreamp(settings.value("preamp", 0).toDouble());
     m_eq_settings.setEnabled(settings.value("enabled", false).toBool());
@@ -251,7 +251,7 @@ void QmmpSettings::sync()
     settings.setValue("Proxy/url", m_proxy_url);
     //equalizer settings
     settings.beginGroup(QString("Equalizer_%1").arg(m_eq_settings.bands()));
-    for (int i = 0; i < m_eq_settings.bands(); ++i)
+    for(int i = 0; i < m_eq_settings.bands(); ++i)
         settings.setValue("band_"+ QString("%1").arg(i), m_eq_settings.gain(i));
     settings.setValue("preamp", m_eq_settings.preamp());
     settings.setValue("enabled", m_eq_settings.isEnabled());

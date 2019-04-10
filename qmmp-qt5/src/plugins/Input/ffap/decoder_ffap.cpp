@@ -133,7 +133,7 @@ qint64 DecoderFFap::read(unsigned char *data, qint64 size)
 
 void DecoderFFap::deinit()
 {
-    if (m_ffap_decoder)
+    if(m_ffap_decoder)
         ffap_free(m_ffap_decoder);
     m_ffap_decoder = nullptr;
 }
@@ -142,9 +142,9 @@ void DecoderFFap::deinit()
 
 /*uint DecoderFFap::findID3v2(char *data, ulong size) //retuns ID3v2 tag size
 {
-    if (size < 10)
+    if(size < 10)
         return 0;
-    if (!memcmp(data, "ID3", 3))
+    if(!memcmp(data, "ID3", 3))
     {
         TagLib::ByteVector byteVector(data, size);
         TagLib::ID3v2::Header header(byteVector);

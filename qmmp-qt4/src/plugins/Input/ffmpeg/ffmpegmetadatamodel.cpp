@@ -29,9 +29,9 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path) : MetaDataModel(tr
 {
     AVFormatContext *in = 0;
 #ifdef Q_OS_WIN
-    if (avformat_open_input(&in, path.toUtf8().constData(), 0, 0) < 0)
+    if(avformat_open_input(&in, path.toUtf8().constData(), 0, 0) < 0)
 #else
-    if (avformat_open_input(&in, path.toLocal8Bit().constData(), 0, 0) < 0)
+    if(avformat_open_input(&in, path.toLocal8Bit().constData(), 0, 0) < 0)
 #endif
         return;
 
@@ -40,23 +40,23 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path) : MetaDataModel(tr
         avformat_find_stream_info(in, 0);
         av_read_play(in);
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
         AVCodecParameters *c = 0;
 #else
         AVCodecContext *c = 0;
 #endif
 
-        for (uint idx = 0; idx < in->nb_streams; idx++)
+        for(uint idx = 0; idx < in->nb_streams; idx++)
         {
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
             c = in->streams[idx]->codecpar;
 #else
             c = in->streams[idx]->codec;
 #endif
-            if (c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == AV_CODEC_ID_MJPEG)
+            if(c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == AV_CODEC_ID_MJPEG)
                 break;
         }
-        if (c)
+        if(c)
         {
             AVPacket pkt;
             av_read_frame(in, &pkt);

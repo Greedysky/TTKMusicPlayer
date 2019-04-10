@@ -71,7 +71,7 @@ bool WildMidiHelper::initialize()
     settings.endGroup();
 
     m_sample_rate = sample_rate;
-    if (WildMidi_Init (qPrintable(conf_path), sample_rate, mixer_options) < 0)
+    if(WildMidi_Init (qPrintable(conf_path), sample_rate, mixer_options) < 0)
     {
         qWarning("WildMidiHelper: unable to initialize WildMidi library");
         m_mutex.unlock();

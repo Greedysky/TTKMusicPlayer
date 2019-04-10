@@ -36,7 +36,7 @@
 bool DecoderFLACFactory::canDecode(QIODevice *input) const
 {
     char buf[36];
-    if (input->peek(buf, 36) != 36)
+    if(input->peek(buf, 36) != 36)
         return false;
     if(!memcmp(buf, "fLaC", 4)) //native flac
         return true;
@@ -73,7 +73,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
         filePath.remove(QRegExp("#\\d+$"));
         int track = filePath.section("#", -1).toInt();
         QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::Properties, ignoredFiles);
-        if (list.isEmpty() || track <= 0 || track > list.count())
+        if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
             list.clear();
@@ -117,7 +117,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
     if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
-        if (tag->fieldListMap().contains("CUESHEET"))
+        if(tag->fieldListMap().contains("CUESHEET"))
         {
             delete info;
 
@@ -176,13 +176,13 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
     if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
     {
         TagLib::Ogg::FieldListMap items = tag->fieldListMap();
-        if (items.contains("REPLAYGAIN_TRACK_GAIN"))
+        if(items.contains("REPLAYGAIN_TRACK_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].front()));
-        if (items.contains("REPLAYGAIN_TRACK_PEAK"))
+        if(items.contains("REPLAYGAIN_TRACK_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].front()));
-        if (items.contains("REPLAYGAIN_ALBUM_GAIN"))
+        if(items.contains("REPLAYGAIN_ALBUM_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].front()));
-        if (items.contains("REPLAYGAIN_ALBUM_PEAK"))
+        if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].front()));
     }
 
@@ -195,7 +195,7 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
 
 MetaDataModel* DecoderFLACFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    if (!path.contains("://") || path.startsWith("flac://"))
+    if(!path.contains("://") || path.startsWith("flac://"))
         return new FLACMetaDataModel(path, readOnly);
     else
         return nullptr;

@@ -22,13 +22,13 @@ Recycler::Recycler ()
 
 Recycler::~Recycler()
 {
-    for (unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; i++)
     {
         delete m_buffers[i];
         m_buffers[i] = 0;
     }
     if(m_buffer_count)
-        delete [] m_buffers;
+        delete[] m_buffers;
     m_blocked = 0;
 }
 
@@ -39,13 +39,13 @@ void Recycler::configure(quint32 freq, int chan)
     if(block_samples == m_block_samples && buffer_count == m_buffer_count)
         return;
 
-    for (unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; i++)
     {
         delete m_buffers[i];
         m_buffers[i] = 0;
     }
     if(m_buffer_count)
-        delete [] m_buffers;
+        delete[] m_buffers;
     m_add_index = 0;
     m_done_index = 0;
     m_current_count = 0;
@@ -54,12 +54,12 @@ void Recycler::configure(quint32 freq, int chan)
     m_buffer_count = buffer_count;
 
 
-    if (m_buffer_count < 4)
+    if(m_buffer_count < 4)
         m_buffer_count = 4;
 
     m_buffers = new Buffer*[m_buffer_count];
 
-    for (unsigned int i = 0; i < m_buffer_count; i++)
+    for(unsigned int i = 0; i < m_buffer_count; i++)
     {
         m_buffers[i] = new Buffer(m_block_samples);
     }
@@ -93,7 +93,7 @@ int Recycler::used() const
 
 Buffer *Recycler::get()
 {
-    if (full())
+    if(full())
         return 0;
     return m_buffers[m_add_index];
 }
@@ -120,7 +120,7 @@ Buffer *Recycler::next()
 void Recycler::done()
 {
     m_blocked = 0;
-    if (m_current_count)
+    if(m_current_count)
     {
         m_current_count--;
         m_done_index = (m_done_index + 1) % m_buffer_count;

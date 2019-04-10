@@ -40,14 +40,14 @@ static void setOptimizedMethods(PluginInfo *p) {
 #ifdef CPU_X86
     int mm_flags = mm_support ();
 
-    if (mm_flags & FF_MM_MMX2) {
+    if(mm_flags & FF_MM_MMX2) {
 #ifdef VERBOSE
         fprintf (stderr, "Extented MMX detected. Using the fastest methods !\n");
 #endif
         p->methods.draw_line = draw_line_mmx;
         p->methods.zoom_filter = zoom_filter_xmmx;
     }
-    else if (mm_flags & FF_MM_MMX) {
+    else if(mm_flags & FF_MM_MMX) {
 #ifdef VERBOSE
         fprintf (stderr, "MMX detected. Using fast methods !\n");
 #endif
@@ -126,7 +126,7 @@ void plugin_info_init(PluginInfo *pp, int nbVisuals) {
             {0,1,1,1,4, 331, 400},
             {0,0,1,0,5, 401, 450},
             {0,0,1,1,1, 451, 510}};
-            for (i=0;i<8;++i)
+            for(i=0;i<8;++i)
                 pp->states[i] = states[i];
     }
     pp->curGState = &(pp->states[6]);
@@ -170,7 +170,7 @@ void plugin_info_init(PluginInfo *pp, int nbVisuals) {
     pp->main_scanner = gsl_new();
     pp->main_script_str = GOOM_MAIN_SCRIPT;
 
-    for (i = 0; i < 0xffff; i++) {
+    for(i = 0; i < 0xffff; i++) {
         pp->sintable[i] = (int) (1024 * sin ((double) i * 360 / (sizeof (pp->sintable) / sizeof (pp->sintable[0]) - 1) * 3.141592 / 180) + .5);
         /* sintable [us] = (int)(1024.0f * sin (us*2*3.31415f/0xffff)) ; */
     }
@@ -178,11 +178,11 @@ void plugin_info_init(PluginInfo *pp, int nbVisuals) {
 
 void plugin_info_add_visual(PluginInfo *p, int i, VisualFX *visual) {
     p->visuals[i] = visual;
-    if (i == p->nbVisuals-1) {
+    if(i == p->nbVisuals-1) {
         ++i;
         p->nbParams = 1;
         while (i--) {
-            if (p->visuals[i]->params)
+            if(p->visuals[i]->params)
                 p->nbParams++;
         }
         p->params = (PluginParameters *)malloc(sizeof(PluginParameters)*p->nbParams);
@@ -190,7 +190,7 @@ void plugin_info_add_visual(PluginInfo *p, int i, VisualFX *visual) {
         p->nbParams = 1;
         p->params[0] = p->sound.params;
         while (i--) {
-            if (p->visuals[i]->params)
+            if(p->visuals[i]->params)
                 p->params[p->nbParams++] = *(p->visuals[i]->params);
         }
     }

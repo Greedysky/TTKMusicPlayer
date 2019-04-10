@@ -40,12 +40,12 @@ void evaluate_sound(gint16 data[2][512], SoundInfo *info) {
 
     /* find the max */
     int incvar = 0;
-    for (i = 0; i < 512; i+=2) {
-        if (incvar < data[0][i])
+    for(i = 0; i < 512; i+=2) {
+        if(incvar < data[0][i])
             incvar = data[0][i];
     }
 
-    if (incvar > info->allTimesMax)
+    if(incvar > info->allTimesMax)
         info->allTimesMax = incvar;
 
     /* volume sonore */
@@ -57,23 +57,23 @@ void evaluate_sound(gint16 data[2][512], SoundInfo *info) {
     info->accelvar = info->volume; /* accel entre 0 et 1 */
 
     /* transformations sur la vitesse du son */
-    if (info->speedvar > 1.0f)
+    if(info->speedvar > 1.0f)
         info->speedvar = 1.0f;
 
-    if (info->speedvar < 0.1f)
+    if(info->speedvar < 0.1f)
         info->accelvar *= (1.0f - (float)info->speedvar);
-    else if (info->speedvar < 0.3f)
+    else if(info->speedvar < 0.3f)
         info->accelvar *= (0.9f - (float)(info->speedvar-0.1f)/2.0f);
     else
         info->accelvar *= (0.8f - (float)(info->speedvar-0.3f)/4.0f);
 
     /* adoucissement de l'acceleration */
     info->accelvar *= ACCEL_MULT;
-    if (info->accelvar < 0)
+    if(info->accelvar < 0)
         info->accelvar = 0;
 
     difaccel = info->accelvar - difaccel;
-    if (difaccel < 0)
+    if(difaccel < 0)
         difaccel = - difaccel;
 
     /* mise a jour de la vitesse */
@@ -81,9 +81,9 @@ void evaluate_sound(gint16 data[2][512], SoundInfo *info) {
     info->speedvar = (info->speedvar + difaccel * 0.5f) / 2;
     info->speedvar *= SPEED_MULT;
   info->speedvar = (info->speedvar + 3.0f * prevspeed) / 4.0f;
-    if (info->speedvar < 0)
+    if(info->speedvar < 0)
         info->speedvar = 0;
-    if (info->speedvar > 1)
+    if(info->speedvar > 1)
         info->speedvar = 1;
 
     /* temps du goom */
@@ -92,45 +92,45 @@ void evaluate_sound(gint16 data[2][512], SoundInfo *info) {
     info->cycle++;
 
     /* detection des nouveaux gooms */
-    if ((info->speedvar > (float)IVAL(info->biggoom_speed_limit_p)/100.0f)
+    if((info->speedvar > (float)IVAL(info->biggoom_speed_limit_p)/100.0f)
             && (info->accelvar > info->bigGoomLimit)
             && (info->timeSinceLastBigGoom > BIG_GOOM_DURATION)) {
         info->timeSinceLastBigGoom = 0;
     }
 
-    if (info->accelvar > info->goom_limit) {
+    if(info->accelvar > info->goom_limit) {
         /* TODO: tester && (info->timeSinceLastGoom > 20)) { */
         info->totalgoom ++;
         info->timeSinceLastGoom = 0;
         info->goomPower = info->accelvar - info->goom_limit;
     }
 
-    if (info->accelvar > info->prov_max)
+    if(info->accelvar > info->prov_max)
         info->prov_max = info->accelvar;
 
-    if (info->goom_limit>1)
+    if(info->goom_limit>1)
         info->goom_limit=1;
 
     /* toute les 2 secondes : vérifier si le taux de goom est correct
      * et le modifier sinon.. */
-    if (info->cycle % 64 == 0) {
-        if (info->speedvar<0.01f)
+    if(info->cycle % 64 == 0) {
+        if(info->speedvar<0.01f)
             info->goom_limit *= 0.91;
-        if (info->totalgoom > 4) {
+        if(info->totalgoom > 4) {
             info->goom_limit+=0.02;
         }
-        if (info->totalgoom > 7) {
+        if(info->totalgoom > 7) {
             info->goom_limit*=1.03f;
             info->goom_limit+=0.03;
         }
-        if (info->totalgoom > 16) {
+        if(info->totalgoom > 16) {
             info->goom_limit*=1.05f;
             info->goom_limit+=0.04;
         }
-        if (info->totalgoom == 0) {
+        if(info->totalgoom == 0) {
             info->goom_limit = info->prov_max - 0.02;
         }
-        if ((info->totalgoom == 1) && (info->goom_limit > 0.02))
+        if((info->totalgoom == 1) && (info->goom_limit > 0.02))
             info->goom_limit-=0.01;
         info->totalgoom = 0;
         info->bigGoomLimit = info->goom_limit * (1.0f + (float)IVAL(info->biggoom_factor_p)/500.0f);

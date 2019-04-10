@@ -15,7 +15,7 @@
 // ic functions for OggVorbis
 static size_t oggread (void *buf, size_t size, size_t nmemb, void *src)
 {
-    if (! src) return 0;
+    if(! src) return 0;
 
     DecoderVorbis *dogg = (DecoderVorbis *) src;
     int len = dogg->input()->read((char *) buf, (size * nmemb));
@@ -26,7 +26,7 @@ static int oggseek(void *src, ogg_int64_t offset, int whence)
 {
     DecoderVorbis *dogg = (DecoderVorbis *) src;
 
-    if ( dogg->input()->isSequential ())
+    if( dogg->input()->isSequential ())
         return -1;
 
     long start = 0;
@@ -45,7 +45,7 @@ static int oggseek(void *src, ogg_int64_t offset, int whence)
         start = 0;
     }
 
-    if (dogg->input()->seek(start + offset))
+    if(dogg->input()->seek(start + offset))
         return 0;
     return -1;
 }
@@ -89,7 +89,7 @@ bool DecoderVorbis::initialize()
     qDebug("DecoderVorbis: initialize");
     m_inited = false;
     m_totalTime = 0;
-    if (!input())
+    if(!input())
     {
         qDebug("DecoderVorbis: cannot initialize.  No input");
         return false;
@@ -102,7 +102,7 @@ bool DecoderVorbis::initialize()
         oggclose,
         oggtell
     };
-    if (ov_open_callbacks(this, &oggfile, NULL, 0, oggcb) < 0)
+    if(ov_open_callbacks(this, &oggfile, NULL, 0, oggcb) < 0)
     {
         qWarning("DecoderVorbis: cannot open stream");
 
@@ -117,7 +117,7 @@ bool DecoderVorbis::initialize()
         m_totalTime = 0;
 
     vorbis_info *ogginfo = ov_info(&oggfile, -1);
-    if (ogginfo)
+    if(ogginfo)
     {
         freq = ogginfo->rate;
         chan = ogginfo->channels;
@@ -137,7 +137,7 @@ bool DecoderVorbis::initialize()
 
 qint64 DecoderVorbis::totalTime() const
 {
-    if (!m_inited)
+    if(!m_inited)
         return 0;
     return m_totalTime;
 }
@@ -150,7 +150,7 @@ int DecoderVorbis::bitrate() const
 
 void DecoderVorbis::deinit()
 {
-    if (m_inited)
+    if(m_inited)
         ov_clear(&oggfile);
     len = 0;
 }
@@ -162,49 +162,49 @@ void DecoderVorbis::updateTags()
 
     QMap <Qmmp::MetaData, QString> metaData;
     comments = ov_comment (&oggfile, -1);
-    for (i = 0; i < comments->comments; i++)
+    for(i = 0; i < comments->comments; i++)
     {
-        if (!strncasecmp(comments->user_comments[i], "title=",
+        if(!strncasecmp(comments->user_comments[i], "title=",
                          strlen ("title=")))
             metaData.insert(Qmmp::TITLE, QString::fromUtf8(comments->user_comments[i]
                             + strlen ("title=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "artist=", strlen ("artist=")))
             metaData.insert(Qmmp::ARTIST,
                             QString::fromUtf8(comments->user_comments[i]
                                               + strlen ("artist=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "album=", strlen ("album=")))
             metaData.insert(Qmmp::ALBUM,
                             QString::fromUtf8(comments->user_comments[i]
                                               + strlen ("album=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "comment=", strlen ("comment=")))
             metaData.insert(Qmmp::COMMENT,
                             QString::fromUtf8(comments->user_comments[i]
                                               + strlen ("comment=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "genre=", strlen ("genre=")))
             metaData.insert(Qmmp::GENRE, QString::fromUtf8 (comments->user_comments[i]
                             + strlen ("genre=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "tracknumber=",
                               strlen ("tracknumber=")))
             metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
                             + strlen ("tracknumber="))));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "track=", strlen ("track=")))
             metaData.insert(Qmmp::TRACK, QString::number(atoi(comments->user_comments[i]
                             + strlen ("track="))));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "date=", strlen ("date=")))
             metaData.insert(Qmmp::YEAR, QString::number(atoi(comments->user_comments[i]
                             + strlen ("date="))));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "composer=", strlen ("composer=")))
             metaData.insert(Qmmp::COMPOSER, QString::fromUtf8 (comments->user_comments[i]
                             + strlen ("composer=")));
-        else if (!strncasecmp(comments->user_comments[i],
+        else if(!strncasecmp(comments->user_comments[i],
                               "discnumber=", strlen ("discnumber=")))
             metaData.insert(Qmmp::DISCNUMBER, QString::number(atoi(comments->user_comments[i]
                             + strlen ("discnumber="))));
@@ -304,7 +304,7 @@ qint64 DecoderVorbis::read(unsigned char *data, qint64 maxSize)
         }
     }
 
-    if (section != m_last_section)
+    if(section != m_last_section)
     {
         updateTags();
         m_last_section = section;

@@ -46,15 +46,15 @@ DecoderAAC::DecoderAAC(QIODevice *i)
 
 DecoderAAC::~DecoderAAC()
 {
-    if (data())
+    if(data())
     {
-        if (data()->handle)
+        if(data()->handle)
             NeAACDecClose (data()->handle);
         delete data();
         m_data = 0;
     }
-    if (m_input_buf)
-        delete [] m_input_buf;
+    if(m_input_buf)
+        delete[] m_input_buf;
     m_input_buf = 0;
     m_bitrate = 0;
 }
@@ -64,17 +64,17 @@ bool DecoderAAC::initialize()
     m_bitrate = 0;
     m_totalTime = 0;
 
-    if (!input())
+    if(!input())
     {
         qWarning("DecoderAAC: cannot initialize.  No input.");
         return false;
     }
-    if (!m_input_buf)
+    if(!m_input_buf)
         m_input_buf = new char[AAC_BUFFER_SIZE];
     m_input_at = 0;
 
     AACFile aac_file(input());
-    if (!aac_file.isValid())
+    if(!aac_file.isValid())
     {
         qWarning("DecoderAAC: unsupported AAC file");
         return false;
@@ -92,7 +92,7 @@ bool DecoderAAC::initialize()
     m_totalTime = aac_file.duration();
     m_bitrate = aac_file.bitrate();
 
-    if (!m_data)
+    if(!m_data)
         m_data = new aac_data;
 
     data()->handle = NeAACDecOpen();
@@ -117,12 +117,12 @@ bool DecoderAAC::initialize()
 #endif
     int res = NeAACDecInit (data()->handle, (unsigned char*) m_input_buf, m_input_at, &freq, &chan);
 
-    if (res < 0)
+    if(res < 0)
     {
         qWarning("DecoderAAC: NeAACDecInit() failed");
         return false;
     }
-    if (!freq || !chan)
+    if(!freq || !chan)
     {
         qWarning("DecoderAAC: invalid sound parameters");
         return false;
@@ -144,7 +144,7 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
     while(m_sample_buf_size <= 0 && !eof)
     {
         m_sample_buf_at = 0;
-        if (m_input_at < AAC_BUFFER_SIZE)
+        if(m_input_at < AAC_BUFFER_SIZE)
         {
             to_read = AAC_BUFFER_SIZE - m_input_at;
             read = input()->read((char *) (m_input_buf + m_input_at),  to_read);
@@ -152,6 +152,8 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
             m_input_at += read;
         }
 
+        if(m_input_at == 0)
+            return 0;
 
         m_sample_buf = NeAACDecDecode(data()->handle, &frame_info, (uchar *)m_input_buf, m_input_at);
         memmove(m_input_buf, m_input_buf + frame_info.bytesconsumed,
@@ -159,7 +161,9 @@ qint64 DecoderAAC::read(unsigned char *audio, qint64 maxSize)
 
         m_input_at -= frame_info.bytesconsumed;
 
-        if (frame_info.error > 0)
+        if(eof && frame_info.error > 0) //ignore error on end of file
+            return 0;
+        else if(frame_info.error > 0)
         {
             m_input_at = 0;
             qDebug("DecoderAAC: %s", NeAACDecGetErrorMessage(frame_info.error));

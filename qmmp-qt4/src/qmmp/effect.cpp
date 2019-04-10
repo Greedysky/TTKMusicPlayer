@@ -111,7 +111,7 @@ QList<EffectFactory *> Effect::factories()
 {
     loadPlugins();
     QList<EffectFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(item->effectFactory())
             list.append(item->effectFactory());
@@ -123,7 +123,7 @@ QList<EffectFactory *> Effect::enabledFactories()
 {
     loadPlugins();
     QList<EffectFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_enabledNames.contains(item->shortName()) && item->effectFactory())
             list.append(item->effectFactory());
@@ -145,7 +145,7 @@ QString Effect::file(EffectFactory *factory)
 void Effect::setEnabled(EffectFactory* factory, bool enable)
 {
     loadPlugins();
-    if (!factories().contains(factory))
+    if(!factories().contains(factory))
         return;
 
     if(enable == isEnabled(factory))
@@ -179,7 +179,7 @@ bool Effect::isEnabled(EffectFactory* factory)
 EffectFactory *Effect::findFactory(const QString &shortName)
 {
     loadPlugins();
-    foreach (EffectFactory *f, factories())
+    foreach(EffectFactory *f, factories())
     {
         if(shortName == f->properties().shortName)
             return f;

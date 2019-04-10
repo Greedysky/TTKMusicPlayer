@@ -50,7 +50,7 @@ MPCFileTagModel::MPCFileTagModel(TagLib::MPC::File *file, TagLib::MPC::File::Tag
 {
     m_tagType = tagType;
     m_file = file;
-    if (m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_tagType == TagLib::MPC::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
         m_codec = QTextCodec::codecForName("ISO-8859-1");
@@ -67,7 +67,7 @@ MPCFileTagModel::~MPCFileTagModel()
 
 QString MPCFileTagModel::name() const
 {
-    if (m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_tagType == TagLib::MPC::File::ID3v1)
         return "ID3v1";
     return "APE";
 }
@@ -76,7 +76,7 @@ QList<Qmmp::MetaData> MPCFileTagModel::keys() const
 {
     QList<Qmmp::MetaData> list = TagModel::keys();
     list.removeAll(Qmmp::DISCNUMBER);
-    if (m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_tagType == TagLib::MPC::File::ID3v1)
     {
         list.removeAll(Qmmp::COMPOSER);
         list.removeAll(Qmmp::ALBUMARTIST);
@@ -86,7 +86,7 @@ QList<Qmmp::MetaData> MPCFileTagModel::keys() const
 
 QString MPCFileTagModel::value(Qmmp::MetaData key) const
 {
-    if (m_tag)
+    if(m_tag)
     {
         bool utf = m_codec->name().contains("UTF");
         TagLib::String str;
@@ -137,7 +137,7 @@ void MPCFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     TagLib::String::Type type = TagLib::String::Latin1;
 
-    if (m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_tagType == TagLib::MPC::File::ID3v1)
     {
         if(m_codec->name().contains("UTF")) //utf is unsupported
             return;
@@ -179,9 +179,9 @@ bool MPCFileTagModel::exists() const
 
 void MPCFileTagModel::create()
 {
-    if (m_tag)
+    if(m_tag)
         return;
-    if (m_tagType == TagLib::MPC::File::ID3v1)
+    if(m_tagType == TagLib::MPC::File::ID3v1)
         m_tag = m_file->ID3v1Tag(true);
     else
         m_tag = m_file->APETag(true);

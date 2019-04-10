@@ -24,7 +24,7 @@ NormalAnalyzer::NormalAnalyzer (QWidget *parent) : Visual (parent)
 
     for(int i=0; i<50; ++i)
     {
-        m_starPoints << StarPoint();
+        m_starPoints << new StarPoint();
     }
 
     setWindowTitle(tr("Normal Analyzer Widget"));
@@ -49,12 +49,13 @@ NormalAnalyzer::NormalAnalyzer (QWidget *parent) : Visual (parent)
 
 NormalAnalyzer::~NormalAnalyzer()
 {
+    qDeleteAll(m_starPoints);
     if(m_peaks)
-        delete [] m_peaks;
+        delete[] m_peaks;
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void NormalAnalyzer::start()
@@ -93,11 +94,10 @@ void NormalAnalyzer::timeout()
 
 void NormalAnalyzer::starTimeout()
 {
-    for(int i=0; i<m_starPoints.count(); ++i)
+    foreach(StarPoint *point, m_starPoints)
     {
-        StarPoint *sp = &m_starPoints[i];
-        sp->m_alpha = rand()%255;
-        sp->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand()%255;
+        point->m_pt = QPoint(rand()%width(), rand()%height());
     }
 }
 
@@ -112,25 +112,26 @@ void NormalAnalyzer::readSettings()
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_starAction->setChecked(settings.value("show_star", false).toBool());
     m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
+    settings.endGroup();
 
     if(!m_update)
     {
         m_update = true;
         m_peaksAction->setChecked(m_show_peaks);
 
-        foreach(QAction *act, m_fpsGroup->actions ())
+        foreach(QAction *act, m_fpsGroup->actions())
         {
-            if (m_timer->interval() == 1000 / act->data().toInt())
+            if(m_timer->interval() == 1000 / act->data().toInt())
                 act->setChecked(true);
         }
-        foreach(QAction *act, m_peaksFalloffGroup->actions ())
+        foreach(QAction *act, m_peaksFalloffGroup->actions())
         {
-            if (m_peaks_falloff == act->data().toDouble())
+            if(m_peaks_falloff == act->data().toDouble())
                 act->setChecked(true);
         }
-        foreach(QAction *act, m_analyzerFalloffGroup->actions ())
+        foreach(QAction *act, m_analyzerFalloffGroup->actions())
         {
-            if (m_analyzer_falloff == act->data().toDouble())
+            if(m_analyzer_falloff == act->data().toDouble())
                 act->setChecked(true);
         }
 
@@ -225,29 +226,29 @@ void NormalAnalyzer::paintEvent(QPaintEvent *e)
 
 void NormalAnalyzer::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::RightButton)
+    if(e->button() == Qt::RightButton)
         m_menu->exec(e->globalPos());
 }
 
 void NormalAnalyzer::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width() / 2;
+    const int rows = (height() - 2) / m_cell_size.height();
+    const int cols = (width() - 2) / m_cell_size.width() / 2;
 
     if(m_rows != rows || m_cols != cols)
     {
         m_rows = rows;
         m_cols = cols;
         if(m_peaks)
-            delete [] m_peaks;
+            delete[] m_peaks;
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_peaks = new double[m_cols * 2];
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
@@ -271,7 +272,7 @@ void NormalAnalyzer::process()
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; i++)
     {
         j = m_cols * 2 - i - 1; //mirror index
         yl = yr = 0;
@@ -282,7 +283,7 @@ void NormalAnalyzer::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);
@@ -291,12 +292,12 @@ void NormalAnalyzer::process()
         yl >>= 7; //256
         yr >>= 7;
 
-        if (yl)
+        if(yl)
         {
             magnitude_l = int(log (yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
-        if (yr)
+        if(yr)
         {
             magnitude_r = int(log (yr) * y_scale);
             magnitude_r = qBound(0, magnitude_r, m_rows);
@@ -308,7 +309,7 @@ void NormalAnalyzer::process()
         m_intern_vis_data[j] -= m_analyzer_falloff * m_rows / 15;
         m_intern_vis_data[j] = magnitude_r > m_intern_vis_data[j] ? magnitude_r : m_intern_vis_data[j];
 
-        if (m_show_peaks)
+        if(m_show_peaks)
         {
             m_peaks[i] -= m_peaks_falloff * m_rows / 15;
             m_peaks[i] = magnitude_l > m_peaks[i] ? magnitude_l : m_peaks[i];
@@ -323,12 +324,11 @@ void NormalAnalyzer::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
-        for(int i=0; i<m_starPoints.count(); ++i)
+        foreach(StarPoint *point, m_starPoints)
         {
-            StarPoint *sp = &m_starPoints[i];
-            m_starColor.setAlpha(sp->m_alpha);
+            m_starColor.setAlpha(point->m_alpha);
             p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(sp->m_pt);
+            p->drawPoint(point->m_pt);
         }
     }
 
@@ -343,7 +343,7 @@ void NormalAnalyzer::draw(QPainter *p)
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = maxRange();
 
-    for (int j = 0; j < m_cols * 2; ++j)
+    for(int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)
@@ -351,13 +351,13 @@ void NormalAnalyzer::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        for (int i = 0; i <= m_intern_vis_data[j] * maxed; ++i)
+        for(int i = 0; i <= m_intern_vis_data[j] * maxed; ++i)
         {
             p->fillRect (x, height() - i * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, line);
         }
 
-        if (m_show_peaks)
+        if(m_show_peaks)
         {
             p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, "Cyan");
@@ -368,8 +368,8 @@ void NormalAnalyzer::draw(QPainter *p)
 void NormalAnalyzer::createMenu()
 {
     m_menu = new QMenu (this);
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
+    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     m_peaksAction = m_menu->addAction(tr("Peaks"));
     m_peaksAction->setCheckable(true);
@@ -381,7 +381,7 @@ void NormalAnalyzer::createMenu()
     m_fpsGroup->addAction(tr("25 fps"))->setData(25);
     m_fpsGroup->addAction(tr("10 fps"))->setData(10);
     m_fpsGroup->addAction(tr("5 fps"))->setData(5);
-    foreach(QAction *act, m_fpsGroup->actions ())
+    foreach(QAction *act, m_fpsGroup->actions())
     {
         act->setCheckable(true);
         refreshRate->addAction(act);
@@ -395,7 +395,7 @@ void NormalAnalyzer::createMenu()
     m_analyzerFalloffGroup->addAction(tr("Medium"))->setData(2.2);
     m_analyzerFalloffGroup->addAction(tr("Fast"))->setData(2.4);
     m_analyzerFalloffGroup->addAction(tr("Fastest"))->setData(2.8);
-    foreach(QAction *act, m_analyzerFalloffGroup->actions ())
+    foreach(QAction *act, m_analyzerFalloffGroup->actions())
     {
         act->setCheckable(true);
         NormalAnalyzerFalloff->addAction(act);
@@ -409,7 +409,7 @@ void NormalAnalyzer::createMenu()
     m_peaksFalloffGroup->addAction(tr("Medium"))->setData(0.2);
     m_peaksFalloffGroup->addAction(tr("Fast"))->setData(0.4);
     m_peaksFalloffGroup->addAction(tr("Fastest"))->setData(0.8);
-    foreach(QAction *act, m_peaksFalloffGroup->actions ())
+    foreach(QAction *act, m_peaksFalloffGroup->actions())
     {
         act->setCheckable(true);
         peaksFalloff->addAction(act);

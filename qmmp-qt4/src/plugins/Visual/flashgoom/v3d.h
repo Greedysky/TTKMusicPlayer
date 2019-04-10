@@ -49,7 +49,7 @@ typedef struct {
 #define V3D_TO_V2D(v3,v2,width,height,distance) \
 { \
   int Xp, Yp; \
-  if (v3.z > 2) { \
+  if(v3.z > 2) { \
      F2I((distance * v3.x / v3.z),Xp) ; \
      F2I((distance * v3.y / v3.z),Yp) ; \
      v2.x = Xp + (width>>1); \

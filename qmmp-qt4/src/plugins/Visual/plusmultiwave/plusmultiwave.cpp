@@ -32,7 +32,7 @@ PlusMultiWave::PlusMultiWave (QWidget *parent) : Visual (parent)
 PlusMultiWave::~PlusMultiWave()
 {
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void PlusMultiWave::start()
@@ -78,7 +78,6 @@ void PlusMultiWave::showEvent(QShowEvent *)
 
 void PlusMultiWave::paintEvent(QPaintEvent *e)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
@@ -87,11 +86,11 @@ void PlusMultiWave::paintEvent(QPaintEvent *e)
 void PlusMultiWave::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = height();
-    int cols = width();
+    const int rows = height();
+    const int cols = width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -100,7 +99,7 @@ void PlusMultiWave::process()
         m_pixPos = 0;
 
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_vis_data = 0;
         m_x_scale = new int[2];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
@@ -126,14 +125,14 @@ void PlusMultiWave::process()
     {
         y = dest[0];
     }
-    for (k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         y = qMax(dest[k], y);
     }
 
     y >>= 7; //256
 
-    if (y)
+    if(y)
     {
         magnitude = int(log (y) * y_scale);
         magnitude = qBound(0, magnitude, m_rows);

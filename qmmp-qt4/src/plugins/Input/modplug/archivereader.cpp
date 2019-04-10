@@ -51,17 +51,17 @@ bool ArchiveReader::isSupported(const QString &path)
 QByteArray ArchiveReader::unpack(const QString &path)
 {
     QString lPath = path.toLower();
-    if (path.endsWith(".mdz") ||
+    if(path.endsWith(".mdz") ||
             lPath.endsWith(".s3z") ||
             lPath.endsWith(".xmz") ||
             lPath.endsWith(".itz"))
         return unzip(path);
-    else if (lPath.endsWith(".mdgz") ||
+    else if(lPath.endsWith(".mdgz") ||
              lPath.endsWith(".s3gz") ||
              lPath.endsWith(".xmgz") ||
              lPath.endsWith(".itgz"))
         return gunzip(path);
-    else if (lPath.endsWith(".mdbz"))
+    else if(lPath.endsWith(".mdbz"))
         return bunzip2(path);
 
     return QByteArray();

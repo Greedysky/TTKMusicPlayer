@@ -49,7 +49,7 @@ GoomHeap *goom_heap_new_with_granularity(int granularity)
 void goom_heap_delete(GoomHeap *_this)
 {
   int i;
-  for (i=0;i<_this->number_of_arrays;++i) {
+  for(i=0;i<_this->number_of_arrays;++i) {
     free(_this->arrays[i]);
   }
   free(_this->arrays);
@@ -58,11 +58,11 @@ void goom_heap_delete(GoomHeap *_this)
 
 static void align_it(GoomHeap *_this, int alignment)
 {
-  if ((alignment > 1) && (_this->number_of_arrays>0)) {
+  if((alignment > 1) && (_this->number_of_arrays>0)) {
     void *last_array = _this->arrays[_this->number_of_arrays - 1];
     long  last_address = (long)last_array + _this->consumed_in_last_array;
     int   decal = (last_address % alignment);
-    if (decal != 0) {
+    if(decal != 0) {
       _this->consumed_in_last_array += alignment - decal;
     }
   }
@@ -78,10 +78,10 @@ void     *goom_heap_malloc_with_alignment_prefixed(GoomHeap *_this, int nb_bytes
   align_it(_this, alignment);
 
   /* ensuite on verifie que la quantite de memoire demandee tient dans le buffer */
-  if ((_this->consumed_in_last_array + nb_bytes >= _this->size_of_each_array)
+  if((_this->consumed_in_last_array + nb_bytes >= _this->size_of_each_array)
       || (_this->number_of_arrays == 0)) {
 
-    if (prefix_bytes + nb_bytes + alignment >= _this->size_of_each_array) {
+    if(prefix_bytes + nb_bytes + alignment >= _this->size_of_each_array) {
 
       /* Si la zone demandee est plus grosse que la granularitee */
       /* On alloue un buffer plus gros que les autres */

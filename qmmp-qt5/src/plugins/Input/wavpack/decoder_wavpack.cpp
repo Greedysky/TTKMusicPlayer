@@ -52,8 +52,8 @@ DecoderWavPack::DecoderWavPack(const QString &path)
 DecoderWavPack::~DecoderWavPack()
 {
     deinit();
-    if (m_output_buf)
-        delete [] m_output_buf;
+    if(m_output_buf)
+        delete[] m_output_buf;
     m_output_buf = nullptr;
 }
 
@@ -63,7 +63,7 @@ bool DecoderWavPack::initialize()
     m_totalTime = 0;
 
     char err [80];
-    if (m_path.startsWith("wvpack://")) //embeded cue track
+    if(m_path.startsWith("wvpack://")) //embeded cue track
     {
         QString p = m_path;
         p.remove("wvpack://");
@@ -74,14 +74,14 @@ bool DecoderWavPack::initialize()
 #else
         m_context = WavpackOpenFileInput (p.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
-        if (!m_context)
+        if(!m_context)
         {
             qWarning("DecoderWavPack: error: %s", err);
             return false;
         }
         int cue_len = WavpackGetTagItem (m_context, "cuesheet", nullptr, 0);
         char *value;
-        if (cue_len)
+        if(cue_len)
         {
             value = (char*)malloc (cue_len * 2 + 1);
             WavpackGetTagItem (m_context, "cuesheet", value, cue_len + 1);
@@ -106,7 +106,7 @@ bool DecoderWavPack::initialize()
         m_context = WavpackOpenFileInput (m_path.toLocal8Bit().constData(), err, OPEN_WVC | OPEN_TAGS, 0);
 #endif
 
-    if (!m_context)
+    if(!m_context)
     {
         qWarning("DecoderWavPack: error: %s", err);
         return false;
@@ -123,7 +123,7 @@ bool DecoderWavPack::initialize()
         return false;
     }
 
-    if (!m_output_buf)
+    if(!m_output_buf)
         m_output_buf = new int32_t[QMMP_BLOCK_FRAMES * m_chan];
     switch(m_bps)
     {
@@ -181,7 +181,7 @@ qint64 DecoderWavPack::totalTime() const
 void DecoderWavPack::deinit()
 {
     m_chan = 0;
-    if (m_context)
+    if(m_context)
         WavpackCloseFile (m_context);
     m_context = nullptr;
     if(m_parser)
@@ -251,21 +251,21 @@ qint64 DecoderWavPack::wavpack_decode(unsigned char *data, qint64 size)
     switch (m_bps)
     {
     case 8:
-        for (i = 0;  i < len * m_chan; ++i)
+        for(i = 0;  i < len * m_chan; ++i)
             data8[i] = m_output_buf[i];
         return len * m_chan;
     case 12:
     case 16:
-        for (i = 0;  i < len * m_chan; ++i)
+        for(i = 0;  i < len * m_chan; ++i)
             data16[i] = m_output_buf[i];
         return len * m_chan * 2;
     case 20:
     case 24:
-        for (i = 0;  i < len * m_chan; ++i)
+        for(i = 0;  i < len * m_chan; ++i)
             data32[i] = m_output_buf[i] << 8;
         return len * m_chan * 4;
     case 32:
-        for (i = 0;  i < len * m_chan; ++i)
+        for(i = 0;  i < len * m_chan; ++i)
             data32[i] = m_output_buf[i];
         return len * m_chan * 4;
     }

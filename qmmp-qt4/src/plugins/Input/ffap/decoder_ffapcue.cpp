@@ -54,7 +54,7 @@ DecoderFFapCUE::~DecoderFFapCUE()
         delete m_parser;
     m_parser = 0;
     if(m_buf)
-        delete [] m_buf;
+        delete[] m_buf;
     m_buf = 0;
     if(m_input)
         m_input->deleteLater();
@@ -77,7 +77,7 @@ bool DecoderFFapCUE::initialize()
 
     TagLib::APE::Tag *tag = file.APETag();
 
-    if (tag && tag->itemListMap().contains("CUESHEET"))
+    if(tag && tag->itemListMap().contains("CUESHEET"))
     {
         qDebug("DecoderFFapCUE: using cuesheet from ape tags");
         m_parser = new CUEParser(tag->itemListMap()["CUESHEET"].toString().toCString(true), p);

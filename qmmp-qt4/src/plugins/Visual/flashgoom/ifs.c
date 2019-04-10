@@ -155,7 +155,7 @@ Gauss_Rand (PluginInfo *goomInfo, DBL c, DBL A, DBL S)
 
     y = (DBL) LRAND () / MAXRAND;
     y = A * (1.0 - exp (-y * y * S)) / (1.0 - exp (-S));
-    if (NRAND (2))
+    if(NRAND (2))
         return (c + y);
     return (c - y);
 }
@@ -187,11 +187,11 @@ Random_Simis (PluginInfo *goomInfo, FRACTAL * F, SIMI * Cur, int i)
 static void
 free_ifs_buffers (FRACTAL * Fractal)
 {
-    if (Fractal->Buffer1 != NULL) {
+    if(Fractal->Buffer1 != NULL) {
         (void) free ((void *) Fractal->Buffer1);
         Fractal->Buffer1 = (IFSPoint *) NULL;
     }
-    if (Fractal->Buffer2 != NULL) {
+    if(Fractal->Buffer2 != NULL) {
         (void) free ((void *) Fractal->Buffer2);
         Fractal->Buffer2 = (IFSPoint *) NULL;
     }
@@ -214,9 +214,9 @@ init_ifs (PluginInfo *goomInfo, IfsData *data)
     int width = goomInfo->screen.width;
     int height = goomInfo->screen.height;
 
-    if (data->Root == NULL) {
+    if(data->Root == NULL) {
         data->Root = (FRACTAL *) malloc (sizeof (FRACTAL));
-        if (data->Root == NULL)
+        if(data->Root == NULL)
             return;
         data->Root->Buffer1 = (IFSPoint *) NULL;
         data->Root->Buffer2 = (IFSPoint *) NULL;
@@ -258,15 +258,15 @@ init_ifs (PluginInfo *goomInfo, IfsData *data)
     }
     Fractal->Nb_Simi = i;
     Fractal->Max_Pt = Fractal->Nb_Simi - 1;
-    for (i = 0; i <= Fractal->Depth + 2; ++i)
+    for(i = 0; i <= Fractal->Depth + 2; ++i)
         Fractal->Max_Pt *= Fractal->Nb_Simi;
 
-    if ((Fractal->Buffer1 = (IFSPoint *) calloc (Fractal->Max_Pt,
+    if((Fractal->Buffer1 = (IFSPoint *) calloc (Fractal->Max_Pt,
                              sizeof (IFSPoint))) == NULL) {
         free_ifs (Fractal);
         return;
     }
-    if ((Fractal->Buffer2 = (IFSPoint *) calloc (Fractal->Max_Pt,
+    if((Fractal->Buffer2 = (IFSPoint *) calloc (Fractal->Max_Pt,
                              sizeof (IFSPoint))) == NULL) {
         free_ifs (Fractal);
         return;
@@ -319,7 +319,7 @@ Trace (FRACTAL * F, F_PT xo, F_PT yo, IfsData *data)
     SIMI   *Cur;
 
     Cur = data->Cur_F->Components;
-    for (i = data->Cur_F->Nb_Simi; i; --i, Cur++) {
+    for(i = data->Cur_F->Nb_Simi; i; --i, Cur++) {
         Transform (Cur, xo, yo, &x, &y);
 
         data->Buf->x = F->Lx + ((x * F->Lx) >> (FIX+1) /* /(UNIT*2) */ );
@@ -328,7 +328,7 @@ Trace (FRACTAL * F, F_PT xo, F_PT yo, IfsData *data)
 
         data->Cur_Pt++;
 
-        if (F->Depth && ((x - xo) >> 4) && ((y - yo) >> 4)) {
+        if(F->Depth && ((x - xo) >> 4) && ((y - yo) >> 4)) {
             F->Depth--;
             Trace (F, x, y, data);
             F->Depth++;
@@ -344,7 +344,7 @@ Draw_Fractal (IfsData *data)
     F_PT    x, y, xo, yo;
     SIMI   *Cur, *Simi;
 
-    for (Cur = F->Components, i = F->Nb_Simi; i; --i, Cur++) {
+    for(Cur = F->Components, i = F->Nb_Simi; i; --i, Cur++) {
         Cur->Cx = DBL_To_F_PT (Cur->c_x);
         Cur->Cy = DBL_To_F_PT (Cur->c_y);
 
@@ -361,11 +361,11 @@ Draw_Fractal (IfsData *data)
     data->Cur_Pt = 0;
     data->Cur_F = F;
     data->Buf = F->Buffer2;
-    for (Cur = F->Components, i = F->Nb_Simi; i; --i, Cur++) {
+    for(Cur = F->Components, i = F->Nb_Simi; i; --i, Cur++) {
         xo = Cur->Cx;
         yo = Cur->Cy;
-        for (Simi = F->Components, j = F->Nb_Simi; j; --j, Simi++) {
-            if (Simi == Cur)
+        for(Simi = F->Components, j = F->Nb_Simi; j; --j, Simi++) {
+            if(Simi == Cur)
                 continue;
             Transform (Simi, xo, yo, &x, &y);
             Trace (F, x, y, data);
@@ -389,10 +389,10 @@ draw_ifs (PluginInfo *goomInfo, int *nbpt, IfsData *data)
     SIMI   *S, *S1, *S2, *S3, *S4;
     FRACTAL *F;
 
-    if (data->Root == NULL)
+    if(data->Root == NULL)
         return NULL;
     F = data->Root;
-    if (F->Buffer1 == NULL)
+    if(F->Buffer1 == NULL)
         return NULL;
 
     u = (DBL) (F->Count) * (DBL) (F->Speed) / 1000.0;
@@ -410,7 +410,7 @@ draw_ifs (PluginInfo *goomInfo, int *nbpt, IfsData *data)
     S3 = S2 + F->Nb_Simi;
     S4 = S3 + F->Nb_Simi;
 
-    for (i = F->Nb_Simi; i; --i, S++, S1++, S2++, S3++, S4++) {
+    for(i = F->Nb_Simi; i; --i, S++, S1++, S2++, S3++, S4++) {
         S->c_x = u0 * S1->c_x + u1 * S2->c_x + u2 * S3->c_x + u3 * S4->c_x;
         S->c_y = u0 * S1->c_y + u1 * S2->c_y + u2 * S3->c_y + u3 * S4->c_y;
         S->r = u0 * S1->r + u1 * S2->r + u2 * S3->r + u3 * S4->r;
@@ -421,14 +421,14 @@ draw_ifs (PluginInfo *goomInfo, int *nbpt, IfsData *data)
 
     Draw_Fractal (data);
 
-    if (F->Count >= 1000 / F->Speed) {
+    if(F->Count >= 1000 / F->Speed) {
         S = F->Components;
         S1 = S + F->Nb_Simi;
         S2 = S1 + F->Nb_Simi;
         S3 = S2 + F->Nb_Simi;
         S4 = S3 + F->Nb_Simi;
 
-        for (i = F->Nb_Simi; i; --i, S++, S1++, S2++, S3++, S4++) {
+        for(i = F->Nb_Simi; i; --i, S++, S1++, S2++, S3++, S4++) {
             S2->c_x = 2.0 * S4->c_x - S3->c_x;
             S2->c_y = 2.0 * S4->c_y - S3->c_y;
             S2->r = 2.0 * S4->r - S3->r;
@@ -458,7 +458,7 @@ draw_ifs (PluginInfo *goomInfo, int *nbpt, IfsData *data)
 
 static void release_ifs (IfsData *data)
 {
-    if (data->Root != NULL) {
+    if(data->Root != NULL) {
         free_ifs (data->Root);
         (void) free ((void *) data->Root);
         data->Root = (FRACTAL *) NULL;
@@ -490,10 +490,10 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
     int height = goomInfo->screen.height;
 
     cycle++;
-    if (cycle >= 80)
+    if(cycle >= 80)
         cycle = 0;
 
-    if (cycle < 40)
+    if(cycle < 40)
         cycle10 = cycle / 10;
     else
         cycle10 = 7 - cycle / 10;
@@ -501,7 +501,7 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
     {
         unsigned char *tmp = (unsigned char *) &couleursl;
 
-        for (i = 0; i < 4; i++) {
+        for(i = 0; i < 4; i++) {
             *tmp = (*tmp) >> cycle10;
 
       /* xine: make it darker */
@@ -520,11 +520,11 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
 #ifdef HAVE_MMX
     movd_m2r (couleursl, mm1);
     punpckldq_r2r (mm1, mm1);
-    for (i = 0; i < nbpt; i += increment) {
+    for(i = 0; i < nbpt; i += increment) {
         int     x = points[i].x;
         int     y = points[i].y;
 
-        if ((x < width) && (y < height) && (x > 0) && (y > 0)) {
+        if((x < width) && (y < height) && (x > 0) && (y > 0)) {
             int     pos = x + (y * width);
             movd_m2r (back[pos], mm0);
             paddusb_r2r (mm1, mm0);
@@ -533,21 +533,21 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
     }
     emms();/*__asm__ __volatile__ ("emms");*/
 #else
-    for (i = 0; i < nbpt; i += increment) {
+    for(i = 0; i < nbpt; i += increment) {
         int     x = (int) points[i].x & 0x7fffffff;
         int     y = (int) points[i].y & 0x7fffffff;
 
-        if ((x < width) && (y < height)) {
+        if((x < width) && (y < height)) {
             int     pos = x + (int) (y * width);
             int     tra = 0, i = 0;
             unsigned char *bra = (unsigned char *) &back[pos];
             unsigned char *dra = (unsigned char *) &data[pos];
             unsigned char *cra = (unsigned char *) &couleursl;
 
-            for (; i < 4; i++) {
+            for(; i < 4; i++) {
                 tra = *cra;
                 tra += *bra;
-                if (tra > 255)
+                if(tra > 255)
                     tra = 255;
                 *dra = tra;
                 ++dra;
@@ -564,163 +564,163 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
     col[VERT] = couleur >> (VERT * 8) & 0xff;
     col[ROUGE] = couleur >> (ROUGE * 8) & 0xff;
 
-    if (mode == MOD_MER) {
+    if(mode == MOD_MER) {
         col[BLEU] += v[BLEU];
-        if (col[BLEU] > 255) {
+        if(col[BLEU] > 255) {
             col[BLEU] = 255;
             v[BLEU] = -(RAND() % 4) - 1;
         }
-        if (col[BLEU] < 32) {
+        if(col[BLEU] < 32) {
             col[BLEU] = 32;
             v[BLEU] = (RAND() % 4) + 1;
         }
 
         col[VERT] += v[VERT];
-        if (col[VERT] > 200) {
+        if(col[VERT] > 200) {
             col[VERT] = 200;
             v[VERT] = -(RAND() % 3) - 2;
         }
-        if (col[VERT] > col[BLEU]) {
+        if(col[VERT] > col[BLEU]) {
             col[VERT] = col[BLEU];
             v[VERT] = v[BLEU];
         }
-        if (col[VERT] < 32) {
+        if(col[VERT] < 32) {
             col[VERT] = 32;
             v[VERT] = (RAND() % 3) + 2;
         }
 
         col[ROUGE] += v[ROUGE];
-        if (col[ROUGE] > 64) {
+        if(col[ROUGE] > 64) {
             col[ROUGE] = 64;
             v[ROUGE] = -(RAND () % 4) - 1;
         }
-        if (col[ROUGE] < 0) {
+        if(col[ROUGE] < 0) {
             col[ROUGE] = 0;
             v[ROUGE] = (RAND () % 4) + 1;
         }
 
         col[ALPHA] += v[ALPHA];
-        if (col[ALPHA] > 0) {
+        if(col[ALPHA] > 0) {
             col[ALPHA] = 0;
             v[ALPHA] = -(RAND () % 4) - 1;
         }
-        if (col[ALPHA] < 0) {
+        if(col[ALPHA] < 0) {
             col[ALPHA] = 0;
             v[ALPHA] = (RAND () % 4) + 1;
         }
 
-        if (((col[VERT] > 32) && (col[ROUGE] < col[VERT] + 40)
+        if(((col[VERT] > 32) && (col[ROUGE] < col[VERT] + 40)
                  && (col[VERT] < col[ROUGE] + 20) && (col[BLEU] < 64)
                  && (RAND () % 20 == 0)) && (justChanged < 0)) {
             mode = RAND () % 3 ? MOD_FEU : MOD_MERVER;
             justChanged = 250;
         }
     }
-    else if (mode == MOD_MERVER) {
+    else if(mode == MOD_MERVER) {
         col[BLEU] += v[BLEU];
-        if (col[BLEU] > 128) {
+        if(col[BLEU] > 128) {
             col[BLEU] = 128;
             v[BLEU] = -(RAND () % 4) - 1;
         }
-        if (col[BLEU] < 16) {
+        if(col[BLEU] < 16) {
             col[BLEU] = 16;
             v[BLEU] = (RAND () % 4) + 1;
         }
 
         col[VERT] += v[VERT];
-        if (col[VERT] > 200) {
+        if(col[VERT] > 200) {
             col[VERT] = 200;
             v[VERT] = -(RAND () % 3) - 2;
         }
-        if (col[VERT] > col[ALPHA]) {
+        if(col[VERT] > col[ALPHA]) {
             col[VERT] = col[ALPHA];
             v[VERT] = v[ALPHA];
         }
-        if (col[VERT] < 32) {
+        if(col[VERT] < 32) {
             col[VERT] = 32;
             v[VERT] = (RAND () % 3) + 2;
         }
 
         col[ROUGE] += v[ROUGE];
-        if (col[ROUGE] > 128) {
+        if(col[ROUGE] > 128) {
             col[ROUGE] = 128;
             v[ROUGE] = -(RAND () % 4) - 1;
         }
-        if (col[ROUGE] < 0) {
+        if(col[ROUGE] < 0) {
             col[ROUGE] = 0;
             v[ROUGE] = (RAND () % 4) + 1;
         }
 
         col[ALPHA] += v[ALPHA];
-        if (col[ALPHA] > 255) {
+        if(col[ALPHA] > 255) {
             col[ALPHA] = 255;
             v[ALPHA] = -(RAND () % 4) - 1;
         }
-        if (col[ALPHA] < 0) {
+        if(col[ALPHA] < 0) {
             col[ALPHA] = 0;
             v[ALPHA] = (RAND () % 4) + 1;
         }
 
-        if (((col[VERT] > 32) && (col[ROUGE] < col[VERT] + 40)
+        if(((col[VERT] > 32) && (col[ROUGE] < col[VERT] + 40)
                  && (col[VERT] < col[ROUGE] + 20) && (col[BLEU] < 64)
                  && (RAND () % 20 == 0)) && (justChanged < 0)) {
             mode = RAND () % 3 ? MOD_FEU : MOD_MER;
             justChanged = 250;
         }
     }
-    else if (mode == MOD_FEU) {
+    else if(mode == MOD_FEU) {
 
         col[BLEU] += v[BLEU];
-        if (col[BLEU] > 64) {
+        if(col[BLEU] > 64) {
             col[BLEU] = 64;
             v[BLEU] = -(RAND () % 4) - 1;
         }
-        if (col[BLEU] < 0) {
+        if(col[BLEU] < 0) {
             col[BLEU] = 0;
             v[BLEU] = (RAND () % 4) + 1;
         }
 
         col[VERT] += v[VERT];
-        if (col[VERT] > 200) {
+        if(col[VERT] > 200) {
             col[VERT] = 200;
             v[VERT] = -(RAND () % 3) - 2;
         }
-        if (col[VERT] > col[ROUGE] + 20) {
+        if(col[VERT] > col[ROUGE] + 20) {
             col[VERT] = col[ROUGE] + 20;
             v[VERT] = -(RAND () % 3) - 2;
             v[ROUGE] = (RAND () % 4) + 1;
             v[BLEU] = (RAND () % 4) + 1;
         }
-        if (col[VERT] < 0) {
+        if(col[VERT] < 0) {
             col[VERT] = 0;
             v[VERT] = (RAND () % 3) + 2;
         }
 
         col[ROUGE] += v[ROUGE];
-        if (col[ROUGE] > 255) {
+        if(col[ROUGE] > 255) {
             col[ROUGE] = 255;
             v[ROUGE] = -(RAND () % 4) - 1;
         }
-        if (col[ROUGE] > col[VERT] + 40) {
+        if(col[ROUGE] > col[VERT] + 40) {
             col[ROUGE] = col[VERT] + 40;
             v[ROUGE] = -(RAND () % 4) - 1;
         }
-        if (col[ROUGE] < 0) {
+        if(col[ROUGE] < 0) {
             col[ROUGE] = 0;
             v[ROUGE] = (RAND () % 4) + 1;
         }
 
         col[ALPHA] += v[ALPHA];
-        if (col[ALPHA] > 0) {
+        if(col[ALPHA] > 0) {
             col[ALPHA] = 0;
             v[ALPHA] = -(RAND () % 4) - 1;
         }
-        if (col[ALPHA] < 0) {
+        if(col[ALPHA] < 0) {
             col[ALPHA] = 0;
             v[ALPHA] = (RAND () % 4) + 1;
         }
 
-        if (((col[ROUGE] < 64) && (col[VERT] > 32) && (col[VERT] < col[BLEU])
+        if(((col[ROUGE] < 64) && (col[VERT] > 32) && (col[VERT] < col[BLEU])
                  && (col[BLEU] > 32)
                  && (RAND () % 20 == 0)) && (justChanged < 0)) {
             mode = RAND () % 2 ? MOD_MER : MOD_MERVER;
@@ -739,7 +739,7 @@ static void ifs_update (PluginInfo *goomInfo, Pixel * data, Pixel * back, int in
 static void ifs_vfx_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo *goomInfo) {
 
     IfsData *data = (IfsData*)_this->fx_data;
-    if (!data->initalized) {
+    if(!data->initalized) {
         data->initalized = 1;
         init_ifs(goomInfo, data);
     }

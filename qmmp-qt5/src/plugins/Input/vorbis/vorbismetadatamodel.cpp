@@ -238,7 +238,7 @@ void VorbisCommentModel::save()
     if(m_model->m_tag)
         m_model->m_file->save();
 
-#if ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 10))
+#if((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION <= 10))
     //taglib bug workarround
     delete m_model->m_file;
     m_model->m_file = new TagLib::Ogg::Vorbis::File(QStringToFileName(m_model->m_path));

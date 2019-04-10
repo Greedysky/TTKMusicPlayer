@@ -48,12 +48,12 @@ QList<QmmpPluginCache*> *AbstractEngine::m_cache = 0;
 
 void AbstractEngine::loadPlugins()
 {
-    if (m_cache)
+    if(m_cache)
         return;
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach (QString filePath, Qmmp::findPlugins("Engines"))
+    foreach(QString filePath, Qmmp::findPlugins("Engines"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -103,7 +103,7 @@ QList<EngineFactory *> AbstractEngine::factories()
 {
     loadPlugins();
     QList<EngineFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(item->engineFactory())
             list.append(item->engineFactory());
@@ -115,7 +115,7 @@ QList<EngineFactory *> AbstractEngine::enabledFactories()
 {
     loadPlugins();
     QList<EngineFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -133,7 +133,7 @@ EngineFactory *AbstractEngine::findByFilePath(const QString& source)
         if(m_disabledNames.contains(item->shortName()))
             continue;
         EngineFactory *fact = item->engineFactory();
-        if (fact && fact->supports(source))
+        if(fact && fact->supports(source))
             return fact;
     }
     return 0;
@@ -142,7 +142,7 @@ EngineFactory *AbstractEngine::findByFilePath(const QString& source)
 void AbstractEngine::setEnabled(EngineFactory *factory, bool enable)
 {
     loadPlugins();
-    if (!factories().contains(factory))
+    if(!factories().contains(factory))
         return;
 
     if(enable == isEnabled(factory))
@@ -189,7 +189,7 @@ QStringList AbstractEngine::protocols()
     loadPlugins();
     QStringList protocolsList;
 
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;

@@ -52,3 +52,7 @@ contains(CONFIG, WILDMIDI_PLUGIN){
 contains(CONFIG, AAC_PLUGIN){
   SUBDIRS += aac
 }
+
+contains(CONFIG, OPTIMFROG_PLUGIN){
+    SUBDIRS += optimfrog
+}

@@ -102,7 +102,7 @@ static void tentacle_fx_init(VisualFX *_this, PluginInfo *UNUSED(info)) {
 static void tentacle_fx_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo *goomInfo)
 {
   TentacleFXData *data = (TentacleFXData*)_this->fx_data;
-  if (BVAL(data->enabled_bp)) {
+  if(BVAL(data->enabled_bp)) {
     tentacle_update(goomInfo, dest, src, goomInfo->screen.width,
                     goomInfo->screen.height, goomInfo->sound.samples,
                     (float)goomInfo->sound.accelvar,
@@ -130,7 +130,7 @@ VisualFX tentacle_fx_create(void) {
 static void tentacle_free (TentacleFXData *data) {
     /* TODO : un vrai FREE GRID!! */
     int tmp;
-    for (tmp=0;tmp<nbgrid;tmp++){
+    for(tmp=0;tmp<nbgrid;tmp++){
       grid3d *g = data->grille[tmp];
       free (g->surf.vertex);
       free (g->surf.svertex);
@@ -145,7 +145,7 @@ static void tentacle_new (TentacleFXData *data) {
     v3d center = {0,-17.0,0};
     data->vals = (float*)malloc ((definitionx+20)*sizeof(float));
 
-    for (tmp=0;tmp<nbgrid;tmp++) {
+    for(tmp=0;tmp<nbgrid;tmp++) {
         int x,z;
         z = 45 + rand() % 30;
         x = 85 + rand() % 5;
@@ -160,11 +160,11 @@ static inline unsigned char lighten (unsigned char value, float power)
     int val = value;
     float t = (float) val * log10(power) / 2.0;
 
-    if (t > 0) {
+    if(t > 0) {
         val = (int) t; /* (32.0f * log (t)); */
-        if (val > 255)
+        if(val > 255)
             val = 255;
-        if (val < 0)
+        if(val < 0)
             val = 0;
         return val;
     }
@@ -197,11 +197,11 @@ static int evolutecolor (unsigned int src,unsigned int dest,
     src &= mask;
     dest &= mask;
 
-    if ((src!=mask)
+    if((src!=mask)
             &&(src<dest))
         src += incr;
 
-    if (src>dest)
+    if(src>dest)
         src -= incr;
     return (src&mask)|color;
 }
@@ -211,9 +211,9 @@ static void pretty_move (PluginInfo *goomInfo, float cycle, float *dist, float *
     float tmp;
 
     /* many magic numbers here... I don't really like that. */
-    if (fx_data->happens)
+    if(fx_data->happens)
         fx_data->happens -= 1;
-    else if (fx_data->lock == 0) {
+    else if(fx_data->lock == 0) {
         fx_data->happens = goom_irand(goomInfo->gRandom,200)?0:100+goom_irand(goomInfo->gRandom,60);
         fx_data->lock = fx_data->happens * 3 / 2;
     }
@@ -223,32 +223,32 @@ static void pretty_move (PluginInfo *goomInfo, float cycle, float *dist, float *
     *dist2 = fx_data->distt2 = (tmp + 15.0f*fx_data->distt2)/16.0f;
 
     tmp = 30+D-90.0f*(1.0f+sin(cycle*19/20));
-    if (fx_data->happens)
+    if(fx_data->happens)
         tmp *= 0.6f;
 
     *dist = fx_data->distt = (tmp + 3.0f*fx_data->distt)/4.0f;
 
-    if (!fx_data->happens){
+    if(!fx_data->happens){
         tmp = M_PI*sin(cycle)/32+3*M_PI/2;
     }
     else {
         fx_data->rotation = goom_irand(goomInfo->gRandom,500)?fx_data->rotation:goom_irand(goomInfo->gRandom,2);
-        if (fx_data->rotation)
+        if(fx_data->rotation)
             cycle *= 2.0f*M_PI;
         else
             cycle *= -1.0f*M_PI;
         tmp = cycle - (M_PI*2.0) * floor(cycle/(M_PI*2.0));
     }
 
-    if (fabsf(tmp-fx_data->rot) > fabsf(tmp-(fx_data->rot+2.0f*(float)M_PI))) {
+    if(fabsf(tmp-fx_data->rot) > fabsf(tmp-(fx_data->rot+2.0f*(float)M_PI))) {
         fx_data->rot = (tmp + 15.0f*(fx_data->rot+2*M_PI)) / 16.0f;
-        if (fx_data->rot>2.0*M_PI)
+        if(fx_data->rot>2.0*M_PI)
             fx_data->rot -= 2.0*M_PI;
         *rotangle = fx_data->rot;
     }
-    else if (fabsf(tmp-fx_data->rot) > fabsf(tmp-(fx_data->rot-2.0f*(float)M_PI))) {
+    else if(fabsf(tmp-fx_data->rot) > fabsf(tmp-(fx_data->rot-2.0f*(float)M_PI))) {
         fx_data->rot = (tmp + 15.0f*(fx_data->rot-2.0*M_PI)) / 16.0f;
-        if (fx_data->rot<0.0f)
+        if(fx_data->rot<0.0f)
             fx_data->rot += 2.0*M_PI;
         *rotangle = fx_data->rot;
     }
@@ -267,15 +267,15 @@ static void tentacle_update(PluginInfo *goomInfo, Pixel *buf, Pixel *back, int W
 
     float dist,dist2,rotangle;
 
-    if ((!drawit) && (fx_data->ligs>0.0f))
+    if((!drawit) && (fx_data->ligs>0.0f))
         fx_data->ligs = -fx_data->ligs;
 
     fx_data->lig += fx_data->ligs;
 
-    if (fx_data->lig > 1.01f) {
-        if ((fx_data->lig>10.0f) | (fx_data->lig<1.1f)) fx_data->ligs = -fx_data->ligs;
+    if(fx_data->lig > 1.01f) {
+        if((fx_data->lig>10.0f) | (fx_data->lig<1.1f)) fx_data->ligs = -fx_data->ligs;
 
-        if ((fx_data->lig<6.3f)&&(goom_irand(goomInfo->gRandom,30)==0))
+        if((fx_data->lig<6.3f)&&(goom_irand(goomInfo->gRandom,30)==0))
             fx_data->dstcol=goom_irand(goomInfo->gRandom,NB_TENTACLE_COLORS);
 
         fx_data->col = evolutecolor(fx_data->col,fx_data->colors[fx_data->dstcol],0xff,0x01);
@@ -291,13 +291,13 @@ static void tentacle_update(PluginInfo *goomInfo, Pixel *buf, Pixel *back, int W
 
         rapport = 1.0f + 2.0f * (rapport - 1.0f);
         rapport *= 1.2f;
-        if (rapport > 1.12f)
+        if(rapport > 1.12f)
             rapport = 1.12f;
 
         pretty_move (goomInfo, fx_data->cycle, &dist, &dist2, &rotangle, fx_data);
 
-        for (tmp=0;tmp<nbgrid;tmp++) {
-            for (tmp2=0;tmp2<definitionx;tmp2++) {
+        for(tmp=0;tmp<nbgrid;tmp++) {
+            for(tmp2=0;tmp2<definitionx;tmp2++) {
                 float val = (float)(ShiftRight(data[0][goom_irand(goomInfo->gRandom,511)],10)) * rapport;
                 fx_data->vals[tmp2] = val;
             }
@@ -305,16 +305,16 @@ static void tentacle_update(PluginInfo *goomInfo, Pixel *buf, Pixel *back, int W
             grid3d_update (fx_data->grille[tmp], rotangle, fx_data->vals, dist2);
         }
         fx_data->cycle+=0.01f;
-        for (tmp=0;tmp<nbgrid;tmp++)
+        for(tmp=0;tmp<nbgrid;tmp++)
             grid3d_draw (goomInfo, fx_data->grille[tmp],color,colorlow,dist,buf,back,W,H);
     }
     else {
         fx_data->lig = 1.05f;
-        if (fx_data->ligs < 0.0f)
+        if(fx_data->ligs < 0.0f)
             fx_data->ligs = -fx_data->ligs;
         pretty_move (goomInfo, fx_data->cycle, &dist, &dist2, &rotangle, fx_data);
         fx_data->cycle+=0.1f;
-        if (fx_data->cycle > 1000)
+        if(fx_data->cycle > 1000)
             fx_data->cycle = 0;
     }
 }

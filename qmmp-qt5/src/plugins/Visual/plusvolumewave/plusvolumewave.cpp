@@ -31,9 +31,9 @@ PlusVolumeWave::PlusVolumeWave (QWidget *parent) : Visual (parent)
 PlusVolumeWave::~PlusVolumeWave()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void PlusVolumeWave::start()
@@ -87,11 +87,11 @@ void PlusVolumeWave::paintEvent(QPaintEvent *e)
 void PlusVolumeWave::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = height();
-    int cols = width();
+    const int rows = height();
+    const int cols = width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -99,9 +99,9 @@ void PlusVolumeWave::process()
         m_cols = cols;
 
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[2];
         m_x_scale = new int[2];
 
@@ -130,7 +130,7 @@ void PlusVolumeWave::process()
         yl = dest_l[0];
         yr = dest_r[0];
     }
-    for (k = m_x_scale[0]; k < m_x_scale[1]; k++)
+    for(k = m_x_scale[0]; k < m_x_scale[1]; k++)
     {
         yl = qMax(dest_l[k], yl);
         yr = qMax(dest_r[k], yr);
@@ -139,12 +139,12 @@ void PlusVolumeWave::process()
     yl >>= 7; //256
     yr >>= 7;
 
-    if (yl)
+    if(yl)
     {
         magnitude_l = int(log (yl) * y_scale);
         magnitude_l = qBound(0, magnitude_l, m_rows);
     }
-    if (yr)
+    if(yr)
     {
         magnitude_r = int(log (yr) * y_scale);
         magnitude_r = qBound(0, magnitude_r, m_rows);
@@ -180,7 +180,7 @@ void PlusVolumeWave::draw(QPainter *p)
             left = SoundCore::instance()->leftVolume()*1.0/100;
             right = SoundCore::instance()->rightVolume()*1.0/100;
         }
-        int wid = ceil(m_rows/2);
+        const int wid = ceil(m_rows/2);
         p->fillRect(0, 0, m_intern_vis_data[0] * left * m_cols/m_rows, wid, line);
         p->fillRect(0, wid, m_intern_vis_data[1] * right * m_cols/m_rows, wid, line);
     }

@@ -36,7 +36,7 @@ PlusXRays::PlusXRays (QWidget *parent) : Visual (parent)
 PlusXRays::~PlusXRays()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 }
 
 void PlusXRays::start()
@@ -75,6 +75,7 @@ void PlusXRays::readSettings()
     settings.beginGroup("PlusXRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_gridAction->setChecked(settings.value("show_grid", false).toBool());
+    settings.endGroup();
 }
 
 void PlusXRays::writeSettings()
@@ -123,8 +124,8 @@ void PlusXRays::paintEvent(QPaintEvent *e)
 void PlusXRays::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
     menu.addAction(m_gridAction);
@@ -135,21 +136,21 @@ void PlusXRays::contextMenuEvent(QContextMenuEvent *)
 void PlusXRays::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
     m_cols = width();
     m_rows = height();
 
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 
     m_intern_vis_data = new int[m_cols];
 
-    int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
+    const int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
     int pos = 0;
 
-    for (int i = 0; i < m_cols; ++i)
+    for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
         m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
@@ -185,7 +186,7 @@ void PlusXRays::draw(QPainter *p)
 
     const float maxed = maxRange();
 
-    for (int i = 0; i<m_cols; ++i)
+    for(int i = 0; i<m_cols; ++i)
     {
         if((i+1) >= m_cols)
         {
@@ -194,7 +195,7 @@ void PlusXRays::draw(QPainter *p)
 
         int h1 = m_rows/2 - m_intern_vis_data[i] * maxed;
         int h2 = m_rows/2 - m_intern_vis_data[i + 1] * maxed;
-        if (h1 > h2)
+        if(h1 > h2)
         {
             qSwap(h1, h2);
         }

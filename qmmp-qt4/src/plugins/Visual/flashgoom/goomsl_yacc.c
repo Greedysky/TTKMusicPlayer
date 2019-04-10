@@ -140,7 +140,7 @@
     static void releaseAllTemps(void);
 
     static int is_tmp_expr(NodeType *node) {
-        if (node->str) {
+        if(node->str) {
             return (!strncmp(node->str,"_i_tmp_",7))
               || (!strncmp(node->str,"_f_tmp_",7))
               || (!strncmp(node->str,"_p_tmp",7));
@@ -194,9 +194,9 @@
     /* Structures Management */
 
 #define ALIGN_ADDR(_addr,_align) {\
-   if (_align>1) {\
+   if(_align>1) {\
        int _dec = (_addr%_align);\
-       if (_dec != 0) _addr += _align - _dec;\
+       if(_dec != 0) _addr += _align - _dec;\
    }}
 
     /* */
@@ -212,9 +212,9 @@
       s->fBlock[0].data = 0;
 
       /* Prepare sub-struct and calculate space needed for their storage */
-      for (i = 0; i < s->nbFields; ++i)
+      for(i = 0; i < s->nbFields; ++i)
       {
-        if (s->fields[i]->type < FIRST_RESERVED)
+        if(s->fields[i]->type < FIRST_RESERVED)
         {
           int j=0;
           GSL_Struct *substruct = currentGoomSL->gsl_struct[s->fields[i]->type];
@@ -238,11 +238,11 @@
 
       /* Then prepare integers */
       ALIGN_ADDR(consumed, i_align);
-      for (i = 0; i < s->nbFields; ++i)
+      for(i = 0; i < s->nbFields; ++i)
       {
-        if (s->fields[i]->type == INSTR_INT)
+        if(s->fields[i]->type == INSTR_INT)
         {
-          if (s->iBlock[iblk].size == 0) {
+          if(s->iBlock[iblk].size == 0) {
             s->iBlock[iblk].size = 1;
             s->iBlock[iblk].data = consumed;
           } else {
@@ -259,11 +259,11 @@
 
       /* Then prepare floats */
       ALIGN_ADDR(consumed, f_align);
-      for (i = 0; i < s->nbFields; ++i)
+      for(i = 0; i < s->nbFields; ++i)
       {
-        if (s->fields[i]->type == INSTR_FLOAT)
+        if(s->fields[i]->type == INSTR_FLOAT)
         {
-          if (s->fBlock[fblk].size == 0) {
+          if(s->fBlock[fblk].size == 0) {
             s->fBlock[fblk].size = 1;
             s->fBlock[fblk].data = consumed;
           } else {
@@ -280,9 +280,9 @@
 
       /* Finally prepare pointers */
       ALIGN_ADDR(consumed, i_align);
-      for (i = 0; i < s->nbFields; ++i)
+      for(i = 0; i < s->nbFields; ++i)
       {
-        if (s->fields[i]->type == INSTR_PTR)
+        if(s->fields[i]->type == INSTR_PTR)
         {
           s->fields[i]->offsetInStruct = consumed;
           consumed += sizeof(int);
@@ -295,7 +295,7 @@
     static int gsl_get_struct_id(const char *name) /* {{{ */
     {
       HashValue *ret = goom_hash_get(currentGoomSL->structIDS, name);
-      if (ret != NULL) return ret->i;
+      if(ret != NULL) return ret->i;
       return -1;
     } /* }}} */
 
@@ -306,12 +306,12 @@
       gsl_prepare_struct(gsl_struct, STRUCT_ALIGNMENT, STRUCT_ALIGNMENT, STRUCT_ALIGNMENT);
 
       /* If the struct does not already exists */
-      if (gsl_get_struct_id(name) < 0)
+      if(gsl_get_struct_id(name) < 0)
       {
         /* adds it */
         int id = currentGoomSL->nbStructID++;
         goom_hash_put_int(currentGoomSL->structIDS, name, id);
-        if (currentGoomSL->gsl_struct_size <= id) {
+        if(currentGoomSL->gsl_struct_size <= id) {
           currentGoomSL->gsl_struct_size *= 2;
           currentGoomSL->gsl_struct = (GSL_Struct**)realloc(currentGoomSL->gsl_struct,
                                                             sizeof(GSL_Struct*) * currentGoomSL->gsl_struct_size);
@@ -333,7 +333,7 @@
     static GSL_StructField *gsl_new_struct_field_struct(const char *name, const char *type)
     {
       GSL_StructField *field = gsl_new_struct_field(name, gsl_get_struct_id(type));
-      if (field->type < 0) {
+      if(field->type < 0) {
         fprintf(stderr, "ERROR: Line %d, Unknown structure: '%s'\n",
                 currentGoomSL->num_lines, type);
         exit(1);
@@ -362,7 +362,7 @@
         HashValue *hv;
         sprintf(type_of, "__type_of_%s", name);
         hv = goom_hash_get(ns, type_of);
-        if (hv != NULL)
+        if(hv != NULL)
           return hv->i;
         fprintf(stderr, "ERROR: Unknown variable type: '%s'\n", name);
         return -1;
@@ -371,9 +371,9 @@
     static void gsl_declare_var(GoomHash *ns, const char *name, int type, void *space)
     {
         char type_of[256];
-        if (name[0] == '@') { ns = currentGoomSL->vars; }
+        if(name[0] == '@') { ns = currentGoomSL->vars; }
 
-        if (space == NULL) {
+        if(space == NULL) {
           switch (type) {
             case INSTR_INT:
             case INSTR_FLOAT:
@@ -394,12 +394,12 @@
         goom_hash_put_int(ns, type_of, type);
 
         /* Ensuite le hack: on ajoute les champs en tant que variables. */
-        if (type < FIRST_RESERVED)
+        if(type < FIRST_RESERVED)
         {
           int i;
           GSL_Struct *gsl_struct = currentGoomSL->gsl_struct[type];
           ((int*)space)[-1] = type; /* stockage du type dans le prefixe de structure */
-          for (i = 0; i < gsl_struct->nbFields; ++i)
+          for(i = 0; i < gsl_struct->nbFields; ++i)
           {
             char full_name[257];
             char *cspace = (char*)space + gsl_struct->fields[i]->offsetInStruct;
@@ -562,44 +562,44 @@
           precommit_node(expr->unode.opr.op[0]);
         }
 
-        if (is_tmp_expr(expr->unode.opr.op[0])) {
+        if(is_tmp_expr(expr->unode.opr.op[0])) {
             tmp = expr->unode.opr.op[0];
             toAdd = 1;
         }
-        else if (is_commutative_expr(instr_id) && (expr->unode.opr.nbOp==2) && is_tmp_expr(expr->unode.opr.op[1])) {
+        else if(is_commutative_expr(instr_id) && (expr->unode.opr.nbOp==2) && is_tmp_expr(expr->unode.opr.op[1])) {
             tmp = expr->unode.opr.op[1];
             toAdd = 0;
         }
         else {
             char stmp[256];
             /* declare a temporary variable to store the result */
-            if (expr->unode.opr.op[0]->type == CONST_INT_NODE) {
+            if(expr->unode.opr.op[0]->type == CONST_INT_NODE) {
                 sprintf(stmp,"_i_tmp_%i",allocateTemp());
                 gsl_int_decl_global(stmp);
             }
-            else if (expr->unode.opr.op[0]->type == CONST_FLOAT_NODE) {
+            else if(expr->unode.opr.op[0]->type == CONST_FLOAT_NODE) {
                 sprintf(stmp,"_f_tmp%i",allocateTemp());
                 gsl_float_decl_global(stmp);
             }
-            else if (expr->unode.opr.op[0]->type == CONST_PTR_NODE) {
+            else if(expr->unode.opr.op[0]->type == CONST_PTR_NODE) {
                 sprintf(stmp,"_p_tmp%i",allocateTemp());
                 gsl_ptr_decl_global(stmp);
             }
             else {
                 int type = gsl_type_of_var(expr->unode.opr.op[0]->vnamespace, expr->unode.opr.op[0]->str);
-                if (type == INSTR_FLOAT) {
+                if(type == INSTR_FLOAT) {
                     sprintf(stmp,"_f_tmp_%i",allocateTemp());
                     gsl_float_decl_global(stmp);
                 }
-                else if (type == INSTR_PTR) {
+                else if(type == INSTR_PTR) {
                     sprintf(stmp,"_p_tmp_%i",allocateTemp());
                     gsl_ptr_decl_global(stmp);
                 }
-                else if (type == INSTR_INT) {
+                else if(type == INSTR_INT) {
                     sprintf(stmp,"_i_tmp_%i",allocateTemp());
                     gsl_int_decl_global(stmp);
                 }
-                else if (type == -1) {
+                else if(type == -1) {
                     fprintf(stderr, "ERROR: Line %d, Could not find variable '%s'\n",
                             expr->line_number, expr->unode.opr.op[0]->str);
                     exit(1);
@@ -621,7 +621,7 @@
 
         /* add op2 to tmp */
 #ifdef VERBOSE
-        if (expr->unode.opr.nbOp == 2)
+        if(expr->unode.opr.nbOp == 2)
           printf("%s %s %s\n", type, tmp->str, expr->unode.opr.op[toAdd]->str);
         else
           printf("%s %s\n", type, tmp->str);
@@ -629,7 +629,7 @@
         currentGoomSL->instr = gsl_instr_init(currentGoomSL, type, instr_id, expr->unode.opr.nbOp, expr->line_number);
         tmpcpy = nodeClone(tmp);
         commit_node(tmp,0);
-        if (expr->unode.opr.nbOp == 2) {
+        if(expr->unode.opr.nbOp == 2) {
           commit_node(expr->unode.opr.op[toAdd],1);
         }
 
@@ -673,27 +673,27 @@
     /* NEG */
     static NodeType *new_neg(NodeType *expr) { /* {{{ */
         NodeType *zeroConst = NULL;
-        if (expr->type == CONST_INT_NODE)
+        if(expr->type == CONST_INT_NODE)
           zeroConst = new_constInt("0", currentGoomSL->num_lines);
-        else if (expr->type == CONST_FLOAT_NODE)
+        else if(expr->type == CONST_FLOAT_NODE)
           zeroConst = new_constFloat("0.0", currentGoomSL->num_lines);
-        else if (expr->type == CONST_PTR_NODE) {
+        else if(expr->type == CONST_PTR_NODE) {
           fprintf(stderr, "ERROR: Line %d, Could not negate const pointer.\n",
             currentGoomSL->num_lines);
           exit(1);
         }
         else {
             int type = gsl_type_of_var(expr->vnamespace, expr->str);
-            if (type == INSTR_FLOAT)
+            if(type == INSTR_FLOAT)
               zeroConst = new_constFloat("0.0", currentGoomSL->num_lines);
-            else if (type == INSTR_PTR) {
+            else if(type == INSTR_PTR) {
               fprintf(stderr, "ERROR: Line %d, Could not negate pointer.\n",
                 currentGoomSL->num_lines);
               exit(1);
             }
-            else if (type == INSTR_INT)
+            else if(type == INSTR_INT)
               zeroConst = new_constInt("0", currentGoomSL->num_lines);
-            else if (type == -1) {
+            else if(type == -1) {
                 fprintf(stderr, "ERROR: Line %d, Could not find variable '%s'\n",
                         expr->line_number, expr->unode.opr.op[0]->str);
                 exit(1);
@@ -729,7 +729,7 @@
         NodeType *call = new_call(name,affect_list);
         NodeType *node = new_expr1(name, OPR_CALL_EXPR, call);
         node->vnamespace = gsl_find_namespace(name);
-        if (node->vnamespace == NULL)
+        if(node->vnamespace == NULL)
           fprintf(stderr, "ERROR: Line %d, No return type for: '%s'\n", currentGoomSL->num_lines, name);
         return node;
     }
@@ -737,19 +737,19 @@
         char stmp[256];
         NodeType *tmp,*tmpcpy;
         int type = gsl_type_of_var(call->vnamespace, call->str);
-        if (type == INSTR_FLOAT) {
+        if(type == INSTR_FLOAT) {
           sprintf(stmp,"_f_tmp_%i",allocateTemp());
           gsl_float_decl_global(stmp);
         }
-        else if (type == INSTR_PTR) {
+        else if(type == INSTR_PTR) {
           sprintf(stmp,"_p_tmp_%i",allocateTemp());
           gsl_ptr_decl_global(stmp);
         }
-        else if (type == INSTR_INT) {
+        else if(type == INSTR_INT) {
           sprintf(stmp,"_i_tmp_%i",allocateTemp());
           gsl_int_decl_global(stmp);
         }
-        else if (type == -1) {
+        else if(type == -1) {
           fprintf(stderr, "ERROR: Line %d, Could not find variable '%s'\n",
                   call->line_number, call->str);
           exit(1);
@@ -777,19 +777,19 @@
         tmp = set->unode.opr.op[0];
 
         stmp[0] = 0;
-        if (set->unode.opr.op[0]->type == CONST_INT_NODE) {
+        if(set->unode.opr.op[0]->type == CONST_INT_NODE) {
             sprintf(stmp,"_i_tmp_%i",allocateTemp());
             gsl_int_decl_global(stmp);
         }
-        else if (set->unode.opr.op[0]->type == CONST_FLOAT_NODE) {
+        else if(set->unode.opr.op[0]->type == CONST_FLOAT_NODE) {
             sprintf(stmp,"_f_tmp%i",allocateTemp());
             gsl_float_decl_global(stmp);
         }
-        else if (set->unode.opr.op[0]->type == CONST_PTR_NODE) {
+        else if(set->unode.opr.op[0]->type == CONST_PTR_NODE) {
             sprintf(stmp,"_p_tmp%i",allocateTemp());
             gsl_ptr_decl_global(stmp);
         }
-        if (stmp[0]) {
+        if(stmp[0]) {
             NodeType *tmpcpy;
             tmp = new_var(stmp, set->line_number);
             tmpcpy = nodeClone(tmp);
@@ -949,7 +949,7 @@
     /* FUNCTION INTRO */
     static NodeType *new_function_intro(const char *name) { /* {{{ */
         char stmp[256];
-        if (strlen(name) < 200) {
+        if(strlen(name) < 200) {
            sprintf(stmp, "|__func_%s|", name);
         }
         return new_op(stmp, OPR_FUNC_INTRO, 0);
@@ -992,7 +992,7 @@
         NodeType *next = cur->unode.opr.op[1];
         NodeType *lvalue     = set->unode.opr.op[0];
         NodeType *expression = set->unode.opr.op[1];
-        if ((lvalue->str[0] == '&') && (expression->type == VAR_NODE)) {
+        if((lvalue->str[0] == '&') && (expression->type == VAR_NODE)) {
           NodeType *nset = new_set(nodeClone(expression), nodeClone(lvalue));
           ret  = new_affec_list(nset, ret);
         }
@@ -1033,18 +1033,18 @@
     static NodeType *new_call(const char *name, NodeType *affect_list) { /* {{{ */
         HashValue *fval;
         fval = goom_hash_get(currentGoomSL->functions, name);
-        if (!fval) {
+        if(!fval) {
             gsl_declare_task(name);
             fval = goom_hash_get(currentGoomSL->functions, name);
         }
-        if (!fval) {
+        if(!fval) {
             fprintf(stderr, "ERROR: Line %d, Could not find function %s\n", currentGoomSL->num_lines, name);
             exit(1);
             return NULL;
         }
         else {
             ExternalFunctionStruct *gef = (ExternalFunctionStruct*)fval->ptr;
-            if (gef->is_extern) {
+            if(gef->is_extern) {
                 NodeType *node =  new_op(name, OPR_EXT_CALL, 1);
                 node->unode.opr.op[0] = affect_list;
                 return node;
@@ -1052,7 +1052,7 @@
             else {
                 NodeType *node;
                 char stmp[256];
-                if (strlen(name) < 200) {
+                if(strlen(name) < 200) {
                     sprintf(stmp, "|__func_%s|", name);
                 }
                 node = new_op(stmp, OPR_CALL, 1);
@@ -1087,12 +1087,12 @@
     static NodeType *rootNode = 0; /* TODO: reinitialiser a chaque compilation. */
     static NodeType *lastNode = 0;
     static NodeType *gsl_append(NodeType *curNode) {
-        if (curNode == 0) return 0; /* {{{ */
-        if (lastNode)
+        if(curNode == 0) return 0; /* {{{ */
+        if(lastNode)
             lastNode->unode.opr.next = curNode;
         lastNode = curNode;
         while(lastNode->unode.opr.next) lastNode = lastNode->unode.opr.next;
-        if (rootNode == 0)
+        if(rootNode == 0)
             rootNode = curNode;
         return curNode;
     } /* }}} */
@@ -1109,17 +1109,17 @@
     static int tempArraySize = 0;
     int allocateTemp(void) { /* TODO: allocateITemp, allocateFTemp */
         int i = 0; /* {{{ */
-        if (tempArray == 0) {
+        if(tempArray == 0) {
           tempArraySize = 256;
           tempArray = (int*)malloc(tempArraySize * sizeof(int));
         }
         while (1) {
           int j;
-          for (j=0;j<nbTemp;++j) {
-            if (tempArray[j] == i) break;
+          for(j=0;j<nbTemp;++j) {
+            if(tempArray[j] == i) break;
           }
-          if (j == nbTemp) {
-            if (nbTemp == tempArraySize) {
+          if(j == nbTemp) {
+            if(nbTemp == tempArraySize) {
               tempArraySize *= 2;
               tempArray = (int*)realloc(tempArray,tempArraySize * sizeof(int));
             }
@@ -1134,8 +1134,8 @@
     } /* }}} */
     void releaseTemp(int n) {
       int j; /* {{{ */
-      for (j=0;j<nbTemp;++j) {
-        if (tempArray[j] == n) {
+      for(j=0;j<nbTemp;++j) {
+        if(tempArray[j] == n) {
           tempArray[j] = tempArray[--nbTemp];
           break;
         }
@@ -1158,7 +1158,7 @@
     void precommit_node(NodeType *node)
     { /* {{{ */
         /* do here stuff for expression.. for exemple */
-        if (node->type == OPR_NODE)
+        if(node->type == OPR_NODE)
             switch(node->unode.opr.type) {
                 case OPR_ADD: precommit_add(node); break;
                 case OPR_SUB: precommit_sub(node); break;
@@ -1170,7 +1170,7 @@
 
     void commit_node(NodeType *node, int releaseIfTmp)
     { /* {{{ */
-        if (node == 0) return;
+        if(node == 0) return;
 
         switch(node->type) {
             case OPR_NODE:
@@ -1207,7 +1207,7 @@
             case CONST_FLOAT_NODE: gsl_instr_add_param(currentGoomSL->instr, node->str, TYPE_FLOAT); break;
             case CONST_PTR_NODE:   gsl_instr_add_param(currentGoomSL->instr, node->str, TYPE_PTR); break;
         }
-        if (releaseIfTmp && is_tmp_expr(node))
+        if(releaseIfTmp && is_tmp_expr(node))
           releaseTemp(get_tmp_id(node));
 
         nodeFree(node);
@@ -1259,7 +1259,7 @@
     NodeType *new_var(const char *str, int line_number) {
         NodeType *node = nodeNew(str, VAR_NODE, line_number); /* {{{ */
         node->vnamespace = gsl_find_namespace(str);
-        if (node->vnamespace == 0) {
+        if(node->vnamespace == 0) {
             fprintf(stderr, "ERROR: Line %d, Variable not found: '%s'\n", line_number, str);
             exit(1);
         }
@@ -1277,7 +1277,7 @@
         node->unode.opr.next = 0;
         node->unode.opr.type = type;
         node->unode.opr.nbOp = nbOp;
-        for (i=0;i<nbOp;++i) node->unode.opr.op[i] = 0;
+        for(i=0;i<nbOp;++i) node->unode.opr.op[i] = 0;
         return node;
     } /* }}} */
 
@@ -1370,7 +1370,7 @@ typedef union YYSTYPE {
 #endif /* ! defined (yyoverflow) || YYERROR_VERBOSE */
 
 
-#if (! defined (yyoverflow) \
+#if(! defined (yyoverflow) \
      && (! defined (__cplusplus) \
      || (YYSTYPE_IS_TRIVIAL)))
 
@@ -1401,7 +1401,7 @@ union yyalloc
       do					\
     {					\
       register YYSIZE_T yyi;		\
-      for (yyi = 0; yyi < (Count); yyi++)	\
+      for(yyi = 0; yyi < (Count); yyi++)	\
         (To)[yyi] = (From)[yyi];		\
     }					\
       while (0)
@@ -1816,7 +1816,7 @@ static const unsigned char yystos[] =
 
 #define YYBACKUP(Token, Value)					\
 do								\
-  if (yychar == YYEMPTY && yylen == 1)				\
+  if(yychar == YYEMPTY && yylen == 1)				\
     {								\
       yychar = (Token);						\
       yylval = (Value);						\
@@ -1863,19 +1863,19 @@ while (0)
 
 # define YYDPRINTF(Args)			\
 do {						\
-  if (yydebug)					\
+  if(yydebug)					\
     YYFPRINTF Args;				\
 } while (0)
 
 # define YYDSYMPRINT(Args)			\
 do {						\
-  if (yydebug)					\
+  if(yydebug)					\
     yysymprint Args;				\
 } while (0)
 
 # define YYDSYMPRINTF(Title, Token, Value, Location)		\
 do {								\
-  if (yydebug)							\
+  if(yydebug)							\
     {								\
       YYFPRINTF (stderr, "%s ", Title);				\
       yysymprint (stderr, 					\
@@ -1900,14 +1900,14 @@ yy_stack_print (bottom, top)
 #endif
 {
   YYFPRINTF (stderr, "Stack now");
-  for (/* Nothing. */; bottom <= top; ++bottom)
+  for(/* Nothing. */; bottom <= top; ++bottom)
     YYFPRINTF (stderr, " %d", *bottom);
   YYFPRINTF (stderr, "\n");
 }
 
 # define YY_STACK_PRINT(Bottom, Top)				\
 do {								\
-  if (yydebug)							\
+  if(yydebug)							\
     yy_stack_print ((Bottom), (Top));				\
 } while (0)
 
@@ -1930,14 +1930,14 @@ yy_reduce_print (yyrule)
   YYFPRINTF (stderr, "Reducing stack by rule %d (line %u), ",
              yyrule - 1, yylineno);
   /* Print the symbols being reduced, and their result.  */
-  for (yyi = yyprhs[yyrule]; 0 <= yyrhs[yyi]; yyi++)
+  for(yyi = yyprhs[yyrule]; 0 <= yyrhs[yyi]; yyi++)
     YYFPRINTF (stderr, "%s ", yytname [yyrhs[yyi]]);
   YYFPRINTF (stderr, "-> %s\n", yytname [yyr1[yyrule]]);
 }
 
 # define YY_REDUCE_PRINT(Rule)		\
 do {					\
-  if (yydebug)				\
+  if(yydebug)				\
     yy_reduce_print (Rule);		\
 } while (0)
 
@@ -2049,7 +2049,7 @@ yysymprint (yyoutput, yytype, yyvaluep)
   /* Pacify ``unused variable'' warnings.  */
   (void) yyvaluep;
 
-  if (yytype < YYNTOKENS)
+  if(yytype < YYNTOKENS)
     {
       YYFPRINTF (yyoutput, "token %s (", yytname[yytype]);
 # ifdef YYPRINT
@@ -2216,7 +2216,7 @@ yyparse ()
  yysetstate:
   *yyssp = yystate;
 
-  if (yyss + yystacksize - 1 <= yyssp)
+  if(yyss + yystacksize - 1 <= yyssp)
     {
       /* Get the current used size of the three stacks, in elements.  */
       YYSIZE_T yysize = yyssp - yyss + 1;
@@ -2248,23 +2248,23 @@ yyparse ()
       goto yyoverflowlab;
 # else
       /* Extend the stack our own way.  */
-      if (YYMAXDEPTH <= yystacksize)
+      if(YYMAXDEPTH <= yystacksize)
     goto yyoverflowlab;
       yystacksize *= 2;
-      if (YYMAXDEPTH < yystacksize)
+      if(YYMAXDEPTH < yystacksize)
     yystacksize = YYMAXDEPTH;
 
       {
     short *yyss1 = yyss;
     union yyalloc *yyptr =
       (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
-    if (! yyptr)
+    if(! yyptr)
       goto yyoverflowlab;
     YYSTACK_RELOCATE (yyss);
     YYSTACK_RELOCATE (yyvs);
 
 #  undef YYSTACK_RELOCATE
-    if (yyss1 != yyssa)
+    if(yyss1 != yyssa)
       YYSTACK_FREE (yyss1);
       }
 # endif
@@ -2277,7 +2277,7 @@ yyparse ()
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
           (unsigned long int) yystacksize));
 
-      if (yyss + yystacksize - 1 <= yyssp)
+      if(yyss + yystacksize - 1 <= yyssp)
     YYABORT;
     }
 
@@ -2297,19 +2297,19 @@ yybackup:
   /* First try to decide what to do without reference to lookahead token.  */
 
   yyn = yypact[yystate];
-  if (yyn == YYPACT_NINF)
+  if(yyn == YYPACT_NINF)
     goto yydefault;
 
   /* Not known => get a lookahead token if don't already have one.  */
 
   /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
-  if (yychar == YYEMPTY)
+  if(yychar == YYEMPTY)
     {
       YYDPRINTF ((stderr, "Reading a token: "));
       yychar = YYLEX;
     }
 
-  if (yychar <= YYEOF)
+  if(yychar <= YYEOF)
     {
       yychar = yytoken = YYEOF;
       YYDPRINTF ((stderr, "Now at end of input.\n"));
@@ -2323,25 +2323,25 @@ yybackup:
   /* If the proper action on seeing token YYTOKEN is to reduce or to
      detect an error, take that action.  */
   yyn += yytoken;
-  if (yyn < 0 || YYLAST < yyn || yycheck[yyn] != yytoken)
+  if(yyn < 0 || YYLAST < yyn || yycheck[yyn] != yytoken)
     goto yydefault;
   yyn = yytable[yyn];
-  if (yyn <= 0)
+  if(yyn <= 0)
     {
-      if (yyn == 0 || yyn == YYTABLE_NINF)
+      if(yyn == 0 || yyn == YYTABLE_NINF)
     goto yyerrlab;
       yyn = -yyn;
       goto yyreduce;
     }
 
-  if (yyn == YYFINAL)
+  if(yyn == YYFINAL)
     YYACCEPT;
 
   /* Shift the lookahead token.  */
   YYDPRINTF ((stderr, "Shifting token %s, ", yytname[yytoken]));
 
   /* Discard the token being shifted unless it is eof.  */
-  if (yychar != YYEOF)
+  if(yychar != YYEOF)
     yychar = YYEMPTY;
 
   *++yyvsp = yylval;
@@ -2349,7 +2349,7 @@ yybackup:
 
   /* Count tokens shifted since error; after three, turn off error
      status.  */
-  if (yyerrstatus)
+  if(yyerrstatus)
     yyerrstatus--;
 
   yystate = yyn;
@@ -2361,7 +2361,7 @@ yybackup:
 `-----------------------------------------------------------*/
 yydefault:
   yyn = yydefact[yystate];
-  if (yyn == 0)
+  if(yyn == 0)
     goto yyerrlab;
   goto yyreduce;
 
@@ -2807,7 +2807,7 @@ yyreduce:
   yyn = yyr1[yyn];
 
   yystate = yypgoto[yyn - YYNTOKENS] + *yyssp;
-  if (0 <= yystate && yystate <= YYLAST && yycheck[yystate] == *yyssp)
+  if(0 <= yystate && yystate <= YYLAST && yycheck[yystate] == *yyssp)
     yystate = yytable[yystate];
   else
     yystate = yydefgoto[yyn - YYNTOKENS];
@@ -2820,13 +2820,13 @@ yyreduce:
 `------------------------------------*/
 yyerrlab:
   /* If not already recovering from an error, report this error.  */
-  if (!yyerrstatus)
+  if(!yyerrstatus)
     {
       ++yynerrs;
 #if YYERROR_VERBOSE
       yyn = yypact[yystate];
 
-      if (YYPACT_NINF < yyn && yyn < YYLAST)
+      if(YYPACT_NINF < yyn && yyn < YYLAST)
     {
       YYSIZE_T yysize = 0;
       int yytype = YYTRANSLATE (yychar);
@@ -2836,25 +2836,25 @@ yyerrlab:
       yycount = 0;
       /* Start YYX at -YYN if negative to avoid negative indexes in
          YYCHECK.  */
-      for (yyx = yyn < 0 ? -yyn : 0;
+      for(yyx = yyn < 0 ? -yyn : 0;
            yyx < (int) (sizeof (yytname) / sizeof (char *)); yyx++)
-        if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
+        if(yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
           yysize += yystrlen (yytname[yyx]) + 15, yycount++;
       yysize += yystrlen ("syntax error, unexpected ") + 1;
       yysize += yystrlen (yytname[yytype]);
       yymsg = (char *) YYSTACK_ALLOC (yysize);
-      if (yymsg != 0)
+      if(yymsg != 0)
         {
           char *yyp = yystpcpy (yymsg, "syntax error, unexpected ");
           yyp = yystpcpy (yyp, yytname[yytype]);
 
-          if (yycount < 5)
+          if(yycount < 5)
         {
           yycount = 0;
-          for (yyx = yyn < 0 ? -yyn : 0;
+          for(yyx = yyn < 0 ? -yyn : 0;
                yyx < (int) (sizeof (yytname) / sizeof (char *));
                yyx++)
-            if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
+            if(yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
               {
             const char *yyq = ! yycount ? ", expecting " : " or ";
             yyp = yystpcpy (yyp, yyq);
@@ -2875,13 +2875,13 @@ yyerrlab:
 
 
 
-  if (yyerrstatus == 3)
+  if(yyerrstatus == 3)
     {
       /* If just tried and failed to reuse lookahead token after an
      error, discard it.  */
 
       /* Return failure if at end of input.  */
-      if (yychar == YYEOF)
+      if(yychar == YYEOF)
         {
       /* Pop the error token.  */
           YYPOPSTACK;
@@ -2912,22 +2912,22 @@ yyerrlab:
 yyerrlab1:
   yyerrstatus = 3;	/* Each real token shifted decrements this.  */
 
-  for (;;)
+  for(;;)
     {
       yyn = yypact[yystate];
-      if (yyn != YYPACT_NINF)
+      if(yyn != YYPACT_NINF)
     {
       yyn += YYTERROR;
-      if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
+      if(0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
         {
           yyn = yytable[yyn];
-          if (0 < yyn)
+          if(0 < yyn)
         break;
         }
     }
 
       /* Pop the current state because it cannot handle the error token.  */
-      if (yyssp == yyss)
+      if(yyssp == yyss)
     YYABORT;
 
       YYDSYMPRINTF ("Error: popping", yystos[*yyssp], yyvsp, yylsp);
@@ -2938,7 +2938,7 @@ yyerrlab1:
       YY_STACK_PRINT (yyss, yyssp);
     }
 
-  if (yyn == YYFINAL)
+  if(yyn == YYFINAL)
     YYACCEPT;
 
   YYDPRINTF ((stderr, "Shifting error token, "));
@@ -2976,7 +2976,7 @@ yyoverflowlab:
 
 yyreturn:
 #ifndef yyoverflow
-  if (yyss != yyssa)
+  if(yyss != yyssa)
     YYSTACK_FREE (yyss);
 #endif
   return yyresult;

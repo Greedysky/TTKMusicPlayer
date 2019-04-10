@@ -48,7 +48,7 @@ DecoderCUE::~DecoderCUE()
         delete m_parser;
     m_parser = nullptr;
     if(m_buf)
-        delete [] m_buf;
+        delete[] m_buf;
     m_buf = nullptr;
     if(m_input)
         m_input->deleteLater();
@@ -58,20 +58,20 @@ DecoderCUE::~DecoderCUE()
 bool DecoderCUE::initialize()
 {
     m_parser = new CUEParser(m_path);
-    if (m_parser->count() == 0)
+    if(m_parser->count() == 0)
     {
         qWarning("DecoderCUE: invalid cue file");
         return false;
     }
     m_track = m_path.section("#", -1).toInt();
     m_path = m_parser->filePath(m_track);
-    if (!QFile::exists(m_path))
+    if(!QFile::exists(m_path))
     {
         qWarning("DecoderCUE: file \"%s\" doesn't exist", qPrintable(m_path));
         return false;
     }
     DecoderFactory *df = Decoder::findByFilePath(m_path);
-    if (!df)
+    if(!df)
     {
         qWarning("DecoderCUE: unsupported file format");
         return false;

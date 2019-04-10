@@ -78,12 +78,12 @@ QList<QmmpPluginCache*> *Output::m_cache = nullptr;
 
 void Output::loadPlugins()
 {
-    if (m_cache)
+    if(m_cache)
         return;
 
     m_cache = new QList<QmmpPluginCache *>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach (QString filePath, Qmmp::findPlugins("Output"))
+    foreach(QString filePath, Qmmp::findPlugins("Output"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())
@@ -99,13 +99,13 @@ Output *Output::create ()
 {
     loadPlugins();
     Output *output = nullptr;
-    if (m_cache->isEmpty ())
+    if(m_cache->isEmpty ())
     {
         qDebug("Output: unable to find output plugins");
         return output;
     }
     OutputFactory *fact = Output::currentFactory();
-    if (fact)
+    if(fact)
         output = fact->create ();
     return output;
 }
@@ -136,7 +136,7 @@ QString Output::file(OutputFactory *factory)
 void Output::setCurrentFactory(OutputFactory* factory)
 {
     loadPlugins();
-    if (file(factory).isEmpty())
+    if(file(factory).isEmpty())
         return;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
     settings.setValue ("Output/current_plugin", factory->properties().shortName);
@@ -162,10 +162,10 @@ OutputFactory *Output::currentFactory()
 #endif //QMMP_DEFAULT_OUTPUT
     foreach(QmmpPluginCache *item, *m_cache)
     {
-        if (item->shortName() == name && item->outputFactory())
+        if(item->shortName() == name && item->outputFactory())
             return item->outputFactory();
     }
-    if (!m_cache->isEmpty())
+    if(!m_cache->isEmpty())
         return m_cache->at(0)->outputFactory();
     return nullptr;
 }

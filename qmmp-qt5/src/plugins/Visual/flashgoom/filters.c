@@ -200,9 +200,9 @@ static inline v2g zoomVector(ZoomFilterFXWrapperData *data, float X, float Y)
             break;
     }
 
-    if (coefVitesse < -2.01f)
+    if(coefVitesse < -2.01f)
         coefVitesse = -2.01f;
-    if (coefVitesse > 2.01f)
+    if(coefVitesse > 2.01f)
         coefVitesse = 2.01f;
 
     vx = coefVitesse * X;
@@ -220,27 +220,27 @@ static inline v2g zoomVector(ZoomFilterFXWrapperData *data, float X, float Y)
     // Effects adds-on
 
     /* Noise */
-    if (data->noisify)
+    if(data->noisify)
     {
         vx += (((float)rand()) / ((float)RAND_MAX) - 0.5f) / 50.0f;
         vy += (((float)rand()) / ((float)RAND_MAX) - 0.5f) / 50.0f;
     }
 
     /* Hypercos */
-    if (data->hypercosEffect)
+    if(data->hypercosEffect)
     {
         vx += sin(Y*10.0f)/120.0f;
         vy += sin(X*10.0f)/120.0f;
     }
 
     /* H Plane */
-    if (data->hPlaneEffect) vx += Y * 0.0025f * data->hPlaneEffect;
+    if(data->hPlaneEffect) vx += Y * 0.0025f * data->hPlaneEffect;
 
     /* V Plane */
-    if (data->vPlaneEffect) vy += X * 0.0025f * data->vPlaneEffect;
+    if(data->vPlaneEffect) vy += X * 0.0025f * data->vPlaneEffect;
 
     /* TODO : Water Mode */
-    //    if (data->waveEffect)
+    //    if(data->waveEffect)
 
     vecteur.x = vx;
     vecteur.y = vy;
@@ -270,19 +270,19 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
     // Y position of the pixel to compute in normalized coordinates
     float Y = ((float)(data->interlace_start - data->middleY)) * ratio;
 
-    if (maxEnd > (data->interlace_start + INTERLACE_INCR))
+    if(maxEnd > (data->interlace_start + INTERLACE_INCR))
         maxEnd = (data->interlace_start + INTERLACE_INCR);
 
-    for (y = data->interlace_start; (y < data->prevY) && ((signed int)y<maxEnd); y++) {
+    for(y = data->interlace_start; (y < data->prevY) && ((signed int)y<maxEnd); y++) {
         Uint premul_y_prevX = y * data->prevX * 2;
         float X = - ((float)data->middleX) * ratio;
-        for (x = 0; x < data->prevX; x++)
+        for(x = 0; x < data->prevX; x++)
         {
             v2g vector = zoomVector (data, X, Y);
 
             /* Finish and avoid null displacement */
-            if (fabs(vector.x) < min) vector.x = (vector.x < 0.0f) ? -min : min;
-            if (fabs(vector.y) < min) vector.y = (vector.y < 0.0f) ? -min : min;
+            if(fabs(vector.x) < min) vector.x = (vector.x < 0.0f) ? -min : min;
+            if(fabs(vector.y) < min) vector.y = (vector.y < 0.0f) ? -min : min;
 
             data->brutT[premul_y_prevX] = ((int)((X-vector.x)*inv_ratio)+((int)(data->middleX*BUFFPOINTNB)));
             data->brutT[premul_y_prevX+1] = ((int)((Y-vector.y)*inv_ratio)+((int)(data->middleY*BUFFPOINTNB)));
@@ -292,7 +292,7 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
         Y += ratio;
     }
     data->interlace_start += INTERLACE_INCR;
-    if (y >= data->prevY-1) data->interlace_start = -1;
+    if(y >= data->prevY-1) data->interlace_start = -1;
 }
 
 
@@ -303,25 +303,25 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
 
  inline void calculatePXandPY (PluginInfo *goomInfo, ZoomFilterFXWrapperData *data, int x, int y, int *px, int *py)
  {
-     if (data->theMode == WATER_MODE) {
+     if(data->theMode == WATER_MODE) {
          int yy;
 
          yy = y + goom_irand(goomInfo->gRandom, 4) - goom_irand(goomInfo->gRandom, 4) + data->wave / 10;
-         if (yy < 0)
+         if(yy < 0)
              yy = 0;
-         if (yy >= (signed int)goomInfo->screen.height)
+         if(yy >= (signed int)goomInfo->screen.height)
              yy = goomInfo->screen.height - 1;
 
          *px = (x << 4) + data->firedec[yy] + (data->wave / 10);
          *py = (y << 4) + 132 - ((data->vitesse < 131) ? data->vitesse : 130);
 
          data->wavesp += goom_irand(goomInfo->gRandom, 3) - goom_irand(goomInfo->gRandom, 3);
-         if (data->wave < -10)
+         if(data->wave < -10)
              data->wavesp += 2;
-         if (data->wave > 10)
+         if(data->wave > 10)
              data->wavesp -= 2;
          data->wave += (data->wavesp / 10) + goom_irand(goomInfo->gRandom, 3) - goom_irand(goomInfo->gRandom, 3);
-         if (data->wavesp > 100)
+         if(data->wavesp > 100)
              data->wavesp = (data->wavesp * 9) / 10;
      }
      else {
@@ -330,20 +330,20 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
          int     ppx, ppy;
          int     fvitesse = data->vitesse << 4;
 
-         if (data->noisify) {
+         if(data->noisify) {
              x += goom_irand(goomInfo->gRandom, data->noisify) - goom_irand(goomInfo->gRandom, data->noisify);
              y += goom_irand(goomInfo->gRandom, data->noisify) - goom_irand(goomInfo->gRandom, data->noisify);
          }
          vx = (x - data->middleX) << 9;
          vy = (y - data->middleY) << 9;
 
-         if (data->hPlaneEffect)
+         if(data->hPlaneEffect)
              vx += data->hPlaneEffect * (y - data->middleY);
 
-         if (data->vPlaneEffect)
+         if(data->vPlaneEffect)
              vy += data->vPlaneEffect * (x - data->middleX);
 
-         if (data->waveEffect) {
+         if(data->waveEffect) {
              fvitesse *=
              1024 +
              ShiftRight (goomInfo->sintable
@@ -351,7 +351,7 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
              fvitesse /= 1024;
          }
 
-         if (data->hypercosEffect) {
+         if(data->hypercosEffect) {
              vx += ShiftRight (goomInfo->sintable[(-vy + dist) & 0xffff], 1);
              vy += ShiftRight (goomInfo->sintable[(vx + dist) & 0xffff], 1);
          }
@@ -397,17 +397,17 @@ static void makeZoomBufferStripe(ZoomFilterFXWrapperData * data, int INTERLACE_I
                  break;
          }
 
-         if (fvitesse < -3024)
+         if(fvitesse < -3024)
              fvitesse = -3024;
 
-         if (vx < 0)									// pb avec decalage sur nb negatif
+         if(vx < 0)									// pb avec decalage sur nb negatif
              ppx = -(-(vx * fvitesse) >> 16);
          // 16 = 9 + 7 (7 = nb chiffre virgule de vitesse * (v = 128 => immobile)
          //    * * * * * 9 = nb chiffre virgule de vx)
          else
              ppx = ((vx * fvitesse) >> 16);
 
-         if (vy < 0)
+         if(vy < 0)
              ppy = -(-(vy * fvitesse) >> 16);
          else
              ppy = ((vy * fvitesse) >> 16);
@@ -433,7 +433,7 @@ static void c_zoom (Pixel *expix1, Pixel *expix2, unsigned int prevX, unsigned i
 
     expix1[0].val=expix1[prevX-1].val=expix1[prevX*prevY-1].val=expix1[prevX*prevY-prevX].val=0;
 
-    for (myPos = 0; myPos < bufsize; myPos += 2) {
+    for(myPos = 0; myPos < bufsize; myPos += 2) {
         Color   col1, col2, col3, col4;
         int     c1, c2, c3, c4;
         unsigned int px, py;
@@ -448,7 +448,7 @@ static void c_zoom (Pixel *expix1, Pixel *expix2, unsigned int prevX, unsigned i
         brutSmypos = brutS[myPos2];
         py = brutSmypos + (((brutD[myPos2] - brutSmypos) * buffratio) >> BUFFPOINTNB);
 
-        if ((py >= ay) || (px >= ax)) {
+        if((py >= ay) || (px >= ax)) {
             pos = coeffs = 0;
         } else {
             pos = ((px >> PERTEDEC) + prevX * (py >> PERTEDEC));
@@ -467,17 +467,17 @@ static void c_zoom (Pixel *expix1, Pixel *expix2, unsigned int prevX, unsigned i
         c1 = c1 & 0xff;
 
         couleur.r = col1.r * c1 + col2.r * c2 + col3.r * c3 + col4.r * c4;
-        if (couleur.r > 5)
+        if(couleur.r > 5)
             couleur.r -= 5;
         couleur.r >>= 8;
 
         couleur.v = col1.v * c1 + col2.v * c2 + col3.v * c3 + col4.v * c4;
-        if (couleur.v > 5)
+        if(couleur.v > 5)
             couleur.v -= 5;
         couleur.v >>= 8;
 
         couleur.b = col1.b * c1 + col2.b * c2 + col3.b * c3 + col4.b * c4;
-        if (couleur.b > 5)
+        if(couleur.b > 5)
             couleur.b -= 5;
         couleur.b >>= 8;
 
@@ -493,36 +493,36 @@ static void generateTheWaterFXHorizontalDirectionBuffer(PluginInfo *goomInfo, Zo
     int spdc = goom_irand(goomInfo->gRandom, 8) - 4;
     int accel = goom_irand(goomInfo->gRandom, 8) - 4;
 
-    for (loopv = data->prevY; loopv != 0;) {
+    for(loopv = data->prevY; loopv != 0;) {
 
         loopv--;
         data->firedec[loopv] = decc;
         decc += spdc / 10;
         spdc += goom_irand(goomInfo->gRandom, 3) - goom_irand(goomInfo->gRandom, 3);
 
-        if (decc > 4)
+        if(decc > 4)
             spdc -= 1;
-        if (decc < -4)
+        if(decc < -4)
             spdc += 1;
 
-        if (spdc > 30)
+        if(spdc > 30)
             spdc = spdc - goom_irand(goomInfo->gRandom, 3) + accel / 10;
-        if (spdc < -30)
+        if(spdc < -30)
             spdc = spdc + goom_irand(goomInfo->gRandom, 3) + accel / 10;
 
-        if (decc > 8 && spdc > 1)
+        if(decc > 8 && spdc > 1)
             spdc -= goom_irand(goomInfo->gRandom, 3) - 2;
 
-        if (decc < -8 && spdc < -1)
+        if(decc < -8 && spdc < -1)
             spdc += goom_irand(goomInfo->gRandom, 3) + 2;
 
-        if (decc > 8 || decc < -8)
+        if(decc > 8 || decc < -8)
             decc = decc * 8 / 9;
 
         accel += goom_irand(goomInfo->gRandom, 2) - goom_irand(goomInfo->gRandom, 2);
-        if (accel > 20)
+        if(accel > 20)
             accel -= 2;
-        if (accel < -20)
+        if(accel < -20)
             accel += 2;
     }
 }
@@ -548,35 +548,35 @@ void zoomFilterFastRGB (PluginInfo *goomInfo, Pixel * pix1, Pixel * pix2, ZoomFi
 
     ZoomFilterFXWrapperData *data = (ZoomFilterFXWrapperData*)goomInfo->zoomFilter_fx.fx_data;
 
-    if (!BVAL(data->enabled_bp)) return;
+    if(!BVAL(data->enabled_bp)) return;
 
     /** changement de taille **/
-    if ((data->prevX != resx) || (data->prevY != resy)) {
+    if((data->prevX != resx) || (data->prevY != resy)) {
         data->prevX = resx;
         data->prevY = resy;
 
-        if (data->brutS) free (data->freebrutS);
+        if(data->brutS) free (data->freebrutS);
         data->brutS = 0;
-        if (data->brutD) free (data->freebrutD);
+        if(data->brutD) free (data->freebrutD);
         data->brutD = 0;
-        if (data->brutT) free (data->freebrutT);
+        if(data->brutT) free (data->freebrutT);
         data->brutT = 0;
 
         data->middleX = resx / 2;
         data->middleY = resy / 2;
         data->mustInitBuffers = 1;
-        if (data->firedec) free (data->firedec);
+        if(data->firedec) free (data->firedec);
         data->firedec = 0;
     }
 
-    if (data->interlace_start != -2)
+    if(data->interlace_start != -2)
         zf = NULL;
 
     /** changement de config **/
-    if (zf) {
+    if(zf) {
         data->reverse = zf->reverse;
         data->general_speed = (float)(zf->vitesse-128)/128.0f;
-        if (data->reverse) data->general_speed = -data->general_speed;
+        if(data->reverse) data->general_speed = -data->general_speed;
         data->middleX = zf->middleX;
         data->middleY = zf->middleY;
         data->theMode = zf->mode;
@@ -589,7 +589,7 @@ void zoomFilterFastRGB (PluginInfo *goomInfo, Pixel * pix1, Pixel * pix2, ZoomFi
     }
 
 
-    if (data->mustInitBuffers) {
+    if(data->mustInitBuffers) {
 
         data->mustInitBuffers = 0;
         data->freebrutS = (signed int *) calloc (resx * resy * 2 + 128, sizeof(unsigned int));
@@ -615,12 +615,12 @@ void zoomFilterFastRGB (PluginInfo *goomInfo, Pixel * pix1, Pixel * pix2, ZoomFi
     }
 
     /* generation du buffer de trans */
-    if (data->interlace_start == -1) {
+    if(data->interlace_start == -1) {
 
         /* sauvegarde de l'etat actuel dans la nouvelle source
         * TODO: write that in MMX (has been done in previous version, but did not follow some new fonctionnalities) */
         y = data->prevX * data->prevY * 2;
-        for (x = 0; x < y; x += 2) {
+        for(x = 0; x < y; x += 2) {
             int brutSmypos = data->brutS[x];
             int x2 = x + 1;
 
@@ -631,7 +631,7 @@ void zoomFilterFastRGB (PluginInfo *goomInfo, Pixel * pix1, Pixel * pix2, ZoomFi
         data->buffratio = 0;
     }
 
-    if (data->interlace_start == -1) {
+    if(data->interlace_start == -1) {
         signed int * tmp;
         tmp = data->brutD;
         data->brutD=data->brutT;
@@ -642,19 +642,19 @@ void zoomFilterFastRGB (PluginInfo *goomInfo, Pixel * pix1, Pixel * pix2, ZoomFi
         data->interlace_start = -2;
     }
 
-    if (data->interlace_start>=0)
+    if(data->interlace_start>=0)
     {
         /* creation de la nouvelle destination */
         makeZoomBufferStripe(data,resy/16);
     }
 
-    if (switchIncr != 0) {
+    if(switchIncr != 0) {
         data->buffratio += switchIncr;
-        if (data->buffratio > BUFFPOINTMASK)
+        if(data->buffratio > BUFFPOINTMASK)
             data->buffratio = BUFFPOINTMASK;
     }
 
-    if (switchMult != 1.0f) {
+    if(switchMult != 1.0f) {
         data->buffratio = (int) ((float) BUFFPOINTMASK * (1.0f - switchMult) +
                                  (float) data->buffratio * switchMult);
     }
@@ -669,8 +669,8 @@ static void generatePrecalCoef (int precalCoef[16][16])
 {
     int coefh, coefv;
 
-    for (coefh = 0; coefh < 16; coefh++) {
-        for (coefv = 0; coefv < 16; coefv++) {
+    for(coefh = 0; coefh < 16; coefh++) {
+        for(coefv = 0; coefv < 16; coefv++) {
 
             int i;
             int diffcoeffh;
@@ -679,7 +679,7 @@ static void generatePrecalCoef (int precalCoef[16][16])
             diffcoeffh = sqrtperte - coefh;
             diffcoeffv = sqrtperte - coefv;
 
-            if (!(coefh || coefv)) {
+            if(!(coefh || coefv)) {
                 i = 255;
             }
             else {
@@ -691,10 +691,10 @@ static void generatePrecalCoef (int precalCoef[16][16])
                 i4 = coefh * coefv;
 
                 // TODO: faire mieux...
-                if (i1) i1--;
-                if (i2) i2--;
-                if (i3) i3--;
-                if (i4) i4--;
+                if(i1) i1--;
+                if(i2) i2--;
+                if(i3) i3--;
+                if(i4) i4--;
 
                 i = (i1) | (i2 << 8) | (i3 << 16) | (i4 << 24);
             }
@@ -753,9 +753,9 @@ static void zoomFilterVisualFXWrapper_init (struct _VISUAL_FX *_this, PluginInfo
 static void zoomFilterVisualFXWrapper_free (struct _VISUAL_FX *_this)
 {
     ZoomFilterFXWrapperData *data = (ZoomFilterFXWrapperData*)_this->fx_data;
-    if (data->brutS) free (data->freebrutS);
-    if (data->brutD) free (data->freebrutD);
-    if (data->brutT) free (data->freebrutT);
+    if(data->brutS) free (data->freebrutS);
+    if(data->brutD) free (data->freebrutD);
+    if(data->brutT) free (data->freebrutT);
     free (data->firedec);
     free (data->params.params);
     free(_this->fx_data);
@@ -787,7 +787,7 @@ void pointFilter (PluginInfo *goomInfo, Pixel * pix1, Color c, float t1, float t
     int y = (int) (goomInfo->screen.height/2)
             + (int) (t2 * sin ((float) cycle / t4));
 
-    if ((x > 1) && (y > 1) && (x < goomInfo->screen.width - 2) && (y < goomInfo->screen.height - 2)) {
+    if((x > 1) && (y > 1) && (x < goomInfo->screen.width - 2) && (y < goomInfo->screen.height - 2)) {
         setPixelRGB (goomInfo, pix1, x + 1, y, c);
         setPixelRGB (goomInfo, pix1, x, y + 1, c);
         setPixelRGB (goomInfo, pix1, x + 1, y + 1, WHITE);

@@ -33,9 +33,9 @@ OuterRipples::OuterRipples (QWidget *parent) : Visual (parent)
 OuterRipples::~OuterRipples()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void OuterRipples::start()
@@ -79,9 +79,8 @@ void OuterRipples::showEvent(QShowEvent *)
         m_timer->start();
 }
 
-void OuterRipples::paintEvent(QPaintEvent *e)
+void OuterRipples::paintEvent(QPaintEvent *)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     draw(&painter);
 }
@@ -89,20 +88,20 @@ void OuterRipples::paintEvent(QPaintEvent *e)
 void OuterRipples::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width();
+    const int rows = (height() - 2) / m_cell_size.height();
+    const int cols = (width() - 2) / m_cell_size.width();
 
     if(m_rows != rows || m_cols != cols)
     {
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
@@ -122,7 +121,7 @@ void OuterRipples::process()
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; i++)
     {
         y = 0;
         magnitude = 0;
@@ -131,14 +130,14 @@ void OuterRipples::process()
         {
             y = dest[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);
         }
 
         y >>= 7; //256
 
-        if (y)
+        if(y)
         {
             magnitude = int(log (y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
@@ -151,13 +150,13 @@ void OuterRipples::process()
 
 void OuterRipples::draw(QPainter *p)
 {
-    QBrush brush(Qt::SolidPattern);
+    QBrush brush(Qt::white, Qt::SolidPattern);
 
     int x = 0;
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = maxRange();
 
-    for (int j = 0; j < m_cols; ++j)
+    for(int j = 0; j < m_cols; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)
@@ -165,9 +164,8 @@ void OuterRipples::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        for (int i = 0; i <= m_intern_vis_data[j]*maxed; ++i)
+        for(int i = 0; i <= m_intern_vis_data[j]*maxed; ++i)
         {
-            brush.setColor(Qt::white);
             p->fillRect (x, height() - i * m_cell_size.height() + 1,
                          m_cell_size.width() - 2, m_cell_size.height() - 2, brush);
         }

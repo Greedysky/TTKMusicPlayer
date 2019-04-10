@@ -79,7 +79,7 @@ bool OutputWriter::initialize(quint32 freq, ChannelMap map)
         return false;
     }
 
-    if (!m_output->initialize(freq, map, m_settings->outputFormat()))
+    if(!m_output->initialize(freq, map, m_settings->outputFormat()))
     {
         qWarning("OutputWriter: unable to initialize output");
         delete m_output;
@@ -210,7 +210,7 @@ bool OutputWriter::prepareConverters()
 
 void OutputWriter::startVisualization()
 {
-    foreach (Visual *visual, *Visual::visuals())
+    foreach(Visual *visual, *Visual::visuals())
     {
         QMetaObject::invokeMethod(visual, "start", Qt::QueuedConnection);
     }
@@ -219,7 +219,7 @@ void OutputWriter::startVisualization()
 void OutputWriter::stopVisualization()
 {
     Visual::clearBuffer();
-    foreach (Visual *visual, *Visual::visuals())
+    foreach(Visual *visual, *Visual::visuals())
     {
         QMetaObject::invokeMethod(visual, "stop", Qt::QueuedConnection);
     }
@@ -227,26 +227,26 @@ void OutputWriter::stopVisualization()
 
 void OutputWriter::dispatch(qint64 elapsed, int bitrate)
 {
-    if (m_handler)
+    if(m_handler)
         m_handler->dispatch(elapsed, bitrate);
 }
 
 void OutputWriter::dispatch(const Qmmp::State &state)
 {
-    if (m_handler)
+    if(m_handler)
         m_handler->dispatch(state);
 }
 
 void OutputWriter::dispatch(const AudioParameters &p)
 {
-    if (m_handler)
+    if(m_handler)
         m_handler->dispatch(p);
 }
 
 void OutputWriter::run()
 {
     mutex()->lock ();
-    if (!m_bytesPerMillisecond)
+    if(!m_bytesPerMillisecond)
     {
         qWarning("OutputWriter: invalid audio parameters");
         mutex()->unlock ();
@@ -295,7 +295,7 @@ void OutputWriter::run()
         }
 
         status();
-        if (!b)
+        if(!b)
         {
             if((b = recycler()->next()))
             {
@@ -309,18 +309,18 @@ void OutputWriter::run()
         recycler()->cond()->wakeOne();
         recycler()->mutex()->unlock();
         mutex()->unlock();
-        if (b)
+        if(b)
         {
             mutex()->lock();
-            if (m_useEq)
+            if(m_useEq)
             {
                 iir(b->data, b->samples, m_channels);
             }
             mutex()->unlock();
             dispatchVisual(b);
-            if (SoftwareVolume::instance())
+            if(SoftwareVolume::instance())
                 SoftwareVolume::instance()->changeVolume(b, m_channels);
-            if (m_muted)
+            if(m_muted)
                 memset(b->data, 0, b->size * sizeof(float));
             if(m_channel_converter)
                 m_channel_converter->applyEffect(b);
@@ -330,7 +330,7 @@ void OutputWriter::run()
             //increase buffer size if needed
             if(b->samples > m_output_size)
             {
-                delete [] m_output_buf;
+                delete[] m_output_buf;
                 m_output_size = b->samples;
                 m_output_buf = new unsigned char[m_output_size * sampleSize()];
             }
@@ -394,10 +394,10 @@ void OutputWriter::status()
 {
     qint64 ct = m_totalWritten / m_bytesPerMillisecond - m_output->latency();
 
-    if (ct < 0)
+    if(ct < 0)
         ct = 0;
 
-    if (ct > m_currentMilliseconds)
+    if(ct > m_currentMilliseconds)
     {
         m_currentMilliseconds = ct;
         dispatch(m_currentMilliseconds, m_kbps);

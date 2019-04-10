@@ -53,11 +53,11 @@ StateHandler::~StateHandler()
 void StateHandler::dispatch(qint64 elapsed, int bitrate)
 {
     m_mutex.lock();
-    if (qAbs(m_elapsed - elapsed) > TICK_INTERVAL)
+    if(qAbs(m_elapsed - elapsed) > TICK_INTERVAL)
     {
         m_elapsed = elapsed;
         emit (elapsedChanged(elapsed));
-        if (m_bitrate != bitrate)
+        if(m_bitrate != bitrate)
         {
             m_bitrate = bitrate;
             emit (bitrateChanged(bitrate));
@@ -135,7 +135,7 @@ void StateHandler::dispatch(const QHash<QString, QString> &info)
     QHash<QString, QString> tmp = info;
     foreach(QString value, tmp.values()) //remove empty keys
     {
-        if (value.isEmpty())
+        if(value.isEmpty())
             tmp.remove(tmp.key(value));
     }
     if(m_streamInfo != tmp)
@@ -152,7 +152,7 @@ void StateHandler::dispatch(Qmmp::State state)
     //clear
     QList <Qmmp::State> clearStates;
     clearStates << Qmmp::Stopped << Qmmp::NormalError << Qmmp::FatalError;
-    if (clearStates.contains(state))
+    if(clearStates.contains(state))
     {
         m_elapsed = -1;
         m_bitrate = 0;
@@ -161,7 +161,7 @@ void StateHandler::dispatch(Qmmp::State state)
         m_streamInfo.clear();
         m_sendAboutToFinish = true;
     }
-    if (m_state != state)
+    if(m_state != state)
     {
         QStringList states;
         states << "Playing" << "Paused" << "Stopped" << "Buffering" << "NormalError" << "FatalError";

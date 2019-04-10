@@ -30,7 +30,7 @@ OuterRaysWave::OuterRaysWave (QWidget *parent) : Visual (parent)
 OuterRaysWave::~OuterRaysWave()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 }
 
 void OuterRaysWave::start()
@@ -74,9 +74,8 @@ void OuterRaysWave::showEvent(QShowEvent *)
         m_timer->start();
 }
 
-void OuterRaysWave::paintEvent(QPaintEvent *e)
+void OuterRaysWave::paintEvent(QPaintEvent *)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     draw(&painter);
 }
@@ -84,21 +83,21 @@ void OuterRaysWave::paintEvent(QPaintEvent *e)
 void OuterRaysWave::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
     m_cols = width();
     m_rows = height();
 
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 
     m_intern_vis_data = new int[m_cols];
 
-    int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
+    const int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
     int pos = 0;
 
-    for (int i = 0; i < m_cols; ++i)
+    for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
         m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
@@ -113,7 +112,7 @@ void OuterRaysWave::draw(QPainter *p)
 
     const float maxed = maxRange();
 
-    for (int i = 0; i<m_cols; ++i)
+    for(int i = 0; i<m_cols; ++i)
     {
         if((i+1) >= m_cols)
         {
@@ -122,7 +121,7 @@ void OuterRaysWave::draw(QPainter *p)
 
         int h1 = m_rows/2 - m_intern_vis_data[i] * maxed;
         int h2 = m_rows/2 - m_intern_vis_data[i + 1] * maxed;
-        if (h1 > h2)
+        if(h1 > h2)
         {
             qSwap(h1, h2);
         }

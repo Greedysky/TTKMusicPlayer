@@ -69,14 +69,14 @@ QList<TrackInfo *> DecoderModPlugFactory::createPlayList(const QString &path, Tr
     QByteArray buffer;
 
     ArchiveReader reader(nullptr);
-    if (reader.isSupported(path))
+    if(reader.isSupported(path))
     {
         buffer = reader.unpack(path);
     }
     else
     {
         QFile file(path);
-        if (!file.open(QIODevice::ReadOnly))
+        if(!file.open(QIODevice::ReadOnly))
         {
             qWarning("DecoderModPlugFactory: error: %s", qPrintable(file.errorString()));
             return list;

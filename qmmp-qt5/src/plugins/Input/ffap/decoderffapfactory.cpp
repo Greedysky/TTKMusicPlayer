@@ -68,7 +68,7 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
         filePath.remove(QRegExp("#\\d+$"));
         int track = filePath.section("#", -1).toInt();
         QList<TrackInfo *> list = createPlayList(filePath, parts, nullptr);
-        if (list.isEmpty() || track <= 0 || track > list.count())
+        if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
             list.clear();
@@ -90,7 +90,7 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
 
     if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
-        if (tag->itemListMap().contains("CUESHEET"))
+        if(tag->itemListMap().contains("CUESHEET"))
         {
             delete info;
 
@@ -128,13 +128,13 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
     if((parts & TrackInfo::ReplayGainInfo) && tag && !tag->isEmpty())
     {
         TagLib::APE::ItemListMap items = tag->itemListMap();
-        if (items.contains("REPLAYGAIN_TRACK_GAIN"))
+        if(items.contains("REPLAYGAIN_TRACK_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_GAIN,TStringToQString(items["REPLAYGAIN_TRACK_GAIN"].values()[0]));
-        if (items.contains("REPLAYGAIN_TRACK_PEAK"))
+        if(items.contains("REPLAYGAIN_TRACK_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_TRACK_PEAK,TStringToQString(items["REPLAYGAIN_TRACK_PEAK"].values()[0]));
-        if (items.contains("REPLAYGAIN_ALBUM_GAIN"))
+        if(items.contains("REPLAYGAIN_ALBUM_GAIN"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_GAIN,TStringToQString(items["REPLAYGAIN_ALBUM_GAIN"].values()[0]));
-        if (items.contains("REPLAYGAIN_ALBUM_PEAK"))
+        if(items.contains("REPLAYGAIN_ALBUM_PEAK"))
             info->setValue(Qmmp::REPLAYGAIN_ALBUM_PEAK,TStringToQString(items["REPLAYGAIN_ALBUM_PEAK"].values()[0]));
     }
 

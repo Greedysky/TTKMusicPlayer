@@ -31,9 +31,9 @@ FlashMeter::FlashMeter (QWidget *parent) : Visual (parent)
 FlashMeter::~FlashMeter()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void FlashMeter::start()
@@ -91,20 +91,20 @@ void FlashMeter::paintEvent(QPaintEvent *e)
 void FlashMeter::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width();
+    const int rows = (height() - 2) / m_cell_size.height();
+    const int cols = (width() - 2) / m_cell_size.width();
 
     if(m_rows != rows || m_cols != cols)
     {
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
@@ -124,7 +124,7 @@ void FlashMeter::process()
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; i++)
     {
         y = 0;
         magnitude = 0;
@@ -133,14 +133,14 @@ void FlashMeter::process()
         {
             y = dest[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);
         }
 
         y >>= 7; //256
 
-        if (y)
+        if(y)
         {
             magnitude = int(log (y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
@@ -165,7 +165,7 @@ void FlashMeter::draw(QPainter *p)
     p->translate(rect().center());
 
     qreal startAngle = 45;
-    for (int i = 0; i < DISTANCE; ++i)
+    for(int i = 0; i < DISTANCE; ++i)
     {
         p->save();
         p->rotate(startAngle);

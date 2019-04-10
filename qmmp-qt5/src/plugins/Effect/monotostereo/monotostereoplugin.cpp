@@ -45,7 +45,7 @@ void MonoToStereoPlugin::applyEffect(Buffer *b)
         if(m_size < b->samples)
         {
             if(m_tmp)
-                delete [] m_tmp;
+                delete[] m_tmp;
             m_tmp = new float[b->samples];
         }
         memcpy(m_tmp, b->data, b->samples * sizeof(float));
@@ -54,7 +54,7 @@ void MonoToStereoPlugin::applyEffect(Buffer *b)
 
         if(b->samples > b->size)
         {
-            delete [] b->data;
+            delete[] b->data;
             b->size = b->samples;
             b->data = new float[b->size];
         }

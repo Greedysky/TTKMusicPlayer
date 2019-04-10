@@ -193,11 +193,11 @@ static int find_root(double a, double b, double c, double *x0) {
   double k = c-((b*b)/(4.*a));
   double h = -(b/(2.*a));
   double x1 = 0.;
-  if (-(k/a) < 0.)
+  if(-(k/a) < 0.)
     return -1;
   *x0 = h - sqrt(-(k/a));
   x1 = h + sqrt(-(k/a));
-  if (x1 < *x0)
+  if(x1 < *x0)
     *x0 = x1;
   return 0;
 }
@@ -210,15 +210,15 @@ void calc_coeffs()
   double x0;
 
   n = 0;
-  for (; iir_bands[n].cfs; n++) {
+  for(; iir_bands[n].cfs; n++) {
     double *freqs = (double *)iir_bands[n].cfs;
-    for (i=0; i<iir_bands[n].band_count; i++)
+    for(i=0; i<iir_bands[n].band_count; i++)
     {
 
       /* Find -3dB frequencies for the center freq */
       find_f1_and_f2(freqs[i], iir_bands[n].octave, &f1, &f2);
       /* Find Beta */
-      if ( find_root(
+      if( find_root(
             BETA2(TETA(freqs[i]), TETA(f1)),
             BETA1(TETA(freqs[i]), TETA(f1)),
             BETA0(TETA(freqs[i]), TETA(f1)),

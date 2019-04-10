@@ -44,14 +44,14 @@ SRConverter::~SRConverter()
 
 void SRConverter::applyEffect(Buffer *b)
 {
-    if (m_src_state && b->samples > 0)
+    if(m_src_state && b->samples > 0)
     {
         m_src_data.end_of_input = 0;
         m_src_data.data_in = b->data;
         m_src_data.input_frames = b->samples / channels();
         m_src_data.output_frames = m_src_data.src_ratio * m_src_data.input_frames + 1;
 
-        if ((m_srcError = src_process(m_src_state, &m_src_data)) > 0)
+        if((m_srcError = src_process(m_src_state, &m_src_data)) > 0)
         {
             qWarning("SRConverter: src_process(): %s\n", src_strerror(m_srcError));
         }
@@ -62,7 +62,7 @@ void SRConverter::applyEffect(Buffer *b)
 
         if(b->samples > b->size)
         {
-            delete [] b->data;
+            delete[] b->data;
             b->data = new float[b->samples];
             b->size = b->samples;
         }
@@ -77,7 +77,7 @@ void SRConverter::configure(quint32 freq, ChannelMap map)
     if(freq != m_overSamplingFs)
     {
         m_src_state = src_new(m_converter_type, map.count(), &m_srcError);
-        if (m_src_state)
+        if(m_src_state)
         {
             m_src_data.src_ratio = (float)m_overSamplingFs/(float)freq;
             src_set_ratio(m_src_state, m_src_data.src_ratio);
@@ -92,7 +92,7 @@ void SRConverter::configure(quint32 freq, ChannelMap map)
 
 void SRConverter::freeSRC()
 {
-    if (m_src_state)
+    if(m_src_state)
     {
         src_reset(m_src_state);
         src_delete(m_src_state);
@@ -101,12 +101,12 @@ void SRConverter::freeSRC()
 
     if(m_src_data.data_in)
     {
-        delete [] m_src_data.data_in;
+        delete[] m_src_data.data_in;
         m_src_data.data_in = 0;
     }
     if(m_src_data.data_out)
     {
-        delete [] m_src_data.data_out;
+        delete[] m_src_data.data_out;
         m_src_data.data_out = 0;
     }
 

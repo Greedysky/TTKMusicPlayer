@@ -34,7 +34,7 @@ extern "C"{
 
 DecoderFFmpegFactory::DecoderFFmpegFactory()
 {
-#if (LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
+#if(LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     avcodec_register_all();
     avformat_network_init();
     av_register_all();
@@ -219,7 +219,7 @@ QList<TrackInfo *> DecoderFFmpegFactory::createPlayList(const QString &path, Tra
         int idx = av_find_best_stream(in, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
         if(idx >= 0)
         {
-    #if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
+    #if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(57,48,0)) //ffmpeg-3.1:  57.48.101
             AVCodecParameters *c = in->streams[idx]->codecpar;
     #else
             AVCodecContext *c = in->streams[idx]->codec;

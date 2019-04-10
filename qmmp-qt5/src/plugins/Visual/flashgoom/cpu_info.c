@@ -112,7 +112,7 @@ int mm_support(void)
         : "cc"
         );
 
-    if (a == c) {
+    if(a == c) {
         //trace ("ffap: cpuid is not supported\n");
         return 0; /* CPUID not supported */
     }
@@ -122,19 +122,19 @@ int mm_support(void)
 
     if(max_std_level >= 1){
         cpuid(1, eax, ebx, ecx, std_caps);
-        if (std_caps & (1<<23))
+        if(std_caps & (1<<23))
             rval |= FF_MM_MMX;
-        if (std_caps & (1<<25))
+        if(std_caps & (1<<25))
             rval |= FF_MM_MMX2 | FF_MM_SSE;
-        if (std_caps & (1<<26))
+        if(std_caps & (1<<26))
             rval |= FF_MM_SSE2;
-        if (ecx & 1)
+        if(ecx & 1)
             rval |= FF_MM_SSE3;
-        if (ecx & 0x00000200 )
+        if(ecx & 0x00000200 )
             rval |= FF_MM_SSSE3;
-        if (ecx & 0x00080000 )
+        if(ecx & 0x00080000 )
             rval |= FF_MM_SSE4;
-        if (ecx & 0x00100000 )
+        if(ecx & 0x00100000 )
             rval |= FF_MM_SSE42;
         ;
     }
@@ -143,13 +143,13 @@ int mm_support(void)
 
     if(max_ext_level >= 0x80000001){
         cpuid(0x80000001, eax, ebx, ecx, ext_caps);
-        if (ext_caps & (1<<31))
+        if(ext_caps & (1<<31))
             rval |= FF_MM_3DNOW;
-        if (ext_caps & (1<<30))
+        if(ext_caps & (1<<30))
             rval |= FF_MM_3DNOWEXT;
-        if (ext_caps & (1<<23))
+        if(ext_caps & (1<<23))
             rval |= FF_MM_MMX;
-        if (ext_caps & (1<<22))
+        if(ext_caps & (1<<22))
             rval |= FF_MM_MMX2;
     }
 

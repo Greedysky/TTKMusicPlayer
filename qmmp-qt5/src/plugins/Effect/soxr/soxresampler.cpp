@@ -50,7 +50,7 @@ void SoXResampler::applyEffect(Buffer *b)
         b->samples = done * channels();
         if(b->samples > b->size)
         {
-            delete [] b->data;
+            delete[] b->data;
             b->data = new float[b->samples];
             b->size = b->samples;
         }
@@ -82,7 +82,7 @@ void SoXResampler::freeSoXR()
     }
     if(m_out)
     {
-        delete [] m_out;
+        delete[] m_out;
         m_out = nullptr;
         m_out_samples = 0;
     }

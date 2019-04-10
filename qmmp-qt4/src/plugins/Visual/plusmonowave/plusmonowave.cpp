@@ -31,9 +31,9 @@ PlusMonoWave::PlusMonoWave (QWidget *parent) : Visual (parent)
 PlusMonoWave::~PlusMonoWave()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void PlusMonoWave::start()
@@ -79,7 +79,6 @@ void PlusMonoWave::showEvent(QShowEvent *)
 
 void PlusMonoWave::paintEvent(QPaintEvent *e)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
@@ -88,11 +87,11 @@ void PlusMonoWave::paintEvent(QPaintEvent *e)
 void PlusMonoWave::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = height();
-    int cols = width();
+    const int rows = height();
+    const int cols = width();
 
     if(m_rows != rows || m_cols != cols)
     {
@@ -101,9 +100,9 @@ void PlusMonoWave::process()
         m_pixPos = 0;
 
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[m_rows];
         m_x_scale = new int[m_rows + 1];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
@@ -125,7 +124,7 @@ void PlusMonoWave::process()
 
     double y_scale = (double) 1.25 * m_cols / log(256);
 
-    for (int i = 0; i < m_rows; i++)
+    for(int i = 0; i < m_rows; i++)
     {
         y = 0;
         magnitude = 0;
@@ -134,14 +133,14 @@ void PlusMonoWave::process()
         {
             y = dest[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);
         }
 
         y >>= 7; //256
 
-        if (y)
+        if(y)
         {
             magnitude = int(log (y) * y_scale);
             magnitude = qBound(0, magnitude, m_cols);
@@ -158,9 +157,9 @@ void PlusMonoWave::draw(QPainter *p)
 
     const float maxed = maxRange();
 
-    for (int j = 1; j < m_rows; ++j)
+    for(int j = 1; j < m_rows; ++j)
     {
-        int v = m_intern_vis_data[j - 1] * maxed;
+        const int v = m_intern_vis_data[j - 1] * maxed;
         if(m_pixPos >= m_cols)
         {
             m_pixPos = m_cols - 1;

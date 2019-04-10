@@ -166,7 +166,7 @@ static void addABomb (FSData *fs, int mx, int my, float radius, float vage, floa
     float ro;
     int theta;
 
-    if (fs->nbStars >= fs->maxStars)
+    if(fs->nbStars >= fs->maxStars)
         return;
     fs->nbStars++;
 
@@ -184,7 +184,7 @@ static void addABomb (FSData *fs, int mx, int my, float radius, float vage, floa
     fs->stars[i].ay = gravity;
 
     fs->stars[i].age = 0;
-    if (vage < fs->min_age)
+    if(vage < fs->min_age)
         vage=fs->min_age;
     fs->stars[i].vage = vage;
 }
@@ -231,7 +231,7 @@ static void fs_sound_event_occured(VisualFX *_this, PluginInfo *info) {
             break;
         case RAIN_FX:
       mx = goom_irand(info->gRandom,info->screen.width);
-      if (mx > info->screen.width/2)
+      if(mx > info->screen.width/2)
         mx = info->screen.width;
       else
         mx = 0;
@@ -254,11 +254,11 @@ static void fs_sound_event_occured(VisualFX *_this, PluginInfo *info) {
     radius *= info->screen.height / 200.0f; /* why 200 ? because the FX was developped on 320x200 */
     max *= info->screen.height / 200.0f;
 
-    if (info->sound.timeSinceLastBigGoom < 1) {
+    if(info->sound.timeSinceLastBigGoom < 1) {
         radius *= 1.5;
         max *= 2;
     }
-    for (i=0;i<max;++i)
+    for(i=0;i<max;++i)
         addABomb (data,mx,my,radius,vage,gravity,info);
 }
 
@@ -281,20 +281,20 @@ static void fs_apply(VisualFX *_this, Pixel *UNUSED(src), Pixel *dest, PluginInf
     data->fx_mode = IVAL(data->fx_mode_p);
 
     /* look for events */
-    if (info->sound.timeSinceLastGoom < 1) {
+    if(info->sound.timeSinceLastGoom < 1) {
         fs_sound_event_occured(_this, info);
-        if (goom_irand(info->gRandom,20)==1) {
+        if(goom_irand(info->gRandom,20)==1) {
             IVAL(data->fx_mode_p) = goom_irand(info->gRandom,(LAST_FX*3));
             data->fx_mode_p.change_listener(&data->fx_mode_p);
         }
     }
 
     /* update particules */
-    for (i=0;i<data->nbStars;++i) {
+    for(i=0;i<data->nbStars;++i) {
         updateStar(&data->stars[i]);
 
         /* dead particule */
-        if (data->stars[i].age>=NCOL)
+        if(data->stars[i].age>=NCOL)
             continue;
 
         /* choose the color of the particule */
@@ -314,9 +314,9 @@ static void fs_apply(VisualFX *_this, Pixel *UNUSED(src), Pixel *dest, PluginInf
     }
 
     /* look for dead particules */
-    for (i=0;i<data->nbStars;) {
+    for(i=0;i<data->nbStars;) {
 
-        if ((data->stars[i].x > info->screen.width + 64)
+        if((data->stars[i].x > info->screen.width + 64)
                 ||((data->stars[i].vy>=0)&&(data->stars[i].y - 16*data->stars[i].vy > info->screen.height))
                 ||(data->stars[i].x < -64)
                 ||(data->stars[i].age>=NCOL)) {

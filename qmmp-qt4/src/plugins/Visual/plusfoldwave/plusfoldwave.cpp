@@ -21,7 +21,7 @@ PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
 
     for(int i=0; i<50; ++i)
     {
-        m_starPoints << StarPoint();
+        m_starPoints << new StarPoint();
     }
 
     setWindowTitle(tr("Plus FoldWave Widget"));
@@ -47,10 +47,11 @@ PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
 
 PlusFoldWave::~PlusFoldWave()
 {
+    qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void PlusFoldWave::start()
@@ -89,11 +90,10 @@ void PlusFoldWave::timeout()
 
 void PlusFoldWave::starTimeout()
 {
-    for(int i=0; i<m_starPoints.count(); ++i)
+    foreach(StarPoint *point, m_starPoints)
     {
-        StarPoint *sp = &m_starPoints[i];
-        sp->m_alpha = rand()%255;
-        sp->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand()%255;
+        point->m_pt = QPoint(rand()%width(), rand()%height());
     }
 }
 
@@ -104,6 +104,7 @@ void PlusFoldWave::readSettings()
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_starAction->setChecked(settings.value("show_star", false).toBool());
     m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
+    settings.endGroup();
 }
 
 void PlusFoldWave::writeSettings()
@@ -172,8 +173,8 @@ void PlusFoldWave::paintEvent(QPaintEvent *e)
 void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
     menu.addAction(m_starAction);
@@ -185,20 +186,20 @@ void PlusFoldWave::contextMenuEvent(QContextMenuEvent *)
 void PlusFoldWave::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width() / 2;
+    const int rows = (height() - 2) / m_cell_size.height();
+    const int cols = (width() - 2) / m_cell_size.width() / 2;
 
     if(m_rows != rows || m_cols != cols)
     {
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
 
@@ -220,7 +221,7 @@ void PlusFoldWave::process()
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; i++)
     {
         j = m_cols * 2 - i - 1; //mirror index
         yl = yr = 0;
@@ -231,7 +232,7 @@ void PlusFoldWave::process()
             yl = dest_l[i];
             yr = dest_r[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             yl = qMax(dest_l[k], yl);
             yr = qMax(dest_r[k], yr);
@@ -240,12 +241,12 @@ void PlusFoldWave::process()
         yl >>= 7; //256
         yr >>= 7;
 
-        if (yl)
+        if(yl)
         {
             magnitude_l = int(log (yl) * y_scale);
             magnitude_l = qBound(0, magnitude_l, m_rows);
         }
-        if (yr)
+        if(yr)
         {
             magnitude_r = int(log (yr) * y_scale);
             magnitude_r = qBound(0, magnitude_r, m_rows);
@@ -263,12 +264,11 @@ void PlusFoldWave::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
-        for(int i=0; i<m_starPoints.count(); ++i)
+        foreach(StarPoint *point, m_starPoints)
         {
-            StarPoint *sp = &m_starPoints[i];
-            m_starColor.setAlpha(sp->m_alpha);
+            m_starColor.setAlpha(point->m_alpha);
             p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(sp->m_pt);
+            p->drawPoint(point->m_pt);
         }
     }
 
@@ -284,7 +284,7 @@ void PlusFoldWave::draw(QPainter *p)
     const float maxed = maxRange();
 
     int x = 0, x1 = 0;
-    for (int j = 0; j < m_cols * 2; ++j)
+    for(int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)
@@ -309,6 +309,7 @@ void PlusFoldWave::draw(QPainter *p)
         {
             x1 += rdx; //correct right part position
         }
+
         int hh1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height()/2;
         if(abs(hh1) > height()/2)
         {

@@ -159,18 +159,18 @@ MpegFileTagModel::MpegFileTagModel(bool using_rusxmms, TagLib::MPEG::File *file,
     m_using_rusxmms = using_rusxmms;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("MPEG");
-    if (m_tagType == TagLib::MPEG::File::ID3v1)
+    if(m_tagType == TagLib::MPEG::File::ID3v1)
     {
         m_tag = m_file->ID3v1Tag();
         m_codec = QTextCodec::codecForName(settings.value("ID3v1_encoding", "ISO-8859-1").toByteArray ());
-        if (!m_codec)
+        if(!m_codec)
             QTextCodec::codecForName ("ISO-8859-1");
     }
-    else if (m_tagType == TagLib::MPEG::File::ID3v2)
+    else if(m_tagType == TagLib::MPEG::File::ID3v2)
     {
         m_tag = m_file->ID3v2Tag();
         m_codec = QTextCodec::codecForName(settings.value("ID3v2_encoding", "UTF-8").toByteArray ());
-        if (!m_codec)
+        if(!m_codec)
             QTextCodec::codecForName ("UTF-8");
     }
     else
@@ -190,9 +190,9 @@ MpegFileTagModel::~MpegFileTagModel()
 
 QString MpegFileTagModel::name() const
 {
-    if (m_tagType == TagLib::MPEG::File::ID3v1)
+    if(m_tagType == TagLib::MPEG::File::ID3v1)
         return "ID3v1";
-    else if (m_tagType == TagLib::MPEG::File::ID3v2)
+    else if(m_tagType == TagLib::MPEG::File::ID3v2)
         return "ID3v2";
     return "APE";
 }
@@ -200,7 +200,7 @@ QString MpegFileTagModel::name() const
 QList<Qmmp::MetaData> MpegFileTagModel::keys() const
 {
     QList<Qmmp::MetaData> list = TagModel::keys();
-    if (m_tagType == TagLib::MPEG::File::ID3v2)
+    if(m_tagType == TagLib::MPEG::File::ID3v2)
         return list;
     else if(m_tagType == TagLib::MPEG::File::APE)
     {
@@ -217,10 +217,10 @@ QString MpegFileTagModel::value(Qmmp::MetaData key) const
 {
     QTextCodec *codec = m_codec;
 
-    if (m_tag)
+    if(m_tag)
     {
         bool utf = codec->name().contains("UTF");
-        if (utf)
+        if(utf)
             codec = QTextCodec::codecForName ("UTF-8");
 
         TagLib::String str;
@@ -285,7 +285,7 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         return;
     TagLib::String::Type type = TagLib::String::Latin1;
 
-    if (m_tagType == TagLib::MPEG::File::ID3v1)
+    if(m_tagType == TagLib::MPEG::File::ID3v1)
     {
         if(m_codec->name().contains("UTF") && !m_using_rusxmms) //utf is unsupported
             return;
@@ -293,16 +293,16 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         if(m_using_rusxmms)
             type = TagLib::String::UTF8;
     }
-    else if (m_tagType == TagLib::MPEG::File::ID3v2)
+    else if(m_tagType == TagLib::MPEG::File::ID3v2)
     {
-        if (m_codec->name().contains("UTF"))
+        if(m_codec->name().contains("UTF"))
         {
             type = TagLib::String::UTF8;
-            if (m_codec->name().contains("UTF-16"))
+            if(m_codec->name().contains("UTF-16"))
                 type = TagLib::String::UTF16;
-            else if (m_codec->name().contains("UTF-16LE"))
+            else if(m_codec->name().contains("UTF-16LE"))
                 type = TagLib::String::UTF16LE;
-            else if (m_codec->name().contains("UTF-16BE"))
+            else if(m_codec->name().contains("UTF-16BE"))
                 type = TagLib::String::UTF16BE;
 
             m_codec = QTextCodec::codecForName ("UTF-8");
@@ -315,12 +315,12 @@ void MpegFileTagModel::setValue(Qmmp::MetaData key, const QString &value)
         TagLib::ByteVector id3v2_key;
         if(key == Qmmp::ALBUMARTIST)
             id3v2_key = "TPE2"; //album artist
-        else if (key == Qmmp::COMPOSER)
+        else if(key == Qmmp::COMPOSER)
             id3v2_key = "TCOM"; //composer
-        else if (key == Qmmp::DISCNUMBER)
+        else if(key == Qmmp::DISCNUMBER)
             id3v2_key = "TPOS";  //disc number
 
-        if (!id3v2_key.isEmpty())
+        if(!id3v2_key.isEmpty())
         {
             TagLib::String composer = TagLib::String(m_codec->fromUnicode(value).constData(), type);
             TagLib::ID3v2::Tag *id3v2_tag = dynamic_cast<TagLib::ID3v2::Tag *>(m_tag);
@@ -391,13 +391,13 @@ bool MpegFileTagModel::exists() const
 
 void MpegFileTagModel::create()
 {
-    if (m_tag)
+    if(m_tag)
         return;
-    if (m_tagType == TagLib::MPEG::File::ID3v1)
+    if(m_tagType == TagLib::MPEG::File::ID3v1)
         m_tag = m_file->ID3v1Tag(true);
-    else if (m_tagType == TagLib::MPEG::File::ID3v2)
+    else if(m_tagType == TagLib::MPEG::File::ID3v2)
         m_tag = m_file->ID3v2Tag(true);
-    else if (m_tagType == TagLib::MPEG::File::APE)
+    else if(m_tagType == TagLib::MPEG::File::APE)
         m_tag = m_file->APETag(true);
 }
 
@@ -410,7 +410,7 @@ void MpegFileTagModel::save()
 {
     if(m_tag)
     {
-        if (m_tagType == TagLib::MPEG::File::ID3v2)
+        if(m_tagType == TagLib::MPEG::File::ID3v2)
         {
             m_file->save(m_tagType, false, 3);
         }

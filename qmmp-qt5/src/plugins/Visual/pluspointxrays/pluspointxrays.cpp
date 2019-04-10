@@ -36,7 +36,7 @@ PlusPointXRays::PlusPointXRays (QWidget *parent) : Visual (parent)
 PlusPointXRays::~PlusPointXRays()
 {
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 }
 
 void PlusPointXRays::start()
@@ -75,6 +75,7 @@ void PlusPointXRays::readSettings()
     settings.beginGroup("PlusPointXRays");
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_gridAction->setChecked(settings.value("show_grid", false).toBool());
+    settings.endGroup();
 }
 
 void PlusPointXRays::writeSettings()
@@ -123,8 +124,8 @@ void PlusPointXRays::paintEvent(QPaintEvent *e)
 void PlusPointXRays::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
     menu.addAction(m_gridAction);
@@ -135,21 +136,21 @@ void PlusPointXRays::contextMenuEvent(QContextMenuEvent *)
 void PlusPointXRays::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
     m_cols = width();
     m_rows = height();
 
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
 
     m_intern_vis_data = new int[m_cols];
 
-    int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
+    const int step = (QMMP_VISUAL_NODE_SIZE << 8)/m_cols;
     int pos = 0;
 
-    for (int i = 0; i < m_cols; ++i)
+    for(int i = 0; i < m_cols; ++i)
     {
         pos += step;
         m_intern_vis_data[i] = int(m_left_buffer[pos >> 8] * m_rows* 1.0);
@@ -185,9 +186,9 @@ void PlusPointXRays::draw(QPainter *p)
 
     const float maxed = maxRange();
 
-    for (int i = 0; i<m_cols; ++i)
+    for(int i = 0; i<m_cols; ++i)
     {
-        int v = m_intern_vis_data[i] * maxed;
+        const int v = m_intern_vis_data[i] * maxed;
         if(v != 0 && i%5 == 0)
         {
             p->drawPoint(i, m_rows/2 - m_intern_vis_data[i] * maxed);

@@ -70,12 +70,12 @@ bool DecoderModPlug::initialize()
     m_totalTime = 0;
 
     ArchiveReader reader;
-    if (reader.isSupported(m_path))
+    if(reader.isSupported(m_path))
         m_input_buf = reader.unpack(m_path);
     else
     {
         QFile file(m_path);
-        if (!file.open(QIODevice::ReadOnly))
+        if(!file.open(QIODevice::ReadOnly))
         {
             qWarning("DecoderModPlug: error: %s", qPrintable(file.errorString ()));
             return false;
@@ -83,7 +83,7 @@ bool DecoderModPlug::initialize()
         m_input_buf = file.readAll();
         file.close();
     }
-    if (m_input_buf.isEmpty())
+    if(m_input_buf.isEmpty())
     {
         qWarning("DecoderModPlug: error while reading module file");
         return false;
@@ -111,31 +111,31 @@ int DecoderModPlug::bitrate() const
 qint64 DecoderModPlug::read(unsigned char *audio, qint64 maxSize)
 {
     long len = m_soundFile->Read (audio, maxSize) * m_sampleSize;
-    if (m_usePreamp)
+    if(m_usePreamp)
     {
         {
             //apply preamp
-            if (m_bps == 16)
+            if(m_bps == 16)
             {
                 long n = len >> 1;
-                for (long i = 0; i < n; i++)
+                for(long i = 0; i < n; i++)
                 {
                     short old = ((short*)audio)[i];
                     ((short*)audio)[i] *= m_preampFactor;
                     // detect overflow and clip!
-                    if ((old & 0x8000) !=
+                    if((old & 0x8000) !=
                             (((short*)audio)[i] & 0x8000))
                         ((short*)audio)[i] = old | 0x7FFF;
                 }
             }
             else
             {
-                for (long i = 0; i < len; i++)
+                for(long i = 0; i < len; i++)
                 {
                     uchar old = ((uchar*)audio)[i];
                     ((uchar*)audio)[i] *= m_preampFactor;
                     // detect overflow and clip!
-                    if ((old & 0x80) !=
+                    if((old & 0x80) !=
                             (((uchar*)audio)[i] & 0x80))
                         ((uchar*)audio)[i] = old | 0x7F;
                 }
@@ -151,7 +151,7 @@ void DecoderModPlug::seek(qint64 pos)
     quint32 lMaxtime;
     double lPostime;
 
-    if (pos > (lMaxtime = m_soundFile->GetSongTime()) * 1000)
+    if(pos > (lMaxtime = m_soundFile->GetSongTime()) * 1000)
         pos = lMaxtime * 1000;
     lMax = m_soundFile->GetMaxPosition();
     lPostime = float(lMax) / lMaxtime;
@@ -162,7 +162,7 @@ void DecoderModPlug::deinit()
 {
     m_freq = m_bitrate = 0;
     m_chan = 0;
-    if (m_soundFile)
+    if(m_soundFile)
     {
         m_soundFile->Destroy();
         delete m_soundFile;
@@ -173,7 +173,7 @@ void DecoderModPlug::deinit()
 
 void DecoderModPlug::readSettings()
 {
-    if (!m_soundFile)
+    if(!m_soundFile)
         return;
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     settings.beginGroup("ModPlug");
@@ -194,7 +194,7 @@ void DecoderModPlug::readSettings()
         settings.value("NoiseReduction", false).toBool(),
         false
     );
-    if (settings.value("Reverb", false).toBool())
+    if(settings.value("Reverb", false).toBool())
     {
         CSoundFile::SetReverbParameters
         (
@@ -202,7 +202,7 @@ void DecoderModPlug::readSettings()
             settings.value("ReverbDelay", 100).toInt()
         );
     }
-    if (settings.value("Megabass", false).toBool())
+    if(settings.value("Megabass", false).toBool())
     {
         CSoundFile::SetXBassParameters
         (
@@ -210,7 +210,7 @@ void DecoderModPlug::readSettings()
             settings.value("BassRange", 30).toInt()
         );
     }
-    if (settings.value("Surround", true).toBool())
+    if(settings.value("Surround", true).toBool())
     {
         CSoundFile::SetSurroundParameters
         (

@@ -34,26 +34,25 @@ public:
     OuterEWave(QWidget *parent = nullptr);
     virtual ~OuterEWave();
 
-    void setColor(const QColor &color);
-    QColor getColor() const;
-
 public slots:
     virtual void start() override;
     virtual void stop() override;
 
 private slots:
     void timeout();
+    void readSettings();
 
 private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void paintEvent(QPaintEvent *) override;
 
     void process();
     void draw(QPainter *p);
 
     QColor m_color;
+    qreal m_opacity;
     QTimer *m_timer;
     double *m_intern_vis_data;
     double m_analyzer_falloff;

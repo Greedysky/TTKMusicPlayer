@@ -42,7 +42,7 @@ void FFTPlanImpl::execute()
     float n2 = n * n;
     this->set_output(0, 10.0f * log10f(this->get_input(0) * this->get_input(0) / n2));
     this->set_output(n / 2, 10.0f * log10f(this->get_input(1) * this->get_input(1) / n2));
-    for (int i = 1; i < n / 2; i++) {
+    for(int i = 1; i < n / 2; i++) {
         float re = this->get_input(i * 2);
         float im = this->get_input(i * 2 + 1);
         this->set_output(i, 10.0f * log10f((re * re + im * im) / n2));

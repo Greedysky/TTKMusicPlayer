@@ -68,10 +68,7 @@ QColor ColorWidget::readSingleColorConfig(const QString &value)
 
 QString ColorWidget::writeSingleColorConfig(const QColor &color)
 {
-    QString value;
-    value.append(QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue()));
-    value.append(";");
-    return value;
+    return QString("%1,%2,%3").arg(color.red()).arg(color.green()).arg(color.blue());
 }
 
 QList<QColor> ColorWidget::readColorConfig(const QString &value)
@@ -95,8 +92,7 @@ QString ColorWidget::writeColorConfig(const QList<QColor> &colors)
     QString value;
     foreach(const QColor &rgb, colors)
     {
-        value.append(QString("%1,%2,%3").arg(rgb.red()).arg(rgb.green()).arg(rgb.blue()));
-        value.append(";");
+        value.append(writeSingleColorConfig(rgb) + ";");
     }
     return value;
 }

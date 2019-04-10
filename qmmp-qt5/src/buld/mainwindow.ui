@@ -103,6 +103,25 @@
     </property>
     <layout class="QHBoxLayout" name="equalizerLayout"/>
    </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>80</y>
+      <width>101</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+   <zorder>timeSlider</zorder>
+   <zorder>widget</zorder>
+   <zorder>playButton</zorder>
+   <zorder>pauseButton</zorder>
+   <zorder>stopButton</zorder>
+   <zorder>volumeSlider</zorder>
+   <zorder>TimeLabel</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -110,7 +129,7 @@
      <x>0</x>
      <y>0</y>
      <width>354</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

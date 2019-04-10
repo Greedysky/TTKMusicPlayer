@@ -50,7 +50,7 @@ void gfont_load (void) {
     gfont = malloc (the_font.width*the_font.height*the_font.bytes_per_pixel);
     while (i<the_font.rle_size) {
         unsigned char c = the_font.rle_pixel [i++];
-        if (c == 0) {
+        if(c == 0) {
             unsigned int nb = the_font.rle_pixel [i++];
             while (nb--)
                 gfont[j++] = 0;
@@ -64,13 +64,13 @@ void gfont_load (void) {
         font_chars[0] = 0;
         small_font_chars = calloc (256,sizeof(int**));
 
-    for (i=0;i<the_font.width;i++) {
+    for(i=0;i<the_font.width;i++) {
         unsigned char a = gfont [i*4 + 3];
-        if (a)
+        if(a)
             nba ++;
         else
             nba = 0;
-        if (nba == 2) {
+        if(nba == 2) {
                     font_width [current] = i - font_pos [current];
                     small_font_width [current] = font_width [current]/2;
                         font_pos [++current] = i;
@@ -84,13 +84,13 @@ void gfont_load (void) {
 
     /* charger les lettres et convertir au format de la machine */
 
-    for (i=33;i<current;i++) {
+    for(i=33;i<current;i++) {
         int x; int y;
                 font_chars [i] = malloc (font_height[i]*sizeof(int *));
                 small_font_chars [i] = malloc (font_height[i]*sizeof(int *)/2);
-                for (y = 0; y < font_height[i]; y++) {
+                for(y = 0; y < font_height[i]; y++) {
                     font_chars [i][y] = malloc (font_width[i]*sizeof(int));
-                    for (x = 0; x < font_width[i]; x++) {
+                    for(x = 0; x < font_width[i]; x++) {
                         unsigned int r,g,b,a;
                         r = gfont[(y+2)*(the_font.width*4)+(x*4+font_pos[i]*4)];
                         g = gfont[(y+2)*(the_font.width*4)+(x*4+font_pos[i]*4+1)];
@@ -100,9 +100,9 @@ void gfont_load (void) {
                             (r<<(ROUGE*8))|(g<<(VERT*8))|(b<<(BLEU*8))|(a<<(ALPHA*8));
                     }
                 }
-                for (y = 0; y < font_height[i]/2; y++) {
+                for(y = 0; y < font_height[i]/2; y++) {
                     small_font_chars [i][y] = malloc (font_width[i]*sizeof(int)/2);
-                    for (x = 0; x < font_width[i]/2; x++) {
+                    for(x = 0; x < font_width[i]/2; x++) {
                         unsigned int r1,g1,b1,a1,r2,g2,b2,a2,r3,g3,b3,a3,r4,g4,b4,a4;
                         r1 = gfont[2*(y+1)*(the_font.width*4)+(x*8+font_pos[i]*4)];
                         g1 = gfont[2*(y+1)*(the_font.width*4)+(x*8+font_pos[i]*4+1)];
@@ -131,8 +131,8 @@ void gfont_load (void) {
 
     /* definir les lettres restantes */
 
-    for (i=0;i<256;i++) {
-        if (font_chars[i]==0) {
+    for(i=0;i<256;i++) {
+        if(font_chars[i]==0) {
                     font_chars[i]=font_chars[42];
                     small_font_chars[i]=small_font_chars[42];
                     font_width[i]=font_width[42];
@@ -160,7 +160,7 @@ void    goom_draw_text (Pixel * buf,int resolx,int resoly,
         int    *cur_font_width;
         int    *cur_font_height;
 
-        if (resolx>320)
+        if(resolx>320)
         {
             /* printf("use big\n"); */
             cur_font_chars = font_chars;
@@ -175,10 +175,10 @@ void    goom_draw_text (Pixel * buf,int resolx,int resoly,
             cur_font_height = small_font_height;
         }
 
-        if (cur_font_chars == NULL)
+        if(cur_font_chars == NULL)
         return ;
 
-    if (center) {
+    if(center) {
         unsigned char   *tmp = (unsigned char*)str;
         float   lg = -charspace;
 
@@ -193,9 +193,9 @@ void    goom_draw_text (Pixel * buf,int resolx,int resoly,
 
         x = (int) fx;
 
-        if (c == '\0')
+        if(c == '\0')
             fin = 1;
-        else if (cur_font_chars[c]==0) {
+        else if(cur_font_chars[c]==0) {
             fx += cur_font_width[c] + charspace;
         }
         else {
@@ -207,31 +207,31 @@ void    goom_draw_text (Pixel * buf,int resolx,int resoly,
 
             yy = ymin;
 
-            if (xmin < 0)
+            if(xmin < 0)
                 xmin = 0;
 
-            if (xmin >= resolx - 1)
+            if(xmin >= resolx - 1)
                 return;
 
-            if (xmax >= (int) resolx)
+            if(xmax >= (int) resolx)
                 xmax = resolx - 1;
 
-            if (yy < 0)
+            if(yy < 0)
                 yy = 0;
 
-            if (yy <= (int) resoly - 1) {
-                if (ymax >= (int) resoly - 1)
+            if(yy <= (int) resoly - 1) {
+                if(ymax >= (int) resoly - 1)
                     ymax = resoly - 1;
 
-        for (; yy < ymax; yy++)
-          for (xx = xmin; xx < xmax; xx++)
+        for(; yy < ymax; yy++)
+          for(xx = xmin; xx < xmax; xx++)
           {
               Pixel color = cur_font_chars[c][yy - ymin][xx - x];
               Pixel transparency;
               transparency.val = color.val & A_CHANNEL;
-              if (transparency.val)
+              if(transparency.val)
               {
-                  if (transparency.val==A_CHANNEL) buf[yy * resolx + xx] = color;
+                  if(transparency.val==A_CHANNEL) buf[yy * resolx + xx] = color;
                   else
                   {
                       Pixel back =  buf[yy * resolx + xx];

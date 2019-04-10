@@ -36,11 +36,11 @@ static inline unsigned char lighten (unsigned char value, float power)
     int     val = value;
     float   t = (float) val * log10(power) / 2.0;
 
-    if (t > 0) {
+    if(t > 0) {
         val = (int) t; /* (32.0f * log (t)); */
-        if (val > 255)
+        if(val > 255)
             val = 255;
-        if (val < 0)
+        if(val < 0)
             val = 0;
         return val;
     }
@@ -72,21 +72,21 @@ genline (int id, float param, GMUnitPointer * l, int rx, int ry)
 
     switch (id) {
     case GML_HLINE:
-        for (i = 0; i < 512; i++) {
+        for(i = 0; i < 512; i++) {
             l[i].x = ((float) i * rx) / 512.0f;
             l[i].y = param;
             l[i].angle = M_PI / 2.0f;
         }
         return;
     case GML_VLINE:
-        for (i = 0; i < 512; i++) {
+        for(i = 0; i < 512; i++) {
             l[i].y = ((float) i * ry) / 512.0f;
             l[i].x = param;
             l[i].angle = 0.0f;
         }
         return;
     case GML_CIRCLE:
-        for (i = 0; i < 512; i++) {
+        for(i = 0; i < 512; i++) {
             float   cosa, sina;
 
             l[i].angle = 2.0f * M_PI * (float) i / 512.0f;
@@ -123,7 +123,7 @@ static guint32 getcouleur (int mode)
 void
 goom_lines_set_res (GMLine * gml, int rx, int ry)
 {
-    if (gml != NULL) {
+    if(gml != NULL) {
         gml->screenX = rx;
         gml->screenY = ry;
 
@@ -138,7 +138,7 @@ goom_lines_move (GMLine * l)
     int     i;
     unsigned char *c1, *c2;
 
-    for (i = 0; i < 512; i++) {
+    for(i = 0; i < 512; i++) {
         l->points[i].x = (l->points2[i].x + 39.0f * l->points[i].x) / 40.0f;
         l->points[i].y = (l->points2[i].y + 39.0f * l->points[i].y) / 40.0f;
         l->points[i].angle =
@@ -147,7 +147,7 @@ goom_lines_move (GMLine * l)
 
     c1 = (unsigned char *) &l->color;
     c2 = (unsigned char *) &l->color2;
-    for (i = 0; i < 4; i++) {
+    for(i = 0; i < 4; i++) {
         int     cc1, cc2;
 
         cc1 = *c1;
@@ -158,11 +158,11 @@ goom_lines_move (GMLine * l)
     }
 
     l->power += l->powinc;
-    if (l->power < 1.1f) {
+    if(l->power < 1.1f) {
         l->power = 1.1f;
         l->powinc = (float) (goom_irand(l->goomInfo->gRandom,20) + 10) / 300.0f;
     }
-    if (l->power > 17.5f) {
+    if(l->power > 17.5f) {
         l->power = 17.5f;
         l->powinc = -(float) (goom_irand(l->goomInfo->gRandom,20) + 10) / 300.0f;
     }
@@ -227,7 +227,7 @@ goom_lines_free (GMLine ** l)
 
 void goom_lines_draw (PluginInfo *plug, GMLine * line, gint16 data[512], Pixel *p)
 {
-    if (line != NULL) {
+    if(line != NULL) {
         int     i, x1, y1;
         guint32 color = line->color;
         GMUnitPointer *pt = &(line->points[0]);
@@ -240,7 +240,7 @@ void goom_lines_draw (PluginInfo *plug, GMLine * line, gint16 data[512], Pixel *
         x1 = (int) (pt->x + cosa * line->amplitude * data[0]);
         y1 = (int) (pt->y + sina * line->amplitude * data[0]);
 
-        for (i = 1; i < 512; i++) {
+        for(i = 1; i < 512; i++) {
             int     x2, y2;
             GMUnitPointer *pt = &(line->points[i]);
 

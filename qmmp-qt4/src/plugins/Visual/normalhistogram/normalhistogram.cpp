@@ -23,7 +23,7 @@ NormalHistogram::NormalHistogram (QWidget *parent) : Visual (parent)
 
     for(int i=0; i<50; ++i)
     {
-        m_starPoints << StarPoint();
+        m_starPoints << new StarPoint();
     }
 
     setWindowTitle(tr("Normal Histogram Widget"));
@@ -47,10 +47,11 @@ NormalHistogram::NormalHistogram (QWidget *parent) : Visual (parent)
 
 NormalHistogram::~NormalHistogram()
 {
+    qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
-        delete [] m_intern_vis_data;
+        delete[] m_intern_vis_data;
     if(m_x_scale)
-        delete [] m_x_scale;
+        delete[] m_x_scale;
 }
 
 void NormalHistogram::start()
@@ -89,11 +90,10 @@ void NormalHistogram::timeout()
 
 void NormalHistogram::starTimeout()
 {
-    for(int i=0; i<m_starPoints.count(); ++i)
+    foreach(StarPoint *point, m_starPoints)
     {
-        StarPoint *sp = &m_starPoints[i];
-        sp->m_alpha = rand()%255;
-        sp->m_pt = QPoint(rand()%width(), rand()%height());
+        point->m_alpha = rand()%255;
+        point->m_pt = QPoint(rand()%width(), rand()%height());
     }
 }
 
@@ -104,6 +104,7 @@ void NormalHistogram::readSettings()
     m_colors = ColorWidget::readColorConfig(settings.value("colors").toString());
     m_starAction->setChecked(settings.value("show_star", false).toBool());
     m_starColor = ColorWidget::readSingleColorConfig(settings.value("star_color").toString());
+    settings.endGroup();
 }
 
 void NormalHistogram::writeSettings()
@@ -164,7 +165,6 @@ void NormalHistogram::showEvent(QShowEvent *)
 
 void NormalHistogram::paintEvent(QPaintEvent *e)
 {
-    Q_UNUSED(e);
     QPainter painter(this);
     painter.fillRect(e->rect(), Qt::black);
     draw(&painter);
@@ -173,8 +173,8 @@ void NormalHistogram::paintEvent(QPaintEvent *e)
 void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
 {
     QMenu menu(this);
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(writeSettings()));
-    connect(&menu, SIGNAL(triggered (QAction *)), SLOT(readSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(&menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     menu.addAction("Color", this, SLOT(changeColor()));
     menu.addAction(m_starAction);
@@ -186,20 +186,20 @@ void NormalHistogram::contextMenuEvent(QContextMenuEvent *)
 void NormalHistogram::process()
 {
     static fft_state *state = nullptr;
-    if (!state)
+    if(!state)
         state = fft_init();
 
-    int rows = (height() - 2) / m_cell_size.height();
-    int cols = (width() - 2) / m_cell_size.width();
+    const int rows = (height() - 2) / m_cell_size.height();
+    const int cols = (width() - 2) / m_cell_size.width();
 
     if(m_rows != rows || m_cols != cols)
     {
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
-            delete [] m_intern_vis_data;
+            delete[] m_intern_vis_data;
         if(m_x_scale)
-            delete [] m_x_scale;
+            delete[] m_x_scale;
         m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
@@ -219,7 +219,7 @@ void NormalHistogram::process()
 
     const double y_scale = (double) 1.25 * m_rows / log(256);
 
-    for (int i = 0; i < m_cols; i++)
+    for(int i = 0; i < m_cols; i++)
     {
         y = 0;
         magnitude = 0;
@@ -228,14 +228,14 @@ void NormalHistogram::process()
         {
             y = dest[i];
         }
-        for (k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
+        for(k = m_x_scale[i]; k < m_x_scale[i + 1]; k++)
         {
             y = qMax(dest[k], y);
         }
 
         y >>= 7; //256
 
-        if (y)
+        if(y)
         {
             magnitude = int(log (y) * y_scale);
             magnitude = qBound(0, magnitude, m_rows);
@@ -250,12 +250,11 @@ void NormalHistogram::draw(QPainter *p)
 {
     if(m_starAction->isChecked())
     {
-        for(int i=0; i<m_starPoints.count(); ++i)
+        foreach(StarPoint *point, m_starPoints)
         {
-            StarPoint *sp = &m_starPoints[i];
-            m_starColor.setAlpha(sp->m_alpha);
+            m_starColor.setAlpha(point->m_alpha);
             p->setPen(QPen(m_starColor, 3));
-            p->drawPoint(sp->m_pt);
+            p->drawPoint(point->m_pt);
         }
     }
 
@@ -270,7 +269,7 @@ void NormalHistogram::draw(QPainter *p)
     const int rdx = qMax(0, width() - 2 * m_cell_size.width() * m_cols);
     const float maxed = maxRange();
 
-    for (int j = 0; j < m_cols; ++j)
+    for(int j = 0; j < m_cols; ++j)
     {
         x = j * m_cell_size.width() + 1;
         if(j >= m_cols)

@@ -105,7 +105,7 @@ InputSource *InputSource::create(const QString &url, QObject *parent)
         qDebug("InputSource: using file transport");
         return new FileInputSource(url, parent);
     }
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -133,7 +133,7 @@ QList<InputSourceFactory *> InputSource::factories()
 {
     loadPlugins();
     QList<InputSourceFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(item->inputSourceFactory())
             list.append(item->inputSourceFactory());
@@ -145,7 +145,7 @@ QList<InputSourceFactory *> InputSource::enabledFactories()
 {
     loadPlugins();
     QList<InputSourceFactory *> list;
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -171,7 +171,7 @@ QStringList InputSource::protocols()
     loadPlugins();
     QStringList protocolsList;
 
-    foreach (QmmpPluginCache *item, *m_cache)
+    foreach(QmmpPluginCache *item, *m_cache)
     {
         if(m_disabledNames.contains(item->shortName()))
             continue;
@@ -185,7 +185,7 @@ QStringList InputSource::protocols()
 void InputSource::setEnabled(InputSourceFactory *factory, bool enable)
 {
     loadPlugins();
-    if (!factories().contains(factory))
+    if(!factories().contains(factory))
         return;
 
     if(enable == isEnabled(factory))
@@ -209,12 +209,12 @@ bool InputSource::isEnabled(InputSourceFactory *factory)
 
 void InputSource::loadPlugins()
 {
-    if (m_cache)
+    if(m_cache)
         return;
 
     m_cache = new QList<QmmpPluginCache*>;
     QSettings settings (Qmmp::configFile(), QSettings::IniFormat);
-    foreach (QString filePath, Qmmp::findPlugins("Transports"))
+    foreach(QString filePath, Qmmp::findPlugins("Transports"))
     {
         QmmpPluginCache *item = new QmmpPluginCache(filePath, &settings);
         if(item->hasError())

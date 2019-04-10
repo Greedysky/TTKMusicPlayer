@@ -88,7 +88,7 @@ int VolumeControl::volume() const
 
 int VolumeControl::balance() const
 {
-    int v = volume();
+    const int v = volume();
     return v > 0 ? (m_right - m_left)*100/v : 0;
 }
 
@@ -102,7 +102,7 @@ void VolumeControl::checkVolume()
     r = (r > 100) ? 100 : r;
     l = (l < 0) ? 0 : l;
     r = (r < 0) ? 0 : r;
-    if (m_left != l || m_right != r) //volume has been changed
+    if(m_left != l || m_right != r) //volume has been changed
     {
         m_left = l;
         m_right = r;

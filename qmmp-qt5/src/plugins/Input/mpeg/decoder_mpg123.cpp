@@ -36,7 +36,7 @@ ssize_t mpg123_read_cb (void *src, void *buf, size_t size)
 off_t mpg123_seek_cb(void *src, off_t offset, int whence)
 {
     DecoderMPG123 *d = (DecoderMPG123 *) src;
-    if (d->input()->isSequential())
+    if(d->input()->isSequential())
             return -1;
 
         long start = 0;
@@ -55,7 +55,7 @@ off_t mpg123_seek_cb(void *src, off_t offset, int whence)
             start = 0;
         }
 
-        if (!d->input()->seek(start + offset))
+        if(!d->input()->seek(start + offset))
             return -1;
         return d->input()->pos();
 }
@@ -79,7 +79,7 @@ DecoderMPG123::~DecoderMPG123()
 bool DecoderMPG123::initialize()
 {
     m_errors = 0;
-    if (input()->isSequential ()) //for streams only
+    if(input()->isSequential ()) //for streams only
     {
         TagExtractor extractor(input());
         if(!extractor.id3v2tag().isEmpty())

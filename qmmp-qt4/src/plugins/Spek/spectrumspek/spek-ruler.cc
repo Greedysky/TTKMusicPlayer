@@ -24,8 +24,8 @@ void SpekRuler::draw(QPainter &dc)
 
     // Select the factor to use, we want some space between the labels.
     int factor = 0;
-    for (int i = 0; factors[i]; ++i) {
-        if (fabs(this->scale * factors[i]) >= this->spacing * len) {
+    for(int i = 0; factors[i]; ++i) {
+        if(fabs(this->scale * factors[i]) >= this->spacing * len) {
             factor = factors[i];
             break;
         }
@@ -35,9 +35,9 @@ void SpekRuler::draw(QPainter &dc)
     this->draw_tick(dc, min_units);
     this->draw_tick(dc, max_units);
 
-    if (factor > 0) {
-        for (int tick = min_units + factor; tick < max_units; tick += factor) {
-            if (fabs(this->scale * (max_units - tick)) < len * 1.2) {
+    if(factor > 0) {
+        for(int tick = min_units + factor; tick < max_units; tick += factor) {
+            if(fabs(this->scale * (max_units - tick)) < len * 1.2) {
                 break;
             }
             this->draw_tick(dc, tick);
@@ -58,23 +58,23 @@ void SpekRuler::draw_tick(QPainter &dc, int tick)
     int w = f.width(sample_label);
     int h = f.height();
 
-    if (this->pos == TOP) {
+    if(this->pos == TOP) {
         dc.drawText(this->x + p - w / 2, this->y - GAP - h, label);
-    } else if (this->pos == RIGHT){
+    } else if(this->pos == RIGHT){
         dc.drawText(this->x + GAP, this->y + p - h / 2, label);
-    } else if (this->pos == BOTTOM) {
+    } else if(this->pos == BOTTOM) {
         dc.drawText(this->x + p - w / 2, this->y + GAP*2, label);
-    } else if (this->pos == LEFT){
+    } else if(this->pos == LEFT){
         dc.drawText(this->x - w - GAP, this->y + p - h / 2, label);
     }
 
-    if (this->pos == TOP) {
+    if(this->pos == TOP) {
         dc.drawLine(this->x + p, this->y, this->x + p, this->y - TICK_LEN);
-    } else if (this->pos == RIGHT) {
+    } else if(this->pos == RIGHT) {
         dc.drawLine(this->x, this->y + p, this->x + TICK_LEN, this->y + p);
-    } else if (this->pos == BOTTOM) {
+    } else if(this->pos == BOTTOM) {
         dc.drawLine(this->x + p, this->y, this->x + p, this->y + TICK_LEN);
-    } else if (this->pos == LEFT) {
+    } else if(this->pos == LEFT) {
         dc.drawLine(this->x, this->y + p, this->x - TICK_LEN, this->y + p);
     }
 }

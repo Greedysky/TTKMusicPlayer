@@ -28,7 +28,7 @@
 
 class VorbisCommentModel;
 
-#if (TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
+#if(TAGLIB_MAJOR_VERSION > 1) || ((TAGLIB_MAJOR_VERSION == 1) && (TAGLIB_MINOR_VERSION >= 11))
 #define HAS_PICTURE_LIST
 #endif
 

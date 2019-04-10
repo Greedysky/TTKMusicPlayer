@@ -61,7 +61,7 @@ private:
     AVPacket m_temp_pkt;
     qint64 m_output_at;
 
-#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
+#if(LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(58,10,100)) //ffmpeg-3.5
     uchar m_input_buf[INPUT_BUFFER_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
 #else
     uchar m_input_buf[INPUT_BUFFER_SIZE + FF_INPUT_BUFFER_PADDING_SIZE];

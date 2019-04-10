@@ -42,10 +42,10 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
 {
     QByteArray array = m_d->peek(2048);
     int offset = array.indexOf("ID3");
-    if (offset < 0)
+    if(offset < 0)
         return m_tag;
     ID3v2Tag taglib_tag(&array, offset);
-    if (taglib_tag.isEmpty())
+    if(taglib_tag.isEmpty())
         return m_tag;
 
     TagLib::String album = taglib_tag.album();
@@ -59,7 +59,7 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
     QByteArray name = settings.value("ID3v2_encoding","UTF-8").toByteArray ();
     bool utf = false;
     QTextCodec *codec = nullptr;
-    if (name.contains("UTF"))
+    if(name.contains("UTF"))
     {
         codec = QTextCodec::codecForName ("UTF-8");
         utf = true;
@@ -68,7 +68,7 @@ const QMap<Qmmp::MetaData, QString> TagExtractor::id3v2tag()
         codec = QTextCodec::codecForName(name);
     settings.endGroup();
 
-    if (!codec)
+    if(!codec)
         codec = QTextCodec::codecForName ("UTF-8");
 
     m_tag.insert(Qmmp::ALBUM,
@@ -111,11 +111,11 @@ void ID3v2Tag::read ()
 {
     m_buf->seek(m_offset);
     uint to_read = TagLib::ID3v2::Header::size();
-    if (to_read > 2048 - uint(m_offset))
+    if(to_read > 2048 - uint(m_offset))
         return;
     header()->setData(TagLib::ByteVector(m_buf->read(to_read).data(), to_read));
     to_read = header()->tagSize();
-    if (!to_read ||  2048 < m_offset + TagLib::ID3v2::Header::size())
+    if(!to_read ||  2048 < m_offset + TagLib::ID3v2::Header::size())
         return;
     QByteArray array = m_buf->read(to_read);
     TagLib::ByteVector v(array.data(), array.size());

@@ -134,8 +134,6 @@ void DecoderXmp::readSettings()
         if(settings.value("fx9bug", false).toBool())
             flags |= XMP_FLAGS_FX9BUG;
         xmp_set_player(m_ctx, XMP_PLAYER_FLAGS, flags);
-
-
         settings.endGroup();
     }
 }

@@ -297,12 +297,12 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
     int x, y, dx, dy, yy, xx;
     Pixel *p;
 
-    if ((y1 < 0) || (y2 < 0) || (x1 < 0) || (x2 < 0) || (y1 >= screeny) || (y2 >= screeny) || (x1 >= screenx) || (x2 >= screenx))
+    if((y1 < 0) || (y2 < 0) || (x1 < 0) || (x2 < 0) || (y1 >= screeny) || (y2 >= screeny) || (x1 >= screenx) || (x2 >= screenx))
         goto end_of_line;
 
     dx = x2 - x1;
     dy = y2 - y1;
-    if (x1 >= x2) {
+    if(x1 >= x2) {
         int tmp;
 
         tmp = x1;
@@ -316,17 +316,17 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
     }
 
     /* vertical line */
-    if (dx == 0) {
-        if (y1 < y2) {
+    if(dx == 0) {
+        if(y1 < y2) {
             p = &(data[(screenx * y1) + x1]);
-            for (y = y1; y <= y2; y++) {
+            for(y = y1; y <= y2; y++) {
                 DRAWMETHOD;
                 p += screenx;
             }
         }
         else {
             p = &(data[(screenx * y2) + x1]);
-            for (y = y2; y <= y1; y++) {
+            for(y = y2; y <= y1; y++) {
                 DRAWMETHOD;
                 p += screenx;
             }
@@ -334,10 +334,10 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
         goto end_of_line;
     }
     /* horizontal line */
-    if (dy == 0) {
-        if (x1 < x2) {
+    if(dy == 0) {
+        if(x1 < x2) {
             p = &(data[(screenx * y1) + x1]);
-            for (x = x1; x <= x2; x++) {
+            for(x = x1; x <= x2; x++) {
                 DRAWMETHOD;
                 p++;
             }
@@ -345,7 +345,7 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
         }
         else {
             p = &(data[(screenx * y1) + x2]);
-            for (x = x2; x <= x1; x++) {
+            for(x = x2; x <= x1; x++) {
                 DRAWMETHOD;
                 p++;
             }
@@ -356,16 +356,16 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
     /*  \   */
     /*   \  */
     /*    2 */
-    if (y2 > y1) {
+    if(y2 > y1) {
         /* steep */
-        if (dy > dx) {
+        if(dy > dx) {
             dx = ((dx << 16) / dy);
             x = x1 << 16;
-            for (y = y1; y <= y2; y++) {
+            for(y = y1; y <= y2; y++) {
                 xx = x >> 16;
                 p = &(data[(screenx * y) + xx]);
                 DRAWMETHOD;
-                if (xx < (screenx - 1)) {
+                if(xx < (screenx - 1)) {
                     p++;
                     /* DRAWMETHOD; */
                 }
@@ -377,11 +377,11 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
         else {
             dy = ((dy << 16) / dx);
             y = y1 << 16;
-            for (x = x1; x <= x2; x++) {
+            for(x = x1; x <= x2; x++) {
                 yy = y >> 16;
                 p = &(data[(screenx * yy) + x]);
                 DRAWMETHOD;
-                if (yy < (screeny - 1)) {
+                if(yy < (screeny - 1)) {
                     p += screeny;
                     /* DRAWMETHOD; */
                 }
@@ -395,14 +395,14 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
     /* 1    */
     else {
         /* steep */
-        if (-dy > dx) {
+        if(-dy > dx) {
             dx = ((dx << 16) / -dy);
             x = (x1 + 1) << 16;
-            for (y = y1; y >= y2; y--) {
+            for(y = y1; y >= y2; y--) {
                 xx = x >> 16;
                 p = &(data[(screenx * y) + xx]);
                 DRAWMETHOD;
-                if (xx < (screenx - 1)) {
+                if(xx < (screenx - 1)) {
                     p--;
                     /* DRAWMETHOD; */
                 }
@@ -414,11 +414,11 @@ void draw_line_xmmx (Pixel *data, int x1, int y1, int x2, int y2, int col, int s
         else {
             dy = ((dy << 16) / dx);
             y = y1 << 16;
-            for (x = x1; x <= x2; x++) {
+            for(x = x1; x <= x2; x++) {
                 yy = y >> 16;
                 p = &(data[(screenx * yy) + x]);
                 DRAWMETHOD;
-                if (yy < (screeny - 1)) {
+                if(yy < (screeny - 1)) {
                     p += screeny;
                     /* DRAWMETHOD; */
                 }

@@ -285,7 +285,7 @@ read_uint16_(FFap_decoder *decoder, uint16_t *x)
 
     n = decoder->read(tmp, 1, 2, decoder->client_data);
 
-    if (n != 2)
+    if(n != 2)
         return -1;
 
     *x = tmp[0] | (tmp[1] << 8);
@@ -301,7 +301,7 @@ read_uint32_(FFap_decoder *decoder, uint32_t* x)
 
     n = decoder->read(tmp, 1, 4, decoder->client_data);
 
-    if (n != 4)
+    if(n != 4)
         return -1;
 
     *x = tmp[0] | (tmp[1] << 8) | (tmp[2] << 16) | (tmp[3] << 24);
@@ -325,7 +325,7 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     fprintf (stderr, "audiodatalength_high = %d\n", ape_ctx->audiodatalength_high);
     fprintf (stderr, "wavtaillength        = %d\n", ape_ctx->wavtaillength);
     fprintf (stderr, "md5                  = ");
-    for (i = 0; i < 16; i++)
+    for(i = 0; i < 16; i++)
          fprintf (stderr, "%02x", ape_ctx->md5[i]);
     fprintf (stderr, "\n");
 
@@ -341,11 +341,11 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     fprintf (stderr, "samplerate           = %d\n", ape_ctx->samplerate);
 
     fprintf (stderr, "\nSeektable\n\n");
-    if ((ape_ctx->seektablelength / sizeof(uint32_t)) != ape_ctx->totalframes) {
+    if((ape_ctx->seektablelength / sizeof(uint32_t)) != ape_ctx->totalframes) {
         fprintf (stderr, "No seektable\n");
     } else {
-        for (i = 0; i < ape_ctx->seektablelength / sizeof(uint32_t); i++) {
-            if (i < ape_ctx->totalframes - 1) {
+        for(i = 0; i < ape_ctx->seektablelength / sizeof(uint32_t); i++) {
+            if(i < ape_ctx->totalframes - 1) {
                 fprintf (stderr, "%8d   %d (%d bytes)\n", i, ape_ctx->seektable[i], ape_ctx->seektable[i + 1] - ape_ctx->seektable[i]);
             } else {
                 fprintf (stderr, "%8d   %d\n", i, ape_ctx->seektable[i]);
@@ -354,7 +354,7 @@ static void ape_dumpinfo(APEContext * ape_ctx)
     }
 
     fprintf (stderr, "\nFrames\n\n");
-    for (i = 0; i < ape_ctx->totalframes; i++)
+    for(i = 0; i < ape_ctx->totalframes; i++)
         fprintf (stderr, "%8d   %8lld %8d (%d samples)\n", i, ape_ctx->frames[i].pos, ape_ctx->frames[i].size, ape_ctx->frames[i].nblocks);
 
     fprintf (stderr, "\nCalculated information:\n\n");
@@ -378,128 +378,128 @@ ape_read_header (FFap_decoder *decoder)
         return -1;
     }
 
-    /*if (deadbeef->fread (ape->magic, 1, 4, fp) != 4) {
+    /*if(deadbeef->fread (ape->magic, 1, 4, fp) != 4) {
         return -1;
     }*/
-    if (memcmp (ape->magic, "MAC ", 4))
+    if(memcmp (ape->magic, "MAC ", 4))
         return -1;
 
-    if (read_uint16_ (decoder, &ape->fileversion) < 0) {
+    if(read_uint16_ (decoder, &ape->fileversion) < 0) {
         return -1;
     }
 
-    /*if (read_uint16 (fp, &ape->fileversion) < 0) {
+    /*if(read_uint16 (fp, &ape->fileversion) < 0) {
         return -1;
     }*/
 
-    if (ape->fileversion < APE_MIN_VERSION || ape->fileversion > APE_MAX_VERSION) {
+    if(ape->fileversion < APE_MIN_VERSION || ape->fileversion > APE_MAX_VERSION) {
         fprintf (stderr, "ape: Unsupported file version - %d.%02d\n", ape->fileversion / 1000, (ape->fileversion % 1000) / 10);
         return -1;
     }
 
-    if (ape->fileversion >= 3980) {
-        if (read_uint16_ (decoder, &ape->padding1) < 0) {
+    if(ape->fileversion >= 3980) {
+        if(read_uint16_ (decoder, &ape->padding1) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->descriptorlength) < 0) {
+        if(read_uint32_ (decoder, &ape->descriptorlength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->headerlength) < 0) {
+        if(read_uint32_ (decoder, &ape->headerlength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->seektablelength) < 0) {
+        if(read_uint32_ (decoder, &ape->seektablelength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->wavheaderlength) < 0) {
+        if(read_uint32_ (decoder, &ape->wavheaderlength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->audiodatalength) < 0) {
+        if(read_uint32_ (decoder, &ape->audiodatalength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->audiodatalength_high) < 0) {
+        if(read_uint32_ (decoder, &ape->audiodatalength_high) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->wavtaillength) < 0) {
+        if(read_uint32_ (decoder, &ape->wavtaillength) < 0) {
             return -1;
         }
         if(decoder->read(ape->md5, 1, 16, decoder->client_data) != 16) {
             return -1;
         }
 
-        /*if (deadbeef->fread (ape->md5, 1, 16, fp) != 16) {
+        /*if(deadbeef->fread (ape->md5, 1, 16, fp) != 16) {
             return -1;
         }*/
 
         /* Skip any unknown bytes at the end of the descriptor.
            This is for future compatibility */
 
-        if (ape->descriptorlength > 52) {
+        if(ape->descriptorlength > 52) {
             //deadbeef->fseek (fp, ape->descriptorlength - 52, SEEK_CUR);
             decoder->seek(ape->descriptorlength - 52, SEEK_CUR, decoder->client_data);
         }
 
         /* Read header data */
-        if (read_uint16_ (decoder, &ape->compressiontype) < 0) {
+        if(read_uint16_ (decoder, &ape->compressiontype) < 0) {
             return -1;
         }
-        if (read_uint16_ (decoder, &ape->formatflags) < 0) {
+        if(read_uint16_ (decoder, &ape->formatflags) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->blocksperframe) < 0) {
+        if(read_uint32_ (decoder, &ape->blocksperframe) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->finalframeblocks) < 0) {
+        if(read_uint32_ (decoder, &ape->finalframeblocks) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, & ape->totalframes) < 0) {
+        if(read_uint32_ (decoder, & ape->totalframes) < 0) {
             return -1;
         }
-        if (read_uint16_ (decoder, &ape->bps) < 0) {
+        if(read_uint16_ (decoder, &ape->bps) < 0) {
             return -1;
         }
-        if (read_uint16_ (decoder, &ape->channels) < 0) {
+        if(read_uint16_ (decoder, &ape->channels) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->samplerate) < 0) {
+        if(read_uint32_ (decoder, &ape->samplerate) < 0) {
             return -1;
         }
     } else {
         ape->descriptorlength = 0;
         ape->headerlength = 32;
 
-        if (read_uint16_ (decoder, &ape->compressiontype) < 0) {
+        if(read_uint16_ (decoder, &ape->compressiontype) < 0) {
             return -1;
         }
-        if (read_uint16_ (decoder, &ape->formatflags) < 0) {
+        if(read_uint16_ (decoder, &ape->formatflags) < 0) {
             return -1;
         }
-        if (read_uint16_ (decoder, &ape->channels) < 0) {
+        if(read_uint16_ (decoder, &ape->channels) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->samplerate) < 0) {
+        if(read_uint32_ (decoder, &ape->samplerate) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->wavheaderlength) < 0) {
+        if(read_uint32_ (decoder, &ape->wavheaderlength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->wavtaillength) < 0) {
+        if(read_uint32_ (decoder, &ape->wavtaillength) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->totalframes) < 0) {
+        if(read_uint32_ (decoder, &ape->totalframes) < 0) {
             return -1;
         }
-        if (read_uint32_ (decoder, &ape->finalframeblocks) < 0) {
+        if(read_uint32_ (decoder, &ape->finalframeblocks) < 0) {
             return -1;
         }
 
-        if (ape->formatflags & MAC_FORMAT_FLAG_HAS_PEAK_LEVEL) {
+        if(ape->formatflags & MAC_FORMAT_FLAG_HAS_PEAK_LEVEL) {
             //deadbeef->fseek(fp, 4, SEEK_CUR); /* Skip the peak level */
             decoder->seek(4, SEEK_CUR, decoder->client_data); /* Skip the peak level */
             ape->headerlength += 4;
         }
 
-        if (ape->formatflags & MAC_FORMAT_FLAG_HAS_SEEK_ELEMENTS) {
-            if (read_uint32_ (decoder, &ape->seektablelength) < 0) {
+        if(ape->formatflags & MAC_FORMAT_FLAG_HAS_SEEK_ELEMENTS) {
+            if(read_uint32_ (decoder, &ape->seektablelength) < 0) {
                 return -1;
             };
             ape->headerlength += 4;
@@ -507,22 +507,22 @@ ape_read_header (FFap_decoder *decoder)
         } else
             ape->seektablelength = ape->totalframes * sizeof(int32_t);
 
-        if (ape->formatflags & MAC_FORMAT_FLAG_8_BIT)
+        if(ape->formatflags & MAC_FORMAT_FLAG_8_BIT)
             ape->bps = 8;
-        else if (ape->formatflags & MAC_FORMAT_FLAG_24_BIT)
+        else if(ape->formatflags & MAC_FORMAT_FLAG_24_BIT)
             ape->bps = 24;
         else
             ape->bps = 16;
 
-        //if (ape->fileversion >= 3950)
+        //if(ape->fileversion >= 3950)
             ape->blocksperframe = 73728 * 4;
-        /*else if (ape->fileversion >= 3900 || (ape->fileversion >= 3800  && ape->compressiontype >= 4000))
+        /*else if(ape->fileversion >= 3900 || (ape->fileversion >= 3800  && ape->compressiontype >= 4000))
             ape->blocksperframe = 73728;
         else
             ape->blocksperframe = 9216;*/
 
         /* Skip any stored wav header */
-        if (!(ape->formatflags & MAC_FORMAT_FLAG_CREATE_WAV_HEADER)) {
+        if(!(ape->formatflags & MAC_FORMAT_FLAG_CREATE_WAV_HEADER)) {
             //deadbeef->fseek (fp, ape->wavheaderlength, SEEK_CUR);
             decoder->seek(ape->wavheaderlength, SEEK_CUR, decoder->client_data);
         }
@@ -539,13 +539,13 @@ ape_read_header (FFap_decoder *decoder)
     ape->currentframe = 0;
 
     ape->totalsamples = ape->finalframeblocks;
-    if (ape->totalframes > 1)
+    if(ape->totalframes > 1)
         ape->totalsamples += ape->blocksperframe * (ape->totalframes - 1);
 
-    if (ape->seektablelength > 0) {
+    if(ape->seektablelength > 0) {
         ape->seektable = malloc(ape->seektablelength);
-        for (i = 0; i < ape->seektablelength / sizeof(uint32_t); i++) {
-            if (read_uint32_ (decoder, &ape->seektable[i]) < 0) {
+        for(i = 0; i < ape->seektablelength / sizeof(uint32_t); i++) {
+            if(read_uint32_ (decoder, &ape->seektable[i]) < 0) {
                 return -1;
             }
         }
@@ -554,7 +554,7 @@ ape_read_header (FFap_decoder *decoder)
     ape->frames[0].pos     = ape->firstframe;
     ape->frames[0].nblocks = ape->blocksperframe;
     ape->frames[0].skip    = 0;
-    for (i = 1; i < ape->totalframes; i++) {
+    for(i = 1; i < ape->totalframes; i++) {
         ape->frames[i].pos      = ape->seektable[i]; //ape->frames[i-1].pos + ape->blocksperframe;
         ape->frames[i].nblocks  = ape->blocksperframe;
         ape->frames[i - 1].size = ape->frames[i].pos - ape->frames[i - 1].pos;
@@ -563,7 +563,7 @@ ape_read_header (FFap_decoder *decoder)
     ape->frames[ape->totalframes - 1].size    = ape->finalframeblocks * 4;
     ape->frames[ape->totalframes - 1].nblocks = ape->finalframeblocks;
 
-    for (i = 0; i < ape->totalframes; i++) {
+    for(i = 0; i < ape->totalframes; i++) {
         if(ape->frames[i].skip){
             ape->frames[i].pos  -= ape->frames[i].skip;
             ape->frames[i].size += ape->frames[i].skip;
@@ -602,18 +602,18 @@ static int ape_read_packet(FFap_decoder *decoder)
     APEContext *ape = decoder->ape_ctx;
     uint32_t extra_size = 8;
 
-    if (ape->currentframe > ape->totalframes)
+    if(ape->currentframe > ape->totalframes)
         return -1;
 #if ENABLE_DEBUG
     trace ("ffap: seeking to packet %d (%lld + %d)\n", ape->currentframe, ape->frames[ape->currentframe].pos, ape->skip_header);
 #endif
-    if (decoder->seek(ape->frames[ape->currentframe].pos + ape->skip_header, SEEK_SET,
+    if(decoder->seek(ape->frames[ape->currentframe].pos + ape->skip_header, SEEK_SET,
                       decoder->client_data) != 0){
         return -1;
     }
 
     /* Calculate how many blocks there are in this frame */
-    if (ape->currentframe == (ape->totalframes - 1))
+    if(ape->currentframe == (ape->totalframes - 1))
         nblocks = ape->finalframeblocks;
     else
         nblocks = ape->blocksperframe;
@@ -624,11 +624,11 @@ static int ape_read_packet(FFap_decoder *decoder)
 
 // update bitrate
     int bitrate = -1;
-    if (nblocks != 0 && ape->frames[ape->currentframe].size != 0) {
+    if(nblocks != 0 && ape->frames[ape->currentframe].size != 0) {
         float sec = (float)nblocks / ape->samplerate;
         bitrate = ape->frames[ape->currentframe].size / sec * 8;
     }
-    if (bitrate > 0) {
+    if(bitrate > 0) {
         decoder->bitrate = bitrate/1000;
     }
 
@@ -647,20 +647,20 @@ static int ape_read_packet(FFap_decoder *decoder)
 static void
 ape_free_ctx (APEContext *ape_ctx) {
     int i;
-    if (ape_ctx->packet_data) {
+    if(ape_ctx->packet_data) {
         free (ape_ctx->packet_data);
         ape_ctx->packet_data = NULL;
     }
-    if (ape_ctx->frames) {
+    if(ape_ctx->frames) {
         free (ape_ctx->frames);
         ape_ctx->frames = NULL;
     }
-    if (ape_ctx->seektable) {
+    if(ape_ctx->seektable) {
         free (ape_ctx->seektable);
         ape_ctx->seektable = NULL;
     }
-    for (i = 0; i < APE_FILTER_LEVELS; i++) {
-        if (ape_ctx->filterbuf[i]) {
+    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+        if(ape_ctx->filterbuf[i]) {
 #if defined(_WIN32) && ! defined(_MSC_VER)
             __mingw_aligned_free(ape_ctx->filterbuf[i]);
 #else
@@ -687,7 +687,7 @@ int ffap_init(FFap_decoder *decoder)
     memset(decoder->ape_ctx, 0, sizeof(APEContext));
 
     /*int skip = deadbeef->junk_get_leading_size (info->fp);
-    if (skip > 0) {
+    if(skip > 0) {
         deadbeef->fseek (info->fp, skip, SEEK_SET);
         info->ape_ctx.skip_header = skip;
     }*/
@@ -695,7 +695,7 @@ int ffap_init(FFap_decoder *decoder)
     ape_read_header(decoder);
     int i;
 
-    if (decoder->ape_ctx->channels > 2) {
+    if(decoder->ape_ctx->channels > 2) {
         fprintf (stderr, "ape: Only mono and stereo is supported\n");
         return -1;
     }
@@ -703,7 +703,7 @@ int ffap_init(FFap_decoder *decoder)
     fprintf (stderr, "ape: Compression Level: %d - Flags: %d\n",
              decoder->ape_ctx->compressiontype, decoder->ape_ctx->formatflags);
 #endif
-    if (decoder->ape_ctx->compressiontype % 1000 ||
+    if(decoder->ape_ctx->compressiontype % 1000 ||
             decoder->ape_ctx->compressiontype > COMPRESSION_LEVEL_INSANE)
     {
         fprintf (stderr, "ape: Incorrect compression level %d\n", decoder->ape_ctx->compressiontype);
@@ -711,12 +711,12 @@ int ffap_init(FFap_decoder *decoder)
     }
 
     decoder->ape_ctx->fset = decoder->ape_ctx->compressiontype / 1000 - 1;
-    for (i = 0; i < APE_FILTER_LEVELS; i++) {
-        if (!ape_filter_orders[decoder->ape_ctx->fset][i])
+    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+        if(!ape_filter_orders[decoder->ape_ctx->fset][i])
             break;
         int err = posix_memalign ((void **)&decoder->ape_ctx->filterbuf[i], 16,
                                   (ape_filter_orders[decoder->ape_ctx->fset][i] * 3 + HISTORY_SIZE) * 4);
-        if (err) {
+        if(err) {
             trace ("ffap: out of memory (posix_memalign)\n");
             return -1;
         }
@@ -731,7 +731,7 @@ int ffap_init(FFap_decoder *decoder)
 
 
     /*_info->readpos = 0;
-    if (it->endsample > 0) {
+    if(it->endsample > 0) {
         info->startsample = it->startsample;
         info->endsample = it->endsample;
         //plugin.seek_sample (_info, 0);
@@ -745,7 +745,7 @@ int ffap_init(FFap_decoder *decoder)
 
 
     decoder->ape_ctx->packet_data = malloc (PACKET_BUFFER_SIZE);
-    if (!decoder->ape_ctx->packet_data) {
+    if(!decoder->ape_ctx->packet_data) {
         fprintf (stderr, "ape: failed to allocate memory for packet data\n");
         return -1;
     }
@@ -892,7 +892,7 @@ static inline int range_get_symbol(APEContext * ctx,
         return symbol;
     }
     /* figure out the symbol inefficiently; a binary search would be much better */
-    for (symbol = 0; counts[symbol + 1] <= cf; symbol++);
+    for(symbol = 0; counts[symbol + 1] <= cf; symbol++);
 
     range_decode_update(ctx, counts_diff[symbol], counts[symbol]);
 
@@ -905,9 +905,9 @@ static inline void update_rice(APERice *rice, int x)
     uint32_t lim = rice->k ? (1 << (rice->k + 4)) : 0;
     rice->ksum += ((x + 1) / 2) - ((rice->ksum + 16) >> 5);
 
-    if (rice->ksum < lim)
+    if(rice->ksum < lim)
         rice->k--;
-    else if (rice->ksum >= (uint32_t) (1 << (rice->k + 5)))
+    else if(rice->ksum >= (uint32_t) (1 << (rice->k + 5)))
         rice->k++;
 }
 
@@ -915,18 +915,18 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
 {
     int x, overflow;
 
-    if (ctx->fileversion < 3990) {
+    if(ctx->fileversion < 3990) {
         int tmpk;
 
         overflow = range_get_symbol(ctx, counts_3970, counts_diff_3970);
 
-        if (overflow == (MODEL_ELEMENTS - 1)) {
+        if(overflow == (MODEL_ELEMENTS - 1)) {
             tmpk = range_decode_bits(ctx, 5);
             overflow = 0;
         } else
             tmpk = (rice->k < 1) ? 0 : rice->k - 1;
 
-        if (tmpk <= 16)
+        if(tmpk <= 16)
             x = range_decode_bits(ctx, tmpk);
         else {
             x = range_decode_bits(ctx, 16);
@@ -937,17 +937,17 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
         int base, pivot;
 
         pivot = rice->ksum >> 5;
-        if (pivot == 0)
+        if(pivot == 0)
             pivot = 1;
 
         overflow = range_get_symbol(ctx, counts_3980, counts_diff_3980);
 
-        if (overflow == (MODEL_ELEMENTS - 1)) {
+        if(overflow == (MODEL_ELEMENTS - 1)) {
             overflow  = range_decode_bits(ctx, 16) << 16;
             overflow |= range_decode_bits(ctx, 16);
         }
 
-        if (pivot >= 0x10000) {
+        if(pivot >= 0x10000) {
             /* Codepath for 24-bit streams */
             int nbits, lo_bits, base_hi, base_lo;
 
@@ -963,7 +963,7 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
             // {{{ unrolled base_hi = range_decode_culfreq(ctx, (pivot >> lo_bits) + 1)
             range_dec_normalize(ctx);
             ctx->rc.help = ctx->rc.range / ((pivot >> lo_bits) + 1);
-            if (unlikely (ctx->rc.help == 0)) {
+            if(unlikely (ctx->rc.help == 0)) {
                 ctx->error = 1;
                 return 0;
             }
@@ -980,7 +980,7 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
             // {{{ unrolled base = range_decode_culfreq(ctx, pivot)
             range_dec_normalize(ctx);
             ctx->rc.help = ctx->rc.range / pivot;
-            if (unlikely (ctx->rc.help == 0)) {
+            if(unlikely (ctx->rc.help == 0)) {
                 ctx->error = 1;
                 return 0;
             }
@@ -995,7 +995,7 @@ static inline int ape_decode_value(APEContext * ctx, APERice *rice)
     update_rice(rice, x);
 
     /* Convert to signed */
-    if (x & 1)
+    if(x & 1)
         return (x >> 1) + 1;
     else
         return -(x >> 1);
@@ -1008,19 +1008,19 @@ static void entropy_decode(APEContext * ctx, int blockstodecode, int stereo)
 
     ctx->blocksdecoded = blockstodecode;
 
-    if (ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
+    if(ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
         /* We are pure silence, just memset the output buffer. */
         memset(decoded0, 0, blockstodecode * sizeof(int32_t));
         memset(decoded1, 0, blockstodecode * sizeof(int32_t));
     } else {
         while (likely (blockstodecode--)) {
             *decoded0++ = ape_decode_value(ctx, &ctx->riceY);
-            if (stereo)
+            if(stereo)
                 *decoded1++ = ape_decode_value(ctx, &ctx->riceX);
         }
     }
 
-    if (ctx->blocksdecoded == ctx->currentframeblocks)
+    if(ctx->blocksdecoded == ctx->currentframeblocks)
         range_dec_normalize(ctx);   /* normalize to use up all bytes */
 }
 
@@ -1031,7 +1031,7 @@ static void init_entropy_decoder(APEContext * ctx)
 
     /* Read the frame flags if they exist */
     ctx->frameflags = 0;
-    if ((ctx->fileversion > 3820) && (ctx->CRC & 0x80000000)) {
+    if((ctx->fileversion > 3820) && (ctx->CRC & 0x80000000)) {
         ctx->CRC &= ~0x80000000;
 
         ctx->frameflags = bytestream_get_be32(&ctx->ptr);
@@ -1109,10 +1109,10 @@ static int predictor_update_filter(APEPredictor *p, const int decoded, const int
     p->lastA[filter] = decoded + ((predictionA + (predictionB >> 1)) >> 10);
     p->filterA[filter] = p->lastA[filter] + ((p->filterA[filter] * 31) >> 5);
 
-    if (!decoded) // no need updating filter coefficients
+    if(!decoded) // no need updating filter coefficients
         return p->filterA[filter];
 
-    if (decoded > 0) {
+    if(decoded > 0) {
         p->coeffsA[filter][0] -= p->buf[adaptA    ];
         p->coeffsA[filter][1] -= p->buf[adaptA - 1];
         p->coeffsA[filter][2] -= p->buf[adaptA - 2];
@@ -1156,7 +1156,7 @@ static void predictor_decode_stereo(APEContext * ctx, int count)
         p->buf++;
 
         /* Have we filled the history buffer? */
-        if (p->buf == p->historybuffer + HISTORY_SIZE) {
+        if(p->buf == p->historybuffer + HISTORY_SIZE) {
             memmove(p->historybuffer, p->buf, PREDICTOR_SIZE * sizeof(int32_t));
             p->buf = p->historybuffer;
         }
@@ -1187,12 +1187,12 @@ static void predictor_decode_mono(APEContext * ctx, int count)
         p->buf[YADAPTCOEFFSA]     = APESIGN(p->buf[YDELAYA    ]);
         p->buf[YADAPTCOEFFSA - 1] = APESIGN(p->buf[YDELAYA - 1]);
 
-        if (A > 0) {
+        if(A > 0) {
             p->coeffsA[0][0] -= p->buf[YADAPTCOEFFSA    ];
             p->coeffsA[0][1] -= p->buf[YADAPTCOEFFSA - 1];
             p->coeffsA[0][2] -= p->buf[YADAPTCOEFFSA - 2];
             p->coeffsA[0][3] -= p->buf[YADAPTCOEFFSA - 3];
-        } else if (A < 0) {
+        } else if(A < 0) {
             p->coeffsA[0][0] += p->buf[YADAPTCOEFFSA    ];
             p->coeffsA[0][1] += p->buf[YADAPTCOEFFSA - 1];
             p->coeffsA[0][2] += p->buf[YADAPTCOEFFSA - 2];
@@ -1202,7 +1202,7 @@ static void predictor_decode_mono(APEContext * ctx, int count)
         p->buf++;
 
         /* Have we filled the history buffer? */
-        if (p->buf == p->historybuffer + HISTORY_SIZE) {
+        if(p->buf == p->historybuffer + HISTORY_SIZE) {
             memmove(p->historybuffer, p->buf, PREDICTOR_SIZE * sizeof(int32_t));
             p->buf = p->historybuffer;
         }
@@ -1296,7 +1296,7 @@ static int32_t
 
 static inline int16_t clip_int16(int a)
 {
-    if ((a+32768) & ~65535) return (a>>31) ^ 32767;
+    if((a+32768) & ~65535) return (a>>31) ^ 32767;
         else                    return a;
 }
 
@@ -1334,7 +1334,7 @@ static inline void do_apply_filter(int version, APEFilter *f, int32_t *data, int
         /* Update the output history */
         *f->delay++ = clip_int16(res);
 
-        if (version < 3980) {
+        if(version < 3980) {
             /* Version ??? to < 3.98 files (untested) */
             f->adaptcoeffs[0]  = (res == 0) ? 0 : ((res >> 28) & 8) - 4;
             f->adaptcoeffs[-4] >>= 1;
@@ -1345,11 +1345,11 @@ static inline void do_apply_filter(int version, APEFilter *f, int32_t *data, int
             /* Update the adaption coefficients */
             absres = (res < 0 ? -res : res);
 
-            if (absres > (f->avg * 3))
+            if(absres > (f->avg * 3))
                 *f->adaptcoeffs = ((res >> 25) & 64) - 32;
-            else if (absres > (f->avg * 4) / 3)
+            else if(absres > (f->avg * 4) / 3)
                 *f->adaptcoeffs = ((res >> 26) & 32) - 16;
-            else if (absres > 0)
+            else if(absres > 0)
                 *f->adaptcoeffs = ((res >> 27) & 16) - 8;
             else
                 *f->adaptcoeffs = 0;
@@ -1364,7 +1364,7 @@ static inline void do_apply_filter(int version, APEFilter *f, int32_t *data, int
         f->adaptcoeffs++;
 
         /* Have we filled the history buffer? */
-        if (f->delay == f->historybuffer + HISTORY_SIZE + (order * 2)) {
+        if(f->delay == f->historybuffer + HISTORY_SIZE + (order * 2)) {
             memmove(f->historybuffer, f->delay - (order * 2),
                     (order * 2) * sizeof(int16_t));
             f->delay = f->historybuffer + order * 2;
@@ -1378,7 +1378,7 @@ static void apply_filter(APEContext * ctx, APEFilter *f,
                          int count, int order, int fracbits)
 {
     do_apply_filter(ctx->fileversion, &f[0], data0, count, order, fracbits);
-    if (data1)
+    if(data1)
         do_apply_filter(ctx->fileversion, &f[1], data1, count, order, fracbits);
 }
 
@@ -1387,8 +1387,8 @@ static void ape_apply_filters(APEContext * ctx, int32_t * decoded0,
 {
     int i;
 
-    for (i = 0; i < APE_FILTER_LEVELS; i++) {
-        if (!ape_filter_orders[ctx->fset][i])
+    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+        if(!ape_filter_orders[ctx->fset][i])
             break;
         apply_filter(ctx, ctx->filters[i], decoded0, decoded1, count, ape_filter_orders[ctx->fset][i], ape_filter_fracbits[ctx->fset][i]);
     }
@@ -1400,8 +1400,8 @@ static void init_frame_decoder(APEContext * ctx)
     init_entropy_decoder(ctx);
     init_predictor_decoder(ctx);
 
-    for (i = 0; i < APE_FILTER_LEVELS; i++) {
-        if (!ape_filter_orders[ctx->fset][i])
+    for(i = 0; i < APE_FILTER_LEVELS; i++) {
+        if(!ape_filter_orders[ctx->fset][i])
             break;
         init_filter(ctx->filters[i], ctx->filterbuf[i], ape_filter_orders[ctx->fset][i]);
     }
@@ -1413,7 +1413,7 @@ static void ape_unpack_mono(APEContext * ctx, int count)
     int32_t *decoded0 = ctx->decoded0;
     int32_t *decoded1 = ctx->decoded1;
 
-    if (ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
+    if(ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
         entropy_decode(ctx, count, 0);
         /* We are pure silence, so we're done. */
         //fprintf (stderr, "pure silence mono\n");
@@ -1427,7 +1427,7 @@ static void ape_unpack_mono(APEContext * ctx, int count)
     predictor_decode_mono(ctx, count);
 
     /* Pseudo-stereo - just copy left channel to right channel */
-    if (ctx->channels == 2) {
+    if(ctx->channels == 2) {
         while (count--) {
             left = *decoded0;
             *(decoded1++) = *(decoded0++) = left;
@@ -1441,7 +1441,7 @@ static void ape_unpack_stereo(APEContext * ctx, int count)
     int32_t *decoded0 = ctx->decoded0;
     int32_t *decoded1 = ctx->decoded1;
 
-    if (ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
+    if(ctx->frameflags & APE_FRAMECODE_STEREO_SILENCE) {
         /* We are pure silence, so we're done. */
         //fprintf (stderr, "pure silence stereo\n");
         return;
@@ -1477,21 +1477,21 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
         samplesize = 4 * s->channels;
 
     /* should not happen but who knows */
-    if (BLOCKS_PER_LOOP * samplesize > *data_size) {
+    if(BLOCKS_PER_LOOP * samplesize > *data_size) {
         fprintf (stderr, "ape: Packet size is too big! (max is %d where you have %d)\n", *data_size, BLOCKS_PER_LOOP * samplesize);
         return -1;
     }
 
-    if (s->packet_remaining < PACKET_BUFFER_SIZE) {
-        if (s->samples == 0) {
-            if (s->currentframe == s->totalframes) {
+    if(s->packet_remaining < PACKET_BUFFER_SIZE) {
+        if(s->samples == 0) {
+            if(s->currentframe == s->totalframes) {
                 return -1;
             }
             assert (!s->samples);
 //            fprintf (stderr, "start reading packet %d\n", ape_ctx.currentframe);
             assert (s->samples == 0); // all samples from prev packet must have been read
             // start new packet
-            if (ape_read_packet (decoder) < 0) {
+            if(ape_read_packet (decoder) < 0) {
                 fprintf (stderr, "ape: error reading packet\n");
                 return -1;
             }
@@ -1513,7 +1513,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
             s->currentframeblocks = nblocks;
 
             //buf += 4;
-            if (s->samples <= 0) {
+            if(s->samples <= 0) {
                 *data_size = 0;
                 bytes_used = s->packet_remaining;
                 goto error;
@@ -1539,11 +1539,11 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
     }
     s->data_end = s->packet_data + s->packet_remaining;
 
-    if (s->packet_remaining == 0 && !s->samples) {
+    if(s->packet_remaining == 0 && !s->samples) {
         *data_size = 0;
         return 0;
     }
-    if (!s->packet_remaining) {
+    if(!s->packet_remaining) {
         fprintf (stderr, "ape: packetbuf is empty!!\n");
         *data_size = 0;
         bytes_used = s->packet_remaining;
@@ -1555,14 +1555,14 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
 
     s->error=0;
 
-    if ((s->channels == 1) || (s->frameflags & APE_FRAMECODE_PSEUDO_STEREO))
+    if((s->channels == 1) || (s->frameflags & APE_FRAMECODE_PSEUDO_STEREO))
         ape_unpack_mono(s, blockstodecode);
     else
         ape_unpack_stereo(s, blockstodecode);
 
     if(s->error || s->ptr >= s->data_end){
         s->samples=0;
-        if (s->error) {
+        if(s->error) {
             fprintf (stderr, "ape: Error decoding frame, error=%d\n", s->error);
         }
         else {
@@ -1574,8 +1574,8 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
     int skip = min (s->samplestoskip, blockstodecode);
     i = skip;
 
-    if (decoder->bps == 32 || decoder->bps == 24) {
-        for (; i < blockstodecode; i++) {
+    if(decoder->bps == 32 || decoder->bps == 24) {
+        for(; i < blockstodecode; i++) {
             *((int32_t*)samples) = s->decoded0[i];
             samples += 4;
             if(s->channels > 1) {
@@ -1584,8 +1584,8 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
             }
         }
     }
-    else if (decoder->bps == 16) {
-        for (; i < blockstodecode; i++) {
+    else if(decoder->bps == 16) {
+        for(; i < blockstodecode; i++) {
             *((int16_t*)samples) = (int16_t)s->decoded0[i];
             samples += 2;
             if(s->channels > 1) {
@@ -1594,8 +1594,8 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
             }
         }
     }
-    else if (decoder->bps == 8) {
-        for (; i < blockstodecode; i++) {
+    else if(decoder->bps == 8) {
+        for(; i < blockstodecode; i++) {
             *samples = (int16_t)s->decoded0[i];
             samples++;
             if(s->channels > 1) {
@@ -1614,7 +1614,7 @@ ape_decode_frame(FFap_decoder *decoder, void *data, int *data_size)
 
     // shift everything
 error:
-    if (bytes_used < s->packet_remaining) {
+    if(bytes_used < s->packet_remaining) {
         memmove (s->packet_data, s->packet_data+bytes_used, s->packet_remaining-bytes_used);
     }
     s->packet_remaining -= bytes_used;
@@ -1629,21 +1629,21 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
     int samplesize = decoder->bps / 8 * decoder->channels;
     if(decoder->bps == 24)
         samplesize = 4 * decoder->channels;
-    /*if (info->ape_ctx.currentsample + size / samplesize > info->endsample) {
+    /*if(info->ape_ctx.currentsample + size / samplesize > info->endsample) {
         size = (info->endsample - info->ape_ctx.currentsample + 1) * samplesize;
         trace ("size truncated to %d bytes (%d samples), cursample=%d, info->endsample=%d, totalsamples=%d\n", size, size / samplesize, info->ape_ctx.currentsample, info->endsample, info->ape_ctx.totalsamples);
-        if (size <= 0) {
+        if(size <= 0) {
             return 0;
         }
     }*/
     int inits = size;
     while (size > 0) {
-        if (decoder->ape_ctx->remaining > 0) {
+        if(decoder->ape_ctx->remaining > 0) {
             int sz = min (size, decoder->ape_ctx->remaining);
             memcpy (buffer, decoder->ape_ctx->buffer, sz);
             buffer += sz;
             size -= sz;
-            if (decoder->ape_ctx->remaining > sz) {
+            if(decoder->ape_ctx->remaining > sz) {
                 memmove (decoder->ape_ctx->buffer, decoder->ape_ctx->buffer + sz, decoder->ape_ctx->remaining-sz);
             }
             decoder->ape_ctx->remaining -= sz;
@@ -1654,7 +1654,7 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
         s -= decoder->ape_ctx->remaining;
         uint8_t *buf = decoder->ape_ctx->buffer + decoder->ape_ctx->remaining;
         int n = ape_decode_frame (decoder, buf, &s);
-        if (n == -1) {
+        if(n == -1) {
             break;
         }
         decoder->ape_ctx->remaining += s;
@@ -1663,7 +1663,7 @@ int ffap_read(FFap_decoder *decoder, unsigned char *buffer, int size)
         memcpy (buffer, decoder->ape_ctx->buffer, sz);
         buffer += sz;
         size -= sz;
-        if (decoder->ape_ctx->remaining > sz) {
+        if(decoder->ape_ctx->remaining > sz) {
             memmove (decoder->ape_ctx->buffer, decoder->ape_ctx->buffer + sz,
                      decoder->ape_ctx->remaining-sz);
         }
@@ -1680,12 +1680,12 @@ ffap_seek_sample (FFap_decoder *decoder, int sample) {
     //sample += info->startsample;
     trace ("ffap: seeking to %d/%d\n", sample, decoder->ape_ctx->totalsamples);
     uint32_t newsample = sample;
-    if (newsample > decoder->ape_ctx->totalsamples) {
+    if(newsample > decoder->ape_ctx->totalsamples) {
         trace ("eof\n");
         return -1;
     }
     uint32_t nframe = newsample / decoder->ape_ctx->blocksperframe;
-    if (nframe >= decoder->ape_ctx->totalframes) {
+    if(nframe >= decoder->ape_ctx->totalframes) {
         trace ("eof2\n");
         return -1;
     }
@@ -1782,7 +1782,7 @@ int mm_support(void)
         : "cc"
         );
 
-    if (a == c) {
+    if(a == c) {
         trace ("ffap: cpuid is not supported\n");
         return 0; /* CPUID not supported */
     }
@@ -1792,21 +1792,21 @@ int mm_support(void)
 
     if(max_std_level >= 1){
         cpuid(1, eax, ebx, ecx, std_caps);
-        if (std_caps & (1<<23))
+        if(std_caps & (1<<23))
             rval |= FF_MM_MMX;
-        if (std_caps & (1<<25))
+        if(std_caps & (1<<25))
             rval |= FF_MM_MMX2
 #ifdef HAVE_SSE2
                   | FF_MM_SSE;
-        if (std_caps & (1<<26))
+        if(std_caps & (1<<26))
             rval |= FF_MM_SSE2;
-        if (ecx & 1)
+        if(ecx & 1)
             rval |= FF_MM_SSE3;
-        if (ecx & 0x00000200 )
+        if(ecx & 0x00000200 )
             rval |= FF_MM_SSSE3;
-        if (ecx & 0x00080000 )
+        if(ecx & 0x00080000 )
             rval |= FF_MM_SSE4;
-        if (ecx & 0x00100000 )
+        if(ecx & 0x00100000 )
             rval |= FF_MM_SSE42;
 #endif
                   ;
@@ -1816,13 +1816,13 @@ int mm_support(void)
 
     if(max_ext_level >= 0x80000001){
         cpuid(0x80000001, eax, ebx, ecx, ext_caps);
-        if (ext_caps & (1<<31))
+        if(ext_caps & (1<<31))
             rval |= FF_MM_3DNOW;
-        if (ext_caps & (1<<30))
+        if(ext_caps & (1<<30))
             rval |= FF_MM_3DNOWEXT;
-        if (ext_caps & (1<<23))
+        if(ext_caps & (1<<23))
             rval |= FF_MM_MMX;
-        if (ext_caps & (1<<22))
+        if(ext_caps & (1<<22))
             rval |= FF_MM_MMX2;
     }
 
@@ -1845,7 +1845,7 @@ void ffap_load()
 #elif HAVE_SSE2 && !ARCH_UNKNOWN
     trace ("ffap: was compiled with sse2 support\n");
     int mm_flags = mm_support ();
-    if (mm_flags & FF_MM_SSE2) {
+    if(mm_flags & FF_MM_SSE2) {
         trace ("ffap: sse2 support detected\n");
         scalarproduct_and_madd_int16 = ff_scalarproduct_and_madd_int16_sse2;
     }

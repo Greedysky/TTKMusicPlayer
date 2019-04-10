@@ -41,9 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sound->setPlaylist(list);
 
 //    Visual::initialize(this);
-//    foreach (VisualFactory *var, Visual::factories())
+//    foreach(VisualFactory *var, Visual::factories())
 //    {
-//        if(var->properties().shortName == "outerewave")
+//        if(var->properties().shortName == "flashmeter")
 //        {
 //            Visual::setEnabled(var, true);
 //        }

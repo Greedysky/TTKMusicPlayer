@@ -99,7 +99,7 @@ QmmpPluginCache::QmmpPluginCache(const QString &file, QSettings *settings)
             m_error = true;
         }
 
-        if (!m_error)
+        if(!m_error)
         {
             QStringList values;
             values << m_shortName;
@@ -186,7 +186,7 @@ QObject *QmmpPluginCache::instance()
         return m_instance;
     QPluginLoader loader(m_path);
     m_instance = loader.instance();
-    if (loader.isLoaded())
+    if(loader.isLoaded())
         qDebug("QmmpPluginCache: loaded plugin %s", qPrintable(QFileInfo(m_path).fileName()));
     else
     {
@@ -200,7 +200,7 @@ void QmmpPluginCache::cleanup(QSettings *settings)
 {
     settings->beginGroup("PluginCache");
 
-    foreach (QString key, settings->allKeys())
+    foreach(QString key, settings->allKeys())
     {
 #ifdef Q_OS_WIN
         if(!QFile::exists(key))

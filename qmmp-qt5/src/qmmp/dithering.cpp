@@ -116,18 +116,18 @@ float Dithering::audioLinearDither(float sample, AudioDither *dither)
     dither->random = random;
 
     /* clip */
-    if (output > 1.0f)
+    if(output > 1.0f)
     {
         output = 1.0f;
 
-        if (sample > 1.0f)
+        if(sample > 1.0f)
             sample = 1.0f;
     }
-    else if (output < -1.0f)
+    else if(output < -1.0f)
     {
         output = -1.0f;
 
-        if (sample < -1.0f)
+        if(sample < -1.0f)
             sample = -1.0f;
     }
 

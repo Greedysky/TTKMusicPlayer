@@ -23,7 +23,7 @@ CONFIG += hide_symbols
 #Version
 
 TTKMusicPlayer = 2.8.0.0
-QMMP_VERSION = 0.12.0
+QMMP_VERSION = 0.12.1
 
 #Comment/uncomment this if you want to change plugins list
 
@@ -45,6 +45,7 @@ CONFIG += SOXR_PLUGIN
 CONFIG += LADSPA_PLUGIN
 CONFIG += SRC_PLUGIN
 CONFIG += SID_PLUGIN
+CONFIG += OPTIMFROG_PLUGIN
 
 #additional features
 

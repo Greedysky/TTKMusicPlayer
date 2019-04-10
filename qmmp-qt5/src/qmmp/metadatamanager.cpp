@@ -56,7 +56,7 @@ QList<TrackInfo *> MetaDataManager::createPlayList(const QString &path, TrackInf
     if(!ignoredPaths)
         ignoredPaths = &dummyList;
 
-    if (!path.contains("://")) //local file
+    if(!path.contains("://")) //local file
     {
         if(!QFile::exists(path))
             return list;
@@ -101,7 +101,7 @@ MetaDataModel* MetaDataManager::createMetaDataModel(const QString &path, bool re
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;
 
-    if (!path.contains("://")) //local file
+    if(!path.contains("://")) //local file
     {
         if(!QFile::exists(path))
             return nullptr;
@@ -135,12 +135,12 @@ QStringList MetaDataManager::filters() const
     QStringList filters;
     foreach(DecoderFactory *fact, Decoder::enabledFactories())
     {
-        if (!fact->properties().filters.isEmpty())
+        if(!fact->properties().filters.isEmpty())
             filters << fact->properties().description + " (" + fact->properties().filters.join(" ") + ")";
     }
     foreach(EngineFactory *fact, AbstractEngine::enabledFactories())
     {
-        if (!fact->properties().filters.isEmpty())
+        if(!fact->properties().filters.isEmpty())
             filters << fact->properties().description + " (" + fact->properties().filters.join(" ") + ")";
     }
     return filters;
@@ -151,12 +151,12 @@ QStringList MetaDataManager::nameFilters() const
     QStringList filters;
     foreach(DecoderFactory *fact, Decoder::enabledFactories())
     {
-        if (Decoder::isEnabled(fact))
+        if(Decoder::isEnabled(fact))
             filters << fact->properties().filters;
     }
     foreach(EngineFactory *fact, AbstractEngine::enabledFactories())
     {
-        if (AbstractEngine::isEnabled(fact))
+        if(AbstractEngine::isEnabled(fact))
             filters << fact->properties().filters;
     }
     if(m_settings->determineFileTypeByContent())
@@ -179,9 +179,9 @@ bool MetaDataManager::supports(const QString &fileName) const
 {
     DecoderFactory *fact = nullptr;
     EngineFactory *efact = nullptr;
-    if (!fileName.contains("://")) //local file
+    if(!fileName.contains("://")) //local file
     {
-        if (!QFile::exists(fileName))
+        if(!QFile::exists(fileName))
             return false;
         if((fact = Decoder::findByFilePath(fileName)))
             return true;

@@ -87,11 +87,11 @@ struct spek_pipeline * spek_pipeline_open(
     p->has_worker_mutex = false;
     p->has_worker_cond = false;
 
-    if (!p->file->get_error()) {
+    if(!p->file->get_error()) {
         p->nfft = p->fft->get_input_size();
         p->coss = (float*)malloc(p->nfft * sizeof(float));
         float cf = 2.0f * (float)M_PI / (p->nfft - 1.0f);
-        for (int i = 0; i < p->nfft; ++i) {
+        for(int i = 0; i < p->nfft; ++i) {
             p->coss[i] = cosf(cf * i);
         }
         p->input_size = p->nfft * (NFFT * 2 + 1);
@@ -105,7 +105,7 @@ struct spek_pipeline * spek_pipeline_open(
 
 void spek_pipeline_start(struct spek_pipeline *p)
 {
-    if (!!p->file->get_error()) {
+    if(!!p->file->get_error()) {
         return;
     }
 
@@ -119,44 +119,44 @@ void spek_pipeline_start(struct spek_pipeline *p)
     p->has_worker_cond = !pthread_cond_init(&p->worker_cond, NULL);
 
     p->has_reader_thread = !pthread_create(&p->reader_thread, NULL, &reader_func, p);
-    if (!p->has_reader_thread) {
+    if(!p->has_reader_thread) {
         spek_pipeline_close(p);
     }
 }
 
 void spek_pipeline_close(struct spek_pipeline *p)
 {
-    if (p->has_reader_thread) {
+    if(p->has_reader_thread) {
         p->quit = true;
         pthread_join(p->reader_thread, NULL);
         p->has_reader_thread = false;
     }
-    if (p->has_worker_cond) {
+    if(p->has_worker_cond) {
         pthread_cond_destroy(&p->worker_cond);
         p->has_worker_cond = false;
     }
-    if (p->has_worker_mutex) {
+    if(p->has_worker_mutex) {
         pthread_mutex_destroy(&p->worker_mutex);
         p->has_worker_mutex = false;
     }
-    if (p->has_reader_cond) {
+    if(p->has_reader_cond) {
         pthread_cond_destroy(&p->reader_cond);
         p->has_reader_cond = false;
     }
-    if (p->has_reader_mutex) {
+    if(p->has_reader_mutex) {
         pthread_mutex_destroy(&p->reader_mutex);
         p->has_reader_mutex = false;
     }
 
-    if (p->output) {
+    if(p->output) {
         free(p->output);
         p->output = NULL;
     }
-    if (p->input) {
+    if(p->input) {
         free(p->input);
         p->input = NULL;
     }
-    if (p->coss) {
+    if(p->coss) {
         free(p->coss);
         p->coss = NULL;
     }
@@ -170,24 +170,24 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
 {
     std::vector<std::string> items;
 
-    if (!pipeline->file->get_codec_name().empty()) {
+    if(!pipeline->file->get_codec_name().empty()) {
         items.push_back(pipeline->file->get_codec_name());
     }
 
-    if (pipeline->file->get_bit_rate()) {
+    if(pipeline->file->get_bit_rate()) {
         items.push_back(std::string(
             QString("%1 kbps").arg((pipeline->file->get_bit_rate() + 500) / 1000).toUtf8().data()
         ));
     }
 
-    if (pipeline->file->get_sample_rate()) {
+    if(pipeline->file->get_sample_rate()) {
         items.push_back(std::string(
             QString("%1 Hz").arg(pipeline->file->get_sample_rate()).toUtf8().data()
         ));
     }
 
     // Include bits per sample only if there is no bitrate.
-    if (pipeline->file->get_bits_per_sample() && !pipeline->file->get_bit_rate()) {
+    if(pipeline->file->get_bits_per_sample() && !pipeline->file->get_bit_rate()) {
         items.push_back(std::string(
              QString("%1 bit %2 bits").arg(pipeline->file->get_bits_per_sample()).arg(
                 pipeline->file->get_bits_per_sample()
@@ -195,7 +195,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
         ));
     }
 
-    if (pipeline->file->get_channels()) {
+    if(pipeline->file->get_channels()) {
         items.push_back(std::string(
             QString(
                 // TRANSLATORS: first %d is the current channel, second %d is the total number.
@@ -204,7 +204,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
         ));
     }
 
-    if (pipeline->file->get_error() == AudioError::OK) {
+    if(pipeline->file->get_error() == AudioError::OK) {
         items.push_back(std::string(QString("W:%1").arg(pipeline->nfft).toUtf8().data()));
 
         std::string window_function_name;
@@ -221,14 +221,14 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
         default:
             assert(false);
         }
-        if (window_function_name.size()) {
+        if(window_function_name.size()) {
             items.push_back("F:" + window_function_name);
         }
     }
 
     std::string desc;
-    for (const auto& item : items) {
-        if (!desc.empty()) {
+    for(const auto& item : items) {
+        if(!desc.empty()) {
             desc.append(", ");
         }
         desc.append(item);
@@ -265,9 +265,9 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
     }
 
     auto error_string = std::string(error.toUtf8().data());
-    if (desc.empty()) {
+    if(desc.empty()) {
         desc = error_string;
-    } else if (pipeline->stream < pipeline->file->get_streams()) {
+    } else if(pipeline->stream < pipeline->file->get_streams()) {
         desc = std::string(
            QString(
                 // TRANSLATORS: first %d is the stream number, second %d is the
@@ -275,7 +275,7 @@ std::string spek_pipeline_desc(const struct spek_pipeline *pipeline)
                 "Stream %1 / %2: %3").arg(pipeline->stream + 1).arg(pipeline->file->get_streams()).arg(
                 desc.c_str()).toUtf8().data()
         );
-    } else if (!error_string.empty()) {
+    } else if(!error_string.empty()) {
         desc = std::string(
             // TRANSLATORS: first %s is the error message, second %s is stream description.
             QString("%1: %2").arg(error_string.c_str()).arg(desc.c_str()).toUtf8().data()
@@ -310,14 +310,14 @@ static void * reader_func(void *pp)
     struct spek_pipeline *p = (spek_pipeline*)pp;
 
     p->has_worker_thread = !pthread_create(&p->worker_thread, NULL, &worker_func, p);
-    if (!p->has_worker_thread) {
+    if(!p->has_worker_thread) {
         return NULL;
     }
 
     int pos = 0, prev_pos = 0;
     int len;
     while ((len = p->file->read()) > 0) {
-        if (p->quit) break;
+        if(p->quit) break;
 
         const float *buffer = p->file->get_buffer();
         while (len-- > 0) {
@@ -325,14 +325,14 @@ static void * reader_func(void *pp)
             pos = (pos + 1) % p->input_size;
 
             // Wake up the worker if we have enough data.
-            if ((pos > prev_pos ? pos : pos + p->input_size) - prev_pos == p->nfft * NFFT) {
+            if((pos > prev_pos ? pos : pos + p->input_size) - prev_pos == p->nfft * NFFT) {
                 reader_sync(p, prev_pos = pos);
             }
         }
         assert(len == -1);
     }
 
-    if (pos != prev_pos) {
+    if(pos != prev_pos) {
         // Process the remaining data.
         reader_sync(p, pos);
     }
@@ -401,13 +401,13 @@ static void * worker_func(void *pp)
         tail = p->input_pos;
         pthread_mutex_unlock(&p->worker_mutex);
 
-        if (tail == -1) {
+        if(tail == -1) {
             return NULL;
         }
 
         while (true) {
             head = (head + 1) % p->input_size;
-            if (head == tail) {
+            if(head == tail) {
                 head = prev_head;
                 break;
             }
@@ -422,33 +422,33 @@ static void * worker_func(void *pp)
                 acc_error >= p->file->get_error_base() &&
                 frames == 1 + p->file->get_frames_per_interval();
 
-            if (frames % p->nfft == 0 || ((int_full || int_over) && num_fft == 0)) {
+            if(frames % p->nfft == 0 || ((int_full || int_over) && num_fft == 0)) {
                 prev_head = head;
-                for (int i = 0; i < p->nfft; i++) {
+                for(int i = 0; i < p->nfft; i++) {
                     float val = p->input[(p->input_size + head - p->nfft + i) % p->input_size];
                     val *= get_window(p->window_function, i, p->coss, p->nfft);
                     p->fft->set_input(i, val);
                 }
                 p->fft->execute();
                 num_fft++;
-                for (int i = 0; i < p->fft->get_output_size(); i++) {
+                for(int i = 0; i < p->fft->get_output_size(); i++) {
                     p->output[i] += p->fft->get_output(i);
                 }
             }
 
             // Do we have the FFTs for one interval?
-            if (int_full || int_over) {
-                if (int_over) {
+            if(int_full || int_over) {
+                if(int_over) {
                     acc_error -= p->file->get_error_base();
                 } else {
                     acc_error += p->file->get_error_per_interval();
                 }
 
-                for (int i = 0; i < p->fft->get_output_size(); i++) {
+                for(int i = 0; i < p->fft->get_output_size(); i++) {
                     p->output[i] /= num_fft;
                 }
 
-                if (sample == p->samples) break;
+                if(sample == p->samples) break;
                 p->cb(p->fft->get_output_size(), sample++, p->output, p->cb_data);
 
                 memset(p->output, 0, sizeof(float) * p->fft->get_output_size());

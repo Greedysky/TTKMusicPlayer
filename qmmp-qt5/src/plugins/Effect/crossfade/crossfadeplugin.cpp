@@ -87,7 +87,7 @@ void CrossfadePlugin::applyEffect(Buffer *b)
             m_state = PROCESSING;
         break;
     case PROCESSING:
-        if (m_buffer_at > 0)
+        if(m_buffer_at > 0)
         {
             double volume = (double)m_buffer_at/m_buffer_size;
             size_t samples = qMin(m_buffer_at, b->samples);
@@ -111,7 +111,7 @@ void CrossfadePlugin::configure(quint32 freq, ChannelMap map)
 
 void CrossfadePlugin::mix(float *cur_buf, float *prev_buf, uint samples, double volume)
 {
-    for (uint i = 0; i < samples; i++)
+    for(uint i = 0; i < samples; i++)
     {
         cur_buf[i] = cur_buf[i]*(1.0 - volume) + prev_buf[i]*volume;
         cur_buf[i] = qBound(-1.0f, cur_buf[i], 1.0f);

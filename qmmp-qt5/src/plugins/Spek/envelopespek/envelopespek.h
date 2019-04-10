@@ -82,7 +82,7 @@ public slots:
     void mediaUrlChanged();
 
 protected:
-    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void paintEvent(QPaintEvent *) override;
     void init();
     void process(float *buffer);
     void draw(QPainter *p);

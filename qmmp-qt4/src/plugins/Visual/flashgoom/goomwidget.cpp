@@ -76,12 +76,14 @@ void GoomWidget::readSettings()
     settings.beginGroup("Goom");
     m_fps = settings.value("refresh_rate", 25).toInt();
     m_timer->setInterval(1000 / m_fps);
+    settings.endGroup();
+
     if(!m_update)
     {
         m_update = true;
-        foreach(QAction *act, m_fpsGroup->actions ())
+        foreach(QAction *act, m_fpsGroup->actions())
         {
-            if (m_fps == act->data().toInt())
+            if(m_fps == act->data().toInt())
             {
                 act->setChecked(true);
                 break;
@@ -119,7 +121,7 @@ void GoomWidget::paintEvent(QPaintEvent *)
 
 void GoomWidget::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::RightButton)
+    if(e->button() == Qt::RightButton)
         m_menu->exec(e->globalPos());
 }
 
@@ -132,8 +134,8 @@ void GoomWidget::clear()
 void GoomWidget::createMenu()
 {
     m_menu = new QMenu (this);
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(writeSettings()));
-    connect(m_menu, SIGNAL(triggered (QAction *)),SLOT(readSettings()));
+    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(writeSettings()));
+    connect(m_menu, SIGNAL(triggered(QAction*)), SLOT(readSettings()));
 
     QMenu *refreshRate = m_menu->addMenu(tr("Refresh Rate"));
     m_fpsGroup = new QActionGroup(this);
@@ -141,7 +143,7 @@ void GoomWidget::createMenu()
     m_fpsGroup->addAction(tr("60 fps"))->setData(60);
     m_fpsGroup->addAction(tr("50 fps"))->setData(50);
     m_fpsGroup->addAction(tr("25 fps"))->setData(25);
-    foreach(QAction *act, m_fpsGroup->actions ())
+    foreach(QAction *act, m_fpsGroup->actions())
     {
         act->setCheckable(true);
         refreshRate->addAction(act);

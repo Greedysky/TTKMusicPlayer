@@ -138,7 +138,7 @@ InstructionFlow *iflow_new(void)
 
 void iflow_add_instr(InstructionFlow *_this, Instruction *instr)
 { /* {{{ */
-  if (_this->number == _this->tabsize) {
+  if(_this->number == _this->tabsize) {
     _this->tabsize *= 2;
     _this->instr = (Instruction**)realloc(_this->instr, _this->tabsize * sizeof(Instruction*));
   }
@@ -149,7 +149,7 @@ void iflow_add_instr(InstructionFlow *_this, Instruction *instr)
 
 void gsl_instr_set_namespace(Instruction *_this, GoomHash *ns)
 { /* {{{ */
-  if (_this->cur_param <= 0) {
+  if(_this->cur_param <= 0) {
     fprintf(stderr, "ERROR: Line %d, No more params to instructions\n", _this->line_number);
     exit(1);
   }
@@ -159,19 +159,19 @@ void gsl_instr_set_namespace(Instruction *_this, GoomHash *ns)
 void gsl_instr_add_param(Instruction *instr, const char *param, int type)
 { /* {{{ */
   int len;
-  if (instr==NULL)
+  if(instr==NULL)
     return;
-  if (instr->cur_param==0)
+  if(instr->cur_param==0)
     return;
   --instr->cur_param;
   len = strlen(param);
   instr->params[instr->cur_param] = (char*)malloc(len+1);
   strcpy(instr->params[instr->cur_param], param);
   instr->types[instr->cur_param] = type;
-  if (instr->cur_param == 0) {
+  if(instr->cur_param == 0) {
 
     const char *result = gsl_instr_validate(instr);
-    if (result != VALIDATE_OK) {
+    if(result != VALIDATE_OK) {
       printf("ERROR: Line %d: ", instr->parent->num_lines + 1);
       gsl_instr_display(instr);
       printf("... %s\n", result);
@@ -182,7 +182,7 @@ void gsl_instr_add_param(Instruction *instr, const char *param, int type)
 #if USE_JITC_X86
     iflow_add_instr(instr->parent->iflow, instr);
 #else
-    if (instr->id != INSTR_NOP)
+    if(instr->id != INSTR_NOP)
       iflow_add_instr(instr->parent->iflow, instr);
     else
       gsl_instr_free(instr);
@@ -209,7 +209,7 @@ void gsl_instr_free(Instruction *_this)
 { /* {{{ */
   int i;
   free(_this->types);
-  for (i=_this->cur_param; i<_this->nb_param; ++i)
+  for(i=_this->cur_param; i<_this->nb_param; ++i)
     free(_this->params[i]);
   free(_this->params);
   free(_this);
@@ -234,10 +234,10 @@ static const char *validate_v_v(Instruction *_this)
   HashValue *dest = goom_hash_get(_this->vnamespace[1], _this->params[1]);
   HashValue *src  = goom_hash_get(_this->vnamespace[0], _this->params[0]);
 
-  if (dest == NULL) {
+  if(dest == NULL) {
     return VALIDATE_NO_SUCH_DEST_VAR;
   }
-  if (src == NULL) {
+  if(src == NULL) {
     return VALIDATE_NO_SUCH_SRC_VAR;
   }
   _this->data.udest.var = dest->ptr;
@@ -250,7 +250,7 @@ static const char *validate_v_i(Instruction *_this)
   HashValue *dest            = goom_hash_get(_this->vnamespace[1], _this->params[1]);
   _this->data.usrc.value_int = strtol(_this->params[0],NULL,0);
 
-  if (dest == NULL) {
+  if(dest == NULL) {
     return VALIDATE_NO_SUCH_INT;
   }
   _this->data.udest.var = dest->ptr;
@@ -262,7 +262,7 @@ static const char *validate_v_p(Instruction *_this)
   HashValue *dest            = goom_hash_get(_this->vnamespace[1], _this->params[1]);
   _this->data.usrc.value_ptr = strtol(_this->params[0],NULL,0);
 
-  if (dest == NULL) {
+  if(dest == NULL) {
     return VALIDATE_NO_SUCH_INT;
   }
   _this->data.udest.var = dest->ptr;
@@ -274,7 +274,7 @@ static const char *validate_v_f(Instruction *_this)
   HashValue *dest            = goom_hash_get(_this->vnamespace[1], _this->params[1]);
   _this->data.usrc.value_float = atof(_this->params[0]);
 
-  if (dest == NULL) {
+  if(dest == NULL) {
     return VALIDATE_NO_SUCH_VAR;
   }
   _this->data.udest.var = dest->ptr;
@@ -287,35 +287,35 @@ static const char *validate(Instruction *_this,
                             int vp_p_id, int vp_v_id,
                             int vs_v_id)
 { /* {{{ */
-  if ((_this->types[1] == TYPE_FVAR) && (_this->types[0] == TYPE_FLOAT)) {
+  if((_this->types[1] == TYPE_FVAR) && (_this->types[0] == TYPE_FLOAT)) {
     _this->id = vf_f_id;
     return validate_v_f(_this);
   }
-  else if ((_this->types[1] == TYPE_FVAR) && (_this->types[0] == TYPE_FVAR)) {
+  else if((_this->types[1] == TYPE_FVAR) && (_this->types[0] == TYPE_FVAR)) {
     _this->id = vf_v_id;
     return validate_v_v(_this);
   }
-  else if ((_this->types[1] == TYPE_IVAR) && (_this->types[0] == TYPE_INTEGER)) {
+  else if((_this->types[1] == TYPE_IVAR) && (_this->types[0] == TYPE_INTEGER)) {
     _this->id = vi_i_id;
     return validate_v_i(_this);
   }
-  else if ((_this->types[1] == TYPE_IVAR) && (_this->types[0] == TYPE_IVAR)) {
+  else if((_this->types[1] == TYPE_IVAR) && (_this->types[0] == TYPE_IVAR)) {
     _this->id = vi_v_id;
     return validate_v_v(_this);
   }
-  else if ((_this->types[1] == TYPE_PVAR) && (_this->types[0] == TYPE_PTR)) {
-    if (vp_p_id == INSTR_NOP) return VALIDATE_ERROR;
+  else if((_this->types[1] == TYPE_PVAR) && (_this->types[0] == TYPE_PTR)) {
+    if(vp_p_id == INSTR_NOP) return VALIDATE_ERROR;
     _this->id = vp_p_id;
     return validate_v_p(_this);
   }
-  else if ((_this->types[1] == TYPE_PVAR) && (_this->types[0] == TYPE_PVAR)) {
+  else if((_this->types[1] == TYPE_PVAR) && (_this->types[0] == TYPE_PVAR)) {
     _this->id = vp_v_id;
-    if (vp_v_id == INSTR_NOP) return VALIDATE_ERROR;
+    if(vp_v_id == INSTR_NOP) return VALIDATE_ERROR;
     return validate_v_v(_this);
   }
-  else if ((_this->types[1] < FIRST_RESERVED) && (_this->types[1] >= 0) && (_this->types[0] == _this->types[1])) {
+  else if((_this->types[1] < FIRST_RESERVED) && (_this->types[1] >= 0) && (_this->types[0] == _this->types[1])) {
     _this->id = vs_v_id;
-    if (vs_v_id == INSTR_NOP) return "Impossible operation to perform between two structs";
+    if(vs_v_id == INSTR_NOP) return "Impossible operation to perform between two structs";
     return validate_v_v(_this);
   }
   return VALIDATE_ERROR;
@@ -323,21 +323,21 @@ static const char *validate(Instruction *_this,
 
 const char *gsl_instr_validate(Instruction *_this)
 { /* {{{ */
-  if (_this->id != INSTR_EXT_CALL) {
+  if(_this->id != INSTR_EXT_CALL) {
     int i = _this->nb_param;
     while (i>0)
     {
       i--;
-      if (_this->types[i] == TYPE_VAR) {
+      if(_this->types[i] == TYPE_VAR) {
         int type = gsl_type_of_var(_this->vnamespace[i], _this->params[i]);
 
-        if (type == INSTR_INT)
+        if(type == INSTR_INT)
           _this->types[i] = TYPE_IVAR;
-        else if (type == INSTR_FLOAT)
+        else if(type == INSTR_FLOAT)
           _this->types[i] = TYPE_FVAR;
-        else if (type == INSTR_PTR)
+        else if(type == INSTR_PTR)
           _this->types[i] = TYPE_PVAR;
-        else if ((type >= 0) && (type < FIRST_RESERVED))
+        else if((type >= 0) && (type < FIRST_RESERVED))
           _this->types[i] = type;
         else fprintf(stderr,"WARNING: Line %d, %s has no namespace\n", _this->line_number, _this->params[i]);
       }
@@ -356,9 +356,9 @@ const char *gsl_instr_validate(Instruction *_this)
 
       /* extcall */
     case INSTR_EXT_CALL:
-      if (_this->types[0] == TYPE_VAR) {
+      if(_this->types[0] == TYPE_VAR) {
         HashValue *fval = goom_hash_get(_this->parent->functions, _this->params[0]);
-        if (fval) {
+        if(fval) {
           _this->data.udest.external_function = (struct _ExternalFunctionStruct*)fval->ptr;
           return VALIDATE_OK;
         }
@@ -367,7 +367,7 @@ const char *gsl_instr_validate(Instruction *_this)
 
       /* call */
     case INSTR_CALL:
-      if (_this->types[0] == TYPE_LABEL) {
+      if(_this->types[0] == TYPE_LABEL) {
         _this->jump_label = _this->params[0];
         return VALIDATE_OK;
       }
@@ -380,7 +380,7 @@ const char *gsl_instr_validate(Instruction *_this)
       /* jump */
     case INSTR_JUMP:
 
-      if (_this->types[0] == TYPE_LABEL) {
+      if(_this->types[0] == TYPE_LABEL) {
         _this->jump_label = _this->params[0];
         return VALIDATE_OK;
       }
@@ -390,7 +390,7 @@ const char *gsl_instr_validate(Instruction *_this)
     case INSTR_JZERO:
     case INSTR_JNZERO:
 
-      if (_this->types[0] == TYPE_LABEL) {
+      if(_this->types[0] == TYPE_LABEL) {
         _this->jump_label = _this->params[0];
         return VALIDATE_OK;
       }
@@ -399,7 +399,7 @@ const char *gsl_instr_validate(Instruction *_this)
       /* label */
     case INSTR_LABEL:
 
-      if (_this->types[0] == TYPE_LABEL) {
+      if(_this->types[0] == TYPE_LABEL) {
         _this->id = INSTR_NOP;
         _this->nop_label = _this->params[0];
         goom_hash_put_int(_this->parent->iflow->labels, _this->params[0], _this->parent->iflow->number);
@@ -682,7 +682,7 @@ void iflow_execute(FastInstructionFlow *_this, GoomSL *gsl)
         /* RET */
       case INSTR_RET:
         ip = stack[--stack_pointer];
-        if (ip<0) return;
+        if(ip<0) return;
         break;
 
         /* EXT_CALL */
@@ -800,7 +800,7 @@ void iflow_execute(FastInstructionFlow *_this, GoomSL *gsl)
 
 int gsl_malloc(GoomSL *_this, int size)
 { /* {{{ */
-  if (_this->nbPtr >= _this->ptrArraySize) {
+  if(_this->nbPtr >= _this->ptrArraySize) {
     _this->ptrArraySize *= 2;
     _this->ptrArray = (void**)realloc(_this->ptrArray, sizeof(void*) * _this->ptrArraySize);
   }
@@ -810,7 +810,7 @@ int gsl_malloc(GoomSL *_this, int size)
 
 void *gsl_get_ptr(GoomSL *_this, int id)
 { /* {{{ */
-  if ((id>=0)&&(id<_this->nbPtr))
+  if((id>=0)&&(id<_this->nbPtr))
     return _this->ptrArray[id];
   fprintf(stderr,"INVALID GET PTR 0x%08x\n", id);
   return NULL;
@@ -818,7 +818,7 @@ void *gsl_get_ptr(GoomSL *_this, int id)
 
 void gsl_free_ptr(GoomSL *_this, int id)
 { /* {{{ */
-  if ((id>=0)&&(id<_this->nbPtr)) {
+  if((id>=0)&&(id<_this->nbPtr)) {
     free(_this->ptrArray[id]);
     _this->ptrArray[id] = 0;
   }
@@ -827,7 +827,7 @@ void gsl_free_ptr(GoomSL *_this, int id)
 void gsl_enternamespace(const char *name)
 { /* {{{ */
   HashValue *val = goom_hash_get(currentGoomSL->functions, name);
-  if (val) {
+  if(val) {
     ExternalFunctionStruct *function = (ExternalFunctionStruct*)val->ptr;
     currentGoomSL->currentNS++;
     currentGoomSL->namespaces[currentGoomSL->currentNS] = function->vars;
@@ -852,8 +852,8 @@ GoomHash *gsl_leavenamespace(void)
 GoomHash *gsl_find_namespace(const char *name)
 { /* {{{ */
   int i;
-  for (i=currentGoomSL->currentNS;i>=0;--i) {
-    if (goom_hash_get(currentGoomSL->namespaces[i], name))
+  for(i=currentGoomSL->currentNS;i>=0;--i) {
+    if(goom_hash_get(currentGoomSL->namespaces[i], name))
       return currentGoomSL->namespaces[i];
   }
   return NULL;
@@ -861,7 +861,7 @@ GoomHash *gsl_find_namespace(const char *name)
 
 void gsl_declare_task(const char *name)
 { /* {{{ */
-  if (goom_hash_get(currentGoomSL->functions, name)) {
+  if(goom_hash_get(currentGoomSL->functions, name)) {
     return;
   }
   else {
@@ -875,7 +875,7 @@ void gsl_declare_task(const char *name)
 
 void gsl_declare_external_task(const char *name)
 { /* {{{ */
-  if (goom_hash_get(currentGoomSL->functions, name)) {
+  if(goom_hash_get(currentGoomSL->functions, name)) {
     fprintf(stderr, "ERROR: Line %d, Duplicate declaration of %s\n", currentGoomSL->num_lines, name);
     return;
   }
@@ -922,9 +922,9 @@ static void calculate_labels(InstructionFlow *iflow)
   int i = 0;
   while (i < iflow->number) {
     Instruction *instr = iflow->instr[i];
-    if (instr->jump_label) {
+    if(instr->jump_label) {
       HashValue *label = goom_hash_get(iflow->labels,instr->jump_label);
-      if (label) {
+      if(label) {
         instr->data.udest.jump_offset = -instr->address + label->i;
       }
       else {
@@ -942,8 +942,8 @@ static void calculate_labels(InstructionFlow *iflow)
 static int powerOfTwo(int i)
 {
   int b;
-  for (b=0;b<31;b++)
-    if (i == (1<<b))
+  for(b=0;b<31;b++)
+    if(i == (1<<b))
       return b;
   return 0;
 }
@@ -962,7 +962,7 @@ static void gsl_create_fast_iflow(void)
 
   JitcX86Env *jitc;
 
-  if (currentGoomSL->jitc != NULL)
+  if(currentGoomSL->jitc != NULL)
     jitc_x86_delete(currentGoomSL->jitc);
   jitc = currentGoomSL->jitc = jitc_x86_env_new(0xffff);
   currentGoomSL->jitc_func = jitc_prepare_func(jitc);
@@ -988,7 +988,7 @@ static void gsl_create_fast_iflow(void)
   JITC_JUMP_LABEL(jitc, "__very_end__");
   JITC_ADD_LABEL (jitc, "__very_start__");
 
-  for (i=0;i<number;++i) {
+  for(i=0;i<number;++i) {
     Instruction *instr = currentGoomSL->iflow->instr[i];
     switch (instr->id) {
       case INSTR_SETI_VAR_INTEGER     :
@@ -1007,7 +1007,7 @@ static void gsl_create_fast_iflow(void)
         jitc_add(jitc, "mov [$d], eax", instr->data.udest.var_float);
         break;
       case INSTR_NOP                  :
-        if (instr->nop_label != 0)
+        if(instr->nop_label != 0)
           JITC_ADD_LABEL(jitc, instr->nop_label);
         break;
       case INSTR_JUMP                 :
@@ -1065,10 +1065,10 @@ static void gsl_create_fast_iflow(void)
         printf("NOT IMPLEMENTED : %d\n", instr->id);
         break;
       case INSTR_MULI_VAR_INTEGER:
-        if (instr->data.usrc.value_int != 1)
+        if(instr->data.usrc.value_int != 1)
         {
           int po2 = powerOfTwo(instr->data.usrc.value_int);
-          if (po2) {
+          if(po2) {
             /* performs (V / 2^n) by doing V >> n */
             jitc_add(jitc, "mov  eax, [$d]",  instr->data.udest.var_int);
             jitc_add(jitc, "sal  eax, $d",    po2);
@@ -1093,10 +1093,10 @@ static void gsl_create_fast_iflow(void)
         printf("NOT IMPLEMENTED : %d\n", instr->id);
         break;
       case INSTR_DIVI_VAR_INTEGER:
-        if ((instr->data.usrc.value_int != 1) && (instr->data.usrc.value_int != 0))
+        if((instr->data.usrc.value_int != 1) && (instr->data.usrc.value_int != 0))
         {
           int po2 = powerOfTwo(instr->data.usrc.value_int);
-          if (po2) {
+          if(po2) {
             /* performs (V / 2^n) by doing V >> n */
             jitc_add(jitc, "mov  eax, [$d]",  instr->data.udest.var_int);
             jitc_add(jitc, "sar  eax, $d",    po2);
@@ -1106,15 +1106,15 @@ static void gsl_create_fast_iflow(void)
             /* performs (V/n) by doing (V*(32^2/n)) */
             long   coef;
             double dcoef = (double)4294967296.0 / (double)instr->data.usrc.value_int;
-            if (dcoef < 0.0) dcoef = -dcoef;
+            if(dcoef < 0.0) dcoef = -dcoef;
             coef   = (long)floor(dcoef);
             dcoef -= floor(dcoef);
-            if (dcoef < 0.5) coef += 1;
+            if(dcoef < 0.5) coef += 1;
 
             jitc_add(jitc, "mov  eax, [$d]", instr->data.udest.var_int);
             jitc_add(jitc, "mov  edx, $d",   coef);
             jitc_add(jitc, "imul edx");
-            if (instr->data.usrc.value_int < 0)
+            if(instr->data.usrc.value_int < 0)
               jitc_add(jitc, "neg edx");
             jitc_add(jitc, "mov [$d], edx", instr->data.udest.var_int);
           }
@@ -1325,10 +1325,10 @@ static void ext_charAt(GoomSL *gsl, GoomHash *UNUSED(global), GoomHash *local)
   char *string = GSL_LOCAL_PTR(gsl, local, "value");
   int   index  = GSL_LOCAL_INT(gsl, local, "index");
   GSL_GLOBAL_INT(gsl, "charAt") = 0;
-  if (string == NULL) {
+  if(string == NULL) {
     return;
   }
-  if (index < (int)strlen(string))
+  if(index < (int)strlen(string))
     GSL_GLOBAL_INT(gsl, "charAt") = string[index];
 }
 
@@ -1393,7 +1393,7 @@ void gsl_compile(GoomSL *_currentGoomSL, const char *script)
 
 void gsl_execute(GoomSL *scanner)
 { /* {{{ */
-  if (scanner->compilationOK) {
+  if(scanner->compilationOK) {
 #if USE_JITC_X86
     scanner->jitc_func();
 #else
@@ -1432,7 +1432,7 @@ GoomSL *gsl_new(void)
 void gsl_bind_function(GoomSL *gss, const char *fname, GoomSL_ExternalFunction func)
 { /* {{{ */
   HashValue *val = goom_hash_get(gss->functions, fname);
-  if (val) {
+  if(val) {
     ExternalFunctionStruct *gef = (ExternalFunctionStruct*)val->ptr;
     gef->function = func;
   }
@@ -1466,7 +1466,7 @@ char *gsl_init_buffer(const char *fname)
     fbuffer = (char*)malloc(512);
     fbuffer[0]=0;
     gsl_nb_import = 0;
-    if (fname)
+    if(fname)
       gsl_append_file_to_buffer(fname,&fbuffer);
     return fbuffer;
 }
@@ -1477,7 +1477,7 @@ static char *gsl_read_file(const char *fname)
   char *buffer;
   int fsize;
   f = fopen(fname,"rt");
-  if (!f) {
+  if(!f) {
     fprintf(stderr, "ERROR: Could not load file %s\n", fname);
     exit(1);
   }
@@ -1485,7 +1485,7 @@ static char *gsl_read_file(const char *fname)
   fsize = ftell(f);
   rewind(f);
   buffer = (char*)malloc(fsize+512);
-  if (fread(buffer,1,fsize,f) != (size_t)fsize) {
+  if(fread(buffer,1,fsize,f) != (size_t)fsize) {
     fprintf(stderr, "ERROR: Could not read file %s\n", fname);
     exit(1);
   }
@@ -1501,8 +1501,8 @@ void gsl_append_file_to_buffer(const char *fname, char **buffer)
     char reset_msg[256];
 
     /* look if the file have not been already imported */
-    for (i=0;i<gsl_nb_import;++i) {
-      if (strcmp(gsl_already_imported[i], fname) == 0)
+    for(i=0;i<gsl_nb_import;++i) {
+      if(strcmp(gsl_already_imported[i], fname) == 0)
         return;
     }
 
@@ -1515,7 +1515,7 @@ void gsl_append_file_to_buffer(const char *fname, char **buffer)
 
     /* look for #import */
     while (fbuffer[i]) {
-      if ((fbuffer[i]=='#') && (fbuffer[i+1]=='i')) {
+      if((fbuffer[i]=='#') && (fbuffer[i+1]=='i')) {
         char impName[256];
         int j;
         while (fbuffer[i] && (fbuffer[i]!=' '))

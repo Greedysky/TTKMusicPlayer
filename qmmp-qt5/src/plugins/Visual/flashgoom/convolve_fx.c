@@ -72,12 +72,12 @@ static void compute_tables(VisualFX *_this, PluginInfo *info)
   double h;
   double radian;
 
-  if (data->h_height == info->screen.height) return;
+  if(data->h_height == info->screen.height) return;
 
   screen_coef = 2.0 * 300.0 / (double)info->screen.height;
   data->h_height = info->screen.height;
 
-  for ( i=0 ; i<NB_THETA ; i++ ) {
+  for( i=0 ; i<NB_THETA ; i++ ) {
     radian = 2*i*M_PI/NB_THETA;
     h = (0.2 + cos (radian) / 15.0 * sin(radian * 2.0 + 12.123)) * screen_coef;
     data->h_cos[i] = 0x10000 * (-h * cos (radian) * cos(radian));
@@ -88,7 +88,7 @@ static void compute_tables(VisualFX *_this, PluginInfo *info)
 static void set_motif(ConvData *data, const Motif motif)
 {
   int i,j;
-  for (i=0;i<CONV_MOTIF_W;++i) for (j=0;j<CONV_MOTIF_W;++j)
+  for(i=0;i<CONV_MOTIF_W;++i) for(j=0;j<CONV_MOTIF_W;++j)
     data->conv_motif[i][j] = motif[CONV_MOTIF_W-i-1][CONV_MOTIF_W-j-1];
 }
 
@@ -154,18 +154,18 @@ static void create_output_with_brightness(VisualFX *_this, Pixel *src, Pixel *de
   int yprime = yj;
 
   int ifftab[16];
-  if (data->inverse_motif) {
+  if(data->inverse_motif) {
     int i;
-    for (i=0;i<16;++i)
+    for(i=0;i<16;++i)
       ifftab[i] = (double)iff * (1.0 + data->visibility * (15.0 - i) / 15.0);
   }
   else {
     int i;
-    for (i=0;i<16;++i)
+    for(i=0;i<16;++i)
       ifftab[i] = (double)iff / (1.0 + data->visibility * (15.0 - i) / 15.0);
   }
 
-  for (y=info->screen.height;y--;) {
+  for(y=info->screen.height;y--;) {
     int xtex,ytex;
 
     xtex = xprime + xi + CONV_MOTIF_W * 0x10000 / 2;
@@ -192,7 +192,7 @@ static void create_output_with_brightness(VisualFX *_this, Pixel *src, Pixel *de
         , "g"(c), "g"(s)
         , "g"(&data->conv_motif[0][0]));
 
-    for (x=info->screen.width;x--;)
+    for(x=info->screen.width;x--;)
     {
       __asm__ __volatile__
         (
@@ -235,7 +235,7 @@ static void create_output_with_brightness(VisualFX *_this, Pixel *src, Pixel *de
       i++;
     }
 #else
-    for (x=info->screen.width;x--;) {
+    for(x=info->screen.width;x--;) {
 
       int iff2;
       unsigned int f0,f1,f2,f3;
@@ -298,12 +298,12 @@ static void convolve_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo 
     double rotate_param, rotate_coef;
     float INCREASE_RATE = 1.5;
     float DECAY_RATE = 0.955;
-    if (FVAL(info->sound.last_goom_p) > 0.8)
+    if(FVAL(info->sound.last_goom_p) > 0.8)
       FVAL(data->factor_p) += FVAL(info->sound.goom_power_p) * INCREASE_RATE;
     FVAL(data->factor_p) *= DECAY_RATE;
 
     rotate_param = FVAL(info->sound.last_goom_p);
-    if (rotate_param < 0.0)
+    if(rotate_param < 0.0)
         rotate_param = 0.0;
     rotate_param += FVAL(info->sound.goom_power_p);
 
@@ -311,11 +311,11 @@ static void convolve_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo 
     data->ftheta = (data->ftheta + rotate_coef * sin(rotate_param * 6.3));
     data->theta  = ((unsigned int)data->ftheta) % NB_THETA;
     data->visibility   = (cos(fcycle * 0.001 + 1.5) * sin(fcycle * 0.008) + cos(fcycle * 0.011 + 5.0) - 0.8 + info->sound.speedvar) * 1.5;
-    if (data->visibility < 0.0) data->visibility = 0.0;
+    if(data->visibility < 0.0) data->visibility = 0.0;
     data->factor_p.change_listener(&data->factor_p);
   }
 
-  if (data->visibility < 0.01) {
+  if(data->visibility < 0.01) {
     switch (goom_irand(info->gRandom, 300))
     {
       case 1:
@@ -325,7 +325,7 @@ static void convolve_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo 
     }
   }
 
-  if ((ff > 0.98f) && (ff < 1.02f))
+  if((ff > 0.98f) && (ff < 1.02f))
     memcpy(dest, src, info->screen.size * sizeof(Pixel));
   else
     create_output_with_brightness(_this,src,dest,info,iff);
@@ -340,7 +340,7 @@ static void convolve_apply(VisualFX *_this, Pixel *src, Pixel *dest, PluginInfo 
     create_output_with_brightness(_this,src,dest,info,iff);
     after  = GetTick();
     timed = (double)((after-before) / info->screen.size);
-    if (timed < stimed) {
+    if(timed < stimed) {
       stimed = timed;
       printf ("CLK = %3.0f CPP\n", stimed);
     }

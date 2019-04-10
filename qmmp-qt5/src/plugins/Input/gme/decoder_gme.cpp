@@ -98,7 +98,7 @@ qint64 DecoderGme::read(unsigned char *data, qint64 size)
         return 0;
     if(m_totalTime && gme_tell(m_emu) > m_totalTime)
         return 0;
-    if (gme_play(m_emu, size/2, (short*)data))
+    if(gme_play(m_emu, size/2, (short*)data))
     {
         return 0;
     }

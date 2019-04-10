@@ -102,7 +102,7 @@ QStringList Qmmp::findPlugins(const QString &prefix)
 {
     QDir pluginDir(pluginPath() + "/" + prefix);
     QStringList paths;
-    foreach (QFileInfo info, pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
+    foreach(QFileInfo info, pluginDir.entryInfoList(QStringList() << "*.dll" << "*.so", QDir::Files))
         paths << info.canonicalFilePath();
     return paths;
 }
@@ -120,11 +120,11 @@ QString Qmmp::systemLanguageID()
 
 #ifdef Q_OS_UNIX
     QByteArray v = qgetenv ("LC_ALL");
-    if (v.isEmpty())
+    if(v.isEmpty())
         v = qgetenv ("LC_MESSAGES");
-    if (v.isEmpty())
+    if(v.isEmpty())
         v = qgetenv ("LANG");
-    if (!v.isEmpty())
+    if(!v.isEmpty())
         return QLocale (v).name();
 #endif
     return  QLocale::system().name();

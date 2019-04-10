@@ -25,7 +25,7 @@
 CUEMetaDataModel::CUEMetaDataModel(const QString &url) : MetaDataModel(true)
 {
     m_parser = new CUEParser(url);
-    if (m_parser->count() == 0)
+    if(m_parser->count() == 0)
     {
         qWarning("CUEMetaDataModel: invalid cue file");
         return;

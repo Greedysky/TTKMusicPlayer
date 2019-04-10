@@ -52,7 +52,7 @@ private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *e) override;
+    virtual void paintEvent(QPaintEvent *) override;
     virtual void contextMenuEvent(QContextMenuEvent *e) override;
 
     void process();
@@ -61,7 +61,7 @@ private:
     QList<QColor> m_colors;
     QAction *m_starAction;
     QColor m_starColor;
-    QList<StarPoint> m_starPoints;
+    QList<StarPoint*> m_starPoints;
     QTimer *m_timer, *m_starTimer;
     double *m_intern_vis_data;
     int *m_x_scale, m_cols, m_rows;

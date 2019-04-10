@@ -111,7 +111,7 @@ PluginParameters goom_plugin_parameters(const char *name, int nb) {
 
 void goom_set_str_param_value(PluginParam *p, const char *str) {
     int len = strlen(str);
-    if (SVAL(*p))
+    if(SVAL(*p))
         SVAL(*p) = (char*)realloc(SVAL(*p), len+1);
     else
         SVAL(*p) = (char*)malloc(len+1);
@@ -123,7 +123,7 @@ void goom_set_list_param_value(PluginParam *p, const char *str) {
 #ifdef VERBOSE
     printf("%s: %d\n", str, len);
 #endif
-    if (LVAL(*p))
+    if(LVAL(*p))
         LVAL(*p) = (char*)realloc(LVAL(*p), len+1);
     else
         LVAL(*p) = (char*)malloc(len+1);

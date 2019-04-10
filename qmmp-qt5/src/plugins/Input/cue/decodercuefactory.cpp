@@ -57,7 +57,7 @@ QList<TrackInfo *> DecoderCUEFactory::createPlayList(const QString &path, TrackI
     {
         QList<TrackInfo *> list;
         int track = path.section("#", -1).toInt();
-        if (!parser.count() || track <= 0 || track > parser.count())
+        if(!parser.count() || track <= 0 || track > parser.count())
             return list;
         list = parser.createPlayList();
         TrackInfo *info = list.takeAt(track - 1);
