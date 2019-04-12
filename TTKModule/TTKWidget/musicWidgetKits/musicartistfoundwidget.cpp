@@ -532,14 +532,14 @@ void MusicArtistFoundWidget::createLabels()
 
     QLabel *firstLabel = new QLabel(function);
     grid->addWidget(firstLabel);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
 
     m_iconLabel = new QLabel(topFuncWidget);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
@@ -585,7 +585,7 @@ void MusicArtistFoundWidget::createLabels()
     topLineLayout->addWidget(topButtonWidget);
     connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
     connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
     QWidget *topRightWidget = new QWidget(topFuncWidget);
     QGridLayout *topRightLayout = new QGridLayout(topRightWidget);
@@ -631,7 +631,7 @@ void MusicArtistFoundWidget::createLabels()
     topFuncLayout->addWidget(topRightWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
@@ -682,7 +682,7 @@ void MusicArtistFoundWidget::createLabels()
     mvsButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //////////////////////////////////////////////////////////////////////
+    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

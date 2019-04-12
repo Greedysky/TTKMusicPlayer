@@ -26,7 +26,7 @@ void MusicDownloadRecordConfigManager::writeDownloadData(const MusicSongs &recor
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "download");

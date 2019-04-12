@@ -89,7 +89,6 @@ void MusicSongsListTableWidget::updateSongsFileName(const MusicSongs &songs)
     {
         return;
     }
-    ////////////////////////////////////////////////////////////////
 
     const int count = rowCount();
     setRowCount(songs.count());

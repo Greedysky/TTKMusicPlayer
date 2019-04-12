@@ -62,7 +62,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
             if(value.contains("data"))
             {
                 bool artistFlag = false;
-                ////////////////////////////////////////////////////////////
+                //
                 value = value["data"].toMap();
                 value = value["data"].toMap();
                 const QVariantList &datas = value["songs"].toList();
@@ -98,7 +98,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!artistFlag)
                     {
                         artistFlag = true;
@@ -111,7 +111,7 @@ void MusicDownLoadQueryXMArtistThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

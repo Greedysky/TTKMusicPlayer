@@ -36,11 +36,11 @@ void MusicVideoSearchTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MovieQuery, text);
@@ -54,11 +54,11 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = false;
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryType(MusicDownLoadQueryThreadAbstract::MovieQuery);
@@ -73,11 +73,11 @@ void MusicVideoSearchTableWidget::startSearchSingleQuery(const QVariant &data)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getMovieThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), SLOT(createFinishedItem()));
     setQueryInput( d );
-    ////////////////////////////////////////////////////////////////////////////////////
+    //
     m_singleRadioMode = true;
     d->setMusicSongInfos(MusicObject::MusicSongInformations() << data.value<MusicObject::MusicSongInformation>());
 }

@@ -197,9 +197,9 @@ void MusicDownLoadQueryKWThread::downLoadFinished()
                         {
                             continue;
                         }
-                        ////////////////////////////////////////////////////////////
+                        //
                         if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                        ////////////////////////////////////////////////////////////
+                        //
                         MusicSearchedItem item;
                         item.m_songName = musicInfo.m_songName;
                         item.m_singerName = musicInfo.m_singerName;
@@ -248,9 +248,9 @@ void MusicDownLoadQueryKWThread::singleDownLoadFinished()
             readFromMusicSongPic(&musicInfo);
             if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
             musicInfo.m_lrcUrl = MusicUtils::Algorithm::mdII(KW_SONG_LRC_URL, false).arg(musicInfo.m_songId);
-            ////////////////////////////////////////////////////////////
+            //
             if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-            ////////////////////////////////////////////////////////////
+            //
             if(!musicInfo.m_songAttrs.isEmpty())
             {
                 MusicSearchedItem item;

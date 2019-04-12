@@ -18,9 +18,9 @@ void MusicSkinConfigManager::writeSkinData(const MusicSkinConfigItem &item, cons
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
-    ///////////////////////////////////////////////////////
+    //
     QDomElement musicPlayerDom = createRoot("TTKSkin");
     //Class A
     writeDomElement(musicPlayerDom, "creator", MusicXmlAttribute("value", APP_NAME));

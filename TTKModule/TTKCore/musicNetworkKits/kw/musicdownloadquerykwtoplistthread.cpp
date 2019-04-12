@@ -78,7 +78,7 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                 info.m_description = value["info"].toString();
                 info.m_updateTime = value["pub"].toString();
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -114,9 +114,9 @@ void MusicDownLoadQueryKWToplistThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

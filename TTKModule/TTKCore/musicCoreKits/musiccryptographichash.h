@@ -111,7 +111,6 @@ protected:
      */
     uchar *xxteaToByteArray(xxtea_uint *data, xxtea_uint len, int include_length, xxtea_uint *ret_len);
 
-    //////////////////////////////////////////////////////////////////////////
     /*!
      * Base64 encode.
      */
@@ -121,7 +120,6 @@ protected:
      */
     MString base64Decode(const MString &s);
 
-    //////////////////////////////////////////////////////////////////////////
     /*!
      * XXTEA encrypt by uchar * data.
      */
@@ -130,7 +128,6 @@ protected:
      * XXTEA decrypt by uchar * data.
      */
     uchar *xxteaDecrypt(uchar *data, xxtea_uint data_len, uchar *key, xxtea_uint key_len, xxtea_uint *ret_length);
-    //////////////////////////////////////////////////////////////////////////
 
 };
 

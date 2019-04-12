@@ -20,9 +20,8 @@ QNSimpleListDataPrivate::QNSimpleListDataPrivate()
 
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNSimpleListData::QNSimpleListData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {

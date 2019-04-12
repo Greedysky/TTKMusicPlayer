@@ -26,8 +26,7 @@
  */
 namespace MusicUIObject
 {
-///left item list style
-//////////////////////////////////////////////////////
+//left item list style
     const QString MKGItemMusic = " \
             QToolButton{ border:none; \
             background-image: url(:/appTools/item_music_normal);} \

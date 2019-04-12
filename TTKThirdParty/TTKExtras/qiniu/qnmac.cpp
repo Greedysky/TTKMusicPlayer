@@ -16,9 +16,8 @@ QNMacPrivate::QNMacPrivate()
 
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 // Use access key and secret key from https://portal.qiniu.com
 QNMac::QNMac(const QString &accesKey, const QByteArray &secretKey)
 {

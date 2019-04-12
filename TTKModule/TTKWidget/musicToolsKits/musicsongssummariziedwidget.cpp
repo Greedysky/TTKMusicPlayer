@@ -62,7 +62,7 @@ bool MusicSongsSummariziedWidget::addMusicLists(const MusicSongItems &names)
     {
         inDeed.remove(item.m_itemIndex);
     }
-    //////////////////////////////////////////////////////////////////////
+    //
     if(!inDeed.isEmpty())
     {
         //if less than four count(0, 1, 2, 3), find and add default items

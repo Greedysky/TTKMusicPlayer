@@ -75,14 +75,14 @@ void MusicRightAreaWidget::setupUi(Ui::MusicApplication* ui)
     ui->lrcDisplayAllButton->setCursor(QCursor(Qt::PointingHandCursor));
     ui->lrcDisplayAllButton->setIconSize(QSize(15, 56));
     connect(ui->lrcDisplayAllButton, SIGNAL(clicked()), SLOT(musicLrcDisplayAllButtonClicked()));
-    ///////////////////////////////////////////////////////
+    //
 
     QButtonGroup *group = new QButtonGroup(this);
     group->addButton(ui->musicSearchButton, MusicRightAreaWidget::SearchWidget);
     group->addButton(ui->musicWindowIdentify, MusicRightAreaWidget::IndentifyWidget);
     connect(group, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
     connect(ui->stackedWidgetFunctionOption, SIGNAL(buttonClicked(int)), SLOT(musicFunctionClicked(int)));
-    ///////////////////////////////////////////////////////
+    //
     connect(ui->musiclrccontainerforinline, SIGNAL(changeCurrentLrcColorCustom()), m_settingWidget, SLOT(changeInlineLrcWidget()));
     connect(ui->musiclrccontainerforinline, SIGNAL(currentLrcUpdated()), MusicApplication::instance(), SLOT(musicCurrentLrcUpdated()));
     connect(ui->musiclrccontainerforinline, SIGNAL(artistBackgroundHasChanged()), SIGNAL(updateBackgroundThemeDownload()));

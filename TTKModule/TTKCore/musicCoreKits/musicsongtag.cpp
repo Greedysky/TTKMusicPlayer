@@ -125,7 +125,6 @@ QString MusicSongTag::getURL() const
     return findLegalDataString(TagReadAndWrite::TAG_URL);
 }
 
-/////////////////////////////////////////////
 void MusicSongTag::setArtist(const QString &artist)
 {
     m_parameters[TagReadAndWrite::TAG_ARTIST] = artist;
@@ -195,7 +194,6 @@ QPixmap MusicSongTag::getCover() const
 #endif
 }
 
-/////////////////////////////////////////////
 QString MusicSongTag::getSampleRate() const
 {
     return m_parameters[TagReadAndWrite::TAG_SAMPLERATE].toString();
@@ -333,13 +331,12 @@ bool MusicSongTag::saveOtherTaglib()
                 tagModel->save();
             }
 
-            ////////////////////////////////////////////////////////////////////
+            //
             const QPixmap &pix = getCover();
             if(!pix.isNull())
             {
                 model->setCover(pix);
             }
-            ////////////////////////////////////////////////////////////////////
         }
         delete model;
         loader.unload();

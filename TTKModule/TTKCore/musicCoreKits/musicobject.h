@@ -29,7 +29,7 @@
 
 #define DOT                     "."
 
-///////////////////////////////////////
+//
 #define TTS_FILE_PREFIX         "ttks"
 #define SKN_FILE_PREFIX         "skn"
 #define JPG_FILE_PREFIX         "jpg"
@@ -86,14 +86,14 @@
 #define FLC_FILE                STRCAT(DOT, FLC_FILE_PREFIX)
 
 
-///////////////////////////////////////
+//
 #define APP_NAME                "TTKMusicPlayer"
 #define APP_DOT_NAME            STRCAT(APP_NAME, DOT)
 #define APP_COME_NAME           STRCAT(APP_NAME, COM_FILE)
 #define APP_EXE_NAME            STRCAT(APP_NAME, EXE_FILE)
 
 
-///////////////////////////////////////
+//
 #define APPDATA_DIR             "AppData/"
 #define DOWNLOADS_DIR           "Downloads/"
 
@@ -143,7 +143,7 @@
 #define BARRAGEPATH             "musicbarrage.ttk"
 
 
-///////////////////////////////////////
+//
 #if defined (Q_OS_ANDROID)
 #  define APPDATA_DIR_FULL      MusicObject::getAppDir() + APPDATA_DIR
 #  define DOWNLOADS_DIR_FULL    MusicObject::getAppDir() + DOWNLOADS_DIR
@@ -193,12 +193,12 @@
 #endif
 
 
-///////////////////////////////////////
+//
 #define WINDOW_WIDTH_MIN        1000
 #define WINDOW_HEIGHT_MIN       690
-///////////////////////////////////////
+//
 #define COVER_URL_NULL          "null"
-///////////////////////////////////////
+//
 
 
 /*! @brief The namespace of the application object.
@@ -236,7 +236,6 @@ namespace MusicObject
     }MusicSongAttribute;
     TTK_DECLARE_LISTS(MusicSongAttribute)
 
-    ///////////////////////////////////////
 
     /*! @brief The class of the music song information.
      * @author Greedysky <greedysky@163.com>
@@ -258,7 +257,7 @@ namespace MusicObject
         QString m_trackNumber;
     }MusicSongInformation;
     TTK_DECLARE_LISTS(MusicSongInformation)
-    ///////////////////////////////////////
+
 
     enum PlayState
     {

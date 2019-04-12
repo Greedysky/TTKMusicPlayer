@@ -18,9 +18,8 @@ ChineseHelperPrivate::ChineseHelperPrivate()
     m_data = PinyinResource::getChineseResource();
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 ChineseHelper::ChineseHelper()
 {
     TTK_INIT_PRIVATE;

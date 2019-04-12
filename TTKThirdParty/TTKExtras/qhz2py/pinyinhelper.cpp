@@ -112,9 +112,8 @@ QStringList PinyinHelperPrivate::convertWithoutTone(QString pinyinArrayString)
     return pinyinSet.toList();
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 PinyinHelper::PinyinHelper()
 {
     TTK_INIT_PRIVATE;

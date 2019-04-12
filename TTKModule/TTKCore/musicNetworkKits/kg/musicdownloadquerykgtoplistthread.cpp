@@ -80,7 +80,7 @@ void MusicDownLoadQueryKGToplistThread::downLoadFinished()
                 info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["timestamp"].toLongLong()*1000).toString("yyyy-MM-dd");
 
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {

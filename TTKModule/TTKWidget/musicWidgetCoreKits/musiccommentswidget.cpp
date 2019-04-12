@@ -21,16 +21,16 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(10, 0, 10, 0);
     layout->addSpacing(2);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *centerWidget = new QWidget(this);
     QHBoxLayout *centerWidgetLayout = new QHBoxLayout(centerWidget);
     centerWidgetLayout->setContentsMargins(0, 0, 0, 0);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *textWidget = new QWidget(centerWidget);
     QVBoxLayout *textWidgetLayout = new QVBoxLayout(textWidget);
     textWidgetLayout->setContentsMargins(0, 5, 0, 6);
     textWidgetLayout->setSpacing(0);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *userWidget = new QWidget(textWidget);
     QHBoxLayout *userWidgetLayout = new QHBoxLayout(userWidget);
     userWidgetLayout->setContentsMargins(0, 0, 0, 0);
@@ -46,7 +46,7 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     userWidgetLayout->addWidget(m_userName);
     userWidgetLayout->addWidget(m_userCommit);
     userWidget->setLayout(userWidgetLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *operWidget = new QWidget(textWidget);
     QHBoxLayout *operWidgetLayout = new QHBoxLayout(operWidget);
     operWidgetLayout->setContentsMargins(0, 0, 0, 0);
@@ -72,11 +72,11 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     spliteLine2->setStyleSheet(MusicUIObject::MColorStyle03);
     MusicClickedLabel *ReplyLabel = new MusicClickedLabel(tr("Reply"), operWidget);
     ReplyLabel->setStyleSheet(MusicUIObject::MColorStyle03);
-    //////////////////////////////////////////////////////////////////////
+    //
 #ifdef Q_OS_UNIX
     starButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    //////////////////////////////////////////////////////////////////////
+    //
     operWidgetLayout->addWidget(m_timerLabel);
     operWidgetLayout->addStretch(1);
     operWidgetLayout->addWidget(ngReportLabel);
@@ -86,22 +86,22 @@ MusicCommentsItem::MusicCommentsItem(QWidget *parent)
     operWidgetLayout->addWidget(spliteLine2);
     operWidgetLayout->addWidget(ReplyLabel);
     operWidget->setLayout(operWidgetLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     textWidgetLayout->addWidget(userWidget);
     textWidgetLayout->addWidget(operWidget);
     textWidget->setLayout(textWidgetLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     m_iconLabel = new QLabel(centerWidget);
     m_iconLabel->setFixedSize(40, 40);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_defaultArt").scaled(m_iconLabel->size()));
     centerWidgetLayout->addWidget(m_iconLabel);
     centerWidgetLayout->addWidget(textWidget);
     centerWidget->setLayout(centerWidgetLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     QFrame *solidLine = new QFrame(this);
     solidLine->setFixedHeight(1);
     solidLine->setStyleSheet(MusicUIObject::MBorderStyle06 + MusicUIObject::MColorStyle03);
-    //////////////////////////////////////////////////////////////////////
+    //
     layout->addWidget(centerWidget);
     layout->addWidget(solidLine);
     setLayout(layout);
@@ -204,7 +204,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
     QVBoxLayout *contentsLayout = new QVBoxLayout(contentsWidget);
     contentsLayout->setContentsMargins(0, 0, 0 ,0);
     contentsLayout->setSpacing(0);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *messageBox = new QWidget(contentsWidget);
     messageBox->setFixedHeight(150);
     QVBoxLayout *messageBoxLayout = new QVBoxLayout(messageBox);
@@ -222,7 +222,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
     solidLine->setFrameShape(QFrame::HLine);
     solidLine->setFixedHeight(1);
     solidLine->setStyleSheet(MusicUIObject::MColorStyle03);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *messageMiddle = new QWidget(messageBox);
     QHBoxLayout *messageMiddleLayout = new QHBoxLayout(messageMiddle);
     messageMiddleLayout->setContentsMargins(0, 10, 0, 0);
@@ -243,13 +243,13 @@ void MusicCommentsWidget::initWidget(bool isPain)
     emojiButton->setFocusPolicy(Qt::NoFocus);
     sendButton->setFocusPolicy(Qt::NoFocus);
 #endif
-    //////////////////////////////////////////////////////////////////////
+    //
     messageBoxLayout->addWidget(m_messageEdit);
     messageBoxLayout->addWidget(messageMiddle);
     messageBoxLayout->addWidget(m_commentsLabel);
     messageBoxLayout->addWidget(solidLine);
     messageBox->setLayout(messageBoxLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     m_messageComments = new QWidget(contentsWidget);
     QVBoxLayout *messageCommentsLayout = new QVBoxLayout(m_messageComments);
     messageCommentsLayout->setContentsMargins(0, 0, 0, 0);
@@ -258,7 +258,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
     contentsLayout->addWidget(messageBox);
     contentsLayout->addWidget(m_messageComments);
     contentsWidget->setLayout(contentsLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     if(isPain)
     {
         QScrollArea *scrollArea = new QScrollArea(this);
@@ -274,7 +274,7 @@ void MusicCommentsWidget::initWidget(bool isPain)
         QWidget *view = scrollArea->viewport();
         view->setObjectName("viewport");
         view->setStyleSheet(QString("#viewport{%1}").arg(MusicUIObject::MBackgroundStyle01));
-        //////////////////////////////////////////////////////////////////////
+        //
         mainLayout->addWidget(topWidget);
         mainLayout->addWidget(scrollArea);
     }

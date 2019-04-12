@@ -78,7 +78,7 @@ void MusicDownLoadQueryBDToplistThread::downLoadFinished()
                 info.m_description = topInfo["comment"].toString();
                 info.m_updateTime = topInfo["update_date"].toString();
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["song_list"].toList();
                 foreach(const QVariant &var, datas)
                 {

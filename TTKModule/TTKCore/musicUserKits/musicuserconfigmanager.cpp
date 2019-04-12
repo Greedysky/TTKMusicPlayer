@@ -28,7 +28,7 @@ void MusicUserConfigManager::writeUserData(const MusicUserRecords &records)
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
 

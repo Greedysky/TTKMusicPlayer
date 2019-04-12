@@ -241,7 +241,7 @@ void MusicTransformWidget::startTransform()
     {
         return;
     }
-    ///////////////////////////////////////////////////////////
+    //
     m_ui->loadingLabel->show();
     m_ui->loadingLabel->start();
     setCheckedControl(false);

@@ -174,7 +174,7 @@ void MusicFoundAbstractWidget::initFirstWidget()
     connect(addButton, SIGNAL(clicked()), SLOT(addButtonClicked()));
 
     vlayout->addWidget(middleFuncWidget);
-    //////////////////////////////////////////////////////////////////////
+    //
     vlayout->addWidget(m_foundTableWidget);
     vlayout->addStretch(1);
     songWidget->setLayout(vlayout);

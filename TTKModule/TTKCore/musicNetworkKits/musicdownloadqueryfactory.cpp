@@ -1,104 +1,104 @@
 #include "musicdownloadqueryfactory.h"
 #include "musicsettingmanager.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywythread.h"
 #include "musicdownloadqueryxmthread.h"
 #include "musicdownloadquerykgthread.h"
 #include "musicdownloadquerykwthread.h"
 #include "musicdownloadquerybdthread.h"
 #include "musicdownloadqueryqqthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywymoviethread.h"
 #include "musicdownloadqueryxmmoviethread.h"
 #include "musicdownloadquerykgmoviethread.h"
 #include "musicdownloadquerykwmoviethread.h"
 #include "musicdownloadquerybdmoviethread.h"
 #include "musicdownloadqueryqqmoviethread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywyalbumthread.h"
 #include "musicdownloadqueryxmalbumthread.h"
 #include "musicdownloadquerykgalbumthread.h"
 #include "musicdownloadquerykwalbumthread.h"
 #include "musicdownloadquerybdalbumthread.h"
 #include "musicdownloadqueryqqalbumthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywyartistthread.h"
 #include "musicdownloadqueryxmartistthread.h"
 #include "musicdownloadquerykgartistthread.h"
 #include "musicdownloadquerykwartistthread.h"
 #include "musicdownloadquerybdartistthread.h"
 #include "musicdownloadqueryqqartistthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywyartistlistthread.h"
 #include "musicdownloadqueryxmartistlistthread.h"
 #include "musicdownloadquerykgartistlistthread.h"
 #include "musicdownloadquerykwartistlistthread.h"
 #include "musicdownloadquerybdartistlistthread.h"
 #include "musicdownloadqueryqqartistlistthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywytoplistthread.h"
 #include "musicdownloadqueryqqtoplistthread.h"
 #include "musicdownloadqueryxmtoplistthread.h"
 #include "musicdownloadquerybdtoplistthread.h"
 #include "musicdownloadquerykgtoplistthread.h"
 #include "musicdownloadquerykwtoplistthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywyplaylistthread.h"
 #include "musicdownloadqueryqqplaylistthread.h"
 #include "musicdownloadquerybdplaylistthread.h"
 #include "musicdownloadqueryxmplaylistthread.h"
 #include "musicdownloadquerykgplaylistthread.h"
 #include "musicdownloadquerykwplaylistthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdownloadquerywyrecommendthread.h"
 #include "musicdownloadqueryqqrecommendthread.h"
 #include "musicdownloadquerybdrecommendthread.h"
 #include "musicdownloadqueryxmrecommendthread.h"
 #include "musicdownloadquerykgrecommendthread.h"
 #include "musicdownloadquerykwrecommendthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicwycommentsthread.h"
 #include "musicxmcommentsthread.h"
 #include "musicbdcommentsthread.h"
 #include "musickgcommentsthread.h"
 #include "musickwcommentsthread.h"
 #include "musicqqcommentsthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicwydiscoverlistthread.h"
 #include "musicxmdiscoverlistthread.h"
 #include "musicbddiscoverlistthread.h"
 #include "musicqqdiscoverlistthread.h"
 #include "musickgdiscoverlistthread.h"
 #include "musickwdiscoverlistthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicwysongsuggestthread.h"
 #include "musicxmsongsuggestthread.h"
 #include "musicbdsongsuggestthread.h"
 #include "musicqqsongsuggestthread.h"
 #include "musickgsongsuggestthread.h"
 #include "musickwsongsuggestthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicwyartistsimilarthread.h"
 #include "musicxmartistsimilarthread.h"
 #include "musicbdartistsimilarthread.h"
 #include "musicqqartistsimilarthread.h"
 #include "musickgartistsimilarthread.h"
 #include "musickwartistsimilarthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musictranslationthread.h"
 #include "musicwytranslationthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musicdatadownloadthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musictextdownloadthread.h"
 #include "musicwytextdownloadthread.h"
 #include "musicxmtextdownloadthread.h"
 #include "musickwtextdownloadthread.h"
 #include "musicqqtextdownloadthread.h"
-///////////////////////////////////////////////////////
+//
 #include "musickwbackgroundthread.h"
 #include "musicqqbackgroundthread.h"
-///////////////////////////////////////////////////////
+//
 
 MusicDownLoadQueryThreadAbstract *MusicDownLoadQueryFactory::getQueryThread(QObject *parent)
 {

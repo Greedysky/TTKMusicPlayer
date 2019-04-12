@@ -439,7 +439,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     menu.addAction(tr("saveLrcChanged"), this, SLOT(saveLrcTimeChanged()))->setEnabled(hasLrcContainer);
     menu.addSeparator();
 
-    //////////////////////////////////////////////////
+    //
     QActionGroup *group = new QActionGroup(this);
     group->addAction(changeLrcSize.addAction(tr("smaller")))->setData(0);
     group->addAction(changeLrcSize.addAction(tr("small")))->setData(1);
@@ -466,7 +466,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     changeLrcSize.addAction(tr("custom"), this, SLOT(currentLrcCustom()));
     createColorMenu(changColorMenu);
 
-    //////////////////////////////////////////////////
+    //
     QActionGroup *lrcTimeFastGroup = new QActionGroup(this);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast0.5s")))->setData(0);
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast1s")))->setData(1);
@@ -474,7 +474,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeFastGroup->addAction(changeLrcTimeFast.addAction(tr("lrcTimeFast5s")))->setData(3);
     connect(lrcTimeFastGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
-    //////////////////////////////////////////////////
+    //
     QActionGroup *lrcTimeSlowGroup = new QActionGroup(this);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow0.5s")))->setData(4);
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow1s")))->setData(5);
@@ -482,7 +482,7 @@ void MusicLrcContainerForInline::contextMenuEvent(QContextMenuEvent *event)
     lrcTimeSlowGroup->addAction(changeLrcTimeSlow.addAction(tr("lrcTimeSlow5s")))->setData(7);
     connect(lrcTimeSlowGroup, SIGNAL(triggered(QAction*)), SLOT(lrcTimeSpeedChanged(QAction*)));
 
-    //////////////////////////////////////////////////
+    //
     QAction *artAction = menu.addAction(tr("artbgoff"), this, SLOT(artistBackgroundChanged()));
     m_showArtistBackground ? artAction->setText(tr("artbgoff")) : artAction->setText(tr("artbgon"));
     QAction *showLrc = menu.addAction(tr("lrcoff"), this, SLOT(linkLrcStateChanged()));
@@ -664,7 +664,7 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     {
         m_changeSpeedValue = 0;
     }
-    /////////////////////////////////////////////////////////
+    //
     MusicToastLabel *toast = new MusicToastLabel(this);
     toast->setFontSize(15);
     toast->setFontMargin(10, 10);
@@ -679,7 +679,6 @@ void MusicLrcContainerForInline::revertLrcTimeSpeed(qint64 pos)
     const QPoint &globalPoint = mapToGlobal(QPoint(0, 0));
     toast->move(globalPoint.x() + (width() - toast->width())/2, globalPoint.y() + height() - toast->height() - 40);
     toast->show();
-    /////////////////////////////////////////////////////////
 }
 
 void MusicLrcContainerForInline::createNoLrcCurrentInfo()

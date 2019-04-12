@@ -93,7 +93,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     firstTopFuncLayout->addWidget(firstLabel);
     firstTopFuncLayout->addWidget(backButton);
     grid->addWidget(firstTopFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
 
@@ -107,8 +107,8 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     {
         download->startToDownload(item.m_coverUrl);
     }
-    ////////////////////////////////////////////////////////////////////////////
 
+    //
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
@@ -157,7 +157,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     topLineLayout->addWidget(topButtonWidget);
     connect(playAllButton, SIGNAL(clicked()), SLOT(playAllButtonClicked()));
     connect(shareButton, SIGNAL(clicked()), SLOT(shareButtonClicked()));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topRightWidget = new QWidget(topFuncWidget);
     QGridLayout *topRightLayout = new QGridLayout(topRightWidget);
     topRightLayout->setContentsMargins(0, 0, 0, 0);
@@ -201,7 +201,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     topFuncLayout->addWidget(topRightWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
@@ -230,7 +230,7 @@ void MusicPlaylistFoundInfoWidget::setMusicResultsItem(const MusicResultsItem &i
     connect(group, SIGNAL(buttonClicked(int)), SLOT(setCurrentIndex(int)));
 
     grid->addWidget(functionWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
 #ifdef Q_OS_UNIX
     backButton->setFocusPolicy(Qt::NoFocus);

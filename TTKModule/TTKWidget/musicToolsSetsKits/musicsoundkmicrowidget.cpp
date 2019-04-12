@@ -245,7 +245,7 @@ void MusicSoundKMicroWidget::mediaUrlChanged(bool mv, const QString &url, const 
         m_mediaPlayer->setMedia(MusicCoreMPlayer::MusicCategory, url);
         m_mediaPlayer->play();
 
-        ////////////////////////////////////////////////////////////////
+        //
         MusicDownloadSourceThread *download = new MusicDownloadSourceThread(this);
         connect(download, SIGNAL(downLoadByteDataChanged(QByteArray)), SLOT(downLoadFinished(QByteArray)));
         download->startToDownload(lrcUrl);

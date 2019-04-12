@@ -85,7 +85,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
             {
                 bool albumFlag = false;
                 MusicResultsItem info;
-                ////////////////////////////////////////////////////////////
+                //
                 value = value["data"].toMap();
                 const QVariantList &datas = value["info"].toList();
                 foreach(const QVariant &var, datas)
@@ -128,7 +128,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -137,7 +137,7 @@ void MusicDownLoadQueryKGAlbumThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

@@ -461,7 +461,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MUSIC_DIR_FULL : m_ui->downloadPathEdit->text();
             QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
-            ////////////////////////////////////////////////
+            //
             MusicSongs records;
             MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
             if(!down.readConfig())
@@ -477,7 +477,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
             record.setMusicAddTimeStr("-1");
             records << record;
             down.writeDownloadData( records );
-            ////////////////////////////////////////////////
+            //
             if(QFile::exists(downloadName))
             {
                 for(int i=1; i<99; ++i)
@@ -494,7 +494,7 @@ void MusicDownloadWidget::startToDownloadMusic(const MusicObject::MusicSongInfor
                     downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
                 }
             }
-            ////////////////////////////////////////////////
+            //
             m_downloadTotal = 1;
             MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
             downSong->setRecordType(MusicObject::RecordNormalDownload);
@@ -538,12 +538,11 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
 
             QString musicSong = musicSongInfo.m_singerName + " - " + musicSongInfo.m_songName;
             const QString &downloadPrefix = m_ui->downloadPathEdit->text().isEmpty() ? MOVIE_DIR_FULL : m_ui->downloadPathEdit->text();
-            ////////////////////////////////////////////////
+            //
             const QStringList &urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
             m_downloadTotal = urls.count();
             for(int ul=0; ul<m_downloadTotal; ++ul)
             {
-                ////////////////////////////////////////////////
                 QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
                                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
                 if(QFile::exists(downloadName))
@@ -563,7 +562,7 @@ void MusicDownloadWidget::startToDownloadMovie(const MusicObject::MusicSongInfor
                                                            : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
                     }
                 }
-                ////////////////////////////////////////////////
+                //
                 MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicObject::DownloadVideo, this);
                 connect(download, SIGNAL(downLoadDataChanged(QString)), SLOT(dataDownloadFinished()));
                 download->startToDownload();

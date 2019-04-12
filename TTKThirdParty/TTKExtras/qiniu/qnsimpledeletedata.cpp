@@ -18,9 +18,8 @@ QNSimpleDeleteDataPrivate::QNSimpleDeleteDataPrivate()
 
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNSimpleDeleteData::QNSimpleDeleteData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {

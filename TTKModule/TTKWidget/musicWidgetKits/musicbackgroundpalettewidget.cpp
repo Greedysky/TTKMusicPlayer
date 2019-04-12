@@ -130,7 +130,7 @@ MusicBackgroundPaletteWidget::MusicBackgroundPaletteWidget(QWidget *parent)
     colors << QColor(43, 43, 43);
     colors << QColor(37, 13, 0);
     colors << QColor(22, 22, 14);
-    /////////////////////////////////////////
+    //
     QGridLayout *layout = new QGridLayout(m_ui->mutliWidget);
     layout->setContentsMargins(0, 0, 0, 0);
     for(int i=0; i<COLOR_ROW; ++i)

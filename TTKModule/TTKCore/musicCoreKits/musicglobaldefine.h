@@ -21,7 +21,7 @@
 
 #include <QtCore/qglobal.h>
 
-//////////////////////////////////////
+///
 #ifdef TTK_LIBRARY
 #  define MUSIC_NETWORK
 #  define MUSIC_CORE
@@ -37,10 +37,7 @@
 #  define MUSIC_GUI
 #endif
 
-//////////////////////////////////////
 ///exoprt
-///
-///
 #define MUSIC_EXPORT
 
 
@@ -140,9 +137,9 @@
 #  endif
 #endif
 
-//////////////////////////////////////
+///
 #include "musiclogger.h"
 #include "musicglobal.h"
-//////////////////////////////////////
+///
 
 #endif // MUSICGLOBALDEFINE_H

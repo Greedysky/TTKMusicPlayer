@@ -72,7 +72,6 @@ void MusicDownLoadThreadAbstract::downloadProgress(qint64 bytesReceived, qint64 
 void MusicDownLoadThreadAbstract::updateDownloadSpeed()
 {
     int delta = m_currentReceived - m_hasReceived;
-    //////////////////////////////////////
     ///limit speed
     if(M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 0)
     {
@@ -87,7 +86,6 @@ void MusicDownLoadThreadAbstract::updateDownloadSpeed()
             delta = limitValue*MH_KB;
         }
     }
-    //////////////////////////////////////
     m_hasReceived = m_currentReceived;
 }
 

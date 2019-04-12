@@ -47,9 +47,7 @@ KugouWindowPrivate::~KugouWindowPrivate()
     delete m_webView;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
 
 KugouWindow::KugouWindow(KuGouType type, QWidget *parent)
     : QWidget(parent)

@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 #endif
-    ///////////////////////////////////////////////////////
+    //
     QCoreApplication::setOrganizationName(APP_NAME);
     QCoreApplication::setOrganizationDomain(APP_COME_NAME);
     QCoreApplication::setApplicationName(APP_NAME);
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     MusicApplication w;
     w.show();
-    ///////////////////////////////////////////////////////
+    //
 
     if(argc == 4)
     {

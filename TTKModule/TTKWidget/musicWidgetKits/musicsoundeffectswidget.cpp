@@ -202,7 +202,7 @@ MusicSoundEffectsWidget::MusicSoundEffectsWidget(QWidget *parent)
     m_ui->eqEffectButton->setFocusPolicy(Qt::NoFocus);
 #endif
 
-    ////////////////////////////////////////////////////////////////////
+    //
     m_ui->BS2BWidget->setText("BS2B");
     m_ui->BS2BWidget->setType(MusicSoundEffectsItemWidget::BS2B);
 

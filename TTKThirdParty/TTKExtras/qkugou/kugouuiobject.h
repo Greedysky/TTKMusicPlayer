@@ -27,7 +27,6 @@
 namespace MusicUIObject
 {
 ///PushButton
-//////////////////////////////////////////////////////
     const QString MPushButtonStyle01 = " \
                     QPushButton{ border:none; color:rgb(135, 135, 135); font-size:14px;} \
                     QPushButton:hover{ color:rgb(104, 169, 236);} \
@@ -37,7 +36,6 @@ namespace MusicUIObject
                     QPushButton{ color:rgb(104, 169, 236);}";
 
 ///Widget
-//////////////////////////////////////////////////////
     const QString MWidgetStyle01 = " \
                     QWidget{ background:white;}";
 

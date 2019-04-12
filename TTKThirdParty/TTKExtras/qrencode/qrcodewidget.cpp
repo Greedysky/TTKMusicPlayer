@@ -30,9 +30,8 @@ QRCodeQWidgetPrivate::QRCodeQWidgetPrivate()
     m_percent = 0.23f;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QRCodeQWidget::QRCodeQWidget(const QByteArray &text, const QSize &size, QWidget *parent)
     : QWidget(parent)
 {

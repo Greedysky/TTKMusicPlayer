@@ -62,7 +62,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
             if(value["code"].toInt() == 200 && value.contains("hotSongs"))
             {
                 bool artistFlag = false;
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantMap &artistObject = value["artist"].toMap();
                 const QString &smallPicUrl = artistObject["picUrl"].toString();
                 const QString &singerName = MusicUtils::String::illegalCharactersReplaced(artistObject["name"].toString());
@@ -111,7 +111,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!artistFlag)
                     {
                         artistFlag = true;
@@ -125,7 +125,7 @@ void MusicDownLoadQueryWYArtistThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

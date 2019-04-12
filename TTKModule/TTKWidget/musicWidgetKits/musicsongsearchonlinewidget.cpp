@@ -55,7 +55,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////
+    //
     MusicSearchRecords records;
     MusicLocalSongSearchRecordConfigManager search(this);
     if(!search.readConfig())
@@ -68,7 +68,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
     record.m_time = QString::number(MusicTime::timeStamp());
     records.insert(0, record);
     search.writeSearchData( records );
-    ////////////////////////////////////////////////
+    //
     if(!m_downLoadManager)
     {
         MusicQueryItemTableWidget::startSearchQuery(text);
@@ -79,7 +79,7 @@ void MusicSongSearchTableWidget::startSearchQuery(const QString &text)
         MusicQueryItemTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
-    ////////////////////////////////////////////////
+    //
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSearch(MusicDownLoadQueryThreadAbstract::MusicQuery, text);
@@ -93,7 +93,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         emit showDownLoadInfoFor(MusicObject::DW_DisConnection);
         return;
     }
-    ////////////////////////////////////////////////
+    //
     if(!m_downLoadManager)
     {
         MusicQueryItemTableWidget::startSearchQuery(text);
@@ -104,7 +104,7 @@ void MusicSongSearchTableWidget::startSearchSingleQuery(const QString &text)
         MusicQueryItemTableWidget::startSearchQuery(text);
         m_downLoadManager->setSearchQuality(quality);
     }
-    ////////////////////////////////////////////////
+    //
     m_loadingLabel->run(true);
     m_downLoadManager->setQueryAllRecords(m_queryAllRecords);
     m_downLoadManager->startToSingleSearch(text);
@@ -639,7 +639,7 @@ void MusicSongSearchOnlineWidget::createToolWidget(QWidget *widget)
     funcWidget->setLayout(funcLayout);
     wLayout->addWidget(funcWidget);
 
-    //////////////////////////////////////////////////////////
+    //
     QWidget *labelWidget = new QWidget(widget);
     QHBoxLayout *labelLayout = new QHBoxLayout(labelWidget);
     labelLayout->setContentsMargins(7, 0, 10, 0);

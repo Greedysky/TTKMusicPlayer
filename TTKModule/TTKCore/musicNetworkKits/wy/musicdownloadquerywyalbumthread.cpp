@@ -93,7 +93,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                                      albumValue["language"].toString() + TTK_STR_SPLITER +
                                      albumValue["company"].toString() + TTK_STR_SPLITER +
                                      QDateTime::fromMSecsSinceEpoch(albumValue["publishTime"].toULongLong()).toString("yyyy-MM-dd");
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["songs"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -138,7 +138,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -146,7 +146,7 @@ void MusicDownLoadQueryWYAlbumThread::downLoadFinished()
                         info.m_name = musicInfo.m_singerName;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

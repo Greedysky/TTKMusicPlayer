@@ -151,12 +151,12 @@ public:
 //    AP or A	use AM/PM display. A/AP will be replaced by either "AM" or "PM".
 //    ap or a	use am/pm display. a/ap will be replaced by either "am" or "pm".
 //    t	the timezone (for example "CEST")
-    //////////////////////////////////////////////
+    //
     /*!
      * Get all time value by type.
      */
     qint64 getTimeStamp(Type type) const;
-    //////////////////////////////////////////////
+    //
     /*!
      * Transform ms time from utc since epoch.
      */
@@ -165,7 +165,7 @@ public:
      * Init random time seed.
      */
     static void timeSRand();
-    //////////////////////////////////////////////
+    //
     /*!
      * Transform string format(mm:ss) to msec time.
      */
@@ -186,7 +186,6 @@ public:
      * Transform msec time to string format(/ ss / mm / hh / dd).
      */
     static QString normalTime2Label(qint64 time);
-    //////////////////////////////////////////////
 
     MusicTime& operator=  (const MusicTime &other);
     MusicTime& operator+= (const MusicTime &other);

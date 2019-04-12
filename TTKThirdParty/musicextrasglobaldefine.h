@@ -21,10 +21,7 @@
 
 #include "musicglobal.h"
 
-//////////////////////////////////////
 ///exoprt
-///
-///
 #define MUSIC_EXPORT
 
 #ifdef MUSIC_EXPORT

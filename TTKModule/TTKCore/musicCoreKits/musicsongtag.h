@@ -61,7 +61,6 @@ public:
      * Read music file path.
      */
     QString getFilePath() const;
-    /////////////////////////////////////////////
     /*!
      * Get artist name.
      */
@@ -106,7 +105,6 @@ public:
      * Get song file path.
      */
     QString getURL() const;
-    /////////////////////////////////////////////
     /*!
      * Set artist name.
      */
@@ -135,7 +133,6 @@ public:
      * Set song genre.
      */
     void setGenre(const QString &genre);
-    /////////////////////////////////////////////
     /*!
      * Set song image cover artist.
      */
@@ -148,7 +145,6 @@ public:
      * Get song image cover artist.
      */
     QPixmap getCover() const;
-    /////////////////////////////////////////////
     /*!
      * Get song sample rate.
      */
@@ -169,7 +165,6 @@ public:
      * Get song time length.
      */
     QString getLengthString() const;
-    /////////////////////////////////////////////
 
 protected:
     /*!

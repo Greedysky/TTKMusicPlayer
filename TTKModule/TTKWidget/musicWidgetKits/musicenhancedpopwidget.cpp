@@ -133,7 +133,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     m_lastSelectedIndex = (type == 0) ? m_lastSelectedIndex : type;
     M_SETTING_PTR->setValue(MusicSettingManager::EnhancedMusicChoiced, type);
 
-    ////////////////////////////////////////////////////////////////////
+    //
     if(type != 0)
     {
         M_SETTING_PTR->setValue(MusicSettingManager::EqualizerEnableChoiced, 0);
@@ -142,7 +142,7 @@ void MusicEnhancedPopWidget::setEnhancedMusicConfig(int type)
     {
         Effect::setEnabled(factory, false);
     }
-    ////////////////////////////////////////////////////////////////////
+    //
 
     emit enhancedMusicChanged(type);
 

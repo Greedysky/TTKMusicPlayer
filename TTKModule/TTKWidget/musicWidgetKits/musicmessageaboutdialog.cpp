@@ -24,11 +24,11 @@ MusicMessageAboutDialog::MusicMessageAboutDialog(QWidget *parent)
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
     connect(m_ui->confirmButton, SIGNAL(clicked()), SLOT(close()));
 
-    ///////////////////////////////////////////////////////
+    //
     m_counterPVThread = new MusicDownloadCounterPVThread(this);
     connect(m_counterPVThread, SIGNAL(downLoadDataChanged(QString)), SLOT(musicGetCounterFinished(QString)));
     m_counterPVThread->startToDownload();
-    ///////////////////////////////////////////////////////
+    //
 }
 
 MusicMessageAboutDialog::~MusicMessageAboutDialog()

@@ -38,7 +38,7 @@ void MusicTKPLConfigManager::writePlaylistData(const MusicSongItems &items, cons
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
     for(int i=0; i<items.count(); ++i)

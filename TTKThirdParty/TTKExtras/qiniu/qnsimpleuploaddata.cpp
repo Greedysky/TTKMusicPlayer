@@ -25,9 +25,8 @@ QNSimpleUploadDataPrivate::QNSimpleUploadDataPrivate()
 
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNSimpleUploadData::QNSimpleUploadData(QNetworkAccessManager *networkManager, QObject *parent)
     : QObject(parent)
 {

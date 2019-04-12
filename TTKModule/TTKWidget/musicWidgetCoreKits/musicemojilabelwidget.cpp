@@ -25,7 +25,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
 
     QWidget *labelWidget = new QWidget(this);
     labelWidget->setFixedHeight(110);
-    //////////////////////////////////////////////////////////////////////
+    //
     QGridLayout *labelIconLayout = new QGridLayout(labelWidget);
     labelIconLayout->setContentsMargins(0, 0, 0, 0);
     labelIconLayout->setSpacing(3);
@@ -48,7 +48,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         }
     }
     labelWidget->setLayout(labelIconLayout);
-    //////////////////////////////////////////////////////////////////////
+    //
     QWidget *buttonWidget = new QWidget(this);
     QHBoxLayout *buttonWidgetLayout = new QHBoxLayout(buttonWidget);\
     buttonWidgetLayout->setContentsMargins(0, 0, 5, 0);
@@ -68,7 +68,7 @@ MusicEMOJILabelWidget::MusicEMOJILabelWidget(QWidget *parent)
         m_buttonItems << button;
     }
     buttonClicked(0);
-    //////////////////////////////////////////////////////////////////////
+    //
     layout->addWidget(closeButton, 0, Qt::AlignRight | Qt::AlignVCenter);
     layout->addWidget(labelWidget);
     layout->addWidget(buttonWidget);

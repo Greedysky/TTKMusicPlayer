@@ -168,7 +168,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
     const QString &downloadPrefix = M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString();
     QString downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
-    ////////////////////////////////////////////////
+    //
     MusicSongs records;
     MusicDownloadRecordConfigManager down(MusicObject::RecordNormalDownload, this);
     if(!down.readConfig())
@@ -184,7 +184,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
     record.setMusicAddTimeStr("-1");
     records << record;
     down.writeDownloadData( records );
-    ////////////////////////////////////////////////
+    //
     if(QFile::exists(downloadName))
     {
         for(int i=1; i<99; ++i)
@@ -201,7 +201,7 @@ void MusicDownloadBatchTableItem::startToDownloadMusic()
             downloadName = QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format);
         }
     }
-    ////////////////////////////////////////////////
+    //
     MusicDataTagDownloadThread *downSong = new MusicDataTagDownloadThread(musicAttr.m_url, downloadName, MusicObject::DownloadMusic, this);
     downSong->setRecordType(MusicObject::RecordNormalDownload);
     connect(downSong, SIGNAL(downLoadDataChanged(QString)), m_supperClass, SLOT(dataDownloadFinished()));
@@ -222,11 +222,10 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
     const MusicObject::MusicSongAttribute &musicAttr = m_qulity->itemData(m_qulity->currentIndex()).value<MusicObject::MusicSongAttribute>();
     const QString &downloadPrefix = MOVIE_DIR_FULL;
     QString musicSong = m_singer->toolTip() + " - " + m_songName->toolTip();
-    ////////////////////////////////////////////////
+    //
     const QStringList &urls = musicAttr.m_multiPart ? musicAttr.m_url.split(TTK_STR_SPLITER) : QStringList(musicAttr.m_url);
     for(int ul=0; ul<urls.count(); ++ul)
     {
-        ////////////////////////////////////////////////
         QString downloadName = (urls.count() == 1) ? QString("%1%2.%3").arg(downloadPrefix).arg(musicSong).arg(musicAttr.m_format)
                                                    : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
         if(QFile::exists(downloadName))
@@ -246,7 +245,7 @@ void MusicDownloadBatchTableItem::startToDownloadMovie()
                                                    : QString("%1%2.part%3.%4").arg(downloadPrefix).arg(musicSong).arg(ul+1).arg(musicAttr.m_format);
             }
         }
-        ////////////////////////////////////////////////
+        //
         MusicDataDownloadThread *download = new MusicDataDownloadThread(urls[ul], downloadName, MusicObject::DownloadVideo, this);
         download->startToDownload();
     }

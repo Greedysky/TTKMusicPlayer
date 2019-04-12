@@ -195,7 +195,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
             if(value["code"].toInt() == 200 && value.contains("programs"))
             {
                 bool categoryFlag = false;
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["programs"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -220,7 +220,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
                     readFromMusicSongAttribute(&musicInfo, mainSongObject, m_searchQuality, true);
                     if(m_interrupt || !m_manager || m_stateCode != MusicObject::NetworkInit) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!categoryFlag)
                     {
                         categoryFlag = true;
@@ -232,7 +232,7 @@ void MusicDJRadioProgramCategoryThread::getDetailsFinished()
                         info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["createTime"].toULongLong()).toString("yyyy-MM-dd");
                         emit createCategoryInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(musicInfo.m_songAttrs.isEmpty())
                     {
                         continue;

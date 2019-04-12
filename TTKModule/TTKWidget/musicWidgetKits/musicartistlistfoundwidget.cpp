@@ -115,7 +115,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         m_categoryButton = new MusicArtistListFoundCategoryPopWidget(m_mainWindow);
         m_categoryButton->setCategory(m_downloadThread->getQueryServer(), this);
         containTopLayout->addWidget(m_categoryButton);
-        ///////////////////////////////////////////////////////////////////////
+        //
         QWidget *containNumberWidget = new QWidget(containTopWidget);
         QHBoxLayout *containNumberLayout  = new QHBoxLayout(containNumberWidget);
 #ifdef Q_OS_WIN
@@ -141,7 +141,7 @@ void MusicArtistListFoundWidget::createArtistListItem(const MusicResultsItem &it
         }
         containNumberWidget->setLayout(containNumberLayout);
         containTopLayout->addWidget(containNumberWidget);
-        ///////////////////////////////////////////////////////////////////////
+        //
         containTopWidget->setLayout(containTopLayout);
 
         QFrame *line = new QFrame(m_mainWindow);

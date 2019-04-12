@@ -43,15 +43,13 @@
 #   define MUSIC_DEBUG
 #endif
 
-//////////////////////////////////////
+///
 #ifdef __cplusplus
 #  define MUSIC_CAST
 #endif
-//////////////////////////////////////
 
-//////////////////////////////////////
+
 ///cast
-///
 #ifdef MUSIC_CAST
 #  define MConst_cast(x,y) (const_cast< x >(y))
 #else
@@ -82,7 +80,7 @@
 #  define MObject_cast(x,y) (qobject_cast< x >(y))
 #endif
 
-//////////////////////////////////////
+///
 #define M_IN const &
 #define M_OT &
 #define M_RT const
@@ -90,7 +88,7 @@
 #define M_RR const &
 #define M_CT const
 #define M_CR const &
-///////////////////////////////////////
+
 /*
  * C++11 keywords and expressions
  */
@@ -123,17 +121,19 @@
 #  define M_FINAL
 # endif
 #endif
-///////////////////////////////////////
+
+///
 #define TTK_ERROR_STR               "NaN"
 #define TTK_STR_SPLITER             "*|||*"
-///////////////////////////////////////
+
+///
 #define DEFAULT_LEVEL_LOWER         -1
 #define DEFAULT_LEVEL_LOW           0
 #define DEFAULT_LEVEL_NORMAL        -999
 #define DEFAULT_LEVEL_HIGH          999
 #define DEFAULT_LEVEL_HIGHER        9999
-///////////////////////////////////////
 
+///
 #define TTK_DECLARE_PTR(Class)              \
 public:                                     \
     using Class##Ptr = Class *;             \
@@ -151,8 +151,7 @@ public:                                     \
     TTK_DECLARE_PTR(Class)                  \
     TTK_DECLARE_GCN(Class)
 
-//////////////////////////////////////
-
+///
 #ifndef _MSC_VER
   //gcc version less than 3.4.0
   #if __GNUC__ <= 3 && __GNUC_MINOR__ <= 4
@@ -170,8 +169,8 @@ public:                                     \
 #define TTK_DECLARE_FLAGS(Flags, Enum)      \
     typedef QFlags<Enum> Flags;
 
-//////////////////////////////////////
 
+///
 #ifndef MUSIC_NAMESPACE
 #define MUSIC_NAMESPACE MUSIC
 #endif //MUSIC_NAMESPACE
@@ -190,7 +189,7 @@ public:                                     \
 #define MUSIC_USE_NAMESPACE
 #endif //MUSIC_NAMESPACE_SUPPORT
 
-//////////////////////////////////////
+///
 typedef signed char                        MInt8;         /* 8 bit signed */
 typedef unsigned char                      MUInt8;        /* 8 bit unsigned */
 typedef short                              MInt16;        /* 16 bit signed */
@@ -205,8 +204,8 @@ typedef float                              MFloat;        /* float */
 typedef bool                               MBool;         /* bool */
 
 typedef std::string                        MString;       /* string */
-///////////////////////////////////////
 
+///
 typedef QList<QVariant>                    MVariantList;            /* variantlist */
 typedef QList<int>                         MIntList;                /* intlist */
 typedef QSet<QVariant>                     MVariantSet;             /* variantset */
@@ -221,6 +220,5 @@ typedef QMapIterator<QString, QString>     MStringMapterator;       /* stringsMa
 typedef QMapIterator<QString, QStringList> MStringListMapIterator;  /* stringStrlistsMapIterator */
 typedef QMapIterator<int, MIntList>        MIntListMapIterator;     /* intIntlistMapIterator */
 typedef QMapIterator<qint64, QString>      MIntStringMapIterator;   /* intStrMapIterator */
-///////////////////////////////////////
 
 #endif // MUSICGLOBAL_H

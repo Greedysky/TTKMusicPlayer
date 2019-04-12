@@ -27,7 +27,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     m_tabWidget = new QTabWidget(mainWidget);
     m_tabWidget->setFixedHeight(300);
     m_tabWidget->setStyleSheet(MusicUIObject::MTabWidgetStyle01 + "QTabBar::tab{ width:120px;}");
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *songWidget = new QWidget(m_tabWidget);
     QVBoxLayout *songWidgetLayout = new QVBoxLayout(songWidget);
     QLabel *songLabel = new QLabel(tr("Input Song ID Or Url Link"), songWidget);
@@ -39,7 +39,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     songWidgetLayout->addStretch(1);
     songWidget->setLayout(songWidgetLayout);
     m_tabWidget->addTab(songWidget, tr("Song"));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *artistWidget = new QWidget(m_tabWidget);
     QVBoxLayout *artistWidgetLayout = new QVBoxLayout(artistWidget);
     QLabel *artistLabel = new QLabel(tr("Input Artist ID Or Url Link"), artistWidget);
@@ -51,7 +51,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     artistWidgetLayout->addStretch(1);
     artistWidget->setLayout(artistWidgetLayout);
     m_tabWidget->addTab(artistWidget, tr("Artist"));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *albumWidget = new QWidget(m_tabWidget);
     QVBoxLayout *albumWidgetLayout = new QVBoxLayout(albumWidget);
     QLabel *albumLabel = new QLabel(tr("Input Album ID Or Url Link"), albumWidget);
@@ -63,7 +63,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     albumWidgetLayout->addStretch(1);
     albumWidget->setLayout(albumWidgetLayout);
     m_tabWidget->addTab(albumWidget, tr("Album"));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *playlistWidget = new QWidget(m_tabWidget);
     QVBoxLayout *playlistWidgetLayout = new QVBoxLayout(playlistWidget);
     QLabel *playlistLabel = new QLabel(tr("Input Playlist ID Or Url Link"), playlistWidget);
@@ -75,7 +75,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     playlistWidgetLayout->addStretch(1);
     playlistWidget->setLayout(playlistWidgetLayout);
     m_tabWidget->addTab(playlistWidget, tr("Playlist"));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *movieWidget = new QWidget(m_tabWidget);
     QVBoxLayout *movieWidgetLayout = new QVBoxLayout(movieWidget);
     QLabel *movieLabel = new QLabel(tr("Input Movie ID Or Url Link"), movieWidget);
@@ -87,7 +87,7 @@ MusicAdvancedSearchedWidget::MusicAdvancedSearchedWidget(QWidget *parent)
     movieWidgetLayout->addStretch(1);
     movieWidget->setLayout(movieWidgetLayout);
     m_tabWidget->addTab(movieWidget, tr("Movie"));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     mainLayout->addStretch(1);
     mainLayout->addWidget(m_tabWidget);
     QPushButton *button = new QPushButton(tr("Search"), mainWidget);

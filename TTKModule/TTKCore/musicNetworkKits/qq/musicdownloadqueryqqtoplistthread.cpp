@@ -77,7 +77,7 @@ void MusicDownLoadQueryQQToplistThread::downLoadFinished()
                 info.m_description = topInfo["info"].toString();
                 info.m_updateTime = value["date"].toString();
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["songlist"].toList();
                 foreach(const QVariant &var, datas)
                 {

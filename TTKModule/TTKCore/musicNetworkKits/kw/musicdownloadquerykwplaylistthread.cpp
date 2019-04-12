@@ -219,9 +219,9 @@ void MusicDownLoadQueryKWPlaylistThread::getDetailsFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

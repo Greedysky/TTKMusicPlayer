@@ -298,7 +298,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     layout->setSpacing(15);
     layout->setContentsMargins(30, 30, 30, 0);
     w->setLayout(layout);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *top = new QWidget(w);
     layout->addWidget(top);
     QHBoxLayout *topLayout = new QHBoxLayout(top);
@@ -324,7 +324,7 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(recommendMoreLabel, SIGNAL(clicked()), SLOT(createRecommendWidget()));
     leftTopLayout->addWidget(recommendMoreLabel);
     topLayout->addWidget(leftTop);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *rightTop = new QWidget(top);
     QHBoxLayout *rightTopLayout = new QHBoxLayout(rightTop);
     rightTopLayout->setSpacing(0);
@@ -343,12 +343,12 @@ void MusicWebDJRadioWidget::initFirstWidget()
     connect(programMoreLabel, SIGNAL(clicked()), SLOT(createProgramWidget()));
     rightTopLayout->addWidget(programMoreLabel);
     topLayout->addWidget(rightTop);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QFrame *line = new QFrame(w);
     line->setFrameShape(QFrame::HLine);
     line->setStyleSheet("color:red");
     layout->addWidget(line);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     m_categoryWidget = new MusicWebDJRadioCategoryWidget(this);
     connect(m_categoryWidget, SIGNAL(currentCategoryClicked(MusicResultsItem)), SLOT(currentCategoryClicked(MusicResultsItem)));
     layout->addWidget(m_categoryWidget);

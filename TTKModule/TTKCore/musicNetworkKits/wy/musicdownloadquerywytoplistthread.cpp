@@ -79,7 +79,7 @@ void MusicDownLoadQueryWYToplistThread::downLoadFinished()
                 info.m_description = value["description"].toString();
                 info.m_updateTime = QDateTime::fromMSecsSinceEpoch(value["updateTime"].toULongLong()).toString("yyyy-MM-dd");
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["tracks"].toList();
                 foreach(const QVariant &var, datas)
                 {

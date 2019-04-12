@@ -86,7 +86,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                                      value["lan"].toString() + TTK_STR_SPLITER +
                                      value["company_new"].toMap()["name"].toString() + TTK_STR_SPLITER +
                                      value["aDate"].toString();
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["list"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -131,7 +131,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -141,7 +141,7 @@ void MusicDownLoadQueryQQAlbumThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

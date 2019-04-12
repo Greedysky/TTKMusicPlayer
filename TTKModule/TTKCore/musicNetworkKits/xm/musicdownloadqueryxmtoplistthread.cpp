@@ -81,7 +81,7 @@ void MusicDownLoadQueryXMToplistThread::downLoadFinished()
                 info.m_description = value["description"].toString();
                 info.m_updateTime = value["time"].toString();
                 emit createToplistInfoItem(info);
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["items"].toList();
                 foreach(const QVariant &var, datas)
                 {

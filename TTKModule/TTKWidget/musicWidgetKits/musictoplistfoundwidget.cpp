@@ -113,7 +113,7 @@ void MusicToplistFoundWidget::createLabels()
     QLabel *firstLabel = new QLabel(function);
     firstLabel->setText(tr("<font color=#158FE1> Rank </font>"));
     grid->addWidget(firstLabel);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *categoryWidget = new QWidget(function);
     QHBoxLayout *categoryWidgetLayout = new QHBoxLayout(categoryWidget);
     m_categoryButton = new MusicToplistFoundCategoryPopWidget(categoryWidget);
@@ -122,14 +122,14 @@ void MusicToplistFoundWidget::createLabels()
     categoryWidgetLayout->addStretch(1);
     categoryWidget->setLayout(categoryWidgetLayout);
     grid->addWidget(categoryWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
 
     m_iconLabel = new QLabel(topFuncWidget);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
     topLineLayout->setContentsMargins(10, 5, 5, 0);
@@ -152,12 +152,12 @@ void MusicToplistFoundWidget::createLabels()
     topLineLayout->addWidget(descriptionLabel);
     topLineWidget->setLayout(topLineLayout);
 
-    ////////////////////////////////////////////////////////////////////////////
+    //
     topFuncLayout->addWidget(m_iconLabel);
     topFuncLayout->addWidget(topLineWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
@@ -177,7 +177,7 @@ void MusicToplistFoundWidget::createLabels()
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //////////////////////////////////////////////////////////////////////
+    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

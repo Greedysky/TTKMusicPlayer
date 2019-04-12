@@ -90,7 +90,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     setTranslucentBackground();
     m_containWidget->setFixedSize(200, 85);
     QVBoxLayout *containLayout = new QVBoxLayout(m_containWidget);
-    //////////////////////////////////////////////////////////////
+    //
     QWidget *sizeWidget = new QWidget(m_containWidget);
     QHBoxLayout *sizeLayout = new QHBoxLayout(sizeWidget);
     sizeLayout->setContentsMargins(0, 0, 0, 0);
@@ -127,7 +127,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     sizeLayout->addWidget(bigButton);
     sizeLayout->addStretch(1);
     sizeWidget->setLayout(sizeLayout);
-    //////////////////////////////////////////////////////////////
+    //
     QWidget *colorWidget = new QWidget(m_containWidget);
     QHBoxLayout *colorLayout = new QHBoxLayout(colorWidget);
     colorLayout->setContentsMargins(0, 0, 0, 0);
@@ -186,7 +186,7 @@ void MusicVideoBarrageStylePopWidget::initWidget()
     colorLayout->addWidget(blueButton);
     colorLayout->addWidget(purpleButton);
     colorWidget->setLayout(colorLayout);
-    //////////////////////////////////////////////////////////////
+    //
     containLayout->addWidget(sizeWidget);
     containLayout->addWidget(colorWidget);
     m_containWidget->setLayout(containLayout);

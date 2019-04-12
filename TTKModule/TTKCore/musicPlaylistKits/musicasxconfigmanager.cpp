@@ -51,7 +51,7 @@ void MusicASXConfigManager::writePlaylistData(const MusicSongItems &items, const
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     QDomElement musicPlayerDom = createRoot("Asx", MusicXmlAttribute("version ", "3.0"));
     //Class A
     for(int i=0; i<items.count(); ++i)

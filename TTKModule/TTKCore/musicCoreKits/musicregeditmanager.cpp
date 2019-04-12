@@ -185,7 +185,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
         keyXSetting.setValue("Default", APP_DOT_NAME + key);
     }
 
-    ////////////////////////////////////////////////////////
+    //
     const QString &keyString = QString("HKEY_CURRENT_USER\\Software\\Classes\\") + APP_DOT_NAME + key;
     QSettings keySetting(keyString, QSettings::NativeFormat);
     keySetting.setValue("Default", key + QObject::tr("File"));
@@ -211,8 +211,7 @@ void MusicRegeditManager::createMusicRegedit(const QString &key)
     QSettings playListComSetting(playListComString, QSettings::NativeFormat);
     playListComSetting.setValue("Default", QString("\"%1\"").arg(QApplication::applicationFilePath().replace("/", "\\"))
                                          + QString(" %1 ").arg(MUSIC_OUTER_LIST) + QString("\"%1\""));
-
-    ////////////////////////////////////////////////////////
+    //
     const QString &fileExtsString = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\." + key;
     QSettings fileExtsSetting(fileExtsString, QSettings::NativeFormat);
     fileExtsSetting.setValue("Progid", APP_DOT_NAME + key);

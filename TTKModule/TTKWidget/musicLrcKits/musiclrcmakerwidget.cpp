@@ -641,7 +641,7 @@ void MusicLrcMakerWidget::createThirdWidget()
         m_ui->lrcViewer->addWidget(w);
         m_musicLrcContainer.append(w);
     }
-    ///////////////////////////////////////////////////////////////
+
     m_ui->stateButton_T->setText(!MusicApplication::instance()->isPlaying() ? tr("Play") : tr("Stop"));
     m_ui->timeSlider_T->setFocusPolicy(Qt::NoFocus);
     m_ui->lrc_make_up_T->setToolTip(tr("Before 1s"));

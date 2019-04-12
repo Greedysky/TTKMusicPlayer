@@ -199,9 +199,9 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
     }
 
 #ifdef MUSIC_GREATER_NEW
-    QString desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    const QString &desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 #else
-    QString desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+    const QString &desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
 #endif
 
     MusicRegeditManager reg;

@@ -93,7 +93,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                                      value["lang"].toString() + TTK_STR_SPLITER +
                                      value["company"].toString() + TTK_STR_SPLITER +
                                      value["pub"].toString();
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["musiclist"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -129,9 +129,9 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!albumFlag)
                     {
                         albumFlag = true;
@@ -139,7 +139,7 @@ void MusicDownLoadQueryKWAlbumThread::downLoadFinished()
                         info.m_name = musicInfo.m_singerName;
                         emit createAlbumInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

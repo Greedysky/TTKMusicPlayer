@@ -61,7 +61,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
             if(value.contains("abslist"))
             {
                 bool artistFlag = false;
-                ////////////////////////////////////////////////////////////
+                //
                 const QVariantList &datas = value["abslist"].toList();
                 foreach(const QVariant &var, datas)
                 {
@@ -97,9 +97,9 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                     {
                         continue;
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!findUrlFileSize(&musicInfo.m_songAttrs)) return;
-                    ////////////////////////////////////////////////////////////
+                    //
                     if(!artistFlag)
                     {
                         artistFlag = true;
@@ -112,7 +112,7 @@ void MusicDownLoadQueryKWArtistThread::downLoadFinished()
                         info.m_coverUrl = musicInfo.m_smallPicUrl;
                         emit createArtistInfoItem(info);
                     }
-                    ////////////////////////////////////////////////////////////
+                    //
                     MusicSearchedItem item;
                     item.m_songName = musicInfo.m_songName;
                     item.m_singerName = musicInfo.m_singerName;

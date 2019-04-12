@@ -246,7 +246,7 @@ void MusicIdentifySongsWidget::createDetectedWidget()
     widgetLayout->addStretch(1);
     widgetLayout->addWidget(text, 0, Qt::AlignCenter);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -270,7 +270,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     QWidget *widget = new QWidget(m_mainWindow);
     widget->setStyleSheet(MusicUIObject::MColorStyle03 + MusicUIObject::MFontStyle05);
     QVBoxLayout *widgetLayout = new QVBoxLayout(widget);
-    /////////////////////////////////////////////////////////////////////
+    //
     QWidget *infoWidget = new QWidget(widget);
     QHBoxLayout *infoWidgetLayout = new QHBoxLayout(infoWidget);
     infoWidgetLayout->setContentsMargins(0, 0, 0, 0);
@@ -283,7 +283,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     QLabel *textLabel = new QLabel(widget);
     textLabel->setText(QString("%1 - %2").arg(songIdentify.m_singerName).arg(songIdentify.m_songName));
     textLabel->setAlignment(Qt::AlignCenter);
-    /////////////////////////////////////////////////////////////////////
+    //
     MusicSemaphoreLoop loop;
     MusicDownLoadQueryThreadAbstract *d = M_DOWNLOAD_QUERY_PTR->getQueryThread(this);
     connect(d, SIGNAL(downLoadDataChanged(QString)), &loop, SLOT(quit()));
@@ -302,7 +302,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
             }
         }
     }
-    /////////////////////////////////////////////////////////////////////
+    //
     QLabel *iconLabel = new QLabel(widget);
     iconLabel->setMinimumSize(280, 280);
     if(!m_currentSong.m_singerName.isEmpty())
@@ -360,7 +360,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     infoFuncWidgetLayout->addWidget(downButton, 2, 2, Qt::AlignCenter);
     infoFuncWidgetLayout->addWidget(shareButton, 2, 3, Qt::AlignCenter);
     infoFuncWidget->setLayout(infoFuncWidgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_lrcLabel = new QLabel(widget);
     m_lrcLabel->setMinimumWidth(280);
 
@@ -385,7 +385,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     infoWidgetLayout->addWidget(infoFuncWidget);
     infoWidgetLayout->addWidget(m_lrcLabel);
     infoWidget->setLayout(infoWidgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
@@ -402,7 +402,7 @@ void MusicIdentifySongsWidget::createDetectedSuccessedWidget()
     widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }
@@ -423,7 +423,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     QLabel *text2Label = new QLabel(tr("Only The Music Being Played Can Be Recognized"), widget);
     QLabel *text3Label = new QLabel(tr("Redetect"), widget);
     text3Label->setStyleSheet(MusicUIObject::MFontStyle03);
-    /////////////////////////////////////////////////////////////////////
+    //
     QPushButton *reDetect = new QPushButton(widget);
     reDetect->setFixedSize(56, 56);
     reDetect->setStyleSheet(MusicUIObject::MKGSongsRedetectBtn);
@@ -444,7 +444,7 @@ void MusicIdentifySongsWidget::createDetectedFailedWidget()
     widgetLayout->addWidget(text3Label, 0, Qt::AlignCenter);
     widgetLayout->addStretch(1);
     widget->setLayout(widgetLayout);
-    /////////////////////////////////////////////////////////////////////
+    //
     m_mainWindow->addWidget(widget);
     m_mainWindow->setCurrentWidget(widget);
 }

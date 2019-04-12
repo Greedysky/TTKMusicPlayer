@@ -174,7 +174,7 @@ protected:
 };
 TTK_DECLARE_LISTS(MusicSong)
 
-////////////////////////////////////////////////////////
+//
 class MusicSongsListAbstractTableWidget;
 
 /*! @brief The class of the music song sort tag.

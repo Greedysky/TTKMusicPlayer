@@ -147,14 +147,14 @@ void MusicWebDJRadioInfoWidget::createLabels()
     firstTopFuncLayout->addWidget(firstLabel);
     firstTopFuncLayout->addWidget(backButton);
     grid->addWidget(firstTopFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topFuncWidget = new QWidget(function);
     QHBoxLayout *topFuncLayout = new QHBoxLayout(topFuncWidget);
 
     m_iconLabel = new QLabel(topFuncWidget);
     m_iconLabel->setPixmap(QPixmap(":/image/lb_warning").scaled(180, 180));
     m_iconLabel->setFixedSize(210, 180);
-    ////////////////////////////////////////////////////////////////////////////
+    //
 
     QWidget *topLineWidget = new QWidget(topFuncWidget);
     QVBoxLayout *topLineLayout = new QVBoxLayout(topLineWidget);
@@ -184,8 +184,8 @@ void MusicWebDJRadioInfoWidget::createLabels()
     topFuncLayout->addWidget(topLineWidget);
     topFuncWidget->setLayout(topFuncLayout);
     grid->addWidget(topFuncWidget);
-    ////////////////////////////////////////////////////////////////////////////
 
+    //
     QWidget *functionWidget = new QWidget(this);
     functionWidget->setStyleSheet(MusicUIObject::MPushButtonStyle03);
     QHBoxLayout *hlayout = new QHBoxLayout(functionWidget);
@@ -204,7 +204,8 @@ void MusicWebDJRadioInfoWidget::createLabels()
     m_songButton->setFocusPolicy(Qt::NoFocus);
 #endif
     grid->addWidget(functionWidget);
-    //////////////////////////////////////////////////////////////////////
+
+    //
     grid->addWidget(m_container);
     grid->addStretch(1);
 

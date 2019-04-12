@@ -556,7 +556,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     mainWidget->setLayout(mainLayout);
     layout->addWidget(mainWidget);
     setLayout(layout);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *topWidget = new QWidget(this);
     QHBoxLayout *topWidgetLayout = new QHBoxLayout(topWidget);
     mainLayout->setContentsMargins(10, 10, 10, 10);
@@ -588,7 +588,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     topWidgetLayout->addWidget(m_sizeValueLabel);
     topWidget->setLayout(topWidgetLayout);
     mainLayout->addWidget(topWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *functionWidget = new QWidget(this);
     QHBoxLayout *functionWidgetLayout = new QHBoxLayout(functionWidget);
     functionWidgetLayout->setContentsMargins(10, 10, 10, 10);
@@ -625,7 +625,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
     connect(uploadButton, SIGNAL(clicked(bool)), SLOT(uploadFilesToServer()));
     connect(downloadButton, SIGNAL(clicked(bool)), SLOT(downloadFileToServer()));
     connect(deleteButton, SIGNAL(clicked(bool)), SLOT(deleteFileToServer()));
-    ////////////////////////////////////////////////////////////////////////////
+    //
     QWidget *labelWidget = new QWidget(this);
     labelWidget->setStyleSheet(MusicUIObject::MBackgroundStyle03);
     QHBoxLayout *labelWidgetLayout = new QHBoxLayout(labelWidget);
@@ -648,7 +648,7 @@ MusicCloudManagerWidget::MusicCloudManagerWidget(QWidget *parent)
 
     labelWidget->setLayout(labelWidgetLayout);
     mainLayout->addWidget(labelWidget);
-    ////////////////////////////////////////////////////////////////////////////
+    //
     m_managerTableWidget = new MusicCloudManagerTableWidget(this);
     m_managerTableWidget->getKey();
 

@@ -25,7 +25,7 @@ void MusicLocalSongSearchRecordConfigManager::writeSearchData(const MusicSearchR
         return;
     }
 
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
     QDomElement musicPlayer = createRoot(APP_NAME);
     QDomElement download = writeDomNode(musicPlayer, "searchRecord");

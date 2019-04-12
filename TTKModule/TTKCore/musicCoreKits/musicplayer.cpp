@@ -156,7 +156,6 @@ void MusicPlayer::play()
     emit positionChanged(0);
     getCurrentDuration();
 
-    ////////////////////////////////////////////////
     ///Read the configuration settings for the sound
     const int volume = M_SETTING_PTR->value(MusicSettingManager::VolumeChoiced).toInt();
     if(volume != -1)
@@ -164,7 +163,6 @@ void MusicPlayer::play()
         setVolume(volume);
     }
     setSoundEffectVolume(M_SETTING_PTR->value(MusicSettingManager::EnhancedBalanceChoiced).toInt());
-    ////////////////////////////////////////////////
 }
 
 void MusicPlayer::pause()

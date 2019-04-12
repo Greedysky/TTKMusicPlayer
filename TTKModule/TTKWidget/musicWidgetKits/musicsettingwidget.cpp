@@ -84,14 +84,14 @@ MusicSettingWidget::MusicSettingWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    ////////////////////////////////////////////////
+    //
     m_ui->topTitleCloseButton->setIcon(QIcon(":/functions/btn_close_hover"));
     m_ui->topTitleCloseButton->setStyleSheet(MusicUIObject::MToolButtonStyle04);
     m_ui->topTitleCloseButton->setCursor(QCursor(Qt::PointingHandCursor));
     m_ui->topTitleCloseButton->setToolTip(tr("Close"));
     connect(m_ui->topTitleCloseButton, SIGNAL(clicked()), SLOT(close()));
 
-    ////////////////////////////////////////////////
+    //
     MusicFunctionItems items;
     items << MusicFunctionItem(":/contextMenu/btn_setting", tr("Normal"))
           << MusicFunctionItem(":/contextMenu/btn_keyboard", tr("Hotkey"))
@@ -159,7 +159,7 @@ void MusicSettingWidget::initControllerParameter()
     }
     m_ui->languageComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::CurrentLanIndexChoiced).toInt());
 
-    ///////////////////////////////////////////////////////////////////////////
+    //
     QStringList hotkeys = M_SETTING_PTR->value(MusicSettingManager::HotkeyStringChoiced).toString().split(TTK_STR_SPLITER);
     if(hotkeys.count() != M_HOTKEY_PTR->count())
     {
@@ -176,7 +176,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->globalHotkeyBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::HotkeyEnableChoiced).toBool());
     globalHotkeyBoxChanged(m_ui->globalHotkeyBox->isChecked());
 
-    ////////////////////////////////////////////////
+    //
     M_SETTING_PTR->value(MusicSettingManager::OtherBackgroundLosslessChoiced).toBool() ? m_ui->otherHeighImageRadioBox->click() : m_ui->otherNormalImageRadioBox->click();
     m_ui->otherCheckUpdateBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherCheckUpdateChoiced).toBool());
     m_ui->otherSearchCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::OtherSearchChoiced).toBool());
@@ -193,7 +193,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->ripplesSpectrumColorButton->setColors(MusicUtils::String::readColorConfig(M_SETTING_PTR->value(MusicSettingManager::OtherRippleSpectrumColorChoiced).toString()));
     ripplesSpectrumOpacityEnableClicked(m_ui->ripplesSpectrumEnableBox->isChecked());
 
-    ////////////////////////////////////////////////
+    //
     m_ui->downloadDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadMusicPathDirChoiced).toString());
     m_ui->downloadLrcDirEdit->setText(M_SETTING_PTR->value(MusicSettingManager::DownloadLrcPathDirChoiced).toString());
     m_ui->downloadSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::DownloadCacheSizeChoiced).toInt());
@@ -203,7 +203,7 @@ void MusicSettingWidget::initControllerParameter()
     MusicUtils::Widget::setComboBoxText(m_ui->uploadLimitSpeedComboBox, M_SETTING_PTR->value(MusicSettingManager::DownloadULoadLimitChoiced).toString());
     M_SETTING_PTR->value(MusicSettingManager::DownloadLimitChoiced).toInt() == 1 ? m_ui->downloadFullRadioBox->click() : m_ui->downloadLimitRadioBox->click();
 
-    ////////////////////////////////////////////////
+    //
     //Set init parameter
     m_ui->showInlineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowInlineLrcChoiced).toBool());
     m_ui->showInlineCheckBox->setEnabled(false);
@@ -224,7 +224,7 @@ void MusicSettingWidget::initControllerParameter()
     }
     m_ui->transparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::LrcColorTransChoiced).toInt());
 
-    ////////////////////////////////////////////////
+    //
     m_ui->showDesktopCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::ShowDesktopLrcChoiced).toBool());
     m_ui->DSingleLineCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::DLrcSingleLineTypeChoiced).toBool());
     m_ui->DfontComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DLrcFamilyChoiced).toInt());
@@ -243,7 +243,7 @@ void MusicSettingWidget::initControllerParameter()
     }
     m_ui->DtransparentSlider->setValue(M_SETTING_PTR->value(MusicSettingManager::DLrcColorTransChoiced).toInt());
 
-    ///////////////////////////////////////////////////////////////////////////
+    //
     QmmpSettings *qmmpSettings = QmmpSettings::instance();
     //replay gain
     m_ui->clippingCheckBox->setChecked(qmmpSettings->replayGainPreventClipping());
@@ -257,7 +257,7 @@ void MusicSettingWidget::initControllerParameter()
     m_ui->ditheringCheckBox->setChecked(qmmpSettings->useDithering());
     m_ui->bufferSizeSpinBox->setValue(qmmpSettings->bufferSize());
 
-    ///////////////////////////////////////////////////////////////////////////
+    //
     m_ui->fadeInSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeInValueChoiced).toInt());
     m_ui->fadeOutSpinBox->setValue(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeOutValueChoiced).toInt());
     if(M_SETTING_PTR->value(MusicSettingManager::EnhancedFadeEnableChoiced).toInt())
@@ -265,7 +265,7 @@ void MusicSettingWidget::initControllerParameter()
         m_ui->fadeInAndOutCheckBox->click();
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    //
     m_ui->downloadServerComboBox->setCurrentIndex(M_SETTING_PTR->value(MusicSettingManager::DownloadServerChoiced).toInt());
     m_ui->closeNetWorkCheckBox->setChecked(M_SETTING_PTR->value(MusicSettingManager::CloseNetWorkChoiced).toInt());
     if(M_SETTING_PTR->value(MusicSettingManager::FileAssociationChoiced).toInt() && MusicRegeditManager().isFileAssociate())
@@ -656,7 +656,7 @@ void MusicSettingWidget::selectFunctionTableIndex(int row, int col)
 
 void MusicSettingWidget::initScrollWidgetPage()
 {
-    ////////////////////////////////////////////////
+    //
     initNormalSettingWidget();
     initDownloadWidget();
     initOtherSettingWidget();
@@ -665,14 +665,14 @@ void MusicSettingWidget::initScrollWidgetPage()
     initSoundEffectWidget();
     initAudioSettingWidget();
     initNetworkWidget();
-    ////////////////////////////////////////////////
+    //
     QVBoxLayout *scrollAreaWidgetAreaLayout = new QVBoxLayout(m_ui->scrollAreaWidgetArea);
     scrollAreaWidgetAreaLayout->setSpacing(0);
     scrollAreaWidgetAreaLayout->setContentsMargins(0, 0, 0, 0);
     m_ui->scrollAreaWidgetArea->setLayout(scrollAreaWidgetAreaLayout);
     m_ui->scrollAreaWidget->setMovedScrollBar();
     connect(m_ui->scrollAreaWidget->verticalScrollBar(), SIGNAL(valueChanged(int)), SLOT(scrollWidgetValueChanged(int)));
-    ////////////////////////////////////////////////
+    //
     scrollAreaWidgetAreaLayout->addWidget(m_ui->first);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->second);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->third);
@@ -682,7 +682,7 @@ void MusicSettingWidget::initScrollWidgetPage()
     scrollAreaWidgetAreaLayout->addWidget(m_ui->seven);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->eight);
     scrollAreaWidgetAreaLayout->addWidget(m_ui->nine);
-    ////////////////////////////////////////////////
+    //
     m_ui->stackedWidget->hide();
     m_ui->first->show();
     m_ui->second->show();
@@ -693,11 +693,11 @@ void MusicSettingWidget::initScrollWidgetPage()
     m_ui->seven->show();
     m_ui->eight->show();
     m_ui->nine->show();
-    ////////////////////////////////////////////////
+    //
     m_ui->scrollAreaWidgetArea->setFixedHeight(9 * SCROLL_ITEM_HEIGHT);
     m_ui->scrollAreaWidget->raise();
     selectFunctionTableIndex(0, 0);
-    ////////////////////////////////////////////////
+    //
 }
 
 void MusicSettingWidget::initNormalSettingWidget()
@@ -834,7 +834,7 @@ void MusicSettingWidget::initDownloadWidget()
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kuwo"), tr("kuwoMusic"));
     m_ui->downloadServerComboBox->addItem(QIcon(":/server/lb_kugou"), tr("kugouMusic"));
 
-    /////////////////////////////////////////////////////////////
+    //
     QButtonGroup *buttonGroup = new QButtonGroup(this);
     buttonGroup->addButton(m_ui->downloadCacheAutoRadioBox, 0);
     buttonGroup->addButton(m_ui->downloadCacheManRadioBox, 1);

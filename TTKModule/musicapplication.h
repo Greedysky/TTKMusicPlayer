@@ -72,7 +72,7 @@ public:
      */
     void musicLoadCurrentSongLrc();
 
-    ////////////////////////////////////////////////
+    //
     /*!
      * Execute outer radio by type.
      */
@@ -81,7 +81,7 @@ public:
      * Import outer music datas into container.
      */
     void musicImportSongsSettingPathOuter(const QStringList &path, bool play);
-    ////////////////////////////////////////////////
+    //
 
     /*!
      * Import music datas into container.
@@ -258,17 +258,14 @@ public Q_SLOTS:
      * Create right menu.
      */
     void musicCreateRightMenu();
-    /////////////////////////////////////////////
     /*!
      * Search file from list.
      */
     void musicSearchIndexChanged(int row, int col);
-    /////////////////////////////////////////////
     /*!
      * Get settings parameters.
      */
     void getParameterSetting();
-    /////////////////////////////////////////////
     /*!
      * Delete love item from indexs.
      */
@@ -277,7 +274,6 @@ public Q_SLOTS:
      * Delete items from indexs.
      */
     void setDeleteItemAt(const QStringList &path, bool remove, bool current, int toolIndex);
-    /////////////////////////////////////////////
     /*!
      * The current lrc should update, emit it.
      */

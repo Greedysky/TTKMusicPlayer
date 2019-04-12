@@ -137,9 +137,8 @@ QByteArray QNPutPolicyPrivate::toJSON(bool compact)
     return data;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
+
+
 QNPutPolicy::QNPutPolicy(const QString &scope)
 {
     TTK_INIT_PRIVATE;

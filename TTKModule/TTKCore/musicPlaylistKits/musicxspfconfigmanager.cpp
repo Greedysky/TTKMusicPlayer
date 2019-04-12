@@ -33,9 +33,9 @@ void MusicXSPFConfigManager::writePlaylistData(const MusicSongItems &items, cons
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     createProcessingInstruction();
-    ///////////////////////////////////////////////////////
+    //
     QDomElement musicPlayerDom = createRoot("playlist");
     //Class A
     writeDomText(musicPlayerDom, "creator", APP_NAME);

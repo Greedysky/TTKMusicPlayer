@@ -269,7 +269,7 @@ void MusicLrcAnalysis::matchLrcLine(const QString &oneLine)
         type = Type14;
         regx = regx14;
     }
-    /////////////////////////////////////////
+
     QString temp = oneLine;
     temp.replace(regx, QString());
     int pos = regx.indexIn(oneLine, 0);

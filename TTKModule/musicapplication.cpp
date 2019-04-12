@@ -45,12 +45,12 @@ MusicApplication::MusicApplication(QWidget *parent)
     m_bottomAreaWidget = new MusicBottomAreaWidget(this);
     m_rightAreaWidget = new MusicRightAreaWidget(this);
     m_leftAreaWidget = new MusicLeftAreaWidget(this);
-    ////////////////////////////////////////////////
+    //
     m_ui->setupUi(this);
     const QSize &size = M_SETTING_PTR->value(MusicSettingManager::ScreenSize).toSize();
     setMinimumSize(WINDOW_WIDTH_MIN, WINDOW_HEIGHT_MIN);
     setMaximumSize(size.width(), size.height());
-    ////////////////////////////////////////////////
+    //
 
     m_musicPlayer = new MusicPlayer(this);
     m_musicPlaylist = new MusicPlaylist(this);
@@ -373,10 +373,10 @@ void MusicApplication::showCurrentSong(int index)
         bool exist = false;
         musicDownloadContains(exist);
         m_ui->musicDownload->setStyleSheet(exist ? MusicUIObject::MKGBtnDownload : MusicUIObject::MKGBtnUnDownload);
-        //////////////////////////////////////////
+        //
         exist = musicLovestContains();
         m_ui->musicBestLove->setStyleSheet(exist ? MusicUIObject::MKGBtnLove : MusicUIObject::MKGBtnUnLove);
-        //////////////////////////////////////////
+        //
         m_musicSongTreeWidget->selectRow(index);
     }
     else
@@ -1130,7 +1130,7 @@ void MusicApplication::readXMLConfigFromText()
         listXml.readPlaylistData(songs);
     }
     const bool success = m_musicSongTreeWidget->addMusicLists(songs);
-    //////////////////////////////////////////////////////////////
+    //
     MusicSysConfigManager xml;
     if(!xml.readConfig())
     {
@@ -1139,7 +1139,7 @@ void MusicApplication::readXMLConfigFromText()
     xml.readSysConfigData();
     m_applicationObject->loadNetWorkSetting();
 
-    //////////////////////////////////////////////////////////////
+    //
     switch( M_SETTING_PTR->value(MusicSettingManager::PlayModeChoiced).toInt() )
     {
         case MusicObject::PM_PlayOrder:
@@ -1154,7 +1154,7 @@ void MusicApplication::readXMLConfigFromText()
             musicPlayItemOnce();break;
         default:break;
     }
-    //////////////////////////////////////////////////////////////
+    //
     value = M_SETTING_PTR->value(MusicSettingManager::RemoteWidgetModeChoiced).toInt();
     if(value != 0)
     {

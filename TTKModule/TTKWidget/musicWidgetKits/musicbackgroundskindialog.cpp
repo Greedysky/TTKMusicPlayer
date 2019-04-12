@@ -46,7 +46,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
 #endif
     connect(m_ui->skinAnimationSiwidget, SIGNAL(buttonClicked(int)), SLOT(backgroundListWidgetChanged(int)));
 
-    //////////////////////////////////////////////////////
+    //
     m_backgroundList = new MusicBackgroundListWidget(this);
     NEW_OPERATOR(m_ui->recommandScrollArea, m_backgroundList);
 
@@ -62,7 +62,7 @@ MusicBackgroundSkinDialog::MusicBackgroundSkinDialog(QWidget *parent)
     m_myThemeIndex = CURRENT_ITEMS_COUNT;
     addThemeListWidgetItem();
     backgroundListWidgetChanged(0);
-    //////////////////////////////////////////////////////
+    //
     m_ui->resetWindowButton->setStyleSheet(MusicUIObject::MKGBtnResetWindow);
     m_ui->skinTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
     m_ui->listTransparentButton->setStyleSheet(MusicUIObject::MToolButtonStyle06);
@@ -225,7 +225,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     m_dailyBackgroundList->abort();
     m_thunderBackgroundList->abort();
     if(index == 2)
@@ -236,7 +236,7 @@ void MusicBackgroundSkinDialog::backgroundListWidgetChanged(int index)
     {
         m_thunderBackgroundList->init();
     }
-    ///////////////////////////////////////////////////////
+    //
     m_ui->stackedWidget->setIndex(0, 0);
     m_ui->stackedWidget->start(index);
 }

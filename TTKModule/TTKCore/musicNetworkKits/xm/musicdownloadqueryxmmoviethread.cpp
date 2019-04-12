@@ -228,13 +228,13 @@ void MusicDownLoadQueryXMMovieThread::pageDownLoadFinished()
         const QString html(bytes);
         QRegExp regx;
         regx.setMinimal(true);
-        ///////////////////////////////////////////////////////////////////
+        //
         regx.setPattern("<p class=\"counts\">.*(\\d+).*</p>");
         if(html.indexOf(regx) != -1)
         {
             m_pageTotal = regx.cap(1).toInt();
         }
-        ///////////////////////////////////////////////////////////////////
+        //
         regx.setPattern("<div class=\"mv_item100_block\">(.*)</div>");
         int pos = html.indexOf(regx);
         while(pos != -1)

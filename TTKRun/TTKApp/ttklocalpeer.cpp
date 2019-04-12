@@ -53,10 +53,7 @@ TTKLocalPeerPrivate::~TTKLocalPeerPrivate()
     delete m_server;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
-///
+
 
 TTKLocalPeer::TTKLocalPeer(QObject *parent, const QString &appId)
     : QObject(parent)

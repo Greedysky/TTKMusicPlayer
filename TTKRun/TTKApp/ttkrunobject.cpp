@@ -24,10 +24,8 @@ TTKRunObjectPrivate::~TTKRunObjectPrivate()
     delete m_process;
 }
 
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-///
-///
+
+
 TTKRunObject::TTKRunObject(QObject *parent)
     : QObject(parent)
 {

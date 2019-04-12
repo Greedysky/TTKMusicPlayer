@@ -27,10 +27,10 @@ void MusicWPLConfigManager::writePlaylistData(const MusicSongItems &items, const
     {
         return;
     }
-    ///////////////////////////////////////////////////////
+    //
     const QDomNode &node = m_document->createProcessingInstruction(WPL_FILE_PREFIX, "version='1.0' encoding='UTF-8'");
     m_document->appendChild( node );
-    ///////////////////////////////////////////////////////
+    //
     QDomElement musicPlayerDom = createRoot("smil");
     //Class A
     QDomElement headSettingDom = writeDomNode(musicPlayerDom, "head");

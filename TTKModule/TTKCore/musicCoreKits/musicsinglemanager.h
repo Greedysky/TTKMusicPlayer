@@ -23,7 +23,7 @@
 #include "musicsingleton.h"
 
 #define M_SINGLE_MANAGER_PTR (MusicSingleton<MusicSingleManager>::createInstance())
-///////////////////////////////////////////////////////////////////////////////////
+//
 #define M_SINGLE_MANAGER_WIDGET_NEW2(name, parent)                      \
     MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
     if(!manager->contains(#name))                                       \
@@ -44,7 +44,7 @@
 
 #define M_SINGLE_MANAGER_WIDGET_CLASS(name)                             \
     M_SINGLE_MANAGER_WIDGET_CLASS2(name, MusicApplication::instance())
-///////////////////////////////////////////////////////////////////////////////////
+//
 #define M_SINGLE_MANAGER_DIALOG_NEW2(name, parent)                      \
     MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
     if(!manager->contains(#name))                                       \
@@ -64,7 +64,7 @@
 
 #define M_SINGLE_MANAGER_DIALOG_CLASS(name)                             \
     M_SINGLE_MANAGER_DIALOG_CLASS2(name, MusicApplication::instance())
-///////////////////////////////////////////////////////////////////////////////////
+//
 #define M_SINGLE_MANAGER_CORE_NEW2(name, parent)                        \
     MusicSingleManager *manager = M_SINGLE_MANAGER_PTR;                 \
     if(!manager->contains(#name))                                       \
@@ -84,7 +84,7 @@
 
 #define M_SINGLE_MANAGER_CORE_CLASS(name)                               \
     M_SINGLE_MANAGER_CORE_CLASS2(name, nullptr)
-///////////////////////////////////////////////////////////////////////////////////
+//
 
 
 /*! @brief The class of the single object manager.

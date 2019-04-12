@@ -18,13 +18,11 @@ void MusicRunTimeManager::run() const
 #endif
     MusicUtils::QMMP::updateMidConfigFile();
 
-    ///////////////////////////////////////////////////////
 #ifdef Q_OS_UNIX
     QFont font;
     font.setPixelSize(13);
     qApp->setFont(font);
 #endif
-    ///////////////////////////////////////////////////////
 
     //detect the current network state
     M_NETWORK_PTR->start();
