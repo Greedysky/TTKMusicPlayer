@@ -8,7 +8,7 @@
 #include "musicplaylist.h"
 #include "musicbackgroundmanager.h"
 #include "musicsettingmanager.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicmessagebox.h"
 #include "musictime.h"
 #include "musicbottomareawidget.h"

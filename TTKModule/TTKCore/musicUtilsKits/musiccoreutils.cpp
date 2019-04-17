@@ -1,6 +1,6 @@
 #include "musiccoreutils.h"
 #include "musicsettingmanager.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 
 #include <QDirIterator>
 

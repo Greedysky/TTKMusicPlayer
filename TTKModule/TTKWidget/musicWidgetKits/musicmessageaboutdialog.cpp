@@ -1,6 +1,6 @@
 #include "musicmessageaboutdialog.h"
 #include "ui_musicmessageaboutdialog.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicuiobject.h"
 #include "musicdownloadcounterpvthread.h"
 

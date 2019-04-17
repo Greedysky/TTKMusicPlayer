@@ -13,7 +13,7 @@
 #include "musiclrcmanager.h"
 #include "musicregeditmanager.h"
 #include "musicotherdefine.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicsourceupdatewidget.h"
 #include "musicsinglemanager.h"
 #include "musicapplication.h"

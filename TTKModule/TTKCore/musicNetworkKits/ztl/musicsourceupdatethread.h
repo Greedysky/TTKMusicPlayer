@@ -20,7 +20,7 @@
  ================================================= */
 
 #include <QVariantMap>
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicglobaldefine.h"
 
 /*! @brief The class of source data query pdate thread.

@@ -1,7 +1,7 @@
 #include "musicsongtag.h"
 #include "musictime.h"
 #include "musicformats.h"
-#include "musicversion.h"
+#include "ttkversion.h"
 #include "musicqmmputils.h"
 #include "musicwidgetutils.h"
 #include "musicstringutils.h"
