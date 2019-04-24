@@ -6,8 +6,8 @@
 MusicRippleSpecturmObject::MusicRippleSpecturmObject(QObject *parent)
     : QObject(parent)
 {
-    m_topLayout = nullptr;
-    m_topWidget = nullptr;
+    m_topAreaLayout = nullptr;
+    m_topAreaWidget = nullptr;
     m_visualWidget = nullptr;
 }
 
@@ -18,17 +18,17 @@ MusicRippleSpecturmObject::~MusicRippleSpecturmObject()
 
 void MusicRippleSpecturmObject::setVisible(bool v)
 {
-    if(!m_topLayout || !m_topWidget)
+    if(!m_topAreaLayout || !m_topAreaWidget)
     {
         return;
     }
 
-    m_visualWidget ? m_visualWidget->setVisible(v) : m_topWidget->setVisible(v);
+    m_visualWidget ? m_visualWidget->setVisible(v) : m_topAreaWidget->setVisible(v);
 }
 
 void MusicRippleSpecturmObject::show()
 {
-    if(!m_topLayout || !m_topWidget || m_visualWidget)
+    if(!m_topAreaLayout || !m_topAreaWidget || m_visualWidget)
     {
         return;
     }
@@ -47,21 +47,21 @@ void MusicRippleSpecturmObject::show()
         layout->setContentsMargins(0, 0, 0, 0);
         m_visualWidget->setLayout(layout);
 
-        m_topLayout->removeWidget(m_topWidget);
-        layout->addWidget(m_topWidget);
-        m_topLayout->addWidget(m_visualWidget);
+        m_topAreaLayout->removeWidget(m_topAreaWidget);
+        layout->addWidget(m_topAreaWidget);
+        m_topAreaLayout->addWidget(m_visualWidget);
     }
 }
 
 void MusicRippleSpecturmObject::close()
 {
-    if(!m_topLayout || !m_topWidget || !m_visualWidget)
+    if(!m_topAreaLayout || !m_topAreaWidget || !m_visualWidget)
     {
         return;
     }
 
-    m_visualWidget->layout()->removeWidget(m_topWidget);
-    m_topLayout->addWidget(m_topWidget);
+    m_visualWidget->layout()->removeWidget(m_topAreaWidget);
+    m_topAreaLayout->addWidget(m_topAreaWidget);
 
     removeSpectrum();
 }
@@ -84,8 +84,8 @@ void MusicRippleSpecturmObject::update(bool up)
 
 void MusicRippleSpecturmObject::init(QVBoxLayout *layout, QWidget *widget)
 {
-    m_topLayout = layout;
-    m_topWidget = widget;
+    m_topAreaLayout = layout;
+    m_topAreaWidget = widget;
 }
 
 void MusicRippleSpecturmObject::removeSpectrum()

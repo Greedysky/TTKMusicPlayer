@@ -243,6 +243,7 @@ void MusicBottomAreaWidget::lrcWidgetShowFullScreen()
     m_lrcWidgetShowFullScreen = !m_lrcWidgetShowFullScreen;
     m_musicRipplesObject->setVisible(m_lrcWidgetShowFullScreen);
 
+    m_ui->topWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->bottomWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->centerLeftWidget->setVisible(m_lrcWidgetShowFullScreen);
     m_ui->songsContainer->setVisible(m_lrcWidgetShowFullScreen);

@@ -65,8 +65,8 @@ private:
      */
     void removeSpectrum();
 
-    QVBoxLayout *m_topLayout;
-    QWidget *m_topWidget, *m_visualWidget;
+    QVBoxLayout *m_topAreaLayout;
+    QWidget *m_topAreaWidget, *m_visualWidget;
 };
 
 #endif // MUSICRIPPLESPECTURMOBJECT_H
