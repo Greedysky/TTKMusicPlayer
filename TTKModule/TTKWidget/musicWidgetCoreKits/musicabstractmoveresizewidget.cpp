@@ -93,7 +93,7 @@ void MusicAbstractMoveResizeWidget::mouseReleaseEvent(QMouseEvent *event)
 void MusicAbstractMoveResizeWidget::sizeDirection()
 {
     const QPoint &point = mapFromGlobal(QCursor::pos());
-    if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)//right side
+    if(point.x() > width() - DISTANCE && point.y() < height() - DISTANCE && point.y() > DISTANCE)
     {
         setCursor(Qt::SizeHorCursor);
         m_direction = Direction_Right;

@@ -12,7 +12,7 @@ MusicResizeGrabItemWidget::MusicResizeGrabItemWidget(QWidget *parent)
     m_direction = Direction_No;
     m_isPressed = false;
     m_geometricStretch = false;
-    m_crossStretch = false;
+    m_crossStretch = true;
 
     setMouseTracking(true);
 }
@@ -45,16 +45,15 @@ void MusicResizeGrabItemWidget::onMouseChange(int x, int y)
         {
             case Direction_Left:
             case Direction_Right:
-            case Direction_LeftTop:
-            case Direction_LeftBottom:
+//            case Direction_LeftTop:
+//            case Direction_LeftBottom:
                 rh = rw; break;
             case Direction_Top:
             case Direction_Bottom:
-            case Direction_RightTop:
-            case Direction_RightBottom:
+//            case Direction_RightTop:
+//            case Direction_RightBottom:
                 rw = rh; break;
-            default:
-                break;
+            default: break;
         }
     }
 
@@ -64,7 +63,6 @@ void MusicResizeGrabItemWidget::onMouseChange(int x, int y)
 
 void MusicResizeGrabItemWidget::mousePressEvent(QMouseEvent *event)
 {
-//    QWidget::mousePressEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         m_isPressed = true;
@@ -78,7 +76,6 @@ void MusicResizeGrabItemWidget::mousePressEvent(QMouseEvent *event)
 
 void MusicResizeGrabItemWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-//    QWidget::mouseReleaseEvent(event);
     if(event->button() == Qt::LeftButton)
     {
         m_isPressed = false;
@@ -93,15 +90,11 @@ void MusicResizeGrabItemWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
 {
-//    QWidget::mouseMoveEvent(event);
     const QPoint &gloPoint = mapToParent(event->pos());
-    // left upper
+
     const QPoint &pt_lu = mapToParent(rect().topLeft());
-    // left lower
     const QPoint &pt_ll = mapToParent(rect().bottomLeft());
-    // right lower
     const QPoint &pt_rl = mapToParent(rect().bottomRight());
-    // right upper
     const QPoint &pt_ru = mapToParent(rect().topRight());
 
     if(!m_isPressed)
@@ -150,10 +143,14 @@ void MusicResizeGrabItemWidget::mouseMoveEvent(QMouseEvent *event)
                 case Direction_LeftBottom:
                 case Direction_RightBottom:
                     if(m_crossStretch)
+                    {
                         return onMouseChange(gloPoint.x(), gloPoint.y());
-                    else break;
-                default:
-                    break;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                default: break;
             }
         }
         else
@@ -204,34 +201,29 @@ void MusicResizeGrabItemWidget::paintEvent(QPaintEvent *event)
 MusicResizeGrabItemWidget::Direction MusicResizeGrabItemWidget::getRegion(const QPoint &cursor)
 {
     Direction ret_dir = Direction_No;
-    // left upper
+
     const QPoint &pt_lu = mapToParent(rect().topLeft());
-    // right lower
     const QPoint &pt_rl = mapToParent(rect().bottomRight());
 
-    int x = cursor.x();
-    int y = cursor.y();
+    const int x = cursor.x();
+    const int y = cursor.y();
 
-    if(pt_lu.x() + PADDING >= x && pt_lu.x() <= x &&
-       pt_lu.y() + PADDING >= y && pt_lu.y() <= y)
+    if(pt_lu.x() + PADDING >= x && pt_lu.x() <= x && pt_lu.y() + PADDING >= y && pt_lu.y() <= y)
     {
         ret_dir = Direction_LeftTop;
         setCursor(QCursor(Qt::SizeFDiagCursor));
     }
-    else if(x >= pt_rl.x() - PADDING && x <= pt_rl.x() &&
-            y >= pt_rl.y() - PADDING && y <= pt_rl.y())
+    else if(x >= pt_rl.x() - PADDING && x <= pt_rl.x() && y >= pt_rl.y() - PADDING && y <= pt_rl.y())
     {
         ret_dir = Direction_RightBottom;
         setCursor(QCursor(Qt::SizeFDiagCursor));
     }
-    else if(x <= pt_lu.x() + PADDING && x >= pt_lu.x() &&
-            y >= pt_rl.y() - PADDING && y <= pt_rl.y())
+    else if(x <= pt_lu.x() + PADDING && x >= pt_lu.x() && y >= pt_rl.y() - PADDING && y <= pt_rl.y())
     {
         ret_dir = Direction_LeftBottom;
         setCursor(QCursor(Qt::SizeBDiagCursor));
     }
-    else if(x <= pt_rl.x() && x >= pt_rl.x() - PADDING &&
-            y >= pt_lu.y() && y <= pt_lu.y() + PADDING)
+    else if(x <= pt_rl.x() && x >= pt_rl.x() - PADDING && y >= pt_lu.y() && y <= pt_lu.y() + PADDING)
     {
         ret_dir = Direction_RightTop;
         setCursor(QCursor(Qt::SizeBDiagCursor));
