@@ -122,7 +122,7 @@ void MusicUserManagerDialog::popupUserRecordWidget()
 #ifndef MUSIC_GREATER_NEW
     close();
 #endif
-    if(m_userUID.m_uid <= 0)
+    if(m_userUID.m_server <= 0)
     {
         MusicUserRecordWidget record;
         connect(&record, SIGNAL(resetUserName(QString)), SLOT(resetUserName(QString)));
