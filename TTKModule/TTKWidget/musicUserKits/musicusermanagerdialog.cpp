@@ -119,7 +119,7 @@ void MusicUserManagerDialog::leaveEvent(QEvent *event)
 
 void MusicUserManagerDialog::popupUserRecordWidget()
 {
-#ifndef MUSIC_GREATER_NEW
+#ifndef TTK_GREATER_NEW
     close();
 #endif
     if(m_userUID.m_server <= 0)

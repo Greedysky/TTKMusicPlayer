@@ -36,7 +36,7 @@ MusicApplication::MusicApplication(QWidget *parent)
       m_ui(new Ui::MusicApplication)
 {
     m_instance = this;
-//#ifdef MUSIC_GREATER_NEW
+//#ifdef TTK_GREATER_NEW
     setAttribute(Qt::WA_TranslucentBackground, false);
 //#endif
 
@@ -334,7 +334,7 @@ void MusicApplication::positionChanged(qint64 position)
     }
     //Show the current play time
     m_musicSongTreeWidget->updateTimeLabel(m_ui->playCurrentTime->text(), m_ui->playTotalTime->text());
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
     m_bottomAreaWidget->setValue(position);
 #endif
 }
@@ -346,7 +346,7 @@ void MusicApplication::durationChanged(qint64 duration)
     m_ui->playTotalTime->setText("/" + MusicTime::msecTime2LabelJustified(duration));
     //Loading the current song lrc
     musicLoadCurrentSongLrc();
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
     m_bottomAreaWidget->setRange(0, duration);
 #endif
 }

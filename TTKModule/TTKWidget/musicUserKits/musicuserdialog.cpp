@@ -409,7 +409,7 @@ void MusicUserDialog::clearOriginData()
 
     m_ui->automaticLogin->setChecked(false);
     m_ui->rememberPwd->setChecked(false);
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     m_ui->userComboBox->setCurrentText(QString());
 #else
     m_ui->userComboBox->setCurrentIndex(-1);

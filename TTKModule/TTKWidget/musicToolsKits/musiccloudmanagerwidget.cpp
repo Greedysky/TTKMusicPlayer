@@ -406,7 +406,7 @@ void MusicCloudManagerTableWidget::uploadFilesToServer(const QStringList &paths)
         item.m_dataItem.m_name = info.fileName().trimmed();
         item.m_dataItem.m_putTime = item.m_id.toULongLong();
         item.m_dataItem.m_size = info.size();
-#if defined Q_OS_WIN && defined MUSIC_GREATER_NEW
+#if defined Q_OS_WIN && defined TTK_GREATER_NEW
         QThread::msleep(MT_MS);
 #else
         usleep(MT_MS2US);

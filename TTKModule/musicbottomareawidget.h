@@ -88,7 +88,7 @@ public:
      */
     void showMessage(const QString &title, const QString &text);
 
-#if defined MUSIC_DEBUG && defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined TTK_DEBUG && defined Q_OS_WIN && defined TTK_WINEXTRAS
     /*!
      * Set current value.
      */

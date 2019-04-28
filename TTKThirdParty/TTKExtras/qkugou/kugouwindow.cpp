@@ -5,7 +5,7 @@
  #include <ActiveQt/QAxWidget>
 #else
 # ifdef MUSIC_WEBKIT
-#   ifdef MUSIC_GREATER_NEW
+#   ifdef TTK_GREATER_NEW
 #    include <QtWebKitWidgets/QWebView>
 #    include <QtWebKitWidgets/QWebFrame>
 #   else

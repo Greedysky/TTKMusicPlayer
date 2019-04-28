@@ -1063,7 +1063,7 @@ void MusicLrcPosterWidget::saveButtonClicked()
         {
             rect.setWidth(rect.width() + ITEM_SCROLL_WIDTH);
         }
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
         m_itemWidget->grab(rect).save(filename, JPG_FILE_PREFIX);
 #else
         QPixmap::grabWidget(this, rect).save(filename, JPG_FILE_PREFIX);

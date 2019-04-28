@@ -23,7 +23,7 @@
 #include "musicobject.h"
 #include "musicglobaldefine.h"
 
-#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined Q_OS_WIN && defined TTK_WINEXTRAS
 class MusicApplication;
 class QWinTaskbarButton;
 class QWinTaskbarProgress;
@@ -68,7 +68,7 @@ public:
     inline bool isDisableBlurBehindWindow() const { return m_disableBlurBehindWindow; }
 
 protected:
-#if defined Q_OS_WIN && defined MUSIC_WINEXTRAS
+#if defined Q_OS_WIN && defined TTK_WINEXTRAS
     /*!
      * Create jump list.
      */

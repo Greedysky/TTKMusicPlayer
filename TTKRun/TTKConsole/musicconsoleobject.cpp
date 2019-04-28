@@ -7,7 +7,7 @@
 #include "musichotkeymanager.h"
 #include "musictime.h"
 
-#ifdef MUSIC_WINEXTRAS
+#ifdef TTK_WINEXTRAS
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #endif
@@ -77,7 +77,7 @@ MusicConsoleObject::~MusicConsoleObject()
 
 bool MusicConsoleObject::init(const QCoreApplication &app)
 {
-#ifdef MUSIC_WINEXTRAS
+#ifdef TTK_WINEXTRAS
     QCommandLineOption op1("u", "", ".");
     QCommandLineOption op2("d", "", ".");
     QCommandLineOption op3("l", "", ".");

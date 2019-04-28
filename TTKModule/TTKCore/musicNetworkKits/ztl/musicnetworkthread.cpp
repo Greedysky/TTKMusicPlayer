@@ -3,7 +3,7 @@
 #include "musicsettingmanager.h"
 
 #include <QHostInfo>
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
 #  include <QtConcurrent/QtConcurrent>
 #else
 #  include <QtConcurrentRun>

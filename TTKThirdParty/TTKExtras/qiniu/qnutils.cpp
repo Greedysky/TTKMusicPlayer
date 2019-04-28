@@ -12,7 +12,7 @@ const char QNUtils::KEY_ESCAPE_RESERVE_BYTES[] = {'?'};
 // Url safe base64 encode
 QString QNUtils::urlSafeBase64Encode(const QByteArray &data)
 {
-#if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
+#if (defined TTK_GREATER_NEW && !defined TTK_NO_WINEXTRAS)
     const QByteArray &encodedData = data.toBase64(QByteArray::Base64UrlEncoding);
 #else
     QByteArray encodedData = data.toBase64();

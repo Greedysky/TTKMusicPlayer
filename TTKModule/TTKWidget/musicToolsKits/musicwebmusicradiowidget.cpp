@@ -8,7 +8,7 @@
 #include "musicotherdefine.h"
 #include "musicwidgetheaders.h"
 
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
 #include <QStandardPaths>
 #else
 #include <QDesktopServices>
@@ -198,7 +198,7 @@ void MusicWebMusicRadioWidget::sendToDesktopLink()
         fileName = it->text();
     }
 
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     const QString &desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 #else
     const QString &desktop = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);

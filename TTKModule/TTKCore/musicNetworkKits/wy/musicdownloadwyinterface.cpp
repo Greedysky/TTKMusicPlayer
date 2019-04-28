@@ -330,7 +330,7 @@ QString MusicDownLoadWYInterface::encryptedId(const QString &string)
     }
 
     QByteArray encodedData = MusicUtils::Algorithm::md5(array2);
-#if (defined MUSIC_GREATER_NEW && !defined MUSIC_NO_WINEXTRAS)
+#if (defined TTK_GREATER_NEW && !defined TTK_NO_WINEXTRAS)
     encodedData = encodedData.toBase64(QByteArray::Base64UrlEncoding);
 #else
     encodedData = encodedData.toBase64();

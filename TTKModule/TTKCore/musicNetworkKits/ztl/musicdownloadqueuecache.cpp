@@ -151,7 +151,7 @@ void MusicDownloadQueueCache::errorSlot(QNetworkReply::NetworkError code)
     {
         return;
     }
-#ifndef MUSIC_DEBUG
+#ifndef TTK_DEBUG
     Q_UNUSED(code);
 #endif
     M_LOGGER_ERROR(QString("QNetworkReply::NetworkError : %1 %2").arg(code).arg(m_reply->errorString()));

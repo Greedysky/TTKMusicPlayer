@@ -9,7 +9,7 @@
 #include "musicotherdefine.h"
 #include "musicsinglemanager.h"
 
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
 #  include <QtConcurrent/QtConcurrent>
 #else
 #  include <QtConcurrentRun>

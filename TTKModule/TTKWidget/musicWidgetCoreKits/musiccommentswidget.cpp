@@ -4,7 +4,7 @@
 #include "musicfunctionuiobject.h"
 #include "musicinlinelrcuiobject.h"
 #include "musicuiobject.h"
-#include "musicglobal.h"
+#include "ttkglobal.h"
 #include "musicclickedlabel.h"
 #include "musicsemaphoreloop.h"
 #include "musicpagingwidgetobject.h"

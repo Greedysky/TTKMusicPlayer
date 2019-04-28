@@ -149,7 +149,7 @@ void MusicFunctionToolBoxTopWidget::mouseMoveEvent(QMouseEvent *event)
         QDrag *drag = new QDrag(this);
         drag->setMimeData(mimeData);
         drag->setHotSpot(QPoint(0, height()/2));
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
         drag->setPixmap( grab(rect()) );
 #else
         drag->setPixmap( QPixmap::grabWidget(this, rect()) );

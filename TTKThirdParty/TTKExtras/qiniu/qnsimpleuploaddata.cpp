@@ -61,7 +61,7 @@ QString QNSimpleUploadData::getDownloadUrl(const QString &domain, const QString 
 {
     const QNMac mac(QNConf::ACCESS_KEY, QNConf::SECRET_KEY);
     const int deadline = QNUtils::expireInSeconds(3600);
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     const QString encodeKey = QUrl(key).toString(QUrl::FullyEncoded);
 #else
     const QString encodeKey = QUrl(key).toEncoded();

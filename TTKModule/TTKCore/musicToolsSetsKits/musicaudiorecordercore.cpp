@@ -142,7 +142,7 @@ int MusicAudioRecorderCore::addWavHeader(const char *filename)
 void MusicAudioRecorderCore::setVolume(int volume)
 {
     m_inputVolume = volume;
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     if(m_mpAudioInputFile)
     {
         m_mpAudioInputFile->setVolume(volume);
@@ -187,7 +187,7 @@ void MusicAudioRecorderCore::onRecordStart()
         message.exec();
         return;
     }
-#ifdef MUSIC_GREATER_NEW
+#ifdef TTK_GREATER_NEW
     m_mpAudioInputFile->setVolume(m_inputVolume);
 #endif
     m_mpAudioInputFile->start(m_mpOutputFile);

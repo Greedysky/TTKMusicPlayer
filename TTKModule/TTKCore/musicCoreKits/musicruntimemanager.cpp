@@ -13,7 +13,7 @@ void MusicRunTimeManager::run() const
 {
     M_LOGGER_INFO("MusicApplication Begin");
 
-#ifndef MUSIC_GREATER_NEW
+#ifndef TTK_GREATER_NEW
     MusicUtils::Codec::setLocalCodec();
 #endif
     MusicUtils::QMMP::updateMidConfigFile();
