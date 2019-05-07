@@ -25,7 +25,7 @@
 #include <taglib/tmap.h>
 #include <taglib/id3v2framefactory.h>
 #include <taglib/flacpicture.h>
-#ifndef IS_COVER_EDITABLE
+#ifndef HAS_PICTURE_LIST
 #include <FLAC/all.h>
 #endif
 #include <qmmp/metadatamanager.h>

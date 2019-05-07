@@ -27,6 +27,8 @@
 #include <taglib/xiphcomment.h>
 #include <taglib/tmap.h>
 #include <taglib/id3v2header.h>
+#include <taglib/tfilestream.h>
+#include <taglib/id3v2framefactory.h>
 #include <QObject>
 #include <QFile>
 #include <QIODevice>
@@ -300,7 +302,8 @@ bool DecoderFLAC::initialize()
             QString p = m_path;
             p.remove("flac://");
             p.remove(QRegExp("#\\d+$"));
-            TagLib::FLAC::File fileRef(QStringToFileName(p));
+            TagLib::FileStream stream(QStringToFileName(p), true);
+            TagLib::FLAC::File fileRef(&stream, TagLib::ID3v2::FrameFactory::instance());
             //looking for cuesheet comment
             TagLib::Ogg::XiphComment *xiph_comment = fileRef.xiphComment();
 

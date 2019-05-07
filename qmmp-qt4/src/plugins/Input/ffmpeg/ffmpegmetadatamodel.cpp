@@ -53,7 +53,12 @@ FFmpegMetaDataModel::FFmpegMetaDataModel(const QString &path) : MetaDataModel(tr
 #else
             c = in->streams[idx]->codec;
 #endif
-            if(c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == AV_CODEC_ID_MJPEG)
+
+#if (LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(55,34,0)) //libav 10
+        if (c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == AV_CODEC_ID_MJPEG)
+#else
+        if (c->codec_type == AVMEDIA_TYPE_VIDEO && c->codec_id == CODEC_ID_MJPEG)
+#endif
                 break;
         }
         if(c)

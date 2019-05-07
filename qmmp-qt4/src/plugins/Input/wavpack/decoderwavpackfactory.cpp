@@ -37,6 +37,7 @@ DecoderProperties DecoderWavPackFactory::properties() const
     properties.name = tr("WavPack Plugin");
     properties.filters << "*.wv";
     properties.description = tr("WavPack Files");
+    properties.contentTypes << "audio/x-wavpack";
     properties.shortName = "wavpack";
     properties.hasSettings = false;
     properties.noInput = true;
@@ -57,8 +58,8 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
         QString filePath = path;
         filePath.remove("wvpack://");
         filePath.remove(QRegExp("#\\d+$"));
-        int track = filePath.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, parts, ignoredFiles);
+        int track = path.section("#", -1).toInt();
+        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::AllParts, ignoredFiles);
         if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
@@ -75,8 +76,7 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
     if(parts == TrackInfo::NoParts)
         return QList<TrackInfo *>() << info;
 
-    char err[80];
-    int cue_len = 0;
+    char err[80] = { 0 };
 
 #if defined(Q_OS_WIN) && defined(OPEN_FILE_UTF8)
     WavpackContext *ctx = WavpackOpenFileInput (path.toUtf8().constData(),
@@ -94,8 +94,8 @@ QList<TrackInfo *> DecoderWavPackFactory::createPlayList(const QString &path, Tr
 
     if(parts & TrackInfo::MetaData)
     {
-        cue_len = WavpackGetTagItem (ctx, "cuesheet", NULL, 0);
-        if(cue_len)
+        int cue_len = WavpackGetTagItem (ctx, "cuesheet", NULL, 0);
+        if(cue_len > 0)
         {
             delete info;
             char value[cue_len + 1];

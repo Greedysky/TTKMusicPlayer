@@ -105,13 +105,13 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
     QSettings settings(Qmmp::configFile(), QSettings::IniFormat);
     decoderName = settings.value("MPEG/decoder", "mad").toString();
 #elif defined(WITH_MAD)
-    decoderName = "mpg123";
-#elif defined(WITH_MPG123)
     decoderName = "mad";
+#elif defined(WITH_MPG123)
+    decoderName = "mpg123";
 #endif
 
 #ifdef WITH_MAD
-    if(decoderName == "mpg123")
+    if(decoderName != "mpg123")
     {
         struct mad_stream stream;
         struct mad_header header;
@@ -125,12 +125,16 @@ bool DecoderMPEGFactory::canDecode(QIODevice *input) const
         while ((dec_res = mad_header_decode(&header, &stream)) == -1
                && MAD_RECOVERABLE(stream.error))
             ;
-        return dec_res != -1 ? true: false;
+
+        if(dec_res == 0)
+            dec_res = mad_header_decode(&header, &stream);
+
+        return dec_res == 0;
     }
 #endif
 
 #ifdef WITH_MPG123
-    if(decoderName != "mpg123")
+    if(decoderName == "mpg123")
     {
         mpg123_init();
         mpg123_handle *handle = mpg123_new(0, 0);

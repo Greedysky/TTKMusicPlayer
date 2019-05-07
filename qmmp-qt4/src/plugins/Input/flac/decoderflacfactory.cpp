@@ -72,8 +72,8 @@ QList<TrackInfo*> DecoderFLACFactory::createPlayList(const QString &path, TrackI
         QString filePath = path;
         filePath.remove("flac://");
         filePath.remove(QRegExp("#\\d+$"));
-        int track = filePath.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::Properties, ignoredFiles);
+        int track = path.section("#", -1).toInt();
+        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::AllParts, ignoredFiles);
         if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);

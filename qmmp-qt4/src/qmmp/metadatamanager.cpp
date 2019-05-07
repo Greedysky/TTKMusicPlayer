@@ -273,19 +273,19 @@ MetaDataManager::CoverCacheItem *MetaDataManager::createCoverCacheItem(const QSt
 {
     CoverCacheItem *item = new CoverCacheItem;
     item->url = url;
-    MetaDataModel *model = createMetaDataModel(url, true);
-    if(model)
-    {
-        item->coverPath = model->coverPath();
-        item->coverPixmap = model->cover();
-        delete model;
-    }
-
-    if(!m_settings->useCoverFiles())
-        return item;
-
-    if(!url.contains("://") && item->coverPath.isEmpty())
+    if(!url.contains("://") && m_settings->useCoverFiles())
         item->coverPath = findCoverFile(url);
+
+    if(item->coverPath.isEmpty())
+    {
+        MetaDataModel *model = createMetaDataModel(url, true);
+        if(model)
+        {
+            item->coverPath = model->coverPath();
+            item->coverPixmap = model->cover();
+            delete model;
+        }
+    }
 
     if(!item->coverPath.isEmpty() && item->coverPixmap.isNull())
         item->coverPixmap = QPixmap(item->coverPath);

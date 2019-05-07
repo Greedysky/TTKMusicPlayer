@@ -23,6 +23,8 @@
 #include <taglib/flacpicture.h>
 #include <taglib/tag.h>
 #include <taglib/fileref.h>
+#include <taglib/opusfile.h>
+#include <taglib/xiphcomment.h>
 #include <taglib/tmap.h>
 #include "opusmetadatamodel.h"
 

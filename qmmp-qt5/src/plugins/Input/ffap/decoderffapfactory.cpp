@@ -66,8 +66,8 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
         QString filePath = path;
         filePath.remove("ape://");
         filePath.remove(QRegExp("#\\d+$"));
-        int track = filePath.section("#", -1).toInt();
-        QList<TrackInfo *> list = createPlayList(filePath, parts, nullptr);
+        int track = path.section("#", -1).toInt();
+        QList<TrackInfo *> list = createPlayList(filePath, TrackInfo::AllParts, nullptr);
         if(list.isEmpty() || track <= 0 || track > list.count())
         {
             qDeleteAll(list);
@@ -87,6 +87,7 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::APE::File file(&stream);
     TagLib::APE::Tag *tag = file.APETag();
+    TagLib::APE::Properties *ap = file.audioProperties();
 
     if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
@@ -114,7 +115,6 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
             info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
 
-    TagLib::APE::Properties *ap = file.audioProperties();
     if((parts & TrackInfo::Properties) && ap)
     {
         info->setValue(Qmmp::BITRATE, ap->bitrate());
