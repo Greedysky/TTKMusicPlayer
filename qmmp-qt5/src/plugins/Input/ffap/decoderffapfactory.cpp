@@ -87,7 +87,6 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
     TagLib::FileStream stream(QStringToFileName(path), true);
     TagLib::APE::File file(&stream);
     TagLib::APE::Tag *tag = file.APETag();
-    TagLib::APE::Properties *ap = file.audioProperties();
 
     if((parts & TrackInfo::MetaData) && tag && !tag->isEmpty())
     {
@@ -115,6 +114,7 @@ QList<TrackInfo *> DecoderFFapFactory::createPlayList(const QString &path, Track
             info->setValue(Qmmp::COMPOSER, TStringToQString(fld.toString()));
     }
 
+    TagLib::APE::Properties *ap = file.audioProperties();
     if((parts & TrackInfo::Properties) && ap)
     {
         info->setValue(Qmmp::BITRATE, ap->bitrate());
