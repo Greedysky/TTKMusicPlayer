@@ -43,6 +43,7 @@ MusicGifLabelWidget::~MusicGifLabelWidget()
 
 void MusicGifLabelWidget::setType(Type type)
 {
+    m_index = 0;
     switch(m_type = type)
     {
         case Gif_Ballon_White: setFixedSize(GIF_BALLON_WHITE, GIF_BALLON_WHITE); break;
