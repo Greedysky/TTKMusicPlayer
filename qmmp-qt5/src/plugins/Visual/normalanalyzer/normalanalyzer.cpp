@@ -29,6 +29,7 @@ NormalAnalyzer::NormalAnalyzer (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Normal Analyzer Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -51,11 +52,17 @@ NormalAnalyzer::~NormalAnalyzer()
 {
     qDeleteAll(m_starPoints);
     if(m_peaks)
+    {
         delete[] m_peaks;
+    }
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void NormalAnalyzer::start()
@@ -122,17 +129,23 @@ void NormalAnalyzer::readSettings()
         foreach(QAction *act, m_fpsGroup->actions())
         {
             if(m_timer->interval() == 1000 / act->data().toInt())
+            {
                 act->setChecked(true);
+            }
         }
         foreach(QAction *act, m_peaksFalloffGroup->actions())
         {
             if(m_peaks_falloff == act->data().toDouble())
+            {
                 act->setChecked(true);
+            }
         }
         foreach(QAction *act, m_analyzerFalloffGroup->actions())
         {
             if(m_analyzer_falloff == act->data().toDouble())
+            {
                 act->setChecked(true);
+            }
         }
 
         //fallback
@@ -227,14 +240,18 @@ void NormalAnalyzer::paintEvent(QPaintEvent *e)
 void NormalAnalyzer::mousePressEvent(QMouseEvent *e)
 {
     if(e->button() == Qt::RightButton)
+    {
         m_menu->exec(e->globalPos());
+    }
 }
 
 void NormalAnalyzer::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
@@ -244,11 +261,17 @@ void NormalAnalyzer::process()
         m_rows = rows;
         m_cols = cols;
         if(m_peaks)
+        {
             delete[] m_peaks;
+        }
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_peaks = new double[m_cols * 2];
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
@@ -259,7 +282,9 @@ void NormalAnalyzer::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest_l[256];

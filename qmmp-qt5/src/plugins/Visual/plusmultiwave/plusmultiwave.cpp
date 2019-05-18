@@ -32,14 +32,18 @@ PlusMultiWave::PlusMultiWave (QWidget *parent) : Visual (parent)
 PlusMultiWave::~PlusMultiWave()
 {
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void PlusMultiWave::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void PlusMultiWave::stop()
@@ -73,7 +77,9 @@ void PlusMultiWave::hideEvent(QHideEvent *)
 void PlusMultiWave::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void PlusMultiWave::paintEvent(QPaintEvent *e)
@@ -87,7 +93,9 @@ void PlusMultiWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = height();
     const int cols = width();
@@ -99,7 +107,9 @@ void PlusMultiWave::process()
         m_pixPos = 0;
 
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_vis_data = 0;
         m_x_scale = new int[2];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);

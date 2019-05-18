@@ -45,7 +45,7 @@ private:
     void clear();
     virtual void hideEvent(QHideEvent *e) override;
     virtual void showEvent(QShowEvent *e) override;
-    virtual void paintEvent(QPaintEvent *) override;
+    virtual void paintEvent(QPaintEvent *e) override;
 
     void process();
     void draw(QPainter *p);

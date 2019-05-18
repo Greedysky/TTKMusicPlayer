@@ -19,6 +19,7 @@ PlusVolumeWave::PlusVolumeWave (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Plus VolumeWave Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -31,16 +32,22 @@ PlusVolumeWave::PlusVolumeWave (QWidget *parent) : Visual (parent)
 PlusVolumeWave::~PlusVolumeWave()
 {
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void PlusVolumeWave::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void PlusVolumeWave::stop()
@@ -74,7 +81,9 @@ void PlusVolumeWave::hideEvent(QHideEvent *)
 void PlusVolumeWave::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void PlusVolumeWave::paintEvent(QPaintEvent *e)
@@ -88,7 +97,9 @@ void PlusVolumeWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = height();
     const int cols = width();
@@ -99,9 +110,13 @@ void PlusVolumeWave::process()
         m_cols = cols;
 
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[2];
         m_x_scale = new int[2];
 

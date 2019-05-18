@@ -28,6 +28,7 @@ NormalFlowWave::NormalFlowWave (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Normal FlowWave Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
@@ -49,9 +50,13 @@ NormalFlowWave::~NormalFlowWave()
 {
     qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void NormalFlowWave::start()
@@ -174,7 +179,9 @@ void NormalFlowWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
@@ -184,9 +191,13 @@ void NormalFlowWave::process()
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
@@ -195,7 +206,9 @@ void NormalFlowWave::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest[256];

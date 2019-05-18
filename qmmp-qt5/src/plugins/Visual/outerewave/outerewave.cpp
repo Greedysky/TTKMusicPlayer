@@ -11,6 +11,8 @@
 #include "outerewave.h"
 #include "colorwidget.h"
 
+#define HEIGHT_OFFSET  2
+
 OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
 {
     setAttribute(Qt::WA_DeleteOnClose, false);
@@ -25,6 +27,8 @@ OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
     m_cols = 0;
 
     setWindowTitle(tr("Outer EWave Widget"));
+    setMinimumWidth(2*300-30);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -38,9 +42,13 @@ OuterEWave::OuterEWave (QWidget *parent) : Visual (parent)
 OuterEWave::~OuterEWave()
 {
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void OuterEWave::start()
@@ -105,11 +113,19 @@ void OuterEWave::paintEvent(QPaintEvent *)
     draw(&painter);
 }
 
+void OuterEWave::resizeEvent(QResizeEvent *e)
+{
+    double offset = 6 * e->size().width() * 0.6 / minimumWidth();
+    m_cell_size.setWidth(offset < 6 ? 6 : offset);
+}
+
 void OuterEWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
@@ -119,9 +135,13 @@ void OuterEWave::process()
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
 
@@ -130,7 +150,9 @@ void OuterEWave::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest_l[256];
@@ -200,7 +222,7 @@ void OuterEWave::draw(QPainter *p)
     const float maxed = maxRange();
 
     QPolygon points;
-    points << QPoint(0, height());
+    points << QPoint(0, height() + HEIGHT_OFFSET);
     for(int j = 0; j < m_cols * 2; ++j)
     {
         x = j * m_cell_size.width() + 1;
@@ -214,8 +236,13 @@ void OuterEWave::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        points << QPoint(x, height() - m_intern_vis_data[j] * maxed * m_cell_size.height());
+        int offset = height() - m_intern_vis_data[j] * maxed * m_cell_size.height();
+        if(offset == height())
+        {
+            offset = height() + HEIGHT_OFFSET;
+        }
+        points << QPoint(x, offset);
     }
-    points << QPoint(width(), height());
+    points << QPoint(width(), height() + HEIGHT_OFFSET);
     p->drawPolygon(points);
 }

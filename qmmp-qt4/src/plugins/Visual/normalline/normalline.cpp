@@ -28,6 +28,7 @@ NormalLine::NormalLine (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Normal Line Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -52,11 +53,17 @@ NormalLine::~NormalLine()
 {
     qDeleteAll(m_starPoints);
     if(m_peaks)
+    {
         delete[] m_peaks;
+    }
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void NormalLine::start()
@@ -193,7 +200,9 @@ void NormalLine::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
@@ -203,11 +212,17 @@ void NormalLine::process()
         m_rows = rows;
         m_cols = cols;
         if(m_peaks)
+        {
             delete[] m_peaks;
+        }
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_peaks = new double[m_cols * 2];
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
@@ -218,7 +233,9 @@ void NormalLine::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest_l[256];
@@ -307,8 +324,8 @@ void NormalLine::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        int hh = m_intern_vis_data[j] * maxed *m_cell_size.height();
-        p->fillRect (x, height() - hh, m_cell_size.width() - 1, hh, line);
+        const int offset = m_intern_vis_data[j] * maxed *m_cell_size.height();
+        p->fillRect (x, height() - offset, m_cell_size.width() - 1, offset, line);
 
         p->fillRect (x, height() - int(m_peaks[j] * maxed) * m_cell_size.height(),
                      m_cell_size.width() - 1, m_cell_size.height(), "Cyan");

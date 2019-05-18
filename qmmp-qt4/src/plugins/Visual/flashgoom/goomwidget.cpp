@@ -30,7 +30,9 @@ GoomWidget::GoomWidget(QWidget *parent) : Visual (parent)
 GoomWidget::~GoomWidget()
 {
     if(m_goom)
+    {
         goom_close(m_goom);
+    }
     m_goom = 0;
 }
 
@@ -38,7 +40,9 @@ void GoomWidget::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void GoomWidget::stop()
@@ -52,7 +56,9 @@ void GoomWidget::timeout()
     if(m_image.size() != size() || !m_goom)
     {
         if(!m_goom)
+        {
             m_goom = goom_init(width(), height());
+        }
         m_image = QImage(size(), QImage::Format_RGB32);
         goom_set_resolution(m_goom, width(), height());
         goom_set_screenbuffer(m_goom, m_image.bits());
@@ -110,7 +116,9 @@ void GoomWidget::hideEvent(QHideEvent *)
 void GoomWidget::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void GoomWidget::paintEvent(QPaintEvent *)
@@ -122,7 +130,9 @@ void GoomWidget::paintEvent(QPaintEvent *)
 void GoomWidget::mousePressEvent(QMouseEvent *e)
 {
     if(e->button() == Qt::RightButton)
+    {
         m_menu->exec(e->globalPos());
+    }
 }
 
 void GoomWidget::clear()

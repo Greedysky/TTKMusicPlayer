@@ -30,14 +30,18 @@ OuterRaysWave::OuterRaysWave (QWidget *parent) : Visual (parent)
 OuterRaysWave::~OuterRaysWave()
 {
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
 }
 
 void OuterRaysWave::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void OuterRaysWave::stop()
@@ -71,7 +75,9 @@ void OuterRaysWave::hideEvent(QHideEvent *)
 void OuterRaysWave::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void OuterRaysWave::paintEvent(QPaintEvent *)
@@ -84,13 +90,17 @@ void OuterRaysWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     m_cols = width();
     m_rows = height();
 
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
 
     m_intern_vis_data = new int[m_cols];
 

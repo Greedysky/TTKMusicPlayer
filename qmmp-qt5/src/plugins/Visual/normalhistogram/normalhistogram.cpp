@@ -28,6 +28,7 @@ NormalHistogram::NormalHistogram (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Normal Histogram Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
@@ -49,9 +50,13 @@ NormalHistogram::~NormalHistogram()
 {
     qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void NormalHistogram::start()
@@ -187,7 +192,9 @@ void NormalHistogram::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width();
@@ -197,9 +204,13 @@ void NormalHistogram::process()
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[m_cols];
         m_x_scale = new int[m_cols + 1];
 
@@ -208,7 +219,9 @@ void NormalHistogram::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest[256];
@@ -277,7 +290,7 @@ void NormalHistogram::draw(QPainter *p)
             x += rdx; //correct right part position
         }
 
-        int hh = m_intern_vis_data[j] * maxed * m_cell_size.height();
-        p->fillRect(x, height() - hh + 1, m_cell_size.width() - 2, hh - 2, line);
+        const int offset = m_intern_vis_data[j] * maxed * m_cell_size.height();
+        p->fillRect(x, height() - offset + 1, m_cell_size.width() - 2, offset - 2, line);
     }
 }

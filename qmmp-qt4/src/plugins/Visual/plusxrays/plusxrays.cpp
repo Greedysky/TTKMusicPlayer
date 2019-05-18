@@ -21,6 +21,7 @@ PlusXRays::PlusXRays (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Plus XRays Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
@@ -36,14 +37,18 @@ PlusXRays::PlusXRays (QWidget *parent) : Visual (parent)
 PlusXRays::~PlusXRays()
 {
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
 }
 
 void PlusXRays::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void PlusXRays::stop()
@@ -111,7 +116,9 @@ void PlusXRays::hideEvent(QHideEvent *)
 void PlusXRays::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void PlusXRays::paintEvent(QPaintEvent *e)
@@ -137,13 +144,17 @@ void PlusXRays::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     m_cols = width();
     m_rows = height();
 
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
 
     m_intern_vis_data = new int[m_cols];
 

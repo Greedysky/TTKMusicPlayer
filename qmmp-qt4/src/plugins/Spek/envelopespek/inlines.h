@@ -24,12 +24,16 @@ static inline void calc_freq(short* dest, float *src)
     int i;
 
     if(!state)
+    {
         state = fft_init();
+    }
 
     fft_perform(src, tmp_out, state);
 
     for(i = 0; i < 256; i++)
+    {
         dest[i] = ((int) sqrt(tmp_out[i + 1])) >> 8;
+    }
 }
 
 static inline void stereo_from_multichannel(float *l,

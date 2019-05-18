@@ -35,15 +35,25 @@ bool EnvelopeSpekThead::init(const QString &path)
 
     DecoderFactory *factory = nullptr;
     if(!m_source->path().contains("://"))
+    {
         factory = Decoder::findByFilePath(m_source->path(), QmmpSettings::instance()->determineFileTypeByContent());
+    }
     if(!factory)
+    {
         factory = Decoder::findByMime(m_source->contentType());
+    }
     if(factory && !factory->properties().noInput && m_source->ioDevice() && m_source->path().contains("://"))
+    {
         factory = (factory->canDecode(m_source->ioDevice()) ? factory : 0);
+    }
     if(!factory && m_source->ioDevice() && m_source->path().contains("://")) //ignore content of local files
+    {
         factory = Decoder::findByContent(m_source->ioDevice());
+    }
     if(!factory && m_source->path().contains("://"))
+    {
         factory = Decoder::findByProtocol(m_source->path().section("://",0,0));
+    }
     if(!factory)
     {
         qDebug("EnvelopeSpekThead: unsupported file format");
@@ -52,7 +62,9 @@ bool EnvelopeSpekThead::init(const QString &path)
 
     qDebug("EnvelopeSpekThead: selected decoder: %s",qPrintable(factory->properties().shortName));
     if(factory->properties().noInput && m_source->ioDevice())
+    {
         m_source->ioDevice()->close();
+    }
 
     Decoder *decoder = factory->create(m_source->path(), m_source->ioDevice());
     if(!decoder->initialize())
@@ -157,7 +169,9 @@ void EnvelopeSpekThead::flush(bool final)
 void EnvelopeSpekThead::free()
 {
     if(m_output_buf)
+    {
         delete []m_output_buf;
+    }
     delete m_source;
     delete m_decoder;
 }

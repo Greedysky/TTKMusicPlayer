@@ -21,6 +21,7 @@ PlusMonoWave::PlusMonoWave (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Plus MonoWave Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     m_timer->setInterval(QMMP_VISUAL_INTERVAL);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
@@ -31,16 +32,22 @@ PlusMonoWave::PlusMonoWave (QWidget *parent) : Visual (parent)
 PlusMonoWave::~PlusMonoWave()
 {
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void PlusMonoWave::start()
 {
     m_running = true;
     if(isVisible())
+    {
         m_timer->start();
+    }
 }
 
 void PlusMonoWave::stop()
@@ -74,7 +81,9 @@ void PlusMonoWave::hideEvent(QHideEvent *)
 void PlusMonoWave::showEvent(QShowEvent *)
 {
     if(m_running)
+    {
         m_timer->start();
+    }
 }
 
 void PlusMonoWave::paintEvent(QPaintEvent *e)
@@ -88,7 +97,9 @@ void PlusMonoWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = height();
     const int cols = width();
@@ -100,9 +111,13 @@ void PlusMonoWave::process()
         m_pixPos = 0;
 
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[m_rows];
         m_x_scale = new int[m_rows + 1];
         m_backgroundImage = QImage(m_cols, m_rows, QImage::Format_RGB32);
@@ -113,7 +128,9 @@ void PlusMonoWave::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_rows + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_rows), i);
+        }
     }
 
     short dest[256];

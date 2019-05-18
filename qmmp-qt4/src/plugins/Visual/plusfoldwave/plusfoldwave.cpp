@@ -26,6 +26,7 @@ PlusFoldWave::PlusFoldWave (QWidget *parent) : Visual (parent)
 
     setWindowTitle(tr("Plus FoldWave Widget"));
     setMinimumSize(2*300-30, 105);
+
     m_timer = new QTimer(this);
     connect(m_timer, SIGNAL(timeout()), this, SLOT(timeout()));
 
@@ -49,9 +50,13 @@ PlusFoldWave::~PlusFoldWave()
 {
     qDeleteAll(m_starPoints);
     if(m_intern_vis_data)
+    {
         delete[] m_intern_vis_data;
+    }
     if(m_x_scale)
+    {
         delete[] m_x_scale;
+    }
 }
 
 void PlusFoldWave::start()
@@ -187,7 +192,9 @@ void PlusFoldWave::process()
 {
     static fft_state *state = nullptr;
     if(!state)
+    {
         state = fft_init();
+    }
 
     const int rows = (height() - 2) / m_cell_size.height();
     const int cols = (width() - 2) / m_cell_size.width() / 2;
@@ -197,9 +204,13 @@ void PlusFoldWave::process()
         m_rows = rows;
         m_cols = cols;
         if(m_intern_vis_data)
+        {
             delete[] m_intern_vis_data;
+        }
         if(m_x_scale)
+        {
             delete[] m_x_scale;
+        }
         m_intern_vis_data = new double[m_cols * 2];
         m_x_scale = new int[m_cols + 1];
 
@@ -208,7 +219,9 @@ void PlusFoldWave::process()
             m_intern_vis_data[i] = 0;
         }
         for(int i = 0; i < m_cols + 1; ++i)
+        {
             m_x_scale[i] = pow(pow(255.0, 1.0 / m_cols), i);
+        }
     }
 
     short dest_l[256];
@@ -291,13 +304,13 @@ void PlusFoldWave::draw(QPainter *p)
         {
             x += rdx; //correct right part position
         }
-        int hh = m_intern_vis_data[j] * maxed * m_cell_size.height()/2;
-        if(abs(hh) > height()/2)
+        int offset = m_intern_vis_data[j] * maxed * m_cell_size.height()/2;
+        if(abs(offset) > height()/2)
         {
-            hh = height()/2;
+            offset = height()/2;
         }
 
-        p->drawLine(QPoint(x, height()/2 - hh), QPoint(x, height()/2 + hh));
+        p->drawLine(QPoint(x, height()/2 - offset), QPoint(x, height()/2 + offset));
 
         if((j+1) >= m_cols * 2)
         {
@@ -310,13 +323,13 @@ void PlusFoldWave::draw(QPainter *p)
             x1 += rdx; //correct right part position
         }
 
-        int hh1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height()/2;
-        if(abs(hh1) > height()/2)
+        int offset1 = m_intern_vis_data[j+1] * maxed * m_cell_size.height()/2;
+        if(abs(offset1) > height()/2)
         {
-            hh1 = height()/2;
+            offset1 = height()/2;
         }
 
-        p->drawLine(QPoint(x, height()/2 - hh), QPoint(x1, height()/2 - hh1));
-        p->drawLine(QPoint(x, height()/2 + hh), QPoint(x1, height()/2 + hh1));
+        p->drawLine(QPoint(x, height()/2 - offset), QPoint(x1, height()/2 - offset1));
+        p->drawLine(QPoint(x, height()/2 + offset), QPoint(x1, height()/2 + offset1));
     }
 }
