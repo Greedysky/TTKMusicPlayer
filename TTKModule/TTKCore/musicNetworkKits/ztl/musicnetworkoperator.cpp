@@ -4,7 +4,7 @@
 
 #include <QStringList>
 
-#define IP_CHECK_URL    "bmdLQytSMnlXb2JUV1FPQ2tnenlBNWZWckZKK3FFYUt1eUQ3Ulg5cUptYz0="
+#define IP_CHECK_URL    "QmZadEd0V0ovaUpsMlc4MG1uSWVUUUpnenhKRFdSSTJKV0hDdlRIcE1tND0="
 
 MusicNetworkOperator::MusicNetworkOperator(QObject *parent)
     : QObject(parent)
