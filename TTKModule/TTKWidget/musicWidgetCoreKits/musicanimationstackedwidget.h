@@ -34,10 +34,10 @@ class MUSIC_WIDGET_EXPORT MusicAnimationStackedWidget : public QStackedWidget
 public:
     enum AnimationType
     {
-        TopToBottom,    /*!< Animation from top to bottom*/
-        BottomToTop,    /*!< Animation from bottom to top*/
         LeftToRight,    /*!< Animation from left to right*/
-        RightToLeft     /*!< Animation from right to left*/
+        RightToLeft,    /*!< Animation from right to left*/
+        TopToBottom,    /*!< Animation from top to bottom*/
+        BottomToTop     /*!< Animation from bottom to top*/
     };
 
     /*!
