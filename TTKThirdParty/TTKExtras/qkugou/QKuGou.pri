@@ -37,6 +37,7 @@ equals(QT_MAJOR_VERSION, 5){
         greaterThan(QT_MINOR_VERSION, 5){
             exists($$[QT_INSTALL_LIBS]/libQt5WebEngine.so){
                 QT += webenginewidgets
+                DEFINES -= MUSIC_WEBKIT
                 DEFINES += MUSIC_WEBENGINE
                 Browser = 3
             }
