@@ -41,6 +41,10 @@ unix:!android{
     contains(CONFIG, SID_PLUGIN){
         SUBDIRS += sid
     }
+
+    contains(CONFIG, OPTIMFROG_PLUGIN){
+        SUBDIRS += optimfrog
+    }
 }
 
 !android{
@@ -55,8 +59,4 @@ contains(CONFIG, OPUS_PLUGIN){
 
 contains(CONFIG, AAC_PLUGIN){
     SUBDIRS += aac
-}
-
-contains(CONFIG, OPTIMFROG_PLUGIN){
-    SUBDIRS += optimfrog
 }

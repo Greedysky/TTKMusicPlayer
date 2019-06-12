@@ -20,11 +20,11 @@ contains(CONFIG, FFAP_PLUGIN){
 }
 
 contains(CONFIG, FFMPEG_PLUGIN){
-   SUBDIRS += ffmpeg
+    SUBDIRS += ffmpeg
 }
 
 contains(CONFIG, GME_PLUGIN){
-  SUBDIRS += gme
+    SUBDIRS += gme
 }
 
 contains(CONFIG, XMP_PLUGIN){
@@ -32,16 +32,20 @@ contains(CONFIG, XMP_PLUGIN){
 }
 
 contains(CONFIG, OPUS_PLUGIN){
-  SUBDIRS += opus
+    SUBDIRS += opus
 }
 
 unix:{
     contains(CONFIG, CDAUDIO_PLUGIN){
-      SUBDIRS += cdaudio
+        SUBDIRS += cdaudio
     }
 
     contains(CONFIG, SID_PLUGIN){
-      SUBDIRS += sid
+        SUBDIRS += sid
+    }
+
+    contains(CONFIG, OPTIMFROG_PLUGIN){
+        SUBDIRS += optimfrog
     }
 }
 
@@ -50,9 +54,5 @@ contains(CONFIG, WILDMIDI_PLUGIN){
 }
 
 contains(CONFIG, AAC_PLUGIN){
-  SUBDIRS += aac
-}
-
-contains(CONFIG, OPTIMFROG_PLUGIN){
-    SUBDIRS += optimfrog
+    SUBDIRS += aac
 }

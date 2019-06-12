@@ -7,7 +7,7 @@ The TTKMusicplayer plugin for run
 * |__AppData
   * |__avatar
   * |__theme
-  * |music.lis
+  * |music.tkpl
   * |musicbarrage.ttk
   * |musicconfig.xml
   * |musichistory.ttk
